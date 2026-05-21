@@ -1,21 +1,24 @@
-.PHONY: all clean distclean
+.PHONY: all clean distclean shared
 
 LATEXMK = latexmk
-LATEXFLAGS = -f -pdf -interaction=nonstopmode -halt-on-error -file-line-error
+LATEXFLAGS = -pdf \
+              -interaction=nonstopmode \
+              -halt-on-error \
+              -file-line-error \
+              -outdir=target/shared
+SHARED_DIR = shared
+SHARED_MAIN = lesson_template.tex
+SHARED_OUT = target/$(SHARED_DIR)
 
-UNIT1_MAIN = unit1_foundations
-UNIT1_TEX = $(UNIT1_MAIN)/**/*.tex
+all: shared
 
-all: unit1
-
-unit1: $(UNIT1_MAIN)
-	mkdir -p target/$(UNIT1_MAIN)
-	$(LATEXMK) $(LATEXFLAGS) -outdir=target/$(UNIT1_MAIN) $(UNIT1_TEX)
+shared:
+	mkdir -p $(SHARED_OUT)
+	cd $(SHARED_DIR) && \
+	$(LATEXMK) $(LATEXFLAGS) $(SHARED_MAIN)
 
 clean:
-	$(LATEXMK) -c $(UNIT1_MAIN)
 	rm -rf target
 
 distclean:
-	$(LATEXMK) -C $(UNIT1_MAIN)
 	rm -rf target
