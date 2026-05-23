@@ -1,21 +1,26 @@
-.PHONY: all clean distclean shared
+.PHONY: all clean distclean shared unit00 unit01
 
 LATEXMK = latexmk
-LATEXFLAGS = -pdf \
-              -interaction=nonstopmode \
-              -halt-on-error \
-              -file-line-error \
-              -outdir=target/shared
-SHARED_DIR = shared
-SHARED_MAIN = lesson_template.tex
-SHARED_OUT = target/$(SHARED_DIR)
+LATEXFLAGS = -xelatex \
+             -interaction=nonstopmode \
+             -halt-on-error \
+             -file-line-error
 
-all: shared
+# recursively find all main.tex files
+SHARED_MAINS := $(shell find shared -name main.tex)
+UNIT00_MAINS := $(shell find unit00_introduction -name main.tex)
+UNIT01_MAINS := $(shell find unit01_foundations -name main.tex)
 
-shared:
-	mkdir -p $(SHARED_OUT)
-	cd $(SHARED_DIR) && \
-	$(LATEXMK) $(LATEXFLAGS) $(SHARED_MAIN)
+ALL_MAINS := $(SHARED_MAINS) $(UNIT00_MAINS) $(UNIT01_MAINS)
+
+all:
+	@for tex in $(ALL_MAINS); do \
+		dir=$$(dirname $$tex); \
+		out=target/$$dir; \
+		mkdir -p $$out; \
+		echo "Building $$tex -> $$out"; \
+		$(LATEXMK) $(LATEXFLAGS) -outdir=$$out $$tex; \
+	done
 
 clean:
 	rm -rf target
