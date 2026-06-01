@@ -1,12 +1,78 @@
 %! Author = layne
 %! Date = 4/12/26
 
+% Preamble
+%  preamble
 \documentclass[10pt]{article}
-\usepackage{algebra2-article}
-\usepackage{algebra2-boxes}
 
+% dependencies
+\usepackage[margin=0.6in]{geometry}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{unicode-math}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{ltablex}
+\usepackage{algebra2-colors}
+\usepackage{algebra2-boxes}
+\keepXColumns
+\tcbuselibrary{breakable}
+
+% definitions
+\definecolor{sky}{HTML}{EAF3FB}
+\definecolor{navy}{HTML}{1F3A5F}
+\definecolor{redbox}{HTML}{FCECEC}
+\definecolor{greenbox}{HTML}{EDF8F0}
+\definecolor{goldbox}{HTML}{FFF7E6}
+\newtcolorbox{skillbox}[2][]{
+    colback=#2,
+    colframe=navy,
+    boxrule=0.8pt,
+    arc=2mm,
+    left=2mm,right=2mm,top=1.5mm,bottom=1.5mm,
+    fonttitle=\bfseries,
+    title={#1},
+    halign title=center,
+    breakable
+}
+\newtcolorbox{fixedskillbox}[2][]{
+    colback=#2,
+    colframe=navy,
+    boxrule=0.8pt,
+    arc=2mm,
+    left=2mm,right=2mm,top=0.3mm,bottom=1mm,
+    fonttitle=\bfseries,
+    title={#1},
+    halign title=center,
+    unbreakable
+}
+
+\setlist[itemize]{leftmargin=1.2em,itemsep=0.35em,topsep=0.35em}
+\setlist[enumerate]{leftmargin=1.4em,itemsep=0.35em,topsep=0.35em}
+
+% Centered column types
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+\newcommand{\CourseName}{Algebra 2: Shepherd}
+\newcommand{\SchoolYear}{2026--2027}
 \newcommand{\UnitNumberName}{Unit 1: Foundations}
 \newcommand{\LessonNumberName}{Lesson 1: Evaluating \& simplifying algebraic expressions}
+\newcommand{\LoremIpsum}{
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+    occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+    mollit anim id est laborum.
+}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
 \begin{document}
     \begin{center}
