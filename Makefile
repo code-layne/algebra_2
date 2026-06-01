@@ -13,12 +13,12 @@ LATEXFLAGS   = -xelatex \
 SHARED_STYS    := $(wildcard shared/*.sty)
 UNIT00_MAINS   := $(shell find unit00_introduction -name main.tex | sort)
 UNIT01_MAINS   := $(shell find unit01_foundations -name main.tex | sort)
-ALL_MAINS      := $(UNIT00_MAINS) $(UNIT01_MAINS)
+ALL_MAINS      := $(UNIT01_MAINS)
 
 # ── Stamp paths (mirror source tree under .stamps/) ───────────────────────────
 UNIT00_STAMPS  := $(patsubst %.tex, .stamps/%.stamp, $(UNIT00_MAINS))
 UNIT01_STAMPS  := $(patsubst %.tex, .stamps/%.stamp, $(UNIT01_MAINS))
-ALL_STAMPS     := $(UNIT00_STAMPS) $(UNIT01_STAMPS)
+ALL_STAMPS     := $(UNIT01_STAMPS)
 
 # ── PDF paths derived from source paths ───────────────────────────────────────
 UNIT00_PDFS    := $(patsubst %.tex, target/%.pdf, $(UNIT00_MAINS))
