@@ -47,54 +47,41 @@ unit01: $(UNIT01_STAMPS)
 	pdfunite $(UNIT01_PDFS) target/compiled/unit01.pdf
 	@echo "✓  Unit 01  →  target/compiled/unit01.pdf"
 
+# ── Helpers for mixed compiled/pre-built components ───────────────────────────
+# If a subdir has main.tex → use the compiled PDF from target/.
+# If a subdir has only pre-built PDFs → use them directly from source.
+compiled_pdf  = $(if $(wildcard $(1)/main.tex),target/$(1)/main.pdf,$(wildcard $(1)/*.pdf))
+compiled_stamp = $(if $(wildcard $(1)/main.tex),.stamps/$(1)/main.stamp,)
+
 # ── Lesson 1 component lists ──────────────────────────────────────────────────
-L01 := target/unit01/lesson01
+L01_DIRS_STUDENT := \
+    unit01/lesson01/cover \
+    unit01/lesson01/warmup \
+    unit01/lesson01/notes \
+    unit01/lesson01/activity \
+    unit01/lesson01/exit_ticket \
+    unit01/lesson01/homework
 
-L01_STUDENT_STAMPS := \
-    .stamps/unit01/lesson01/cover/main.stamp \
-    .stamps/unit01/lesson01/warmup/main.stamp \
-    .stamps/unit01/lesson01/notes/main.stamp \
-    .stamps/unit01/lesson01/activity/main.stamp \
-    .stamps/unit01/lesson01/exit_ticket/main.stamp \
-    .stamps/unit01/lesson01/homework/main.stamp
+L01_DIRS_FULL := \
+    unit01/lesson01 \
+    unit01/lesson01/slides \
+    unit01/lesson01/cover \
+    unit01/lesson01/warmup \
+    unit01/lesson01/warmup_key \
+    unit01/lesson01/notes \
+    unit01/lesson01/notes_key \
+    unit01/lesson01/activity \
+    unit01/lesson01/activity_key \
+    unit01/lesson01/exit_ticket \
+    unit01/lesson01/exit_ticket_key \
+    unit01/lesson01/homework \
+    unit01/lesson01/homework_key
 
-L01_STUDENT_PDFS := \
-    $(L01)/cover/main.pdf \
-    $(L01)/warmup/main.pdf \
-    $(L01)/notes/main.pdf \
-    $(L01)/activity/main.pdf \
-    $(L01)/exit_ticket/main.pdf \
-    $(L01)/homework/main.pdf
+L01_STUDENT_STAMPS := $(foreach d,$(L01_DIRS_STUDENT),$(call compiled_stamp,$(d)))
+L01_STUDENT_PDFS   := $(foreach d,$(L01_DIRS_STUDENT),$(call compiled_pdf,$(d)))
 
-L01_FULL_STAMPS := \
-    .stamps/unit01/lesson01/main.stamp \
-    .stamps/unit01/lesson01/slides/main.stamp \
-    .stamps/unit01/lesson01/cover/main.stamp \
-    .stamps/unit01/lesson01/warmup/main.stamp \
-    .stamps/unit01/lesson01/warmup_key/main.stamp \
-    .stamps/unit01/lesson01/notes/main.stamp \
-    .stamps/unit01/lesson01/notes_key/main.stamp \
-    .stamps/unit01/lesson01/activity/main.stamp \
-    .stamps/unit01/lesson01/activity_key/main.stamp \
-    .stamps/unit01/lesson01/exit_ticket/main.stamp \
-    .stamps/unit01/lesson01/exit_ticket_key/main.stamp \
-    .stamps/unit01/lesson01/homework/main.stamp \
-    .stamps/unit01/lesson01/homework_key/main.stamp
-
-L01_FULL_PDFS := \
-    $(L01)/main.pdf \
-    $(L01)/slides/main.pdf \
-    $(L01)/cover/main.pdf \
-    $(L01)/warmup/main.pdf \
-    $(L01)/warmup_key/main.pdf \
-    $(L01)/notes/main.pdf \
-    $(L01)/notes_key/main.pdf \
-    $(L01)/activity/main.pdf \
-    $(L01)/activity_key/main.pdf \
-    $(L01)/exit_ticket/main.pdf \
-    $(L01)/exit_ticket_key/main.pdf \
-    $(L01)/homework/main.pdf \
-    $(L01)/homework_key/main.pdf
+L01_FULL_STAMPS    := $(foreach d,$(L01_DIRS_FULL),$(call compiled_stamp,$(d)))
+L01_FULL_PDFS      := $(foreach d,$(L01_DIRS_FULL),$(call compiled_pdf,$(d)))
 
 lesson01-student: $(L01_STUDENT_STAMPS)
 	mkdir -p target/compiled
