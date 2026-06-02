@@ -1,4 +1,4 @@
-.PHONY: all clean distclean unit00 unit01 lesson01-student lesson01-full
+.PHONY: all clean distclean unit01 unit01-lesson01-student unit01-lesson01-full
 
 PROJECT_ROOT := $(CURDIR)
 TEXINPUTS    := $(PROJECT_ROOT)/shared//:
@@ -11,7 +11,7 @@ LATEXFLAGS   = -xelatex \
 
 # ── Source discovery ──────────────────────────────────────────────────────────
 SHARED_STYS    := $(wildcard shared/*.sty)
-UNIT00_MAINS   := $(shell find unit00_introduction -name main.tex | sort)
+UNIT00_MAINS   := $(shell find unit00 -name main.tex | sort)
 UNIT01_MAINS   := $(shell find unit01 -name main.tex | sort)
 ALL_MAINS      := $(UNIT01_MAINS)
 
@@ -54,7 +54,7 @@ compiled_pdf  = $(if $(wildcard $(1)/main.tex),target/$(1)/main.pdf,$(wildcard $
 compiled_stamp = $(if $(wildcard $(1)/main.tex),.stamps/$(1)/main.stamp,)
 
 # ── Lesson 1 component lists ──────────────────────────────────────────────────
-L01_DIRS_STUDENT := \
+U01_L01_DIRS_STUDENT := \
     unit01/lesson01/cover \
     unit01/lesson01/warmup \
     unit01/lesson01/notes \
@@ -62,7 +62,7 @@ L01_DIRS_STUDENT := \
     unit01/lesson01/exit_ticket \
     unit01/lesson01/homework
 
-L01_DIRS_FULL := \
+U01_L01_DIRS_FULL := \
     unit01/lesson01 \
     unit01/lesson01/slides \
     unit01/lesson01/cover \
@@ -77,20 +77,20 @@ L01_DIRS_FULL := \
     unit01/lesson01/homework \
     unit01/lesson01/homework_key
 
-L01_STUDENT_STAMPS := $(foreach d,$(L01_DIRS_STUDENT),$(call compiled_stamp,$(d)))
-L01_STUDENT_PDFS   := $(foreach d,$(L01_DIRS_STUDENT),$(call compiled_pdf,$(d)))
+U01_L01_STUDENT_STAMPS := $(foreach d,$(U01_L01_DIRS_STUDENT),$(call compiled_stamp,$(d)))
+U01_L01_STUDENT_PDFS   := $(foreach d,$(U01_L01_DIRS_STUDENT),$(call compiled_pdf,$(d)))
 
-L01_FULL_STAMPS    := $(foreach d,$(L01_DIRS_FULL),$(call compiled_stamp,$(d)))
-L01_FULL_PDFS      := $(foreach d,$(L01_DIRS_FULL),$(call compiled_pdf,$(d)))
+U01_L01_FULL_STAMPS    := $(foreach d,$(U01_L01_DIRS_FULL),$(call compiled_stamp,$(d)))
+U01_L01_FULL_PDFS      := $(foreach d,$(U01_L01_DIRS_FULL),$(call compiled_pdf,$(d)))
 
-lesson01-student: $(L01_STUDENT_STAMPS)
+unit01-lesson01-student: $(U01_L01_STUDENT_STAMPS)
 	mkdir -p target/compiled
-	pdfunite $(L01_STUDENT_PDFS) target/compiled/unit01_lesson01_student.pdf
+	pdfunite $(U01_L01_STUDENT_PDFS) target/compiled/unit01_lesson01_student.pdf
 	@echo "✓  Student packet  →  target/compiled/unit01_lesson01_student.pdf"
 
-lesson01-full: $(L01_FULL_STAMPS)
+unit01-lesson01-full: $(L01_FULL_STAMPS)
 	mkdir -p target/compiled
-	pdfunite $(L01_FULL_PDFS) target/compiled/unit01_lesson01_full.pdf
+	pdfunite $(U01_L01_FULL_PDFS) target/compiled/unit01_lesson01_full.pdf
 	@echo "✓  Full lesson     →  target/compiled/unit01_lesson01_full.pdf"
 
 # ── Cleanup ───────────────────────────────────────────────────────────────────
