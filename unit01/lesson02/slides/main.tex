@@ -1,0 +1,516 @@
+%! Algebra 2 — Unit 1, Lesson 2 — Slides (Beamer)
+\documentclass[aspectratio=169, 11pt]{beamer}
+\usepackage{algebra2-beamer}
+
+\newcommand{\vrow}[2]{%
+  \noindent
+  \begin{minipage}[t]{0.26\textwidth}\raggedright\bfseries\color{greenacc}#1\end{minipage}%
+  \hspace{0.03\textwidth}%
+  \begin{minipage}[t]{0.68\textwidth}\raggedright #2\end{minipage}\par\vspace{0.55em}%
+}
+\newcommand{\vrowlg}[2]{%
+  \noindent
+  \begin{minipage}[t]{0.26\textwidth}\raggedright\bfseries\color{greenacc}#1\end{minipage}%
+  \hspace{0.03\textwidth}%
+  \begin{minipage}[t]{0.68\textwidth}\raggedright #2\end{minipage}\par\vspace{0.9em}%
+}
+
+%=============================================================================
+\begin{document}
+
+% ── TITLE SLIDE ───────────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=navy}
+\begin{frame}[plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navylight] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+  \end{tikzpicture}
+  \vspace{2.8cm}
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    {\color{goldacc}\bfseries\small LESSON 2}\\[0.5cm]
+    {\color{white}\bfseries\LARGE Equations \& Inequalities\\[0.25cm]
+      Algebra 1 Review}\\[1.4cm]
+    {\color{skymid}\small Algebra 2~$\cdot$~Unit 1: Foundations}
+  \end{minipage}
+\end{frame}
+}
+
+% ── OBJECTIVE ─────────────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=sky}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navy] (current page.north west)
+      rectangle ([yshift=-0.25cm]current page.north east);
+  \end{tikzpicture}
+  \vspace{0.45cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+
+    {\color{navy}\bfseries\footnotesize\MakeUppercase{Objective}}\par\smallskip
+
+    \normalsize
+    Students will review and reactivate Algebra 1 skills for solving linear equations,
+    linear inequalities, literal equations, systems of equations, and quadratic equations.
+
+    \vspace{0.5cm}
+    \normalsize\textbf{\color{navy}By the end of this lesson, I will be able to:}
+    \smallskip
+    \begin{itemize}
+      \setlength{\itemsep}{0.35em}\setlength{\topsep}{0.2em}
+      \item Solve multistep linear equations and inequalities in one variable.
+      \item Rearrange a formula to solve for a specified variable.
+      \item Solve a system of two linear equations and a quadratic equation.
+    \end{itemize}
+
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 1: LINEAR EQUATIONS ────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 1 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Linear Equations in One Variable}\\[0.5em]
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.45em}
+      \item Distribute, combine like terms, then isolate the variable
+      \item \textbf{One solution:} variable remains after simplifying
+      \item \textbf{No solution:} contradiction (e.g., $3 = 5$)
+      \item \textbf{Infinite solutions:} identity (e.g., $0 = 0$)
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 2: LINEAR INEQUALITIES ─────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 2 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Linear Inequalities in One Variable}\\[0.5em]
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.5em}
+      \item Solve like an equation \textbf{except}: flip the symbol when multiplying
+            or dividing both sides by a \textbf{negative} number
+      \item Graph: closed dot ($\leq$, $\geq$) or open dot ($<$, $>$); arrow shows direction
+      \item Interval notation: use brackets $[$ $]$ for $\leq$/$\geq$; parentheses $($ $)$ for $<$/$>$
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 3: LITERAL EQUATIONS ───────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 3 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Literal Equations}\\[0.5em]
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.5em}
+      \item A formula with more than one variable (e.g., $A = \frac{1}{2}bh$)
+      \item To solve for a target variable: treat all other variables as constants
+      \item Apply the same steps as solving a regular equation
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 4: SYSTEMS OF EQUATIONS ────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 4 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Systems of Two Linear Equations}\\[0.5em]
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.45em}
+      \item \textbf{Substitution:} isolate one variable; substitute into the other equation
+      \item \textbf{Elimination:} scale equations so a variable cancels; add the equations
+      \item \textbf{Graphical:} plot both lines; solution is the intersection point
+      \item \textbf{Number of solutions:} one (intersect), none (parallel), infinite (same line)
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 5: INEQUALITIES IN TWO VARIABLES ───────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 5 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Linear Inequalities in Two Variables}\\[0.5em]
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.5em}
+      \item Graph the boundary line: \textbf{solid} for $\leq$ or $\geq$; \textbf{dashed} for $<$ or $>$
+      \item Shade the half-plane that satisfies the inequality (test a point to confirm)
+      \item For a system: the solution region is where \emph{all} inequalities are satisfied
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 6: SOLVING QUADRATICS ──────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 6 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.3em}
+    {\large\bfseries Solving Quadratic Equations}\\[0.3em]
+    \renewcommand{\arraystretch}{1.65}
+    \normalsize
+    \begin{tabularx}{0.88\textwidth}{@{} >{\bfseries}p{0.30\textwidth} X @{}}
+      Factoring ($|a|=1$)   & find two numbers that add to $b$ and multiply to $c$ \\
+      Factoring ($|a|>1$)   & slip-and-slide; then clear fractions \\
+      Quadratic formula     & $x = \dfrac{-b \pm \sqrt{b^2-4ac}}{2a}$ \\
+      Zero-product property & if $(x-r_1)(x-r_2)=0$ then $x=r_1$ or $x=r_2$ \\
+    \end{tabularx}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 7: DISCRIMINANT ────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 7 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Discriminant \& Number of Solutions}\\[0.5em]
+    \normalsize
+    \renewcommand{\arraystretch}{1.65}
+    \begin{tabularx}{0.88\textwidth}{@{} >{\bfseries}p{0.30\textwidth} X @{}}
+      $\Delta = b^2 - 4ac$ & the expression under the radical in the quadratic formula \\
+      $\Delta > 0$          & two distinct real solutions \\
+      $\Delta = 0$          & exactly one real solution (double root) \\
+      $\Delta < 0$          & no real solutions (complex in Algebra 2) \\
+    \end{tabularx}
+  \end{minipage}
+\end{frame}
+}
+
+% ── VOCABULARY 1: Equations & Inequalities ────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=greenbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[greenacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm]
+      at ([yshift=-0.68cm]current page.north west)
+      {Vocabulary \& Key Concepts \quad\normalsize\itshape Equations \& Inequalities};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \small
+    \vrow{Equation}{A statement that two expressions are equal}
+    \vrow{Inequality}{A statement comparing expressions with $<$, $>$, $\leq$, or $\geq$}
+    \vrow{Solution}{A value making an equation or inequality true}
+    \vrow{Solution set}{All values that satisfy an equation or inequality}
+    \vrow{Interval notation}{Compact form: $[2, \infty)$ means $x \geq 2$}
+    \vrow{Literal equation}{A formula with more than one variable}
+  \end{minipage}
+\end{frame}
+}
+
+% ── VOCABULARY 2: Systems ─────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=greenbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[greenacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm]
+      at ([yshift=-0.68cm]current page.north west)
+      {Vocabulary \& Key Concepts \quad\normalsize\itshape Systems};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \small
+    \vrow{System of equations}{Two or more equations with the same variables}
+    \vrow{Substitution}{Isolate one variable, substitute into the other equation}
+    \vrow{Elimination}{Scale and add equations to cancel a variable}
+    \vrow{Consistent}{System with at least one solution}
+    \vrow{Inconsistent}{System with no solution (parallel lines)}
+    \vrow{Dependent}{Infinitely many solutions (same line)}
+  \end{minipage}
+\end{frame}
+}
+
+% ── VOCABULARY 3: Quadratics ──────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=greenbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[greenacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm]
+      at ([yshift=-0.68cm]current page.north west)
+      {Vocabulary \& Key Concepts \quad\normalsize\itshape Quadratic Equations};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \normalsize
+    \vrowlg{Quadratic equation}{$ax^2+bx+c=0$ where $a \ne 0$}
+    \vrowlg{Zero-product property}{If $AB=0$ then $A=0$ or $B=0$}
+    \vrowlg{Quadratic formula}{$x = \dfrac{-b \pm \sqrt{b^2-4ac}}{2a}$}
+    \vrowlg{Discriminant}{$\Delta = b^2-4ac$; determines number of real solutions}
+  \end{minipage}
+\end{frame}
+}
+
+% ── EXPLICIT INSTRUCTION: Equations ───────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=sky}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navy] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Explicit Instruction \quad\normalsize\itshape Solving Equations \& Inequalities --- Desmos};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.3em}
+    \begin{columns}[T]
+      \begin{column}{0.50\textwidth}
+        \small\textbf{Equations}
+        \begin{enumerate}
+          \setlength{\itemsep}{0.4em}
+          \item Graph $y_1 = $ left side, $y_2 = $ right side
+          \item Find the intersection; the $x$-coordinate is the solution
+          \item Verify by substituting back into the original equation
+        \end{enumerate}
+        \vspace{0.5em}
+        \small\textbf{Inequalities}
+        \begin{enumerate}
+          \setlength{\itemsep}{0.4em}
+          \item Graph the inequality directly in Desmos to see shading
+          \item Or graph $y = $ expression and read where $y \leq 0$ / $y \geq 0$
+        \end{enumerate}
+      \end{column}
+      \hspace{0.02\textwidth}
+      \begin{column}{0.44\textwidth}
+        \small\textbf{Systems}
+        \begin{enumerate}
+          \setlength{\itemsep}{0.4em}
+          \item Enter both equations; Desmos plots both lines
+          \item Click the intersection point to read the solution
+          \item Parallel lines → no solution; same line → infinite solutions
+        \end{enumerate}
+        \vspace{0.5em}
+        \small\textbf{Quadratics}
+        \begin{enumerate}
+          \setlength{\itemsep}{0.4em}
+          \item Graph $y = ax^2+bx+c$
+          \item Count x-intercepts: 2 roots, 1 root, or none
+          \item Read integer roots directly; use formula for non-integers
+        \end{enumerate}
+      \end{column}
+    \end{columns}
+  \end{minipage}
+\end{frame}
+}
+
+% ── GROUP ACTIVITY ────────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=redbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[redacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Group Activity};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.5em}
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.55em}
+      \item Work through your assigned tier on the activity sheet
+      \item \textbf{Show all steps by hand} --- Desmos to verify when you finish
+      \item Groups that finish early: move to the next tier up
+      \item Be ready to justify your reasoning when called on
+    \end{itemize}
+    \vspace{0.5em}
+    {\color{redacc}\bfseries\small TIME: 10--12 minutes}
+  \end{minipage}
+\end{frame}
+}
+
+% ── EXIT TICKET ───────────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=navy}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navylight] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    {\color{goldacc}\bfseries\footnotesize\MakeUppercase{Exit Ticket}}
+    \vspace{0.55cm}\par
+    \begin{columns}[T]
+
+      \begin{column}{0.46\textwidth}
+        \small{\color{goldacc}\bfseries What's on it:}\\[5pt]
+        \begin{itemize}
+          \setlength{\itemsep}{0.45em}
+          \item {\color{white}Solve a multistep linear equation}
+          \item {\color{white}Solve a linear inequality; write in interval notation}
+          \item {\color{white}Multiple-choice: discriminant / number of solutions (SOL-style)}
+        \end{itemize}
+      \end{column}
+
+      \begin{column}{0.46\textwidth}
+        \small{\color{goldacc}\bfseries Expectations:}\\[5pt]
+        \begin{itemize}
+          \setlength{\itemsep}{0.45em}
+          \item {\color{white}Work \textbf{independently} --- no notes, no neighbors}
+          \item {\color{white}Graded for \textbf{completion}}
+          \item {\color{white}Turn it in before you leave}
+        \end{itemize}
+      \end{column}
+
+    \end{columns}
+  \end{minipage}
+\end{frame}
+}
+
+% ── CLOSING & HOMEWORK ────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=navy}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navylight] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    {\color{goldacc}\bfseries\footnotesize\MakeUppercase{Closing \& Homework}}
+    \vspace{0.45cm}\par
+    \begin{columns}[T]
+
+      \begin{column}{0.50\textwidth}
+        \small
+        {\color{goldacc}\bfseries Before you go:}\\[5pt]
+        \begin{itemize}
+          \setlength{\itemsep}{0.4em}
+          \item {\color{white}What's one equation type you feel solid on?}
+          \item {\color{white}What's one skill you want more practice with?}
+        \end{itemize}
+      \end{column}
+
+      \begin{column}{0.44\textwidth}
+        \small
+        {\color{goldacc}\bfseries Tonight:}\\[5pt]
+        \begin{itemize}
+          \setlength{\itemsep}{0.4em}
+          \item {\color{white}Complete the homework sheet --- show all work by hand}
+          \item {\color{white}Use Desmos to \textit{check} your answers when done, not while you work}
+          \item {\color{white}Come to Lesson 1.3 ready to discuss functions}
+        \end{itemize}
+      \end{column}
+
+    \end{columns}
+  \end{minipage}
+\end{frame}
+}
+
+\end{document}
