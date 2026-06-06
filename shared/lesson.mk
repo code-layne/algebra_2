@@ -18,11 +18,18 @@ PDF_DIR      := $(PROJECT_ROOT)/target/$(UNIT)/$(LESSON)
 COMPILED_DIR := $(PROJECT_ROOT)/target/compiled/$(UNIT)
 
 # ── Component discovery (in pedagogical order) ────────────────────────────────
+# For each slot: prefer main.tex (compiled); fall back to main.pdf (copied as-is).
 STUDENT_ORDER := cover warmup notes activity exit_ticket homework
 KEY_ORDER     := warmup_key notes_key activity_key exit_ticket_key homework_key
 
-STUDENT_COMPS := $(foreach c,$(STUDENT_ORDER),$(if $(wildcard $(c)/main.tex),$(c)))
-KEY_COMPS     := $(foreach c,$(KEY_ORDER),$(if $(wildcard $(c)/main.tex),$(c)))
+_comp = $(if $(wildcard $(1)/main.tex),$(1),$(if $(wildcard $(1)/main.pdf),$(1)))
+_tex  = $(if $(wildcard $(1)/main.tex),$(1))
+_pdf  = $(if $(wildcard $(1)/main.tex),,$(if $(wildcard $(1)/main.pdf),$(1)))
+
+STUDENT_COMPS     := $(foreach c,$(STUDENT_ORDER),$(call _comp,$(c)))
+STUDENT_TEX_COMPS := $(foreach c,$(STUDENT_ORDER),$(call _tex,$(c)))
+STUDENT_PDF_COMPS := $(foreach c,$(STUDENT_ORDER),$(call _pdf,$(c)))
+
 HAS_SLIDES    := $(if $(wildcard slides/main.tex),slides)
 HAS_ROOT_MAIN := $(wildcard main.tex)
 
@@ -31,8 +38,11 @@ KEYED_PAIRS   := warmup notes activity exit_ticket homework
 COVER_COMP    := $(if $(wildcard cover/main.tex),cover)
 KEYED_COMPS   := $(foreach c,$(KEYED_PAIRS),\
                    $(if $(wildcard $(c)_key/main.tex),$(c)_key,\
-                   $(if $(wildcard $(c)/main.tex),$(c))))
+                   $(if $(wildcard $(c)_key/main.pdf),$(c)_key,\
+                   $(if $(wildcard $(c)/main.tex),$(c),\
+                   $(if $(wildcard $(c)/main.pdf),$(c))))))
 FULL_COMPS    := $(COVER_COMP) $(KEYED_COMPS)
+FULL_PDF_COMPS := $(foreach c,$(FULL_COMPS),$(call _pdf,$(c)))
 
 # ── Stamp and PDF lists ───────────────────────────────────────────────────────
 STUDENT_STAMPS := $(foreach c,$(STUDENT_COMPS),$(STAMP_DIR)/$(c)/main.stamp)
@@ -71,12 +81,22 @@ else
 	@echo "  (no content in $(UNIT)/$(LESSON))"
 endif
 
-# ── Pattern rule: compile a component subdirectory ────────────────────────────
+# ── Pattern rule: compile a .tex component subdirectory ──────────────────────
 $(STAMP_DIR)/%/main.stamp: %/main.tex $(SHARED_STYS)
 	@mkdir -p $(dir $@) $(PDF_DIR)/$*
 	cd $* && TEXINPUTS="$(TEXINPUTS)" $(LATEXMK) $(LATEXFLAGS) \
 		-outdir="$(PDF_DIR)/$*" main.tex
 	@touch $@
+
+# ── Generated rules: copy prebuilt PDF components ────────────────────────────
+define pdf_copy_rule
+$(STAMP_DIR)/$(1)/main.stamp: $(1)/main.pdf
+	@mkdir -p $$(dir $$@) $(PDF_DIR)/$(1)
+	cp $$< $(PDF_DIR)/$(1)/main.pdf
+	@touch $$@
+endef
+$(foreach c,$(sort $(STUDENT_PDF_COMPS) $(FULL_PDF_COMPS)),\
+    $(eval $(call pdf_copy_rule,$(c))))
 
 # ── Rule: compile root-level main.tex ────────────────────────────────────────
 $(STAMP_DIR)/main.stamp: main.tex $(SHARED_STYS)
