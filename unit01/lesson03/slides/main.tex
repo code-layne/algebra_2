@@ -1,0 +1,544 @@
+%! Algebra 2 — Unit 1, Lesson 3 — Slides (Beamer)
+\documentclass[aspectratio=169, 11pt]{beamer}
+\usepackage{algebra2-beamer}
+
+\newcommand{\vrow}[2]{%
+  \noindent
+  \begin{minipage}[t]{0.26\textwidth}\raggedright\bfseries\color{greenacc}#1\end{minipage}%
+  \hspace{0.03\textwidth}%
+  \begin{minipage}[t]{0.68\textwidth}\raggedright #2\end{minipage}\par\vspace{0.55em}%
+}
+\newcommand{\vrowlg}[2]{%
+  \noindent
+  \begin{minipage}[t]{0.26\textwidth}\raggedright\bfseries\color{greenacc}#1\end{minipage}%
+  \hspace{0.03\textwidth}%
+  \begin{minipage}[t]{0.68\textwidth}\raggedright #2\end{minipage}\par\vspace{0.9em}%
+}
+
+%=============================================================================
+\begin{document}
+
+% ── TITLE SLIDE ───────────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=navy}
+\begin{frame}[plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navylight] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+  \end{tikzpicture}
+  \vspace{2.8cm}
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    {\color{goldacc}\bfseries\small LESSON 3}\\[0.5cm]
+    {\color{white}\bfseries\LARGE Functions \& Statistics\\[0.25cm]
+      Algebra 1 Review}\\[1.4cm]
+    {\color{skymid}\small Algebra 2~$\cdot$~Unit 1: Foundations}
+  \end{minipage}
+\end{frame}
+}
+
+% ── OBJECTIVE ─────────────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=sky}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navy] (current page.north west)
+      rectangle ([yshift=-0.25cm]current page.north east);
+  \end{tikzpicture}
+  \vspace{0.45cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+
+    {\color{navy}\bfseries\footnotesize\MakeUppercase{Objective}}\par\smallskip
+
+    \normalsize
+    Students will review and reactivate Algebra 1 skills for analyzing linear, quadratic,
+    and exponential functions, and for interpreting bivariate data using scatterplots and
+    regression models.
+
+    \vspace{0.5cm}
+    \normalsize\textbf{\color{navy}By the end of this lesson, I will be able to:}
+    \smallskip
+    \begin{itemize}
+      \setlength{\itemsep}{0.35em}\setlength{\topsep}{0.2em}
+      \item Identify key features of linear, quadratic, and exponential functions.
+      \item Write and interpret equations of linear functions.
+      \item Determine the curve of best fit for bivariate data and interpret the model.
+    \end{itemize}
+
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 1: RELATIONS VS. FUNCTIONS ─────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 1 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.3em}
+    {\large\bfseries Relations vs.\ Functions; Domain \& Range}\\[0.3em]
+    \normalsize
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{0.88\textwidth}{@{} >{\bfseries}p{0.28\textwidth} X @{}}
+      Relation     & Any set of ordered pairs $(x, y)$ \\
+      Function     & Every input maps to \emph{exactly one} output --- passes the vertical line test \\
+      Domain       & All allowable inputs ($x$-values) \\
+      Range        & All outputs ($y$-values) produced \\
+    \end{tabularx}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 2: LINEAR FUNCTIONS ────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 2 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Linear Functions}\\[0.5em]
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.45em}
+      \item Slope: $m = \dfrac{y_2 - y_1}{x_2 - x_1}$ \quad (rate of change)
+      \item Forms: slope-intercept $y = mx+b$; \; standard $Ax+By=C$; \; point-slope $y-y_1=m(x-x_1)$
+      \item Parallel: same slope; \quad Perpendicular: $m_1 m_2 = -1$
+      \item Transformations of $y = x$: vertical shift ($+k$), vertical stretch/compression ($k \cdot$)
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 3: WRITING EQUATIONS OF LINES ──────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 3 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Writing Equations of Lines}\\[0.5em]
+    \normalsize
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{0.88\textwidth}{@{} >{\bfseries}p{0.38\textwidth} X @{}}
+      Given graph            & Read slope and $y$-intercept; write $y = mx + b$ \\
+      Given two points       & Compute slope; use point-slope form \\
+      Given slope + point    & Use point-slope form directly \\
+      Vertical line          & $x = a$ (undefined slope) \\
+      Horizontal line        & $y = c$ (slope $= 0$) \\
+    \end{tabularx}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 4: QUADRATIC FUNCTIONS ─────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 4 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.3em}
+    {\large\bfseries Quadratic Functions}\\[0.3em]
+    \normalsize
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{0.88\textwidth}{@{} >{\bfseries}p{0.28\textwidth} X @{}}
+      Zeros / roots     & Where $f(x) = 0$; the $x$-intercepts \\
+      $y$-intercept     & $f(0) = c$ in standard form \\
+      Vertex            & $\left(-\dfrac{b}{2a},\; f\!\left(-\dfrac{b}{2a}\right)\right)$; max if $a<0$, min if $a>0$ \\
+      Axis of symmetry  & $x = -\dfrac{b}{2a}$ \\
+      Domain            & All real numbers \\
+      Range             & $[k, \infty)$ if $a>0$; $(-\infty, k]$ if $a<0$, where $k$ = vertex $y$-value \\
+    \end{tabularx}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 5: EXPONENTIAL FUNCTIONS ───────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 5 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Exponential Functions: $y = ab^x$}\\[0.5em]
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.5em}
+      \item $a$ = initial value ($y$-intercept when $x = 0$)
+      \item $b$ = growth/decay factor \; ($b > 1$: growth; $0 < b < 1$: decay)
+      \item Domain: all real numbers; \quad Range: $(0, \infty)$ when $a > 0$
+      \item No $x$-intercept; the $x$-axis is a horizontal asymptote
+      \item Transformations: $f(x)+k$ shifts vertically; $kf(x)$ stretches/compresses
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 6: COMPARING FUNCTION FAMILIES ─────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 6 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.3em}
+    {\large\bfseries Comparing Linear, Quadratic, \& Exponential}\\[0.3em]
+    \normalsize
+    \renewcommand{\arraystretch}{1.65}
+    \begin{tabularx}{0.88\textwidth}{@{} >{\bfseries}p{0.20\textwidth} p{0.24\textwidth} p{0.24\textwidth} X @{}}
+                     & \textbf{Linear}       & \textbf{Quadratic}    & \textbf{Exponential} \\
+      Rate of change & Constant              & Increasing or decreasing & Multiplicative \\
+      Shape          & Straight line         & Parabola              & Curve (asymptote) \\
+      $x$-intercepts & At most 1             & 0, 1, or 2            & None (typically) \\
+      Range          & All reals             & Half-line             & $(0, \infty)$ \\
+    \end{tabularx}
+  \end{minipage}
+\end{frame}
+}
+
+% ── PRIORITY SKILL 7: BIVARIATE DATA & REGRESSION ────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=goldbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[goldacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Priority Ideas \& Skills \quad\normalsize\itshape Skill 7 of 7};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.4em}
+    {\large\bfseries Bivariate Data \& Regression}\\[0.5em]
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.45em}
+      \item \textbf{Scatterplot:} plot $(x, y)$ pairs; look for linear or quadratic trend
+      \item \textbf{Curve of best fit:} use technology to find the regression equation
+      \item \textbf{Linear model} $y = mx + b$:
+            slope = rate of change; $y$-int = predicted value when $x = 0$
+      \item \textbf{Prediction:} substitute $x$ value into model; evaluate strength/validity
+      \item \textbf{Conclusion:} describe relationship, direction, and strength from scatterplot
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+}
+
+% ── VOCABULARY 1: Functions ───────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=greenbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[greenacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm]
+      at ([yshift=-0.68cm]current page.north west)
+      {Vocabulary \& Key Concepts \quad\normalsize\itshape Functions};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \small
+    \vrow{Relation}{Any set of ordered pairs $(x, y)$}
+    \vrow{Function}{Every input maps to exactly one output; passes the vertical line test}
+    \vrow{Domain}{All allowable inputs ($x$-values)}
+    \vrow{Range}{All outputs ($y$-values) produced}
+    \vrow{$x$-intercept / zero}{Where $f(x) = 0$; the graph crosses the $x$-axis}
+    \vrow{$y$-intercept}{$f(0)$; where the graph crosses the $y$-axis}
+  \end{minipage}
+\end{frame}
+}
+
+% ── VOCABULARY 2: Linear Functions ───────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=greenbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[greenacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm]
+      at ([yshift=-0.68cm]current page.north west)
+      {Vocabulary \& Key Concepts \quad\normalsize\itshape Linear Functions};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \small
+    \vrow{Slope}{Rate of change: $m = \dfrac{y_2 - y_1}{x_2 - x_1}$}
+    \vrow{Slope-intercept form}{$y = mx + b$}
+    \vrow{Standard form}{$Ax + By = C$}
+    \vrow{Point-slope form}{$y - y_1 = m(x - x_1)$}
+    \vrow{Parallel lines}{Same slope, different $y$-intercept}
+    \vrow{Perpendicular lines}{Slopes are negative reciprocals: $m_1 m_2 = -1$}
+  \end{minipage}
+\end{frame}
+}
+
+% ── VOCABULARY 3: Quadratic & Exponential ────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=greenbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[greenacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm]
+      at ([yshift=-0.68cm]current page.north west)
+      {Vocabulary \& Key Concepts \quad\normalsize\itshape Quadratic \& Exponential};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \normalsize
+    \vrowlg{Vertex}{Highest (max) or lowest (min) point of a parabola}
+    \vrowlg{Axis of symmetry}{$x = -\dfrac{b}{2a}$; vertical line through the vertex}
+    \vrowlg{Exponential function}{$y = ab^x$; $a$ = initial value, $b$ = growth/decay factor}
+  \end{minipage}
+\end{frame}
+}
+
+% ── VOCABULARY 4: Statistics ──────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=greenbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[greenacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm]
+      at ([yshift=-0.68cm]current page.north west)
+      {Vocabulary \& Key Concepts \quad\normalsize\itshape Statistics};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \small
+    \vrow{Bivariate data}{Data on two quantitative variables collected from the same subject}
+    \vrow{Scatterplot}{Graph of $(x, y)$ pairs; reveals trends between two variables}
+    \vrow{Curve of best fit}{Function that best models the trend in a scatterplot}
+    \vrow{Linear regression}{Technology finds $y = mx + b$ minimizing squared residuals}
+    \vrow{Residual}{Observed value $-$ predicted value}
+    \vrow{Prediction}{Substitute an $x$-value into the model to estimate $y$}
+  \end{minipage}
+\end{frame}
+}
+
+% ── EXPLICIT INSTRUCTION: Desmos ──────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=sky}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navy] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Explicit Instruction \quad\normalsize\itshape Functions \& Regression --- Desmos};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.3em}
+    \begin{columns}[T]
+      \begin{column}{0.50\textwidth}
+        \small\textbf{Reading function features}
+        \begin{enumerate}
+          \setlength{\itemsep}{0.4em}
+          \item Graph the function; click zeros to read $x$-intercepts
+          \item Click the vertex to read max/min
+          \item Evaluate: type $f(value)$ to compute a specific output
+        \end{enumerate}
+        \vspace{0.5em}
+        \small\textbf{Comparing families}
+        \begin{enumerate}
+          \setlength{\itemsep}{0.4em}
+          \item Enter all three parent functions on one screen
+          \item Zoom out to see long-run behavior
+        \end{enumerate}
+      \end{column}
+      \hspace{0.02\textwidth}
+      \begin{column}{0.44\textwidth}
+        \small\textbf{Regression workflow}
+        \begin{enumerate}
+          \setlength{\itemsep}{0.4em}
+          \item Create a table with columns $x_1$ and $y_1$
+          \item Enter data pairs into the table
+          \item Type: $y_1 \sim mx_1 + b$ (linear) or $y_1 \sim ax_1^2 + bx_1 + c$ (quadratic)
+          \item Read equation from sidebar; use it to predict
+        \end{enumerate}
+      \end{column}
+    \end{columns}
+  \end{minipage}
+\end{frame}
+}
+
+% ── GROUP ACTIVITY ────────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=redbg}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[redacc] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+    \node[anchor=west, text=white, font=\bfseries\large,
+          inner xsep=0.55cm, inner ysep=0pt]
+      at ([yshift=-0.68cm]current page.north west)
+      {Group Activity};
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    \vspace{0.5em}
+    \normalsize
+    \begin{itemize}
+      \setlength{\itemsep}{0.55em}
+      \item Work through your assigned tier on the activity sheet
+      \item \textbf{Show all steps by hand} --- Desmos to verify when you finish
+      \item Groups that finish early: move to the next tier up
+      \item Be ready to justify your reasoning when called on
+    \end{itemize}
+    \vspace{0.5em}
+    {\color{redacc}\bfseries\small TIME: 10--12 minutes}
+  \end{minipage}
+\end{frame}
+}
+
+% ── EXIT TICKET ───────────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=navy}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navylight] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    {\color{goldacc}\bfseries\footnotesize\MakeUppercase{Exit Ticket}}
+    \vspace{0.55cm}\par
+    \begin{columns}[T]
+
+      \begin{column}{0.46\textwidth}
+        \small{\color{goldacc}\bfseries What's on it:}\\[5pt]
+        \begin{itemize}
+          \setlength{\itemsep}{0.45em}
+          \item {\color{white}Key features of a quadratic function}
+          \item {\color{white}Interpret slope and $y$-intercept of a linear model in context}
+          \item {\color{white}Multiple-choice: identifying scatterplot trend (SOL-style)}
+        \end{itemize}
+      \end{column}
+
+      \begin{column}{0.46\textwidth}
+        \small{\color{goldacc}\bfseries Expectations:}\\[5pt]
+        \begin{itemize}
+          \setlength{\itemsep}{0.45em}
+          \item {\color{white}Work \textbf{independently} --- no notes, no neighbors}
+          \item {\color{white}Graded for \textbf{completion}}
+          \item {\color{white}Turn it in before you leave}
+        \end{itemize}
+      \end{column}
+
+    \end{columns}
+  \end{minipage}
+\end{frame}
+}
+
+% ── CLOSING & HOMEWORK ────────────────────────────────────────────────────────
+{
+\setbeamercolor{background canvas}{bg=navy}
+\begin{frame}[t, plain]
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[navylight] (current page.north west)
+      rectangle ([yshift=-1.35cm]current page.north east);
+  \end{tikzpicture}
+  \vspace{1.05cm}\vspace{1em}\par
+  \hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    {\color{goldacc}\bfseries\footnotesize\MakeUppercase{Closing \& Homework}}
+    \vspace{0.45cm}\par
+    \begin{columns}[T]
+
+      \begin{column}{0.50\textwidth}
+        \small
+        {\color{goldacc}\bfseries Before you go:}\\[5pt]
+        \begin{itemize}
+          \setlength{\itemsep}{0.4em}
+          \item {\color{white}Name one function family you feel confident with.}
+          \item {\color{white}What's still fuzzy --- features, writing equations, or regression?}
+        \end{itemize}
+      \end{column}
+
+      \begin{column}{0.44\textwidth}
+        \small
+        {\color{goldacc}\bfseries Tonight:}\\[5pt]
+        \begin{itemize}
+          \setlength{\itemsep}{0.4em}
+          \item {\color{white}Complete the homework sheet --- show all work by hand}
+          \item {\color{white}Use Desmos to \textit{check} your answers when done, not while you work}
+          \item {\color{white}Unit 2 begins next --- review your transformation vocabulary}
+        \end{itemize}
+      \end{column}
+
+    \end{columns}
+  \end{minipage}
+\end{frame}
+}
+
+\end{document}
