@@ -296,7 +296,25 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > interpret). Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp, homework 2pp; exit
 > ticket includes an SOL-style MC item (number of solutions from a collapsed quadratic).
 > `make -C unit03/lesson06 all` → EXIT 0 (student 10pp, full 20pp).
-> **Next action: author lesson 3.7 (Modeling with quadratics — projectile/area/optimization; vertex as max/min).**
+> **Lesson 3.7 authored & builds (2026-07-25):** all components + keys + 7-slide deck done; the unit capstone, where
+> students stop being handed a quadratic and \emph{build} one from a story, then read the answer off its features. A
+> \textbf{feature-to-question map} organizes everything --- \textbf{$y$-intercept} $=$ starting value, a \textbf{zero}
+> (positive root) $=$ ``when/where it reaches $0$,'' the \textbf{vertex} $=$ \textbf{max/min} (input $=$ when/where,
+> output $=$ how much) --- across three model types: \textbf{projectile} $h(t)=-16t^2+v_0t+h_0$ (anchor
+> $-16t^2+32t+48$: start $48$, max $(1,64)$, lands $t=3$), \textbf{maximum area} (pen against a barn wall, three sides,
+> $A(x)=x(40-2x)$, vertex $(10,200)$, with the $40-2x$ trap and a feasible-domain beat), and \textbf{revenue
+> optimization} (price\,$\times$\,changing demand, $R(x)=(8+x)(200-20x)$, best price at the vertex). The algebra is
+> entirely reused (vertex by $x=-b/2a$ from 3.1; zeros by factoring/formula from 3.2/3.5); the new work is
+> translating, choosing the feature, interpreting with units, and rejecting impossible values (negative time, a width
+> outside the fence). Tier E ties back to systems (3.6) via a ``same-height'' object comparison. All graphs pre-drawn
+> (scaled-axis projectile parabola + barn-wall pen schematic; no sketch-from-scratch). Standards: **2023 VA SOL
+> A2.EI.2a** (create a quadratic model), **A2.EI.2d** (verify/interpret, incl.\ vertex as max/min), **A2.F.2d**
+> (max/min from the vertex); builds on A2.F.2a/d (3.1) and A2.EI.2b (3.2, 3.5). Warm-up & exit ticket each fit one page
+> (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket includes an SOL-style MC item (which feature is the
+> max height). `make -C unit03/lesson07 all` → EXIT 0 (student 9pp, full 20pp).
+> **All eight Unit 3 lessons (3.0–3.7) are now authored & building. Next action: author the Unit 3 tests
+> (`tests/{practice_test,actual_test}` + `test_keys/`, then publish practice test/key to `sample_test{,_key}/`), as
+> was done for Unit 2.**
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
