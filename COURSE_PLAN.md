@@ -229,7 +229,23 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **A2.EI.2a/b/d** (create, solve algebraically, and verify/interpret quadratic equations). Warm-up & exit
 > ticket each fit one page (blank+key); notes 2pp, activity 2pp, homework 2pp; exit ticket includes an
 > SOL-style MC item (root→factor sign flip). `make -C unit03/lesson02 all` → EXIT 0 (student 9pp, full
-> 20pp). **Next action: author lesson 3.3 (Solving by square roots & completing the square).**
+> 20pp).
+> **Lesson 3.3 authored & builds (2026-07-25):** all components + keys + 7-slide deck done; solving
+> quadratics that \emph{won't factor} via two methods --- the **Square Root Property** ($x^2=k\Rightarrow
+> x=\pm\sqrt{k}$, $k\ge0$: isolate the square first, keep the $\pm$, simplest radical form, including
+> $(x-h)^2=k$ binomial-square cases) and **completing the square** ($a=1$: move the constant, add
+> $(b/2)^2$ to build a perfect square, then root), tied throughout to Lesson 3.1's **vertex form** (the
+> same move rewrites $x^2-2x-3=(x-1)^2-4$, vertex $(1,-4)$ --- the unit anchor) and to a **choose-a-method**
+> decision (factor / square roots / complete the square, dividing by $a$ first when $a\ne1$ in Tier E).
+> Real solutions only; the negative-radicand wall ($x^2=-4$) is previewed and deferred to 3.4. All graphs
+> pre-drawn via `plot`+`\clip`; includes a dropped-object model (square-root method) and a matted-photo area
+> model. Standards: **2023 VA SOL A2.EI.2b** (solve algebraically --- square-root & completing-the-square
+> methods, real solutions), **A2.EI.2a** (model), **A2.EI.2d** (verify/interpret roots as $x$-intercepts),
+> building on **A2.EO.3d** (perfect-square-trinomial identity run forward) and **A2.F.2** vertex-form
+> characteristics. Warm-up & exit ticket each fit one page (blank+key); notes 2pp, activity 2pp, homework
+> 2pp; exit ticket includes an SOL-style MC item (which constant completes the square). `make -C
+> unit03/lesson03 all` → EXIT 0 (student 9pp, full 19pp).
+> **Next action: author lesson 3.4 (Complex numbers --- operations, $i$).**
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
