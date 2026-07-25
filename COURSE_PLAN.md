@@ -260,7 +260,23 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > on **A2.EO.2** (radicals) and connecting forward to **A2.EI.2b** (3.5). Warm-up & exit ticket each fit one
 > page (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket includes an SOL-style MC item
 > ($i^{38}$). `make -C unit03/lesson04 all` → EXIT 0 (student 10pp, full 20pp).
-> **Next action: author lesson 3.5 (The quadratic formula & the discriminant, incl. complex solutions).**
+> **Lesson 3.5 authored & builds (2026-07-25):** all components + keys + 7-slide deck done; the \emph{one
+> method that solves every quadratic}. Derives the **quadratic formula** $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ as
+> completing the square (Lesson 3.3) done once on the general $ax^2+bx+c=0$, then a fixed protocol
+> (standard form → read $a,b,c$ with signs → substitute/simplify) producing real \emph{and} complex ($a+bi$,
+> Lesson 3.4) answers. Isolates the **discriminant** $b^2-4ac$ as a \emph{predictor} of the roots \emph{before}
+> solving — three cases ($>0$ two real / $=0$ one repeated / $<0$ two complex-conjugate) each tied to a
+> pre-drawn parabola's $x$-intercepts (2/1/0). Also: choose-a-method (factor/square-roots/formula), verify by
+> substitution, and a projectile model (reject the impossible root). Unifying threads: the anchor
+> $x^2-2x-3=0$ ($D=16$, roots $3,-1$ — matches 3.2 factoring) and the 3.4 leftover $x^2+2x+5=0$ ($D=-16$,
+> roots $-1\pm2i$ — same conjugate pair the formula now reproduces). Tier E adds a discriminant \emph{parameter}
+> problem (find $k$ for one/two/no real roots). All graphs pre-drawn via `plot`+`\clip` (no sketch-from-scratch).
+> Standards: **2023 VA SOL A2.EI.2b** (solve over the complex numbers algebraically — the quadratic formula),
+> **A2.EI.2a** (model), **A2.EI.2d** (verify/interpret), revisiting **A2.F.2d** (discriminant ↔ number/type of
+> $x$-intercepts); builds on completing the square (3.3) and $i$ (3.4). Warm-up & exit ticket each fit one page
+> (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket includes an SOL-style MC item (root type from
+> a given discriminant). `make -C unit03/lesson05 all` → EXIT 0 (student 10pp, full 20pp).
+> **Next action: author lesson 3.6 (Systems involving quadratics — linear–quadratic & quadratic–quadratic).**
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
