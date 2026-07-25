@@ -19,68 +19,178 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students break the ``no real solution'' wall from Lesson~3.3 by
+    \emph{inventing a new number}. They explain the meaning of the \emph{imaginary unit} $i=\sqrt{-1}$
+    (so $i^2=-1$), and use it to rewrite a negative square root: $\sqrt{-k}=i\sqrt{k}$ (pull the $i$ out
+    \emph{first}, then simplify). They write complex numbers in \emph{standard form} $a+bi$, name the real
+    and imaginary parts, and classify a number as real, imaginary, or pure imaginary. They \emph{add,
+    subtract, and multiply} complex numbers --- add/subtract by combining like terms, multiply by FOIL
+    followed by the substitution $i^2=-1$ --- recognize that the product of \emph{conjugates} $a\pm bi$ is
+    the real number $a^2+b^2$, and simplify \emph{powers of $i$} by using the length-$4$ cycle. The lesson
+    closes by reconnecting to completing the square: $x^2+2x+5=0$ now has the complex solutions
+    $-1\pm2i$, previewing Lesson~3.5.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.4a} (explain the meaning of $i$), \textbf{A2.EO.4b}
+    (identify equivalent radical expressions containing negative rationals and expressions in $a+bi$ form),
+    and \textbf{A2.EO.4c} (apply properties to add, subtract, and multiply complex numbers). Builds on
+    \textbf{A2.EO.2} (simplifying radical expressions) and connects forward to \textbf{A2.EI.2b} (solving
+    quadratics over the complex numbers, Lesson~3.5).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Define $i=\sqrt{-1}$; the working rule is $i^2=-1$.
+  \item Rewrite $\sqrt{-k}=i\sqrt{k}$ --- pull the $i$ out \emph{first}, then simplify the radical.
+  \item Write numbers in standard form $a+bi$; name real/imaginary parts; classify the number.
+  \item \textbf{Add/subtract} by combining like terms; \textbf{multiply} by FOIL then $i^2=-1$.
+  \item The product of conjugates $(a+bi)(a-bi)=a^2+b^2$ is \emph{real}.
+  \item Simplify powers of $i$ using the cycle $i,\,-1,\,-i,\,1$ (reduce the exponent mod $4$).
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item Extending the number system fixes what real numbers could not do: give $x^2=-4$ a solution.
+  \item $\sqrt a\sqrt b=\sqrt{ab}$ is \emph{only} valid for nonnegative $a,b$, so convert to $i$ before combining.
+  \item ``$a+bi$'' names two independent pieces --- a real part and an imaginary part --- like $x$-terms and constants.
+  \item Complex arithmetic is just polynomial arithmetic with the single extra fact $i^2=-1$.
+  \item Conjugates clear the imaginary part --- the same trick that will rationalize complex denominators.
+  \item $i^4=1$, so the powers of $i$ repeat every four steps.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Imaginary unit $i$} & The number defined by $i=\sqrt{-1}$, so $i^2=-1$. The engine of every complex computation. \\
+\textbf{$\sqrt{-k}=i\sqrt{k}$} & For $k>0$; pull out $i$ \emph{before} simplifying, since the product rule fails for negatives. \\
+\textbf{Complex number} & Any number $a+bi$ with $a,b$ real; $a$ is the \emph{real part}, $b$ the \emph{imaginary part}. \\
+\textbf{Pure imaginary} & A complex number $bi$ with $a=0$, $b\ne0$ (e.g. $3i$); reals are the $b=0$ case. \\
+\textbf{Complex conjugate} & The pair $a+bi$ and $a-bi$; their product $a^2+b^2$ is a real number. \\
+\textbf{Powers of $i$} & Cycle $i^1=i,\ i^2=-1,\ i^3=-i,\ i^4=1$, then repeat; reduce the exponent mod $4$. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses exactly what today needs: \textbf{(1)} \emph{simplifying radicals}
+    ($\sqrt{50}=5\sqrt2$) so answers like $\sqrt{-50}=5i\sqrt2$ land in simplest form; \textbf{(2)}
+    \emph{multiplying binomials} by FOIL ($(x+3)(x-3)=x^2-9$) --- the mechanics of multiplying complex
+    numbers, with the conjugate pattern hiding in plain sight; \textbf{(3)} \emph{combining like terms}
+    ($(3x+5)+(2x-8)$), which is all that adding/subtracting complex numbers requires; and \textbf{(4)} the
+    \emph{Lesson-3.3 wall} --- $x^2=-4$ has no real solution --- reopened to motivate inventing $i$.
+    Debrief item~4 last and leave it on the board; it \emph{is} the hook.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put the wall on the board: \[ x^2=-4. \] Ask: ``In Lesson~3.3 we solved everything --- except this.
+    \emph{Why} is there no real answer?'' (Nothing real squares to a negative; the parabola $y=x^2+4$
+    never touches the $x$-axis.) Then reframe the impasse as an \emph{opportunity}: negative numbers,
+    fractions, and irrationals were each once ``impossible'' until the number system was extended to
+    include them. So we do it again --- \emph{define} a number whose square is $-1$, call it $i$, and see
+    what it lets us do. Land the theme: \emph{mathematicians don't stop at ``no solution''; they build the
+    numbers that make one.}
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. Define $i$.} Introduce the imaginary unit: $i=\sqrt{-1}$, so $i^2=-1$. This one fact is the
+entire lesson's engine. Immediately cash it in: $\sqrt{-4}=\sqrt4\cdot\sqrt{-1}=2i$, and the wall opens ---
+$x^2=-4\Rightarrow x=\pm2i$.
+
+\textbf{2. Negative radicals.} Generalize: for $k>0$, $\sqrt{-k}=i\sqrt{k}$. \emph{Pull the $i$ out first},
+then simplify: $\sqrt{-50}=i\sqrt{50}=5i\sqrt2$. Flag the trap: $\sqrt{-2}\cdot\sqrt{-2}\ne\sqrt4$; convert
+to $i$ first, giving $2i^2=-2$. The product rule for radicals fails for negatives.
+
+\textbf{3. Standard form $a+bi$.} Every complex number has a real part $a$ and an imaginary part $b$.
+$b=0$ gives the reals; $a=0$ (with $b\ne0$) gives the pure imaginaries. Practice naming parts and
+classifying, and (optionally) plotting on the complex plane (real $\to$ horizontal, imaginary $\to$
+vertical) to reinforce the two-component structure.
+
+\columnbreak
+
+\textbf{4. Add \& subtract.} Combine like terms: $(3+2i)+(5-8i)=8-6i$. Subtraction distributes the minus
+over \emph{both} parts.
+
+\textbf{5. Multiply.} FOIL as usual, then replace $i^2=-1$ and re-collect: $(2+3i)(4-i)=8+10i-3i^2=11+10i$.
+Then the \emph{conjugate} product $(a+bi)(a-bi)=a^2+b^2$ is real --- demonstrate with $(5+2i)(5-2i)=29$.
+
+\textbf{6. Powers of $i$.} Build the cycle $i,-1,-i,1$ and reduce the exponent mod $4$:
+$i^{23}\to23\bmod4=3\to i^3=-i$.
+
+\textbf{7. Why we needed them (capstone).} Completing the square on $x^2+2x+5=0$ gives $(x+1)^2=-4$, so
+$x=-1\pm2i$ --- the first quadratic whose solutions are complex. This reconnects 3.3 and previews the
+discriminant in 3.5.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Explicit Instruction: Multiplying Complex Numbers]{forestbg}
+\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
+\textbf{Steps (post and refer back):}
+\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
+  \item Write each factor in $a+bi$ form (convert any $\sqrt{-k}$ to $i\sqrt k$ \emph{first}).
+  \item FOIL / distribute exactly as with binomials.
+  \item Replace every $i^2$ with $-1$.
+  \item Combine like terms into a single $a+bi$.
+\end{enumerate}
+&
+\textbf{Worked example.} Multiply $(4-3i)(2+i)$.
+\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
+  \item FOIL: $8+4i-6i-3i^2$.
+  \item Combine $i$-terms: $8-2i-3i^2$.
+  \item $i^2=-1$: $8-2i-3(-1)=8-2i+3$.
+  \item Collect: $11-2i$.
+\end{itemize}
+\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item leaving a negative radical unsimplified ($\sqrt{-50}$ as $\sqrt{50}\,i$) or dropping/mis-placing the sign ($-\sqrt{-49}$);
+  \item the $\sqrt{-a}\cdot\sqrt{-b}=\sqrt{ab}$ \textbf{trap} --- not converting to $i$ before multiplying;
+  \item forgetting to substitute $i^2=-1$, so a product stops at $\dots-3i^2$;
+  \item sign slips on subtraction (not distributing the minus over the imaginary part);
+  \item confusing the real and imaginary parts, or writing a pure imaginary as ``real'';
+  \item powers of $i$: forgetting the remainder (e.g.\ calling $i^{40}$ anything but $1$).
+\end{itemize}
+Cold-call prompts: ``What is $i$ squared, and why does that matter?'' ``How do you rewrite $\sqrt{-18}$?''
+``After you FOIL, what's the \emph{next} move?'' ``$i^{27}$ --- what's the shortcut?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{The Number $i$} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Rewrite negative radicals with $i$, evaluate small powers of $i$, name real
+and imaginary parts and classify, and add/subtract complex numbers.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} Multiply (FOIL $+\ i^2=-1$), compute conjugate products and notice they are
+real, reduce larger powers of $i$ mod $4$, and \emph{read} complex numbers off the complex plane.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Solve quadratics with complex solutions (including completing the square),
+divide by a conjugate (rationalize), and analyze the $\sqrt{-a}\cdot\sqrt{-b}$ error.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): rewrite $\sqrt{-72}$ and write $3-\sqrt{-16}$ in $a+bi$ form;
+multiply $(3+2i)(4-i)$ (FOIL then $i^2=-1$); and an \textbf{SOL-style multiple-choice} item asking for
+$i^{38}$ (answer $-1$). Collect and sort into ``got it / lost the $i$ / dropped $i^2=-1$ /
+power-of-$i$ slip'' to decide whether Lesson~3.5 opens with a re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} rewrite negative radicals, write numbers in $a+bi$ form, add/subtract, multiply (FOIL
+$+\ i^2=-1$), compute conjugate products, simplify powers of $i$, solve $x^2=-k$, and explain why
+$i^2\ne1$. \textbf{Extension:} find complex roots by completing the square and verify a root by
+substitution. \textbf{Preview:} Lesson~3.5, \emph{The Quadratic Formula \& the Discriminant} --- one
+formula for every quadratic, and using $b^2-4ac$ to predict two real, one real, or two complex-conjugate
+roots \emph{before} solving.
 \end{skillbox}
 \end{document}
