@@ -3,17 +3,55 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.2}{Warm-Up --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Warm-Up verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Warm-Up --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Getting Ready: Distance, Solving, and Number Lines}
+\small Today an absolute value asks a \emph{distance} question, and you'll solve the linear equation
+inside the bars \emph{twice}. These three skills are the tools you'll need.
+
+\vspace{4pt}
+\textbf{1. Absolute value is distance from zero.} Evaluate each.
+\[
+  |-7| = \textcolor{keyred}{\mathbf{7}} \qquad |4| = \textcolor{keyred}{\mathbf{4}} \qquad
+  |{-3}| + |5| = \textcolor{keyred}{\mathbf{8}} \qquad -|{-6}| = \textcolor{keyred}{\mathbf{-6}}
+\]
+How many different numbers have an absolute value of $7$? \ans{two}\; Name them: \ans{$7$ and $-7$}
+
+\vspace{6pt}
+\textbf{2. Solve the two-step equation.} (You'll repeat this move once the bars split into two cases.)
+\[
+  2x - 3 = 7 \qquad\Rightarrow\qquad x = \textcolor{keyred}{\mathbf{5}}
+  \hspace{1.2cm}
+  2x - 3 = -7 \qquad\Rightarrow\qquad x = \textcolor{keyred}{\mathbf{-2}}
+\]
+
+\vspace{6pt}
+\textbf{3. Graph on a number line, then name it in interval notation.} Shade $x \ge -1$.
+\begin{center}
+\begin{tikzpicture}[scale=0.55]
+  \numline{-5}{5}
+  \draw[very thick, forest, ->] (-1,0)--(5.4,0);
+  \fill[forest] (-1,0) circle (3.5pt);
+\end{tikzpicture}
+\end{center}
+Interval notation: \ans{$[-1,\infty)$} \qquad {\footnotesize (Use $[\,$ or $]$ for ``or equal to,'' $($ or $)$ otherwise.)}
 \end{notesbox}
+
+\begin{teachernote}
+Item~1 plants the two-case idea: because $|x|$ is a \emph{distance}, two numbers ($7$ and $-7$) share
+an absolute value --- that is exactly why $|ax+b|=c$ splits into two equations. Item~2 is the linear
+solving from Lesson~2.1; today students do it once for the ``$+c$'' case and once for the ``$-c$''
+case. In item~3, tie the \emph{closed} dot at $-1$ to the bracket in $[-1,\infty)$; $\infty$ always
+takes a parenthesis.
+\end{teachernote}
 
 \end{document}

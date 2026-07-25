@@ -1,6 +1,10 @@
 %! Absolute Value Equations \& Inequalities — Unit 2, Lesson 2.2 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Number line: {xmin}{xmax} then draw solutions on top.
+\newcommand{\numline}[2]{%
+  \draw[->, thick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.09)--(\x,-0.09) node[below, font=\tiny]{$\x$};}}
 
 \begin{document}
 
@@ -12,15 +16,128 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.2}\\[0.5cm]
     {\color{white}\bfseries\LARGE Absolute Value Equations \& Inequalities}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2: Linear Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Absolute value is a distance}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      A cereal box is labeled \textbf{500 g}. Q.C.\ rejects a box \textbf{more than 5 g off}.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Lightest that passes? $\to$ \textbf{495 g}
+        \item Heaviest that passes? $\to$ \textbf{505 g}
+        \item One symbol for it? $\to$ $|w - 500| \le 5$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.5]
+        \numline{-6}{6}
+        \fill[forest] (-5,0) circle (3pt); \fill[forest] (5,0) circle (3pt);
+        \node[forest, font=\scriptsize] at (0,0.7){distance $5$ each way};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Today}
+    Every equation and inequality is a \emph{distance} question: exactly this far, or within/beyond
+    this far.
+  \end{block}
+\end{frame}
+
+% EQUATIONS
+\begin{frame}[t, plain]
+  \forestheader{Solving $|ax+b| = c$: two cases}
+  \sectionlabel{Equations}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item \textbf{Isolate} the bars first, then split (if $c \ge 0$): \; $ax+b = c$ \; \textbf{or} \; $ax+b = -c$.
+    \item \textbf{Worked:} $|2x - 3| = 7 \Rightarrow 2x-3 = 7$ (so $x=5$) or $2x-3=-7$ (so $x=-2$).
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{Special cases (explain from distance)}
+    $|x-4| = -3$ $\to$ \textbf{no solution} (distance can't be negative); \quad
+    $|x-4| = 0$ $\to$ \textbf{one solution}, $x=4$.
+  \end{block}
+\end{frame}
+
+% AND CASE
+\begin{frame}[t, plain]
+  \forestheader{Inequalities: the ``and'' case ($<$, $\le$)}
+  \sectionlabel[goldacc]{Less thAND}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      $|X| < c$ means \emph{within} $c$ of zero $\Rightarrow -c < X < c$ (one interval).\\[4pt]
+      \textbf{Solve} $|2x-1| \le 5$:
+      \[ -5 \le 2x-1 \le 5 \;\Rightarrow\; -2 \le x \le 3. \]
+      Set $\{x \mid -2 \le x \le 3\}$; \; interval $[-2,3]$.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.5]
+        \numline{-4}{5}
+        \draw[very thick, forest] (-2,0)--(3,0);
+        \fill[forest] (-2,0) circle (3pt); \fill[forest] (3,0) circle (3pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% OR CASE
+\begin{frame}[t, plain]
+  \forestheader{Inequalities: the ``or'' case ($>$, $\ge$)}
+  \sectionlabel[goldacc]{GreatOR}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      $|X| > c$ means \emph{beyond} $c$ from zero $\Rightarrow X < -c$ \textbf{or} $X > c$ (two rays).\\[4pt]
+      \textbf{Solve} $|x+2| \ge 4$:
+      \[ x+2 \le -4 \;\text{or}\; x+2 \ge 4 \;\Rightarrow\; x \le -6 \;\text{or}\; x \ge 2. \]
+      Interval $(-\infty,-6] \cup [2,\infty)$.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \numline{-8}{4}
+        \draw[very thick, forest, <-] (-8.4,0)--(-6,0);
+        \draw[very thick, forest, ->] (2,0)--(4.4,0);
+        \fill[forest] (-6,0) circle (3pt); \fill[forest] (2,0) circle (3pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THREE NOTATIONS
+\begin{frame}[t, plain]
+  \forestheader{One set, three notations}
+  \sectionlabel{Representing solutions}
+  \begin{itemize}\setlength{\itemsep}{7pt}
+    \item \textbf{Set:} $\{x \mid -2 \le x \le 3\}$ --- describes the members.
+    \item \textbf{Interval:} $[-2,3]$ --- brackets \emph{include} an endpoint, parentheses \emph{exclude}; $\pm\infty$ always a parenthesis.
+    \item \textbf{Number line:} shade the set; \textbf{closed} dot for $\le/\ge$, \textbf{open} dot for $</>$.
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{Tolerance in context}
+    ``Within $0.3$ of $20$'' is $|L - 20| \le 0.3$, i.e.\ $19.7 \le L \le 20.3$.
+  \end{block}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 2 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} absolute value as distance; the two-case rule; ``and''/``or'' inequalities; set,
+  interval, and number-line notation.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item \textbf{2.3} Absolute value \emph{functions} \& transformations --- the V-shape.
+    \item \textbf{2.4} Piecewise-defined functions.
+    \item \textbf{2.5} Linear regression.
+  \end{itemize}
+  \vspace{4pt}
+  {\footnotesize The two solutions of $|ax+b|=c$ are where the V-graph $y=|ax+b|$ meets $y=c$.}
 \end{frame}
 
 \end{document}
