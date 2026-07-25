@@ -2,6 +2,15 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
+\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
+\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -12,20 +21,197 @@
 \begin{document}
 
 \pageheader{Unit 2: Linear Functions}{Practice Test --- Study Copy --- Answer Key}
+\namedateperiod
 
-% Mirror the blank test EXACTLY, filling each answer with \ans{...} (inline) or
-% \ansline{...} (on a write-line). Use teachernote for scoring/teacher guidance.
+\vspace{0.10in}
+\begin{remindbox}
+\small
+\textbf{This is a practice test.} It mirrors the real Unit 2 test in length, format,
+and the ideas it covers, but the numbers and contexts differ. Work every problem
+with no notes, then check your answers against the key.
+\end{remindbox}
+
 % ======================================================================
-\parthead{Part A --- Vocabulary}
-% TODO: answers via \ans{...}
+\parthead{Part A --- Vocabulary (8 pts)}
+Write the letter of the best description next to each term.
 
-\parthead{Part B --- Multiple Choice}
-% TODO: mark correct options, e.g. \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.42\textwidth}
+\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
+  \item Slope \ans{G}
+  \item Zero of a function \ans{C}
+  \item Rate of change \ans{D}
+  \item Vertex \ans{A}
+  \item Axis of symmetry \ans{H}
+  \item Piecewise function \ans{F}
+  \item Correlation coefficient \ans{B}
+  \item Extrapolation \ans{E}
+\end{enumerate}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.55\textwidth}
+\small
+\begin{description}[leftmargin=1.4em, itemsep=3pt]
+  \item[(A)] The turning point of a V-shaped (absolute value) graph, where it changes direction.
+  \item[(B)] A number $r$ between $-1$ and $1$ measuring the direction and strength of a linear association.
+  \item[(C)] An $x$-value where $f(x)=0$; the graph's $x$-intercept.
+  \item[(D)] The constant ratio $\dfrac{\Delta y}{\Delta x}$ --- how fast $y$ changes per unit of $x$.
+  \item[(E)] Predicting \emph{outside} the range of the data used to build the model.
+  \item[(F)] A function defined by different rules on different intervals of its domain.
+  \item[(G)] The steepness of a line, $\dfrac{\text{rise}}{\text{run}}$.
+  \item[(H)] The vertical line $x=h$ that splits an absolute value graph into mirror halves.
+\end{description}
+\end{minipage}
 
-\parthead{Part C --- Short Answer \& Computation}
-% TODO: worked answers via \ans{...}
+\begin{teachernote}
+Slope (G) and rate of change (D) are close cousins --- accept a brief note that both name
+$\Delta y/\Delta x$; the distinction here is ``steepness of a line'' (G, geometric) vs.\ ``how fast
+$y$ changes per unit $x$'' (D, contextual). Grade on the intended pairing.
+\end{teachernote}
 
-\parthead{Part D --- Extended Response}
-% TODO: sample response + scoring notes in a teachernote.
+% ======================================================================
+\parthead{Part B --- Multiple Choice (12 pts)}
+Circle the best answer.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item The slope of the line through $(-2,\,1)$ and $(4,\,-2)$ is
+    \hfill (A) $2$ \quad \textbf{(B) $-\tfrac12$} \ans{$\leftarrow$} \quad (C) $-2$ \quad (D) $\tfrac12$
+  \item The graph of $y=|x-3|+1$ is the parent $y=|x|$ shifted
+    \hfill (A) left 3, up 1 \quad \textbf{(B) right 3, up 1} \ans{$\leftarrow$} \quad (C) right 3, down 1 \quad (D) left 3, down 1
+  \item $\lfloor -2.4 \rfloor =$
+    \hfill (A) $-2$ \quad (B) $2$ \quad \textbf{(C) $-3$} \ans{$\leftarrow$} \quad (D) $3$
+  \item A data set has correlation coefficient $r=0.12$. The linear association is best described as
+    \hfill (A) strong positive \quad (B) strong negative \quad \textbf{(C) weak/none} \ans{$\leftarrow$} \quad (D) perfect
+  \item Which equation is written in \textbf{standard form}?
+    \hfill (A) $y=3x-5$ \quad (B) $y-2=3(x-1)$ \quad \textbf{(C) $3x-y=5$} \ans{$\leftarrow$} \quad (D) $y=|x|+3$
+  \item The solution of $|x|<4$ is
+    \hfill (A) $x<4$ \quad \textbf{(B) $-4<x<4$} \ans{$\leftarrow$} \quad (C) $x<-4$ or $x>4$ \quad (D) $x>4$
+\end{enumerate}
+
+\begin{teachernote}
+Item 1: $m=\dfrac{-2-1}{4-(-2)}=\dfrac{-3}{6}=-\tfrac12$. Item 3: $\lfloor -2.4\rfloor$ rounds
+\emph{down} to $-3$ (not toward zero). Item 6: ``less th\textbf{AND}'' --- $<$ gives a single
+interval between $-4$ and $4$; $>$ would give two rays.
+\end{teachernote}
+
+% ======================================================================
+\parthead{Part C --- Short Answer \& Computation (40 pts)}
+Show your work.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Read the graph.} The line $f$ is shown below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{5}{-4}{4}
+          \draw[very thick, forest] (-2,3.5)--(4.5,-3);
+          \fill[charcoal] (0,2) circle (3pt);
+          \fill[charcoal] (2,0) circle (3pt);
+        \end{tikzpicture}
+        \end{center}
+        Give the $y$-intercept: \ans{$(0,2)$}; \quad the zero ($x$-intercept): \ans{$(2,0)$}; \quad
+        the slope: \ans{$-1$}. \quad Is $f$ increasing or decreasing? \ans{decreasing}
+
+  \item \textbf{Write the equation.} Find the equation of the line through $(-1,\,4)$ and $(2,\,-2)$.
+        Write it in slope-intercept form $y=mx+b$.
+        \ans{$m=\dfrac{-2-4}{2-(-1)}=\dfrac{-6}{3}=-2$. Using $(2,-2)$: $-2=-2(2)+b\Rightarrow b=2$. So $y=-2x+2$. Check with $(-1,4)$: $-2(-1)+2=4$ \checkmark.}
+
+  \item \textbf{Absolute value transformations.} For $g(x)=-\,|x-2|+5$, state the vertex, the axis of
+        symmetry, whether the graph opens up or down, and the maximum or minimum value.
+        \ans{Vertex $(2,5)$; axis of symmetry $x=2$; since $a=-1<0$ it opens \emph{down}; so it has a \emph{maximum} value of $5$.}
+
+  \item \textbf{Solve.} Solve the absolute value equation. Show both cases.
+        \[ |2x-5| = 9 \]
+        \ans{Case 1: $2x-5=9\Rightarrow 2x=14\Rightarrow x=7$. Case 2: $2x-5=-9\Rightarrow 2x=-4\Rightarrow x=-2$. Solutions: $x=7$ and $x=-2$. Check: $|2(7)-5|=9$ \checkmark, $|2(-2)-5|=9$ \checkmark.}
+
+  \item \textbf{Solve and express three ways.} Solve $|x+1|\le 4$. Write the solution as an inequality
+        and in interval notation, then graph it on the number line.
+        \ans{$-4\le x+1\le 4\Rightarrow -5\le x\le 3$. Interval: $[-5,\,3]$.}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \draw[->,semithick,charcoal] (-8,0)--(8,0);
+          \foreach \x in {-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7}
+            \draw[charcoal] (\x,0.15)--(\x,-0.15) node[below, font=\scriptsize]{$\x$};
+          \draw[very thick, keyred] (-5,0)--(3,0);
+          \fill[keyred] (-5,0) circle (4pt);
+          \fill[keyred] (3,0) circle (4pt);
+        \end{tikzpicture}
+        \end{center}
+        \vspace{0.1cm}
+
+  \item \textbf{Evaluate a piecewise function.} Let
+        $f(x)=\begin{cases} 2x+1, & x<2 \\ 5-x, & x\ge 2 \end{cases}$
+        \\[4pt]
+        $f(-1)=\ans{$-1$}$ \qquad $f(2)=\ans{$3$}$ \qquad $f(4)=\ans{$1$}$
+        \\[4pt]
+        Which piece did you use for $f(2)$, and how do you know? \ans{The bottom piece $5-x$, because the condition is $x\ge 2$ and $2$ satisfies $x\ge 2$ (the boundary is included).}
+
+  \item \textbf{Read a piecewise graph.} The function $h$ is shown below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{4}{-3}{4}
+          \draw[very thick, forest] (-3,-2)--(1,-2);
+          \opendot{1}{-2}
+          \draw[very thick, forest] (1,2)--(3.5,3);
+          \closeddot{1}{2}
+        \end{tikzpicture}
+        \end{center}
+        $h(-1)=\ans{$-2$}$; \quad $h(1)=\ans{$2$}$. \quad Is $h$ continuous at $x=1$? Explain.
+        \ans{No --- there is a jump. The left piece approaches $-2$ (open dot) while the value at $x=1$ is $2$ (closed dot), so the graph breaks at $x=1$.}
+
+  \item \textbf{Linear regression.} A study of $x=$ hours studied and $y=$ test score (for $x$ between
+        $1$ and $8$ hours) gives the line of best fit
+        \[ \hat y = 6.5x + 52. \]
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+          \item Interpret the slope $6.5$ in context. \ans{Each additional hour of studying is associated with about $6.5$ more points on the test.}
+          \item Predict the score for a student who studies $4$ hours: $\hat y=\ans{$6.5(4)+52=78$}$.
+          \item Is predicting the score at $x=20$ hours interpolation or extrapolation? Why might that
+                prediction be unreliable? \ans{Extrapolation --- $20$ is outside the data range ($1$--$8$ hours). The linear pattern may not hold that far out (a score can't exceed $100$), so the prediction is unreliable.}
+        \end{enumerate}
+\end{enumerate}
+
+\begin{teachernote}
+Item 5: accept ``$-5\le x\le 3$'' or ``$[-5,3]$'' with closed dots on the number line (the
+$\le$ makes both endpoints included). Item 8b: full credit for $78$ with the substitution shown.
+Common error on item 6: using the top piece for $f(2)$ because $2x+1$ ``looks'' first --- reinforce
+that $x=2$ fails $x<2$.
+\end{teachernote}
+
+% ======================================================================
+\parthead{Part D --- Extended Response (12 pts)}
+Explain your reasoning in full sentences.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item The absolute value function $g(x)=|x-1|-2$ is graphed below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{5}{-3}{4}
+          \draw[very thick, forest] (-2,1)--(1,-2)--(4,1);
+          \fill[charcoal] (1,-2) circle (3.5pt);
+          \fill[charcoal] (-1,0) circle (3pt);
+          \fill[charcoal] (3,0) circle (3pt);
+        \end{tikzpicture}
+        \end{center}
+        \textbf{(a)} State the two zeros of $g$.
+        \textbf{(b)} On what interval is $g(x)<0$ (the function negative)? On what set is $g(x)>0$?
+        \textbf{(c)} Using the zeros, explain \emph{why} the sign of $g$ switches where it does.
+        \ans{(a) The zeros are $x=-1$ and $x=3$ (where the V crosses the $x$-axis). (b) $g(x)<0$ on the interval $(-1,3)$, where the graph dips below the axis; $g(x)>0$ on $x<-1$ or $x>3$ (i.e.\ outside $[-1,3]$). (c) A zero is exactly where the graph touches the $x$-axis, so it is the boundary between output being below the axis (negative) and above it (positive). Because the graph is continuous, the sign can only change by passing \emph{through} a zero --- so it flips at $x=-1$ and again at $x=3$.}
+
+  \item A newspaper reports that in towns with more coffee shops, residents live longer, and the
+        correlation coefficient is $r=0.86$.
+        \textbf{(a)} Describe the direction and strength of this association.
+        \textbf{(b)} Does this prove that drinking coffee makes people live longer? Explain the
+        difference between correlation and causation, and give one lurking variable that could explain
+        the pattern.
+        \ans{(a) Positive (both increase together) and fairly strong, since $r=0.86$ is close to $1$. (b) No. Correlation means two variables move together; causation means one \emph{makes} the other change. A strong $r$ only shows association, not cause. A lurking variable such as town wealth (wealthier towns have more coffee shops \emph{and} better healthcare) could drive both, so we can't conclude coffee causes longer life.}
+\end{enumerate}
+
+\begin{teachernote}
+\textbf{Scoring Part D (6 pts each).} D1: 2 pts (a) both zeros $x=-1,3$; 2 pts (b) negative on
+$(-1,3)$, positive outside; 2 pts (c) the ``sign changes only by crossing a zero'' reasoning.
+D2: 2 pts (a) positive \emph{and} strong (tie strength to $|r|$ near 1); 4 pts (b) states
+correlation $\ne$ causation \emph{and} names a plausible lurking variable. Do not give full credit
+for ``no'' without a reason.
+\end{teachernote}
 
 \end{document}
