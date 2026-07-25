@@ -3,17 +3,157 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.5}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item read a \emph{scatterplot} and describe its association by \emph{direction}, \emph{form}, and \emph{strength};
+  \item interpret the \emph{correlation coefficient} $r$ and match an $r$-value to a scatterplot;
+  \item read a \emph{line of best fit} $\hat y=ax+b$, interpret its \emph{slope} and \emph{intercept}, and \emph{predict};
+  \item tell \emph{interpolation} from \emph{extrapolation} and explain why \emph{correlation is not causation}.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.04in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\termblanklong{Scatterplot / bivariate data}
+\termblanklong{Association (direction, form, strength)}
+\termblanklong{Correlation coefficient $r$}
+\termblanklong{Line of best fit (regression line) $\hat y=ax+b$}
+\termblanklong{Interpolation vs.\ extrapolation}
+\end{vocabbox}
+
+\begin{hookbox}
+A coach records, for each player, the \emph{hours practiced} this week ($x$) and the \emph{free throws made}
+out of $15$ ($y$). The points do \emph{not} lie on one line --- but they \emph{trend} upward.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-0.5}{9}{-0.5}{15}
+  \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item As hours practiced \emph{increase}, free throws made tend to \blank{2.2cm} (increase / decrease).
+  \item Could a \emph{single line} pass through every point? \blank{1.2cm} \; Could one line summarize the \emph{trend}? \blank{1.2cm}
+\end{itemize}
+No exact rule fits messy data --- but a \textbf{line of best fit} can summarize the trend, and today we
+learn to read it, measure it, and predict with it.
+\end{hookbox}
+
+\begin{notesbox}{1. Scatterplots \& Association: Direction, Form, Strength}
+A \textbf{scatterplot} plots paired data $(x,y)$. Describe an association three ways: \textbf{direction}
+(does $y$ rise or fall as $x$ rises?), \textbf{form} (do the points follow a \emph{line}?), and
+\textbf{strength} (how tightly?). Classify each plot below.
+\begin{center}
+\begin{tikzpicture}[scale=0.4]
+  \lgrid{-0.5}{7}{-0.5}{7}
+  \dpt{1}{2}\dpt{2}{2}\dpt{3}{4}\dpt{4}{4}\dpt{5}{6}\dpt{6}{6}
+  \node[font=\scriptsize\bfseries] at (3,-1.6){(a)};
+\end{tikzpicture}
+\hspace{0.3cm}
+\begin{tikzpicture}[scale=0.4]
+  \lgrid{-0.5}{7}{-0.5}{7}
+  \dpt{1}{6}\dpt{2}{5}\dpt{3}{5}\dpt{4}{3}\dpt{5}{2}\dpt{6}{2}
+  \node[font=\scriptsize\bfseries] at (3,-1.6){(b)};
+\end{tikzpicture}
+\hspace{0.3cm}
+\begin{tikzpicture}[scale=0.4]
+  \lgrid{-0.5}{7}{-0.5}{7}
+  \dpt{1}{3}\dpt{2}{6}\dpt{3}{2}\dpt{4}{5}\dpt{5}{3}\dpt{6}{5}
+  \node[font=\scriptsize\bfseries] at (3,-1.6){(c)};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item Plot (a): direction is \blank{2.4cm}; the points \emph{do / do not} follow a line: \blank{1.6cm}.
+  \item Plot (b): direction is \blank{2.4cm} --- as $x$ rises, $y$ \blank{2.0cm}.
+  \item Plot (c): direction is \blank{2.4cm} --- there is \emph{no} clear linear trend.
+\end{itemize}
 \end{notesbox}
+
+\begin{notesbox}{2. The Correlation Coefficient $r$}
+Technology reports one number, the \textbf{correlation coefficient} $r$, that measures the \emph{linear}
+association. It always lies between \blank{1.0cm} and \blank{1.0cm}. Its \textbf{sign} gives the
+\emph{direction}; its \textbf{size} $|r|$ gives the \emph{strength}.
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \draw[semithick, charcoal, ->] (-3.4,0)--(3.4,0);
+  \foreach \x/\lab in {-3/-1, 0/0, 3/1}{\draw (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\lab$};}
+  \node[font=\scriptsize, forest] at (-3,0.45){strong negative};
+  \node[font=\scriptsize, forest] at (0,0.45){no linear trend};
+  \node[font=\scriptsize, forest] at (3,0.45){strong positive};
+\end{tikzpicture}
+\end{center}
+\textbf{Match each $r$ to a plot from Section~1} (write a, b, or c):
+\[ r\approx 0.90:\ \blank{1.2cm} \qquad r\approx -0.85:\ \blank{1.2cm} \qquad r\approx 0.05:\ \blank{1.2cm} \]
+\textbf{Warning:} $r$ measures a \emph{linear} fit only, and a strong $|r|$ does \emph{not} prove one
+variable \emph{causes} the other. A negative $r$ is not ``weak'' --- $r=-0.9$ is a \blank{2.0cm} (strong /
+weak) association.
+\end{notesbox}
+
+\begin{notesbox}{3. The Line of Best Fit (Regression Line)}
+Technology also returns the \textbf{line of best fit} $\hat y=ax+b$ --- the single line that best summarizes
+the trend. The hat on $\hat y$ means it is a \emph{predicted} value. For the free-throw data, technology
+gives
+\[ \hat y = 1.5x + 2, \qquad r = 0.96. \]
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-0.5}{9}{-0.5}{15}
+  \draw[very thick, forest] (0,2)--(8.5,14.75);
+  \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
+\end{tikzpicture}
+\end{center}
+\textbf{Interpret in context (this is the point):}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item The \textbf{slope} $a=1.5$ means each additional hour of practice is associated with about
+        \blank{1.6cm} more free throws made.
+  \item The \textbf{$y$-intercept} $b=2$ is the predicted free throws for a player who practices
+        \blank{1.4cm} hours --- a \emph{baseline}.
+  \item Is $r=0.96$ a strong or weak fit? \blank{2.0cm}, because $|r|$ is close to \blank{1.0cm}.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Predicting --- and Its Limits}
+To \textbf{predict}, substitute an $x$ into $\hat y=ax+b$.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Predict for $x=6$ hours: $\hat y=1.5(6)+2=\blank{1.2cm}$ free throws. The data ran from $x=1$ to
+        $x=8$, so $x=6$ is \emph{inside} the data --- this is \blank{2.4cm} (interpolation / extrapolation).
+  \item Predict for $x=12$ hours: $\hat y=1.5(12)+2=\blank{1.2cm}$. But only $15$ shots were attempted, so
+        $20$ is \blank{2.2cm} (reasonable / unreasonable). Predicting \emph{outside} the data is
+        \blank{2.4cm}, and the trend may break down.
+  \item \textbf{Correlation $\ne$ causation.} In summer, ice-cream sales and pool drownings both rise, so
+        $r>0$ --- but ice cream does not \emph{cause} drownings. The real cause (\emph{hot weather}) is a
+        \blank{2.4cm} variable. A strong $r$ shows the variables \blank{2.4cm} together, not that one
+        \blank{2.0cm} the other.
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+A study relates \textbf{daily minutes of exercise} ($x$) to \textbf{resting heart rate in bpm} ($y$).
+Technology gives $\hat y = -0.4x + 78$ with $r=-0.88$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Is the association positive or negative, strong or weak? \blank{3.0cm}
+  \item Interpret the slope $-0.4$ in context. \writeline
+  \item Predict the resting heart rate for $x=30$ minutes: $\hat y=\blank{2.0cm}$ bpm.
+  \item The data ran from $x=0$ to $x=45$ minutes. Is the $x=30$ prediction interpolation or extrapolation?
+        \blank{2.6cm} \; Does a strong $r$ prove exercise \emph{causes} a lower heart rate? \blank{1.4cm}
+\end{enumerate}
+\end{practicebox}
 
 \end{document}

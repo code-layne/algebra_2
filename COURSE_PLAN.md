@@ -3,12 +3,12 @@
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
 > **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully scaffolded**
-> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **Lessons 2.0, 2.1, 2.2,
-> 2.3, and 2.4 are now fully authored and build** (each: plan, cover, warm-up, notes, activity, exit
-> ticket, homework, all keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0). Lesson
-> 2.5 remains a skeleton. Units 3–8 are planned here and not yet scaffolded. Lesson lists
-> below are proposals to react to and edit — pacing (days per lesson) is
-> intentionally left open pending the school calendar.
+> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **All six lessons 2.0–2.5
+> are now fully authored and build** (each: plan, cover, warm-up, notes, activity, exit ticket,
+> homework, all keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0). **The remaining
+> Unit 2 work is the unit tests** (`tests/`, `test_keys/`) + publishing the sample test/key. Units
+> 3–8 are planned here and not yet scaffolded. Lesson lists below are proposals to react to and edit
+> — pacing (days per lesson) is intentionally left open pending the school calendar.
 
 ---
 
@@ -147,7 +147,20 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > piecewise-defined functions, including graphs with discontinuities and constant intervals). Warm-up
 > & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket
 > includes an SOL-style MC item. `make -C unit02/lesson04 all` → EXIT 0 (student 10pp, full 20pp).
-> **Next:** author lesson 2.5 (linear regression, still a skeleton), then the unit tests + publish sample test.
+> **Lesson 2.5 authored & builds (2026-07-25):** all components + keys + 7-slide deck done; linear
+> regression as fitting a *line to scattered data* — reading a scatterplot's association (direction /
+> form / strength), interpreting the correlation coefficient $r\in[-1,1]$ (sign = direction, $|r|$ =
+> strength; matching $r$ to plots), reading a line of best fit $\hat y=ax+b$ from technology and
+> interpreting its slope (per-unit rate) and intercept (baseline) in context, predicting by
+> substitution, distinguishing interpolation from extrapolation (with an "extrapolation breaks"
+> moment), judging reasonableness, and correlation $\ne$ causation (lurking variables). All
+> scatterplots/lines pre-drawn (no sketch-from-scratch); regression values are *given* since finding
+> them is a technology task. Standards: **2023 VA SOL A2.ST.2c/d/e/f/g/h** (bivariate data,
+> scatterplots, curve/line of best fit, correlation coefficient, predictions, reasonableness). Warm-up
+> & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket
+> includes an SOL-style MC item. `make -C unit02/lesson05 all` → EXIT 0 (student 10pp, full 20pp).
+> **Next:** author the Unit 2 tests (`tests/practice_test`, `tests/actual_test`) + keys, then
+> `make -C unit02/tests drop` / `test_keys drop` to publish the sample test + key.
 
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*
