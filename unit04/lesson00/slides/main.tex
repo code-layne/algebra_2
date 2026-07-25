@@ -1,6 +1,11 @@
 %! Characteristics of Polynomial Functions — Unit 4, Lesson 4.0 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,210 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.0}\\[0.5cm]
     {\color{white}\bfseries\LARGE Characteristics of Polynomial Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{A parabola turns once --- this turns twice}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      \[ g(x) = x^3 - 3x + 2 = (x-1)^2(x+2) \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Top of the hill / bottom of the valley? $\to$ \textbf{relative extrema}
+        \item Far-left / far-right arms? $\to$ \textbf{end behavior}
+        \item Bounces at $x=1$, cuts through at $x=-2$? $\to$ \textbf{multiplicity}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-3}{3}{-3}{5}
+        \begin{scope}
+          \clip (-3,-3) rectangle (3,5);
+          \draw[very thick, forest, domain=-2.15:2.1, samples=90, smooth]
+            plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
+        \end{scope}
+        \fill[charcoal] (-1,4) circle (4pt); \fill[charcoal] (1,0) circle (4pt);
+        \fill[charcoal] (-2,0) circle (4pt); \fill[charcoal] (0,2) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Today}
+    Read \emph{every} characteristic of a polynomial straight off its graph.
+  \end{block}
+\end{frame}
+
+% DEFINITION: degree & leading coefficient
+\begin{frame}[t, plain]
+  \forestheader{Polynomials: degree and leading coefficient}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      A \textbf{polynomial} is a sum of terms $a_kx^k$ with \emph{whole-number} exponents ---
+      a \emph{smooth}, \emph{continuous} curve.
+      \[ f(x)=a_nx^n+\dots+a_1x+a_0 \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Degree:} the highest power $n$.
+        \item \textbf{Leading coefficient:} $a_n$, in standard form.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Not polynomials}
+        $\dfrac{1}{x}=x^{-1}$, \quad $\sqrt{x}=x^{1/2}$ \\[3pt]
+        {\footnotesize exponents must be whole numbers.}
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize For $g(x)=x^3-3x+2$: degree $3$, leading coefficient $1$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% END BEHAVIOR: the two-question rule
+\begin{frame}[t, plain]
+  \forestheader{End behavior: only two questions}
+  \sectionlabel[goldacc]{Even/odd degree \& sign of $a$}
+  \begin{center}
+  \begin{tabular}{cccc}
+  \begin{tikzpicture}[scale=0.34]
+    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-0.6)--(0,4);
+    \draw[very thick, forest, domain=-1.7:1.7, samples=40, smooth] plot (\x,{(\x)*(\x)});
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.34]
+    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-4)--(0,0.6);
+    \draw[very thick, forest, domain=-1.7:1.7, samples=40, smooth] plot (\x,{-1*(\x)*(\x)});
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.34]
+    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-3.2)--(0,3.2);
+    \draw[very thick, forest, domain=-1.45:1.45, samples=50, smooth] plot (\x,{(\x)*(\x)*(\x)});
+  \end{tikzpicture} &
+  \begin{tikzpicture}[scale=0.34]
+    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-3.2)--(0,3.2);
+    \draw[very thick, forest, domain=-1.45:1.45, samples=50, smooth] plot (\x,{-1*(\x)*(\x)*(\x)});
+  \end{tikzpicture} \\[2pt]
+  {\footnotesize even, $a>0$} & {\footnotesize even, $a<0$} & {\footnotesize odd, $a>0$} & {\footnotesize odd, $a<0$} \\
+  {\footnotesize both up} & {\footnotesize both down} & {\footnotesize L$\downarrow$ R$\uparrow$} & {\footnotesize L$\uparrow$ R$\downarrow$} \\
+  \end{tabular}
+  \end{center}
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{Even} degree $\Rightarrow$ arms the \emph{same} way; \textbf{odd} degree $\Rightarrow$ arms \emph{opposite}.
+    \item Sign of $a$ sets the \emph{right} arm: $+\Rightarrow$ up, $-\Rightarrow$ down.
+  \end{itemize}
+\end{frame}
+
+% TURNING POINTS & EXTREMA
+\begin{frame}[t, plain]
+  \forestheader{Turning points: relative vs.\ absolute}
+  \sectionlabel[goldacc]{$g(x)=x^3-3x+2$}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-3}{3}{-3}{5}
+        \begin{scope}
+          \clip (-3,-3) rectangle (3,5);
+          \draw[very thick, forest, domain=-2.15:2.1, samples=90, smooth]
+            plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
+        \end{scope}
+        \fill[charcoal] (-1,4) circle (4pt) node[above right, font=\tiny]{$(-1,4)$};
+        \fill[charcoal] (1,0) circle (4pt) node[below right, font=\tiny]{$(1,0)$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item A \textbf{turning point} is where the curve changes rise$\leftrightarrow$fall; degree $n$ has \emph{at most} $n-1$.
+        \item \textbf{Relative (local) max} $(-1,4)$, \textbf{relative min} $(1,0)$ --- highest/lowest \emph{nearby}.
+        \item \textbf{Absolute (global)} max/min = highest/lowest of the \emph{whole} function.
+        \item Odd degree $\Rightarrow$ arms split to $\pm\infty$ $\Rightarrow$ \emph{no} absolute max or min.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ZEROS & MULTIPLICITY
+\begin{frame}[t, plain]
+  \forestheader{Multiplicity: cross vs.\ touch}
+  \sectionlabel{Zeros}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-3}{3}{-3}{5}
+        \begin{scope}
+          \clip (-3,-3) rectangle (3,5);
+          \draw[very thick, forest, domain=-2.15:2.1, samples=90, smooth]
+            plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
+        \end{scope}
+        \fill[charcoal] (-2,0) circle (4pt) node[above left, font=\tiny]{cross};
+        \fill[charcoal] (1,0) circle (4pt) node[above right, font=\tiny]{touch};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \[ g(x)=(x-1)^2(x+2) \]
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item \textbf{Multiplicity} $=$ the exponent of the factor.
+        \item $x=-2$: multiplicity $1$ (\textbf{odd}) $\Rightarrow$ graph \textbf{crosses}.
+        \item $x=1$: multiplicity $2$ (\textbf{even}) $\Rightarrow$ graph \textbf{touches} (bounces).
+      \end{itemize}
+      \begin{block}{Remember}
+        \textbf{Odd crosses, even touches.}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SYMMETRY
+\begin{frame}[t, plain]
+  \forestheader{Symmetry: even vs.\ odd}
+  \sectionlabel[goldacc]{The $f(-x)$ test}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.38]
+        \lgrid{-2}{2}{-1}{5}
+        \begin{scope}
+          \clip (-2,-1) rectangle (2,5);
+          \draw[very thick, forest, domain=-1.5:1.5, samples=60, smooth] plot (\x,{(\x)^4});
+        \end{scope}
+        \fill[charcoal] (-1,1) circle (3pt); \fill[charcoal] (1,1) circle (3pt);
+      \end{tikzpicture}\\
+      {\footnotesize $y=x^4$: \textbf{even}, $f(-x)=f(x)$, $y$-axis mirror}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.38]
+        \lgrid{-2}{2}{-4}{4}
+        \begin{scope}
+          \clip (-2,-4) rectangle (2,4);
+          \draw[very thick, forest, domain=-1.55:1.55, samples=60, smooth] plot (\x,{(\x)*(\x)*(\x)});
+        \end{scope}
+        \fill[charcoal] (1,1) circle (3pt); \fill[charcoal] (-1,-1) circle (3pt);
+      \end{tikzpicture}\\
+      {\footnotesize $y=x^3$: \textbf{odd}, $f(-x)=-f(x)$, $180^\circ$ about origin}
+    \end{column}
+  \end{columns}
+  \vspace{3pt}
+  \begin{center}\footnotesize Only even powers $\Rightarrow$ even; only odd powers $\Rightarrow$ odd; a mix $\Rightarrow$ neither.\end{center}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 4 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} read degree/leading coefficient, end behavior, turning points, relative/absolute
+  extrema, zeros \& multiplicity, and symmetry from a polynomial graph.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{4.1} Operations with polynomials (add, subtract, multiply).
+    \item \textbf{4.2} Advanced factoring (grouping, sum \& difference of cubes).
+    \item \textbf{4.3} Dividing polynomials; Remainder \& Factor Theorems.
+    \item \textbf{4.4--4.5} Zeros: Rational Root Theorem; complex zeros \& the FTA.
+    \item \textbf{4.6} Graphing polynomial functions \& modeling.
+  \end{itemize}
 \end{frame}
 
 \end{document}

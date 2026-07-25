@@ -3,17 +3,137 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.0}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Reading Polynomial Graphs.} Every characteristic of a polynomial is something you can
+\emph{point to} on its graph. With your partner, read each graph carefully and \emph{justify} your
+answers --- especially the end behavior, the multiplicity (cross vs.\ touch), and relative vs.\
+absolute extrema.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+The graph shows $p(x) = x^3 - 2x^2 - 5x + 6 = (x+2)(x-1)(x-3)$.
+\begin{center}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-3}{4}{-6}{10}
+  \begin{scope}
+    \clip (-3,-6) rectangle (4,10);
+    \draw[very thick, forest, domain=-2.6:3.6, samples=100, smooth]
+      plot (\x,{(\x)*(\x)*(\x) - 2*(\x)*(\x) - 5*(\x) + 6});
+  \end{scope}
+  \fill[charcoal] (-2,0) circle (3pt) node[below left, font=\scriptsize]{$(-2,0)$};
+  \fill[charcoal] (1,0) circle (3pt) node[below right, font=\scriptsize]{$(1,0)$};
+  \fill[charcoal] (3,0) circle (3pt) node[below right, font=\scriptsize]{$(3,0)$};
+  \fill[charcoal] (0,6) circle (3pt) node[right, font=\scriptsize]{$(0,6)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item The degree is (circle one): \textbf{even} \; / \; \textbf{odd}. \quad Its arms: the left arm
+        points \blank{1.4cm} and the right arm points \blank{1.4cm}.
+  \item The graph turns \blank{1.0cm} times (its turning points).
+  \item The \textbf{zeros} are $x=\blank{1.0cm}$, \; $x=\blank{1.0cm}$, \; $x=\blank{1.0cm}$, and each
+        one \textbf{crosses} the axis. The \textbf{$y$-intercept} is $(0,\ \blank{1.0cm})$.
+  \item Between the zeros the curve makes one hill and one valley. The hill is a
+        \textbf{relative \blank{2.0cm}} and the valley is a \textbf{relative \blank{2.0cm}}.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+For \emph{each} graph, give the full feature list, then answer the justification below.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  % p(x) = x^3 - 4x  (odd)
+  \begin{scope}
+    \lgrid{-3}{3}{-4}{4}
+    \begin{scope}
+      \clip (-3,-4) rectangle (3,4);
+      \draw[very thick, forest, domain=-2.4:2.4, samples=90, smooth]
+        plot (\x,{(\x)*(\x)*(\x) - 4*(\x)});
+    \end{scope}
+    \fill[charcoal] (-2,0) circle (3pt); \fill[charcoal] (0,0) circle (3pt);
+    \fill[charcoal] (2,0) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (0,-5.2){$p(x)=x^3-4x$};
+  \end{scope}
+  % r(x) = -x^4 + 4x^2  (even)
+  \begin{scope}[xshift=9cm]
+    \lgrid{-3}{3}{-3}{5}
+    \begin{scope}
+      \clip (-3,-3) rectangle (3,5);
+      \draw[very thick, forest, domain=-2.3:2.3, samples=100, smooth]
+        plot (\x,{-1*(\x)^4 + 4*(\x)*(\x)});
+    \end{scope}
+    \fill[charcoal] (0,0) circle (3pt); \fill[charcoal] (-2,0) circle (3pt);
+    \fill[charcoal] (2,0) circle (3pt);
+    \fill[charcoal] (1.414,4) circle (3pt); \fill[charcoal] (-1.414,4) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (0,-4.2){$r(x)=-x^4+4x^2$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
+ & \textbf{$p(x)=x^3-4x$} & \textbf{$r(x)=-x^4+4x^2$} \\
+\hline
+Degree even / odd & \blank{2.2cm} & \blank{2.2cm} \\
+End behavior (both arms) & \blank{2.2cm} & \blank{2.2cm} \\
+Number of turning points & \blank{2.2cm} & \blank{2.2cm} \\
+Zeros (cross / touch) & \blank{2.2cm} & \blank{2.2cm} \\
+Absolute max / min? & \blank{2.2cm} & \blank{2.2cm} \\
+Symmetry & \blank{2.2cm} & \blank{2.2cm} \\
+\end{tabularx}
+\vspace{2pt}
+
+\textbf{Justify:} Show algebraically that $p(x)=x^3-4x$ is \emph{odd} by computing $p(-x)$ and
+comparing it to $p(x)$. What does that tell you about the graph's symmetry? \writelines{2}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Degree detective.} A polynomial's \emph{left} arm points \emph{up} and its
+\emph{right} arm points \emph{down}, and the graph has exactly \textbf{3} turning points.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+  \item Is the degree even or odd? \blank{2.2cm} \quad How do the arms tell you? \blank{3.4cm}
+  \item Is the leading coefficient positive or negative? \blank{2.6cm} Why? \blank{3.0cm}
+  \item A degree-$n$ graph has at most $n-1$ turning points. What is the \emph{smallest} degree this
+        polynomial could have? \blank{1.6cm}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 2 --- Open-box model.} A rectangular sheet $10\text{ in}\times 8\text{ in}$ has a square
+of side $x$ cut from each corner; the flaps fold up into an open box of volume
+\[
+  V(x) = x(10-2x)(8-2x).
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $1.5$ & $2$ & $3$ & $4$ \\ \hline
+$V(x)$ & $0$ & $48$ & $52.5$ & $48$ & $24$ & $0$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item The \emph{feasible domain} is $0<x<4$, not all real numbers. Explain why, using the fact that
+        $x$ is a length and the flap $8-2x$ must be positive. \writelines{2}
+  \item From the table, which $x$ gives the greatest volume, and what is that greatest volume?
+        \blank{5.0cm}
+  \item Fully expanded, $V$ has zeros at $x=0,\ 4,\ 5$. Which of these are \emph{meaningful} for the
+        box, and what does each meaningful zero represent? \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}

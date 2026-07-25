@@ -3,17 +3,100 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.0}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Homework verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Homework --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Practice}
+Show how you read each feature. For every graph, give the \emph{full} feature list.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{From a factored form.} Let $f(x) = (x-3)(x+1)^2$ (do \emph{not} expand).
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item Its \textbf{degree} is \ans{3} and its \textbf{leading coefficient} is
+            \ans{1}. (Multiply the leading term of each factor.)
+      \item \textbf{End behavior:} as $x\to-\infty,\ f(x)\to\ans{$-\infty$}$; as
+            $x\to+\infty,\ f(x)\to\ans{$+\infty$}$.
+      \item \textbf{Zeros \& multiplicity:} $x=\ans{3}$ has multiplicity \ans{1}, so the
+            graph \ans{crosses} there; $x=\ans{-1}$ has multiplicity \ans{2}, so the graph
+            \ans{touches} there.
+      \item \textbf{$y$-intercept:} \ans{$(0,-3)$}.
+    \end{enumerate}
+
+  \item \textbf{A cubic graph.} The graph is $d(x) = x^3 - 3x^2 = x^2(x-3)$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-2}{4}{-5}{5}
+      \begin{scope}
+        \clip (-2,-5) rectangle (4,5);
+        \draw[very thick, forest, domain=-1.35:3.45, samples=90, smooth]
+          plot (\x,{(\x)*(\x)*(\x) - 3*(\x)*(\x)});
+      \end{scope}
+      \fill[charcoal] (0,0) circle (3pt) node[above left, font=\scriptsize]{$(0,0)$};
+      \fill[charcoal] (2,-4) circle (3pt) node[below right, font=\scriptsize]{$(2,-4)$};
+      \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$(3,0)$};
+    \end{tikzpicture}
+    \end{center}
+    Degree even/odd: \ans{odd} \quad Both arms: \ans{left down, right up} \\[3pt]
+    Zeros (with cross/touch): $x=0$ \ans{touches (mult.\ 2)}; \; $x=3$ \ans{crosses (mult.\ 1)} \\[3pt]
+    Turning points: \ans{2} \quad Relative max: \ans{$(0,0)$} \quad Relative min: \ans{$(2,-4)$}
+    \\[3pt]
+    Increasing on: \ans{$(-\infty,0)\cup(2,\infty)$} \quad Decreasing on: \ans{$(0,2)$}
+
+  \item \textbf{A quartic graph.} The graph is $e(x) = x^4 - 5x^2 + 4 = (x-1)(x+1)(x-2)(x+2)$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-3}{3}{-3}{6}
+      \draw[navy, dashed, semithick] (0,-3)--(0,6);
+      \begin{scope}
+        \clip (-3,-3) rectangle (3,6);
+        \draw[very thick, forest, domain=-2.45:2.45, samples=110, smooth]
+          plot (\x,{(\x)^4 - 5*(\x)*(\x) + 4});
+      \end{scope}
+      \fill[charcoal] (0,4) circle (3pt) node[above right, font=\scriptsize]{$(0,4)$};
+      \fill[charcoal] (-1,0) circle (3pt); \fill[charcoal] (1,0) circle (3pt);
+      \fill[charcoal] (-2,0) circle (3pt); \fill[charcoal] (2,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Degree even/odd: \ans{even} \quad Both arms: \ans{up} \quad Turning points: \ans{3}
+    \\[3pt]
+    Zeros (with cross/touch): \ans{$x=-2,-1,1,2$ --- each crosses (all multiplicity 1)} \\[3pt]
+    $y$-intercept: \ans{$(0,4)$} \quad Symmetry (even/odd/neither): \ans{even}
+
+  \item \textbf{Explain.} Why does an \emph{odd}-degree polynomial have \emph{no} absolute maximum
+        and \emph{no} absolute minimum? Refer to what its two arms do.
+        \ansline{Its arms go in \emph{opposite} directions --- one to $+\infty$, the other to $-\infty$. Since the outputs grow without bound upward in one direction and without bound downward in the other, no output is the greatest and none is the least, so there is neither an absolute maximum nor an absolute minimum.}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Reading a model in context.} A start-up's monthly profit (in thousands of dollars) is
+modeled by $P(t) = t^3 - 6t^2 + 9t$ for $0 \le t \le 3$ months.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Factor $P(t)$ completely and list its zeros with their multiplicities.
+        \ans{$P(t)=t(t-3)^2$; zeros $t=0$ (multiplicity 1) and $t=3$ (multiplicity 2).}
+  \item The graph \emph{touches} the $t$-axis at $t=3$ instead of crossing. What does that
+        \emph{mean} for the company's profit at $t=3$?
+        \ans{Profit reaches $\$0$ (breaks even) at month 3 but does not go negative --- the even multiplicity makes it touch and turn back up.}
+  \item On $0\le t\le 3$, the greatest profit occurs at the relative maximum. Read it from the model
+        ($P(1)$) and interpret it in context.
+        \ansline{$P(1)=1-6+9=4$, so the greatest profit on this interval is $\$4{,}000$, reached in month $t=1$.}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 4.1: Operations with Polynomials.} Today you \emph{read} a
+polynomial's characteristics from its graph. Next you will \textbf{add}, \textbf{subtract}, and
+\textbf{multiply} polynomial expressions --- combining like terms and distributing carefully --- so
+you can build and rewrite the very functions whose graphs you just learned to analyze.
+\end{spiralbox}
 
 \end{document}
