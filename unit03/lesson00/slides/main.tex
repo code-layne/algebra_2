@@ -1,6 +1,11 @@
 %! Characteristics of Quadratic Functions — Unit 3, Lesson 3.0 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,168 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 3.0}\\[0.5cm]
     {\color{white}\bfseries\LARGE Characteristics of Quadratic Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 3}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 3: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Every question is a feature of the graph}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      A ball is thrown upward: \[ h(t) = -16t^2 + 32t + 48 \text{ ft.} \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Released how high? $\to$ \textbf{$y$-intercept}
+        \item Highest point? $\to$ \textbf{vertex (max)}
+        \item Lands when? $\to$ \textbf{zero}
+        \item Same height twice? $\to$ \textbf{symmetry}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.32]
+        \draw[xstep=1, ystep=8, linegray!45, thin] (0,0) grid (3,72);
+        \draw[->, thick, charcoal] (0,0)--(3.3,0) node[below right, font=\tiny]{$t$};
+        \draw[->, thick, charcoal] (0,0)--(0,74) node[left, font=\tiny]{$h$};
+        \draw[navy, dashed, thick] (1,0)--(1,64);
+        \draw[very thick, forest, domain=0:3, samples=80, smooth]
+          plot (\x,{-16*(\x)*(\x) + 32*(\x) + 48});
+        \fill[charcoal] (1,64) circle (4pt);
+        \fill[charcoal] (0,48) circle (4pt);
+        \fill[charcoal] (3,0) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Today}
+    Read \emph{every} characteristic of a quadratic function straight off its parabola.
+  \end{block}
+\end{frame}
+
+% QUADRATIC = CONSTANT SECOND DIFFERENCE
+\begin{frame}[t, plain]
+  \forestheader{Quadratic means a constant second difference}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      For $f(x)=x^2-2x-3$, the outputs fall, bottom out, then rise --- \emph{not} a line.
+      \\[6pt]
+      The \emph{second} differences are constant ($+2$): the fingerprint of a quadratic
+      $f(x)=ax^2+bx+c$. Its graph is a \textbf{parabola}.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+        $f(x)$ & $-3$ & $-4$ & $-3$ & $0$ \\ \hline
+      \end{tabular}\\[6pt]
+      {\footnotesize 1st diffs: $-1,+1,+3$ \quad 2nd diffs: \textbf{\color{forest}$+2$}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE CHARACTERISTICS
+\begin{frame}[t, plain]
+  \forestheader{Reading a parabola: the characteristics}
+  \sectionlabel[goldacc]{$f(x) = x^2 - 2x - 3$}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.4]
+        \lgrid{-3}{5}{-5}{6}
+        \draw[navy, dashed, thick] (1,-5)--(1,6);
+        \begin{scope}
+          \clip (-3,-5) rectangle (5,6);
+          \draw[very thick, forest, domain=-2.2:4.2, samples=80, smooth]
+            plot (\x,{(\x)*(\x) - 2*(\x) - 3});
+        \end{scope}
+        \fill[charcoal] (1,-4) circle (3.5pt) node[below right, font=\tiny]{$(1,-4)$};
+        \fill[charcoal] (-1,0) circle (3.5pt);
+        \fill[charcoal] (3,0) circle (3.5pt);
+        \fill[charcoal] (0,-3) circle (3.5pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      \begin{enumerate}\setlength{\itemsep}{3pt}
+        \item \textbf{Vertex:} $(1,-4)$ --- a \textbf{minimum}; min \emph{value} $-4$
+        \item \textbf{Axis of symmetry:} $x=1$
+        \item \textbf{$y$-intercept:} $(0,-3)$; \textbf{zeros:} $x=-1,\,3$
+        \item \textbf{Domain:} all reals \quad \textbf{Range:} $y\ge-4$
+        \item \textbf{Decreasing} on $(-\infty,1)$, \textbf{increasing} on $(1,\infty)$
+        \item \textbf{Negative} on $-1<x<3$; \textbf{end behavior:} both arms $\to+\infty$
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% OPENING DIRECTION / MAX vs MIN
+\begin{frame}[t, plain]
+  \forestheader{The sign of $a$ decides everything}
+  \sectionlabel{Opens up or down}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.38]
+        \lgrid{-3}{3}{-1}{6}
+        \begin{scope}
+          \clip (-3,-1) rectangle (3,6);
+          \draw[very thick, forest, domain=-2.4:2.4, samples=60, smooth] plot (\x,{(\x)*(\x)});
+        \end{scope}
+        \fill[charcoal] (0,0) circle (3pt);
+      \end{tikzpicture}\\
+      {\footnotesize $y=x^2$: $a>0$ $\Rightarrow$ opens \textbf{up}, vertex is a \textbf{min}, arms rise}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.38]
+        \lgrid{-3}{5}{-4}{6}
+        \begin{scope}
+          \clip (-3,-4) rectangle (5,6);
+          \draw[very thick, forest, domain=-2.2:4.2, samples=80, smooth]
+            plot (\x,{-1*(\x)*(\x) + 2*(\x) + 3});
+        \end{scope}
+        \fill[charcoal] (1,4) circle (3pt);
+      \end{tikzpicture}\\
+      {\footnotesize $g(x)=-x^2+2x+3$: $a<0$ $\Rightarrow$ opens \textbf{down}, vertex is a \textbf{max}, arms fall}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SYMMETRY as reasoning + decreasing vs negative
+\begin{frame}[t, plain]
+  \forestheader{Two ideas students fuse --- keep them apart}
+  \sectionlabel[goldacc]{Key distinctions}
+  \begin{itemize}\setlength{\itemsep}{7pt}
+    \item \textbf{Max/min \emph{value}} is a $y$-value (the output at the vertex), \emph{not} a point.
+    \item \textbf{Decreasing} (direction of travel) is \emph{not} \textbf{negative} (output sign):
+          $f(x)=x^2-2x-3$ is decreasing on all of $(-\infty,1)$ but negative only on $(-1,3)$.
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{Symmetry is the reasoning tool}
+    A parabola mirrors across its axis, so inputs the same distance from the axis share an output ---
+    that is \emph{why} there are two matching zeros and two matching heights.
+  \end{block}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 3 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} read the vertex, axis, intercepts/zeros, domain/range, increasing/decreasing,
+  positive/negative, and end behavior from a parabola.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{3.1} Graphing quadratics (vertex, standard, intercept forms) \& transformations.
+    \item \textbf{3.2} Solving by factoring.
+    \item \textbf{3.3} Square roots \& completing the square.
+    \item \textbf{3.4} Complex numbers.
+    \item \textbf{3.5} The quadratic formula \& the discriminant.
+    \item \textbf{3.6--3.7} Systems with quadratics; modeling.
+  \end{itemize}
 \end{frame}
 
 \end{document}

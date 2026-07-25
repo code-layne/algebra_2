@@ -3,17 +3,113 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.0}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Homework verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Homework --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Practice}
+Show how you read each feature. For every graph, give the \emph{full} feature list.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{From a table.} A quadratic function is given by the table below.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+    $f(x)$ & $5$ & $0$ & $-3$ & $-4$ & $-3$ \\ \hline
+    \end{tabular}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item The \emph{second differences} of the outputs are constant. Compute them: they equal
+            \ans{$+2$}. Because that value is \emph{positive}, the parabola opens \ans{up}.
+      \item Using the symmetry of the outputs, the vertex is \ans{$(3,-4)$} and the axis of symmetry is
+            $x=\textcolor{keyred}{\mathbf{3}}$.
+      \item The zeros are $x=\textcolor{keyred}{\mathbf{1}}$ and $x=\textcolor{keyred}{\mathbf{5}}$; the $y$-intercept is \ans{$(0,5)$}.
+      \item Is the vertex a max or a min, and what is the range? \ans{minimum; range $y\ge -4$}
+    \end{enumerate}
+
+  \item \textbf{An upward parabola.} The graph is $m(x) = x^2 + 4x + 3$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-5}{1}{-2}{5}
+      \draw[navy, dashed, semithick] (-2,-2)--(-2,5);
+      \begin{scope}
+        \clip (-5,-2) rectangle (1,5);
+        \draw[very thick, forest, domain=-4.4:0.4, samples=70, smooth]
+          plot (\x,{(\x)*(\x) + 4*(\x) + 3});
+      \end{scope}
+      \fill[charcoal] (-2,-1) circle (3pt);
+      \fill[charcoal] (0,3) circle (3pt);
+      \fill[charcoal] (-3,0) circle (3pt);
+      \fill[charcoal] (-1,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Vertex: \ans{$(-2,-1)$} \quad Min/max value: \ans{min, $-1$} \quad Axis: $x=$ \ans{$-2$} \quad
+    Zeros: \ans{$x=-3,\,-1$} \\[3pt]
+    Domain: \ans{all reals} \quad Range: \ans{$y\ge -1$} \quad Increasing on: \ans{$(-2,\infty)$} \quad
+    Negative on: \ans{$-3<x<-1$}.
+
+  \item \textbf{A downward parabola.} The graph is $n(x) = -x^2 + 4$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-3}{3}{-3}{5}
+      \draw[navy, dashed, semithick] (0,-3)--(0,5);
+      \begin{scope}
+        \clip (-3,-3) rectangle (3,5);
+        \draw[very thick, forest, domain=-2.6:2.6, samples=70, smooth]
+          plot (\x,{-1*(\x)*(\x) + 4});
+      \end{scope}
+      \fill[charcoal] (0,4) circle (3pt);
+      \fill[charcoal] (-2,0) circle (3pt);
+      \fill[charcoal] (2,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Vertex: \ans{$(0,4)$} \quad Min/max value: \ans{max, $4$} \quad Axis: $x=$ \ans{$0$} \quad
+    Zeros: \ans{$x=-2,\,2$} \\[3pt]
+    Domain: \ans{all reals} \quad Range: \ans{$y\le 4$} \quad Decreasing on: \ans{$(0,\infty)$} \quad
+    End behavior: \ans{both arms $\to-\infty$}.
+
+  \item \textbf{Explain.} A parabola has exactly \emph{one} turning point (its vertex). Explain why
+        its \emph{end behavior} sends \emph{both} arms the same direction, and how the sign of $a$
+        decides which direction.
+        \ansline{Past the single turning point the curve heads one way forever, and by symmetry the other arm mirrors it, so both arms go the same direction. The leading term $ax^2$ dominates for large $|x|$: if $a>0$ the outputs grow large positive (both arms up); if $a<0$ they grow large negative (both arms down).}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Reading a model in context.} A dolphin leaps so its height is $h(t) = -16t^2 + 16t + 32$ feet
+after $t$ seconds (measuring from the water's surface).
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item The vertex of this parabola is $(0.5,\ 36)$. Interpret it \emph{in context}. What does the
+        $y$-intercept $(0,32)$ mean?
+  \item The positive zero is $t=2$. What is the \emph{meaningful domain} of $h$, and what does the
+        zero tell you happens then?
+\end{enumerate}
+\ansline{(a) The dolphin reaches a maximum height of $36$ ft at $t=0.5$ s; the $y$-intercept means it left the platform at $32$ ft above the water. \;\; (b) Meaningful domain $0\le t\le 2$; the zero $t=2$ is when it reaches the water ($h=0$). After that the model no longer applies.}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 3.1: Graphing Quadratic Functions.} Today you \emph{read} a parabola's
+characteristics from its graph. Next you will use the \textbf{vertex form} $f(x)=a(x-h)^2+k$,
+\textbf{standard form}, and \textbf{intercept form} to \emph{find} the vertex, axis, and intercepts
+from the equation, and to graph a parabola by transforming the parent $y=x^2$.
+\end{spiralbox}
+
+\begin{teachernote}
+Item~1 is the algebraic fingerprint of a quadratic --- constant \emph{second} differences (here $+2$,
+so $a=1$) --- paired with reading the vertex from symmetry rather than from a graph. Item~4 is the
+conceptual target: accept any answer tying the single turning point (plus symmetry) to same-direction
+arms, and $a$'s sign to which direction. In the Extension, the usual slip is a domain of ``all reals'';
+push students to the leap's start ($t=0$) and splashdown ($t=2$).
+\end{teachernote}
 
 \end{document}

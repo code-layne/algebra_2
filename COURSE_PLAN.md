@@ -189,7 +189,18 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > `unit03/lesson00`–`lesson07` scaffolded with skeleton `main.tex` for lesson plan + cover,
 > warmup, notes, activity, exit_ticket, homework, slides, and each `*_key`. Unit assessments
 > scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`.
-> **All skeletons — nothing authored yet.** Next action: author lesson by lesson starting 3.0.
+> **Lesson 3.0 authored & builds (2026-07-25):** all components + keys + 7-slide deck done; reads a
+> parabola's characteristics off pre-drawn TikZ graphs — introduces the **vertex/turning point**
+> (max vs. min and the max/min *value*), **axis of symmetry**, **even symmetry** (parent $y=x^2$),
+> and **end behavior**, while revisiting domain/range, intercepts/zeros (up to two), increasing/
+> decreasing, and positive/negative intervals; symmetry is the justification tool. Anchor graph
+> $f(x)=x^2-2x-3=(x-1)^2-4$; projectile hook $h(t)=-16t^2+32t+48$ (vertex $(1,64)$, lands $t=3$).
+> All parabolas pre-drawn via `plot` + `\clip` (no sketch-from-scratch); students read graphs/tables,
+> use second differences to spot a quadratic, and interpret features in context. Standards: **2023 VA
+> SOL A2.F.2a/c/d/f/g** (a,c,f revisited; d = absolute max/min and g = end behavior are new).
+> Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 4pp, homework 2pp; exit
+> ticket includes an SOL-style MC item. `make -C unit03/lesson00 all` → EXIT 0 (student 12pp, full
+> 22pp). **Next action: author lesson 3.1 (Graphing quadratics).**
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
