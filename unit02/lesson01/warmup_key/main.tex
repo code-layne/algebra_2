@@ -3,17 +3,60 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.1}{Warm-Up --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Warm-Up verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Warm-Up --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Getting Ready: From Reading Lines to Writing Them}
+\small Yesterday you \emph{read} a line's features off its graph. Today you'll \emph{write} the
+equation. These three quick skills are the tools you'll need.
+
+\vspace{4pt}
+\textbf{1. Read it off the graph.} The line below is graphed on the grid.
+\begin{center}
+\begin{minipage}{0.42\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{3}{-4}{5}
+  \draw[very thick, forest] (-1,-3)--(3,5);
+  \fill[charcoal] (0,-1) circle (3.5pt) node[above left, font=\scriptsize]{$(0,-1)$};
+  \fill[charcoal] (1,1) circle (3.5pt);
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+  $y$-intercept: $(0,\ $\ans{$-1$}$)$ \\[10pt]
+  Slope $m = \dfrac{\text{rise}}{\text{run}} = $ \ans{$\tfrac{2}{1}=2$} \\[10pt]
+  {\footnotesize (Count from $(0,-1)$ to $(1,1)$.)}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+\textbf{2. Slope from two points.} Use $m=\dfrac{y_2-y_1}{x_2-x_1}$ for the points $(-2,5)$ and
+$(2,-3)$.
+\[
+  m = \frac{\textcolor{keyred}{\mathbf{-3}}-\textcolor{keyred}{\mathbf{5}}}%
+           {\textcolor{keyred}{\mathbf{2}}-(\textcolor{keyred}{\mathbf{-2}})}
+    = \frac{\textcolor{keyred}{\mathbf{-8}}}{\textcolor{keyred}{\mathbf{4}}}
+    = \textcolor{keyred}{\mathbf{-2}}
+\]
+
+\vspace{2pt}
+\textbf{3. Name the parts.} A line is written $y = \tfrac{3}{4}x - 5$. Without graphing, its
+slope is $m = $ \ans{$\tfrac{3}{4}$} and its $y$-intercept is $(0,\ $\ans{$-5$}$)$.
 \end{notesbox}
+
+\begin{teachernote}
+Item~2 is the engine for the whole lesson --- keep an eye on subtraction order: top and bottom must
+run in the \emph{same} direction. Item~3 previews the payoff of slope-intercept form: once a line is
+written $y=mx+b$, $m$ and $b$ are simply \emph{read off}, no work required. That contrast (compute
+vs.\ read) motivates why we learn to convert among forms.
+\end{teachernote}
 
 \end{document}

@@ -3,10 +3,10 @@
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
 > **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully scaffolded**
-> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **Lesson 2.0
-> is now fully authored and builds** (plan, cover, warm-up, notes, activity, exit ticket,
-> homework, all keys, and a 7-slide deck; `make -C unit02/lesson00 all` → EXIT 0). Lessons
-> 2.1–2.5 remain skeletons. Units 3–8 are planned here and not yet scaffolded. Lesson lists
+> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **Lessons 2.0 and 2.1
+> are now fully authored and build** (each: plan, cover, warm-up, notes, activity, exit ticket,
+> homework, all keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0). Lessons
+> 2.2–2.5 remain skeletons. Units 3–8 are planned here and not yet scaffolded. Lesson lists
 > below are proposals to react to and edit — pacing (days per lesson) is
 > intentionally left open pending the school calendar.
 
@@ -109,7 +109,15 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > (from `spec/algebra2-vdoe-sol.pdf`); slope is reactivated Algebra 1 prerequisite. Warm-up &
 > exit ticket each fit one page (blank+key);
 > notes 3pp, homework 2pp, activity 2pp (key 3pp, extra page is the teacher-only note).
-> **Next:** author lessons 2.1–2.5 (still skeletons), then the unit tests + publish sample test.
+> **Lesson 2.1 authored & builds (2026-07-24):** all components + keys + 7-slide deck done;
+> covers slope as rate of change, the three forms (slope-intercept, point-slope, standard),
+> writing equations from a graph / two points / slope+point, and graphing by transforming the
+> parent $y=x$ ($kf(x)$ stretch/reflect, $f(x)+k$ shift — the lens A2.F.1 extends to every family).
+> Standards: **2023 VA SOL A.F.1a–e** (Algebra 1 linear cluster, reactivated as Unit 2's
+> foundation). Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp,
+> homework 2pp; exit ticket includes an SOL-style MC item. `make -C unit02/lesson01 all` → EXIT 0
+> (student 10pp, full 20pp).
+> **Next:** author lessons 2.2–2.5 (still skeletons), then the unit tests + publish sample test.
 
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*
