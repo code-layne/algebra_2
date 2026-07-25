@@ -1,32 +1,52 @@
 ---
 name: lesson-planning
 description: >-
-  Author complete, build-ready lessons for a LaTeX-based curriculum project (one with a
-  shared/ style package and a Makefile hierarchy that compiles components with latexmk
-  and merges them with pdfunite). Use this whenever the user wants to create, draft, or
-  build a lesson, a lesson plan, a unit, or any lesson component — warm-up, guided notes,
-  activity, exit ticket, homework, cover sheet, or their answer keys — for a course like
-  Algebra 2 or AP Statistics. If the course has College Board AP CED documents (files
-  named ap-*), use them to drive objectives, skills, and standards; otherwise generate
-  from a lesson title, description, and a list of standards. Trigger this even when the
-  user just says "make lesson 2.3" or "I need a warm-up and key for tomorrow," and even
-  if they don't say the words "skill" or "LaTeX."
+  Author complete, build-ready lessons for the Algebra 2 LaTeX curriculum (a project with a
+  shared/ style package — prefix algebra2 — and a Makefile hierarchy that compiles components
+  with latexmk and merges them with pdfunite).
+  Use this whenever the user wants to create, draft, or build a lesson, a lesson plan, a unit,
+  or any lesson component — warm-up, guided notes, activity, exit ticket, homework, cover
+  sheet, unit test, or their answer keys. The course is defined by COURSE_PLAN.md at the
+  project root: eight function-family units, each opening with a Lesson 0 "Characteristics of
+  ____ Functions," with a cumulative characteristics-of-functions spine. Decompose units into
+  lessons from it. Trigger this even when the user just says "make lesson 2.3" or "I need a
+  warm-up and key for tomorrow," and even if they don't say "skill" or "LaTeX."
 ---
 
-# Lesson Planning
+# Lesson Planning — Algebra 2
 
-This skill authors lessons for an existing LaTeX curriculum project and produces print-ready
-PDFs through the project's own build system. **It builds around the project's conventions —
-it does not invent its own.** The two reference courses (`algebra2`, `apstats`) are
-structurally identical: only the style-package prefix differs.
+This skill authors lessons for the **Algebra 2: Shepherd** course and produces print-ready PDFs
+through the project's own build system. **It builds around the project's conventions — it does
+not invent its own.** The course is a **function-family** course for a secondary-school
+audience: after a foundations unit, each unit is built around one function type, and **every
+unit opens with a Lesson 0, "Characteristics of ____ Functions."** Author every component to
+build graph-reading fluency — study how each new function type *behaves* before manipulating and
+solving it.
+
+## The course at a glance
+
+- **Structure** comes from **`COURSE_PLAN.md`** (project root) — the scope & sequence: the eight
+  units, each unit's lesson list, and the cumulative **characteristics-of-functions spine**
+  (§3), where each Lesson 0 introduces the new characteristics its function type is the first to
+  require (asymptotes in Unit 5, origin symmetry in Unit 4, and so on). **This is the
+  unit/lesson map.** See `references/course-workflow.md`.
+- **Content** is **standards-based and original**: sourced from `COURSE_PLAN.md`, the standards
+  the user supplies (usually Virginia SOL codes), and — as a topic/difficulty **model only** —
+  the copyrighted All Things Algebra reference in `spec/`. **Never copy** the reference's
+  problems or wording; everything authored is original.
+- **Out of scope** (no lessons): conic sections, sequences & series, probability & statistics,
+  trigonometry, and linear systems / linear programming.
+- **Style prefix is `algebra2`** — `shared/algebra2-{colors,article,boxes,key}.sty`, plus
+  `shared/algebra2-beamer.sty` for the optional teacher `slides` deck. Course macros
+  (`\CourseName`, `\SchoolYear`) are **inlined in each lesson plan**, not defined in `shared/`.
 
 ## What a lesson is
 
 A lesson lives in `unitXX/lessonYY/` and consists of:
 
 - **`main.tex`** — the teacher-facing **lesson plan** (the root document of the lesson dir).
-- A set of **student components**, each its own subdirectory containing **either** a `main.tex`
-  (authored, compiled to a PDF) **or** a `main.pdf` (a prefab PDF, used as-is):
+- A set of **student components**, each its own subdirectory containing **either** a
+  `main.tex` (authored, compiled to a PDF) **or** a `main.pdf` (a prefab PDF, used as-is):
   `cover`, `warmup`, `notes`, `activity`, `exit_ticket`, `homework`, and optional `slides`.
 - An **answer key** for each keyed component, as a *separate* sibling directory:
   `warmup_key`, `notes_key`, `activity_key`, `exit_ticket_key`, `homework_key`.
@@ -35,100 +55,139 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
 `shared/lesson.mk` discovers a component if it has a `main.tex` **or** a `main.pdf`, compiles
 the `main.tex` ones with `latexmk -xelatex`, and merges all of them with `pdfunite` in
 pedagogical order into `lessonYY_student.pdf` (cover + blank components) and `lessonYY_full.pdf`
-(cover + keyed versions, plus the lesson plan and slides). A prefab `main.pdf` is fed straight
-to `pdfunite` from the source tree with no compile step — so dropping in a ready-made PDF is all
-that's needed (Step 4).
+(cover + keyed versions, plus the lesson plan and slides). A prefab `main.pdf` is fed straight to
+`pdfunite` from the source tree with no compile step (Step 4).
+
+The characteristics lesson is **`lesson00`** (Lesson X.0); content lessons keep 1-based numbers.
+
+## What a unit is
+
+A unit (`unitXX/`) holds its lessons plus **unit-level summative assessments**, scaffolded
+automatically when the unit is first created (Step 2):
+
+- **`tests/`** — the blank tests, one subdir each: **`practice_test/`** (a study copy students
+  keep) and **`actual_test/`** (the real test given in a testing setting). Its `Makefile`
+  (`include ../../shared/tests.mk`) compiles both and its `drop` target publishes the *practice*
+  test to `sample_test/main.pdf`.
+- **`test_keys/`** — the matching answer keys: **`practice_test_key/`** and
+  **`actual_test_key/`**; its `drop` publishes the *practice* key to `sample_test_key/main.pdf`.
+- **`sample_test/`** and **`sample_test_key/`** — prefab drop-in dirs that receive those
+  published PDFs. `shared/unit.mk` merges `sample_test` into **both** the unit student and full
+  packets, and `sample_test_key` into the **full** packet only. The **actual** test and its key
+  are never merged into any packet — they stay out of student hands.
+- Optionally **`unit_cover/`** — a unit title page merged at the front of the unit packet.
 
 ## Workflow
 
-Follow these steps in order. Read the referenced files as you reach each step rather than
-all upfront.
+Follow these steps in order. Read the referenced files as you reach each step rather than all
+upfront.
 
-### Step 0 — Detect project context (always do this first)
+### Step 0 — Sync with upstream, then detect project context (always do this first)
 
-Never assume the prefix or conventions. Inspect the project:
+**Sync the worktree first — before reading or writing anything.** This skill runs in a git
+worktree; start *every* invocation by pulling the latest upstream changes so you author against
+the current shared styles, plan, and lesson map. Do this automatically:
 
-1. **Find the prefix.** `ls shared/*-colors.sty` → the prefix is the part before `-colors.sty`
-   (e.g. `algebra2`, `apstats`). All `\usepackage{<prefix>-article}` etc. must use it.
-2. **Learn course-level macros.** Grep the shared styles and an existing lesson plan for
-   `\CourseName`, `\SchoolYear`, `\MeetingLength`, `\UnitNumberName`, `\LessonNumberName`.
-   Some courses define course-level macros inside the style package (apstats); others define
-   them per lesson plan (algebra2). Define in the new files only what isn't already provided.
-3. **Choose the input path.** Look for College Board CED files in a `spec/` directory, named
-   `ap-*.pdf` (the detailed `...course-and-exam-description.pdf`, the `...course-at-a-glance.pdf`,
-   and supporting overview/poster files). If present → **AP path** (`references/ap-workflow.md`).
-   If absent → **standards path** (`references/standards-workflow.md`). In an AP course, one CED
-   **Topic** (e.g. Topic 1.1) maps to one lesson (Lesson 1.1).
-4. **Find the insertion point.** List `unit*/lesson*` to determine the next unit/lesson
-   number and whether the target lesson already exists.
-5. **Read one built lesson as a model.** Open an existing fully-built lesson in the same
-   course (or, if none, the closest sibling course) and mirror its preamble lines, box usage,
-   and tone. Conventions are summarized in `references/conventions.md`, but the live project
-   is the source of truth.
+```bash
+git fetch origin
+DEFAULT=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')
+git merge --no-edit "origin/${DEFAULT:-main}"
+```
 
-### Step 1 — Gather inputs
+If the working tree is dirty or the merge reports conflicts, **stop and surface it to the
+user** — never force, reset, or discard changes to make the sync succeed. Once the sync is
+clean, detect project context:
 
-- **AP path:** locate the CED, extract the unit → topic → Learning Objective → Essential
-  Knowledge content relevant to this lesson, plus the governing Big Idea and AP Skill. See
-  `references/ap-workflow.md`. Confirm the topic mapping with the user before authoring.
-- **Standards path:** collect the lesson title, a short description, and the list of standards
-  being addressed. See `references/standards-workflow.md`.
+1. **Read the course plan.** Open `COURSE_PLAN.md` (project root) for the scope & sequence, the
+   characteristics spine, per-unit lesson lists, and the running build **Status**. It orients
+   the whole session; you update its Status at the end (Step 6).
+2. **Confirm the prefix.** `ls shared/*-colors.sty` → it is `algebra2`. All
+   `\usepackage{algebra2-article}` etc. use it.
+3. **Course macros are inlined in the lesson plan.** This course does **not** define
+   `\CourseName`/`\SchoolYear` in `shared/`, so each lesson plan sets them itself (the scaffolder
+   writes them — pass `--course` to set the name).
+4. **Find the insertion point.** List `unit*/lesson*` to find the next unit/lesson number and
+   whether the target lesson already exists.
+5. **Open a model lesson.** Unit 1 is built — open one of its lessons and mirror its preamble,
+   box usage, and tone. The live project overrides the reference docs.
 
-Either way, the lesson-plan *structure* is identical (`references/components.md` → "Lesson
-plan"). Review units (e.g. Algebra 2 Unit 1) use the same skeleton; they simply fill the
-Priority Ideas & Skills with review topics and usually carry no AP-framework tags.
+### Step 1 — Map the unit into lessons, then gather the lesson's content
+
+The content path is always `references/course-workflow.md`:
+
+- **Decompose the unit into lessons** from `COURSE_PLAN.md`: one lesson per bullet in that
+  unit's list, in order, with the characteristics lesson as **Lesson 0**. Present the proposed
+  lesson map for the unit and **confirm it with the user before authoring** — lessons
+  occasionally merge or split.
+- **Gather the lesson's content**: the topic from `COURSE_PLAN.md`, the standards the user
+  supplies for it, and (for a Lesson 0) the characteristics the §3 spine marks ● for this unit.
+  Use `spec/` only as a difficulty/sequencing model — author everything original (copyright).
 
 ### Step 2 — Scaffold the lesson directory
 
-Run the scaffold script, which creates the directory, the one-line `Makefile`
-(`include ../../shared/lesson.mk`), and the component subdirectories you request:
+Run the scaffold script. It creates the lesson directory, the one-line lesson `Makefile`, the
+component subdirectories you request, **and (if missing) the unit `Makefile`** so the unit build
+works:
 
 ```bash
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
-  --components cover,warmup,notes,activity,exit_ticket,homework,slides
+  --title "Absolute Value Functions" --unit-title "Linear Functions" \
+  --course "Algebra 2: Shepherd" \
+  --components cover,warmup,notes,activity,exit_ticket,homework
 ```
 
-The script is bundled with the skill, so it is invoked via `${CLAUDE_SKILL_DIR}` (the working
-directory at runtime is the user's project, not the skill folder); `--project .` is the project
-root you're working in.
+The script auto-detects the prefix and writes each authored component's `main.tex` as a
+correctly-preambled skeleton (and the matching `_key` skeleton for keyed components). Because
+this course inlines course macros, pass `--course` (and `--year` if it differs) so the generated
+lesson plan defines `\CourseName` correctly. Pass `--prefab warmup` to create that component as
+an empty drop-in directory instead (Step 4). Add `slides` to scaffold a Beamer deck (requires
+`shared/algebra2-beamer.sty`). Then fill in the skeletons.
 
-It auto-detects the prefix and writes each authored component's `main.tex` as a correctly-
-preambled skeleton (and the matching `_key` skeleton for keyed components). Pass `--prefab warmup`
-to create that component as an empty drop-in directory instead, where you place the supplied
-`main.pdf` (Step 4). Then fill in the skeletons.
+**Unit assessments scaffold automatically.** When the run creates a *new* unit, the scaffolder
+also lays down that unit's `tests/`, `test_keys/`, `sample_test/`, and `sample_test_key/` dirs
+(practice + actual test skeletons and their keys, plus thin-include Makefiles) — see "What a
+unit is." It never clobbers authored tests on later lessons. Use `--no-tests` to skip them, or
+`--tests` to (re)scaffold them for a unit that already exists (idempotent).
 
 ### Step 3 — Author the lesson plan and components
 
-Author each file following `references/components.md`, which gives the required section
-structure and a worked skeleton for every component and its key. Hold to these invariants:
+**Before writing any component, do a full `Read` on each scaffolded `main.tex` skeleton you are
+about to replace.** Use the `Read` tool on the actual file — a `cat`/`bash` dump does **not**
+register the file with the editor and the first write will fail ("file has not been read yet").
+Read every skeleton you intend to author (each component and its `_key`) up front, then write
+them. This is mandatory.
+
+Author each file following `references/components.md`, which gives the required section structure
+and a worked skeleton for every component and its key. Hold to these invariants:
 
 - **Student components** preamble with `\documentclass[10pt]{article}` +
-  `\usepackage{<prefix>-article}` + `\usepackage{<prefix>-boxes}`.
-- **Answer keys** are *separate files* that swap `-boxes` for `\usepackage{<prefix>-key}`
-  and wrap every answer in `\ans{...}` (inline) or `\ansline{...}` (fills a write-line).
-  Mirror the blank document exactly, then fill the blanks with `\ans`. Use `teachernote`
-  for teacher-only guidance. There is **no** answer-key toggle — never try to build one.
-- Use the project's box vocabulary (`skillbox`, `objectivebox`, `learningtargetbox`,
-  `vocabbox`, `hookbox`, `notesbox`, `practicebox`, `scenariobox`, `tocbox`, etc.) and
-  fill-in helpers (`\blank`, `\writeline`, `\termblanklong`, `\namedateperiod`) rather than
-  reinventing layout. The full catalog is in `references/conventions.md`.
+  `\usepackage{algebra2-article}` + `\usepackage{algebra2-boxes}`.
+- **Answer keys** are *separate files* that swap `-boxes` for `\usepackage{algebra2-key}` and
+  wrap every answer in `\ans{...}` (inline) or `\ansline{...}` (fills a write-line). Mirror the
+  blank document exactly, then fill the blanks. Use `teachernote` for teacher-only guidance.
+  There is **no** answer-key toggle — never try to build one.
+- Use the project's box vocabulary (`skillbox`, `objectivebox`, `learningtargetbox`, `vocabbox`,
+  `hookbox`, `notesbox`, `practicebox`, `scenariobox`, `tocbox`, etc.) and fill-in helpers
+  (`\blank`, `\writeline`, `\termblanklong`, `\namedateperiod`) rather than reinventing layout.
+  The full catalog is in `references/conventions.md`.
+- **Match the course pedagogy.** Build graph-reading and interpretation fluency; keep answers
+  traceable to the lesson's standards. Never ask students to "sketch/draw/construct" a graph from
+  scratch — give a pre-drawn figure to read, a table to complete, or a computation task.
 - If the warm-up is a **prefab** PDF (`warmup/main.pdf` in the source tree), the lesson plan may
   embed its thumbnail via `\includegraphics[page=1]{warmup/main}`. **Authored** warm-ups compile
-  to `target/` and have no source PDF to embed, so keep the spiral review text-only (as AP Stats
-  does); the scaffolder picks the right form automatically.
+  to `target/` and have no source PDF to embed, so keep the spiral review text-only; the
+  scaffolder picks the right form automatically.
 
 ### Step 4 — Handle prefab components
 
-When the user supplies a ready-made PDF for a component (a pre-built warm-up, a publisher
-worksheet), just drop it in — no wrapper needed:
+When the user supplies a ready-made PDF for a component, just drop it in — no wrapper needed:
 
 1. Place the PDF as `<comp>/main.pdf` (e.g. `warmup/main.pdf`).
 2. If the key is also a prefab PDF, place it as `<comp>_key/main.pdf`.
 
 `shared/lesson.mk` discovers the component by its `main.pdf` and feeds it straight to `pdfunite`,
 skipping compilation. Use `--prefab <comp>` when scaffolding to create the empty drop-in
-directory. (This relies on the `lesson.mk` that supports prefab `main.pdf` discovery — if a
-project's Makefile still only globs `main.tex`, update it first; see `references/build.md`.)
+directory.
 
 ### Step 5 — Build
 
@@ -140,27 +199,41 @@ make -C unit02/lesson03 full      # lesson plan + slides + keyed versions → le
 make -C unit02/lesson03 all       # both
 ```
 
-`make -C unit02 student|full` merges a unit; `make student|full` at the root merges the whole
-curriculum. Output lands in `target/`. The build needs XeLaTeX, `latexmk`, and `pdfunite`;
-if a compile fails, surface the `.log` and fix the offending `.tex` rather than editing the
-build system. Details and troubleshooting in `references/build.md`.
+`make -C unitXX student|full` merges a unit; `make student|full` at the root merges the whole
+curriculum. Output lands in `target/`. The build needs XeLaTeX, `latexmk`, and `pdfunite`; if a
+compile fails, surface the `.log` and fix the offending `.tex` rather than editing the build
+system. Details and troubleshooting in `references/build.md`.
+
+### Step 6 — Update the course plan (always do this last)
+
+**Before you finish, record progress in `COURSE_PLAN.md`.** Update the per-unit **Status** (which
+lessons are scaffolded, which components are authored vs. still skeleton vs. built, any confirmed
+lesson maps) and note the concrete next actions and any open questions for the user. Do this at
+the end of **every** execution, even a partial one; keep it terse and current (overwrite stale
+entries rather than appending a changelog). Since it lives in the repo, it travels with the
+branch, so the Step 0 sync always brings the latest state forward.
 
 ## Reference files
 
 - `references/conventions.md` — the style packages, every box environment, the fill-in and
   answer-key macros, color palette, and per-document-type preambles. Read before authoring.
-- `references/components.md` — section-by-section spec and a skeleton for the lesson plan and
-  each component + key.
-- `references/ap-workflow.md` — reading an AP CED and mapping Big Idea / Skill / LO / EK into
-  the lesson.
-- `references/standards-workflow.md` — the title + description + standards path.
-- `references/build.md` — the Makefile hierarchy, scaffolding, prefab PDFs, build commands,
-  and troubleshooting.
+- `references/components.md` — section-by-section spec and a skeleton for the lesson plan, each
+  component + key, and the unit tests.
+- `references/course-workflow.md` — decomposing `COURSE_PLAN.md` into lessons, the characteristics
+  spine, standards mapping, and the copyright rule on the `spec/` reference.
+- `references/build.md` — the Makefile hierarchy, scaffolding, prefab PDFs, unit tests, build
+  commands, and troubleshooting.
 
 ## Guardrails
 
-- Detect, don't assume: prefix, course macros, and the AP-vs-standards path all come from
-  inspecting the project (Step 0).
-- Mirror an existing built lesson for tone and preamble; the live project overrides this doc.
+- **Bookend every run with the course plan:** read `COURSE_PLAN.md` at the start (Step 0) and
+  update its Status + next-steps at the end (Step 6). Never skip the end-of-run update.
+- **Full `Read` each skeleton before writing it** (Step 3). A `bash`/`cat` dump does not register
+  the file with the editor, so the write fails; always use the `Read` tool first.
+- Structure comes from `COURSE_PLAN.md`; content is standards-based and **original** — the `spec/`
+  All Things Algebra materials are copyrighted, used only as a topic/difficulty model.
+- Mirror a built Unit 1 lesson for tone and preamble; the live project overrides these docs.
 - Keep blank and key documents in lockstep — the key is the blank with answers filled in.
+- Function-family pedagogy: study a function type's behavior (Lesson 0) before manipulating it;
+  build graph-reading fluency; no "sketch from scratch" questions.
 - Don't modify `shared/` or the Makefiles to make a lesson build; fix the lesson's `.tex`.

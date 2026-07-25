@@ -6,12 +6,15 @@ The project compiles with **XeLaTeX** (via `latexmk`) and merges PDFs with **`pd
 
 ## The three-level Make hierarchy
 
+Each level below the root is a thin `Makefile` that includes a `shared/*.mk`. The scaffolder
+creates them as needed (see "Scaffolding a lesson"), so you rarely write them by hand:
+
 - **Root `Makefile`** — discovers `unit*/Makefile`, delegates, and merges unit PDFs into
-  `target/compiled/curriculum_{student,full}.pdf`.
-- **`shared/unit.mk`** (included by each `unitXX/Makefile`) — discovers `lesson*/Makefile`,
-  delegates, and merges lesson PDFs into `target/compiled/unitXX_{student,full}.pdf`.
-- **`shared/lesson.mk`** (included by each `lessonYY/Makefile`, which is just
-  `include ../../shared/lesson.mk`) — the engine. It:
+  `target/compiled/curriculum_{student,full}.pdf`. (Already present in this repo.)
+- **`unitXX/Makefile`** (`include ../shared/unit.mk`) — discovers `lesson*/Makefile`,
+  delegates, and merges lesson PDFs into `target/compiled/unitXX_{student,full}.pdf`. It also
+  merges the unit's `unit_cover`, `sample_test`, and `sample_test_key` (see "Unit assessments").
+- **`lessonYY/Makefile`** (`include ../../shared/lesson.mk`) — the engine. It:
   - **Discovers a component if it has `main.tex` or `main.pdf`.** Authored components
     (`main.tex`) are compiled; prefab components (`main.pdf`) are used as-is from the source
     tree. A directory with neither is skipped.
@@ -22,13 +25,14 @@ The project compiles with **XeLaTeX** (via `latexmk`) and merges PDFs with **`pd
     - **student** = `cover warmup notes activity exit_ticket homework` (blank versions present),
       in that pedagogical order → `lessonYY_student.pdf`.
     - **full** = the lesson plan (`main.tex`) + `slides` + `cover` + the **`_key`** version of
-      each keyed component (falling back to the blank if no key) → `lessonYY_full.pdf`.
+      each keyed component (falling back to the blank if no key) → `lessonYY_full.pdf`. The
+      `slides` component is built only when present and requires `shared/algebra2-beamer.sty`.
 
 ## Commands
 
 ```bash
 make -C unitXX/lessonYY student   # student packet for one lesson
-make -C unitXX/lessonYY full      # teacher/full packet (plan + slides + keys)
+make -C unitXX/lessonYY full      # teacher/full packet (plan + slides + cover + keys)
 make -C unitXX/lessonYY all       # both (runs student then full)
 make -C unitXX/lessonYY clean     # remove this lesson's target/ and stamps
 
@@ -54,19 +58,50 @@ python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson
   [--prefab warmup,warmup_key] [--course "Algebra 2: Shepherd"] [--lesson-id 2.3]
 ```
 
-It detects the prefix from `shared/*-colors.sty`, detects whether `\CourseName` is defined in
-`shared/` (omitting it from the plan if so, inlining it if not), writes the one-line `Makefile`,
-the lesson plan, and each authored component + key skeleton. Pass `--prefab <dirs>` to create
-empty drop-in directories instead (where you place each `main.pdf`). Then author the skeletons
-(`references/components.md`).
+It detects the prefix (`algebra2`) from `shared/*-colors.sty`, and detects whether `\CourseName`
+is defined in `shared/` — it is **not** in this course, so the generated lesson plan inlines the
+course macros (pass `--course`/`--year` to set them; they default to "Algebra 2: Shepherd" /
+2026–2027 if detected). It writes the lesson `Makefile`, the lesson plan, and each authored
+component + key skeleton — **and creates the unit `Makefile` (and the root `Makefile` if it were
+missing)** so unit/curriculum builds work, never clobbering existing ones. Pass `--prefab <dirs>`
+to create empty drop-in directories instead (where you place each `main.pdf`). Add `slides` to
+build a Beamer deck; the scaffolder requires `shared/algebra2-beamer.sty` and errors if it is
+missing. Then author the skeletons (`references/components.md`).
 
 ## Prefab PDFs
 
 To include a ready-made PDF as a component, drop it in as `<comp>/main.pdf` (and
 `<comp>_key/main.pdf` for a prefab key). `lesson.mk` discovers it and feeds it straight to
 `pdfunite` — no `main.tex`, no compile step. `make clean` removes only `target/` and stamps, so
-your source PDFs are never deleted. (Requires the `lesson.mk` that discovers `main.pdf`; older
-Makefiles that glob only `main.tex` will silently omit prefab-only components — update first.)
+your source PDFs are never deleted.
+
+## Unit assessments (tests)
+
+Each unit carries summative assessments alongside its lessons, scaffolded automatically when the
+unit is first created (skip with `--no-tests`, force a re-scaffold with `--tests`):
+
+- **`unitXX/tests/`** — `practice_test/main.tex` (student study copy) and `actual_test/main.tex`
+  (real test), plus `Makefile` = `include ../../shared/tests.mk`.
+- **`unitXX/test_keys/`** — `practice_test_key/main.tex` and `actual_test_key/main.tex`, plus
+  `Makefile` = `include ../../shared/test_keys.mk`.
+- **`unitXX/sample_test/`**, **`unitXX/sample_test_key/`** — drop-in dirs that receive published
+  PDFs (initially empty, with a `.gitkeep`).
+
+`shared/tests.mk`/`shared/test_keys.mk` compile every `*/main.tex` subdir, then a `drop` target
+**publishes the practice test/key** to `sample_test/main.pdf` and `sample_test_key/main.pdf`.
+`shared/unit.mk` then merges `sample_test` into the unit **student and full** packets and
+`sample_test_key` into the **full** packet only. The **actual** test/key are never merged.
+
+```bash
+make -C unitXX/tests all         # compile practice + actual tests, publish sample_test/main.pdf
+make -C unitXX/test_keys all     # compile both keys, publish sample_test_key/main.pdf
+make -C unitXX full              # merges the published sample test + key into the unit packet
+make -C unitXX/tests clean       # remove target/UNIT/tests
+```
+
+Build order matters: run `make -C unitXX/tests all` (and `test_keys all`) **before** the unit
+packet, so the `sample_test` prefab exists when `unit.mk` merges it. Output lands in
+`target/UNIT/tests/<name>/main.pdf` and `target/UNIT/test_keys/<name>/main.pdf`.
 
 ## Troubleshooting
 
@@ -77,9 +112,9 @@ Makefiles that glob only `main.tex` will silently omit prefab-only components �
   warm-up isn't built/present. Build `student` first, or (authored warm-ups) keep the spiral
   review text-only, or (prefab) ensure the PDF is present as `warmup/main.pdf` so the thumbnail
   (`\includegraphics{warmup/main}`) resolves.
-- **`Undefined control sequence \CourseName`** → the course macros aren't defined. Either the
-  style package defines them (apstats) or the lesson plan must (algebra2); the scaffolder picks
-  the right one, but a hand-edited plan may have dropped them.
+- **`Undefined control sequence \CourseName`** → the course macros aren't defined. In this
+  course they are **inlined in the lesson plan** (not in `shared/`); the scaffolder writes them,
+  but a hand-edited plan may have dropped them. Re-add `\CourseName`/`\SchoolYear` to the preamble.
 - **`\includegraphics` fails for a screenshot** → put images in `images/` (the plan sets
   `\graphicspath{{images/}}`) and load `graphicx` (the plan does; `-article` does not).
 - **Key won't compile / option clash** → a key loads `-key` only; do **not** also load
