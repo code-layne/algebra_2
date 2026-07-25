@@ -3,17 +3,60 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.0}{Exit Ticket --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Exit Ticket verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Exit Ticket --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+No notes. The graph below is the polynomial $k(x) = (x+1)^2(x-2)$. Use it for all questions.
+\begin{center}
+\begin{tikzpicture}[scale=0.52]
+  \lgrid{-3}{3}{-5}{3}
+  \begin{scope}
+    \clip (-3,-5) rectangle (3,3);
+    \draw[very thick, forest, domain=-2.1:2.25, samples=90, smooth]
+      plot (\x,{(\x)*(\x)*(\x) - 3*(\x) - 2});
+  \end{scope}
+  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$(-1,0)$};
+  \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{$(1,-4)$};
+  \fill[charcoal] (2,0) circle (3pt) node[above right, font=\scriptsize]{$(2,0)$};
+  \fill[charcoal] (0,-2) circle (3pt) node[right, font=\scriptsize]{$(0,-2)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[leftmargin=1.8em, itemsep=9pt]
+  \item \textbf{Read the features.} State the end behavior (both arms), the two turning points and
+        whether each is a relative maximum or minimum, and the zeros --- saying whether the graph
+        \emph{crosses} or \emph{touches} at each.
+        \ansline{End behavior: as $x\to-\infty,\ k\to-\infty$; as $x\to+\infty,\ k\to+\infty$ (odd degree, $a>0$). Turning points: relative maximum $(-1,0)$, relative minimum $(1,-4)$. Zeros: at $x=-1$ (multiplicity $2$) the graph \emph{touches}; at $x=2$ (multiplicity $1$) it \emph{crosses}.}
+  \item \textbf{Classify \& justify.} Is $k$ even, odd, or neither? Justify your answer (think about
+        the degree and about how $k(-x)$ compares to $k(x)$). Does $k$ have an \emph{absolute}
+        maximum? Explain.
+        \ansline{Neither: $k(x)=x^3-3x-2$ mixes an odd-power term with a constant, and $k(-x)=-x^3+3x-2$ equals neither $k(x)$ nor $-k(x)$. No absolute maximum --- the right arm rises to $+\infty$, so no output is largest (the $(-1,0)$ peak is only a \emph{relative} max).}
+  \item \textbf{SOL-style multiple choice.} Which statement about $k(x)=(x+1)^2(x-2)$ is \emph{true}?
+        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
+          \item The graph crosses the $x$-axis at $x=-1$.
+          \item $k$ has an absolute maximum.
+          \item As $x\to-\infty$, $k(x)\to-\infty$. \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+          \item $k$ is an even function.
+        \end{enumerate}
+        \begin{itemize}[leftmargin=1.4em, nosep]
+          \item[] \textbf{A} is false --- the factor $(x+1)^2$ has even multiplicity, so the graph \emph{touches} at $x=-1$. \textbf{B} is false --- odd degree means no absolute max. \textbf{D} is false --- $k$ is neither even nor odd. \textbf{C} is correct: odd degree with a positive lead sends the left arm to $-\infty$.
+        \end{itemize}
+\end{enumerate}
+
+\begin{teachernote}
+Sort responses into ``got it / multiplicity slip (calls $x=-1$ a cross) / relative-vs-absolute slip
+(calls $(-1,0)$ the maximum) / end-behavior slip.'' A wrong answer of A or D on item~3 means the
+student has not connected \emph{even multiplicity $\to$ touch} or the $f(-x)$ symmetry test. If
+several miss it, reopen Lesson~4.1 by re-marking the touch at $x=-1$ and the opposite arms.
+\end{teachernote}
 
 \end{document}

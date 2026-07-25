@@ -341,14 +341,29 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > All 7 lesson dirs `unit04/lesson00`–`lesson06` scaffolded with skeleton `main.tex` for
 > lesson plan + cover, warmup, notes, activity, exit_ticket, homework, slides, and each
 > `*_key`. Unit assessments scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`,
-> `sample_test{,_key}/`. **All components are still skeletons — none authored yet.**
+> `sample_test{,_key}/`.
 > Standards grounded against `spec/algebra2-vdoe-sol.pdf`: **A2.EO.3a/b/c/d** (operations,
 > factoring, division, identities incl. sum/diff of cubes), **A2.EI.6a/b/c/d** (solve degree
 > ≥3 over ℂ), **A2.F.2a/b/c/d/e/g** (characteristics/graphing; note polynomial is **not** in
 > A2.F.1's family list, so transformations aren't a standard here — cube-root/radical graphing
 > is Unit 6). Lesson 4.0 introduces the four new spine rows: ● odd/origin symmetry, ● relative
 > vs. absolute extrema, ● turning points, ● zero multiplicity (end behavior deepened to the
-> degree + leading-coefficient rule). **Next action: author Lesson 4.0.**
+> degree + leading-coefficient rule).
+> **Lesson 4.0 authored & builds (2026-07-25):** all components + keys + 8-slide deck done; reads a
+> polynomial's characteristics off pre-drawn TikZ graphs — introduces the **degree + leading-
+> coefficient** end-behavior rule (even/odd degree ⇒ same/opposite arms; sign of $a$ ⇒ right arm),
+> **turning points** (at most $n-1$), **relative (local) vs. absolute (global) extrema** (odd degree ⇒
+> no absolute extrema), and **zero multiplicity** (odd crosses / even touches), plus **odd/origin
+> symmetry** ($f(-x)=-f(x)$) alongside revisited even symmetry, domain/range, intercepts/zeros,
+> increasing/decreasing. Anchor $g(x)=x^3-3x+2=(x-1)^2(x+2)$ (rel. max $(-1,4)$, rel. min/touch $(1,0)$,
+> cross at $(-2,0)$); supporting graphs $x^3-4x$, $-x^4+4x^2$, $x^4-4x^2$, $x^2(x-3)$, $x^4-5x^2+4$,
+> $(x+1)^2(x-2)$; Tier E open-box volume model $V(x)=x(10-2x)(8-2x)$ and a profit model $t(t-3)^2$. All
+> graphs pre-drawn via `plot`+`\clip` (no sketch-from-scratch). Standards: **2023 VA SOL
+> A2.F.2a/c/d** (revisited), **A2.F.2e** (relative extrema — new), **A2.F.2g** (end behavior — degree/
+> lead rule), **A2.F.2b** (even/odd contrast). Warm-up & exit ticket each fit one page (blank+key);
+> notes 4pp, activity 3pp, homework 2pp; exit ticket includes an SOL-style MC item (even-multiplicity
+> touch + odd-degree end behavior). `make -C unit04/lesson00 all` → EXIT 0 (student 12pp, full 23pp).
+> **Next action: author Lesson 4.1 (Operations with Polynomials).**
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
