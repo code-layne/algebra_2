@@ -3,17 +3,149 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.0}{Group Activity --- Answer Key}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Group Activity verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Group Activity --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Reading Parabolas.} Every characteristic of a quadratic function is something you can
+\emph{point to} on its graph. With your partner, read each graph carefully and \emph{justify} your
+answers --- especially the max/min and the intervals.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+The graph shows $r(x) = x^2 - 4x + 3$.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-1}{5}{-2}{5}
+  \draw[navy, dashed, semithick] (2,-2)--(2,5);
+  \begin{scope}
+    \clip (-1,-2) rectangle (5,5);
+    \draw[very thick, forest, domain=-0.4:4.4, samples=70, smooth]
+      plot (\x,{(\x)*(\x) - 4*(\x) + 3});
+  \end{scope}
+  \fill[charcoal] (2,-1) circle (3pt);
+  \fill[charcoal] (0,3) circle (3pt);
+  \fill[charcoal] (1,0) circle (3pt);
+  \fill[charcoal] (3,0) circle (3pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item The parabola opens (circle one): \textcolor{keyred}{\textbf{up}} \; / \; \textbf{down}. \quad So its vertex is a
+        (circle one): \textcolor{keyred}{\textbf{minimum}} \; / \; \textbf{maximum}.
+  \item Vertex $=(\textcolor{keyred}{\mathbf{2}},\ \textcolor{keyred}{\mathbf{-1}})$. \quad Axis of symmetry: $x=\textcolor{keyred}{\mathbf{2}}$.
+  \item The curve crosses the $x$-axis (the \textbf{zeros}) at $x=\textcolor{keyred}{\mathbf{1}}$ and $x=\textcolor{keyred}{\mathbf{3}}$,
+        and the $y$-axis at $(0,\ \textcolor{keyred}{\mathbf{3}})$.
+  \item The \emph{minimum value} (the lowest output) is $y=\textcolor{keyred}{\mathbf{-1}}$.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+For \emph{each} parabola, give the full feature list, then answer the justification below.
+\begin{center}
+\begin{tikzpicture}[scale=0.4]
+  % f(x) = x^2 - 6x + 5  (opens up)
+  \begin{scope}
+    \lgrid{-1}{7}{-5}{6}
+    \draw[navy, dashed, semithick] (3,-5)--(3,6);
+    \begin{scope}
+      \clip (-1,-5) rectangle (7,6);
+      \draw[very thick, forest, domain=-0.2:6.2, samples=80, smooth]
+        plot (\x,{(\x)*(\x) - 6*(\x) + 5});
+    \end{scope}
+    \fill[charcoal] (3,-4) circle (3pt);
+    \fill[charcoal] (1,0) circle (3pt);
+    \fill[charcoal] (5,0) circle (3pt);
+    \fill[charcoal] (0,5) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (3,-6.4){$f(x)=x^2-6x+5$};
+  \end{scope}
+  % g(x) = -x^2 - 2x + 3  (opens down)
+  \begin{scope}[xshift=11cm]
+    \lgrid{-5}{3}{-3}{5}
+    \draw[navy, dashed, semithick] (-1,-3)--(-1,5);
+    \begin{scope}
+      \clip (-5,-3) rectangle (3,5);
+      \draw[very thick, forest, domain=-3.6:1.6, samples=80, smooth]
+        plot (\x,{-1*(\x)*(\x) - 2*(\x) + 3});
+    \end{scope}
+    \fill[charcoal] (-1,4) circle (3pt);
+    \fill[charcoal] (-3,0) circle (3pt);
+    \fill[charcoal] (1,0) circle (3pt);
+    \fill[charcoal] (0,3) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (-1,-4.4){$g(x)=-x^2-2x+3$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
+ & \textbf{$f(x)=x^2-6x+5$} & \textbf{$g(x)=-x^2-2x+3$} \\
+\hline
+Opens up / down & \ans{up ($a>0$)} & \ans{down ($a<0$)} \\
+Vertex & \ans{$(3,-4)$} & \ans{$(-1,4)$} \\
+Max or min? Value? & \ans{min, $-4$} & \ans{max, $4$} \\
+Axis of symmetry & \ans{$x=3$} & \ans{$x=-1$} \\
+Zeros & \ans{$x=1,\ 5$} & \ans{$x=-3,\ 1$} \\
+Range & \ans{$y\ge -4$} & \ans{$y\le 4$} \\
+Increasing on & \ans{$(3,\infty)$} & \ans{$(-\infty,-1)$} \\
+End behavior & \ans{both arms $\to+\infty$} & \ans{both arms $\to-\infty$} \\
+\end{tabularx}
+\vspace{2pt}
+
+\textbf{Justify:} For $f$, the outputs at $x=1$ and $x=5$ are \emph{equal}. Using the axis of symmetry,
+explain \emph{why} those two inputs must give the same output.
+\ansline{The axis of symmetry is $x=3$, and $1$ and $5$ are each $2$ units from $3$ ($3-2=1$, $3+2=5$). A parabola is a mirror image across its axis, so two inputs the same distance from the axis land at the same height --- here both give $f=0$. (In general $f(3-d)=f(3+d)$ for any $d$.)}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Back to the ball.} A ball's height after $t$ seconds is $h(t) = -16t^2 + 32t + 48$ feet.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \draw[xstep=1, ystep=8, linegray!40, very thin] (0,0) grid (3,72);
+  \draw[->, semithick, charcoal] (0,0)--(3.2,0) node[below right, font=\scriptsize]{$t$ (s)};
+  \draw[->, semithick, charcoal] (0,0)--(0,74) node[left, font=\scriptsize]{$h$ (ft)};
+  \foreach \y in {16,32,48,64} \node[charcoal, font=\scriptsize, left] at (0,\y){\y};
+  \foreach \x in {1,2,3} \node[charcoal, font=\scriptsize, below] at (\x,0){\x};
+  \draw[navy, dashed, semithick] (1,0)--(1,64);
+  \draw[very thick, forest, domain=0:3, samples=80, smooth]
+    plot (\x,{-16*(\x)*(\x) + 32*(\x) + 48});
+  \fill[charcoal] (1,64) circle (3pt);
+  \fill[charcoal] (0,48) circle (3pt);
+  \fill[charcoal] (3,0) circle (3pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
+  \item Interpret each feature \emph{in context}: the $y$-intercept means \ans{the ball started at $48$ ft (released height)};
+        the vertex means \ans{the ball reached a maximum height of $64$ ft at $t=1$ s};
+        the positive zero means \ans{the ball hit the ground at $t=3$ s}.
+  \item What is the \emph{meaningful domain} of $h$ in this situation, and why is it \emph{not} all
+        real numbers?
+        \ansline{$0\le t\le 3$. Time before release ($t<0$) isn't part of the flight, and after it lands ($t>3$) the formula gives a negative height, which is impossible --- so only $t=0$ to $3$ s make sense.}
+  \item \textbf{Use symmetry.} The ball is $60$ ft high on the way \emph{up} at $t=0.5$ s. Without any
+        algebra, at what later time is it again $60$ ft high on the way \emph{down}? Explain how the
+        axis of symmetry $t=1$ tells you.
+        \ansline{At $t=1.5$ s. The axis is $t=1$, and $t=0.5$ is $0.5$ s before it, so its mirror is $0.5$ s after: $t=1.5$ s. Equal distances from the axis have equal heights.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{teachernote}
+Tier~A's justify item is the heart of the lesson: symmetry is the \emph{reason} equal-distance inputs
+match, not a coincidence. Watch for two errors across tiers --- reporting the max/min as a point rather
+than a $y$-value, and reading the vertex $x$-coordinate as the range. In Tier~E, item~2 (meaningful
+domain) is the modeling payoff; accept any clear reason that negative time or negative height is
+impossible. Item~3 is symmetry used as a shortcut --- no algebra required.
+\end{teachernote}
 
 \end{document}
