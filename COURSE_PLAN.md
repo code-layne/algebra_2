@@ -2,9 +2,11 @@
 
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
-> **Status:** Draft v1. Unit 1 is built in source; Units 2–8 are planned here and
-> not yet scaffolded. Lesson lists below are proposals to react to and edit —
-> pacing (days per lesson) is intentionally left open pending the school calendar.
+> **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully scaffolded**
+> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests) — content
+> not yet authored. Units 3–8 are planned here and not yet scaffolded. Lesson lists
+> below are proposals to react to and edit — pacing (days per lesson) is
+> intentionally left open pending the school calendar.
 
 ---
 
@@ -30,7 +32,7 @@
 | Unit | Title | Function family | Lessons (incl. L0) | Status |
 |:---:|---|---|:---:|---|
 | 1 | Foundations | (review) | 3 (no L0) | **Built** |
-| 2 | Linear Functions | Linear, absolute value, piecewise | ~6 | Planned |
+| 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Scaffolded** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | ~7 | Planned |
 | 4 | Polynomial Functions | Polynomial | ~6 | Planned |
 | 5 | Rational Functions | Rational | ~6 | Planned |
@@ -95,6 +97,13 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 - Assessments: sample test + key (present in source)
 
 ### Unit 2 — Linear Functions
+> **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
+> created with skeleton `main.tex` for lesson plan + cover, warmup, notes, activity,
+> exit_ticket, homework, slides, and each `*_key`. Unit assessments scaffolded:
+> `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`.
+> **Next:** author content per lesson (Step 3), then `make -C unit02/lessonYY all`;
+> author unit tests and publish sample test. Nothing authored yet — all skeletons.
+
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*
 - **2.1** Linear functions: slope & rate of change, forms of a line
