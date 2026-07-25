@@ -3,17 +3,103 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.0}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Homework verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Homework --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Practice}
+Show how you read each feature. For every graph, give the \emph{full} feature list.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{From a table.} A linear function is given by the table below.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+    $f(x)$ & $-6$ & $-4$ & $-2$ & $0$ \\ \hline
+    \end{tabular}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item The output changes by the same amount each step. That constant difference is the
+            \textbf{slope} $m = \textcolor{keyred}{\mathbf{2}}$.
+      \item The $y$-intercept is \ans{$(0,-6)$}, and the zero (the $x$-intercept) is \ans{$(3,0)$}.
+      \item Is this function increasing or decreasing? \ans{increasing}
+    \end{enumerate}
+
+  \item \textbf{An increasing line.} Read every feature of the graph.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.46]
+      \lgrid{-4}{4}{-3}{5}
+      \draw[very thick, forest] (-3,-2)--(4,5);
+      \fill[charcoal] (0,1) circle (3pt);
+      \fill[charcoal] (-1,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Domain: \ans{all reals} \quad Range: \ans{all reals} \quad $y$-int: \ans{$(0,1)$} \quad
+    zero: \ans{$(-1,0)$} \\[3pt]
+    Slope: \ans{$1$} \quad Increasing/decreasing: \ans{increasing} \quad
+    Positive when $x$ \ans{$>-1$}; negative when $x$ \ans{$<-1$}.
+
+  \item \textbf{A decreasing line.} Read every feature of the graph.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.46]
+      \lgrid{-3}{4}{-3}{5}
+      \draw[very thick, forest] (-2,6)--(3,-4);
+      \fill[charcoal] (0,2) circle (3pt);
+      \fill[charcoal] (1,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Domain: \ans{all reals} \quad Range: \ans{all reals} \quad $y$-int: \ans{$(0,2)$} \quad
+    zero: \ans{$(1,0)$} \\[3pt]
+    Slope: \ans{$-2$} \quad Increasing/decreasing: \ans{decreasing} \quad
+    Positive when $x$ \ans{$<1$}; negative when $x$ \ans{$>1$}.
+
+  \item \textbf{A horizontal line.} The graph of $c(x) = -2$ is a flat line through $(0,-2)$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item What is its slope? \ans{$0$} \quad Is it increasing, decreasing, or constant?
+            \ans{constant}
+      \item What is its range? \ans{$\{-2\}$} \quad Does it have an $x$-intercept (a zero)?
+            \ans{no --- it never crosses the $x$-axis}
+      \item Is $c(x)$ positive or negative? \ans{negative (always, since $-2<0$)}
+    \end{enumerate}
+
+  \item \textbf{Explain.} For a non-horizontal line, why does the sign of $f(x)$ (positive vs.\
+        negative) change at the \emph{zero}, and nowhere else?
+        \ansline{A non-horizontal line crosses the $x$-axis exactly once --- at its zero. On one side of that point the graph is above the axis (outputs positive), on the other side below it (negative). Because the line is straight and crosses only once, the sign can switch only there.}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Reading a model in context.} A drone descends so its height is $H(t) = -4t + 20$ meters
+after $t$ seconds.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Interpret the $y$-intercept, the slope, and the zero \emph{in context}.
+  \item What is the meaningful domain of $H$ (when does the model make sense), and what is the
+        matching range?
+\end{enumerate}
+\ansline{(a) $y$-intercept $(0,20)$: the drone starts at $20$ m. Slope $-4$: it descends $4$ m each second. Zero $(5,0)$: it reaches the ground at $t=5$ s. \;\; (b) Meaningful domain $0\le t\le 5$; matching range $0\le H\le 20$.}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 2.1: Linear Functions.} Today you \emph{read} the characteristics of a
+line from its graph. Next you will use those same features --- slope and intercepts --- to
+\emph{write} linear equations in slope-intercept, point-slope, and standard form, and to graph lines
+by transforming a parent line.
+\end{spiralbox}
+
+\begin{teachernote}
+Item~5 is the conceptual target --- accept any answer that ties the single crossing to the single
+sign change. In the Extension, the common slip is a domain of ``all reals''; push students to notice
+that the drone story ends when it lands ($t=5$) and cannot start before $t=0$.
+\end{teachernote}
 
 \end{document}

@@ -3,8 +3,10 @@
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
 > **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully scaffolded**
-> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests) — content
-> not yet authored. Units 3–8 are planned here and not yet scaffolded. Lesson lists
+> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **Lesson 2.0
+> is now fully authored and builds** (plan, cover, warm-up, notes, activity, exit ticket,
+> homework, all keys, and a 7-slide deck; `make -C unit02/lesson00 all` → EXIT 0). Lessons
+> 2.1–2.5 remain skeletons. Units 3–8 are planned here and not yet scaffolded. Lesson lists
 > below are proposals to react to and edit — pacing (days per lesson) is
 > intentionally left open pending the school calendar.
 
@@ -101,8 +103,13 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > created with skeleton `main.tex` for lesson plan + cover, warmup, notes, activity,
 > exit_ticket, homework, slides, and each `*_key`. Unit assessments scaffolded:
 > `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`.
-> **Next:** author content per lesson (Step 3), then `make -C unit02/lessonYY all`;
-> author unit tests and publish sample test. Nothing authored yet — all skeletons.
+> **Lesson 2.0 authored & builds (2026-07-24):** all components + keys + 7-slide deck done;
+> reads a line's characteristics (domain/range, intercepts/zero, slope, increasing/decreasing,
+> positive/negative intervals) off pre-drawn TikZ graphs. Standards: **2023 VA SOL A2.F.2a/c/f**
+> (from `spec/algebra2-vdoe-sol.pdf`); slope is reactivated Algebra 1 prerequisite. Warm-up &
+> exit ticket each fit one page (blank+key);
+> notes 3pp, homework 2pp, activity 2pp (key 3pp, extra page is the teacher-only note).
+> **Next:** author lessons 2.1–2.5 (still skeletons), then the unit tests + publish sample test.
 
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*

@@ -1,6 +1,11 @@
 %! Characteristics of Linear Functions — Unit 2, Lesson 2.0 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,153 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.0}\\[0.5cm]
     {\color{white}\bfseries\LARGE Characteristics of Linear Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2: Linear Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Every question is a feature of the graph}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      A tank drains at a steady rate: \[ V(t) = -3t + 12 \text{ gallons.} \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item How much to start? $\to$ \textbf{$y$-intercept}
+        \item How fast draining? $\to$ \textbf{slope}
+        \item When empty? $\to$ \textbf{zero}
+        \item Rising or falling? $\to$ \textbf{decreasing}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \draw[step=1, linegray!45, thin] (0,0) grid (5,13);
+        \draw[->, thick, charcoal] (0,0)--(5,0) node[below right, font=\tiny]{$t$};
+        \draw[->, thick, charcoal] (0,0)--(0,13) node[left, font=\tiny]{$V$};
+        \draw[very thick, forest] (0,12)--(4,0);
+        \fill[charcoal] (0,12) circle (4pt);
+        \fill[charcoal] (4,0) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Today}
+    Read \emph{every} characteristic of a linear function straight off its graph.
+  \end{block}
+\end{frame}
+
+% LINEAR = CONSTANT RATE OF CHANGE
+\begin{frame}[t, plain]
+  \forestheader{Linear means a constant rate of change}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      For $f(x) = 2x - 4$, every $+1$ in $x$ adds the same $+2$ to $y$.
+      \\[6pt]
+      That constant change \emph{is} the \textbf{slope}, and constant slope makes the graph a
+      straight \textbf{line}: \[ f(x) = mx + b. \]
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+        $f(x)$ & $-4$ & $-2$ & $0$ & $2$ \\ \hline
+      \end{tabular}\\[6pt]
+      {\footnotesize each step: \textbf{\color{forest}$+2$}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE SIX CHARACTERISTICS
+\begin{frame}[t, plain]
+  \forestheader{Reading a line: six characteristics}
+  \sectionlabel[goldacc]{$f(x) = 2x - 4$}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-2}{6}{-6}{6}
+        \draw[very thick, forest] (-1,-6)--(5,6);
+        \draw[semithick, navy, dashed] (2,0)--(3,0)--(3,2);
+        \fill[charcoal] (0,-4) circle (3.5pt) node[left, font=\tiny]{$(0,-4)$};
+        \fill[charcoal] (2,0) circle (3.5pt) node[above left, font=\tiny]{$(2,0)$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      \begin{enumerate}\setlength{\itemsep}{3pt}
+        \item \textbf{Domain:} all reals \quad \textbf{Range:} all reals
+        \item \textbf{$y$-intercept:} $(0,-4)$
+        \item \textbf{$x$-intercept / zero:} $(2,0)$, where $f(x)=0$
+        \item \textbf{Slope:} $\tfrac{\text{rise}}{\text{run}}=\tfrac{2}{1}=2$
+        \item \textbf{Increasing} (slope $>0$)
+        \item \textbf{Positive} for $x>2$, \textbf{negative} for $x<2$
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% RISING / FALLING / FLAT
+\begin{frame}[t, plain]
+  \forestheader{Rising, falling, or flat}
+  \sectionlabel{Sign of the slope}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.4]
+        \lgrid{-2}{5}{-2}{5}
+        \draw[very thick, forest] (-1,4)--(4,-1);
+        \fill[charcoal] (0,3) circle (3pt);
+        \fill[charcoal] (3,0) circle (3pt);
+      \end{tikzpicture}\\
+      {\footnotesize $g(x)=-x+3$: slope $-1$ $\Rightarrow$ \textbf{decreasing}}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.4]
+        \lgrid{-2}{5}{-2}{5}
+        \draw[very thick, forest] (-1.5,2)--(4.5,2);
+        \fill[charcoal] (0,2) circle (3pt);
+      \end{tikzpicture}\\
+      {\footnotesize $h(x)=2$: slope $0$ $\Rightarrow$ \textbf{constant}, range $\{2\}$, no zero}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% POSITIVE vs INCREASING
+\begin{frame}[t, plain]
+  \forestheader{``Positive'' is not ``increasing''}
+  \sectionlabel[goldacc]{The key distinction}
+  \begin{itemize}\setlength{\itemsep}{7pt}
+    \item \textbf{Positive / negative} asks where the graph \emph{sits}: above the $x$-axis
+          ($f(x)>0$) or below it ($f(x)<0$). The sign switches at the \textbf{zero}.
+    \item \textbf{Increasing / decreasing} asks which way the graph \emph{moves} as you read
+          left to right --- the sign of the \textbf{slope}.
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{They are independent}
+    A \emph{decreasing} line can still be \emph{positive}: $g(x)=-\tfrac12 x+2$ falls everywhere,
+    yet $g(x)>0$ for all $x<4$.
+  \end{block}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 2 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} read domain, range, intercepts, slope, increasing/decreasing, and the
+  positive/negative intervals from a line.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item \textbf{2.1} Linear functions: slope, rate of change, and forms of a line.
+    \item \textbf{2.2} Absolute value equations \& inequalities.
+    \item \textbf{2.3} Absolute value functions \& transformations (the V-shape).
+    \item \textbf{2.4} Piecewise-defined functions.
+    \item \textbf{2.5} Linear regression.
+  \end{itemize}
 \end{frame}
 
 \end{document}

@@ -10,6 +10,11 @@
 \newcommand{\MeetingLength}{55 minutes}
 \newcommand{\UnitNumberName}{Unit 2: Linear Functions \quad}
 \newcommand{\LessonNumberName}{Lesson 2.0: Characteristics of Linear Functions}
+% Standard coordinate grid + axes for read-a-graph figures: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 \begin{center}
@@ -19,55 +24,158 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can read the graph of a linear function and name its key
+    characteristics --- \emph{domain} and \emph{range}, the \emph{$x$- and $y$-intercepts}
+    (the $x$-intercept is the \emph{zero}), the \emph{slope} as a \emph{constant rate of change},
+    whether the line is \emph{increasing}, \emph{decreasing}, or \emph{constant}, and the intervals
+    where the function is \emph{positive} or \emph{negative} --- and justify each feature from the
+    graph. This is the ``read-a-graph'' toolkit the whole course will reuse.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2} --- investigate and analyze the characteristics
+    of functions graphically. This Lesson~0 launches that toolkit on linear graphs:
+    \textbf{A2.F.2a} (determine domain, range, zeros, and intercepts from a graph),
+    \textbf{A2.F.2c} (intervals on which a graph is increasing, decreasing, or constant), and
+    \textbf{A2.F.2f} (determine $f(x)$ from a graph and interpret $x$ and $f(x)$ in context). Slope
+    as a constant rate of change is reactivated Algebra~1 prerequisite knowledge.
 \end{tcolorbox}
 
-\renewcommand{\arraystretch}{1.6}
+\renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-    % TODO: left minipage = priority skills (AP Skill x.y for AP courses);
-    %       right minipage = Key Understandings (paraphrased from EKs).
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item Read the \textbf{domain} and \textbf{range} of a line from its graph.
+  \item Locate the \textbf{$y$-intercept} $(0,b)$ and the \textbf{$x$-intercept / zero} (where $f(x)=0$).
+  \item Compute \textbf{slope} as a constant rate of change $m=\dfrac{\Delta y}{\Delta x}=\dfrac{\text{rise}}{\text{run}}$.
+  \item State whether a line is \textbf{increasing}, \textbf{decreasing}, or \textbf{constant}.
+  \item Give the \textbf{positive / negative} intervals (graph above / below the $x$-axis).
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item A function is \emph{linear} exactly when its rate of change is \emph{constant} --- the same slope everywhere.
+  \item Intercepts are where the graph meets an axis; the $x$-intercept is the input that makes the output $0$.
+  \item The \emph{sign} of the slope decides increasing vs.\ decreasing as you read left to right.
+  \item ``Positive/negative'' describes the \emph{output} $f(x)$, and it switches sign at the zero.
+  \item Every non-vertical line has domain \emph{all reals}; the range is all reals unless the line is horizontal.
+\end{itemize}
+\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Linear function} & A function whose graph is a straight line; it can be written $f(x)=mx+b$ and has a \emph{constant} rate of change. \\
+\textbf{Slope / rate of change} & $m=\dfrac{\Delta y}{\Delta x}=\dfrac{\text{rise}}{\text{run}}$: how much the output changes per unit change in the input. \\
+\textbf{$y$-intercept} & The point $(0,b)$ where the graph crosses the $y$-axis --- the output when $x=0$. \\
+\textbf{$x$-intercept (zero)} & The point $(a,0)$ where the graph crosses the $x$-axis; the input $a$ with $f(a)=0$. \\
+\textbf{Domain / range} & The set of allowed inputs ($x$) / the set of resulting outputs ($y$), read from the graph. \\
+\textbf{Increasing / decreasing} & The graph rises ($m>0$) / falls ($m<0$) as you read it left to right. \\
+\textbf{Constant function} & A horizontal line $f(x)=b$; slope $0$, neither increasing nor decreasing. \\
+\textbf{Positive / negative interval} & The $x$-values where the graph is \emph{above} the $x$-axis ($f(x)>0$) / \emph{below} it ($f(x)<0$). \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses the Unit~1 skills this lesson stands on: \textbf{(1)} plotting and reading
+    ordered pairs on the coordinate plane; \textbf{(2)} evaluating a function $f(x)$ at given inputs
+    and reading those outputs as points $(x,f(x))$; and \textbf{(3)} recognizing a \emph{constant
+    difference} in a table as the fingerprint of a line. Debrief item~3 aloud: a constant change in
+    output for equal steps in input is exactly the \emph{slope} we formalize today.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    A water tank drains at a steady rate. Its volume after $t$ minutes is $V(t) = -3t + 12$ gallons.
+    Show the graph (a falling line). Pose the questions that name every feature we will study:
+    \textbf{``How much water did it start with?''} (the $y$-intercept $(0,12)$),
+    \textbf{``How fast is it draining?''} (the slope $-3$: down $3$ gallons each minute),
+    \textbf{``When is the tank empty?''} (the $x$-intercept / zero $(4,0)$),
+    \textbf{``Is the amount of water rising or falling?''} (decreasing), and
+    \textbf{``When does the tank still hold water?''} (the positive interval $0 \le t < 4$).
+    Land the point: \emph{every question about this situation is a question about a characteristic of
+    the graph.}
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. What makes a function linear.} Build a table for $f(x)=2x-4$ and read down the outputs:
+each step of $+1$ in $x$ adds the \emph{same} $+2$ to $y$. That constant change \emph{is} the
+\textbf{slope}, and constant slope is exactly what makes a graph a straight \textbf{line}. Name the
+form $f(x)=mx+b$.
+
+\textbf{2. Intercepts.} On the graph of $f(x)=2x-4$, mark where it crosses each axis. The
+\textbf{$y$-intercept} is $(0,-4)$: set $x=0$. The \textbf{$x$-intercept} is $(2,0)$: set
+$f(x)=0$ and solve $2x-4=0$. Stress the language: the $x$-intercept is the function's \textbf{zero}.
+
+\textbf{3. Slope as rate of change.} From any two points, $m=\dfrac{\Delta y}{\Delta x}$. Count
+rise-over-run on the grid: up $2$, right $1$. \textbf{Why does it not matter which two points you
+pick?} Because the rate of change is constant.
+
+\columnbreak
+
+\textbf{4. Increasing / decreasing / constant.} Read left to right: $f(x)=2x-4$ \emph{rises}, so it
+is \textbf{increasing} on all reals. Contrast $g(x)=-x+3$ (\emph{falls}: decreasing) and
+$h(x)=2$ (\emph{flat}: constant, slope $0$). Tie the verdict to the \emph{sign} of $m$.
+
+\textbf{5. Domain, range, and sign.} For any non-vertical line the \textbf{domain} is all reals; the
+\textbf{range} is all reals \emph{unless} the line is horizontal (then the range is a single value).
+Finally, split the $x$-axis at the zero: $f(x)=2x-4$ is \textbf{positive} for $x>2$ (graph above the
+axis) and \textbf{negative} for $x<2$ (below).
+
+\textbf{6. Bring it home.} Return to the tank $V(t)=-3t+12$ and label all six features on it, so
+students see the abstract vocabulary describe a real quantity. Preview: Lesson~2.1 uses these
+features to \emph{write} and \emph{transform} linear equations.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item swapping the intercepts --- reading the $y$-intercept off the $x$-axis or vice versa;
+  \item slope sign and ``upside-down'' rise/run (writing $\tfrac{\Delta x}{\Delta y}$, or calling a
+        falling line's slope positive);
+  \item confusing ``positive interval'' (where $f(x)>0$) with ``increasing'' (where the graph rises)
+        --- a decreasing line can still be positive;
+  \item giving the range as ``all reals'' for a \emph{horizontal} line.
+\end{itemize}
+Cold-call prompts: ``Where is the zero, and what does $f$ equal there?'' ``Rising or falling --- and
+what is the sign of the slope?'' ``Name an $x$ where $f(x)<0$.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Reading Lines} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} From a pre-drawn line with integer intercepts, read the $y$-intercept
+and $x$-intercept, count the slope as rise/run, and say whether the line rises or falls.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} Given two graphed lines, report the full feature list for each
+(domain, range, intercepts, slope, increasing/decreasing, positive/negative intervals) and
+\emph{justify} the sign intervals from the zero.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Match an applied context (the draining tank) to its graph, interpret
+every feature \emph{in context}, and handle the horizontal-line special case (slope $0$, range a
+single value, no zero).
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): from one graphed line, read the intercepts and slope;
+state increasing/decreasing with the domain/range; and a \textbf{justification check} ---
+name the positive interval and explain, using the zero, why the sign switches there. Collect and
+sort into ``got it / intercept slip / slope-sign slip / positive-vs-increasing slip'' to decide
+whether Lesson~2.1 opens with a quick re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} read the full feature list from several graphed lines (including a decreasing line
+and a horizontal line); connect a table's constant difference to slope; and one short justification
+item on positive/negative intervals. \textbf{Extension:} interpret every feature of the tank model
+$V(t)=-3t+12$ in context, including the meaningful domain $0\le t\le 4$. \textbf{Preview:}
+Lesson~2.1, \emph{Linear Functions: slope, rate of change, and forms of a line} --- using these
+characteristics to write equations and graph transformations.
 \end{skillbox}
 \end{document}
