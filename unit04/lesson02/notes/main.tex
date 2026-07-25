@@ -4,16 +4,201 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.2}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item factor out the \emph{GCF} first, in one and two variables, including a negative leading coefficient;
+  \item choose a method by the \emph{number of terms}, and apply the \emph{difference of squares}, \emph{perfect-square trinomial}, and \emph{sum and difference of cubes} identities;
+  \item factor a four-term polynomial by \emph{grouping} and recognize \emph{quadratic form};
+  \item factor \emph{completely}, recognize a \emph{prime} polynomial, and read a function's \emph{zeros} off its factored form.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\termblanklong{Prime (irreducible) polynomial}
+\termblanklong{Factored completely}
+\termblanklong{Sum \& difference of cubes}
+\termblanklong{Factoring by grouping}
+\termblanklong{Quadratic form}
+\end{vocabbox}
+
+\begin{hookbox}
+In Lesson 4.0 you read this graph of $q(x) = x^4 - 5x^2 + 4$.
+\begin{center}
+\begin{tikzpicture}[scale=0.45]
+  \lgrid{-3}{3}{-3}{6}
+  \begin{scope}
+    \clip (-3,-3) rectangle (3,6);
+    \draw[very thick, forest, domain=-2.45:2.45, samples=120, smooth]
+      plot (\x,{(\x)*(\x)*(\x)*(\x) - 5*(\x)*(\x) + 4});
+  \end{scope}
+  \fill[charcoal] (-2,0) circle (3pt);
+  \fill[charcoal] (-1,0) circle (3pt);
+  \fill[charcoal] (1,0)  circle (3pt);
+  \fill[charcoal] (2,0)  circle (3pt);
+  \fill[charcoal] (0,4)  circle (3pt) node[right, font=\scriptsize]{$(0,4)$};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Read the four $x$-intercepts off the graph: \blank{4.2cm}
+  \item Now look at $x^4 - 5x^2 + 4$. Can you \emph{see} those four numbers anywhere in it? \blank{1.6cm}
+  \item What form of the equation \emph{would} show them? \writeline
+\end{itemize}
+Yesterday you turned a \textbf{factored} form into a \textbf{standard} form by multiplying. Today you
+run the machine backward --- and the prize is the \emph{zeros}. One warning before we start: write
+$x^4-16=(x^2-4)(x^2+4)$. Is that factored? \blank{1.4cm} \; Is it factored \emph{completely}?
+\blank{1.4cm} \; Why not? \writeline
+\end{hookbox}
+
+\begin{notesbox}{1. Always Start with the GCF}
+The \textbf{GCF} of a polynomial uses the largest common coefficient and the \blank{2.0cm} power of
+every variable the terms \emph{share}.
+
+\vspace{4pt}
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item $12x^5 - 18x^4 + 30x^3 = $ \blank{5.5cm}
+  \item Two variables: \; $15x^3y^2 - 25x^2y^3 = $ \blank{5.0cm}
+  \item Negative lead --- factor out $-4x$: \; $-4x^3 + 8x^2 - 12x = $ \blank{5.0cm}
+
+        Pulling out a \emph{negative} changes the sign of \blank{3.6cm} inside the parentheses.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Why first?} Because the GCF can \emph{uncover} a pattern that was hidden. On its own,
+$2x^3 - 50x$ matches nothing. Take out $2x$: \; $2x^3 - 50x = $ \blank{3.2cm} \; --- and now the
+inside is a \blank{4.4cm}, so the complete answer is \blank{4.4cm}
 \end{notesbox}
+
+\begin{notesbox}{2. Count the Terms --- That Tells You Which Tool}
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{|c|p{10.6cm}|}
+\hline
+\textbf{Terms} & \textbf{Try this} \\ \hline
+$2$ & difference of squares $a^2-b^2$ \; \emph{or} \; sum/difference of \textbf{cubes} $a^3\pm b^3$ \\ \hline
+$3$ & perfect-square trinomial, ordinary trinomial factoring, or \textbf{quadratic form} \\ \hline
+$4$ & factoring by \textbf{grouping} \\ \hline
+\end{tabular}
+\end{center}
+And the rule that beats all of them: after every step, \blank{5.6cm}
+\end{notesbox}
+
+\begin{notesbox}{3. Two Terms: Squares}
+\textbf{Difference of squares:} \; $a^2 - b^2 = $ \blank{3.4cm}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $49x^2 - 64 = $ \blank{4.2cm} \qquad ($a = $ \blank{1.0cm}, $b = $ \blank{1.0cm})
+  \item Two variables: \; $9x^2 - 25y^2 = $ \blank{4.6cm}
+  \item Go twice: \; $x^4 - 16 = ($\blank{1.6cm}$)($\blank{1.6cm}$) = $ \blank{4.4cm}
+\end{itemize}
+
+\vspace{4pt}
+\textbf{The one that will not factor.} A \emph{sum} of squares, $a^2 + b^2$, is
+\blank{1.8cm} over the integers. For $x^2 + 4$ we would need two integers whose product is $4$ and
+whose sum is \blank{1.0cm} --- and there are none. So we stop.
+
+\vspace{5pt}
+\textbf{Perfect-square trinomials} (three terms, but they belong with the squares):
+$a^2 \pm 2ab + b^2 = $ \blank{2.6cm}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $x^2 - 14x + 49 = $ \blank{3.4cm} \quad Check the middle: $2(x)(7) = $ \blank{1.4cm} \checkmark
+  \item $4x^2 + 20xy + 25y^2 = $ \blank{3.8cm}
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Four Terms: Grouping}
+Split into two pairs, take the GCF out of \emph{each} pair, then factor out the shared
+\textbf{binomial}.
+
+\vspace{4pt}
+\textbf{Example.} $x^3 + 5x^2 - 4x - 20$
+
+\vspace{2pt}
+\emph{Step 1 --- group in pairs:} \; $(x^3 + 5x^2) + (-4x - 20)$
+
+\vspace{2pt}
+\emph{Step 2 --- GCF each pair:} \; \blank{2.4cm}$(x+5)$ \; \blank{2.0cm}$(x+5)$
+
+\vspace{2pt}
+\emph{Step 3 --- factor out the common binomial:} \blank{4.4cm}
+
+\vspace{2pt}
+\emph{Step 4 --- keep going!} \; $x^2 - 4$ is a \blank{3.6cm}, so the complete answer is
+\blank{4.6cm}
+
+\vspace{5pt}
+\textbf{The sign move.} When the third term is negative, factor a \textbf{negative} out of the second
+pair so the two binomials \emph{match}. If your two binomials come out different, the reason is
+almost always \blank{2.6cm}.
+
+\vspace{4pt}
+\textbf{Sometimes ``completely'' means stopping.} \; $2x^3 - 6x^2 - 9x + 27 = $ \blank{4.6cm}
+
+\vspace{2pt}
+Can $2x^2 - 9$ be factored over the integers? \blank{1.4cm} \; Why not? \writeline
+\end{notesbox}
+
+\begin{notesbox}{5. Two Terms: Cubes --- Today's New Identity}
+Look back at Warm-Up item 3. You multiplied $(x+2)(x^2-2x+4)$ and got \blank{1.6cm}. You proved
+today's formula before you knew it had a name.
+\[
+  a^3 + b^3 = (a+b)(a^2 - ab + b^2) \qquad\qquad a^3 - b^3 = (a-b)(a^2 + ab + b^2)
+\]
+\textbf{SOAP} --- the sign pattern shared by both identities:
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{S}ame --- the binomial factor takes the \blank{2.4cm} sign as the original.
+  \item \textbf{O}pposite --- the trinomial's middle term takes the \blank{2.4cm} sign.
+  \item \textbf{A}lways \textbf{P}ositive --- the trinomial's last term is \blank{2.4cm}.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Two traps.} The middle term is $ab$, \emph{not} $2ab$ --- this is \blank{3.0cm} a
+perfect-square trinomial. And the trinomial factor $a^2 \mp ab + b^2$ is always \blank{1.6cm}, so
+never try to break it apart.
+
+\vspace{5pt}
+Identify $a$ and $b$ \emph{first}, every time.
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item $x^3 + 8$: \quad $a = $ \blank{0.9cm}, $b = $ \blank{0.9cm} \quad $\Rightarrow$ \blank{4.4cm}
+  \item $27x^3 - 64$: \quad $a = $ \blank{0.9cm}, $b = $ \blank{0.9cm} \quad $\Rightarrow$ \blank{5.0cm}
+  \item $8x^3 + 125y^3 = $ \blank{6.0cm}
+  \item GCF first! \; $5x^3 - 40 = 5($\blank{1.6cm}$) = $ \blank{5.0cm}
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+\textbf{Back to the Hook.} $q(x) = x^4 - 5x^2 + 4$ has three terms --- and the powers $4$ and $2$ are
+in \textbf{quadratic form}: it factors as though $x^2$ were the variable.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Find two numbers whose product is $4$ and whose sum is $-5$: \blank{1.4cm} and \blank{1.4cm}
+  \item So $x^4 - 5x^2 + 4 = ($\blank{1.8cm}$)($\blank{1.8cm}$)$.
+  \item Are you done? Each factor is a \blank{4.0cm}, so keep going:
+        $q(x) = $ \blank{6.0cm}
+  \item A product is zero exactly when one of its factors is zero, so the zeros of $q$ are
+        \blank{4.0cm}
+  \item Compare with the $x$-intercepts you read off the graph at the top of these notes. Do they
+        match? \blank{1.4cm}
+  \item \textbf{The wall.} Try today's tools on the unit's anchor, $x^3 - 3x + 2$. GCF?
+        \blank{1.2cm} \; Three terms, but quadratic form? \blank{1.2cm} \; Four terms to group?
+        \blank{1.2cm} \; And yet it \emph{does} factor --- you saw it as $(x-1)^2(x+2)$ in Lesson 4.0.
+        What that means: \writeline
+\end{enumerate}
+\end{practicebox}
 
 \end{document}

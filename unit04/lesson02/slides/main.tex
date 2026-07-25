@@ -12,15 +12,212 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.2}\\[0.5cm]
     {\color{white}\bfseries\LARGE Advanced Factoring}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Where are the zeros hiding?}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ q(x) = x^4 - 5x^2 + 4 \]
+      \vspace{2pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item In Lesson 4.0 you read four $x$-intercepts off its graph: $-2,\,-1,\,1,\,2$.
+        \item Not one of them is visible in $x^4-5x^2+4$.
+        \item They live in the \emph{factored} form.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Yesterday $\rightarrow$ today}
+        \textbf{4.1:} factored $\rightarrow$ standard, by multiplying. \\[4pt]
+        \textbf{4.2:} standard $\rightarrow$ factored, and the prize is the \emph{zeros}.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Factoring is multiplication run backward --- so every answer is checkable.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE STANDARD: COMPLETELY
+\begin{frame}[t, plain]
+  \forestheader{One word does all the work: \emph{completely}}
+  \sectionlabel[goldacc]{The standard}
+  \[ x^4 - 16 = (x^2-4)(x^2+4) \]
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item Is this factored? \quad \textbf{Yes.}
+    \item Is it factored \emph{completely}? \quad \textbf{No} --- $x^2-4$ is still a difference of squares.
+    \item \[ x^4-16 = (x-2)(x+2)(x^2+4) \]
+  \end{itemize}
+  \begin{block}{The habit}
+    A correct step is not a finished answer. After every step, look at \emph{every} factor and ask:
+    is this one prime?
+  \end{block}
+\end{frame}
+
+% GCF FIRST
+\begin{frame}[t, plain]
+  \forestheader{Step zero: the GCF, every single time}
+  \sectionlabel{Method}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      Largest common coefficient, \emph{lowest} power of each shared variable.
+      \[ 12x^5-18x^4+30x^3 = 6x^3(2x^2-3x+5) \]
+      \[ 15x^3y^2-25x^2y^3 = 5x^2y^2(3x-5y) \]
+      \[ -4x^3+8x^2-12x = -4x(x^2-2x+3) \]
+      \vspace{2pt}
+      A negative GCF flips \emph{every} sign inside.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Why first?}
+        The GCF \emph{uncovers} hidden patterns. \\[4pt]
+        $2x^3-50x$ matches nothing\dots \\[3pt]
+        $= 2x(x^2-25)$ --- there it is \\[3pt]
+        $= 2x(x-5)(x+5)$.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DECISION TREE
+\begin{frame}[t, plain]
+  \forestheader{Count the terms --- that is your menu}
+  \sectionlabel[goldacc]{Decision tree}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.6}
+  \begin{tabular}{|c|l|}
+  \hline
+  \textbf{Terms} & \textbf{Reach for\dots} \\ \hline
+  $2$ & difference of squares $a^2-b^2$, \; or sum/difference of \textbf{cubes} $a^3\pm b^3$ \\ \hline
+  $3$ & perfect-square trinomial, ordinary trinomial factoring, or \textbf{quadratic form} \\ \hline
+  $4$ & \textbf{grouping} \\ \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{block}{Outranks everything above}
+    GCF \emph{before} the table. And after every step: look at every factor again.
+  \end{block}
+\end{frame}
+
+% SQUARES
+\begin{frame}[t, plain]
+  \forestheader{Squares --- and the one that is prime}
+  \sectionlabel{Identities}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      \[ a^2 - b^2 = (a+b)(a-b) \]
+      \[ a^2 \pm 2ab + b^2 = (a\pm b)^2 \]
+      \vspace{2pt}
+      $49x^2-64 = (7x+8)(7x-8)$ \\[3pt]
+      $9x^2-25y^2 = (3x+5y)(3x-5y)$ \\[3pt]
+      $x^2-14x+49 = (x-7)^2$ \\[3pt]
+      $4x^2+20xy+25y^2 = (2x+5y)^2$
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{$a^2+b^2$ is \emph{prime}}
+        For $x^2+4$ we would need two integers with product $4$ and sum $0$. \\[4pt]
+        $1\cdot4$? sum $5$. \quad $2\cdot2$? sum $4$. \\[4pt]
+        There is no such pair. \textbf{Stop.}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% GROUPING
+\begin{frame}[t, plain]
+  \forestheader{Four terms: grouping}
+  \sectionlabel{Method}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      \[ x^3+5x^2-4x-20 \]
+      \[ = x^2(x+5) - 4(x+5) \]
+      \[ = (x+5)(x^2-4) \]
+      \[ = (x+5)(x-2)(x+2) \]
+      \vspace{2pt}
+      Take the GCF out of each pair, then factor out the shared \emph{binomial} --- and \emph{keep going}.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{The sign move}
+        Third term negative? Factor a \textbf{negative} out of the second pair so the binomials match.
+        Mismatched binomials $=$ a sign error, almost always.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Sometimes ``completely'' means stopping: \\
+       $2x^3-6x^2-9x+27 = (x-3)(2x^2-9)$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CUBES
+\begin{frame}[t, plain]
+  \forestheader{Cubes --- you already proved this one}
+  \sectionlabel[goldacc]{New identity}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      In the Warm-Up you multiplied $(x+2)(x^2-2x+4)$ and got $x^3+8$.
+      \[ a^3+b^3 = (a+b)(a^2-ab+b^2) \]
+      \[ a^3-b^3 = (a-b)(a^2+ab+b^2) \]
+      \vspace{2pt}
+      \textbf{SOAP:} \textbf{S}ame sign, \textbf{O}pposite sign, \textbf{A}lways \textbf{P}ositive.
+      \vspace{4pt}
+      \[ 27x^3-64 = (3x-4)(9x^2+12x+16) \]
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Two traps}
+        The middle term is $ab$, \textbf{not} $2ab$ --- this is not a perfect square. \\[4pt]
+        The trinomial $a^2\mp ab+b^2$ is always \textbf{prime}. Do not touch it.
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize Name $a$ and $b$ \emph{before} writing anything. And GCF first: \\
+       $5x^3-40 = 5(x-2)(x^2+2x+4)$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CLOSING THE LOOP
+\begin{frame}[t, plain]
+  \forestheader{Closing the loop --- and finding the wall}
+  \sectionlabel[goldacc]{$x^4-5x^2+4$}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      Three terms in \textbf{quadratic form} --- factor as if $x^2$ were the variable:
+      \[ x^4-5x^2+4 = (x^2-1)(x^2-4) \]
+      \[ = (x-1)(x+1)(x-2)(x+2) \]
+      \vspace{2pt}
+      Zeros: $1,\,-1,\,2,\,-2$ --- exactly the four intercepts from Lesson 4.0. \textbf{Loop closed.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Now try $x^3-3x+2$}
+        GCF? No. \; Two-term pattern? No. \\
+        Quadratic form? No. \; Four terms? No. \\[4pt]
+        And yet it \emph{does} factor: $(x-1)^2(x+2)$.
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize Unfactorable \emph{by these tools} $\ne$ prime. We need a new tool.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 4 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} GCF first; choose by term count; difference of squares, perfect squares, grouping,
+  and the sum \& difference of cubes --- all the way to \emph{completely}.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{4.3} Dividing polynomials; Remainder \& Factor Theorems --- the tool that gets past today's wall.
+    \item \textbf{4.4} Zeros of polynomials: the Rational Root Theorem.
+    \item \textbf{4.5} Fundamental Theorem of Algebra \& complex zeros.
+    \item \textbf{4.6} Graphing polynomial functions \& modeling.
+  \end{itemize}
 \end{frame}
 
 \end{document}

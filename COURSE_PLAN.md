@@ -383,7 +383,32 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > activity 2pp (key 3pp — extra page is the teacher note), homework 2pp; exit ticket includes an
 > SOL-style MC item ($(3x-4)^2$, distractors = the three classic errors).
 > `make -C unit04/lesson01 all` → EXIT 0 (student 10pp, full 23pp).
-> **Next action: author Lesson 4.2 (Advanced Factoring).**
+> **Lesson 4.2 authored & builds (2026-07-25):** all components + keys + 10-slide deck done; runs 4.1
+> *backward*. Organized around two habits and one standard: **GCF first, every time** (largest
+> coefficient, *lowest* shared power; two-variable and negative-lead cases; the GCF *uncovers* hidden
+> patterns — $2x^3-50x\Rightarrow 2x(x-5)(x+5)$), then a **count-the-terms decision tree** (2 terms →
+> difference of squares or the new sum/difference of **cubes**; 3 → perfect-square trinomial, ordinary
+> trinomial factoring, or **quadratic form**; 4 → **grouping**), all governed by the word
+> **completely** — every factor prime over the integers. New identity: $a^3\pm b^3=(a\pm b)(a^2\mp
+> ab+b^2)$ taught via **SOAP**, and *discovered* rather than announced (Warm-Up item 3 has students
+> multiply $(x+2)(x^2-2x+4)=x^3+8$ before it is named — the A2.EO.3d verification direction). Flagged
+> traps: a $2$ in the cube identity's middle term, SOAP sign flips, $a^2\mp ab+b^2$ is prime, mismatched
+> binomials in grouping from not factoring a negative out of the second pair, and the
+> squares/cubes asymmetry ($a^2+b^2$ prime but $a^3+b^3$ not). Unifying thread: the anchor
+> $q(x)=x^4-5x^2+4$ — a **graph students already read in 4.0** — is factored in quadratic form to
+> $(x-1)(x+1)(x-2)(x+2)$ and its four zeros matched to the intercepts (pre-drawn TikZ graph in the
+> notes hook; no sketch-from-scratch). Closes on an honest **wall**: today's toolkit cannot crack the
+> unit anchor $x^3-3x+2$ even though it factors — the motivation for 4.3/4.4. Tier E adds $x^6-64$
+> factored *two ways* (squares-first vs. cubes-first ⇒ the rule "squares before cubes") and an
+> expand-to-verify proof of the difference-of-cubes identity. Standards: **2023 VA SOL A2.EO.3b**
+> (factor completely, one and two variables, ≤4 terms, over the integers) and **A2.EO.3d** (equality of
+> forms; verify difference-of-squares, sum/difference-of-cubes, and perfect-square-trinomial
+> identities), revisiting **A2.F.2c** (zeros from factored form) and **A2.EO.3a** (checking by
+> multiplying). Warm-up & exit ticket each fit one page (blank+key); notes 3pp (key 4pp — extra page is
+> the teacher note), activity 3pp, homework 2pp; exit ticket includes an SOL-style MC item ($8x^3-27$,
+> distractors = the three cube-identity errors). `make -C unit04/lesson02 all` → EXIT 0 (student 12pp,
+> full 26pp).
+> **Next action: author Lesson 4.3 (Dividing Polynomials; Remainder & Factor Theorems).**
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
