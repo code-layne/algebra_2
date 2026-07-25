@@ -1,6 +1,11 @@
 %! Linear Functions: Slope, Forms \& Graphing — Unit 2, Lesson 2.1 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,130 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.1}\\[0.5cm]
     {\color{white}\bfseries\LARGE Linear Functions: Slope, Forms \& Graphing}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2: Linear Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{A rate plus a starting value}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      A streaming service: \textbf{\$5 signup} $+$ \textbf{\$2 per month}.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Same change each month? $\to$ \textbf{slope} $=2$
+        \item Cost before any months? $\to$ \textbf{$y$-intercept} $=5$
+        \item One rule? $\to$ $C(m) = 2m + 5$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $m$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+        \$ & $5$ & $7$ & $9$ & $11$ \\ \hline
+      \end{tabular}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Today}
+    A rate of change plus a starting value \emph{is} slope-intercept form --- and three ways to
+    write any line.
+  \end{block}
+\end{frame}
+
+% SLOPE
+\begin{frame}[t, plain]
+  \forestheader{Slope is the rate of change}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      For any two points on a line,
+      \[ m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{rise}}{\text{run}}. \]
+      Constant rate $\Rightarrow$ \emph{any} two points give the same $m$.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      Using $(1,4)$ and $(3,0)$:
+      \[ m = \frac{0 - 4}{3 - 1} = \frac{-4}{2} = -2. \]
+      {\footnotesize Subtract $y$'s and $x$'s in the \textbf{same order}.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THREE FORMS
+\begin{frame}[t, plain]
+  \forestheader{Three forms, one line}
+  \sectionlabel[goldacc]{$y = 2x - 4$}
+  \begin{itemize}\setlength{\itemsep}{7pt}
+    \item \textbf{Slope-intercept:} $y = mx + b$ \; --- reads off slope $2$ and $y$-intercept $(0,-4)$.
+    \item \textbf{Point-slope:} $y - y_1 = m(x - x_1)$ \; --- from $(2,0)$: $y - 0 = 2(x-2)$.
+    \item \textbf{Standard:} $Ax + By = C$ \; --- $2x - y = 4$ (integers, $A \ge 0$).
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{Same line, different outfits}
+    Distribute the point-slope form: $y = 2(x-2) = 2x - 4$. All three are equal.
+  \end{block}
+\end{frame}
+
+% WRITING EQUATIONS
+\begin{frame}[t, plain]
+  \forestheader{Writing a line: match the givens}
+  \sectionlabel{The main event}
+  \begin{itemize}\setlength{\itemsep}{7pt}
+    \item \textbf{Slope $+$ $y$-intercept} $\to$ drop into $y = mx + b$.
+    \item \textbf{Slope $+$ any point} $\to$ point-slope, then simplify.
+    \item \textbf{Two points} $\to$ find $m$ first, then point-slope.
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{Worked: through $(1,4)$ and $(3,0)$}
+    $m = -2$; \; $y - 0 = -2(x - 3)$; \; so $y = -2x + 6$, or $2x + y = 6$.
+  \end{block}
+\end{frame}
+
+% TRANSFORMATIONS
+\begin{frame}[t, plain]
+  \forestheader{Graphing by transforming $y = x$}
+  \sectionlabel[goldacc]{The course-wide lens}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-2}{6}{-6}{6}
+        \draw[very thick, forest!55, dashed] (-2,-2)--(6,6);
+        \draw[very thick, forest] (-1,-6)--(5,6);
+        \fill[charcoal] (0,-4) circle (3pt) node[left, font=\tiny]{$(0,-4)$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      From $y=x$ to $y = 2x - 4$:
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item vertical \textbf{stretch} by $2$ \; ($kf(x)$): slope $1 \to 2$;
+        \item \textbf{shift down} $4$ \; ($f(x)+k$): intercept $0 \to -4$.
+      \end{itemize}
+      {\footnotesize A negative slope also \textbf{reflects} over the $x$-axis.}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Big idea}
+    $kf(x)$ and $f(x)+k$ will graph \emph{every} function family this year.
+  \end{block}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 2 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} slope as a rate; slope-intercept, point-slope, and standard form; writing
+  equations; graphing by transforming $y=x$.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item \textbf{2.2} Absolute value equations \& inequalities.
+    \item \textbf{2.3} Absolute value functions \& transformations (the V-shape).
+    \item \textbf{2.4} Piecewise-defined functions.
+    \item \textbf{2.5} Linear regression.
+  \end{itemize}
 \end{frame}
 
 \end{document}

@@ -3,17 +3,153 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+\newcommand{\vocabans}[2]{%
+  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.1}{Guided Notes --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Guided Notes verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Guided Notes --- Key}
-\ansline{TODO: answer}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item compute \emph{slope} from two points and read it as a constant rate of change;
+  \item write a line in \emph{slope-intercept}, \emph{point-slope}, and \emph{standard} form, and convert among them;
+  \item write the equation of a line from a graph, from two points, or from a slope and a point;
+  \item graph a line by transforming the parent $y=x$.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.08in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\vocabans{Slope (rate of change)}{$m=\frac{y_2-y_1}{x_2-x_1}=\frac{\text{rise}}{\text{run}}$; the constant change in output per unit change in input}
+\vocabans{Slope-intercept form}{$y=mx+b$, where $m$ is the slope and $(0,b)$ is the $y$-intercept}
+\vocabans{Point-slope form}{$y-y_1=m(x-x_1)$; built from a slope $m$ and a known point $(x_1,y_1)$}
+\vocabans{Standard form}{$Ax+By=C$ with $A,B,C$ integers and $A\ge 0$; convenient for finding intercepts}
+\vocabans{Parent function \& transformation}{the parent line is $y=x$; $kf(x)$ stretches/reflects (sets the slope) and $f(x)+k$ shifts vertically (sets the $y$-intercept)}
+\end{vocabbox}
+
+\begin{hookbox}
+A streaming service charges a \$5 signup fee plus \$2 each month. Complete the cost table, then
+answer.
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+months $m$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+cost \$ & \ans{$5$} & \ans{$7$} & \ans{$9$} & \ans{$11$} \\ \hline
+\end{tabular}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item What is the \emph{same} change every month (the rate)? \ansline{$+\$2$ per month --- this is the slope.}
+  \item Write one rule for the cost after $m$ months: $C(m) = $ \ans{$2m + 5$}
+\end{itemize}
+A \emph{rate of change} plus a \emph{starting value} is exactly slope-intercept form. Let's make that
+precise --- and learn three ways to write it.
+\end{hookbox}
+
+\begin{notesbox}{1. Slope Is the Rate of Change}
+For \emph{any} two points $(x_1,y_1)$ and $(x_2,y_2)$ on a line,
+\[
+  m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{rise}}{\text{run}}.
+\]
+Because a line's rate of change is \emph{constant}, it does not matter which two points you pick.
+\textbf{Try it} with $(1,4)$ and $(3,0)$:
+\[
+  m = \frac{\textcolor{keyred}{\mathbf{0}} - \textcolor{keyred}{\mathbf{4}}}%
+           {\textcolor{keyred}{\mathbf{3}} - \textcolor{keyred}{\mathbf{1}}}
+    = \frac{\textcolor{keyred}{\mathbf{-4}}}{\textcolor{keyred}{\mathbf{2}}}
+    = \textcolor{keyred}{\mathbf{-2}}.
+\]
+Warning: subtract the $y$'s and the $x$'s in the \emph{same order}, or the sign flips.
 \end{notesbox}
+
+\begin{notesbox}{2. Three Forms, One Line}
+Here is the single line $y = 2x - 4$ written three different ways --- same line, different
+``outfits.'' Fill in what each form makes easy to read.
+
+\vspace{2pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} l X@{}}
+\textbf{Slope-intercept} & $y = mx + b$ & Reads off the slope $m=\ans{$2$}$ and $y$-intercept $(0,\ans{$-4$})$. \\
+\textbf{Point-slope} & $y - y_1 = m(x - x_1)$ & Built from a slope and a point; e.g.\ $(2,0)$: $\;y - 0 = \ans{$2$}(x - \ans{$2$})$. \\
+\textbf{Standard} & $Ax + By = C$ & Integers, $A\ge 0$; tidy for intercepts. Here: $\ans{$2$}\,x - y = \ans{$4$}$. \\
+\end{tabularx}
+
+\vspace{3pt}
+\textbf{They are equal.} Simplify the point-slope $y - 0 = 2(x-2)$: distribute to get
+$y = \ans{$2x - 4$}$ --- the slope-intercept form above. Each form is the \emph{same} line.
+\end{notesbox}
+
+\begin{notesbox}{3. Writing the Equation of a Line}
+You can always write a line once you have a \textbf{slope} and \textbf{one point}. Match the given
+information to a starting form:
+\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
+  \item \textbf{Slope $+$ $y$-intercept} $\to$ drop straight into $y = mx + b$.\\
+        Slope $3$, $y$-intercept $(0,-2)$: $\;y = \ans{$3x - 2$}$.
+  \item \textbf{Slope $+$ any point} $\to$ point-slope, then simplify.\\
+        Slope $-\tfrac12$ through $(4,1)$: $\;y - 1 = \ans{$-\tfrac12$}(x - \ans{$4$})$,
+        so $y = \ans{$-\tfrac12 x + 3$}$.
+  \item \textbf{Two points} $\to$ find $m$ first, then use point-slope.\\
+        Through $(1,4)$ and $(3,0)$: $\;m = \ans{$-2$}$; using $(3,0)$,
+        $y - 0 = \ans{$-2$}(x - \ans{$3$})$, so $y = \ans{$-2x + 6$}$.
+\end{enumerate}
+\end{notesbox}
+
+\begin{notesbox}{4. Graphing by Transforming the Parent $y = x$}
+Every non-vertical line is the parent $y = x$ after two moves: a vertical
+\textbf{stretch/reflection} (which sets the \emph{slope}) and a vertical \textbf{shift} (which sets
+the \emph{$y$-intercept}). Below, the dashed line is the parent $y=x$ and the solid line is
+$y = 2x - 4$.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-2}{6}{-6}{6}
+  \draw[very thick, forest!55, dashed] (-2,-2)--(6,6) node[right, font=\scriptsize, forest!70]{$y=x$};
+  \draw[very thick, forest] (-1,-6)--(5,6) node[right, font=\scriptsize]{$y=2x-4$};
+  \fill[charcoal] (0,0) circle (2.5pt);
+  \fill[charcoal] (0,-4) circle (3pt) node[left, font=\scriptsize]{$(0,-4)$};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item The slope changed from $1$ to $2$: a vertical \textbf{stretch} by a factor of \ans{$2$}
+        \; (this is $k\,f(x)$ with $k=\ans{$2$}$).
+  \item The $y$-intercept moved from $(0,0)$ to $(0,-4)$: a \textbf{shift down} \ans{$4$} units
+        \; (this is $f(x)+k$ with $k=\ans{$-4$}$).
+  \item If the slope were \emph{negative}, the parent would also be \textbf{reflected} over the
+        $x$-axis. \textbf{Big idea:} this $k\,f(x)$ and $f(x)+k$ language will graph \emph{every}
+        function family this year.
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+Write the equation of the line through $(-2,3)$ and $(2,-5)$ in \emph{all three forms}.
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item Slope: $m = \dfrac{\textcolor{keyred}{\mathbf{-5}}-\textcolor{keyred}{\mathbf{3}}}%
+        {\textcolor{keyred}{\mathbf{2}}-(\textcolor{keyred}{\mathbf{-2}})} = \textcolor{keyred}{\mathbf{-2}}$.
+  \item Point-slope (using $(2,-5)$): $\;y - (\ans{$-5$}) = \ans{$-2$}\,(x - \ans{$2$})$.
+  \item Slope-intercept: $\;y = \ans{$-2x - 1$}$. \qquad Standard: $\;\ans{$2x + y = -1$}$.
+\end{enumerate}
+\end{practicebox}
+
+\begin{teachernote}
+The through-line is ``a slope and a point.'' Point-slope is the workhorse: emphasize that students
+can use \emph{either} given point and still land on the same simplified equation --- have a fast
+group check with $(1,4)$ in Section~3. Two errors to pre-empt: (1) subtraction-order sign flips in
+the slope formula; (2) double-negative slips in point-slope, e.g.\ $y-(-5)$ becoming $y-5$. In
+Section~4, keep ``stretch/reflect $\to$ slope'' and ``shift $\to$ intercept'' as two separate moves
+--- this is the exact language Units 3--8 reuse.
+\end{teachernote}
 
 \end{document}
