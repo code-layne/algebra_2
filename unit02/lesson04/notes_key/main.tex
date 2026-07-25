@@ -3,17 +3,148 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Endpoint dots
+\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
+\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+\newcommand{\vocabans}[2]{%
+  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.4}{Guided Notes --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Guided Notes verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Guided Notes --- Key}
-\ansline{TODO: answer}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item read piecewise notation and \emph{evaluate} $f(x)$ by choosing the piece $x$ belongs to;
+  \item read a piecewise graph, using \emph{open} and \emph{closed} endpoints and spotting a \emph{jump};
+  \item write $|x|$ (and $|x-h|$) as a \emph{two-piece} linear function;
+  \item evaluate and read the \emph{greatest-integer (step) function} $\lfloor x\rfloor$.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\vocabans{Piecewise-defined function}{one function given by different rules, each on its own part (piece) of the domain, written with a brace}
+\vocabans{Boundary / breakpoint}{an $x$-value where the rule changes; the inequality ($<$ vs.\ $\le$) says which piece owns it}
+\vocabans{Open vs.\ closed endpoint}{open $\circ$ excludes the point ($<,>$); closed $\bullet$ includes it ($\le,\ge$)}
+\vocabans{Discontinuity (jump)}{a break where the two pieces do not meet at the boundary}
+\vocabans{Greatest-integer (step) function $\lfloor x\rfloor$}{rounds \emph{down} to the greatest integer $\le x$; graph is a staircase, constant on each $[n,n+1)$}
+\end{vocabbox}
+
+\begin{hookbox}
+A streaming service is \emph{free for the first 3 months}, then costs \emph{\$10 per month} afterward.
+Its cost is $C(m)=\{\,0 \text{ if } 0\le m\le 3;\ 10(m-3) \text{ if } m>3\,\}$.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Cost at $m=2$? \ans{$\$0$} \quad At $m=3$? \ans{$\$0$} \quad At $m=5$? \ans{$\$20$}
+  \item No single line works: the cost follows \ans{two} rule(s) on different parts of the domain.
+\end{itemize}
+A function like this --- one rule here, a different rule there --- is a \textbf{piecewise-defined
+function}. Today we evaluate them and read their graphs.
+\end{hookbox}
+
+\begin{notesbox}{1. What a Piecewise Function Is --- and How to Evaluate It}
+A \textbf{piecewise-defined function} uses different rules on different parts of its domain. To
+\textbf{evaluate}, first decide \emph{which piece} the input belongs to, then apply that rule.
+\[ f(x)=\begin{cases} 2x+1, & x<2 \\ 5-x, & x\ge 2 \end{cases} \]
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $f(0)$: since $0\,{\color{keyred}\mathbf{<}}\,2$, use the \ans{top} piece: $f(0)={\color{keyred}\mathbf{1}}$.
+  \item $f(2)$: since $2\ge 2$, use the \ans{bottom} piece: $f(2)=5-2={\color{keyred}\mathbf{3}}$.
+  \item $f(5)={\color{keyred}\mathbf{0}}$.
+\end{itemize}
+\textbf{Boundary rule:} the input $x=2$ belongs to the piece whose inequality \emph{includes} it (the
+${\color{keyred}\mathbf{\ge 2}}$ piece), \emph{not} the strict-$<$ piece.
 \end{notesbox}
+
+\begin{notesbox}{2. Absolute Value Is Piecewise}
+The V from Lesson 2.3 is really \emph{two lines} pasted at the vertex. When $x\ge 0$, $|x|=x$; when
+$x<0$, $|x|=-x$ (the opposite makes it positive).
+\[ |x|=\begin{cases} {\color{keyred}\mathbf{x}}, & x\ge 0 \\[2pt] {\color{keyred}\mathbf{-x}}, & x<0 \end{cases}
+   \qquad\text{Check: } |-3|=-(-3)={\color{keyred}\mathbf{3}}. \]
+So every absolute value function is a two-piece linear function. This is why the graph is a V, and why
+its vertex is the boundary between the two rules.
+\end{notesbox}
+
+\begin{notesbox}{3. Reading a Piecewise Graph: Open, Closed, and Jumps}
+On a graph, a \textbf{closed} dot $\bullet$ \emph{includes} its endpoint ($\le$ or $\ge$); an
+\textbf{open} dot $\circ$ \emph{excludes} it ($<$ or $>$). The graph of
+$f(x)=\{\,x+3 \text{ if } x<1;\ -x+4 \text{ if } x\ge 1\,\}$ is shown.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{5}{-1}{5}
+  \draw[navy, dashed, semithick] (1,-1)--(1,5);
+  \draw[very thick, forest] (-3,0)--(1,4);
+  \opendot{1}{4}
+  \draw[very thick, forest] (1,3)--(4,0);
+  \closeddot{1}{3}
+\end{tikzpicture}
+\end{center}
+\textbf{Read $f$ from the graph} (at the boundary, use the \emph{closed} dot):
+\[ f(-1)={\color{keyred}\mathbf{2}}, \quad f(0)={\color{keyred}\mathbf{3}}, \quad
+   f(1)={\color{keyred}\mathbf{3}}, \quad f(3)={\color{keyred}\mathbf{1}}. \]
+Domain: \ans{all real numbers}. \; The graph \emph{increases} on \ans{$(-\infty,1)$} and \emph{decreases}
+on \ans{$[1,\infty)$}. \; \textbf{Is $f$ continuous at $x=1$?} \ans{no} --- the pieces
+\ans{disagree} there (the graph \emph{jumps} from $4$ to $3$), so this is a \textbf{discontinuity}.
+\end{notesbox}
+
+\begin{notesbox}{4. Step Functions: the Greatest-Integer Function $\lfloor x\rfloor$}
+The \textbf{greatest-integer function} $\lfloor x\rfloor$ gives the greatest integer that is
+\emph{less than or equal to} $x$ --- it \textbf{rounds down}.
+\[ \lfloor 3.7\rfloor={\color{keyred}\mathbf{3}}, \quad \lfloor 5\rfloor={\color{keyred}\mathbf{5}}, \quad
+   \lfloor -0.4\rfloor={\color{keyred}\mathbf{-1}}, \quad \lfloor -2.5\rfloor={\color{keyred}\mathbf{-3}}. \]
+\emph{Careful:} rounding \emph{down} sends $-2.5$ to ${\color{keyred}\mathbf{-3}}$, not $-2$. The graph is
+a \textbf{staircase}: on each interval $[n,n+1)$ the output is the \emph{constant} $n$ (closed on the
+left, open on the right), then it jumps up by $1$.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-1}{4}{-1}{4}
+  \draw[very thick, forest] (-1,-1)--(0,-1); \closeddot{-1}{-1} \opendot{0}{-1}
+  \draw[very thick, forest] (0,0)--(1,0);    \closeddot{0}{0}   \opendot{1}{0}
+  \draw[very thick, forest] (1,1)--(2,1);    \closeddot{1}{1}   \opendot{2}{1}
+  \draw[very thick, forest] (2,2)--(3,2);    \closeddot{2}{2}   \opendot{3}{2}
+  \draw[very thick, forest] (3,3)--(4,3);    \closeddot{3}{3}   \opendot{4}{3}
+\end{tikzpicture}
+\end{center}
+From the staircase: $\lfloor 1.5\rfloor={\color{keyred}\mathbf{1}}$, and $f$ is \ans{constant} (increasing
+/ constant) on the interval $[2,3)$. Real prices that ``round'' --- parking by the hour, shipping by the
+pound --- are step functions.
+\end{notesbox}
+
+\begin{practicebox}
+For $p(x)=\begin{cases} -2x, & x\le -1 \\ x+3, & x>-1 \end{cases}$, complete each part.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item $p(-3)={\color{keyred}\mathbf{6}}$; \quad $p(-1)={\color{keyred}\mathbf{2}}$ (which piece?
+        \ans{top, $x\le -1$}); \quad $p(0)={\color{keyred}\mathbf{3}}$; \quad $p(2)={\color{keyred}\mathbf{5}}$.
+  \item \textbf{Is $p$ continuous at the boundary $x=-1$?} At $x=-1$ the top gives \ans{$2$} and the
+        bottom (just past $-1$) gives \ans{$2$}. Because the values \ans{are equal}, the graph
+        \ans{does not} (does / does not) jump, so $p$ \ans{is} continuous at $x=-1$.
+\end{enumerate}
+\end{practicebox}
+
+\begin{teachernote}
+The organizing move all lesson is \emph{piece selection}: to evaluate, find the piece whose condition
+the input satisfies, then apply that rule. Two boundary errors recur --- (1) handing $x=2$ to the
+strict-$<$ piece (Section~1); insist students read the $\le/\ge$ to see which piece \emph{owns} the
+boundary. (2) The greatest-integer sign error (Section~4): $\lfloor -2.5\rfloor=-3$ because ``down''
+means \emph{more negative}, not ``toward zero.'' Section~3 is the A2.F.2a target --- a graph with a
+\emph{discontinuity}; make students take the \emph{closed} dot when reading $f$ at a breakpoint, and
+have them state \emph{why} it jumps (pieces disagree). Contrast with the practice box, where the two
+pieces \emph{agree} at $x=-1$ so the graph is continuous --- ``meets $\Leftrightarrow$ same value at the
+boundary'' is the whole idea. Section~2 ties back to 2.3: the V is the first piecewise function they
+already knew.
+\end{teachernote}
 
 \end{document}

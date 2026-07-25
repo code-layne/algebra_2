@@ -4,9 +4,9 @@
 
 > **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully scaffolded**
 > (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **Lessons 2.0, 2.1, 2.2,
-> and 2.3 are now fully authored and build** (each: plan, cover, warm-up, notes, activity, exit
-> ticket, homework, all keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0). Lessons
-> 2.4–2.5 remain skeletons. Units 3–8 are planned here and not yet scaffolded. Lesson lists
+> 2.3, and 2.4 are now fully authored and build** (each: plan, cover, warm-up, notes, activity, exit
+> ticket, homework, all keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0). Lesson
+> 2.5 remains a skeleton. Units 3–8 are planned here and not yet scaffolded. Lesson lists
 > below are proposals to react to and edit — pacing (days per lesson) is
 > intentionally left open pending the school calendar.
 
@@ -136,7 +136,18 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > one page (blank+key); notes 3pp, activity 2pp (key 3pp — extra page is the teacher note),
 > homework 2pp; exit ticket includes an SOL-style MC item.
 > `make -C unit02/lesson03 all` → EXIT 0 (student 10pp, full 21pp).
-> **Next:** author lessons 2.4–2.5 (still skeletons), then the unit tests + publish sample test.
+> **Lesson 2.4 authored & builds (2026-07-24):** all components + keys + 7-slide deck done;
+> piecewise-defined functions as one function built from different rules on different pieces of the
+> domain — evaluating by piece selection (watching the boundary's $<$ vs.\ $\le$), reading pre-drawn
+> piecewise graphs with open/closed endpoints and spotting a discontinuity (jump), writing $|x|$ and
+> $|x-h|$ as two-piece linear rules (bridge from 2.3), and the greatest-integer/step function
+> $\lfloor x\rfloor$ (round down; staircase constant on each $[n,n+1)$). All graphs pre-drawn (no
+> sketch-from-scratch); students evaluate, read, match, and model (streaming free-trial, overtime pay,
+> parking step cost, data plan). Standards: **2023 VA SOL A2.F.2a/b/c/f** (characteristics of
+> piecewise-defined functions, including graphs with discontinuities and constant intervals). Warm-up
+> & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket
+> includes an SOL-style MC item. `make -C unit02/lesson04 all` → EXIT 0 (student 10pp, full 20pp).
+> **Next:** author lesson 2.5 (linear regression, still a skeleton), then the unit tests + publish sample test.
 
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*
