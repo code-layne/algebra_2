@@ -1,6 +1,11 @@
 %! Solving Quadratics by Factoring — Unit 3, Lesson 3.2 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,184 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 3.2}\\[0.5cm]
     {\color{white}\bfseries\LARGE Solving Quadratics by Factoring}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 3}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 3: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK — where did the factored form come from?
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Where did the factored form come from?}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      In 3.1 you were \emph{handed}
+      \[ x^2-2x-3 = (x+1)(x-3) \]
+      and read the zeros $-1,\ 3$ for free.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Today: \textbf{produce} that factored form yourself.
+        \item Then $(x+1)(x-3)=0$ splits into two easy equations.
+        \item The roots are the graph's $x$-intercepts.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-3}{5}{-5}{3}
+        \begin{scope}\clip (-3,-5) rectangle (5,3);
+          \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x+1)*(\x-3)});
+        \end{scope}
+        \fill[charcoal] (-1,0) circle (3.5pt) node[above left, font=\tiny]{$-1$};
+        \fill[charcoal] (3,0) circle (3.5pt) node[above right, font=\tiny]{$3$};
+        \fill[charcoal] (1,-4) circle (3.5pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ZERO PRODUCT PROPERTY
+\begin{frame}[t, plain]
+  \forestheader{The Zero Product Property}
+  \sectionlabel[goldacc]{The engine}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \begin{block}{Key idea}
+        If $A\cdot B = 0$, then $A=0$ \textbf{or} $B=0$.
+      \end{block}
+      Solve $(x+1)(x-3)=0$:
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $x+1=0 \Rightarrow x=-1$
+        \item $x-3=0 \Rightarrow x=3$
+      \end{itemize}
+      \vspace{4pt}
+      \textbf{Precondition:} one side must be $0$. \\
+      $(x+1)(x-3)=5$ does \emph{not} give $x+1=5$.
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \centering
+      One hard quadratic equation \\[2pt] $\Downarrow$ \\[2pt]
+      \textbf{two easy linear equations.}
+      \vspace{0.6cm}
+      \begin{block}{Move to one side first}
+        Always rewrite as $\;ax^2+bx+c=0\;$ before factoring.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FACTOR x^2 + bx + c
+\begin{frame}[t, plain]
+  \forestheader{Factor $x^2+bx+c$: un-FOIL}
+  \sectionlabel{Product \& sum}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      $(x+p)(x+q)=x^2+(p+q)x+pq$, so find two integers with
+      \[ \text{product}=c, \qquad \text{sum}=b. \]
+      \textbf{Factor $x^2-2x-3$:} product $-3$, sum $-2 \Rightarrow +1,\,-3$
+      \[ x^2-2x-3=(x+1)(x-3). \]
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Sign rules}
+        \begin{itemize}\setlength{\itemsep}{3pt}
+          \item $c>0$: same sign (match $b$)
+          \item $c<0$: opposite signs
+        \end{itemize}
+      \end{block}
+      \vspace{2pt}
+      Your turn: $x^2+7x+12=(x+3)(x+4)$.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% GCF + the trap
+\begin{frame}[t, plain]
+  \forestheader{GCF first --- and the \#1 trap}
+  \sectionlabel[redacc]{Don't divide by $x$}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      Always pull the GCF before anything else:
+      \[ 2x^2-8x = 2x(x-4). \]
+      Solve $2x^2-8x=0$: $\ 2x(x-4)=0 \Rightarrow x=0,\ 4$.
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{The trap}
+        To solve $3x^2=12x$, do \textbf{not} divide by $x$ --- you lose $x=0$.
+        \[ 3x^2-12x=0 \Rightarrow 3x(x-4)=0 \]
+        \[ x=0 \ \text{ or } \ x=4. \]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% Special patterns + a != 1
+\begin{frame}[t, plain]
+  \forestheader{Special patterns \& $a\ne1$}
+  \sectionlabel{Recognize \& group}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \textbf{Difference of squares}
+      \[ x^2-16=(x-4)(x+4),\quad x=\pm4. \]
+      \textbf{Perfect-square trinomial}
+      \[ x^2-6x+9=(x-3)^2,\quad x=3 \ \text{(double)}. \]
+      \footnotesize A double root means the vertex sits \emph{on} the $x$-axis --- the graph touches, not crosses.
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textbf{Grouping ($a\ne1$): $2x^2+7x+3$}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $a\!\cdot\!c=6$; two ints: $6,\,1$
+        \item split: $2x^2+6x+x+3$
+        \item group: $2x(x+3)+1(x+3)$
+        \item $(2x+1)(x+3)$, \ $x=-\tfrac12,\,-3$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% Solve + graph connection
+\begin{frame}[t, plain]
+  \forestheader{Roots are the $x$-intercepts}
+  \sectionlabel[goldacc]{Solve \& verify}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      Solve $x^2-x-6=0$:
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item product $-6$, sum $-1 \Rightarrow -3,\,+2$
+        \item $(x-3)(x+2)=0$
+        \item $x=3$ or $x=-2$
+      \end{itemize}
+      \vspace{3pt}
+      Check: both satisfy the equation --- and they are exactly where the parabola crosses the axis.
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-4}{5}{-7}{3}
+        \begin{scope}\clip (-4,-7) rectangle (5,3);
+          \draw[very thick, forest, domain=-2.3:3.3, samples=80, smooth] plot (\x,{(\x)*(\x) - (\x) - 6});
+        \end{scope}
+        \fill[charcoal] (-2,0) circle (3.5pt) node[above left, font=\tiny]{$-2$};
+        \fill[charcoal] (3,0) circle (3.5pt) node[above right, font=\tiny]{$3$};
+        \fill[charcoal] (0.5,-6.25) circle (3.5pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{The factor-and-solve routine}
+  \sectionlabel{Summary}
+  \begin{enumerate}\setlength{\itemsep}{4pt}
+    \item Set the equation $=0$.
+    \item Factor out the GCF.
+    \item Factor completely (product/sum, grouping, or special pattern).
+    \item Set each factor $=0$ and solve.
+    \item Verify: the roots are the parabola's $x$-intercepts.
+  \end{enumerate}
+  \vspace{2pt}
+  \begin{block}{Next}
+    \textbf{3.3 Square roots \& completing the square} --- for quadratics that \emph{don't} factor over the integers.
+  \end{block}
 \end{frame}
 
 \end{document}
