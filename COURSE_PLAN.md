@@ -312,9 +312,18 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > (max/min from the vertex); builds on A2.F.2a/d (3.1) and A2.EI.2b (3.2, 3.5). Warm-up & exit ticket each fit one page
 > (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket includes an SOL-style MC item (which feature is the
 > max height). `make -C unit03/lesson07 all` → EXIT 0 (student 9pp, full 20pp).
-> **All eight Unit 3 lessons (3.0–3.7) are now authored & building. Next action: author the Unit 3 tests
-> (`tests/{practice_test,actual_test}` + `test_keys/`, then publish practice test/key to `sample_test{,_key}/`), as
-> was done for Unit 2.**
+> **All eight Unit 3 lessons (3.0–3.7) are now authored & building.**
+> **Unit 3 tests authored & build (2026-07-25):** `tests/practice_test` (3pp) + `tests/actual_test` (3pp) and their
+> keys `test_keys/practice_test_key` (3pp) + `test_keys/actual_test_key` (3pp). Four parts each — A Vocabulary
+> (8-term matching, 8 pts), B Multiple Choice (6 items incl. SOL-style discriminant item, 12 pts), C Short Answer &
+> Computation (8 items, 40 pts), D Extended Response (2 justify items, 12 pts) — drawing across all eight lessons:
+> read a pre-drawn parabola (vertex/axis/intercepts/zeros/range, 3.0–3.1), vertex from standard form via $-b/2a$
+> (3.1), solve by factoring (3.2), square roots & completing the square (3.3), complex-number arithmetic in $a+bi$
+> (3.4), quadratic formula + discriminant (3.5), linear–quadratic system (3.6), and a projectile feature-to-question
+> model + discriminant-vs.-$x$-intercepts reasoning (3.7 / 3.5). Practice and actual are parallel forms (same
+> structure, different numbers). `make -C unit03/tests all` and `make -C unit03/test_keys all` → EXIT 0; practice
+> test/key published to `sample_test/` and `sample_test_key/` via the `drop` targets. **Unit 3 is complete (all
+> lessons + assessments). Next action: begin Unit 4 (Polynomial Functions).**
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations

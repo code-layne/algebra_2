@@ -2,6 +2,13 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[charcoal] (#1,#2) circle (3pt);}
+\newcommand{\vpt}[2]{\fill[navy] (#1,#2) circle (3.5pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -12,20 +19,160 @@
 \begin{document}
 
 \pageheader{Unit 3: Quadratic Functions}{Unit Test --- Answer Key}
+\namedateperiod
 
-% Mirror the blank test EXACTLY, filling each answer with \ans{...} (inline) or
-% \ansline{...} (on a write-line). Use teachernote for scoring/teacher guidance.
+\vspace{0.06in}
+\noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so.
+
 % ======================================================================
-\parthead{Part A --- Vocabulary}
-% TODO: answers via \ans{...}
+\parthead{Part A --- Vocabulary (8 pts)}
+Write the letter of the best description next to each term.
 
-\parthead{Part B --- Multiple Choice}
-% TODO: mark correct options, e.g. \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.42\textwidth}
+\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
+  \item Discriminant \ans{B}
+  \item Axis of symmetry \ans{F}
+  \item Parabola \ans{A}
+  \item Imaginary unit \ans{D}
+  \item Vertex \ans{C}
+  \item Zero (root) \ans{E}
+  \item Standard form \ans{G}
+  \item Completing the square \ans{H}
+\end{enumerate}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.55\textwidth}
+\small
+\begin{description}[leftmargin=1.4em, itemsep=3pt]
+  \item[(A)] The U-shaped graph of a quadratic function.
+  \item[(B)] The expression $b^2-4ac$; its sign tells the number and type of solutions.
+  \item[(C)] The turning point of a parabola, where it reaches its maximum or minimum.
+  \item[(D)] The number $i=\sqrt{-1}$, which satisfies $i^2=-1$.
+  \item[(E)] An $x$-value where $f(x)=0$; an $x$-intercept of the parabola.
+  \item[(F)] The vertical line $x=h$ that splits a parabola into mirror halves.
+  \item[(G)] A quadratic written as $ax^2+bx+c$.
+  \item[(H)] Rewriting $x^2+bx$ as a perfect-square trinomial by adding $\left(\tfrac{b}{2}\right)^2$.
+\end{description}
+\end{minipage}
 
-\parthead{Part C --- Short Answer \& Computation}
-% TODO: worked answers via \ans{...}
+% ======================================================================
+\parthead{Part B --- Multiple Choice (12 pts)}
+Circle the best answer.
 
-\parthead{Part D --- Extended Response}
-% TODO: sample response + scoring notes in a teachernote.
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item The vertex of $y=(x+2)^2-5$ is
+    \hfill (A) $(2,-5)$ \quad \textbf{(B) $(-2,-5)$} \ans{$\leftarrow$} \quad (C) $(2,5)$ \quad (D) $(-2,5)$
+  \item $\sqrt{-9}=$
+    \hfill \textbf{(A) $3i$} \ans{$\leftarrow$} \quad (B) $-3$ \quad (C) $9i$ \quad (D) $3$
+  \item The discriminant of $x^2-6x+9=0$ is $0$, so the equation has
+    \hfill (A) two real solutions \quad \textbf{(B) one real solution} \ans{$\leftarrow$} \quad (C) two complex (non-real) solutions \quad (D) no solutions of any kind
+  \item Factored completely, $x^2-36$ is
+    \hfill \textbf{(A) $(x-6)(x+6)$} \ans{$\leftarrow$} \quad (B) $(x-6)^2$ \quad (C) $(x+6)^2$ \quad (D) prime
+  \item The axis of symmetry of $y=x^2-8x+3$ is
+    \hfill \textbf{(A) $x=4$} \ans{$\leftarrow$} \quad (B) $x=-4$ \quad (C) $x=8$ \quad (D) $x=3$
+  \item A quadratic equation whose discriminant is \emph{negative} has how many real solutions?
+    \hfill (A) $2$ \quad (B) $1$ \quad \textbf{(C) $0$} \ans{$\leftarrow$} \quad (D) infinitely many
+\end{enumerate}
+
+\begin{teachernote}
+Item 1: vertex form $a(x-h)^2+k$ has vertex $(h,k)$; $(x+2)^2$ means $h=-2$ (sign flip). Item 3:
+a \emph{zero} discriminant is the double-root / perfect-square case ($x^2-6x+9=(x-3)^2$, so $x=3$
+only). Item 6: negative discriminant $\Rightarrow$ two complex roots and \emph{zero} real
+solutions --- contrast with item 3 of this part.
+\end{teachernote}
+
+% ======================================================================
+\parthead{Part C --- Short Answer \& Computation (40 pts)}
+Show your work.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Read the graph.} The parabola $f$ is shown below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{5}{-3}{5}
+          \draw[very thick, forest, smooth, samples=100, domain=-1.6:3.6] plot (\x, {-(\x-1)*(\x-1)+4});
+          \vpt{1}{4}
+          \dpt{-1}{0}
+          \dpt{3}{0}
+          \dpt{0}{3}
+        \end{tikzpicture}
+        \end{center}
+        Vertex: \ans{$(1,4)$}; \quad axis of symmetry: \ans{$x=1$}; \quad $y$-intercept: \ans{$(0,3)$};
+        \\[4pt]
+        zeros: \ans{$x=-1,\ x=3$}; \quad minimum \emph{or} maximum value: \ans{maximum $4$}; \quad range: \ans{$y\le 4$}
+
+  \item \textbf{From standard form.} For $f(x)=x^2+4x-1$, use $x=-\dfrac{b}{2a}$ to find the vertex,
+        give the axis of symmetry, and state whether the parabola opens up or down.
+        \ans{$x=-\dfrac{4}{2(1)}=-2$; $f(-2)=4-8-1=-5$, so the vertex is $(-2,-5)$. Axis of symmetry $x=-2$. Since $a=1>0$, it opens \emph{up} (so $-5$ is a minimum).}
+
+  \item \textbf{Solve by factoring.}
+        \[ x^2-3x-10=0 \]
+        \ans{$(x-5)(x+2)=0\Rightarrow x=5$ or $x=-2$. Check: $5^2-3(5)-10=0$ \checkmark, $(-2)^2-3(-2)-10=0$ \checkmark.}
+
+  \item \textbf{Solve using square roots.}
+        \[ (x+3)^2=25 \]
+        \ans{$x+3=\pm 5\Rightarrow x=-3+5=2$ or $x=-3-5=-8$.}
+
+  \item \textbf{Solve by completing the square.}
+        \[ x^2-8x+5=0 \]
+        \ans{$x^2-8x=-5$; add $\left(\tfrac{-8}{2}\right)^2=16$: $(x-4)^2=11$; $x-4=\pm\sqrt{11}$, so $x=4\pm\sqrt{11}$.}
+
+  \item \textbf{Complex numbers.} Let $z_1=4+i$ and $z_2=5-2i$. Write each answer in $a+bi$ form.
+        \\[4pt]
+        (a) $z_1+z_2=\ans{$9-i$}$ \qquad (b) $z_1-z_2=\ans{$-1+3i$}$
+        \\[8pt]
+        (c) $z_1\cdot z_2=\ans{$(4+i)(5-2i)=20-8i+5i-2i^2=20-3i+2=22-3i$}$
+
+  \item \textbf{Quadratic formula \& discriminant.} Solve $3x^2-2x-1=0$. First compute the
+        discriminant and state how many real solutions to expect, then solve.
+        \ans{$b^2-4ac=(-2)^2-4(3)(-1)=4+12=16>0$, so \emph{two real} solutions. $x=\dfrac{2\pm\sqrt{16}}{2(3)}=\dfrac{2\pm 4}{6}$, giving $x=1$ or $x=-\tfrac13$.}
+
+  \item \textbf{System.} Solve the linear--quadratic system algebraically. Give every solution as an
+        ordered pair.
+        \[ y=x^2+2x-1 \qquad y=x+1 \]
+        \ans{Set equal: $x^2+2x-1=x+1\Rightarrow x^2+x-2=0\Rightarrow(x+2)(x-1)=0$, so $x=-2$ or $x=1$. Then $y=x+1$: $x=-2\Rightarrow(-2,-1)$; $x=1\Rightarrow(1,2)$. Two solutions: $(-2,-1)$ and $(1,2)$.}
+\end{enumerate}
+
+\begin{teachernote}
+Item 5: answer stays in radical form $4\pm\sqrt{11}$ (the equation does not factor over the
+integers --- that is the point of completing the square). Item 6c: watch for a dropped
+$-2i^2=+2$; the real part is $20+2=22$. Item 7: perfect-square discriminant $16\Rightarrow$
+rational roots.
+\end{teachernote}
+
+% ======================================================================
+\parthead{Part D --- Extended Response (12 pts)}
+Explain your reasoning in full sentences.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item \textbf{Projectile.} A ball is thrown upward from a rooftop. Its height (in feet) after
+        $t$ seconds is
+        \[ h(t)=-16t^2+48t+64. \]
+        \textbf{(a)} From which feature of the model do you read the ball's \emph{starting height}?
+        Give that height.
+        \textbf{(b)} Find the \emph{maximum} height and the time it occurs. Which feature of the graph
+        is this?
+        \textbf{(c)} When does the ball hit the ground? Which feature answers this, and why do you
+        reject the other solution?
+        \ans{(a) The starting height is the $y$-intercept, $h(0)=64$ feet. (b) The maximum is the \emph{vertex}. $t=-\dfrac{b}{2a}=-\dfrac{48}{2(-16)}=1.5$ seconds; $h(1.5)=-16(2.25)+72+64=100$ feet. So the maximum height is $100$ ft at $t=1.5$ s. (c) The ground is $h=0$ --- the \emph{zeros}. $-16t^2+48t+64=0\Rightarrow t^2-3t-4=0\Rightarrow(t-4)(t+1)=0$, so $t=4$ or $t=-1$. We reject $t=-1$ because time cannot be negative; the ball lands at $t=4$ seconds.}
+
+  \item \textbf{Discriminant reasoning.} Consider the equation $x^2-6x+k=0$, where $k$ is a constant.
+        \textbf{(a)} Write the discriminant in terms of $k$.
+        \textbf{(b)} For what values of $k$ does the equation have two real solutions? one? two complex
+        solutions?
+        \textbf{(c)} Explain how the discriminant is connected to the number of $x$-intercepts of the
+        parabola $y=x^2-6x+k$.
+        \ans{(a) $b^2-4ac=(-6)^2-4(1)(k)=36-4k$. (b) Two real: $36-4k>0\Rightarrow k<9$. One (double) real: $36-4k=0\Rightarrow k=9$. Two complex: $36-4k<0\Rightarrow k>9$. (c) The real solutions are exactly where the parabola crosses the $x$-axis. A positive discriminant ($k<9$) gives two $x$-intercepts, a zero discriminant ($k=9$) gives one (the vertex rests on the $x$-axis), and a negative discriminant ($k>9$) gives none (the parabola stays entirely above the axis).}
+\end{enumerate}
+
+\begin{teachernote}
+\textbf{Scoring Part D (6 pts each).} D1: 2 pts (a) $y$-intercept named \emph{and} $64$ ft;
+2 pts (b) vertex $t=1.5$, height $100$ ft; 2 pts (c) zeros, $t=4$, with the $t=-1$ rejection
+reasoned from context. D2: 1 pt (a) $36-4k$; 3 pts (b) all three cases with correct boundary
+$k=9$; 2 pts (c) ties discriminant sign to the \emph{count of $x$-intercepts}. Do not give full
+(c) credit for restating (b) without the graph connection.
+\end{teachernote}
 
 \end{document}

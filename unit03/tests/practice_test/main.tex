@@ -2,6 +2,13 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[charcoal] (#1,#2) circle (3pt);}
+\newcommand{\vpt}[2]{\fill[navy] (#1,#2) circle (3.5pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -23,16 +30,132 @@ with no notes, then check your answers against the key.
 \end{remindbox}
 
 % ======================================================================
-\parthead{Part A --- Vocabulary}
-% TODO: matching / fill-in vocabulary items for this unit.
+\parthead{Part A --- Vocabulary (8 pts)}
+Write the letter of the best description next to each term.
 
-\parthead{Part B --- Multiple Choice}
-% TODO: multiple-choice items (concept checks); an SOL-style MC item fits well here.
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.42\textwidth}
+\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
+  \item Vertex \blank{1.2cm}
+  \item Axis of symmetry \blank{1.2cm}
+  \item Zero (root) \blank{1.2cm}
+  \item Discriminant \blank{1.2cm}
+  \item Imaginary unit \blank{1.2cm}
+  \item Completing the square \blank{1.2cm}
+  \item Parabola \blank{1.2cm}
+  \item Standard form \blank{1.2cm}
+\end{enumerate}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.55\textwidth}
+\small
+\begin{description}[leftmargin=1.4em, itemsep=3pt]
+  \item[(A)] The U-shaped graph of a quadratic function.
+  \item[(B)] The expression $b^2-4ac$; its sign tells the number and type of solutions.
+  \item[(C)] The turning point of a parabola, where it reaches its maximum or minimum.
+  \item[(D)] The number $i=\sqrt{-1}$, which satisfies $i^2=-1$.
+  \item[(E)] An $x$-value where $f(x)=0$; an $x$-intercept of the parabola.
+  \item[(F)] The vertical line $x=h$ that splits a parabola into mirror halves.
+  \item[(G)] A quadratic written as $ax^2+bx+c$.
+  \item[(H)] Rewriting $x^2+bx$ as a perfect-square trinomial by adding $\left(\tfrac{b}{2}\right)^2$.
+\end{description}
+\end{minipage}
 
-\parthead{Part C --- Short Answer \& Computation}
-% TODO: computation items; leave \vspace work room after each.
+% ======================================================================
+\parthead{Part B --- Multiple Choice (12 pts)}
+Circle the best answer.
 
-\parthead{Part D --- Extended Response}
-% TODO: one or two interpret/justify items ("what does this mean, and how do you know?").
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item The vertex of $y=(x-4)^2-1$ is
+    \hfill (A) $(4,-1)$ \quad (B) $(-4,-1)$ \quad (C) $(4,1)$ \quad (D) $(-4,1)$
+  \item $\sqrt{-25}=$
+    \hfill (A) $5i$ \quad (B) $-5$ \quad (C) $25i$ \quad (D) $5$
+  \item The discriminant of $x^2-4x+7=0$ is $-12$, so the equation has
+    \hfill (A) two real solutions \quad (B) one real solution \quad (C) two complex (non-real) solutions \quad (D) no solutions of any kind
+  \item Factored completely, $x^2-49$ is
+    \hfill (A) $(x-7)(x+7)$ \quad (B) $(x-7)^2$ \quad (C) $(x+7)^2$ \quad (D) prime
+  \item The axis of symmetry of $y=x^2-6x+5$ is
+    \hfill (A) $x=3$ \quad (B) $x=-3$ \quad (C) $x=6$ \quad (D) $x=5$
+  \item A line and a parabola can intersect in \emph{at most} how many points?
+    \hfill (A) $1$ \quad (B) $2$ \quad (C) $3$ \quad (D) infinitely many
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part C --- Short Answer \& Computation (40 pts)}
+Show your work.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Read the graph.} The parabola $f$ is shown below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{5}{-5}{5}
+          \draw[very thick, forest, smooth, samples=100, domain=-2:4] plot (\x, {(\x-1)*(\x-1)-4});
+          \vpt{1}{-4}
+          \dpt{-1}{0}
+          \dpt{3}{0}
+          \dpt{0}{-3}
+        \end{tikzpicture}
+        \end{center}
+        Vertex: \blank{1.8cm}; \quad axis of symmetry: \blank{1.6cm}; \quad $y$-intercept: \blank{1.6cm};
+        \\[4pt]
+        zeros: \blank{2.6cm}; \quad minimum \emph{or} maximum value: \blank{2.0cm}; \quad range: \blank{2.4cm}
+
+  \item \textbf{From standard form.} For $f(x)=x^2-6x+5$, use $x=-\dfrac{b}{2a}$ to find the vertex,
+        give the axis of symmetry, and state whether the parabola opens up or down.
+        \vspace{2.2cm}
+
+  \item \textbf{Solve by factoring.}
+        \[ x^2+2x-15=0 \]
+        \vspace{1.8cm}
+
+  \item \textbf{Solve using square roots.}
+        \[ (x-2)^2=49 \]
+        \vspace{1.8cm}
+
+  \item \textbf{Solve by completing the square.}
+        \[ x^2+6x-7=0 \]
+        \vspace{2.2cm}
+
+  \item \textbf{Complex numbers.} Let $z_1=3+2i$ and $z_2=1-4i$. Write each answer in $a+bi$ form.
+        \\[4pt]
+        (a) $z_1+z_2=\blank{3.0cm}$ \qquad (b) $z_1-z_2=\blank{3.0cm}$
+        \\[8pt]
+        (c) $z_1\cdot z_2=\blank{4.5cm}$
+
+  \item \textbf{Quadratic formula \& discriminant.} Solve $2x^2+3x-2=0$. First compute the
+        discriminant and state how many real solutions to expect, then solve.
+        \vspace{2.6cm}
+
+  \item \textbf{System.} Solve the linear--quadratic system algebraically. Give every solution as an
+        ordered pair.
+        \[ y=x^2-2x-3 \qquad y=x-3 \]
+        \vspace{2.6cm}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part D --- Extended Response (12 pts)}
+Explain your reasoning in full sentences.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item \textbf{Projectile.} A ball is thrown upward from a rooftop. Its height (in feet) after
+        $t$ seconds is
+        \[ h(t)=-16t^2+32t+48. \]
+        \textbf{(a)} From which feature of the model do you read the ball's \emph{starting height}?
+        Give that height.
+        \textbf{(b)} Find the \emph{maximum} height and the time it occurs. Which feature of the graph
+        is this?
+        \textbf{(c)} When does the ball hit the ground? Which feature answers this, and why do you
+        reject the other solution?
+        \vspace{3.0cm}
+
+  \item \textbf{Discriminant reasoning.} Consider the equation $x^2-4x+k=0$, where $k$ is a constant.
+        \textbf{(a)} Write the discriminant in terms of $k$.
+        \textbf{(b)} For what values of $k$ does the equation have two real solutions? one? two complex
+        solutions?
+        \textbf{(c)} Explain how the discriminant is connected to the number of $x$-intercepts of the
+        parabola $y=x^2-4x+k$.
+        \vspace{3.0cm}
+\end{enumerate}
 
 \end{document}
