@@ -3,17 +3,148 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.0}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item read the \emph{domain}, \emph{range}, \emph{$y$-intercept}, and \emph{$x$-intercept (zero)} of a line from its graph;
+  \item find the \emph{slope} as a constant rate of change and classify the line as increasing, decreasing, or constant;
+  \item state the intervals where the function is \emph{positive} or \emph{negative}, and justify the switch at the zero.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.08in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\termblanklong{Slope (rate of change)}
+\termblanklong{$y$-intercept}
+\termblanklong{$x$-intercept (zero)}
+\termblanklong{Increasing / decreasing}
+\termblanklong{Positive / negative interval}
+\end{vocabbox}
+
+\begin{hookbox}
+A water tank drains at a steady rate. Its volume after $t$ minutes is $V(t) = -3t + 12$ gallons.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item How much water did it start with (at $t=0$)? \writeline
+  \item How fast is it draining, and when is the tank empty? \writeline
+\end{itemize}
+Every question about this tank is a question about a \emph{characteristic of its graph}. Let's name
+them all.
+\end{hookbox}
+
+\begin{notesbox}{1. Linear Means a Constant Rate of Change}
+Build a table for $f(x) = 2x - 4$:
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+$f(x)$ & $-4$ & $-2$ & $0$ & $2$ \\ \hline
+\end{tabular}
+\end{center}
+Each step of $+1$ in $x$ changes the output by the \emph{same} amount, $+\blank{1.0cm}$. A function
+with a \emph{constant} rate of change is called a \textbf{linear function}, and its graph is a
+\blank{3.0cm}. We write it in the form $f(x) = mx + b$, where $m$ is the \blank{2.4cm} and $b$ is
+the value of $f(0)$.
 \end{notesbox}
+
+\begin{notesbox}{2. Reading a Line: The Six Characteristics}
+Here is the graph of $f(x) = 2x - 4$. We will read \emph{six} features straight off the picture.
+\begin{center}
+\begin{tikzpicture}[scale=0.52]
+  \lgrid{-2}{6}{-6}{6}
+  \draw[very thick, forest] (-1,-6)--(5,6);
+  % rise/run triangle from (2,0) to (3,2)
+  \draw[semithick, navy, dashed] (2,0)--(3,0)--(3,2);
+  \node[navy, font=\scriptsize] at (2.5,-0.55){run $1$};
+  \node[navy, font=\scriptsize, right] at (3.05,1){rise $2$};
+  % intercept dots
+  \fill[charcoal] (0,-4) circle (3pt) node[left, font=\scriptsize]{$(0,-4)$};
+  \fill[charcoal] (2,0) circle (3pt)  node[above left, font=\scriptsize]{$(2,0)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item \textbf{Domain} (allowed inputs): the line runs left and right forever, so the domain is
+        \blank{3.6cm}.
+  \item \textbf{Range} (resulting outputs): the line runs up and down forever, so the range is
+        \blank{3.6cm}.
+  \item \textbf{$y$-intercept} (crosses the $y$-axis): the point $(0,\,\blank{0.9cm})$. Find it by
+        setting $x = 0$.
+  \item \textbf{$x$-intercept / zero} (crosses the $x$-axis): the point $(\blank{0.9cm},\,0)$. Find
+        it by solving $2x - 4 = 0$. We call it the \emph{zero} because $f(\blank{0.7cm}) = 0$.
+  \item \textbf{Slope} (rate of change): count $\dfrac{\text{rise}}{\text{run}} =
+        \dfrac{\blank{0.7cm}}{\blank{0.7cm}} = \blank{0.9cm}$. It is the same between \emph{any} two
+        points --- that is what ``constant rate of change'' means.
+  \item \textbf{Sign of the function:} the graph is \emph{above} the $x$-axis (so $f(x)>0$) for
+        $x \blank{1.6cm}$, and \emph{below} it (so $f(x)<0$) for $x \blank{1.6cm}$. The sign switches
+        exactly at the \blank{1.8cm}.
+\end{enumerate}
+\end{notesbox}
+
+\begin{notesbox}{3. Rising, Falling, or Flat}
+Read a line \emph{left to right}. Its direction is decided by the \emph{sign of the slope}.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  % g(x) = -x + 3  (decreasing)
+  \begin{scope}
+    \lgrid{-2}{5}{-2}{5}
+    \draw[very thick, forest] (-1,4)--(4,-1);
+    \fill[charcoal] (0,3) circle (3pt);
+    \fill[charcoal] (3,0) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (1.5,-2.8){$g(x) = -x + 3$};
+  \end{scope}
+  % h(x) = 2  (constant)
+  \begin{scope}[xshift=9cm]
+    \lgrid{-2}{5}{-2}{5}
+    \draw[very thick, forest] (-1.5,2)--(4.5,2);
+    \fill[charcoal] (0,2) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (1.5,-2.8){$h(x) = 2$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $f(x) = 2x-4$ has slope $2 > 0$, so it \emph{rises}: it is \textbf{increasing} on
+        \blank{2.6cm}.
+  \item $g(x) = -x+3$ has slope \blank{1.2cm}, so it \emph{falls}: it is \textbf{decreasing}. Its
+        $y$-intercept is $(0,\blank{0.8cm})$ and its zero is $(\blank{0.8cm},0)$.
+  \item $h(x) = 2$ has slope \blank{1.2cm}, so it is \textbf{constant} (flat) --- neither increasing
+        nor decreasing. Its range is the single value \blank{1.6cm}, and it has \emph{no}
+        $x$-intercept.
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+The graph below is $p(x) = \tfrac{1}{2}x + 1$. Read each characteristic and write it on the line.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-5}{5}{-3}{4}
+  \draw[very thick, forest] (-5,-1.5)--(5,3.5);
+  \fill[charcoal] (0,1) circle (3pt) node[above left, font=\scriptsize]{$(0,1)$};
+  \fill[charcoal] (-2,0) circle (3pt) node[below right, font=\scriptsize]{$(-2,0)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item Domain: \blank{3.0cm} \qquad Range: \blank{3.0cm}
+  \item $y$-intercept: \blank{2.2cm} \qquad $x$-intercept (zero): \blank{2.2cm}
+  \item Slope $=$ \blank{1.6cm} \qquad Increasing or decreasing? \blank{2.6cm}
+  \item Positive when $x$ \blank{2.0cm}; \quad negative when $x$ \blank{2.0cm}.
+\end{enumerate}
+\end{practicebox}
 
 \end{document}
