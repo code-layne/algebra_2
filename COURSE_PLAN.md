@@ -200,7 +200,22 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > SOL A2.F.2a/c/d/f/g** (a,c,f revisited; d = absolute max/min and g = end behavior are new).
 > Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 4pp, homework 2pp; exit
 > ticket includes an SOL-style MC item. `make -C unit03/lesson00 all` → EXIT 0 (student 12pp, full
-> 22pp). **Next action: author lesson 3.1 (Graphing quadratics).**
+> 22pp).
+> **Lesson 3.1 authored & builds (2026-07-25):** all components + keys + 7-slide deck done; moves from
+> *reading* a parabola (3.0) to *producing/graphing* one from its equation via the **three forms** ---
+> vertex form $a(x-h)^2+k$ (vertex $(h,k)$, axis $x=h$, direction/width from $a$), standard form
+> $ax^2+bx+c$ (axis $x=-b/2a$, vertex by substitution, $y$-int $(0,c)$), and intercept/factored form
+> $a(x-p)(x-q)$ (zeros $p,q$, axis $x=(p+q)/2$) --- and reads each as **transformations** of the parent
+> $y=x^2$ ($f(x)+k$, $f(x-h)$ with the right-shift sign flip, $a\,f(x)$ stretch/reflect). Unifying thread:
+> the single curve $x^2-2x-3=(x-1)^2-4=(x+1)(x-3)$ (the 3.0 anchor) shown in all three costumes. All
+> graphs pre-drawn via `plot`+`\clip` (no sketch-from-scratch); "graphing" is done by feature-extraction +
+> equation↔graph matching + point tables. Standards: **2023 VA SOL A.F.2b/c/d** (Algebra 1 quadratic
+> cluster reactivated as the graphing foundation), extended in Algebra 2 to the horizontal shift $f(x-h)$
+> (the full **A2.F.1** transformation lens applied to the quadratic parent) with characteristics per
+> **A2.F.2a/d**. Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp, homework
+> 2pp; exit ticket includes an SOL-style MC item (horizontal-shift direction).
+> `make -C unit03/lesson01 all` → EXIT 0 (student 10pp, full 20pp). **Next action: author lesson 3.2
+> (Solving quadratics by factoring).**
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
