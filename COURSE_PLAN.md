@@ -2,13 +2,13 @@
 
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
-> **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully scaffolded**
-> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **All six lessons 2.0–2.5
-> are now fully authored and build** (each: plan, cover, warm-up, notes, activity, exit ticket,
-> homework, all keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0). **The remaining
-> Unit 2 work is the unit tests** (`tests/`, `test_keys/`) + publishing the sample test/key. Units
-> 3–8 are planned here and not yet scaffolded. Lesson lists below are proposals to react to and edit
-> — pacing (days per lesson) is intentionally left open pending the school calendar.
+> **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully authored and built** —
+> all six lessons 2.0–2.5 (each: plan, cover, warm-up, notes, activity, exit ticket, homework, all
+> keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0) **plus the unit tests**
+> (practice + actual tests and both keys authored and building; practice test/key published to
+> `sample_test/` + `sample_test_key/`). **Unit 2 is content-complete.** Units 3–8 are planned here
+> and not yet scaffolded. Lesson lists below are proposals to react to and edit — pacing (days per
+> lesson) is intentionally left open pending the school calendar.
 
 ---
 
@@ -159,8 +159,17 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > scatterplots, curve/line of best fit, correlation coefficient, predictions, reasonableness). Warm-up
 > & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket
 > includes an SOL-style MC item. `make -C unit02/lesson05 all` → EXIT 0 (student 10pp, full 20pp).
-> **Next:** author the Unit 2 tests (`tests/practice_test`, `tests/actual_test`) + keys, then
-> `make -C unit02/tests drop` / `test_keys drop` to publish the sample test + key.
+> **Unit 2 tests authored & build (2026-07-25):** `tests/practice_test` (3pp) + `tests/actual_test`
+> (3pp) and their keys `test_keys/practice_test_key` (4pp) + `test_keys/actual_test_key` (4pp).
+> Four parts each — A Vocabulary (matching, 8 pts), B Multiple Choice (6 items incl. SOL-style,
+> 12 pts), C Short Answer & Computation (8 items, 40 pts), D Extended Response (2 justify items,
+> 12 pts) — drawing across all six lessons: read line/V/piecewise graphs, write equations, solve
+> $|ax+b|=c$ and $|ax+b|\lessgtr c$ (three-way solution sets), abs-value vertex form, piecewise
+> evaluation + continuity, greatest-integer, and linear regression (slope/intercept interpretation,
+> prediction, interpolation vs.\ extrapolation, correlation $\ne$ causation). Practice and actual are
+> parallel with different numbers/contexts. `make -C unit02/tests all` and
+> `make -C unit02/test_keys all` → EXIT 0; practice test + key published to `sample_test/` and
+> `sample_test_key/`. **Unit 2 is content-complete; next is Unit 3 scaffolding.**
 
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*

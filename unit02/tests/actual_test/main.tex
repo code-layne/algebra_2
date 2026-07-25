@@ -2,6 +2,15 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
+\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
+\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -18,16 +27,154 @@
 \noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so.
 
 % ======================================================================
-\parthead{Part A --- Vocabulary}
-% TODO: matching / fill-in vocabulary items for this unit.
+\parthead{Part A --- Vocabulary (8 pts)}
+Write the letter of the best description next to each term.
 
-\parthead{Part B --- Multiple Choice}
-% TODO: multiple-choice items (concept checks); an SOL-style MC item fits well here.
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.42\textwidth}
+\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
+  \item Correlation coefficient \blank{1.2cm}
+  \item Axis of symmetry \blank{1.2cm}
+  \item Rate of change \blank{1.2cm}
+  \item Extrapolation \blank{1.2cm}
+  \item Slope \blank{1.2cm}
+  \item Vertex \blank{1.2cm}
+  \item Zero of a function \blank{1.2cm}
+  \item Piecewise function \blank{1.2cm}
+\end{enumerate}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.55\textwidth}
+\small
+\begin{description}[leftmargin=1.4em, itemsep=3pt]
+  \item[(A)] The turning point of a V-shaped (absolute value) graph, where it changes direction.
+  \item[(B)] A number $r$ between $-1$ and $1$ measuring the direction and strength of a linear association.
+  \item[(C)] An $x$-value where $f(x)=0$; the graph's $x$-intercept.
+  \item[(D)] The constant ratio $\dfrac{\Delta y}{\Delta x}$ --- how fast $y$ changes per unit of $x$.
+  \item[(E)] Predicting \emph{outside} the range of the data used to build the model.
+  \item[(F)] A function defined by different rules on different intervals of its domain.
+  \item[(G)] The steepness of a line, $\dfrac{\text{rise}}{\text{run}}$.
+  \item[(H)] The vertical line $x=h$ that splits an absolute value graph into mirror halves.
+\end{description}
+\end{minipage}
 
-\parthead{Part C --- Short Answer \& Computation}
-% TODO: computation items; leave \vspace work room after each.
+% ======================================================================
+\parthead{Part B --- Multiple Choice (12 pts)}
+Circle the best answer.
 
-\parthead{Part D --- Extended Response}
-% TODO: one or two interpret/justify items ("what does this mean, and how do you know?").
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item The slope of the line through $(3,\,-1)$ and $(-1,\,7)$ is
+    \hfill (A) $2$ \quad (B) $-2$ \quad (C) $\tfrac12$ \quad (D) $-\tfrac12$
+  \item The graph of $y=|x+2|-3$ is the parent $y=|x|$ shifted
+    \hfill (A) right 2, up 3 \quad (B) left 2, up 3 \quad (C) left 2, down 3 \quad (D) right 2, down 3
+  \item $\lfloor 3.7 \rfloor =$
+    \hfill (A) $4$ \quad (B) $3$ \quad (C) $-3$ \quad (D) $-4$
+  \item A data set has correlation coefficient $r=-0.94$. The linear association is best described as
+    \hfill (A) weak/none \quad (B) strong positive \quad (C) strong negative \quad (D) perfect
+  \item Which equation is written in \textbf{point-slope form}?
+    \hfill (A) $y=3x-5$ \quad (B) $y-2=3(x-1)$ \quad (C) $3x-y=5$ \quad (D) $y=|x|+3$
+  \item The solution of $|x|>2$ is
+    \hfill (A) $x>2$ \quad (B) $-2<x<2$ \quad (C) $x<-2$ or $x>2$ \quad (D) $x<2$
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part C --- Short Answer \& Computation (40 pts)}
+Show your work.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Read the graph.} The line $f$ is shown below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-2}{6}{-5}{3}
+          \draw[very thick, forest] (-1,-4)--(5,2);
+          \fill[charcoal] (0,-3) circle (3pt);
+          \fill[charcoal] (3,0) circle (3pt);
+        \end{tikzpicture}
+        \end{center}
+        Give the $y$-intercept: \blank{1.6cm}; \quad the zero ($x$-intercept): \blank{1.6cm}; \quad
+        the slope: \blank{1.6cm}. \quad Is $f$ increasing or decreasing? \blank{2.4cm}
+
+  \item \textbf{Write the equation.} Find the equation of the line through $(2,\,5)$ and $(4,\,1)$.
+        Write it in slope-intercept form $y=mx+b$.
+        \vspace{2.0cm}
+
+  \item \textbf{Absolute value transformations.} For $g(x)=|x+3|-4$, state the vertex, the axis of
+        symmetry, whether the graph opens up or down, and the maximum or minimum value.
+        \vspace{1.8cm}
+
+  \item \textbf{Solve.} Solve the absolute value equation. Show both cases.
+        \[ |2x+3| = 11 \]
+        \vspace{2.0cm}
+
+  \item \textbf{Solve and express three ways.} Solve $|x-2|< 5$. Write the solution as an inequality
+        and in interval notation, then graph it on the number line.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \draw[->,semithick,charcoal] (-8,0)--(8,0);
+          \foreach \x in {-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7}
+            \draw[charcoal] (\x,0.15)--(\x,-0.15) node[below, font=\scriptsize]{$\x$};
+        \end{tikzpicture}
+        \end{center}
+        \vspace{0.4cm}
+
+  \item \textbf{Evaluate a piecewise function.} Let
+        $f(x)=\begin{cases} x-3, & x\le 0 \\ 2x, & x>0 \end{cases}$
+        \\[4pt]
+        $f(-2)=\blank{1.4cm}$ \qquad $f(0)=\blank{1.4cm}$ \qquad $f(3)=\blank{1.4cm}$
+        \\[4pt]
+        Which piece did you use for $f(0)$, and how do you know? \blank{5.0cm}
+
+  \item \textbf{Read a piecewise graph.} The function $h$ is shown below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{4}{-3}{4}
+          \draw[very thick, forest] (-3,-2)--(0,1);
+          \closeddot{0}{1}
+          \draw[very thick, forest] (0,3)--(3.5,3);
+          \opendot{0}{3}
+        \end{tikzpicture}
+        \end{center}
+        $h(2)=\blank{1.2cm}$; \quad $h(0)=\blank{1.2cm}$. \quad Is $h$ continuous at $x=0$? Explain.
+        \blank{4.5cm}
+
+  \item \textbf{Linear regression.} A study of $x=$ age of a used car (years, from $2$ to $12$) and
+        $y=$ price (in \$1000s) gives the line of best fit
+        \[ \hat y = -1.8x + 30. \]
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+          \item Interpret the slope $-1.8$ in context. \blank{6.0cm}
+          \item Predict the price of a $5$-year-old car: $\hat y=\blank{2.0cm}$ (that is \$\blank{1.8cm}).
+          \item Is predicting the price at $x=25$ years interpolation or extrapolation? Why might that
+                prediction be unreliable? \blank{5.0cm}
+        \end{enumerate}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part D --- Extended Response (12 pts)}
+Explain your reasoning in full sentences.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item The absolute value function $g(x)=|x+2|-3$ is graphed below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-7}{3}{-4}{3}
+          \draw[very thick, forest] (-6,1)--(-2,-3)--(2,1);
+          \fill[charcoal] (-2,-3) circle (3.5pt);
+          \fill[charcoal] (-5,0) circle (3pt);
+          \fill[charcoal] (1,0) circle (3pt);
+        \end{tikzpicture}
+        \end{center}
+        \textbf{(a)} State the two zeros of $g$.
+        \textbf{(b)} On what interval is $g(x)<0$ (the function negative)? On what set is $g(x)>0$?
+        \textbf{(c)} Using the zeros, explain \emph{why} the sign of $g$ switches where it does.
+        \vspace{2.6cm}
+
+  \item A study finds that students who spend more time on social media tend to have lower GPAs, with
+        correlation coefficient $r=-0.78$.
+        \textbf{(a)} Describe the direction and strength of this association.
+        \textbf{(b)} Does this prove that social media \emph{causes} lower GPAs? Explain the difference
+        between correlation and causation, and give one lurking variable that could explain the pattern.
+        \vspace{2.6cm}
+\end{enumerate}
 
 \end{document}
