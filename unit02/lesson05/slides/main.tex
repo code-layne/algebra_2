@@ -1,6 +1,12 @@
 %! Linear Regression — Unit 2, Lesson 2.5 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.6pt);}
 
 \begin{document}
 
@@ -12,15 +18,148 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.5}\\[0.5cm]
     {\color{white}\bfseries\LARGE Linear Regression}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2: Linear Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{When the data won't line up}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      For each player: \textbf{hours practiced} ($x$) vs.\ \textbf{free throws made} out of $15$ ($y$).
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item The points do \emph{not} lie on one line\ldots
+        \item \ldots but they clearly \emph{trend} upward.
+      \end{itemize}
+      \vspace{4pt}
+      No exact rule fits messy data --- but a \textbf{line of best fit} can summarize the trend.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-0.5}{9}{-0.5}{15}
+        \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ASSOCIATION
+\begin{frame}[t, plain]
+  \forestheader{Describe it: direction, form, strength}
+  \sectionlabel{Scatterplots}
+  \begin{columns}[T]
+    \begin{column}{0.34\textwidth}
+      Three separate questions:
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Direction:} up (positive), down (negative), or none?
+        \item \textbf{Form:} does a \emph{line} fit?
+        \item \textbf{Strength:} how tightly?
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.64\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.3]
+        \lgrid{-0.5}{7}{-0.5}{7}
+        \dpt{1}{2}\dpt{2}{2}\dpt{3}{4}\dpt{4}{4}\dpt{5}{6}\dpt{6}{6}
+        \node[font=\scriptsize] at (3,-1.7){positive};
+      \end{tikzpicture}
+      \hspace{0.2cm}
+      \begin{tikzpicture}[scale=0.3]
+        \lgrid{-0.5}{7}{-0.5}{7}
+        \dpt{1}{6}\dpt{2}{5}\dpt{3}{5}\dpt{4}{3}\dpt{5}{2}\dpt{6}{2}
+        \node[font=\scriptsize] at (3,-1.7){negative};
+      \end{tikzpicture}
+      \hspace{0.2cm}
+      \begin{tikzpicture}[scale=0.3]
+        \lgrid{-0.5}{7}{-0.5}{7}
+        \dpt{1}{3}\dpt{2}{6}\dpt{3}{2}\dpt{4}{5}\dpt{5}{3}\dpt{6}{5}
+        \node[font=\scriptsize] at (3,-1.7){none};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CORRELATION COEFFICIENT
+\begin{frame}[t, plain]
+  \forestheader{One number: the correlation coefficient $r$}
+  \sectionlabel[goldacc]{Goodness of fit}
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item $r$ always lies in $[-1,1]$: \textbf{sign} $=$ direction, \textbf{size} $|r|$ $=$ strength.
+    \item $r\approx +1$: tight rising line. \quad $r\approx -1$: tight falling line. \quad $r\approx 0$: no linear trend.
+  \end{itemize}
+  \vspace{2pt}
+  \begin{center}
+  \begin{tikzpicture}[scale=1]
+    \draw[semithick, charcoal, ->] (-4.2,0)--(4.2,0);
+    \foreach \x/\lab in {-4/-1, 0/0, 4/1}{\draw (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\lab$};}
+    \node[font=\scriptsize, forest] at (-4,0.45){strong negative};
+    \node[font=\scriptsize, forest] at (0,0.45){no linear trend};
+    \node[font=\scriptsize, forest] at (4,0.45){strong positive};
+  \end{tikzpicture}
+  \end{center}
+  \begin{block}{Watch out}
+    A \emph{negative} $r$ is not ``weak.'' $r=-0.9$ is a \textbf{strong} association --- and $r$ measures a
+    \emph{linear} fit only.
+  \end{block}
+\end{frame}
+
+% LINE OF BEST FIT
+\begin{frame}[t, plain]
+  \forestheader{The line of best fit: $\hat y = ax + b$}
+  \sectionlabel{Regression}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      Technology returns \; $\hat y = 1.5x + 2$, \; $r=0.96$.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Slope} $1.5$: each extra hour of practice $\Rightarrow$ about $1.5$ more made (a per-unit rate).
+        \item \textbf{Intercept} $2$: baseline made at $0$ hours.
+        \item $\hat y$ is a \emph{predicted} value.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-0.5}{9}{-0.5}{15}
+        \draw[very thick, forest] (0,2)--(8.5,14.75);
+        \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% PREDICTING
+\begin{frame}[t, plain]
+  \forestheader{Predicting --- inside vs.\ outside the data}
+  \sectionlabel[goldacc]{Interpolation / extrapolation}
+  Substitute an $x$ into $\hat y = 1.5x+2$:
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item $x=6$ (inside the data, $1$--$8$): $\hat y = 11$ --- \textbf{interpolation} (safer).
+    \item $x=12$ (outside): $\hat y = 20$\ldots\ but only $15$ shots exist! \textbf{Extrapolation} can break down.
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{Always ask}
+    Is this prediction \emph{reasonable}? A line predicting $20$ made out of $15$ is a red flag that you have
+    extrapolated too far.
+  \end{block}
+\end{frame}
+
+% CAUSATION + ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Correlation is not causation --- and where we go next}
+  \sectionlabel{Connections}
+  \textbf{Correlation $\ne$ causation.} Ice-cream sales and pool drownings both rise in summer ($r>0$), but ice
+  cream does not \emph{cause} drownings --- \emph{hot weather} is the lurking variable. A strong $r$ means the
+  variables move \emph{together}, not that one \emph{causes} the other.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item \textbf{Today:} scatterplots \& association; the coefficient $r$; the line of best fit; predicting; causation.
+    \item \textbf{Next:} the \textbf{Unit 2 Test}, then \textbf{Unit 3 --- Quadratic Functions}, where the curve of best fit is a \emph{parabola}.
+  \end{itemize}
+  \vspace{2pt}
+  {\footnotesize Finding $r$ and the equation is a calculator/Desmos task; reading and interpreting them is on you.}
 \end{frame}
 
 \end{document}
