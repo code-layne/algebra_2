@@ -12,15 +12,204 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.1}\\[0.5cm]
     {\color{white}\bfseries\LARGE Operations with Polynomials}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Two names for yesterday's curve --- same function?}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ g(x) = (x-1)^2(x+2) \]
+      \[ g(x) = x^3 - 3x + 2 \]
+      \vspace{2pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Both give $2$ at $x=0$, $4$ at $x=2$, $0$ at $x=-2$.
+        \item Three matching points is \emph{evidence}, not \emph{proof}.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{What each costume is good for}
+        \textbf{Factored} $\Rightarrow$ the \emph{zeros}. \\[3pt]
+        \textbf{Standard} $\Rightarrow$ the \emph{degree} and \emph{leading coefficient}, hence the
+        \emph{end behavior}.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize \textbf{Today:} travel from factored to standard by multiplying.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% NAMING
+\begin{frame}[t, plain]
+  \forestheader{Standard form comes first}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      Powers from highest to lowest:
+      \[ a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0 \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Degree:} the highest power.
+        \item \textbf{Leading coefficient:} that term's coefficient.
+        \item \textbf{Terms:} 1 monomial, 2 binomial, 3 trinomial.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Two variables}
+        A \emph{term's} degree is the \textbf{sum} of its exponents: \\[3pt]
+        $-7x^2y^3$ has degree $5$.
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize $-5x^2+7x^4-3+x \;\Rightarrow\; 7x^4-5x^2+x-3$: degree $4$, lead $7$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ADD & SUBTRACT
+\begin{frame}[t, plain]
+  \forestheader{Adding \& subtracting: collecting, not creating}
+  \sectionlabel[goldacc]{The sign trap}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      \textbf{Like terms} = same variables, same exponents. \\
+      $3x^2$ and $3x^3$ never combine.
+      \vspace{6pt}
+      \[ (3x^3-5x+2)+(x^3+4x^2-7) \]
+      \[ = 4x^3+4x^2-5x-5 \]
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      A minus sign in front is a factor of $-1$ --- it flips \emph{every} sign inside.
+      \[ (3x^3-5x+2)-(x^3+4x^2-7) \]
+      \[ = 3x^3-5x+2-x^3-4x^2+7 \]
+      \[ = 2x^3-4x^2-5x+9 \]
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{A degree can drop}
+    $(x^4+2x)-(x^4-5)=2x+5$ --- the leading terms cancel, so a sum or difference has degree
+    \emph{at most} the larger degree.
+  \end{block}
+\end{frame}
+
+% MULTIPLY
+\begin{frame}[t, plain]
+  \forestheader{Multiplying: every term times every term}
+  \sectionlabel{One rule, three sizes}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item \textbf{Monomial $\times$ polynomial:} \\ $-2x^2(3x^3-4x+6)=-6x^5+8x^3-12x^2$
+        \item \textbf{Binomial $\times$ binomial:} \\ $(2x-5)(3x+4)=6x^2-7x-20$
+        \item \textbf{Two variables:} \\ $(3x+2y)(x-4y)=3x^2-10xy-8y^2$
+      \end{itemize}
+      \vspace{3pt}
+      Coefficients \emph{multiply}; exponents \emph{add}.
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \centering
+      {\footnotesize $(x+3)(x^2-2x+4)$ --- six products, no drops:}\\[4pt]
+      \renewcommand{\arraystretch}{1.5}
+      {\footnotesize
+      \begin{tabular}{|c|c|c|c|}
+      \hline
+      $\times$ & $x^2$ & $-2x$ & $+4$ \\ \hline
+      $x$  & $x^3$  & $-2x^2$ & $4x$ \\ \hline
+      $+3$ & $3x^2$ & $-6x$   & $12$ \\ \hline
+      \end{tabular}}\\[5pt]
+      {\footnotesize $= x^3 + x^2 - 2x + 12$}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DEGREE OF A PRODUCT
+\begin{frame}[t, plain]
+  \forestheader{Know the shape before you expand}
+  \sectionlabel[goldacc]{Degrees add, leads multiply}
+  \[ (2x^3 - 1)(-3x^4 + x) \]
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item Only the two \emph{leading} terms can make the highest power: $2x^3\cdot(-3x^4) = -6x^7$.
+    \item \textbf{Degrees add:} $3+4=7$. \quad \textbf{Leading coefficients multiply:} $2\cdot(-3)=-6$.
+    \item Degree \emph{odd}, lead \emph{negative} $\Rightarrow$ (Lesson 4.0) left arm \textbf{up},
+          right arm \textbf{down}.
+  \end{itemize}
+  \begin{block}{Why it never fails}
+    Nothing can cancel the top term --- there is only one way to build it. So a \emph{product} never
+    loses degree, even though a \emph{sum} can.
+  \end{block}
+\end{frame}
+
+% SPECIAL PRODUCTS
+\begin{frame}[t, plain]
+  \forestheader{Special products --- and the year's worst error}
+  \sectionlabel{Identities}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ (a+b)^2 = a^2 + 2ab + b^2 \]
+      \[ (a-b)^2 = a^2 - 2ab + b^2 \]
+      \[ (a+b)(a-b) = a^2 - b^2 \]
+      \vspace{2pt}
+      {\footnotesize $(3x-4)^2 = 9x^2-24x+16$ \\[3pt]
+       $(2x+7)(2x-7) = 4x^2-49$ \\[3pt]
+       $(5x-3y)^2 = 25x^2-30xy+9y^2$}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{$(x+4)^2 \ne x^2+16$}
+        Test at $x=1$: \\[3pt]
+        $(1+4)^2 = 25$ \quad but \quad $1+16=17$. \\[4pt]
+        The missing piece is the middle term $8x$: \\[3pt]
+        $(x+4)^2 = x^2+8x+16$.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CLOSING THE LOOP
+\begin{frame}[t, plain]
+  \forestheader{Closing the loop on the Hook}
+  \sectionlabel[goldacc]{$(x-1)^2(x+2)$}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \centering
+      {\footnotesize Step 1: $(x-1)^2 = x^2-2x+1$}\\[5pt]
+      \renewcommand{\arraystretch}{1.5}
+      {\footnotesize
+      \begin{tabular}{|c|c|c|c|}
+      \hline
+      $\times$ & $x^2$ & $-2x$ & $+1$ \\ \hline
+      $x$  & $x^3$  & $-2x^2$ & $x$ \\ \hline
+      $+2$ & $2x^2$ & $-4x$   & $2$ \\ \hline
+      \end{tabular}}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item $-2x^2$ and $+2x^2$ \textbf{cancel} --- that is why there is no $x^2$ term.
+        \item $x - 4x = -3x$.
+        \item Result: $\;x^3 - 3x + 2$. \; \textbf{Proved.}
+        \item Degree $3$, lead $1$ $\Rightarrow$ left down, right up --- exactly yesterday's graph.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 4 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} add, subtract, and multiply polynomials in one and two variables; special products;
+  degree and leading coefficient of a result.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{4.2} Advanced factoring --- today's products run \emph{backward}, plus the sum and difference of cubes.
+    \item \textbf{4.3} Dividing polynomials; Remainder \& Factor Theorems.
+    \item \textbf{4.4--4.5} Zeros: Rational Root Theorem; complex zeros \& the FTA.
+    \item \textbf{4.6} Graphing polynomial functions \& modeling.
+  \end{itemize}
 \end{frame}
 
 \end{document}
