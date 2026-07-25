@@ -3,17 +3,114 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.3}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Show your work. For every function, remember: vertex form $a|x-h|+k$ has vertex $(h,k)$ and axis
+$x=h$; the sign of $a$ tells you up/down, and $|a|$ tells you narrow/wide.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{The parent $y=|x|$.} Fill in each feature.
+        \\[2pt] Vertex \blank{1.6cm}; \quad axis $x=\blank{1.0cm}$; \quad minimum value \blank{1.0cm};
+        \quad domain \blank{2.2cm}; \quad range \blank{1.6cm}.
+
+  \item \textbf{Match} each equation to its graph (write the letter).
+        \begin{center}
+        \begin{tikzpicture}[scale=0.4]
+          \begin{scope}
+            \lgrid{-1}{5}{-1}{4}
+            \draw[very thick, forest] (-1,3)--(2,0)--(5,3);
+            \node[charcoal, font=\scriptsize] at (2,-2.4){\textbf{W}};
+          \end{scope}
+          \begin{scope}[xshift=9cm]
+            \lgrid{-3}{3}{-3}{3}
+            \draw[very thick, forest] (-3,1)--(0,-2)--(3,1);
+            \node[charcoal, font=\scriptsize] at (0,-4.6){\textbf{X}};
+          \end{scope}
+        \end{tikzpicture}\\[4pt]
+        \begin{tikzpicture}[scale=0.4]
+          \begin{scope}
+            \lgrid{-3}{3}{-4}{2}
+            \draw[very thick, forest] (-3,-3)--(0,0)--(3,-3);
+            \node[charcoal, font=\scriptsize] at (0,-5.6){\textbf{Y}};
+          \end{scope}
+          \begin{scope}[xshift=9cm]
+            \lgrid{-4}{2}{-1}{5}
+            \draw[very thick, forest] (-4,4)--(-1,1)--(2,4);
+            \node[charcoal, font=\scriptsize] at (-1,-2.4){\textbf{Z}};
+          \end{scope}
+        \end{tikzpicture}
+        \end{center}
+        $y=|x-2|$ is \blank{0.9cm}. \quad $y=|x|-2$ is \blank{0.9cm}. \quad
+        $y=-|x|$ is \blank{0.9cm}. \quad $y=|x+1|+1$ is \blank{0.9cm}.
+
+  \item \textbf{Name the features} of each function.
+        \begin{center}
+        \renewcommand{\arraystretch}{1.4}
+        \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+        & \textbf{Vertex} & \textbf{Axis} & \textbf{Opens} & \textbf{Max/Min value} \\
+        (a) $y=|x-2|+1$      & \blank{1.5cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.5cm} \\
+        (b) $y=-|x+3|$        & \blank{1.5cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.5cm} \\
+        (c) $y=3|x|-4$        & \blank{1.5cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.5cm} \\
+        (d) $y=-\tfrac12|x-1|+2$ & \blank{1.5cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.5cm} \\
+        \end{tabularx}
+        \end{center}
+
+  \item \textbf{Describe the transformations} from $y=|x|$.
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+          \item $y=|x-5|+2$: \blank{6.0cm}
+          \item $y=-3|x+1|$: \blank{6.0cm}
+        \end{enumerate}
+
+  \item \textbf{Complete the table} for $y=|x-1|+2$, then give the vertex.
+        \begin{center}
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $x$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+        $y$ & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} \\ \hline
+        \end{tabular}
+        \end{center}
+        Vertex: $(\blank{0.8cm},\,\blank{0.8cm})$.
+
+  \item \textbf{Model it.} A drone flies in a straight line past a tower; its distance from the tower
+        (in meters) is $D(t)=15\,|t-6|$, where $t$ is in seconds.
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+          \item Find the vertex and say what it means in context. \blank{5.5cm}
+          \item What is the distance at $t=0$ and at $t=10$? \blank{4.5cm}
+        \end{enumerate}
+
+  \item \textbf{Explain.} How does the sign of $a$ in $y=a|x-h|+k$ tell you whether the vertex is a
+        maximum or a minimum? \writelines{2}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Build and reason.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item A V opens \emph{up}, has vertex $(-2,1)$, and passes through $(0,5)$. Find $a$ and write the
+        equation in vertex form.
+  \item For $y=a|x-h|+k$ with $a<0$, what is the range in terms of $k$? Explain from the picture.
+\end{enumerate}
+\writelines{3}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 2.4: Piecewise-Defined Functions.} Today's V is secretly \emph{two}
+lines pasted at the vertex: $y=-x$ on the left and $y=x$ on the right. Next you'll write functions
+built from different rules on different pieces of the domain --- and meet the greatest-integer (step)
+function as a second example.
+\end{spiralbox}
 
 \end{document}

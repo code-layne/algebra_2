@@ -10,6 +10,11 @@
 \newcommand{\MeetingLength}{55 minutes}
 \newcommand{\UnitNumberName}{Unit 2: Linear Functions \quad}
 \newcommand{\LessonNumberName}{Lesson 2.3: Absolute Value Functions \& Transformations}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 \begin{center}
@@ -19,55 +24,169 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can read the absolute value parent function $f(x)=|x|$ as the
+    graph of \emph{distance from zero} --- a \textbf{V-shape} --- and describe every other absolute
+    value function as a \textbf{transformation} of that parent. From the vertex form
+    $g(x)=a|x-h|+k$ they identify the \emph{vertex} $(h,k)$, the \emph{axis of symmetry} $x=h$, the
+    direction of opening (up if $a>0$, down if $a<0$), the \emph{minimum or maximum} value $k$, and
+    whether the graph is \emph{narrower/wider} than the parent ($|a|$). They translate fluently among
+    an equation, a table, and a pre-drawn graph, reading domain, range, intercepts, and
+    increasing/decreasing intervals off the V. Lesson~2.2 \emph{solved} $|ax+b|=c$; today that same
+    expression becomes a \emph{graph}, and the two solutions are exactly where the V meets the line
+    $y=c$. This gives an early, informal look at \textbf{vertex, axis of symmetry, and min/max} that
+    Unit~3 formalizes for parabolas.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} This lesson applies the Algebra~2 \emph{transformation lens}
+    \textbf{A2.F.1} --- write and graph a function using transformations of a parent function
+    $f(x)+k$, $f(x+k)$, $f(kx)$, and $kf(x)$ (\textbf{A2.F.1b}, \textbf{A2.F.1c}) --- to the absolute
+    value parent as the entry example, and reads the resulting \emph{characteristics} with
+    \textbf{A2.F.2}: domain, range, zeros, and intercepts (\textbf{A2.F.2a}), increasing/decreasing
+    intervals (\textbf{A2.F.2c}), absolute (global) minimum/maximum (\textbf{A2.F.2d}), and evaluating
+    $f(x)$ from a graph or equation (\textbf{A2.F.2f}). Absolute value is itself a
+    \emph{piecewise-defined} function --- one of the families A2.F.2 names --- which motivates
+    Lesson~2.4.
 \end{tcolorbox}
 
-\renewcommand{\arraystretch}{1.6}
+\renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-    % TODO: left minipage = priority skills (AP Skill x.y for AP courses);
-    %       right minipage = Key Understandings (paraphrased from EKs).
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item Graph the parent $f(x)=|x|$ from a table and read its features (V, vertex, axis, min).
+  \item From $g(x)=a|x-h|+k$, name the \textbf{vertex} $(h,k)$ and \textbf{axis} $x=h$.
+  \item Decide \textbf{opens up/down} from the sign of $a$, and \textbf{min vs.\ max} value $k$.
+  \item Read the effect of $|a|$: \textbf{narrower} ($|a|>1$) or \textbf{wider} ($|a|<1$).
+  \item Describe a graph as \textbf{shifts, a stretch, and a reflection} of $y=|x|$.
+  \item Read domain, range, intercepts, and increasing/decreasing intervals off the V.
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item $|x|$ is a \emph{distance}, so its graph can't dip below its vertex --- that makes the V and its min/max.
+  \item Inside the bars acts \emph{horizontally} and \emph{backwards}: $|x-h|$ moves the vertex to $x=h$.
+  \item Outside the bars acts \emph{vertically} the way you'd expect: $+k$ up, $a$ scales, $a<0$ flips.
+  \item $a$ is the slope of the right-hand ray --- it controls steepness and which way the V opens.
+  \item Every absolute value graph is the \emph{one} parent V after moving, scaling, and possibly flipping.
+  \item The vertex is the graph's \emph{turning point}: where increasing meets decreasing (previewing Unit~3).
+\end{itemize}
+\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Absolute value parent} & $f(x)=|x|$: a V opening up, vertex at the origin, made of the rays $y=x$ ($x\ge 0$) and $y=-x$ ($x<0$). \\
+\textbf{Vertex} & The turning point of the V --- its lowest point (opens up) or highest point (opens down). \\
+\textbf{Axis of symmetry} & The vertical line $x=h$ through the vertex; the two rays are mirror images across it. \\
+\textbf{Vertex form} & $g(x)=a|x-h|+k$, with vertex $(h,k)$ and axis $x=h$. \\
+\textbf{Reflection} & $a<0$ flips the V to open \emph{downward} (over a horizontal line). \\
+\textbf{Vertical stretch / compression} & $|a|>1$ makes the V \emph{narrower}; $0<|a|<1$ makes it \emph{wider}. \\
+\textbf{Minimum / maximum} & The $y$-value $k$ at the vertex: a \emph{minimum} if $a>0$, a \emph{maximum} if $a<0$. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses the three prerequisites today leans on: \textbf{(1)} evaluate absolute
+    values and build a table for $y=|x|$, so students \emph{see} why the graph turns at the origin
+    and never dips below it; \textbf{(2)} recall the transformation language from Lesson~2.1 ---
+    ``$+k$'' shifts up/down and a negative coefficient \emph{reflects} --- the exact moves we now
+    apply to a new parent; and \textbf{(3)} read the vertex and axis of symmetry off a pre-drawn V.
+    Debrief item~1 aloud: because $|x|$ is a \emph{distance}, the two sides of the table mirror each
+    other --- that symmetry \emph{is} the axis of symmetry.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    You drive a straight highway toward a rest stop, reach it after $2$ hours, and keep going past it.
+    Your \textbf{distance from the rest stop} (in tens of miles) is $d(t)=30\,|t-2|$. Ask:
+    \textbf{``How far are you at the start? At $t=2$? At $t=4$?''} ($60$, $0$, $60$.) \textbf{``When
+    are you closest, and what is that distance?''} (at $t=2$, distance $0$). Plot the three points and
+    the shape is a \textbf{V} with its lowest point at $(2,0)$. Land the idea: a distance is never
+    negative, so its graph \emph{bottoms out} at a single turning point --- the \textbf{vertex} --- and
+    is symmetric about the vertical line through it. Every absolute value function is this same V,
+    moved and stretched. Today we learn to read the move straight off the equation.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. The parent $f(x)=|x|$.} Build the table $x=-2,-1,0,1,2 \to y=2,1,0,1,2$. The graph is a
+\textbf{V} opening up with \textbf{vertex} $(0,0)$, \textbf{axis} $x=0$, \textbf{minimum} $0$. Domain
+all reals; range $y\ge 0$. It \emph{decreases} on $(-\infty,0]$ and \emph{increases} on $[0,\infty)$.
+Note it is the two lines $y=x$ and $y=-x$ pasted at the vertex --- a preview of piecewise (2.4).
+
+\textbf{2. Up/down and left/right.} \textbf{Outside} the bars behaves normally: $y=|x|+k$ shifts the
+whole V up ($k>0$) or down. \textbf{Inside} the bars behaves \emph{horizontally and backwards}:
+$y=|x-h|$ moves the vertex to $x=h$ (\emph{right} for $-h$, left for $+h$). Anchor with $y=|x-3|$
+(vertex $(3,0)$) and $y=|x+2|$ (vertex $(-2,0)$).
+
+\textbf{3. Stretch, compress, reflect.} $y=a|x|$ scales the V: $|a|>1$ \textbf{narrower},
+$0<|a|<1$ \textbf{wider}. A \emph{negative} $a$ \textbf{reflects} it to open \emph{downward}. Compare
+$y=2|x|$, $y=\tfrac12|x|$, $y=-|x|$. Stress that $a$ is the slope of the right-hand ray.
+
+\columnbreak
+
+\textbf{4. Vertex form $g(x)=a|x-h|+k$.} All three moves at once. \textbf{Vertex} $(h,k)$;
+\textbf{axis} $x=h$; \textbf{opens up} if $a>0$ (so $k$ is a \emph{minimum}), \textbf{down} if $a<0$
+(so $k$ is a \emph{maximum}); $|a|$ sets the width. Model $g(x)=-2|x-1|+3$: vertex $(1,3)$, axis
+$x=1$, opens \emph{down}, \emph{maximum} $3$, narrow. Read $g(0)=-2|{-1}|+3=1$ straight from the rule.
+
+\textbf{5. Equation $\leftrightarrow$ graph $\leftrightarrow$ table.} Practice all three directions,
+but \emph{never sketch from scratch}: match an equation to the correct pre-drawn V, read a vertex off
+a graph, or complete a table and name the vertex. Connect back to 2.2: the solutions of $|x-1|=2$ are
+the two $x$-values where $y=|x-1|$ crosses the line $y=2$.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{horizontal-shift sign flip}: reading $|x-3|$ as a shift \emph{left} $3$ instead of right;
+  \item confusing inside vs.\ outside the bars: applying $+k$ horizontally or the shift vertically;
+  \item forgetting that $a<0$ opens the V \emph{down}, so $k$ becomes a \textbf{maximum}, not a minimum;
+  \item calling a wider graph ``$|a|>1$'': $|a|>1$ is \emph{narrower}, $0<|a|<1$ is wider;
+  \item naming the vertex as $(-h,k)$ or $(h,-k)$ --- mis-reading the signs in $a|x-h|+k$;
+  \item saying the range is ``all reals'' --- the V stops at $k$ (range $y\ge k$ up, $y\le k$ down);
+  \item swapping increasing/decreasing intervals, or splitting them at $0$ instead of at $x=h$.
+\end{itemize}
+Cold-call prompts: ``Where is the vertex, and how do you see it in the equation?'' ``Does it open up
+or down --- how do you know?'' ``Is $k$ a max or a min here?'' ``Narrower or wider than the parent?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Reading \& Building V's} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Complete tables for $y=|x|$ and one shift; read the vertex, axis, and
+minimum off pre-drawn V-graphs; match two simple equations to their graphs.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} From vertex-form equations, state vertex, axis, opens up/down, and
+min/max; match equations to graphs; describe each as transformations of $y=|x|$; evaluate $g(x)$ at a
+point.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Model a distance/time context with an absolute value function, write
+its equation, and interpret the vertex; write the equation of a V from a described graph; reason about
+how the sign of $a$ forces a max vs.\ a min.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): read the vertex, axis, range, and an increasing interval
+off a pre-drawn V; from $g(x)=-2|x-3|+5$ name the vertex, axis, direction of opening, and the
+max/min value; and one \textbf{SOL-style multiple-choice} item (describe the transformation from
+$y=|x|$ to $y=|x+4|-2$). Collect and sort into ``got it / shift-sign slip / up-vs-down slip /
+vertex-read slip / range slip'' to decide whether Lesson~2.4 opens with a quick re-teach of vertex
+form.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} recall the parent's characteristics; match equations to pre-drawn V-graphs; for a
+set of vertex-form equations state vertex, axis, opens up/down, and max/min; describe transformations
+from the parent; complete a table and name a vertex; and model a distance context. \textbf{Extension:}
+write the equation of a V from its graph, and reason about when the vertex is a maximum.
+\textbf{Preview:} Lesson~2.4, \emph{Piecewise-Defined Functions} --- today's V is really \emph{two}
+lines pasted at the vertex ($y=-x$ then $y=x$); next we write functions defined by different rules on
+different pieces of the domain, with the greatest-integer/step function as a second example.
 \end{skillbox}
 \end{document}
