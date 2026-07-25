@@ -9,7 +9,7 @@
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
 \newcommand{\UnitNumberName}{Unit 3: Quadratic Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.1: Graphing Quadratic Functions & Transformations}
+\newcommand{\LessonNumberName}{Lesson 3.1: Graphing Quadratic Functions \& Transformations}
 
 \begin{document}
 \begin{center}
@@ -19,68 +19,160 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can move from an equation to a graph. Given a quadratic in any
+    of its three forms --- \emph{vertex form} $f(x)=a(x-h)^2+k$, \emph{standard form} $f(x)=ax^2+bx+c$,
+    or \emph{intercept (factored) form} $f(x)=a(x-p)(x-q)$ --- they can find the \emph{vertex}, the
+    \emph{axis of symmetry}, the opening direction and width, the \emph{intercepts}, and the
+    \emph{max/min}, then use those features to graph the parabola or match it to its graph. They read
+    each form as a set of \emph{transformations} of the parent $y=x^2$: $f(x)+k$ shifts vertically,
+    $f(x-h)$ shifts horizontally, and $a\,f(x)$ stretches/reflects. Where Lesson~3.0 \emph{read} a
+    parabola, Lesson~3.1 \emph{builds} one from its rule.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} This lesson reactivates the Algebra~1 quadratic cluster
+    \textbf{A.F.2} as Unit~3's graphing foundation: \textbf{A.F.2b} (determine the key characteristics
+    --- zeros, $y$-intercept, vertex/max--min, domain and range --- from an equation or graph),
+    \textbf{A.F.2c} (graph a quadratic using transformations $f(x)+k$ and $k\,f(x)$), and
+    \textbf{A.F.2d} (connect the standard and factored forms to the graph). Algebra~2 extends the
+    transformation menu to the horizontal shift $f(x-h)$ --- the full vertex form --- which is the same
+    $f(x)+k,\,f(kx),\,f(x+k),\,k\,f(x)$ lens \textbf{A2.F.1} formalizes for every other family, applied
+    here to the quadratic parent. Characteristics are named per \textbf{A2.F.2a/d}.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Read a parabola as \textbf{transformations} of $y=x^2$: $f(x)+k$ (up/down), $f(x-h)$ (left/right), $a\,f(x)$ (stretch/reflect).
+  \item From \textbf{vertex form} $a(x-h)^2+k$: name the vertex $(h,k)$, axis $x=h$, direction \& width.
+  \item From \textbf{standard form} $ax^2+bx+c$: find the axis $x=-\tfrac{b}{2a}$, the vertex, and the $y$-intercept $(0,c)$.
+  \item From \textbf{intercept form} $a(x-p)(x-q)$: read the zeros $p,q$ and the axis $x=\tfrac{p+q}{2}$.
+  \item Use those features to \textbf{graph} the parabola or match it to its graph.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item Each form \emph{advertises} a different feature; they are three descriptions of \emph{one} curve.
+  \item In $f(x-h)$ the graph moves \emph{right} for a positive $h$ --- opposite the sign inside, the year's most common transformation slip.
+  \item The axis of symmetry is the backbone: once you have it, the vertex is one substitution and a symmetric point pair follows.
+  \item $-\tfrac{b}{2a}$ \emph{is} the axis because it sits halfway between symmetric points --- it is not a memorized mystery.
+  \item Sign of $a$ still controls opening/max--min; $|a|$ controls width (stretch vs.\ compress).
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Parent function} & The simplest function of a family; for quadratics it is $y=x^2$ (vertex at the origin, opens up). \\
+\textbf{Vertex form} & $f(x)=a(x-h)^2+k$; the vertex is $(h,k)$ and the axis of symmetry is $x=h$. \\
+\textbf{Standard form} & $f(x)=ax^2+bx+c$; the axis is $x=-\tfrac{b}{2a}$ and the $y$-intercept is $(0,c)$. \\
+\textbf{Intercept (factored) form} & $f(x)=a(x-p)(x-q)$; the zeros are $x=p$ and $x=q$, and the axis is halfway between them. \\
+\textbf{Vertical shift} & $f(x)+k$: slides the graph up ($k>0$) or down ($k<0$). \\
+\textbf{Horizontal shift} & $f(x-h)$: slides the graph right ($h>0$) or left ($h<0$) --- opposite the sign inside. \\
+\textbf{Vertical stretch / compression} & $a\,f(x)$: narrower if $|a|>1$, wider if $0<|a|<1$; reflects over the $x$-axis if $a<0$. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses exactly what the graphing work needs: \textbf{(1)} the parent $y=x^2$ and its
+    table of five points (the shape every transformation moves); \textbf{(2)} the Unit~2 transformation
+    language ($f(x)+k$ up/down, $a\,f(x)$ stretch/reflect) applied to a single point; and \textbf{(3)}
+    \emph{expanding} $(x-1)^2-4$ into $x^2-2x-3$, the algebra that links vertex form to standard form.
+    Debrief item~3 aloud: the same parabola will appear all lesson in three costumes.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put three equations on the board and claim they are \emph{the same parabola}:
+    \[ f(x)=x^2-2x-3 \qquad f(x)=(x-1)^2-4 \qquad f(x)=(x+1)(x-3). \]
+    Ask: without graphing, which one instantly tells you the \textbf{vertex}? Which one instantly tells
+    you the \textbf{zeros}? Which one tells you the \textbf{$y$-intercept}? Reveal that all three graph
+    to the identical curve from Lesson~3.0 (vertex $(1,-4)$, zeros $-1$ and $3$, $y$-intercept
+    $(0,-3)$). Land the theme: \emph{a quadratic wears three costumes, and each one is cut to show off a
+    different feature. Today we learn to read each costume and to draw the curve it describes.}
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. The parent and its four moves.} Start at $y=x^2$ (vertex origin, points
+$(\pm1,1),(\pm2,4)$). Demonstrate each transformation on that point set: $f(x)+k$ shifts \emph{up} $k$;
+$f(x-h)$ shifts \emph{right} $h$ (stress: the sign flips); $a\,f(x)$ makes it \emph{narrower}
+($|a|>1$) or \emph{wider} ($0<|a|<1$) and \emph{flips} it if $a<0$. Every parabola is the parent after
+these moves.
+
+\textbf{2. Vertex form $a(x-h)^2+k$.} This form \emph{is} the transformations written down: vertex
+$(h,k)$, axis $x=h$. Work $f(x)=(x-1)^2-4$: right~1, down~4, opens up, vertex $(1,-4)$, min value $-4$.
+Then \emph{expand} to $x^2-2x-3$ to show it is the same function --- the Warm-Up payoff.
+
+\textbf{3. Standard form $ax^2+bx+c$.} Here the vertex is hidden. Recover the axis with
+$x=-\tfrac{b}{2a}$, substitute to get the vertex $y$, and read the $y$-intercept as $(0,c)$. Work
+$f(x)=x^2-6x+5$: axis $x=3$, vertex $(3,-4)$, $y$-intercept $(0,5)$. Emphasize \emph{why}
+$-\tfrac{b}{2a}$ works --- it is the midpoint of any symmetric pair.
+
+\columnbreak
+
+\textbf{4. Intercept (factored) form $a(x-p)(x-q)$.} This form advertises the \emph{zeros}: set each
+factor to zero. Because the parabola is symmetric, the axis sits \emph{halfway} between them,
+$x=\tfrac{p+q}{2}$, and the vertex is one substitution away. Work $f(x)=(x+1)(x-3)$: zeros $-1,3$; axis
+$x=1$; vertex $(1,-4)$ --- again the same curve.
+
+\textbf{5. From features to a graph.} With vertex, axis, direction, and one symmetric point pair, the
+parabola is determined --- plot the vertex, use symmetry to place mirror points, and the shape follows.
+Practice by \emph{matching} equations to pre-drawn graphs so the feature-reading is the graded move,
+not freehand drawing.
+
+\textbf{6. Bring it home.} Return to the three costumes of $x^2-2x-3$ and line up the features each one
+handed you for free. Preview: Lesson~3.2 shows how to \emph{produce} the factored form (factoring) so
+we can find zeros from standard form by hand.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item the \textbf{horizontal-shift sign flip}: reading $(x-3)^2$ as a shift \emph{left} 3 instead of right~3 (and $(x+2)^2$ as right instead of left);
+  \item reporting the vertex of $a(x-h)^2+k$ as $(-h,k)$ --- forgetting that $h$ is what makes the squared factor zero;
+  \item computing the axis as $x=\tfrac{b}{2a}$ (dropping the minus sign) from standard form;
+  \item confusing \emph{stretch} with \emph{shift}: treating the $a$ in $a x^2$ as a vertical move.
+\end{itemize}
+Cold-call prompts: ``Which way does $(x-4)^2$ move the parent, and how do you know?'' ``Given
+$x^2+2x-3$, what is the axis --- and why is it $-\tfrac{b}{2a}$?'' ``Which form would you \emph{want}
+if I asked for the zeros? for the vertex?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Three Costumes, One Curve} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} From vertex-form equations, name the vertex, axis, and opening direction,
+then match each equation to one of three pre-drawn parabolas.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} From \emph{standard} form, find the axis with $-\tfrac{b}{2a}$, compute
+the vertex and $y$-intercept, complete a five-point table, and convert one equation between vertex and
+standard form by expanding.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Work \emph{intercept} form: read zeros and axis, then \emph{write} a
+quadratic's equation from a labeled graph, and describe the full transformation sequence that carries
+$y=x^2$ onto it.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): from \textbf{vertex form} $g(x)=(x+2)^2-1$, state the
+vertex, axis, opening direction, and min/max value; from \textbf{standard form} $f(x)=x^2-4x+3$, find
+the axis and vertex and the $y$-intercept; and answer an \textbf{SOL-style multiple-choice} item that
+turns on the horizontal-shift direction. Collect and sort into ``got it / shift-direction slip /
+vertex-sign slip / $-b/2a$ slip'' to decide whether Lesson~3.2 opens with a quick re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} describe transformations of $y=x^2$ and give the resulting vertex; read features from
+vertex, standard, and intercept forms; match equations to pre-drawn graphs; and convert between forms.
+\textbf{Extension:} a fountain-arch model given in intercept form --- interpret its zeros, vertex, and a
+symmetric height in context. \textbf{Preview:} Lesson~3.2, \emph{Solving Quadratics by Factoring} ---
+how to \emph{produce} the factored form so the zeros can be found from standard form by hand.
 \end{skillbox}
 \end{document}

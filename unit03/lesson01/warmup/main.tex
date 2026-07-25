@@ -3,17 +3,57 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.1}{Warm-Up}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Warm-Up. See references/components.md for the expected structure.
-\begin{notesbox}{Warm-Up}
-\writelines{4}
+\begin{notesbox}{Getting Ready: Skills We'll Use Today}
+\small These skills power today's lesson on graphing parabolas. Work quickly.
+
+\vspace{4pt}
+\textbf{1. The parent $y=x^2$.} Complete the table of the five ``anchor'' points, then read the graph.
+\begin{center}
+\begin{minipage}{0.50\linewidth}\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ \\ \hline
+$y=x^2$ & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} \\ \hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{0.40\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{3}{-1}{5}
+  \begin{scope}
+    \clip (-3,-1) rectangle (3,5);
+    \draw[very thick, forest, domain=-2.2:2.2, samples=60, smooth] plot (\x,{(\x)*(\x)});
+  \end{scope}
+  \fill[charcoal] (0,0) circle (2.5pt);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+The vertex of $y=x^2$ is the point \blank{1.4cm}, and it opens \blank{1.2cm}.
+
+\vspace{4pt}
+\textbf{2. Move one point (Unit 2 review).} The point $(2,4)$ is on the parent $y=x^2$. Give the new
+location of \emph{that} point after each change:
+\[
+  y=x^2+3:\ \blank{1.6cm} \qquad y=(x-1)^2:\ \blank{1.6cm} \qquad y=-x^2:\ \blank{1.6cm}
+\]
+
+\vspace{4pt}
+\textbf{3. Expand a square.} Multiply out and simplify (write in the form $x^2+bx+c$).
+\[
+  (x-1)^2 - 4 = \blank{4.5cm}
+\]
 \end{notesbox}
 
 \end{document}
