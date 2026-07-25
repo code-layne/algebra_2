@@ -3,17 +3,51 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Endpoint dots
+\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
+\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.4}{Exit Ticket}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Exit Ticket. See references/components.md for the expected structure.
-\begin{notesbox}{Exit Ticket}
-\writelines{4}
-\end{notesbox}
+No notes. Show your work in the space provided.
+
+\begin{enumerate}[leftmargin=1.8em, itemsep=14pt]
+  \item \textbf{Evaluate.} For $f(x)=\begin{cases} 3x, & x<1 \\ x+4, & x\ge 1 \end{cases}$
+        \\[4pt]
+        $f(0)=\blank{1.3cm}$ \qquad $f(1)=\blank{1.3cm}$ \qquad $f(3)=\blank{1.3cm}$
+        \\[4pt]
+        Which piece did you use for $f(1)$, and how do you know? \blank{5.5cm}
+
+  \item \textbf{Read the graph.} The piecewise function below is shown.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{3}{-2}{4}
+          \draw[very thick, forest] (-3,-1)--(0,-1);
+          \opendot{0}{-1}
+          \draw[very thick, forest] (0,1)--(2,3);
+          \closeddot{0}{1}
+        \end{tikzpicture}
+        \end{center}
+        $f(-2)=\blank{1.0cm}$; \quad $f(0)=\blank{1.0cm}$. \quad Is $f$ continuous at $x=0$? Explain.
+        \blank{4.5cm}
+
+  \item \textbf{Multiple choice (SOL-style).} The greatest-integer function gives $\lfloor -1.5\rfloor=$
+        \begin{enumerate}[label=(\Alph*), leftmargin=1.8em, itemsep=2pt]
+          \item $-1$
+          \item $-2$
+          \item $1$
+          \item $2$
+        \end{enumerate}
+\end{enumerate}
 
 \end{document}
