@@ -36,7 +36,7 @@
 | 1 | Foundations | (review) | 3 (no L0) | **Built** |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Scaffolded** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | ~7 | Planned |
-| 4 | Polynomial Functions | Polynomial | ~6 | Planned |
+| 4 | Polynomial Functions | Polynomial | 7 | **Scaffolded** |
 | 5 | Rational Functions | Rational | ~6 | Planned |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
@@ -335,15 +335,34 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 - **3.7** Modeling with quadratics (projectile/area/optimization)
 
 ### Unit 4 — Polynomial Functions
+> **Status (map confirmed & scaffolded 2026-07-25):** lesson map locked at **7 lessons
+> (4.0–4.6)** — the original 4.4 was split into a forward-solving lesson (4.4, RRT) and a
+> counting/building lesson (4.5, FTA & complex zeros), pushing graphing+modeling to 4.6.
+> All 7 lesson dirs `unit04/lesson00`–`lesson06` scaffolded with skeleton `main.tex` for
+> lesson plan + cover, warmup, notes, activity, exit_ticket, homework, slides, and each
+> `*_key`. Unit assessments scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`,
+> `sample_test{,_key}/`. **All components are still skeletons — none authored yet.**
+> Standards grounded against `spec/algebra2-vdoe-sol.pdf`: **A2.EO.3a/b/c/d** (operations,
+> factoring, division, identities incl. sum/diff of cubes), **A2.EI.6a/b/c/d** (solve degree
+> ≥3 over ℂ), **A2.F.2a/b/c/d/e/g** (characteristics/graphing; note polynomial is **not** in
+> A2.F.1's family list, so transformations aren't a standard here — cube-root/radical graphing
+> is Unit 6). Lesson 4.0 introduces the four new spine rows: ● odd/origin symmetry, ● relative
+> vs. absolute extrema, ● turning points, ● zero multiplicity (end behavior deepened to the
+> degree + leading-coefficient rule). **Next action: author Lesson 4.0.**
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
-  turning points, zero multiplicity)*
-- **4.1** Operations with polynomials (add, subtract, multiply)
+  turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
+- **4.1** Operations with polynomials (add, subtract, multiply) — A2.EO.3a
 - **4.2** Advanced factoring (GCF, grouping, sum & difference of cubes,
-  two-variable expressions)
-- **4.3** Dividing polynomials (long & synthetic); Remainder & Factor Theorems
-- **4.4** Zeros of polynomials (Rational Root Theorem, Fundamental Theorem of Algebra)
-- **4.5** Graphing polynomial functions & modeling
+  two-variable expressions) — A2.EO.3b/d
+- **4.3** Dividing polynomials (long & synthetic); Remainder & Factor Theorems — A2.EO.3c
+- **4.4** Zeros of polynomials: the Rational Root Theorem *(forward-solve — RRT lists
+  candidates, synthetic division tests/depresses, factor completely, solve for real zeros)*
+  — A2.EI.6c/d
+- **4.5** Fundamental Theorem of Algebra & complex zeros *(count & build — number/type of
+  solutions, complex-conjugate pairs, multiplicity, write a polynomial from its zeros)*
+  — A2.EI.6a/b (+ c/d)
+- **4.6** Graphing polynomial functions & modeling — A2.F.2a–e/g
 
 ### Unit 5 — Rational Functions
 - **5.0** Characteristics of rational functions *(introduces: vertical &
