@@ -3,17 +3,107 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.6}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Where Do They Meet?} With your partner, remember the one big idea: a \textbf{solution} of a system is
+a \textbf{point both graphs share}. To find it, set the two $y$-expressions \emph{equal} --- the system collapses
+to a single quadratic you already know how to solve. Always finish by writing an \textbf{ordered pair} and checking
+it in \emph{both} equations.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{1. Read the solutions off the graph.} The parabola $y=x^2-4$ meets the line $y=x-2$. Name the two
+intersection points.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-3}{4}{-5}{4}
+  \begin{scope}\clip (-3,-5) rectangle (4,4);
+    \draw[very thick, forest, domain=-2.6:3.1, samples=60, smooth] plot (\x,{\x*\x-4});
+    \draw[very thick, navy, domain=-3:4] plot (\x,{\x-2});
+  \end{scope}
+  \node[font=\scriptsize, forest] at (2.7,3.2){$y=x^2\!-\!4$};
+  \node[font=\scriptsize, navy]   at (3.4,0.6){$y=x-2$};
+\end{tikzpicture}
+\end{center}
+Solutions: \blank{2.4cm} and \blank{2.4cm}.
+
+\textbf{2. How many solutions?} Count the intersection points in each picture (write $0$, $1$, or $2$).
+\begin{center}
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-4}{3}
+  \begin{scope}\clip (-3,-4) rectangle (3,3);
+    \draw[very thick, forest, domain=-2.6:2.6, samples=50, smooth] plot (\x,{\x*\x-3});
+    \draw[very thick, navy] (-3,1)--(3,1);
+  \end{scope}
+  \node[font=\scriptsize\bfseries, charcoal] at (0,-5.0){A: \blank{0.8cm}};
+\end{tikzpicture}
+\hspace{0.5cm}
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-2}{2}{0}{4}
+  \begin{scope}\clip (-2,0) rectangle (2,4);
+    \draw[very thick, forest, domain=-1.7:1.7, samples=50, smooth] plot (\x,{\x*\x+1});
+    \draw[very thick, navy] (-2,1)--(2,1);
+  \end{scope}
+  \node[font=\scriptsize\bfseries, charcoal] at (0,-1.0){B: \blank{0.8cm}};
+\end{tikzpicture}
+\hspace{0.5cm}
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-2}{2}{-2}{4}
+  \begin{scope}\clip (-2,-2) rectangle (2,4);
+    \draw[very thick, forest, domain=-1.7:1.7, samples=50, smooth] plot (\x,{\x*\x+1});
+    \draw[very thick, navy] (-2,-1)--(2,-1);
+  \end{scope}
+  \node[font=\scriptsize\bfseries, charcoal] at (0,-3.0){C: \blank{0.8cm}};
+\end{tikzpicture}
+\end{center}
+
+\textbf{3. Is it a solution?} A pair is a solution only if it works in \emph{both} equations. Check each against
+$\ y=x^2-3\ $ and $\ y=x-3$ (write yes/no, and say why).
+\begin{itemize}\setlength{\itemsep}{4pt}
+  \item $(1,-2)$: \ parabola? \blank{1.2cm} line? \blank{1.2cm} $\Rightarrow$ solution? \blank{1.6cm}
+  \item $(2,1)$: \ parabola? \blank{1.2cm} line? \blank{1.2cm} $\Rightarrow$ solution? \blank{1.6cm}
+\end{itemize}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{1. Solve by substitution} (linear--quadratic). Set the $y$'s equal, solve, back-substitute, write pairs.
+\[ y=x^2+2x-1,\ \ y=x+1:\ \ \blank{4.4cm} \]
+\[ y=x^2-2x+2,\ \ y=-x+4:\ \ \blank{4.4cm} \]
+
+\textbf{2. Quadratic--quadratic.} Set the expressions equal.
+\[ y=x^2+1,\ \ y=-x^2+9:\ \ \blank{4.4cm} \]
+
+\textbf{3. It won't factor --- use the quadratic formula.} Give the $x$-coordinates in simplest radical form.
+\[ y=x^2-2,\ \ y=2x-1:\ \ x=\blank{3.4cm} \]
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{1. Model (break-even).} A shop's revenue is $y=-x^2+14x$ and its cost is $y=4x+16$ (hundreds of dollars,
+$x$ in hundreds of units). Find both break-even points, then say where the shop makes a profit.
+\[ x=\blank{2.6cm} \qquad\text{points: } \blank{3.2cm} \qquad\text{profit when } \blank{2.6cm} \]
+
+\textbf{2. Make it tangent (discriminant as a dial).} For what value of $c$ is the line $y=2x+c$ \emph{tangent} to
+the parabola $y=x^2$ (exactly one solution)? \emph{Hint: set equal, then force $b^2-4ac=0$.}
+\[ c=\blank{2.0cm} \]
+
+\textbf{3. Verify.} Show $(2,5)$ is a solution of the Tier A \#2 system by checking it in \emph{both} equations.
+\writelines{2}
+\end{tcolorbox}
 
 \end{document}
