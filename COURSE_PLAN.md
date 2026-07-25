@@ -184,6 +184,12 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 - **2.5** Linear regression (scatter plots, correlation, lines of best fit)
 
 ### Unit 3 — Quadratic Functions
+> **Status (scaffolded 2026-07-25):** lesson map locked at **8 lessons (3.0–3.7)** — full
+> breakdown (Systems 3.6 and Modeling 3.7 kept separate). All 8 lesson dirs
+> `unit03/lesson00`–`lesson07` scaffolded with skeleton `main.tex` for lesson plan + cover,
+> warmup, notes, activity, exit_ticket, homework, slides, and each `*_key`. Unit assessments
+> scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`.
+> **All skeletons — nothing authored yet.** Next action: author lesson by lesson starting 3.0.
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
