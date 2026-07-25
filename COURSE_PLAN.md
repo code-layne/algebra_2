@@ -2,13 +2,13 @@
 
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
-> **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully authored and built** —
-> all six lessons 2.0–2.5 (each: plan, cover, warm-up, notes, activity, exit ticket, homework, all
-> keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0) **plus the unit tests**
-> (practice + actual tests and both keys authored and building; practice test/key published to
-> `sample_test/` + `sample_test_key/`). **Unit 2 is content-complete.** Units 3–8 are planned here
-> and not yet scaffolded. Lesson lists below are proposals to react to and edit — pacing (days per
-> lesson) is intentionally left open pending the school calendar.
+> **Status:** Unit 1 is built in source. **Units 2 and 3 are content-complete** — every lesson
+> (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
+> unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
+> `sample_test_key/`). **Unit 4 is in progress:** all 7 lesson dirs scaffolded and assessments
+> scaffolded; **4.0 and 4.1 are authored and building**; 4.2–4.6 and the Unit 4 tests remain.
+> Units 5–8 are planned here and not yet scaffolded. Lesson lists below are proposals to react to and
+> edit — pacing (days per lesson) is intentionally left open pending the school calendar.
 
 ---
 
@@ -34,9 +34,9 @@
 | Unit | Title | Function family | Lessons (incl. L0) | Status |
 |:---:|---|---|:---:|---|
 | 1 | Foundations | (review) | 3 (no L0) | **Built** |
-| 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Scaffolded** |
-| 3 | Quadratic Functions | Quadratic (incl. complex numbers) | ~7 | Planned |
-| 4 | Polynomial Functions | Polynomial | 7 | **Scaffolded** |
+| 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
+| 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
+| 4 | Polynomial Functions | Polynomial | 7 | **In progress (4.0–4.1 built)** |
 | 5 | Rational Functions | Rational | ~6 | Planned |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
@@ -363,7 +363,27 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > lead rule), **A2.F.2b** (even/odd contrast). Warm-up & exit ticket each fit one page (blank+key);
 > notes 4pp, activity 3pp, homework 2pp; exit ticket includes an SOL-style MC item (even-multiplicity
 > touch + odd-degree end behavior). `make -C unit04/lesson00 all` → EXIT 0 (student 12pp, full 23pp).
-> **Next action: author Lesson 4.1 (Operations with Polynomials).**
+> **Lesson 4.1 authored & builds (2026-07-25):** all components + keys + 8-slide deck done; turns 4.0's
+> *factored* forms into *standard* forms. Covers standard form / degree / leading coefficient / term
+> count (incl. two-variable term degree = sum of exponents), **adding & subtracting** as pure like-term
+> collection with the year's biggest trap flagged (a leading minus is a factor of $-1$ — it flips
+> **every** sign) plus the "degree can drop" case $(x^4+2x)-(x^4-5)=2x+5$, **multiplying** at all three
+> sizes (monomial×poly, binomial×binomial, binomial×trinomial by box) in one *and two* variables, the
+> **degree/leading-coefficient rule for products** (degrees add, leads multiply ⇒ end behavior known
+> before expanding — the A2.F.2g link back to 4.0), and the **special products** $(a\pm b)^2$,
+> $(a+b)(a-b)$ with the $(x+4)^2\ne x^2+16$ error killed numerically at $x=1$. Unifying thread: the unit
+> anchor $(x-1)^2(x+2)$ is expanded to $x^3-3x+2$ (the $\pm 2x^2$ cells cancel — that is why there is no
+> $x^2$ term), and homework expands 4.0's exit-ticket function $(x+1)^2(x-2)=x^3-3x-2$ and checks it
+> against the graph students already read. Tier E expands 4.0's open-box model to
+> $V(x)=4x^3-36x^2+80x$ (checked against that lesson's table, $V(1)=48$), builds a profit polynomial
+> $P=R-C$, and justifies why a *product* never loses degree while a *sum* can. Standards: **2023 VA SOL
+> A2.EO.3a** (sums, differences, products in one and two variables), **A2.EO.3d** in its *forward*
+> direction (equality of forms; difference-of-squares & perfect-square-trinomial identities — factoring
+> is 4.2), revisiting **A2.F.2g**. Warm-up & exit ticket each fit one page (blank+key); notes 3pp,
+> activity 2pp (key 3pp — extra page is the teacher note), homework 2pp; exit ticket includes an
+> SOL-style MC item ($(3x-4)^2$, distractors = the three classic errors).
+> `make -C unit04/lesson01 all` → EXIT 0 (student 10pp, full 23pp).
+> **Next action: author Lesson 4.2 (Advanced Factoring).**
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
