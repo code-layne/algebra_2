@@ -3,17 +3,75 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.2}{Warm-Up --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Warm-Up verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Warm-Up --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Getting Ready: Skills We'll Use Today}
+\small These skills power today's lesson on factoring and solving. Work quickly.
+
+\vspace{4pt}
+\textbf{1. Multiply it out (FOIL).} Today we will run this \emph{backward}, so warm up the forward move.
+\[
+  (x+2)(x+5)=\ans{$x^2+7x+10$} \qquad (x-4)(x+3)=\ans{$x^2-x-12$}
+\]
+\[
+  (2x-1)(x+3)=\ans{$2x^2+5x-3$}
+\]
+
+\vspace{4pt}
+\textbf{2. The number game.} Find \emph{two integers} with the given product \textbf{and} sum. (Same
+signs when the product is positive; opposite signs when it is negative.)
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & product $12$, sum $7$ & product $-10$, sum $3$ & product $-12$, sum $-1$ \\ \hline
+two integers & \ans{$3,\ 4$} & \ans{$5,\ -2$} & \ans{$-4,\ 3$} \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\textbf{3. Read the $x$-intercepts, then solve.} The parabola $y=(x+3)(x-1)$ is graphed below.
+\begin{center}
+\begin{minipage}{0.42\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-4}{2}{-5}{3}
+  \begin{scope}\clip (-4,-5) rectangle (2,3);
+    \draw[very thick, forest, domain=-3.6:1.6, samples=75, smooth] plot (\x,{(\x+3)*(\x-1)});
+  \end{scope}
+  \fill[charcoal] (-3,0) circle (2.5pt);
+  \fill[charcoal] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.55\linewidth}
+The graph crosses the $x$-axis at $x=\ans{$-3$}$ and $x=\ans{$1$}$.
+
+\vspace{4pt}
+Solve each tiny equation: \quad $x+3=0 \Rightarrow x=\ans{$-3$}$ \quad
+$x-1=0 \Rightarrow x=\ans{$1$}$.
+
+\vspace{2pt}
+{\small What do you notice about your two answers?} \ans{They match the $x$-intercepts!}
+\end{minipage}
+\end{center}
 \end{notesbox}
+
+\begin{teachernote}
+Item~1 is FOIL --- the operation today's factoring reverses; keep $(2x-1)(x+3)=2x^2+5x-3$ visible for the
+$a\ne1$ grouping section. Item~2 is the product/sum search that drives factoring $x^2+bx+c$; the third
+column ($-4,3$) is the sign-trap case (negative product $\Rightarrow$ opposite signs, and the larger
+magnitude carries the sum's sign). Item~3 is the whole lesson in miniature: the $x$-intercepts of
+$(x+3)(x-1)$ are exactly the solutions of $x+3=0$ and $x-1=0$ --- the Zero Product Property, previewed
+graphically.
+\end{teachernote}
 
 \end{document}

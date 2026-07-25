@@ -214,8 +214,22 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > (the full **A2.F.1** transformation lens applied to the quadratic parent) with characteristics per
 > **A2.F.2a/d**. Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp, homework
 > 2pp; exit ticket includes an SOL-style MC item (horizontal-shift direction).
-> `make -C unit03/lesson01 all` → EXIT 0 (student 10pp, full 20pp). **Next action: author lesson 3.2
-> (Solving quadratics by factoring).**
+> `make -C unit03/lesson01 all` → EXIT 0 (student 10pp, full 20pp).
+> **Lesson 3.2 authored & builds (2026-07-25):** all components + keys + 7-slide deck done; moves from
+> *reading* a given factored form (3.1) to *producing* it and solving. Factoring the complete toolkit ---
+> GCF first, $x^2+bx+c$ by the product/sum search, $ax^2+bx+c$ by grouping ($a\!\cdot\!c$ method),
+> difference of squares $x^2-k^2$, and perfect-square trinomials (double root, graph tangent to axis) ---
+> then the **Zero Product Property** ($AB=0\Rightarrow A=0$ or $B=0$; must set $=0$ first) to solve
+> $ax^2+bx+c=0$, with the roots tied throughout to the parabola's $x$-intercepts/zeros. Unifying thread:
+> the anchor $x^2-2x-3=(x+1)(x-3)$ from 3.0--3.1, now factored by hand. Two flagged traps: dividing by $x$
+> (loses $x=0$) and the root$\leftrightarrow$factor sign flip. All graphs pre-drawn via `plot`+`\clip`;
+> includes a patio-area model (reject the negative root). Restricted to real, factor-over-integers cases
+> (square roots/completing the square → 3.3; complex roots → 3.4--3.5). Standards: **2023 VA SOL A2.EO.3b/d**
+> (factor completely; difference-of-squares & perfect-square-trinomial identities) and
+> **A2.EI.2a/b/d** (create, solve algebraically, and verify/interpret quadratic equations). Warm-up & exit
+> ticket each fit one page (blank+key); notes 2pp, activity 2pp, homework 2pp; exit ticket includes an
+> SOL-style MC item (root→factor sign flip). `make -C unit03/lesson02 all` → EXIT 0 (student 9pp, full
+> 20pp). **Next action: author lesson 3.3 (Solving by square roots & completing the square).**
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
