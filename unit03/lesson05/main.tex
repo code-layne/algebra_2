@@ -9,7 +9,7 @@
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
 \newcommand{\UnitNumberName}{Unit 3: Quadratic Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.5: The Quadratic Formula & the Discriminant}
+\newcommand{\LessonNumberName}{Lesson 3.5: The Quadratic Formula \& the Discriminant}
 
 \begin{document}
 \begin{center}
@@ -19,68 +19,182 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students learn the \emph{one method that solves every quadratic}. They
+    derive the \textbf{quadratic formula} $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$ by completing the square on
+    the general equation $ax^2+bx+c=0$ (the Lesson~3.3 move, done once in general), then use it fluently:
+    write the equation in standard form, read off $a,b,c$ (with signs), and simplify --- including
+    \emph{complex} answers when the radicand is negative (Lesson~3.4). They isolate the \textbf{discriminant}
+    $b^2-4ac$ as a \emph{predictor}: its sign tells them, \emph{before} solving, whether a quadratic has two
+    real roots ($>0$), one repeated real root ($=0$), or two complex-conjugate roots ($<0$) --- and they
+    connect each case to the parabola's $x$-intercepts (two / one / none). They choose a solving method
+    strategically, verify solutions by substitution, and apply the formula to model a contextual situation.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.2b} (solve a quadratic equation in one variable over the
+    set of complex numbers algebraically --- the quadratic formula), \textbf{A2.EI.2a} (create a quadratic
+    equation to model a contextual situation), and \textbf{A2.EI.2d} (verify solutions algebraically and
+    interpret them in context). The discriminant's link to the number and type of $x$-intercepts revisits
+    \textbf{A2.F.2d}. Builds directly on completing the square (\textbf{A2.EI.2b}, Lesson~3.3) and the
+    imaginary unit $i$ (\textbf{A2.EO.4}, Lesson~3.4).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Write $ax^2+bx+c=0$ in standard form and identify $a,b,c$ with correct signs.
+  \item Apply $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$ and simplify to simplest radical or $a+bi$ form.
+  \item Compute the \textbf{discriminant} $b^2-4ac$ and classify the roots \emph{before} solving.
+  \item Match each discriminant case to the parabola's number of $x$-intercepts (2 / 1 / 0).
+  \item Choose a solving method strategically; verify a solution by substitution.
+  \item Model a contextual situation with a quadratic and solve it with the formula.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item The formula is completing the square done \emph{once, in general} --- so it works for \emph{every} quadratic.
+  \item A negative radicand is no longer a dead end: Lesson~3.4's $i$ turns it into a complex-conjugate pair.
+  \item One number, $b^2-4ac$, encodes the entire ``how many / what kind'' of the roots.
+  \item Roots \emph{are} $x$-intercepts, so ``two complex roots'' means the parabola misses the $x$-axis.
+  \item Factoring is fastest \emph{when it works}; the formula is the universal fallback.
+  \item Not every algebraic solution is physically meaningful --- interpret and reject impossible answers.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Quadratic formula} & $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$; solves \emph{any} $ax^2+bx+c=0$ ($a\ne0$) over the complex numbers. \\
+\textbf{Standard form} & $ax^2+bx+c=0$ --- everything on one side, $=0$ --- required before reading $a,b,c$. \\
+\textbf{Discriminant} & $b^2-4ac$, the expression under the radical; its sign predicts the nature of the roots. \\
+\textbf{Two real roots} & $b^2-4ac>0$: two distinct real solutions; parabola crosses the $x$-axis twice. \\
+\textbf{Double (repeated) root} & $b^2-4ac=0$: one real solution counted twice; vertex sits \emph{on} the $x$-axis. \\
+\textbf{Complex-conjugate roots} & $b^2-4ac<0$: two solutions $a\pm bi$; parabola never touches the $x$-axis. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses the three moves today's formula requires: \textbf{(1)} \emph{evaluating}
+    $b^2-4ac$ for given $a,b,c$ (signed arithmetic --- the single most error-prone step, and today it
+    \emph{is} the discriminant); \textbf{(2)} \emph{simplifying radicals}, including negative ones from
+    Lesson~3.4 ($\sqrt{-16}=4i$, $\sqrt{20}=2\sqrt5$), so formula outputs land in simplest radical or
+    $a+bi$ form; and \textbf{(3)} \emph{rewriting an equation in standard form} $ax^2+bx+c=0$ and reading
+    off $a,b,c$ with signs. Debrief item~1 last and connect it forward: ``the number you just computed has
+    a name, and it predicts the answer before you solve.''
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put four quadratics on the board and challenge students to solve them: $x^2-2x-3=0$ (factors),
+    $x^2-6x+7=0$ (won't factor --- needs completing the square), $x^2+2x+5=0$ (complex roots, from 3.4),
+    and $2x^2-7x+3=0$. Ask: ``Which \emph{method} for each?'' Let the friction build --- factor, square
+    roots, complete the square, each with its own conditions. Then reframe: ``What if \emph{one} formula
+    solved all four, every time, no guessing?'' Reveal that completing the square on the \emph{general}
+    equation $ax^2+bx+c=0$ produces exactly that formula --- and, as a bonus, one piece of it,
+    $b^2-4ac$, tells you what kind of answer you'll get \emph{before} you turn the crank.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. Derive the formula (once, in general).} Complete the square on $ax^2+bx+c=0$ --- exactly the
+Lesson~3.3 move, but with letters. Land the result and box it:
+\[ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}. \]
+Emphasize: because it came from completing the square, and \emph{that} works on any quadratic, this
+formula works on \emph{every} quadratic. No more choosing whether a method applies.
+
+\textbf{2. Use it.} The protocol: (i) write $ax^2+bx+c=0$ in \emph{standard form}; (ii) identify $a,b,c$
+\emph{with signs}; (iii) substitute and simplify. Work the unit anchor $x^2-2x-3=0$: $a=1,b=-2,c=-3$,
+so $x=\dfrac{2\pm\sqrt{16}}{2}=\dfrac{2\pm4}{2}=3,-1$ --- the same zeros as factoring $(x+1)(x-3)$ in 3.2
+and reading the graph in 3.0. \emph{Same curve, same roots, universal method.}
+
+\columnbreak
+
+\textbf{3. The discriminant.} Isolate $D=b^2-4ac$ and make it a \emph{predictor}. Build the three-case
+table with a pre-drawn parabola for each: $D>0\Rightarrow$ two real roots (two $x$-intercepts);
+$D=0\Rightarrow$ one repeated real root (vertex on the axis, one $x$-intercept); $D<0\Rightarrow$ two
+complex-conjugate roots (no $x$-intercepts). Stress: you can answer ``how many / what kind'' \emph{without}
+finishing the solve.
+
+\textbf{4. Complex solutions.} Run $x^2+2x+5=0$: $D=4-20=-16<0$, so
+$x=\dfrac{-2\pm\sqrt{-16}}{2}=\dfrac{-2\pm4i}{2}=-1\pm2i$ --- the \emph{same} conjugate pair the
+completing-the-square capstone produced in 3.4, now from the formula. Reinforce: a negative discriminant
+is not ``no solution,'' it is a \emph{complex} solution.
+
+\textbf{5. Choose a method \& model.} Factoring is fastest when it works; square roots for $x^2=k$; the
+formula is the universal fallback. Close with a projectile/area model (A2.EI.2a/d): create the equation,
+solve with the formula, reject the impossible root, interpret in context.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Explicit Instruction: Solving with the Quadratic Formula]{forestbg}
+\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
+\textbf{Steps (post and refer back):}
+\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
+  \item Write it in standard form $ax^2+bx+c=0$ (everything on one side).
+  \item Identify $a,b,c$ \emph{with signs}.
+  \item Compute the discriminant $b^2-4ac$ first --- it previews the answer.
+  \item Substitute into $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$ and simplify (radical or $a+bi$).
+\end{enumerate}
+&
+\textbf{Worked example.} Solve $3x^2=2x+4$.
+\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
+  \item Standard form: $3x^2-2x-4=0$, so $a=3,\ b=-2,\ c=-4$.
+  \item Discriminant: $(-2)^2-4(3)(-4)=4+48=52>0$ (two real).
+  \item $x=\dfrac{2\pm\sqrt{52}}{6}=\dfrac{2\pm2\sqrt{13}}{6}$.
+  \item Simplify: $x=\dfrac{1\pm\sqrt{13}}{3}$.
+\end{itemize}
+\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item skipping standard form --- reading $a,b,c$ before the equation is set $=0$;
+  \item sign errors in $b^2-4ac$, especially $-4ac$ when $c<0$ (the ``$+$'' the double negative creates);
+  \item forgetting $-b$ means the \emph{opposite} of $b$ (so $b=-2$ gives $-b=+2$);
+  \item dividing only \emph{part} of the numerator by $2a$ (must divide \emph{both} terms / simplify the whole fraction);
+  \item stopping at a negative radicand instead of converting with $i$ (Lesson~3.4);
+  \item leaving radicals or fractions unsimplified ($\sqrt{52}=2\sqrt{13}$; reduce common factors).
+\end{itemize}
+Cold-call prompts: ``What must be true before you read $a,b,c$?'' ``$b=-5$ --- what is $-b$?''
+``The discriminant is $-16$; how many real roots, and what kind are they?'' ``Where did this formula
+\emph{come from}?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{One Formula, Every Quadratic} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Put equations in standard form, identify $a,b,c$, compute the discriminant,
+and classify the roots (two real / one repeated / two complex) --- \emph{without} finishing the solve ---
+matching each to a pre-drawn parabola.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} Solve with the formula: real rational, real irrational (simplest radical
+form), and complex-conjugate cases; verify one root by substitution.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Model a contextual situation (projectile/area), reject the impossible root
+and interpret; and a discriminant \emph{parameter} problem --- find the $k$ that makes an equation have
+exactly one real root.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): solve $x^2-4x+13=0$ with the formula (complex answer
+$2\pm3i$); use the discriminant to state the nature of the roots of a second equation \emph{without}
+solving; and an \textbf{SOL-style multiple-choice} item reading the root type from a given discriminant.
+Collect and sort into ``got it / sign slip in $b^2-4ac$ / dropped the $\pm$ or the $i$ / didn't simplify''
+to decide whether Lesson~3.6 opens with a re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} identify $a,b,c$; compute discriminants and classify roots; solve with the formula
+(real rational, real irrational, and complex cases); match discriminant sign to a graph's $x$-intercepts;
+choose an efficient method; and verify a solution by substitution. \textbf{Extension:} a projectile model
+solved with the formula and a find-the-parameter discriminant problem. \textbf{Preview:} Lesson~3.6,
+\emph{Systems Involving Quadratics} --- solving linear--quadratic and quadratic--quadratic systems, where
+substitution lands you back on a single quadratic to solve (often with today's formula).
 \end{skillbox}
 \end{document}
