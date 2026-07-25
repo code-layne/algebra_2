@@ -276,7 +276,27 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > $x$-intercepts); builds on completing the square (3.3) and $i$ (3.4). Warm-up & exit ticket each fit one page
 > (blank+key); notes 3pp, activity 2pp, homework 2pp; exit ticket includes an SOL-style MC item (root type from
 > a given discriminant). `make -C unit03/lesson05 all` → EXIT 0 (student 10pp, full 20pp).
-> **Next action: author lesson 3.6 (Systems involving quadratics — linear–quadratic & quadratic–quadratic).**
+> **Lesson 3.6 authored & builds (2026-07-25):** all components + keys + 7-slide deck done; extends
+> equation-solving from a \emph{single} quadratic (3.2--3.5) to a two-equation \textbf{system} with at least one
+> quadratic. A \textbf{solution} is an ordered pair satisfying \emph{both} equations --- graphically a
+> \textbf{point of intersection}; a \textbf{linear--quadratic} (line \& parabola) or
+> \textbf{quadratic--quadratic} (two parabolas) system has \textbf{0, 1, or 2} solutions. Solve by
+> \textbf{substitution} (set the two $y$-expressions equal) --- the key insight being that this \emph{collapses
+> the system into one quadratic} already solvable by factoring (3.2) or the formula (3.5) --- then
+> back-substitute to recover $y$; the collapsed equation's \textbf{discriminant} counts the intersection points
+> (2/1/0), reusing Lesson 3.5's three cases (secant / tangent / miss). Includes the quad--quad ``identical-$x^2$
+> terms cancel $\Rightarrow$ linear $\Rightarrow$ at most one solution'' trap, verification in \emph{both}
+> equations, and a break-even model (revenue $=$ cost, two break-even points with a profit region between).
+> Unifying thread: the unit anchor parabola $y=x^2-2x-3$ met by the line $y=x-3$ (solutions $(0,-3),(3,0)$; the
+> collapsed $x^2-3x=0$) and by three horizontal lines $y=5/-4/-6$ ($D=36/0/-8\Rightarrow 2/1/0$ points). All
+> graphs pre-drawn via `plot`+`\clip` (no sketch-from-scratch); students read intersections, solve by
+> substitution/elimination, count solutions, and model. Standards: **2023 VA SOL A2.EI.3c** (solve
+> linear--quadratic & quadratic--quadratic systems algebraically and graphically, incl.\ in context),
+> **A2.EI.3b** (number of solutions), **A2.EI.3a** (create a system to model), **A2.EI.3d** (verify \&
+> interpret). Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp, homework 2pp; exit
+> ticket includes an SOL-style MC item (number of solutions from a collapsed quadratic).
+> `make -C unit03/lesson06 all` → EXIT 0 (student 10pp, full 20pp).
+> **Next action: author lesson 3.7 (Modeling with quadratics — projectile/area/optimization; vertex as max/min).**
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations

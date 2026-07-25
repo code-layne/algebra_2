@@ -1,6 +1,11 @@
 %! Systems Involving Quadratics — Unit 3, Lesson 3.6 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,155 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 3.6}\\[0.5cm]
     {\color{white}\bfseries\LARGE Systems Involving Quadratics}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 3}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 3: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK — how many shared points?
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Where do the graphs meet?}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      One parabola $y=x^2-2x-3$; three lines:
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $y=5$ --- cuts it \textbf{twice}
+        \item $y=-4$ --- just \textbf{touches} the vertex
+        \item $y=-6$ --- \textbf{misses} entirely
+      \end{itemize}
+      Those counts ($2,1,0$) are the number of \emph{solutions} of a \emph{system}.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-3}{5}{-7}{6}
+        \begin{scope}\clip (-3,-7) rectangle (5,6);
+          \draw[very thick, forest, domain=-2.7:4.7, samples=70, smooth] plot (\x,{(\x-1)*(\x-1)-4});
+          \draw[very thick, navy] (-3,5)--(5,5);
+          \draw[very thick, redacc] (-3,-4)--(5,-4);
+          \draw[very thick, goldacc] (-3,-6)--(5,-6);
+        \end{scope}
+        \fill[charcoal] (-2,5) circle (3pt); \fill[charcoal] (4,5) circle (3pt);
+        \fill[charcoal] (1,-4) circle (3pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SOLUTION + SUBSTITUTION
+\begin{frame}[t, plain]
+  \forestheader{A solution is a shared point --- find it by substitution}
+  \sectionlabel[goldacc]{Method}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Solution of a system}
+        An $(x,y)$ that satisfies \emph{both} equations --- a \textbf{point of intersection}.
+      \end{block}
+      Both equations give $y$, so \textbf{set them equal}: the $y$ drops out and one quadratic remains.
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \textbf{Solve} $\ y=x^2-2x-3,\ \ y=x-3$
+      \begin{enumerate}\setlength{\itemsep}{1pt}
+        \item $x^2-2x-3=x-3$
+        \item $x^2-3x=0\Rightarrow x(x-3)=0$
+        \item $x=0,\ 3$
+        \item Back-sub $y=x-3$: $(0,-3),(3,0)$
+      \end{enumerate}
+      \small A solution is a \emph{pair} --- don't stop at $x$.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% HOW MANY — discriminant
+\begin{frame}[t, plain]
+  \forestheader{How many solutions? The discriminant counts them}
+  \sectionlabel{Predict}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      Substitute, reach standard form, read $b^2-4ac$ (Lesson 3.5):
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $y=5$: $x^2-2x-8=0$, $D=36>0$ --- \textbf{2}
+        \item $y=-4$: $x^2-2x+1=0$, $D=0$ --- \textbf{1} (tangent)
+        \item $y=-6$: $x^2-2x+3=0$, $D=-8<0$ --- \textbf{0}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Same three cases as 3.5}
+        $D>0\Rightarrow 2$ points, \quad $D=0\Rightarrow 1$ (tangent), \quad $D<0\Rightarrow 0$.
+      \end{block}
+      The collapsed quadratic's discriminant \emph{is} the number of times the two graphs cross.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% QUADRATIC-QUADRATIC
+\begin{frame}[t, plain]
+  \forestheader{Two parabolas: set the expressions equal}
+  \sectionlabel[goldacc]{Quad--Quad}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ y=x^2,\quad y=-x^2+8 \]
+      \[ x^2=-x^2+8\Rightarrow 2x^2=8\Rightarrow x=\pm2. \]
+      Both give $y=4$: solutions $(-2,4),(2,4)$.
+      \begin{block}{Watch out}
+        If the $x^2$ terms are \emph{identical} they cancel --- you're left with a \emph{line} (at most one solution).
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.40]
+        \lgrid{-3}{3}{-1}{9}
+        \begin{scope}\clip (-3,-1) rectangle (3,9);
+          \draw[very thick, forest, domain=-3:3, samples=60, smooth] plot (\x,{\x*\x});
+          \draw[very thick, navy, domain=-3:3, samples=60, smooth] plot (\x,{-\x*\x+8});
+        \end{scope}
+        \fill[charcoal] (-2,4) circle (3pt); \fill[charcoal] (2,4) circle (3pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% MODEL
+\begin{frame}[t, plain]
+  \forestheader{Model: break-even}
+  \sectionlabel{Apply}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      Revenue $y=-x^2+24x$, cost $y=8x+48$ (hundreds). Break even where revenue $=$ cost:
+      \[ -x^2+24x=8x+48 \]
+      \[ x^2-16x+48=0\Rightarrow(x-4)(x-12)=0. \]
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{block}{Interpret}
+        Break-even at $x=4$ and $x=12$ (hundred units): $(4,80)$ and $(12,144)$. \\[2pt]
+        \emph{Between} them, revenue beats cost --- that's the profit zone.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SUMMARY + NEXT
+\begin{frame}[t, plain]
+  \forestheader{Summary \& what's next}
+  \sectionlabel{Summary}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \begin{block}{Today}
+        A \emph{solution} is a shared point. \textbf{Substitute} (line \& parabola) or \textbf{set equal} (two
+        parabolas) --- either way the system collapses to \emph{one} quadratic. $b^2-4ac$ counts the
+        intersections ($2/1/0$).
+      \end{block}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{Next}
+        \textbf{3.7 Modeling with Quadratics}
+        \\[2pt]
+        Build the quadratic model from a projectile, area, or optimization story --- and read the \emph{vertex}
+        as the max/min.
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}
