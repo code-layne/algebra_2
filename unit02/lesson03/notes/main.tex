@@ -3,17 +3,178 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.3}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item graph the \emph{absolute value parent} $f(x)=|x|$ and read its vertex, axis, and minimum;
+  \item use \emph{vertex form} $g(x)=a|x-h|+k$ to find the vertex $(h,k)$ and axis $x=h$;
+  \item decide from $a$ whether a V \emph{opens up or down} (min vs.\ max) and is narrower or wider;
+  \item describe any absolute value graph as \emph{shifts, a stretch, and a reflection} of $y=|x|$.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\termblanklong{Absolute value parent function $f(x)=|x|$}
+\termblanklong{Vertex (turning point)}
+\termblanklong{Axis of symmetry}
+\termblanklong{Vertex form $a|x-h|+k$}
+\termblanklong{Reflection / stretch / compression}
+\end{vocabbox}
+
+\begin{hookbox}
+You drive toward a rest stop, reach it after $2$ hours, and keep going. Your \emph{distance from the
+rest stop} (in tens of miles) is $d(t)=30\,|t-2|$.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Distance at $t=0$? \blank{1.4cm} \quad At $t=2$? \blank{1.4cm} \quad At $t=4$? \blank{1.4cm}
+  \item You are \emph{closest} at $t=\blank{1.0cm}$, where the distance is \blank{1.0cm}.
+\end{itemize}
+Plot those points and the shape is a \textbf{V}. A distance is never negative, so the graph bottoms
+out at one turning point --- the \emph{vertex} --- and is symmetric about the line through it. Every
+absolute value function is this same V, moved and stretched.
+\end{hookbox}
+
+\begin{notesbox}{1. The Parent Function $f(x)=|x|$}
+Complete the table, then read the graph.
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{minipage}{0.40\linewidth}
+\centering
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=|x|$ \\ \hline
+$-2$ & \blank{0.9cm} \\ \hline
+$-1$ & \blank{0.9cm} \\ \hline
+$0$ & \blank{0.9cm} \\ \hline
+$1$ & \blank{0.9cm} \\ \hline
+$2$ & \blank{0.9cm} \\ \hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{0.55\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-4}{4}{-1}{5}
+  \draw[very thick, forest] (-4,4)--(0,0)--(4,4);
+  \fill[charcoal] (0,0) circle (3.5pt);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\textbf{Read the V:} vertex $(\blank{0.7cm},\,\blank{0.7cm})$; \; axis of symmetry
+$x=\blank{0.8cm}$; \; minimum value \blank{0.8cm}; \; domain \blank{2.0cm}; \; range \blank{1.6cm}.
+It \emph{decreases} on \blank{1.8cm} and \emph{increases} on \blank{1.8cm}. The V is really two lines
+pasted at the vertex: $y=\blank{0.8cm}$ when $x\ge 0$, and $y=\blank{0.8cm}$ when $x<0$.
 \end{notesbox}
+
+\begin{notesbox}{2. Up / Down and Left / Right}
+\textbf{Outside} the bars acts \emph{vertically, as expected}; \textbf{inside} the bars acts
+\emph{horizontally and backwards}.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+$y=|x|+k$ & shifts the V \blank{2.2cm} & $y=|x|-3$: vertex $(\blank{0.6cm},\,\blank{0.6cm})$ \\
+$y=|x-h|$ & shifts the V \blank{2.2cm} & $y=|x-3|$: vertex $(\blank{0.6cm},\,\blank{0.6cm})$; \quad $y=|x+2|$: vertex $(\blank{0.6cm},\,\blank{0.6cm})$ \\
+\end{tabularx}
+\end{center}
+Each solid V below is the parent (dashed) after \emph{one} shift. Name each vertex on the line.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  % left: y = |x - 3|  (right 3)
+  \begin{scope}
+    \lgrid{-2}{6}{-1}{5}
+    \draw[very thick, forest!40, dashed] (-1,1)--(0,0)--(4,4);
+    \draw[very thick, forest] (-1,4)--(3,0)--(6,3);
+    \fill[charcoal] (3,0) circle (3.5pt);
+    \node[charcoal, font=\scriptsize] at (2,-2.4){$y=|x-3|$};
+  \end{scope}
+  % right: y = |x| - 3  (down 3)
+  \begin{scope}[xshift=11cm]
+    \lgrid{-4}{4}{-4}{3}
+    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
+    \draw[very thick, forest] (-3,0)--(0,-3)--(3,0);
+    \fill[charcoal] (0,-3) circle (3.5pt);
+    \node[charcoal, font=\scriptsize] at (0,-5.2){$y=|x|-3$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+Left vertex: $(\blank{0.7cm},\,\blank{0.7cm})$. \qquad Right vertex: $(\blank{0.7cm},\,\blank{0.7cm})$.
+\end{notesbox}
+
+\begin{notesbox}{3. Stretch, Compress, and Reflect: $y=a|x|$}
+The number $a$ multiplies the \emph{outputs}: it scales the V and, if negative, flips it.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  % y = 2|x|  (narrow)
+  \begin{scope}
+    \lgrid{-3}{3}{-1}{5}
+    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
+    \draw[very thick, forest] (-2.2,4.4)--(0,0)--(2.2,4.4);
+    \node[charcoal, font=\scriptsize] at (0,-2.4){$y=2|x|$};
+  \end{scope}
+  % y = 1/2 |x|  (wide)
+  \begin{scope}[xshift=9cm]
+    \lgrid{-4}{4}{-1}{5}
+    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
+    \draw[very thick, forest] (-4,2)--(0,0)--(4,2);
+    \node[charcoal, font=\scriptsize] at (0,-2.4){$y=\tfrac12|x|$};
+  \end{scope}
+  % y = -|x|  (down)
+  \begin{scope}[xshift=19cm]
+    \lgrid{-3}{3}{-4}{2}
+    \draw[very thick, forest!40, dashed] (-2,2)--(0,0)--(2,2);
+    \draw[very thick, forest] (-3,-3)--(0,0)--(3,-3);
+    \node[charcoal, font=\scriptsize] at (0,-5.4){$y=-|x|$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
+  \item $|a|>1$ makes the V \blank{2.4cm}; \quad $0<|a|<1$ makes it \blank{2.4cm}.
+  \item $a<0$ \blank{2.6cm} the V, so it opens \blank{1.6cm} instead of up.
+  \item The value of $a$ is the \emph{slope} of the \blank{2.6cm} ray of the V.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Vertex Form: $g(x)=a|x-h|+k$}
+All three moves at once. The vertex is $(h,k)$ and the axis of symmetry is $x=h$.
+\[ \text{opens \textbf{up} if } a>0 \ (k \text{ is a } \textbf{minimum}); \qquad
+   \text{opens \textbf{down} if } a<0 \ (k \text{ is a } \textbf{maximum}). \]
+\textbf{Worked:} $g(x)=-2|x-1|+3$.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}X X X X@{}}
+Vertex $(\blank{0.6cm},\,\blank{0.6cm})$ & Axis $x=\blank{0.8cm}$ & Opens \blank{1.4cm} & \blank{1.2cm} value $=\blank{0.8cm}$ \\
+\end{tabularx}
+\end{center}
+Because $a=-2$, the V is \blank{1.6cm} (narrower / wider) than the parent and opens
+\blank{1.4cm}. Evaluate at $x=0$ straight from the rule:
+\[ g(0) = -2\,|\,0-1\,| + 3 = -2(\blank{0.7cm}) + 3 = \blank{1.0cm}. \]
+\end{notesbox}
+
+\begin{practicebox}
+For $g(x) = \tfrac12\,|x+4| - 2$, fill in each feature.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Vertex $(\blank{0.8cm},\,\blank{0.8cm})$; \quad axis of symmetry $x=\blank{1.0cm}$.
+  \item Opens \blank{1.4cm} (up / down), so $k$ is a \blank{1.2cm} (max / min) value of \blank{0.8cm}.
+  \item Compared to $y=|x|$, this graph is shifted \blank{1.6cm} $4$ and \blank{1.6cm} $2$, and is
+        \blank{1.4cm} (narrower / wider).
+  \item Evaluate: $g(0)=\tfrac12\,|0+4|-2 = \blank{1.2cm}$.
+\end{enumerate}
+\end{practicebox}
 
 \end{document}

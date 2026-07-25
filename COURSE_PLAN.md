@@ -3,10 +3,10 @@
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
 > **Status:** Draft v1. Unit 1 is built in source. **Unit 2 is fully scaffolded**
-> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **Lessons 2.0, 2.1, and
-> 2.2 are now fully authored and build** (each: plan, cover, warm-up, notes, activity, exit ticket,
-> homework, all keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0). Lessons
-> 2.3–2.5 remain skeletons. Units 3–8 are planned here and not yet scaffolded. Lesson lists
+> (lessons 2.0–2.5, all components + keys as skeletons, plus unit tests). **Lessons 2.0, 2.1, 2.2,
+> and 2.3 are now fully authored and build** (each: plan, cover, warm-up, notes, activity, exit
+> ticket, homework, all keys, and a 7-slide deck; `make -C unit02/lessonNN all` → EXIT 0). Lessons
+> 2.4–2.5 remain skeletons. Units 3–8 are planned here and not yet scaffolded. Lesson lists
 > below are proposals to react to and edit — pacing (days per lesson) is
 > intentionally left open pending the school calendar.
 
@@ -125,7 +125,18 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > `spec/algebra2-vdoe-sol.pdf`). Warm-up & exit ticket each fit one page (blank+key); notes 3pp,
 > activity 2pp, homework 2pp; exit ticket includes an SOL-style MC item.
 > `make -C unit02/lesson02 all` → EXIT 0 (student 10pp, full 20pp).
-> **Next:** author lessons 2.3–2.5 (still skeletons), then the unit tests + publish sample test.
+> **Lesson 2.3 authored & builds (2026-07-24):** all components + keys + 7-slide deck done; the
+> absolute value parent $y=|x|$ as a V (distance graph), transformations via vertex form
+> $g(x)=a|x-h|+k$ (vertex $(h,k)$, axis $x=h$, opens up/down by sign of $a$, narrow/wide by $|a|$,
+> min/max value $k$), and reading domain/range/intercepts/increasing-decreasing off pre-drawn V's;
+> all graphs pre-drawn (no sketch-from-scratch) — students read graphs, match equation↔graph,
+> complete tables, and build equations from graphs. Standards: **2023 VA SOL A2.F.1b/c** (the
+> transformation lens applied to the absolute value parent as entry example) and **A2.F.2a/c/d/f**
+> (characteristics; absolute value is a piecewise-defined function). Warm-up & exit ticket each fit
+> one page (blank+key); notes 3pp, activity 2pp (key 3pp — extra page is the teacher note),
+> homework 2pp; exit ticket includes an SOL-style MC item.
+> `make -C unit02/lesson03 all` → EXIT 0 (student 10pp, full 21pp).
+> **Next:** author lessons 2.4–2.5 (still skeletons), then the unit tests + publish sample test.
 
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*
