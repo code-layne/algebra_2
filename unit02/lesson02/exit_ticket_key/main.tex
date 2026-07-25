@@ -3,17 +3,57 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.2}{Exit Ticket --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Exit Ticket verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Exit Ticket --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+No notes. Show your work in the space provided.
+
+\begin{enumerate}[leftmargin=1.8em, itemsep=12pt]
+  \item \textbf{Solve the equation} (isolate the absolute value first), then check both answers.
+        \[ |2x - 5| + 1 = 8 \]
+        Isolate: $|2x-5| = 7$. \; Split: $2x-5 = 7 \Rightarrow x=6$, \; or $2x-5=-7 \Rightarrow x=-1$.\\
+        Check: $|2(6)-5|+1 = 7+1 = 8$ \checkmark; \; $|2(-1)-5|+1 = 7+1 = 8$ \checkmark.\\[2pt]
+        $x = {\color{keyred}\mathbf{6}} \text{ or } {\color{keyred}\mathbf{-1}}$
+
+  \item \textbf{Solve the inequality} and write the solution three ways.
+        \[ |x - 1| \le 3 \qquad\Rightarrow\qquad -3 \le x-1 \le 3 \qquad\Rightarrow\qquad -2 \le x \le 4 \]
+        Set: \ans{$\{x \mid -2 \le x \le 4\}$} \qquad Interval: \ans{$[-2,\,4]$}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \numline{-4}{5}
+          \draw[very thick, forest] (-2,0)--(4,0);
+          \fill[forest] (-2,0) circle (3.5pt); \fill[forest] (4,0) circle (3.5pt);
+        \end{tikzpicture}
+        \end{center}
+        In words: the solution is all numbers within \ans{$3$} of \ans{$1$}.
+
+  \item \textbf{Multiple choice (SOL-style).} Which is the solution set of $\;|x + 3| > 2$?
+        \begin{enumerate}[label=(\Alph*), leftmargin=1.8em, itemsep=2pt]
+          \item $-5 < x < -1$
+          \item $x < -5 \text{ or } x > -1$ \quad\textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+          \item $-1 < x < 5$
+          \item $x < -1 \text{ or } x > 5$
+        \end{enumerate}
+        \begin{itemize}[leftmargin=1.4em, nosep]
+          \item ``$>$'' is an ``or'' case: $x+3 < -2$ or $x+3 > 2$, giving $x<-5$ or $x>-1$.
+          \item (A) is the ``and'' answer for ``$<$''; (C) and (D) drop or misplace the $-3$ shift.
+        \end{itemize}
+\end{enumerate}
+
+\begin{teachernote}
+Item~1 checks the whole equation routine: isolate, split into \emph{both} cases, verify. Item~2
+checks all three notations plus the distance interpretation. Item~3 separates students who
+internalized ``great\emph{OR}'' from those who defaulted to ``between.'' Collect and sort into ``got
+it / didn't isolate / lost the negative case / and-vs-or slip / notation slip'' to decide whether
+Lesson~2.3 opens with a quick re-teach.
+\end{teachernote}
 
 \end{document}

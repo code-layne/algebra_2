@@ -10,6 +10,10 @@
 \newcommand{\MeetingLength}{55 minutes}
 \newcommand{\UnitNumberName}{Unit 2: Linear Functions \quad}
 \newcommand{\LessonNumberName}{Lesson 2.2: Absolute Value Equations \& Inequalities}
+% Number line: {xmin}{xmax} then draw solutions on top.
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 \begin{center}
@@ -19,55 +23,201 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can read absolute value as \emph{distance from zero} and use
+    that meaning to solve absolute value \emph{equations} and \emph{inequalities} in one variable.
+    They isolate the absolute value, split into the \emph{two cases} an equation
+    $|ax+b| = c$ requires, and recognize the special cases (no solution when $c<0$, one solution when
+    $c=0$). For inequalities they translate $|ax+b|<c$ into a ``between'' (\emph{and}) statement and
+    $|ax+b|>c$ into an ``outside'' (\emph{or}) statement, then represent the solution set three ways
+    --- \emph{set notation, interval notation, and a number line} --- and interpret a
+    \emph{tolerance} situation in context. Lesson~2.1 wrote and solved \emph{linear} expressions;
+    today those same expressions live \emph{inside} the absolute-value bars, and Lesson~2.3 turns this
+    algebra into the V-shaped graph.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} This lesson delivers the whole of \textbf{A2.EI.1} --- represent,
+    solve, and interpret absolute value equations and inequalities in one variable:
+    \textbf{A2.EI.1a} (create an absolute value \emph{equation} to model a context),
+    \textbf{A2.EI.1b} (solve an absolute value equation algebraically and verify graphically),
+    \textbf{A2.EI.1c} (create an absolute value \emph{inequality} to model a context),
+    \textbf{A2.EI.1d} (solve an absolute value inequality and represent the solution set with set
+    notation, interval notation, and a number line), and \textbf{A2.EI.1e} (verify solutions
+    algebraically/graphically, and explain and interpret solutions in context).
 \end{tcolorbox}
 
-\renewcommand{\arraystretch}{1.6}
+\renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-    % TODO: left minipage = priority skills (AP Skill x.y for AP courses);
-    %       right minipage = Key Understandings (paraphrased from EKs).
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item \textbf{Isolate} the absolute value, then split $|ax+b|=c$ into $ax+b=c$ \emph{or} $ax+b=-c$.
+  \item Recognize \textbf{no solution} ($c<0$) and \textbf{one solution} ($c=0$).
+  \item Solve $|ax+b|<c$ as the compound ``\textbf{and}'' $-c<ax+b<c$ (between).
+  \item Solve $|ax+b|>c$ as the compound ``\textbf{or}'' $ax+b<-c$ \emph{or} $ax+b>c$ (outside).
+  \item Write a solution set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
+  \item \textbf{Model} a tolerance situation and interpret the solution in context.
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item $|x|$ is a \emph{distance}, so it is never negative --- that single fact explains every case.
+  \item $|ax+b|=c$ asks ``what inputs sit \emph{distance} $c$ from zero?'' --- two answers, one on each side.
+  \item ``Less th\textbf{AND}, great\textbf{OR}'': $<$ traps the expression \emph{between} bounds; $>$ throws it \emph{outside} them.
+  \item You \emph{must} isolate the bars first --- $2|x|+1=9$ is not solved until it reads $|x|=4$.
+  \item Three notations describe the \emph{same} set; being fluent in all three is the A2.EI.1d skill.
+  \item A ``within-tolerance'' phrase (\emph{no more than $0.5$ off}) is exactly an absolute-value inequality.
+\end{itemize}
+\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Absolute value} & $|x|$ is the \emph{distance} of $x$ from $0$ on the number line; always $\ge 0$. \\
+\textbf{Absolute value equation} & An equation with a variable inside absolute-value bars, e.g.\ $|ax+b|=c$. \\
+\textbf{Two-case rule} & If $|X|=c$ and $c\ge 0$, then $X=c$ \emph{or} $X=-c$; if $c<0$, no solution. \\
+\textbf{Compound inequality} & Two inequalities joined by \emph{and} (conjunction) or \emph{or} (disjunction). \\
+\textbf{``And'' ($<$) case} & $|X|<c \iff -c<X<c$: the expression is trapped \emph{between} $-c$ and $c$. \\
+\textbf{``Or'' ($>$) case} & $|X|>c \iff X<-c$ \emph{or} $X>c$: the expression falls \emph{outside} $[-c,c]$. \\
+\textbf{Set / interval notation} & $\{x \mid -3<x<5\}$ vs.\ $(-3,5)$; brackets $[\,]$ include endpoints, parentheses $(\,)$ exclude. \\
+\textbf{Tolerance} & An allowed distance from a target value, modeled by $|\text{measured}-\text{target}|\le \text{tol}$. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses the three prerequisites today leans on: \textbf{(1)} evaluate absolute
+    values as distance from zero ($|-7|=7$); \textbf{(2)} solve a two-step \emph{linear} equation
+    (Lesson~2.1) --- the move students repeat \emph{twice} once the bars split; and \textbf{(3)} graph
+    a simple inequality on a number line and name it in interval notation, the representation
+    A2.EI.1d demands. Debrief item~1 aloud: because $|x|$ measures distance, \emph{two} different
+    numbers ($7$ and $-7$) share the same absolute value --- that is the seed of the two-case rule.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    A cereal box is labeled \textbf{500 g}. Quality control rejects any box that is \textbf{more than
+    $5$ g off} the label. Ask: \textbf{``What is the lightest box that still passes? The heaviest?''}
+    ($495$ g and $505$ g.) \textbf{``How could you write `off by at most $5$ g' with one symbol?''}
+    Guide students to $|w-500|\le 5$: the \emph{distance} between the actual weight $w$ and the target
+    $500$ is at most $5$. Land the point: an absolute value is a \emph{distance}, and today every
+    equation and inequality we solve is really a question about distance from a target --- ``exactly
+    this far'' (equation) or ``within / beyond this far'' (inequality).
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. Absolute value is distance.} $|x|$ is how far $x$ is from $0$, so it is never negative.
+\textbf{Ask: how many numbers are exactly $5$ from zero?} Two --- $5$ and $-5$. So $|x|=5$ has
+\emph{two} solutions. This is the whole lesson in one picture.
+
+\textbf{2. Solving $|ax+b|=c$.} First \textbf{isolate} the bars, then split into two cases:
+$ax+b=c$ \emph{or} $ax+b=-c$. Model $|2x-3|=7$: $2x-3=7 \Rightarrow x=5$, or $2x-3=-7 \Rightarrow
+x=-2$. \textbf{Verify} both in the original --- and note graphically they are where $y=|2x-3|$ meets
+$y=7$ (A2.EI.1b).
+
+\textbf{3. Isolate first --- always.} $3|x+1|-2=10$ is \emph{not} ready to split. Add $2$, divide by
+$3$: $|x+1|=4$, then two cases. \textbf{Stress:} students who split before isolating get the two-case
+step right but the arithmetic wrong.
+
+\textbf{4. Special cases.} $|x-4|=-3$ has \textbf{no solution} (a distance can't be negative);
+$|x-4|=0$ has \textbf{one solution} ($x=4$). Have students \emph{explain} each from the distance
+meaning, not a memorized rule.
+
+\columnbreak
+
+\textbf{5. Inequalities --- the ``and'' case.} $|x|<3$ asks ``which numbers are \emph{within} $3$ of
+zero?'' Everything \emph{between} $-3$ and $3$: $-3<x<3$. For $|2x-1|\le 5$: $-5\le 2x-1\le 5$, so
+$-2\le x\le 3$. \textbf{``Less th\emph{AND}''} --- one connected interval.
+
+\textbf{6. Inequalities --- the ``or'' case.} $|x|>3$ asks ``which numbers are \emph{more than} $3$
+from zero?'' Everything \emph{outside}: $x<-3$ \emph{or} $x>3$. For $|x+2|\ge 4$: $x+2\le -4$ or
+$x+2\ge 4$, so $x\le -6$ or $x\ge 2$. \textbf{``Great\emph{OR}''} --- two rays.
+
+\textbf{7. Three notations, one set.} Every solution set gets written three ways.
+$-2\le x\le 3$ is $\{x \mid -2\le x\le 3\}$ (set), $[-2,3]$ (interval), and a number line shaded
+between two \emph{closed} dots. Match strict $<$ to open dots / parentheses. This is the A2.EI.1d
+deliverable.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Explicit Instruction: Solving an Absolute Value Inequality]{forestbg}
+\begin{multicols}{2}
+\textbf{Steps.}
+\begin{enumerate}[leftmargin=1.4em, nosep]
+  \item \textbf{Isolate} the absolute value on one side.
+  \item If it equals a \emph{negative}: $<$/$\le$ gives \emph{no solution}; $>$/$\ge$ gives
+        \emph{all reals}. Otherwise:
+  \item \textbf{$<$ or $\le$} $\to$ ``and'': $-c\le ax+b\le c$ (one interval).\\
+        \textbf{$>$ or $\ge$} $\to$ ``or'': $ax+b\le -c$ or $ax+b\ge c$ (two rays).
+  \item Solve for $x$; keep the \emph{same} direction on both parts of an ``and''.
+  \item Write the set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
+\end{enumerate}
+
+\columnbreak
+\textbf{Worked: $|2x-1|\le 5$.}
+\[ -5 \le 2x-1 \le 5 \]
+Add $1$: \; $-4 \le 2x \le 6$. \\
+Divide by $2$: \; $-2 \le x \le 3$.\\[2pt]
+Set: $\{x \mid -2\le x\le 3\}$.\\
+Interval: $[-2,3]$.\\[2pt]
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \numline{-4}{5}
+  \draw[very thick, forest] (-2,0)--(3,0);
+  \fill[forest] (-2,0) circle (3.5pt); \fill[forest] (3,0) circle (3.5pt);
+\end{tikzpicture}
+\end{center}
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{splitting before isolating}: attacking $3|x+1|-2=10$ as two cases without first getting $|x+1|=4$;
+  \item forgetting the \emph{negative} case, so $|2x-3|=7$ yields only $x=5$;
+  \item sign slips in the negative case: $2x-3=-7$ mis-solved as $x=2$;
+  \item calling $|x-4|=-3$ ``$x=1$ or $x=7$'' instead of \textbf{no solution} (distance can't be negative);
+  \item mixing up ``and''/``or'' --- writing $x<-3$ or $x>3$ for $|x|<3$;
+  \item flipping only \emph{one} side of an ``and'' when dividing, or forgetting to flip on a negative coefficient;
+  \item open vs.\ closed dots / parentheses vs.\ brackets not matching $<$ vs.\ $\le$.
+\end{itemize}
+Cold-call prompts: ``Distance from what, and how far?'' ``Is this an \emph{and} or an \emph{or} --- how do you know from the symbol?'' ``Would $0$ be a solution? Check it.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Distance, Cases \& Sets} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Evaluate absolute values and solve basic equations
+$|x|=a$ and $|x+b|=c$ (already isolated); match each solution set to a number line.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} Isolate then solve equations; solve both types of inequalities and
+write each solution in set, interval, and number-line form; spot a no-solution case.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Model a tolerance context with an absolute-value inequality, solve it,
+and interpret the endpoints; reason about when an absolute-value equation/inequality has no solution
+or all reals.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): solve an absolute value \emph{equation} that must be
+isolated first and verify both roots; solve an absolute value \emph{inequality} and represent the
+solution in \textbf{all three} forms (set, interval, number line); and a \textbf{modeling/justify}
+item --- translate a tolerance sentence into an inequality and interpret the answer. Also included:
+one \textbf{SOL-style multiple-choice} item (choose the correct solution set for a $>$ inequality).
+Collect and sort into ``got it / didn't isolate / lost the negative case / and-vs-or slip /
+notation slip'' to decide whether Lesson~2.3 opens with a quick re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} evaluate and solve isolated equations; isolate-then-solve harder equations;
+identify no-solution / one-solution cases; solve both inequality types and record set, interval, and
+number-line forms; and translate a context into an absolute-value model. \textbf{Extension:} a
+tolerance/manufacturing problem and a ``when is there no solution / all reals?'' reasoning prompt.
+\textbf{Preview:} Lesson~2.3, \emph{Absolute Value Functions \& Transformations} --- the same
+$|ax+b|$ expression becomes a \emph{graph}, and the two solutions we found today are exactly where the
+V-shape crosses a horizontal line (previewing vertex, axis of symmetry, and minimum).
 \end{skillbox}
 \end{document}

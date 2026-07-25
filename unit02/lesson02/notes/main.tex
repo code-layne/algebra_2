@@ -3,17 +3,157 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.2}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item read \emph{absolute value} as distance from zero and solve $|ax+b|=c$ with the two-case rule;
+  \item recognize when an equation or inequality has \emph{no solution} or \emph{one solution};
+  \item solve absolute value \emph{inequalities} (``and'' for $<$, ``or'' for $>$);
+  \item write a solution set in \emph{set}, \emph{interval}, and \emph{number-line} form, and model a tolerance situation.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.06in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\termblanklong{Absolute value (distance from zero)}
+\termblanklong{Two-case rule for $|X|=c$}
+\termblanklong{``And'' case: $|X|<c$}
+\termblanklong{``Or'' case: $|X|>c$}
+\termblanklong{Set / interval notation}
+\end{vocabbox}
+
+\begin{hookbox}
+A cereal box is labeled $500$ g. Quality control rejects any box that is \emph{more than $5$ g off}
+the label.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Lightest box that still passes? \blank{2.0cm} \qquad Heaviest? \blank{2.0cm}
+  \item Write ``the weight $w$ is off from $500$ by \emph{at most} $5$'' with one symbol:
+        $\big|\,\blank{1.4cm}\,\big| \le \blank{0.8cm}$
+\end{itemize}
+An absolute value is a \emph{distance}. Every problem today asks how far an expression is from a
+target: ``exactly this far'' (equation) or ``within / beyond this far'' (inequality).
+\end{hookbox}
+
+\begin{notesbox}{1. Absolute Value Is a Distance}
+$|x|$ is the distance of $x$ from $0$, so it is \textbf{never negative}. The question $|x|=5$ asks
+\emph{which numbers are exactly $5$ units from zero} --- and there are \blank{1.0cm} of them:
+\[ x = \blank{1.2cm} \quad\text{or}\quad x = \blank{1.2cm}. \]
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \numline{-6}{6}
+  \fill[forest] (-5,0) circle (3.5pt); \fill[forest] (5,0) circle (3.5pt);
+  \draw[<->, forest!70, thick] (0,0.6) to[bend left=18] node[above, font=\scriptsize]{$5$} (5,0.6);
+  \draw[<->, forest!70, thick] (-5,0.6) to[bend left=18] node[above, font=\scriptsize]{$5$} (0,0.6);
+\end{tikzpicture}
+\end{center}
+\textbf{Big idea:} a single distance corresponds to \emph{two} inputs --- one on each side of zero.
+That is the whole engine of this lesson.
 \end{notesbox}
+
+\begin{notesbox}{2. Solving $|ax+b| = c$ --- The Two-Case Rule}
+\textbf{Step 1: isolate} the absolute value. \textbf{Step 2:} if $c \ge 0$, split into two cases:
+\[ ax+b = c \qquad\text{or}\qquad ax+b = -c. \]
+\textbf{Try it:} $|2x - 3| = 7$.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{0.92\linewidth}{@{}X | X@{}}
+\textbf{Case 1 (positive):} & \textbf{Case 2 (negative):} \\
+$2x - 3 = 7$ & $2x - 3 = -7$ \\
+$x = \blank{1.6cm}$ & $x = \blank{1.6cm}$ \\
+\end{tabularx}
+\end{center}
+\textbf{Verify} both in the original: $|2(\blank{0.7cm})-3| = 7$ \checkmark \; and
+$|2(\blank{0.7cm})-3| = 7$ \checkmark. Graphically, these are the two $x$-values where $y=|2x-3|$
+meets the line $y=7$.
+\end{notesbox}
+
+\begin{notesbox}{3. Isolate First --- and Two Special Cases}
+You \emph{cannot} split until the bars stand alone. Solve $3|x+1| - 2 = 10$:
+\[
+  3|x+1| = \blank{1.4cm} \quad\Rightarrow\quad |x+1| = \blank{1.2cm}
+  \quad\Rightarrow\quad x+1 = \blank{1.0cm} \ \text{ or } \ x+1 = \blank{1.0cm},
+  \ \text{ so } x = \blank{1.0cm} \text{ or } \blank{1.0cm}.
+\]
+\textbf{Special cases} (explain each from the distance meaning):
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $|x - 4| = -3$ has \blank{3.2cm}, because a distance can never be \blank{2.0cm}.
+  \item $|x - 4| = 0$ has exactly \blank{2.0cm} solution: $x = \blank{1.0cm}$ (distance $0$ means the expression \emph{is} zero).
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Inequalities --- The ``And'' Case ($<$, $\le$)}
+$|x| < 3$ asks \emph{which numbers are within $3$ of zero} --- everything \textbf{between} $-3$ and
+$3$. \textbf{``Less th\emph{AND}''}: $|X| < c \iff -c < X < c$ (one connected interval).
+
+\textbf{Solve} $|2x - 1| \le 5$:
+\[
+  \blank{1.0cm} \le 2x - 1 \le \blank{1.0cm}
+  \ \Rightarrow\ \blank{1.0cm} \le 2x \le \blank{1.0cm}
+  \ \Rightarrow\ \blank{1.0cm} \le x \le \blank{1.0cm}.
+\]
+Write the solution three ways:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\linewidth}{@{}l l X@{}}
+\textbf{Set notation:} & $\{\,x \mid \blank{3.0cm}\,\}$ &
+\textbf{Interval:} $\blank{2.4cm}$ \\
+\end{tabularx}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \numline{-4}{5}
+\end{tikzpicture}
+\end{center}
+{\footnotesize Shade \emph{between} the two bounds; use \textbf{closed} dots because of ``$\le$''.}
+\end{notesbox}
+
+\begin{notesbox}{5. Inequalities --- The ``Or'' Case ($>$, $\ge$)}
+$|x| > 3$ asks \emph{which numbers are more than $3$ from zero} --- everything \textbf{outside}
+$[-3,3]$. \textbf{``Great\emph{OR}''}: $|X| > c \iff X < -c$ \textbf{or} $X > c$ (two rays).
+
+\textbf{Solve} $|x + 2| \ge 4$:
+\[
+  x + 2 \le \blank{1.0cm} \quad\text{or}\quad x + 2 \ge \blank{1.0cm}
+  \ \Rightarrow\ x \le \blank{1.0cm} \quad\text{or}\quad x \ge \blank{1.0cm}.
+\]
+Write the solution three ways:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\linewidth}{@{}l l X@{}}
+\textbf{Set notation:} & $\{\,x \mid \blank{3.4cm}\,\}$ &
+\textbf{Interval:} $\blank{3.2cm}$ \\
+\end{tabularx}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \numline{-8}{4}
+\end{tikzpicture}
+\end{center}
+{\footnotesize Shade the two \emph{outside} rays; the interval uses $\cup$ (``union'').}
+\end{notesbox}
+
+\begin{practicebox}
+Solve $|3x - 6| > 9$ and write the solution set in all three forms.
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item Split (``or''): $3x - 6 < \blank{1.0cm}$ or $3x - 6 > \blank{1.0cm}$.
+  \item Solve: $x < \blank{1.2cm}$ or $x > \blank{1.2cm}$.
+  \item Set: $\{\,x \mid \blank{3.2cm}\,\}$; \quad Interval: $\blank{3.4cm}$.
+\end{enumerate}
+\end{practicebox}
 
 \end{document}
