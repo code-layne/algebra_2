@@ -6,7 +6,7 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 4 is in progress:** all 7 lesson dirs scaffolded and assessments
-> scaffolded; **4.0–4.5 are authored and building**; 4.6 and the Unit 4 tests remain.
+> scaffolded; **all seven lessons 4.0–4.6 are authored and building**; only the Unit 4 tests remain.
 > Units 5–8 are planned here and not yet scaffolded. Lesson lists below are proposals to react to and
 > edit — pacing (days per lesson) is intentionally left open pending the school calendar.
 
@@ -36,7 +36,7 @@
 | 1 | Foundations | (review) | 3 (no L0) | **Built** |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
-| 4 | Polynomial Functions | Polynomial | 7 | **In progress (4.0–4.5 built)** |
+| 4 | Polynomial Functions | Polynomial | 7 | **All 7 lessons built; tests remain** |
 | 5 | Rational Functions | Rational | ~6 | Planned |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
@@ -507,8 +507,43 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > homework 2pp (key 3pp); exit ticket includes an SOL-style MC item (which list \emph{cannot} be the
 > complete zeros of a real quartic --- the answer lists $3i$ twice with no $-3i$).
 > `make -C unit04/lesson05 all` → EXIT 0 (student 12pp, full 30pp); `make -C unit04 all` → EXIT 0.
-> **Next action: author Lesson 4.6 (graphing polynomial functions & modeling), then the Unit 4 tests
-> (practice + actual and both keys, published to `sample_test/` and `sample_test_key/`).**
+> **Lesson 4.6 authored & builds (2026-07-26):** all components + keys + 10-slide deck done; the unit
+> capstone, where every tool built separately becomes **one procedure that runs both directions**. The
+> spine is the **five-step graph plan**: degree \& leading coefficient $\Rightarrow$ the arms (4.0, with
+> the 4.1 shortcut that degrees add and leads multiply, so nothing is expanded); factor completely
+> $\Rightarrow$ the $x$-intercepts (4.2--4.4); **multiplicity** $\Rightarrow$ cross (odd) / touch (even)
+> / **flatten-then-cross** ($\ge3$); $f(0)$ $\Rightarrow$ one exact point; and the one genuinely new
+> move, a **sign chart** --- test a single $x$ in each interval between consecutive zeros, in
+> \emph{factored} form, keeping only the sign --- which delivers the positive/negative intervals and, as
+> a by-product, catches the even-multiplicity fingerprint automatically (the sign fails to flip at a
+> double zero). The **turning-point limit** $n-1$ is taught in both directions ($k$ turns $\Rightarrow$
+> degree $\ge k+1$), and the plan's honest limit is stated out loud: it fixes every zero and both arms
+> exactly but never the \emph{coordinates} of a turning point. Reversed (**A2.EI.6a**), a graph yields a
+> factored equation, with $a$ solved from the **$y$-intercept** --- the only labeled point that is not a
+> zero, which is exactly why an $x$-intercept gives the useless $0=0$ --- and the answer is always a
+> \emph{possible} equation of least degree, since a graph can hide imaginary zeros (4.5) and even
+> factors. The characteristics read (**A2.F.2a/c/d/e**) is done on $p(x)=x^4-5x^2+4$ (4.2's quartic) and
+> corrects a Unit 3 habit head-on: the relative max at $(0,4)$ is \emph{not} absolute, an odd degree has
+> \emph{no} absolute extrema, and an even degree gets one or the other but never both. The modeling
+> strand (**A2.F.2f**) builds $V(x)=x(10-2x)(8-2x)=4x^3-36x^2+80x$ from a $10\times8$ sheet (the 4.0/4.1
+> open-box model, third appearance), finds the **feasible domain** $0<x<4$, and insists that $x=5$ --- a
+> genuine zero of $V$ --- is nonsense; on that domain the relative max ($\approx52.5$ in$^3$ near
+> $x=1.5$) \emph{is} the absolute max, which is why it answers the question. Hook: two cubics with
+> \emph{identical} zeros and identical arms, $(x-1)^2(x+2)$ vs.\ $(x-1)(x+2)^2$, whose graphs look
+> nothing alike --- multiplicity is the feature that separates look-alikes. Tier E closes the unit's
+> longest loop by running the box backward: a $48$ in$^3$ order becomes $x^3-9x^2+20x-12=0$, solved by
+> the Rational Root Theorem (4.4) to $x=1,2,6$, with $6$ rejected and the \emph{two} feasible cuts
+> explained as straddling the maximum (both appear as $48$ in the notes table). All graphs pre-drawn via
+> `plot`+`\clip` --- students predict, match, read, and build, never sketch. Standards: **2023 VA SOL
+> A2.F.2a/b/c/d/e/f/g** with **A2.EI.6a**; builds on A2.EO.3b/c and A2.EI.6b/c. Warm-up \& exit ticket
+> each fit one page (blank+key); notes 5pp (key 6pp), activity 3pp (key 4pp), homework 3pp (key 3pp);
+> exit ticket includes an SOL-style MC item (touch at $x=2$ with both arms down; distractors each break
+> exactly one of degree parity, lead sign, and multiplicity).
+> `make -C unit04/lesson06 all` → EXIT 0 (student 14pp, full 30pp); `make -C unit04 all` → EXIT 0.
+> **All seven Unit 4 lessons (4.0--4.6) are now authored & building.**
+> **Next action: author the Unit 4 tests** --- `tests/{practice_test,actual_test}` and
+> `test_keys/{practice_test_key,actual_test_key}`, then publish the practice pair to `sample_test/` and
+> `sample_test_key/` via the `drop` targets. After that, Unit 5 (Rational Functions) scaffolding.
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
