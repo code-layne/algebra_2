@@ -6,7 +6,7 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 4 is in progress:** all 7 lesson dirs scaffolded and assessments
-> scaffolded; **4.0–4.3 are authored and building**; 4.4–4.6 and the Unit 4 tests remain.
+> scaffolded; **4.0–4.4 are authored and building**; 4.5–4.6 and the Unit 4 tests remain.
 > Units 5–8 are planned here and not yet scaffolded. Lesson lists below are proposals to react to and
 > edit — pacing (days per lesson) is intentionally left open pending the school calendar.
 
@@ -36,7 +36,7 @@
 | 1 | Foundations | (review) | 3 (no L0) | **Built** |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
-| 4 | Polynomial Functions | Polynomial | 7 | **In progress (4.0–4.3 built)** |
+| 4 | Polynomial Functions | Polynomial | 7 | **In progress (4.0–4.4 built)** |
 | 5 | Rational Functions | Rational | ~6 | Planned |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
@@ -436,7 +436,37 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > ticket includes an SOL-style MC item (which binomial divides $x^3-6x^2+11x-6$; distractors = the sign
 > flip and two "grab the constant" errors). `make -C unit04/lesson03 all` → EXIT 0 (student 12pp,
 > full 27pp).
-> **Next action: author Lesson 4.4 (Zeros of polynomials: the Rational Root Theorem).**
+> **Lesson 4.4 authored & builds (2026-07-26):** all components + keys + 9-slide deck done; supplies the
+> candidate list 4.3 had to be handed. The whole lesson is one workflow — **list $\rightarrow$ test
+> $\rightarrow$ divide $\rightarrow$ finish $\rightarrow$ verify** — hung on the **Rational Root
+> Theorem**: for integer coefficients, a rational zero $\frac{p}{q}$ in lowest terms has $p \mid a_0$
+> and $q \mid a_n$ (constant on *top*, leading coefficient on the *bottom*, every value with a $\pm$).
+> The theorem is *earned rather than announced*: the Warm-Up finishes Lesson 4.3's Tier E preview task,
+> dividing $h(x)=2x^3-3x^2-11x+6$ by $(x-3)$ to reach $(x-3)(2x-1)(x+2)$ and the zero $\tfrac12$ that
+> the integer list missed, then asks where that denominator came from — and the notes answer it by
+> multiplying the factors' leading coefficients ($1\cdot2\cdot1=2$) and constants ($(-3)(-1)(2)=6$),
+> so a factor $(qx-p)$ has nowhere to hide. Flagged traps: the **flipped fraction** (leading
+> coefficient on top), a **missing $\pm$**, unreduced duplicates ($\tfrac22$, $\tfrac63$), and the new
+> hazard of this lesson — reading zeros off a **non-monic factor** ($2x-1 \Rightarrow x=\tfrac12$, not
+> $2$ or $-\tfrac12$). Efficiency is taught explicitly (read the graph, shrink to the depressed
+> polynomial, test cheaply with the Remainder Theorem), and both **limits** are made concrete:
+> $x^3-x^2-2x+2=(x-1)(x^2-2)$ hands its other two zeros $\pm\sqrt2$ to the depressed polynomial, and
+> $k(x)=x^3-3x-1$ has **no rational zeros at all** yet three real ones (established from a table of
+> values with three sign changes — no sketch-from-scratch). Graph-reading carries real weight: two
+> pre-drawn TikZ graphs (notes hook $h$, activity Tier A $2x^3+3x^2-11x-6$ with intercepts $-3$,
+> $-\tfrac12$, $2$) let students *see* a fractional zero and pick it off the list instead of grinding
+> twelve candidates. Tier E proves the monic case ($d=-r(r^2+br+c)$), runs the theorem backward to
+> build $6x^3+x^2-4x+1$ from zeros $\tfrac12,\tfrac13,-1$ (the A2.EI.6a skill 4.5 opens with), and
+> closes on $x^3-x^2+4x-4$ whose depressed $x^2+4$ has no real zeros — the door into 4.5. Homework
+> closes another loop: $x^3+2x^2-5x-6$ (4.3's exit ticket, where the divisor was *given*) must now be
+> cracked with no hints, plus an A2.EI.6d verification step. Standards: **2023 VA SOL A2.EI.6c**
+> (solve degree $\ge 3$; over $\mathbb{R}$ today, $\mathbb{C}$ in 4.5) and **A2.EI.6d** (verify
+> algebraically and graphically, explain the method), using **A2.EO.3c** and **A2.EO.3b** on every
+> problem and touching **A2.F.2c**. Warm-up & exit ticket each fit one page (blank+key); notes 4pp
+> (key 5pp), activity 3pp (key 4pp), homework 2pp (key 3pp); exit ticket includes an SOL-style MC item
+> (which value is *not* a possible rational zero of $4x^3-x^2+6x-3$; answer $\tfrac23$, distractors all
+> valid candidates). `make -C unit04/lesson04 all` → EXIT 0 (student 12pp, full 28pp).
+> **Next action: author Lesson 4.5 (Fundamental Theorem of Algebra & complex zeros).**
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
