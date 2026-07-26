@@ -19,68 +19,222 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can \emph{divide} one polynomial by another --- by a
+    monomial (splitting the fraction), and by a binomial or factorable trinomial using \emph{long
+    division} --- and can use \emph{synthetic division} whenever the divisor has the form $x-r$.
+    They write every result as \emph{quotient} plus \emph{remainder over divisor} and check it
+    against the division statement $P = D\cdot Q + R$. They can then read the remainder as
+    information: the \textbf{Remainder Theorem} says it equals $f(r)$, and the \textbf{Factor
+    Theorem} says a remainder of $0$ means $(x-r)$ is a factor. That is the tool that gets past the
+    wall Lesson~4.2 ended on --- students divide a known factor out of $x^3-3x+2$ and finish a
+    factorization their identities could not reach.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3c} --- determine the quotient of polynomials in
+    one and two variables, using monomial, binomial, and factorable trinomial divisors.
+    \textbf{A2.EO.3b} is revisited every time a depressed polynomial is factored completely, and
+    \textbf{A2.EO.3a} every time a division is checked by multiplying back. \textbf{A2.F.2a} and
+    \textbf{A2.F.2f} are in play whenever the Factor Theorem is read as a statement about zeros and
+    $x$-intercepts, or the Remainder Theorem is used to evaluate $f(r)$. The lesson is the direct
+    prerequisite for \textbf{A2.EI.6c/d} in Lessons~4.4--4.5.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Divide by a \textbf{monomial} by splitting the fraction term by term (one and two variables).
+  \item \textbf{Long division}: standard form, \emph{placeholder $0$} for missing powers, divide--multiply--subtract--bring down.
+  \item \textbf{Synthetic division} when --- and only when --- the divisor is $x-r$; flip the sign of the constant.
+  \item Write the answer as $Q(x) + \dfrac{R}{D(x)}$, and \textbf{check} with $P = D\cdot Q + R$.
+  \item \textbf{Remainder Theorem}: the remainder on division by $x-r$ is $f(r)$.
+  \item \textbf{Factor Theorem}: $(x-r)$ is a factor $\iff f(r)=0 \iff r$ is a zero $\iff (r,0)$ is an $x$-intercept.
+  \item Divide a known factor out, then \textbf{factor the depressed polynomial completely}.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item Polynomial division is the \emph{same} statement as $247 = 5\cdot 49 + 2$ --- nothing new is being asserted, only a new object.
+  \item A missing power is not nothing: the placeholder $0$ holds the column that keeps the algorithm honest.
+  \item Synthetic division is not a different method --- it is long division with the variables erased, which is why it needs $x-r$.
+  \item The remainder is \emph{information}, not leftovers: it is exactly the output $f(r)$.
+  \item ``Factor,'' ``zero,'' ``$x$-intercept,'' and ``remainder $0$'' are four names for one fact --- the bridge from algebra to the graph.
+  \item Dividing a factor out \emph{lowers the degree}, which is how a hard polynomial becomes an easy one.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Dividend / divisor} & The polynomial being divided ($P$) and the polynomial you divide by ($D$). \\
+\textbf{Quotient / remainder} & The result ($Q$) and what is left over ($R$), with $\deg R < \deg D$. \\
+\textbf{Division statement} & \TallMath{P(x)=D(x)\,Q(x)+R(x) \;\Longleftrightarrow\; \tfrac{P(x)}{D(x)}=Q(x)+\tfrac{R(x)}{D(x)}} \\
+\textbf{Placeholder} & A $0$ written in for a missing power, e.g.\ $x^3-3x+2 = x^3+0x^2-3x+2$. \\
+\textbf{Long division} & Works for \emph{any} divisor: divide, multiply, subtract, bring down, repeat. \\
+\textbf{Synthetic division} & Coefficient-only shortcut, valid \emph{only} for divisors $x-r$: bring down, multiply by $r$, add. \\
+\textbf{Remainder Theorem} & \TallMath{f(x)\div(x-r) \text{ leaves remainder } f(r)} \\
+\textbf{Factor Theorem} & \TallMath{(x-r)\text{ is a factor of } f(x) \iff f(r)=0} \\
+\textbf{Depressed polynomial} & The quotient after dividing out a known factor --- one degree lower, and easier to factor. \\
+\textbf{Synthetic substitution} & Using synthetic division to \emph{evaluate} $f(r)$ instead of substituting. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses the four prerequisites this lesson stacks on, and two of them \emph{are}
+    today's theorems in disguise. \textbf{(1)} \emph{Whole-number long division}: $247\div 5$, written
+    both as $247=5\cdot 49+2$ and as $\frac{247}{5}=49+\frac{2}{5}$ --- this is the division statement
+    that governs every problem today, so put it on the board and leave it there. \textbf{(2)}
+    \emph{Monomial quotients} (Unit~1 exponent rules), including $\frac{6x^2}{6x^2}=1$ --- the
+    ``cancels to $1$, not $0$'' error. \textbf{(3)} \emph{Evaluating} $f(x)=x^3-3x+2$ at $1$, $-2$,
+    $0$, $3$, which quietly produces two zeros. \textbf{(4)} \emph{Multiplying} $(x-1)(x^2+x-2)$,
+    which returns exactly that $f$. Debrief 3 and 4 together: \textbf{``$f(1)=0$, and $(x-1)$ is a
+    factor. Coincidence?''} Leave the question open --- it is answered by name in the Factor Theorem
+    section of the notes.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put Lesson~4.2's unfinished business back on the board:
+    \[
+      p(x) = x^3 - 3x + 2 .
+    \]
+    Run the checklist aloud with the class --- GCF? no. Two terms? no. Quadratic form? no. Four terms
+    to group? no. \textbf{``Every tool we own fails. Is it prime?''} No --- and students already know
+    it is not, because in Lesson~4.0 they read this graph and saw a \emph{touch} at $x=1$ and a
+    \emph{crossing} at $x=-2$. Then the Warm-Up: $p(1)=0$, and $(x-1)(x^2+x-2)$ multiplies back to
+    exactly $p(x)$. So $(x-1)$ \emph{is} a factor. \textbf{``But nobody handed you $x^2+x-2$ today.
+    If you know one factor, how do you find the other?''} Take answers, then name it: you
+    \emph{divide}. Division is how you undo a multiplication you cannot see. Promise the payoff
+    explicitly --- by the end of the period the class will have factored $p$ completely --- and
+    deliver it in Section~3 of the notes.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. One statement runs the whole lesson.} Start from the Warm-Up's $247 = 5\cdot 49 + 2$ and
+generalize on the board:
+\[
+  P(x) = D(x)\,Q(x) + R(x), \quad \deg R < \deg D .
+\]
+\textbf{Ask:} \textbf{``When do you stop dividing?''} (When the remainder's degree drops below the
+divisor's.) \textbf{``How do you check any division you ever do?''} (Multiply $D\cdot Q$, add $R$.)
+And the line the rest of the unit hangs on: \textbf{if $R=0$, then $P = D\cdot Q$, so $D$ is a
+factor.}
+
+\textbf{2. Monomial divisors --- fast, but one trap.} A sum over one term splits:
+$\frac{12x^4-8x^3+6x^2}{2x^2}=6x^2-4x+3$. Do the two-variable case
+$\frac{15x^3y^2-10x^2y^3+5x^2y^2}{5x^2y^2}=3x-2y+1$ and stop hard on the last term: it divides out
+to $1$, \emph{not} $0$. Have students say why --- a quantity divided by itself is $1$.
+
+\textbf{3. Long division --- and the wall comes down.} Set the two rules before the first problem:
+\emph{standard form}, and a \emph{placeholder $0$} for every missing power. Then work
+$(x^3+0x^2-3x+2)\div(x-1)$ line by line, writing the subtraction as $-(\;\cdots)$ every time so the
+sign change is visible. Quotient $x^2+x-2$, remainder $0$. \textbf{Now cash it in:}
+\[
+  x^3-3x+2 = (x-1)(x^2+x-2) = (x-1)^2(x+2).
+\]
+Point at the Lesson~4.0 graph: multiplicity $2$ at $x=1$ \emph{touches}, multiplicity $1$ at $x=-2$
+\emph{crosses}. Say it plainly --- \textbf{the wall from Lesson~4.2 is down.} Then a second division
+that does \emph{not} come out even, $(2x^3+3x^2+0x-5)\div(x+2) = 2x^2-x+2-\frac{9}{x+2}$; students do
+this one while you circulate.
+
+\columnbreak
+
+\textbf{4. Synthetic division --- same thing, variables erased.} Motivate it honestly: in the long
+division above, the letters never did any work; only the coefficients did. Show the shortcut on the
+\emph{same} problem so the answer is already known, then on $(2x^3+3x^2-5)\div(x+2)$.
+\textbf{The restriction:} divisors of the form $x-r$ only --- that is why Section 3's tool never
+retires. \textbf{The error:} $x+2$ means $r=-2$. Make students rewrite it as $x-(-2)$ out loud, and
+require the placeholder $0$ in the coefficient row.
+
+\textbf{5. The Remainder Theorem --- discovered, not announced.} The second division left
+remainder $-9$. Now evaluate: $f(-2)=2(-8)+3(4)-5=-9$. \textbf{``Same number. Why?''} Derive it in
+two lines from Section 1: $f(x)=(x-r)q(x)+R$, so $f(r)=0\cdot q(r)+R=R$. Note it runs both
+directions --- a remainder without dividing, \emph{and} a fast evaluation of $f$.
+
+\textbf{6. The Factor Theorem --- four names for one fact.} State it, then build the equivalence
+table: $f(r)=0$ $\iff$ remainder is $0$ $\iff$ $(x-r)$ is a factor $\iff$ $r$ is a zero $\iff$
+$(r,0)$ is an $x$-intercept. Return to the Warm-Up: $p(1)=0$ and $p(-2)=0$ told students both
+factors of the anchor \emph{before any dividing happened}. Name the workflow that carries the rest of
+the unit: \textbf{test a candidate $\rightarrow$ divide it out $\rightarrow$ factor the depressed
+polynomial.} Close on the honest gap: we only knew to try $r=1$ because the problem said so. Where
+does the candidate list come from? \textbf{Lesson~4.4.}
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item missing \textbf{placeholders} --- both worked problems have a gap on purpose; a quotient of the wrong degree is the tell;
+  \item \textbf{not subtracting} --- students who write $+$ instead of $-(\;\cdots)$ get the first term right and everything after it wrong;
+  \item the \textbf{synthetic sign flip} --- $5$ in the corner for a divisor of $x+5$; require the rewrite $x-(-5)$;
+  \item using synthetic division on a \textbf{quadratic divisor} --- it is only valid for $x-r$;
+  \item reading the bottom row as the quotient \emph{including} the last entry --- the last number is the remainder, and the quotient's degree is one less than the dividend's;
+  \item stopping at the depressed polynomial --- the answer is not finished until every factor is prime (Lesson~4.2's standard, still in force);
+  \item sign errors when listing zeros from factors --- $(x+3)$ gives the zero $-3$;
+  \item dividing when the Remainder Theorem would have answered the question in ten seconds.
+\end{itemize}
+Cold-call prompts: ``What is the divisor, and does it have a missing power?'' ``What goes in the
+corner box, and why is it not $+2$?'' ``The remainder is $0$ --- so what do you know?'' ``Multiply
+your divisor by your quotient and add the remainder: do you get back what you started with?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Divide and Conquer} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} One monomial division (with the ``cancels to $1$'' line), one long
+division walked through step by step with the multiply-and-subtract written out, one synthetic
+division with the grid pre-drawn and the sign flip asked for explicitly, and a Remainder Theorem
+check that confirms the remainder they just computed.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} A long division with a missing power \emph{and} a nonzero
+remainder; a synthetic division that must be carried on to a complete factorization (its third zero,
+$-\tfrac32$, is deliberately not an integer); a ``no dividing allowed'' Remainder Theorem pair; a
+Factor Theorem sweep over four candidates on $x^3-x^2-9x+9$, which also factors by grouping; and
+error analysis on the two signature mistakes --- a dropped placeholder and $r=+5$ for the divisor
+$x+5$.
+
+\columnbreak
+\textbf{Tier E --- Extension.} A \emph{factorable trinomial divisor}, $x^2+x-6$, that synthetic
+division cannot touch (the A2.EO.3c clause the other tiers do not reach), carried to four linear
+factors; a ``find $k$ so that $(x-3)$ is a factor'' problem that inverts the Factor Theorem; a
+two-line proof of the Remainder Theorem plus synthetic \emph{substitution} to evaluate $f(4)$; and a
+preview task in which groups test the integer divisors of the constant term on
+$2x^3-3x^2-11x+6$, find two zeros, and discover that the third, $\tfrac12$, was never on their
+list --- conjecturing the Rational Root Theorem a day early.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} a synthetic division of
+$x^3+2x^2-5x-6$ by $x+1$ that is only right if students flip the sign for $r$, run the grid
+correctly, \emph{and} carry the quotient on to a complete factorization plus the three zeros;
+\textbf{(2)} a Remainder Theorem item on $g(x)=x^3-4x^2+2x+5$ divided by $(x-2)$ that is
+deliberately \emph{not} a factor --- students who divide it out have the procedure but not the
+theorem; and \textbf{(3)} an \textbf{SOL-style multiple-choice} item asking which binomial is a
+factor of $x^3-6x^2+11x-6$, with the sign-flip error ($x+1$) and two ``grab the constant''
+distractors ($x-6$, $x+6$). Sort the tickets into ``got it / sign flip on $r$ / placeholder or
+arithmetic / stopped before factoring'' to decide what the first five minutes of Lesson~4.4 look
+like --- a large ``stopped early'' pile matters most, because 4.4's entire method is test
+$\rightarrow$ divide $\rightarrow$ \emph{finish}.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} three monomial divisions (one two-variable); three long divisions --- an even one,
+one needing a placeholder and leaving remainder $8$, and one with the \emph{trinomial} divisor
+$x^2-x-6$ plus the question of why synthetic division cannot do it; three synthetic divisions, ending
+with $(x^4-16)\div(x-2)$, whose quotient $x^3+2x^2+4x+8$ regroups to $(x+2)(x^2+4)$ --- the same
+factorization students produced in Lesson~4.2 by a different road; a Remainder Theorem set with
+\emph{no} factors among the candidates; a full test-divide-finish problem on $x^3+2x^2-11x-12$; a
+return to Lesson~4.0's exit-ticket graph of $h(x)=x^3-3x-2$, recovered as $(x+1)^2(x-2)$ by division;
+and a written item on what a remainder of $0$ tells you. \textbf{Extension:} solve for $k$ so that
+$(x-2)$ is a factor of $x^3+kx^2-4x+4$; a prism of volume $x^3+6x^2+11x+6$ and height $(x+1)$ whose
+base dimensions come out $(x+2)$ by $(x+3)$, checked numerically at $x=2$; and synthetic substitution
+to evaluate $f(3)$. \textbf{Preview:} Lesson~4.4, \emph{the Rational Root Theorem} --- today you
+could crack anything once someone told you which $r$ to test; tomorrow you build that list yourself,
+fractions included.
 \end{skillbox}
 \end{document}

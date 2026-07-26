@@ -6,7 +6,7 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 4 is in progress:** all 7 lesson dirs scaffolded and assessments
-> scaffolded; **4.0 and 4.1 are authored and building**; 4.2–4.6 and the Unit 4 tests remain.
+> scaffolded; **4.0–4.3 are authored and building**; 4.4–4.6 and the Unit 4 tests remain.
 > Units 5–8 are planned here and not yet scaffolded. Lesson lists below are proposals to react to and
 > edit — pacing (days per lesson) is intentionally left open pending the school calendar.
 
@@ -36,7 +36,7 @@
 | 1 | Foundations | (review) | 3 (no L0) | **Built** |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
-| 4 | Polynomial Functions | Polynomial | 7 | **In progress (4.0–4.1 built)** |
+| 4 | Polynomial Functions | Polynomial | 7 | **In progress (4.0–4.3 built)** |
 | 5 | Rational Functions | Rational | ~6 | Planned |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
@@ -408,7 +408,35 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > the teacher note), activity 3pp, homework 2pp; exit ticket includes an SOL-style MC item ($8x^3-27$,
 > distractors = the three cube-identity errors). `make -C unit04/lesson02 all` → EXIT 0 (student 12pp,
 > full 26pp).
-> **Next action: author Lesson 4.3 (Dividing Polynomials; Remainder & Factor Theorems).**
+> **Lesson 4.3 authored & builds (2026-07-26):** all components + keys + 9-slide deck done; supplies the
+> tool 4.2 lacked. Everything hangs on one statement, introduced from the Warm-Up's $247=5\cdot49+2$:
+> $P=D\cdot Q+R$ with $\deg R<\deg D$, so **$R=0$ means the divisor is a factor**. Covers **monomial
+> divisors** (split the fraction; one and two variables; the $\frac{5x^2y^2}{5x^2y^2}=1$-not-$0$ trap),
+> **long division** with the two setup rules (standard form + a **placeholder 0** for every missing
+> power) written with the subtraction shown as $-(\cdots)$, **synthetic division** for divisors $x-r$
+> only (the sign flip $x+2\Rightarrow r=-2$ drilled as "rewrite it $x-(-2)$"), and both theorems
+> *discovered rather than announced* — the **Remainder Theorem** lands when the remainder $-9$ from
+> $(2x^3+3x^2-5)\div(x+2)$ turns out to equal $f(-2)$, proved in two lines by substituting $x=r$ into
+> $f(x)=(x-r)q(x)+R$; the **Factor Theorem** arrives as a five-row equivalence table (factor $\iff$
+> $f(r)=0$ $\iff$ remainder 0 $\iff$ zero $\iff$ $x$-intercept), already true in Warm-Up items 3–4.
+> Unifying thread: the unit anchor $x^3-3x+2$ — unfactorable with 4.2's toolkit — is divided by $(x-1)$
+> to give $x^2+x-2$ and hence $(x-1)^2(x+2)$, matched to the multiplicity-2 touch and the crossing
+> students read off the 4.0 graph (**"the wall is down"**). Homework closes the unit's longest loop:
+> $h(x)=x^3-3x-2$ (read on 4.0's exit ticket, expanded in 4.1, unfactorable in 4.2) is recovered as
+> $(x+1)^2(x-2)$ by division; $(x^4-16)\div(x-2)$ returns $x^3+2x^2+4x+8=(x+2)(x^2+4)$, the same
+> factorization 4.2 produced by a different road. Tier E carries the **factorable trinomial divisor**
+> $x^2+x-6$ (the A2.EO.3c clause synthetic division cannot reach), a "find $k$ so $(x-3)$ is a factor"
+> inversion, synthetic **substitution**, and a preview task where groups test the integer divisors of
+> $6$ on $2x^3-3x^2-11x+6$, find $r=-2,3$, and discover the third zero $\frac12$ was never on the list —
+> conjecturing the Rational Root Theorem a day early. Standards: **2023 VA SOL A2.EO.3c** (monomial,
+> binomial, and factorable trinomial divisors), revisiting **A2.EO.3b** (factor the depressed
+> polynomial completely) and **A2.EO.3a** (check by multiplying), touching **A2.F.2a/f** (zeros,
+> $x$-intercepts, evaluating $f(r)$); direct prerequisite for **A2.EI.6c/d** in 4.4–4.5. Warm-up & exit
+> ticket each fit one page (blank+key); notes 4pp (key 5pp), activity 3pp (key 4pp), homework 2pp; exit
+> ticket includes an SOL-style MC item (which binomial divides $x^3-6x^2+11x-6$; distractors = the sign
+> flip and two "grab the constant" errors). `make -C unit04/lesson03 all` → EXIT 0 (student 12pp,
+> full 27pp).
+> **Next action: author Lesson 4.4 (Zeros of polynomials: the Rational Root Theorem).**
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g

@@ -11,16 +11,208 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.3}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Dividing Polynomials; Remainder and Factor Theorems}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4}
+    {\color{white}\bfseries\LARGE Dividing Polynomials}\\[0.25cm]
+    {\color{white}\bfseries\large Remainder \& Factor Theorems}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{The wall we hit yesterday}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ p(x) = x^3 - 3x + 2 \]
+      \vspace{2pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item GCF? No. \; Two-term pattern? No.
+        \item Quadratic form? No. \; Four terms? No.
+        \item And yet Lesson 4.0's graph \emph{touches} at $x=1$ and \emph{crosses} at $x=-2$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{From the Warm-Up}
+        $p(1) = 0$ \quad and \quad $(x-1)(x^2+x-2) = x^3-3x+2$. \\[4pt]
+        So $(x-1)$ \textbf{is} a factor.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize But nobody handed you $x^2+x-2$. If you know one factor, how do you find the
+       other? \textbf{You divide.}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE DIVISION STATEMENT
+\begin{frame}[t, plain]
+  \forestheader{One statement runs the whole lesson}
+  \sectionlabel[goldacc]{Foundation}
+  \[ 247 = 5\cdot 49 + 2 \qquad\longrightarrow\qquad P(x) = D(x)\,Q(x) + R(x) \]
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item Equivalently: \; $\dfrac{P(x)}{D(x)} = Q(x) + \dfrac{R(x)}{D(x)}$
+    \item Stop dividing when $\deg R < \deg D$.
+    \item Check \emph{any} division: multiply $D\cdot Q$, add $R$, compare.
+  \end{itemize}
+  \begin{block}{The line the rest of the unit hangs on}
+    If $R = 0$, then $P(x) = D(x)\,Q(x)$ --- so $D(x)$ is a \textbf{factor} of $P(x)$.
+  \end{block}
+\end{frame}
+
+% MONOMIAL DIVISORS
+\begin{frame}[t, plain]
+  \forestheader{Monomial divisors: split the fraction}
+  \sectionlabel{Method}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      \[ \frac{a+b}{c} = \frac{a}{c} + \frac{b}{c} \]
+      \[ \frac{12x^4-8x^3+6x^2}{2x^2} = 6x^2-4x+3 \]
+      \[ \frac{15x^3y^2-10x^2y^3+5x^2y^2}{5x^2y^2} = 3x-2y+1 \]
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{The trap}
+        The last term cancels completely --- and leaves $\mathbf{1}$, not $0$. \\[4pt]
+        A quantity divided by itself is $1$.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% LONG DIVISION
+\begin{frame}[t, plain]
+  \forestheader{Long division: two setup rules, then the wall falls}
+  \sectionlabel{Method}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      \textbf{1.} Standard form. \quad \textbf{2.} A placeholder $0$ for every missing power.
+      \[
+      \begin{array}{r}
+        x^2 + x - 2 \phantom{{}+2} \\[2pt]
+        x-1\,\overline{\smash{\big)}\,x^3+0x^2-3x+2} \\[2pt]
+        \underline{-(x^3-\phantom{1}x^2)}\phantom{{}-3x+2} \\[2pt]
+        x^2-3x\phantom{{}+2} \\[2pt]
+        \underline{-(x^2-\phantom{1}x)}\phantom{{}+2} \\[2pt]
+        -2x+2 \\[2pt]
+        \underline{-(-2x+2)} \\[2pt]
+        0
+      \end{array}
+      \]
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Remainder $0$ --- so cash it in}
+        \[ x^3-3x+2 = (x-1)(x^2+x-2) \]
+        \[ = (x-1)^2(x+2) \]
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize Multiplicity $2$ at $x=1$ $\Rightarrow$ the graph \emph{touches}; multiplicity
+       $1$ at $x=-2$ $\Rightarrow$ it \emph{crosses}. Exactly the Lesson 4.0 graph.
+       \textbf{The wall is down.}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SYNTHETIC DIVISION
+\begin{frame}[t, plain]
+  \forestheader{Synthetic division: the same work, variables erased}
+  \sectionlabel[goldacc]{Shortcut}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      $x^3-3x+2 \;\div\; (x-1)$, coefficients $1,\,0,\,-3,\,2$:
+      \begin{center}
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{r|rrrr}
+      $1$ & $1$ & $0$  & $-3$ & $2$ \\
+          &     & $1$  & $1$  & $-2$ \\ \cline{2-5}
+          & $1$ & $1$  & $-2$ & $0$ \\
+      \end{tabular}
+      \end{center}
+      \vspace{3pt}
+      Bring down, multiply by $r$, add. The last entry is the \textbf{remainder}; the rest are the
+      quotient's coefficients, one degree lower.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{One restriction, one trap}
+        Divisors of the form $x-r$ \textbf{only} --- that is why long division never retires. \\[4pt]
+        $x+2$ means $r = \mathbf{-2}$. Rewrite it as $x-(-2)$ every single time.
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize And the placeholder $0$ is still required in the coefficient row.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% REMAINDER THEOREM
+\begin{frame}[t, plain]
+  \forestheader{The remainder was never leftovers}
+  \sectionlabel[goldacc]{Remainder Theorem}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      $2x^3+3x^2-5 \;\div\; (x+2)$ gives
+      \[ 2x^2-x+2 \;-\; \frac{9}{x+2} \]
+      Now just \emph{evaluate}:
+      \[ f(-2) = 2(-8)+3(4)-5 = -9 \]
+      \textbf{The same number.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Remainder Theorem}
+        Dividing $f(x)$ by $x-r$ leaves the remainder $f(r)$.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize \textbf{Why:} $f(x) = (x-r)q(x) + R$. Put $x=r$: \\[3pt]
+       $f(r) = 0\cdot q(r) + R = R$. \\[5pt]
+       It runs both ways --- a remainder without dividing, \emph{and} a fast way to evaluate $f$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FACTOR THEOREM
+\begin{frame}[t, plain]
+  \forestheader{Four names for one fact}
+  \sectionlabel[goldacc]{Factor Theorem}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|c|l|}
+  \hline
+  1 & $f(r) = 0$ \\ \hline
+  2 & The remainder on dividing $f(x)$ by $x-r$ is $0$ \\ \hline
+  3 & $(x-r)$ is a \textbf{factor} of $f(x)$ \\ \hline
+  4 & $r$ is a \textbf{zero} of $f$, and $(r,0)$ is an $x$-intercept of its graph \\ \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{block}{The workflow for the rest of Unit 4}
+    \textbf{Test} a candidate $r$ $\;\rightarrow\;$ \textbf{divide} it out $\;\rightarrow\;$ factor
+    the \textbf{depressed polynomial} completely.
+  \end{block}
+\end{frame}
+
+% THE NEXT WALL
+\begin{frame}[t, plain]
+  \forestheader{Where does the candidate list come from?}
+  \sectionlabel{Connections}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      We only tried $r=1$ because the Warm-Up pointed us there. \\[6pt]
+      Try it cold: \; $h(x) = 2x^3-3x^2-11x+6$. \\[4pt]
+      Integer divisors of $6$: $\pm1,\pm2,\pm3,\pm6$ --- and $r=-2$, $r=3$ both work. \\[4pt]
+      \[ h(x) = (x+2)(2x-1)(x-3) \]
+      The third zero is $\tfrac12$. \textbf{It was never on the list.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Today:} divide by monomials, binomials, and trinomials; synthetic division for $x-r$;
+      the Remainder \& Factor Theorems.\\[8pt]
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item \textbf{4.4} The Rational Root Theorem --- the candidate list, fractions included.
+        \item \textbf{4.5} Fundamental Theorem of Algebra \& complex zeros.
+        \item \textbf{4.6} Graphing polynomial functions \& modeling.
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}
