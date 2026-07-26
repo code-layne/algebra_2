@@ -4,16 +4,352 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.6}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item predict every feature of a polynomial's graph from its equation --- end behavior, $x$- and $y$-intercepts, the behavior at each zero, the number of turning points, and where the graph is above or below the $x$-axis --- and match that prediction to the correct graph;
+  \item read a polynomial graph the other direction: write a possible equation in factored form from its $x$-intercepts, its behavior at each one, and its $y$-intercept;
+  \item state a polynomial's domain, range, increasing/decreasing intervals, and relative vs.\ absolute extrema from its graph;
+  \item build a polynomial model, restrict it to the inputs that make sense, and answer a real question with the feature that matches it.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.04in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\termblanklong{Sign chart}
+\termblanklong{Behavior at a zero (cross / touch / flatten)}
+\termblanklong{Turning point}
+\termblanklong{Relative extremum vs.\ absolute extremum}
+\termblanklong{Feasible domain (of a model)}
+\end{vocabbox}
+
+\begin{hookbox}
+Both graphs below have exactly the same $x$-intercepts: $x = -2$ and $x = 1$. Only one of them is
+$g(x) = (x-1)^2(x+2)$. (Each horizontal gridline is $2$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-4}{3}{-4}{4}
+  \begin{scope}
+    \clip (-4,-4) rectangle (3,4);
+    \draw[very thick, forest, domain=-2.55:2.2, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x) - 3*(\x) + 2)/2});
+  \end{scope}
+  \foreach \x in {-2,-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (-2,0) circle (2.5pt);
+  \fill[charcoal] (1,0)  circle (2.5pt);
+  \node[font=\scriptsize\bfseries, charcoal] at (-2.6,3.4) {Graph 1};
+\end{tikzpicture}
+\hspace{0.5cm}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-4}{3}{-4}{4}
+  \begin{scope}
+    \clip (-4,-4) rectangle (3,4);
+    \draw[very thick, forest, domain=-3.3:1.55, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x) + 3*(\x)*(\x) - 4)/2});
+  \end{scope}
+  \foreach \x in {-2,-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (-2,0) circle (2.5pt);
+  \fill[charcoal] (1,0)  circle (2.5pt);
+  \node[font=\scriptsize\bfseries, charcoal] at (-3.4,3.4) {Graph 2};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Which graph is $g$? \blank{2.0cm} \; What did you use to decide? \blank{5.0cm}
+  \item The other graph is $(x-1)(x+2)^2$. Its zeros are the \emph{same} two numbers. What is
+        different about them? \blank{5.4cm}
+\end{itemize}
+\textbf{Today's question: how much of a polynomial's graph can you know before you ever plot a
+point --- and what can that picture tell you about a real situation?}
+\end{hookbox}
+
+\begin{notesbox}{1. The Five-Step Graph Plan}
+Nothing in this lesson is new. Every step is a tool from an earlier lesson; today they run in order.
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{|C{0.7cm}|X|C{2.1cm}|X|}
+\hline
+\rowcolor{forestbg}
+\textbf{\#} & \textbf{What you do} & \textbf{From} & \textbf{What it decides about the picture} \\ \hline
+1 & Find the degree and the leading coefficient. & 4.0, 4.1 & \\ \hline
+2 & Factor completely; set each factor to $0$. & 4.2--4.4 & \\ \hline
+3 & Record the \textbf{multiplicity} of each zero. & 4.0 & \\ \hline
+4 & Evaluate $f(0)$. & --- & \\ \hline
+5 & Test one $x$ in each interval between zeros. & new today & \\ \hline
+\end{tabularx}
+
+\vspace{5pt}
+\textbf{Two rules to have in front of you.}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item \textbf{Behavior at a zero.} Odd multiplicity $\Rightarrow$ the graph \blank{2.0cm} the
+        axis. Even multiplicity $\Rightarrow$ the graph \blank{2.0cm} the axis and turns back.
+        Multiplicity $3$ or more $\Rightarrow$ it still crosses, but it \blank{2.4cm} out first.
+  \item \textbf{Turning points.} A polynomial of degree $n$ has \emph{at most} \blank{1.4cm}
+        turning points. Run that backward: a graph with $4$ turning points must have degree at
+        least \blank{1.2cm}.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{What the plan cannot give you.} It locates every zero exactly and every arm exactly, but not
+the \emph{coordinates} of the turning points --- those need a table of values or technology. Knowing
+that a peak is somewhere between two zeros is enough for everything on this page.
 \end{notesbox}
+
+\begin{notesbox}{2. Worked Example A --- the Unit Anchor}
+Analyze $g(x) = x^3 - 3x + 2 = (x-1)^2(x+2)$ completely, then check it against Graph 1 above.
+
+\vspace{4pt}
+\textbf{Step 1 --- arms.} Degree \blank{0.8cm}, leading coefficient \blank{0.8cm}. Odd degree,
+positive lead: as $x \to -\infty$, $g(x) \to$ \blank{1.4cm}; as $x \to +\infty$, $g(x) \to$
+\blank{1.4cm}.
+
+\vspace{3pt}
+\textbf{Steps 2--3 --- zeros and behavior.} $x = $ \blank{1.0cm} (multiplicity \blank{0.7cm}) $\Rightarrow$
+the graph \blank{1.8cm}; \quad $x = $ \blank{1.0cm} (multiplicity \blank{0.7cm}) $\Rightarrow$ the
+graph \blank{1.8cm}.
+
+\vspace{3pt}
+\textbf{Step 4 --- $y$-intercept.} $g(0) = $ \blank{1.0cm} \; $\Rightarrow$ \; the point
+\blank{1.6cm}.
+
+\vspace{3pt}
+\textbf{Step 5 --- sign chart.} The zeros $-2$ and $1$ split the axis into three intervals.
+
+\vspace{2pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|C{2.6cm}|C{1.6cm}|C{3.4cm}|C{2.2cm}|X|}
+\hline
+\rowcolor{forestbg}
+\textbf{Interval} & \textbf{Test $x$} & \textbf{$(x-1)^2(x+2)$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
+$x<-2$     & $-3$ & & & \\ \hline
+$-2<x<1$   & $0$  & & & \\ \hline
+$x>1$      & $2$  & & & \\ \hline
+\end{tabularx}
+
+\vspace{4pt}
+\textbf{Assemble it.} The graph comes up from $-\infty$ on the left, crosses at \blank{1.2cm}, stays
+\blank{1.6cm} the axis all the way to $x=1$, \blank{1.6cm} the axis there without crossing, and
+leaves upward. Turning points visible: \blank{1.0cm} --- and the degree allows at most
+\blank{1.0cm}. \checkmark
+
+\vspace{3pt}
+\textbf{Notice the trap the sign chart catches.} Between $-2$ and $1$ the graph is above the axis,
+and \emph{after} $1$ it is above the axis again. The sign did \blank{2.4cm} change at $x=1$ --- which
+is exactly what an even multiplicity means.
+\end{notesbox}
+
+\begin{notesbox}{3. Worked Example B --- a Negative Lead and a Flattened Zero}
+Analyze $q(x) = -(x+2)(x-1)^3$ before you look at the graph.
+
+\vspace{4pt}
+\textbf{1. Arms.} Degree \blank{0.8cm} (degrees add: $1 + 3$), leading coefficient \blank{1.0cm}.
+So as $x \to -\infty$, $q(x) \to$ \blank{1.4cm}, and as $x \to +\infty$, $q(x) \to$ \blank{1.4cm}.
+
+\vspace{3pt}
+\textbf{2--3. Zeros.} $x = $ \blank{1.0cm} (multiplicity \blank{0.7cm}), behavior: \blank{1.8cm};
+\quad $x = $ \blank{1.0cm} (multiplicity \blank{0.7cm}), behavior: \blank{3.0cm}.
+
+\vspace{3pt}
+\textbf{4. $y$-intercept.} $q(0) = -(2)(-1)^3 = $ \blank{1.0cm}
+
+\vspace{3pt}
+\textbf{5. Sign chart.} \quad
+$x<-2$: test $-3$, sign \blank{1.2cm} \quad $-2<x<1$: test $0$, sign \blank{1.2cm} \quad
+$x>1$: test $2$, sign \blank{1.2cm}
+
+\vspace{4pt}
+Now check yourself against the real graph. (Each horizontal gridline is $4$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{3}{-3}{3}
+  \begin{scope}
+    \clip (-3,-3) rectangle (3,3);
+    \draw[very thick, forest, domain=-2.4:2.0, samples=170, smooth]
+      plot (\x,{(0 - (\x)*(\x)*(\x)*(\x) + (\x)*(\x)*(\x) + 3*(\x)*(\x) - 5*(\x) + 2)/4});
+  \end{scope}
+  \foreach \x in {-2,-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (-2,0) circle (2.5pt);
+  \fill[charcoal] (1,0)  circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item Both arms point \blank{1.6cm}, as an even degree with a negative lead requires.
+  \item At $x=1$ the graph does something a simple crossing never does: it \blank{3.0cm} before
+        passing through. That is the fingerprint of multiplicity \blank{1.0cm}.
+  \item How many turning points does the graph have? \blank{1.0cm} \; The degree allows at most
+        \blank{1.0cm}, so this is legal.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Running It Backward: From a Graph to an Equation}
+This is Lesson 4.5's build-from-zeros skill (A2.EI.6a) with the zeros read off a picture instead of
+handed to you. (Each horizontal gridline is $2$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{3}{-3}{4}
+  \begin{scope}
+    \clip (-3,-3) rectangle (3,4);
+    \draw[very thick, forest, domain=-2.3:2.3, samples=150, smooth]
+      plot (\x,{(0 - (\x)*(\x)*(\x) + 3*(\x) + 2)/2});
+  \end{scope}
+  \foreach \x in {-2,-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (-1,0) circle (2.5pt);
+  \fill[charcoal] (2,0)  circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
+  \item $x$-intercepts: \blank{2.4cm}. \; At $x=-1$ the graph \blank{1.6cm} the axis, so that
+        factor is squared; at $x=2$ it \blank{1.6cm}, so that factor appears once.
+  \item Skeleton: $f(x) = a\,($\blank{1.8cm}$)^2\,($\blank{1.8cm}$)$. \; Its degree is
+        \blank{0.8cm}.
+  \item \textbf{Find $a$ with the $y$-intercept.} The graph passes through $(0,$\blank{0.8cm}$)$, so
+        $f(0) = a(1)^2(-2) = $ \blank{1.2cm} $\Rightarrow a = $ \blank{1.0cm}.
+  \item Final answer: $f(x) = $ \blank{4.6cm}
+  \item \textbf{Check the arms.} Degree \blank{0.8cm}, leading coefficient \blank{1.0cm}: up on the
+        left, down on the right. Does the graph agree? \blank{1.2cm}
+\end{enumerate}
+
+\vspace{3pt}
+\textbf{Why the answer is only ``a possible equation.''} A graph cannot show you an imaginary zero
+(Lesson 4.5), so $f(x)$ could also carry a factor like $x^2+1$ that no picture would reveal. Say
+\emph{least degree} when you want the one answer above.
+\end{notesbox}
+
+\begin{notesbox}{5. Reading the Finished Graph: All the Characteristics}
+Here is $p(x) = x^4 - 5x^2 + 4 = (x-1)(x+1)(x-2)(x+2)$ --- the quartic you factored in Lesson 4.2.
+(Each horizontal gridline is $2$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{3}{-3}{4}
+  \begin{scope}
+    \clip (-3,-3) rectangle (3,4);
+    \draw[very thick, forest, domain=-2.35:2.35, samples=170, smooth]
+      plot (\x,{((\x)*(\x)*(\x)*(\x) - 5*(\x)*(\x) + 4)/2});
+  \end{scope}
+  \foreach \x in {-2,-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \foreach \p in {-2,-1,1,2} \fill[charcoal] (\p,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item \textbf{Domain:} \blank{3.0cm} \quad (every polynomial has the same domain --- why?
+        \blank{3.4cm})
+  \item \textbf{Range:} \blank{3.4cm} \; The lowest the graph ever goes is about $y=-2.25$, and both
+        arms rise forever.
+  \item \textbf{Zeros / $x$-intercepts:} \blank{3.4cm} \qquad \textbf{$y$-intercept:} \blank{1.6cm}
+  \item \textbf{Turning points:} \blank{1.0cm}, which is the most a degree-\blank{0.8cm} polynomial
+        may have.
+  \item \textbf{Relative maximum} at about $($\blank{1.4cm}$)$. It is \emph{relative} --- not
+        absolute --- because \blank{4.4cm}.
+  \item \textbf{Absolute minimum} value about \blank{1.2cm}, reached at two different $x$-values,
+        about $x \approx \pm 1.6$. There is \blank{1.6cm} absolute maximum, because the arms
+        \blank{2.6cm}.
+  \item \textbf{Increasing:} about \blank{4.2cm} \quad \textbf{Decreasing:} about \blank{4.2cm}
+  \item \textbf{Positive} ($p(x)>0$) on \blank{5.0cm}; \textbf{negative} on \blank{4.0cm}.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Even-degree vs.\ odd-degree, one more time.} A polynomial of odd degree has \blank{1.6cm}
+absolute extrema at all, because its arms run in opposite directions. Only an \emph{even} degree can
+have one --- and then only one of the two.
+\end{notesbox}
+
+\begin{notesbox}{6. Modeling: Where a Polynomial Comes From}
+A $10$-inch by $8$-inch sheet of cardboard has a square of side $x$ cut from each corner; the flaps
+fold up to make an open box.
+
+\vspace{4pt}
+\begin{tabularx}{\linewidth}{@{}X c@{}}
+\begin{minipage}[t]{0.60\linewidth}\vspace{0pt}
+\textbf{Build the model.} After the cuts, the base measures
+\blank{1.8cm} by \blank{1.8cm}, and the height is \blank{1.0cm}.
+
+\vspace{3pt}
+$V(x) = $ \blank{5.0cm}
+
+\vspace{3pt}
+Expanded (Lesson 4.1): $V(x) = 4x^3 - 36x^2 + 80x$. Degree
+\blank{0.8cm}.
+
+\vspace{4pt}
+\textbf{Feasible domain.} The zeros of $V$ are $x = $ \blank{2.6cm}.
+Which of them could actually be a corner cut? \blank{2.0cm}
+
+\vspace{2pt}
+A cut must be positive, and it cannot take more than half of the
+\blank{1.8cm} side. So the model only makes sense for
+\blank{2.6cm} --- the \textbf{feasible domain}.
+\end{minipage}
+&
+\begin{minipage}[t]{0.36\linewidth}\vspace{0pt}\centering
+\renewcommand{\arraystretch}{1.35}
+\small
+\begin{tabular}{|C{1.1cm}|C{2.2cm}|}
+\hline
+\rowcolor{forestbg}
+$x$ & $V(x)$ \\ \hline
+$0.5$ & $31.5$ \\ \hline
+$1$   & \\ \hline
+$1.5$ & \\ \hline
+$2$   & $48$ \\ \hline
+$2.5$ & $37.5$ \\ \hline
+$3$   & $24$ \\ \hline
+\end{tabular}
+\end{minipage}
+\end{tabularx}
+
+\vspace{4pt}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Fill in the two missing table values. The largest volume in the table is about \blank{1.6cm}
+        cubic inches, at $x \approx$ \blank{1.0cm} inches.
+  \item That point is a \textbf{relative maximum} of $V$. On the feasible domain it is also the
+        \blank{2.4cm} maximum --- which is why it answers the question ``what is the biggest box?''
+  \item \textbf{Interpret (A2.F.2f).} $V(2.5) = 37.5$ means: \blank{6.4cm}
+  \item Outside the feasible domain the polynomial keeps going --- $V(5) = 0$ and $V(6) = 48$ --- but
+        those outputs describe \blank{4.0cm}. The \emph{algebra} does not know about cardboard; you
+        do.
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+\textbf{A. Five steps, one function.} $f(x) = (x+3)(x-2)^2$
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item Degree \blank{0.8cm}; leading coefficient \blank{0.8cm}; end behavior: down-left and
+        \blank{1.6cm}.
+  \item Zeros and behavior: $x=$ \blank{1.0cm} (\blank{1.6cm}), \; $x=$ \blank{1.0cm}
+        (\blank{1.6cm}). \quad $y$-intercept: \blank{1.4cm}
+  \item Sign of $f$ on $x<-3$: \blank{1.2cm}; on $-3<x<2$: \blank{1.2cm}; on $x>2$: \blank{1.2cm}
+  \item So the graph is below the axis only when \blank{2.6cm}, and it \blank{1.8cm} the axis at
+        $x=2$ without ever going below it again.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{B. Backward.} A cubic's graph crosses the $x$-axis at $x=-1$, touches it at $x=3$, and passes
+through $(0,-9)$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt, start=5]
+  \item Skeleton with $a$: \blank{4.4cm}
+  \item Solve for $a$: \blank{3.0cm} \quad Final equation: \blank{4.4cm}
+\end{enumerate}
+\end{practicebox}
 
 \end{document}

@@ -4,16 +4,266 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.6}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Predict, Then Look.} Every problem on this page runs the same five steps: \textbf{(1)}
+degree and leading coefficient give the arms, \textbf{(2)} the factors give the $x$-intercepts,
+\textbf{(3)} the multiplicities say cross, touch, or flatten, \textbf{(4)} $f(0)$ gives one exact
+point, \textbf{(5)} one test value per interval says above or below. Make the prediction
+\emph{before} you look at any graph --- the point of the page is that the equation already told you.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\begin{enumerate}[leftmargin=1.7em, itemsep=9pt]
+  \item \textbf{Three cousins.} These three functions use the same two numbers, $-1$ and $2$. Fill in
+    the table from the factored form --- no expanding.
+
+    \vspace{3pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{|X|C{1.2cm}|C{1.4cm}|C{2.6cm}|C{2.6cm}|C{1.6cm}|}
+    \hline
+    \rowcolor{forestbg}
+    \textbf{Function} & \textbf{Deg.} & \textbf{Lead} & \textbf{Left arm / right arm} & \textbf{At $x=-1$ / at $x=2$} & \textbf{$y$-int} \\ \hline
+    (a) $f(x)=(x+1)(x-2)^2$  & & & & & \\ \hline
+    (b) $g(x)=-(x+1)(x-2)^2$ & & & & & \\ \hline
+    (c) $h(x)=(x+1)^2(x-2)$  & & & & & \\ \hline
+    \end{tabularx}
+
+  \item \textbf{Now match.} Each graph below is one of the three. Write the letter under each one.
+    (Each horizontal gridline is $2$ units.)
+    \begin{center}
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-3}{3}{-4}{4}
+      \begin{scope}
+        \clip (-3,-4) rectangle (3,4);
+        \draw[very thick, forest, domain=-1.6:2.7, samples=150, smooth]
+          plot (\x,{(0 - (\x)*(\x)*(\x) + 3*(\x)*(\x) - 4)/2});
+      \end{scope}
+      \foreach \x in {-2,-1,1,2}
+        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+      \node[font=\scriptsize\bfseries, charcoal] at (-2.2,3.4) {I};
+    \end{tikzpicture}
+    \hspace{0.15cm}
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-3}{3}{-4}{4}
+      \begin{scope}
+        \clip (-3,-4) rectangle (3,4);
+        \draw[very thick, forest, domain=-1.6:2.7, samples=150, smooth]
+          plot (\x,{((\x)*(\x)*(\x) - 3*(\x)*(\x) + 4)/2});
+      \end{scope}
+      \foreach \x in {-2,-1,1,2}
+        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+      \node[font=\scriptsize\bfseries, charcoal] at (-2.2,3.4) {II};
+    \end{tikzpicture}
+    \hspace{0.15cm}
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-3}{3}{-4}{4}
+      \begin{scope}
+        \clip (-3,-4) rectangle (3,4);
+        \draw[very thick, forest, domain=-2.2:2.3, samples=150, smooth]
+          plot (\x,{((\x)*(\x)*(\x) - 3*(\x) - 2)/2});
+      \end{scope}
+      \foreach \x in {-2,-1,1,2}
+        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+      \node[font=\scriptsize\bfseries, charcoal] at (-2.2,3.4) {III};
+    \end{tikzpicture}
+    \end{center}
+
+    \vspace{2pt}
+    Graph I is \blank{1.0cm} \qquad Graph II is \blank{1.0cm} \qquad Graph III is \blank{1.0cm}
+
+    \vspace{2pt}
+    Which \emph{one} feature separates (a) from (c)? \blank{5.0cm}
+
+  \item \textbf{Sign chart practice.} Use $f(x) = (x+1)(x-2)^2$ from row (a).
+
+    \vspace{3pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{|C{2.6cm}|C{1.6cm}|C{3.6cm}|C{1.8cm}|X|}
+    \hline
+    \rowcolor{forestbg}
+    \textbf{Interval} & \textbf{Test $x$} & \textbf{$f(\text{test }x) = $} & \textbf{Sign} & \textbf{Above / below} \\ \hline
+    $x<-1$    & $-2$ & & & \\ \hline
+    $-1<x<2$  & $0$  & & & \\ \hline
+    $x>2$     & $3$  & & & \\ \hline
+    \end{tabularx}
+
+    \vspace{2pt}
+    The sign changed at $x=-1$ but \emph{not} at $x=2$. Why not? \blank{5.6cm}
+
+  \item \textbf{Count the turns.} A polynomial has degree $5$.
+
+    \vspace{2pt}
+    At most how many turning points can its graph have? \blank{1.2cm} \quad At most how many
+    $x$-intercepts? \blank{1.2cm}
+
+    \vspace{2pt}
+    Must its graph cross the $x$-axis at least once? \blank{1.2cm} \; Why? \blank{5.0cm}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\begin{enumerate}[leftmargin=1.7em, itemsep=10pt]
+  \item \textbf{Factor first, then predict.} $f(x) = x^3 - x^2 - 6x$
+
+    \vspace{2pt}
+    (a) Factor completely (GCF first --- Lesson 4.2): \blank{5.0cm}
+
+    \vspace{2pt}
+    (b) Degree \blank{0.8cm}, leading coefficient \blank{0.8cm}. End behavior: as $x\to-\infty$,
+    $f(x)\to$ \blank{1.2cm}; as $x\to+\infty$, $f(x)\to$ \blank{1.2cm}
+
+    \vspace{2pt}
+    (c) Zeros: \blank{3.0cm} \quad Each one is a \blank{1.8cm} (multiplicity $1$).
+    \quad $y$-intercept: \blank{1.4cm}
+
+    \vspace{2pt}
+    (d) Sign chart --- four intervals this time:
+
+    \vspace{2pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{|C{2.4cm}|C{1.4cm}|C{3.0cm}|C{1.6cm}|X|}
+    \hline
+    \rowcolor{forestbg}
+    \textbf{Interval} & \textbf{Test $x$} & \textbf{$f(\text{test }x)$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
+    $x<-2$    & $-3$ & & & \\ \hline
+    $-2<x<0$  & $-1$ & & & \\ \hline
+    $0<x<3$   & $1$  & & & \\ \hline
+    $x>3$     & $4$  & & & \\ \hline
+    \end{tabularx}
+
+    \vspace{3pt}
+    (e) Here is the real graph. (Each horizontal gridline is $4$ units.) Check every prediction you
+    just made against it.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-3}{4}{-3}{3}
+      \begin{scope}
+        \clip (-3,-3) rectangle (4,3);
+        \draw[very thick, forest, domain=-2.5:3.5, samples=170, smooth]
+          plot (\x,{((\x)*(\x)*(\x) - (\x)*(\x) - 6*(\x))/4});
+      \end{scope}
+      \foreach \x in {-2,-1,1,2,3}
+        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+      \foreach \p in {-2,0,3} \fill[charcoal] (\p,0) circle (2.5pt);
+    \end{tikzpicture}
+    \end{center}
+
+    \vspace{2pt}
+    (f) From the graph: \textbf{domain} \blank{2.4cm}, \textbf{range} \blank{2.4cm}. \;
+    Relative maximum near $x\approx$ \blank{1.0cm}, relative minimum near $x\approx$ \blank{1.0cm}.
+
+    \vspace{2pt}
+    (g) Does this function have an \emph{absolute} maximum or minimum? \blank{1.2cm} \; Explain using
+    the degree: \blank{5.0cm}
+
+  \item \textbf{Read the equation off the picture.} The graph below is a cubic.
+    (Each horizontal gridline is $4$ units.)
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-4}{3}{-3}{3}
+      \begin{scope}
+        \clip (-4,-3) rectangle (3,3);
+        \draw[very thick, forest, domain=-3.6:2.0, samples=170, smooth]
+          plot (\x,{(0 - (\x)*(\x)*(\x) - (\x)*(\x) + 5*(\x) - 3)/4});
+      \end{scope}
+      \foreach \x in {-3,-2,-1,1,2}
+        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+      \fill[charcoal] (-3,0) circle (2.5pt);
+      \fill[charcoal] (1,0)  circle (2.5pt);
+    \end{tikzpicture}
+    \end{center}
+
+    \vspace{2pt}
+    (a) $x$-intercepts: \blank{2.6cm} \; Which one is a touch? \blank{1.4cm} \; So which factor is
+    squared? \blank{2.0cm}
+
+    \vspace{2pt}
+    (b) Skeleton: $f(x) = a\,($\blank{1.6cm}$)($\blank{1.8cm}$)^2$
+
+    \vspace{2pt}
+    (c) The graph passes through $(0,-3)$, so $a = $ \blank{1.2cm}. \; (Check the sign against the
+    arms: is the left arm up or down? \blank{1.4cm})
+
+    \vspace{2pt}
+    (d) Final equation: \blank{5.0cm}
+
+  \item \textbf{Error analysis.} Two classmates, two different mistakes.
+
+    \vspace{2pt}
+    (a) ``The graph of $y=(x-4)^2(x+1)$ crosses the $x$-axis at $x=4$ and at $x=-1$.''
+    What is wrong, and what does the graph actually do at $x=4$? \blank{5.6cm}
+
+    \vspace{2pt}
+    (b) ``This graph has four turning points, so the function has degree $4$.''
+    What is the smallest degree it could have? \blank{1.2cm} \; Explain: \blank{5.0cm}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- The box, run backward.} The open box from the notes has volume
+$V(x) = x(10-2x)(8-2x) = 4x^3 - 36x^2 + 80x$ cubic inches, with feasible domain $0 < x < 4$. A
+customer wants a box holding \textbf{exactly $48$ cubic inches}.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item Write the equation to solve, then move everything to one side and divide out the common
+        factor $4$: \; \blank{5.4cm}
+  \item List the possible rational zeros of that cubic (Lesson 4.4): \blank{6.0cm}
+  \item Find one that works and divide it out. Depressed polynomial: \blank{3.0cm}
+
+        \vspace{2pt}
+        Factor it: \blank{3.0cm} \; All three solutions: \blank{3.4cm}
+  \item Which solutions are \emph{feasible} cuts? \blank{2.6cm} \; Which one must you reject, and
+        why? \blank{4.4cm}
+  \item You found \emph{two} different cuts that give $48$ cubic inches. Look at the table in your
+        notes and explain how one volume can happen twice. \writeline
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 2 --- Build a graph to order.} Write a polynomial in factored form whose graph
+\emph{touches} the $x$-axis at $x=-1$, \emph{crosses} at $x=0$ and $x=3$, and has \textbf{both arms
+pointing down}.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item The three zeros force the factors \blank{4.0cm}, and the touch forces one of them to have
+        exponent \blank{1.0cm}.
+  \item So the smallest possible degree is \blank{1.0cm}. Is that even or odd? \blank{1.4cm}
+  \item Both arms down requires an \blank{1.6cm} degree and a \blank{1.8cm} leading coefficient.
+        Does your degree from (b) cooperate? \blank{1.2cm}
+  \item Final answer: $f(x) = $ \blank{5.0cm} \quad Its $y$-intercept is \blank{1.4cm}.
+  \item Could a \emph{cubic} have done this job? \blank{1.2cm} \; Explain in one sentence.
+        \writeline
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- What a picture can and cannot prove.} A polynomial $p$ has real coefficients. Its
+graph has exactly \textbf{two} $x$-intercepts, both simple crossings, and exactly \textbf{three}
+turning points.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item Three turning points forces the degree to be at least \blank{1.0cm}.
+  \item The arms: with three turning points and two crossings, both arms point the \blank{2.4cm}
+        direction, so the degree is \blank{1.6cm}.
+  \item Take the degree to be exactly $4$. Counting with multiplicity, how many \emph{real} zeros
+        does $p$ have? \blank{1.2cm} \; So how many \emph{imaginary} zeros? \blank{1.2cm} \;
+        (Lesson 4.5 --- and check that the number is even.)
+  \item A classmate says ``the graph proves the polynomial has degree $4$.'' Give a degree-$6$
+        polynomial whose graph could look exactly the same, and say what the graph really proves.
+        \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}

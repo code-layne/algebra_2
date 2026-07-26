@@ -11,16 +11,243 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.6}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Graphing Polynomial Functions and Modeling}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4}
+    {\color{white}\bfseries\LARGE Graphing Polynomial Functions}\\[0.25cm]
+    {\color{white}\bfseries\large and Modeling}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Same zeros. Different graphs.}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ (x-1)^2(x+2) \qquad \text{vs.} \qquad (x-1)(x+2)^2 \]
+      \vspace{2pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Both have $x$-intercepts at $-2$ and $1$ --- and nowhere else.
+        \item Both are cubics with a positive lead, so both arms behave the same way.
+        \item Their graphs still look nothing alike.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{The question}
+        The zeros are identical. \\[4pt]
+        \textbf{What tells the two pictures apart --- and how much of a graph can you know before
+        plotting a single point?}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE FIVE-STEP PLAN
+\begin{frame}[t, plain]
+  \forestheader{The five-step graph plan --- all of it is review}
+  \sectionlabel[goldacc]{Method}
+  \footnotesize
+  \begin{enumerate}\setlength{\itemsep}{4pt}
+    \item \textbf{Degree \& leading coefficient} $\Rightarrow$ the arms. \hfill {\scriptsize(4.0, 4.1)}
+    \item \textbf{Factor completely} $\Rightarrow$ the $x$-intercepts. \hfill {\scriptsize(4.2--4.4)}
+    \item \textbf{Multiplicity of each zero} $\Rightarrow$ cross, touch, or flatten. \hfill {\scriptsize(4.0)}
+    \item \textbf{$f(0)$} $\Rightarrow$ the $y$-intercept: one exact point.
+    \item \textbf{One test value per interval} $\Rightarrow$ above or below the axis. \hfill {\scriptsize(new today)}
+  \end{enumerate}
+  \vspace{4pt}
+  \begin{block}{What the plan does not give you}
+    The exact coordinates of the turning points. You get \emph{how many} ($\le n-1$) and roughly
+    \emph{where} --- the peak heights need a table or technology.
+  \end{block}
+\end{frame}
+
+% MULTIPLICITY
+\begin{frame}[t, plain]
+  \forestheader{Multiplicity is the feature that separates look-alikes}
+  \sectionlabel{Key Idea}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{6pt}
+        \item \textbf{Odd multiplicity} ($1, 3, 5, \dots$): the graph \textbf{crosses} --- the sign
+          of $f(x)$ changes.
+        \item \textbf{Even multiplicity} ($2, 4, \dots$): the graph \textbf{touches} and turns back
+          --- the sign does \emph{not} change.
+        \item \textbf{Multiplicity $3$ or more}: it still crosses, but it \textbf{flattens} on the
+          way through.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The unit anchor}
+        $g(x) = x^3-3x+2 = (x-1)^2(x+2)$ \\[4pt]
+        Touches at $1$ (double), crosses at $-2$. \\[4pt]
+        Swap the exponents and you get a completely different picture with the same two intercepts.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SIGN CHART
+\begin{frame}[t, plain]
+  \forestheader{The sign chart: above or below, interval by interval}
+  \sectionlabel[goldacc]{New Today}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      $g(x) = (x-1)^2(x+2)$; zeros at $-2$ and $1$.
+      \begin{center}
+      \renewcommand{\arraystretch}{1.25}
+      \begin{tabular}{l|c|c|c}
+      Interval & Test & $g$(test) & Sign \\ \hline
+      $x<-2$   & $-3$ & $(-4)^2(-1) = -16$ & $-$ \\
+      $-2<x<1$ & $0$  & $(-1)^2(2) = 2$    & $+$ \\
+      $x>1$    & $2$  & $(1)^2(4) = 4$     & $+$ \\
+      \end{tabular}
+      \end{center}
+      \vspace{2pt}
+      Use the \textbf{factored} form --- only signs matter, so this is ten seconds of work.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Read the last two rows again}
+        The sign did \emph{not} flip at $x=1$. \\[4pt]
+        That is not an error --- it is what even multiplicity means, and the sign chart catches it
+        automatically.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% WORKED EXAMPLE
+\begin{frame}[t, plain]
+  \forestheader{One equation, the whole picture}
+  \sectionlabel{Worked Example}
+  \footnotesize
+  \[ q(x) = -(x+2)(x-1)^3 \]
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Degree $1+3 = 4$; lead $-1$ $\Rightarrow$ \textbf{both arms down}.
+        \item Zeros: $-2$ (crosses), $1$ (multiplicity $3$ --- \textbf{flattens}, then crosses).
+        \item $q(0) = -(2)(-1)^3 = 2$.
+        \item Signs: $-$ on $x<-2$, $+$ on $-2<x<1$, $-$ on $x>1$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Assemble}
+        Up from $-\infty$ on the left, cross at $-2$, over the top through $(0,2)$, flatten through
+        $1$, and back down to $-\infty$. \\[4pt]
+        One turning point --- and degree $4$ permits three.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% BACKWARD
+\begin{frame}[t, plain]
+  \forestheader{Run it backward: graph $\rightarrow$ equation}
+  \sectionlabel[goldacc]{A2.EI.6a}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      A graph touches at $x=-1$, crosses at $x=2$, and passes through $(0,2)$.
+      \begin{enumerate}\setlength{\itemsep}{3pt}
+        \item Skeleton: $f(x) = a(x+1)^2(x-2)$.
+        \item $f(0) = a(1)(-2) = 2 \Rightarrow a = -1$.
+        \item $f(x) = -(x+1)^2(x-2)$.
+        \item Check the arms: degree $3$, lead $-1$ --- up on the left, down on the right. \checkmark
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Two warnings}
+        The $y$-intercept is the \emph{only} labeled point that is not a zero --- which is exactly
+        why it can pin down $a$. An $x$-intercept gives $0=0$. \\[4pt]
+        And the answer is always ``\emph{a} possible equation'': a graph can hide imaginary zeros
+        (4.5) and extra even factors.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CHARACTERISTICS
+\begin{frame}[t, plain]
+  \forestheader{Reading the finished graph}
+  \sectionlabel{A2.F.2a--e}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      $p(x) = x^4-5x^2+4$:
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Domain: all reals --- always, for a polynomial.
+        \item Range: about $[-2.25,\infty)$.
+        \item Zeros $-2,-1,1,2$; $y$-intercept $(0,4)$.
+        \item Relative max at $(0,4)$; absolute min about $-2.25$; \textbf{no} absolute max.
+        \item $3$ turning points --- the most a quartic may have.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Say it out loud}
+        An \textbf{odd}-degree polynomial has \emph{no} absolute extrema at all. \\[4pt]
+        An \textbf{even}-degree one has an absolute minimum (positive lead) or an absolute maximum
+        (negative lead) --- never both.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% MODELING
+\begin{frame}[t, plain]
+  \forestheader{Modeling: the picture only counts where it makes sense}
+  \sectionlabel[goldacc]{Application}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      Cut $x$-inch squares from the corners of a $10 \times 8$ sheet and fold:
+      \[ V(x) = x(10-2x)(8-2x) = 4x^3-36x^2+80x \]
+      \begin{center}
+      \renewcommand{\arraystretch}{1.15}
+      \begin{tabular}{c|cccccc}
+      $x$    & $0.5$ & $1$ & $1.5$ & $2$ & $2.5$ & $3$ \\ \hline
+      $V(x)$ & $31.5$ & $48$ & $\mathbf{52.5}$ & $48$ & $37.5$ & $24$ \\
+      \end{tabular}
+      \end{center}
+      \vspace{2pt}
+      Zeros of $V$: $0$, $4$, $5$ --- none of them is a usable cut.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Feasible domain: $0 < x < 4$}
+        A cut is positive and cannot exceed half the $8$-inch side. Inside that window the relative
+        maximum \emph{is} the absolute maximum --- which is why it answers ``what is the biggest
+        box?''
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize $V(2.5)=37.5$ means a $2.5$-inch cut gives a $37.5$ in$^3$ box. The algebra does
+       not know about cardboard; you do.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% WHERE THIS GOES
+\begin{frame}[t, plain]
+  \forestheader{Every tool in the unit, in one picture}
+  \sectionlabel{Connections}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      \textbf{Today:}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Arms, intercepts, multiplicity, $f(0)$, sign chart --- one procedure.
+        \item Graph $\rightarrow$ equation, using the $y$-intercept to find $a$.
+        \item Domain, range, increasing/decreasing, relative vs.\ absolute extrema.
+        \item Models, feasible domains, and interpreting a maximum.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Coming next}
+        \textbf{The Unit 4 test}, and then \textbf{Unit 5: Rational Functions} --- a polynomial in a
+        denominator, where dividing by zero puts brand-new lines on the graph: \emph{asymptotes}.
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}
