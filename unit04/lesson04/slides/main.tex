@@ -11,16 +11,211 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.4}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Zeros of Polynomials: the Rational Root Theorem}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4}
+    {\color{white}\bfseries\LARGE Zeros of Polynomials}\\[0.25cm]
+    {\color{white}\bfseries\large The Rational Root Theorem}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{The zero that was never on the list}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ h(x) = 2x^3 - 3x^2 - 11x + 6 \]
+      \vspace{2pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Yesterday you tested the divisors of $6$ and found $r = -2$ and $r = 3$.
+        \item Dividing finishes the job: $h(x) = (x+2)(2x-1)(x-3)$.
+        \item So the third zero is $\mathbf{\tfrac12}$ --- and $\tfrac12$ was never on the list.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Two questions}
+        Where did that $2$ in the denominator come from? \\[4pt]
+        And which numbers \emph{are} worth testing?
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Guessing is hopeless --- there are infinitely many numbers. A test is only
+       useful if the list of suspects is \textbf{finite}.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE THEOREM
+\begin{frame}[t, plain]
+  \forestheader{The Rational Root Theorem}
+  \sectionlabel[goldacc]{Foundation}
+  \begin{block}{For $f(x) = a_nx^n + \cdots + a_1x + a_0$ with \emph{integer} coefficients}
+    If $\dfrac{p}{q}$ is a rational zero of $f$ in lowest terms, then \\[4pt]
+    \hspace{1em} $p$ divides the \textbf{constant term} $a_0$, \quad and \quad
+    $q$ divides the \textbf{leading coefficient} $a_n$.
+  \end{block}
+  \vspace{4pt}
+  \[ \text{candidates} \;=\; \pm\,\frac{\text{divisors of the constant term}}{\text{divisors of the leading coefficient}} \]
+  \vspace{-4pt}
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item Constant on \textbf{top}. Leading coefficient on the \textbf{bottom}. Reduce, drop repeats, keep every $\pm$.
+  \end{itemize}
+\end{frame}
+
+% WHY IT IS TRUE
+\begin{frame}[t, plain]
+  \forestheader{Why it has to be true}
+  \sectionlabel{Reasoning}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      From the Warm-Up:
+      \[ h(x) = (x-3)(2x-1)(x+2) \]
+      \vspace{-6pt}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item Leading coefficients of the factors: $1\cdot 2\cdot 1 = \mathbf{2}$ --- that \emph{is} $a_n$.
+        \item Constant terms of the factors: $(-3)(-1)(2) = \mathbf{6}$ --- that \emph{is} $a_0$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The idea in one line}
+        A zero $\frac{p}{q}$ comes from a factor $(qx - p)$. \\[4pt]
+        All the $q$'s multiply to the leading coefficient; all the $p$'s multiply to the constant
+        term. \\[4pt]
+        Neither has anywhere to hide.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% BUILDING THE LIST
+\begin{frame}[t, plain]
+  \forestheader{Building the list}
+  \sectionlabel{Method}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      \textbf{(a)} $f(x) = x^3 - 4x^2 + x + 6$ \\[3pt]
+      $p \mid 6$: \; $\pm1, \pm2, \pm3, \pm6$ \qquad $q \mid 1$: \; $\pm1$ \\[3pt]
+      Candidates: $\pm1, \pm2, \pm3, \pm6$ \\[8pt]
+      \textbf{(b)} $g(x) = 4x^3 - 4x^2 - x + 1$ \\[3pt]
+      $p \mid 1$: \; $\pm1$ \qquad $q \mid 4$: \; $\pm1, \pm2, \pm4$ \\[3pt]
+      Candidates: $\pm1, \pm\tfrac12, \pm\tfrac14$
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Leading coefficient $= 1$?}
+        Then every $q$ is $\pm1$, so the candidates are just the \textbf{divisors of the constant
+        term}. That is most of the problems you will see.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize \textbf{The error of the day:} flipping the fraction. Ask yourself whether $4$
+       could plausibly be a zero of $g$ --- it is not close.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE WORKFLOW
+\begin{frame}[t, plain]
+  \forestheader{List $\rightarrow$ Test $\rightarrow$ Divide $\rightarrow$ Finish}
+  \sectionlabel[goldacc]{Workflow}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      $f(x) = x^3 - 4x^2 + x + 6$ \\[4pt]
+      \textbf{1. List:} $\pm1, \pm2, \pm3, \pm6$ \\[3pt]
+      \textbf{2. Test:} $f(1) = 4$, \; $f(-1) = 0$ \\[3pt]
+      \textbf{3. Divide} by $x+1$:
+      \begin{center}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{r|rrrr}
+      $-1$ & $1$ & $-4$ & $1$ & $6$ \\
+           &     & $-1$ & $5$ & $-6$ \\ \cline{2-5}
+           & $1$ & $-5$ & $6$ & $0$ \\
+      \end{tabular}
+      \end{center}
+      \textbf{4. Finish:} $x^2-5x+6 = (x-2)(x-3)$
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Answer}
+        \[ f(x) = (x+1)(x-2)(x-3) \]
+        Zeros: $-1$, $2$, $3$.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize \textbf{5. Verify} --- it is part of the standard. $f(3) = 27-36+3+6 = 0$, and a
+       cubic has at most $3$ zeros, so the list is complete.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SHORTENING THE SEARCH
+\begin{frame}[t, plain]
+  \forestheader{You almost never test the whole list}
+  \sectionlabel{Strategy}
+  \begin{itemize}\setlength{\itemsep}{7pt}
+    \item \textbf{Read the graph.} The $x$-intercepts tell you which candidates to try --- and a
+      crossing between $-1$ and $0$ tells you to look at the \emph{fractions}.
+    \item \textbf{Shrink the problem.} Once one zero is found, work with the depressed polynomial:
+      lower degree, shorter list. When it reaches a quadratic, stop hunting --- factor it or use the
+      quadratic formula.
+    \item \textbf{Test cheaply.} The Remainder Theorem evaluates a candidate in seconds. Save
+      synthetic division for the winners.
+  \end{itemize}
+  \vspace{3pt}
+  \begin{block}{Same task, different words}
+    ``Find the zeros of $f$'' \; $=$ \; ``solve $f(x)=0$'' \; $=$ \; ``find the $x$-intercepts of the
+    graph of $f$.''
+  \end{block}
+\end{frame}
+
+% THE TWO WARNINGS
+\begin{frame}[t, plain]
+  \forestheader{What the theorem does \emph{not} promise}
+  \sectionlabel[goldacc]{Limits}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      \textbf{1. The list is suspects, not convictions.}
+      \[ k(x) = x^3 - 3x - 1 \]
+      Candidates: $\pm 1$. \; $k(1) = -3$, \; $k(-1) = 1$. \\[4pt]
+      \textbf{No rational zeros at all} --- yet the graph crosses the $x$-axis three times. All three
+      zeros are irrational.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \textbf{2. ``Rational'' is a real restriction.}
+      \[ x^3 - x^2 - 2x + 2 = (x-1)(x^2-2) \]
+      The list finds $x=1$. The other two zeros, $\pm\sqrt2$, arrive from the \emph{depressed}
+      polynomial --- they were never candidates.
+      \vspace{4pt}
+      \begin{block}{So}
+        An empty candidate list is information, not a mistake.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% WHERE THIS GOES
+\begin{frame}[t, plain]
+  \forestheader{And when the depressed polynomial runs out of real answers?}
+  \sectionlabel{Connections}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
+      \[ x^3 - x^2 + 4x - 4 = 0 \]
+      Candidates $\pm1, \pm2, \pm4$; \; $x=1$ works. \\[4pt]
+      Depressed polynomial: $x^2 + 4$. \\[4pt]
+      $x^2 = -4$ has \textbf{no real solutions}. \\[6pt]
+      A cubic ``wants'' three solutions. We found one. \textbf{Where did the other two go?}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Today:} build the candidate list, test it, divide, and finish --- every \emph{rational}
+      zero, plus whatever the depressed polynomial gives up.\\[8pt]
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item \textbf{4.5} Fundamental Theorem of Algebra \& complex zeros --- exactly $n$ solutions,
+          in conjugate pairs.
+        \item \textbf{4.6} Graphing polynomial functions \& modeling.
+      \end{itemize}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}

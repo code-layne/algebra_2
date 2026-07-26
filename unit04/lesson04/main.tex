@@ -19,68 +19,208 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can generate the \emph{candidate list} for a polynomial
+    with integer coefficients --- $\pm\frac{p}{q}$ with $p$ a divisor of the constant term and $q$ a
+    divisor of the leading coefficient --- and then run the workflow the rest of this unit depends
+    on: \textbf{list $\rightarrow$ test $\rightarrow$ divide $\rightarrow$ finish}. They test
+    candidates efficiently (Remainder Theorem, synthetic division, and the $x$-intercepts of a
+    graph), divide out each zero they find, factor the depressed polynomial completely, solve the
+    equation, and \emph{verify} their solutions by substitution and against the graph. They also
+    learn what the theorem does not promise: the list holds \emph{possible} zeros, and it finds
+    \emph{rational} ones only.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.6c} --- solve a polynomial equation of degree
+    three or higher (today over the reals; the complex case is Lesson~4.5) --- and
+    \textbf{A2.EI.6d} --- verify possible solutions algebraically and graphically and explain the
+    solution method. \textbf{A2.EO.3c} (synthetic division) and \textbf{A2.EO.3b} (factor the
+    depressed polynomial completely) are used on every problem, and \textbf{A2.F.2c} whenever zeros
+    are read as $x$-intercepts. The lesson is the direct prerequisite for \textbf{A2.EI.6a/b} in
+    Lesson~4.5.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item State the \textbf{Rational Root Theorem} and build the candidate list $\pm\frac{p}{q}$.
+  \item Keep the bookkeeping clean: constant on \emph{top}, leading coefficient on the \emph{bottom}, reduce, drop repeats, keep every $\pm$.
+  \item \textbf{Test} candidates with the Remainder Theorem or synthetic division; use a graph's $x$-intercepts to choose which to try.
+  \item \textbf{Divide} out a confirmed zero and factor the \textbf{depressed polynomial} completely.
+  \item Solve $f(x)=0$ for degree $3$ and $4$, including \emph{fractional} solutions from non-monic factors.
+  \item \textbf{Verify} solutions by substitution and against the graph (A2.EI.6d).
+  \item Recognize the limits: the list may contain \emph{no} zeros, and irrational zeros never appear on it.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item Testing candidates is useless unless the list is \emph{finite} --- the theorem's whole job is turning infinity into a dozen numbers.
+  \item A zero $\frac{p}{q}$ comes from a factor $(qx-p)$; the $q$'s multiply to the leading coefficient and the $p$'s to the constant term, so neither can hide.
+  \item A leading coefficient of $1$ forces $q=\pm1$ --- which is why almost every candidate list students have seen so far was made of integers.
+  \item Each zero found \emph{shrinks} the problem: lower degree, shorter list, and at a quadratic the guessing stops entirely.
+  \item ``Find the zeros,'' ``solve $f(x)=0$,'' and ``find the $x$-intercepts'' are one task in three vocabularies.
+  \item The list is \emph{suspects, not convictions}. An empty result is information, not an arithmetic error.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Rational Root Theorem} & \TallMath{\text{If } \tfrac{p}{q} \text{ (lowest terms) is a zero of } a_nx^n+\cdots+a_0, \text{ then } p \mid a_0 \text{ and } q \mid a_n .} \\
+\textbf{Candidate} & One value on the list $\pm\frac{p}{q}$ --- a number worth testing, not a guaranteed zero. \\
+\textbf{Lowest terms} & Why $\tfrac{2}{2}$ and $\tfrac{6}{3}$ never get their own entries; reduce before listing. \\
+\textbf{Depressed polynomial} & The quotient after dividing out $(x-r)$: one degree lower, with a shorter list of its own. \\
+\textbf{Solution / root} & A value making $f(x)=0$ --- the same object as a zero of $f$ and an $x$-intercept of its graph. \\
+\textbf{Verifying a solution} & Substituting to get $0$, and confirming against the graph's $x$-intercepts (A2.EI.6d). \\
+\textbf{Rational vs.\ irrational zero} & The theorem reaches only the first kind; $\pm\sqrt{3}$ arrives from the depressed polynomial. \\
+\textbf{Monic polynomial} & Leading coefficient $1$ $\Rightarrow$ every $q=\pm 1$ $\Rightarrow$ the candidates are the divisors of the constant term. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up assembles today's theorem out of parts students already own, without naming it.
+    \textbf{(1)} \emph{Divisors} of $6$ and of $2$, positives \emph{and} negatives --- the two lists
+    the theorem asks for. \textbf{(2)} \emph{Building fractions} $\frac{p}{q}$ from those lists,
+    reducing, and crossing out duplicates ($\tfrac22$, $\tfrac62$) --- twelve candidates, and the
+    bookkeeping that most students lose points on. \textbf{(3)} \emph{Finishing Lesson~4.3's Tier E
+    preview}: synthetic division of $h(x)=2x^3-3x^2-11x+6$ by $(x-3)$, then factoring
+    $2x^2+3x-2=(2x-1)(x+2)$ to get all three zeros $3$, $\tfrac12$, $-2$. \textbf{(4)} The question
+    the lesson answers: yesterday's candidate list was the divisors of $6$, and $\tfrac12$ was not on
+    it --- \textbf{``where did that denominator come from?''} Debrief items 2 and 4 together, take
+    answers about the leading coefficient $2$, and \emph{do not} state the theorem yet.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put the graph of $h(x) = 2x^3-3x^2-11x+6$ on the board (it is in the notes, pre-drawn) with its
+    three $x$-intercepts at $-2$, $\tfrac12$, and $3$. Then say the honest thing about yesterday:
+    \textbf{``Lesson 4.3 could crack any polynomial --- as long as somebody told you which number to
+    test. Nobody is going to tell you on the test.''} Ask the class how many numbers there are to
+    try. (Infinitely many.) So testing is worthless unless the list of suspects is finite. Point at
+    the intercept at $\tfrac12$: \textbf{``And notice a whole-number list would have walked right
+    past this one.''} Frame the period as a single question --- \emph{which numbers are worth
+    testing?} --- and promise that by the end of class they will be able to write down, for any
+    polynomial with integer coefficients, a short list guaranteed to contain every rational zero it
+    has.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. Why guessing fails.} One minute, and it earns the rest. Infinitely many numbers, no way to
+test them all; the theorem's entire job is to produce a \emph{finite} list.
+
+\textbf{2. State the theorem, then earn it.} For $f(x)=a_nx^n+\cdots+a_0$ with \emph{integer}
+coefficients, a rational zero $\frac{p}{q}$ in lowest terms has $p \mid a_0$ and $q \mid a_n$. Then
+do the ``why'' live on the Warm-Up's factorization $h(x)=(x-3)(2x-1)(x+2)$: the leading coefficients
+of the factors multiply to $2$, the constants multiply to $6$. A zero $\frac{p}{q}$ comes from a
+factor $(qx-p)$, and those numbers have nowhere to hide. Students accept the rule either way, but
+this makes it inevitable rather than arbitrary --- and it explains the $\tfrac12$ they just found.
+
+\textbf{3. Build two lists.} $f(x)=x^3-4x^2+x+6$ (monic --- candidates are just the divisors of $6$;
+say out loud that this is why every list they have seen so far was integers) and
+$g(x)=4x^3-4x^2-x+1$ (candidates $\pm1,\pm\tfrac12,\pm\tfrac14$). Name the error of the day
+\emph{before} it happens: flipping the fraction. Ask whether $4$ could plausibly be a zero of $g$.
+
+\columnbreak
+
+\textbf{4. Run the workflow end to end.} On $f(x)=x^3-4x^2+x+6$: list, test ($f(1)=4$, $f(-1)=0$),
+divide by $x+1$ synthetically, factor the depressed $x^2-5x+6$, answer $(x+1)(x-2)(x-3)$. Then
+\textbf{Step 5, verify} --- substitute, and count against the degree. Verification is in the
+standard (A2.EI.6d); treat it as part of the answer, not as a nicety.
+
+\textbf{5. Make the search shorter.} Three moves, in order of value: \emph{read the graph} (the
+pre-drawn graph in the notes has intercepts at $-1$, $2$, $3$ --- all on the list); \emph{shrink the
+problem} (each zero found lowers the degree and shortens the list; at a quadratic, stop hunting);
+\emph{test cheaply} with the Remainder Theorem. Then say the equivalence plainly: find the zeros
+$=$ solve $f(x)=0$ $=$ find the $x$-intercepts.
+
+\textbf{6. Solve one together.} $2x^3+3x^2-8x+3=0$ gives $(x-1)(2x-1)(x+3)$ and the solution set
+$\{-3,\tfrac12,1\}$ --- a second fractional solution, from a second non-monic factor. Watch the
+board for students reading $2x-1=0$ as $x=2$ or $x=-\tfrac12$.
+
+\textbf{7. Close on the limits.} The practice section supplies both: $k(x)=x^3-x^2-2x+2$ has one
+rational zero and two irrational ones ($\pm\sqrt2$, from the depressed polynomial), and a depressed
+$x^2+4$ has no real zeros at all. \textbf{Leave the second one unresolved} --- it is the door into
+Lesson~4.5.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item the \textbf{flipped fraction} --- divisors of the leading coefficient on top; ask whether that number could plausibly be a zero;
+  \item a \textbf{missing $\pm$} --- half the list gone, and in more than one problem today the only zero found by testing is negative;
+  \item \textbf{unreduced duplicates} --- $\tfrac22$, $\tfrac63$, $\tfrac{2}{6}$ written as new candidates;
+  \item \textbf{reading zeros off non-monic factors} --- $(2x-1)$ gives $x=\tfrac12$, not $2$ and not $-\tfrac12$. This is the new error this lesson introduces;
+  \item \textbf{grinding the whole list} when a graph is on the page --- correct answer, missed point;
+  \item stopping at the \textbf{depressed polynomial} instead of factoring completely (still Lesson 4.2's standard);
+  \item treating an \textbf{empty list} as an arithmetic failure;
+  \item forgetting that the theorem needs \textbf{integer coefficients} to say anything at all.
+\end{itemize}
+Cold-call prompts: ``What is the constant term, and what goes on top?'' ``How many candidates are on
+your list --- did you count the negatives?'' ``You found $2x-1$; what value of $x$ makes that zero?''
+``The graph crosses between $-1$ and $0$: which candidates live there?'' ``Your list came up empty
+--- is that a mistake?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Suspect List} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Two \emph{monic} cubics so the candidate list is simply the divisors
+of the constant term and the workflow can be practiced without fraction bookkeeping ---
+$x^3-2x^2-5x+6$ walked through step by step with the synthetic grid pre-drawn, then
+$x^3+2x^2-x-2$ solved independently (and re-derived by grouping, a Lesson~4.2 callback). The third
+problem is list-building only, on the non-monic $2x^3+x^2-5x+2$.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} A non-monic solve with a fractional zero, $2x^3-x^2-8x+4$ (checked
+a second way by grouping); a \textbf{graph-driven} problem on $2x^3+3x^2-11x-6$ where the pre-drawn
+graph names two integer zeros and locates the third between $-1$ and $0$, so students choose
+$-\tfrac12$ off the list instead of grinding through twelve candidates; the quartic
+$x^4-x^3-7x^2+x+6$, requiring the workflow \emph{twice}; and error analysis on the two signature
+mistakes --- a list with no negatives, and the belief that a candidate list must contain a zero.
+
+\columnbreak
+\textbf{Tier E --- Extension.} A guided \emph{proof} of the monic case ($d=-r(r^2+br+c)$, so
+$r \mid d$), plus why that argument breaks when $a_n \ne 1$; running the theorem \emph{backward} to
+build $6x^3+x^2-4x+1$ from the zeros $\tfrac12$, $\tfrac13$, $-1$ (the A2.EI.6a skill Lesson~4.5
+opens with); $k(x)=x^3-3x-1$, which has \emph{no} rational zeros yet three real ones, established
+from a table of values with three sign changes; and a preview task on $x^3-x^2+4x-4$, whose depressed
+polynomial $x^2+4$ has no real zeros --- groups conjecture where the missing two solutions went.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} the full workflow on
+$3x^3+2x^2-7x+2=0$ --- build the list ($\pm1,\pm2,\pm\tfrac13,\pm\tfrac23$), test, divide, factor to
+$(x-1)(3x-1)(x+2)$, give the solutions $-2$, $\tfrac13$, $1$, and \emph{verify} one by substitution;
+\textbf{(2)} error analysis on a flipped candidate list for $2x^3+5x^2-x-6$, which forces students to
+say \emph{which} coefficient goes where; and \textbf{(3)} an \textbf{SOL-style multiple-choice} item
+asking which value is \emph{not} a possible rational zero of $4x^3-x^2+6x-3$, with $\tfrac23$ as the
+answer (its numerator does not divide $3$ and its denominator does not divide $4$) and three valid
+candidates as distractors. Sort into ``got it / list built wrong / division or arithmetic / stopped
+before solving.'' A large ``list built wrong'' pile is the one to fix immediately, because
+Lesson~4.5 assumes students can produce a candidate list unaided. Watch specifically for zeros
+listed as $-\tfrac13$ from the factor $(3x-1)$ --- that is the non-monic sign error, and two minutes
+of ``set each factor equal to zero and \emph{solve}'' fixes it.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} three list-only items of increasing nastiness (ending with $6x^3+x^2-5x-2$ and its
+twelve candidates); two monic solves; a non-monic solve, $2x^3-5x^2-4x+3$, whose fractional solution
+$\tfrac12$ an integers-only list would have missed; a quartic, $x^4-4x^3-x^2+16x-12$, needing the
+workflow twice; a ``no hints this time'' item on $x^3+2x^2-5x-6$ --- Lesson~4.3's exit ticket, where
+the divisor was handed over and now must be generated --- with an explicit A2.EI.6d verification
+step; a solve whose depressed polynomial is $x^2-3$, so two of the three solutions are irrational and
+were never on the list; and two written items, including the one most students miss: a candidate list
+with no winners is not an arithmetic error. \textbf{Extension:} a planter box of volume
+$2x^3+3x^2-3x-2$ whose dimensions come out $(x-1)(2x+1)(x+2)$ with the domain restriction $x>1$,
+checked numerically at $x=3$; building $3x^3-13x^2+2x+8$ from the zeros $-\tfrac23$, $1$, $4$; and
+the sharpest one-question check of the theorem --- if $\tfrac35$ is a zero, what is the smallest the
+leading coefficient could be? \textbf{Preview:} Lesson~4.5, the \emph{Fundamental Theorem of
+Algebra} --- today a cubic twice refused to give up three real solutions; tomorrow you find out that
+nothing was missing.
 \end{skillbox}
 \end{document}

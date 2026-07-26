@@ -4,16 +4,271 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.4}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item use the \emph{Rational Root Theorem} to list every possible rational zero of a polynomial with integer coefficients;
+  \item test candidates efficiently with synthetic division, a graph, and the Remainder Theorem;
+  \item divide out each zero I find, factor the depressed polynomial, and write the polynomial \emph{completely} factored;
+  \item solve a polynomial equation of degree $3$ or higher and \emph{verify} my solutions algebraically and against a graph.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\termblanklong{Rational Root Theorem}
+\termblanklong{Candidate (possible rational zero)}
+\termblanklong{Depressed polynomial}
+\termblanklong{Solution / root of an equation}
+\termblanklong{Verifying a solution}
+\end{vocabbox}
+
+\begin{hookbox}
+Yesterday you could finish any polynomial \emph{once somebody handed you a zero to test}. Here is
+the polynomial from the Warm-Up, $h(x) = 2x^3 - 3x^2 - 11x + 6$, with its graph. (The $y$-axis is
+compressed: each vertical gridline is $4$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{4}{-4}{4}
+  \begin{scope}
+    \clip (-3,-4) rectangle (4,4);
+    \draw[very thick, forest, domain=-2.85:3.6, samples=150, smooth]
+      plot (\x,{(2*(\x)*(\x)*(\x) - 3*(\x)*(\x) - 11*(\x) + 6)/4});
+  \end{scope}
+  \foreach \x in {-2,-1,1,2,3}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (-2,0)  circle (2.5pt);
+  \fill[charcoal] (0.5,0) circle (2.5pt);
+  \fill[charcoal] (3,0)   circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Read the three $x$-intercepts off the graph: \blank{4.0cm}
+  \item Your group's candidate list yesterday was the divisors of $6$. Which zero did it miss?
+        \blank{1.6cm}
+  \item That zero is a \emph{fraction}. So a candidate list made only of whole numbers is
+        \blank{3.0cm}.
+\end{itemize}
+\textbf{Today's question: which numbers are worth testing?}
+\end{hookbox}
+
+\begin{notesbox}{1. Why Guessing Cannot Work}
+Suppose nobody tells you anything about $f(x) = x^3 - 4x^2 + x + 6$ except that it has integer
+coefficients, and you want its zeros.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item How many numbers are there to try? \blank{3.6cm}
+  \item So testing candidates one at a time is only useful if the list of candidates is
+        \blank{2.4cm}.
+\end{itemize}
+\textbf{The Rational Root Theorem does exactly that:} it turns two coefficients --- the constant term
+and the leading coefficient --- into a \emph{short, finite} list that is guaranteed to contain every
+rational zero the polynomial has.
 \end{notesbox}
+
+\begin{notesbox}{2. The Rational Root Theorem}
+\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+\textbf{Rational Root (Zero) Theorem.} Let $f(x) = a_nx^n + \cdots + a_1x + a_0$ have
+\emph{integer} coefficients. If $\dfrac{p}{q}$ is a rational zero of $f$ written in lowest terms,
+then
+\begin{itemize}[leftmargin=1.5em, nosep]
+  \item $p$ (the numerator) is a divisor of the \blank{3.4cm} $a_0$, and
+  \item $q$ (the denominator) is a divisor of the \blank{3.4cm} $a_n$.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{4pt}
+\textbf{Why it is true --- look at the Warm-Up.} You factored $h(x) = 2x^3-3x^2-11x+6$ into
+$(x-3)(2x-1)(x+2)$. Multiply the pieces back:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item The \emph{leading} coefficients of the three factors are $1$, $2$, $1$. Their product is
+        \blank{1.0cm}, which is the leading coefficient of $h$. So the $2$ in the denominator of the
+        zero $\tfrac12$ had to divide \blank{1.4cm}.
+  \item The \emph{constant} terms of the three factors are $-3$, $-1$, $2$. Their product is
+        \blank{1.0cm}, which is the constant term of $h$. So every numerator had to divide
+        \blank{1.4cm}.
+\end{itemize}
+That is the whole theorem: a zero $\frac{p}{q}$ comes from a factor $(qx - p)$, and those $q$'s and
+$p$'s have nowhere to hide --- they multiply together to make the two coefficients on the ends.
+
+\vspace{5pt}
+\textbf{The warnings.} \; (1) It only finds \blank{2.4cm} zeros --- irrational and imaginary zeros
+never appear on the list. \; (2) The coefficients must be \blank{2.0cm}. \; (3) The list is a list of
+\emph{possibilities}; a polynomial might have \blank{2.4cm} of them as an actual zero.
+\end{notesbox}
+
+\begin{notesbox}{3. Building the List}
+Write $\pm\dfrac{\text{divisors of the constant term}}{\text{divisors of the leading coefficient}}$,
+reduce, and cross out repeats.
+
+\vspace{5pt}
+\textbf{(a)} $f(x) = x^3 - 4x^2 + x + 6$
+
+\vspace{2pt}
+$p$ (divisors of \blank{0.8cm}): \blank{4.0cm} \qquad
+$q$ (divisors of \blank{0.8cm}): \blank{2.0cm}
+
+\vspace{2pt}
+Candidates $\dfrac{p}{q}$: \blank{7.0cm}
+
+\vspace{2pt}
+\textbf{Notice:} when the leading coefficient is $1$, every $q$ is $\pm 1$, so the candidates are
+just the \blank{4.6cm}. That covers most problems you will see.
+
+\vspace{6pt}
+\textbf{(b)} $g(x) = 4x^3 - 4x^2 - x + 1$
+
+\vspace{2pt}
+$p$ (divisors of \blank{0.8cm}): \blank{2.0cm} \qquad
+$q$ (divisors of \blank{0.8cm}): \blank{3.0cm}
+
+\vspace{2pt}
+Candidates $\dfrac{p}{q}$: \blank{6.0cm} \qquad How many? \blank{1.2cm}
+
+\vspace{2pt}
+\textbf{The error to avoid:} the constant term goes on \blank{2.4cm} and the leading coefficient
+goes on \blank{2.4cm}. Flipping them is the mistake of the day.
+\end{notesbox}
+
+\begin{notesbox}{4. The Workflow: List $\rightarrow$ Test $\rightarrow$ Divide $\rightarrow$ Finish}
+\textbf{Model.} Find all the zeros of $f(x) = x^3 - 4x^2 + x + 6$.
+
+\vspace{4pt}
+\textbf{Step 1 --- List.} From part (a): \blank{5.4cm}
+
+\vspace{4pt}
+\textbf{Step 2 --- Test} (Remainder Theorem, or a synthetic division). \;
+$f(1) = $ \blank{1.2cm} \quad $f(-1) = $ \blank{1.2cm}
+
+\vspace{2pt}
+So the first zero is $r = $ \blank{1.2cm}, and $($\blank{1.6cm}$)$ is a factor.
+
+\vspace{4pt}
+\textbf{Step 3 --- Divide it out.}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
+    & $1$ & $-4$ & $1$ & $6$ \\
+    &     &      &     &     \\ \cline{2-5}
+    &     &      &     &     \\
+\end{tabular}
+\end{center}
+Depressed polynomial: \blank{3.0cm} \quad Remainder: \blank{1.2cm}
+
+\vspace{4pt}
+\textbf{Step 4 --- Finish.} The depressed polynomial is a quadratic, so no more guessing is needed
+--- factor it (or use the quadratic formula).
+
+\vspace{2pt}
+$f(x) = $ \blank{6.0cm} \qquad Zeros: \blank{3.6cm}
+
+\vspace{4pt}
+\textbf{Step 5 --- Verify} (this is part of the standard, not an extra). Check one zero by
+substituting: $f(3) = $ \blank{3.0cm}, and check all three against the degree --- a cubic has at most
+\blank{1.2cm} zeros, and you found \blank{1.2cm}.
+\end{notesbox}
+
+\begin{notesbox}{5. Three Ways to Make the Search Shorter}
+Twelve candidates is a lot of synthetic divisions. You almost never need them all.
+
+\vspace{4pt}
+\textbf{(i) Use the graph.} Here is $f(x) = x^3 - 4x^2 + x + 6$ from Section 4. (Each vertical
+gridline is $2$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-2}{4}{-3}{4}
+  \begin{scope}
+    \clip (-2,-3) rectangle (4,4);
+    \draw[very thick, forest, domain=-1.7:3.9, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x) - 4*(\x)*(\x) + (\x) + 6)/2});
+  \end{scope}
+  \foreach \x in {-1,1,2,3}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+\end{tikzpicture}
+\end{center}
+Which three candidates would you test \emph{first}, and why? \writeline
+
+\vspace{4pt}
+\textbf{(ii) Shrink the problem.} Once one zero is found, work with the \blank{3.4cm} polynomial ---
+its degree is one lower, and its own candidate list is \blank{2.6cm}. When it becomes a quadratic,
+stop hunting and \blank{4.0cm}.
+
+\vspace{4pt}
+\textbf{(iii) Test cheaply.} The Remainder Theorem evaluates a candidate in a few seconds. Rule out
+the losers by \blank{3.4cm} and save synthetic division for the winners.
+\end{notesbox}
+
+\begin{notesbox}{6. Solving a Polynomial Equation}
+``Find the zeros of $f$'' and ``solve $f(x) = 0$'' are the \emph{same task} in different words. The
+solutions of the equation are the \blank{2.0cm} of the function, which are the
+\blank{3.0cm} of its graph.
+
+\vspace{5pt}
+\textbf{Together:} Solve $2x^3 + 3x^2 - 8x + 3 = 0$.
+
+\vspace{2pt}
+Candidates: $p$ divides \blank{0.8cm}, $q$ divides \blank{0.8cm}, so
+$\dfrac{p}{q} = $ \blank{5.4cm}
+
+\vspace{3pt}
+Test $x = 1$: \blank{3.0cm} \; so $(x-1)$ is a factor.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
+    & $2$ & $3$ & $-8$ & $3$ \\
+    &     &     &      &     \\ \cline{2-5}
+    &     &     &      &     \\
+\end{tabular}
+\end{center}
+Depressed polynomial: \blank{3.0cm} \; which factors as \blank{3.4cm}
+
+\vspace{2pt}
+Completely factored: $2x^3+3x^2-8x+3 = $ \blank{5.4cm}
+
+\vspace{2pt}
+Solution set: \blank{4.0cm} \; --- and notice one solution is a fraction, which the divisors of
+$3$ alone would never have produced.
+\end{notesbox}
+
+\begin{practicebox}
+\textbf{A. Run the whole workflow.} Solve $2x^3 - 9x^2 + 7x + 6 = 0$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Candidates: \blank{7.0cm}
+  \item A zero that works: $r = $ \blank{1.2cm} \quad (show your test: \blank{4.0cm})
+  \item Depressed polynomial after dividing: \blank{3.0cm}
+  \item Completely factored: \blank{5.6cm}
+  \item Solutions: \blank{4.0cm}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{B. The word ``rational'' is doing real work.} Let $k(x) = x^3 - x^2 - 2x + 2$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt, start=6]
+  \item Candidates: \blank{3.6cm} \quad Which one is a zero? \blank{1.2cm}
+  \item Divide it out. Depressed polynomial: \blank{2.6cm}
+  \item Solve that quadratic: $x = $ \blank{2.6cm} \quad Are those on your candidate list?
+        \blank{1.2cm}
+  \item How many real zeros does $k$ have in all? \blank{1.2cm} \; Explain why the Rational Root
+        Theorem could never have listed two of them. \writeline
+  \item \textbf{Looking ahead.} Suppose a different cubic's depressed polynomial had come out
+        $x^2 + 4$. How many \emph{real} zeros would that quadratic contribute? \blank{1.2cm} \;
+        What kind of numbers would its solutions be? \blank{3.0cm} \; That is Lesson 4.5.
+\end{enumerate}
+\end{practicebox}
 
 \end{document}
