@@ -6,7 +6,7 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 4 is in progress:** all 7 lesson dirs scaffolded and assessments
-> scaffolded; **4.0–4.4 are authored and building**; 4.5–4.6 and the Unit 4 tests remain.
+> scaffolded; **4.0–4.5 are authored and building**; 4.6 and the Unit 4 tests remain.
 > Units 5–8 are planned here and not yet scaffolded. Lesson lists below are proposals to react to and
 > edit — pacing (days per lesson) is intentionally left open pending the school calendar.
 
@@ -36,7 +36,7 @@
 | 1 | Foundations | (review) | 3 (no L0) | **Built** |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
-| 4 | Polynomial Functions | Polynomial | 7 | **In progress (4.0–4.4 built)** |
+| 4 | Polynomial Functions | Polynomial | 7 | **In progress (4.0–4.5 built)** |
 | 5 | Rational Functions | Rational | ~6 | Planned |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
@@ -466,7 +466,49 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > (key 5pp), activity 3pp (key 4pp), homework 2pp (key 3pp); exit ticket includes an SOL-style MC item
 > (which value is *not* a possible rational zero of $4x^3-x^2+6x-3$; answer $\tfrac23$, distractors all
 > valid candidates). `make -C unit04/lesson04 all` → EXIT 0 (student 12pp, full 28pp).
-> **Next action: author Lesson 4.5 (Fundamental Theorem of Algebra & complex zeros).**
+> **Lesson 4.5 authored & builds (2026-07-26):** all components + keys + 9-slide deck done; the lesson
+> that finishes every ``no solution'' sentence of the year. It hangs on one theorem and the corollary
+> students actually use --- the **Fundamental Theorem of Algebra** (degree $n\ge1\Rightarrow$ at least
+> one complex zero) and therefore **exactly $n$ complex zeros counted with multiplicity**, with
+> $f(x)=a(x-r_1)\cdots(x-r_n)$. This is the first tool of the course that \emph{counts} solutions
+> before finding any, so ``how do I know I am done?'' finally has an arithmetic answer. The **Complex
+> Conjugate Root Theorem** (real coefficients $\Rightarrow$ $a+bi$ and $a-bi$ travel together) is
+> \emph{earned rather than announced}: the Warm-Up has students multiply $(x-3i)(x+3i)=x^2+9$ and solve
+> $x^2-2x+5=0$ into $1\pm2i$ before any pairing is named, and the notes then derive
+> $\big(x-(a+bi)\big)\big(x-(a-bi)\big)=x^2-2ax+(a^2+b^2)$ as the reason the pair is \emph{required} ---
+> a lone imaginary zero strands an $i$ in the coefficients. Two consequences carry more weight than the
+> theorem itself: the number of imaginary zeros is always **even**, so an **odd-degree** real polynomial
+> must have a real zero --- exactly what Lesson 4.0's opposite end-behavior arms forced graphically, and
+> both arguments are put on the board. Graph-reading is the assessment core (**A2.EI.6b**): *imaginary
+> zeros $=$ degree $-$ real zeros counted with multiplicity*, worked off pre-drawn TikZ graphs, with the
+> recurring beat that an $x$-intercept \emph{is} a real zero and a graph can never show an imaginary
+> one. Solving over $\mathbb{C}$ is Lesson 4.4's list$\to$test$\to$divide$\to$finish workflow with a
+> single changed step --- a negative discriminant now yields a conjugate pair instead of ``no solution''
+> ($x^3-5x^2+9x-5\Rightarrow 1,\,2\pm i$; $x^4-5x^2-36$ by quadratic form $\Rightarrow\pm3,\pm2i$) ---
+> and **A2.EI.6a** drives the same road backward: zeros $\to$ factors $\to$ polynomial, supplying any
+> missing conjugate. Unifying threads close three long loops: the Warm-Up finishes 4.4's Tier E
+> cliffhanger $x^3-x^2+4x-4=(x-1)(x^2+4)\Rightarrow 1,\pm2i$ (whose pre-drawn graph crosses **once** ---
+> the hook); the anchor $(x-1)^2(x+2)$ from 4.0 carries counting with multiplicity (a touch fills two
+> slots); and homework finishes $x^3+2x^2+4x+8$, the quotient 4.3 produced from $x^4-16$, then revisits
+> $x^2+4$ --- declared \emph{prime} in 4.2 --- to show that ``prime'' was always relative to a number
+> system. Flagged traps: the unpaired imaginary zero (the signature error), hunting for imaginary zeros
+> among the $x$-intercepts, counting distinct zeros instead of counting with multiplicity, the
+> $(x-4i)(x+4i)=x^2+16$ sign slip, and ``no real solutions'' still written on a depressed quadratic.
+> Tier E proves the conjugate-product lemma, derives the odd-degree result two ways, solves
+> $x^4+13x^2+36=0$ (all four zeros imaginary, with a pre-drawn graph that never meets the axis), and
+> closes on $f(x)=x-i$ --- a real counterexample-that-is-not, since the theorem says \emph{real}
+> coefficients. The homework extension carries the real-vs-rational-coefficient distinction ($\sqrt5$
+> forces no partner under merely real coefficients). All graphs pre-drawn via `plot`+`\clip` (no
+> sketch-from-scratch). Standards: **2023 VA SOL A2.EI.6b** (number and type of solutions) and
+> **A2.EI.6a** (factored form from zeros or $x$-intercepts), completing **A2.EI.6c** over $\mathbb{C}$
+> and using **A2.EI.6d** (counting against the degree as the verification); builds on **A2.EO.4a/b/c**
+> (3.4), **A2.EI.2b** and the discriminant (3.5), **A2.EO.3b/c** (4.2--4.3), and **A2.F.2c** (4.0).
+> Warm-up & exit ticket each fit one page (blank+key); notes 4pp (key 6pp), activity 3pp (key 4pp),
+> homework 2pp (key 3pp); exit ticket includes an SOL-style MC item (which list \emph{cannot} be the
+> complete zeros of a real quartic --- the answer lists $3i$ twice with no $-3i$).
+> `make -C unit04/lesson05 all` → EXIT 0 (student 12pp, full 30pp); `make -C unit04 all` → EXIT 0.
+> **Next action: author Lesson 4.6 (graphing polynomial functions & modeling), then the Unit 4 tests
+> (practice + actual and both keys, published to `sample_test/` and `sample_test_key/`).**
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
