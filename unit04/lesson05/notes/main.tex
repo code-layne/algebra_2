@@ -4,16 +4,293 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.5}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item state the \emph{Fundamental Theorem of Algebra} and use it to say how many solutions a polynomial equation has \emph{before} solving it;
+  \item explain why imaginary zeros of a polynomial with real coefficients come in \emph{conjugate pairs};
+  \item determine the \emph{number and type} of solutions (real or imaginary) from a degree and a graph;
+  \item solve a polynomial equation of degree $3$ or higher over the \emph{complex} numbers, and write a polynomial from a given list of zeros.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\vspace{2pt}
+\termblanklong{Fundamental Theorem of Algebra}
+\termblanklong{Zeros counted with multiplicity}
+\termblanklong{Complex Conjugate Root Theorem}
+\termblanklong{Complex conjugate pair}
+\termblanklong{Number and type of solutions}
+\end{vocabbox}
+
+\begin{hookbox}
+Here is $f(x) = x^3 - x^2 + 4x - 4$, the polynomial you finished in the Warm-Up.
+(The $y$-axis is compressed: each horizontal gridline is $8$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-2}{3}{-4}{4}
+  \begin{scope}
+    \clip (-2,-4) rectangle (3,4);
+    \draw[very thick, forest, domain=-1.95:3.0, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x) - (\x)*(\x) + 4*(\x) - 4)/8});
+  \end{scope}
+  \foreach \x in {-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item How many times does this graph cross the $x$-axis? \blank{1.4cm} \; At $x = $ \blank{1.2cm}
+  \item How many solutions did you find in the Warm-Up? \blank{1.2cm} \; List them: \blank{3.4cm}
+  \item So two of your three solutions are \emph{not} on this graph. What kind of numbers are they?
+        \blank{3.0cm}
+\end{itemize}
+\textbf{Today's question: how many solutions does a polynomial equation \emph{really} have --- and
+how many of them can a graph show you?}
+\end{hookbox}
+
+\begin{notesbox}{1. The Fundamental Theorem of Algebra}
+\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+\textbf{Fundamental Theorem of Algebra.} Every polynomial of degree $n \ge 1$ has at least
+\blank{1.2cm} \emph{complex} zero.
+
+\vspace{4pt}
+\textbf{The corollary we actually use.} A polynomial of degree $n$ has \emph{exactly}
+\blank{1.2cm} complex zeros, counted with \textbf{multiplicity}, and factors completely as
+\[ f(x) \;=\; a(x - r_1)(x - r_2)\cdots(x - r_n). \]
+\end{tcolorbox}
+
+\vspace{4pt}
+\textbf{Why the corollary follows.} The theorem promises one zero $r_1$. By the Factor Theorem
+(Lesson 4.3), $(x - r_1)$ is then a \blank{2.0cm} of $f$, so dividing leaves a quotient of degree
+\blank{1.6cm}. Apply the theorem to \emph{that} polynomial, and repeat. Each pass uses up one degree,
+so the process runs exactly \blank{1.2cm} times.
+
+\vspace{5pt}
+\textbf{Read that again, because it is new.} Every other tool this year found solutions. This one
+\emph{counts} them --- before you find any. Two words matter:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item \textbf{complex}: real numbers \emph{are} complex numbers ($5 = 5 + 0i$), so the count
+        includes both kinds. It does \emph{not} mean all $n$ are imaginary.
+  \item \textbf{counted with multiplicity}: a repeated zero is counted as many times as it
+        \blank{3.0cm}.
+\end{itemize}
 \end{notesbox}
+
+\begin{notesbox}{2. Counting With Multiplicity}
+Here is the unit's anchor polynomial $g(x) = x^3 - 3x + 2 = (x-1)^2(x+2)$, whose graph you read back
+in Lesson 4.0. (Each horizontal gridline is $2$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{3}{-4}{4}
+  \begin{scope}
+    \clip (-3,-4) rectangle (3,4);
+    \draw[very thick, forest, domain=-2.55:2.2, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x) - 3*(\x) + 2)/2});
+  \end{scope}
+  \foreach \x in {-2,-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (-2,0) circle (2.5pt);
+  \fill[charcoal] (1,0)  circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item How many \emph{different} numbers are zeros of $g$? \blank{1.2cm} \; Which ones?
+        \blank{2.6cm}
+  \item The degree is \blank{1.0cm}, so the theorem promises \blank{1.0cm} zeros. That does not match
+        --- unless we count $x = 1$ \blank{2.6cm} times, because its factor is
+        \blank{2.0cm}.
+  \item Zeros of $g$ counted with multiplicity: \blank{4.0cm}
+  \item Lesson 4.0 check: at the double zero the graph \blank{2.0cm} the axis; at the single zero it
+        \blank{2.0cm} it. The graph shows the multiplicity.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{The sentence to remember:} \emph{distinct} zeros can be fewer than $n$. Zeros \emph{counted
+with multiplicity} are never fewer and never \blank{1.6cm} --- always exactly $n$.
+\end{notesbox}
+
+\begin{notesbox}{3. Imaginary Zeros Travel in Pairs}
+Look back at the Warm-Up. Item 2(b) gave $1+2i$ and $1-2i$. Item 3 gave $2i$ and $-2i$. Not a
+coincidence.
+
+\vspace{4pt}
+\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+\textbf{Complex Conjugate Root Theorem.} If a polynomial has \emph{\blank{2.0cm}} coefficients and
+$a + bi$ (with $b \ne 0$) is a zero, then \blank{2.0cm} is also a zero.
+\end{tcolorbox}
+
+\vspace{4pt}
+\textbf{Why the pair is necessary.} Multiply the two factors that a conjugate pair contributes:
+\[ \big(x - (a+bi)\big)\big(x - (a-bi)\big) \;=\; x^2 - \blank{1.2cm}\,x + \blank{2.0cm} \]
+Every $i$ cancels, so the pair contributes a factor with \blank{2.0cm} coefficients. A \emph{lone}
+imaginary zero would leave an $i$ stranded in the coefficients --- which is why it can never happen in
+a real polynomial.
+
+\vspace{5pt}
+\textbf{Two consequences worth more than the theorem itself.}
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item The number of imaginary zeros is always \blank{2.0cm} ($0$, $2$, $4$, \dots), because they are
+        counted in pairs.
+  \item Therefore a polynomial of \textbf{odd} degree with real coefficients must have at least
+        \blank{1.4cm} real zero. (Pair up the imaginary ones; an odd number cannot be left with
+        \blank{2.0cm} real zeros.)
+  \item \textbf{Lesson 4.0 agrees.} An odd-degree graph has arms pointing in \blank{2.4cm}
+        directions, so it has no choice but to \blank{2.0cm} the $x$-axis at least once.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Number and Type --- Without Solving Anything}
+An $x$-intercept is a \textbf{real} zero. An imaginary zero is nowhere on the graph. So a graph is an
+honest witness, but an \blank{2.6cm} one --- and that gap is exactly what you can now measure:
+\[ \text{(number of imaginary zeros)} \;=\; \text{degree} \;-\; \text{(number of \blank{2.4cm} zeros, counted with multiplicity)} \]
+
+\vspace{3pt}
+Each row below describes a polynomial with \emph{real} coefficients. Fill in the rest.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|l|C{2.2cm}|C{3.0cm}|C{2.6cm}|X|}
+\hline
+\rowcolor{forestbg}
+& \textbf{Degree} & \textbf{Real zeros (with mult.)} & \textbf{Imaginary zeros} & \textbf{How you know} \\ \hline
+(a) $f$ from the Hook & $3$ & & & \\ \hline
+(b) a quartic whose graph crosses twice & $4$ & $2$ & & \\ \hline
+(c) $g(x)=(x-1)^2(x+2)$ & & & & \\ \hline
+(d) a quintic whose graph crosses once & $5$ & & & \\ \hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\textbf{The question to test yourself with:} could a \emph{cubic} with real coefficients have
+\emph{no} $x$-intercepts at all? \blank{1.2cm} \; Why not? \writeline
+\end{notesbox}
+
+\begin{notesbox}{5. Solving Over the Complex Numbers}
+The workflow is Lesson 4.4's, unchanged: \textbf{list} $\rightarrow$ \textbf{test} $\rightarrow$
+\textbf{divide} $\rightarrow$ \textbf{finish}. Only the last step changes --- when the depressed
+quadratic has a negative discriminant you no longer write ``no solution.'' You write the
+\blank{3.0cm}.
+
+\vspace{5pt}
+\textbf{(a) Together:} Solve $x^3 - 5x^2 + 9x - 5 = 0$.
+
+\vspace{2pt}
+Candidates: \blank{3.0cm} \quad One that works: $r = $ \blank{1.0cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
+    & $1$ & $-5$ & $9$ & $-5$ \\
+    &     &      &     &      \\ \cline{2-5}
+    &     &      &     &      \\
+\end{tabular}
+\end{center}
+Depressed polynomial: \blank{3.0cm} \; Discriminant: \blank{1.6cm} \; so the other two solutions are
+\blank{2.6cm}.
+
+\vspace{2pt}
+Finish it: $x = $ \blank{3.4cm} \qquad All solutions: \blank{4.6cm}
+
+\vspace{2pt}
+\textbf{Number and type:} \blank{1.0cm} real and \blank{1.0cm} imaginary --- and
+$\blank{0.8cm} + \blank{0.8cm} = 3$, the degree. That check \emph{is} the verification step
+(A2.EI.6d).
+
+\vspace{6pt}
+\textbf{(b) No division needed.} Solve $x^4 - 5x^2 - 36 = 0$ using \emph{quadratic form}
+(Lesson 4.2).
+
+\vspace{2pt}
+Factor: $x^4 - 5x^2 - 36 = ($\blank{2.0cm}$)($\blank{2.0cm}$)$
+
+\vspace{2pt}
+Set each factor to zero: $x = $ \blank{2.0cm} \quad and \quad $x = $ \blank{2.0cm}
+
+\vspace{2pt}
+Four solutions for a degree-\blank{0.8cm} equation: \blank{4.0cm} \; ---
+\blank{1.0cm} real, \blank{1.0cm} imaginary.
+
+\vspace{3pt}
+\textbf{Note:} over the \emph{real} numbers, $x^2+4$ is as far as you can factor --- it is
+irreducible. Over the \emph{complex} numbers it splits into $(x-2i)(x+2i)$, which is what ``factors
+completely'' means once imaginary numbers are allowed.
+\end{notesbox}
+
+\begin{notesbox}{6. Running It Backward: Building a Polynomial From Its Zeros}
+Lesson 4.4 went polynomial $\rightarrow$ zeros. The standard also asks for the reverse: zeros
+$\rightarrow$ \blank{2.0cm} $\rightarrow$ polynomial. Each zero $r$ contributes the factor
+\blank{1.6cm}.
+
+\vspace{5pt}
+\textbf{(a) Real zeros $-1$ (multiplicity 2) and $4$.}
+
+\vspace{2pt}
+Factored form: $f(x) = $ \blank{4.0cm} \quad Degree: \blank{1.0cm}
+
+\vspace{2pt}
+Standard form (multiply it out): \blank{6.0cm}
+
+\vspace{6pt}
+\textbf{(b) Zeros $2$ and $3i$, with \emph{real} coefficients.} \; Before anything else:
+which zero must you \emph{also} include, and why? \blank{5.4cm}
+
+\vspace{2pt}
+Factored form using the conjugate pair's real quadratic: $f(x) = ($\blank{1.8cm}$)($\blank{2.2cm}$)$
+
+\vspace{2pt}
+Standard form: $f(x) = $ \blank{6.0cm}
+
+\vspace{2pt}
+Check: the degree is \blank{0.8cm}, and you listed \blank{0.8cm} zeros. \checkmark
+
+\vspace{6pt}
+\textbf{(c) The question that tests whether you believe the theorem.} What is the \emph{smallest}
+possible degree of a polynomial with real coefficients whose zeros include $5$ and $1 - i$?
+\blank{1.2cm} \; Explain: \writeline
+\end{notesbox}
+
+\begin{practicebox}
+\textbf{A. Solve over $\mathbb{C}$.} $x^3 + 3x^2 + 9x + 27 = 0$ \; (try factoring by grouping first).
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Factored form: \blank{5.0cm}
+  \item All solutions: \blank{4.6cm}
+  \item Number and type: \blank{1.0cm} real, \blank{1.0cm} imaginary. Does that total match the
+        degree? \blank{1.2cm}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{B. Count without solving.} A polynomial with real coefficients has degree $6$, and its graph
+crosses the $x$-axis at exactly $x = -3$ and $x = 1$ and touches it at $x = 4$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt, start=4]
+  \item Real zeros counted with multiplicity: \blank{1.4cm} \; (remember what a \emph{touch} means)
+  \item Imaginary zeros: \blank{1.2cm} \; How do you know that number had to be even? \blank{4.6cm}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{C. Build one.} Write a polynomial of least degree with real coefficients whose zeros are
+$-2$ and $1 + 3i$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt, start=6]
+  \item The full list of zeros: \blank{4.0cm}
+  \item Factored form: \blank{5.4cm}
+  \item Standard form: \blank{6.0cm}
+\end{enumerate}
+\end{practicebox}
 
 \end{document}
