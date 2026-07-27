@@ -1,6 +1,11 @@
 %! Graphing Rational Functions — Unit 5, Lesson 5.5 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -11,16 +16,359 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.5}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Graphing Rational Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5}
+    {\color{white}\bfseries\LARGE Graphing Rational Functions}\\[0.35cm]
+    {\color{white}\bfseries\large from the equation}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Same checklist. Three different graphs.}
+  \sectionlabel{Hook}
+  \centering
+  \begin{tikzpicture}[scale=0.24]
+    \begin{scope}
+      \lgrid{-6}{6}{-4}{4}
+      \draw[navy, dashed, thick] (-2,-4)--(-2,4);
+      \draw[navy, dashed, thick] (3,-4)--(3,4);
+      \begin{scope} \clip (-6,-4) rectangle (6,4);
+        \draw[very thick, forest, domain=-6:-2.16, samples=90, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+        \draw[very thick, forest, domain=-1.85:2.9, samples=110, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+        \draw[very thick, forest, domain=3.1:6, samples=90, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+      \end{scope}
+      \fill[charcoal] (1,0) circle (3.4pt);
+      \node[charcoal, font=\small\bfseries] at (0,-5.8){A};
+    \end{scope}
+    \begin{scope}[xshift=14cm]
+      \lgrid{-6}{6}{-4}{4}
+      \draw[navy, dashed, thick] (-2,-4)--(-2,4);
+      \draw[navy, dashed, thick] (3,-4)--(3,4);
+      \begin{scope} \clip (-6,-4) rectangle (6,4);
+        \draw[very thick, forest, domain=-6:-2.16, samples=90, smooth] plot (\x,{-((\x)-1)/(((\x)+2)*((\x)-3))});
+        \draw[very thick, forest, domain=-1.85:2.9, samples=110, smooth] plot (\x,{-((\x)-1)/(((\x)+2)*((\x)-3))});
+        \draw[very thick, forest, domain=3.1:6, samples=90, smooth] plot (\x,{-((\x)-1)/(((\x)+2)*((\x)-3))});
+      \end{scope}
+      \fill[charcoal] (1,0) circle (3.4pt);
+      \node[charcoal, font=\small\bfseries] at (0,-5.8){B};
+    \end{scope}
+    \begin{scope}[xshift=28cm]
+      \lgrid{-6}{6}{-4}{4}
+      \draw[navy, dashed, thick] (-2,-4)--(-2,4);
+      \draw[navy, dashed, thick] (3,-4)--(3,4);
+      \begin{scope} \clip (-6,-4) rectangle (6,4);
+        \draw[very thick, forest, domain=-6:-2.4, samples=90, smooth] plot (\x,{((\x)-1)/((((\x)+2)*((\x)+2))*((\x)-3))});
+        \draw[very thick, forest, domain=-1.6:2.98, samples=110, smooth] plot (\x,{((\x)-1)/((((\x)+2)*((\x)+2))*((\x)-3))});
+        \draw[very thick, forest, domain=3.02:6, samples=90, smooth] plot (\x,{((\x)-1)/((((\x)+2)*((\x)+2))*((\x)-3))});
+      \end{scope}
+      \fill[charcoal] (1,0) circle (3.4pt);
+      \node[charcoal, font=\small\bfseries] at (0,-5.8){C};
+    \end{scope}
+  \end{tikzpicture}
+
+  \vspace{4pt}
+  \begin{block}{}
+    \centering All three: VA $x=-2$, VA $x=3$, $x$-intercept $(1,0)$, flattening toward $y=0$. \\[3pt]
+    \textbf{Exactly one is $f(x)=\dfrac{x-1}{(x+2)(x-3)}$. The checklist cannot tell you which.}
+  \end{block}
+\end{frame}
+
+% WHAT CHANGED
+\begin{frame}[t, plain]
+  \forestheader{What changed since yesterday}
+  \sectionlabel{Set-up}
+  \begin{columns}[T]
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Lesson 5.4}
+        \[ g(x)=\frac{a}{x-h}+k \]
+        Both asymptotes printed on the face of the equation. \\[3pt]
+        One factor downstairs, one wall, no holes.
+      \end{block}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Lesson 5.5}
+        \[ f(x)=\frac{x-1}{x^2-x-6} \]
+        The denominator factors into \emph{two} pieces. The numerator may cancel one. \\[3pt]
+        Nothing is readable until you factor.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{}
+    \centering\textbf{Factor it, and every feature is already in there.} The sign chart is what turns
+    the list into a picture.
+  \end{block}
+\end{frame}
+
+% THE BUILD
+\begin{frame}[t, plain]
+  \forestheader{The build --- five steps, always in this order}
+  \sectionlabel[goldacc]{Post this}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item \textbf{Factor} the top and the bottom completely.
+    \item \textbf{Restrictions} off the \emph{original} denominator. Cancel test: a factor that cancels
+          $\Rightarrow$ \textbf{hole} (give its coordinates); a factor that survives $\Rightarrow$
+          \textbf{vertical asymptote}.
+    \item \textbf{Degree comparison} $\Rightarrow$ horizontal asymptote, or ``none.''
+    \item \textbf{Intercepts, computed.} $x$-int: zeros of the \emph{simplified} numerator.
+          $y$-int: $f(0)$.
+    \item \textbf{Sign chart.} Boundary points $=$ $x$-intercepts $+$ vertical asymptotes. One test
+          value per interval.
+  \end{enumerate}
+  \vspace{4pt}
+  {\footnotesize Then assemble: domain as a union, end behavior, above/below by interval.}
+\end{frame}
+
+% HOLE OR WALL
+\begin{frame}[t, plain]
+  \forestheader{Step 2: hole or wall?}
+  \sectionlabel{The cancel test}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Cancels $\Rightarrow$ hole}
+        \[ \frac{x-4}{(x-4)(x+1)}=\frac{1}{x+1} \]
+        $x=4$ is a \textbf{hole} --- one missing point. Height: put $4$ into the \emph{simplified}
+        form, $\frac15$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Survives $\Rightarrow$ wall}
+        \[ \frac{x+5}{(x-2)(x+3)} \]
+        Nothing cancels, so $x=2$ and $x=-3$ are both \textbf{vertical asymptotes}.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  {\footnotesize \textbf{Order matters.} Restrictions come off the \emph{original} denominator.
+  Simplify first and the hole disappears from your answer --- the same error that becomes an extraneous
+  solution in Lesson 5.6.}
+\end{frame}
+
+% DEGREE COMPARISON
+\begin{frame}[t, plain]
+  \forestheader{Step 3: the degree comparison}
+  \sectionlabel{Recall from 5.0}
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|l|c|l|}
+  \hline
+  \textbf{Case} & \textbf{Horizontal asymptote} & \textbf{Example} \\ \hline
+  top $<$ bottom & $y=0$ & $\dfrac{x-1}{x^2-x-6}$ \\ \hline
+  top $=$ bottom & ratio of leading coefficients & $\dfrac{2x^2-8}{x^2-x-6} \Rightarrow y=2$ \\ \hline
+  top $>$ bottom & \textbf{none} & $\dfrac{x^3}{x^2-1}$ \\ \hline
+  \end{tabular}
+
+  \vspace{8pt}
+  \begin{block}{}
+    Compare the \emph{whole} top with the \emph{whole} bottom --- never one factor with another.
+    And ``none'' is a complete answer: the graph still has end behavior, the arms just do not flatten.
+  \end{block}
+\end{frame}
+
+% WORKED A: STEPS 1-4
+\begin{frame}[t, plain]
+  \forestheader{Worked Example A: $f(x)=\dfrac{x-1}{x^2-x-6}$}
+  \sectionlabel[goldacc]{Steps 1--4}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \[ f(x)=\frac{x-1}{(x+2)(x-3)} \]
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Restrictions $-2$ and $3$; nothing cancels.
+        \item So two \textbf{walls}: $x=-2$, $x=3$. No holes.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Degrees $1$ and $2$ $\Rightarrow$ \textbf{HA} $y=0$.
+        \item $x$-int: numerator zero at $x=1$ $\Rightarrow$ $(1,0)$.
+        \item $y$-int: $f(0)=\dfrac{-1}{-6}=\dfrac16$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{Everything is known --- and the graph is still not determined}
+    \centering That is the Hook. One more step.
+  \end{block}
+\end{frame}
+
+% WORKED A: SIGN CHART
+\begin{frame}[t, plain]
+  \forestheader{Step 5: the sign chart decides}
+  \sectionlabel[goldacc]{The tool}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.35}
+      {\footnotesize
+      \begin{tabular}{|c|c|c|c|}
+      \hline
+      \textbf{Interval} & \textbf{Test} & \textbf{Sign} & \textbf{Graph} \\ \hline
+      $x<-2$   & $-3$ & $-$ & below \\ \hline
+      $-2<x<1$ & $0$  & $+$ & above \\ \hline
+      $1<x<3$  & $2$  & $-$ & below \\ \hline
+      $x>3$    & $4$  & $+$ & above \\ \hline
+      \end{tabular}}
+
+      \vspace{5pt}
+      {\footnotesize Boundary points: $-2$, $1$, $3$ --- the walls and the intercept.}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-6}{7}{-4}{4}
+        \draw[navy, dashed, thick] (-2,-4)--(-2,4);
+        \draw[navy, dashed, thick] (3,-4)--(3,4);
+        \begin{scope} \clip (-6,-4) rectangle (7,4);
+          \draw[very thick, forest, domain=-6:-2.16, samples=100, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+          \draw[very thick, forest, domain=-1.85:2.9, samples=120, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+          \draw[very thick, forest, domain=3.1:7, samples=100, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+        \end{scope}
+        \fill[charcoal] (1,0) circle (3.4pt);
+      \end{tikzpicture} \\[2pt]
+      {\footnotesize Domain: $(-\infty,-2)\cup(-2,3)\cup(3,\infty)$}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CROSSING THE HA
+\begin{frame}[t, plain]
+  \forestheader{Does it cross its horizontal asymptote?}
+  \sectionlabel[goldacc]{Three claims, one reason}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \[ f(x)=0 \quad\Longleftrightarrow\quad x-1=0 \]
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item A fraction is zero only when its \textbf{numerator} is.
+        \item Here the numerator has a zero: $x=1$.
+        \item \textbf{Yes} --- and the crossing is at the $x$-intercept $(1,0)$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Putting the three together}
+        \textbf{5.0:} a rational graph \emph{may} cross its HA. \\[3pt]
+        \textbf{5.4:} a transformed parent \emph{never} does --- nonzero constant numerator. \\[3pt]
+        \textbf{5.5:} same fact, both times. A numerator with a zero makes a crossing
+        \emph{certain}.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% WORKED B
+\begin{frame}[t, plain]
+  \forestheader{Worked Example B: a hole --- and an old friend}
+  \sectionlabel{$g(x)=\dfrac{x^2-4}{x^2-x-6}$}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.28]
+        \lgrid{-6}{8}{-4}{6}
+        \draw[navy, dashed, thick] (3,-4)--(3,6);
+        \draw[navy, dashed, thick] (-6,1)--(8,1);
+        \node[navy, font=\tiny, above left] at (3,5.2) {$x=3$};
+        \node[navy, font=\tiny, below left] at (-1.4,1) {$y=1$};
+        \begin{scope} \clip (-6,-4) rectangle (8,6);
+          \draw[very thick, forest, domain=-6:2.8, samples=110, smooth] plot (\x,{1+1/((\x)-3)});
+          \draw[very thick, forest, domain=3.2:8, samples=110, smooth] plot (\x,{1+1/((\x)-3)});
+        \end{scope}
+        \draw[forest, very thick, fill=white] (-2,0.8) circle (4.2pt);
+        \fill[charcoal] (2,0) circle (3.4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \[ \frac{(x-2)(x+2)}{(x-3)(x+2)}=\frac{x-2}{x-3}=1+\frac{1}{x-3} \]
+      \begin{itemize}\setlength{\itemsep}{2pt}
+        \item $x+2$ cancels $\Rightarrow$ \textbf{hole} at $\left(-2,\frac45\right)$.
+        \item $x-3$ survives $\Rightarrow$ \textbf{wall} $x=3$.
+        \item Equal degrees $\Rightarrow$ \textbf{HA} $y=1$.
+        \item $x$-int $(2,0)$; \; $y$-int $\left(0,\frac23\right)$.
+      \end{itemize}
+      \vspace{2pt}
+      {\footnotesize It is yesterday's anchor family, right $3$ and up $1$ --- with one point punched
+      out. \textbf{5.5 did not replace 5.4. It surrounded it.}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE TRAP
+\begin{frame}[t, plain]
+  \forestheader{Two traps in Example B}
+  \sectionlabel[goldacc]{Hold the line}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{$(-2,0)$ is not an $x$-intercept}
+        The \emph{original} numerator $x^2-4$ is zero at $-2$. \\[3pt]
+        But $-2$ is not in the domain --- it is the hole. \\[3pt]
+        Only zeros of the \textbf{simplified} numerator count.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The hole is not a boundary point}
+        Sign chart boundaries here: $2$ and $3$ only. \\[3pt]
+        The sign cannot change at a hole --- the function is the same expression on both sides of it.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  {\footnotesize And the domain still excludes $-2$: $(-\infty,-2)\cup(-2,3)\cup(3,\infty)$.
+  A hole costs you an input just as surely as a wall does.}
+\end{frame}
+
+% SETTLE THE HOOK
+\begin{frame}[t, plain]
+  \forestheader{Back to the Hook: it was \textbf{A}}
+  \sectionlabel[goldacc]{Settled by arithmetic}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The chart said}
+        \centering below \; $\rightarrow$ \; above \; $\rightarrow$ \; below \; $\rightarrow$ \; above
+      \end{block}
+      \vspace{4pt}
+      {\footnotesize Test $x=-3$: $\dfrac{-4}{(-1)(-6)}<0$. That one number eliminates \textbf{B}.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{B} has every sign reversed.
+        \item \textbf{C} does not change sign at $x=-2$ --- both of its branches there go up.
+        \item \textbf{A} matches all four intervals.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering A feature list does not determine a graph. \textbf{The sign chart does.}
+  \end{block}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Today in one line --- and where it goes next}
+  \sectionlabel[goldacc]{Close}
+  \begin{block}{}
+    \centering\textbf{Factor it, and every feature is already in there --- the sign chart is what turns
+    the list into a picture.}
+  \end{block}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Errors that cost the most}
+        \begin{itemize}\setlength{\itemsep}{2pt}
+          \item Restrictions read off the \emph{simplified} form.
+          \item A wall announced without the cancel test.
+          \item A cancelled zero called an intercept.
+          \item A hole used as a boundary point.
+          \item One interval spanning a wall.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Next: Lesson 5.6}
+        The excluded values stop being features of a graph and come back as \emph{answers} --- the ones
+        you have to throw away. Everything you did today is how you will find them.
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}

@@ -3,17 +3,186 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.5}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Homework verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Homework --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Practice}
+Every problem starts the same way: \textbf{factor}. Restrictions come off the \emph{original}
+denominator, and the cancel test sorts each one into a hole or a wall.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Hole or wall?} Give the restrictions, then sort them.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $\dfrac{x+3}{(x+3)(x-5)}$ \hfill restrictions \ans{$-3,5$} \; hole \ans{$x=-3$} \;
+            VA \ans{$x=5$}
+      \item $\dfrac{x-6}{(x-2)(x+1)}$ \hfill restrictions \ans{$2,-1$} \; hole \ans{none} \;
+            VA \ans{$x=2$, $x=-1$}
+      \item $\dfrac{x^2-25}{x^2-5x}$ \hfill restrictions \ans{$0,5$} \; hole \ans{$x=5$} \;
+            VA \ans{$x=0$}
+      \item $\dfrac{x^2+x-6}{x^2-4}$ \hfill restrictions \ans{$2,-2$} \; hole \ans{$x=2$} \;
+            VA \ans{$x=-2$}
+      \item $\dfrac{7}{x^2-16}$ \hfill restrictions \ans{$4,-4$} \; hole \ans{none} \;
+            VA \ans{$x=4$, $x=-4$}
+      \item $\dfrac{x^2-9}{x^2-6x+9}$ \hfill restrictions \ans{$3$} \; hole \ans{none} \;
+            VA \ans{$x=3$}
+    \end{enumerate}
+    \vspace{2pt}
+    Part (f) is the odd one. The factor $x-3$ appears on top \emph{and} on the bottom, and there is
+    still no hole. Why not? \ans{the denominator has \emph{two} copies of $x-3$ and the top has one, so one copy survives the cancelling --- leaving $\frac{x+3}{x-3}$, a wall}
+
+  \item \textbf{Horizontal asymptotes.} Degrees only --- do not factor.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
+      \item $y=\dfrac{5x-1}{x^2+3}$: \; HA \ans{$y=0$}
+      \item $y=\dfrac{2x^2+x}{3x^2-5}$: \; HA \ans{$y=\frac23$}
+      \item $y=\dfrac{x^3+1}{x^2-4}$: \; HA \ans{none}
+      \item $y=\dfrac{-4x}{x-9}$: \; HA \ans{$y=-4$}
+    \end{enumerate}
+
+  \item \textbf{Two full builds.}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=8pt]
+      \item $f(x)=\dfrac{x+2}{x^2-2x-8}$ \\[3pt]
+            Factored \ans{$\frac{x+2}{(x-4)(x+2)}$} \; Restrictions \ans{$4,-2$} \; Simplified \ans{$\frac{1}{x-4}$}
+            \\[3pt]
+            Hole \ans{$(-2,-\frac16)$} \; VA \ans{$x=4$} \; HA \ans{$y=0$} \;
+            $x$-int \ans{none} \; $y$-int \ans{$(0,-\frac14)$} \\[3pt]
+            Sign chart --- boundary points \ans{$4$}. \; Test $x=0$: \ans{$-$} \;
+            test $x=5$: \ans{$+$} \\[3pt]
+            Domain \ans{$(-\infty,-2)\cup(-2,4)\cup(4,\infty)$}
+      \item $g(x)=\dfrac{x-3}{x^2-4}$ \\[3pt]
+            Factored \ans{$\frac{x-3}{(x-2)(x+2)}$} \; Restrictions \ans{$2,-2$} \; Holes \ans{none}
+            \\[3pt]
+            VA \ans{$x=2$, $x=-2$} \; HA \ans{$y=0$} \; $x$-int \ans{$(3,0)$} \;
+            $y$-int \ans{$(0,\frac34)$} \\[3pt]
+            Sign chart --- boundary points \ans{$-2$, $2$, $3$}.
+            \begin{center}
+            \renewcommand{\arraystretch}{1.4}
+            \begin{tabularx}{0.86\linewidth}{|C{2.4cm}|C{1.5cm}|C{1.6cm}|X|}
+            \hline
+            \rowcolor{forestbg}
+            \textbf{Interval} & \textbf{Test $x$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
+            $x<-2$   & $-3$  & \ans{$-$} & \ans{below} \\ \hline
+            $-2<x<2$ & $0$   & \ans{$+$} & \ans{above} \\ \hline
+            $2<x<3$  & $2.5$ & \ans{$-$} & \ans{below} \\ \hline
+            $x>3$    & $4$   & \ans{$+$} & \ans{above} \\ \hline
+            \end{tabularx}
+            \end{center}
+            \vspace{-4pt}
+            Domain \ans{$(-\infty,-2)\cup(-2,2)\cup(2,\infty)$} \; This graph crosses its horizontal asymptote at \ans{$(3,0)$}.
+    \end{enumerate}
+
+  \item \textbf{Which equation is this?} The dashed lines are the asymptotes, the solid dot is an
+        intercept, and the open circle is a hole.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-7}{7}{-5}{7}
+      \draw[navy, dashed, semithick] (1,-5)--(1,7);
+      \draw[navy, dashed, semithick] (-7,1)--(7,1);
+      \node[navy, font=\scriptsize, above right] at (1,6.2) {$x=1$};
+      \node[navy, font=\scriptsize, below left] at (-3.4,1) {$y=1$};
+      \begin{scope}
+        \clip (-7,-5) rectangle (7,7);
+        \draw[very thick, forest, domain=-7:0.62, samples=140, smooth] plot (\x,{1+2/((\x)-1)});
+        \draw[very thick, forest, domain=1.33:7, samples=140, smooth] plot (\x,{1+2/((\x)-1)});
+      \end{scope}
+      \draw[forest, very thick, fill=white] (-3,0.5) circle (4.0pt);
+      \fill[charcoal] (-1,0) circle (3.2pt) node[above right, font=\scriptsize]{$(-1,0)$};
+      \fill[charcoal] (0,-1) circle (3.2pt) node[below right, font=\scriptsize]{$(0,-1)$};
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-4pt}
+    \begin{center}
+    \textbf{A.} $\dfrac{x+1}{x-1}$ \quad
+    \textbf{B.} $\dfrac{(x+1)(x+3)}{(x-1)(x+3)}$ \quad
+    \textbf{C.} $\dfrac{(x+1)(x-3)}{(x-1)(x-3)}$ \quad
+    \textbf{D.} $\dfrac{x+3}{(x-1)(x+3)}$
+    \end{center}
+    \vspace{3pt}
+    Answer \ans{B}. \; The hole is at \ans{$(-3,\frac12)$}, so the domain is \ans{$(-\infty,-3)\cup(-3,1)\cup(1,\infty)$}.
+    \\[3pt]
+    Finally, rewrite the simplified form as a transformed parent (Lesson 5.4):
+    $\dfrac{x+1}{x-1}=\dfrac{(x-1)+{\color{keyred}\mathbf{2}}}{x-1}={\color{keyred}1+\frac{2}{x-1}}$
+    \\[3pt]
+    {\small \textbf{A} has no hole; \textbf{C} puts it at $+3$; \textbf{D} gives HA $y=0$.}
+
+  \item \textbf{Error analysis.} A student analyzed $g(x)=\dfrac{x^2-x-6}{x^2-9}$ and wrote:
+    \begin{center}
+    \fbox{\parbox{0.84\linewidth}{\centering \vspace{2pt}
+    ``It simplifies to $\dfrac{x+2}{x+3}$, so the domain is all reals except $x=-3$, \\
+    and the graph is exactly the graph of $\dfrac{x+2}{x+3}$.''\vspace{2pt}}}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item The simplification is \ans{correct} (correct / incorrect).
+      \item What did the student leave out of the domain, and why? \ans{$x=3$ --- the \emph{original} denominator $x^2-9$ is zero there, so $3$ was never an allowed input}
+      \item The hole is at \ans{$(3,\frac56)$}, so the correct domain is \ans{$(-\infty,-3)\cup(-3,3)\cup(3,\infty)$}.
+      \item State the rule from Lesson 5.1 that the student broke, in one sentence.
+            \ansline{cancelling never restores an input --- restrictions are read off the original denominator, and the cancelled one leaves a hole behind}
+    \end{enumerate}
+
+  \item \textbf{Cleaning the smokestack.} A factory must remove pollution from its exhaust. Removing
+        $p$ percent of the pollutant costs
+        \[ C(p)=\frac{25p}{100-p} \quad \text{thousand dollars,} \qquad 0\le p<100. \]
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $C(50)=$ \ans{$25$}, \; $C(80)=$ \ans{$100$}, \; $C(90)=$ \ans{$225$}, \;
+            $C(95)=$ \ans{$475$}, \; $C(99)=$ \ans{$2475$} (thousand dollars).
+      \item Run the build. Restriction \ans{$p\neq100$}; vertical asymptote \ans{$p=100$};
+            degrees \ans{$1$} and \ans{$1$}, so the horizontal asymptote is \ans{$y=-25$}.
+      \item Which of those two asymptotes means something about this factory, and what does it say?
+            And why is the other one meaningless here? \ansline{the wall at $p=100$: as the target approaches $100\%$ the cost grows without bound, so total removal cannot be bought at any price. $y=-25$ describes $p$ running far past $100$, at a negative cost --- but $p$ only lives between $0$ and $100$}
+      \item The $x$-intercept is \ans{$(0,0)$}. In plain words, that says \ans{removing none of it costs nothing}.
+      \item Going from $90\%$ to $95\%$ costs an extra \ans{$250$} thousand dollars. Going from
+            $95\%$ to $99\%$ costs an extra \ans{$2000$} thousand. What is the graph doing near
+            $p=100$, and what does that mean for a law requiring $100\%$ removal? \ansline{it climbs steeply along the vertical asymptote --- each additional percent costs more than the one before, and a $100\%$ requirement is a requirement no finite budget can meet}
+    \end{enumerate}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Part 1 --- Design one.} Write the equation of a rational function with vertical asymptotes at
+$x=-1$ and $x=4$, a horizontal asymptote $y=0$, and \emph{no} $x$-intercept at all.
+\begin{center}
+$y=$ \ans{$\dfrac{1}{(x+1)(x-4)}$}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Which requirement forced the denominator? \ans{the two vertical asymptotes --- and neither factor may cancel}
+  \item Which two requirements, together, forced the numerator to be a nonzero \emph{constant}?
+        \ansline{``no $x$-intercept'' means the numerator is never zero, and HA $y=0$ means its degree is below $2$ --- together that leaves a nonzero constant}
+  \item Is your answer the only one? What could someone else have written instead? \ans{no --- any nonzero constant on top works, e.g.\ $\frac{5}{(x+1)(x-4)}$ or $\frac{-2}{x^2-3x-4}$}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 2 --- One question, carefully.} Can a rational function have a hole \emph{and} a vertical
+asymptote at the same $x$-value? Answer, then test your answer against $y=\dfrac{x-3}{(x-3)^2}$ ---
+which has $x-3$ on the top and on the bottom.
+\ansline{No. The cancel test sends each restriction to exactly one outcome: the factor either cancels
+completely (hole) or leaves a copy in the denominator (wall). In $\frac{x-3}{(x-3)^2}$ one copy cancels
+and one remains, leaving $\frac{1}{x-3}$ --- a wall at $x=3$ and no hole. A shared factor is not
+enough; it has to cancel \emph{all the way}.}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 5.6: Solving Rational Equations.} All unit long you have computed
+excluded values and then \emph{kept} them off the graph. Tomorrow they come back as answers: clearing
+the denominators hands you numbers that solve the cleared equation but not the original one --- exactly
+the excluded values you have been listing since 5.1. You already know how to find them.
+\end{spiralbox}
+
+\begin{teachernote}
+\textbf{1(f)}: two copies of $x-3$ downstairs, one upstairs --- the restriction survives as a wall and
+there is no hole. \textbf{3(a)} has \emph{no} $x$-intercept; \textbf{3(b)} crosses its HA at $(3,0)$.
+\textbf{Problem 5} is the unit's spine: the algebra is right and the conclusion still wrong. Accept any
+phrasing of 5.1's \emph{cancelling never restores an input}, and flag anyone missing it --- it is
+tomorrow's extraneous solution. \textbf{Problem 6} reverses the activity's model: here the
+\emph{vertical} asymptote is the one that means something.
+\end{teachernote}
 
 \end{document}
