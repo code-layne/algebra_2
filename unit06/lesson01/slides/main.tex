@@ -1,6 +1,16 @@
 %! $n$th Roots \& Rational Exponents — Unit 6, Lesson 6.1 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% Cube root: pgfmath has no cbrt, so plot the two branches separately.
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)});}
 
 \begin{document}
 
@@ -12,15 +22,296 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 6.1}\\[0.5cm]
     {\color{white}\bfseries\LARGE $n$th Roots \& Rational Exponents}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6: Radical Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{A problem you cannot do --- yet}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \[ \sqrt{x}\cdot\sqrt[3]{x} \;=\; ? \]
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item Every radical rule you know needs the two \textbf{indices to match}.
+        \item These do not. There is no move to make.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \begin{block}{So try the other direction}
+        What number, squared, gives $a$? \; $\sqrt{a}$. \\[4pt]
+        Now suppose $a^{1/2}$ meant \emph{something}. Power to a power says
+        \[ \left(a^{1/2}\right)^{2} = a^{\frac12\cdot 2} = a^{1} = a . \]
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize Nobody \emph{chose} this. If the exponent rules are going to keep working,
+      $a^{1/2}$ has \textbf{no choice} but to be $\sqrt{a}$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% nTH ROOTS + PRINCIPAL ROOT
+\begin{frame}[t, plain]
+  \forestheader{$n$th roots --- and why the symbol gives you only one of them}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      $\sqrt[n]{a}=b$ \; means \; $b^{n}=a$.
+      \vspace{4pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $4^{2}=16$ \emph{and} $(-4)^{2}=16$ --- so $16$ has \textbf{two} real square roots.
+        \item The symbol returns the \textbf{principal} (non-negative) one.
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize $\sqrt{16}=4$, \; $-\sqrt{16}=-4$, \; $\pm\sqrt{16}=\pm4$. \\
+      Want both? \textbf{Write the $\pm$ yourself.}}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{block}{How many real $n$th roots?}
+        \footnotesize
+        \begin{tabular}{lll}
+        \textbf{Index} & \textbf{Radicand} & \textbf{Real roots} \\
+        \hline
+        even & $a>0$ & two ($\pm$) \\
+        even & $a=0$ & one \\
+        even & $a<0$ & \textbf{none} \\
+        odd  & any   & exactly one, same sign as $a$ \\
+        \end{tabular}
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize \textbf{Why:} an even power is never negative, so nothing real is an even root of
+      a negative. An odd power \emph{keeps} the sign. \\
+      \textcolor{goldacc}{\textbf{This is yesterday's domain rule, finally proved.}}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE ABSOLUTE VALUE TRAP
+\begin{frame}[t, plain]
+  \forestheader{The trap: $\sqrt[n]{a^{n}}$ is not always $a$}
+  \sectionlabel[goldacc]{$|a|$ or $a$?}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{itemize}\setlength{\itemsep}{6pt}
+        \item $\sqrt{5^{2}} = \sqrt{25} = 5$ \quad {\footnotesize (fine)}
+        \item $\sqrt{(-5)^{2}} = \sqrt{25} = \textbf{5}$ \quad
+              {\footnotesize \textcolor{keyred}{not $-5$!}}
+        \item $\sqrt[3]{(-5)^{3}} = \sqrt[3]{-125} = -5$ \quad {\footnotesize (fine)}
+      \end{itemize}
+      \vspace{4pt}
+      {\footnotesize The square \textbf{destroyed} the sign, and the principal root refuses to put it
+      back.}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{The rule}
+        \centering
+        $n$ \textbf{even}: \; $\sqrt[n]{a^{n}} = |a|$ \\[5pt]
+        $n$ \textbf{odd}: \; $\sqrt[n]{a^{n}} = a$
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize So $\sqrt{x^{2}}=|x|$ --- unless we are \emph{told} $x>0$.
+      That is why most problems say ``assume all variables are positive.''}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% a^(1/n)
+\begin{frame}[t, plain]
+  \forestheader{A radical \emph{is} an exponent}
+  \sectionlabel[goldacc]{$\sqrt[n]{a}=a^{1/n}$}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      The exponent rules force it:
+      \[ \left(a^{1/n}\right)^{n} = a^{\frac{1}{n}\cdot n} = a^{1} = a \]
+      \vspace{-4pt}
+      \begin{block}{Therefore}
+        \centering $\displaystyle \sqrt[n]{a} = a^{1/n}$ \\[3pt]
+        {\footnotesize the \textbf{index} becomes the \textbf{denominator}}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item $\sqrt{7}=7^{1/2}$ \qquad $\sqrt[3]{x}=x^{1/3}$
+        \item $m^{1/4}=\sqrt[4]{m}$ \qquad $64^{1/3}=\sqrt[3]{64}=4$
+        \item $\sqrt[5]{2y}=(2y)^{1/5}$
+      \end{itemize}
+      \vspace{5pt}
+      {\footnotesize \textbf{Watch the parentheses:} $2y^{1/5}$ and $(2y)^{1/5}$ are different --- in
+      the first, only the $y$ is under the root.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% a^(m/n)
+\begin{frame}[t, plain]
+  \forestheader{Denominator roots, numerator powers}
+  \sectionlabel[goldacc]{$a^{m/n}$}
+  \begin{center}
+    \begin{minipage}{0.86\textwidth}
+      \begin{block}{The rule}
+        \centering
+        $\displaystyle a^{m/n} \;=\; \sqrt[n]{a^{m}} \;=\; \left(\sqrt[n]{a}\right)^{m}$ \\[4pt]
+        {\footnotesize \textbf{denominator} $=$ the index (the root) \qquad
+        \textbf{numerator} $=$ the power}
+      \end{block}
+    \end{minipage}
+  \end{center}
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $\sqrt[4]{x^{3}} = x^{3/4}$
+        \item $\left(\sqrt[3]{x}\right)^{7} = x^{7/3}$
+        \item $y^{2/5} = \sqrt[5]{y^{2}}$ \qquad $w^{5/2}=\sqrt{w^{5}}$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The error of the day}
+        $\sqrt[4]{x^{3}}$ is $x^{3/4}$, \textbf{never} $x^{4/3}$. \\[3pt]
+        {\footnotesize The index is on the \emph{bottom} because it came from $\frac{1}{n}$.}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROOT FIRST + NEGATIVE EXPONENTS
+\begin{frame}[t, plain]
+  \forestheader{Take the root first --- and a minus sign is not a minus sign}
+  \sectionlabel{Evaluating}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      \begin{tabular}{lll}
+      \hline
+       & \textbf{Power first} & \textbf{Root first} \\
+      \hline
+      $8^{2/3}$ & $\sqrt[3]{64}=4$ & $\left(\sqrt[3]{8}\right)^{2}=2^{2}=4$ \\
+      $16^{3/4}$ & $\sqrt[4]{4096}=8$ & $\left(\sqrt[4]{16}\right)^{3}=2^{3}=8$ \\
+      \hline
+      \end{tabular}
+      \vspace{5pt}
+
+      {\footnotesize Both are correct. Only one is arithmetic you can do in your head ---
+      \textcolor{goldacc}{\textbf{choosing the easy route is the skill.}}}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Negative rational exponents}
+        \centering $\displaystyle a^{-m/n} = \frac{1}{a^{m/n}}$
+      \end{block}
+      \vspace{2pt}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $16^{-1/2} = \dfrac{1}{4}$ \quad
+              \textcolor{keyred}{\textbf{not $-4$}}
+        \item $27^{-2/3} = \dfrac{1}{3^{2}} = \dfrac{1}{9}$
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize The minus sign \textbf{moves} the expression downstairs. It does not change its
+      sign.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE PAYOFF
+\begin{frame}[t, plain]
+  \forestheader{The payoff: every exponent property now works on radicals}
+  \sectionlabel[goldacc]{Why the notation exists}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \footnotesize
+      \begin{tabular}{ll}
+      \hline
+      Product & $a^{r}a^{s}=a^{r+s}$ \\
+      Quotient & $a^{r}/a^{s}=a^{r-s}$ \\
+      Power & $\left(a^{r}\right)^{s}=a^{rs}$ \\
+      Negative & $a^{-r}=1/a^{r}$ \\
+      \hline
+      \end{tabular}
+      \vspace{5pt}
+
+      {\footnotesize None of them ever cared whether the exponent was a whole number.}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \begin{block}{Back to the Hook}
+        \centering
+        $\displaystyle \sqrt{x}\cdot\sqrt[3]{x} = x^{1/2}\cdot x^{1/3} = x^{5/6} = \sqrt[6]{x^{5}}$
+      \end{block}
+      \vspace{3pt}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $\dfrac{x^{3/4}}{x^{1/2}} = x^{1/4}$ \qquad $\left(x^{2/3}\right)^{6} = x^{4}$
+        \item $\left(8x^{6}\right)^{1/3} = 2x^{2}$
+        \item $\sqrt{\sqrt[3]{x}} = x^{1/6}$ \quad {\footnotesize (the indices \emph{multiply})}
+      \end{itemize}
+      \vspace{2pt}
+      {\footnotesize Mismatched indices are a dead end as radicals --- and one line as exponents.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% BACK TO 6.0 — DOMAIN
+\begin{frame}[t, plain]
+  \forestheader{Yesterday's graphs, relabeled}
+  \sectionlabel[goldacc]{The denominator decides}
+  \begin{columns}[T]
+    \begin{column}{0.30\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-2}{9}{-2}{4}
+        \begin{scope}
+          \clip (-2,-2) rectangle (9,4);
+          \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
+        \end{scope}
+        \fill[forest] (0,0) circle (6pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=x^{1/2}$ --- domain $[0,\infty)$}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-8}{8}{-3}{3}
+        \begin{scope}
+          \clip (-8,-3) rectangle (8,3);
+          \cbrtpos{0}{8}
+          \cbrtneg{-8}{0}
+        \end{scope}
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=x^{1/3}$ --- all reals}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \begin{block}{The rule, in exponent language}
+        In $x^{m/n}$ (lowest terms): \\[3pt]
+        \textbf{even} denominator $\Rightarrow$ domain $x\ge0$ \\[3pt]
+        \textbf{odd} denominator $\Rightarrow$ all reals
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize The \emph{numerator} never restricts anything. \\[3pt]
+      ``Even index restricts the domain'' and ``even denominator restricts the domain'' are the
+      \textbf{same sentence} --- because the denominator \emph{is} the index.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 6 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} $\sqrt[n]{a}=a^{1/n}$ and $a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}$ ---
+  which hands every exponent property to radicals, and gives yesterday's domain rule its algebraic
+  proof.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{6.2} Simplifying radicals; adding \& subtracting like radicals.
+    \item \textbf{6.3} Multiplying \& dividing; rationalizing with conjugates.
+    \item \textbf{6.4} Graphing radical functions \& transformations.
+    \item \textbf{6.5} Solving radical equations \& extraneous solutions.
+    \item \textbf{6.6} Composition of functions.
+    \item \textbf{6.7} Inverse functions --- where ``raise both sides to the reciprocal power''
+          becomes a method.
+  \end{itemize}
 \end{frame}
 
 \end{document}

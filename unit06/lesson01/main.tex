@@ -19,68 +19,219 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can find \emph{$n$th roots} and name the \emph{principal}
+    root; explain --- algebraically, not just by rule --- why an \emph{even} root of a negative
+    number is not a real number while an \emph{odd} one is; convert fluently in both directions
+    between radical form and \emph{rational exponent} form using
+    $a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}$; evaluate such expressions without a
+    calculator by taking the \emph{root first}; and apply every exponent property they already own
+    to rational exponents --- including products and quotients of radicals with \emph{different
+    indices}, which no radical rule can handle. Students also restate Lesson 6.0's domain rule in the
+    new notation: an even \emph{denominator} restricts the domain exactly as an even \emph{index}
+    does, because the denominator \emph{is} the index.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.2c} --- convert between radical expressions and
+    expressions containing rational exponents --- is the lesson's governing standard and is assessed
+    in every component. \textbf{A2.EO.2a} (simplify and determine equivalent radical expressions
+    with numeric and algebraic radicands) is served by the evaluation work and by the exponent-property
+    simplifications, and this lesson supplies the tool 6.2--6.3 will lean on. The domain strand
+    revisits \textbf{A2.F.2a} (domain and range) and \textbf{A2.F.1a} (parent graphs) by relabeling
+    Lesson 6.0's two parents as $y=x^{1/2}$ and $y=x^{1/3}$. The Activity's Kepler model and the
+    homework's metabolic-rate model reach \textbf{A2.F.2f} (evaluate a function and interpret it in
+    context) and preview \textbf{A2.F.2i/j} (inverses) by solving each model for its input --- the
+    algebraic version of Lesson 6.0's reflection over $y=x$.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Find \textbf{$n$th roots}; identify the \textbf{principal} root and write $\pm$ when both are wanted.
+  \item State how many real $n$th roots a number has, from the \textbf{index} and the \textbf{sign of the radicand}.
+  \item Simplify $\sqrt[n]{a^{n}}$ correctly: $|a|$ for an even index, $a$ for an odd one.
+  \item Convert \textbf{radical $\leftrightarrow$ rational exponent} in both directions: $\sqrt[n]{a^{m}}=a^{m/n}$.
+  \item \textbf{Evaluate} $a^{m/n}$ and $a^{-m/n}$ without a calculator --- \emph{root first}, then power.
+  \item Apply the \textbf{product, quotient, power, and negative} exponent properties to rational exponents.
+  \item Combine radicals with \textbf{different indices} by converting to exponents first.
+  \item Use the \textbf{denominator} to decide whether a power function's domain is restricted.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item \emph{A radical is an exponent in disguise.} $\sqrt[n]{a}=a^{1/n}$ is not a definition to memorize --- ``power to a power'' \textbf{forces} it: $\left(a^{1/n}\right)^{n}=a^{1}=a$.
+  \item The \textbf{denominator is the index} because it came from $\frac{1}{n}$. That single sentence prevents the lesson's signature error (flipping the fraction).
+  \item Both orders of root and power are legal and equal --- but only one keeps the arithmetic small. Choosing the easy route \emph{is} the skill.
+  \item A negative exponent \textbf{moves} an expression; it never changes its sign.
+  \item An even power destroys sign information, so an even root cannot restore it --- hence $|a|$, and hence no even root of a negative number. This is Lesson 6.0's domain rule, finally proved.
+  \item The notation exists because it is \emph{stronger}: $\sqrt{x}\cdot\sqrt[3]{x}$ is a dead end as radicals and a one-line problem as exponents.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{$n$th root} & A number $b$ such that $b^{n}=a$; written $\sqrt[n]{a}$, where $n$ is the index. \\
+\textbf{Principal $n$th root} & The single value the radical symbol returns --- the non-negative one when the index is even. $\sqrt{16}=4$, not $\pm4$; write the $\pm$ yourself if you want both. \\
+\textbf{How many real roots} & Even index: two if $a>0$, one if $a=0$, \emph{none} if $a<0$. Odd index: exactly one, with the same sign as $a$. \\
+\textbf{$\sqrt[n]{a^{n}}$} & $|a|$ when $n$ is even (the even power destroyed the sign); $a$ when $n$ is odd. \\
+\textbf{Rational exponent} & A fractional exponent. \TallMath{a^{1/n}=\sqrt[n]{a}}, forced by $\left(a^{1/n}\right)^{n}=a^{n/n}=a$. \\
+\textbf{The $a^{m/n}$ rule} & \TallMath{a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}} --- \emph{denominator} $=$ index (root), \emph{numerator} $=$ power. \\
+\textbf{Negative rational exponent} & \TallMath{a^{-m/n}=\frac{1}{a^{m/n}}} --- reciprocal, never a negative answer. \\
+\textbf{Exponent properties} & $a^{r}a^{s}=a^{r+s}$, \; $a^{r}/a^{s}=a^{r-s}$, \; $\left(a^{r}\right)^{s}=a^{rs}$, \; $(ab)^{r}=a^{r}b^{r}$ --- all valid for rational $r,s$. \\
+\textbf{Domain of $x^{m/n}$} & In lowest terms: even denominator $\Rightarrow$ restricted to $x\ge0$; odd denominator $\Rightarrow$ all reals. The numerator never restricts. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses three prerequisites, and each one is a piece of today's lesson in
+    disguise. \textbf{(1)} Evaluating $2^{5}$, $3^{4}$, $(-3)^{3}$, $(-2)^{4}$ --- the perfect-power
+    vocabulary students will read \emph{backwards} all period ($32=2^{5}$ becomes $\sqrt[5]{32}=2$),
+    with a follow-up question that extracts the fact underneath the whole lesson: an odd power keeps
+    a negative sign, an even power destroys it. \textbf{(2)} The four exponent properties with
+    whole-number exponents --- today's claim is that they keep working when the exponents become
+    fractions, and $\left(x^{4}\right)^{3}=x^{12}$ is literally the derivation of $a^{1/n}$ run
+    forwards. \textbf{(3)} Fraction arithmetic ($\frac12+\frac13$, $\frac34-\frac12$,
+    $\frac23\cdot3$) --- not filler: once exponents are fractions, ``add the exponents'' means adding
+    fractions, and $\sqrt{x}\cdot\sqrt[3]{x}=x^{5/6}$ \emph{is} item 3(a). Note who is slow here;
+    they will stall in Tier E on the arithmetic, not the radicals.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put one impossible-looking product on the board and let it sit: \textbf{``Simplify
+    $\sqrt{x}\cdot\sqrt[3]{x}$.''} Give them a minute to fail honestly --- every radical rule they
+    have ever seen requires the indices to \emph{match}, and these do not. Then pivot instead of
+    rescuing: \textbf{``Forget radicals. What number, squared, gives $a$?''} ($\sqrt{a}$.)
+    \textbf{``Now suppose there were such a thing as $a^{1/2}$. Using nothing but power-to-a-power,
+    what is $\left(a^{1/2}\right)^{2}$?''} Walk it out on the board:
+    $a^{\frac12\cdot2}=a^{1}=a$. Land it hard: \emph{nobody chose this.} If $a^{1/2}$ is going to
+    exist at all and the exponent rules are going to keep working, then $a^{1/2}$ has no choice but
+    to be $\sqrt{a}$ --- the rules \textbf{force} the meaning. That is worth naming out loud as a
+    piece of mathematical reasoning students will see again: extend a definition by insisting the
+    old rules survive. Close by pointing back at the board: \textbf{``So what is $\sqrt{x}\cdot
+    \sqrt[3]{x}$ now?''} --- and promise that by the end of the period it is one line. Yesterday the
+    index told them \emph{where a graph is allowed to exist}; today they learn what the index
+    actually \emph{is}.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. $n$th roots and the principal root.} Define $\sqrt[n]{a}=b$ to mean $b^{n}=a$, then
+immediately complicate it: $4^{2}=16$ \emph{and} $(-4)^{2}=16$, so $16$ has two real square roots.
+The symbol returns only the \textbf{principal} (non-negative) one --- $\sqrt{16}=4$, and if you want
+both you must write $\pm$ yourself. Build the four-row table (even/$a>0$, even/$a=0$, even/$a<0$,
+odd/any) and make students supply the \emph{why} from Warm-Up item~1 rather than accepting it:
+an even power of a real number is never negative, so nothing real can be an even root of a negative.
+\emph{Say explicitly that this is the algebraic proof of yesterday's domain rule} --- 6.0 observed
+that a square root graph stops; 6.1 explains why it must. Drill the perfect-power lists
+($32,\ 81,\ 243,\ 125,\ 256$) as recognition, not computation.
+
+\textbf{2. The $\sqrt[n]{a^{n}}$ trap.} Work $\sqrt{5^{2}}$, $\sqrt{(-5)^{2}}$, and
+$\sqrt[3]{(-5)^{3}}$ side by side and let the second one surprise them: the answer comes back
+$+5$. The square destroyed the sign and the principal root refuses to restore it. Land the rule
+--- even index $\Rightarrow |a|$, odd index $\Rightarrow a$ --- and be honest that the rest of the
+period assumes positive variables so the bars can be dropped, but that the homework does not.
+
+\columnbreak
+
+\textbf{3. A radical \emph{is} an exponent.} Re-run the Hook derivation formally for general $n$:
+$\left(a^{1/n}\right)^{n}=a^{n/n}=a$, therefore $a^{1/n}=\sqrt[n]{a}$. Box it. Convert a handful
+both ways ($\sqrt{7}=7^{1/2}$, $\sqrt[3]{x}=x^{1/3}$, $m^{1/4}=\sqrt[4]{m}$), and flag the
+parenthesis distinction: $2y^{1/5}$ vs.\ $(2y)^{1/5}$.
+
+\textbf{4. The full rule $a^{m/n}$.} Split $\frac{m}{n}=\frac{1}{n}\cdot m$ to get
+$a^{m/n}=\left(\sqrt[n]{a}\right)^{m}=\sqrt[n]{a^{m}}$. State the mantra twice --- \textbf{denominator
+$=$ index, numerator $=$ power} --- because flipping the fraction is this lesson's signature error.
+Run the two-column ``power first / root first'' comparison on $8^{2/3}$ and $16^{3/4}$ so students
+\emph{see} $\sqrt[4]{4096}$ appear in the hard column. Then negative exponents: $16^{-1/2}=\frac14$,
+and repeat the line ``the minus sign moves it downstairs; it does not change its sign.''
+
+\textbf{5. The payoff.} Re-list the four properties, note that none of them ever cared whether the
+exponent was a whole number, and finally kill the Hook: $x^{1/2}\cdot x^{1/3}=x^{5/6}=\sqrt[6]{x^{5}}$.
+Practice a quotient, a power-of-a-power, and $\left(8x^{6}\right)^{1/3}$.
+
+\textbf{6. Back to 6.0.} Show yesterday's two parent graphs relabeled $y=x^{1/2}$ and $y=x^{1/3}$ ---
+same graphs, new notation --- and restate the domain rule: an even \emph{denominator} restricts to
+$x\ge0$; an odd one does not; the numerator never restricts. Preview Lesson 6.2.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during Guided Practice and the tiers. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{flipping the fraction} --- $\sqrt[4]{x^{3}}$ written as $x^{4/3}$; this is the signature error of the lesson, and the fix is not ``index on the bottom'' but re-running $\left(a^{1/n}\right)^{n}=a$ until the student can rebuild it;
+  \item answering $16^{-1/2}=-4$ --- treating a negative exponent as a negative sign;
+  \item \emph{power first} on every evaluation, then stalling on $\sqrt[4]{4096}$; not wrong, but redirect to root-first before frustration sets in;
+  \item writing $\sqrt{x^{2}}=x$ when $x$ has not been declared positive (and, conversely, sticking bars on an \emph{odd} root: $\sqrt[3]{x^{3}}=|x|$);
+  \item claiming $(-16)^{3/4}$ is real by cubing first --- the even denominator is what decides, and $\sqrt[4]{\text{negative}}$ does not exist either way;
+  \item multiplying instead of adding exponents on a product (or vice versa) --- usually a fraction-arithmetic problem in disguise, not a radical problem;
+  \item dropping parentheses: $(2y)^{1/5}$ becoming $2y^{1/5}$.
+\end{itemize}
+Cold-call prompts: ``Which number is the index --- and where does it go?'' ``Root first or power
+first, and why did you choose that one?'' ``Does that negative exponent make the answer negative?
+Show me.'' ``Is $x$ positive? How do you know?'' ``What is the denominator, and what does that tell
+you about the domain?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{One Expression, Two Costumes} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} A seven-row translation table (radical form $\leftrightarrow$ rational
+exponent $\leftrightarrow$ numeric value) covering $\sqrt{x}$, $\sqrt[3]{x^{2}}$, $x^{5/2}$,
+$t^{1/6}$, $\sqrt[4]{16}$, $8^{1/3}$, $\left(\sqrt[3]{27}\right)^{2}$; a ``where does each number
+go'' check; six root-first evaluations; and one concept question forcing the words \emph{odd
+denominator} for $(-27)^{1/3}$.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} Six no-calculator evaluations including negative exponents,
+a negative base, and a fraction base ($27^{4/3}$, $16^{3/4}$, $(-8)^{2/3}$, $81^{-1/2}$,
+$32^{-3/5}$, $\left(\frac{8}{27}\right)^{2/3}$); two \emph{justifications} --- carry out
+$\sqrt[4]{16^{3}}$ far enough to meet $4096$, and rebut ``$81^{-1/2}$ must be negative''; then a
+real-or-not sort over $(-64)^{1/3}$, $(-64)^{1/2}$, $(-32)^{1/5}$, $(-16)^{3/4}$ with reasons.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Four problems no radical rule can do (mismatched indices):
+$\sqrt{x}\cdot\sqrt[4]{x}$, $\sqrt[3]{x^{2}}/\sqrt{x}$, $\left(\sqrt[3]{x^{2}}\right)^{3/2}$, and the
+nested $\sqrt{\sqrt[3]{x}}$ (indices multiply). Then \textbf{Kepler's third law} $T(a)=a^{3/2}$: a
+perfect-power table ($a=1,4,9,25$), the easier radical form, the domain from the denominator
+\emph{and} from context, an estimate for Jupiter at $5.2$~AU, and solving for $a=T^{2/3}$ by raising
+both sides to the \textbf{reciprocal} --- the algebraic form of 6.0's reflection over $y=x$.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): five quick translations and evaluations
+($\sqrt[5]{x^{3}}$ to exponent form, $y^{3/4}$ to radical form, $27^{2/3}$, $16^{-1/2}$, and
+$x^{1/2}\cdot x^{1/6}$ --- the last requiring fraction addition); an \textbf{explanation} item
+requiring the word \emph{denominator}: why $\sqrt[3]{-64}$ is real and $\sqrt{-64}$ is not; and an
+\textbf{SOL-style multiple-choice} item asking which expression equals $\sqrt[4]{x^{3}}$ (answer
+$x^{3/4}$) whose distractors each break exactly one idea --- $x^{4/3}$ (fraction flipped, the
+signature error), $x^{12}$ (multiplied index by power), $x^{-3/4}$ (root read as a negative
+exponent). Collect and sort into ``got it / flippers / sign slips / even-vs-odd confusion.'' The
+last pile is the one that governs pacing: Lesson 6.2's product and quotient properties are stated
+only for radicands that legally have roots, so a student who cannot tell when a root exists will
+cheerfully simplify $\sqrt{-8}$ into existence.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} a six-cell two-way conversion table; eight no-calculator evaluations spanning
+negative exponents, a negative base, and a fraction base; six exponent-property simplifications,
+two of which start in radical form with mismatched indices; the \textbf{absolute-value rule}
+($\sqrt{x^{2}}$, $\sqrt[3]{x^{3}}$, $\sqrt[4]{x^{4}}$) --- the only place all week where $x$ is
+\emph{not} assumed positive, and the item most worth grading closely; a four-row domain table
+($x^{1/2}$, $x^{1/3}$, $x^{2/5}$, $(x-3)^{1/4}$) run entirely off the denominator; and a
+justification item asking students to say why ``even index restricts the domain'' and ``even
+denominator restricts the domain'' are one rule in two notations. \textbf{Extension:} Kleiber's law,
+$M(w)=70w^{3/4}$ kcal/day --- deliberately the same shape as the Activity's Kepler problem: a
+perfect-fourth-power table ($w=1,16,81,256$), the easier radical form, the discovery that a
+$16\times$ heavier mammal burns only $8\times$ the calories (what an exponent \emph{below} $1$ does
+to growth --- the flattening students read off the square root graph in 6.0), and the inverse
+$w=\left(\frac{M}{70}\right)^{4/3}$ obtained by raising both sides to the reciprocal power.
+\textbf{Preview:} Lesson 6.2, \emph{Simplifying Radicals; Adding \& Subtracting} --- the product and
+quotient properties used to pull perfect $n$th powers out from under a radical ($\sqrt{72}=6\sqrt2$),
+then like-radical collection, which behaves exactly like $3x+5x$ versus $3x+5y$.
 \end{skillbox}
 \end{document}
