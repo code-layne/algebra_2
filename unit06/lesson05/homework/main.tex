@@ -3,17 +3,158 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.5}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Isolate, raise, solve, \textbf{check}. Every answer needs a check shown, and ``no real solution'' is
+a complete answer when it is the right one.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{One radical.} Solve each equation and check.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}X X X@{}}
+    (a) \; $\sqrt{x+6}=4$ \newline $x=\blank{1.6cm}$ &
+    (b) \; $\sqrt{2x-3}+1=6$ \newline $x=\blank{1.6cm}$ &
+    (c) \; $3\sqrt{x}-4=8$ \newline $x=\blank{1.6cm}$ \\
+    (d) \; $\sqrt[3]{x+5}=3$ \newline $x=\blank{1.6cm}$ &
+    (e) \; $\sqrt[3]{4x}=-2$ \newline $x=\blank{1.6cm}$ &
+    (f) \; $\sqrt{x-2}+9=5$ \newline $x=\blank{1.6cm}$ \\
+    \end{tabularx}
+    \end{center}
+    Which one of these six needed no algebra at all, and how did you know? \blank{6.4cm}
+
+  \item \textbf{Variable on both sides.} These are the ones that need sorting. List \emph{every}
+        candidate, check each, then give the solution set.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}l X X X@{}}
+    \hline
+    \textbf{Equation} & \textbf{Candidates} & \textbf{Extraneous?} & \textbf{Solution set} \\
+    \hline
+    (a) \; $\sqrt{7-x}=x-1$ & \blank{2.2cm} & \blank{2.2cm} & \blank{2.0cm} \\
+    (b) \; $\sqrt{4x+13}=x+4$ & \blank{2.2cm} & \blank{2.2cm} & \blank{2.0cm} \\
+    (c) \; $x=\sqrt{x+12}$ & \blank{2.2cm} & \blank{2.2cm} & \blank{2.0cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    \vspace{1.30in}
+    Item (b) is a warning about a habit. Both of its candidates are \emph{negative numbers}, and
+    both of them are genuine solutions. So what is it that actually makes a candidate extraneous?
+    \blank{6.0cm}
+
+  \item \textbf{Rational exponents.} Raise both sides to the reciprocal power. Watch for a hidden
+        $\pm$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}X X X X@{}}
+    (a) \; $x^{3/2}=8$ \newline $x=\blank{1.4cm}$ &
+    (b) \; $x^{2/3}=25$ \newline $x=\blank{1.8cm}$ &
+    (c) \; $(x-1)^{1/3}=4$ \newline $x=\blank{1.4cm}$ &
+    (d) \; $x^{4/3}=16$ \newline $x=\blank{1.8cm}$ \\
+    \end{tabularx}
+    \end{center}
+    Two of these have \emph{two} solutions. What do those two have in common? \blank{5.4cm}
+
+  \item \textbf{Read the answers off a graph.} The curve below is $y=\sqrt{x+2}$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-4}{15}{-2}{5}
+      \begin{scope}
+        \clip (-4,-2) rectangle (15,5);
+        \draw[very thick, forest, domain=-2:15, samples=110, smooth] plot (\x,{sqrt((\x)+2)});
+        \draw[very thick, navy] (-4,3)--(15,3);
+        \draw[very thick, goldacc] (-4,1)--(15,1);
+        \draw[very thick, redacc] (-4,-1)--(15,-1);
+      \end{scope}
+      \fill[forest] (-2,0) circle (4pt);
+      \fill[charcoal] (7,3) circle (3pt);
+      \fill[charcoal] (-1,1) circle (3pt);
+      \node[navy, font=\scriptsize, right] at (12.4,3.5) {$y=3$};
+      \node[goldacc, font=\scriptsize, right] at (12.4,1.5) {$y=1$};
+      \node[redacc, font=\scriptsize, right] at (12.4,-1.5) {$y=-1$};
+    \end{tikzpicture}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $\sqrt{x+2}=3$ has \blank{1.4cm} solution(s): $x=\blank{1.4cm}$
+      \item $\sqrt{x+2}=1$ has \blank{1.4cm} solution(s): $x=\blank{1.4cm}$
+      \item $\sqrt{x+2}=-1$ has \blank{1.4cm} solution(s), because \blank{4.4cm}
+      \item Solve (c) algebraically anyway --- square both sides and see what number comes out.
+            $x=\blank{1.4cm}$. \; What is that number called, and what does the graph say about it?
+            \blank{5.0cm}
+    \end{enumerate}
+
+  \item \textbf{Error analysis.} A classmate turns in this work.
+    \begin{center}
+    \begin{tcolorbox}[colback=white, colframe=charcoal!45, boxrule=0.7pt, arc=1.5mm,
+        width=0.62\linewidth, left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+    \centering\small
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}l@{}}
+    $\sqrt{x}+2=5$ \\
+    $x+4=25$ \\
+    $x=21$ \\
+    \end{tabular}
+    \end{tcolorbox}
+    \end{center}
+    \vspace{-4pt}
+    (a) Check $x=21$ in the original equation. Does it work? \blank{3.0cm} \\[3pt]
+    (b) Which \emph{step} of the method did they skip, and what should line 2 have been?
+    \blank{6.0cm} \\[3pt]
+    (c) Solve it correctly. $x=\blank{1.6cm}$
+
+  \item \textbf{Explain.} For a \emph{square root} equation the check can reject an answer, but for
+        a \emph{cube root} equation the raising step can never produce one to reject. Explain both
+        halves of that sentence, using the words \textbf{index} and \textbf{sign}.
+        \writelines{4}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Reading the skid marks.} Crash investigators estimate how fast a car was going from the
+length of the skid marks it left. If a car skids $d$ feet on dry asphalt before stopping, its speed
+when the brakes locked was about
+\[
+  s(d)=\sqrt{24d} \ \text{ miles per hour.}
+\]
+In Lesson 6.0 you were given $d$ and found $s$. An investigator has the opposite problem: they know
+the speed they are testing and need the skid length --- which means solving a radical equation.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item A driver claims they were doing the $30$ mph speed limit. Solve $30=\sqrt{24d}$ to find how
+        long the skid marks would be at that speed.
+  \item Now solve for a speed of $60$ mph. Compare the two skid lengths: the speed doubled, but what
+        happened to the distance? Which feature of the graph of $s(d)=\sqrt{24d}$ predicted that
+        before you did any algebra?
+  \item The actual skid marks at the scene are $96$ feet long. How fast was the car going? Was the
+        driver telling the truth?
+  \item Solving $s=\sqrt{24d}$ for $d$ in general gives $d=\dfrac{s^{2}}{24}$ --- and this is exactly
+        the formula you derived in the Lesson 6.0 homework. You obtained it by squaring both sides,
+        which is the step that usually manufactures extraneous solutions. Explain why there is no
+        risk of one here.
+  \item What does $s(0)=0$ say about the situation, and why does the context rule out negative
+        values of $d$ even though the algebra would happily accept them?
+\end{enumerate}
+\writelines{5}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 6.6: Composition of Functions.} Today you undid a radical by raising
+both sides to a power --- one operation cancelling another. That idea is about to get a name and a
+notation. In 6.6 you will feed one function's output straight into another function,
+$(f\circ g)(x)=f(g(x))$, and find out that the order matters enormously. Then in 6.7 composition
+becomes the \emph{test}: two functions are inverses exactly when composing them in either order
+hands you back the $x$ you started with --- which will finally explain the reflection over $y=x$
+you first noticed all the way back in Lesson 6.0.
+\end{spiralbox}
 
 \end{document}

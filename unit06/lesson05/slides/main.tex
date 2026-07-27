@@ -1,6 +1,11 @@
 %! Solving Radical Equations \& Extraneous Solutions — Unit 6, Lesson 6.5 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,323 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 6.5}\\[0.5cm]
     {\color{white}\bfseries\LARGE Solving Radical Equations \& Extraneous Solutions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6: Radical Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Every line is correct. The answer is not.}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \footnotesize
+      Solve $\sqrt{x+7}=x-5$:
+      \vspace{3pt}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{@{}l l@{}}
+      $\sqrt{x+7}=x-5$ & original \\
+      $x+7=(x-5)^{2}$ & square \\
+      $x+7=x^{2}-10x+25$ & expand \\
+      $0=x^{2}-11x+18$ & collect \\
+      $0=(x-2)(x-9)$ & factor \\
+      $x=2$ \; or \; $x=9$ & \\
+      \end{tabular}
+      \end{center}
+      \vspace{2pt}
+      Find the bad step. \textbf{There isn't one.}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      Now test both in the \emph{original}:
+      \vspace{3pt}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{|c|c|c|c|}
+      \hline
+       & $\sqrt{x+7}$ & $x-5$ & Equal? \\ \hline
+      $x=9$ & $4$ & $4$ & yes \\ \hline
+      $x=2$ & $3$ & $-3$ & \textbf{no} \\ \hline
+      \end{tabular}
+      \end{center}
+      \vspace{4pt}
+      \begin{block}{The question the whole lesson answers}
+        One answer is wrong, and \emph{no step} was wrong. \\[3pt]
+        So where did the wrong answer come from?
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{center}
+    \textbf{Squaring hands you candidates, not solutions. The check is part of the method.}
+  \end{center}
+\end{frame}
+
+% THE METHOD
+\begin{frame}[t, plain]
+  \forestheader{Isolate, raise, solve, check}
+  \sectionlabel[goldacc]{The method}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \footnotesize
+      \begin{enumerate}\setlength{\itemsep}{4pt}
+        \item \textbf{Isolate} the radical --- alone on one side.
+        \item Raise \emph{both sides} to the power equal to the \textbf{index}.
+        \item Solve what is left (linear or quadratic).
+        \item \textbf{Check every answer in the original equation.}
+      \end{enumerate}
+      \vspace{4pt}
+      \begin{block}{Why Step 1 is first}
+        $\left(\sqrt{x-3}\right)^{2}=x-3$ \quad --- clean. \\[3pt]
+        $\left(\sqrt{x}+3\right)^{2}=x+6\sqrt{x}+9$ \quad --- \emph{worse}. \\[3pt]
+        Squaring erases a radical only when it stands \textbf{alone}.
+      \end{block}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      \textbf{Worked:} $\sqrt{x+4}-1=3$
+      \vspace{3pt}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{@{}l l@{}}
+      $\sqrt{x+4}=4$ & isolate \\
+      $x+4=16$ & square \\
+      $x=12$ & solve \\
+      \end{tabular}
+      \end{center}
+      \vspace{3pt}
+      Check: $\sqrt{16}-1=4-1=3$ \checkmark
+      \vspace{4pt}
+      \begin{block}{What the equation is really asking}
+        This is 6.0's $f(x)=\sqrt{x+4}-1$. \\[3pt]
+        \emph{Where does that graph equal $3$?}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE ONE-WAY STREET
+\begin{frame}[t, plain]
+  \forestheader{Squaring is a one-way street}
+  \sectionlabel[goldacc]{Why the check exists}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      \begin{block}{The whole mechanism}
+        If $a=b$, then $a^{2}=b^{2}$ --- \emph{always}. \\[4pt]
+        But if $a^{2}=b^{2}$, then $a=b$ \quad\textbf{or}\quad $a=-b$.
+      \end{block}
+      \vspace{3pt}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Squaring can never \emph{lose} a solution.
+        \item Squaring can always \emph{gain} one.
+        \item $\sqrt9$ and $-3$ are different numbers --- but their squares are the same number.
+      \end{itemize}
+      \vspace{3pt}
+      \begin{center}
+      \textbf{Squaring destroys sign information.}
+      \end{center}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-8}{13}{-6}{6}
+        \begin{scope}
+          \clip (-8,-6) rectangle (13,6);
+          \draw[very thick, forest, domain=-7:13, samples=110, smooth] plot (\x,{sqrt((\x)+7)});
+          \draw[very thick, navy, domain=-1:11, samples=2] plot (\x,{(\x)-5});
+        \end{scope}
+        \draw[dashed, redacc, very thick] (2,3)--(2,-3);
+        \fill[forest] (-7,0) circle (6pt);
+        \fill[charcoal] (9,4) circle (5pt);
+        \fill[redacc] (2,3) circle (5pt);
+        \fill[redacc] (2,-3) circle (5pt);
+      \end{tikzpicture}\\[2pt]
+      {\scriptsize \textcolor{forest}{$y=\sqrt{x+7}$} \; and \; \textcolor{navy}{$y=x-5$} --- they
+      cross \textbf{once}, at $(9,4)$. \\
+      At $x=2$: the curve is at $3$, the line at $-3$. Both square to $9$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE SHORTCUT
+\begin{frame}[t, plain]
+  \forestheader{Read the equation before you solve it}
+  \sectionlabel[goldacc]{A free shortcut}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \textbf{Solve} $\sqrt{2x-1}+5=2$.
+      \vspace{4pt}
+      \[ \sqrt{2x-1}=-3 \]
+      \vspace{-6pt}
+      \begin{block}{Stop here}
+        From Lesson 6.1: an even root is the \textbf{principal} root, and a principal root is
+        \emph{never negative}. \\[3pt]
+        \textbf{No real solution} --- and you wrote one line.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \textbf{Square it anyway and watch:}
+      \vspace{3pt}
+      \[ 2x-1=9 \;\Rightarrow\; x=5 \]
+      Check: $\sqrt{2(5)-1}+5=3+5=8 \ne 2$. \\[4pt]
+      \textbf{Extraneous.}
+      \vspace{4pt}
+      \begin{block}{The point}
+        The algebra never lied to you. \\[3pt]
+        It just never \emph{warned} you.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ODD INDEX
+\begin{frame}[t, plain]
+  \forestheader{Change the index and the trapdoor closes}
+  \sectionlabel{Even vs.\ odd}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{center}
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{|l|l|}
+      \hline
+      \textbf{$\sqrt{x-4}=-2$} & \textbf{$\sqrt[3]{x-4}=-2$} \\ \hline
+      no real solution & $x-4=-8$ \\
+      & $x=-4$ \\
+      & Check: $\sqrt[3]{-8}=-2$ \checkmark \\ \hline
+      \end{tabular}
+      \end{center}
+      \vspace{4pt}
+      \begin{center}
+      Same numbers. Opposite verdicts. \\
+      \textbf{The only difference is the index.}
+      \end{center}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{block}{Why an odd index is safe}
+        Every real number has exactly \textbf{one} real cube root. \\[3pt]
+        So $A^{3}=B^{3}$ forces $A=B$ --- cubing is \textbf{reversible}, and a reversible step
+        cannot invent solutions.
+      \end{block}
+      \vspace{3pt}
+      \textbf{Worked:} $2\sqrt[3]{x+1}-3=1$
+      \[ \sqrt[3]{x+1}=2 \;\Rightarrow\; x+1=8 \;\Rightarrow\; x=7 \]
+      \emph{Still check.} An odd index protects you from phantoms, not from arithmetic.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% GRAPHICAL
+\begin{frame}[t, plain]
+  \forestheader{How many answers should you expect?}
+  \sectionlabel[goldacc]{Verify on a graph}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-5}{15}{-3}{5}
+        \begin{scope}
+          \clip (-5,-3) rectangle (15,5);
+          \draw[very thick, forest, domain=-4:15, samples=110, smooth] plot (\x,{sqrt((\x)+4)-1});
+          \draw[very thick, navy] (-5,3)--(15,3);
+          \draw[very thick, goldacc] (-5,-2)--(15,-2);
+        \end{scope}
+        \fill[forest] (-4,-1) circle (6pt);
+        \fill[charcoal] (12,3) circle (5pt);
+      \end{tikzpicture}\\[2pt]
+      {\scriptsize \textcolor{forest}{$y=\sqrt{x+4}-1$} \; with \; \textcolor{navy}{$y=3$} \; and \;
+      \textcolor{goldacc}{$y=-2$}}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $\sqrt{x+4}-1=3$: one crossing, at $x=12$ --- the same answer the algebra gave.
+        \item $\sqrt{x+4}-1=-2$: the line passes \emph{below} the endpoint. No crossing, no
+              solution.
+      \end{itemize}
+      \vspace{3pt}
+      \begin{block}{The rule}
+        The number of \textbf{intersections} is the number of real solutions. \\[3pt]
+        More candidates than crossings $\Rightarrow$ the extras are extraneous.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% RATIONAL EXPONENTS
+\begin{frame}[t, plain]
+  \forestheader{The same method in exponent clothing}
+  \sectionlabel[goldacc]{$x^{m/n}=k$}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      To undo the power $\frac{m}{n}$, raise both sides to its \textbf{reciprocal} $\frac{n}{m}$,
+      because $\left(x^{m/n}\right)^{n/m}=x^{1}$.
+      \vspace{4pt}
+      \[ x^{3/2}=27 \;\Rightarrow\; x=27^{2/3}=\left(\sqrt[3]{27}\right)^{2}=9 \]
+      Check: $9^{3/2}=\left(\sqrt9\right)^{3}=27$ \checkmark
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \[ x^{2/3}=9 \;\Rightarrow\; x=\pm 9^{3/2}=\pm 27 \]
+      Both check: $(-27)^{2/3}=(-3)^{2}=9$ \checkmark
+      \vspace{4pt}
+      \begin{block}{Read the fraction first}
+        \textbf{Even numerator} $=$ a square in disguise --- write the $\pm$ yourself. \\[3pt]
+        \textbf{Even denominator} $=$ an even root --- the base cannot be negative, so a negative
+        answer would be extraneous.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SUMMARY
+\begin{frame}[t, plain]
+  \forestheader{Candidate or solution?}
+  \sectionlabel{Summary}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{lll}
+  \hline
+   & \textbf{Even index ($\sqrt{\ }$, $\sqrt[4]{\ }$)} & \textbf{Odd index ($\sqrt[3]{\ }$)} \\
+  \hline
+  Can the root be negative? & no --- principal root & yes \\
+  Raising both sides is & \emph{not} reversible & reversible \\
+  Can it invent solutions? & \textbf{yes} & no \\
+  Is the check required? & \textbf{yes} & yes, for arithmetic \\
+  Root $=$ negative number & no real solution & solve normally \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{6pt}
+  \begin{center}
+    A candidate is extraneous exactly when it makes the \textbf{other side negative}. \\[3pt]
+    Being a negative number is \emph{not} the same thing --- and never was.
+  \end{center}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 6 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} isolate, raise to the $n$th power, solve --- and check, because squaring destroys
+  sign information and hands back answers the original equation never accepted.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{5.6} Rational equations --- the same structure: a non-reversible step produces
+          candidates, and only the check promotes them.
+    \item \textbf{6.1--6.4} Principal roots, the index rule, and the graphs you just used as the two
+          sides of an equation.
+    \item \textbf{6.6} Composition of functions --- one operation feeding another, $(f\circ
+          g)(x)=f(g(x))$, where the order matters.
+    \item \textbf{6.7} Inverse functions --- composition becomes the \emph{test}, and 6.0's
+          reflection over $y=x$ finally gets its explanation.
+  \end{itemize}
 \end{frame}
 
 \end{document}

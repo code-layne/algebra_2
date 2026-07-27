@@ -3,17 +3,250 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.5}{Group Activity --- Answer Key}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Group Activity verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Group Activity --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Candidate or Solution?} Every answer you produce today starts life as a
+\emph{candidate}. Only the check promotes it. With your partner, solve each equation, check
+\emph{every} candidate in the original, and say out loud which ones survived --- and why the others
+did not.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- The four steps, one at a time.} \; Solve $\sqrt{x-1}+2=5$.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{0.94\linewidth}{@{}l X@{}}
+\textbf{Step 1.} Isolate the radical. & $\sqrt{x-1}=\mans{3}$ \\
+\textbf{Step 2.} Square both sides. & $x-1=\mans{9}$ \\
+\textbf{Step 3.} Solve. & $x=\mans{10}$ \\
+\textbf{Step 4.} Check in the \emph{original}. & $\sqrt{\mans{10}-1}+2=\mans{3}+2=\mans{5}$ \\
+\end{tabularx}
+\end{center}
+Solution set: \ans{$\{10\}$}
+
+\vspace{5pt}
+\textbf{Part 2 --- Now you run the steps.} Solve and check each one.
+\begin{enumerate}[leftmargin=1.8em, itemsep=6pt]
+  \item $\sqrt{4x+1}=5$ \hfill $x=$ \ans{$6$} \quad Check: \ans{$\sqrt{25}=5$ \checkmark}
+
+        {\small \emph{Work:} $4x+1=25 \Rightarrow 4x=24 \Rightarrow x=6$.}
+  \item $\sqrt[3]{x+3}=-1$ \hfill $x=$ \ans{$-4$} \quad Check: \ans{$\sqrt[3]{-1}=-1$ \checkmark}
+
+        {\small \emph{Work:} cube both sides: $x+3=-1 \Rightarrow x=-4$.}
+
+        A cube root came out \emph{negative} and the answer was still fine. Why is that allowed
+        here, when it would not be allowed for a square root? \ansline{An odd index accepts
+        negative radicands and returns negative values --- $(-1)^{3}=-1$. An even root is the
+        \emph{principal} root and is never negative.}
+  \item $\sqrt{x+2}+7=3$
+
+        Isolate first: $\sqrt{x+2}=\mans{-4}$. \; Stop and look at that line.
+        \textbf{Answer:} \ans{no real solution}
+
+        Explain in one sentence how you knew without doing any more work. \ansline{A principal
+        square root is never negative, so no input can make $\sqrt{x+2}$ equal $-4$ --- squaring
+        would only manufacture a candidate that fails the check.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 3 --- Confirm it on the graph.} Below is $y=\sqrt{x-1}+2$ with two horizontal lines.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-1}{14}{-1}{7}
+  \begin{scope}
+    \clip (-1,-1) rectangle (14,7);
+    \draw[very thick, forest, domain=1:14, samples=110, smooth] plot (\x,{sqrt((\x)-1)+2});
+    \draw[very thick, navy] (-1,5)--(14,5);
+    \draw[very thick, goldacc] (-1,1)--(14,1);
+  \end{scope}
+  \fill[forest] (1,2) circle (4pt);
+  \fill[charcoal] (10,5) circle (3pt);
+  \node[navy, font=\scriptsize, right] at (11.4,5.5) {$y=5$};
+  \node[goldacc, font=\scriptsize, right] at (11.4,1.5) {$y=1$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt, start=4]
+  \item The curve meets $y=5$ at $x=\mans{10}$. Does that match your Part 1 answer?
+        \ans{yes}
+  \item How many times does the curve meet $y=1$? \ans{none} \; So how many solutions does
+        $\sqrt{x-1}+2=1$ have? \ans{none}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Sort the candidates.} Solve each equation. Write \emph{every} candidate the
+algebra gives you, check each one, and then state the solution set. Show your squaring work in the
+space below the table.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{Equation} & \textbf{Candidates} & \textbf{Which ones check?} & \textbf{Solution set} \\
+\hline
+(a) \; $\sqrt{x+9}=x+3$ & \ans{$0,\ -5$} & \ans{only $0$} & \ans{$\{0\}$} \\
+(b) \; $\sqrt{2x+5}=x+1$ & \ans{$2,\ -2$} & \ans{only $2$} & \ans{$\{2\}$} \\
+(c) \; $\sqrt{x-3}=x-5$ & \ans{$4,\ 7$} & \ans{only $7$} & \ans{$\{7\}$} \\
+(d) \; $\sqrt[3]{2x-1}=3$ & \ans{$14$} & \ans{it checks} & \ans{$\{14\}$} \\
+(e) \; $\sqrt{x+6}+4=1$ & \ans{none --- stop early} & \ans{---} & \ans{no real solution} \\
+\hline
+\end{tabularx}
+\end{center}
+{\small
+\textbf{(a)} $x+9=x^{2}+6x+9 \Rightarrow 0=x^{2}+5x=x(x+5)$. \;
+Check $0$: $\sqrt9=3=0+3$ \checkmark. \; Check $-5$: $\sqrt4=2$ but $-5+3=-2$. \\
+\textbf{(b)} $2x+5=x^{2}+2x+1 \Rightarrow x^{2}=4$. \;
+Check $2$: $\sqrt9=3=2+1$ \checkmark. \; Check $-2$: $\sqrt1=1$ but $-2+1=-1$. \\
+\textbf{(c)} $x-3=x^{2}-10x+25 \Rightarrow x^{2}-11x+28=0=(x-4)(x-7)$. \;
+Check $7$: $\sqrt4=2=7-5$ \checkmark. \; Check $4$: $\sqrt1=1$ but $4-5=-1$. \\
+\textbf{(d)} Cube: $2x-1=27 \Rightarrow x=14$. \; Check: $\sqrt[3]{27}=3$ \checkmark. \;
+An odd index cannot manufacture a candidate. \\
+\textbf{(e)} Isolate: $\sqrt{x+6}=-3$. A principal square root is never negative --- stop here.
+(Squaring anyway gives $x=3$, which fails: $\sqrt9+4=7\ne1$.)}
+
+\vspace{4pt}
+\textbf{Part 2 --- Find the pattern.} Look back at the candidates you \emph{rejected} in (a), (b),
+and (c).
+\begin{enumerate}[label=\textbf{J\arabic*.}, leftmargin=2.4em, itemsep=6pt]
+  \item For each rejected candidate, work out the value of the \emph{right-hand side} of the
+        original equation.
+        \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \begin{tabularx}{0.9\linewidth}{@{}X X X@{}}
+        \hline
+        \textbf{Rejected candidate} & \textbf{Right side equals} & \textbf{Its sign} \\
+        \hline
+        (a) $x=\mans{-5}$ & $\mans{-2}$ & \ans{negative} \\
+        (b) $x=\mans{-2}$ & $\mans{-1}$ & \ans{negative} \\
+        (c) $x=\mans{4}$ & $\mans{-1}$ & \ans{negative} \\
+        \hline
+        \end{tabularx}
+        \end{center}
+        Write the pattern as a rule someone could use: \emph{a candidate is extraneous exactly
+        when} \dots \ansline{\dots{} it makes the non-radical side \textbf{negative}, because the
+        principal square root on the other side can never be negative. Squaring hid the mismatch by
+        turning both sides into the same positive number.}
+  \item Equation (d) was a cube root, and it produced no extraneous candidate. Explain why it
+        \emph{could not have}, using the words \textbf{index} and \textbf{sign}. \ansline{The
+        \textbf{index} is odd, so the cube root keeps the \textbf{sign} of its radicand and can
+        equal any real number. Cubing is reversible --- $A^{3}=B^{3}$ forces $A=B$ --- so the cubed
+        equation has exactly the same solutions as the original and cannot gain extras.}
+  \item In (e) you never had to square anything. What did you see, and why is spotting it worth
+        more than the two minutes it saves? \ansline{Once isolated, the equation asked a principal
+        square root to equal $-3$, which is impossible. It is worth more than the time because
+        squaring would have produced $x=3$ --- an answer that \emph{looks} finished, and that a
+        student who skips the check will hand in.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Two radicals.} The SOL only asks you to handle one radical. Here is what happens
+with two.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item $\sqrt{3x+1}=\sqrt{x+9}$ \; --- both sides are already isolated radicals, so square once.
+
+        {\small \emph{Work:} $3x+1=x+9 \Rightarrow 2x=8 \Rightarrow x=4$.}
+
+        $x=$ \ans{$4$} \quad Check: \ans{$\sqrt{13}=\sqrt{13}$ \checkmark}
+  \item $\sqrt{x+5}-\sqrt{x}=1$ \; --- you cannot isolate \emph{both}. Isolate one, square,
+        simplify, and you will find a single radical left. Then square again.
+
+        {\small \emph{Work:} $\sqrt{x+5}=1+\sqrt{x}$. Square:
+        $x+5=1+2\sqrt{x}+x$, so $4=2\sqrt{x}$ and $\sqrt{x}=2$. Square again: $x=4$.}
+
+        $x=$ \ans{$4$} \quad Check: \ans{$\sqrt{9}-\sqrt{4}=3-2=1$ \checkmark}
+  \item Why does squaring \emph{twice} make checking even more important than usual?
+        \ansline{Each squaring is a separate chance to gain solutions, so the final candidate list
+        can be enlarged twice over --- and a candidate can survive the first squaring only to fail
+        the original equation.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 2 --- Prove the rules you have been using.} Assume $A$ and $B$ are real expressions.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=4]
+  \item Suppose $\sqrt{A}=B$ has a solution. Explain why $B$ can never be negative there --- and
+        then explain why the squared equation $A=B^{2}$ has no way of knowing that. \ansline{At a
+        solution $B$ \emph{equals} a principal square root, and a principal square root is
+        $\ge 0$; so $B\ge0$ there. But $B^{2}$ is the same number whether $B$ is $3$ or $-3$ --- the
+        squared equation stores only the size of $B$, never its sign, so it also accepts the
+        values where $B<0$.}
+  \item Now the odd case. Every real number has exactly \emph{one} real cube root. Use that single
+        fact to explain why $A^{3}=B^{3}$ forces $A=B$, and why cubing therefore cannot produce an
+        extraneous solution. \ansline{If $A^{3}=B^{3}$, then $A$ and $B$ are both real cube roots
+        of that one number --- and there is only one, so $A=B$. Cubing is therefore reversible: the
+        cubed equation is true at exactly the same values as the original, so its solution set
+        cannot be any larger.}
+  \item Complete the summary: \emph{raising both sides to an \ans{even} power can
+        add solutions; raising both sides to an \ans{odd} power cannot.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 3 --- Solving backwards, in context.} From Lesson 6.2, a pendulum of length $L$ feet
+has period
+\[ T(L)=2\pi\sqrt{\tfrac{L}{32}} \ \text{ seconds.} \]
+In 6.2 you were given $L$ and found $T$. Now do it the other way --- which means solving a radical
+equation.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=7]
+  \item A clockmaker wants a pendulum with a period of exactly $2\pi$ seconds. Solve
+        $2\pi=2\pi\sqrt{L/32}$ for $L$, and check your answer against 6.2's table.
+
+        {\small \emph{Work:} divide by $2\pi$: $\sqrt{L/32}=1$. Square: $L/32=1$, so $L=32$.
+        Lesson 6.2's table has $L=32 \Rightarrow T=2\pi$. \checkmark}
+
+        $L=$ \ans{$32$} feet
+  \item Now find the length that gives a period of $\pi$ seconds. \; $L=$ \ans{$8$} feet
+
+        {\small \emph{Work:} $\sqrt{L/32}=\tfrac12 \Rightarrow L/32=\tfrac14 \Rightarrow L=8$.
+        (6.2's table: $L=8 \Rightarrow T=\pi$. \checkmark)}
+
+        The period was cut in half. What happened to the length, and which feature of a square root
+        graph explains it? \ansline{The length dropped to one \emph{quarter}, from $32$ ft to $8$
+        ft. A square root flattens: to halve the output you must quarter the input, which is the
+        same fact 6.2 met from the other side (quadrupling $L$ only doubles $T$).}
+  \item An apprentice is asked for a pendulum with period $-\pi$ seconds. There are \emph{two}
+        separate reasons to reject that request --- one algebraic, one about the situation. Give
+        both, and say why keeping them apart matters. \ansline{\textbf{Algebraic:}
+        $\sqrt{L/32}=-\tfrac12$ is impossible --- a principal square root is never negative, so
+        there is no real candidate at all. \textbf{Contextual:} even if a number appeared, a period
+        is an elapsed time and cannot be negative. They matter separately because a candidate can
+        be perfectly valid algebra and still be rejected by the situation (a negative length, say)
+        --- ``extraneous'' and ``impossible in context'' are two different verdicts.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{teachernote}
+\small \textbf{Tier A Part 2, J1 is the item to protect.} The pattern --- \emph{the extraneous
+candidate is always the one that makes the other side negative} --- is discoverable from three data
+points, and a student who finds it can predict which candidate will fail \emph{before} checking.
+That is the difference between running a procedure and understanding it. Do not give the pattern
+away; let the table do it.
+\begin{itemize}[leftmargin=1.3em, nosep]
+  \item \textbf{Tier R item 2} exists to stop the over-generalization ``roots can't be negative.''
+        Even roots can't; odd roots happily can. It is the exit ticket's MC discrimination.
+  \item \textbf{Tier A (d) and (e)} are the two ``no work required'' rows. Students who grind
+        through them anyway have not yet learned to \emph{read} an equation before solving it.
+  \item \textbf{Tier E Part 1(b)} is beyond A2.EI.5a (which caps at one radical) --- assign it as
+        genuine extension, not as an expectation. The numbers are clean ($x=4$) on purpose.
+  \item \textbf{Tier E Part 3(i)} draws the same line Lesson 5.6 drew: a rejection for
+        extraneousness is not a rejection for context. Expect this to need discussion.
+\end{itemize}
+\end{teachernote}
 
 \end{document}
