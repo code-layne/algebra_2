@@ -19,68 +19,228 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can graph $y=a\sqrt{x-h}+k$ and $y=a\sqrt[3]{x-h}+k$ from
+    the equation by locating the \emph{anchor point} $(h,k)$ --- the \emph{endpoint} of a square root,
+    the \emph{inflection point} of a cube root --- and applying $a$; and they can run the process
+    \emph{backwards}, writing the equation of a radical function from its graph by reading the anchor
+    for $h$ and $k$ and one further point for $a$. They state the domain $[h,\infty)$ and range
+    $[k,\infty)$ directly from the anchor rather than by solving an inequality, explain why a
+    \emph{negative} $a$ converts the anchor's absolute minimum into an absolute \emph{maximum} and
+    flips the range to $(-\infty,k]$, factor a radicand such as $4x-8$ before reading $h$, and explain
+    why, for a radical function, compressing the \emph{input} and stretching the \emph{output} produce
+    the same graph.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.1c} (governing --- graph a square root or cube root
+    function \emph{given the equation}, using transformations of the parent, including all four the
+    standard names: $f(x)+k$, $f(x+k)$, $kf(x)$, and $f(kx)$) and \textbf{A2.F.1b} (the reverse
+    direction --- \emph{write} the equation given a graph, assessed in the notes, Activity Tier~A,
+    the Exit Ticket, and Homework items 3--4). \textbf{A2.F.2a} (domain, range, zeros, and intercepts)
+    is used in every component, now read off the anchor rather than computed. \textbf{A2.F.1e}
+    (compare and contrast the graphs, tables, and equations of square root and cube root functions)
+    drives Section~3's reflection contrast --- $-\sqrt{x}$ vs.\ $\sqrt{-x}$ against
+    $-\sqrt[3]{x}$ vs.\ $\sqrt[3]{-x}$ --- and the Section~5 table. The lesson revisits
+    \textbf{A2.F.1a} (parent graphs, 6.0), \textbf{A2.EO.2a} (the product property from 6.2, which is
+    what makes $f(kx)$ collapse into $kf(x)$), and \textbf{A2.EO.2c} (rational exponents from 6.1, in
+    Tier~E's one-line proof).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Identify $a$, $h$, and $k$ in $y=a\sqrt{x-h}+k$ and $y=a\sqrt[3]{x-h}+k$, and locate the \textbf{anchor point} $(h,k)$.
+  \item State the \textbf{domain} and \textbf{range} straight from the anchor --- no inequality to solve.
+  \item Describe all four transformations by name: shift, vertical stretch/compression, reflection, and horizontal compression.
+  \item Explain why a \textbf{negative $a$} makes the anchor an absolute \emph{maximum} and flips the range.
+  \item Handle the \textbf{cube root} case: same anchor, but an \emph{inflection point}, and the domain is unaffected.
+  \item \textbf{Write the equation from a graph}: anchor $\rightarrow h,k$; one more point $\rightarrow a$; then check.
+  \item \textbf{Factor the radicand} ($\sqrt{4x-8}=2\sqrt{x-2}$) before reading $h$.
+  \item Explain why $f(kx)$ and $kf(x)$ are the \emph{same} transformation for a radical --- and where that stops being true.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item \emph{Find one point and the whole graph follows.} A radical graph carries all its information in a single location.
+  \item Solving \emph{radicand} $\ge0$ and shifting the graph right by $h$ are not two facts. Sliding the graph right \textbf{is} throwing away the inputs below $h$.
+  \item $a$ never moves the anchor, because at the anchor the radical is $0$ --- and $a\cdot 0=0$ no matter what $a$ is.
+  \item The sign of $a$ is visible in the picture before any algebra: if the arm falls, $a<0$. Students should predict it, then confirm it.
+  \item A cube root has an anchor but no \emph{endpoint}. An endpoint exists only where inputs are forbidden, and an odd index forbids nothing.
+  \item Going backwards has an order. The anchor is free information; taking $a$ first leaves two unknowns in one equation.
+  \item The product property (6.2) lets a constant walk out from under a radical. That single fact is why a radical has only \emph{one} size dial --- and why the trick dies the moment a term sits outside the radical.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Transformation form} & $y=a\sqrt{x-h}+k$ or $y=a\sqrt[3]{x-h}+k$ --- the form in which every transformation can be read straight off the equation. \\
+\textbf{Anchor point} & The one point a radical graph is built around, always $(h,k)$: the \emph{endpoint} of a square root, the \emph{inflection point} of a cube root. \\
+\textbf{$h$ (horizontal shift)} & Inside the radical, with the $x$. Moves the graph horizontally in the \emph{opposite} direction to its sign: $\sqrt{x-3}$ goes right $3$. \\
+\textbf{$k$ (vertical shift)} & Outside the radical. Moves the graph vertically in the \emph{same} direction as its sign. \\
+\textbf{Vertical stretch / compression} & Multiplying every output by $a$. $|a|>1$ steepens; $0<|a|<1$ flattens. The anchor never moves. \\
+\textbf{Reflection across the $x$-axis} & What $a<0$ does: the arm leaves the anchor downward, the anchor becomes an absolute \emph{maximum}, and the range becomes $(-\infty,k]$. \\
+\textbf{Inflection point} & The cube root's anchor --- where the curve flattens and switches the direction it bends. Not an extremum. \\
+\textbf{Horizontal compression, $f(kx)$} & Multiplying every \emph{input} by $k$. For a radical it is indistinguishable from a vertical stretch, since \TallMath{\sqrt[n]{kx}=\sqrt[n]{k}\cdot\sqrt[n]{x}} \\
+\textbf{Hidden $h$} & A radicand like $4x-8$ must be \emph{factored} first: $\sqrt{4(x-2)}=2\sqrt{x-2}$ starts at $x=2$, not $8$. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses the three skills this lesson stands on, one per section of the notes:
+    \textbf{(1)} describing the shifts of $y=(x-4)^2+1$ and $y=|x+2|-3$ and naming the vertex --- the
+    inside/outside sign rule students have owned since Unit~2, which today gets a new anchor to move;
+    \textbf{(2)} finding the domains of $\sqrt{x-3}$ and $\sqrt{x+5}$ by solving \emph{radicand}
+    $\ge0$ \emph{and} writing each endpoint in the same row, so the follow-up question --- compare the
+    number inside the radical to the endpoint's $x$-coordinate --- makes students notice the identity
+    the Hook is built to produce; and \textbf{(3)} simplifying $\sqrt{9x}$, $\sqrt{25x}$, and
+    $\sqrt[3]{8x}$ from Lesson~6.2, which sets up the day's genuine surprise. Take the last blank of
+    item~3 as a class vote --- \emph{is $\sqrt{9x}$ the parent with its input multiplied by $9$, or
+    with its output multiplied by $3$?} --- record the split on the board and leave it unresolved
+    until Section~5.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put three graphs on the board, unlabelled: $y=\sqrt{x}$, $y=\sqrt{x-3}$, and $y=\sqrt{x}-3$. List
+    the three equations beside them, out of order, and ask for the match. Most students will get it,
+    but the pair that matters is the middle two: \textbf{``Both of these equations contain a $3$, and
+    both graphs moved. Why did they move in different directions?''} (Inside vs.\ outside --- Warm-Up
+    item~1 already said it.) Then spring the real question, which reframes the entire unit:
+    \textbf{``In Lesson 6.0, finding the domain of $\sqrt{x-3}$ meant solving $x-3\ge0$. Look at the
+    middle graph. Where could you have just \emph{read} that answer?''} Let someone say \emph{the
+    endpoint}. Press it: \textbf{``So is that a coincidence?''} It is not, and this is the sentence to
+    get on the board --- \emph{sliding the graph right by $3$ and refusing every input below $3$ are
+    the same event.} Land it: for four lessons a radical function's domain has been something you
+    compute. From today it is something you \emph{look at}. \emph{Find one point, and the whole graph
+    follows.}
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. The anchor point.} Introduce $y=\sqrt{x-h}+k$ and the claim: the graph is the parent moved
+so its endpoint sits at $(h,k)$. Run the sign rule against Warm-Up item~1 --- $k$ outside, vertical,
+same direction; $h$ inside, horizontal, opposite direction. Work $f(x)=\sqrt{x-3}+1$ (anchor $(3,1)$,
+domain $[3,\infty)$, range $[1,\infty)$) and then make the reconciliation explicit: solving $x-3\ge0$
+and reading the anchor give the same number because they are the same fact. Close with the boxed
+result --- \emph{domain starts at $h$, range starts at $k$, both at the anchor}.
+
+\textbf{2. The coefficient $a$.} Put $2\sqrt{x}$, $\sqrt{x}$, and $\frac12\sqrt{x}$ on one grid: stretch,
+parent, compression --- all sharing an anchor, because at the anchor the radical is $0$ and $a\cdot0=0$.
+Then the reflection: $m(x)=-3\sqrt{x}+6$, anchor $(0,6)$, arm falling, $x$-intercept $(4,0)$. Force the
+consequence rather than stating it --- \textbf{``the anchor is still the extreme point. Which kind is
+it now?''} A maximum, and the range flips to $(-\infty,6]$. Students who find the anchor and stop
+reading will get the range wrong all week; this is the moment to prevent it.
+
+\columnbreak
+
+\textbf{3. Cube roots.} Same form, one change. Work $g(x)=\sqrt[3]{x+1}-2$: anchor $(-1,-2)$, but
+domain \emph{and} range all reals, intercepts $(7,0)$ and $(0,-1)$. Ask \textbf{``why isn't $(-1,-2)$
+an endpoint?''} --- because an endpoint exists only where inputs are forbidden, and an odd index
+forbids nothing. Name it the \textbf{inflection point}. Then the \textbf{A2.F.1e} contrast: draw
+$-\sqrt[3]{x}$ and $\sqrt[3]{-x}$ and get the observation that it is \emph{one} graph, traced to
+6.0's origin symmetry ($\sqrt[3]{-8}=-2=-\sqrt[3]{8}$), and set it beside $-\sqrt{x}$ and
+$\sqrt{-x}$, which do not even share a domain.
+
+\textbf{4. Graph $\rightarrow$ equation.} The SOL's harder direction (\textbf{A2.F.1b}). Anchor
+$(-2,-1)$, second point $(2,5)$: substitute, evaluate the radical to a \emph{number}, solve
+$5=2a-1$, get $a=3$, write $y=3\sqrt{x+2}-1$, and check against $(7,8)$. Say the rule aloud:
+\emph{the anchor is free --- take it first.} Anyone who reaches for $a$ first has two unknowns.
+
+\textbf{5. The hidden $h$, and the collapse.} $\sqrt{4x-8}$ does \emph{not} start at $8$: factor to
+$\sqrt{4(x-2)}=2\sqrt{x-2}$, anchor $(2,0)$, confirmed by $4x-8\ge0$. Then collect on the Warm-Up
+vote. $f(9x)$ squeezes the input, $3f(x)$ stretches the output --- and $\sqrt{9x}=3\sqrt{x}$, so for a
+radical they are the \emph{same} transformation, because the product property lets the constant walk
+out. \textbf{Immediately} block the overgeneralization with the counterexample in the notes: on
+$y=x+1$, $f(9x)=9x+1$ but $9f(x)=9x+9$. Preview Lesson~6.5.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{the signature error:} reading $h$ with the wrong sign --- $\sqrt{x+2}$ shifted \emph{right} $2$, or an anchor of $(2,4)$ for $-3\sqrt{x+2}+4$. Fix it mechanically: set the radicand to zero and solve; that \emph{is} $h$;
+  \item finding the anchor and stopping --- writing the range as $[k,\infty)$ when $a<0$. The arm's direction decides the range, and the sign of $a$ decides the arm;
+  \item calling the anchor a minimum out of reflex; on a falling graph it is a \emph{maximum}, and on a cube root it is neither;
+  \item reading $h$ off $\sqrt{4x-8}$ as $8$ --- the whole of Section~5 exists to stop this, and it is the exit ticket's MC distractor A;
+  \item solving for $a$ before reading the anchor, and stalling with two unknowns in one equation;
+  \item skipping the check with the second point --- ten seconds that catch every sign error;
+  \item writing a restricted domain for a \emph{cube} root because it has an $h$ (the 6.0 error, resurfacing in new clothes);
+  \item after Section~5, over-generalizing to ``horizontal and vertical stretches are always the same.'' They are not; a vertical shift breaks it.
+\end{itemize}
+Cold-call prompts: ``What is the anchor point, and how do you know before you graph anything?''
+``Which way does the arm leave the anchor --- so is that a max or a min, and what is the range?''
+``Where does the domain start, and can you get that answer two different ways?'' ``You have the
+anchor. What is the \emph{next} thing you need, and where will you get it?'' ``Does this radicand
+need factoring first? How can you tell at a glance?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Follow the Anchor} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} One pre-drawn graph of $r(x)=\sqrt{x-2}+1$ with the parent dashed
+behind it, so the shift is visible rather than asserted. Identify $h$ and $k$, name the anchor, and
+check it against the picture; then give the domain \emph{twice} --- once by reading the anchor, once
+by solving $x-2\ge0$ --- and explain in one sentence why the two can never disagree. Closes on end
+behavior (with ``the graph stops'' required on the left) and on why there is no $y$-intercept.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} A seven-row table over four functions chosen so no two share a
+profile: $\sqrt{x+3}-2$, $-\sqrt{x-1}+3$, $\sqrt[3]{x-2}+1$, and $\frac12\sqrt{x}-4$ --- one negative
+$a$, one fractional $a$, one cube root. The last row (max / min / neither) is the discriminating one:
+\emph{neither} is correct for the cube root and students want to write ``min.'' Then the reverse
+direction --- write the equation of a pre-drawn graph (anchor $(4,-3)$, point $(8,1)$, giving
+$y=2\sqrt{x-4}-3$) with a required check --- and two justifications: which symbol gives $q$ a maximum,
+and why $s$'s anchor is not an endpoint.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Three parts. \emph{(1)} The hidden $h$: factor $\sqrt{4x}$,
+$\sqrt{9x-18}$, $\sqrt[3]{8x+8}$, then diagnose the classmate who says $\sqrt{9x-18}$ starts at
+$x=18$. \emph{(2)} Prove the collapse: why $\sqrt{kx}=\sqrt{k}\sqrt{x}$ makes $f(kx)$ and $kf(x)$ one
+transformation, rewritten in a single line with \textbf{rational exponents} (6.1),
+$(kx)^{1/n}=k^{1/n}x^{1/n}$, so the stretch factor is $\sqrt[n]{k}$. \emph{(3)} Where it breaks: a
+four-column table comparing $\sqrt{9x}+1$ with $3(\sqrt{x}+1)$, which differ by exactly $2$ at every
+$x$ --- then explain which part of $\sqrt{x}+1$ the product property cannot touch, and write a rule a
+classmate could trust.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): from the equation $f(x)=-3\sqrt{x+2}+4$, give the
+anchor point, domain, and range, name the anchor's extremum \emph{and the symbol that caused it}, and
+describe all three transformations; then the reverse direction from a pre-drawn graph (anchor
+$(1,-2)$, point $(5,2)$, giving $y=2\sqrt{x-1}-2$); then an \textbf{SOL-style multiple-choice} item on
+the anchor point of $y=3\sqrt{2x-10}+1$ (answer $(5,1)$), whose distractors each break exactly one
+idea --- $(10,1)$ reads the constant without factoring out the $2$, $(-5,1)$ factors but keeps the
+constant's sign, and $(5,-1)$ reverses $k$ as though outside numbers flipped too. Collect and sort
+into ``got it / sign-of-$h$ slip / range dropper / did not factor.'' The last pile matters most: it is
+a procedural gap that resurfaces immediately in Lesson~6.5, where $\sqrt{2x-10}=4$ has to be handled
+correctly. Item 1(d) is the conceptual check --- a student who names the anchor but cannot say
+\emph{which symbol} made it a maximum has memorized a picture, not a mechanism.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} a four-row equation-only table (parent / transformations / anchor / domain \& range)
+over $\sqrt{x-5}+2$, $\sqrt[3]{x+3}-1$, $-4\sqrt{x}+2$, and $\frac12\sqrt{x+6}-3$, where the third row
+catches anyone who forgets that a negative $a$ flips the range; a full feature read off a pre-drawn
+$m(x)=-\sqrt{x+4}+3$; \emph{two} graph-to-equation items, one square root
+($y=-\sqrt{x+3}+4$, set up so the falling graph predicts $a<0$ before any algebra) and one cube root
+($y=2\sqrt[3]{x-1}-1$, with a follow-up on why it has no endpoint); a three-row factor-first table
+($\sqrt{25x}$, $\sqrt{16x-32}$, $\sqrt[3]{27x-27}$); and a justification item asking why $-\sqrt{x}$
+and $\sqrt{-x}$ differ while $-\sqrt[3]{x}$ and $\sqrt[3]{-x}$ coincide, using the words \emph{index}
+and \emph{symmetry}. \textbf{Extension:} the horizon model $d(h)=\sqrt{1.5h}$ miles for an eye height
+of $h$ feet, on a table ($h=6,24,54,96,150$) chosen so every distance is a whole number of miles ---
+domain from the radicand and from context, the meaning of the anchor $(0,0)$ for a swimmer at water
+level, why quadrupling eye height only doubles the view, and then the payoff: rewriting
+$\sqrt{1.5h}=\sqrt{1.5}\sqrt{h}\approx1.22\sqrt{h}$ shows that a real navigation formula is nothing
+but the parent square root with a \emph{single vertical stretch}. It closes with a sailor climbing a
+mast on a deck $20$ feet above the water, $D(h)=\sqrt{1.5(h+20)}$ --- a shift left, anchor $(-20,0)$
+--- and the sharp question: that anchor is not a place anyone can stand, so the context domain is
+$h\ge0$ and the usable graph begins at $D(0)=\sqrt{30}\approx5.5$ miles. \textbf{Preview:}
+Lesson~6.5, \emph{Solving Radical Equations \& Extraneous Solutions} --- isolate, raise to the $n$th
+power, and \emph{always check}, because squaring destroys sign information the same way Unit~5's
+excluded values appeared; graphically, finding where today's graphs cross a horizontal line.
 \end{skillbox}
 \end{document}
