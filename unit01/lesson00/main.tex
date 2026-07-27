@@ -1,0 +1,249 @@
+%! Properties of Real Numbers, Equality, and Inequality — Unit 1, Lesson 1.0 — Lesson Plan
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\usepackage{graphicx}   % -article does NOT load graphicx; needed for thumbnails/screenshots
+\graphicspath{{images/}}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\CourseName}{Algebra 2: Shepherd}
+\newcommand{\SchoolYear}{2026--2027}
+\newcommand{\MeetingLength}{55 minutes}
+\newcommand{\UnitNumberName}{Unit 1: Foundations --- Algebra 1 Review \quad}
+\newcommand{\LessonNumberName}{Lesson 1.0: Properties of Real Numbers, Equality, and Inequality}
+
+\begin{document}
+\begin{center}
+    {\Large\bfseries \CourseName: \SchoolYear \\
+    {\small\bfseries \UnitNumberName \LessonNumberName}}
+\end{center}
+
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+    \textbf{Primary Objective:} Students can name the set a real number belongs to, state the
+    \emph{properties of real numbers} that govern how expressions may be rewritten, and state the
+    \emph{properties of equality} and \emph{properties of inequality} that govern how an equation or
+    inequality may be solved --- then use them to \textbf{justify every line} of a solution by name,
+    and to decide whether a step somebody else wrote is legal. The lesson's central claim: solving is
+    not a list of tricks, it is a chain of moves, and every legal move has a name.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL --- Algebra 1, reviewed):} the properties clauses named inside
+    \textbf{A.EI.1b} (solve multistep linear equations \emph{by applying the properties of real
+    numbers and/or properties of equality}) and \textbf{A.EI.1c} (solve multistep linear inequalities
+    \emph{by applying the properties of real numbers and/or properties of inequality}). These two
+    clauses are the only place the standards name the properties outright, and neither Lesson 1.1 nor
+    1.2 can be justified without them --- which is why they get their own lesson first.
+    \textbf{A.EI.1d} (rearrange a literal equation by applying the properties of equality) is
+    previewed here and paid off in 1.2. \textbf{A.EO.1b} (evaluate expressions for given replacement
+    values) supplies the counterexample technique in Tier~E.
+    \\[2pt]
+    \textbf{Where this sits in the course:} Unit 1 is the Algebra 1 review unit, organized by the
+    three Algebra 1 domain areas --- Expressions and Operations (1.1), Equations and Inequalities
+    (1.2), and Functions (1.3). Lesson 1.0 comes \emph{before} all three because it supplies the
+    vocabulary of justification that the other three lessons lean on. It is the one Unit 1 lesson
+    that is not a domain area.
+\end{tcolorbox}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{skillbox}[Priority Ideas \& Skills]{goldbox}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item Classify a real number into \textbf{every} set it belongs to: natural, whole, integer, rational, irrational, real.
+  \item Recognize that a radical is not automatically irrational --- $\sqrt{9}$ is an integer, $\sqrt{5}$ is not.
+  \item Name the \textbf{properties of real numbers}: commutative, associative, distributive, identity, inverse, and the zero properties.
+  \item Name the \textbf{properties of equality}: reflexive, symmetric, transitive, substitution, and the four operation properties.
+  \item Name the \textbf{properties of inequality}, and state the one rule that has no equality analogue: multiplying or dividing by a \textbf{negative reverses} the symbol.
+  \item \textbf{Justify each line} of a solved equation or inequality by naming the property that authorized it.
+  \item \textbf{Test a claim} with a \textbf{counterexample} --- one number is enough to kill a false property.
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item \emph{Properties of real numbers rewrite one side. Properties of equality change both sides at once.} That is the whole distinction, and students who hold it never again ``do something to one side.''
+  \item An equation is a \textbf{claim that two names refer to the same number}. You may replace either name with another name for the same number --- that is all substitution ever means.
+  \item The balance survives any operation applied \emph{identically} to both sides. Solving is just choosing which operation makes the unknown easier to see.
+  \item The negative-reversal rule is not arbitrary. Multiplying by a negative reflects the whole number line through $0$, and reflection reverses order. Ask any two numbers to check.
+  \item \textbf{Closure} is why we keep enlarging the number system: the integers are not closed under division, so we build the rationals; the rationals are not closed under square roots, so we build the reals.
+  \item A property is a claim about \emph{all} numbers, so a single number that breaks it is a disproof. This is the cheapest and most powerful move in the course.
+\end{itemize}
+\end{tabularx}
+\end{skillbox}
+
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Real numbers} & Every number that can be located on the number line. Splits cleanly into the rationals and the irrationals --- with no number in both, and none left over. \\
+\textbf{Rational number} & A number expressible as $\dfrac{a}{b}$ with $a,b$ integers and $b\ne0$. As a decimal it terminates or repeats. \\
+\textbf{Irrational number} & A real number that is \emph{not} rational; its decimal neither terminates nor repeats. Examples: $\pi$, $\sqrt{5}$, $\sqrt[3]{2}$. \\
+\textbf{Closure} & A set is \emph{closed} under an operation if the operation on members of the set always lands back in the set. The integers are closed under $+,-,\times$ but not $\div$. \\
+\textbf{Property of real numbers} & A rule for rewriting \emph{one expression} as an equal expression --- commutative, associative, distributive, identity, inverse. Nothing is ``done to both sides.'' \\
+\textbf{Property of equality} & A rule for producing a \emph{new equation} with the same solutions, by acting identically on both sides. This is what licenses solving. \\
+\textbf{Property of inequality} & The same idea for $<,\le,>,\ge$ --- with one exception: multiplying or dividing both sides by a \emph{negative} number reverses the symbol. \\
+\textbf{Additive inverse} & The number $-a$ that pairs with $a$ to give the additive identity: $a+(-a)=0$. \\
+\textbf{Multiplicative inverse (reciprocal)} & The number $\frac1a$ (for $a\ne0$) that pairs with $a$ to give the multiplicative identity: $a\cdot\frac1a=1$. Zero has none --- which is exactly why division by zero is undefined. \\
+\textbf{Zero product property} & If $ab=0$, then $a=0$ or $b=0$. The reason factoring solves equations; used constantly from Unit 3 on. \\
+\textbf{Counterexample} & A single case that makes a general claim false. One is enough. \\
+\textbf{Justification} & Naming the property that permits a step. In this course, ``because'' is a property name, not a feeling. \\
+\end{tabularx}
+\end{skillbox}
+
+\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
+    The Warm-Up rehearses exactly the three things this lesson formalizes, without naming any of
+    them yet. \textbf{(1)} Sorting six numbers --- $-7$, $0$, $\frac34$, $\sqrt{9}$, $\sqrt{5}$,
+    $\pi$ --- into the number sets they belong to, with $\sqrt{9}$ planted so that at least one
+    student argues it is irrational because it wears a radical; that argument \emph{is} the debrief.
+    \textbf{(2)} Four one-line fill-ins ($5+0$, $7\cdot1$, $4+(-4)$, $2\cdot\frac12$) that are the
+    identity and inverse properties in disguise --- students will answer all four instantly and have
+    no names for any of them, which is the hook for Section~2. \textbf{(3)} Solving $2x-7=11$ and
+    $-3x>12$ side by side and answering ``which one made you do something extra, and what was it?''
+    --- this is the whole of Section~4 waiting to happen. Debrief all three aloud but supply
+    \emph{no} property names; the lesson's job is to hand out the names.
+\end{fixedskillbox}
+
+\begin{skillbox}[Hook]{forestbg}
+    Put two students' work on the board, side by side, on the same inequality $-3x>12$. \textbf{Ana}
+    writes $x>-4$. \textbf{Ben} writes $x<-4$. Open with: \textbf{``Exactly one of these is right.
+    Don't tell me which one you were taught --- tell me how we could \emph{settle} it.''} Let the
+    room flounder for a moment, then take the one suggestion that always comes: \emph{test a
+    number}. Try $x=-10$: is $-3(-10)>12$? Yes, $30>12$ --- and $-10$ is less than $-4$, so Ben's
+    answer contains it and Ana's does not. Try $x=0$: $0>12$ is false, and $0$ satisfies Ana's
+    answer. Ben is right. Now press the real question: \textbf{``Testing settled this one. But we
+    can't test every inequality for the rest of the year. What \emph{rule} did Ben follow and Ana
+    forget?''} Land it: multiplying or dividing by a negative reverses the symbol --- and that rule
+    has a name, the \emph{multiplication/division property of inequality for a negative multiplier}.
+    Then widen it: \textbf{``Every legal move either of them made has a name. Today we hand out all
+    the names, because for the rest of this course `because I moved it over' is not going to be an
+    answer.''} Say plainly that this is why the review unit starts here instead of with the domain
+    areas.
+\end{skillbox}
+
+\begin{skillbox}[Lesson]{forestbg}
+\begin{multicols}{2}
+\textbf{1. The real number system --- and why it kept growing.} Build the nested picture on the
+board from the inside out, and make each enlargement answer a complaint. Naturals
+$\{1,2,3,\dots\}$ count things; they cannot answer ``how many are left after all of them go,'' so
+add $0$ to get the \textbf{whole} numbers. Whole numbers cannot answer $3-5$, so add the negatives
+to get the \textbf{integers}. Integers cannot answer $3\div5$, so allow ratios to get the
+\textbf{rationals}. And rationals cannot answer ``what is the side of a square of area $5$'' --- so
+the \textbf{irrationals} fill the gaps, and the two together are the \textbf{reals}. Name the
+principle out loud: each new set exists because the previous one was \textbf{not closed} under some
+operation. Then classify: every number belongs to \emph{every} set that contains it, so $-7$ is an
+integer, a rational, \emph{and} a real. Spend deliberate time on the trap: $\sqrt{9}=3$ is an
+integer, while $\sqrt{5}$ is irrational --- the radical sign is not what decides; the \emph{value}
+is. Same for $\frac{8}{2}$, which is an integer wearing a fraction bar.
+
+\textbf{2. Properties of real numbers --- rewriting one expression.} These are the rules for
+changing how an expression \emph{looks} without changing what it \emph{is}. Do them as a table
+built together: \textbf{commutative} (order may change, $+$ and $\times$ only), \textbf{associative}
+(grouping may change, $+$ and $\times$ only), \textbf{distributive} (the bridge between the two
+operations, $a(b+c)=ab+ac$), \textbf{identity} ($a+0=a$, $a\cdot1=a$), \textbf{inverse}
+($a+(-a)=0$, $a\cdot\frac1a=1$ for $a\ne0$), and the two \textbf{zero} rules ($a\cdot0=0$, and the
+\textbf{zero product property}: $ab=0$ forces $a=0$ or $b=0$). Two points earn real time. First,
+subtraction and division are \emph{not} commutative or associative --- have the room produce the
+counterexample rather than supplying it. Second, connect Warm-Up item~2: they already used identity
+and inverse fluently and had no names for them.
+
+\columnbreak
+
+\textbf{3. Properties of equality --- changing both sides.} Draw the distinction on the board and
+box it: \emph{properties of real numbers rewrite one side; properties of equality act on both
+sides at once.} Start with what an equation \emph{claims} --- that the two sides are two names for
+the same number. From there the first four are almost obvious and should be presented as such:
+\textbf{reflexive} ($a=a$), \textbf{symmetric} (if $a=b$ then $b=a$ --- this is why you may write
+$x=5$ or $5=x$), \textbf{transitive} (if $a=b$ and $b=c$ then $a=c$), and \textbf{substitution} (a
+name may be replaced by another name for the same number). Then the four that do the work:
+\textbf{addition}, \textbf{subtraction}, \textbf{multiplication}, and \textbf{division} properties
+of equality --- do the same thing to both sides and the balance holds. Flag the one restriction:
+you may not divide by zero, because $0$ has no reciprocal. Then walk one solution of $3(x-4)=18$
+line by line, naming the property beside every line, mixing both kinds so students see the
+distinction in action.
+
+\textbf{4. Properties of inequality --- and the one that reverses.} Everything from Section~3
+carries over unchanged for $<,\le,>,\ge$: add or subtract freely, multiply or divide by a
+\textbf{positive} freely. Then the exception, and do not let it be a rule to memorize. Start from
+$4<10$, multiply both sides by $-1$, and ask the room to check $-4$ against $-10$ on a number line.
+Multiplying by a negative \textbf{reflects the whole line through zero}, and reflection reverses
+order --- so the symbol must turn around too. Return to the Hook and settle Ana and Ben by name.
+Close by solving $-2x+5\le11$ line by line with justifications, and note the previews: this
+justification habit is what 1.2 formalizes for literal equations, and the zero product property
+from Section~2 is what makes factoring solve equations in 1.2 and every unit after.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Active Monitoring]{redbox}
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item calling $\sqrt{9}$ irrational --- the signature error of Section~1; the radical sign is not the test, the \emph{value} is (and $\frac{8}{2}$ is the same error wearing a fraction bar);
+  \item classifying into only \emph{one} set (``$-7$ is an integer'' and stopping) --- every number belongs to every set that contains it, and the Warm-Up table is graded that way;
+  \item confusing commutative with associative --- the tell is a student who changed the \emph{order} but names ``associative''; ask them which one has the parentheses moving;
+  \item claiming subtraction is commutative because ``it works for $5-5$'' --- one confirming case is not a proof, though one contradicting case \emph{is} a disproof; this is the Tier~E idea arriving early;
+  \item naming ``distributive'' for $3+(4+x)=(3+4)+x$ --- distributive needs \emph{two different} operations;
+  \item saying ``I moved it to the other side'' instead of naming the subtraction property of equality --- the whole point of the lesson; press for the name every time;
+  \item flipping the inequality symbol when \emph{subtracting} a negative or when the \emph{answer} is negative, rather than only when multiplying or dividing \emph{by} a negative --- this over-correction is more common than forgetting the flip and is harder to unlearn;
+  \item using a property of equality name to justify a step that only rewrote one side.
+\end{itemize}
+Cold-call prompts: ``Name the property --- not what you did, the \emph{name}.'' ``Did that step
+change one side or both?'' ``Is $\sqrt{16}$ irrational? How do you know without a calculator?''
+``Give me one number that proves subtraction is not commutative.'' ``Why did the symbol turn around
+there, and would it have turned if you'd divided by $+3$?''
+\end{skillbox}
+
+\begin{skillbox}[Group Work \& Differentiation]{redbox}
+\textbf{Name That Property} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Two straightforward blocks. First, a classification grid: six numbers
+($-4$, $\sqrt{25}$, $\frac{2}{3}$, $0$, $\sqrt{7}$, $-\frac{12}{4}$) checked against all five sets,
+with $\sqrt{25}$ and $-\frac{12}{4}$ planted as the disguised integers. Second, eight one-line
+statements to name from a word bank --- the bank is provided deliberately, since the goal here is
+recognition, not recall. Closes with the two-column question that separates the whole lesson:
+``did this step change one side or both?'' Send here any student who wrote ``I moved it over.''
+
+\columnbreak
+\textbf{Tier A --- Approaching.} No word bank. Justify a complete solution of $5(x-3)+2=4x-1$ line
+by line, then the same for the inequality $-4(x+1)\ge 8$, where one line must be the reversal rule
+and students must say \emph{why} it fired there and not on the line above. Then the error-hunt:
+three worked solutions, each with exactly one illegal step --- a dropped distribution, a symbol not
+reversed, and a division by a quantity that could be zero. Students name the property that was
+\emph{violated}, not just the arithmetic slip.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Claim-testing. Six general statements (is subtraction associative? is
+the set of irrationals closed under addition? does $a\cdot0=0$ have an inverse-property analogue?
+etc.), each to be marked true or false --- and a false one must be killed with an explicit
+\textbf{counterexample}, a true one defended with a property name. The irrationals question is the
+best item on the page: $\sqrt{2}+(-\sqrt{2})=0$ is rational, so they are \emph{not} closed under
+addition, and most students will guess wrong first. Closes by asking why the reversal rule exists
+for inequalities but has no equality analogue.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Individual Work \& Assessment]{redbox}
+\textbf{Exit Ticket} (independent, no notes): three items. \textbf{(1)} Classify $\sqrt{36}$ and
+$\sqrt{6}$ into every set each belongs to --- the disguised-integer check, in the smallest possible
+form. \textbf{(2)} Name the property justifying each of four one-line steps, chosen so that two are
+properties of \emph{real numbers} and two are properties of \emph{equality}, then state in one
+sentence how the two kinds differ. \textbf{(3)} An \textbf{SOL-style multiple-choice} item on
+solving $-5x \ge 20$ (answer $x\le-4$), whose distractors each break exactly one idea: forget the
+reversal / reverse but mis-divide / reverse the symbol \emph{and} the sign. Collect and sort into
+``got it / radical-is-irrational / property names shaky / reversal rule.'' The fourth pile is the
+one to act on: Lesson 1.2 solves inequalities all period, so if that pile is large, open 1.2 by
+re-running the Hook with different numbers before starting anything new.
+\end{skillbox}
+
+\begin{skillbox}[Reinforcement \& Extension]{goldbox}
+\textbf{Homework:} a classification table over eight numbers including three disguised integers and
+one repeating decimal; twelve statements to name by property with no word bank, mixed across real
+numbers, equality, and inequality; a full line-by-line justification of $-3(x-2)<15$ including the
+reversal line; and one written item asking students to explain, in their own words and using the
+words \emph{one side} and \emph{both sides}, the difference between a property of real numbers and a
+property of equality. \textbf{Extension:} the closure investigation --- a grid asking whether each
+of $\mathbb{N}, \mathbb{Z}, \mathbb{Q}$, and the irrationals is closed under each of the four
+operations, with a counterexample required in every ``no'' cell, closing with ``which single
+un-closed box explains why we needed to invent the rationals?'' \textbf{Preview:} Lesson 1.1,
+\emph{Expressions and Operations} --- the first Algebra 1 domain area, where the distributive
+property stops being a name to recite and becomes the engine behind multiplying polynomials, and
+where the inverse properties reappear as the rules for exponents and radicals.
+\end{skillbox}
+\end{document}

@@ -1,485 +1,86 @@
-%! Author = layne
-%! Date = 4/12/26
-
-% Preamble
+%! Equations and Inequalities — Unit 1, Lesson 1.2 — Lesson Plan
 \documentclass[10pt]{article}
-
-% dependencies
-\usepackage[margin=0.6in]{geometry}
-\usepackage{xcolor}
-\usepackage[most]{tcolorbox}
-\usepackage{enumitem}
-\usepackage{multicol}
-\usepackage{amsmath,amssymb}
-\usepackage{array}
-\usepackage{tabularx}
-\usepackage{unicode-math}
-\usepackage{graphicx}
-\usepackage{pdfpages}
-\usepackage{ltablex}
-\usepackage{algebra2-colors}
+\usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\keepXColumns
-\tcbuselibrary{breakable}
-
+\usepackage{graphicx}   % -article does NOT load graphicx; needed for thumbnails/screenshots
+\graphicspath{{images/}}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
-\newcommand{\UnitNumberName}{Unit 1: Foundations}
-\newcommand{\LessonNumberName}{Lesson 2: Equations \& Inequalities}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\MeetingLength}{55 minutes}
+\newcommand{\UnitNumberName}{Unit 1: Foundations: Algebra 1 Review \quad}
+\newcommand{\LessonNumberName}{Lesson 1.2: Equations and Inequalities}
 
 \begin{document}
-    \begin{center}
-        {\Large\bfseries \CourseName \quad \SchoolYear \\
-        {\small \bfseries \UnitNumberName \quad \LessonNumberName } }
-    \end{center}
+\begin{center}
+    {\Large\bfseries \CourseName: \SchoolYear \\
+    {\small\bfseries \UnitNumberName \LessonNumberName}}
+\end{center}
 
-    \begin{tcolorbox}[colback=forestbg,colframe=forest,boxrule=0.9pt,arc=2mm,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm]
-        \textbf{Primary objective: }
-        {Students will review and reactivate Algebra 1 skills for solving linear equations,
-        linear inequalities, literal equations, systems of equations, and quadratic equations.}
-    \end{tcolorbox}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
+    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+\end{tcolorbox}
 
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-        \begin{minipage}[t]{0.48\linewidth}
-            \begin{enumerate}
-                \item \textbf{Properties of real numbers, equality, \& inequality}
-                \begin{itemize}
-                    \item justification for steps in solving equations
-                \end{itemize}
-                \item \textbf{Linear equations in one variable}
-                \begin{itemize}
-                    \item multistep; distributive property
-                    \item one solution, no solution, or infinite solutions
-                \end{itemize}
-                \item \textbf{Linear inequalities in one variable}
-                \begin{itemize}
-                    \item solve and graph on a number line
-                    \item interval notation and set notation
-                    \item flip the inequality when multiplying/dividing by a negative
-                \end{itemize}
-                \item \textbf{Literal equations}
-                \begin{itemize}
-                    \item rearrange a formula to solve for a specified variable
-                    \item treat every other variable as a constant
-                \end{itemize}
-                \item \textbf{Systems of two linear equations}
-                \begin{itemize}
-                    \item substitution method
-                    \item elimination (addition) method
-                    \item graphical method; point of intersection
-                    \item one solution, no solution, or infinite solutions
-                \end{itemize}
-            \end{enumerate}
+\renewcommand{\arraystretch}{1.4}
+\begin{skillbox}[Priority Ideas \& Skills]{goldbox}
+% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
+% re-balance the environments (that is the classic source of a stray \end{itemize}).
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item TODO: priority skill (AP Skill x.y for AP courses).
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+\end{itemize}
+\end{tabularx}
+\end{skillbox}
+
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+    % TODO: key terms + definitions for this lesson.
+\end{skillbox}
+
+\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
+    \begin{tabularx}{\linewidth}{@{}X c@{}}
+        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+            Please see attached spiral review.  % TODO: list skills reviewed
         \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \begin{enumerate}[start=5]
-                \item \textbf{Linear inequalities in two variables}
-                \begin{itemize}
-                    \item graph the boundary line (solid or dashed)
-                    \item shade the solution region
-                    \item systems of inequalities: double-shaded region
-                \end{itemize}
-                \item \textbf{Solving quadratic equations}
-                \begin{itemize}
-                    \item factoring ($|a|=1$ and $|a|>1$)
-                    \item quadratic formula: \TallMath{x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}}
-                    \item completing the square (special cases)
-                    \item zero-product property
-                \end{itemize}
-                \item \textbf{Discriminant and number of solutions - $b^2 - 4ac$}
-                \begin{itemize}
-                    \item $b^2 - 4ac > 0$: two distinct real solutions
-                    \item $b^2 - 4ac = 0$: exactly one real solution
-                    \item $b^2 - 4ac < 0$: no real solutions (Algebra 2: complex)
-                \end{itemize}
-            \end{enumerate}
+        &
+        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
+            % TODO: spiral-review thumbnail. Authored warm-ups compile to
+            % target/, so leave this text-only unless you keep a source
+            % PDF in the warmup/ directory to embed.
         \end{minipage}
-    \end{skillbox}
+    \end{tabularx}
+\end{fixedskillbox}
 
-    \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-        \renewcommand{\arraystretch}{1.35}
-        \begin{tabularx}{\linewidth}{
-                >{\bfseries}p{0.26\linewidth}
-            X
-        }
-        \textbf{Concept} & \textbf{Definition / Notes} \\
-        \hline
-        \endhead
+\begin{skillbox}[Hook]{forestbg}
+    % TODO: the engaging entry question / scenario.
+\end{skillbox}
 
-        {Equation}
-        & {A mathematical statement asserting that two expressions are equal.} \\
-        \hline
+\begin{skillbox}[Lesson]{forestbg}
+    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\end{skillbox}
 
-        {Inequality}
-        & {A mathematical statement that one expression is greater than, less than, greater than
-        or equal to, or less than or equal to another.} \\
-        \hline
+\begin{skillbox}[Active Monitoring]{redbox}
+    % TODO: what to circulate and check for; cold-call prompts.
+\end{skillbox}
 
-        {Solution}
-        & {A value (or set of values) that makes an equation or inequality true.} \\
-        \hline
+\begin{skillbox}[Group Work \& Differentiation]{redbox}
+    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\end{skillbox}
 
-        {Solution set}
-        & {The complete collection of all solutions to an equation or inequality.} \\
-        \hline
+\begin{skillbox}[Individual Work \& Assessment]{redbox}
+    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\end{skillbox}
 
-        {Algebraic identity}
-        & {An equation that is true for \emph{all} values of the variable(s).
-        Example: $a(b+c) = ab+ac$ is always true, regardless of $a$, $b$, or $c$.} \\
-        \hline
-
-        {Properties of real numbers}
-        & {Rules that hold for all real numbers governing how they combine under addition
-        and multiplication.} \\
-        \hline
-
-        {Commutative property}
-        & {Order does not affect the result: $a + b = b + a$ and $ab = ba$.} \\
-        \hline
-
-        {Associative property}
-        & {Grouping does not affect the result: $(a+b)+c = a+(b+c)$ and $(ab)c = a(bc)$.} \\
-        \hline
-
-        {Identity property}
-        & {Adding 0 or multiplying by 1 leaves a number unchanged: $a + 0 = a$ and $a \cdot 1 = a$.} \\
-        \hline
-
-        {Inverse property}
-        & {Every real number has an additive inverse ($a + (-a) = 0$) and every nonzero real
-        number has a multiplicative inverse ($a \cdot \tfrac{1}{a} = 1$, $a \ne 0$).} \\
-        \hline
-
-        {Distributive property}
-        & {Multiplication distributes over addition: $a(b + c) = ab + ac$.} \\
-        \hline
-
-        {Reflexive property}
-        & {A quantity is equal to itself: $a = a$.} \\
-        \hline
-
-        {Symmetric property}
-        & {Equality can be reversed: if $a = b$, then $b = a$.} \\
-        \hline
-
-        {Closure property}
-        & {The sum or product of any two real numbers is itself a real number.} \\
-        \hline
-
-        {Properties of equality}
-        & {Operations applied equally to both sides of an equation preserve equality
-        (addition, subtraction, multiplication, division by nonzero).} \\
-        \hline
-
-        {Properties of inequality}
-        & {Same operations as equality, \emph{except} multiplying or dividing by a negative
-        number reverses the inequality symbol.} \\
-        \hline
-
-        {Interval notation}
-        & {A compact way to write a solution set. Examples: $(-\infty, 3]$ means $x \leq 3$;
-        $(2, 5)$ means $2 < x < 5$.} \\
-        \hline
-
-        {Literal equation}
-        & {An equation with more than one variable (often a formula). Solved by isolating
-        the target variable using properties of equality.} \\
-        \hline
-
-        {System of equations}
-        & {Two or more equations with the same variables considered simultaneously.} \\
-        \hline
-
-        {Substitution method}
-        & {Solve one equation for a variable, then substitute that expression into the
-        other equation.} \\
-        \hline
-
-        {Elimination method}
-        & {Add or subtract multiples of the equations to cancel one variable, then solve
-        for the remaining variable.} \\
-        \hline
-
-        {Consistent system}
-        & {A system with at least one solution (lines intersect or coincide).} \\
-        \hline
-
-        {Inconsistent system}
-        & {A system with no solution (lines are parallel).} \\
-        \hline
-
-        {Quadratic equation}
-        & {An equation of the form $ax^2 + bx + c = 0$ where $a \ne 0$.} \\
-        \hline
-
-        {Zero-product property}
-        & {If $A \cdot B = 0$, then $A = 0$ or $B = 0$ (or both).
-        Foundation for solving by factoring.} \\
-        \hline
-
-        {Quadratic formula}
-        & \TallMath{x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}} \quad solves any quadratic
-        $ax^2 + bx + c = 0$. \\
-        \hline
-
-        {Discriminant}
-        & {The expression $\Delta = b^2 - 4ac$ inside the quadratic formula.
-        Determines the number and type of solutions.} \\
-        \hline
-
-        \end{tabularx}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-
-    \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-        \begin{tabularx}{\linewidth}{@{}X c@{}}
-            \begin{minipage}[t]{0.55\linewidth}
-                \vspace{0pt}
-                Please see attached spiral review.
-                \textbf{Skills reviewed/practiced:}
-                \begin{itemize}
-                    \item Solving a one-step equation
-                    \item Writing an inequality from context
-                    \item Factoring a simple trinomial
-                    \item Evaluating an expression
-                    \item Properties of real numbers
-                \end{itemize}
-            \end{minipage}
-            &
-            \begin{minipage}[t]{0.38\linewidth}
-                \vspace{0pt}
-                \centering
-                \includegraphics[width=\linewidth,page=1]{warmup/main}
-            \end{minipage}
-        \end{tabularx}
-    \end{fixedskillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Hook]{forestbg}
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Same expression, different constraints}
-            \begin{itemize}
-                \item $2x + 6 = 14$
-                \item $2x + 6 \leq 14$
-                \item $2x + 6y = 14$
-                \item $2x + 6 = 2(x + 3)$
-            \end{itemize}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Questions}
-            \begin{itemize}
-                \item \textbf{How many solutions does each have?}
-                \item \textbf{How does replacing $=$ with $\leq$ change the solution?}
-                \item \textbf{What happens when we add a second variable?}
-                \item \textbf{What does it mean for an equation to be ``always true''?}
-            \end{itemize}
-        \end{minipage}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Lesson]{forestbg}
-        \begin{multicols}{2}
-            \begin{enumerate}
-                \item Solve a multistep linear equation
-                \begin{itemize}
-                    \item $3(x-2)+4 = 2x+7$
-                    \item \textbf{What do you do first?}
-                    \item Distribute: $3x-6+4 = 2x+7$
-                    \item Simplify: $3x-2 = 2x+7$
-                    \item Isolate $x$: $x = 9$
-                \end{itemize}
-
-                \item Solve a linear inequality
-                \begin{itemize}
-                    \item $-2(x-1) \geq 4x-8$
-                    \item $-2x+2 \geq 4x-8$
-                    \item $10 \geq 6x \Rightarrow x \leq \tfrac{5}{3}$
-                    \item \textbf{Why did the direction not flip here?}
-                    \item Interval: $\left(-\infty, \tfrac{5}{3}\right]$
-                \end{itemize}
-
-                \item Solve a literal equation
-                \begin{itemize}
-                    \item Solve $A = \tfrac{1}{2}bh$ for $h$
-                    \item \textbf{Treat $A$ and $b$ as constants.}
-                    \item $2A = bh \Rightarrow h = \dfrac{2A}{b}$
-                \end{itemize}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-    \begin{skillbox}[Lesson (cont.)]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[start=4]
-                \item Solve a system of equations
-                \begin{itemize}
-                    \item $x + 2y = 8$ and $3x - y = 3$
-                    \item \textbf{Which method — substitution or elimination?}
-                    \item Substitution: $x = 8 - 2y$
-                    \item $3(8-2y)-y = 3 \Rightarrow 24-6y-y=3$
-                    \item $-7y = -21 \Rightarrow y = 3$
-                    \item $x = 8 - 2(3) = 2$
-                    \item Solution: $(2, 3)$
-                \end{itemize}
-                \columnbreak
-                \item Solve a quadratic equation
-                \begin{itemize}
-                    \item Factor $x^2 - 3x - 10 = 0$
-                    \item \textbf{What two numbers add to $-3$ and multiply to $-10$?}
-                    \item $(x-5)(x+2) = 0$
-                    \item $x = 5$ or $x = -2$
-                    \item Discriminant check: $\Delta = (-3)^2 - 4(1)(-10) = 9 + 40 = 49 > 0$
-                    \item \textbf{Two real solutions — consistent with our answer.}
-                \end{itemize}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Explicit Instruction: Solving equations and inequalities with Desmos]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[label=\arabic*.]
-                \item \textbf{Equations:} Graph both sides as separate functions.
-                The $x$-coordinate of the intersection is the solution.
-                \begin{itemize}
-                    \item $y_1 = $ left side \quad $y_2 = $ right side
-                    \item Find the intersection point.
-                \end{itemize}
-                \item \textbf{Inequalities:} Graph the equation form first, then
-                identify which region satisfies the inequality.
-                \begin{itemize}
-                    \item Graph $y = $ the expression.
-                    \item Read off where $y \leq 0$, $y \geq 0$, etc.
-                    \item Or graph the inequality directly to see the shaded region.
-                \end{itemize}
-                \item \textbf{Systems:} Graph both lines. The solution is the
-                intersection point (or no solution if parallel; infinite if same line).
-                \item \textbf{Quadratics:} Graph $y = ax^2+bx+c$.
-                \begin{itemize}
-                    \item Count the $x$-intercepts to predict the number of solutions.
-                    \item Use the zeros to read off the exact solutions when integers.
-                \end{itemize}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Active Monitoring]{redbox}
-        Distribute the group activity sheet. Circulate and check for understanding on:
-        \begin{itemize}
-            \item correct application of the distributive property before isolating the variable
-            \item flipping the inequality symbol when multiplying or dividing by a negative
-            \item identifying the correct variable to isolate in literal equations
-            \item consistent substitution in both equations when solving systems
-            \item use of the zero-product property after factoring a quadratic
-        \end{itemize}
-        Cold-call groups to justify their solution method and verify using Desmos.
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Group Work \& Differentiation]{redbox}
-        Distribute the differentiated group activity sheet (see \texttt{activity/}).
-        Assign each group to a tier based on recent assessment data.
-        Groups that finish early may attempt the next tier up.
-        \par\medskip
-        \hrule
-        \medskip
-
-        \begin{multicols}{3}
-            \raggedcolumns
-            \setlength{\columnsep}{1cm}
-            \setlength{\columnseprule}{0.2pt}
-
-            \textbf{Tier R --- Remediate}
-            \begin{itemize}
-                \item Solve a two-step linear equation
-                \item Solve a basic inequality; graph on number line
-                \item Solve for a single variable in a simple literal equation
-                \item MC: identify the number of solutions to a linear equation
-            \end{itemize}
-            \columnbreak
-
-            \textbf{Tier A --- Approaching Proficiency}
-            \begin{itemize}
-                \item Solve multistep equation with distribution
-                \item Solve inequality with distribution; write in interval notation
-                \item Solve a system of two equations by substitution
-                \item Solve a quadratic by factoring ($|a|=1$)
-            \end{itemize}
-            \columnbreak
-
-            \textbf{Tier E --- Extension}
-            \begin{itemize}
-                \item Solve a multi-variable literal equation
-                \item Solve a two-sided inequality; interval notation
-                \item Solve a system by elimination (non-trivial coefficients)
-                \item Solve a quadratic with quadratic formula ($|a|>1$); use discriminant
-            \end{itemize}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Individual Work \& Assessment]{redbox}
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Exit Ticket} (see attached) \\
-            {\small Do these independently. No notes. Graded for completion --- mistakes happen, blanks don't.}
-            \par\smallskip
-            \begin{enumerate}
-                \item Solve $5 - 2(x+3) = x + 1$. Show every step.
-                \item Solve $3x + 4 \geq 10$. Write answer in interval notation.
-                \item SOL-style MC: How many real solutions does $x^2 - 4x + 7 = 0$ have?
-            \end{enumerate}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Exit Ticket Answers (teacher)} \\
-            \begin{enumerate}
-                \item $5 - 2x - 6 = x+1 \Rightarrow -2x - 1 = x+1 \Rightarrow -3x = 2 \Rightarrow x = -\frac{2}{3}$
-                \item $3x \geq 6 \Rightarrow x \geq 2$; interval: $[2, \infty)$
-                \item $\Delta = 16 - 28 = -12 < 0$; \textbf{A. 0 real solutions}
-            \end{enumerate}
-            \vspace{0.3em}
-            {\small Collect before students leave. Use results to gauge readiness for Lesson 1.3 and flag students who need support on inequality direction or discriminant.}
-        \end{minipage}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-        \begin{minipage}[t]{0.55\linewidth}
-            \textbf{Homework} (see attached sheet) \\
-            {\small Show all work by hand. Desmos to verify when done.}
-            \par\smallskip
-            \begin{enumerate}
-                \item Solve $2(3x-1) = 4x + 8$
-                \item Solve $5 - x = 2x - 7$
-                \item Solve $-4x + 3 > 15$; write in interval notation
-                \item Solve for $w$: $V = lwh$
-                \item Solve for $y$: $3x - 2y = 12$
-                \item Solve the system: $x - y = 1$, $\; 2x + y = 8$
-                \item Solve $x^2 - 7x + 12 = 0$ by factoring
-                \item Solve $x^2 = 5x - 6$ (rearrange first)
-                \item How many real solutions: $2x^2 + x + 3 = 0$?
-                \item Solve $x^2 - 6x + 9 = 0$
-            \end{enumerate}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.40\linewidth}
-            \textbf{Extension} \\
-            A cell phone plan charges a flat fee of \$20 plus \$0.05 per text message. A second plan charges \$10 plus \$0.10 per text.
-            \begin{enumerate}
-                \item Write a system of equations to model the total cost.
-                \item At how many texts do the plans cost the same?
-                \item For what number of texts is Plan 1 cheaper?
-            \end{enumerate}
-            \vspace{0.5em}
-            \textbf{Preview} \\
-            Lesson 1.3 moves into functions. Come ready: what is a function? How is $f(x) = 2x+1$ different from the equation $y = 2x+1$?
-        \end{minipage}
-    \end{skillbox}
+\begin{skillbox}[Reinforcement \& Extension]{goldbox}
+    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\end{skillbox}
 \end{document}

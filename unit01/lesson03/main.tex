@@ -1,448 +1,86 @@
-%! Algebra 2 — Unit 1, Lesson 3 — Teacher Guide
-%! Date = 6/6/26
-
+%! Functions — Unit 1, Lesson 1.3 — Lesson Plan
 \documentclass[10pt]{article}
-
-\usepackage[margin=0.6in]{geometry}
-\usepackage{xcolor}
-\usepackage[most]{tcolorbox}
-\usepackage{enumitem}
-\usepackage{multicol}
-\usepackage{amsmath,amssymb}
-\usepackage{array}
-\usepackage{tabularx}
-\usepackage{unicode-math}
-\usepackage{graphicx}
-\usepackage{pdfpages}
-\usepackage{ltablex}
-\usepackage{algebra2-colors}
+\usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\keepXColumns
-\tcbuselibrary{breakable}
-
+\usepackage{graphicx}   % -article does NOT load graphicx; needed for thumbnails/screenshots
+\graphicspath{{images/}}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
-\newcommand{\UnitNumberName}{Unit 1: Foundations}
-\newcommand{\LessonNumberName}{Lesson 3: Functions \& Statistics Review}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\MeetingLength}{55 minutes}
+\newcommand{\UnitNumberName}{Unit 1: Foundations: Algebra 1 Review \quad}
+\newcommand{\LessonNumberName}{Lesson 1.3: Functions}
 
 \begin{document}
-    \begin{center}
-        {\Large\bfseries \CourseName \quad \SchoolYear \\
-        {\small \bfseries \UnitNumberName \quad \LessonNumberName } }
-    \end{center}
+\begin{center}
+    {\Large\bfseries \CourseName: \SchoolYear \\
+    {\small\bfseries \UnitNumberName \LessonNumberName}}
+\end{center}
 
-    \begin{tcolorbox}[colback=forestbg,colframe=forest,boxrule=0.9pt,arc=2mm,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm]
-        \textbf{Primary objective: }
-        {Students will review and reactivate Algebra 1 skills for analyzing linear, quadratic,
-        and exponential functions and for interpreting bivariate data using scatterplots and
-        regression models.}
-    \end{tcolorbox}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
+    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+\end{tcolorbox}
 
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-        \begin{minipage}[t]{0.48\linewidth}
-            \begin{enumerate}
-                \item \textbf{Relations vs.\ functions}
-                \begin{itemize}
-                    \item vertical line test; ordered pairs, tables, mappings, graphs
-                    \item domain and range of a function
-                \end{itemize}
-                \item \textbf{Linear functions --- A.F.1}
-                \begin{itemize}
-                    \item slope, intercepts, zeros; interpret in context
-                    \item equivalent forms: slope-intercept, standard, point-slope
-                    \item transformations of $y = x$: shifts and stretches
-                    \item parallel lines (same slope); perpendicular ($m_1 m_2 = -1$)
-                \end{itemize}
-                \item \textbf{Writing equations of lines}
-                \begin{itemize}
-                    \item given graph; given two points; given slope and a point
-                    \item vertical lines $x = a$; horizontal lines $y = c$
-                \end{itemize}
-                \item \textbf{Quadratic functions --- A.F.2}
-                \begin{itemize}
-                    \item key features: vertex (max/min), zeros, $y$-intercept, axis of symmetry
-                    \item domain and range; interpret in context
-                    \item transformations $f(x)+k$ and $kf(x)$
-                    \item connections: standard form $\leftrightarrow$ factored form $\leftrightarrow$ graph
-                \end{itemize}
-            \end{enumerate}
+\renewcommand{\arraystretch}{1.4}
+\begin{skillbox}[Priority Ideas \& Skills]{goldbox}
+% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
+% re-balance the environments (that is the classic source of a stray \end{itemize}).
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item TODO: priority skill (AP Skill x.y for AP courses).
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+\end{itemize}
+\end{tabularx}
+\end{skillbox}
+
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+    % TODO: key terms + definitions for this lesson.
+\end{skillbox}
+
+\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
+    \begin{tabularx}{\linewidth}{@{}X c@{}}
+        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+            Please see attached spiral review.  % TODO: list skills reviewed
         \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \begin{enumerate}[start=5]
-                \item \textbf{Exponential functions --- A.F.2}
-                \begin{itemize}
-                    \item form $y = ab^x$ (b is a natural number)
-                    \item key features: $y$-intercept, domain, range
-                    \item transformations $f(x)+k$ and $kf(x)$
-                    \item interpret $a$ (initial value) and $b$ (growth/decay factor)
-                \end{itemize}
-                \item \textbf{Comparing function families}
-                \begin{itemize}
-                    \item linear: constant rate of change
-                    \item quadratic: changing rate; symmetric parabola
-                    \item exponential: multiplicative rate of change
-                \end{itemize}
-                \item \textbf{Bivariate data \& regression --- A.ST.1}
-                \begin{itemize}
-                    \item scatterplots; identify relationship (linear or quadratic)
-                    \item curve of best fit using technology (Desmos regression)
-                    \item interpret slope and $y$-intercept of a linear model in context
-                    \item use model to predict; evaluate strength and validity
-                    \item make conclusions from bivariate data analysis
-                \end{itemize}
-            \end{enumerate}
+        &
+        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
+            % TODO: spiral-review thumbnail. Authored warm-ups compile to
+            % target/, so leave this text-only unless you keep a source
+            % PDF in the warmup/ directory to embed.
         \end{minipage}
-    \end{skillbox}
+    \end{tabularx}
+\end{fixedskillbox}
 
-    \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-        \renewcommand{\arraystretch}{1.35}
-        \begin{tabularx}{\linewidth}{
-                >{\bfseries}p{0.26\linewidth}
-            X
-        }
-        \textbf{Concept} & \textbf{Definition / Notes} \\
-        \hline
-        \endhead
+\begin{skillbox}[Hook]{forestbg}
+    % TODO: the engaging entry question / scenario.
+\end{skillbox}
 
-        {Relation}
-        & {Any set of ordered pairs $(x, y)$.} \\
-        \hline
+\begin{skillbox}[Lesson]{forestbg}
+    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\end{skillbox}
 
-        {Function}
-        & {A relation where every input ($x$) maps to exactly one output ($y$).
-        Passes the vertical line test.} \\
-        \hline
+\begin{skillbox}[Active Monitoring]{redbox}
+    % TODO: what to circulate and check for; cold-call prompts.
+\end{skillbox}
 
-        {Domain}
-        & {The set of all allowable inputs ($x$-values) for a function.} \\
-        \hline
+\begin{skillbox}[Group Work \& Differentiation]{redbox}
+    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\end{skillbox}
 
-        {Range}
-        & {The set of all outputs ($y$-values) produced by a function.} \\
-        \hline
+\begin{skillbox}[Individual Work \& Assessment]{redbox}
+    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\end{skillbox}
 
-        {Slope}
-        & {Rate of change: $m = \dfrac{\Delta y}{\Delta x} = \dfrac{y_2 - y_1}{x_2 - x_1}$.} \\
-        \hline
-
-        {$x$-intercept / zero}
-        & {Where the graph crosses the $x$-axis; $y = 0$; also called a \emph{root} or \emph{zero}.} \\
-        \hline
-
-        {$y$-intercept}
-        & {Where the graph crosses the $y$-axis; $x = 0$.} \\
-        \hline
-
-        {Slope-intercept form}
-        & {$y = mx + b$; slope $m$, $y$-intercept $b$.} \\
-        \hline
-
-        {Standard form}
-        & {$Ax + By = C$; useful for identifying intercepts by substitution.} \\
-        \hline
-
-        {Point-slope form}
-        & {$y - y_1 = m(x - x_1)$; used when slope and one point are known.} \\
-        \hline
-
-        {Parallel lines}
-        & {Same slope, different $y$-intercepts; never intersect.} \\
-        \hline
-
-        {Perpendicular lines}
-        & {Slopes are negative reciprocals: $m_1 m_2 = -1$.} \\
-        \hline
-
-        {Vertex of a parabola}
-        & {The highest (maximum) or lowest (minimum) point of a quadratic function.} \\
-        \hline
-
-        {Axis of symmetry}
-        & {Vertical line through the vertex: $x = -\dfrac{b}{2a}$ for $f(x) = ax^2 + bx + c$.} \\
-        \hline
-
-        {Exponential function}
-        & {$y = ab^x$ where $a \ne 0$, $b > 0$, $b \ne 1$. The base $b$ determines
-        growth ($b > 1$) or decay ($0 < b < 1$).} \\
-        \hline
-
-        {Bivariate data}
-        & {Data involving two quantitative variables collected on the same subject.} \\
-        \hline
-
-        {Scatterplot}
-        & {A graph of ordered pairs $(x, y)$ used to reveal relationships between two variables.} \\
-        \hline
-
-        {Curve of best fit}
-        & {A function (linear, quadratic, or other) that best models the trend in a scatterplot.} \\
-        \hline
-
-        {Linear regression}
-        & {Technology-assisted process that finds the line $y = mx + b$ minimizing
-        the sum of squared residuals.} \\
-        \hline
-
-        {Residual}
-        & {The difference between an observed value and the predicted value from a model.} \\
-        \hline
-
-        \end{tabularx}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-
-    \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-        \begin{tabularx}{\linewidth}{@{}X c@{}}
-            \begin{minipage}[t]{0.55\linewidth}
-                \vspace{0pt}
-                Please see attached spiral review.
-                \textbf{Skills reviewed/practiced:}
-                \begin{itemize}
-                    \item Identifying a function from a table or graph
-                    \item Finding slope between two points
-                    \item Identifying key features of a quadratic from a graph
-                    \item Interpreting a scatterplot
-                    \item Reading a linear model in context
-                \end{itemize}
-            \end{minipage}
-            &
-            \begin{minipage}[t]{0.38\linewidth}
-                \vspace{0pt}
-                \centering
-                \IfFileExists{warmup/main.pdf}{%
-                    \includegraphics[width=\linewidth,page=1]{warmup/main}%
-                }{\fbox{\parbox{\linewidth}{\centering\small warmup PDF\\not yet dropped in}}}
-            \end{minipage}
-        \end{tabularx}
-    \end{fixedskillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Hook]{forestbg}
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Three graphs, one question}
-            \begin{itemize}
-                \item $f(x) = 2x + 1$ \quad (linear)
-                \item $g(x) = x^2 - 4$ \quad (quadratic)
-                \item $h(x) = 2^x$ \quad (exponential)
-            \end{itemize}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Questions}
-            \begin{itemize}
-                \item \textbf{Which one grows fastest for large $x$?}
-                \item \textbf{Which one has a minimum? A maximum?}
-                \item \textbf{How many times does each cross the $x$-axis?}
-                \item \textbf{What data from real life would each model best?}
-            \end{itemize}
-        \end{minipage}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Lesson]{forestbg}
-        \begin{multicols}{2}
-            \begin{enumerate}
-                \item Key features of a linear function
-                \begin{itemize}
-                    \item $f(x) = -3x + 6$
-                    \item Slope: $m = -3$ \quad $y$-int: $(0, 6)$ \quad zero: $(2, 0)$
-                    \item Domain: all reals; Range: all reals
-                    \item \textbf{What does slope $= -3$ mean in context?}
-                \end{itemize}
-
-                \item Writing an equation of a line
-                \begin{itemize}
-                    \item Through $(1, 4)$ and $(3, 10)$
-                    \item $m = \dfrac{10-4}{3-1} = \dfrac{6}{2} = 3$
-                    \item Point-slope: $y - 4 = 3(x - 1)$
-                    \item Slope-intercept: $y = 3x + 1$
-                \end{itemize}
-
-                \item Key features of a quadratic
-                \begin{itemize}
-                    \item $f(x) = x^2 - 6x + 5 = (x-1)(x-5)$
-                    \item Zeros: $x = 1$ and $x = 5$
-                    \item Axis of symmetry: $x = 3$ \quad Vertex: $(3, -4)$
-                    \item $y$-intercept: $(0, 5)$ \quad Opens: up (minimum)
-                    \item Domain: all reals; Range: $[-4, \infty)$
-                \end{itemize}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-    \begin{skillbox}[Lesson (cont.)]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[start=4]
-                \item Key features of an exponential
-                \begin{itemize}
-                    \item $f(x) = 3 \cdot 2^x$
-                    \item $a = 3$ (initial value); $b = 2$ (growth factor)
-                    \item $y$-intercept: $(0, 3)$
-                    \item Domain: all reals; Range: $(0, \infty)$
-                    \item No $x$-intercept (never crosses $x$-axis)
-                    \item \textbf{What does doubling every step look like on a graph?}
-                \end{itemize}
-                \columnbreak
-                \item Interpreting a linear regression model
-                \begin{itemize}
-                    \item Given data: (hours studied, test score)
-                    \item Regression gives $y = 5.2x + 61$
-                    \item Slope $5.2$: each additional hour predicts $+5.2$ points
-                    \item $y$-int $61$: predicted score with zero hours of study
-                    \item Predict score for 4 hours: $y = 5.2(4) + 61 = 81.8$
-                    \item \textbf{Is this prediction reliable?  Why or why not?}
-                \end{itemize}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Explicit Instruction: Functions and Regression with Desmos]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[label=\arabic*.]
-                \item \textbf{Identifying function features:} Graph any function and use
-                the cursor (or intersection/zero tools) to read key features directly.
-                \begin{itemize}
-                    \item Click a zero to read the $x$-intercept.
-                    \item Minimum/maximum: look for the vertex label.
-                    \item Domain restrictions: use $\{x \geq 0\}$ notation.
-                \end{itemize}
-                \item \textbf{Comparing function families:} Enter all three parent
-                functions on the same screen and zoom out to see long-run behavior.
-                \item \textbf{Regression workflow:}
-                \begin{enumerate}[label=(\alph*)]
-                    \item Enter data in a table (column $x_1$, column $y_1$).
-                    \item Type the regression expression:
-                          $y_1 \sim mx_1 + b$ (linear) or $y_1 \sim ax_1^2 + bx_1 + c$ (quadratic).
-                    \item Read off the model coefficients from the sidebar.
-                    \item Use the equation to make predictions.
-                \end{enumerate}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Active Monitoring]{redbox}
-        Distribute the group activity sheet. Circulate and check for understanding on:
-        \begin{itemize}
-            \item correct identification of domain vs.\ range and function vs.\ non-function
-            \item reading vertex, zeros, and $y$-intercept from a graph or equation
-            \item correctly interpreting slope and $y$-intercept of a regression model in context
-            \item setting up the Desmos regression table with correct column labels ($x_1$, $y_1$)
-            \item distinguishing linear from quadratic trend in a scatterplot
-        \end{itemize}
-        Cold-call groups: ``What does the slope of your regression model mean in this situation?''
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Group Work \& Differentiation]{redbox}
-        Distribute the differentiated group activity sheet (see \texttt{activity/}).
-        Assign each group to a tier based on recent assessment data.
-        Groups that finish early may attempt the next tier up.
-        \par\medskip
-        \hrule
-        \medskip
-
-        \begin{multicols}{3}
-            \raggedcolumns
-            \setlength{\columnsep}{1cm}
-            \setlength{\columnseprule}{0.2pt}
-
-            \textbf{Tier R --- Remediate}
-            \begin{itemize}
-                \item Identify function vs.\ non-function from a table or mapping
-                \item Find slope and intercepts of a linear function
-                \item Read key features of a quadratic from a graph
-                \item Identify the type of trend in a scatterplot (linear/quadratic)
-            \end{itemize}
-            \columnbreak
-
-            \textbf{Tier A --- Approaching Proficiency}
-            \begin{itemize}
-                \item Write the equation of a line (two points given)
-                \item Identify vertex, axis of symmetry, and zeros of a quadratic
-                \item Identify $y$-intercept and growth factor of an exponential
-                \item Interpret slope and $y$-int of a given linear model in context
-            \end{itemize}
-            \columnbreak
-
-            \textbf{Tier E --- Extension}
-            \begin{itemize}
-                \item Write equation of line parallel/perpendicular to a given line
-                \item Determine the curve of best fit using Desmos regression
-                \item Make and evaluate a prediction using a regression model
-                \item Compare two function models and justify which fits the data better
-            \end{itemize}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Individual Work \& Assessment]{redbox}
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Exit Ticket} (see attached) \\
-            {\small Do these independently. No notes. Graded for completion.}
-            \par\smallskip
-            \begin{enumerate}
-                \item Identify the zeros, vertex, and $y$-intercept of $f(x) = x^2 - 2x - 3$.
-                \item A linear model is $y = 4.1x + 22$. Interpret the slope and $y$-intercept in context.
-                \item SOL-style MC: Which scatterplot best suggests a linear model?
-            \end{enumerate}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Exit Ticket Answers (teacher)} \\
-            \begin{enumerate}
-                \item $f(x) = (x-3)(x+1)$; zeros: $x = 3, -1$;
-                      vertex: $\left(1, -4\right)$; $y$-int: $(0, -3)$
-                \item Slope $4.1$: each unit increase in $x$ predicts $+4.1$ units in $y$;
-                      $y$-int $22$: predicted value of $y$ when $x = 0$
-                \item Answers depend on provided graph choices; look for points
-                      clustered near a straight-line trend with no obvious curve.
-            \end{enumerate}
-            \vspace{0.3em}
-            {\small Use exit ticket results to identify students who need support
-            distinguishing function families or interpreting regression output before Unit 2.}
-        \end{minipage}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-        \begin{minipage}[t]{0.55\linewidth}
-            \textbf{Homework} (see attached sheet) \\
-            {\small Show all work by hand. Desmos to verify when done.}
-            \par\smallskip
-            \begin{enumerate}
-                \item Find slope, $x$-intercept, and $y$-intercept of $3x - 2y = 12$
-                \item Write the equation of the line through $(-1, 5)$ and $(3, -3)$
-                \item Write the equation of the line through $(2, 1)$ parallel to $y = 3x - 4$
-                \item Is $\{(1,2),(2,4),(1,6)\}$ a function? Explain.
-                \item For $f(x) = -x^2 + 4x + 5$: find vertex, zeros, and $y$-intercept
-                \item For $g(x) = 2 \cdot 3^x$: find $g(0)$, $g(2)$, describe the range
-                \item A table of data shows hours of sunlight ($x$) and daily sales ($y$). \newline
-                      Enter in Desmos; run linear regression; write the equation.
-                \item Using your model from \#7, predict sales when $x = 10$.
-                \item The slope of a regression model is $-2.3$. Interpret this in context.
-                \item Compare $f(x) = 2x$, $g(x) = x^2$, $h(x) = 2^x$: which has the greatest value at $x = 10$?
-            \end{enumerate}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.40\linewidth}
-            \textbf{Extension} \\
-            A company's profit (in thousands) after $t$ years is modeled by $P(t) = -t^2 + 8t - 7$.
-            \begin{enumerate}
-                \item When is the company profitable ($P > 0$)?
-                \item In what year does profit peak, and what is the peak profit?
-                \item What does the $y$-intercept represent in context?
-            \end{enumerate}
-            \vspace{0.5em}
-            \textbf{Preview} \\
-            Unit 2 begins linear and absolute value functions in Algebra 2.
-            Come ready: what transformations do you know from Algebra 1?
-        \end{minipage}
-    \end{skillbox}
+\begin{skillbox}[Reinforcement \& Extension]{goldbox}
+    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\end{skillbox}
 \end{document}
