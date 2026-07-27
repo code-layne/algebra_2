@@ -1,0 +1,89 @@
+%! Characteristics of Logarithmic Functions — Unit 8, Lesson 8.0 — Warm-Up
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
+\begin{document}
+
+\pageheader{Unit 8, Lesson 8.0}{Warm-Up}
+\namedateperiod
+
+\vspace{0.08in}
+
+\begin{notesbox}{Getting Ready: Skills We'll Use Today}
+\small These three skills power today's lesson on reading logarithmic graphs. Work quickly.
+
+\vspace{3pt}
+\textbf{1. Exponents --- forwards, then backwards.} Evaluate each one.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}l l l@{}}
+(a) \; $2^3=$ \blank{1.6cm} & (b) \; $2^0=$ \blank{1.6cm} & (c) \; $2^{-2}=$ \blank{1.6cm} \\
+\end{tabular}
+\end{center}
+Now run it \emph{backwards}. Fill in the missing exponent.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}l l l@{}}
+(d) \; $2^{\square}=32$, \; $\square=$ \blank{1.4cm} & (e) \; $2^{\square}=\tfrac18$, \; $\square=$ \blank{1.4cm}
+ & (f) \; $2^{\square}=-8$, \; $\square=$ \blank{1.4cm} \\
+\end{tabular}
+\end{center}
+One of (d)--(f) is impossible. Which one, and what is it about \emph{powers of 2} that makes it
+impossible? \writeline
+
+\vspace{3pt}
+\textbf{2. Read the exponential parent.} The graph is $y=2^x$ from Unit~7.
+\begin{center}
+\begin{minipage}[c]{0.40\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-4}{3}{-1}{5}
+  \draw[navy, dashed, semithick] (-4,0)--(3,0);
+  \begin{scope}
+    \clip (-4,-1) rectangle (3,5);
+    \draw[very thick, forest, domain=-4:2.32, samples=90, smooth] plot (\x,{pow(2,\x)});
+  \end{scope}
+  \fill[charcoal] (0,1) circle (2.6pt);
+  \fill[charcoal] (1,2) circle (2.6pt);
+  \fill[charcoal] (2,4) circle (2.6pt);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.55\linewidth}
+\small
+Domain: \blank{2.6cm} \\[4pt]
+Range: \blank{2.6cm} \\[4pt]
+Horizontal asymptote: $y=$ \blank{1.4cm} \\[4pt]
+$y$-intercept: \blank{1.8cm} \quad $x$-intercept: \blank{1.8cm}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+\textbf{3. Two tables that are hiding something.} Complete the first table. The second table is the
+first one \emph{with its rows traded}.
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\small $y=2^x$} \\ \hline
+$x$ & $-2$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+$y$ & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} \\ \hline
+\end{tabular}
+\hspace{0.15in}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\small the same table, rows traded} \\ \hline
+$x$ & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} \\ \hline
+$y$ & $-2$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+\end{tabular}
+\end{center}
+Look only at the \emph{inputs} of the second table. What do they all have in common? \writeline
+
+\end{notesbox}
+
+\end{document}
