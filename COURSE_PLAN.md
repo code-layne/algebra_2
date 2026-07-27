@@ -5,8 +5,8 @@
 > **Status:** **Unit 1 is being rewritten from scratch (started 2026-07-27)** as a review of
 > *Algebra 1*, organized by the Algebra 1 SOL domain areas and with every All Things Algebra
 > drop-in removed — 4 lessons (1.0–1.3), 13 authored work products each, plus its own tests.
-> **Lesson 1.0 is complete and building; Lesson 1.1 is about half authored** (plan, warm-up +
-> key, and notes done). Details, the exact remaining file list, and the next actions are in the
+> **Lessons 1.0 and 1.1 are complete and building** (all 13 work products each); **1.2 and 1.3 and
+> the four test files are still skeletons.** Details and the next actions are in the
 > Unit 1 block in §4. **Units 2, 3, 4, and 5 are content-complete** — every lesson
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
@@ -167,20 +167,25 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **Lesson 1.0 is authored and building — all 13 components.** Verified: every file compiles,
 > each key paginates identically to its blank, and warm-up and exit ticket are exactly one page in
 > both blank and key.
-> **Lesson 1.1 is partially authored:** `main.tex` (plan), `warmup`, `warmup_key`, and `notes` are
-> done and compile (notes = 4 pp). **Still to write for 1.1:** `notes_key` (must mirror
-> `notes/main.tex` section for section — its blanks were deliberately written with `=` *inside*
-> math and the blank *outside*, e.g. `$3+8=$ \blank{1.6cm}`, precisely so the key can use
-> `\ans{$8+3$}` without putting `\ans` inside `$...$`), then `activity`, `activity_key`,
-> `exit_ticket`, `exit_ticket_key`, `homework`, `homework_key`, `cover`, `slides` — all eight are
-> specified in detail in the already-written `unit01/lesson01/main.tex` (the Group Work,
-> Individual Work, and Reinforcement boxes describe the tiers, exit-ticket items, and homework set
-> item by item; author to that spec).
+> **Lesson 1.1 is authored and building (2026-07-27) — all 13 components.** Reviews the whole
+> **Expressions and Operations** domain: translating and evaluating (with $|\cdot|$, $\sqrt{\ }$,
+> $\sqrt[3]{\ }$ at rational replacement values), the laws of exponents *derived by counting
+> factors* per **A.EO.3a**, polynomial $+/-/\times$ and $\div$, **factor completely** (GCF first),
+> and radicals $\leftrightarrow$ rational exponents. The spine of the lesson is the
+> **equivalence asymmetry** — one bad value disproves, no number of good values proves — introduced
+> in the Hook (four ``equivalent or not?'' pairs) and closed by the homework's equivalence audit.
+> Standards: **A.EO.1a/b, A.EO.2a–e, A.EO.3a/b, A.EO.4a–d**.
+> `make -C unit01/lesson01 all` → EXIT 0 (student 13 pp, full 24 pp). Component pages: cover 1,
+> warm-up 1/1, notes 4/4, activity 3/3, exit ticket **1/1**, homework 3/3, plan 4, slides 7 —
+> every key paginates identically to its blank, and warm-up + exit ticket are one page in both.
+> Exit ticket includes an SOL-style MC item ($\frac{15x^4y^{-1}}{5x^2y^3}$) whose three distractors
+> each break exactly one exponent law.
 > **Lessons 1.2 and 1.3 and all four test files are still skeletons.**
-> **Next actions, in order: (1) finish 1.1** starting with `notes_key`; **(2) author 1.2**;
-> **(3) author 1.3**; **(4) author the four test files** and run both `drop` targets to replace the
-> ATA sample-test PDFs; **(5)** full compile scan of `unit01`, then re-verify the one-page rule on
-> all four warm-ups and exit tickets.
+> **Next actions, in order: (1) author 1.2**; **(2) author 1.3**; **(3) author the four test files**
+> and run both `drop` targets to replace the ATA sample-test PDFs; **(4)** full compile scan of
+> `unit01`, then re-verify the one-page rule on all four warm-ups and exit tickets.
+> *(Note: the in-place `xelatex` compile scan drops `main.pdf` into component **source** dirs, which
+> `lesson.mk` would then treat as prefab drop-ins — always `git clean -f unitXX` afterwards.)*
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
