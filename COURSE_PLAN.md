@@ -2,13 +2,12 @@
 
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
-> **Status:** Unit 1 is built in source. **Units 2 and 3 are content-complete** — every lesson
+> **Status:** Unit 1 is built in source. **Units 2, 3, and 4 are content-complete** — every lesson
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
-> `sample_test_key/`). **Unit 4 is in progress:** all 7 lesson dirs scaffolded and assessments
-> scaffolded; **all seven lessons 4.0–4.6 are authored and building**; only the Unit 4 tests remain.
-> Units 5–8 are planned here and not yet scaffolded. Lesson lists below are proposals to react to and
-> edit — pacing (days per lesson) is intentionally left open pending the school calendar.
+> `sample_test_key/`). Units 5–8 are planned here and not yet scaffolded. **Next action: scaffold
+> Unit 5 (Rational Functions)** — confirm its lesson map first. Lesson lists below are proposals to
+> react to and edit — pacing (days per lesson) is intentionally left open pending the school calendar.
 
 ---
 
@@ -36,7 +35,7 @@
 | 1 | Foundations | (review) | 3 (no L0) | **Built** |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
-| 4 | Polynomial Functions | Polynomial | 7 | **All 7 lessons built; tests remain** |
+| 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | ~6 | Planned |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
@@ -541,9 +540,32 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > exactly one of degree parity, lead sign, and multiplicity).
 > `make -C unit04/lesson06 all` → EXIT 0 (student 14pp, full 30pp); `make -C unit04 all` → EXIT 0.
 > **All seven Unit 4 lessons (4.0--4.6) are now authored & building.**
-> **Next action: author the Unit 4 tests** --- `tests/{practice_test,actual_test}` and
-> `test_keys/{practice_test_key,actual_test_key}`, then publish the practice pair to `sample_test/` and
-> `sample_test_key/` via the `drop` targets. After that, Unit 5 (Rational Functions) scaffolding.
+> **Unit 4 tests authored & building (2026-07-26):** `tests/{practice_test,actual_test}` and
+> `test_keys/{practice_test_key,actual_test_key}`, all four 4pp, published to `sample_test/` and
+> `sample_test_key/` by the `drop` targets. Both forms are **skill-for-skill parallel with different
+> numbers** and follow the Unit 3 architecture: **Part A** vocabulary matching, 8 pts (degree, leading
+> coefficient, end behavior, multiplicity, turning point, Factor Theorem, Rational Root Theorem, FTA
+> --- same eight terms, shuffled between forms); **Part B** MC, 12 pts (end behavior from degree/lead;
+> a special product with the $a^2\pm b^2$ and forgot-to-double distractors; sum/difference of cubes
+> with the SOAP sign-flip distractor; Remainder Theorem with $f(-r)$ as the distractor; ``which value
+> is *not* a possible rational zero'' with the flipped fraction as the answer; the missing conjugate);
+> **Part C** computation, 40 pts in 8 items --- read a pre-drawn cubic graph with a cross and a
+> multiplicity-2 touch (practice $-(x+1)(x-2)^2$, actual $(x-1)(x+2)^2$, both asking for the *absolute*
+> extrema, answer **none**), subtract/multiply + degree \& lead of the product, factor completely
+> (GCF, cubes, grouping), long division with a **placeholder** + a Remainder-Theorem factor check,
+> synthetic division from a given zero, RRT list-then-solve with a **fractional** zero from a non-monic
+> factor (practice $\tfrac12$, actual $\tfrac13$), solve over $\mathbb{C}$ by grouping (count first by
+> FTA, then $x$-intercepts vs.\ imaginary pair), and build a least-degree real polynomial from a zero
+> and an imaginary one; **Part D** extended response, 12 pts --- the five-step graph plan on a
+> degree-4 factored form (degrees add / leads multiply, multiplicities, $y$-intercept, **sign chart**
+> with no flip at the double zero, $n-1$ turning points) and the open-box model with feasible domain
+> plus a genuine-but-meaningless zero to reject. Keys carry per-part `teachernote` scoring rubrics
+> (Part D at 6 pts each). Total 72 pts. `make -C unit04/tests all` and
+> `make -C unit04/test_keys all` → EXIT 0; `make -C unit04 student` → 87pp,
+> `make -C unit04 full` → 195pp (practice test in both, practice key in the full packet only; the
+> actual test and its key stay out of every packet). Note `make -C unit04 all` builds only the
+> lessons --- the tests need their own two `make` calls.
+> **Next action: Unit 5 (Rational Functions)** --- confirm the lesson map, then scaffold.
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g

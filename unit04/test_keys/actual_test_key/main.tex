@@ -2,6 +2,12 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[charcoal] (#1,#2) circle (3pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -12,20 +18,234 @@
 \begin{document}
 
 \pageheader{Unit 4: Polynomial Functions}{Unit Test --- Answer Key}
+\namedateperiod
 
-% Mirror the blank test EXACTLY, filling each answer with \ans{...} (inline) or
-% \ansline{...} (on a write-line). Use teachernote for scoring/teacher guidance.
+\vspace{0.06in}
+\noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so.
+
 % ======================================================================
-\parthead{Part A --- Vocabulary}
-% TODO: answers via \ans{...}
+\parthead{Part A --- Vocabulary (8 pts)}
+Write the letter of the best description next to each term.
 
-\parthead{Part B --- Multiple Choice}
-% TODO: mark correct options, e.g. \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.40\textwidth}
+\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
+  \item Multiplicity of a zero \ans{C}
+  \item End behavior \ans{E}
+  \item Rational Root Theorem \ans{G}
+  \item Degree \ans{B}
+  \item Turning point \ans{D}
+  \item Fundamental Theorem of Algebra \ans{H}
+  \item Leading coefficient \ans{A}
+  \item Factor Theorem \ans{F}
+\end{enumerate}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.57\textwidth}
+\small
+\begin{description}[leftmargin=1.4em, itemsep=3pt]
+  \item[(A)] The number multiplying the highest-power term; its sign decides the right-hand arm.
+  \item[(B)] The greatest exponent on the variable once the polynomial is in standard form.
+  \item[(C)] How many times the factor $(x-r)$ appears --- odd means the graph crosses at $r$, even means it touches.
+  \item[(D)] A point where the graph changes from increasing to decreasing, or the reverse.
+  \item[(E)] What the graph does at its far left and far right, as $x\to\pm\infty$.
+  \item[(F)] $(x-r)$ is a factor of $f(x)$ exactly when $f(r)=0$.
+  \item[(G)] Every rational zero of a polynomial with integer coefficients looks like $\pm\frac{p}{q}$, where $p$ divides the constant term and $q$ divides the leading coefficient.
+  \item[(H)] A polynomial of degree $n\ge 1$ has exactly $n$ complex zeros, counted with multiplicity.
+\end{description}
+\end{minipage}
 
-\parthead{Part C --- Short Answer \& Computation}
-% TODO: worked answers via \ans{...}
+% ======================================================================
+\parthead{Part B --- Multiple Choice (12 pts)}
+Circle the best answer.
 
-\parthead{Part D --- Extended Response}
-% TODO: sample response + scoring notes in a teachernote.
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item The end behavior of $f(x)=2x^3-5x+1$ is
+    \hfill (A) both arms up \quad (B) both arms down \quad \textbf{(C) left down, right up} \ans{$\leftarrow$} \quad (D) left up, right down
+  \item $(3x+4)^2=$
+    \hfill (A) $9x^2+16$ \quad \textbf{(B) $9x^2+24x+16$} \ans{$\leftarrow$} \quad (C) $9x^2+12x+16$ \quad (D) $9x^2-16$
+  \item Factored completely, $x^3-8$ is
+    \hfill \textbf{(A) $(x-2)(x^2+2x+4)$} \ans{$\leftarrow$} \quad (B) $(x-2)(x^2-2x+4)$ \quad (C) $(x-2)^3$ \quad (D) prime
+  \item The remainder when $f(x)=x^3+2x^2-5$ is divided by $x+1$ is
+    \hfill \textbf{(A) $-4$} \ans{$\leftarrow$} \quad (B) $-2$ \quad (C) $4$ \quad (D) $0$
+  \item Which value is \emph{not} a possible rational zero of $f(x)=2x^3-x^2+5x-3$?
+    \hfill (A) $-3$ \quad (B) $\frac{3}{2}$ \quad \textbf{(C) $\frac{2}{3}$} \ans{$\leftarrow$} \quad (D) $1$
+  \item A polynomial with \emph{real} coefficients has degree $4$ and zeros $-3$, $1$, and $2i$. Its fourth zero must be
+    \hfill \textbf{(A) $-2i$} \ans{$\leftarrow$} \quad (B) $2i$ \quad (C) $-2$ \quad (D) $\frac12$
+\end{enumerate}
+
+\begin{teachernote}
+Item 1: odd degree $\Rightarrow$ the arms oppose; $a=2>0$ $\Rightarrow$ the right arm rises. Item 2:
+(A) and (D) are the $(a+b)^2=a^2+b^2$ error, (C) forgets to double the middle product. Item 4:
+Remainder Theorem with $x+1=x-(-1)$, so $f(-1)=-1+2-5=-4$; (B) is $f(1)$ --- the sign-flip error.
+Item 5: $p\mid 3$ and $q\mid 2$, so the list is $\pm1,\pm3,\pm\frac12,\pm\frac32$. $\frac23$ is the
+\emph{flipped} fraction. Item 6: real coefficients force conjugate pairs, so $2i$ must be joined
+by $-2i$.
+\end{teachernote}
+
+% ======================================================================
+\parthead{Part C --- Short Answer \& Computation (40 pts)}
+Show your work.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Read the graph.} The polynomial function $f$ is graphed below. Each gridline is one unit.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-4}{3}{-5}{5}
+          \begin{scope}
+            \clip (-4,-5) rectangle (3,5);
+            \draw[very thick, forest, domain=-3.2:1.5, samples=180, smooth]
+              plot (\x,{(\x)*(\x)*(\x) + 3*(\x)*(\x) - 4});
+          \end{scope}
+          \foreach \x in {-3,-2,-1,1,2}
+            \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+          \dpt{-2}{0}
+          \dpt{1}{0}
+          \dpt{0}{-4}
+        \end{tikzpicture}
+        \end{center}
+        (a) Degree: even or odd? \ans{odd} \quad Leading coefficient: positive or negative? \ans{positive}
+        \\[4pt]
+        (b) As $x\to-\infty$, $f(x)\to$ \ans{$-\infty$}; \quad as $x\to+\infty$, $f(x)\to$ \ans{$+\infty$}
+        \\[4pt]
+        (c) Zeros, each with its multiplicity, and whether the graph crosses or touches there:
+        \ans{$x=-2$ (multiplicity 2, touches); $x=1$ (multiplicity 1, crosses)}
+        \\[4pt]
+        (d) $y$-intercept: \ans{$(0,-4)$}; \quad number of turning points: \ans{2}
+        \\[4pt]
+        (e) Relative maximum: \ans{$(-2,0)$}; \quad relative minimum: \ans{$(0,-4)$};
+        \\[4pt]
+        \phantom{(e)} absolute maximum or minimum: \ans{none --- odd degree, so the arms run to $\pm\infty$}
+        \\[4pt]
+        (f) Interval(s) where $f$ is decreasing: \ans{$(-2,0)$}; \quad domain: \ans{all reals}; \quad range: \ans{all reals}
+
+  \item \textbf{Operations.} Simplify. Write each answer in standard form.
+        \\[4pt]
+        (a) $(5x^3-2x^2+7)-(2x^3+x^2-3x)$
+        \ans{$=5x^3-2x^2+7-2x^3-x^2+3x=3x^3-3x^2+3x+7$. (The subtraction hits \emph{every} term: $-3x$ becomes $+3x$.)}
+        \\
+        (b) $(3x-2)(x^2-5x+4)$
+        \ans{$=3x^3-15x^2+12x-2x^2+10x-8=3x^3-17x^2+22x-8$}
+        \\
+        (c) For your answer to (b), give the degree \ans{3}, the leading coefficient \ans{3},
+        and the end behavior \ans{left down, right up}
+
+  \item \textbf{Factor completely.} Every factor must be prime over the integers.
+        \\[4pt]
+        (a) $3x^4-48x^2$ \hspace{1.5cm} (b) $x^3+125$ \hspace{1.5cm} (c) $x^3-2x^2-9x+18$
+        \\[4pt]
+        \ans{(a) GCF first --- the \emph{lowest} shared power: $3x^2(x^2-16)=3x^2(x-4)(x+4)$.\\[3pt]
+        (b) Sum of cubes with $a=x$, $b=5$: $(x+5)(x^2-5x+25)$; the quadratic factor is prime.\\[3pt]
+        (c) Four terms $\Rightarrow$ grouping: $x^2(x-2)-9(x-2)=(x-2)(x^2-9)=(x-2)(x-3)(x+3)$.}
+
+  \item \textbf{Division and the Remainder Theorem.}
+        \\[4pt]
+        (a) Divide using \emph{long division} and write the answer as $Q(x)+\dfrac{R}{D(x)}$:
+        \[ (x^3-3x^2+5)\div(x+1) \]
+        \ans{Write the dividend with a placeholder: $x^3-3x^2+0x+5$. Long division gives $Q(x)=x^2-4x+4$ with $R=1$, so the answer is $x^2-4x+4+\dfrac{1}{x+1}$. Check: $(x+1)(x^2-4x+4)+1=x^3-3x^2+4+1=x^3-3x^2+5$ \checkmark}
+        \\
+        (b) Use the \emph{Remainder Theorem} to find the remainder when $g(x)=x^3-2x^2-4x+8$ is divided
+        by $x-2$. Is $x-2$ a factor of $g$? Explain in one sentence.
+        \ans{The remainder is $g(2)=8-8-8+8=0$. Since the remainder is $0$, the Factor Theorem says $x-2$ \emph{is} a factor of $g$ (equivalently, $2$ is a zero and $(2,0)$ is an $x$-intercept).}
+
+  \item \textbf{Synthetic division.} You are told that $x=-1$ is a zero of
+        \[ f(x)=x^3-x^2-10x-8. \]
+        Use synthetic division to divide out that zero, factor $f$ completely, and list \emph{all} of
+        its zeros.
+        \ans{Synthetic division by $r=-1$ on $1,\ -1,\ -10,\ -8$ gives the bottom row $1,\ -2,\ -8,\ 0$ --- remainder $0$, confirming the zero. The depressed polynomial is $x^2-2x-8=(x-4)(x+2)$, so $f(x)=(x+1)(x-4)(x+2)$ and the zeros are $x=-1,\ x=4,\ x=-2$.}
+
+  \item \textbf{Rational Root Theorem.} For $f(x)=3x^3-x^2-12x+4$:
+        \\[4pt]
+        (a) List every possible rational zero.
+        \ans{$p\mid 4$ gives $p=\pm1,\pm2,\pm4$; $q\mid 3$ gives $q=\pm1,\pm3$. The list (reduced, no repeats) is $\pm1,\ \pm2,\ \pm4,\ \pm\tfrac13,\ \pm\tfrac23,\ \pm\tfrac43$.}
+        \\
+        (b) Find all real zeros of $f$, showing the test and the division you used.
+        \ans{Test $x=2$: $f(2)=24-4-24+4=0$, so $x=2$ is a zero. Synthetic division by $2$ on $3,\ -1,\ -12,\ 4$ gives $3,\ 5,\ -2,\ 0$, so the depressed polynomial is $3x^2+5x-2=(3x-1)(x+2)$. Hence $f(x)=(x-2)(3x-1)(x+2)$ and the zeros are $x=2,\ x=\tfrac13,\ x=-2$. Note $(3x-1)$ gives $x=\tfrac13$ --- not $3$.}
+
+  \item \textbf{Solve over the complex numbers.} $x^3-2x^2+9x-18=0$
+        \\[4pt]
+        (a) Before solving: how many solutions must this equation have, counted with multiplicity, and
+        which theorem says so? \ans{Exactly $3$, by the Fundamental Theorem of Algebra}
+        \\[4pt]
+        (b) Solve. Give every solution.
+        \ans{Group: $x^2(x-2)+9(x-2)=(x-2)(x^2+9)=0$. So $x=2$, or $x^2=-9\Rightarrow x=\pm 3i$. The solutions are $x=2,\ 3i,\ -3i$ --- three of them, as (a) promised.}
+        \\
+        (c) How many of your solutions are real, and how many $x$-intercepts does the graph of
+        $y=x^3-2x^2+9x-18$ therefore have? \ans{One real solution ($x=2$), so exactly one $x$-intercept --- a graph can never show the imaginary pair}
+
+  \item \textbf{Build a polynomial from its zeros.} Write a polynomial function of \emph{least degree}
+        with \emph{real} coefficients whose zeros are $3$ and $-i$. Give your answer in factored form
+        \emph{and} in standard form.
+        \ans{Real coefficients force the conjugate $i$ to be a zero too, so there are three zeros and the least degree is $3$. Factored: $f(x)=(x-3)(x+i)(x-i)=(x-3)(x^2+1)$. Standard: $f(x)=x^3-3x^2+x-3$.}
+\end{enumerate}
+
+\begin{teachernote}
+Item 1: (e) is the Unit 4 habit-breaker --- $(-2,0)$ is a \emph{relative} max only, and an odd-degree
+polynomial has \emph{no} absolute extrema; the range is all reals for the same reason. Accept
+interval or inequality notation throughout. Item 1(c): full credit requires the multiplicity
+\emph{and} the cross/touch, since the touch at $x=-2$ is the only evidence of the squared factor.
+Item 3: no credit for $3x^2(x^2-16)$, $(x-2)(x^2-9)$, or a GCF of $3x^4$ --- ``completely'' is the
+standard and the GCF takes the \emph{lowest} power. Item 4(a): the placeholder $0x$ is the graded
+step; a quotient of degree $1$ means it was skipped. Item 6(b): accept any correct candidate as the
+first test, but the division must appear. Item 7(b): watch for $\pm$ dropped on the square root, and
+for ``no real solutions'' written as the final answer --- the question says \emph{over $\mathbb{C}$}.
+\end{teachernote}
+
+% ======================================================================
+\parthead{Part D --- Extended Response (12 pts)}
+Explain your reasoning in full sentences.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item \textbf{The graph plan.} Consider $f(x)=3(x+3)(x-1)^2(x-2)$. Do \emph{not} expand it.
+        \textbf{(a)} State the degree and the leading coefficient, and explain how you got each one
+        from the factored form. What end behavior do they force?
+        \textbf{(b)} List the zeros with their multiplicities, and say whether the graph crosses or
+        touches the $x$-axis at each.
+        \textbf{(c)} Find the $y$-intercept.
+        \textbf{(d)} Build a sign chart and state every interval on which $f(x)>0$.
+        \textbf{(e)} At most how many turning points can this graph have, and why?
+        \ans{(a) Degrees add: $1+2+1=4$, so the degree is $4$. Leading coefficients multiply:
+        $3\cdot 1\cdot 1\cdot 1=3$. An even degree with a positive leading coefficient sends
+        \emph{both} arms up: $f(x)\to+\infty$ at each end.\\[3pt]
+        (b) $x=-3$ (multiplicity 1, crosses); $x=1$ (multiplicity 2, touches); $x=2$ (multiplicity 1,
+        crosses).\\[3pt]
+        (c) $f(0)=3(3)(-1)^2(-2)=-18$, so the $y$-intercept is $(0,-18)$.\\[3pt]
+        (d) Test one value in each interval, keeping only signs: $f(-4)>0$, $f(0)=-18<0$, $f(1.5)<0$,
+        $f(3)=72>0$. So $f(x)>0$ on $(-\infty,-3)\cup(2,\infty)$, and $f(x)<0$ on $(-3,1)\cup(1,2)$.
+        The sign does \emph{not} flip at $x=1$; that is the fingerprint of the even multiplicity.\\[3pt]
+        (e) At most $4-1=3$ turning points, since a degree-$n$ polynomial turns at most $n-1$ times.}
+
+  \item \textbf{Modeling.} An open-top box is made from a $14$ in by $8$ in sheet of cardboard by
+        cutting a square of side $x$ from each corner and folding up the sides.
+        \textbf{(a)} Write the volume $V(x)$ in factored form, then expand it into standard form.
+        \textbf{(b)} State the feasible domain of the model and justify it from the sheet's dimensions.
+        \textbf{(c)} Find $V(1)$ and state its units.
+        \textbf{(d)} Check that $x=7$ makes $V(x)=0$. Explain why $7$ is a genuine zero of the
+        polynomial but not a possible cut length.
+        \ans{(a) Cutting $x$ from both ends of each side leaves a base of $(14-2x)$ by $(8-2x)$ and a
+        height of $x$, so $V(x)=x(14-2x)(8-2x)$. Expanding:
+        $(14-2x)(8-2x)=4x^2-44x+112$, so $V(x)=4x^3-44x^2+112x$.\\[3pt]
+        (b) Every dimension must be positive: $x>0$, $14-2x>0$ (so $x<7$), and $8-2x>0$ (so $x<4$).
+        The tightest of these wins, so the feasible domain is $0<x<4$ --- the short side is what
+        limits the cut.\\[3pt]
+        (c) $V(1)=1(12)(6)=72$ cubic inches (in$^3$). Check against standard form:
+        $4-44+112=72$ \checkmark\\[3pt]
+        (d) $V(7)=7(14-14)(8-14)=7\cdot 0\cdot(-6)=0$, so $7$ really is a zero of the polynomial. But a
+        $7$-inch cut from each end of the $14$-inch side leaves a base of length $0$, and the other
+        dimension $8-2(7)=-6$ is a negative length --- there is no box at all. The polynomial does not
+        know about cardboard; only the feasible domain $0<x<4$ describes a real box.}
+\end{enumerate}
+
+\begin{teachernote}
+\textbf{Scoring Part D (6 pts each).} D1: 1 pt (a) degree $4$ \emph{and} lead $3$ with both arms up;
+2 pts (b) all three zeros with multiplicities and cross/touch; 1 pt (c) $(0,-18)$; 1 pt (d)
+$(-\infty,-3)\cup(2,\infty)$ with the no-flip at $x=1$ noted; 1 pt (e) $3$, justified by $n-1$. Give
+no credit in (a) for ``degree 3'' from counting factors --- the exponents must be added. D2: 2 pts
+(a) factored \emph{and} expanded; 2 pts (b) $0<x<4$ justified by $8-2x>0$ (a domain of $0<x<7$ earns
+1); 1 pt (c) $72$ in$^3$ with cubic units; 1 pt (d) $x=7$ recognized as a real zero of $V$ but
+rejected because the base would collapse and $8-2x$ would be negative. Do not accept ``because it is
+too big'' without the dimension.
+\end{teachernote}
 
 \end{document}
