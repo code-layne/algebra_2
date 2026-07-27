@@ -1,6 +1,11 @@
 %! Adding \& Subtracting Rational Expressions — Unit 5, Lesson 5.3 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -11,16 +16,273 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.3}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Adding \& Subtracting Rational Expressions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5}
+    {\color{white}\bfseries\LARGE Adding \& Subtracting Rational Expressions}\\[0.35cm]
+    {\color{white}\bfseries\large and Complex Fractions}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{One subtraction. Two answers.}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \[ D(x)=\frac{4x-1}{x+3}-\frac{2x-7}{x+3} \]
+      \vspace{-8pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Dev: $\dfrac{2x-8}{x+3}$
+        \item Elin: $2$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{|l|c|c|c|}
+      \hline
+       & $x=0$ & $x=1$ & $x=-3$ \\ \hline
+      $D(x)$ & $2$ & $2$ & \textbf{undef.} \\ \hline
+      Dev    & $-\frac83$ & $-\frac32$ & \textbf{undef.} \\ \hline
+      Elin   & $2$ & $2$ & $2$ \\ \hline
+      \end{tabular}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{Two sentences for the whole period}
+    \textbf{The minus sign owns the whole numerator.} And even an answer as plain as ``$2$'' still
+    carries the restrictions of the problem it came from --- Elin's answer needs $x\neq-3$.
+  \end{block}
+\end{frame}
+
+% LIKE DENOMINATORS
+\begin{frame}[t, plain]
+  \forestheader{Like denominators: combine the tops, keep the bottom}
+  \sectionlabel{Basics}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \[ \frac{a}{c}\pm\frac{b}{c}=\frac{a\pm b}{c}, \qquad c\neq0 \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $\dfrac{7}{x^2-4}+\dfrac{x}{x^2-4}=\dfrac{x+7}{(x-2)(x+2)}$, \; $x\neq2,-2$.
+        \item Factor the denominator \emph{first} --- that is where the restrictions live.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{You never add the denominators}
+        $\dfrac12+\dfrac12=1$, not $\dfrac{2}{4}$. \\[3pt]
+        Two halves do not make a half.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Last step, always: \textbf{factor the new numerator} and see whether anything
+      divides out.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE PARENTHESIS
+\begin{frame}[t, plain]
+  \forestheader{The parenthesis rule}
+  \sectionlabel[goldacc]{Signature error}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \[ \frac{6x+5}{x^2-4}-\frac{2x+13}{x^2-4}
+         =\frac{(6x+5)-(2x+13)}{(x-2)(x+2)} \]
+      \[ =\frac{4x-8}{(x-2)(x+2)}=\frac{4(x-2)}{(x-2)(x+2)}=\frac{4}{x+2} \]
+      \centering $x\neq2,\;-2$ \quad (check at $x=0$: both give $2$)
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Write the parentheses \emph{before} you distribute}
+        $-(2x+13)=-2x-13$. Drop them and every term after the first flips the wrong way.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize $(x-2)$ divided out $\Rightarrow$ $x=2$ is a \textbf{hole}. $(x+2)$ stayed
+      $\Rightarrow$ $x=-2$ is a \textbf{wall}.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% BUILDING THE LCD
+\begin{frame}[t, plain]
+  \forestheader{Unlike denominators: build the LCD out of \emph{factors}}
+  \sectionlabel[goldacc]{Procedure}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{enumerate}\setlength{\itemsep}{3pt}
+        \item \textbf{Factor} every denominator.
+        \item \textbf{Build the LCD:} each distinct factor, to the highest power it reaches anywhere.
+        \item \textbf{List the restrictions} from the LCD's factors.
+        \item \textbf{Rewrite} with building factors $\frac kk$.
+        \item \textbf{Combine} (parentheses!) and simplify.
+        \item \textbf{Factor the numerator}; divide out.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Why not just multiply the denominators?}
+        You may --- $\frac{5}{12}+\frac{7}{18}$ over $216$ gives $\frac{174}{216}$, which is the same
+        number. It just hands you a reduction at the end, and with polynomials that means
+        re-factoring.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize $\dfrac{5}{6x^2}+\dfrac{7}{4x}=\dfrac{21x+10}{12x^2}$, \; $x\neq0$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE ANCHOR
+\begin{frame}[t, plain]
+  \forestheader{The anchor --- and an answer you have already met}
+  \sectionlabel{Worked}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \[ \frac{3}{x-3}-\frac{18}{x^2-9}
+         =\frac{3}{x-3}\cdot\frac{x+3}{x+3}-\frac{18}{(x-3)(x+3)} \]
+      \[ =\frac{(3x+9)-18}{(x-3)(x+3)}=\frac{3(x-3)}{(x-3)(x+3)}=\frac{3}{x+3} \]
+      \centering $x\neq3,\;-3$
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Where have you seen this?}
+        The Warm-Up simplified $\dfrac{3x-9}{x^2-9}$ to the same thing, restrictions and all.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Two very different starting points, one function. Also:
+      $\dfrac{2}{x^2+5x+6}+\dfrac{3}{x^2-9}=\dfrac{5x}{(x+2)(x+3)(x-3)}$ --- the shared $(x+3)$ appears
+      in the LCD \textbf{once}.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE BIG IDEA
+\begin{frame}[t, plain]
+  \forestheader{The LCD \emph{is} the restriction list}
+  \sectionlabel{The big idea}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Why it works}
+        The LCD contains every factor of every original denominator --- that is what makes it common.
+        So setting its factors to zero produces every excluded value, for free.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The one warning}
+        Build it from the \emph{original} factored denominators. Reading anything off your final answer
+        is Lesson 5.1's error, and it is still wrong.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{center}
+    \textbf{Opposite binomials:} $\dfrac{4}{x-5}+\dfrac{2}{5-x}=\dfrac{4}{x-5}+\dfrac{-2}{x-5}
+    =\dfrac{2}{x-5}$, \; $x\neq5$. \\[3pt]
+    {\footnotesize The LCD was never $(x-5)(5-x)$ --- those denominators were never different.}
+  \end{center}
+\end{frame}
+
+% COMPLEX FRACTIONS
+\begin{frame}[t, plain]
+  \forestheader{A complex fraction is a division in disguise}
+  \sectionlabel[goldacc]{A2.EO.1c}
+  \begin{columns}[T]
+    \begin{column}{0.34\textwidth}
+      \[ \frac{\;\dfrac{1}{x}+\dfrac{1}{2}\;}{\;\dfrac{1}{x}-\dfrac{1}{4}\;} \]
+      \centering {\footnotesize The main bar is a $\div$ sign.}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{Method 1 --- then divide}
+        $\dfrac{x+2}{2x}\div\dfrac{4-x}{4x}
+         =\dfrac{x+2}{2x}\cdot\dfrac{4x}{4-x}=\dfrac{2(x+2)}{4-x}$
+      \end{block}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{Method 2 --- clear by $4x$}
+        $\dfrac{4x\left(\frac1x+\frac12\right)}{4x\left(\frac1x-\frac14\right)}
+         =\dfrac{4+2x}{4-x}$
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{center}
+    \textbf{Restrictions come from two levels:} every \emph{inner} denominator ($x\neq0$), and the
+    \emph{whole bottom} ($4-x\neq0$, so $x\neq4$) --- Lesson 5.2's source 3 in a new coat.
+  \end{center}
+\end{frame}
+
+% THE PICTURE
+\begin{frame}[t, plain]
+  \forestheader{One subtraction, one hole and one wall}
+  \sectionlabel{The picture}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-8}{5}{-5}{5}
+        \draw[dashed, redacc, thick] (-3,-5)--(-3,5);
+        \begin{scope}
+          \clip (-8,-5) rectangle (5,5);
+          \draw[very thick, forest, domain=-8:-3.62, samples=100, smooth]
+            plot (\x,{3/((\x)+3)});
+          \draw[very thick, forest, domain=-2.38:5, samples=100, smooth]
+            plot (\x,{3/((\x)+3)});
+        \end{scope}
+        \draw[forest, very thick, fill=white] (3,0.5) circle (5pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \[ g(x)=\frac{3}{x-3}-\frac{18}{x^2-9}=\frac{3}{x+3} \]
+      \begin{block}{Both came from the original denominators}
+        $(x-3)$ divided out $\Rightarrow$ hole at $\left(3,\frac12\right)$ \\[3pt]
+        $(x+3)$ stayed $\Rightarrow$ wall at $x=-3$
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize The answer displays one of the two restrictions and stays silent about the other.
+      Both still belong to it.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ERROR GALLERY
+\begin{frame}[t, plain]
+  \forestheader{The four ways to lose a point today}
+  \sectionlabel{Watch out}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The lost parenthesis}
+        And the wrong answer often simplifies \emph{more prettily} than the right one --- which is why
+        nobody catches it.
+      \end{block}
+      \vspace{3pt}
+      \begin{block}{Adding the denominators}
+        $\dfrac1x+\dfrac13\neq\dfrac{2}{x+3}$. Test it at $x=1$: $\frac43$ against $\frac12$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The LCD as a product}
+        Not wrong, just expensive --- and you usually lose the cancellation at the end.
+      \end{block}
+      \vspace{3pt}
+      \begin{block}{Restrictions off the answer}
+        Third appearance this unit. The LCD would have handed them to you for free.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where this goes}
+  \sectionlabel{Connections}
+  \textbf{Today:} factor the denominators once --- the LCD and the restriction list both come out of
+  that one step.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{5.4} The parent $y=\frac1x$: these expressions go back on the grid, and shifting one
+          \emph{moves its asymptotes}.
+    \item \textbf{5.5} Graphing from the equation: every restriction you list becomes a hole or a wall.
+    \item \textbf{5.6} Solving rational equations --- you will multiply through by an LCD, and any
+          solution landing on one of today's excluded values is \emph{extraneous}.
+  \end{itemize}
+  \vspace{6pt}
+  \begin{center}
+    \textbf{The minus sign owns the whole numerator.} Say it once more on the way out.
+  \end{center}
 \end{frame}
 
 \end{document}

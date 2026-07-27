@@ -9,7 +9,7 @@
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
 \newcommand{\UnitNumberName}{Unit 5: Rational Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 5.3: Adding \& Subtracting Rational Expressions}
+\newcommand{\LessonNumberName}{Lesson 5.3: Adding \& Subtracting Rational Expressions (and Complex Fractions)}
 
 \begin{document}
 \begin{center}
@@ -19,68 +19,265 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can add and subtract rational expressions --- combining
+    numerators directly when the denominators match, and otherwise \textbf{factoring every denominator}
+    and building the \textbf{least common denominator} from those factors (each distinct factor to its
+    highest power), rewriting each fraction with the \textbf{building factor} it is missing, combining,
+    and factoring the result to see whether anything divides out. They put the second numerator in
+    \textbf{parentheses} on every subtraction, and they recognize a \textbf{complex fraction} as a
+    division in disguise --- simplifying it as a quotient of two simple fractions. Above all they state
+    \emph{every} restriction, read off the \emph{original} denominators (equivalently, off the LCD's
+    factors) and, for a complex fraction, off the whole bottom as well --- then say which excluded value
+    is a \textbf{hole} and which is a \textbf{wall}.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.1a} --- add, subtract, multiply, or divide rational
+    algebraic expressions, simplifying the result (today: add and subtract). \textbf{A2.EO.1c} ---
+    recognize a complex algebraic fraction and simplify it as a product or quotient of simple algebraic
+    fractions. Applied throughout: \textbf{A2.EO.1b} (equivalent rational expressions with monomial and
+    binomial factors; expressions limited to linear and quadratic) and \textbf{A2.EO.1d} (equivalence of
+    forms --- homework problem 6). Builds on \textbf{A2.EO.3b} (factor completely, Lesson 4.2), Lesson
+    5.1's restriction habit, and Lesson 5.2's keep--change--flip, which Section 4 reuses outright; it is
+    the prerequisite for \textbf{A2.EI.4b/c} (5.6 --- solving rational equations begins by multiplying
+    through by an LCD, and an extraneous solution is one of today's excluded values sneaking back in).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item \textbf{Like denominators:} add or subtract the numerators, keep the denominator, then simplify.
+  \item \textbf{Parenthesize} the second numerator on every subtraction, then distribute the minus sign.
+  \item \textbf{Build the LCD} from the \emph{factored} denominators --- each distinct factor to its highest power.
+  \item \textbf{Rewrite} each fraction with the building factor $\frac kk$ it is missing; combine; factor the numerator; divide out.
+  \item Handle \textbf{opposite binomials} in denominators ($1-x=-(x-1)$) instead of doubling the LCD.
+  \item \textbf{Simplify a complex fraction} as a quotient of two simple fractions (A2.EO.1c).
+  \item State every restriction; sort each into \textbf{hole} or \textbf{wall}.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item A denominator says how big each piece is. You can only count pieces that are the same size --- which is why adding needs a common denominator and multiplying never did.
+  \item You never add denominators. $\frac12+\frac12$ is $1$, not $\frac24$.
+  \item The product of the denominators always works; it is just expensive, and it buys you a re-factoring job at the end.
+  \item \textbf{The minus sign owns the whole numerator.} The wrong answer often simplifies more prettily than the right one --- which is exactly why it survives.
+  \item \textbf{The LCD is the restriction list.} It already contains every factor of every original denominator.
+  \item \textbf{The main fraction bar is a division sign}, so whatever sits below it may never equal zero.
+  \item An answer with no restriction list is half an answer --- even when the answer is a plain number.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Like denominators} & \TallMath{\frac ac\pm\frac bc=\frac{a\pm b}{c}} for $c\neq0$ --- combine the numerators, keep the denominator. \\
+\textbf{Least common denominator} & The smallest expression every denominator divides into: each \emph{distinct} factor, raised to the \emph{highest} power it reaches in any one denominator. \\
+\textbf{Building factor} & The form of $1$, written $\frac kk$, that supplies whatever a fraction's denominator is missing from the LCD. \\
+\textbf{The parenthesis rule} & \TallMath{\frac ac-\frac bc=\frac{a-(b)}{c}} --- the minus sign changes the sign of \emph{every} term of $b$. \\
+\textbf{Opposite binomials} & $b-a=-(a-b)$, so $\frac{k}{b-a}=\frac{-k}{a-b}$; the LCD is $a-b$, not $(a-b)(b-a)$. \\
+\textbf{Complex algebraic fraction} & A fraction with fractions inside its numerator, its denominator, or both (A2.EO.1c). \\
+\textbf{Main fraction bar} & The long bar of a complex fraction --- a division sign. Whatever sits below it may never be zero. \\
+\textbf{Hole vs.\ wall (5.0)} & Factor divides out $\Rightarrow$ removable discontinuity; factor stays $\Rightarrow$ vertical asymptote. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses three skills, one per leg of the lesson. \textbf{(1)} \emph{The LCD on
+    numbers}, where students already trust it: $\frac{5}{12}+\frac{7}{18}$ is done by factoring
+    $12=2^2\cdot3$ and $18=2\cdot3^2$ into the LCD $36$, and then \emph{redone} over $12\cdot18=216$ so
+    the class can answer honestly why we bother with the \emph{least} common denominator (you get the
+    same value, and you buy a reduction at the end). Part (c) keeps keep--change--flip warm --- you need
+    it in Section 4. \textbf{(2)} \emph{Signs and factors}: $9-(4-6)$ versus $9-4-6$ plants today's
+    signature error numerically before any letters appear, and $x^2-9$, $x^2-4$, $x^2+5x+6$ all reappear
+    in the notes. \textbf{(3)} \emph{Simplify and restrict} $\frac{3x-9}{x^2-9}$ with the hole/wall sort,
+    carrying 5.1 forward. Debrief all three --- but say nothing about item 3's answer,
+    $\frac{3}{x+3}$ with $x\neq3,-3$. The anchor problem in Section 3 lands on exactly that function
+    from a completely different starting point, and the recognition is worth more than the hint.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put $D(x)=\dfrac{4x-1}{x+3}-\dfrac{2x-7}{x+3}$ on the board with two students' answers beside it ---
+    Dev's $\dfrac{2x-8}{x+3}$ and Elin's plain $2$ --- and have the class fill a table at $x=0,1,-3$.
+    Dev's column never matches ($-\tfrac83$ and $-\tfrac32$ against the true $2$ and $2$), and the
+    disproof is a number, not a rule. \textbf{``Which one keystroke is Dev missing?''} (The parentheses:
+    subtracting the whole numerator gives $-(2x-7)=-2x+7$, so his numerator is off by $14$ every time.)
+    Point back at Warm-Up 2(a) rather than at a rule. Then the second beat, which is the one students do
+    not see coming: \textbf{``Elin's value is right --- so is her answer finished?''} Look at the last
+    column. The original has no value at $x=-3$ and Elin's ``$2$'' happily does, so her answer is
+    incomplete: it is $2$ \emph{for every $x$ except $-3$} --- a horizontal line with a hole punched in
+    it. Land both sentences now, because they run the whole period: \emph{the minus sign owns the whole
+    numerator}, and \emph{even an answer as plain as ``2'' still carries the restrictions of the problem
+    it came from}.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. Like denominators: nothing to build.} State $\frac ac\pm\frac bc=\frac{a\pm b}{c}$ and spend
+the time instead on the error it invites: \textbf{you never add the denominators}. Kill it on numbers
+first --- $\frac12+\frac12$ is $1$, and adding denominators would turn two halves into a half. Work
+$\frac{7}{x^2-4}+\frac{x}{x^2-4}=\frac{x+7}{(x-2)(x+2)}$, factoring the denominator \emph{before}
+combining so the restrictions are visible, and end on the habit that never changes: \emph{factor the new
+numerator and check whether anything divides out}.
+
+\textbf{2. Subtraction, and the parenthesis.} Post the rule as a physical instruction --- write the
+parentheses \emph{before} you distribute. Work
+$\frac{6x+5}{x^2-4}-\frac{2x+13}{x^2-4}$: the numerator is $(6x+5)-(2x+13)=4x-8=4(x-2)$, the $(x-2)$
+divides out, and the answer is $\frac{4}{x+2}$ with $x\neq2,-2$. Have the class verify at $x=0$ (both
+sides give $2$). Then the 5.0 callback: $(x-2)$ cancelled, so $x=2$ is a \textbf{hole}; $(x+2)$ stayed,
+so $x=-2$ is a \textbf{wall}.
+
+\textbf{3. Unlike denominators --- the lesson.} Six steps: factor, build the LCD, list the restrictions,
+rewrite with building factors, combine, factor-and-divide-out. Do the monomial case
+$\frac{5}{6x^2}+\frac{7}{4x}=\frac{21x+10}{12x^2}$ first, then the anchor
+$\frac{3}{x-3}-\frac{18}{x^2-9}$, which collapses to $\frac{3}{x+3}$ with $x\neq3,-3$ --- and stop:
+\textbf{``where have you seen this answer today?''} It is the Warm-Up. Add the two-trinomial case
+$\frac{2}{x^2+5x+6}+\frac{3}{x^2-9}=\frac{5x}{(x+2)(x+3)(x-3)}$ so the shared factor $(x+3)$ appears in
+the LCD exactly \emph{once}. Then the payoff sentence: \textbf{the LCD is the restriction list} --- it
+already holds every factor of every original denominator, so setting its factors to zero costs nothing
+and misses nothing. Close the section with opposite binomials:
+$\frac{4}{x-5}+\frac{2}{5-x}=\frac{2}{x-5}$, and the LCD was never $(x-5)(5-x)$.
+
+\columnbreak
+
+\textbf{4. Complex fractions (A2.EO.1c).} Define one, then say the sentence that makes it easy:
+\textbf{the main fraction bar is a division sign}. Work
+$\dfrac{\frac1x+\frac12}{\frac1x-\frac14}$ twice. \emph{Method 1 --- combine, then divide:} top
+$\frac{x+2}{2x}$, bottom $\frac{4-x}{4x}$, keep--change--flip to $\frac{2(x+2)}{4-x}$. This is the
+method the standard names, and it is the one that keeps the restrictions readable. \emph{Method 2 ---
+multiply top and bottom by $4x$}, the LCD of every inner fraction, and the little fractions vanish at
+once. Both give the same answer; the difference is bookkeeping, and that is the discussion. Restrictions
+come from two levels: every inner denominator ($x\neq0$) and \emph{the whole bottom} ($4-x\neq0$, so
+$x\neq4$) --- which is Lesson 5.2's source 3 wearing a new coat, since a fraction is zero exactly when
+its numerator is. Verify at $x=2$ (both give $4$). Then the second example
+$\dfrac{\frac1x-\frac13}{x-3}=-\frac{1}{3x}$, $x\neq0,3$, where the opposite binomials return and the
+answer's $-1$ is the whole point.
+
+\textbf{5. The picture.} Finish on the graph of the Section 3 anchor so today stays a \emph{function}
+lesson: $y=\frac{3}{x+3}$ with a wall at $x=-3$ and a hole at $\left(3,\frac12\right)$. One subtraction
+produced one of each, and both came from denominators that no longer appear on the page. Name where this
+returns: \textbf{5.5} (every restriction becomes a hole or a wall, read straight off the equation) and
+\textbf{5.6} (multiply through by the LCD to solve --- and any solution that lands on one of these values
+is extraneous).
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Explicit Instruction: Building the LCD]{forestbg}
+\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
+\vspace{0pt}
+\textbf{Steps (post these).}
+\begin{enumerate}[leftmargin=1.3em, nosep, after=\vspace{2pt}]
+  \item \textbf{Factor} every denominator completely.
+  \item \textbf{Build the LCD:} every distinct factor, each to the highest power it reaches in \emph{any one} denominator.
+  \item \textbf{Write the restrictions now} --- set each factor of the LCD to zero.
+  \item \textbf{Rewrite} each fraction times the building factor $\frac kk$ it is missing.
+  \item \textbf{Combine} over the LCD --- parentheses on every subtraction --- and simplify the numerator.
+  \item \textbf{Factor the numerator}, divide out what you can, attach the restrictions.
+\end{enumerate}
+&
+\vspace{0pt}
+\textbf{Worked, on the anchor.}
+\[ \frac{3}{x-3}-\frac{18}{x^2-9}
+   =\frac{3}{x-3}\cdot\frac{x+3}{x+3}-\frac{18}{(x-3)(x+3)} \]
+\[ =\frac{(3x+9)-18}{(x-3)(x+3)}=\frac{3(x-3)}{(x-3)(x+3)}=\frac{3}{x+3} \]
+\centerline{$x\neq3,\;-3$ \quad (from the LCD, before anything cancelled)}
+\vspace{2pt}
+\textbf{The two questions students must answer aloud:} \emph{which factor did each fraction have to be
+given?} and \emph{which restriction will your answer never remind you of?} Here the answer displays
+$x\neq-3$ and stays silent about $x=3$ --- the hole.
+\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the guided practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{the lost parenthesis} on a subtraction --- the signature error, and the one whose wrong answer often \emph{simplifies more prettily} than the right one, so it survives unchallenged;
+  \item \textbf{adding the denominators} ($\frac1x+\frac13=\frac{2}{x+3}$) --- do not assert, hand the student $x=1$;
+  \item \textbf{the LCD built as a product} of the denominators --- not wrong, only expensive; make them re-factor the result in front of you;
+  \item \textbf{a doubled LCD from opposite binomials}, $(x-1)(1-x)$ --- ask what that product actually equals;
+  \item \textbf{multiplying only the denominator} by the building factor and forgetting the numerator;
+  \item \textbf{cancelling out of a sum} before it is combined --- Lesson 5.1's ghost;
+  \item \textbf{restrictions read off the final answer}, still costing points at its third appearance, and now worse: a cancelled factor is invisible \emph{and} the LCD would have given it away for free;
+  \item \textbf{no restriction at all on a constant or polynomial answer};
+  \item \textbf{a complex fraction attacked by cancelling across the main bar} instead of combining each level first.
+\end{itemize}
+Cold-call prompts: ``What is the LCD, and which factor came from which denominator?'' ``Read me the
+numerator with its parentheses still in it.'' ``Which building factor did this fraction need, and why
+that one?'' ``Your answer's denominator is $x+3$ --- so where did $x\neq3$ go?'' ``The main bar is a
+division sign; what does that make the bottom?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Build the Denominator, Guard the Sign} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Five scaffolded items: a like-denominator sum
+($\frac{2x}{x-6}+\frac{5}{x-6}$), a like-denominator \emph{difference} with the parentheses pre-printed
+($\frac{4x+1}{x+2}-\frac{x-8}{x+2}=\frac{3(x+3)}{x+2}$), a monomial LCD ($\frac3x+\frac{5}{2x}$), a
+first binomial LCD ($\frac{1}{x-1}+\frac{2}{x+3}$), and then item 5, which is the point of the tier:
+redo item 2 \emph{wrongly on purpose}, dropping the parentheses, and test all three expressions at
+$x=0$ ($\frac92$, $\frac92$, $-\frac72$). Do not let anyone skip item 5 --- it is where the error stops
+being abstract.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} A four-row table (denominators factored / LCD \& restrictions /
+simplest form) over $\frac{7}{4x^2}-\frac{3}{10x}$, $\frac{x}{x^2-4}+\frac{1}{x+2}$,
+$\frac{2}{x-4}-\frac{16}{x^2-16}$ (the row that cancels: answer $\frac{2}{x+4}$, so $x=4$ is a hole),
+and $\frac{5}{x-2}+\frac{3}{2-x}$ (\emph{opposite binomials} --- the LCD is $x-2$). Then an
+\textbf{error analysis}: a student adds tops and bottoms, $\frac1x+\frac13=\frac{2}{x+3}$; groups
+disprove it at $x=1$ ($\frac43$ vs.\ $\frac12$), do it correctly, and explain in one sentence why
+multiplying \emph{may} work straight across and adding may not.
+
+\columnbreak
+\textbf{Tier E --- Extension.} \emph{Part 1:} one complex fraction,
+$\frac{\frac1x-\frac14}{\frac{1}{x^2}-\frac{1}{16}}=\frac{4x}{4+x}$, done \emph{both} ways, with the
+full restriction list $x\neq0,4,-4$ and the conceptual question: Method 2 (multiply through by $16x^2$)
+erases the evidence for $x\neq0$, because clearing the inner denominators is exactly what it does.
+\emph{Part 2:} build a \emph{difference} that simplifies to $\frac{2}{x+1}$ with restrictions exactly
+$x\neq-1,4$ (e.g.\ $\frac{2}{x-4}-\frac{10}{x^2-3x-4}$), then sort the two values into hole and wall
+without graphing. \emph{Part 3:} two paint crews, $x$ and $x+3$ hours --- combined rate
+$\frac{2x+3}{x(x+3)}$ per hour, together-time $\frac{x(x+3)}{2x+3}$ hours (a complex fraction),
+sanity-checked at $x=6$ ($3.6$ hours, faster than both), with the algebraic exclusions separated from
+the contextual domain $x>0$.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} combine
+$\frac{5}{x-2}-\frac{20}{x^2-4}$, showing the factored denominators, the LCD, and the combined
+numerator $5(x-2)$; the answer $\frac{5}{x+2}$ with $x\neq2,-2$, then the sort --- hole at $x=2$ of
+height $\frac54$, wall at $x=-2$. \textbf{(2)} an \textbf{error item}: a classmate wrote
+$\frac{4x+1}{x-6}-\frac{x-5}{x-6}=\frac{3x-4}{x-6}$; full credit requires naming the lost parenthesis,
+giving $\frac{3(x+2)}{x-6}$ with $x\neq6$, \emph{and} settling it at $x=0$ ($-1$ against $\frac23$).
+\textbf{(3)} an \textbf{SOL-style multiple-choice} item on the complex fraction
+$\frac{\frac1x-\frac15}{x-5}$, answer $-\frac{1}{5x}$ with $x\neq0,5$, whose distractors each break
+exactly one idea (the lost $-1$ from opposite binomials / the main bar's restriction forgotten /
+never simplified, restrictions read off its own denominator). Collect and sort into ``got it / sign
+error / LCD built as a product / restrictions incomplete.'' The sign pile is the one to re-teach
+immediately; the restrictions pile is the one to remember, because 5.6 is where an excluded value
+becomes an \emph{extraneous solution} and those students will meet it again.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} three like-denominator items, two of which have answers with no denominator at all
+(a constant $3$ and the line $x-5$) so the restriction is the only trace left; three monomial LCDs
+including a two-variable case; five binomial/quadratic items spanning a plain two-linear LCD, a
+non-factoring numerator that is nonetheless finished ($\frac{x^2+x+6}{x^2-9}$), a cancelling case
+($\frac{4}{x-6}-\frac{48}{x^2-36}=\frac{4}{x+6}$), an \emph{opposite-binomial} pair
+($\frac{6}{x-1}+\frac{3}{1-x}$), and a three-factor LCD; three \textbf{complex fractions}, the last of
+which draws its $x\neq0$ from the main bar rather than from any visible denominator; a \textbf{round-trip
+model} ($30$ miles out at $x$, back at $x+5$) whose total time is $\frac{30(2x+5)}{x(x+5)}$ and whose
+\emph{average speed} $\frac{2x(x+5)}{2x+5}$ is $12$ mi/h --- not the $12.5$ everyone predicts, because
+the slower leg takes longer and therefore counts for more; and an \textbf{A2.EO.1d justification} pairing
+one genuinely equivalent pair with one that only looks equivalent
+($\frac{3}{x-3}-\frac{18}{x^2-9}$ versus $\frac{3}{x+3}$, which accepts $x=3$). \textbf{Extension:} an
+error gallery on $\frac{5}{x-1}-\frac{2}{x+1}$ --- three students, three answers (added tops and
+bottoms / lost the parenthesis, and got an answer that cancels \emph{beautifully} / correct expression
+with no restrictions) --- plus a \emph{design} task: build a \emph{sum} equal to $\frac{5}{x-1}$ with
+restrictions exactly $x\neq1,-2$, which forces one denominator to be the quadratic $(x+2)(x-1)$.
+\textbf{Preview:} Lesson 5.4, \emph{The Rational Parent Function \& Transformations} --- these
+expressions go back on the grid as relatives of $y=\frac1x$, and shifting one \emph{moves its
+asymptotes} off the axes.
 \end{skillbox}
 \end{document}

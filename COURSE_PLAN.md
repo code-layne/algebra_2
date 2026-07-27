@@ -6,11 +6,10 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26); **Lessons 5.0, 5.1, and 5.2 are authored & building** (2026-07-26) —
-> 5.3–5.7 are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not
+> scaffolded** (2026-07-26); **Lessons 5.0–5.3 are authored & building** (2026-07-26) —
+> 5.4–5.7 are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not
 > yet scaffolded.
-> **Next action: author Unit 5 Lesson 5.3 (Adding & Subtracting Rational Expressions + complex
-> fractions).**
+> **Next action: author Unit 5 Lesson 5.4 (the rational parent function $y=1/x$ & transformations).**
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -42,7 +41,7 @@
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.1 done) |
+| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.3 done) |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
@@ -732,8 +731,60 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > $\frac{x^2-25}{x^2+3x}\div\frac{x-5}{x+3}$ (distractors: restrictions off the answer / divisor's
 > numerator forgotten / wrong fraction flipped). `make -C unit05/lesson02 all` → EXIT 0 (student 11pp,
 > full 27pp).
-> **Next action: Lesson 5.3** --- adding & subtracting rational expressions and complex fractions
-> (A2.EO.1a/c).
+> **Lesson 5.3 authored & builds (2026-07-26):** all components + keys + 11-slide deck done; the lesson
+> where the denominators finally have to agree, and the standard's other half (**A2.EO.1c**) arrives.
+> Three sentences carry it, one per leg: **the minus sign owns the whole numerator**, **build the LCD out
+> of factors, not by multiplying denominators**, and **the main fraction bar is a division sign**. The
+> subtraction rule is *earned rather than announced* --- Warm-Up 2(a) puts $9-(4-6)=11$ beside
+> $9-4-6=-1$ before any letters appear, and the Hook then runs
+> $D(x)=\frac{4x-1}{x+3}-\frac{2x-7}{x+3}$ against two students' answers in a table at $x=0,1,-3$:
+> Dev's $\frac{2x-8}{x+3}$ (parentheses dropped) never matches, and Elin's plain $2$ matches the value
+> but is still unfinished, because the last column exposes the missing $x\neq-3$ --- a horizontal line
+> with a hole in it. Covers **like denominators** (add numerators, keep the denominator; the
+> $\frac12+\frac12\ne\frac24$ disproof), the **parenthesis rule** on subtraction, and the **six-step LCD
+> procedure** (factor $\rightarrow$ build the LCD as each *distinct* factor to its *highest* power
+> $\rightarrow$ restrictions $\rightarrow$ **building factor** $\frac kk$ $\rightarrow$ combine
+> $\rightarrow$ factor-and-divide-out), across monomial ($\frac{5}{6x^2}+\frac{7}{4x}$), binomial, and
+> two-trinomial cases ($\frac{2}{x^2+5x+6}+\frac{3}{x^2-9}=\frac{5x}{(x+2)(x+3)(x-3)}$, where the shared
+> $(x+3)$ enters the LCD *once*), plus **opposite binomials** in denominators
+> ($\frac{4}{x-5}+\frac{2}{5-x}=\frac{2}{x-5}$ --- the LCD was never $(x-5)(5-x)$). The unifying idea is
+> **``the LCD *is* the restriction list''**: it already contains every factor of every original
+> denominator, so its factors hand over every excluded value for free --- with the standing warning that
+> it must be built from the *original* denominators, never read off the answer (5.1's error at its third
+> appearance). **Complex fractions** are taught in the standard's own words, as a *quotient of simple
+> fractions*: Method 1 (combine top, combine bottom, keep--change--flip --- 5.2 reused outright) is the
+> assessed method, Method 2 (multiply through by the LCD of the inner fractions) is the speed trick, and
+> the conceptual beat is that **Method 2 erases the evidence for the inner-denominator restriction**
+> since clearing them is exactly what it does. Restrictions come from two levels --- every inner
+> denominator, and the *whole bottom*, which is Lesson 5.2's **source 3** in a new costume. Anchors: the
+> subtraction $\frac{3}{x-3}-\frac{18}{x^2-9}=\frac{3}{x+3}$, $x\neq3,-3$, which lands on **exactly the
+> Warm-Up's item-3 answer** from the opposite direction (the recognition is the hook of Section 3), and
+> the complex fraction $\frac{1/x+1/2}{1/x-1/4}=\frac{2(x+2)}{4-x}$, $x\neq0,4$. Graph-reading closes the
+> notes: that one subtraction produces **one hole and one wall** --- $y=\frac{3}{x+3}$ with a wall at
+> $x=-3$ and a hole at $\left(3,\frac12\right)$ --- both from denominators that no longer appear
+> (pre-drawn `plot`+`\clip` with the hole as an open circle; no sketch-from-scratch). Flagged traps: the
+> **lost parenthesis** (the signature error, and worth extra time because the wrong answer often
+> *simplifies more prettily* than the right one --- the homework error gallery is built on exactly that);
+> **adding the denominators** ($\frac1x+\frac13=\frac{2}{x+3}$, killed at $x=1$); the LCD built as a
+> *product* (not wrong, only expensive --- and it usually costs the cancellation); a doubled LCD from
+> opposite binomials; restrictions read off the answer; and no restriction at all on a constant or
+> polynomial answer. Modeling (**A2.F.2f**): Tier E's two paint crews (combined rate
+> $\frac{2x+3}{x(x+3)}$, together-time $\frac{x(x+3)}{2x+3}$ --- a complex fraction, sanity-checked at
+> $x=6$ giving $3.6$ h) and the homework's round trip ($30$ mi out at $x$, back at $x+5$;
+> $T=\frac{30(2x+5)}{x(x+5)}$, average speed $\frac{2x(x+5)}{2x+5}=12$ mi/h at $x=10$ --- *not* the $12.5$
+> everyone predicts, because the slower leg takes longer and counts for more). Homework problem 6 is the
+> **A2.EO.1d** item, pairing a genuinely equivalent pair with one that only looks equivalent (the anchor
+> versus $\frac{3}{x+3}$, which accepts $x=3$). Standards: **2023 VA SOL A2.EO.1a** (add and subtract) and
+> **A2.EO.1c** (recognize and simplify a complex algebraic fraction), applying **A2.EO.1b** and
+> **A2.EO.1d**; builds on **A2.EO.3b** (4.2) and 5.1--5.2; prerequisite for **A2.EI.4b/c** (5.6 --- solving
+> begins by multiplying through by an LCD, and an extraneous solution is one of today's excluded values
+> returning). Warm-up & exit ticket each fit one page (blank+key); notes 5pp, activity 3pp, homework 3pp,
+> cover 1pp --- **every key paginates identically to its blank**; exit ticket includes an SOL-style MC item
+> on $\frac{1/x-1/5}{x-5}$ (distractors: the lost $-1$ from opposite binomials / the main bar's restriction
+> forgotten / never simplified, restrictions read off its own denominator).
+> `make -C unit05/lesson03 all` → EXIT 0 (student 14pp, full 30pp); `make -C unit05 all` → EXIT 0.
+> **Next action: Lesson 5.4** --- the rational parent function $y=1/x$ and transformations
+> (A2.F.1a/b/c/e).
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**
