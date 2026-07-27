@@ -2,6 +2,12 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[charcoal] (#1,#2) circle (3pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -18,16 +24,207 @@
 \noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so.
 
 % ======================================================================
-\parthead{Part A --- Vocabulary}
-% TODO: matching / fill-in vocabulary items for this unit.
+\parthead{Part A --- Vocabulary (8 pts)}
+Write the letter of the best description next to each term.
 
-\parthead{Part B --- Multiple Choice}
-% TODO: multiple-choice items (concept checks); an SOL-style MC item fits well here.
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.40\textwidth}
+\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
+  \item Rational function \blank{1.2cm}
+  \item Domain restriction \blank{1.2cm}
+  \item Vertical asymptote \blank{1.2cm}
+  \item Hole \blank{1.2cm}
+  \item Horizontal asymptote \blank{1.2cm}
+  \item Least common denominator \blank{1.2cm}
+  \item Extraneous solution \blank{1.2cm}
+  \item Constant of variation \blank{1.2cm}
+\end{enumerate}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.57\textwidth}
+\small
+\begin{description}[leftmargin=1.4em, itemsep=3pt]
+  \item[(A)] The smallest expression that every denominator divides evenly, built from the factored denominators.
+  \item[(B)] A value that makes the \emph{original} denominator zero, so it can never be an input.
+  \item[(C)] A vertical line the graph runs alongside but never touches, left by a factor that does \emph{not} cancel.
+  \item[(D)] The number $k$ in $y=kx$ or $y=\frac{k}{x}$; you find it from one known pair of values.
+  \item[(E)] A quotient of two polynomials whose denominator is not zero.
+  \item[(F)] A single missing point on an otherwise unbroken curve, left behind by a factor that cancels.
+  \item[(G)] A number that turns up when you solve but must be discarded, because it is an excluded value of the original equation.
+  \item[(H)] A horizontal line the graph approaches at its far left and far right; found by comparing the degrees of the numerator and denominator.
+\end{description}
+\end{minipage}
 
-\parthead{Part C --- Short Answer \& Computation}
-% TODO: computation items; leave \vspace work room after each.
+% ======================================================================
+\parthead{Part B --- Multiple Choice (12 pts)}
+Circle the best answer.
 
-\parthead{Part D --- Extended Response}
-% TODO: one or two interpret/justify items ("what does this mean, and how do you know?").
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item The domain of $f(x)=\dfrac{x-2}{x^2-16}$ is all real numbers except
+    \hfill (A) $x=2$ \quad (B) $x=4$ \quad (C) $x=\pm 4$ \quad (D) none --- all reals
+  \item Simplified completely, $\dfrac{x^2-9}{x^2-x-6}$ is
+    \hfill (A) $\dfrac{x+3}{x+2}$, $x\ne -2$ \quad (B) $\dfrac{x+3}{x+2}$, $x\ne 3,\,-2$ \quad (C) $\dfrac{x-3}{x+2}$, $x\ne -2$ \quad (D) $\dfrac{-9}{-x-6}$
+  \item The horizontal asymptote of $f(x)=\dfrac{4x}{x^2-9}$ is
+    \hfill (A) $y=0$ \quad (B) $y=\frac14$ \quad (C) $y=4$ \quad (D) there is none
+  \item Which statement about $h(x)=\dfrac{x^2-2x-8}{x^2-16}$ is true?
+    \\[3pt]\hspace*{1.2em} (A) There are vertical asymptotes at $x=4$ and at $x=-4$.
+    \\[2pt]\hspace*{1.2em} (B) There is a hole at $x=4$ and a vertical asymptote at $x=-4$.
+    \\[2pt]\hspace*{1.2em} (C) There is a hole at $x=-4$ and a vertical asymptote at $x=4$.
+    \\[2pt]\hspace*{1.2em} (D) There is a hole at $x=-2$ and a vertical asymptote at $x=4$.
+  \item The graph of $g(x)=\dfrac{1}{x+5}-3$ has asymptotes
+    \hfill (A) $x=-5$, $y=-3$ \quad (B) $x=5$, $y=-3$ \quad (C) $x=-5$, $y=0$ \quad (D) $x=-3$, $y=5$
+  \item $y$ varies \emph{inversely} as $x$, and $y=6$ when $x=4$. When $x=8$, $y=$
+    \hfill (A) $3$ \quad (B) $2$ \quad (C) $12$ \quad (D) $24$
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part C --- Short Answer \& Computation (40 pts)}
+Show your work. State every restriction on the variable.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Read the graph.} The rational function $f$ is graphed below; the dashed lines are its
+        asymptotes and each gridline is one unit.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.45]
+          \lgrid{-6}{6}{-6}{6}
+          \draw[navy, dashed, semithick] (-1,-6)--(-1,6);
+          \draw[navy, dashed, semithick] (-6,1)--(6,1);
+          \begin{scope}
+            \clip (-6,-6) rectangle (6,6);
+            \draw[very thick, forest, domain=-6:-1.8, samples=160, smooth]
+              plot (\x,{((\x)-3)/((\x)+1)});
+            \draw[very thick, forest, domain=-0.43:6, samples=160, smooth]
+              plot (\x,{((\x)-3)/((\x)+1)});
+          \end{scope}
+          \foreach \x in {-4,-2,2,3,4}
+            \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+          \dpt{3}{0}
+          \dpt{0}{-3}
+        \end{tikzpicture}
+        \end{center}
+        (a) Equation of the vertical asymptote: \blank{2.0cm} \quad
+            Equation of the horizontal asymptote: \blank{2.0cm}
+        \\[4pt]
+        (b) $x$-intercept: \blank{2.0cm}; \quad $y$-intercept: \blank{2.0cm}
+        \\[4pt]
+        (c) Domain (interval notation): \blank{4.2cm}
+        \\[4pt]
+        (d) Range (interval notation): \blank{4.2cm}
+        \\[4pt]
+        (e) End behavior: as $x\to\pm\infty$, $f(x)\to$ \blank{1.6cm}
+        \\[4pt]
+        (f) Interval(s) where $f$ is increasing: \blank{4.6cm}
+        \\[4pt]
+        (g) Interval(s) where $f(x)>0$: \blank{4.6cm}
+
+  \item \textbf{Simplify and state the restrictions.} Read the restrictions from the \emph{original}
+        denominator.
+        \\[4pt]
+        (a) $\dfrac{2x^2-32}{x^2-2x-8}$ \hspace{2.5cm} (b) $\dfrac{x^2-9}{3-x}$
+        \vspace{2.8cm}
+
+  \item \textbf{Multiply or divide.} Factor first; give the simplest form with its restrictions.
+        \\[6pt]
+        (a) $\dfrac{x^2-9}{x^2+4x+4}\cdot\dfrac{x+2}{x-3}$
+        \vspace{2.4cm}
+        \\
+        (b) $\dfrac{x^2+x-12}{x^2-4}\div\dfrac{x+4}{x-2}$
+        \vspace{2.6cm}
+
+  \item \textbf{Add, subtract, and simplify a complex fraction.}
+        \\[6pt]
+        (a) $\dfrac{4}{x-3}-\dfrac{2}{x+1}$
+        \vspace{2.2cm}
+        \\
+        (b) $\dfrac{x}{x^2-4}+\dfrac{3}{x-2}$
+        \vspace{2.4cm}
+        \\
+        (c) $\dfrac{\ \frac{1}{3}-\frac{1}{x}\ }{\ \frac{1}{3}+\frac{1}{x}\ }$
+        \vspace{2.6cm}
+
+  \item \textbf{The parent function and its transformations.} Let $g(x)=\dfrac{1}{x-2}+3$.
+        \\[4pt]
+        (a) Describe the transformation(s) that take $y=\dfrac1x$ to $g$. \blank{6.0cm}
+        \\[4pt]
+        (b) Vertical asymptote: \blank{1.8cm}; \quad horizontal asymptote: \blank{1.8cm}
+        \\[4pt]
+        (c) Domain: \blank{2.4cm}; \quad range: \blank{2.4cm}
+        \\[4pt]
+        (d) A different hyperbola of the form $y=\dfrac{1}{x-h}+k$ has vertical asymptote $x=-5$ and
+            horizontal asymptote $y=-1$. Write its equation. \blank{3.6cm}
+
+  \item \textbf{Analyze from the equation.} For $f(x)=\dfrac{3x^2-3}{x^2+4x+3}$:
+        \\[4pt]
+        (a) Factor the numerator and denominator, and list every excluded value.
+        \vspace{1.8cm}
+        \\
+        (b) Which excluded value gives a \emph{hole} and which gives a \emph{vertical asymptote}?
+            Give the coordinates of the hole.
+        \vspace{2.0cm}
+        \\
+        (c) Horizontal asymptote: \blank{2.0cm} \quad (Justify with a degree comparison.)
+        \\[4pt]
+        (d) $x$-intercept: \blank{2.0cm}; \quad $y$-intercept: \blank{2.0cm}
+
+  \item \textbf{Solve. Check every answer against the excluded values.}
+        \\[6pt]
+        (a) $\dfrac{x}{x+3}+\dfrac{1}{x-1}=1$
+        \vspace{2.6cm}
+        \\
+        (b) $\dfrac{x}{x-5}=\dfrac{5}{x-5}+2$
+        \vspace{2.6cm}
+        \\
+        (c) $\dfrac{x}{x-3}+\dfrac{3}{x}=\dfrac{9}{x^2-3x}$
+        \vspace{3.0cm}
+
+  \item \textbf{Variation.} The table below records a pair of related quantities.
+        \begin{center}
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $x$ & $3$ & $4$ & $6$ & $12$ \\ \hline
+        $y$ & $24$ & $18$ & $12$ & $6$ \\ \hline
+        \end{tabular}
+        \end{center}
+        (a) Is $y$ directly or inversely proportional to $x$? Give the computation from the table that
+            proves it.
+        \\[2pt]
+        \blank{12.0cm}
+        \\[4pt]
+        (b) Find the constant of variation $k$ and write the equation. \blank{5.0cm}
+        \\[4pt]
+        (c) Use your equation to find $y$ when $x=9$. \blank{3.0cm}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part D --- Extended Response (12 pts)}
+Explain your reasoning in full sentences.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item \textbf{The full analysis.} Consider $f(x)=\dfrac{x^2-2x-3}{x^2-9}$.
+        \textbf{(a)} Factor both parts and list every excluded value of the \emph{original} function.
+        \textbf{(b)} Run the cancel test: which excluded value is a hole and which is a vertical
+        asymptote? Give the hole's coordinates and explain how you found its height.
+        \textbf{(c)} State the horizontal asymptote, justify it with a degree comparison, and write the
+        end behavior it describes.
+        \textbf{(d)} Give the $x$- and $y$-intercepts.
+        \textbf{(e)} Write the domain in interval notation.
+        \textbf{(f)} A classmate simplifies $f$ to $\dfrac{x+1}{x+3}$ and says the two functions are the
+        same. Say exactly where they agree and where they do not.
+        \vspace{6.0cm}
+
+  \item \textbf{Modeling.} A robotics team pays a one-time \$240 fee to have a mold made, plus \$5 in
+        material for each part it casts. The \emph{average cost per part} for a run of $n$ parts is
+        \[ A(n)=\frac{5n+240}{n}. \]
+        \textbf{(a)} Explain why $A$ is a rational function, and state the domain that makes sense for
+        this situation.
+        \textbf{(b)} Find $A(24)$ and $A(80)$, with units. What is happening to the average cost?
+        \textbf{(c)} Rewrite $A(n)$ in the form $5+\dfrac{240}{n}$ and use it to state the horizontal
+        asymptote. What does that number mean about this run?
+        \textbf{(d)} Find the run size for which the average cost is exactly \$6 per part.
+        \textbf{(e)} Can the average cost ever be exactly \$5? Answer using the horizontal asymptote.
+        \vspace{5.5cm}
+\end{enumerate}
 
 \end{document}
