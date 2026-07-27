@@ -7,11 +7,11 @@
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) closed out 2026-07-27**: all 8 lessons 5.0–5.7
 > authored & building, and the **unit tests are now authored, built, and published**.
-> **Unit 6 (Radical Functions): lesson map confirmed & unit scaffolded 2026-07-27** — locked at
-> **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` + `test_keys/`
-> are laid down and the skeletons compile. **No Unit 6 content is authored yet.** Units 7–8 are
-> planned here and not yet scaffolded.
-> **Next action: author Lesson 6.0 (Characteristics of Radical Functions)**, then proceed 6.1 → 6.7
+> **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
+> locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
+> `test_keys/` are laid down. **Lesson 6.0 is authored & building (2026-07-27)**; lessons 6.1–6.7 and
+> the unit tests are still skeletons. Units 7–8 are planned here and not yet scaffolded.
+> **Next action: author Lesson 6.1 ($n$th roots & rational exponents)**, then proceed 6.2 → 6.7
 > in order, then the Unit 6 tests.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
@@ -45,7 +45,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | 8 | **Scaffolded** |
+| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0 done) |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
 
@@ -1025,6 +1025,40 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **A2.F.2i/j/k** (inverses and composition — Unit 6 is their only home in the course; Unit 8
 > revisits the idea only as exponential ⇄ logarithmic).
 > **Authoring note:** apply the §7 vocab-box paragraph-break fix in every notes/notes_key.
+> **Lesson 6.0 authored & builds (2026-07-27):** all components + keys + 10-slide deck done; teaches
+> the two radical parents **side by side** rather than treating $\sqrt[3]{x}$ as an afterthought, and
+> hangs everything on one fact — **the index runs the show**. An *even* index refuses a negative
+> radicand (nothing real squares to a negative), so the domain must be **solved for** by setting
+> *radicand* $\ge 0$; an *odd* index refuses nothing (cubing keeps the sign), so the domain is all
+> reals. That single split generates every difference between the families, and it is stated as a
+> genuine escalation: a polynomial was defined *everywhere*, a rational function lost a few scattered
+> inputs, and a square root loses an entire **half** of the number line at once — domain stops being
+> something students *read* and becomes something they *compute*. Introduces the **endpoint** (solid
+> dot, since $\sqrt{0}=0$ is real) and the fact that it is *always* an absolute extremum — a **minimum**
+> if the arm climbs away from it, a **maximum** if it falls ($-\sqrt{x}+3$ in homework) — while a cube
+> root, having no endpoint, has **no extrema at all**. The hardest new beat is **end behavior with only
+> one end**: as $x\to-\infty$ a square root graph does *nothing*, it **stops**, and "the graph stops"
+> is drilled as a complete answer rather than a missing one (the Active Monitoring list, Tier R item 6,
+> and the exit ticket all police it). The second ● spine row, the **inverse relationship of families**,
+> is *earned rather than announced*: Warm-Up item 3 has students fill tables for $y=x^2$ and
+> $y=\sqrt{x}$ and notice the rows are swapped, and the notes then draw both reflections over $y=x$ —
+> yielding the deeper reason for the domain rule (the domain of $\sqrt{x}$ *is* the range of $x^2$),
+> the vertical-line-test argument for why $y=x^2$ needs a **restricted domain**, and the contrast that
+> $y=x^3$ never repeats an output so all of it reflects. Anchor $f(x)=\sqrt{x+4}-1$ (endpoint
+> $(-4,-1)$, zero $(-3,0)$, $y$-int $(0,1)$, abs min $-1$); guided practice on $p(x)=\sqrt{4-x}$, the
+> sign-flip case that opens **left** (planted in Warm-Up item 2c and revisited in Tier E and homework,
+> where $x\ge$ instead of $x\le$ is the predictable error). Tier A pairs $2-\sqrt{x}$ with
+> $\sqrt[3]{x}-1$ so that *every* row of the feature table differs; Tier E derives $d=16t^2$ from a
+> free-fall model $t(d)=\frac{\sqrt{d}}{4}$ and the homework extension derives $d=\frac{s^2}{24}$ from
+> a skid-mark model $s(d)=\sqrt{24d}$ — both closing the inverse loop in context and rediscovering the
+> restricted domain from "negative time/speed is meaningless." All graphs pre-drawn via `plot`+`\clip`
+> (cube roots plotted as two branches, since pgfmath has no `cbrt`); no sketch-from-scratch. Standards:
+> **2023 VA SOL A2.F.2a/b/c/d/f/g** and **A2.F.1a/e**, previewing **A2.F.2i/j** (inverses) without yet
+> requiring the algebraic method. Warm-up & exit ticket each fit one page (blank+key); notes 5pp
+> (key 5pp), activity 3pp (key 3pp), homework 2pp (key 3pp); exit ticket includes an SOL-style MC item
+> (domain of $\sqrt{5-2x}$; distractors = the missing inequality flip, a sign slip, and treating an even
+> index as unrestricted). `make -C unit06/lesson00 all` → EXIT 0 (student 13pp, full 28pp);
+> `make -C unit06 all` → EXIT 0.
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$

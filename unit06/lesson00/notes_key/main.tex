@@ -3,17 +3,388 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Cube root: pgfmath has no cbrt, so plot the two branches separately.
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)});}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.0}{Guided Notes --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Guided Notes verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Guided Notes --- Key}
-\ansline{TODO: answer}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item find a radical function's \emph{domain} by looking at its \emph{index} and \emph{radicand}, and explain why an \emph{even} index restricts the domain but an \emph{odd} index does not;
+  \item read the \emph{domain}, \emph{range}, \emph{endpoint}, \emph{intercepts}, \emph{increasing/decreasing} and \emph{positive/negative} intervals, \emph{extrema}, and \emph{end behavior} off a square root or cube root graph;
+  \item explain how $y=\sqrt{x}$ and $y=\sqrt[3]{x}$ are the \emph{inverses} of $y=x^2$ and $y=x^3$, and contrast the two radical families with each other.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Radical function}{a function whose variable sits underneath a radical, $f(x)=\sqrt[n]{\text{expression in }x}$}
+\vocabans{Index}{the small number $n$ in the notch of the radical, telling which root; a plain $\sqrt{\phantom{x}}$ has index $2$}
+\vocabans{Radicand}{the expression underneath the radical symbol --- the thing whose root is being taken}
+\vocabans{Restricted domain (from the radicand)}{with an \emph{even} index the radicand may not be negative, so the domain is the solution of \emph{radicand} $\ge 0$; an odd index has no restriction}
+\vocabans{Endpoint}{the single point where a square root graph begins; it is included in the domain, so it is drawn as a solid dot}
+\vocabans{Inverse relationship}{two functions that undo each other, swapping inputs with outputs; their graphs are reflections over the line $y=x$ ($\sqrt{x}$ with $x^2$, $\sqrt[3]{x}$ with $x^3$)}
+\end{vocabbox}
+
+\begin{hookbox}
+Here are the two graphs this whole unit is built on: $y=\sqrt{x}$ and $y=\sqrt[3]{x}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.36]
+  % y = sqrt(x)
+  \begin{scope}
+    \lgrid{-2}{9}{-2}{4}
+    \begin{scope}
+      \clip (-2,-2) rectangle (9,4);
+      \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
+    \end{scope}
+    \fill[forest] (0,0) circle (5pt);
+    \node[charcoal, font=\scriptsize] at (3.5,-3.2) {$y=\sqrt{x}$};
+  \end{scope}
+  % y = cbrt(x)
+  \begin{scope}[xshift=19cm]
+    \lgrid{-8}{8}{-3}{3}
+    \begin{scope}
+      \clip (-8,-3) rectangle (8,3);
+      \cbrtpos{0}{8}
+      \cbrtneg{-8}{0}
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-4.2) {$y=\sqrt[3]{x}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item The cube root graph runs all the way across the plane. The square root graph \textbf{stops dead} at the origin and never appears to the left of it. Which inputs are missing, and why? \ansline{Every negative input. $\sqrt{x}$ asks for a number that squares to $x$, and no real number squares to a negative --- so there is no point to plot for $x<0$.}
+  \item Warm-Up item~1 already told you the reason. What was different about $\sqrt{-36}$ and $\sqrt[3]{-8}$? \ansline{$\sqrt{-36}$ has an \emph{even} index and no real value; $\sqrt[3]{-8}=-2$ because an \emph{odd} index keeps the sign of the radicand.}
+\end{itemize}
+For every family before this one, we asked \emph{what the graph does}. Radical functions make us ask
+something new first: \textbf{where is the graph allowed to exist at all?} The answer is written under
+the radical.
+\end{hookbox}
+
+\begin{notesbox}{1. What Makes a Function Radical --- and Where It Is Defined}
+A \textbf{radical function} has its variable underneath a radical symbol:
+\[
+  f(x) = \sqrt[n]{\;\text{expression in } x\;} .
+\]
+Two parts have names, and both matter today:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item The \textbf{index} $n$ is the small number in the notch of the radical --- it tells you
+        \emph{which} root. A plain $\sqrt{\phantom{x}}$ has index \ans{2} (we just don't write it).
+  \item The \textbf{radicand} is everything \ans{underneath} the radical symbol.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{The rule that runs this unit.} From Warm-Up item~1:
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Index} & \textbf{Can the radicand be negative?} & \textbf{Why} \\
+\hline
+\textbf{Even} ($\sqrt{\phantom{x}}$, $\sqrt[4]{\phantom{x}}$) & \ans{No} & Nothing real, squared, gives a negative. \\
+\textbf{Odd} ($\sqrt[3]{\phantom{x}}$, $\sqrt[5]{\phantom{x}}$) & \ans{Yes} & Cubing \emph{keeps} the sign: $(-2)^3=$ \ans{$-8$}. \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\textbf{The one procedure behind every domain question in this unit:} if the index is
+\textbf{even}, set the \ans{radicand} $\ge 0$ and solve. If the index is \textbf{odd}, the domain is
+\ans{all real numbers}.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $g(x)=\sqrt{x-3}$: \; solve $x-3\ge 0$, so the domain is \ans{$x\ge 3$, or $[3,\infty)$}.
+  \item $h(x)=\sqrt{2x+8}$: \; solve $2x+8\ge 0$, so the domain is \ans{$x\ge -4$, or $[-4,\infty)$}.
+  \item $k(x)=\sqrt{5-x}$: \; solve $5-x\ge 0$, so the domain is \ans{$x\le 5$, or $(-\infty,5]$}. \\
+        \emph{Notice:} this one runs to the \textbf{left}. A negative in front of the $x$ flips which
+        way the graph goes.
+  \item $m(x)=\sqrt[3]{x-3}$: \; the index is odd, so the domain is \ans{all reals} --- no work needed.
+\end{itemize}
+This is genuinely new. A polynomial (Unit~4) was defined \emph{everywhere}. A rational function
+(Unit~5) lost a few scattered inputs where the denominator was zero. A square root function loses
+an entire \textbf{half} of the number line at once.
 \end{notesbox}
+
+\begin{notesbox}{2. The Square Root Parent: $y=\sqrt{x}$}
+\begin{center}
+\begin{minipage}[c]{0.40\linewidth}
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\sqrt{x}$ \\ \hline
+$0$ & \ans{0} \\ \hline
+$1$ & \ans{1} \\ \hline
+$4$ & \ans{2} \\ \hline
+$9$ & \ans{3} \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.55\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-2}{10}{-2}{4}
+  \begin{scope}
+    \clip (-2,-2) rectangle (10,4);
+    \draw[very thick, forest, domain=0:10, samples=100, smooth] plot (\x,{sqrt(\x)});
+  \end{scope}
+  \fill[forest] (0,0) circle (4pt);
+  \fill[charcoal] (1,1) circle (2.4pt);
+  \fill[charcoal] (4,2) circle (2.4pt);
+  \fill[charcoal] (9,3) circle (2.4pt);
+  \node[charcoal, font=\scriptsize, below left] at (0,0) {endpoint};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+The graph starts at a single point and travels in \emph{one} direction only. That starting point is
+called the \textbf{endpoint}, and it is a \emph{solid} dot --- $x=0$ \emph{is} in the domain.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Domain:} \ans{$[0,\infty)$} \quad \textbf{Range:} \ans{$[0,\infty)$}
+  \item \textbf{Endpoint:} $($\ans{0}$,\ $\ans{0}$)$ \quad \textbf{Intercepts:} the graph
+        crosses both axes at \ans{$(0,0)$}.
+  \item \textbf{Increasing / decreasing:} increasing on \ans{$[0,\infty)$}; it is \emph{never}
+        \ans{decreasing}.
+  \item \textbf{Extrema:} the endpoint is an \textbf{absolute minimum}, with minimum \emph{value}
+        $y=$ \ans{0} at $x=$ \ans{0}. There is \textbf{no} absolute
+        \ans{maximum}, because the graph keeps climbing forever.
+  \item \textbf{Symmetry:} \ans{none} (it is neither even nor odd).
+  \item \textbf{End behavior:} as $x\to+\infty$, $y\to$ \ans{$+\infty$} --- but \emph{slowly}. \\
+        And there is no left end at all: the graph does not run off to the left, it
+        \ans{stops} at the endpoint. \emph{A radical graph can have only one arm.} This is the
+        first family of the year for which ``end behavior'' has only \emph{one} answer.
+\end{enumerate}
+\end{notesbox}
+
+\begin{notesbox}{3. The Cube Root Parent: $y=\sqrt[3]{x}$}
+\begin{center}
+\begin{minipage}[c]{0.40\linewidth}
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\sqrt[3]{x}$ \\ \hline
+$-8$ & \ans{$-2$} \\ \hline
+$-1$ & \ans{$-1$} \\ \hline
+$0$ & \ans{0} \\ \hline
+$1$ & \ans{1} \\ \hline
+$8$ & \ans{2} \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.55\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-9}{9}{-3}{3}
+  \begin{scope}
+    \clip (-9,-3) rectangle (9,3);
+    \cbrtpos{0}{9}
+    \cbrtneg{-9}{0}
+  \end{scope}
+  \fill[charcoal] (-8,-2) circle (2.6pt);
+  \fill[charcoal] (-1,-1) circle (2.6pt);
+  \fill[charcoal] (0,0) circle (2.6pt);
+  \fill[charcoal] (1,1) circle (2.6pt);
+  \fill[charcoal] (8,2) circle (2.6pt);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+Because the index is \textbf{odd}, negatives are welcome under the radical --- and the whole picture
+changes.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Domain:} \ans{all reals, $(-\infty,\infty)$} \quad \textbf{Range:}
+        \ans{all reals, $(-\infty,\infty)$}
+  \item \textbf{Endpoint:} \ans{none} --- there is nothing to stop the graph, so it has none.
+  \item \textbf{Increasing / decreasing:} increasing on \ans{$(-\infty,\infty)$}.
+  \item \textbf{Extrema:} \ans{none}. The graph falls forever on the left and climbs forever on
+        the right, so there is neither an absolute maximum nor an absolute minimum.
+  \item \textbf{Symmetry:} the graph is symmetric about the \ans{origin}, so it is an
+        \textbf{odd} function --- check it algebraically: $\sqrt[3]{-8}=$ \ans{$-2$} while
+        $-\sqrt[3]{8}=$ \ans{$-2$}, so $f(-x)=$ \ans{$-f(x)$}.
+  \item \textbf{End behavior:} as $x\to+\infty$, $y\to$ \ans{$+\infty$}; \; as $x\to-\infty$,
+        $y\to$ \ans{$-\infty$}. \emph{Two} arms, like an odd-degree polynomial --- but flattening as
+        they go, not steepening.
+\end{enumerate}
+\end{notesbox}
+
+\begin{notesbox}{4. Where These Two Parents Come From --- the Inverse Relationship}
+Warm-Up item~3 already showed it: the table for $y=x^2$ and the table for $y=\sqrt{x}$ are the
+\emph{same table with the rows swapped}. Squaring and square-rooting \textbf{undo each other} --- they
+are \textbf{inverses} --- and so do cubing and cube-rooting. On a graph, undoing looks like a
+\textbf{reflection over the line $y=x$}.
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  % y = x^2 (right half) and y = sqrt(x)
+  \begin{scope}
+    \lgrid{-1}{7}{-1}{7}
+    \draw[navy, dashed, semithick] (-1,-1)--(7,7);
+    \node[navy, font=\scriptsize, above left] at (6.6,6.6) {$y=x$};
+    \begin{scope}
+      \clip (-1,-1) rectangle (7,7);
+      \draw[very thick, goldacc, domain=0:2.65, samples=80, smooth] plot (\x,{(\x)*(\x)});
+      \draw[very thick, forest, domain=0:7, samples=90, smooth] plot (\x,{sqrt(\x)});
+    \end{scope}
+    \fill[charcoal] (0,0) circle (3pt);
+    \node[goldacc, font=\scriptsize, right] at (3.4,6.4) {$y=x^2,\ x\ge 0$};
+    \node[forest, font=\scriptsize, above] at (5.6,2.4) {$y=\sqrt{x}$};
+  \end{scope}
+  % y = x^3 and y = cbrt(x)
+  \begin{scope}[xshift=13cm]
+    \lgrid{-3}{3}{-3}{3}
+    \draw[navy, dashed, semithick] (-3,-3)--(3,3);
+    \begin{scope}
+      \clip (-3,-3) rectangle (3,3);
+      \draw[very thick, goldacc, domain=-1.45:1.45, samples=80, smooth] plot (\x,{(\x)*(\x)*(\x)});
+      \cbrtpos{0}{3}
+      \cbrtneg{-3}{0}
+    \end{scope}
+    \node[goldacc, font=\scriptsize, right] at (1.7,2.5) {$y=x^3$};
+    \node[forest, font=\scriptsize, below] at (2.6,0.75) {$y=\sqrt[3]{x}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Reflecting over $y=x$ \textbf{swaps the coordinates} of every point: $(4,2)$ on $y=\sqrt{x}$
+        came from $($\ans{2}$,\ $\ans{4}$)$ on $y=x^2$. So the two functions also swap their
+        \ans{domains} and their \ans{ranges}.
+  \item That is the \emph{deeper} reason for today's domain rule. The domain of $y=\sqrt{x}$ is
+        $[0,\infty)$ because that is the \ans{range} of $y=x^2$ --- a parabola never produces a
+        negative output, so a square root never accepts a negative input.
+  \item \textbf{Why only half the parabola?} A full parabola sends \emph{two} inputs to the same
+        output ($(-3)^2=3^2=$ \ans{9}), so reflecting all of it would fail the vertical line
+        test. To get a function back, we keep only $x\ge 0$. We say $y=x^2$ needs a
+        \textbf{restricted domain} to have an inverse.
+  \item \textbf{Why does the cube root need no restriction?} Because $y=x^3$ never sends two
+        different inputs to the same output: $(-2)^3=$ \ans{$-8$} but $2^3=$ \ans{8}. All of
+        it can be reflected, which is exactly why $y=\sqrt[3]{x}$ has domain \ans{all reals}.
+\end{itemize}
+\emph{Hold on to this.} It is the reason radical functions look the way they do, and Lessons 6.6 and
+6.7 will make it a full method.
+\end{notesbox}
+
+\begin{notesbox}{5. The Full Feature List --- and How the Two Families Differ}
+Now read \emph{every} characteristic off the anchor $f(x)=\sqrt{x+4}-1$.
+\begin{center}
+\begin{tikzpicture}[scale=0.52]
+  \lgrid{-6}{7}{-3}{4}
+  \begin{scope}
+    \clip (-6,-3) rectangle (7,4);
+    \draw[very thick, forest, domain=-4:7, samples=100, smooth] plot (\x,{sqrt((\x)+4)-1});
+  \end{scope}
+  \fill[forest] (-4,-1) circle (4pt) node[left, font=\scriptsize]{$(-4,-1)$};
+  \fill[charcoal] (-3,0) circle (2.6pt) node[above left, font=\scriptsize]{$(-3,0)$};
+  \fill[charcoal] (0,1) circle (2.6pt) node[above left, font=\scriptsize]{$(0,1)$};
+  \fill[charcoal] (5,2) circle (2.6pt) node[below right, font=\scriptsize]{$(5,2)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Domain} (set the radicand $x+4\ge 0$): \ans{$[-4,\infty)$} \quad \textbf{Range:}
+        \ans{$[-1,\infty)$}
+  \item \textbf{Endpoint:} \ans{$(-4,-1)$} --- and notice the domain and range both \emph{start} at
+        its coordinates.
+  \item \textbf{$x$-intercept / zero:} \ans{$(-3,0)$} \quad \textbf{$y$-intercept:} \ans{$(0,1)$}
+  \item \textbf{Increasing / decreasing:} increasing on \ans{$[-4,\infty)$} --- the entire domain.
+  \item \textbf{Positive / negative:} $f(x)<0$ on \ans{$[-4,-3)$}; \quad $f(x)>0$ on
+        \ans{$(-3,\infty)$}.
+        \emph{Careful:} neither interval may include inputs outside the domain.
+  \item \textbf{Extrema:} absolute \ans{minimum} of \ans{$-1$} at $x=$ \ans{$-4$}; no
+        absolute \ans{maximum}.
+  \item \textbf{End behavior:} as $x\to+\infty$, $f(x)\to$ \ans{$+\infty$}. \; As $x\to-\infty$:
+        \ans{nothing --- the graph stops at $x=-4$}.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Compare and contrast} the two radical families (this is what makes them one unit but two
+pictures):
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+ & \textbf{Square root} $y=\sqrt{x}$ & \textbf{Cube root} $y=\sqrt[3]{x}$ \\
+\hline
+Index & even & \ans{odd} \\
+Domain & \ans{$[0,\infty)$} & \ans{all reals} \\
+Range & \ans{$[0,\infty)$} & \ans{all reals} \\
+Endpoint & yes, at \ans{$(0,0)$} & \ans{none} \\
+Symmetry & none & \ans{origin (odd)} \\
+Extrema & absolute \ans{min $0$} & \ans{none} \\
+Arms & \ans{one} & \ans{two} \\
+Inverse of & $y=x^2$ (restricted) & \ans{$y=x^3$} \\
+\hline
+\end{tabularx}
+\end{center}
+And against the families you already know: a \textbf{polynomial} was defined everywhere and had no
+edges; a \textbf{rational} function lost scattered inputs and gained asymptotes. A \textbf{radical}
+function is the first one whose graph can simply \textbf{begin somewhere and stop}.
+\end{notesbox}
+
+\begin{practicebox}
+The graph below is $p(x) = \sqrt{4-x}$. Read each characteristic and write it on the line.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-6}{7}{-2}{4}
+  \begin{scope}
+    \clip (-6,-2) rectangle (7,4);
+    \draw[very thick, forest, domain=-6:4, samples=100, smooth] plot (\x,{sqrt(4-(\x))});
+  \end{scope}
+  \fill[forest] (4,0) circle (4pt) node[below right, font=\scriptsize]{$(4,0)$};
+  \fill[charcoal] (0,2) circle (2.6pt) node[above right, font=\scriptsize]{$(0,2)$};
+  \fill[charcoal] (3,1) circle (2.6pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Set the radicand $\ge 0$: $4-x\ge 0$, so the \textbf{domain} is \ans{$(-\infty,4]$}. \quad
+        \textbf{Range:} \ans{$[0,\infty)$}
+  \item \textbf{Endpoint:} \ans{$(4,0)$}. \quad Is $p$ increasing or decreasing on its domain?
+        \ans{decreasing}
+  \item \textbf{$x$-intercept:} \ans{$(4,0)$} \quad \textbf{$y$-intercept:} \ans{$(0,2)$}
+  \item This graph opens to the \textbf{left} while the parent $y=\sqrt{x}$ opens to the right.
+        Which part of the equation caused that? \ans{the $-x$ in the radicand}
+  \item Does $p$ have an absolute maximum, an absolute minimum, both, or neither?
+        \ans{an absolute minimum only ($0$, at $x=4$)}
+\end{enumerate}
+\end{practicebox}
+
+\begin{teachernote}
+\textbf{Pacing.} Sections~1--3 are the core; Section~4 is the conceptual payoff and Section~5 the
+assessed skill. If time is short, compress Section~4 to the reflection picture and the domain/range
+swap --- but do \emph{not} cut it. It is the ``\,inverse relationship of families\,'' row this
+Lesson~0 introduces, and Lessons~6.6--6.7 are built directly on it.
+
+\textbf{The three errors to expect.} \emph{(1)} Writing the domain of $\sqrt{5-x}$ as $x\ge 5$ ---
+students solve $5-x\ge0$ without flipping. Warm-Up item~2(c) exists to preempt this; send them back
+to it. \emph{(2)} Claiming a cube root graph has a restricted domain ``because it's a radical.'' The
+index, not the radical symbol, is what restricts. \emph{(3)} Reporting an end behavior for
+$x\to-\infty$ on a square-root graph. Insist on the honest answer: \emph{the graph stops}. This is
+the first family of the year where one of the two end-behavior questions has no answer, and students
+who do not confront it now will invent a left arm on the Unit~6 test.
+
+\textbf{One more distinction worth saying out loud.} The endpoint is an absolute \emph{minimum} for
+$y=\sqrt{x}$ but an absolute \emph{maximum} for a reflected graph like $y=-\sqrt{x}+3$ (homework
+item~2). The endpoint is always an extremum on a square-root graph --- which one depends on which way
+the arm travels. Cube root graphs, having no endpoint, have no extrema at all.
+\end{teachernote}
 
 \end{document}

@@ -1,6 +1,16 @@
 %! Characteristics of Radical Functions — Unit 6, Lesson 6.0 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% Cube root: pgfmath has no cbrt, so plot the two branches separately.
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)});}
 
 \begin{document}
 
@@ -12,15 +22,299 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 6.0}\\[0.5cm]
     {\color{white}\bfseries\LARGE Characteristics of Radical Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6: Radical Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Two radical functions. Why does one of them stop?}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.30\textwidth}
+      \[ y = \sqrt{x} \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Begins at the origin and \textbf{never} appears to the left of it.
+        \item Which inputs are missing --- and \emph{how many}?
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-4}{9}{-3}{4}
+        \begin{scope}
+          \clip (-4,-3) rectangle (9,4);
+          \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
+        \end{scope}
+        \fill[forest] (0,0) circle (6pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-8}{8}{-3}{3}
+        \begin{scope}
+          \clip (-8,-3) rectangle (8,3);
+          \cbrtpos{0}{8}
+          \cbrtneg{-8}{0}
+        \end{scope}
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=\sqrt[3]{x}$ --- runs all the way across}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Today}
+    Every family so far, we asked \emph{what the graph does}. Radical functions make us ask something
+    new first: \textbf{where is the graph allowed to exist at all?}
+  \end{block}
+\end{frame}
+
+% INDEX + RADICAND
+\begin{frame}[t, plain]
+  \forestheader{The index runs the show}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      A \textbf{radical function} puts the variable under a radical.
+      \[ f(x)=\sqrt[n]{\;\text{expression in } x\;} \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Index} $n$ --- the small number in the notch. A plain $\sqrt{\phantom{x}}$ has
+              index $2$.
+        \item \textbf{Radicand} --- everything underneath.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \begin{block}{From the Warm-Up}
+        \centering
+        \begin{tabular}{ll}
+        $\sqrt{36}=6$ & $\sqrt{-36}=$ \textbf{not real} \\[3pt]
+        $\sqrt[3]{8}=2$ & $\sqrt[3]{-8}=-2$ \\
+        \end{tabular}
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize \textbf{Even} index $\Rightarrow$ radicand \emph{cannot} be negative --- nothing
+      real squares to a negative.\\[3pt]
+      \textbf{Odd} index $\Rightarrow$ anything goes --- cubing \emph{keeps} the sign.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FINDING THE DOMAIN
+\begin{frame}[t, plain]
+  \forestheader{Domain is no longer something you read --- it is something you solve for}
+  \sectionlabel[goldacc]{radicand $\ge 0$}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The one procedure}
+        \textbf{Even} index: set the \emph{radicand} $\ge 0$ and solve. \\[3pt]
+        \textbf{Odd} index: domain is all reals. Done.
+      \end{block}
+      \vspace{4pt}
+      {\footnotesize A polynomial was defined \emph{everywhere}. A rational function lost a few
+      scattered inputs. A square root loses an entire \textbf{half} of the number line at once.}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item $\sqrt{x-3}$: \; $x-3\ge0 \Rightarrow [3,\infty)$
+        \item $\sqrt{2x+8}$: \; $2x+8\ge0 \Rightarrow [-4,\infty)$
+        \item $\sqrt{5-x}$: \; $5-x\ge0 \Rightarrow (-\infty,5]$ \\
+              {\footnotesize \textbf{Flip the sign!} This one opens \emph{left}.}
+        \item $\sqrt[3]{x-3}$: \; all reals --- no work needed.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SQUARE ROOT PARENT
+\begin{frame}[t, plain]
+  \forestheader{The square root parent: one arm, and an endpoint}
+  \sectionlabel[goldacc]{$y=\sqrt{x}$}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-2}{10}{-2}{4}
+        \begin{scope}
+          \clip (-2,-2) rectangle (10,4);
+          \draw[very thick, forest, domain=0:10, samples=100, smooth] plot (\x,{sqrt(\x)});
+        \end{scope}
+        \fill[forest] (0,0) circle (6pt);
+        \fill[charcoal] (1,1) circle (4pt);
+        \fill[charcoal] (4,2) circle (4pt);
+        \fill[charcoal] (9,3) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Domain $[0,\infty)$; \; Range $[0,\infty)$
+        \item \textbf{Endpoint} $(0,0)$ --- a \emph{solid} dot, because $\sqrt{0}=0$ is perfectly real
+        \item Increasing on $[0,\infty)$; never decreasing
+        \item \textbf{Absolute minimum} $0$ at $x=0$; \textbf{no} absolute maximum
+        \item No symmetry
+        \item End behavior: $x\to+\infty \Rightarrow y\to+\infty$ (slowly)
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{The honest answer on the left}
+        As $x\to-\infty$: \textbf{nothing}. The graph \emph{stops}. That is a complete answer, not a
+        missing one.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CUBE ROOT PARENT
+\begin{frame}[t, plain]
+  \forestheader{The cube root parent: two arms, no edges, no extremes}
+  \sectionlabel[goldacc]{$y=\sqrt[3]{x}$}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-9}{9}{-3}{3}
+        \begin{scope}
+          \clip (-9,-3) rectangle (9,3);
+          \cbrtpos{0}{9}
+          \cbrtneg{-9}{0}
+        \end{scope}
+        \fill[charcoal] (-8,-2) circle (4pt);
+        \fill[charcoal] (-1,-1) circle (4pt);
+        \fill[charcoal] (0,0) circle (4pt);
+        \fill[charcoal] (1,1) circle (4pt);
+        \fill[charcoal] (8,2) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Domain \emph{and} Range: all reals
+        \item \textbf{No endpoint} --- nothing stops the graph
+        \item Increasing on $(-\infty,\infty)$
+        \item \textbf{No extrema at all} --- falls forever left, climbs forever right
+        \item \textbf{Origin symmetry} (odd): $\sqrt[3]{-8}=-2=-\sqrt[3]{8}$, so $f(-x)=-f(x)$
+        \item End behavior: both arms, $\to\pm\infty$
+      \end{itemize}
+      \vspace{2pt}
+      {\footnotesize Two arms like an odd-degree polynomial --- but \emph{flattening} as they go,
+      not steepening.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% COMPARE & CONTRAST
+\begin{frame}[t, plain]
+  \forestheader{Same unit, two very different pictures}
+  \sectionlabel{Compare \& contrast}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{lll}
+  \hline
+   & \textbf{Square root} $y=\sqrt{x}$ & \textbf{Cube root} $y=\sqrt[3]{x}$ \\
+  \hline
+  Index & even & odd \\
+  Domain & $[0,\infty)$ & all reals \\
+  Range & $[0,\infty)$ & all reals \\
+  Endpoint & yes, at $(0,0)$ & none \\
+  Symmetry & none & origin (odd) \\
+  Extrema & absolute min $0$ & none \\
+  Arms & one & two \\
+  Inverse of & $y=x^2$ \emph{(restricted)} & $y=x^3$ \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    Every difference on this table traces back to one thing: \textbf{the index}.
+  \end{center}
+\end{frame}
+
+% INVERSE RELATIONSHIP
+\begin{frame}[t, plain]
+  \forestheader{Where these two parents came from}
+  \sectionlabel[goldacc]{Reflect over $y=x$}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-1}{7}{-1}{7}
+        \draw[navy, dashed, thick] (-1,-1)--(7,7);
+        \begin{scope}
+          \clip (-1,-1) rectangle (7,7);
+          \draw[very thick, goldacc, domain=0:2.65, samples=80, smooth] plot (\x,{(\x)*(\x)});
+          \draw[very thick, forest, domain=0:7, samples=90, smooth] plot (\x,{sqrt(\x)});
+        \end{scope}
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize \textcolor{goldacc}{$y=x^2,\ x\ge0$} \; and \; \textcolor{forest}{$y=\sqrt{x}$}}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Squaring and square-rooting \textbf{undo} each other --- they are \textbf{inverses}.
+        \item Reflecting over $y=x$ \textbf{swaps coordinates}, so domain and range trade places.
+        \item \textbf{That is why} the domain of $\sqrt{x}$ is $[0,\infty)$: it is the \emph{range}
+              of $x^2$.
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{Why only half the parabola?}
+        $(-3)^2=3^2=9$ --- two inputs, one output. Reflecting all of it would fail the vertical line
+        test, so $y=x^2$ needs a \textbf{restricted domain}. \\[3pt]
+        $y=x^3$ never repeats an output, so \emph{all} of it reflects --- and $\sqrt[3]{x}$ needs no
+        restriction.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FULL FEATURE READ
+\begin{frame}[t, plain]
+  \forestheader{Reading the whole feature list}
+  \sectionlabel[goldacc]{$f(x)=\sqrt{x+4}-1$}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-6}{7}{-3}{4}
+        \begin{scope}
+          \clip (-6,-3) rectangle (7,4);
+          \draw[very thick, forest, domain=-4:7, samples=100, smooth] plot (\x,{sqrt((\x)+4)-1});
+        \end{scope}
+        \fill[forest] (-4,-1) circle (6pt);
+        \fill[charcoal] (-3,0) circle (4pt);
+        \fill[charcoal] (0,1) circle (4pt);
+        \fill[charcoal] (5,2) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Domain $[-4,\infty)$ \; (from $x+4\ge0$); \; Range $[-1,\infty)$
+        \item \textbf{Endpoint} $(-4,-1)$ --- domain and range both \emph{start} at its coordinates
+        \item Zero $(-3,0)$; \; $y$-intercept $(0,1)$
+        \item Increasing on $[-4,\infty)$ --- the entire domain
+        \item $f(x)<0$ on $[-4,-3)$; \; $f(x)>0$ on $(-3,\infty)$ \\
+              {\scriptsize (no interval may leak outside the domain)}
+        \item Absolute \textbf{minimum} $-1$ at $x=-4$; no absolute maximum
+        \item $x\to+\infty \Rightarrow f(x)\to+\infty$; \; on the left, the graph \textbf{stops}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 6 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} read domain (from the radicand), range, endpoint, intercepts, intervals, extrema,
+  and end behavior off both radical parents --- and meet the inverse relationship that produced
+  them.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{6.1} $n$th roots \& rational exponents --- what an index really is.
+    \item \textbf{6.2--6.3} Simplifying, adding, multiplying, dividing \& rationalizing radicals.
+    \item \textbf{6.4} Graphing radical functions \& transformations (the \emph{endpoint} moves).
+    \item \textbf{6.5} Solving radical equations \& extraneous solutions.
+    \item \textbf{6.6} Composition of functions.
+    \item \textbf{6.7} Inverse functions --- today's last idea, made into a method.
+  \end{itemize}
 \end{frame}
 
 \end{document}
