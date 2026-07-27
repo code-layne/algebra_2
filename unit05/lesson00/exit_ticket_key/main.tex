@@ -3,17 +3,77 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.0}{Exit Ticket --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Exit Ticket verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Exit Ticket --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+No notes. The graph below is $f(x) = \dfrac{x+3}{x+1}$. Use it for questions 1 and 2.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-6}{4}{-4}{6}
+  \draw[navy, dashed, semithick] (-1,-4)--(-1,6);
+  \draw[navy, dashed, semithick] (-6,1)--(4,1);
+  \begin{scope}
+    \clip (-6,-4) rectangle (4,6);
+    \draw[very thick, forest, domain=-6:-1.4, samples=90, smooth]
+      plot (\x,{((\x)+3)/((\x)+1)});
+    \draw[very thick, forest, domain=-0.6:4, samples=90, smooth]
+      plot (\x,{((\x)+3)/((\x)+1)});
+  \end{scope}
+  \fill[charcoal] (-3,0) circle (3pt) node[below left, font=\scriptsize]{$(-3,0)$};
+  \fill[charcoal] (0,3) circle (3pt) node[right, font=\scriptsize]{$(0,3)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[leftmargin=1.8em, itemsep=8pt]
+  \item \textbf{Read the features.} Write each asymptote as an \emph{equation}.
+
+        Vertical asymptote: \ans{$x=-1$} \quad Horizontal asymptote: \ans{$y=1$}
+
+        \vspace{3pt}
+        Domain: \ans{$(-\infty,-1)\cup(-1,\infty)$} \quad $x$-intercept: \ans{$(-3,0)$} \quad
+        $y$-intercept: \ans{$(0,3)$}
+
+        \vspace{3pt}
+        $f$ is decreasing on \ans{$(-\infty,-1)$} and on \ans{$(-1,\infty)$}.
+
+  \item \textbf{Explain.} Why can this graph never cross the line $x=-1$? And why is the value $y=1$
+        missing from the range, even though the curve gets very close to it?
+        \ansline{$x=-1$ makes the denominator $x+1$ zero, so $f(-1)$ does not exist --- there is no point}
+        \ansline{to plot on that line. And $y=1$ is the horizontal asymptote: the outputs approach $1$ at both far ends but never equal it (solving $\frac{x+3}{x+1}=1$ gives $3=1$, impossible), so $1$ is not in the range.}
+
+  \item \textbf{SOL-style multiple choice.} Let $h(x) = \dfrac{x-4}{x^2-16}$. Which statement is
+        \emph{true}?
+        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
+          \item $h$ has vertical asymptotes at $x=4$ and at $x=-4$.
+          \item $h$ has a hole at $x=4$ and a vertical asymptote at $x=-4$.
+                \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+          \item $h$ has a vertical asymptote at $x=4$ and a hole at $x=-4$.
+          \item $h$ has no domain restrictions, because it simplifies to $\dfrac{1}{x+4}$.
+        \end{enumerate}
+        \vspace{2pt}
+        {\small $h(x)=\dfrac{x-4}{(x-4)(x+4)}=\dfrac{1}{x+4}$, $x\neq 4$. The $(x-4)$ \emph{cancels}
+        $\Rightarrow$ hole at $\left(4,\tfrac18\right)$; the $(x+4)$ \emph{stays} $\Rightarrow$
+        vertical asymptote $x=-4$. \textbf{A} ignores the cancelling, \textbf{C} swaps the two
+        factors, and \textbf{D} reads restrictions off the \emph{simplified} form.}
+\end{enumerate}
+
+\begin{teachernote}
+Graded for completion --- ``mistakes happen, blanks don't.'' Sort into four piles to decide whether
+Lesson~5.1 opens with a re-teach: \textbf{(1) got it}; \textbf{(2) bare-number slip} --- wrote ``$-1$''
+and ``$1$'' instead of $x=-1$ and $y=1$ (A2.F.2h asks for the \emph{equation}); \textbf{(3)
+interval slip} --- wrote a single decreasing interval spanning the asymptote, or forgot the union in
+the domain; \textbf{(4) hole-vs-asymptote slip} --- missed item~3, which is the idea Lesson~5.1 is
+built on. Item~2 earns full credit only if \emph{both} halves are addressed: no point exists at
+$x=-1$, and $y=1$ is approached but never attained.
+\end{teachernote}
 
 \end{document}

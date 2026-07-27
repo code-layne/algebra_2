@@ -1,6 +1,11 @@
 %! Characteristics of Rational Functions — Unit 5, Lesson 5.0 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,266 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.0}\\[0.5cm]
     {\color{white}\bfseries\LARGE Characteristics of Rational Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Every graph so far was one unbroken curve}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ f(x) = \frac{x+2}{x-1} \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item This one comes in \textbf{two pieces}. Which input is missing?
+        \item Near $x=1$ the curve flies off $\to$ \textbf{vertical asymptote}
+        \item At the far ends it hugs $y=1$ $\to$ \textbf{horizontal asymptote}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-4}{6}{-5}{6}
+        \draw[navy, dashed, thick] (1,-5)--(1,6);
+        \draw[navy, dashed, thick] (-4,1)--(6,1);
+        \begin{scope}
+          \clip (-4,-5) rectangle (6,6);
+          \draw[very thick, forest, domain=-4:0.5, samples=90, smooth]
+            plot (\x,{((\x)+2)/((\x)-1)});
+          \draw[very thick, forest, domain=1.6:6, samples=90, smooth]
+            plot (\x,{((\x)+2)/((\x)-1)});
+        \end{scope}
+        \fill[charcoal] (-2,0) circle (4pt); \fill[charcoal] (0,-2) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Today}
+    The \textbf{denominator runs the show}: it decides which inputs are thrown out, where the graph
+    breaks, and what the graph settles down to.
+  \end{block}
+\end{frame}
+
+% DEFINITION + DOMAIN RESTRICTIONS
+\begin{frame}[t, plain]
+  \forestheader{Rational functions: the denominator makes the rules}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      A \textbf{rational function} is a quotient of two polynomials.
+      \[ R(x)=\frac{P(x)}{Q(x)}, \qquad Q(x)\neq 0 \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Division by zero is undefined $\Rightarrow$ every input with $Q(x)=0$ is a
+              \textbf{domain restriction}.
+        \item \textbf{The one procedure:} set the \emph{denominator} $=0$ and solve.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Examples}
+        $\dfrac{x+2}{x-1}$: \; $x\neq 1$ \\[4pt]
+        $\dfrac{5}{x^2-9}$: \; $x\neq 3,\,-3$
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize A zero \emph{numerator} is fine --- that is an $x$-intercept, not a restriction.
+      \\[3pt] \textbf{The numerator makes zeros; the denominator makes trouble.}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% VERTICAL ASYMPTOTES
+\begin{frame}[t, plain]
+  \forestheader{Vertical asymptotes: the walls}
+  \sectionlabel[goldacc]{$x=a$}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item A line the graph approaches but \textbf{never} touches or crosses.
+        \item Comes from a restriction whose factor \textbf{does not cancel}.
+        \item \emph{Why} can it never be crossed? That input is not in the domain --- there is no
+              point to plot.
+        \item Two branches $\Rightarrow$ the domain is a \textbf{union}:
+              $(-\infty,1)\cup(1,\infty)$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{Write the equation}
+        \centering
+        $x=1$ \quad\textbf{not}\quad ``$1$''
+      \end{block}
+      \vspace{4pt}
+      {\footnotesize From the Warm-Up, $y=\frac{1}{x-1}$ near $x=1$:
+      \[ -10,\ -100,\ \big|\ 100,\ 10 \]
+      The outputs grow without bound \emph{and} flip sign --- that jump is the break.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% HORIZONTAL ASYMPTOTES + DEGREE RULE
+\begin{frame}[t, plain]
+  \forestheader{Horizontal asymptotes: the level (and the end behavior)}
+  \sectionlabel[goldacc]{Compare the degrees}
+  For a rational function, the horizontal asymptote \emph{is} the end-behavior statement: the arms
+  flatten toward a level instead of running to $\pm\infty$.
+  \vspace{4pt}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{Case} & \textbf{Horizontal asymptote} & \textbf{Example} \\
+  \hline
+  $n<m$ \; (bottom-heavy) & $y=0$ & $\dfrac{4}{x^2+1}\Rightarrow y=0$ \\
+  $n=m$ \; (tie) & $y=\dfrac{\text{lead of }P}{\text{lead of }Q}$ & $\dfrac{x+2}{x-1}\Rightarrow y=1$ \\
+  $n>m$ \; (top-heavy) & \textbf{none} & $\dfrac{x^2}{x+1}$ grows without bound \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{2pt}
+  \begin{center}\footnotesize $n=\deg P$ (numerator), \quad $m=\deg Q$ (denominator).\end{center}
+\end{frame}
+
+% THE TWO WARNINGS
+\begin{frame}[t, plain]
+  \forestheader{Two things a horizontal asymptote is \emph{not}}
+  \sectionlabel{Warnings}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{It is not a wall}
+        A graph \textbf{may cross} its horizontal asymptote --- the line only describes the
+        \emph{far ends}.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Check $y=\dfrac{2x}{x^2+1}$: bottom-heavy, so HA is $y=0$. \\[3pt]
+      At $x=0$ the output is $0$ --- the graph \emph{sits on} the line.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{It is not guaranteed}
+        Top-heavy ($n>m$) $\Rightarrow$ \textbf{no} horizontal asymptote; the end behavior looks like a
+        polynomial's.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize And a \emph{vertical} asymptote is not guaranteed either: $\dfrac{5t}{t^2+1}$ has
+      a denominator that is never zero, so it has \textbf{no} restrictions at all.}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{center}
+    \textbf{Vertical} $=$ a restriction on \emph{inputs} (untouchable). \quad
+    \textbf{Horizontal} $=$ a description of \emph{outputs} at the ends.
+  \end{center}
+\end{frame}
+
+% HOLES
+\begin{frame}[t, plain]
+  \forestheader{Holes: when a restriction cancels}
+  \sectionlabel{Removable discontinuity}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.38]
+        \lgrid{-4}{4}{-3}{7}
+        \begin{scope}
+          \clip (-4,-3) rectangle (4,7);
+          \draw[very thick, forest] (-4,-2)--(4,6);
+        \end{scope}
+        \draw[forest, very thick, fill=white] (2,4) circle (5pt);
+      \end{tikzpicture}\\
+      {\footnotesize $h(x)=\dfrac{x^2-4}{x-2}=x+2$, \; $x\neq2$}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{block}{The cancel test}
+        Factor top and bottom. \\[3pt]
+        Factor \textbf{cancels} $\Rightarrow$ \textbf{hole} \\
+        Factor \textbf{stays} $\Rightarrow$ \textbf{vertical asymptote}
+      \end{block}
+      \vspace{2pt}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item The hole's $y$-value comes from the \emph{simplified} form: $2+2=4$, so $(2,4)$.
+        \item \textbf{Cancelling never restores the input} --- always read restrictions off the
+              \emph{original} denominator.
+        \item Both at once: $\dfrac{x-3}{x^2-9}=\dfrac{1}{x+3}$, $x\neq3$ $\Rightarrow$ hole at
+              $x=3$, wall at $x=-3$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FULL FEATURE READ
+\begin{frame}[t, plain]
+  \forestheader{Reading the whole feature list}
+  \sectionlabel[goldacc]{$f(x)=\frac{x+2}{x-1}$}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-4}{6}{-5}{6}
+        \draw[navy, dashed, thick] (1,-5)--(1,6);
+        \draw[navy, dashed, thick] (-4,1)--(6,1);
+        \begin{scope}
+          \clip (-4,-5) rectangle (6,6);
+          \draw[very thick, forest, domain=-4:0.5, samples=90, smooth]
+            plot (\x,{((\x)+2)/((\x)-1)});
+          \draw[very thick, forest, domain=1.6:6, samples=90, smooth]
+            plot (\x,{((\x)+2)/((\x)-1)});
+        \end{scope}
+        \fill[charcoal] (-2,0) circle (4pt); \fill[charcoal] (0,-2) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item VA $x=1$; \; HA $y=1$
+        \item Domain $(-\infty,1)\cup(1,\infty)$; \; Range $(-\infty,1)\cup(1,\infty)$ --- the graph
+              never \emph{reaches} $1$
+        \item Zero $(-2,0)$ from the \textbf{numerator}; \; $y$-int $(0,-2)$ from $f(0)$
+        \item Decreasing on $(-\infty,1)$ \emph{and} on $(1,\infty)$ --- never one interval across a
+              wall
+        \item $f(x)>0$ on $(-\infty,-2)\cup(1,\infty)$; \; $f(x)<0$ on $(-2,1)$
+        \item End behavior: $f(x)\to 1$ as $x\to\pm\infty$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% COMPARE & CONTRAST
+\begin{frame}[t, plain]
+  \forestheader{Polynomial vs.\ rational --- what actually changed}
+  \sectionlabel{Compare \& contrast}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{lll}
+  \hline
+   & \textbf{Polynomial (Unit 4)} & \textbf{Rational (Unit 5)} \\
+  \hline
+  Graph & smooth and \emph{continuous} & may be \emph{discontinuous} (breaks) \\
+  Domain & \emph{all} real numbers & all reals except the excluded values \\
+  Asymptotes & none & vertical and/or horizontal \\
+  End behavior & arms run to $\pm\infty$ & arms usually flatten toward a level \\
+  Intervals & single intervals & \textbf{unions}, broken at each wall \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    Continuity was a free gift from polynomials. Losing it is what makes this a new family.
+  \end{center}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 5 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} read domain restrictions, vertical and horizontal asymptotes, holes, intercepts,
+  intervals, and end behavior off a rational graph.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{5.1} Simplifying rational expressions \& domain restrictions.
+    \item \textbf{5.2--5.3} Multiplying, dividing, adding \& subtracting rational expressions.
+    \item \textbf{5.4} The parent $y=\frac1x$ and transformations (the asymptotes move).
+    \item \textbf{5.5} Graphing rational functions from the equation.
+    \item \textbf{5.6} Solving rational equations \& extraneous solutions.
+    \item \textbf{5.7} Direct, inverse \& joint variation.
+  \end{itemize}
 \end{frame}
 
 \end{document}

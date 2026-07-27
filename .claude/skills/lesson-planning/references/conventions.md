@@ -63,6 +63,26 @@ divider. The scaffolder writes these; see `assets/skeletons/test.tex`.
 | `\namepartnerperiod` | Name / Partner / Period row (group activities) |
 | `\pageheader{Unit X, Lesson Y.Z}{Document Type}` | Full-width forest banner header |
 
+**`\noindent` trap — required fix in every `vocabbox` from Unit 5 on.** `\termblanklong` opens with
+`\noindent`, which is a **no-op mid-paragraph**, and `\ansline` ends with `\dotfill` without ending the
+paragraph. Unfixed, the intro sentence and the first term collide in the blank, and in the key every
+term label after the first is dragged onto the previous answer's dotted line. So:
+
+```latex
+% notes/main.tex
+Fill in each term as we build it together.
+\par\vspace{2pt}                 % \par is REQUIRED here
+\termblanklong{First term}
+
+% notes_key/main.tex — \par on BOTH ends
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+```
+
+`unit05/lesson00` is the reference implementation. Fix it per-lesson, **not** in `shared/` — a
+shared-package change re-flows every already-verified unit at once. See `COURSE_PLAN.md` §7 and the
+deferred Units 2–4 retrofit in §8.
+
 ## Box environments (from `-boxes`)
 
 Lesson-plan boxes have a **forest** frame and take a background color as the last argument
