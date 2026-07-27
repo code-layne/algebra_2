@@ -3,17 +3,192 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.0}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Homework verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Homework --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Practice}
+Show how you read each feature. Write every domain and range in \textbf{interval notation}.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{From the equation only.} Use $a$ and $b$ --- no graphing.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Base $b$} & \textbf{Growth or decay?} & \textbf{$y$-intercept} & \textbf{Asymptote approached on the left or right?} \\
+    \hline
+    $y=6\cdot 2^{x}$ & \ans{$2$} & \ans{growth} & \ans{$(0,6)$} & \ans{left} \\
+    $y=6\left(\frac12\right)^{x}$ & \ans{$\frac12$} & \ans{decay} & \ans{$(0,6)$} & \ans{right} \\
+    $y=\left(\frac45\right)^{x}$ & \ans{$\frac45$} & \ans{decay} & \ans{$(0,1)$} & \ans{right} \\
+    $y=0.4(3)^{x}$ & \ans{$3$} & \ans{growth} & \ans{$(0,0.4)$} & \ans{left} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    All four have the same domain, the same range, and the same horizontal asymptote. Write them
+    once: domain \ans{$(-\infty,\infty)$}, range \ans{$(0,\infty)$}, asymptote \ans{$y=0$}.
+
+  \item \textbf{A growth graph.} The graph is $m(x) = 4\cdot 2^{x}$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-4}{3}{-1}{10}
+      \begin{scope}
+        \clip (-4,-1) rectangle (3,10);
+        \expcurve{4}{0.693147}{-4}{1.32}
+      \end{scope}
+      \draw[navy, dashed, semithick] (-4,0)--(3,0);
+      \fill[charcoal] (-2,1) circle (3pt) node[below right, font=\scriptsize]{$(-2,1)$};
+      \fill[charcoal] (0,4) circle (3pt) node[left, font=\scriptsize]{$(0,4)$};
+      \fill[charcoal] (1,8) circle (3pt) node[left, font=\scriptsize]{$(1,8)$};
+    \end{tikzpicture}
+    \end{center}
+    $a=$ \ans{4} \quad $b=$ \ans{2} \quad Growth or decay? \ans{growth} \\[3pt]
+    Domain: \ans{$(-\infty,\infty)$} \quad Range: \ans{$(0,\infty)$} \quad Horizontal asymptote: \ans{$y=0$} \\[3pt]
+    $y$-intercept: \ans{$(0,4)$} \quad $x$-intercept: \ans{none} \quad
+    Increasing or decreasing? \ans{increasing} \\[3pt]
+    Absolute extrema: \ans{none} \\[3pt]
+    End behavior: as $x\to+\infty$, $m(x)\to$ \ans{$+\infty$}; \; as $x\to-\infty$,
+    $m(x)\to$ \ans{$0$}
+
+  \item \textbf{A decay graph.} The graph is $n(x) = 9\left(\frac13\right)^{x}$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-1}{6}{-1}{10}
+      \begin{scope}
+        \clip (-1,-1) rectangle (6,10);
+        \expcurve{9}{-1.098612}{-0.09}{6}
+      \end{scope}
+      \draw[navy, dashed, semithick] (-1,0)--(6,0);
+      \fill[charcoal] (0,9) circle (3pt) node[right, font=\scriptsize]{$(0,9)$};
+      \fill[charcoal] (1,3) circle (3pt) node[right, font=\scriptsize]{$(1,3)$};
+      \fill[charcoal] (2,1) circle (3pt) node[above right, font=\scriptsize]{$(2,1)$};
+    \end{tikzpicture}
+    \end{center}
+    $a=$ \ans{9} \quad $b=$ \ans{$\frac13$} \quad Growth or decay? \ans{decay} \\[3pt]
+    Domain: \ans{$(-\infty,\infty)$} \quad Range: \ans{$(0,\infty)$} \quad Horizontal asymptote: \ans{$y=0$} \\[3pt]
+    $y$-intercept: \ans{$(0,9)$} \quad $x$-intercept: \ans{none} \quad
+    Increasing or decreasing? \ans{decreasing} \\[3pt]
+    End behavior: as $x\to+\infty$, $n(x)\to$ \ans{$0$}; \; as $x\to-\infty$,
+    $n(x)\to$ \ans{$+\infty$} \\[3pt]
+    Confirm $b$ from the labeled points: $\frac{n(1)}{n(0)}=\frac{3}{9}=$ \ans{$\frac13$} \\[3pt]
+    Problems 2 and 3 have the \emph{same} horizontal asymptote. Which side does each graph approach
+    it on, and what in the equation decides that? \ans{$m$ approaches $y=0$ on the \emph{left}
+    and $n$ approaches it on the \emph{right}; the base decides --- $b>1$ shrinks toward the
+    asymptote as $x$ goes to $-\infty$, while $0<b<1$ shrinks toward it as $x$ goes to $+\infty$.}
+
+  \item \textbf{Name the family from the table.} Each table has evenly spaced $x$-values. Label each
+    one \emph{linear}, \emph{quadratic}, or \emph{exponential}, and give the constant that proves it.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+    A: $y$ & $5$ & $8$ & $11$ & $14$ & $17$ \\ \hline
+    B: $y$ & $5$ & $10$ & $20$ & $40$ & $80$ \\ \hline
+    C: $y$ & $3$ & $4$ & $7$ & $12$ & $19$ \\ \hline
+    \end{tabular}
+    \end{center}
+    A is \ans{linear} because \ans{the difference is a constant $+3$} \\[3pt]
+    B is \ans{exponential} because \ans{the ratio is a constant $2$} \\[3pt]
+    C is \ans{quadratic} because \ans{the differences $1,3,5,7$ are not constant, but the second differences are a constant $+2$}
+
+  \item \textbf{Explain.} In Unit 6, the endpoint of $y=\sqrt{x}$ gave the function an absolute
+        minimum of $0$. An exponential graph like $y=2^{x}$ also has a lowest edge at $y=0$ --- but
+        it has \emph{no} absolute minimum. Explain the difference, using the words
+        \textbf{endpoint}, \textbf{asymptote}, and \textbf{reaches}.
+        \ansline{An \textbf{endpoint} is a point \emph{on} the graph: $\sqrt{0}=0$, so $y=\sqrt{x}$
+        actually \textbf{reaches} the value $0$ at $x=0$, and a value the function reaches and never
+        goes below is an absolute minimum.\\[3pt]
+        An \textbf{asymptote} is a line the graph only approaches. There is no input that makes
+        $2^{x}$ equal $0$ --- the outputs get smaller and smaller but stay positive --- so $0$ is
+        never \textbf{reached}. It is the boundary of the range, not a value of the function, which
+        is why the range is $(0,\infty)$ and there is no minimum.}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Reading a model in context.} A new laptop costs \$$1200$. Like most electronics, it loses
+about $25\%$ of its value every year, so its value after $t$ years is
+\[
+  V(t) = 1200(0.75)^{t} \ \text{ dollars.}
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$t$ (years) & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+$V(t)$ (dollars) & $1200$ & $900$ & $675$ & $506.25$ & $379.69$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Identify $a$ and $b$, say whether this is growth or decay, and explain what each number means
+        about the laptop. Why is $b=0.75$ rather than $0.25$?
+  \item Confirm the constant ratio using two consecutive values from the table.
+  \item Find $V(2)$ and write one sentence interpreting it in context.
+  \item A friend says ``it loses \$$300$ a year.'' Use the table to show why that is wrong, and name
+        what is actually constant.
+  \item The model's horizontal asymptote is $V=0$, and there is no $t$-intercept. State what that
+        claims about the laptop, and say whether you believe it.
+  \item What is the domain of $V$ algebraically? What is a sensible domain \emph{in context}?
+\end{enumerate}
+\ansline{(a) $a=1200$, $b=0.75$; \textbf{decay}, since $0<b<1$. $a$ is the price when the laptop is
+new ($t=0$); $b=0.75$ says $75\%$ of the previous year's value survives. It is $0.75$, not $0.25$,
+because $b$ is the fraction that \emph{remains}, not the fraction lost --- losing $25\%$ leaves
+$100\%-25\%=75\%$.\\[3pt]
+(b) $\frac{900}{1200}=0.75$ and $\frac{675}{900}=0.75$ --- the same ratio, which is $b$.\\[3pt]
+(c) $V(2)=675$: two years after purchase, the laptop is worth about \$$675$.\\[3pt]
+(d) The drops are $\$300$, then $\$225$, then $\$168.75$, then $\$126.56$ --- not constant. What is
+constant is the \emph{ratio}: it loses $25\%$ of whatever it is currently worth, and $25\%$ of a
+smaller value is a smaller dollar amount.\\[3pt]
+(e) It claims the laptop's value shrinks forever without ever hitting \$$0$ --- it is always worth
+\emph{something}, no matter how old. That is not realistic: at some point the resale value is
+genuinely \$$0$, and long before that the predicted value is less than a penny. The model is useful
+for the first several years and meaningless in the far tail.\\[3pt]
+(f) Algebraically the domain is all real numbers, since any real exponent is legal. In context, $t\ge
+0$ --- negative $t$ would mean before the laptop existed --- so a sensible domain is $[0,\infty)$,
+and realistically only the first several years.}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 7.1: Exponential Growth \& Decay.} Today you read $a$ and $b$ off a
+graph that was handed to you. Next you will \emph{build} $y=ab^{x}$ yourself --- from a table, from
+two points, and from a sentence like ``the population grows $8\%$ a year'' or ``the car loses $15\%$
+of its value.'' The whole lesson turns on one translation: a percent is not a base. ``Up $8\%$''
+means $b=1.08$, not $b=0.08$ --- and ``down $15\%$'' means $b=0.85$, not $b=1.15$. You already met
+the idea today: the medication kept $70\%$ each hour, so $b$ was $0.7$.
+\end{spiralbox}
+
+\begin{teachernote}
+\textbf{Problem 1, last row} ($y=0.4(3)^{x}$) is the one to check: $a$ is a decimal less than $1$ and
+the base is greater than $1$, so a student running on ``small number $\Rightarrow$ decay'' will
+answer wrong. Growth versus decay is read off $b$ alone, never off $a$.
+
+\textbf{Problem 3's last part} and \textbf{Problem 5} carry the lesson. Problem 3 checks that
+students can attach the asymptote to a \emph{side} rather than reciting ``$y=0$''; Problem 5 is the
+Unit 6 $\rightarrow$ Unit 7 hinge and is worth grading closely. A complete answer must say that
+$\sqrt{0}=0$ is an actual output while no input makes $2^{x}=0$; ``one is a point and one is a line''
+alone is not enough.
+
+\textbf{Problem 4} previews Lesson 7.5, where the same three-way test is applied to real scatterplot
+data. Table C is the one students misname --- rapid-looking growth reads as ``exponential'' until
+they check the ratios ($\frac43$, $\frac74$, $\frac{12}{7}$ --- not constant).
+
+\textbf{Extension (d) and (e)} are the same two beats as the Activity's Tier E drug model, on purpose.
+If students did Tier E in class, this is consolidation and can be graded quickly; if they did not,
+this is where the constant-ratio idea meets context for the first time and deserves a full read.
+Part (a)'s ``why $0.75$ and not $0.25$'' is the direct set-up for Lesson 7.1's percent-to-factor
+translation.
+\end{teachernote}
 
 \end{document}
