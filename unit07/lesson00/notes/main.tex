@@ -3,17 +3,389 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Exponentials are plotted as a*e^{(ln b)x}: pgfmath's pow() is unreliable for negative and
+% fractional exponents, but exp() is not. #2 is ln(b).
+% ln2 = 0.693147   ln3 = 1.098612   ln4 = 1.386294
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.0}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item identify an \emph{exponential} function from its equation, its graph, or a \emph{table} (the \emph{constant ratio} fingerprint), and tell \emph{growth} from \emph{decay} by comparing the base to $1$;
+  \item read the \emph{domain}, \emph{range}, \emph{intercepts}, \emph{increasing/decreasing} and \emph{positive/negative} intervals, \emph{extrema}, \emph{horizontal asymptote}, and \emph{end behavior} off an exponential graph;
+  \item explain why an exponential graph has \emph{no} $x$-intercept and \emph{no} absolute minimum, even though it clearly has a floor.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Exponential function}
+\termblanklong{Base $b$ (the growth/decay factor)}
+\termblanklong{Initial value $a$}
+\termblanklong{Exponential growth vs.\ exponential decay}
+\termblanklong{Constant ratio}
+\termblanklong{Horizontal asymptote (as a range boundary)}
+\end{vocabbox}
+
+\begin{hookbox}
+Here are the two graphs this whole unit is built on: $y=2^{x}$ and $y=\left(\frac12\right)^{x}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.36]
+  % y = 2^x
+  \begin{scope}
+    \lgrid{-4}{4}{-1}{9}
+    \begin{scope}
+      \clip (-4,-1) rectangle (4,9);
+      \expcurve{1}{0.693147}{-4}{3.17}
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-2.6) {$y=2^{x}$};
+  \end{scope}
+  % y = (1/2)^x
+  \begin{scope}[xshift=13cm]
+    \lgrid{-4}{4}{-1}{9}
+    \begin{scope}
+      \clip (-4,-1) rectangle (4,9);
+      \expcurve{1}{-0.693147}{-3.17}{4}
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-2.6) {$y=\left(\tfrac12\right)^{x}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Unit 6's square root graph gave up half the \emph{inputs} --- it simply stopped somewhere. These two graphs run all the way across, so the domain is back. What did they give up instead? \writeline
+  \item Neither graph ever crosses the $x$-axis. Warm-Up item~1 already told you why. What was it? \writeline
+\end{itemize}
+Radical functions made us ask \emph{where is the graph allowed to exist}. Exponential functions hand
+the whole $x$-axis back and take something else away: \textbf{an entire half of the $y$-axis}, with a
+line the graph gets closer and closer to but \emph{never} touches.
+\end{hookbox}
+
+\begin{notesbox}{1. What Makes a Function Exponential --- and How to Spot One in a Table}
+Every family this year has kept the variable in the \textbf{base}. An \textbf{exponential function}
+moves it into the \textbf{exponent}:
+\[
+  \underbrace{y=x^{2}}_{\text{\small variable is the \emph{base} --- quadratic}}
+  \qquad\text{versus}\qquad
+  \underbrace{y=2^{x}}_{\text{\small variable is the \emph{exponent} --- exponential}}
+\]
+The general form is
+\[
+  f(x) = a\,b^{\,x}, \qquad a\ne 0,\quad b>0,\quad b\ne 1 .
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $a$ is the \textbf{initial value}. Because $b^{0}=$ \blank{0.8cm} for \emph{every} legal
+        base, $f(0)=a$ --- so $a$ is always the \blank{2.6cm}.
+  \item $b$ is the \textbf{base}, also called the growth or decay \textbf{factor}. It is what you
+        \textbf{multiply} by every time $x$ goes up by $1$.
+  \item Why must $b\ne 1$? Because $1^{x}=$ \blank{0.8cm} for every $x$, which would make the graph
+        a \blank{3.0cm} line --- not a new family at all.
+  \item Why must $b>0$? A negative base collapses: $(-4)^{1/2}$ is not a real number, so the graph
+        would be a scatter of holes instead of a smooth curve.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{The fingerprint test.} With evenly spaced $x$-values, a table names the family for you ---
+no graph required.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Family} & \textbf{What stays constant} & \textbf{Example ($y$-values)} \\
+\hline
+Linear (Unit 2) & the \emph{difference} & $2,\ 5,\ 8,\ 11,\ 14$ \quad (add \blank{0.9cm} each time) \\
+Quadratic (Unit 3) & the \emph{second} difference & $1,\ 4,\ 9,\ 16,\ 25$ \quad (differences $3,5,7,9$; those change by $+2$ each time) \\
+\textbf{Exponential (Unit 7)} & the \textbf{ratio} & $2,\ 6,\ 18,\ 54,\ 162$ \quad (multiply by \blank{0.9cm} each time) \\
+\hline
+\end{tabularx}
+\end{center}
+That last row has a name: a \textbf{constant ratio}. Divide any output by the one before it ---
+$\frac{6}{2}=$ \blank{0.7cm}, \; $\frac{18}{6}=$ \blank{0.7cm}, \; $\frac{54}{18}=$
+\blank{0.7cm} --- and if you always get the same number, the function is exponential and that
+number is \blank{1.0cm}.
+
+\vspace{3pt}
+\textbf{Growth or decay?} Compare the base to $1$ --- \emph{not} to $0$.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+$b>1$ & exponential \textbf{growth} & each step multiplies by more than $1$, so the outputs \blank{2.4cm} \\
+$0<b<1$ & exponential \textbf{decay} & each step multiplies by a proper fraction, so the outputs \blank{2.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
 \end{notesbox}
+
+\begin{notesbox}{2. The Growth Parent: $y=2^{x}$}
+\begin{center}
+\begin{minipage}[c]{0.38\linewidth}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=2^{x}$ \\ \hline
+$-3$ & \blank{1.0cm} \\ \hline
+$-1$ & \blank{1.0cm} \\ \hline
+$0$ & \blank{1.0cm} \\ \hline
+$2$ & \blank{1.0cm} \\ \hline
+$3$ & \blank{1.0cm} \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.58\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-4}{4}{-1}{9}
+  \begin{scope}
+    \clip (-4,-1) rectangle (4,9);
+    \expcurve{1}{0.693147}{-4}{3.17}
+  \end{scope}
+  \draw[navy, dashed, semithick] (-4,0)--(4,0);
+  \node[navy, font=\scriptsize, above left] at (-1.0,0) {$y=0$};
+  \fill[charcoal] (0,1) circle (2.6pt);
+  \fill[charcoal] (1,2) circle (2.6pt);
+  \fill[charcoal] (2,4) circle (2.6pt);
+  \fill[charcoal] (3,8) circle (2.6pt);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Domain:} \blank{3.2cm} \quad \textbf{Range:} \blank{3.2cm} \\
+        \emph{Watch the bracket.} $0$ is \textbf{not} in the range.
+  \item \textbf{$y$-intercept:} \blank{1.8cm} \quad (that is $a=1$, exactly as predicted).
+  \item \textbf{$x$-intercept / zeros:} \blank{2.2cm}. \; From Warm-Up item~1, $2^{x}$ is a
+        \blank{2.2cm} number for every real $x$, so it never equals $0$. \emph{This family never
+        has a zero.}
+  \item \textbf{Increasing / decreasing:} increasing on \blank{3.0cm}; never \blank{2.2cm}.
+  \item \textbf{Positive / negative:} $y>0$ on \blank{3.0cm}; \quad $y<0$ \blank{2.4cm}.
+  \item \textbf{Extrema:} \blank{2.6cm}. There is no maximum (it climbs forever) --- and no minimum
+        either, even though the graph clearly flattens out. Section 4 explains that second one.
+  \item \textbf{Horizontal asymptote:} $y=$ \blank{1.0cm} \quad (the dashed line).
+  \item \textbf{End behavior:} as $x\to+\infty$, $y\to$ \blank{1.2cm} --- and \emph{fast}. \\
+        As $x\to-\infty$, $y\to$ \blank{1.2cm}, flattening onto the asymptote from
+        \blank{1.8cm}.
+\end{enumerate}
+\end{notesbox}
+
+\begin{notesbox}{3. The Decay Parent: $y=\left(\frac12\right)^{x}$}
+\begin{center}
+\begin{minipage}[c]{0.38\linewidth}
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\left(\frac12\right)^{x}$ \\ \hline
+$-3$ & \blank{1.0cm} \\ \hline
+$-1$ & \blank{1.0cm} \\ \hline
+$0$ & \blank{1.0cm} \\ \hline
+$2$ & \blank{1.0cm} \\ \hline
+$3$ & \blank{1.0cm} \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.58\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-4}{4}{-1}{9}
+  \begin{scope}
+    \clip (-4,-1) rectangle (4,9);
+    \expcurve{1}{-0.693147}{-3.17}{4}
+  \end{scope}
+  \draw[navy, dashed, semithick] (-4,0)--(4,0);
+  \node[navy, font=\scriptsize, above right] at (1.0,0) {$y=0$};
+  \fill[charcoal] (-3,8) circle (2.6pt);
+  \fill[charcoal] (-2,4) circle (2.6pt);
+  \fill[charcoal] (-1,2) circle (2.6pt);
+  \fill[charcoal] (0,1) circle (2.6pt);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+The base is now a \emph{fraction}, so every step \textbf{shrinks} the output --- and the picture is
+the growth parent's mirror image.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Domain:} \blank{3.2cm} \quad \textbf{Range:} \blank{3.2cm} \quad
+        (\emph{identical} to the growth parent).
+  \item \textbf{$y$-intercept:} \blank{1.8cm} \quad \textbf{$x$-intercept:} \blank{1.8cm}
+  \item \textbf{Increasing / decreasing:} \blank{3.4cm}
+  \item \textbf{Extrema:} \blank{2.6cm}, for the same reason as before.
+  \item \textbf{Horizontal asymptote:} $y=$ \blank{1.0cm} --- the same line, but the graph now
+        approaches it on the \blank{1.8cm} side instead of the left.
+  \item \textbf{End behavior:} as $x\to+\infty$, $y\to$ \blank{1.2cm}; \; as $x\to-\infty$,
+        $y\to$ \blank{1.2cm}.
+  \item \textbf{Why these two are secretly the same graph.} Since
+        $\left(\frac12\right)^{x}=\dfrac{1}{2^{x}}$, the decay parent is the growth parent with the
+        exponent \blank{2.4cm}, and its graph is the growth graph reflected across the
+        \blank{1.6cm}-axis. Lesson 7.2 makes this a rule.
+\end{enumerate}
+\end{notesbox}
+
+\begin{notesbox}{4. The Horizontal Asymptote: a Floor the Graph Never Stands On}
+A \textbf{horizontal asymptote} is a horizontal line the graph approaches as $x$ runs toward
+$+\infty$ or $-\infty$. You met these in Unit 5 with rational functions. Here they take on a new job:
+the asymptote is the \textbf{boundary of the range}.
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$x$ & $-1$ & $-4$ & $-10$ & $-20$ \\ \hline
+$2^{x}$ & $0.5$ & $0.0625$ & $0.00098\ldots$ & $0.00000095\ldots$ \\ \hline
+\end{tabular}
+\end{center}
+The outputs are being halved over and over. They get as close to $0$ as you like --- and they are
+never \blank{1.6cm} and never \blank{1.6cm}. Halving a positive number leaves a positive number,
+forever.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Therefore the range is $(0,\infty)$ and \textbf{not} $[0,\infty)$. Write the reason in your
+        own words: \writeline
+  \item Therefore there is \textbf{no absolute minimum}. A minimum must be a value the function
+        \emph{actually reaches}, and $0$ is never reached.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Compare this with Unit 6.} Both graphs below have a lowest edge. Only one of them
+\emph{touches} it.
+\begin{center}
+\begin{tikzpicture}[scale=0.34]
+  % sqrt(x): endpoint attained
+  \begin{scope}
+    \lgrid{-2}{8}{-2}{5}
+    \begin{scope}
+      \clip (-2,-2) rectangle (8,5);
+      \draw[very thick, forest, domain=0:8, samples=90, smooth] plot (\x,{sqrt(\x)});
+    \end{scope}
+    \fill[forest] (0,0) circle (5pt);
+    \node[charcoal, font=\scriptsize, align=center] at (3,-4.0)
+      {$y=\sqrt{x}$ --- \emph{solid} endpoint:\\ the minimum $0$ \textbf{is} reached};
+  \end{scope}
+  % 2^x: asymptote never attained
+  \begin{scope}[xshift=15cm]
+    \lgrid{-4}{4}{-2}{5}
+    \begin{scope}
+      \clip (-4,-2) rectangle (4,5);
+      \expcurve{1}{0.693147}{-4}{2.32}
+    \end{scope}
+    \draw[navy, dashed, semithick] (-4,0)--(4,0);
+    \node[navy, font=\scriptsize, above left] at (-1.0,0) {$y=0$};
+    \node[charcoal, font=\scriptsize, align=center] at (0,-4.0)
+      {$y=2^{x}$ --- \emph{dashed} asymptote:\\ $0$ is \textbf{never} reached};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Unit 6's endpoint was \emph{in} the domain and \emph{in} the range, so it produced an
+        absolute \blank{1.8cm}. An asymptote is in \blank{2.0cm} of them.
+  \item Unit 5's rational graphs had horizontal asymptotes too --- but a rational graph is
+        \emph{allowed} to cross its horizontal asymptote in the middle. An exponential graph
+        $y=ab^{x}$ never crosses its own, because $b^{x}$ is never \blank{1.4cm}.
+  \item \textbf{The trade.} Unit 6 took away half the \blank{2.0cm} (no negative radicands). Unit 7
+        gives that back --- every real number is a legal exponent --- but takes away half the
+        \blank{2.0cm} instead.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{5. The Full Feature List --- and How Growth and Decay Differ}
+Read \emph{every} characteristic off the anchor $f(x)=4\left(\frac12\right)^{x}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-2}{6}{-1}{10}
+  \begin{scope}
+    \clip (-2,-1) rectangle (6,10);
+    \expcurve{4}{-0.693147}{-1.32}{6}
+  \end{scope}
+  \draw[navy, dashed, semithick] (-2,0)--(6,0);
+  \node[navy, font=\scriptsize, above right] at (3.8,0) {$y=0$};
+  \fill[charcoal] (-1,8) circle (2.6pt) node[right, font=\scriptsize]{$(-1,8)$};
+  \fill[charcoal] (0,4) circle (2.6pt) node[right, font=\scriptsize]{$(0,4)$};
+  \fill[charcoal] (1,2) circle (2.6pt) node[above right, font=\scriptsize]{$(1,2)$};
+  \fill[charcoal] (2,1) circle (2.6pt) node[above right, font=\scriptsize]{$(2,1)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item $a=$ \blank{0.9cm} and $b=$ \blank{0.9cm}, so this is exponential \blank{1.8cm}
+        (because $b$ is \blank{1.6cm} than $1$).
+  \item \textbf{Domain:} \blank{3.2cm} \quad \textbf{Range:} \blank{3.2cm}
+  \item \textbf{$y$-intercept:} \blank{1.8cm} \quad \textbf{$x$-intercept:} \blank{1.8cm}
+  \item \textbf{Increasing / decreasing:} \blank{3.2cm}
+  \item \textbf{Positive / negative:} $f(x)>0$ on \blank{2.8cm}; \quad $f(x)<0$ \blank{2.2cm}.
+  \item \textbf{Extrema:} \blank{3.4cm}
+  \item \textbf{Horizontal asymptote:} $y=$ \blank{1.0cm}, approached as $x\to$ \blank{1.4cm}.
+  \item \textbf{End behavior:} as $x\to+\infty$, $f(x)\to$ \blank{1.2cm}; \; as $x\to-\infty$,
+        $f(x)\to$ \blank{1.2cm}.
+  \item \textbf{Check the constant ratio} using the labeled points: $\frac{f(1)}{f(0)}=\frac{2}{4}=$
+        \blank{1.0cm}, and $\frac{f(2)}{f(1)}=\frac{1}{2}=$ \blank{1.0cm}. That is $b$, read
+        straight off the graph.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Compare and contrast} the two exponential parents. Notice how many rows come out the
+\emph{same} --- this family shares more than it differs.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+ & \textbf{Growth} $y=2^{x}$ & \textbf{Decay} $y=\left(\frac12\right)^{x}$ \\
+\hline
+Base $b$ & \blank{1.8cm} & \blank{1.8cm} \\
+Domain & \blank{2.4cm} & \blank{2.4cm} \\
+Range & \blank{2.4cm} & \blank{2.4cm} \\
+$y$-intercept & \blank{1.8cm} & \blank{1.8cm} \\
+$x$-intercept & \blank{1.8cm} & \blank{1.8cm} \\
+Increasing or decreasing & \blank{2.2cm} & \blank{2.2cm} \\
+Extrema & \blank{1.8cm} & \blank{1.8cm} \\
+Horizontal asymptote & \blank{1.8cm} & \blank{1.8cm} \\
+Asymptote approached on the\dots & \blank{1.8cm} & \blank{1.8cm} \\
+\hline
+\end{tabularx}
+\end{center}
+And against the families you already know: a \textbf{polynomial} could turn around many times; a
+\textbf{rational} function broke apart at its vertical asymptotes; a \textbf{radical} function began
+somewhere and stopped. An \textbf{exponential} function does none of those --- it is one smooth,
+unbroken, never-turning curve living entirely on one side of a line it never crosses.
+\end{notesbox}
+
+\begin{practicebox}
+The graph below is $p(x)=2\cdot 3^{x}$. Read each characteristic and write it on the line.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-3}{3}{-1}{10}
+  \begin{scope}
+    \clip (-3,-1) rectangle (3,10);
+    \expcurve{2}{1.098612}{-3}{1.46}
+  \end{scope}
+  \draw[navy, dashed, semithick] (-3,0)--(3,0);
+  \fill[charcoal] (0,2) circle (2.6pt) node[left, font=\scriptsize]{$(0,2)$};
+  \fill[charcoal] (1,6) circle (2.6pt) node[right, font=\scriptsize]{$(1,6)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item $a=$ \blank{0.9cm} and $b=$ \blank{0.9cm}, so this is \blank{2.6cm}.
+  \item \textbf{Domain:} \blank{3.0cm} \quad \textbf{Range:} \blank{3.0cm}
+  \item \textbf{$y$-intercept:} \blank{1.8cm} \quad \textbf{$x$-intercept:} \blank{1.8cm}
+  \item \textbf{Horizontal asymptote:} \blank{1.8cm} \quad Approached as $x\to$ \blank{1.4cm}.
+  \item \textbf{End behavior:} as $x\to+\infty$, $p(x)\to$ \blank{1.2cm}; \; as $x\to-\infty$,
+        $p(x)\to$ \blank{1.2cm}.
+  \item Does $p$ have an absolute maximum, an absolute minimum, both, or neither?
+        \blank{3.0cm} \\
+        Explain in one sentence. \writeline
+\end{enumerate}
+\end{practicebox}
 
 \end{document}
