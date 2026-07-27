@@ -6,10 +6,11 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26); **Lessons 5.0 and 5.1 are authored & building** (2026-07-26) — 5.2–5.7
-> are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not yet
-> scaffolded.
-> **Next action: author Unit 5 Lesson 5.2 (Multiplying & Dividing Rational Expressions).**
+> scaffolded** (2026-07-26); **Lessons 5.0, 5.1, and 5.2 are authored & building** (2026-07-26) —
+> 5.3–5.7 are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not
+> yet scaffolded.
+> **Next action: author Unit 5 Lesson 5.3 (Adding & Subtracting Rational Expressions + complex
+> fractions).**
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -690,7 +691,49 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > note), cover 1pp; exit ticket includes an SOL-style MC item ($\frac{4-x^2}{x^2-x-2}$; the three
 > distractors drop the $-1$, read restrictions off the simplified denominator, and cancel the $x^2$
 > terms). `make -C unit05/lesson01 all` → EXIT 0 (student 12pp, full 26pp).
-> **Next action: Lesson 5.2** --- multiplying & dividing rational expressions (A2.EO.1a).
+> **Lesson 5.2 authored & builds (2026-07-26):** all components + keys + 10-slide deck done; the lesson
+> where the restriction list stops being readable off the page. Multiplying is 5.1's four steps with one
+> more denominator --- the only genuinely new mechanical idea is that cancelling runs **across the whole
+> product** (any numerator factor against any denominator factor) --- so the weight of the lesson sits on
+> **division**, and specifically on the **three sources of a restriction**: for $\frac AB\div\frac CD$,
+> $B\neq0$ (the dividend must exist), $D\neq0$ (the divisor must exist --- **invisible after** the flip,
+> since $D$ moves upstairs), and $C\neq0$ (**you cannot divide by zero**, and a fraction is zero exactly
+> when its \emph{numerator} is --- **invisible before** the flip). The organizing sentence is
+> **``flipping trades one blind spot for another''**: read the restrictions off the problem *as written*,
+> then add the divisor's numerator. Source 3 is *earned rather than announced* --- Warm-Up item 1(c) asks
+> which value $n$ may not have in $\frac49\div\frac n{15}$ (answer $0$) before any letters appear, and the
+> Hook then puts $Q(x)=\frac{x+1}{x-5}\div\frac{x-2}{x+3}$ beside its flipped form
+> $R(x)=\frac{(x+1)(x+3)}{(x-5)(x-2)}$ in a table at $x=0,1,2,-3$: they agree ($\tfrac3{10}$, $2$), are
+> **both** undefined at $x=2$ *for different reasons* (denominator in $R$; zero divisor in $Q$), and part
+> company at $x=-3$, where $Q$ has no value and $R$ gives $0$. Also taught: multiplying is never done by
+> expanding (an expanded product **hides its own factors** --- the Unit 4 cost argument), and **flip
+> before you cancel**, disproved numerically because top-with-top *does* happen to work for division while
+> the other diagonal never does ($\frac43\div\frac54$: $\frac1{15}$ vs.\ $\frac{16}{15}$; with letters,
+> $\frac x4\div\frac5x=\frac{x^2}{20}$, not $\frac1{20}$). Anchors: the product
+> $\frac{x^2-9}{x^2+2x-8}\cdot\frac{x+4}{x^2+3x}=\frac{x-3}{x(x-2)}$ ($x\neq0,2,-3,-4$, two invisible) and
+> the quotient $\frac{x^2-4}{x^2+7x+12}\div\frac{x^2+2x}{x+3}=\frac{x-2}{x(x+4)}$ ($x\neq0,-2,-3,-4$,
+> one value from each of the three sources). Opposite binomials (5.1) carry forward inside products
+> ($\frac{x^2-25}{x+2}\cdot\frac{2x+4}{5-x}=-2(x+5)$). Graph-reading closes the notes:
+> $P(x)=\frac{x^2-1}{x}\cdot\frac{x}{x+1}$ is the **line $y=x-1$ with two holes**, at $(0,-1)$ and
+> $(-1,-2)$ --- one per denominator --- pre-drawn with open circles (no sketch-from-scratch). Repeated
+> beat: **a polynomial answer still carries restrictions** ($2x(x-6)$ with $x\neq0,-6$; a homework item
+> whose written denominators are the constants $2$ and $5$, so *every* restriction comes from the divisor's
+> numerator). Flagged traps: multiplying out first; missing the divisor's-numerator restriction (the
+> signature error); cancelling across the $\div$; flipping the *first* fraction; restrictions read off the
+> answer (5.1's error, now worse with two denominators); a lost $-1$. Tier E adds a **restriction
+> detective** table (attribute each of $x\neq0,1,-2,-3$ to its source, one value having *two*), a
+> build-it-backwards division, and a rectangle whose length is recovered by division, verified by
+> multiplying back, with the source-3 restriction interpreted geometrically (zero width) and a feasible
+> domain that is a **union**. Standards: **2023 VA SOL A2.EO.1a** (multiply, divide, simplify the result),
+> applying **A2.EO.1b** and **A2.EO.1d**; builds on **A2.EO.3b** (4.2) and 5.1; prerequisite for
+> **A2.EO.1a/c** (5.3 --- a complex fraction *is* a division) and **A2.EI.4c** (5.6). Warm-up & exit
+> ticket each fit one page (blank+key); notes 4pp, activity 2pp (key 3pp --- extra page is the teacher
+> note), homework 2pp (key 3pp), cover 1pp; exit ticket includes an SOL-style MC item on
+> $\frac{x^2-25}{x^2+3x}\div\frac{x-5}{x+3}$ (distractors: restrictions off the answer / divisor's
+> numerator forgotten / wrong fraction flipped). `make -C unit05/lesson02 all` → EXIT 0 (student 11pp,
+> full 27pp).
+> **Next action: Lesson 5.3** --- adding & subtracting rational expressions and complex fractions
+> (A2.EO.1a/c).
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**

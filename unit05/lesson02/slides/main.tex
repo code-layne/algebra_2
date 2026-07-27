@@ -1,6 +1,11 @@
 %! Multiplying \& Dividing Rational Expressions — Unit 5, Lesson 5.2 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,246 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.2}\\[0.5cm]
     {\color{white}\bfseries\LARGE Multiplying \& Dividing Rational Expressions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Same expression. One disagreement.}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \[ Q(x)=\frac{x+1}{x-5}\div\frac{x-2}{x+3} \]
+      \[ R(x)=\frac{(x+1)(x+3)}{(x-5)(x-2)} \]
+      \vspace{-8pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $R$ is $Q$ after keep--change--flip.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{|l|c|c|c|c|}
+      \hline
+      $x$ & $0$ & $1$ & $2$ & $-3$ \\ \hline
+      $Q(x)$ & $\frac{3}{10}$ & $2$ & \textbf{undef.} & \textbf{undef.} \\ \hline
+      $R(x)$ & $\frac{3}{10}$ & $2$ & \textbf{undef.} & $0$ \\ \hline
+      \end{tabular}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{Today}
+    Yesterday, \textbf{cancelling} hid a restriction. Today, \textbf{flipping} hides a different one.
+  \end{block}
+\end{frame}
+
+% MULTIPLYING
+\begin{frame}[t, plain]
+  \forestheader{Multiplying: the rule is easy, the discipline is factoring}
+  \sectionlabel{Products}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \[ \frac{a}{b}\cdot\frac{c}{d}=\frac{a\,c}{b\,d}, \qquad b\neq0,\ d\neq0 \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $\dfrac{6}{35}\cdot\dfrac{25}{9}$: factor, divide out, \emph{then} multiply
+              $\Rightarrow \dfrac{10}{21}$.
+        \item Multiply first and you get $\dfrac{150}{315}$ --- and still have to reduce it.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Why it matters more with letters}
+        An expanded product \textbf{hides its own factors}. Unit 4 showed you what it costs to get
+        them back.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize \textbf{Factor everything first. Divide out. Multiply last --- and often not at
+      all.}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FOUR STEPS + ANCHOR
+\begin{frame}[t, plain]
+  \forestheader{Four steps --- now with two denominators}
+  \sectionlabel[goldacc]{Procedure}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}\setlength{\itemsep}{5pt}
+        \item \textbf{Factor} every numerator and denominator.
+        \item \textbf{List the restrictions} --- from \emph{both} original denominators.
+        \item \textbf{Divide out} across the whole product.
+        \item \textbf{Write} it, restrictions attached, still factored.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \begin{block}{The anchor}
+        \[ \frac{x^2-9}{x^2+2x-8}\cdot\frac{x+4}{x^2+3x} \]
+        \[ =\frac{(x-3)(x+3)}{(x+4)(x-2)}\cdot\frac{x+4}{x(x+3)}
+           =\frac{x-3}{x(x-2)} \]
+        \centering $x\neq 0,\;2,\;-3,\;-4$
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize Two of the four restrictions are invisible in the answer.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DIVIDING
+\begin{frame}[t, plain]
+  \forestheader{Dividing: keep, change, flip --- \emph{then} cancel}
+  \sectionlabel{Quotients}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \[ \frac{a}{b}\div\frac{c}{d}=\frac{a}{b}\cdot\frac{d}{c} \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Dividing by something $=$ multiplying by what undoes it, and
+              $\frac{c}{d}\cdot\frac{d}{c}=1$.
+        \item A fraction has a reciprocal \textbf{only when its numerator is nonzero}.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Cancelling across a $\div$ is illegal}
+        Wrong: $\dfrac{4}{3}\div\dfrac{5}{4}\to\dfrac{1}{3}\div\dfrac{5}{1}=\dfrac{1}{15}$ \\[3pt]
+        Right: $\dfrac{4}{3}\cdot\dfrac{4}{5}=\dfrac{16}{15}$
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize The $\div$ symbol is not a fraction bar. Until you flip, nothing is lined up.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE BIG IDEA
+\begin{frame}[t, plain]
+  \forestheader{Three sources of a restriction}
+  \sectionlabel{The big idea}
+  \begin{center}
+    \[ \frac{A}{B}\div\frac{C}{D} \]
+  \end{center}
+  \vspace{-4pt}
+  \begin{columns}[T]
+    \begin{column}{0.32\textwidth}
+      \begin{block}{1. $B\neq0$}
+        The first fraction must exist. \\[3pt]
+        {\footnotesize Visible before \emph{and} after.}
+      \end{block}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{2. $D\neq0$}
+        The divisor must exist. \\[3pt]
+        {\footnotesize Invisible \emph{after} the flip --- $D$ moves upstairs.}
+      \end{block}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{3. $C\neq0$}
+        You cannot divide by zero. \\[3pt]
+        {\footnotesize Invisible \emph{before} the flip --- $C$ is upstairs already.}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{center}
+    \textbf{Flipping trades one blind spot for another.} Read the restrictions off the problem as
+    written --- then add the divisor's numerator.
+  \end{center}
+\end{frame}
+
+% DIVISION ANCHOR
+\begin{frame}[t, plain]
+  \forestheader{The division anchor, all three sources}
+  \sectionlabel[goldacc]{Worked}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      \[ \frac{x^2-4}{x^2+7x+12}\div\frac{x^2+2x}{x+3} \]
+      \[ =\frac{(x-2)(x+2)}{(x+3)(x+4)}\cdot\frac{x+3}{x(x+2)}
+         =\frac{x-2}{x(x+4)} \]
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Where each one came from}
+        $x\neq-3,-4$ \; first denominator \\[2pt]
+        $x\neq-3$ \; divisor's denominator \\[2pt]
+        $x\neq0,-2$ \; divisor's \textbf{numerator}
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Final: $x\neq0,-2,-3,-4$. Only two of them are visible in the answer.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE PICTURE
+\begin{frame}[t, plain]
+  \forestheader{What the restrictions look like}
+  \sectionlabel{The picture}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-4}{5}{-5}{4}
+        \begin{scope}
+          \clip (-4,-5) rectangle (5,4);
+          \draw[very thick, forest] (-4,-5)--(5,4);
+        \end{scope}
+        \draw[forest, very thick, fill=white] (0,-1) circle (5pt);
+        \draw[forest, very thick, fill=white] (-1,-2) circle (5pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \[ P(x)=\frac{x^2-1}{x}\cdot\frac{x}{x+1}=x-1 \]
+      \begin{block}{One hole per denominator}
+        $x\neq0$ (first fraction) $\Rightarrow$ hole at $(0,-1)$ \\[3pt]
+        $x\neq-1$ (second fraction) $\Rightarrow$ hole at $(-1,-2)$
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize The answer $x-1$ has no denominator left to show them --- and they are still
+      excluded.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ERROR GALLERY
+\begin{frame}[t, plain]
+  \forestheader{The four ways to lose a point today}
+  \sectionlabel{Watch out}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Multiplying out first}
+        You get a quartic nobody wants to re-factor. Factor \emph{first}.
+      \end{block}
+      \vspace{3pt}
+      \begin{block}{Cancelling before flipping}
+        $\dfrac{x}{4}\div\dfrac{5}{x}=\dfrac{x^2}{20}$, not $\dfrac{1}{20}$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Flipping the wrong fraction}
+        Keep the \emph{first}. Flip the \emph{divisor}.
+      \end{block}
+      \vspace{3pt}
+      \begin{block}{Missing the divisor's numerator}
+        Today's signature error --- and the restriction nothing in the answer will remind you of.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where this goes}
+  \sectionlabel{Connections}
+  \textbf{Today:} factor, flip, divide out --- and know all three places a restriction can come
+  from.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{5.3} Adding \& subtracting --- and a \emph{complex fraction}, which is just
+          combine-then-divide, i.e.\ today.
+    \item \textbf{5.5} Graphing from the equation: every restriction you list is a hole or a wall.
+    \item \textbf{5.6} Solving rational equations --- an extraneous solution is a restriction that
+          sneaked back in.
+  \end{itemize}
+  \vspace{6pt}
+  \begin{center}
+    \textbf{Flipping trades one blind spot for another.} Say it once more on the way out.
+  \end{center}
 \end{frame}
 
 \end{document}
