@@ -9,8 +9,9 @@
 > authored & building, and the **unit tests are now authored, built, and published**.
 > **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
 > locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
-> `test_keys/` are laid down. **Lessons 6.0, 6.1, and 6.2 are authored & building (2026-07-27)**;
-> lessons 6.3–6.7 and the unit tests are still skeletons.
+> `test_keys/` are laid down.
+> **Lessons 6.0, 6.1, 6.2, and 6.3 are authored & building (2026-07-27)**;
+> lessons 6.4–6.7 and the unit tests are still skeletons.
 > **Unit 7 (Exponential Functions): map confirmed & unit scaffolded 2026-07-27**, locked at
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
@@ -23,11 +24,10 @@
 > already treats 7.3. Three Unit 7 ↔ Unit 8 collisions were found and **resolved**: `A2.ST.2` is
 > Unit 7's alone (7.5), since the standard never names logarithmic; $\ln$ lands in 8.5; and
 > no-standard content is now handled the same way in both units. Full rationale in the Unit 8 status
-> block in §4.
-> **Next action: author Lesson 6.3 (multiplying & dividing radicals; rationalizing with
-> conjugates)**, then proceed 6.4 → 6.7 in order, then the Unit 6 tests, then Unit 7 at Lesson 7.0.
-> Unit 8 was opened out of order at the user's request; its remaining lessons (8.1–8.6) and unit
-> tests are still skeletons.
+> block in §4. Unit 8 was opened out of order at the user's request; its remaining lessons (8.1–8.6)
+> and unit tests are still skeletons.
+> **Next action: author Lesson 6.4 (graphing radical functions & transformations)**, then proceed
+> 6.5 → 6.7 in order, then the Unit 6 tests, then begin Unit 7 at Lesson 7.0.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -60,7 +60,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.2 done) |
+| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.3 done) |
 | 7 | Exponential Functions | Exponential | 6 | **Scaffolded** (map confirmed) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
@@ -1149,6 +1149,55 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > 2pp (key 3pp); exit ticket includes an SOL-style MC item ($\sqrt{50}+\sqrt{32}$; distractors =
 > added radicands, simplified-then-added-radicands, and multiplied coefficients).
 > `make -C unit06/lesson02 all` → EXIT 0 (student 12pp, full 28pp); `make -C unit06 all` → EXIT 0.
+> **Lesson 6.3 authored & builds (2026-07-27):** all components + keys + 10-slide deck done. The
+> lesson runs 6.2's product property **forwards**, and everything on the page is a consequence of a
+> single line planted in Warm-Up item 2 --- $\sqrt a\cdot\sqrt a=a$, **a square root times itself
+> erases the radical**. The Hook is the honest historical question rather than a puzzle: two
+> students hand in $\frac{1}{\sqrt2}$ and $\frac{\sqrt2}{2}$, both are marked correct, both are
+> $0.7071$, and the class is asked *why every textbook insists on the second* --- answered by
+> ``it is 1850 and you must do this by hand: $1\div1.414214$ or $1.414214\div2$?'' That makes
+> simplest-form condition 3 a fact about arithmetic instead of a decree, which matters because 6.2
+> deliberately deferred it. Multiplication is taught with the emphasis on the **last** step, using
+> products where neither factor simplifies alone but the product does ($\sqrt6\cdot\sqrt{10}
+> =2\sqrt{15}$), so ``finish it'' is discovered rather than nagged; distributing and FOIL are
+> explicitly Algebra 1 with the radical playing the variable, and $\left(\sqrt7+\sqrt2\right)^{2}
+> =9+2\sqrt{14}$ is killed in advance by Warm-Up item 1(c)'s $(x+4)^{2}$. The intellectual center is
+> **conjugates**, and they are *earned rather than announced*: Warm-Up 1(b) makes students say
+> ``same terms, opposite middle sign'' about $(x+4)(x-4)$ before the word exists, the notes then
+> work $\left(4+\sqrt3\right)\left(4-\sqrt3\right)$ term by term until $13$ appears and a student
+> supplies the word *rational*, and $\left(4+\sqrt3\right)^{2}=19+8\sqrt3$ is placed immediately
+> beside it --- same two numbers, radical survives. That contrast is the argument, and it is also
+> the exit ticket's hardest distractor. A deliberate structural callback ties it to **Lesson 3.4**:
+> $(a+bi)(a-bi)=a^{2}+b^{2}$ was the same move in a different number system, with the sign
+> difference traced entirely to $i^{2}=-1$ versus $\left(\sqrt b\right)^{2}=+b$. Rationalizing is
+> justified *before* it is performed ($\frac{\sqrt b}{\sqrt b}=1$, pre-assembled in Warm-Up item 3's
+> $\frac34=\frac{15}{20}$), and the higher-index case $\frac{1}{\sqrt[3]2}$ needing $\sqrt[3]4$ is
+> 6.2's ``the index sets the group size'' read forwards --- the same misconception that made
+> students call $\sqrt[3]9$ unfinished. Tier E has three parts: rationalizing $\frac{1}{3-\sqrt5}$
+> **three ways, two of which fail**, so the conjugate is ruled *in* rather than announced, plus the
+> general proof and the 3.4 sign question; **rationalizing the numerator** ---
+> $\frac{\sqrt{x+9}-3}{x}$ is $\frac00$ at $x=0$, becomes $\frac{1}{\sqrt{x+9}+3}$, and a table at
+> $x=7,1,0.1,0.01$ closes on $\frac16$, a genuine calculus limit computed with today's tool; and
+> higher-index rationalizing generalized, then re-derived with rational exponents. The homework
+> extension is the **golden ratio** $\varphi=\frac{1+\sqrt5}{2}$, and unlike the unit's earlier
+> models (free-fall, Kepler, Kleiber, the pendulum) rationalizing here is not tidying-up but the
+> *only* way to see the result: the table's startling $1.6180/0.6180/2.6180$ is then proved by the
+> conjugate ($\frac1\varphi=\varphi-1$, $\varphi^{2}=\varphi+1$), and a pre-drawn TikZ golden
+> rectangle closes it --- remove the $1\times1$ square and the leftover has ratio
+> $\frac{1}{\varphi-1}=\frac{2}{\sqrt5-1}=\varphi$, so the cut repeats forever. Homework item 2's
+> follow-up is the sharpest diagnostic in the lesson: two of six products are conjugate pairs and
+> *predictable in advance*, while a third, $\sqrt2\left(\sqrt8+\sqrt{18}\right)=10$, is rational
+> only by luck of the numbers --- a student who cannot separate those has learned a pattern instead
+> of a mechanism. Standards: **2023 VA SOL A2.EO.2b** (governing --- the *multiplicative* half,
+> including rationalizing; 6.2 carried the additive half, which is why A2.EO.2b splits across the
+> pair), **A2.EO.2a** used continuously since every answer returns to simplest form (condition 3
+> now closed), and **A2.EO.2c** in the mismatched-index case $\sqrt2\cdot\sqrt[3]2=2^{5/6}$ and the
+> two ``two roads'' items where rationalizing is shown to be $5^{-1/3}=\frac{5^{2/3}}{5}$;
+> structurally revisits **A2.EO.4c** (3.4 complex conjugates). Warm-up & exit ticket each fit one
+> page (blank+key); notes 4pp (key 5pp), activity 4pp (key 5pp), homework 3pp (key 4pp); exit ticket
+> includes an SOL-style MC item ($\frac{4}{2-\sqrt3}$; distractors = the $a^{2}-b^{2}$ sign flip,
+> multiplying by the same binomial, and cancelling the $4$ against the $2$).
+> `make -C unit06/lesson03 all` → EXIT 0 (student 14pp, full 32pp); `make -C unit06 all` → EXIT 0.
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$
@@ -1230,27 +1279,20 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 
 ### Unit 8 — Logarithmic Functions
 > **Status (scaffolded 2026-07-27; Lesson 8.0 authored & building):** locked at
-> **7 lessons (8.0–8.6)**. The unit was opened ahead of Units 6–7 at the user's request. So far only
-> `unit08/lesson00` has been scaffolded; `lesson01`–`lesson06` still need `new_lesson.py` runs. The
-> unit assessments were laid down with the unit (`tests/{practice_test,actual_test}`, `test_keys/`,
-> `sample_test{,_key}/`) and are still skeletons. **Lesson 8.0 is
-> fully authored**: lesson plan, cover, warm-up, guided notes, activity, exit ticket, homework, a
-> 11-frame slide deck, and all five answer keys. `make -C unit08/lesson00 all` → EXIT 0
-> (`lesson00_student.pdf` 13 pp, `lesson00_full.pdf` 31 pp); the warm-up and exit ticket each fit
-> **exactly one page** in blank *and* key, and notes/notes_key paginate identically at 5 pp. The §7
-> vocab-box paragraph-break fix is applied in `notes/` and `notes_key/`. The unit tests and Lessons
-> 8.1–8.6 are still to be scaffolded/authored.
+> **7 lessons (8.0–8.6)**. The unit was opened ahead of Units 6–7 at the user's request, so only
+> `unit08/lesson00` has been scaffolded — `lesson01`–`lesson06` still need `new_lesson.py` runs, and
+> the unit assessments laid down with the unit (`tests/{practice_test,actual_test}`, `test_keys/`,
+> `sample_test{,_key}/`) are still skeletons. **Lesson 8.0 is fully authored**: lesson plan, cover,
+> warm-up, guided notes, activity, exit ticket, homework, an 11-frame slide deck, and all five answer
+> keys. `make -C unit08/lesson00 all` → EXIT 0 (`lesson00_student.pdf` 13 pp, `lesson00_full.pdf`
+> 31 pp); the warm-up and exit ticket each fit **exactly one page** in blank *and* key, and
+> notes/notes_key paginate identically at 5 pp. The §7 vocab-box paragraph-break fix is applied in
+> `notes/` and `notes_key/`.
 >
-> **Authoring note for the rest of the unit — the TikZ logarithm macro.** pgfmath has no `log_b`, so
-> every logarithmic curve in 8.0 is drawn by *parameterizing on $y$* rather than $x$, which also
-> gives a perfectly smooth curve near the asymptote:
-> ```latex
-> % y = log_b(x-h) + k   <=>   x = b^(y-k) + h.   Args: {b}{h}{k}{ymin}{ymax}
-> \newcommand{\logcurve}[5]{\draw[very thick, forest, domain=#4:#5, samples=120, smooth]
->   plot ({pow(#1,\x-(#3))+(#2)},{\x});}
-> ```
-> Reuse it verbatim in 8.1–8.6. Asymptotes follow the Unit 5 convention:
-> `\draw[navy, dashed, semithick]`.
+> **Note for whoever authors 8.1–8.6:** because 8.0 landed before Unit 7, its warm-up and hook lean
+> on Unit 7 material (the $y=b^x$ parent, its range, and its horizontal asymptote) that is not
+> written yet. Re-check those references once 7.0–7.5 are authored.
+>
 > The map moved twice in one day. It was first cut from a 6-lesson sketch to 5 after a standards
 > audit of `spec/algebra2-vdoe-sol.pdf` found **logarithms in only two 2023 VA SOL standards** —
 > `A2.F.1` (a/b/c/e) and `A2.F.2` (a–h, i/j) — with **no `A2.EO` standard for log properties and
@@ -1280,6 +1322,17 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > cap, so multi-step transformations are fair game in that direction only. *(Unit 7 recorded the
 > identical constraint independently — it binds both units.)*
 > **Authoring note:** apply the §7 vocab-box paragraph-break fix in every notes/notes_key.
+>
+> **Authoring note — the TikZ logarithm macro (established in 8.0).** pgfmath has no `log_b`, so
+> every logarithmic curve is drawn by *parameterizing on $y$* rather than $x$, which also renders
+> smoothly right up to the asymptote:
+> ```latex
+> % y = log_b(x-h) + k   <=>   x = b^(y-k) + h.   Args: {b}{h}{k}{ymin}{ymax}
+> \newcommand{\logcurve}[5]{\draw[very thick, forest, domain=#4:#5, samples=120, smooth]
+>   plot ({pow(#1,\x-(#3))+(#2)},{\x});}
+> ```
+> Reuse it verbatim in 8.1–8.6. Asymptotes follow the Unit 5 convention:
+> `\draw[navy, dashed, semithick]`.
 
 - **8.0** Characteristics of logarithmic functions ***(authored & building 2026-07-27)*** *(the unit's only ● spine row — **inverse of
   exponential, domain/range swap**. Built by reflecting Unit 7's $y=b^x$ over $y=x$: domain $x>0$
