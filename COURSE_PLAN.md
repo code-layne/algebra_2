@@ -10,8 +10,8 @@
 > **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
 > locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
 > `test_keys/` are laid down.
-> **Lessons 6.0, 6.1, 6.2, and 6.3 are authored & building (2026-07-27)**;
-> lessons 6.4–6.7 and the unit tests are still skeletons.
+> **Lessons 6.0, 6.1, 6.2, 6.3, and 6.4 are authored & building (2026-07-27)**;
+> lessons 6.5–6.7 and the unit tests are still skeletons.
 > **Unit 7 (Exponential Functions): map confirmed & unit scaffolded 2026-07-27**, locked at
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
@@ -27,14 +27,17 @@
 > no-standard content is now handled the same way in both units. Full rationale in the Unit 8 status
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Three units are now open at once.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
-> sequence (2026-07-27), so **Unit 6 lessons 6.4–6.7 and the Unit 6 tests remain the largest
-> outstanding block**. **Next actions, in priority order: (1) return to Unit 6 and author 6.4**
-> (graphing radical functions & transformations), then 6.5 → 6.7 in order and the Unit 6 tests;
-> **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation), which
-> Lesson 7.0's homework and exit ticket already set up explicitly; **(3) continue Unit 8 at Lesson
-> 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that 7.1–7.5 are a
-> prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger and 8.5 needs
-> the $e$ introduced there — so Unit 7 should not fall far behind Unit 8.
+> sequence (2026-07-27), so **Unit 6 lessons 6.5–6.7 and the Unit 6 tests remain the largest
+> outstanding block**. **Next actions, in priority order: (1) stay in Unit 6 and author 6.5**
+> (solving radical equations & extraneous solutions), then 6.6 → 6.7 in order and the Unit 6 tests —
+> Lesson 6.4's homework and slides both hand off to 6.5 explicitly (isolate → raise to the $n$th
+> power → *always check*, with extraneous roots framed as the structural echo of Unit 5's excluded
+> values, and the graphical reading as "where 6.4's graphs cross a horizontal line"), so keep that
+> framing; **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
+> which Lesson 7.0's homework and exit ticket already set up explicitly; **(3) continue Unit 8 at
+> Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
+> 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
+> and 8.5 needs the $e$ introduced there — so Unit 7 should not fall far behind Unit 8.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -67,7 +70,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.3 done) |
+| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.4 done) |
 | 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0 done) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
@@ -1205,6 +1208,57 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > includes an SOL-style MC item ($\frac{4}{2-\sqrt3}$; distractors = the $a^{2}-b^{2}$ sign flip,
 > multiplying by the same binomial, and cancelling the $4$ against the $2$).
 > `make -C unit06/lesson03 all` → EXIT 0 (student 14pp, full 32pp); `make -C unit06 all` → EXIT 0.
+> **Lesson 6.4 authored & builds (2026-07-27):** all components + keys + 11-slide deck done. The
+> lesson has one sentence and one payoff. The sentence is **find one point and the whole graph
+> follows** — written as $y=a\sqrt{x-h}+k$, a radical graph is the parent moved so its **anchor
+> point** sits at $(h,k)$, and domain $[h,\infty)$ and range $[k,\infty)$ both *start there*. The
+> Hook makes that a discovery rather than a rule: three pre-drawn graphs ($\sqrt x$, $\sqrt{x-3}$,
+> $\sqrt x-3$) are matched to their equations, and then the real question — *in 6.0 you found the
+> domain of $\sqrt{x-3}$ by solving $x-3\ge0$; look at the middle graph, where could you have just
+> **read** it?* The answer is the sentence the whole unit has been waiting for: **sliding the graph
+> right by 3 and refusing every input below 3 are the same event**, so from today the domain stops
+> being something students compute and becomes something they look at. Warm-Up item 2 pre-assembles
+> it by making them solve the inequality and write the endpoint in the same row. Three further
+> beats: **$a$ never moves the anchor** (at the anchor the radical is $0$, and $a\cdot0=0$ whatever
+> $a$ is), with the consequence students reliably miss — a *negative* $a$ turns the arm over, so the
+> anchor becomes an absolute **maximum** and the range flips to $(-\infty,k]$; the **cube root**
+> case, where $(h,k)$ is still the anchor but an **inflection point** rather than an endpoint,
+> because an endpoint exists only where inputs are forbidden and an odd index forbids nothing; and
+> the SOL's harder direction, **graph → equation** (**A2.F.1b**), taught with an explicit order —
+> *the anchor is free, take it first* — since reaching for $a$ first leaves two unknowns in one
+> equation. Section 5 carries the payoff, and it is the standard's own fourth transformation.
+> **A2.F.1b/c name $f(kx)$**, and for a radical $f(kx)$ *collapses into* $kf(x)$: the product
+> property (6.2) lets the constant walk out from under the radical, so $\sqrt{9x}$ and $3\sqrt x$
+> are one graph with two names and **a radical has only one size dial**. That is voted on in Warm-Up
+> item 3 (deliberately left unresolved on the board), proved in one line with rational exponents
+> (6.1) in Tier E — $(kx)^{1/n}=k^{1/n}x^{1/n}$, stretch factor $\sqrt[n]{k}$ — and then immediately
+> **fenced**: on $y=\sqrt x+1$, squeezing the input gives $3\sqrt x+1$ but stretching the output
+> gives $3\sqrt x+3$, a constant gap of $2$ at every $x$, because the product property has nothing
+> to say about a term sitting *outside* the radical. The same section carries the lesson's
+> most-assessed procedural habit, **factor before you read $h$**: $\sqrt{4x-8}=2\sqrt{x-2}$ starts
+> at $x=2$, not $8$ — which is the exit ticket's MC stem. Anchor $f(x)=\sqrt{x-3}+1$ grows into
+> $2\sqrt{x-2}$ and $3\sqrt{x+2}-1$ across the notes; cube root anchor $g(x)=\sqrt[3]{x+1}-2$
+> (inflection $(-1,-2)$, zero $(7,0)$, $y$-int $(0,-1)$). The **A2.F.1e** compare-and-contrast is
+> Section 3's reflection pair: $-\sqrt[3]{x}$ and $\sqrt[3]{-x}$ are *one* curve (6.0's origin
+> symmetry doing work) while $-\sqrt x$ and $\sqrt{-x}$ do not even share a domain — the homework's
+> item 6 makes students explain both at once using *index* and *symmetry*. The homework extension is
+> the **horizon model** $d(h)=\sqrt{1.5h}$ miles, table $h=6,24,54,96,150$ chosen so every distance
+> is a whole number ($3,6,9,12,15$); unlike the unit's earlier models the payoff is a
+> *transformation* — $\sqrt{1.5h}=\sqrt{1.5}\sqrt h\approx1.22\sqrt h$, so a real navigation formula
+> is nothing but the parent with a single vertical stretch — closing on a sailor climbing a mast
+> above a 20-ft deck, $D(h)=\sqrt{1.5(h+20)}$, whose anchor $(-20,0)$ **is not a place anyone can
+> stand**: context domain $h\ge0$, usable graph begins at $D(0)=\sqrt{30}\approx5.5$ miles.
+> Standards: **2023 VA SOL A2.F.1c** (governing — graph from the equation, all four named
+> transformations) and **A2.F.1b** (write the equation from a graph), with **A2.F.2a** used
+> continuously (domain/range/zeros/intercepts, now read off the anchor) and **A2.F.1e** in the
+> reflection contrast; revisits **A2.F.1a** (6.0), **A2.EO.2a** (6.2's product property — the reason
+> $f(kx)$ collapses), and **A2.EO.2c** (6.1's rational exponents, Tier E). All graphs pre-drawn via
+> `plot`+`\clip`; no sketch-from-scratch. Warm-up & exit ticket each fit one page (blank+key);
+> notes 5pp (key 6pp), activity 3pp (key 4pp), homework 3pp (key 4pp). Exit ticket includes an
+> SOL-style MC item (anchor of $y=3\sqrt{2x-10}+1$; distractors = not factoring out the $2$,
+> factoring but keeping the constant's sign, and reversing $k$ as though outside numbers flipped
+> too). `make -C unit06/lesson04 all` → EXIT 0 (student 14pp, full 32pp); `make -C unit06 all` →
+> EXIT 0.
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$

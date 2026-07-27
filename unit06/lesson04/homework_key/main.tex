@@ -3,17 +3,230 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
+% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
+\newcommand{\cbrtplot}[5]{%
+  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
+    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
+  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
+    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.4}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Homework verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Homework --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Practice}
+Write every domain and range in \textbf{interval notation}. Show how you found each answer.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{From the equation only.} No graphing --- read each row off the transformation form.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Parent} & \textbf{Transformations, in order} & \textbf{Anchor point} & \textbf{Domain \& range} \\
+    \hline
+    $\sqrt{x-5}+2$ & \ans{$\sqrt{x}$} & \ans{right 5, up 2} & \ans{$(5,2)$} & \ans{$[5,\infty)$; $[2,\infty)$} \\
+    $\sqrt[3]{x+3}-1$ & \ans{$\sqrt[3]{x}$} & \ans{left 3, down 1} & \ans{$(-3,-1)$} & \ans{all reals; all reals} \\
+    $-4\sqrt{x}+2$ & \ans{$\sqrt{x}$} & \ans{stretch by 4, reflect over the $x$-axis, up 2} & \ans{$(0,2)$} & \ans{$[0,\infty)$; $(-\infty,2]$} \\
+    $\tfrac12\sqrt{x+6}-3$ & \ans{$\sqrt{x}$} & \ans{left 6, compress by $\tfrac12$, down 3} & \ans{$(-6,-3)$} & \ans{$[-6,\infty)$; $[-3,\infty)$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+  \item \textbf{Read the graph.} The graph is $m(x)=-\sqrt{x+4}+3$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-6}{13}{-3}{5}
+      \begin{scope}
+        \clip (-6,-3) rectangle (13,5);
+        \draw[very thick, forest, domain=-4:13, samples=110, smooth] plot (\x,{3-sqrt((\x)+4)});
+      \end{scope}
+      \fill[forest] (-4,3) circle (4pt) node[above right, font=\scriptsize]{$(-4,3)$};
+      \fill[charcoal] (0,1) circle (2.6pt) node[above right, font=\scriptsize]{$(0,1)$};
+      \fill[charcoal] (5,0) circle (2.6pt) node[above right, font=\scriptsize]{$(5,0)$};
+      \fill[charcoal] (12,-1) circle (2.6pt);
+    \end{tikzpicture}
+    \end{center}
+    $a=\mans{-1}$, \; $h=\mans{-4}$, \; $k=\mans{3}$ \quad Anchor: \ans{$(-4,3)$} \\[3pt]
+    Domain: \ans{$[-4,\infty)$} \quad Range: \ans{$(-\infty,3]$} \\[3pt]
+    $x$-intercept: \ans{$(5,0)$} \quad $y$-intercept: \ans{$(0,1)$} \\[3pt]
+    Increasing or decreasing on its domain? \ans{decreasing} \\[3pt]
+    Absolute \ans{maximum} of \ans{$3$} at $x=\mans{-4}$; \; no absolute \ans{minimum} \\[3pt]
+    End behavior: as $x\to+\infty$, $m(x)\to\mans{-\infty}$. \; As $x\to-\infty$: \ans{the graph
+    stops at $x=-4$}
+
+  \item \textbf{Write the equation --- square root.} The graph below has the form
+        $y=a\sqrt{x-h}+k$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-5}{11}{-2}{6}
+      \begin{scope}
+        \clip (-5,-2) rectangle (11,6);
+        \draw[very thick, forest, domain=-3:11, samples=110, smooth] plot (\x,{4-sqrt((\x)+3)});
+      \end{scope}
+      \fill[forest] (-3,4) circle (4pt) node[above right, font=\scriptsize]{$(-3,4)$};
+      \fill[charcoal] (1,2) circle (2.6pt) node[above right, font=\scriptsize]{$(1,2)$};
+      \fill[charcoal] (6,1) circle (2.6pt) node[above right, font=\scriptsize]{$(6,1)$};
+    \end{tikzpicture}
+    \end{center}
+    Anchor \ans{$(-3,4)$} $\Rightarrow$ $h=\mans{-3}$, $k=\mans{4}$. \; Substitute $(1,2)$:
+    $a=\mans{-1}$. \\[3pt]
+    \textbf{Equation:} $y=$ \ans{$-\sqrt{x+3}+4$} \quad Check it against $(6,1)$:
+    \ans{$-\sqrt{9}+4=1$ \checkmark}
+
+    \vspace{2pt}
+    {\small\emph{Work for $a$:} $2=a\sqrt{1+3}+4 \Rightarrow 2=2a+4 \Rightarrow -2=2a \Rightarrow
+    a=-1$. The graph falls, so a negative $a$ was expected before any algebra.}
+
+  \item \textbf{Write the equation --- cube root.} The graph below has the form
+        $y=a\sqrt[3]{x-h}+k$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.40]
+      \lgrid{-8}{10}{-6}{4}
+      \begin{scope}
+        \clip (-8,-6) rectangle (10,4);
+        \cbrtplot{2}{1}{-1}{-8}{10}
+      \end{scope}
+      \fill[forest] (1,-1) circle (5pt) node[right, font=\scriptsize]{$(1,-1)$};
+      \fill[charcoal] (9,3) circle (3pt) node[below right, font=\scriptsize]{$(9,3)$};
+      \fill[charcoal] (-7,-5) circle (3pt) node[above right, font=\scriptsize]{$(-7,-5)$};
+    \end{tikzpicture}
+    \end{center}
+    Inflection point \ans{$(1,-1)$} $\Rightarrow$ $h=\mans{1}$, $k=\mans{-1}$. \;
+    Substitute $(9,3)$: $a=\mans{2}$. \\[3pt]
+    \textbf{Equation:} $y=$ \ans{$2\sqrt[3]{x-1}-1$} \\[3pt]
+    Why does this function have \emph{no} endpoint, even though it has an $h$ and a $k$?
+    \ans{Because the index is odd, so no input is forbidden --- nothing stops the graph.}
+
+  \item \textbf{Factor first.} Rewrite each in the form $a\sqrt[n]{x-h}+k$, then give the anchor
+        point and the domain.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Rewritten} & \textbf{Anchor} & \textbf{Domain} \\
+    \hline
+    $y=\sqrt{25x}$ & \ans{$5\sqrt{x}$} & \ans{$(0,0)$} & \ans{$[0,\infty)$} \\
+    $y=\sqrt{16x-32}$ & \ans{$4\sqrt{x-2}$} & \ans{$(2,0)$} & \ans{$[2,\infty)$} \\
+    $y=\sqrt[3]{27x-27}$ & \ans{$3\sqrt[3]{x-1}$} & \ans{$(1,0)$} & \ans{all reals} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+  \item \textbf{Explain.} The graphs of $y=-\sqrt{x}$ and $y=\sqrt{-x}$ are \emph{different}. The
+        graphs of $y=-\sqrt[3]{x}$ and $y=\sqrt[3]{-x}$ are \emph{the same}. Explain both facts at
+        once, using the words \textbf{index} and \textbf{symmetry}.
+        \ansline{Both pairs ask the same question --- flip the outputs, or flip the inputs? --- and
+        the \textbf{index} decides whether the two flips agree. A square root has an \emph{even}
+        index, so it accepts only $x\ge0$: $-\sqrt{x}$ lives to the right of the $y$-axis and hangs
+        below the $x$-axis, while $\sqrt{-x}$ accepts only $x\le0$ and so lives to the \emph{left}
+        and above. They do not even share a domain, let alone a graph. A cube root has an
+        \emph{odd} index, which is exactly the statement that $\sqrt[3]{-x}=-\sqrt[3]{x}$ --- the
+        origin \textbf{symmetry} of Lesson 6.0, $f(-x)=-f(x)$. Moving the minus sign from the inside
+        to the outside changes nothing, so the vertical flip and the horizontal flip produce one
+        curve. The square root has no symmetry to trade on, so its two flips stay apart.}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{How far can you see?} On a clear day, from an eye height of $h$ feet above the water, the
+distance to the horizon is about
+\[
+  d(h) = \sqrt{1.5h} \ \text{ miles.}
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$h$ (feet of eye height) & $6$ & $24$ & $54$ & $96$ & $150$ \\ \hline
+$d(h)$ (miles) & $3$ & $6$ & $9$ & $12$ & $15$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Give the domain of $d$ from the radicand. Does the context restrict it any further?
+        \ansline{$1.5h\ge0$ gives $h\ge0$, so $[0,\infty)$ --- and the context agrees exactly, since
+        a negative eye height is meaningless. (In practice it also has a sensible upper limit; the
+        formula assumes you are close enough to the surface for the curvature model to hold.)}
+  \item The graph of $d$ has its anchor point at $(0,0)$. What does that point mean for a swimmer
+        with their eyes right at water level? \ansline{Eye height $0$ gives viewing distance $0$:
+        with your eyes exactly at the surface the horizon is at your eyes, and you can see no
+        distance at all. Every inch you rise buys you some view --- and the first inches buy the
+        most, because the graph is steepest at the anchor.}
+  \item From the table: going from $h=6$ to $h=24$ multiplies the eye height by $4$ but multiplies
+        the viewing distance by only $2$. Use the shape of a square root graph to explain why.
+        \ansline{A square root grows like the $\frac12$ power, so multiplying the input by $4$
+        multiplies the output by $\sqrt4=2$. On the graph that is the flattening: each extra foot of
+        height adds less distance than the foot before it. To \emph{double} your view you must
+        \emph{quadruple} your height --- $6\to24$, then $24\to96$, which the table confirms
+        ($6\to12$ miles).}
+  \item Use the product property to rewrite $d(h)=\sqrt{1.5h}$ in the form $a\sqrt{h}$, giving $a$ to
+        two decimal places. Then finish this sentence: \emph{the horizon formula is just the parent
+        $y=\sqrt{h}$ with a single \underline{\hspace{2.4cm}} applied to it.}
+        \ansline{$\sqrt{1.5h}=\sqrt{1.5}\cdot\sqrt{h}\approx 1.22\sqrt{h}$ --- so the horizon formula
+        is the parent $y=\sqrt h$ with a single \textbf{vertical stretch} (by about $1.22$) applied
+        to it. No shift, no reflection: same anchor, same domain, same shape, just scaled.}
+  \item A sailor climbs $h$ feet up the mast of a ship whose deck already sits $20$ feet above the
+        water, so their eye height above the water is $h+20$ and the formula becomes
+        $D(h)=\sqrt{1.5(h+20)}$. Describe how the graph of $D$ differs from the graph of $d$, and
+        give the anchor point of $D$. \ansline{$D$ is $d$ shifted $20$ units to the \emph{left}
+        (the $+20$ is inside, so it moves the graph the opposite way). Its anchor point is
+        $(-20,0)$. Nothing else changes --- the stretch of $\approx1.22$ and the shape are the
+        same.}
+  \item Part (e)'s anchor point is not a place any sailor can stand. Explain why, and state the
+        domain that the \emph{context} actually allows --- then give $D(0)$ and say what it means.
+        \ansline{$h=-20$ would mean climbing $20$ feet \emph{below} the deck --- down to the
+        waterline. Algebra allows it; the mast does not. The context domain is $h\ge0$, so the
+        usable part of the graph starts at $h=0$, well to the right of the anchor.
+        $D(0)=\sqrt{1.5(20)}=\sqrt{30}\approx5.5$ miles: standing on the deck without climbing at
+        all, the sailor already sees about $5.5$ miles. \emph{An anchor point can sit outside the
+        domain a situation allows --- read the context, not only the equation.}}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 6.5: Solving Radical Equations \& Extraneous Solutions.} Today you
+turned an equation into a graph and a graph back into an equation. Next you will \emph{solve}: given
+$\sqrt{x+4}-1=3$, find the $x$ that makes it true --- by isolating the radical and raising both sides
+to the $n$th power. There is a catch, and it is the same catch that produced excluded values in Unit
+5: squaring destroys sign information, so the answer you get out may be one the original equation
+never accepted. Every solution has to be checked, every time. Graphically, you will be finding where
+today's graphs cross a horizontal line.
+\end{spiralbox}
+
+\begin{teachernote}
+\small
+\textbf{Item 1} is the whole lesson in twenty blanks and should take five minutes. The row that
+separates understanding from copying is $-4\sqrt{x}+2$: students who write the range as
+$[2,\infty)$ have found the anchor without noticing that a negative $a$ turns the arm --- and
+therefore the range --- upside down. \textbf{Item 2} is deliberately the same shape, read off a
+picture instead, so the two can be marked against each other.
+
+\textbf{Items 3 and 4 are the SOL's harder direction} (\textbf{A2.F.1b}). Both are set up so the sign
+of $a$ can be predicted before any algebra: item 3's graph falls, so $a<0$. Students who substitute
+first and get $a=-1$ ``by surprise'' have not yet connected the coefficient to the picture. Item 4's
+cube root reinforces that the anchor works identically even when it is not an endpoint.
+
+\textbf{Item 6 is the conceptual item} and is worth the most discussion time. A complete answer must
+do more than say ``cube roots are odd'' --- it has to connect $\sqrt[3]{-x}=-\sqrt[3]{x}$ to why the
+two square-root graphs cannot possibly coincide (they do not share a domain). Accept any wording
+that gets both halves.
+
+\textbf{The extension is the unit's fifth model} (after free-fall, Kepler, Kleiber, the pendulum, and
+the golden ratio) and the first where the payoff is a \emph{transformation} rather than a value. Part
+(d) is the point of the whole thing: a real formula from navigation turns out to be nothing but the
+parent square root with one vertical stretch, which is what today's lesson claims all radical
+functions are. Part (f) is the sharpest item --- an anchor point that exists algebraically but not
+physically. Students who answered part (a) thoughtfully will see it immediately.
+\end{teachernote}
 
 \end{document}

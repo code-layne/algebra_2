@@ -3,17 +3,240 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
+% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
+\newcommand{\cbrtplot}[5]{%
+  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
+    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
+  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
+    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.4}{Group Activity --- Answer Key}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Group Activity verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Group Activity --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Follow the Anchor.} Every radical graph is built around one point. Find it, and the
+domain, the range, and the direction of the arm all come free. With your partner, work each problem
+\emph{and} say out loud which part of the equation produced each answer. Write every domain and
+range in \textbf{interval notation}.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+The solid graph is $r(x)=\sqrt{x-2}+1$. The dashed graph is the parent $y=\sqrt{x}$, shown so you
+can see what moved.
+\begin{center}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-2}{13}{-2}{6}
+  \begin{scope}
+    \clip (-2,-2) rectangle (13,6);
+    \draw[very thick, slate, dashed, domain=0:13, samples=100, smooth] plot (\x,{sqrt(\x)});
+    \draw[very thick, forest, domain=2:13, samples=100, smooth] plot (\x,{sqrt((\x)-2)+1});
+  \end{scope}
+  \fill[slate] (0,0) circle (3.4pt);
+  \fill[forest] (2,1) circle (4pt) node[left, font=\scriptsize]{$(2,1)$};
+  \fill[charcoal] (3,2) circle (2.6pt);
+  \fill[charcoal] (6,3) circle (2.6pt) node[above left, font=\scriptsize]{$(6,3)$};
+  \fill[charcoal] (11,4) circle (2.6pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item Compare $r(x)=\sqrt{x-2}+1$ with the parent $y=\sqrt{x}$. \\
+        $h=\mans{2}$ \quad $k=\mans{1}$ \quad so the graph moved right \ans{2}
+        and up \ans{1}.
+  \item The \textbf{anchor point} (for a square root, the endpoint) is \ans{$(2,1)$}. \\
+        Check it against the picture: the dashed graph starts at $(0,0)$ and the solid one starts at
+        \ans{$(2,1)$}.
+  \item \textbf{Domain:} \ans{$[2,\infty)$} \quad \textbf{Range:} \ans{$[1,\infty)$}
+  \item Now find the domain \emph{the Lesson 6.0 way}: set the radicand $\ge 0$ and solve. \\
+        $x-2\ge 0$, so $x\ge\mans{2}$. \; Does this match your answer to \#3?
+        \ans{yes} \\
+        Explain, in one sentence, why these two methods can never disagree. \ans{Shifting the graph
+        right $2$ and refusing every input below $2$ are the same event described twice.}
+  \item Is the anchor an absolute maximum or an absolute minimum? \ans{absolute minimum} \\
+        Which way does the arm leave the anchor --- up or down? \ans{up}
+  \item \textbf{End behavior.} As $x\to+\infty$, $r(x)\to\mans{+\infty}$. \\
+        As $x\to-\infty$: careful --- say exactly what happens. \ans{Nothing --- the graph stops at
+        $x=2$. There is no left arm.}
+  \item Does $r$ have a $y$-intercept? \ans{no} \quad Why or why not? \ans{$x=0$ is not in the
+        domain; $r(0)=\sqrt{-2}+1$ is not real.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- No graphs allowed.} Everything below can be read straight off the equation.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.20\linewidth} X X X X@{}}
+ & $p(x)=\sqrt{x+3}-2$ & $q(x)=-\sqrt{x-1}+3$ & $s(x)=\sqrt[3]{x-2}+1$ & $t(x)=\tfrac12\sqrt{x}-4$ \\
+\hline
+$a$ & \ans{$1$} & \ans{$-1$} & \ans{$1$} & \ans{$\tfrac12$} \\
+$h$ & \ans{$-3$} & \ans{$1$} & \ans{$2$} & \ans{$0$} \\
+$k$ & \ans{$-2$} & \ans{$3$} & \ans{$1$} & \ans{$-4$} \\
+Anchor point & \ans{$(-3,-2)$} & \ans{$(1,3)$} & \ans{$(2,1)$} & \ans{$(0,-4)$} \\
+Domain & \ans{$[-3,\infty)$} & \ans{$[1,\infty)$} & \ans{all reals} & \ans{$[0,\infty)$} \\
+Range & \ans{$[-2,\infty)$} & \ans{$(-\infty,3]$} & \ans{all reals} & \ans{$[-4,\infty)$} \\
+Anchor is a max, a min, or neither? & \ans{min} & \ans{max} & \ans{neither} & \ans{min} \\
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{Part 2 --- Write the equation.} The graph below is a square root function in the form
+$y=a\sqrt{x-h}+k$.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-1}{14}{-5}{5}
+  \begin{scope}
+    \clip (-1,-5) rectangle (14,5);
+    \draw[very thick, forest, domain=4:14, samples=100, smooth] plot (\x,{2*sqrt((\x)-4)-3});
+  \end{scope}
+  \fill[forest] (4,-3) circle (4pt) node[below left, font=\scriptsize]{$(4,-3)$};
+  \fill[charcoal] (5,-1) circle (2.6pt);
+  \fill[charcoal] (8,1) circle (2.6pt) node[above left, font=\scriptsize]{$(8,1)$};
+  \fill[charcoal] (13,3) circle (2.6pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
+  \item Anchor point: \ans{$(4,-3)$} \quad so $h=\mans{4}$ and $k=\mans{-3}$.
+  \item Substitute the point $(8,1)$ and solve for $a$. \; $a=\mans{2}$
+
+        {\small\color{keyred}$1=a\sqrt{8-4}-3 \;\Rightarrow\; 1=a\sqrt{4}-3 \;\Rightarrow\;
+        1=2a-3 \;\Rightarrow\; 4=2a \;\Rightarrow\; a=2$}
+  \item \textbf{Equation:} $y=$ \ans{$2\sqrt{x-4}-3$}
+  \item Check your equation against the third point $(13,3)$. Show the substitution.
+        \ans{$2\sqrt{13-4}-3=2\sqrt{9}-3=2(3)-3=3$ \checkmark}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- Justify.}
+\begin{enumerate}[label=\textbf{J\arabic*.}, leftmargin=2.4em, itemsep=6pt]
+  \item $p$ and $q$ are both square root functions, but only one of them has an absolute
+        \emph{maximum}. Which one, and which single symbol in its equation is responsible?
+        \ansline{$q$, and the responsible symbol is the \emph{minus sign} in front of the radical
+        ($a=-1$). A negative $a$ makes every output the opposite of the parent's, so the arm leaves
+        the anchor going \emph{down} instead of up --- which makes the anchor the highest point on
+        the graph rather than the lowest. The $+3$ has nothing to do with it; it only says
+        \emph{where} that highest point sits.}
+  \item $s(x)=\sqrt[3]{x-2}+1$ has an $h$ and a $k$ just like the others, and its graph is still
+        built around the point $(2,1)$. So why is that point \emph{not} an endpoint, and why does
+        knowing it tell you nothing about the domain? \ansline{Because the index is \emph{odd}. An
+        endpoint exists only when some inputs are forbidden --- the graph has to stop somewhere. A
+        cube root accepts every real number, so nothing stops it: the graph runs through $(2,1)$ and
+        keeps going in both directions. The point is still the anchor (it is where the curve
+        flattens and changes the way it bends --- the \textbf{inflection point}), but the domain is
+        all real numbers no matter what $h$ is, so $h$ tells you only \emph{where} the graph is, not
+        \emph{where it is allowed to be}.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- The hidden $h$.} None of these radicands is in the form $x-h$. Factor out the
+coefficient of $x$ first, then read the graph off the result.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{Function} & \textbf{Factored form} & \textbf{Rewritten as $a\sqrt[n]{x-h}+k$} & \textbf{Anchor \& domain} \\
+\hline
+$\sqrt{4x}$ & \ans{$\sqrt{4\cdot x}$} & \ans{$2\sqrt{x}$} & \ans{$(0,0)$; $[0,\infty)$} \\
+$\sqrt{9x-18}$ & \ans{$\sqrt{9(x-2)}$} & \ans{$3\sqrt{x-2}$} & \ans{$(2,0)$; $[2,\infty)$} \\
+$\sqrt[3]{8x+8}$ & \ans{$\sqrt[3]{8(x+1)}$} & \ans{$2\sqrt[3]{x+1}$} & \ans{$(-1,0)$; all reals} \\
+\hline
+\end{tabularx}
+\end{center}
+A classmate looks at $\sqrt{9x-18}$ and says ``the graph starts at $x=18$.'' What went wrong, and
+what is the real answer? \ansline{They read the constant straight out of the radicand without
+factoring, as though the radicand were $x-18$. It is not: the $x$ has a coefficient of $9$. Factoring
+gives $\sqrt{9(x-2)}=3\sqrt{x-2}$, so the graph starts at $x=\mathbf{2}$ --- confirmed the old way by
+$9x-18\ge0 \Rightarrow x\ge2$.}
+
+\vspace{5pt}
+\textbf{Part 2 --- Two names for one graph.} The SOL lists $f(kx)$ (squeeze the input) and $kf(x)$
+(stretch the output) as \emph{different} transformations. For radical functions they collapse into
+one.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Explain, using the product property $\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$, why
+        $y=\sqrt{kx}$ is the same graph as $y=\sqrt{k}\cdot\sqrt{x}$ for every $k>0$.
+        \ansline{The product property splits the radicand: $\sqrt{kx}=\sqrt{k}\cdot\sqrt{x}$. Since
+        $k$ is a constant, $\sqrt{k}$ is just a number, so the right side is the parent multiplied
+        by that number. The two expressions are equal at every $x\ge0$, so they cannot be two
+        graphs --- they are one graph with two descriptions.}
+  \item Rewrite the claim with \textbf{rational exponents} (Lesson 6.1) to see it in one line:
+        $(kx)^{1/n}=$ \ans{$k^{1/n}$} $\cdot$ \ans{$x^{1/n}$}. \\
+        So compressing the input of $\sqrt[n]{x}\,$ by a factor of $k$ is the same as stretching the
+        output by a factor of \ans{$\sqrt[n]{k}$}.
+  \item Squeezing $y=\sqrt{x}$ horizontally by $16$ gives $y=\sqrt{16x}$. What single vertical
+        stretch produces the identical graph? \ans{a stretch by $4$, since $\sqrt{16x}=4\sqrt{x}$}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- Where the trick breaks.} Now try the same move on $y=\sqrt{x}+1$, which is the
+parent \emph{plus a vertical shift}.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $4$ & $9$ \\ \hline
+Squeeze the input: \; $\sqrt{9x}+1$ & \ans{$1$} & \ans{$4$} & \ans{$7$} & \ans{$10$} \\ \hline
+Stretch the output: \; $3\left(\sqrt{x}+1\right)$ & \ans{$3$} & \ans{$6$} & \ans{$9$} & \ans{$12$} \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=4]
+  \item Are the two rows the same? \ans{no} \quad By how much do they differ, at every
+        single $x$? \ans{by exactly $2$}
+  \item Explain what went wrong. Which part of $\sqrt{x}+1$ refuses to be handled by the product
+        property, and why? \ansline{The $+1$. The product property splits a \emph{product} inside a
+        radical --- it says nothing about a term sitting \emph{outside} one. Squeezing the input
+        touches only the radical, giving $3\sqrt{x}+1$, while stretching the output multiplies
+        \emph{everything}, giving $3\sqrt{x}+3$. The radical parts agree; the constant does not, and
+        the gap is $3(1)-1=2$ at every $x$.}
+  \item Write a one-sentence rule a classmate could trust: \emph{for which radical functions can you
+        trade a horizontal size change for a vertical one, and for which can you not?}
+        \ansline{You can trade them freely for a \emph{pure} radical --- anything of the form
+        $a\sqrt[n]{kx}$, with nothing added on --- because the constant walks out from under the
+        radical; the moment there is a vertical shift $+k$ (or any term outside the radical), the
+        two transformations stop agreeing.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{teachernote}
+\small
+\textbf{Tier R} exists to make one comparison happen: item~3 and item~4 ask for the same domain by
+two different routes. Do not let a group skip item~4 because they ``already have the answer'' ---
+answering it twice \emph{is} the point, and the one-sentence explanation is the lesson's thesis in
+the students' own words. Item~6 recycles 6.0's most-missed idea (``the graph stops'' is a complete
+answer); item~7 catches anyone still hunting for a $y$-intercept outside the domain.
+
+\textbf{Tier A, Part 1} is deliberately arranged so that $t(x)=\tfrac12\sqrt{x}-4$ is the only one
+with a fractional $a$ and $s$ is the only cube root --- every column differs from every other in at
+least two rows, so a group that pattern-matches instead of reading will produce a visibly wrong
+table. The row that separates proficiency from fluency is the last one: \emph{neither} is the
+correct answer for $s$, and students reliably want to write ``min.''
+
+\textbf{Part 2 is the SOL's harder direction} (\textbf{A2.F.1b}, write the equation from a graph).
+Insist on the order --- anchor first, then $a$ --- and on the check in (d). Groups that hunt for $a$
+first end up with two unknowns and stall.
+
+\textbf{Tier E, Part 3 is the item worth circulating for.} Parts 1 and 2 will convince a fast group
+that horizontal and vertical size changes are ``always the same thing,'' which is false and would
+carry a real misconception into Unit 7. The table forces the counterexample into the open before
+anyone can generalize, and the constant gap of $2$ is a satisfying thing to notice. If a group
+finishes early, ask them the follow-up: \emph{what would the gap be for $\sqrt{x}+5$?} (It is
+$3(5)-5=10$.)
+\end{teachernote}
 
 \end{document}

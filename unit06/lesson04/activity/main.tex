@@ -3,17 +3,184 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
+% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
+\newcommand{\cbrtplot}[5]{%
+  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
+    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
+  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
+    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.4}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Follow the Anchor.} Every radical graph is built around one point. Find it, and the
+domain, the range, and the direction of the arm all come free. With your partner, work each problem
+\emph{and} say out loud which part of the equation produced each answer. Write every domain and
+range in \textbf{interval notation}.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+The solid graph is $r(x)=\sqrt{x-2}+1$. The dashed graph is the parent $y=\sqrt{x}$, shown so you
+can see what moved.
+\begin{center}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-2}{13}{-2}{6}
+  \begin{scope}
+    \clip (-2,-2) rectangle (13,6);
+    \draw[very thick, slate, dashed, domain=0:13, samples=100, smooth] plot (\x,{sqrt(\x)});
+    \draw[very thick, forest, domain=2:13, samples=100, smooth] plot (\x,{sqrt((\x)-2)+1});
+  \end{scope}
+  \fill[slate] (0,0) circle (3.4pt);
+  \fill[forest] (2,1) circle (4pt) node[left, font=\scriptsize]{$(2,1)$};
+  \fill[charcoal] (3,2) circle (2.6pt);
+  \fill[charcoal] (6,3) circle (2.6pt) node[above left, font=\scriptsize]{$(6,3)$};
+  \fill[charcoal] (11,4) circle (2.6pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item Compare $r(x)=\sqrt{x-2}+1$ with the parent $y=\sqrt{x}$. \\
+        $h=\blank{1.0cm}$ \quad $k=\blank{1.0cm}$ \quad so the graph moved right \blank{1.0cm}
+        and up \blank{1.0cm}.
+  \item The \textbf{anchor point} (for a square root, the endpoint) is \blank{2.0cm}. \\
+        Check it against the picture: the dashed graph starts at $(0,0)$ and the solid one starts at
+        \blank{2.0cm}.
+  \item \textbf{Domain:} \blank{2.6cm} \quad \textbf{Range:} \blank{2.6cm}
+  \item Now find the domain \emph{the Lesson 6.0 way}: set the radicand $\ge 0$ and solve. \\
+        $x-2\ge 0$, so $x\ge\blank{1.0cm}$. \; Does this match your answer to \#3?
+        \blank{1.4cm} \\
+        Explain, in one sentence, why these two methods can never disagree. \blank{6.0cm}
+  \item Is the anchor an absolute maximum or an absolute minimum? \blank{2.6cm} \\
+        Which way does the arm leave the anchor --- up or down? \blank{1.6cm}
+  \item \textbf{End behavior.} As $x\to+\infty$, $r(x)\to\blank{1.2cm}$. \\
+        As $x\to-\infty$: careful --- say exactly what happens. \blank{5.4cm}
+  \item Does $r$ have a $y$-intercept? \blank{1.4cm} \quad Why or why not? \blank{5.0cm}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- No graphs allowed.} Everything below can be read straight off the equation.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.20\linewidth} X X X X@{}}
+ & $p(x)=\sqrt{x+3}-2$ & $q(x)=-\sqrt{x-1}+3$ & $s(x)=\sqrt[3]{x-2}+1$ & $t(x)=\tfrac12\sqrt{x}-4$ \\
+\hline
+$a$ & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} \\
+$h$ & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} \\
+$k$ & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} \\
+Anchor point & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} \\
+Domain & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} \\
+Range & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} \\
+Anchor is a max, a min, or neither? & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} \\
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{Part 2 --- Write the equation.} The graph below is a square root function in the form
+$y=a\sqrt{x-h}+k$.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-1}{14}{-5}{5}
+  \begin{scope}
+    \clip (-1,-5) rectangle (14,5);
+    \draw[very thick, forest, domain=4:14, samples=100, smooth] plot (\x,{2*sqrt((\x)-4)-3});
+  \end{scope}
+  \fill[forest] (4,-3) circle (4pt) node[below left, font=\scriptsize]{$(4,-3)$};
+  \fill[charcoal] (5,-1) circle (2.6pt);
+  \fill[charcoal] (8,1) circle (2.6pt) node[above left, font=\scriptsize]{$(8,1)$};
+  \fill[charcoal] (13,3) circle (2.6pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
+  \item Anchor point: \blank{2.0cm} \quad so $h=\blank{1.0cm}$ and $k=\blank{1.0cm}$.
+  \item Substitute the point $(8,1)$ and solve for $a$. \; $a=\blank{1.2cm}$
+        \vspace{0.30in}
+  \item \textbf{Equation:} $y=\blank{4.4cm}$
+  \item Check your equation against the third point $(13,3)$. Show the substitution.
+        \blank{6.0cm}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- Justify.}
+\begin{enumerate}[label=\textbf{J\arabic*.}, leftmargin=2.4em, itemsep=6pt]
+  \item $p$ and $q$ are both square root functions, but only one of them has an absolute
+        \emph{maximum}. Which one, and which single symbol in its equation is responsible?
+        \writelines{2}
+  \item $s(x)=\sqrt[3]{x-2}+1$ has an $h$ and a $k$ just like the others, and its graph is still
+        built around the point $(2,1)$. So why is that point \emph{not} an endpoint, and why does
+        knowing it tell you nothing about the domain? \writelines{3}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- The hidden $h$.} None of these radicands is in the form $x-h$. Factor out the
+coefficient of $x$ first, then read the graph off the result.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{Function} & \textbf{Factored form} & \textbf{Rewritten as $a\sqrt[n]{x-h}+k$} & \textbf{Anchor \& domain} \\
+\hline
+$\sqrt{4x}$ & \blank{2.0cm} & \blank{2.2cm} & \blank{2.4cm} \\
+$\sqrt{9x-18}$ & \blank{2.0cm} & \blank{2.2cm} & \blank{2.4cm} \\
+$\sqrt[3]{8x+8}$ & \blank{2.0cm} & \blank{2.2cm} & \blank{2.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
+A classmate looks at $\sqrt{9x-18}$ and says ``the graph starts at $x=18$.'' What went wrong, and
+what is the real answer? \writelines{2}
+
+\vspace{5pt}
+\textbf{Part 2 --- Two names for one graph.} The SOL lists $f(kx)$ (squeeze the input) and $kf(x)$
+(stretch the output) as \emph{different} transformations. For radical functions they collapse into
+one.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Explain, using the product property $\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$, why
+        $y=\sqrt{kx}$ is the same graph as $y=\sqrt{k}\cdot\sqrt{x}$ for every $k>0$.
+        \writelines{2}
+  \item Rewrite the claim with \textbf{rational exponents} (Lesson 6.1) to see it in one line:
+        $(kx)^{1/n}=\blank{1.4cm}\cdot\blank{1.4cm}$. \\
+        So compressing the input of $\sqrt[n]{x}\,$ by a factor of $k$ is the same as stretching the
+        output by a factor of \blank{2.0cm}.
+  \item Squeezing $y=\sqrt{x}$ horizontally by $16$ gives $y=\sqrt{16x}$. What single vertical
+        stretch produces the identical graph? \blank{2.6cm}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- Where the trick breaks.} Now try the same move on $y=\sqrt{x}+1$, which is the
+parent \emph{plus a vertical shift}.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $4$ & $9$ \\ \hline
+Squeeze the input: \; $\sqrt{9x}+1$ & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} \\ \hline
+Stretch the output: \; $3\left(\sqrt{x}+1\right)$ & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=4]
+  \item Are the two rows the same? \blank{1.4cm} \quad By how much do they differ, at every
+        single $x$? \blank{1.6cm}
+  \item Explain what went wrong. Which part of $\sqrt{x}+1$ refuses to be handled by the product
+        property, and why? \writelines{3}
+  \item Write a one-sentence rule a classmate could trust: \emph{for which radical functions can you
+        trade a horizontal size change for a vertical one, and for which can you not?}
+        \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}
