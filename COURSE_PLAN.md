@@ -9,10 +9,10 @@
 > authored & building, and the **unit tests are now authored, built, and published**.
 > **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
 > locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
-> `test_keys/` are laid down. **Lesson 6.0 is authored & building (2026-07-27)**; lessons 6.1–6.7 and
-> the unit tests are still skeletons. Units 7–8 are planned here and not yet scaffolded.
-> **Next action: author Lesson 6.1 ($n$th roots & rational exponents)**, then proceed 6.2 → 6.7
-> in order, then the Unit 6 tests.
+> `test_keys/` are laid down. **Lessons 6.0 and 6.1 are authored & building (2026-07-27)**; lessons
+> 6.2–6.7 and the unit tests are still skeletons. Units 7–8 are planned here and not yet scaffolded.
+> **Next action: author Lesson 6.2 (simplifying radicals; adding & subtracting)**, then proceed
+> 6.3 → 6.7 in order, then the Unit 6 tests.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -1058,6 +1058,44 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > (key 5pp), activity 3pp (key 3pp), homework 2pp (key 3pp); exit ticket includes an SOL-style MC item
 > (domain of $\sqrt{5-2x}$; distractors = the missing inequality flip, a sign slip, and treating an even
 > index as unrestricted). `make -C unit06/lesson00 all` → EXIT 0 (student 13pp, full 28pp);
+> `make -C unit06 all` → EXIT 0.
+> **Lesson 6.1 authored & builds (2026-07-27):** all components + keys + 10-slide deck done; supplies
+> the *algebra* underneath 6.0's geometry. One thesis, stated as a derivation rather than a
+> definition: **a radical is an exponent in disguise**, and nobody chose it — if "power to a power"
+> is to keep working, $\left(a^{1/n}\right)^n=a^{n/n}=a$, so $a^{1/n}$ has **no choice** but to be
+> $\sqrt[n]{a}$. That move (extend a definition by insisting the old rules survive) is named aloud as
+> reusable reasoning. From it: $a^{m/n}=\sqrt[n]{a^m}=\left(\sqrt[n]{a}\right)^m$, with the mantra
+> **denominator = index, numerator = power** stated twice because *flipping the fraction*
+> ($\sqrt[4]{x^3}\to x^{4/3}$) is the lesson's signature error and the exit-ticket MC distractor A.
+> Three further beats: the **principal root** ($\sqrt{16}=4$, not $\pm4$ — write the $\pm$ yourself)
+> with the four-row how-many-real-roots table; the $\sqrt[n]{a^n}$ **absolute-value** rule ($|a|$ even,
+> $a$ odd) — the only place all week where variables are not assumed positive; and **root first, not
+> power first**, taught by a two-column table that lets $\sqrt[4]{4096}$ actually appear in the hard
+> column, so choosing the easy route is framed as the skill. Negative rational exponents get the
+> repeated line "the minus sign *moves* the expression, it does not change its sign"
+> ($16^{-1/2}=\frac14$). The payoff section closes the Hook — $\sqrt{x}\cdot\sqrt[3]{x}$, impossible
+> as radicals (mismatched indices), one line as $x^{1/2+1/3}=x^{5/6}=\sqrt[6]{x^5}$ — which is the
+> honest answer to "why does this notation exist." Section 6 keeps it a *function* lesson rather than
+> a notation drill: 6.0's two parents are relabeled $y=x^{1/2}$ and $y=x^{1/3}$ (same pre-drawn
+> graphs, new notation) and the domain rule is re-derived from the **denominator**, with the closing
+> claim that "even index restricts the domain" and "even denominator restricts the domain" are one
+> sentence in two notations — the homework's item 6 makes students say it. Tier E does the four
+> mismatched-index problems no radical rule can touch (incl. nested $\sqrt{\sqrt[3]{x}}$, indices
+> multiply) plus **Kepler's third law** $T(a)=a^{3/2}$ on a perfect-power table ($a=1,4,9,25$),
+> Jupiter estimated at $5.2$ AU, and $a=T^{2/3}$ obtained by raising both sides to the **reciprocal**
+> — the algebraic form of 6.0's reflection over $y=x$ and a genuine preview of 6.7. The homework
+> extension is **Kleiber's law** $M(w)=70w^{3/4}$, deliberately the same shape: $16\times$ the mass
+> buys only $8\times$ the calories, which is what an exponent below $1$ does to growth (the
+> flattening read off the square root graph in 6.0), inverted to $w=\left(\frac{M}{70}\right)^{4/3}$.
+> Standards: **2023 VA SOL A2.EO.2c** (governing — convert radical ⇄ rational exponent, assessed in
+> every component) and **A2.EO.2a** (equivalent radical expressions, via the evaluations and
+> property work — this lesson supplies the tool 6.2–6.3 lean on), revisiting **A2.F.2a**/**A2.F.1a**
+> (domain and parent graphs) and reaching **A2.F.2f** (evaluate and interpret in context) through the
+> two models, which also preview **A2.F.2i/j**. Warm-up & exit ticket each fit one page (blank+key);
+> notes 4pp (key 4pp), activity 3pp (key 3pp), homework 3pp (key 3pp) — blank and key paginate
+> identically throughout. Exit ticket includes an SOL-style MC item (which expression equals
+> $\sqrt[4]{x^3}$; distractors = the flipped fraction, index×power, and reading a root as a negative
+> exponent). `make -C unit06/lesson01 all` → EXIT 0 (student 13pp, full 27pp);
 > `make -C unit06 all` → EXIT 0.
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,

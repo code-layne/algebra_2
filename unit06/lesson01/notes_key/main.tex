@@ -3,17 +3,332 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Cube root: pgfmath has no cbrt, so plot the two branches separately.
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)});}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.1}{Guided Notes --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Guided Notes verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Guided Notes --- Key}
-\ansline{TODO: answer}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item find \emph{$n$th roots}, name the \emph{principal} root, and explain --- with exponents --- why an even root of a negative number does not exist while an odd one does;
+  \item convert back and forth between \emph{radical form} and \emph{rational exponent form}, using $a^{m/n}=\sqrt[n]{a^m}=\left(\sqrt[n]{a}\right)^m$, and evaluate such expressions without a calculator;
+  \item apply the exponent properties I already know to rational exponents --- including combining radicals with \emph{different indices}, which no radical rule can do.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{$n$th root}{a number $b$ with $b^n=a$, written $\sqrt[n]{a}$; the index $n$ says which root is being taken}
+\vocabans{Principal $n$th root}{the one value the radical symbol returns --- the non-negative root when the index is even; write $\pm$ yourself if you want both}
+\vocabans{Rational exponent}{a fractional exponent; $a^{1/n}$ means $\sqrt[n]{a}$, because $\left(a^{1/n}\right)^n=a$}
+\vocabans{The $a^{m/n}$ rule}{$a^{m/n}=\sqrt[n]{a^m}=\left(\sqrt[n]{a}\right)^m$ --- the \emph{denominator} is the index (the root), the \emph{numerator} is the power}
+\vocabans{Negative rational exponent}{$a^{-m/n}=\dfrac{1}{a^{m/n}}$ --- it means \emph{reciprocal}, never a negative answer}
+\end{vocabbox}
+
+\begin{hookbox}
+Here is a problem you cannot do --- yet:
+\[
+  \sqrt{x}\cdot\sqrt[3]{x} = \underline{\hspace{2.5cm}}
+\]
+Every radical rule you have ever seen requires the two indices to \textbf{match}, and these do not.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item So try the other direction. What number, raised to the power $2$, gives $a$? \ansline{$\sqrt{a}$ --- the square root of $a$, by definition.}
+  \item Now suppose $a^{1/2}$ meant something. Using ``power to a power,'' $\left(a^{1/2}\right)^2 = a^{\,\mans{1}} = a$. So $a^{1/2}$ has \textbf{no choice} --- it must equal \ans{$\sqrt{a}$}.
+\end{itemize}
+That is today's whole idea: \textbf{a radical is an exponent in disguise.} Once you can write
+$\sqrt[n]{a}$ as $a^{1/n}$, every exponent rule from the Warm-Up applies to radicals --- and the
+problem above becomes one line.
+\end{hookbox}
+
+\begin{notesbox}{1. $n$th Roots and the \emph{Principal} Root}
+\textbf{Definition.} $\sqrt[n]{a} = b$ means $b$ raised to the \ans{$n$th} power equals $a$.
+\; The \textbf{index} $n$
+says which root; the number under the radical is the \textbf{radicand}.
+
+\vspace{3pt}
+But ``which root'' hides a subtlety. Since $4^2=16$ \emph{and} $(-4)^2=16$, the number $16$ has
+\emph{two} real square roots. The radical symbol is defined to give only the
+\textbf{principal} (the \emph{non-negative}) one:
+\[
+  \sqrt{16} = \mans{4}, \qquad -\sqrt{16} = \mans{-4},
+  \qquad \pm\sqrt{16} = \mans{\pm 4}.
+\]
+If you want both roots, you must \emph{write} the $\pm$ yourself --- the symbol will not give it to you.
+
+\vspace{3pt}
+\textbf{How many real $n$th roots are there?} Fill in the table from the Warm-Up.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l l X X@{}}
+\hline
+\textbf{Index $n$} & \textbf{Radicand $a$} & \textbf{How many real $n$th roots?} & \textbf{Example} \\
+\hline
+\textbf{Even} & $a>0$ & \ans{two} (one positive, one negative) & $\sqrt[4]{81}=$ \ans{$3$}, and $-3$ also works \\
+\textbf{Even} & $a=0$ & \ans{one (just $0$)} & $\sqrt{0}=0$ \\
+\textbf{Even} & $a<0$ & \ans{none (not a real number)} & $\sqrt{-16}$ is \ans{not real} \\
+\textbf{Odd}  & any $a$ & \ans{exactly one}, with the same sign as $a$ & $\sqrt[3]{-27}=$ \ans{$-3$} \\
+\hline
+\end{tabularx}
+\end{center}
+\textbf{Why?} Warm-Up item~1 already answered it. An \textbf{even} power of any real number is
+\ans{never negative}, so nothing real can be raised to an even power and come out negative. An
+\textbf{odd} power \ans{keeps} the sign, so a negative radicand is no problem at all. \emph{This
+is the algebraic reason behind Lesson 6.0's domain rule.}
+
+\vspace{3pt}
+\textbf{Perfect $n$th powers to know on sight} (you will read these \emph{backwards} all period):
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Squares & $4,\ 9,\ 16,\ 25,\ 36,\ 49,\ 64,\ 81,\ 100,\ 121,\ 144$ \\
+Cubes   & $8,\ 27,\ 64,\ 125,\ 216$ \quad and $-8,\ -27,\ -64,\dots$ \\
+Fourth powers & $16,\ 81,\ 256$ \qquad Fifth powers: $32,\ 243$ \\
+\end{tabularx}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $\sqrt[5]{32}=$ \ans{$2$} \quad because \ans{$2$}$^5=32$.
+  \item $\sqrt[4]{81}=$ \ans{$3$} \quad $\sqrt[3]{-64}=$ \ans{$-4$} \quad
+        $\sqrt[3]{\dfrac{8}{125}}=$ \ans{$\dfrac{2}{5}$} \quad (take the root of the top \emph{and} the bottom).
+\end{itemize}
 \end{notesbox}
+
+\begin{notesbox}{2. The Trap: $\sqrt[n]{a^n}$ Is Not Always $a$}
+Simplify each one \emph{carefully} --- work from the inside out.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}l l l@{}}
+(a) \; $\sqrt{5^2}=\sqrt{\mans{25}}=\mans{5}$ &
+(b) \; $\sqrt{(-5)^2}=\sqrt{\mans{25}}=\mans{5}$ &
+(c) \; $\sqrt[3]{(-5)^3}=\sqrt[3]{\mans{-125}}=\mans{-5}$ \\
+\end{tabular}
+\end{center}
+In (b) the answer came back \emph{positive} even though we started with $-5$. The square destroyed
+the sign, and the principal root refuses to put it back. So:
+\begin{center}
+\begin{tabular}{@{}l l@{}}
+$n$ \textbf{even}: \; $\sqrt[n]{a^n}=\mans{|a|}$ &
+\qquad $n$ \textbf{odd}: \; $\sqrt[n]{a^n}=\mans{a}$ \\
+\end{tabular}
+\end{center}
+So $\sqrt{x^2}=$ \ans{$|x|$} (we do not know whether $x$ is positive!), while
+$\sqrt[3]{x^3}=$ \ans{$x$}.
+\end{notesbox}
+
+\begin{notesbox}{3. A Radical \emph{Is} an Exponent: $\sqrt[n]{a}=a^{1/n}$}
+Nobody decided this --- the exponent rules \textbf{force} it. Whatever $a^{1/n}$ means, ``power to a
+power'' has to keep working:
+\[
+  \left(a^{1/n}\right)^n = a^{\frac{1}{n}\cdot n} = a^{\mans{1}} = a .
+\]
+So $a^{1/n}$ is the number that, raised to the $n$th power, gives back $a$ --- and that is exactly
+the definition of \ans{the $n$th root of $a$}. Therefore:
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.62\linewidth]
+\centering $\displaystyle \sqrt[n]{a} = a^{1/n}$ \qquad \emph{(the index becomes the denominator)}
+\end{tcolorbox}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $\sqrt{7}=7^{\,\mans{1/2}}$ \quad $\sqrt[3]{x}=x^{\,\mans{1/3}}$ \quad
+        $\sqrt[5]{2y}=(2y)^{\,\mans{1/5}}$
+  \item $11^{1/2}=$ \ans{$\sqrt{11}$} \quad $m^{1/4}=$ \ans{$\sqrt[4]{m}$} \quad
+        $64^{1/3}=$ \ans{$\sqrt[3]{64}$} (and now you can \emph{evaluate} it: \ans{$4$})
+\end{itemize}
+\emph{Watch the parentheses:} $2y^{1/5}$ and $(2y)^{1/5}$ are different --- in the first, only the
+$y$ is under the root.
+\end{notesbox}
+
+\begin{notesbox}{4. The Full Rule: $a^{m/n}$ --- Denominator Roots, Numerator Powers}
+What if the numerator is not $1$? Split the fraction: $\dfrac{m}{n}=\dfrac{1}{n}\cdot m$, so
+$a^{m/n}=\left(a^{1/n}\right)^m$. Both orders are legal:
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.86\linewidth]
+\centering $\displaystyle a^{m/n} = \sqrt[n]{a^m} = \left(\sqrt[n]{a}\right)^m$
+\qquad \textbf{denominator} $=$ the \ans{index}, \quad \textbf{numerator} $=$ the \ans{power}
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{Converting (both directions).}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}X X | X X@{}}
+\textbf{Radical form} & \textbf{Rational exponent} & \textbf{Rational exponent} & \textbf{Radical form} \\
+\hline
+$\sqrt[4]{x^3}$ & $x^{\,\mans{3/4}}$ & $y^{2/5}$ & \ans{$\sqrt[5]{y^2}$} \\
+$\left(\sqrt[3]{x}\right)^7$ & $x^{\,\mans{7/3}}$ & $w^{5/2}$ & \ans{$\sqrt{w^5}$} \\
+$\sqrt{x^5}$ & $x^{\,\mans{5/2}}$ & $(3t)^{3/4}$ & \ans{$\sqrt[4]{(3t)^3}$} \\
+\end{tabularx}
+\end{center}
+\emph{The single most common error of this lesson is flipping the fraction.} $\sqrt[4]{x^3}$ is
+$x^{3/4}$, \textbf{not} $x^{4/3}$ --- the \emph{index} is on the bottom, because it came from
+$\frac{1}{n}$.
+
+\vspace{4pt}
+\textbf{Evaluating: take the root \emph{first}.} Both orders give the same answer, but one is
+arithmetic you can do in your head.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+ & \textbf{Power first (hard)} & \textbf{Root first (easy)} \\
+\hline
+$8^{2/3}$ & $\sqrt[3]{8^2}=\sqrt[3]{\mans{64}}=\mans{4}$ &
+            $\left(\sqrt[3]{8}\right)^2=\left(\mans{2}\right)^2=\mans{4}$ \\
+$16^{3/4}$ & $\sqrt[4]{16^3}=\sqrt[4]{\mans{4096}}=\mans{8}$ &
+             $\left(\sqrt[4]{16}\right)^3=\left(\mans{2}\right)^3=\mans{8}$ \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{Negative rational exponents} mean exactly what they meant in the Warm-Up ---
+\textbf{reciprocal}, never ``negative answer'':
+\[
+  a^{-m/n} = \frac{1}{a^{\,m/n}} .
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $16^{-1/2} = \dfrac{1}{16^{\,1/2}} = \dfrac{1}{\mans{4}} = \mans{\tfrac{1}{4}}$ \quad
+        (\emph{not} $-4$ --- the minus sign moves the expression, it does not change its sign).
+  \item $27^{-2/3} = \dfrac{1}{\left(\sqrt[3]{27}\right)^{2}} = \dfrac{1}{\mans{9}}
+        = \mans{\tfrac{1}{9}}$
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{5. The Payoff: Every Exponent Property Now Works on Radicals}
+The four rules from the Warm-Up never cared whether the exponent was a whole number. Rewrite, apply,
+and (if asked) convert back.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+Product & $a^{r}\cdot a^{s}=a^{\,\mans{r+s}}$ \\
+Quotient & $\dfrac{a^{r}}{a^{s}}=a^{\,\mans{r-s}}$ \\
+Power to a power & $\left(a^{r}\right)^{s}=a^{\,\mans{rs}}$ \\
+Negative & $a^{-r}=\mans{\tfrac{1}{a^{r}}}$ \\
+\hline
+\end{tabularx}
+\end{center}
+Now return to the Hook. Two \emph{different} indices, which no radical rule can touch:
+\[
+  \sqrt{x}\cdot\sqrt[3]{x} \;=\; x^{1/2}\cdot x^{1/3}
+  \;=\; x^{\,\mans{5/6}} \;=\; \mans{\sqrt[6]{x^5}}\ \text{(back in radical form)}.
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $\dfrac{x^{3/4}}{x^{1/2}} = x^{\,\mans{1/4}}$ \hfill
+        $\left(x^{2/3}\right)^{6} = x^{\,\mans{4}}$
+  \item $\sqrt[4]{x}\cdot\sqrt[4]{x^{2}} = x^{\,\mans{3/4}}$ \hfill
+        $\left(8x^{6}\right)^{1/3} = $ \ans{$2x^{2}$}
+\end{itemize}
+\emph{This is why the notation exists.} Radicals with different indices are a dead end; the same
+expressions as exponents are a one-line problem.
+\end{notesbox}
+
+\begin{notesbox}{6. Back to Lesson 6.0: the Denominator Decides the Domain}
+These are the same two graphs you read yesterday --- only the notation changed.
+\begin{center}
+\begin{tikzpicture}[scale=0.34]
+  % y = x^(1/2)
+  \begin{scope}
+    \lgrid{-2}{9}{-2}{4}
+    \begin{scope}
+      \clip (-2,-2) rectangle (9,4);
+      \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
+    \end{scope}
+    \fill[forest] (0,0) circle (5pt);
+    \node[charcoal, font=\scriptsize] at (3.5,-3.4) {$y=x^{1/2}$};
+  \end{scope}
+  % y = x^(1/3)
+  \begin{scope}[xshift=19cm]
+    \lgrid{-8}{8}{-3}{3}
+    \begin{scope}
+      \clip (-8,-3) rectangle (8,3);
+      \cbrtpos{0}{8}
+      \cbrtneg{-8}{0}
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-4.4) {$y=x^{1/3}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $y=x^{1/2}$ is another name for $y=$ \ans{$\sqrt{x}$}, so its domain is \ans{$[0,\infty)$}.
+  \item $y=x^{1/3}$ is another name for $y=$ \ans{$\sqrt[3]{x}$}, so its domain is \ans{all reals}.
+  \item \textbf{The rule, in exponent language:} in $x^{m/n}$ (in lowest terms), if the
+        \textbf{denominator} $n$ is \ans{even}, the domain is restricted to $x\ge 0$;
+        if $n$ is \ans{odd}, the domain is all reals. The \emph{numerator} never restricts
+        anything.
+  \item Test it: $x^{2/5}$ --- denominator \ans{$5$}, so the domain is \ans{all reals}. \quad
+        $x^{3/4}$ --- denominator \ans{$4$}, so the domain is \ans{$[0,\infty)$}.
+\end{itemize}
+\emph{``Even index restricts the domain'' and ``even denominator restricts the domain'' are the same
+sentence.}
+\end{notesbox}
+
+\begin{practicebox}
+Work these with your class. Assume all variables represent positive real numbers.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item Write in rational exponent form: \; $\sqrt[5]{x^{2}}=$ \ans{$x^{2/5}$} \quad
+        $\left(\sqrt{y}\right)^{3}=$ \ans{$y^{3/2}$} \quad $\sqrt[3]{7t}=$ \ans{$(7t)^{1/3}$}
+  \item Write in radical form: \; $x^{4/3}=$ \ans{$\sqrt[3]{x^4}$} \quad $c^{1/6}=$ \ans{$\sqrt[6]{c}$} \quad
+        $(5n)^{3/2}=$ \ans{$\sqrt{(5n)^3}$}
+  \item Evaluate without a calculator (root first!): \; $125^{2/3}=$ \ans{$25$} \quad
+        $81^{3/4}=$ \ans{$27$} \quad $32^{-2/5}=$ \ans{$\dfrac{1}{4}$}
+  \item Simplify using the exponent properties; leave the answer with a positive rational exponent:
+        \; $x^{1/4}\cdot x^{1/2}=$ \ans{$x^{3/4}$} \quad $\dfrac{y^{5/6}}{y^{1/3}}=$ \ans{$y^{1/2}$} \quad
+        $\left(w^{3/4}\right)^{2/3}=$ \ans{$w^{1/2}$}
+  \item \textbf{Explain.} A classmate writes $\sqrt[3]{x^{5}} = x^{3/5}$. What did they do wrong, and
+        how would you remind them which number goes on the bottom? \ansline{They flipped the
+        fraction --- the correct answer is $x^{5/3}$. The index is the \emph{denominator} because
+        $\sqrt[3]{\phantom{x}}$ came from the exponent $\frac{1}{3}$; the power $5$ stays on top.
+        A quick check: $\sqrt[3]{x^5}$ is bigger than $x$ for $x>1$, so its exponent must be more
+        than $1$, and $\frac{3}{5}<1$.}
+\end{enumerate}
+\end{practicebox}
+
+\begin{teachernote}
+\textbf{Pacing.} Sections 1--2 are quick (about 10 minutes); Section 3 is the intellectual center and
+deserves 8 minutes on its own. Do \emph{not} present $a^{1/n}=\sqrt[n]{a}$ as a definition to
+memorize --- run the $\left(a^{1/n}\right)^n=a^{1}=a$ line and let students see that the exponent
+rules leave no other possibility. Students who watch that derivation stop flipping the fraction,
+because they can rebuild it.
+
+\textbf{The four errors to expect.} (1) \emph{Flipping} --- $\sqrt[4]{x^3}\to x^{4/3}$; this is the
+single most common error and the reason Section 4 states the rule twice. (2) \emph{Negative
+exponent, negative answer} --- $16^{-1/2}\to-4$; say ``the minus sign moves it downstairs, it does
+not change its sign'' every time. (3) \emph{Power first} --- technically correct but leads to
+$\sqrt[4]{4096}$ and a stalled student; the root-first table exists to make that visible. (4)
+\emph{Dropping the absolute value} in Section 2. Note that the Guided Practice and the Activity say
+``assume all variables are positive'' precisely so students can drop it there --- but the exit
+ticket and homework ask about $\sqrt{x^2}$ directly, so the distinction must be taught, not skipped.
+
+\textbf{Section 6 is not optional.} It is what makes this an Algebra 2 \emph{function} lesson rather
+than a notation drill: the domain rule students computed graphically yesterday is re-derived from
+the denominator of the exponent, and the two graphs are literally yesterday's graphs relabeled.
+\end{teachernote}
 
 \end{document}
