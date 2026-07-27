@@ -15,8 +15,8 @@
 > **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
 > locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
 > `test_keys/` are laid down.
-> **Lessons 6.0, 6.1, 6.2, 6.3, and 6.4 are authored & building (2026-07-27)**;
-> lessons 6.5–6.7 and the unit tests are still skeletons.
+> **Lessons 6.0, 6.1, 6.2, 6.3, 6.4, and 6.5 are authored & building (2026-07-27)**;
+> lessons 6.6–6.7 and the unit tests are still skeletons.
 > **Unit 7 (Exponential Functions): map confirmed & unit scaffolded 2026-07-27**, locked at
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
@@ -32,13 +32,13 @@
 > no-standard content is now handled the same way in both units. Full rationale in the Unit 8 status
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Three units are now open at once.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
-> sequence (2026-07-27), so **Unit 6 lessons 6.5–6.7 and the Unit 6 tests remain the largest
-> outstanding block**. **Next actions, in priority order: (1) stay in Unit 6 and author 6.5**
-> (solving radical equations & extraneous solutions), then 6.6 → 6.7 in order and the Unit 6 tests —
-> Lesson 6.4's homework and slides both hand off to 6.5 explicitly (isolate → raise to the $n$th
-> power → *always check*, with extraneous roots framed as the structural echo of Unit 5's excluded
-> values, and the graphical reading as "where 6.4's graphs cross a horizontal line"), so keep that
-> framing; **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
+> sequence (2026-07-27), so **Unit 6 lessons 6.6–6.7 and the Unit 6 tests remain the largest
+> outstanding block**. **Next actions, in priority order: (1) stay in Unit 6 and author 6.6**
+> (composition of functions), then 6.7 and the Unit 6 tests — 6.5's homework, slides, and exit-ticket
+> teacher note all hand off to 6.6 explicitly (one operation undoing another becomes
+> $(f\circ g)(x)=f(g(x))$, where order matters), and 6.6 is in turn the *prerequisite* for 6.7's
+> inverse test $f(g(x))=g(f(x))=x$, which finally pays off the reflection over $y=x$ opened in 6.0 —
+> so keep that chain intact; **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
 > which Lesson 7.0's homework and exit ticket already set up explicitly; **(3) continue Unit 8 at
 > Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
@@ -75,7 +75,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.4 done) |
+| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.5 done) |
 | 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0 done) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
@@ -1316,6 +1316,66 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > factoring but keeping the constant's sign, and reversing $k$ as though outside numbers flipped
 > too). `make -C unit06/lesson04 all` → EXIT 0 (student 14pp, full 32pp); `make -C unit06 all` →
 > EXIT 0.
+> **Lesson 6.5 authored & builds (2026-07-27):** all components + keys + 10-slide deck done. The
+> lesson rests on one claim, and it is a claim about *logic* rather than about radicals: **squaring
+> hands you candidates, not solutions.** The Hook makes that unavoidable by putting a *flawless*
+> solution to $\sqrt{x+7}=x-5$ on the board --- square, expand, collect, factor, $x=2$ or $x=9$ ---
+> and telling students every line is correct, which it is. Then both answers are tested in the
+> original: $x=9$ gives $4=4$, $x=2$ gives $3$ against $-3$. The question that opens the lesson is
+> therefore *one answer is wrong and no step was wrong, so where did the wrong answer come from?*,
+> which is a genuinely different demand from every prior unit --- correct procedure has always
+> guaranteed a correct answer, and from today it does not. Warm-Up item 2 pre-assembles the whole
+> mechanism in two yes/no questions (*if $x=-4$ then $x^{2}=16$? if $x^{2}=16$ then $x=4$?*), and
+> item 3 factors $x^{2}-11x+18$ so that $2$ and $9$ are already familiar when the Hook produces
+> them; item 1's $\left(\sqrt{x}+3\right)^{2}=x+6\sqrt x+9$ beside $\left(\sqrt{x-3}\right)^{2}=x-3$
+> *is* the reason Step 1 of the method is **isolate**. Four further beats: the mechanism named
+> exactly --- $a=b\Rightarrow a^{2}=b^{2}$ always, but $a^{2}=b^{2}$ leaves $a=b$ **or** $a=-b$, so
+> **squaring destroys sign information** and can only *enlarge* a solution set; the **free
+> shortcut**, an isolated even root equal to a negative number has no real solution and can be
+> answered before any algebra (6.1's principal root), taught by then squaring $\sqrt{2x-1}+5=2$
+> anyway so students see the phantom it would have produced; the **odd index closing the trapdoor**
+> --- every real has exactly one real cube root, so $A^{3}=B^{3}$ forces $A=B$, cubing is
+> *reversible*, and $\sqrt{x-4}=-2$ (no solution) sits beside $\sqrt[3]{x-4}=-2$ ($x=-4$, checks) as
+> same numbers / opposite verdicts / **only the index differs**, the unit's thesis one more time;
+> and the **graphical check** (A2.EI.5a), where the number of *intersections* is the number of real
+> solutions, so 6.4's graphs return as the two sides of an equation. The single best figure in the
+> lesson is the Hook's: $y=\sqrt{x+7}$ against $y=x-5$ crossing once at $(9,4)$, with $(2,3)$ and
+> $(2,-3)$ marked in red and joined by a dashed segment --- two mirror-image points that squaring
+> flattens onto the same number, which is the extraneous root made visible. The other unifying claim
+> is the **5.6 callback**: multiplying by something that might be zero and squaring something that
+> might be negative are the same structural event --- a non-reversible step produces candidates, and
+> only the check promotes them. Activity Tier A carries the lesson's discovery item: three equations
+> each lose exactly one candidate, and tabulating the *right-hand side* at each rejected value shows
+> it is negative every time, yielding the predictive rule **a candidate is extraneous exactly when
+> it makes the non-radical side negative** --- which students can apply *before* checking. Homework
+> item 2(b), $\sqrt{4x+13}=x+4$, is the deliberate antidote to ``reject the negative one'': both
+> candidates ($-1$ and $-3$) are negative and **both are genuine solutions**. Homework item 4(d) is
+> the sharpest small item --- squaring $\sqrt{x+2}=-1$ returns part (b)'s answer, because squaring
+> cannot tell the line $y=-1$ from $y=1$. Section 6 handles $x^{m/n}=k$ by the **reciprocal power**
+> (6.1's Kepler move) with both traps flagged: an even *numerator* is a square in disguise (write the
+> $\pm$ yourself --- $x^{2/3}=9$ has two solutions), an even *denominator* restricts the base.
+> Tier E proves both rules, does two-radical equations (beyond A2.EI.5a's one-radical cap, flagged as
+> extension; $\sqrt{x+5}-\sqrt x=1$ needs two squarings and gives $x=4$), and runs 6.2's pendulum
+> $T(L)=2\pi\sqrt{L/32}$ *backwards* against that lesson's own table ($T=2\pi\Rightarrow L=32$,
+> $T=\pi\Rightarrow L=8$), closing on a period of $-\pi$ that fails for two *separate* reasons,
+> algebraic and contextual --- the 5.6 distinction, re-drawn. The homework extension is the
+> **skid-mark model** $s(d)=\sqrt{24d}$ from 6.0's homework, run backwards ($30$ mph $\Rightarrow
+> 37.5$ ft, $60$ mph $\Rightarrow 150$ ft --- doubling the speed *quadruples* the skid; the scene's
+> $96$ ft gives exactly $48$ mph and contradicts the driver), and its payoff is the honest converse
+> of the whole day: deriving $d=\frac{s^{2}}{24}$ requires squaring both sides, yet there is *no*
+> extraneous risk, because both sides are non-negative in context and a phantom needs a sign
+> disagreement to come through. Standards: **A2.EI.5a** (governing --- solve algebraically *and*
+> graphically), **A2.EI.5b** (verify solutions; interpret in context --- the pendulum and skid-mark
+> models), and **A2.EI.5c** (justify why a solution might be extraneous --- assessed directly in
+> Exit Ticket 2(c), Tier A J1--J2, and homework 6); revisits **A2.EO.2c** (6.1, §6),
+> **A2.F.1c**/**A2.F.2a** (6.4's graphs as the two sides of an equation), and **A2.EI.4c** (5.6).
+> All graphs pre-drawn via `plot`+`\clip`; no sketch-from-scratch. Warm-up & exit ticket each fit one
+> page (blank+key); notes 5pp/5pp, activity 4pp/4pp, homework 3pp/3pp --- blank and key paginate
+> identically throughout. Exit ticket includes an SOL-style MC item (*which equation has no real
+> solution?*), whose distractor **B**, $\sqrt[3]{x-1}=-5$, is the one that earns its keep: a student
+> who learned ``roots can't be negative'' instead of ``*even* roots can't'' picks it, and that is a
+> Unit 6 spine failure rather than a slip in today's procedure.
+> `make -C unit06/lesson05 all` → EXIT 0 (student 15pp, full 29pp); `make -C unit06 all` → EXIT 0.
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$

@@ -19,68 +19,235 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can solve an equation containing one radical by
+    \emph{isolating} the radical and raising both sides to the power equal to the index, and can
+    solve $x^{m/n}=k$ by raising both sides to the reciprocal power. They \emph{check} every
+    candidate in the original equation, identify the \textbf{extraneous} ones, verify a solution set
+    graphically by counting intersections, and recognize an isolated even root set equal to a
+    negative number as having no real solution before doing any algebra. Above all they can
+    \emph{justify} the check: squaring is a valid but non-reversible step that destroys sign
+    information, so it can enlarge the solution set --- while raising to an \emph{odd} power is
+    reversible and never can.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.5a} (governing --- solve an equation containing
+    no more than one radical expression \emph{algebraically and graphically}; the algebraic method
+    runs through every component, the graphical one through Notes~\S5, Activity Tier~R Part~3, and
+    Homework item~4). \textbf{A2.EI.5b} (verify possible solutions algebraically, graphically, and
+    with technology; explain the solution method and \emph{interpret solutions in context}) is the
+    spine of the lesson --- the check is taught as a required step, and the interpretation strand is
+    carried by Tier~E's pendulum and the homework's skid-mark extension. \textbf{A2.EI.5c} (justify
+    why a possible solution to an equation with a square root might be extraneous) is assessed
+    directly in Exit Ticket item~2(c), Activity Tier~A~J1--J2, and Homework item~6. The lesson
+    revisits \textbf{A2.EO.2c} (6.1's rational exponents, in \S6), \textbf{A2.F.1c}/\textbf{A2.F.2a}
+    (6.4's graphs, now read as the two sides of an equation), and \textbf{A2.EI.4c} (5.6's rational
+    equations --- the same extraneous-solution logic, one lesson earlier in the year).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Run the method in order: \textbf{isolate} $\rightarrow$ raise to the $n$th power $\rightarrow$ solve $\rightarrow$ \textbf{check}.
+  \item Explain why isolating comes \emph{first} --- squaring a sum does not remove a radical.
+  \item Identify extraneous candidates by substituting into the \emph{original} equation.
+  \item \textbf{Justify} why an extraneous solution appeared (A2.EI.5c), in terms of sign.
+  \item Recognize ``isolated even root $=$ negative'' as \textbf{no real solution}, with no algebra.
+  \item Handle an \textbf{odd index}: solve it, and explain why it cannot produce a phantom.
+  \item Verify a solution set \textbf{graphically} --- intersections, not $x$-intercepts.
+  \item Solve $x^{m/n}=k$ by raising both sides to $\frac{n}{m}$, supplying the $\pm$ when the numerator is even.
+  \item \textbf{Interpret} a solution in context, and distinguish an extraneous rejection from a contextual one.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item \emph{Squaring hands you candidates, not solutions.} The check is a step of the method, not a courtesy.
+  \item $a=b \Rightarrow a^{2}=b^{2}$ always; the converse only gives $a=b$ \textbf{or} $a=-b$. That one gap is the entire lesson.
+  \item Squaring \textbf{destroys sign information}: $3$ and $-3$ become the same number, and the extraneous root comes back through that hole.
+  \item An extraneous candidate is never random --- it is exactly the one that makes the \emph{non-radical} side negative. Students can predict it before checking.
+  \item Being negative does not make a candidate extraneous. Homework 2(b) has two negative solutions and both are valid.
+  \item The index runs the show, again: even $\Rightarrow$ principal root, sign lost, phantoms possible; odd $\Rightarrow$ reversible, no phantoms ever.
+  \item This is Lesson 5.6's structure in new clothes: a non-reversible step produces candidates, and only the check promotes them.
+  \item A graph will not do the algebra, but it always tells you \emph{how many} answers to expect.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Radical equation} & An equation in which the variable appears \emph{underneath} a radical, e.g.\ $\sqrt{x+7}=x-5$. \\
+\textbf{Isolating the radical} & Getting the radical alone on one side before raising to a power. Required, because $\left(\sqrt{x}+3\right)^{2}=x+6\sqrt{x}+9$ --- squaring only erases a radical standing by itself. \\
+\textbf{Candidate} & A value produced after raising both sides to a power. Not yet a solution. \\
+\textbf{Extraneous solution} & A candidate that satisfies the raised equation but \emph{not} the original one. \\
+\textbf{The check} & Substitution of every candidate into the \emph{original} equation --- the only thing that turns a candidate into a solution. \\
+\textbf{The one-way street} & \TallMath{a=b \Rightarrow a^{2}=b^{2}, \ \text{but} \ a^{2}=b^{2} \Rightarrow a=b \ \text{or} \ a=-b} \\
+\textbf{Principal root (6.1)} & An even root is never negative --- so an isolated even root equal to a negative number has no real solution. \\
+\textbf{Odd index} & Cubing is reversible ($A^{3}=B^{3}\Rightarrow A=B$, since every real has exactly one real cube root), so it cannot invent solutions. \\
+\textbf{Graphical solution} & The $x$-coordinate of an intersection of $y=\text{left side}$ and $y=\text{right side}$. Number of intersections $=$ number of real solutions. \\
+\textbf{Reciprocal power} & To undo $x^{m/n}=k$, raise both sides to \TallMath{\tfrac{n}{m}}, since \TallMath{\left(x^{m/n}\right)^{n/m}=x^{1}} \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up loads all three barrels of today's lesson and fires none of them.
+    \textbf{(1)} Simplifying $\left(\sqrt{x-3}\right)^{2}$, $\left(\sqrt[3]{2x}\right)^{3}$, and
+    $\left(\sqrt{x}+3\right)^{2}$ (6.1, 6.3) --- the follow-up question, \emph{why did one come out
+    clean and the other come out worse}, \emph{is} the reason Step 1 of the method is ``isolate.''
+    Put both answers on the board and leave them there; you will point back at them when someone
+    squares $\sqrt{x}+2=5$ into $x+4=25$. \textbf{(2)} Two yes/no questions --- \emph{if $x=-4$,
+    does $x^{2}=16$? If $x^{2}=16$, does $x=4$?} --- which are the entire lesson in fifteen seconds.
+    Get the phrase ``squaring can add answers'' said out loud \emph{now}, by a student, before any
+    radical equation appears. \textbf{(3)} Factoring $x^{2}-11x+18=0$ from Unit~3, giving $2$ and
+    $9$: precisely the quadratic the Hook's equation produces, so when those two numbers reappear
+    students recognize them --- and the discovery that one of them is a lie lands far harder than it
+    would on unfamiliar numbers. Do not resolve any of the three; each is answered by a specific
+    section of the notes.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put a complete, correct solution to $\sqrt{x+7}=x-5$ on the board --- square, expand, collect,
+    factor, $x=2$ or $x=9$ --- and say plainly: \textbf{``Every line here is right. Check them.''}
+    Give them a minute to hunt. They will not find a bad step, because there is not one. Then have
+    the class substitute both answers into the \emph{original} equation. $x=9$ gives $4=4$. $x=2$
+    gives $\sqrt{9}=3$ on the left and $-3$ on the right. Now ask the question the whole lesson
+    exists to answer: \textbf{``One answer is wrong, and no step was wrong. So where did the wrong
+    answer come from?''} Let them sit in it. The answer is Warm-Up item~2 --- squaring turned the
+    \emph{false} statement $3=-3$ into the \emph{true} statement $9=9$, and $x=2$ walked in through
+    that gap. Land the sentence and keep it on the board all period: \emph{squaring hands you
+    candidates, not solutions --- the check is part of the method.} Note the shift being demanded
+    here: in every previous unit, a correct procedure guaranteed a correct answer. From today,
+    correct procedure plus verification is the standard.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. The four steps.} Isolate, raise to the index, solve, \textbf{check}. Justify Step~1 from
+Warm-Up 1(c) rather than asserting it: squaring erases a radical only when the radical stands alone.
+Work $\sqrt{x+4}-1=3$ ($x=12$) and name what the equation is \emph{asking} --- 6.0's function
+$f(x)=\sqrt{x+4}-1$, and where does it equal $3$? That framing is what makes \S5 free.
+
+\textbf{2. Why the check exists.} Write the one-way street: $a=b \Rightarrow a^{2}=b^{2}$ always,
+but $a^{2}=b^{2}$ leaves $a=b$ \emph{or} $a=-b$. So squaring can never lose a solution and can
+always gain one. Say the mechanism in one sentence --- \textbf{squaring destroys sign
+information} --- then finish the Hook on the graph: $y=\sqrt{x+7}$ meets $y=x-5$ exactly once, at
+$(9,4)$, while at $x=2$ the curve sits at $3$ and the line at $-3$. Point at those two red dots.
+They are mirror images, and squaring flattens them onto the same number. Close by naming the
+Lesson~5.6 parallel: multiplying by something that might be zero, squaring something that might be
+negative --- both are non-reversible steps, both produce candidates.
+
+\columnbreak
+
+\textbf{3. The free shortcut.} From 6.1, an even root is the \emph{principal} root and is never
+negative. So $\sqrt{2x-1}+5=2$ isolates to $\sqrt{2x-1}=-3$ and is finished --- \emph{no real
+solution}, no algebra. Then square anyway and show $x=5$ failing the check, so they see what the
+shortcut saved them from. Frame it as a reading habit: look at the isolated line before you commit
+to squaring it.
+
+\textbf{4. Odd index closes the trapdoor.} Every real number has exactly one real cube root, so
+$A^{3}=B^{3}$ forces $A=B$: cubing is \emph{reversible} and cannot invent solutions. Put
+$\sqrt{x-4}=-2$ (no solution) beside $\sqrt[3]{x-4}=-2$ ($x=-4$, and it checks). Same numbers,
+opposite verdicts, and the only difference is the index --- the sentence this unit has run on since
+6.0. Work $2\sqrt[3]{x+1}-3=1$ so they still see an isolation step, and insist on the check anyway:
+an odd index protects you from phantoms, not from arithmetic.
+
+\textbf{5--6. Graphs, then exponents.} Intersections, not $x$-intercepts: the number of crossings is
+the number of real solutions, so a picture tells you how many answers to expect before you find
+them. Then $x^{m/n}=k$ --- raise both sides to $\frac{n}{m}$. Flag both traps: an \emph{even
+numerator} is a square in disguise, so write the $\pm$ yourself ($x^{2/3}=9$ has two solutions); an
+\emph{even denominator} is an even root, so a negative answer would be extraneous.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and the tiers. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{the signature omission:} no check shown. Treat a missing check as an unfinished problem, not a presentation issue --- say so on day one or it will not stick;
+  \item \textbf{squaring without isolating:} $\sqrt{x}+2=5 \rightarrow x+4=25$. Send them back to Warm-Up 1(c); this is homework item 5;
+  \item \textbf{rejecting a candidate for being negative} --- being negative is not the crime. Homework 2(b) has two negative solutions and both are valid. What matters is the sign of the \emph{other} side;
+  \item \textbf{keeping both candidates} because the algebra was clean. Clean algebra is exactly the situation in which a phantom appears;
+  \item \textbf{grinding through} $\sqrt{x+6}+4=1$ instead of reading it. The shortcut is free marks on the SOL;
+  \item \textbf{restricting a cube root} --- writing ``no solution'' for $\sqrt[3]{x-4}=-2$. This is the 6.0 error resurfacing, and it is the exit ticket's MC distractor B;
+  \item \textbf{losing the $\pm$} in $x^{2/3}=25$ (homework 3(b), 3(d));
+  \item checking in the \emph{squared} equation rather than the original --- which of course always ``works,'' and which is the most self-defeating error available today.
+\end{itemize}
+Cold-call prompts: ``Is that an answer or a candidate --- and what turns one into the other?''
+``Before you square: is there any chance this equation has no solution at all? How can you tell?''
+``Which of your two candidates do you expect to fail, \emph{before} you check it? Why that one?''
+``Would this problem have an extraneous solution if the index were $3$? Why not?'' ``How many times
+do those two graphs cross, and what does that tell you about your answer list?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Candidate or Solution?} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} The four steps run one at a time on $\sqrt{x-1}+2=5$, each step in
+its own labelled row, then three on their own: $\sqrt{4x+1}=5$; $\sqrt[3]{x+3}=-1$, whose
+\emph{negative} answer is legal and comes with a required explanation of why; and
+$\sqrt{x+2}+7=3$, which stops at the isolation line. Closes on a pre-drawn graph of
+$y=\sqrt{x-1}+2$ with the lines $y=5$ and $y=1$, confirming the Part~1 answer and showing that
+``no solution'' looks like a line the curve never reaches.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} A five-row sorting table --- candidates / which check / solution
+set --- over $\sqrt{x+9}=x+3$, $\sqrt{2x+5}=x+1$, $\sqrt{x-3}=x-5$, $\sqrt[3]{2x-1}=3$, and
+$\sqrt{x+6}+4=1$. The first three each lose exactly one candidate; the fourth is odd-index and loses
+none; the fifth never gets squared. Then the discovery item (J1): tabulate the value of the
+\emph{right-hand side} at each rejected candidate --- negative every time --- and write the pattern
+as a usable rule. J2 asks why the cube root row could not have failed, using \emph{index} and
+\emph{sign}; J3 asks what reading item (e) saved.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Three parts. \emph{(1)} Two radicals --- beyond A2.EI.5a's
+one-radical cap, so assign it as genuine extension: $\sqrt{3x+1}=\sqrt{x+9}$ (one squaring) and
+$\sqrt{x+5}-\sqrt{x}=1$ (isolate, square, isolate again, square again; $x=4$), plus why two
+squarings make the check twice as necessary. \emph{(2)} Prove the two rules: why $B<0$ makes
+$\sqrt{A}=B$ unsolvable while $A=B^{2}$ cannot tell, and why one real cube root per number forces
+$A^{3}=B^{3}\Rightarrow A=B$. \emph{(3)} 6.2's pendulum $T(L)=2\pi\sqrt{L/32}$ run \emph{backwards}
+--- $T=2\pi$ gives $L=32$ ft and $T=\pi$ gives $L=8$ ft, both checkable against 6.2's own table ---
+then the period $-\pi$, which fails for \emph{two} separate reasons, algebraic and contextual, and a
+required explanation of why those are not the same rejection.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): solve and check $\sqrt{3x+1}-2=3$ ($x=8$); then solve,
+check, and sort $\sqrt{x+5}=x-1$ (candidates $4$ and $-1$; $-1$ extraneous), with item~2(c)
+requiring a one-sentence justification that mentions a \emph{sign} --- this is
+\textbf{A2.EI.5c} assessed directly; then an \textbf{SOL-style multiple-choice} item asking which
+equation has \emph{no real solution}, with options $\sqrt{x-1}=5$, $\sqrt[3]{x-1}=-5$,
+$\sqrt{x-1}=-5$, and $\sqrt{x-1}=0$ (answer C). \textbf{B is the item that earns its keep} --- a
+student who learned ``roots can't be negative'' instead of ``\emph{even} roots can't'' picks it, and
+that is a Unit~6 spine failure rather than a slip in today's procedure. Collect and sort into ``got
+it / skipped the check / rejected on reflex / index confusion.'' The third pile --- students who
+threw out $-1$ merely for being negative and got the right answer for the wrong reason --- is the
+one that will silently fail Homework item~2(b), where \emph{both} candidates are negative and both
+are correct. The fourth pile needs the \S4 contrast re-run before Lesson 6.6.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} six one-radical equations mixing indices and including one that needs no algebra
+at all ($\sqrt{x-2}+9=5$), with a follow-up asking which one that was and how they knew; a
+three-row sorting table with variable on both sides, whose middle row $\sqrt{4x+13}=x+4$ is the most
+valuable problem on the page --- \emph{both} candidates are negative and \emph{both} are genuine
+solutions, which is the only reliable cure for ``reject the negative one''; four rational-exponent
+equations, two of which have two solutions, with a follow-up asking what those two have in common
+(an even numerator); a pre-drawn graph of $y=\sqrt{x+2}$ against the lines $y=3$, $y=1$, and $y=-1$,
+where part (d) makes students square $\sqrt{x+2}=-1$ anyway and discover it returns part (b)'s
+answer --- the phantom made visible, because squaring cannot tell $y=-1$ from $y=1$; an error
+analysis of a classmate who squared without isolating; and a justification item (\textbf{A2.EI.5c})
+explaining both halves of the even/odd contrast using the words \emph{index} and \emph{sign}.
+\textbf{Extension:} the skid-mark model $s(d)=\sqrt{24d}$ mph from Lesson~6.0's homework, run
+backwards --- $30$ mph predicts $37.5$ ft of skid and $60$ mph predicts $150$ ft (doubling the speed
+\emph{quadruples} the distance, which the square root's flattening predicted), the scene's actual
+$96$ ft gives $48$ mph and contradicts the driver, and then the interpretation item that matters
+(\textbf{A2.EI.5b}): deriving $d=\frac{s^{2}}{24}$ requires squaring both sides, so why is there no
+extraneous-solution risk here? Because both sides are non-negative in context --- an honest example
+of squaring being perfectly safe, worth having on record after a day spent being suspicious of it.
+\textbf{Preview:} Lesson~6.6, \emph{Composition of Functions} --- today one operation undid another;
+next that idea gets a notation, $(f\circ g)(x)=f(g(x))$, and an order that matters. In 6.7 it
+becomes the test for inverses, finally explaining 6.0's reflection over $y=x$.
 \end{skillbox}
 \end{document}
