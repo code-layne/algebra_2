@@ -2,17 +2,15 @@
 
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
-> **Status:** Unit 1 is built in source. **Units 2, 3, and 4 are content-complete** — every lesson
+> **Status:** Unit 1 is built in source. **Units 2, 3, 4, and 5 are content-complete** — every lesson
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
-> `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26); **all 8 lessons 5.0–5.7 are now authored & building** (5.7 on
-> 2026-07-27) — the unit's **tests are the only unauthored piece left**. Units 6–8 are planned here
-> and not yet scaffolded.
-> **Next action: author the Unit 5 tests** — `tests/{practice_test,actual_test}` and
-> `test_keys/{practice_test_key,actual_test_key}`, then `make -C unit05/tests drop` and
-> `make -C unit05/test_keys drop` to publish the practice pair into `sample_test/` +
-> `sample_test_key/`. After that, Unit 6 (Radical Functions).
+> `sample_test_key/`). **Unit 5 (Rational Functions) closed out 2026-07-27**: all 8 lessons 5.0–5.7
+> authored & building, and the **unit tests are now authored, built, and published**. Units 6–8 are
+> planned here and not yet scaffolded.
+> **Next action: Unit 6 (Radical Functions)** — confirm the lesson map against
+> `spec/algebra2-vdoe-sol.pdf`, scaffold the unit (which also lays down its `tests/` + `test_keys/`),
+> then author 6.0 first.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -44,7 +42,7 @@
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.6 done) |
+| 5 | Rational Functions | Rational | 8 | **Complete** |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
@@ -957,8 +955,32 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > exit ticket each fit one page (blank+key); notes 5pp (key 5pp), activity 3pp (key 4pp), homework 3pp
 > (key 4pp), cover 1pp, slides 11 frames --- the extra key pages are the teacher note.
 > `make -C unit05/lesson07 all` → EXIT 0 (student 14pp, full 32pp).
-> **Next action: the Unit 5 tests** --- practice + actual and both keys, drawing across 5.0–5.7, then
-> `drop` the practice pair into `sample_test/` + `sample_test_key/`.
+> **Unit 5 tests authored & built (2026-07-27):** practice + actual and both keys, all 5pp, all four
+> building clean (`make -C unit05/tests all` and `make -C unit05/test_keys all` → EXIT 0), and the
+> practice pair published to `sample_test/` + `sample_test_key/`. One blueprint, two parallel forms
+> (same parts, same item types, same difficulty, different numbers and contexts), 72 pts:
+> **Part A vocabulary (8)** --- matching the eight terms the unit turns on (rational function, domain
+> restriction, vertical/horizontal asymptote, hole, LCD, extraneous solution, constant of variation),
+> with the two definitions written as the *cancel test's* two outcomes so the matching itself teaches
+> the contrast; **Part B multiple choice (12)** --- domain from the *denominator*, simplify-with-
+> restrictions, HA by degree comparison, an SOL-style hole-vs-wall item, transformed-parent asymptotes,
+> and inverse variation, with every distractor a named error (numerator-zero, restrictions off the
+> *simplified* denominator, inverted leading-coefficient ratio, skipped cancel test, direct-instead-of-
+> inverse); **Part C computation (40)** --- one item per lesson: read a pre-drawn graph (practice
+> $\frac{x+4}{x-2}$, decreasing branches; actual $\frac{x-3}{x+1}$, increasing branches --- both with
+> unlabeled dashed asymptotes and lattice-point intercepts), simplify + restrictions incl. opposite
+> binomials, multiply *and* divide (the three-sources-of-a-restriction item), add/subtract + a complex
+> fraction, parent transformations both directions (describe from an equation, write an equation from
+> given asymptotes), analyze-from-the-equation (hole coordinates from the *simplified* form), three
+> rational equations (one clean, one whose only root is extraneous → **no solution**, one quadratic
+> where a root must be thrown out), and a variation table classified by constant *products*;
+> **Part D extended response (12)** --- a full analysis whose last part asks where $f$ and its
+> simplified form agree and where they do not (the unit's central idea, graded as such), and an
+> average-cost model ($A(n)=\frac{7n+180}{n}$ practice, $\frac{5n+240}{n}$ actual) rewritten as
+> $c+\frac{\text{setup}}{n}$ so the HA is *interpreted*, not just stated, closing on "can the average
+> cost ever equal the per-unit cost?" Keys carry per-part `teachernote` scoring rubrics and
+> error-by-error item analysis. **Slant asymptotes deliberately absent** (5.5 Tier E only, never
+> assessed), and every expression stays inside the A2.EO.1b / A2.EI.4b linear-and-quadratic bound.
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**
