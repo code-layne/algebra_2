@@ -3,17 +3,195 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.6}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Solve, Then Check.} Same four steps every time, and always in this order:
+\textbf{(1)} factor every denominator and \emph{write the restriction list first}; \textbf{(2)} multiply
+every term by the LCD; \textbf{(3)} solve what is left; \textbf{(4)} check each candidate against the
+list, throw away any match, and verify the survivors. A number is not an answer until Step 4 says so.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- The list, before anything else.} Do \emph{not} solve. Just factor the denominators
+and write every excluded value.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Equation} & \textbf{Restrictions} & \textbf{LCD} \\
+\hline
+\TallMath{\frac{3}{x}+\frac{1}{x-2}=1}          & \blank{2.6cm} & \blank{3.0cm} \\
+\TallMath{\frac{x}{x+5}=\frac{4}{x-1}}          & \blank{2.6cm} & \blank{3.0cm} \\
+\TallMath{\frac{2}{x-4}+\frac{1}{x+4}=\frac{6}{x^2-16}} & \blank{2.6cm} & \blank{3.0cm} \\
+\TallMath{\frac{5}{x^2-x}=\frac{1}{x}}          & \blank{2.6cm} & \blank{3.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{Part 2 --- Solution, or not?} Each candidate below is already given to you. Decide, and say
+\emph{why} in a few words. (Two of them are fine. Two are not.)
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item $\dfrac{x}{x-5}=\dfrac{5}{x-5}$, \; candidate $x=5$: \; \blank{2.0cm} \; because
+        \blank{5.4cm}
+  \item $\dfrac{4}{x}+\dfrac{1}{2}=\dfrac{5}{x}$, \; candidate $x=2$: \; \blank{2.0cm} \; because
+        \blank{5.4cm}
+  \item $\dfrac{1}{x+3}=\dfrac{2}{x^2-9}$, \; candidate $x=3$: \; \blank{2.0cm} \; because
+        \blank{5.4cm}
+  \item $\dfrac{2}{x-1}=\dfrac{x}{x+2}$, \; candidate $x=-1$: \; \blank{2.0cm} \; because
+        \blank{5.4cm}
+\end{enumerate}
+\vspace{2pt}
+{\small One of these is a \emph{negative} answer that is perfectly good. Being negative is not a reason
+to reject anything.}
+
+\vspace{4pt}
+\textbf{Part 3 --- Twins.} These two equations differ by a single digit. Run all four steps on each.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{(a)} \; $\dfrac{x}{x-4}=\dfrac{4}{x-4}+3$ &
+\textbf{(b)} \; $\dfrac{x}{x-4}=\dfrac{2}{x-4}+3$ \\[6pt]
+Restrictions: $x\neq\blank{0.8cm}$ & Restrictions: $x\neq\blank{0.8cm}$ \\[4pt]
+Multiply by $x-4$: \; $x=\blank{3.0cm}$ & Multiply by $x-4$: \; $x=\blank{3.0cm}$ \\[4pt]
+Solve: \; $x=\blank{1.2cm}$ & Solve: \; $x=\blank{1.2cm}$ \\[4pt]
+Check: \blank{3.2cm} & Check: \blank{3.2cm} \\[4pt]
+Answer: \blank{3.2cm} & Answer: \blank{3.2cm} \\
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+The algebra was the same both times. What made the answers different? \writeline
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- A full solve, with one to throw away.} \;
+$\dfrac{x}{x-2}+\dfrac{2}{x+2}=\dfrac{8}{x^2-4}$
+\begin{enumerate}[label=\arabic*., leftmargin=2.1em, itemsep=5pt]
+  \item Factor the last denominator: $x^2-4=(\rule{1.3cm}{0.4pt})(\rule{1.3cm}{0.4pt})$. \;
+        Restrictions $x\neq\blank{2.0cm}$. \; LCD $=\blank{2.8cm}$
+  \item Multiply every term and cancel: \;
+        $x(\rule{1.2cm}{0.4pt})+2(\rule{1.2cm}{0.4pt})=\rule{1.0cm}{0.4pt}$
+  \item Expand and collect: \; $0=x^2+\rule{0.7cm}{0.4pt}\,x-\rule{0.8cm}{0.4pt}
+        =(x+\rule{0.6cm}{0.4pt})(x-\rule{0.6cm}{0.4pt})$. \; Candidates \blank{2.4cm}
+  \item Check against the list. Extraneous: \blank{1.4cm} \; Survivor: \blank{1.4cm}
+  \item Verify the survivor in the \emph{original}: left side $=\blank{2.4cm}$, right side
+        $=\blank{2.4cm}$. \; Solution set \blank{1.8cm}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 2 --- Find the answer on a graph.} Consider $\dfrac{x^2}{x+3}=\dfrac{9}{x+3}$.
+
+\vspace{2pt}
+Subtract the right side from the left and combine into one fraction:
+\[ \frac{x^2}{x+3}-\frac{9}{x+3}=\frac{\rule{1.6cm}{0.4pt}}{x+3}
+   =\rule{1.6cm}{0.4pt},\qquad x\neq\rule{0.8cm}{0.4pt} \]
+Solving the equation means finding where that combined function equals \blank{0.8cm}. Here is its
+graph.
+\begin{center}
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-7}{7}{-9}{5}
+  \begin{scope}
+    \clip (-7,-9) rectangle (7,5);
+    \draw[very thick, forest] (-7,-10)--(7,4);
+  \end{scope}
+  \draw[forest, very thick, fill=white] (-3,-6) circle (4.4pt);
+  \node[charcoal, font=\scriptsize, right] at (-2.6,-6.6) {$(-3,-6)$};
+  \fill[charcoal] (3,0) circle (3.4pt) node[above left, font=\scriptsize]{$(3,0)$};
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Read the solution off the graph: $x=\blank{1.0cm}$, because that is the \blank{2.4cm}.
+  \item Now solve the equation algebraically. Candidates \blank{2.2cm}; extraneous \blank{1.2cm};
+        solution set \blank{1.8cm}.
+  \item The extraneous candidate is at the \blank{1.4cm} in the picture. In one sentence, explain
+        what the picture is telling you that the candidate list alone did not. \writeline
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 3 --- Error analysis.} A student solved $\dfrac{2}{x-5}+\dfrac{3}{x}=\dfrac{10}{x^2-5x}$
+and wrote:
+\begin{center}
+\fbox{\parbox{0.80\linewidth}{\centering \vspace{2pt}
+``LCD is $x(x-5)$. So $2x+3(x-5)=10$, \\
+$5x-15=10$, \; $5x=25$, \; $x=5$. \\
+The solution is $x=5$.''\vspace{2pt}}}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Is the LCD correct? \blank{1.0cm} \; Is the cleared equation correct? \blank{1.0cm} \;
+        Is the arithmetic correct? \blank{1.0cm}
+  \item So the student made no mistake at all in Steps 1--3. What did they skip? \blank{4.6cm}
+  \item Restrictions: $x\neq\blank{2.0cm}$. \; Correct answer: \blank{3.0cm}
+  \item Write the one sentence the student should have written, using the words \emph{extraneous} and
+        \emph{denominator}. \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Build the equation yourself.} Mia and Dev are painting a mural. Working alone, Dev
+takes \textbf{3 hours longer} than Mia. Working together, they finish in \textbf{2 hours}.
+
+\vspace{2pt}
+{\small In one hour, a person who needs $t$ hours for the whole job finishes $\frac{1}{t}$ of it.}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Let $x=$ the hours \emph{Mia} needs alone. Then Dev needs \blank{1.6cm} hours. In one hour
+        Mia paints \blank{1.2cm} of the mural and Dev paints \blank{1.4cm}, and together they
+        paint \blank{1.2cm} of it.
+  \item Write the equation: \; \blank{6.0cm}
+  \item Restrictions (from the algebra): $x\neq\blank{2.0cm}$. \; Solve it. Candidates
+        \blank{2.4cm}
+  \item Neither candidate is on the restriction list --- so \emph{both} of them really do solve the
+        equation. Check $x=-2$ in your equation to confirm it: \blank{4.0cm}
+  \item You still have to reject $x=-2$. \textbf{Why?} And why is that a \emph{different} kind of
+        rejection from an extraneous solution? \writelines{2}
+  \item Answer the question that was asked: Mia alone takes \blank{1.4cm} hours; Dev alone takes
+        \blank{1.4cm} hours.
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 2 --- Make one on purpose.}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Write a rational equation whose \emph{only} candidate is $x=3$ and for which $x=3$ is
+        extraneous --- so the equation has no solution. \; \blank{6.0cm}
+  \item Explain how you forced it. \writeline
+  \item Harder: write one with candidates $x=4$ and $x=-1$, where $x=-1$ is extraneous and $x=4$ is a
+        genuine solution. \; \blank{6.0cm}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- Can clearing the denominators ever \emph{lose} a solution?} Multiplying by the LCD
+can hand you extra answers. This question asks about the opposite direction.
+
+\vspace{2pt}
+Take $\dfrac{x^2}{x-1}=\dfrac{x}{x-1}$.
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Restrictions \blank{1.4cm}. Clear the denominator: \; \blank{2.0cm}. \; Candidates
+        \blank{2.2cm}. \; Extraneous \blank{1.2cm}. \; Solution set \blank{1.6cm}
+  \item A second student clears the denominator, gets $x^2=x$, and then \emph{divides both sides by
+        $x$} to get $x=1$. They report $x=1$. Two things went wrong at once --- name them both.
+        \writelines{2}
+  \item Fill in the two rules. Multiplying both sides by an expression that could be zero can
+        \blank{1.6cm} solutions, so you must \blank{1.6cm} at the end. Dividing both sides by an
+        expression that could be zero can \blank{1.6cm} solutions, so you should
+        \blank{2.6cm} instead.
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}

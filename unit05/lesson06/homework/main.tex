@@ -3,17 +3,162 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.6}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Every problem starts the same way: \textbf{factor the denominators and write the restriction list.}
+A number is not an answer until you have checked it against that list.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{The list first.} Do not solve --- just give the restrictions and the LCD.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
+      \item $\dfrac{7}{x}-\dfrac{2}{x+5}=1$ \hfill restrictions \blank{2.0cm} \; LCD \blank{2.8cm}
+      \item $\dfrac{x}{x-7}=\dfrac{3}{x+1}$ \hfill restrictions \blank{2.0cm} \; LCD \blank{2.8cm}
+      \item $\dfrac{4}{x^2-25}=\dfrac{1}{x-5}$ \hfill restrictions \blank{2.0cm} \; LCD \blank{2.8cm}
+      \item $\dfrac{2}{x^2+2x}+\dfrac{1}{x+2}=\dfrac{3}{x}$ \hfill restrictions \blank{2.0cm} \;
+            LCD \blank{2.8cm}
+    \end{enumerate}
+
+  \item \textbf{Solve.} Show the cleared equation, the candidates, and the check. If an equation has no
+        solution, say so.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=7pt]
+      \item $\dfrac{5}{x}+\dfrac{3}{2}=\dfrac{11}{x}$ \hfill candidates \blank{1.8cm} \;
+            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
+      \item $\dfrac{x}{x+3}=\dfrac{4}{x}$ \hfill candidates \blank{1.8cm} \;
+            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
+      \item $\dfrac{x}{4}+\dfrac{1}{x}=\dfrac{5}{4}$ \hfill candidates \blank{1.8cm} \;
+            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
+      \item $\dfrac{x}{x-6}=\dfrac{6}{x-6}+2$ \hfill candidates \blank{1.8cm} \;
+            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
+      \item $\dfrac{x}{x-1}+\dfrac{1}{x+1}=\dfrac{2}{x^2-1}$ \hfill candidates \blank{1.8cm} \;
+            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
+      \item $\dfrac{4}{x^2-16}+\dfrac{1}{x+4}=\dfrac{1}{x-4}$ \hfill candidates \blank{1.8cm} \;
+            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
+    \end{enumerate}
+    \vspace{3pt}
+    Parts (d) and (f) both come out to ``no solution,'' but for two different reasons. Explain the
+    difference. \writelines{2}
+
+  \item \textbf{Check, do not solve.} A candidate is given. Decide, and give the reason.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $\dfrac{x+2}{x-4}=\dfrac{6}{x-4}$, \; candidate $x=4$: \blank{1.8cm}, because
+            \blank{4.8cm}
+      \item $\dfrac{3}{x}-\dfrac{1}{x-2}=\dfrac{1}{x}$, \; candidate $x=4$: \blank{1.8cm}, because
+            \blank{4.8cm}
+      \item $\dfrac{5}{x+1}=\dfrac{x+3}{x+1}$, \; candidate $x=2$: \blank{1.8cm}, because
+            \blank{4.8cm}
+    \end{enumerate}
+
+  \item \textbf{See it on a graph.} Below is the graph of the single fraction you get by moving
+        everything in problem \textbf{2(e)} to one side and combining it.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-8}{7}{-5}{7}
+      \draw[navy, dashed, semithick] (-1,-5)--(-1,7);
+      \draw[navy, dashed, semithick] (-8,1)--(7,1);
+      \node[navy, font=\scriptsize, above left] at (-1,6.2) {$x=-1$};
+      \node[navy, font=\scriptsize, below right] at (4.6,1) {$y=1$};
+      \begin{scope}
+        \clip (-8,-5) rectangle (7,7);
+        \draw[very thick, forest, domain=-8:-1.35, samples=140, smooth] plot (\x,{1+2/((\x)+1)});
+        \draw[very thick, forest, domain=-0.6:7, samples=140, smooth] plot (\x,{1+2/((\x)+1)});
+      \end{scope}
+      \draw[forest, very thick, fill=white] (1,2) circle (4.2pt);
+      \fill[charcoal] (-3,0) circle (3.2pt) node[below left, font=\scriptsize]{$(-3,0)$};
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-4pt}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item Combine and simplify: \;
+            $\dfrac{x}{x-1}+\dfrac{1}{x+1}-\dfrac{2}{x^2-1}=\dfrac{\rule{2.4cm}{0.4pt}}%
+            {\rule{2.4cm}{0.4pt}}=\rule{1.8cm}{0.4pt}$, \; $x\neq\rule{0.7cm}{0.4pt}$
+      \item The solution of the equation is at the graph's \blank{2.2cm}, namely $x=\blank{1.0cm}$.
+      \item The extraneous candidate is at the graph's \blank{1.4cm}, namely $x=\blank{1.0cm}$.
+      \item There is a third interesting $x$-value here: $x=-1$, where the graph has a
+            \blank{2.6cm}. Was $-1$ ever a candidate? \blank{1.0cm} \; So: is every excluded value
+            an extraneous solution? \blank{1.0cm}
+    \end{enumerate}
+
+  \item \textbf{Error analysis.} A student solved $\dfrac{10}{x}-\dfrac{4}{x-1}=1$ and wrote:
+    \begin{center}
+    \fbox{\parbox{0.82\linewidth}{\centering \vspace{2pt}
+    ``LCD is $x(x-1)$. Multiply the fractions by it: \\
+    $10(x-1)-4x=1$, \; so $6x-10=1$, \; so $x=\frac{11}{6}$. \\
+    It's not $0$ or $1$, so it checks out.''\vspace{2pt}}}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item The LCD is correct and the check at the end is correct. The mistake is in the
+            \blank{3.4cm} step. Describe it in a few words. \blank{5.0cm}
+      \item Which term did the student fail to multiply? \blank{2.0cm} \; What should the right side
+            have become? \blank{2.4cm}
+      \item Redo it correctly. Cleared equation: \blank{4.2cm}. \; Candidates \blank{2.0cm}.
+      \item Extraneous \blank{1.2cm}. \; Solution set \blank{2.2cm}.
+    \end{enumerate}
+
+  \item \textbf{Paddling against the current.} A kayaker paddles at a steady $4$ miles per hour in
+        still water. On a river with a current of $c$ miles per hour, she goes $6$ miles
+        \emph{upstream} and then the same $6$ miles back \emph{downstream}. The whole trip takes
+        $4$ hours.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item Going upstream her speed over the ground is \blank{1.6cm} mph, so that leg takes
+            \blank{1.6cm} hours. Going downstream her speed is \blank{1.6cm} mph, so that leg takes
+            \blank{1.6cm} hours.
+      \item Write the equation for the whole trip: \; \blank{6.0cm}
+      \item Restrictions: $c\neq\blank{2.0cm}$. \; In plain words, what would a current of exactly
+            $4$ mph do to the upstream leg, and how does the graph of the upstream time show it?
+            \writeline
+      \item Solve. Candidates \blank{2.4cm}. Are either of them extraneous? \blank{1.2cm}
+      \item You must still reject one of them. Which, and \textbf{why}? Is your reason the same kind of
+            reason as ``extraneous''? \writelines{2}
+      \item The current is \blank{1.4cm} mph. Check it: upstream takes \blank{1.2cm} hours,
+            downstream takes \blank{1.2cm} hours, total \blank{1.2cm} hours.
+    \end{enumerate}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Part 1 --- Does every excluded value get a turn?} Problem 4(d) suggests an answer. Write a
+rational equation whose restriction list includes $x=2$, but for which $x=2$ never appears as a
+candidate at all.
+\begin{center}
+\blank{6.0cm}
+\end{center}
+\vspace{-2pt}
+Then finish the sentence: every extraneous solution is an excluded value, but \blank{6.4cm}
+
+\vspace{5pt}
+\textbf{Part 2 --- One number decides everything.} Consider the family
+\[ \frac{x}{x-2}=\frac{k}{x-2}, \]
+where $k$ is a number you get to choose.
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Clear the denominator. The cleared equation is \blank{2.0cm}, so the only candidate is
+        $x=\blank{1.0cm}$.
+  \item For exactly one value of $k$, the equation has \emph{no} solution. That value is
+        $k=\blank{1.0cm}$. Why that one? \blank{5.0cm}
+  \item For every other $k$, the solution is $x=\blank{1.0cm}$. Test your rule on $k=7$ and on
+        $k=-5$. \writeline
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 5.7: Direct, Inverse \& Joint Variation.} The unit closes where it
+started: with $y=\frac{k}{x}$, the rational parent, wearing its working clothes. You will read a table
+and decide whether two quantities are \emph{directly} proportional (one doubles, so does the other) or
+\emph{inversely} proportional (one doubles, the other halves), find the constant $k$, write the
+equation, and say what it means. Today's habit carries straight over: when the answer has to describe
+something real, some solutions get rejected --- and you now know the difference between rejecting one
+because the algebra forbids it and rejecting one because the situation does.
+\end{spiralbox}
 
 \end{document}

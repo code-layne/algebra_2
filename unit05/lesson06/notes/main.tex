@@ -3,17 +3,291 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.6}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item \textbf{solve} a rational equation by multiplying every term by the LCD and solving the linear or quadratic equation that is left (A2.EI.4b);
+  \item \textbf{check} every candidate against the restriction list and \textbf{verify} the survivors --- algebraically and on a graph (A2.EI.4b/c);
+  \item \textbf{explain why} a candidate can be extraneous, using the fact that multiplying by an expression that could be zero is not reversible (A2.EI.4d);
+  \item \textbf{write} a rational equation to model a situation, solve it, and say what the answer means --- including which answers to reject and why (A2.EI.4a/c).
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Rational equation}
+\termblanklong{Clearing the denominators}
+\termblanklong{Candidate vs.\ solution}
+\termblanklong{Extraneous solution}
+\end{vocabbox}
+
+\begin{hookbox}
+Two equations. They are the same except for one number in the denominator.
+\[ \textbf{(I)}\quad \frac{x^2}{x-2}=\frac{4}{x-2} \qquad\qquad\qquad
+   \textbf{(II)}\quad \frac{x^2}{x-3}=\frac{4}{x-3} \]
+Multiply both sides of \emph{either} one by its denominator and the very same equation drops out:
+$x^2=4$, so the candidates are $x=\blank{0.8cm}$ and $x=\blank{0.8cm}$ --- for \textbf{both}
+equations. Now put those two numbers back into the originals and see what actually happens.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.96\linewidth}{|C{1.9cm}|C{1.5cm}|C{2.6cm}|C{2.6cm}|X|}
+\hline
+\rowcolor{forestbg}
+\textbf{Equation} & \textbf{Try $x=$} & \textbf{Left side} & \textbf{Right side} &
+\textbf{True? False? Neither?} \\ \hline
+(I)  & $2$  & & & \\ \hline
+(I)  & $-2$ & & & \\ \hline
+(II) & $2$  & & & \\ \hline
+(II) & $-2$ & & & \\ \hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+Equation (I) has \blank{0.8cm} solution(s); equation (II) has \blank{0.8cm}. The algebra could not
+tell them apart --- \emph{only the check could.} That is today's whole lesson.
+\end{hookbox}
+
+\begin{notesbox}{1. First: Expression or Equation?}
+These two lines look almost identical, and what you are allowed to do to them is completely different.
+
+\vspace{4pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} X X@{}}
+\hline
+ & \textbf{Lesson 5.3 --- an \emph{expression}} & \textbf{Lesson 5.6 --- an \emph{equation}} \\
+\hline
+What it looks like & $\dfrac{6}{x}-\dfrac{2}{x-1}$ & $\dfrac{6}{x}-\dfrac{2}{x-1}=1$ \\
+The job & \emph{Combine} it into one fraction & \emph{Solve} it for $x$ \\
+What you do with the LCD & Build it: rewrite each piece \emph{over} the LCD & Multiply \emph{every term} by it, so the denominators cancel away \\
+What is left at the end & A fraction, with restrictions & Numbers, which must then be \blank{2.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{You may clear denominators only when there is an equals sign.} An expression has no sides to
+multiply. Clearing the denominators of an expression changes its \emph{value}; clearing them in an
+equation keeps the equation balanced.\vspace{2pt}}}
+\end{center}
 \end{notesbox}
+
+\begin{notesbox}{2. The Four Steps --- Always in This Order}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\hline
+\textbf{\#} & \textbf{Step} & \textbf{What you write down} \\
+\hline
+1 & \textbf{Factor \& restrict} & factor every denominator; list every \blank{2.4cm} value. \emph{Write the list at the top of your work.} \\
+2 & \textbf{Multiply by the LCD} & every term, including any term with no denominator; then cancel \\
+3 & \textbf{Solve} & whatever is left --- a \blank{1.6cm} or a \blank{2.0cm} equation \\
+4 & \textbf{Check} & compare each answer to the Step 1 list; discard any match; verify the survivors \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{Clearing the denominators solves a \emph{different} equation. The check is what brings you
+back.}\vspace{2pt}}}
+\end{center}
+
+\vspace{3pt}
+Until Step 4 is done, the numbers you have are only \textbf{candidates}. Step 1 is not optional
+bookkeeping --- it is the only thing that makes Step 4 possible, and it must happen \emph{before} you
+touch the equation.
+\end{notesbox}
+
+\begin{notesbox}{3. Why This Happens --- and Why It Is Not Your Fault}
+From the Warm-Up: multiplying both sides of an equation by a \emph{nonzero} number can always be undone
+by dividing, so it never changes the answers. Multiplying both sides by \blank{1.2cm} cannot be
+undone --- and it turns \emph{every} statement, true or false, into $0=0$.
+
+\vspace{4pt}
+When you multiply a rational equation by its LCD, you are not multiplying by a number. You are
+multiplying by an \emph{expression}, and at each excluded value that expression is exactly
+\blank{1.2cm}. So at those inputs --- and only at those inputs --- the multiplication is not
+reversible, and the cleared equation can pick up answers that the original never had.
+
+\vspace{4pt}
+\begin{center}
+\fbox{\parbox{0.94\linewidth}{\centering\vspace{2pt}
+An \textbf{extraneous solution} is a solution of the cleared equation that is \emph{not} a solution of
+the original one. \\[3pt]
+\textbf{It is never a random number. It is always a value from your Step 1
+list.}\vspace{2pt}}}
+\end{center}
+
+\vspace{4pt}
+That last sentence is worth its own line, because it makes Step 4 quick. You are not re-solving
+anything. You are reading two short lists --- \emph{candidates} and \emph{restrictions} --- and looking
+for overlap.
+
+\vspace{3pt}
+\textbf{And notice what a check on an excluded value actually looks like.} Substituting $x=2$ into
+equation (I) of the Hook does not produce a \emph{false} statement. It produces \blank{4.6cm}
+--- which is not a statement at all. You cannot check a number into an equation where the equation does
+not exist.
+\end{notesbox}
+
+\begin{notesbox}{4. Worked Example A --- Nothing Gets Thrown Away}
+\[ \frac{6}{x}-\frac{2}{x-1}=1 \]
+
+\textbf{Step 1 --- factor and restrict.} The denominators are $x$ and $x-1$, already factored, so
+$x\neq\blank{0.8cm}$ and $x\neq\blank{0.8cm}$. \; LCD $=\blank{2.6cm}$
+
+\vspace{4pt}
+\textbf{Step 2 --- multiply every term by the LCD.} Watch the term on the right: it has no denominator,
+and it still gets multiplied.
+\[ x(x-1)\cdot\frac{6}{x} \;-\; x(x-1)\cdot\frac{2}{x-1} \;=\; x(x-1)\cdot 1 \]
+Cancel: \quad $\rule{2.2cm}{0.4pt}-\rule{1.6cm}{0.4pt}=\rule{2.2cm}{0.4pt}$
+
+\vspace{4pt}
+\textbf{Step 3 --- solve what is left.} Distribute, collect everything on one side, and factor.
+\[ 6x-6-2x=x^2-x \qquad\Longrightarrow\qquad 0=x^2-\rule{0.7cm}{0.4pt}\,x+\rule{0.7cm}{0.4pt}
+   \qquad\Longrightarrow\qquad 0=(x-\rule{0.5cm}{0.4pt})(x-\rule{0.5cm}{0.4pt}) \]
+Candidates: $x=\blank{0.8cm}$ and $x=\blank{0.8cm}$.
+
+\vspace{4pt}
+\textbf{Step 4 --- check.} Restriction list: \blank{2.0cm}. \; Is either candidate on it?
+\blank{1.0cm} \; So \blank{1.0cm} candidates survive. Verify both in the \emph{original}:
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.90\linewidth}{|C{1.6cm}|C{3.4cm}|C{2.0cm}|X|}
+\hline
+\rowcolor{forestbg}
+\textbf{$x$} & \textbf{$\dfrac{6}{x}-\dfrac{2}{x-1}$} & \textbf{Equals $1$?} & \textbf{Verdict} \\ \hline
+$2$ & & & \\ \hline
+$3$ & & & \\ \hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+Solution set: \blank{3.0cm}
+\end{notesbox}
+
+\begin{notesbox}{5. Worked Example B --- One Survives, One Does Not}
+\[ \frac{x}{x+1}+\frac{2}{x-1}=\frac{2}{x^2-1} \]
+
+\textbf{Step 1.} Factor the last denominator first: $x^2-1=(\rule{1.3cm}{0.4pt})(\rule{1.3cm}{0.4pt})$.
+\; Restrictions: $x\neq\blank{0.8cm}$, $x\neq\blank{0.8cm}$. \; LCD $=\blank{3.0cm}$
+
+\vspace{4pt}
+\textbf{Step 2.} Multiply all three terms by the LCD and cancel:
+\[ x(\rule{1.1cm}{0.4pt})+2(\rule{1.1cm}{0.4pt})=\rule{1.1cm}{0.4pt} \]
+
+\vspace{2pt}
+\textbf{Step 3.} $x^2-x+2x+2=2 \;\Longrightarrow\; x^2+x=0 \;\Longrightarrow\;
+x(\rule{1.3cm}{0.4pt})=0$. \; Candidates: $x=\blank{0.8cm}$, $x=\blank{0.8cm}$.
+
+\vspace{4pt}
+\textbf{Step 4.} One candidate is sitting on the restriction list: $x=\blank{0.9cm}$ is
+\blank{2.6cm}. Throw it away --- and notice you did \emph{not} have to substitute anything to know
+that. The other candidate, $x=\blank{0.9cm}$, is checked in the original: left side
+$=\dfrac{0}{1}+\dfrac{2}{-1}=\blank{1.0cm}$, right side $=\dfrac{2}{-1}=\blank{1.0cm}$. \;
+Solution set: \blank{2.4cm}
+
+\vspace{5pt}
+\textbf{Now see it (A2.EI.4b, graphically).} Move everything to one side and combine with 5.3:
+\[ \frac{x}{x+1}+\frac{2}{x-1}-\frac{2}{x^2-1}
+   =\frac{x(x-1)+2(x+1)-2}{(x-1)(x+1)}=\frac{x^2+x}{(x-1)(x+1)}
+   =\frac{x(x+1)}{(x-1)(x+1)}=\frac{x}{x-1},\quad x\neq-1 \]
+Solving the equation is the same as asking where that combined function equals \blank{0.8cm}. Run
+Lesson 5.5 on it: the factor $x+1$ cancels, so $x=-1$ is a \blank{1.2cm}; the factor $x-1$ survives,
+so $x=1$ is a \blank{2.6cm}; and the simplified numerator is zero at $x=\blank{0.8cm}$.
+
+\vspace{3pt}
+\begin{center}
+\begin{minipage}{0.53\linewidth}\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-6}{7}{-4}{6}
+  \draw[navy, dashed, semithick] (1,-4)--(1,6);
+  \draw[navy, dashed, semithick] (-6,1)--(7,1);
+  \node[navy, font=\scriptsize, above right] at (1,5.2) {$x=1$};
+  \node[navy, font=\scriptsize, below right] at (5.0,1) {$y=1$};
+  \begin{scope}
+    \clip (-6,-4) rectangle (7,6);
+    \draw[very thick, forest, domain=-6:0.8, samples=140, smooth] plot (\x,{1+1/((\x)-1)});
+    \draw[very thick, forest, domain=1.25:7, samples=140, smooth] plot (\x,{1+1/((\x)-1)});
+  \end{scope}
+  \draw[forest, very thick, fill=white] (-1,0.5) circle (4.2pt);
+  \node[charcoal, font=\scriptsize, left] at (-1.4,0.9) {hole};
+  \fill[charcoal] (0,0) circle (3.4pt);
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.45\linewidth}
+\small
+The solid dot at \blank{1.4cm} is where the combined function is zero. That is the \emph{real}
+solution.
+
+\vspace{4pt}
+The open circle at $\left(-1,\frac12\right)$ is where the extraneous candidate went. The graph has no
+point there at all --- so the equation cannot be satisfied there.
+
+\vspace{4pt}
+\textbf{Fill in the rule:} a true solution shows up as an \blank{2.2cm}; an extraneous candidate
+shows up as a \blank{1.4cm} (or a wall).
+\end{minipage}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{6. Cross-Multiplying, and the Answer ``No Solution''}
+\textbf{The shortcut.} When the equation is a \textbf{proportion} --- one single fraction equal to one
+single fraction --- you may cross-multiply. It is not a new rule; it is Step 2 with the LCD
+$=$ (bottom left)(bottom right), already cancelled for you. \emph{It does not apply when there are
+three terms.}
+
+\vspace{3pt}
+\[ \frac{2}{x-1}=\frac{x}{x+2} \]
+Restrictions: $x\neq\blank{0.8cm}$, $x\neq\blank{0.8cm}$. \; Cross-multiply:
+$2(\rule{1.2cm}{0.4pt})=x(\rule{1.2cm}{0.4pt})$, so $2x+4=x^2-x$ and
+$0=(x-\rule{0.5cm}{0.4pt})(x+\rule{0.5cm}{0.4pt})$. \\[3pt]
+Candidates $x=\blank{0.9cm}$ and $x=\blank{0.9cm}$. On the restriction list? \blank{1.0cm} \;
+Solution set: \blank{2.6cm}
+
+\vspace{6pt}
+\textbf{And sometimes everything gets thrown away.}
+\[ \frac{1}{x-2}+\frac{1}{x+2}=\frac{4}{x^2-4} \]
+Restrictions: $x\neq\blank{2.0cm}$. \; LCD $=\blank{2.6cm}$. \; Clearing gives
+$(x+2)+(x-2)=4$, so $2x=4$ and the only candidate is $x=\blank{0.8cm}$.
+
+\vspace{2pt}
+That candidate \emph{is} on the restriction list. Every candidate is extraneous, so the equation has
+\blank{2.6cm}. Write that as your answer --- it is a complete answer, not a failure to finish.
+\end{notesbox}
+
+\begin{practicebox}
+Solve, showing all four steps. \; $\dfrac{6}{x^2-9}+\dfrac{1}{x+3}=1$
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Factored denominators \blank{3.2cm}; \; restrictions $x\neq\blank{2.2cm}$; \;
+        LCD $=\blank{3.0cm}$
+  \item After multiplying every term by the LCD (do not forget the $1$):
+        \; $\rule{1.4cm}{0.4pt}+\rule{2.0cm}{0.4pt}=\rule{2.6cm}{0.4pt}$
+  \item Solve: \; $0=x^2-\rule{0.6cm}{0.4pt}\,x-\rule{0.8cm}{0.4pt}
+        =(x-\rule{0.5cm}{0.4pt})(x+\rule{0.5cm}{0.4pt})$. \; Candidates \blank{2.4cm}
+  \item Check. Extraneous: \blank{1.4cm} \; Solution set: \blank{2.0cm}
+  \item In one sentence, say how you knew the extraneous one was extraneous \emph{without} substituting
+        it. \writeline
+\end{enumerate}
+\end{practicebox}
 
 \end{document}
