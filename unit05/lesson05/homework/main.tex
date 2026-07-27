@@ -3,17 +3,172 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.5}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Every problem starts the same way: \textbf{factor}. Restrictions come off the \emph{original}
+denominator, and the cancel test sorts each one into a hole or a wall.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Hole or wall?} Give the restrictions, then sort them.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $\dfrac{x+3}{(x+3)(x-5)}$ \hfill restrictions \blank{1.8cm} \; hole \blank{1.2cm} \;
+            VA \blank{2.0cm}
+      \item $\dfrac{x-6}{(x-2)(x+1)}$ \hfill restrictions \blank{1.8cm} \; hole \blank{1.2cm} \;
+            VA \blank{2.0cm}
+      \item $\dfrac{x^2-25}{x^2-5x}$ \hfill restrictions \blank{1.8cm} \; hole \blank{1.2cm} \;
+            VA \blank{2.0cm}
+      \item $\dfrac{x^2+x-6}{x^2-4}$ \hfill restrictions \blank{1.8cm} \; hole \blank{1.2cm} \;
+            VA \blank{2.0cm}
+      \item $\dfrac{7}{x^2-16}$ \hfill restrictions \blank{1.8cm} \; hole \blank{1.2cm} \;
+            VA \blank{2.0cm}
+      \item $\dfrac{x^2-9}{x^2-6x+9}$ \hfill restrictions \blank{1.8cm} \; hole \blank{1.2cm} \;
+            VA \blank{2.0cm}
+    \end{enumerate}
+    \vspace{2pt}
+    Part (f) is the odd one. The factor $x-3$ appears on top \emph{and} on the bottom, and there is
+    still no hole. Why not? \blank{6.4cm}
+
+  \item \textbf{Horizontal asymptotes.} Degrees only --- do not factor.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
+      \item $y=\dfrac{5x-1}{x^2+3}$: \; HA \blank{1.6cm}
+      \item $y=\dfrac{2x^2+x}{3x^2-5}$: \; HA \blank{1.6cm}
+      \item $y=\dfrac{x^3+1}{x^2-4}$: \; HA \blank{1.6cm}
+      \item $y=\dfrac{-4x}{x-9}$: \; HA \blank{1.6cm}
+    \end{enumerate}
+
+  \item \textbf{Two full builds.}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=8pt]
+      \item $f(x)=\dfrac{x+2}{x^2-2x-8}$ \\[3pt]
+            Factored \blank{3.0cm} \; Restrictions \blank{2.0cm} \; Simplified \blank{1.8cm}
+            \\[3pt]
+            Hole \blank{1.8cm} \; VA \blank{1.2cm} \; HA \blank{1.2cm} \;
+            $x$-int \blank{1.6cm} \; $y$-int \blank{1.6cm} \\[3pt]
+            Sign chart --- boundary points \blank{1.6cm}. \; Test $x=0$: \blank{1.0cm} \;
+            test $x=5$: \blank{1.0cm} \\[3pt]
+            Domain \blank{5.0cm}
+      \item $g(x)=\dfrac{x-3}{x^2-4}$ \\[3pt]
+            Factored \blank{3.0cm} \; Restrictions \blank{2.0cm} \; Holes \blank{1.4cm}
+            \\[3pt]
+            VA \blank{2.4cm} \; HA \blank{1.2cm} \; $x$-int \blank{1.6cm} \;
+            $y$-int \blank{1.6cm} \\[3pt]
+            Sign chart --- boundary points \blank{2.4cm}.
+            \begin{center}
+            \renewcommand{\arraystretch}{1.4}
+            \begin{tabularx}{0.86\linewidth}{|C{2.4cm}|C{1.5cm}|C{1.6cm}|X|}
+            \hline
+            \rowcolor{forestbg}
+            \textbf{Interval} & \textbf{Test $x$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
+            $x<-2$   & $-3$  & & \\ \hline
+            $-2<x<2$ & $0$   & & \\ \hline
+            $2<x<3$  & $2.5$ & & \\ \hline
+            $x>3$    & $4$   & & \\ \hline
+            \end{tabularx}
+            \end{center}
+            \vspace{-4pt}
+            Domain \blank{5.0cm} \; This graph crosses its horizontal asymptote at \blank{1.6cm}.
+    \end{enumerate}
+
+  \item \textbf{Which equation is this?} The dashed lines are the asymptotes, the solid dot is an
+        intercept, and the open circle is a hole.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-7}{7}{-5}{7}
+      \draw[navy, dashed, semithick] (1,-5)--(1,7);
+      \draw[navy, dashed, semithick] (-7,1)--(7,1);
+      \node[navy, font=\scriptsize, above right] at (1,6.2) {$x=1$};
+      \node[navy, font=\scriptsize, below left] at (-3.4,1) {$y=1$};
+      \begin{scope}
+        \clip (-7,-5) rectangle (7,7);
+        \draw[very thick, forest, domain=-7:0.62, samples=140, smooth] plot (\x,{1+2/((\x)-1)});
+        \draw[very thick, forest, domain=1.33:7, samples=140, smooth] plot (\x,{1+2/((\x)-1)});
+      \end{scope}
+      \draw[forest, very thick, fill=white] (-3,0.5) circle (4.0pt);
+      \fill[charcoal] (-1,0) circle (3.2pt) node[above right, font=\scriptsize]{$(-1,0)$};
+      \fill[charcoal] (0,-1) circle (3.2pt) node[below right, font=\scriptsize]{$(0,-1)$};
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-4pt}
+    \begin{center}
+    \textbf{A.} $\dfrac{x+1}{x-1}$ \quad
+    \textbf{B.} $\dfrac{(x+1)(x+3)}{(x-1)(x+3)}$ \quad
+    \textbf{C.} $\dfrac{(x+1)(x-3)}{(x-1)(x-3)}$ \quad
+    \textbf{D.} $\dfrac{x+3}{(x-1)(x+3)}$
+    \end{center}
+    \vspace{3pt}
+    Answer \blank{1.0cm}. \; The hole is at \blank{1.6cm}, so the domain is \blank{4.2cm}.
+    \\[3pt]
+    Finally, rewrite the simplified form as a transformed parent (Lesson 5.4):
+    $\dfrac{x+1}{x-1}=\dfrac{(x-1)+\rule{0.8cm}{0.4pt}}{x-1}=\rule{2.4cm}{0.4pt}$
+
+  \item \textbf{Error analysis.} A student analyzed $g(x)=\dfrac{x^2-x-6}{x^2-9}$ and wrote:
+    \begin{center}
+    \fbox{\parbox{0.84\linewidth}{\centering \vspace{2pt}
+    ``It simplifies to $\dfrac{x+2}{x+3}$, so the domain is all reals except $x=-3$, \\
+    and the graph is exactly the graph of $\dfrac{x+2}{x+3}$.''\vspace{2pt}}}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item The simplification is \blank{1.4cm} (correct / incorrect).
+      \item What did the student leave out of the domain, and why? \blank{5.6cm}
+      \item The hole is at \blank{1.8cm}, so the correct domain is \blank{4.4cm}.
+      \item State the rule from Lesson 5.1 that the student broke, in one sentence.
+            \writeline
+    \end{enumerate}
+
+  \item \textbf{Cleaning the smokestack.} A factory must remove pollution from its exhaust. Removing
+        $p$ percent of the pollutant costs
+        \[ C(p)=\frac{25p}{100-p} \quad \text{thousand dollars,} \qquad 0\le p<100. \]
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $C(50)=\blank{1.4cm}$, \; $C(80)=\blank{1.4cm}$, \; $C(90)=\blank{1.4cm}$, \;
+            $C(95)=\blank{1.4cm}$, \; $C(99)=\blank{1.4cm}$ (thousand dollars).
+      \item Run the build. Restriction \blank{1.6cm}; vertical asymptote \blank{1.6cm};
+            degrees \blank{0.6cm} and \blank{0.6cm}, so the horizontal asymptote is \blank{1.6cm}.
+      \item Which of those two asymptotes means something about this factory, and what does it say?
+            And why is the other one meaningless here? \writelines{2}
+      \item The $x$-intercept is \blank{1.4cm}. In plain words, that says \blank{4.4cm}.
+      \item Going from $90\%$ to $95\%$ costs an extra \blank{1.8cm} thousand dollars. Going from
+            $95\%$ to $99\%$ costs an extra \blank{1.8cm} thousand. What is the graph doing near
+            $p=100$, and what does that mean for a law requiring $100\%$ removal? \writelines{2}
+    \end{enumerate}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Part 1 --- Design one.} Write the equation of a rational function with vertical asymptotes at
+$x=-1$ and $x=4$, a horizontal asymptote $y=0$, and \emph{no} $x$-intercept at all.
+\begin{center}
+$y=$ \blank{5.0cm}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Which requirement forced the denominator? \blank{4.6cm}
+  \item Which two requirements, together, forced the numerator to be a nonzero \emph{constant}?
+        \writeline
+  \item Is your answer the only one? What could someone else have written instead? \blank{4.6cm}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 2 --- One question, carefully.} Can a rational function have a hole \emph{and} a vertical
+asymptote at the same $x$-value? Answer, then test your answer against $y=\dfrac{x-3}{(x-3)^2}$ ---
+which has $x-3$ on the top and on the bottom.
+\writelines{3}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 5.6: Solving Rational Equations.} All unit long you have computed
+excluded values and then \emph{kept} them off the graph. Tomorrow they come back as answers: clearing
+the denominators hands you numbers that solve the cleared equation but not the original one --- exactly
+the excluded values you have been listing since 5.1. You already know how to find them.
+\end{spiralbox}
 
 \end{document}

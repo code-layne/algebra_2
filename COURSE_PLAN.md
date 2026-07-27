@@ -6,10 +6,10 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26); **Lessons 5.0–5.4 are authored & building** (2026-07-26) —
-> 5.5–5.7 are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not
+> scaffolded** (2026-07-26); **Lessons 5.0–5.5 are authored & building** (5.5 on 2026-07-27) —
+> 5.6–5.7 are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not
 > yet scaffolded.
-> **Next action: author Unit 5 Lesson 5.5 (graphing rational functions from the equation).**
+> **Next action: author Unit 5 Lesson 5.6 (solving rational equations & extraneous solutions).**
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -41,7 +41,7 @@
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.4 done) |
+| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.5 done) |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
@@ -823,8 +823,49 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > its blank**; exit ticket includes an SOL-style MC item (VA $x=-4$, HA $y=3$; the three distractors flip the
 > sign of $h$, swap the two jobs, and read the HA off the numerator).
 > `make -C unit05/lesson04 all` → EXIT 0 (student 14pp, full 30pp); `make -C unit05 all` → EXIT 0.
-> **Next action: Lesson 5.5** --- graphing rational functions from the equation (A2.F.2a/g/h + A2.F.1c);
-> slant asymptote as Tier E only, never assessed.
+> **Lesson 5.5 authored & builds (2026-07-27):** all components + keys + 13-slide deck done; the lesson
+> where the asymptotes come off the face of the equation. Everything hangs on one sentence ---
+> **factor it, and every feature is already in there; the sign chart is what turns the list into a
+> picture** --- and the Hook is an \emph{argument for the tool} rather than a warm-up: three pre-drawn
+> graphs that all have VA $x=-2$, VA $x=3$, an $x$-intercept $(1,0)$, and branches flattening toward
+> $y=0$, exactly one of which is $\frac{x-1}{(x+2)(x-3)}$ (the distractors are the global sign flip and
+> a squared $(x+2)$ that does not change sign at the wall). Guesses go on the board and stay there
+> until the Section 4 sign chart reads \emph{below, above, below, above} and eliminates B and C by
+> arithmetic. Organized as **the five-step build**, posted and held to all period: factor; restrictions
+> off the **original** denominator + the cancel test (hole *with coordinates*, from the simplified
+> expression / wall); degree comparison; intercepts **computed** ($x$-int from the *simplified*
+> numerator, $y$-int $=f(0)$); sign chart whose **boundary points are the $x$-intercepts and the
+> vertical asymptotes --- never the holes**, since the sign cannot change where the function is the
+> same expression on both sides. Anchor A $f(x)=\frac{x-1}{x^2-x-6}$ (two walls, HA $y=0$, $(1,0)$,
+> $(0,\frac16)$, four intervals) carries the lesson's sharpest new claim: it **crosses** its horizontal
+> asymptote, at its own $x$-intercept --- which reconciles 5.0's "may cross" with 5.4's "never," both
+> being the single fact that a fraction is zero only when its numerator is. Anchor B
+> $g(x)=\frac{x^2-4}{x^2-x-6}$ adds the hole $(-2,\frac45)$, wall $x=3$, HA $y=1$, and the trap that
+> $(-2,0)$ is **not** an $x$-intercept though the original numerator vanishes there; simplified it is
+> $\frac{x-2}{x-3}=1+\frac{1}{x-3}$ --- yesterday's anchor family with one point punched out, so
+> **5.5 did not replace 5.4, it surrounded it**. Flagged traps: restrictions read off the *simplified*
+> form (the costliest, and tomorrow's extraneous solution); a wall announced at every excluded value
+> without the cancel test; a cancelled zero called an intercept; the hole used as a boundary point;
+> degrees compared factor-by-factor; refusing "no $x$-intercept" when the numerator is a nonzero
+> constant; assuming signs alternate (homework 1(f), $\frac{x^2-9}{x^2-6x+9}$, breaks it --- two copies
+> down, one up, so the restriction survives as a wall and there is *no* hole); one interval spanning a
+> wall. Modeling (**A2.F.2f**) deliberately reverses 5.4's: activity Tier E is the **round trip**,
+> $T(x)=\frac{30}{x}+\frac{30}{x+10}=\frac{60x+300}{x(x+10)}$ (5.3 run forwards), where the wall $x=0$
+> and the floor $y=0$ both mean something and $x=-10$, $(-5,0)$ are negative speeds; the homework is
+> **pollution cost**, $C(p)=\frac{25p}{100-p}$ ($25\to100\to225\to475\to2475$), where the *vertical*
+> asymptote carries the meaning (no finite budget buys $100\%$ removal) and HA $y=-25$ means nothing.
+> **Slant asymptotes appear once**, as activity Tier E Part 2 --- divide $\frac{x^2-4}{x+1}$ by 4.3
+> long division to get $x-1-\frac{3}{x+1}$ against a pre-drawn dashed $y=x-1$ --- explicitly labelled
+> enrichment and **never assessed**. All graphs pre-drawn via `plot`+`\clip` with holes as open circles
+> (no sketch-from-scratch). Standards: **A2.F.2h**, **A2.F.2a**, **A2.F.2g** (new emphasis), applying
+> **A2.F.1c**, **A2.F.2c**, **A2.F.2f**; builds on A2.EO.3b (4.2), A2.EO.1b/d (5.1), and the 4.6 sign
+> chart. Warm-up & exit ticket each fit one page (blank+key); notes 5pp, activity 4pp, homework 3pp,
+> cover 1pp --- **every key paginates identically to its blank**; exit ticket includes an SOL-style MC
+> item (hole $x=1$, VA $x=-2$, HA $y=1$; the three distractors ignore the degree comparison, flip every
+> sign, and cancel the wrong factor). `make -C unit05/lesson05 all` → EXIT 0 (student 15pp, full 33pp);
+> `make -C unit05 all` → EXIT 0.
+> **Next action: Lesson 5.6** --- solving rational equations & extraneous solutions (A2.EI.4a/b/c/d);
+> the payoff loop, where 5.1's excluded values come back as answers to throw away.
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**

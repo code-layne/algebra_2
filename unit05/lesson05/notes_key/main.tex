@@ -3,17 +3,414 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.5}{Guided Notes --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Guided Notes verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Guided Notes --- Key}
-\ansline{TODO: answer}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item \textbf{factor} a rational function and sort every restriction into a \emph{hole} or a \emph{vertical asymptote} (A2.F.2h);
+  \item find the \textbf{horizontal asymptote} by comparing degrees, and the \textbf{intercepts} by computing --- not by reading a picture (A2.F.2a/g);
+  \item build a \textbf{sign chart} whose boundary points are the $x$-intercepts and the vertical asymptotes, and use it to say where the graph runs \emph{above} and \emph{below} the $x$-axis;
+  \item \textbf{assemble and describe the whole graph} from its equation, and recognize when a function is really a transformed $\frac1x$ from Lesson 5.4 (A2.F.1c).
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Factored form (and why it comes first)}{numerator and denominator each written as a product of factors. Every feature of the graph is visible in this form and in no other: the denominator's factors give the restrictions, a shared factor gives a hole, and the numerator's factors give the $x$-intercepts}
+\vocabans{The cancel test: hole or wall}{take each restriction from the \emph{original} denominator; if its factor cancels, the graph has a \emph{hole} there --- if the factor survives, the graph has a \emph{vertical asymptote} there}
+\vocabans{Degree comparison}{compare the degree of the whole top with the degree of the whole bottom: top lower $\Rightarrow$ HA $y=0$; degrees equal $\Rightarrow$ HA is the ratio of the leading coefficients; top higher $\Rightarrow$ no horizontal asymptote}
+\vocabans{Sign chart \& boundary points}{a table that splits the $x$-axis at the $x$-intercepts and the vertical asymptotes (the \emph{boundary points}) and records, from one test value per interval, whether the graph is above or below the $x$-axis there}
+\end{vocabbox}
+
+\begin{hookbox}
+All three graphs below have a vertical asymptote at $x=-2$, a vertical asymptote at $x=3$, an
+$x$-intercept at $(1,0)$, and branches that flatten toward $y=0$ at the far left and far right.
+\textbf{Exactly one of them is the graph of} $f(x)=\dfrac{x-1}{(x+2)(x-3)}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.28]
+  \begin{scope}
+    \lgrid{-6}{6}{-4}{4}
+    \draw[navy, dashed, semithick] (-2,-4)--(-2,4);
+    \draw[navy, dashed, semithick] (3,-4)--(3,4);
+    \begin{scope} \clip (-6,-4) rectangle (6,4);
+      \draw[very thick, forest, domain=-6:-2.16, samples=110, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+      \draw[very thick, forest, domain=-1.85:2.9, samples=130, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+      \draw[very thick, forest, domain=3.1:6, samples=110, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+    \end{scope}
+    \fill[charcoal] (1,0) circle (3.2pt);
+    \node[charcoal, font=\small\bfseries] at (0,-5.6){A};
+  \end{scope}
+  \begin{scope}[xshift=13.5cm]
+    \lgrid{-6}{6}{-4}{4}
+    \draw[navy, dashed, semithick] (-2,-4)--(-2,4);
+    \draw[navy, dashed, semithick] (3,-4)--(3,4);
+    \begin{scope} \clip (-6,-4) rectangle (6,4);
+      \draw[very thick, forest, domain=-6:-2.16, samples=110, smooth] plot (\x,{-((\x)-1)/(((\x)+2)*((\x)-3))});
+      \draw[very thick, forest, domain=-1.85:2.9, samples=130, smooth] plot (\x,{-((\x)-1)/(((\x)+2)*((\x)-3))});
+      \draw[very thick, forest, domain=3.1:6, samples=110, smooth] plot (\x,{-((\x)-1)/(((\x)+2)*((\x)-3))});
+    \end{scope}
+    \fill[charcoal] (1,0) circle (3.2pt);
+    \node[charcoal, font=\small\bfseries] at (0,-5.6){B};
+  \end{scope}
+  \begin{scope}[xshift=27cm]
+    \lgrid{-6}{6}{-4}{4}
+    \draw[navy, dashed, semithick] (-2,-4)--(-2,4);
+    \draw[navy, dashed, semithick] (3,-4)--(3,4);
+    \begin{scope} \clip (-6,-4) rectangle (6,4);
+      \draw[very thick, forest, domain=-6:-2.4, samples=110, smooth] plot (\x,{((\x)-1)/((((\x)+2)*((\x)+2))*((\x)-3))});
+      \draw[very thick, forest, domain=-1.6:2.98, samples=130, smooth] plot (\x,{((\x)-1)/((((\x)+2)*((\x)+2))*((\x)-3))});
+      \draw[very thick, forest, domain=3.02:6, samples=110, smooth] plot (\x,{((\x)-1)/((((\x)+2)*((\x)+2))*((\x)-3))});
+    \end{scope}
+    \fill[charcoal] (1,0) circle (3.2pt);
+    \node[charcoal, font=\small\bfseries] at (0,-5.6){C};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item Your first guess: \ans{(answers vary --- A, B, or C)} \quad Why? \ansline{answers vary; most groups reason from the shape near one asymptote}
+  \item Every feature you were given --- both asymptotes, the intercept, the flattening --- is true of
+        \emph{all three}. So the checklist alone cannot decide. What else would you need to know?
+        \ansline{whether the graph is above or below the $x$-axis on each piece --- i.e.\ the sign of $f(x)$ between the boundary points}
+\end{itemize}
+\vspace{-2pt}
+What separates them is which \emph{side} of the $x$-axis the graph sits on in each region. That is
+exactly what a \textbf{sign chart} answers --- and it is the one tool today that turns a list of
+features into a picture. We will settle A, B, or C at the end of the notes.
+\end{hookbox}
+
+\begin{notesbox}{1. The Build --- Five Steps, Always in This Order}
+In Lesson 5.4 the asymptotes were printed on the face of the equation. Starting today they are not. The
+denominator factors into \emph{two} pieces, the numerator may cancel one of them, and the graph has to
+be \textbf{assembled} rather than read.
+
+\vspace{4pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\hline
+\textbf{\#} & \textbf{Step} & \textbf{What you write down} \\
+\hline
+1 & \textbf{Factor} everything & numerator and denominator, completely \\
+2 & \textbf{Restrict, then cancel} & restrictions from the \emph{original} denominator; each one becomes a \ans{hole} or a \ans{vertical asymptote} \\
+3 & \textbf{Compare degrees} & the horizontal asymptote: $y=$ \ans{$0$}, $y=$ ratio, or \ans{none} \\
+4 & \textbf{Compute intercepts} & $x$-int from the simplified \ans{numerator}; $y$-int is $f($\ans{$0$}$)$ \\
+5 & \textbf{Sign chart} & boundary points, one test value each, above or below \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{Factor it, and every feature is already in there.} The sign chart is what turns the list into a
+picture.\vspace{2pt}}}
+\end{center}
 \end{notesbox}
+
+\begin{notesbox}{2. Step 2 Up Close --- Hole or Wall?}
+This is Lesson 5.0's \emph{cancel test}, and Lesson 5.1's algebra is what runs it.
+
+\vspace{3pt}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Restrictions always come off the \textbf{original} denominator, \emph{before} anything is
+        cancelled. Simplify first and a restriction disappears --- along with the feature it names.
+  \item A factor that \textbf{cancels} leaves a \ans{hole}: a single missing point. Find its
+        height by substituting the excluded value into the \ans{simplified} expression.
+  \item A factor that \textbf{survives} in the denominator leaves a \ans{vertical asymptote}, with equation
+        $x=$ \ans{that excluded value}.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Quick sort.} Factor, then label each restriction.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{Function} & \textbf{Restrictions} & \textbf{Hole at\dots} & \textbf{Vertical asymptote(s)} \\
+\hline
+\TallMath{\frac{x-4}{(x-4)(x+1)}} & \ans{$x\neq4,-1$} & \ans{$x=4$} & \ans{$x=-1$} \\
+\TallMath{\frac{x+5}{(x-2)(x+3)}} & \ans{$x\neq2,-3$} & \ans{none} & \ans{$x=2$, $x=-3$} \\
+\TallMath{\frac{x^2-1}{x^2-x-2}}  & \ans{$x\neq2,-1$} & \ans{$x=-1$} & \ans{$x=2$} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+{\small (The third one: $\dfrac{(x-1)(x+1)}{(x-2)(x+1)}$.)}
+\end{notesbox}
+
+\begin{notesbox}{3. Step 3 Up Close --- The Degree Comparison}
+Nothing new here either; this is 5.0's rule, and it is the \emph{end behavior} statement (A2.F.2g)
+written as a line.
+
+\vspace{3pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Case} & \textbf{Horizontal asymptote} & \textbf{Example} \\
+\hline
+top degree $<$ bottom degree & $y=$ \ans{$0$} & $\dfrac{x-1}{x^2-x-6}$ \\
+top degree $=$ bottom degree & $y=$ \ans{ratio of leading coeffs.} & $\dfrac{2x^2-8}{x^2-x-6}$, so $y=$ \ans{$2$} \\
+top degree $>$ bottom degree & \ans{no HA at all} & $\dfrac{x^3}{x^2-1}$ \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+Two cautions worth writing down.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Use the degrees of the \emph{whole} top and the \emph{whole} bottom --- not of one factor. It
+        does not matter whether you compare before or after cancelling, because cancelling a common
+        factor lowers \ans{the top and the bottom} degree by the same amount.
+  \item ``No horizontal asymptote'' is a complete answer. The graph still has end behavior --- the arms
+        just run off to $\pm\infty$ instead of flattening.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Worked Example A --- Two Walls, and a Sign Chart}
+\[ f(x)=\frac{x-1}{x^2-x-6} \]
+
+\textbf{Step 1 --- factor.} \quad $f(x)=\dfrac{x-1}{(\text{\ans{$x+2$}})(\text{\ans{$x-3$}})}$
+
+\vspace{3pt}
+\textbf{Step 2 --- restrict and cancel.} Restrictions: $x\neq$ \ans{$-2$} and $x\neq$ \ans{$3$}.
+Does anything cancel? \ans{no} \; So there are \ans{no} holes, and the vertical asymptotes
+are \ans{$x=-2$} and \ans{$x=3$}.
+
+\vspace{3pt}
+\textbf{Step 3 --- degrees.} Top degree \ans{$1$}, bottom degree \ans{$2$}, so the horizontal
+asymptote is \ans{$y=0$}.
+
+\vspace{3pt}
+\textbf{Step 4 --- intercepts.} $x$-intercept: the numerator is zero at $x=$ \ans{$1$}, so the point
+is \ans{$(1,0)$}. \; $y$-intercept: $f(0)=\dfrac{-1}{-6}=$ \ans{$\frac16$}, so the point is
+\ans{$(0,\frac16)$}.
+
+\vspace{4pt}
+\textbf{Step 5 --- sign chart.} The boundary points are the $x$-intercept and the two vertical
+asymptotes: $-2$, $1$, and $3$. They cut the axis into \ans{$4$} intervals. Test one value in each.
+
+\vspace{2pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|C{2.6cm}|C{1.6cm}|C{4.0cm}|C{1.6cm}|X|}
+\hline
+\rowcolor{forestbg}
+\textbf{Interval} & \textbf{Test $x$} & \textbf{$\dfrac{x-1}{(x+2)(x-3)}$} & \textbf{Sign} &
+\textbf{Above / below} \\ \hline
+$x<-2$    & $-3$ & \ans{$\frac{-4}{(-1)(-6)}=-\frac23$} & \ans{$-$} & \ans{below} \\ \hline
+$-2<x<1$  & $0$  & \ans{$\frac{-1}{(2)(-3)}=\frac16$}   & \ans{$+$} & \ans{above} \\ \hline
+$1<x<3$   & $2$  & \ans{$\frac{1}{(4)(-1)}=-\frac14$}   & \ans{$-$} & \ans{below} \\ \hline
+$x>3$     & $4$  & \ans{$\frac{3}{(6)(1)}=\frac12$}     & \ans{$+$} & \ans{above} \\ \hline
+\end{tabularx}
+
+\vspace{4pt}
+\textbf{Assemble it.} Far to the left the graph is just \ans{below} the $x$-axis, hugging $y=0$;
+it dives to $-\infty$ at the wall $x=-2$, comes back from $+\infty$ on the other side, falls through
+$(1,0)$, drops to $-\infty$ at $x=3$, and returns from $+\infty$ to flatten onto $y=0$ on the right.
+
+\vspace{4pt}
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-6}{7}{-4}{4}
+  \draw[navy, dashed, semithick] (-2,-4)--(-2,4);
+  \draw[navy, dashed, semithick] (3,-4)--(3,4);
+  \node[navy, font=\scriptsize, above left] at (-2,3.2) {$x=-2$};
+  \node[navy, font=\scriptsize, above right] at (3,3.2) {$x=3$};
+  \node[navy, font=\scriptsize, below right] at (5.4,0) {$y=0$};
+  \begin{scope}
+    \clip (-6,-4) rectangle (7,4);
+    \draw[very thick, forest, domain=-6:-2.16, samples=120, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+    \draw[very thick, forest, domain=-1.85:2.9, samples=140, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+    \draw[very thick, forest, domain=3.1:7, samples=120, smooth] plot (\x,{((\x)-1)/(((\x)+2)*((\x)-3))});
+  \end{scope}
+  \fill[charcoal] (1,0) circle (3.2pt) node[below right, font=\scriptsize]{$(1,0)$};
+\end{tikzpicture}
+\end{center}
+
+\vspace{2pt}
+\textbf{Now the question 5.4 could not ask.} Does this graph ever \emph{cross} its horizontal asymptote
+$y=0$? Set $f(x)=0$: that happens exactly where the \ans{numerator} is zero --- at $x=$ \ans{$1$}.
+So yes, and the crossing point is the \ans{$x$-intercept}. In 5.4 the numerator was a nonzero constant and a
+crossing was impossible; here it is not.
+
+\vspace{3pt}
+Domain: \ans{$(-\infty,-2)\cup(-2,3)\cup(3,\infty)$} \quad {\small(three intervals, joined with $\cup$ --- an interval may never span
+a wall)}
+\end{notesbox}
+
+\begin{notesbox}{5. Worked Example B --- A Hole, and an Old Friend}
+\[ g(x)=\frac{x^2-4}{x^2-x-6} \]
+
+\textbf{Steps 1--2.} \quad $g(x)=\dfrac{(\text{\ans{$x-2$}})(\text{\ans{$x+2$}})}%
+{(\text{\ans{$x-3$}})(\text{\ans{$x+2$}})}$ \quad Restrictions: $x\neq$ \ans{$3$},
+$x\neq$ \ans{$-2$}.
+
+\vspace{3pt}
+The factor \ans{$x+2$} cancels, so $x=$ \ans{$-2$} is a \ans{hole}; the factor
+\ans{$x-3$} survives, so $x=$ \ans{$3$} is a \ans{vertical asymptote}. Simplified:
+$g(x)=$ \ans{$\frac{x-2}{x-3}$}.
+
+\vspace{3pt}
+\textbf{The hole's coordinates.} Substitute the cancelled value into the \emph{simplified} expression:
+$\dfrac{-2-2}{-2-3}=$ \ans{$\frac45$}, so the hole is at \ans{$(-2,\frac45)$}.
+
+\vspace{3pt}
+\textbf{Step 3.} Degrees \ans{$2$} and \ans{$2$} --- equal --- so the HA is the ratio of the
+leading coefficients, $y=$ \ans{$1$}.
+
+\vspace{3pt}
+\textbf{Step 4.} $x$-intercept from the \emph{simplified} numerator: \ans{$(2,0)$}. \;
+$y$-intercept: $g(0)=\dfrac{-4}{-6}=$ \ans{$\frac23$}.
+
+\vspace{4pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{A trap worth naming.} The original numerator is zero at $x=2$ \emph{and} at $x=-2$. But $-2$ is
+not an $x$-intercept --- it is the hole. Only the zeros of the \emph{simplified} numerator are
+intercepts.\vspace{2pt}}}
+\end{center}
+
+\vspace{4pt}
+\textbf{Step 5 --- sign chart.} Boundary points: the $x$-intercept $2$ and the wall $3$. \emph{The hole
+is not a boundary point} --- the sign does not change there, because the graph on both sides of it is
+the same simplified function.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.94\linewidth}{|C{2.6cm}|C{1.6cm}|C{2.6cm}|X|}
+\hline
+\rowcolor{forestbg}
+\textbf{Interval} & \textbf{Test $x$} & \textbf{$\dfrac{x-2}{x-3}$} & \textbf{Above / below} \\ \hline
+$x<2$     & $0$   & \ans{$\frac{-2}{-3}=\frac23$}  & \ans{above} \\ \hline
+$2<x<3$   & $2.5$ & \ans{$\frac{0.5}{-0.5}=-1$}    & \ans{below} \\ \hline
+$x>3$     & $4$   & \ans{$\frac{2}{1}=2$}          & \ans{above} \\ \hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\begin{center}
+\begin{minipage}{0.52\linewidth}\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-6}{8}{-4}{6}
+  \draw[navy, dashed, semithick] (3,-4)--(3,6);
+  \draw[navy, dashed, semithick] (-6,1)--(8,1);
+  \node[navy, font=\scriptsize, above left] at (3,5.2) {$x=3$};
+  \node[navy, font=\scriptsize, below left] at (-1.4,1) {$y=1$};
+  \begin{scope}
+    \clip (-6,-4) rectangle (8,6);
+    \draw[very thick, forest, domain=-6:2.8, samples=130, smooth] plot (\x,{1+1/((\x)-3)});
+    \draw[very thick, forest, domain=3.2:8, samples=130, smooth] plot (\x,{1+1/((\x)-3)});
+  \end{scope}
+  \draw[forest, very thick, fill=white] (-2,0.8) circle (4.0pt);
+  \node[charcoal, font=\scriptsize, below] at (-2.2,0.4) {hole};
+  \fill[charcoal] (2,0) circle (3.2pt);
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.46\linewidth}
+\small
+\textbf{And now look again.} Simplify all the way and rewrite the numerator using the denominator
+(Lesson 5.4's disguise):
+\[ \frac{x-2}{x-3}=\frac{(x-3)+{\color{keyred}\mathbf{1}}}{x-3}={\color{keyred}1+\frac{1}{x-3}} \]
+So the whole graph is the rational \emph{parent}, shifted \ans{right} $3$ and \ans{up}
+$1$ --- with one point punched out at \ans{$(-2,\frac45)$}.
+
+\vspace{3pt}
+Domain: \ans{$(-\infty,-2)\cup(-2,3)\cup(3,\infty)$}
+\end{minipage}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{6. Reading the Finished Picture --- and Settling the Hook}
+Whatever the equation, the assembled graph has to obey all of this:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item It \textbf{never} touches a vertical asymptote --- that input is not in the \ans{domain}.
+  \item It \textbf{may} cross a horizontal asymptote, and if it does, the crossing is at an
+        \ans{$x$-intercept}. (A transformed parent from 5.4 never can; its numerator is a nonzero
+        constant.)
+  \item Domain and range are written as \ans{unions} of intervals, because an interval may never
+        span a wall.
+  \item Increasing/decreasing intervals are reported \emph{branch by branch}, for the same reason.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Back to the Hook.} Your sign chart for $f(x)=\dfrac{x-1}{(x+2)(x-3)}$ said: below, above,
+below, above.
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item Graph \textbf{B} is wrong because \ansline{every sign is reversed --- it is above the axis on the far left, but the test value $x=-3$ gives a negative output}
+  \item Graph \textbf{C} is wrong because \ansline{it does not change sign at $x=-2$ --- both of its branches there go up, but the chart says below on the left of $-2$ and above on the right}
+  \item The correct graph is \ans{A}.
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+Build $p(x)=\dfrac{x^2-x-6}{x^2-4}$ completely. Factor first.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item Factored: $p(x)=\dfrac{(\text{\ans{$x-3$}})(\text{\ans{$x+2$}})}%
+        {(\text{\ans{$x-2$}})(\text{\ans{$x+2$}})}$ \quad Restrictions: $x\neq$ \ans{$2$},
+        $x\neq$ \ans{$-2$}
+  \item Hole at \ans{$(-2,\frac54)$}; \quad vertical asymptote \ans{$x=2$}.
+  \item Horizontal asymptote \ans{$y=1$}. \quad $x$-intercept \ans{$(3,0)$}. \quad
+        $y$-intercept \ans{$(0,\frac32)$}.
+  \item Sign chart --- boundary points \ans{$2$ and $3$}. Test $x=0$: sign \ans{$+$}; \;
+        test $x=2.5$: sign \ans{$-$}; \; test $x=4$: sign \ans{$+$}.
+  \item Domain: \ans{$(-\infty,-2)\cup(-2,2)\cup(2,\infty)$}
+\end{enumerate}
+\end{practicebox}
+
+\begin{teachernote}
+\textbf{Pacing.} Sections 1--3 are fast; they are 5.0 and 5.1 restated as a procedure, and the class
+should reach Worked Example A with most of the period left. Sections 4 and 5 are the lesson. Section 6
+takes three minutes and pays for the Hook.
+
+\vspace{3pt}
+\textbf{The Hook is the argument for the sign chart.} Do not resolve it early. All three graphs really
+do have the stated asymptotes, the stated intercept, and the stated end behavior --- so a student who
+believes ``find the features and you have the graph'' has no way to choose. Let them guess, write the
+guesses on the board, and leave them there. When the Section 4 sign chart reads \emph{below, above,
+below, above}, graphs B and C are eliminated by arithmetic rather than by authority.
+
+\vspace{3pt}
+\textbf{Worked Example A's payoff} is that it \emph{crosses} its horizontal asymptote --- at $(1,0)$,
+its own $x$-intercept. That sharpens the two claims students now hold: 5.0 said a graph \emph{may}
+cross its HA, 5.4 said a transformed parent \emph{never} does, and today explains the difference in one
+sentence --- a fraction is zero only when its numerator is, so a nonzero constant numerator makes
+crossing impossible and a numerator with a zero makes it certain. Ask where the crossing has to be
+\emph{before} anyone graphs.
+
+\vspace{3pt}
+\textbf{Worked Example B is the continuity argument for the unit.} After the hole and the asymptote are
+sorted, the leftover is $\frac{x-2}{x-3}=1+\frac{1}{x-3}$ --- yesterday's anchor family, with one point
+removed. Students who did 5.4's disguise section will recognize it; say out loud that 5.5 has not
+replaced 5.4, it has surrounded it.
+
+\vspace{3pt}
+\textbf{Errors to expect, in order of cost.} (1) Restrictions read off the \emph{simplified} form, which
+loses the hole --- and which becomes an extraneous solution in 5.6, so correct it by name today.
+(2) Calling $x=-2$ an $x$-intercept in Example B because the original numerator vanishes there.
+(3) Announcing a vertical asymptote at every excluded value without running the cancel test.
+(4) Making the hole a boundary point on the sign chart. (5) Comparing the degree of one \emph{factor}
+instead of the whole top and bottom. (6) A single interval spanning a wall.
+\end{teachernote}
 
 \end{document}
