@@ -1,615 +1,253 @@
-%! Author = layne
-%! Date = 4/12/26
-
-% Preamble
-%  preamble
+%! Expressions and Operations — Unit 1, Lesson 1.1 — Lesson Plan
 \documentclass[10pt]{article}
-
-% dependencies
-\usepackage[margin=0.6in]{geometry}
-\usepackage{xcolor}
-\usepackage[most]{tcolorbox}
-\usepackage{enumitem}
-\usepackage{multicol}
-\usepackage{amsmath,amssymb}
-\usepackage{array}
-\usepackage{tabularx}
-\usepackage{unicode-math}
-\usepackage{graphicx}
-\graphicspath{{images/}}
-\usepackage{pdfpages}
-\usepackage{ltablex}
-\usepackage{algebra2-colors}
+\usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\keepXColumns
-\tcbuselibrary{breakable}
-
+\usepackage{graphicx}   % -article does NOT load graphicx; needed for thumbnails/screenshots
+\graphicspath{{images/}}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
-\newcommand{\UnitNumberName}{Unit 1: Foundations}
-\newcommand{\LessonNumberName}{Lesson 1: Evaluating \& simplifying algebraic expressions}
-\newcommand{\LoremIpsum}{
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-    occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-    mollit anim id est laborum.
-}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\MeetingLength}{55 minutes}
+\newcommand{\UnitNumberName}{Unit 1: Foundations --- Algebra 1 Review \quad}
+\newcommand{\LessonNumberName}{Lesson 1.1: Expressions and Operations}
 
 \begin{document}
-    \begin{center}
-        {\Large\bfseries \CourseName \quad \SchoolYear \\
-        {\small \bfseries \UnitNumberName \quad \LessonNumberName } }
-    \end{center}
+\begin{center}
+    {\Large\bfseries \CourseName: \SchoolYear \\
+    {\small\bfseries \UnitNumberName \LessonNumberName}}
+\end{center}
 
-    \begin{tcolorbox}[colback=forestbg,colframe=forest,boxrule=0.9pt,arc=2mm,left=2mm,right=2mm,top=1.5mm,bottom=1.5mm]
-        \textbf{Primary objective: }
-        {Students will evaluate, simplify, and rewrite algebraic expressions using
-        foundational algebra skills.}
-    \end{tcolorbox}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+    \textbf{Primary Objective:} Students can \emph{translate} a verbal situation into an algebraic
+    expression and \emph{evaluate} it --- including absolute values, square roots, and cube roots ---
+    for given replacement values; apply the \emph{laws of exponents} to simplify multivariable
+    expressions and monomial ratios with integer exponents; add, subtract, multiply, \emph{factor},
+    and divide polynomial expressions in one variable; and simplify \emph{radical} expressions,
+    converting freely between radicals and rational exponents. Throughout, students justify that two
+    differently written expressions are \textbf{equivalent} --- and know that a single replacement
+    value can prove they are not.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL --- Algebra 1, reviewed):} this lesson reviews the entire
+    \textbf{Expressions and Operations} domain. \textbf{A.EO.1} --- translate between verbal
+    situations and algebraic expressions (a), and evaluate expressions containing absolute value,
+    square roots, and cube roots at rational replacement values (b). \textbf{A.EO.2} --- sums and
+    differences (a) and products (b) of polynomials in one variable, complete factoring of first-
+    and second-degree polynomials with integral coefficients, GCF first (c), quotients using
+    monomial, binomial, or completely factored divisors (d), and demonstrating equality of quadratic
+    expressions written in different forms (e). \textbf{A.EO.3} --- deriving and applying the laws of
+    exponents (a) and simplifying multivariable expressions and monomial ratios with integer
+    exponents (b). \textbf{A.EO.4} --- simplifying square roots of whole numbers (a) and cube roots
+    of integers (b), adding, subtracting, and multiplying numeric radicals (c), and rational
+    exponents of $\tfrac12$ and $\tfrac13$ (d).
+    \\[2pt]
+    \textbf{Prerequisite:} Lesson 1.0. The distributive property is the engine of every product in
+    Section~3, and the inverse properties are what the laws of exponents in Section~2 actually
+    \emph{are}. Students should still be naming their justifications.
+\end{tcolorbox}
 
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-        \begin{minipage}[t]{0.48\linewidth}
-            \begin{enumerate}
-                \item \textbf{Order of operations}
-                \begin{itemize}
-                    \item \textbf{P}: parentheses, grouping
-                    \item \textbf{E}: exponentiation and roots
-                    \item \textbf{MD}: multiplication and division
-                    \begin{itemize}
-                        \item \textbf{\textit{from left to right}}
-                    \end{itemize}
-                    \item \textbf{AS}: addition and subtraction
-                    \begin{itemize}
-                        \item \textbf{\textit{from left to right}}
-                    \end{itemize}
-                \end{itemize}
-                \item \textbf{Expression evaluation}
-                \begin{itemize}
-                    \item variable substitution
-                \end{itemize}
-                \item \textbf{Simplifying expressions}
-                \begin{itemize}
-                    \item combine like terms (\textbf{CLT}) where like terms = terms with the same exponent of the variable
-                    \item using variables and test values to determine equivalence
-                \end{itemize}
-                \item \textbf{Polynomial operations}
-                \begin{itemize}
-                    \item addition/subtraction (CLT)
-                    \item multiplication (FOIL, Box Method)
-                    \item division (long, synthetic)
-                    \item verifying results
-                \end{itemize}
-            \end{enumerate}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \begin{enumerate}[start=5]
-                \item \textbf{Factoring quadratics}
-                \begin{itemize}
-                    \item factoring trinomials ($|a| = 1$)
-                    \item factoring trinomials ($|a| > 1$)
-                    \item difference of squares ($a^2 - b^2$)
-                \end{itemize}
-                \item \textbf{Laws of exponents}
-                \begin{itemize}
-                    \item product rule
-                    \item power rule
-                    \item power of a product rule
-                    \item quotient rule
-                    \item zero power rule
-                    \item negative exponent rule
-                \end{itemize}
-                \item \textbf{Simplifying radicals}
-                \begin{itemize}
-                    \item Radical operations
-                    \item Rational exponents
-                    \item Prime factors
-                \end{itemize}
-            \end{enumerate}
-        \end{minipage}
-    \end{skillbox}
+\renewcommand{\arraystretch}{1.4}
+\begin{skillbox}[Priority Ideas \& Skills]{goldbox}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item \textbf{Translate} a verbal quantitative situation into an algebraic expression, and read one back into words.
+  \item \textbf{Evaluate} an expression at given replacement values --- including $|\,\cdot\,|$, $\sqrt{\ }$, and $\sqrt[3]{\ }$, with rational inputs.
+  \item Apply the \textbf{laws of exponents} (product, quotient, power, zero, negative) to multivariable expressions and monomial ratios.
+  \item \textbf{Add, subtract, and multiply} polynomials in one variable; recognize the difference of squares and perfect-square patterns.
+  \item \textbf{Factor completely} --- GCF \emph{first}, then trinomial or difference-of-squares.
+  \item \textbf{Divide} polynomials by a monomial or a factored divisor.
+  \item \textbf{Simplify radicals} and convert between $\sqrt[n]{a}$ and $a^{1/n}$.
+  \item \textbf{Justify equivalence} --- and disprove it with one replacement value.
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item \emph{An expression is a recipe, not a question.} It has no solution --- it has a \emph{value}, and only once you supply the inputs.
+  \item Order of operations is not etiquette; it is what makes an expression name \emph{one} number instead of several.
+  \item The exponent laws are not memorized facts. Every one of them is what happens when you \emph{write out the factors and count}.
+  \item Factoring and multiplying are the same trip in opposite directions --- which is why you can always check a factorization by expanding it.
+  \item ``Completely'' is the whole content of the factoring standard: GCF first, then keep going until nothing factors further.
+  \item A radical and a fractional exponent are two spellings of one idea, and the exponent spelling is the one that makes the laws apply.
+  \item Equivalence is a claim about \emph{every} input. Testing one value can \emph{disprove} it outright, but confirming one value proves nothing.
+\end{itemize}
+\end{tabularx}
+\end{skillbox}
 
-    \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-        \renewcommand{\arraystretch}{1.35}
-        \begin{tabularx}{\linewidth}{
-                >{\bfseries}p{0.24\linewidth}
-            X
-        }
-        \textbf{Concept} & \textbf{Definition / Notes} \\
-        \hline
-        \endhead
-        {Term}
-        & {A constant, a variable, or both. Examples: $1$, $x$, $3x$.} \\
-        \hline
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Expression} & A combination of numbers, variables, and operations that names a number once values are supplied. It has no equals sign and is never ``solved.'' \\
+\textbf{Term / coefficient} & A term is a piece separated by $+$ or $-$; its coefficient is the numerical factor. \\
+\textbf{Evaluate} & Replace each variable with a given value and simplify to a single number. \\
+\textbf{Polynomial} & A sum of terms of the form $ax^n$ with $n$ a whole number. Named by degree (linear, quadratic, cubic) and by term count (monomial, binomial, trinomial). \\
+\textbf{Degree} & The largest exponent on the variable. It determines the shape of everything in Units 2--4. \\
+\textbf{Laws of exponents} & \TallMath{a^m a^n=a^{m+n};\quad \frac{a^m}{a^n}=a^{m-n};\quad (a^m)^n=a^{mn};\quad a^0=1;\quad a^{-n}=\frac{1}{a^n}} \\
+\textbf{Difference of squares} & $a^2-b^2=(a+b)(a-b)$ --- the single most useful factoring pattern in the course. \\
+\textbf{Perfect square trinomial} & $a^2\pm 2ab+b^2=(a\pm b)^2$. Recognizing it is what makes completing the square possible in Unit 3. \\
+\textbf{GCF} & The greatest common factor of every term; the \emph{first} thing to remove when factoring. \\
+\textbf{Factor completely} & Keep factoring until no factor can be factored further over the integers. \\
+\textbf{Radical / radicand} & In $\sqrt[n]{a}$, the index is $n$ and the radicand is $a$. \\
+\textbf{Simplest radical form} & No perfect-power factor remains under the radical (and, later, no radical in a denominator). \\
+\textbf{Rational exponent} & $a^{1/2}=\sqrt{a}$ and $a^{1/3}=\sqrt[3]{a}$ --- the same number, spelled so the exponent laws apply. \\
+\textbf{Equivalent expressions} & Two expressions that produce the same value for \emph{every} legal replacement value. \\
+\end{tabularx}
+\end{skillbox}
 
-        {Variable}
-        & {A letter or symbol used to represent a quantity.} \\
-        \hline
+\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
+    The Warm-Up rehearses the three things this lesson is built on. \textbf{(1)} Two order-of-
+    operations evaluations, one containing $|{-}6|$ and one containing $\sqrt{16}$ and $\sqrt[3]{27}$,
+    with a negative substituted into $x^2$ so the room can argue about $-3^2$ versus $(-3)^2$ ---
+    that argument is the debrief. \textbf{(2)} An exponent pattern table ($2^5\cdot2^3$ written out
+    as factors and counted) that has students \emph{re-derive} the product law rather than recall it,
+    exactly as \textbf{A.EO.3a} asks. \textbf{(3)} One distribution, $4(2x-5)$, and one area model
+    for $(x+3)(x+2)$ --- the same property doing the work in both, which is the bridge from Lesson
+    1.0 to today's polynomial products. Debrief item~2 by asking ``where did the $+$ in the exponent
+    come from?'' and do not accept ``that's the rule.''
+\end{fixedskillbox}
 
-        {Coefficient}
-        & {The numerical factor multiplying a variable.
-        Example: in $3x$, the coefficient is $3$.} \\
-        \hline
+\begin{skillbox}[Hook]{forestbg}
+    Write four pairs on the board and ask a single question: \textbf{``Equivalent, or not?''}
+    \emph{(a)} $2^3\cdot 2^4$ and $2^{12}$; \emph{(b)} $(x+3)(x-3)$ and $x^2-9$; \emph{(c)}
+    $(x+5)^2$ and $x^2+25$; \emph{(d)} $\sqrt{9+16}$ and $\sqrt9+\sqrt{16}$. Give the room ninety
+    seconds and no instructions. Students will reach for \emph{testing a value}, which is the habit
+    from 1.0 --- so let them, then use what they find. Pairs (a), (c), and (d) each die to a single
+    number ($2^3\cdot2^4=128\ne 4096$; at $x=1$, $36\ne 26$; $\sqrt{25}=5\ne 3+4$). Pair (b)
+    survives every test they try. Now land the asymmetry, which is the intellectual content of the
+    day: \textbf{``One bad value \emph{disproves} equivalence forever. But no number of good values
+    ever \emph{proves} it --- for that you need algebra.''} Multiply $(x+3)(x-3)$ out on the spot to
+    show what proof looks like. Then frame the lesson: \emph{everything today is a rule for
+    rewriting an expression into an equivalent one --- and the reason we can trust those rules is
+    that each was proved once, so we never have to test again.} Note that (c) and (d) are the two
+    most common errors of the entire year, and both are the same mistake: assuming an operation
+    distributes when it does not.
+\end{skillbox}
 
-        {Operator}
-        & {A symbol representing an algebraic operation. Examples: $+$, $-$, $\cdot$, $/$} \\
-        \hline
+\begin{skillbox}[Lesson]{forestbg}
+\begin{multicols}{2}
+\textbf{1. Translating and evaluating.} Start with translation, because it is the standard students
+have practiced least: build a small two-way table (\emph{seven less than twice a number} $\to 2n-7$;
+\emph{the quotient of a number and 4, increased by 9} $\to \frac n4+9$), and insist on reading the
+finished expression back into words. Flag the two order traps --- ``less than'' reverses the
+subtraction, and ``the quantity'' signals parentheses. Then evaluate. Do $3x^2-4x+1$ at $x=-2$
+slowly, and stop the room on the difference between $-3^2=-9$ and $(-3)^2=9$: the exponent binds
+only to what it touches, and the parentheses are what change that. Then evaluate an expression with
+$|2x-7|$, one with $\sqrt{x+9}$, and one with $\sqrt[3]{x}$, at rational values, since
+\textbf{A.EO.1b} names all three. Emphasize: absolute value and radicals are \emph{grouping
+symbols} --- finish the inside first.
 
-        {Expression}
-        & {A mathematical phrase with numbers, variables, and operations, but no equals sign.} \\
-        \hline
+\textbf{2. The laws of exponents --- derived, not memorized.} Return to Warm-Up item~2 and derive
+each law by writing out factors and counting. $a^3a^2$ has five $a$'s, so exponents \emph{add};
+$\frac{a^5}{a^2}$ cancels two, so exponents \emph{subtract}; $(a^3)^2$ is three $a$'s twice, so
+exponents \emph{multiply}. Then get $a^0=1$ and $a^{-n}=\frac1{a^n}$ the honest way --- by
+continuing the quotient law past where it ``should'' stop: $\frac{a^3}{a^3}=a^0$ and also $=1$;
+$\frac{a^2}{a^5}=a^{-3}$ and also $=\frac{1}{a^3}$. Never present these as arbitrary conventions.
+Then apply to multivariable expressions and monomial ratios, e.g. $\frac{12x^5y^{-2}}{3x^2y^4}$,
+per \textbf{A.EO.3b}, and require positive exponents in the final answer.
 
-        {Sum}
-        & {The result of adding two quantities} \\
-        \hline
+\columnbreak
 
-        {Difference}
-        & {The result of subtracting two quantities} \\
-        \hline
+\textbf{3. Polynomial operations and factoring.} Add and subtract by combining like terms, with the
+whole difficulty concentrated in \emph{one} place: distributing the minus sign across every term of
+the second polynomial. Multiply with the distributive property (area model on the board for
+$(x+3)(x+2)$), then do $(2x-1)(3x^2+x-4)$ so students see the method scale past two terms.
+Highlight the two patterns worth recognizing on sight --- difference of squares and perfect-square
+trinomial --- and connect them back to Hook items (b) and (c). Then reverse the arrow: factoring is
+multiplying backwards, so \emph{every factorization is checkable by expanding}. Insist on the order:
+\textbf{GCF first, always}, then the pattern or trinomial method, then check whether any factor can
+still be factored --- that is what ``completely'' means in \textbf{A.EO.2c}. Finish with division by
+a monomial (split the fraction, one term at a time) and by a factored divisor (cancel common
+factors), and note the restriction that cancelling assumes the divisor is nonzero.
 
-        {Base}
-        & {The repeated factor in an exponential expression. Example: in $x^3$, the base is $x$.} \\
-        \hline
+\textbf{4. Radicals and rational exponents.} Simplify $\sqrt{72}$ by pulling out the largest perfect
+square, and $\sqrt[3]{54}$ by pulling out the largest perfect cube --- the method is identical, only
+the index changes. Add and subtract only \emph{like} radicals ($3\sqrt5+2\sqrt5$ works;
+$3\sqrt5+2\sqrt3$ does not, and this is the same idea as combining like terms). Multiply with
+$\sqrt a\cdot\sqrt b=\sqrt{ab}$. Close by connecting the two notations: $a^{1/2}=\sqrt a$ and
+$a^{1/3}=\sqrt[3]{a}$, so $\sqrt[3]{8}=8^{1/3}=(2^3)^{1/3}=2$ --- the exponent law from Section~2
+doing the work. State plainly why this matters: the rational-exponent spelling is what lets the
+exponent laws reach radicals at all, and it is the notation Unit 6 is built on.
+\end{multicols}
+\end{skillbox}
 
-        {Exponent}
-        & {The number that tells how many times the base is used as a factor.} \\
-        \hline
+\begin{skillbox}[Active Monitoring]{redbox}
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item evaluating $-x^2$ at $x=-3$ as $9$ --- the exponent binds only to $x$, so the answer is $-9$; this is the most common evaluation error in the course and it recurs in every unit;
+  \item translating ``seven less than twice a number'' as $7-2n$ --- ``less than'' reverses the order;
+  \item subtracting polynomials without distributing the minus past the \emph{first} term of the second polynomial;
+  \item adding exponents when multiplying \emph{coefficients} too ($3x^2\cdot 4x^3 = 12x^5$, not $7x^5$ or $12x^6$);
+  \item writing $(x+5)^2=x^2+25$ --- Hook item (c); squaring does not distribute over addition, and the missing $10x$ is the whole point;
+  \item writing $\sqrt{a+b}=\sqrt a+\sqrt b$ --- Hook item (d), the same error in a different costume;
+  \item factoring but skipping the GCF, so $2x^2-18$ becomes $(\sqrt2 x-\ldots)$ nonsense instead of $2(x+3)(x-3)$ --- and stopping at $2(x^2-9)$, which is factored but not \emph{completely};
+  \item leaving a negative exponent in a final answer, or treating $a^{-2}$ as a negative number;
+  \item adding unlike radicals, $3\sqrt5+2\sqrt3=5\sqrt8$.
+\end{itemize}
+Cold-call prompts: ``Read that expression back to me in words.'' ``Where did the exponents' $+$
+come from --- show me the factors.'' ``Is it factored, or factored \emph{completely}? How do you
+know?'' ``Check it: multiply your factors back out.'' ``Give me one value of $x$ that proves those
+two are not equivalent.''
+\end{skillbox}
 
-        {Product rule}
-        & \TallMath{x^a \cdot x^b = x^{a+b}} \\
-        \hline
+\begin{skillbox}[Group Work \& Differentiation]{redbox}
+\textbf{Rewriting Without Changing the Value} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Four straightforward blocks, one per notes section: translate four
+phrases; evaluate four expressions at given values (one with $|\,\cdot\,|$, one with $\sqrt{\ }$,
+one with a negative substituted into a squared term); apply one exponent law per item; and one
+short factoring set in which every problem has a GCF to remove first. Closes with an
+expand-to-check step, so students verify their own factoring instead of asking. Send here any
+student who wrote $(x+5)^2=x^2+25$.
 
-        {Power rule}
-        & \TallMath{(x^a)^b = x^{a \cdot b}} \\
-        \hline
+\columnbreak
+\textbf{Tier A --- Approaching.} Mixed and unlabelled, which is the real difficulty: a set where
+students must decide \emph{which} tool applies before using it. Includes a polynomial subtraction
+with a leading minus, a monomial ratio with negative exponents, a trinomial and a
+difference-of-squares to factor completely (one of each requiring a GCF first), a division by a
+factored divisor, and $\sqrt{72}$ and $\sqrt[3]{54}$ side by side so the identical method is
+visible. Ends with two justification items: show two given expressions \emph{are} equivalent by
+algebra, and show two others are \emph{not} with one value.
 
-        {Power of a product rule}
-        & \TallMath{(x \cdot y)^a = x^a \cdot y^a} \\
-        \hline
+\columnbreak
+\textbf{Tier E --- Extension.} Structure work. A rectangle of area $x^2+7x+12$ and one dimension
+$x+3$: find the other by dividing, then state what $x$ cannot be and why. A ``spot the error'' set
+of four student solutions --- one per classic misconception from Active Monitoring --- where the
+error must be named, not just fixed. Then the strongest item on the page: given
+$\frac{4^{x+1}}{2^{2x}}$, simplify to a single power of $2$, which forces students to notice
+$4=2^2$ before any law applies. Closes by asking why one confirming value never proves equivalence
+while one contradicting value always disproves it.
+\end{multicols}
+\end{skillbox}
 
-        {Quotient rule}
-        & \TallMath{\frac{x^a}{x^b} = x^{a-b}} \\
-        \hline
+\begin{skillbox}[Individual Work \& Assessment]{redbox}
+\textbf{Exit Ticket} (independent, no notes): three items. \textbf{(1)} Evaluate $2x^2-5x+|x-8|$ at
+$x=-3$ --- one item that catches the $-x^2$ sign error, the order-of-operations habit, and absolute
+value as a grouping symbol all at once. \textbf{(2)} Factor $3x^2-27$ completely and check by
+expanding; the GCF is required, and stopping at $3(x^2-9)$ is the diagnostic. \textbf{(3)} An
+\textbf{SOL-style multiple-choice} item: simplify $\frac{15x^4y^{-1}}{5x^2y^3}$ (answer
+$\frac{3x^2}{y^4}$), with distractors that each break exactly one law --- subtract exponents the
+wrong way / divide the exponents / leave the negative exponent in the numerator. Collect and sort
+into ``got it / sign-and-order slips / factoring not complete / exponent laws.'' The last two piles
+matter most: Lesson 1.2 solves quadratics by factoring, so incomplete factoring becomes a wrong
+\emph{answer} there rather than a lost point, and Units 3--6 lean on the exponent laws continuously.
+\end{skillbox}
 
-        {Zero power rule}
-        & \TallMath{x^0 = 1} \\
-        \hline
-
-        {Negative exponent rule}
-        & \TallMath{x^{-a} = \frac{1}{x^a}} \\
-        \hline
-
-        {Polynomial}
-        & {Any expression consisting of one or more terms all of which contain variables raised to whole numbers
-        (no variables in the denominator and no roots)} \\
-        \hline
-
-        {Factor}
-        & {A quantity multiplied by another quantity to form a product.} \\
-        \hline
-
-        {Difference of squares}
-        & \TallMath{a^2-b^2=(a+b)(a-b)} \\
-        \hline
-
-        {Product}
-        & {The result of multiplying two quantities.} \\
-        \hline
-
-        {FOIL}
-        & {A method of multiplying binomials: First, Outside, Inside, Last} \\
-        \hline
-
-        {Box method}
-        & {A method of multiplying any two polynomials using an area model then simplifying the results.} \\
-        \hline
-
-        {Dividend}
-        & {In a division expression, the item being divided.
-        For example, in \TallMath{\frac{a}{b}}}, $a$ is the dividend. \\
-        \hline
-
-        {Divisor}
-        & {In a division expression, The expression or number by which another e
-        xpression or number is divided. For example, in \TallMath{\frac{a}{b}}},
-        $b$ is the divisor. \\
-        \hline
-
-        {Quotient}
-        & {The result of dividing one quantity, the dividend, by another quantity,
-        the divisor.} \\
-        \hline
-
-        {Long division}
-        & {Form of polynomial division. Required when the variable in the divisor
-        has a leading coefficient $\ne1$. For example,
-        in \TallMath{\frac{x^2+4x+3}{3x+2}}}, you must use long division because
-        the leading coefficient of the divisor is $3$ (not $1$) \\
-        \hline
-
-        {Synthetic division}
-        & {Another algorithm for polynomial division.
-        The divisor must be a linear factor with a leading coefficient of $1$.} \\
-        \hline
-
-        {Radical}
-        & {A symbol used to represent a root, such as a square root.} \\
-        \hline
-
-        {Radicand}
-        & {The expression under a radical symbol. Example: in $\sqrt{50}$,
-        the radicand is $50$.} \\
-        \hline
-
-        {Index (of a radical)}
-        & {The small number written outside the radical symbol that indicates
-        which root is being taken. If there is no indicated index,
-        it is understood that the index $=2$, i.e., we are taking the square root of
-        an expression.} \\
-        \hline
-
-        {Prime factor}
-        & {For numbers, a \textbf{prime factor} is a factor of a number that is
-        itself prime. For polynomials, a \textbf{prime or irreducible factor} is
-        a polynomial factor that cannot be factored further over a given number system
-        and still produce integer coefficients of the variables.} \\
-        \hline
-
-        \end{tabularx}
-
-    \end{skillbox}
-    \renewcommand{\arraystretch}{1.6}
-
-    \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-        \begin{tabularx}{\linewidth}{@{}X c@{}}
-            \begin{minipage}[t]{0.55\linewidth}
-                \vspace{0pt}
-                Please see attached spiral review.
-                \textbf{Skills reviewed/practiced:}
-                \begin{itemize}
-                    \item Order of operations
-                    \item Evaluating expressions
-                    \item Simplify radicals
-                    \item Solve an equation
-                    \item Properties of real numbers
-                \end{itemize}
-            \end{minipage}
-            &
-            \begin{minipage}[t]{0.38\linewidth}
-                \vspace{0pt}
-                \centering
-                \includegraphics[width=\linewidth,page=1]{warmup/main}
-            \end{minipage}
-        \end{tabularx}
-    \end{fixedskillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Hook]{forestbg}
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Different forms, same value} \\
-            \begin{itemize}
-                \item $2(x+3)$
-                \item $2x+6$
-                \item $x^2-9$
-                \item $(x+3)(x-3)$
-                \item $\sqrt{72}$
-                \item $6\sqrt{2}$
-            \end{itemize}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Questions}
-            \begin{itemize}
-                \item \textbf{Which expressions are equivalent?}
-                \item \textbf{How can two expressions look different but represent the same quantity?}
-                \item \textbf{How can you prove two expressions are equivalent?}
-            \end{itemize}
-        \end{minipage}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Lesson]{forestbg}
-        \begin{multicols}{2}
-            \begin{enumerate}
-                \item Evaluate expressions
-                \begin{itemize}
-                    \item $3x^2-2x+1$ when $x=2$
-                    \item \textbf{What mistakes are easy to make here?}
-                \end{itemize}
-
-                \item Simplify expressions
-                \begin{itemize}
-                    \item $2\left(x+5\right)-3x$
-                    \item \textbf{How is the expression related to $10-x$?}
-                \end{itemize}
-
-                \item Exponent structure
-                \begin{itemize}
-                    \item \TallMath{\frac{x^5}{x^2}}
-                    \item \textbf{What does this actually mean?}
-                    \item \TallMath{\frac{x\cdot x\cdot x\cdot x\cdot x\cdot}{x\cdot x}}
-                \end{itemize}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-    \begin{skillbox}[Lesson (cont.)]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[start=4]
-                \item Factoring \& Structure
-                \begin{itemize}
-                    \item Factor $x^2+7x+12$.
-                    \item \textbf{What numbers add to $7$ and multiply to $12$?}
-                    \item $x^2+7x+12=\left(x+3\right)\left(x+4\right)$
-                    \item Factor $6x^2+11x+3$.
-                    \item \textbf{Use slip-and-slide, multiply the constant term by the leading coefficient.}
-                    \item $=x^2+11x+18$
-                    \item \textbf{What numbers add to $11$ and multiply to $18$?}
-                    \item $=\left( x+9 \right) \left( x+2 \right) $
-                    \item $=\left( x+\frac{9}{6} \right) \left( x+\frac{2}{6} \right) $
-                    \item \textbf{Simplify the fractions.}
-                    \item $=\left( x+\frac{3}{2} \right) \left( x+\frac{1}{3} \right) $
-                    \item \textbf{Multiply each factor by its denominator.}
-                    \item $=\left( 2x+3 \right) \left( 3x+1 \right) $
-                \end{itemize}
-                \columnbreak
-                \item Radical Simplification
-                \begin{itemize}
-                    \item $\sqrt{72}$
-                    \item \textbf{What is the highest perfect square that is a factor of $72$}
-                    \item $\sqrt{36\cdot 2}$
-                    \item $6\sqrt{2}$
-                    \item \textbf{a radical is simplified if no other perfect roots exist under the radical}
-                \end{itemize}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Explicit Instruction: Expression Evaluation]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[label=\arabic*.]
-                \item Identify the variables. If the expression contains $x$ or $y$,
-                change the variables to $a$, $b$, $c$, etc. and set their values
-                according to the specified values set forth in the problem definition.
-                \item Input the expression into desmos. Double check that you have entered
-                the expression correctly using the appropriate substitutions for $a$, $b$, ...
-                \item Set the values of your sliders to the appropriate values for each variable.
-                \item The value of your expression will be populated with the correct result, here $-10$.
-            \end{enumerate}
-            \columnbreak
-            \textbf{Example:}
-            \begin{enumerate}[label=\arabic*.]
-                \item Evaluate $3x^2-2y+4z$ when $x=-2$, $y=5$, and $z=-3$.
-                \item Change $x$, $y$, $z$ to $a$, $b$, $c$: $3a^2-2b+4c$.
-                \item Add sliders for $a$, $b$, and $c$.
-                \item Set the values accordingly: $a=-2$, $b=5$, and $c=-3$
-                \item Note the value of the expression is displayed in the lower
-                right corner of the first cell, here $-10$
-                \includegraphics[width=\linewidth,page=1]{EvaluateExpressionDesmosExample}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Explicit Instruction: Simplify/compare equivalent expressions]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[label=\arabic*.]
-                    \item Similar to above, identify the variables. If the expression contains $x$ and $y$,
-                    change the variables to $a$, $b$, $c$, etc. and set their values
-                    according to the specified values set forth in the problem definition. However, if there
-                    is only one variable in the expression, just use $x$.
-                    \item Input the expression into desmos. Double check that you have entered
-                    the expression correctly using the appropriate substitutions for $a$, $b$, or $x$
-                    \item Set the values of your sliders to the appropriate values for each variable if using $a$ and $b$.
-                    \item If this is a multiple choice question, input the other expressions and find the one
-                    that has an equivalent value to the original expression when using $a$ and $b$, or find the
-                    expression's graph that perfectly lines up with the original expression.
-                    \item Examples:
-                    \begin{enumerate}[label=\arabic*.]
-                        \item Find the simplified equivalent expression for:
-                        \TallMath{\frac{x^4 \cdot x^3}{x^2}}
-                        \begin{enumerate}[label=\Alph*.]
-                            \item $x^5$
-                            \item $\frac{x^6}{x}$
-                            \item $x^9$
-                            \item $x^6$
-                        \end{enumerate}
-                        \includegraphics[width=\linewidth,page=1]{SimplifyExpressionDesmosExample}
-                    \end{enumerate}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-    \begin{skillbox}[Explicit Instruction: Factor quadratics]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[label=\arabic*.]
-                    \item Most of the time, you will have a quadratic in one variable
-                    that you are being asked to factor, so most of the time you will simply use $x$.
-                    \item \textbf{How do you know if a quadratic is factorable?}
-                    \item Input the quadratic into desmos. Double check that you have entered
-                    the quadratic correctly.
-                    \item Find the zeros. If the zeros of your quadratic are integers, then your factors
-                    are the opposite sign of your zeros. Example, if you have zeros at 4 and -5, then
-                    the factors are $\left( x-4 \right)\left( x+5 \right)$.
-                    \item If the zeros are rational, this is similar to the slip-and-slide method.
-                    Once you have the zeros and create the factors, then get rid of the fraction by
-                    multiplying the terms of the factor by the denominator.
-                    \item Examples:
-                    \begin{enumerate}[label=\arabic*.]
-                        \item Factor the following expression:
-                        \TallMath{10x^2-13x-3}
-                        \includegraphics[width=\linewidth,page=1]{FactorQuadraticDesmosExample}
-                    \end{enumerate}
-            \end{enumerate}
-        \end{multicols}
-    \end{skillbox}
-    \begin{skillbox}[Explicit Instruction: Simplify radicals]{forestbg}
-        \begin{multicols}{2}
-            \raggedcolumns
-            \begin{enumerate}[label=\arabic*.]
-                \item A radical $\sqrt{n}$ is \textbf{fully simplified} when the radicand contains
-                no perfect square factor greater than 1. For expressions with variables,
-                every pair of identical variable factors (e.g., $x^2$) also exits the radical
-                as a single factor.
-                \item \textbf{Method 1 --- largest perfect square factor}
-                \begin{enumerate}[label=\alph*.]
-                    \item Identify the largest perfect square that divides the radicand.
-                    For variable terms, group complete pairs of variable factors.
-                    \item Rewrite as a product of perfect-square pieces and leftovers.
-                    \item Apply the product property: $\sqrt{a \cdot b} = \sqrt{a} \cdot \sqrt{b}$.
-                    \item Pull out each perfect square root; leave unpaired factors under the radical.
-                \end{enumerate}
-                \item \textbf{Method 2 --- prime factorization}
-                \begin{enumerate}[label=\alph*.]
-                    \item Write the prime factorization of the radicand (expand variable exponents).
-                    \item Group prime factors and variables in pairs.
-                    Each pair exits the radical as one factor.
-                    \item Anything unpaired stays under the radical.
-                \end{enumerate}
-                \item \textbf{Desmos check:} enter the original and simplified forms.
-                If they return the same decimal, the simplification is correct.
-                The screenshot shows $\sqrt{108}$, $\sqrt{36 \cdot 3}$, and $6\sqrt{3}$
-                all evaluating to $\approx 10.392$.
-            \end{enumerate}
-            \columnbreak
-            \textbf{Example 1 (numbers only): Simplify $\sqrt{108}$}
-            \begin{itemize}
-                \item $108 = 36 \cdot 3$ \quad ($36$ is the largest perfect square factor)
-                \item $\sqrt{108} = \sqrt{36 \cdot 3} = \sqrt{36}\cdot\sqrt{3} = 6\sqrt{3}$
-            \end{itemize}
-            \medskip
-            \textbf{Example 2 (variable + number): Simplify $\sqrt{63x^3}$}
-            \begin{itemize}
-                \item Break into perfect-square pieces: $63x^3 = 9 \cdot 7 \cdot x^2 \cdot x$
-                \item $\sqrt{63x^3} = \sqrt{9 \cdot 7 \cdot x^2 \cdot x}$
-                \item $= \sqrt{9}\cdot\sqrt{x^2}\cdot\sqrt{7x}$
-                \item $= 3x\sqrt{7x}$ \quad (assuming $x \geq 0$)
-            \end{itemize}
-            \medskip
-            \includegraphics[width=\linewidth,page=1]{SimplifyRadicalsDesmosExample}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Active Monitoring]{redbox}
-        Distribute the group activity sheet. Circulate and check for understanding on:
-        \begin{itemize}
-            \item correct order of operations during expression evaluation
-            \item proper application of exponent rules before simplifying
-            \item factoring strategy selection ($|a|=1$ vs.\ slip-and-slide)
-            \item identifying the largest perfect-square factor when simplifying radicals
-        \end{itemize}
-        Cold-call groups to justify their answers before moving on.
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Group Work \& Differentiation]{redbox}
-        Distribute the differentiated group activity sheet (see \texttt{activity/}).
-        Assign each group to a tier based on recent assessment data.
-        Groups that finish early may attempt the next tier up.
-        \par\medskip
-        \hrule
-        \medskip
-
-        \begin{multicols}{3}
-            \raggedcolumns
-            \setlength{\columnsep}{1cm}
-            \setlength{\columnseprule}{0.2pt}
-
-            \textbf{Tier R --- Remediate}
-            \begin{itemize}
-                \item Evaluate a two-variable expression (integer arithmetic)
-                \item Apply product rule to simplify $x^4 \cdot x^3$
-                \item Factor a simple trinomial ($a=1$, small coefficients)
-                \item Identify the simplified form of $\sqrt{48}$ (MC)
-            \end{itemize}
-            \columnbreak
-
-            \textbf{Tier A --- Approaching Proficiency}
-            \begin{itemize}
-                \item Evaluate a three-variable expression including a squared negative
-                \item Simplify $\frac{x^3 \cdot x^5}{x^2}$ (MC)
-                \item Factor $x^2+9x+20$ and $6x^2+11x+3$ (slip-and-slide)
-                \item Identify the simplified form of $\sqrt{180}$ (MC)
-            \end{itemize}
-            \columnbreak
-
-            \textbf{Tier E --- Extension}
-            \begin{itemize}
-                \item Evaluate a rational expression with negative base and exponent
-                \item Simplify $\frac{(2x^3)^2 \cdot x^{-1}}{4x^5}$ (multiple exponent rules)
-                \item Factor $4x^2-25$ (difference of squares) and $10x^2-13x-3$ (slip-and-slide)
-                \item Simplify $\sqrt{75}-\sqrt{12}$ (like radical terms)
-            \end{itemize}
-        \end{multicols}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Individual Work \& Assessment]{redbox}
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{Exit Ticket} (see attached) \\
-            {\small Do these independently. No notes. Graded for completion --- mistakes happen, blanks don't.}
-            \par\smallskip
-            \begin{enumerate}
-                \item Evaluate $2x^2 + 3x - 4$ when $x = -3$. Show every step.
-                \item Simplify completely: $\sqrt{48}$
-            \end{enumerate}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.48\linewidth}
-            \textbf{SOL-Style Multiple Choice} \\
-            Which expression is equivalent to $\dfrac{x^5 \cdot x^2}{x^4}$?
-            \begin{enumerate}[label=\Alph*.]
-                \item $x^{3/4}$
-                \item $x^3$
-                \item $x^6$
-                \item $x^{11}$
-            \end{enumerate}
-            \vspace{0.5em}
-            {\small Collect exit tickets before students leave. Use results to gauge readiness for Lesson 1.2 (equations and inequalities) and flag students needing support on exponent rules or radical simplification.}
-        \end{minipage}
-    \end{skillbox}
-
-    \renewcommand{\arraystretch}{1.6}
-    \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-        \begin{minipage}[t]{0.55\linewidth}
-            \textbf{Homework} (see attached sheet) \\
-            {\small Show all work by hand. Desmos to verify when done.}
-            \par\smallskip
-            \begin{enumerate}
-                \item Evaluate $3x - 2y$ when $x = 4$, $y = -1$
-                \item Evaluate $x^2 + 2x - 5$ when $x = -3$
-                \item Simplify: $5x^2 - 3x + 2x^2 + 7x$
-                \item Simplify: \TallMath{\dfrac{(x^2)^3}{x^4}}
-                \item Simplify completely: $\sqrt{75}$
-                \item Factor: $x^2 - 5x + 6$
-                \item Factor: $x^2 - 16$
-                \item Multiply: $(x+3)(x-5)$
-                \item Simplify: $3\sqrt{8} + \sqrt{2}$
-                \item Factor: $2x^2 + 5x + 3$
-            \end{enumerate}
-        \end{minipage}
-        \hfill
-        \begin{minipage}[t]{0.40\linewidth}
-            \textbf{Extension} \\
-            Let $f(x) = x^2 - 9$.
-            \begin{enumerate}
-                \item Evaluate $f(5)$.
-                \item Factor $f(x)$.
-                \item Re-evaluate $f(5)$ using the factored form. Same answer?
-                \item What do the factors tell you about the graph?
-            \end{enumerate}
-            \vspace{0.5em}
-            \textbf{Preview} \\
-            Lesson 1.2 covers solving equations and inequalities. Come ready: how do you solve $3x + 7 = 22$? What about $|x - 5| = 3$?
-        \end{minipage}
-    \end{skillbox}
+\begin{skillbox}[Reinforcement \& Extension]{goldbox}
+\textbf{Homework:} four translation items and four evaluations (covering absolute value, square
+root, and cube root at rational replacement values); an exponent-law set including two monomial
+ratios with negative exponents; a polynomial set with one addition, one subtraction with a leading
+minus, and two products (one a difference-of-squares pattern, one a binomial times a trinomial); a
+factor-completely set of six in which four require a GCF first; two divisions; a radical set
+including $\sqrt{50}$, $\sqrt[3]{24}$, a sum of like radicals, and two rational-exponent
+conversions; and one written item asking students to explain why testing $x=0$ cannot prove two
+expressions equivalent. \textbf{Extension:} the equivalence audit --- five pairs of expressions
+where students must either prove equivalence algebraically or produce a single disproving value,
+including $(x-4)^2$ vs.\ $x^2-16$ and $\sqrt{x^2}$ vs.\ $x$ (which fails for every negative $x$ and
+previews the Unit 6 absolute-value subtlety). \textbf{Preview:} Lesson 1.2, \emph{Equations and
+Inequalities} --- the second Algebra 1 domain area, where every rewriting rule from today gets put
+to work: distributing to clear parentheses, factoring to solve quadratics via the zero product
+property from 1.0, and the quadratic formula, whose radical you will now be able to simplify.
+\end{skillbox}
 \end{document}

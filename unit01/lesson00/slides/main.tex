@@ -1,0 +1,239 @@
+%! Properties of Real Numbers, Equality, and Inequality — Unit 1, Lesson 1.0 — Slides (Beamer)
+\documentclass[aspectratio=169, 11pt]{beamer}
+\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Number line: {xmin}{xmax}
+\newcommand{\numline}[2]{%
+  \draw[->, thick, charcoal] (#1,0)--(#2,0);
+  \foreach \x in {#1,...,#2} {\draw[charcoal] (\x,0.16)--(\x,-0.16)
+    node[below, font=\tiny]{$\x$};}}
+
+\begin{document}
+
+% TITLE SLIDE (CourseName is not defined in beamer, so the name is literal)
+{
+\setbeamercolor{background canvas}{bg=forest}
+\begin{frame}[plain]
+  \vspace{2.8cm}\hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    {\color{goldacc}\bfseries\small LESSON 1.0}\\[0.5cm]
+    {\color{white}\bfseries\LARGE Properties of Real Numbers, Equality, and Inequality}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 1: Foundations --- Algebra 1 Review}
+  \end{minipage}
+\end{frame}
+}
+
+% HOOK
+\begin{frame}[t, plain]
+  \forestheader{Two students. One inequality. Two answers.}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \centering
+      {\large Solve \; $-3x > 12$}\\[0.7cm]
+      \begin{tabular}{c@{\hspace{1.2cm}}c}
+        \textbf{Ana} & \textbf{Ben} \\[4pt]
+        {\color{navy}\large $x > -4$} & {\color{goldacc}\large $x < -4$} \\
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \begin{itemize}\setlength{\itemsep}{6pt}
+        \item Exactly one of them is right.
+        \item \textbf{Don't answer from memory.} How could we \emph{settle} it?
+        \item Test $x=-10$: \; is $-3(-10) > 12$? \quad $30>12$ \; \textbf{true}
+        \item Test $x=0$: \; is $0 > 12$? \quad \textbf{false}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \begin{block}{The real question}
+    Testing settled \emph{this} one --- but we can't test every problem all year.
+    What \textbf{rule} did Ben follow that Ana forgot? And what is that rule \emph{called}?
+  \end{block}
+\end{frame}
+
+% SECTION 1 — the real number system
+\begin{frame}[t, plain]
+  \forestheader{Each number set exists because the last one fell short}
+  \sectionlabel{1. The real number system}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.40, every node/.style={font=\tiny}]
+        \draw[thick, forest, rounded corners=3mm] (0,0) rectangle (13,7.2);
+        \node[forest, font=\tiny\bfseries] at (6.5,6.75) {REAL NUMBERS};
+        \draw[thick, navy, rounded corners=3mm] (0.4,0.4) rectangle (8.4,6.1);
+        \node[navy, font=\tiny\bfseries] at (4.4,5.7) {Rational};
+        \draw[semithick, charcoal, rounded corners=2mm] (0.9,0.9) rectangle (6.9,5.0);
+        \node[charcoal] at (3.9,4.6) {Integers};
+        \draw[semithick, charcoal, rounded corners=2mm] (1.4,1.4) rectangle (5.6,4.0);
+        \node[charcoal] at (3.5,3.6) {Whole};
+        \draw[semithick, charcoal, rounded corners=2mm] (1.9,1.9) rectangle (4.6,3.1);
+        \node[charcoal] at (3.25,2.5) {Natural};
+        \draw[thick, goldacc, rounded corners=3mm] (9.0,0.4) rectangle (12.6,6.1);
+        \node[goldacc, font=\tiny\bfseries] at (10.8,5.7) {Irrational};
+        \node[charcoal] at (10.8,4.2) {$\pi$};
+        \node[charcoal] at (10.8,3.0) {$\sqrt{5}$};
+        \node[charcoal] at (10.8,1.8) {$\sqrt[3]{2}$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item Naturals can't say ``none'' \; $\Rightarrow$ \; \textbf{whole}
+        \item Wholes can't do $3-5$ \; $\Rightarrow$ \; \textbf{integers}
+        \item Integers can't do $3\div5$ \; $\Rightarrow$ \; \textbf{rationals}
+        \item Rationals can't give $\sqrt5$ \; $\Rightarrow$ \; \textbf{irrationals}
+      \end{itemize}
+      \vspace{4pt}
+      Every enlargement happened because a set was not \textbf{closed} under some operation.
+    \end{column}
+  \end{columns}
+  \begin{block}{The trap}
+    $\sqrt{9}=3$ is a \emph{natural number}. $\tfrac82 = 4$ is an \emph{integer}.
+    The radical sign and the fraction bar decide nothing --- only the \textbf{value} does.
+  \end{block}
+\end{frame}
+
+% SECTION 2 — properties of real numbers
+\begin{frame}[t, plain]
+  \forestheader{Properties of real numbers: rewriting \emph{one} expression}
+  \sectionlabel{2. One side only}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \renewcommand{\arraystretch}{1.35}
+      \begin{tabular}{@{}l l@{}}
+        Commutative & $a+b=b+a$, \; $ab=ba$ \\
+        Associative & $(a+b)+c=a+(b+c)$ \\
+        Distributive & $a(b+c)=ab+ac$ \\
+        Identity & $a+0=a$, \; $a\cdot1=a$ \\
+        Inverse & $a+(-a)=0$, \; $a\cdot\tfrac1a=1$ \\
+        Zero & $a\cdot 0=0$ \\
+        Zero product & $ab=0 \Rightarrow a=0$ or $b=0$ \\
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{6pt}
+        \item These change how an expression \textbf{looks}, not what it \textbf{is}.
+        \item Commutative and associative are for $+$ and $\times$ \textbf{only}.
+        \item $10-4=6$ \; but \; $4-10=-6$ \\ \textbf{One counterexample kills a rule.}
+        \item $a\ne0$ in the inverse rule --- and \emph{that} is why dividing by zero is undefined.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \begin{block}{Keep the zero product property}
+    It is the reason factoring will \emph{solve} equations all year --- and why we always set
+    things equal to $0$ first.
+  \end{block}
+\end{frame}
+
+% SECTION 3 — properties of equality
+\begin{frame}[t, plain]
+  \forestheader{Properties of equality: acting on \emph{both} sides}
+  \sectionlabel{3. The distinction that runs the course}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{@{}l l@{}}
+        Reflexive & $a=a$ \\
+        Symmetric & $a=b \Rightarrow b=a$ \\
+        Transitive & $a=b,\, b=c \Rightarrow a=c$ \\
+        Substitution & a name may replace a name \\
+        Addition & $a=b \Rightarrow a+c=b+c$ \\
+        Subtraction & $a=b \Rightarrow a-c=b-c$ \\
+        Multiplication & $a=b \Rightarrow ac=bc$ \\
+        Division & $a=b \Rightarrow \tfrac{a}{c}=\tfrac{b}{c}$, $c\ne0$ \\
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{@{}l l@{}}
+        $3(x-4)=18$ & given \\
+        $3x-12=18$ & {\color{navy}distributive} \\
+        $3x-12+12=18+12$ & {\color{goldacc}addition prop.\ of $=$} \\
+        $3x=30$ & {\color{navy}inverse + identity} \\
+        $\tfrac{3x}{3}=\tfrac{30}{3}$ & {\color{goldacc}division prop.\ of $=$} \\
+        $x=10$ & {\color{navy}inverse + identity} \\
+      \end{tabular}
+      \vspace{6pt}
+
+      {\color{navy}\textbf{Blue}} changed one side. \\
+      {\color{goldacc}\textbf{Gold}} changed both.
+    \end{column}
+  \end{columns}
+  \begin{block}{Say this out loud}
+    Properties of \textbf{real numbers} rewrite \textbf{one} side.
+    Properties of \textbf{equality} act on \textbf{both} sides at once.
+  \end{block}
+\end{frame}
+
+% SECTION 4 — the reversal rule
+\begin{frame}[t, plain]
+  \forestheader{Why a negative reverses the inequality symbol}
+  \sectionlabel{4. Properties of inequality}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.42]
+    \numline{-11}{11}
+    \fill[forest] (4,0) circle (6pt) node[above=4pt, font=\scriptsize, forest]{$4$};
+    \fill[forest] (10,0) circle (6pt) node[above=4pt, font=\scriptsize, forest]{$10$};
+    \fill[goldacc] (-4,0) circle (6pt) node[above=4pt, font=\scriptsize, goldacc]{$-4$};
+    \fill[goldacc] (-10,0) circle (6pt) node[above=4pt, font=\scriptsize, goldacc]{$-10$};
+    \draw[->, thick, navy] (4,1.0) to[bend left=22] (-4,1.0);
+    \draw[->, thick, navy] (10,1.7) to[bend left=20] (-10,1.7);
+  \end{tikzpicture}
+  \end{center}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item Start: \; $4 < 10$ \; --- true.
+        \item Multiply both sides by $-1$: \; $-4 \; {\color{goldacc}\mathbf{>}} \; -10$.
+        \item A negative multiplier \textbf{reflects the whole line through zero}.
+        \item Reflection reverses \textbf{order} --- so the symbol must turn around too.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{@{}l l@{}}
+        Add / subtract & symbol \textbf{stays} \\
+        $\times$ or $\div$ by \textbf{positive} & symbol \textbf{stays} \\
+        $\times$ or $\div$ by \textbf{negative} & symbol \textbf{reverses} \\
+      \end{tabular}
+      \vspace{8pt}
+
+      It does \textbf{not} reverse when you subtract, and \textbf{not} merely because the answer is
+      negative.
+    \end{column}
+  \end{columns}
+  \begin{block}{Ana and Ben, settled}
+    $-3x>12 \;\Rightarrow\; x<-4$ by the \textbf{division property of inequality} (negative divisor).
+    \textbf{Ben was right.}
+  \end{block}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{What you owe me from now on}
+  \sectionlabel{Closing}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Not an answer}
+        ``I moved it over.'' \\
+        ``I did the opposite.'' \\
+        ``That's just how you do it.''
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{An answer}
+        ``Subtraction property of equality.'' \\
+        ``Distributive property.'' \\
+        ``Division property of inequality --- I divided by a negative, so the symbol reversed.''
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item \textbf{Exit ticket:} classify two radicals, name four properties, one SOL-style inequality.
+    \item \textbf{Next --- Lesson 1.1, Expressions and Operations:} the first Algebra 1 domain area,
+      where the distributive property becomes the engine behind multiplying polynomials, and the
+      inverse properties come back as the laws of exponents.
+  \end{itemize}
+\end{frame}
+
+\end{document}

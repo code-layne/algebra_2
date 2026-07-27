@@ -2,7 +2,12 @@
 
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
-> **Status:** Unit 1 is built in source. **Units 2, 3, 4, and 5 are content-complete** — every lesson
+> **Status:** **Unit 1 is being rewritten from scratch (started 2026-07-27)** as a review of
+> *Algebra 1*, organized by the Algebra 1 SOL domain areas and with every All Things Algebra
+> drop-in removed — 4 lessons (1.0–1.3), 13 authored work products each, plus its own tests.
+> **Lesson 1.0 is complete and building; Lesson 1.1 is about half authored** (plan, warm-up +
+> key, and notes done). Details, the exact remaining file list, and the next actions are in the
+> Unit 1 block in §4. **Units 2, 3, 4, and 5 are content-complete** — every lesson
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) closed out 2026-07-27**: all 8 lessons 5.0–5.7
@@ -65,7 +70,7 @@
 
 | Unit | Title | Function family | Lessons (incl. L0) | Status |
 |:---:|---|---|:---:|---|
-| 1 | Foundations | (review) | 3 (no L0) | **Built** |
+| 1 | Foundations: Algebra 1 Review | (review) | 4 (1.0–1.3) | **Being rewritten** (1.0 done) |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
@@ -124,11 +129,58 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 
 ## 4. Unit-by-unit lesson breakdown
 
-### Unit 1 — Foundations *(built)*
-- **1.1** Evaluating & simplifying algebraic expressions
-- **1.2** Equations & inequalities
-- **1.3** Functions & statistics review
-- Assessments: sample test + key (present in source)
+### Unit 1 — Foundations: Algebra 1 Review *(being rewritten — in progress)*
+
+> **Full rewrite started 2026-07-27**, replacing the original 3-lesson Unit 1. Two things changed.
+> **(1) The unit is now organized by the three 2023 VA SOL *Algebra 1* domain areas**, with a
+> properties lesson in front — so Unit 1 reviews Algebra 1 and cites **A.\*** codes, not A2.\*
+> codes. Source of record: `spec/algebra1-vdoe-sol.pdf`. **(2) Every All Things Algebra drop-in is
+> gone**: the prefab warm-up PDFs in the old lessons 1.1–1.3 were deleted with those directories,
+> and all 13 work products per lesson are now authored in LaTeX. Unit 1 is therefore the only unit
+> whose Lesson 0 is *not* "Characteristics of ___ Functions" — 1.0 is the properties/justification
+> lesson, and the §3 spine's U1 row (function definition & notation, domain & range from a graph)
+> is delivered by **Lesson 1.3** instead.
+
+- **1.0** Properties of Real Numbers, Equality, and Inequality — *(not a domain area; supplies the
+  vocabulary of justification the other three lean on)*. Standards: the properties clauses inside
+  **A.EI.1b/c**, previewing **A.EI.1d**; **A.EO.1b** for the counterexample work.
+- **1.1** Expressions and Operations — the first domain area. **A.EO.1** (translate, evaluate with
+  $|\cdot|$, $\sqrt{\ }$, $\sqrt[3]{\ }$), **A.EO.2** (polynomial +/−/×, factor completely, divide,
+  equality of quadratic forms), **A.EO.3** (laws of exponents, derived not memorized),
+  **A.EO.4** (radicals, rational exponents $\tfrac12$ and $\tfrac13$).
+- **1.2** Equations and Inequalities — the second domain area. **A.EI.1** (multistep linear
+  equations & inequalities, literal equations, one/no/infinite solutions, verify),
+  **A.EI.3** (quadratic equations over the reals; number and type of solutions). **A.EI.2 is
+  deliberately omitted** — see the decision in §6.
+- **1.3** Functions — the third domain area. **A.F.1** (linear functions: domain/range/zeros/slope/
+  intercepts, the forms, parallel & perpendicular, modeling), **A.F.2** (relation vs. function,
+  quadratic key characteristics, exponential $y=ab^x$, and the compare-and-contrast of the three
+  families in **A.F.2h**). This lesson carries the §3 spine's U1 row.
+- **No statistics/regression lesson** — see §6.
+- Assessments: `tests/` + `test_keys/` (practice + actual and both keys), authored fresh; the
+  practice pair publishes over the old ATA `sample_test/` and `sample_test_key/` PDFs via
+  `make -C unit01/tests drop` and `make -C unit01/test_keys drop`.
+
+> **Status (2026-07-27).** All four lesson dirs scaffolded with the full 13-component set
+> (plan, cover, warmup, notes, activity, exit_ticket, homework, slides, and every `*_key`), plus
+> `tests/` and `test_keys/`.
+> **Lesson 1.0 is authored and building — all 13 components.** Verified: every file compiles,
+> each key paginates identically to its blank, and warm-up and exit ticket are exactly one page in
+> both blank and key.
+> **Lesson 1.1 is partially authored:** `main.tex` (plan), `warmup`, `warmup_key`, and `notes` are
+> done and compile (notes = 4 pp). **Still to write for 1.1:** `notes_key` (must mirror
+> `notes/main.tex` section for section — its blanks were deliberately written with `=` *inside*
+> math and the blank *outside*, e.g. `$3+8=$ \blank{1.6cm}`, precisely so the key can use
+> `\ans{$8+3$}` without putting `\ans` inside `$...$`), then `activity`, `activity_key`,
+> `exit_ticket`, `exit_ticket_key`, `homework`, `homework_key`, `cover`, `slides` — all eight are
+> specified in detail in the already-written `unit01/lesson01/main.tex` (the Group Work,
+> Individual Work, and Reinforcement boxes describe the tiers, exit-ticket items, and homework set
+> item by item; author to that spec).
+> **Lessons 1.2 and 1.3 and all four test files are still skeletons.**
+> **Next actions, in order: (1) finish 1.1** starting with `notes_key`; **(2) author 1.2**;
+> **(3) author 1.3**; **(4) author the four test files** and run both `drop` targets to replace the
+> ATA sample-test PDFs; **(5)** full compile scan of `unit01`, then re-verify the one-page rule on
+> all four warm-ups and exit tickets.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -1503,6 +1555,23 @@ Per Unit 1's pattern:
 ## 6. Decisions & remaining open questions
 
 **Resolved:**
+- **Unit 1 is a review of *Algebra 1*, organized by the Algebra 1 SOL domain areas** *(confirmed by
+  the user 2026-07-27)*. It cites **A.\*** codes from `spec/algebra1-vdoe-sol.pdf`, not the A2.\*
+  codes the other seven units use. Lesson map locked at **4 lessons (1.0–1.3)**: a properties
+  lesson, then one lesson per domain area (EO, EI, F).
+- **No All Things Algebra drop-ins anywhere in Unit 1** *(user instruction, 2026-07-27)*. All 13
+  work products per lesson are authored, and the ATA `sample_test`/`sample_test_key` PDFs are
+  overwritten by the unit's own authored tests. The old `unit01/lesson0{1,2,3}` directories, which
+  held the prefab warm-up PDFs, were deleted outright rather than edited.
+- **`A.EI.2` (systems of two linear equations, linear inequalities in two variables, systems of
+  linear inequalities) is omitted from Lesson 1.2** — it is the one Algebra 1 clause with no
+  Algebra 2 payoff here, because systems of **linear** equations/inequalities and linear
+  programming are already out of scope for this course (see the ruling below). Reviewing them would
+  set up an expectation the course never honors, and 1.2 is dense enough with A.EI.1 and A.EI.3.
+  *(Systems of **quadratics** remain in Unit 3, as always.)*
+- **`A.ST.1` (bivariate data, scatterplots, curve of best fit) gets no Unit 1 lesson** *(user
+  instruction, 2026-07-27: "no review of regressions as we will do that during the course")*.
+  Regression is taught in place — Lesson 2.5 for linear and Lesson 7.5 for exponential.
 - Absolute-value & piecewise functions → **Unit 2**.
 - Complex numbers → **Unit 3** (with quadratics); quadratic systems → **Unit 3**.
 - Advanced factoring (sum/difference of cubes, two-variable expressions) → **Unit 4**.
