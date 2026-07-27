@@ -6,9 +6,10 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26); **Lesson 5.0 is authored & building** (2026-07-26) — 5.1–5.7 are still
-> skeletons and the unit tests are unauthored. Units 6–8 are planned here and not yet scaffolded.
-> **Next action: author Unit 5 Lesson 5.1 (Simplifying Rational Expressions & Domain Restrictions).**
+> scaffolded** (2026-07-26); **Lessons 5.0 and 5.1 are authored & building** (2026-07-26) — 5.2–5.7
+> are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not yet
+> scaffolded.
+> **Next action: author Unit 5 Lesson 5.2 (Multiplying & Dividing Rational Expressions).**
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -40,7 +41,7 @@
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 5 | Rational Functions | Rational | 8 | **In progress** (5.0 done) |
+| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.1 done) |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
@@ -652,8 +653,44 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > ($h(x)=\frac{x-4}{x^2-16}$: hole at $x=4$, wall at $x=-4$; the three distractors ignore the
 > cancelling, swap the two factors, and read restrictions off the simplified form).
 > `make -C unit05/lesson00 all` → EXIT 0 (student 14pp, full 28pp).
-> **Next action: Lesson 5.1** --- the algebra behind 5.0's holes (factor-and-cancel, restrictions from
-> the *original* denominator).
+> **Lesson 5.1 authored & builds (2026-07-26):** all components + keys + 9-slide deck done; the algebra
+> that *produces* 5.0's holes. Everything hangs on one sentence --- **cancelling never restores an
+> input** --- and it is earned rather than announced: the Warm-Up refutes ``$\frac{3+6}{3}=6$'' by
+> computing the true value $3$ (so \emph{factors, not terms} is a fact students proved), and the Hook
+> puts $A(x)=\frac{x^2-x-6}{x^2-9}$ beside its cancelled form $B(x)=\frac{x+2}{x+3}$ in a four-column
+> table of values: they agree at $x=0,1,4$ ($\tfrac23,\tfrac34,\tfrac67$) and disagree at exactly one
+> input, $x=3$, where $A$ gives $\tfrac00$ and $B$ gives $\tfrac56$. The lesson is a **four-step
+> procedure** --- factor completely (the 4.2 toolkit) $\rightarrow$ **list the restrictions from the
+> \emph{original} denominator** $\rightarrow$ divide out shared factors $\rightarrow$ write the simplest
+> form \emph{with} its restrictions --- with step 2 deliberately placed before step 3 because after
+> cancelling one restriction is invisible. Cancelling is justified, not assumed: $\frac{ac}{bc}
+> =\frac ab\cdot\frac cc=\frac ab$ ($b,c\neq0$), which explains in one line both why $c$ must be a
+> **factor** and why it must be nonzero. Covers **monomial factors**
+> ($\frac{12x^3y}{18x^5y^2}=\frac{2}{3x^2y}$, $x,y\neq0$ --- the A2.EO.1b monomial clause), GCF cases
+> ($\frac{3x^2-12}{x^2+x-6}$), and **opposite binomials** ($\frac{a-b}{b-a}=-1$; $\frac{x^2-16}{4-x}
+> =-(x+4)$), contrasted with $x+3$ vs.\ $3+x$ (only \emph{subtraction} cares about order). Closes on
+> **A2.EO.1d equivalence**: same value at every input \emph{both} accept --- so two equivalent forms can
+> have different \emph{domains} --- checked two ways (factor, or test an input, with the asymmetry named:
+> one match proves nothing, one mismatch disproves everything). Unifying thread: the anchor's pre-drawn
+> graph shows $x=-3$ (factor stays) as a **vertical asymptote** and $x=3$ (factor cancels) as a **hole**
+> at $\left(3,\tfrac56\right)$ whose height comes from the \emph{simplified} form --- 5.0's cancel test
+> run from the algebra side. Flagged traps: cancelling **terms** ($\frac{x^2+9}{x+3}=x+3$, killed
+> numerically at $x=1$, plus the Unit 4 fact that $x^2+9$ is prime); **restrictions read off the
+> simplified denominator** (the signature error, and the direct ancestor of extraneous solutions in
+> 5.6); a lost $-1$ from opposite binomials; a simplified form with no restriction list (half an
+> answer); and a squared factor cancelled entirely (wall, not hole). Homework closes with
+> $g(x)=\frac{x^2+2x-8}{x-2}$ --- a rational function whose graph is a **line** with a hole at $(2,6)$
+> and no vertical asymptote --- and a design task previewing 5.5 (build an expression with a hole at
+> $x=2$ and a wall at $x=-1$). All graphs pre-drawn via `plot`/line + `\clip` with holes as open circles
+> (no sketch-from-scratch). Standards: **2023 VA SOL A2.EO.1b** (justify and determine equivalent
+> rational expressions, monomial and binomial factors, linear and quadratic) and **A2.EO.1d**
+> (equivalence of forms); builds on **A2.EO.3b** (4.2) and 5.0's restrictions/holes; prerequisite for
+> A2.EO.1a (5.2--5.3), A2.F.2h from the equation (5.5), and A2.EI.4c (5.6). Warm-up & exit ticket each
+> fit one page (blank+key); notes 4pp, activity 3pp, homework 2pp (key 3pp --- extra page is the teacher
+> note), cover 1pp; exit ticket includes an SOL-style MC item ($\frac{4-x^2}{x^2-x-2}$; the three
+> distractors drop the $-1$, read restrictions off the simplified denominator, and cancel the $x^2$
+> terms). `make -C unit05/lesson01 all` → EXIT 0 (student 12pp, full 26pp).
+> **Next action: Lesson 5.2** --- multiplying & dividing rational expressions (A2.EO.1a).
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**
