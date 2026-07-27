@@ -1,6 +1,16 @@
 %! Characteristics of Exponential Functions — Unit 7, Lesson 7.0 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% Exponentials are plotted as a*e^{(ln b)x}: pgfmath's pow() is unreliable for negative and
+% fractional exponents, but exp() is not. #2 is ln(b).
+% ln2 = 0.693147   ln3 = 1.098612
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
@@ -12,15 +22,318 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 7.0}\\[0.5cm]
     {\color{white}\bfseries\LARGE Characteristics of Exponential Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 7}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 7: Exponential Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{The domain is back. So what did we give up this time?}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.30\textwidth}
+      \[ y = 2^{x} \qquad y=\left(\tfrac12\right)^{x} \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Both run all the way across --- no stopping, no breaking.
+        \item Neither one ever crosses the $x$-axis. \emph{Why not?}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-4}{4}{-1}{9}
+        \begin{scope}
+          \clip (-4,-1) rectangle (4,9);
+          \expcurve{1}{0.693147}{-4}{3.17}
+        \end{scope}
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=2^{x}$ --- growth}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-4}{4}{-1}{9}
+        \begin{scope}
+          \clip (-4,-1) rectangle (4,9);
+          \expcurve{1}{-0.693147}{-3.17}{4}
+        \end{scope}
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=\left(\tfrac12\right)^{x}$ --- decay}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{The trade}
+    Unit 6 took away half the \textbf{domain}. Unit 7 gives it back --- and takes away half the
+    \textbf{range} instead.
+  \end{block}
+\end{frame}
+
+% DEFINITION
+\begin{frame}[t, plain]
+  \forestheader{The variable moves into the exponent}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \[ \underbrace{y=x^{2}}_{\text{quadratic}} \qquad\text{vs.}\qquad
+         \underbrace{y=2^{x}}_{\text{exponential}} \]
+      \[ f(x)=a\,b^{\,x}, \quad a\ne0,\ b>0,\ b\ne1 \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $a$ = \textbf{initial value}. Since $b^{0}=1$, $f(0)=a$ --- so $a$ \emph{is} the
+              $y$-intercept.
+        \item $b$ = \textbf{base}, the factor you \textbf{multiply} by each time $x$ goes up by $1$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Why the restrictions?}
+        $b\ne1$: \; $1^{x}=1$ always --- that is a horizontal line, not a new family. \\[3pt]
+        $b>0$: \; $(-4)^{1/2}$ is not real, so a negative base gives a scatter of holes instead of a
+        curve.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize \textbf{Compare $b$ to $1$, never to $0$.} \\[2pt]
+      $b>1 \Rightarrow$ \textbf{growth} \quad $0<b<1 \Rightarrow$ \textbf{decay}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FINGERPRINT
+\begin{frame}[t, plain]
+  \forestheader{Name the family from a table --- no graph required}
+  \sectionlabel[goldacc]{Constant ratio}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{Family} & \textbf{What stays constant} & \textbf{Example} \\
+  \hline
+  Linear (Unit 2) & the difference & $2,\ 5,\ 8,\ 11,\ 14$ \quad (add $3$) \\
+  Quadratic (Unit 3) & the \emph{second} difference & $1,\ 4,\ 9,\ 16,\ 25$ \quad ($+2$ each time) \\
+  \textbf{Exponential (Unit 7)} & the \textbf{ratio} & $2,\ 6,\ 18,\ 54,\ 162$ \quad (times $3$) \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    $\dfrac{6}{2}=\dfrac{18}{6}=\dfrac{54}{18}=3$ \quad --- the \textbf{constant ratio} \emph{is} the
+    base $b$.
+  \end{center}
+  \vspace{2pt}
+  \begin{center}
+    {\footnotesize Linear \emph{adds} the same amount. Exponential \emph{multiplies} by the same
+    amount. That is the whole difference --- not ``fast'' versus ``slow.''}
+  \end{center}
+\end{frame}
+
+% GROWTH PARENT
+\begin{frame}[t, plain]
+  \forestheader{The growth parent: climbs forever on the right, flattens on the left}
+  \sectionlabel[goldacc]{$y=2^{x}$}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-4}{4}{-1}{9}
+        \begin{scope}
+          \clip (-4,-1) rectangle (4,9);
+          \expcurve{1}{0.693147}{-4}{3.17}
+        \end{scope}
+        \draw[navy, dashed, thick] (-4,0)--(4,0);
+        \node[navy, font=\tiny, above left] at (-1.0,0) {$y=0$};
+        \fill[charcoal] (0,1) circle (4pt);
+        \fill[charcoal] (1,2) circle (4pt);
+        \fill[charcoal] (2,4) circle (4pt);
+        \fill[charcoal] (3,8) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Domain $(-\infty,\infty)$; \; Range $\mathbf{(0,\infty)}$ --- note the \emph{round} bracket
+        \item $y$-intercept $(0,1)$; \; \textbf{no} $x$-intercept, ever
+        \item Increasing on $(-\infty,\infty)$; never decreasing
+        \item \textbf{No extrema} --- no max, and no min either
+        \item Horizontal asymptote $y=0$, approached on the \textbf{left}
+        \item $x\to+\infty \Rightarrow y\to+\infty$; \quad $x\to-\infty \Rightarrow y\to 0$
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{The answer that is not $-\infty$}
+        On the left the graph does not run \emph{down} --- it runs \emph{flat}, hugging $y=0$ from
+        above forever.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DECAY PARENT
+\begin{frame}[t, plain]
+  \forestheader{The decay parent: the same picture, mirrored}
+  \sectionlabel[goldacc]{$y=\left(\frac12\right)^{x}$}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-4}{4}{-1}{9}
+        \begin{scope}
+          \clip (-4,-1) rectangle (4,9);
+          \expcurve{1}{-0.693147}{-3.17}{4}
+        \end{scope}
+        \draw[navy, dashed, thick] (-4,0)--(4,0);
+        \node[navy, font=\tiny, above right] at (1.0,0) {$y=0$};
+        \fill[charcoal] (-3,8) circle (4pt);
+        \fill[charcoal] (-1,2) circle (4pt);
+        \fill[charcoal] (0,1) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Domain, range, $y$-intercept, asymptote, extrema: \textbf{identical} to the growth parent
+        \item Decreasing on $(-\infty,\infty)$
+        \item Asymptote $y=0$ approached on the \textbf{right} instead of the left
+        \item $x\to+\infty \Rightarrow y\to 0$; \quad $x\to-\infty \Rightarrow y\to+\infty$
+      \end{itemize}
+      \vspace{3pt}
+      \begin{block}{Secretly the same graph}
+        $\left(\tfrac12\right)^{x}=\dfrac{1}{2^{x}}=2^{-x}$ --- replace $x$ by $-x$ and the growth
+        curve reflects across the $y$-axis. \\[3pt]
+        {\scriptsize (Lesson 7.2 turns this into a rule.)}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ASYMPTOTE
+\begin{frame}[t, plain]
+  \forestheader{A floor the graph never stands on}
+  \sectionlabel[goldacc]{Asymptote = range boundary}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      $x$ & $-1$ & $-4$ & $-10$ & $-20$ \\ \hline
+      $2^{x}$ & $0.5$ & $0.0625$ & $0.00098$ & $0.00000095$ \\ \hline
+      \end{tabular}
+      \end{center}
+      \vspace{4pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Halving a positive number leaves a positive number --- \textbf{forever}.
+        \item So the range is $(0,\infty)$, \textbf{not} $[0,\infty)$.
+        \item So there is \textbf{no absolute minimum}: a minimum must be a value the function
+              actually \emph{reaches}.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.24]
+        \begin{scope}
+          \lgrid{-2}{8}{-2}{5}
+          \begin{scope}
+            \clip (-2,-2) rectangle (8,5);
+            \draw[very thick, forest, domain=0:8, samples=90, smooth] plot (\x,{sqrt(\x)});
+          \end{scope}
+          \fill[forest] (0,0) circle (7pt);
+        \end{scope}
+        \begin{scope}[xshift=13cm]
+          \lgrid{-4}{4}{-2}{5}
+          \begin{scope}
+            \clip (-4,-2) rectangle (4,5);
+            \expcurve{1}{0.693147}{-4}{2.32}
+          \end{scope}
+          \draw[navy, dashed, thick] (-4,0)--(4,0);
+        \end{scope}
+      \end{tikzpicture}\\[3pt]
+      {\footnotesize \textbf{Unit 6:} solid \emph{endpoint} --- the minimum $0$ \textbf{is} reached.
+      \\[2pt]
+      \textbf{Unit 7:} dashed \emph{asymptote} --- $0$ is \textbf{never} reached.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FULL FEATURE READ
+\begin{frame}[t, plain]
+  \forestheader{Reading the whole feature list}
+  \sectionlabel[goldacc]{$f(x)=4\left(\frac12\right)^{x}$}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-2}{6}{-1}{10}
+        \begin{scope}
+          \clip (-2,-1) rectangle (6,10);
+          \expcurve{4}{-0.693147}{-1.32}{6}
+        \end{scope}
+        \draw[navy, dashed, thick] (-2,0)--(6,0);
+        \fill[charcoal] (-1,8) circle (4pt);
+        \fill[charcoal] (0,4) circle (4pt);
+        \fill[charcoal] (1,2) circle (4pt);
+        \fill[charcoal] (2,1) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $a=4$, $b=\frac12$ $\Rightarrow$ exponential \textbf{decay}
+        \item Domain $(-\infty,\infty)$; \; Range $(0,\infty)$
+        \item $y$-intercept $(0,4)$; \; no $x$-intercept
+        \item Decreasing on $(-\infty,\infty)$; \; $f(x)>0$ everywhere
+        \item No absolute max, no absolute min
+        \item Asymptote $y=0$, approached as $x\to+\infty$
+        \item $x\to+\infty \Rightarrow f\to0$; \quad $x\to-\infty \Rightarrow f\to+\infty$
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{$b$ straight off the graph}
+        $\dfrac{f(1)}{f(0)}=\dfrac{2}{4}=\dfrac12$ \; and \; $\dfrac{f(2)}{f(1)}=\dfrac{1}{2}$ ---
+        the constant ratio \emph{is} the base.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% COMPARE & CONTRAST
+\begin{frame}[t, plain]
+  \forestheader{Growth vs.\ decay --- and how little actually changes}
+  \sectionlabel{Compare \& contrast}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{lll}
+  \hline
+   & \textbf{Growth} $y=2^{x}$ & \textbf{Decay} $y=\left(\frac12\right)^{x}$ \\
+  \hline
+  Base $b$ & $2$ \; ($b>1$) & $\frac12$ \; ($0<b<1$) \\
+  Domain & $(-\infty,\infty)$ & $(-\infty,\infty)$ \\
+  Range & $(0,\infty)$ & $(0,\infty)$ \\
+  $y$-intercept & $(0,1)$ & $(0,1)$ \\
+  $x$-intercept & none & none \\
+  Increasing / decreasing & increasing & decreasing \\
+  Extrema & none & none \\
+  Horizontal asymptote & $y=0$ & $y=0$ \\
+  Asymptote approached on the\dots & left & right \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{3pt}
+  \begin{center}
+    Only \textbf{three} rows differ --- and all three are decided by one thing: \textbf{the base}.
+  \end{center}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 7 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} identify an exponential from an equation, a graph, or a table's constant ratio; and
+  read domain, range, intercepts, intervals, extrema, the horizontal asymptote, and end behavior off
+  the growth and decay parents.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{7.1} Exponential growth \& decay --- building $y=ab^{x}$, and percent $\to$ factor.
+    \item \textbf{7.2} Graphing \& transformations --- $f(x)+k$ is the one that \emph{moves the asymptote}.
+    \item \textbf{7.3} Solving with a common base.
+    \item \textbf{7.4} Compound interest, half-life, and $e$ --- ending on an equation we cannot yet solve.
+    \item \textbf{7.5} Exponential regression --- today's fingerprint test, applied to real data.
+  \end{itemize}
 \end{frame}
 
 \end{document}

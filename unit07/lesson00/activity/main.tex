@@ -3,17 +3,181 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612   ln4 = 1.386294
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.0}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Reading Exponential Graphs.} An exponential graph never turns around, never breaks, and
+never crosses the $x$-axis --- so the questions worth asking are \emph{which way does it run} and
+\emph{which line is it sneaking up on}. With your partner, read each graph carefully and
+\emph{justify} your answers. Write every domain and range in \textbf{interval notation}, and check
+each one against the equation.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+The graph shows $g(x) = 3^{x}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-3}{3}{-1}{10}
+  \begin{scope}
+    \clip (-3,-1) rectangle (3,10);
+    \expcurve{1}{1.098612}{-3}{2.09}
+  \end{scope}
+  \draw[navy, dashed, semithick] (-3,0)--(3,0);
+  \node[navy, font=\scriptsize, above left] at (-1.0,0) {$y=0$};
+  \fill[charcoal] (0,1) circle (3pt) node[left, font=\scriptsize]{$(0,1)$};
+  \fill[charcoal] (1,3) circle (3pt) node[right, font=\scriptsize]{$(1,3)$};
+  \fill[charcoal] (2,9) circle (3pt) node[left, font=\scriptsize]{$(2,9)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item Write $g$ in the form $ab^{x}$: \; $a=$ \blank{1.4cm} and $b=$ \blank{1.4cm}. \\
+        Since $b$ is \blank{1.8cm} than $1$, this is exponential \blank{2.0cm}.
+  \item \textbf{Domain:} \blank{3.0cm} \quad \textbf{Range:} \blank{3.0cm}
+  \item \textbf{$y$-intercept:} \blank{1.8cm}. \; Check it against $a$: are they the same?
+        \blank{1.4cm}
+  \item Try to find an \textbf{$x$-intercept} by asking when $3^{x}=0$. From the table you built in
+        the Warm-Up, $3^{-1}=$ \blank{1.2cm} and $3^{-4}=$ \blank{1.6cm}. \\
+        Do these ever reach $0$? \blank{1.4cm} \; So this graph has \blank{2.4cm}
+        $x$-intercept.
+  \item $g$ is \textbf{increasing} on \blank{3.0cm}. \quad Its absolute extrema:
+        \blank{2.4cm}
+  \item \textbf{Horizontal asymptote:} \blank{1.8cm}. \; The graph approaches it on the
+        \blank{1.6cm} side.
+  \item \textbf{End behavior:} as $x\to+\infty$, $g(x)\to$ \blank{1.4cm}. \\
+        As $x\to-\infty$, $g(x)\to$ \blank{1.4cm} --- careful, this is \emph{not} $-\infty$.
+        Explain in one sentence what the graph is actually doing on the left. \blank{5.4cm}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+Two exponential functions. Fill in the whole table, then answer the two justification questions ---
+and pay attention to which rows come out \emph{identical}.
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  % p(x) = 4^x
+  \begin{scope}
+    \lgrid{-3}{3}{-1}{10}
+    \begin{scope}
+      \clip (-3,-1) rectangle (3,10);
+      \expcurve{1}{1.386294}{-3}{1.66}
+    \end{scope}
+    \draw[navy, dashed, semithick] (-3,0)--(3,0);
+    \fill[charcoal] (0,1) circle (3pt);
+    \fill[charcoal] (1,4) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (0,-2.6) {$p(x)=4^{x}$};
+  \end{scope}
+  % q(x) = 8(1/4)^x
+  \begin{scope}[xshift=10cm]
+    \lgrid{-1}{5}{-1}{10}
+    \begin{scope}
+      \clip (-1,-1) rectangle (5,10);
+      \expcurve{8}{-1.386294}{-0.16}{5}
+    \end{scope}
+    \draw[navy, dashed, semithick] (-1,0)--(5,0);
+    \fill[charcoal] (0,8) circle (3pt);
+    \fill[charcoal] (1,2) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (2,-2.6) {$q(x)=8\left(\tfrac14\right)^{x}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{0.14in}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
+ & \textbf{$p(x)=4^{x}$} & \textbf{$q(x)=8\left(\frac14\right)^{x}$} \\
+\hline
+Initial value $a$ & \blank{2.4cm} & \blank{2.4cm} \\
+Base $b$ & \blank{2.4cm} & \blank{2.4cm} \\
+Growth or decay? & \blank{2.4cm} & \blank{2.4cm} \\
+Domain & \blank{2.4cm} & \blank{2.4cm} \\
+Range & \blank{2.4cm} & \blank{2.4cm} \\
+$y$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
+$x$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
+Increasing or decreasing? & \blank{2.4cm} & \blank{2.4cm} \\
+Horizontal asymptote & \blank{2.4cm} & \blank{2.4cm} \\
+Asymptote approached on the\dots & \blank{2.4cm} & \blank{2.4cm} \\
+Absolute max or min? & \blank{2.4cm} & \blank{2.4cm} \\
+\end{tabularx}
+\vspace{4pt}
+
+\textbf{Justify 1.} One of these functions rises and the other falls. Point to the exact part of
+each \emph{equation} that decides it, and explain why that part has the effect it does. (Be careful:
+the initial values differ too --- is $a$ what decides it?) \writelines{3}
+
+\textbf{Justify 2.} Five rows of your table came out \emph{identical} for both functions. List them,
+and explain what those five rows tell you about \emph{every} function of the form $y=ab^{x}$ with
+$a>0$. \writelines{3}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- No graph allowed.} Fill in each row from the equation alone.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+\hline
+\textbf{Function} & \textbf{Base $b$} & \textbf{Is $b>1$ or $0<b<1$?} & \textbf{$y$-intercept} & \textbf{Range} \\
+\hline
+$y=7(1.5)^{x}$ & \blank{1.5cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{2.0cm} \\
+$y=7(0.5)^{x}$ & \blank{1.5cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{2.0cm} \\
+$y=-2\cdot 3^{x}$ & \blank{1.5cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{2.0cm} \\
+$y=\left(\frac54\right)^{x}$ & \blank{1.5cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{2.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Exactly one of these four has a range that is \emph{not} $(0,\infty)$. Which one, and what in the
+equation tells you so \emph{before} you graph anything? \writelines{2}
+
+\vspace{5pt}
+\textbf{Part 2 --- A model, and the line it never crosses.} A patient takes a $200$-milligram dose of
+a medication. Each hour, the body clears some of it and about $70\%$ of the previous hour's amount
+remains, so the amount in the bloodstream after $t$ hours is
+\[
+  A(t) = 200(0.7)^{t} \ \text{ milligrams.}
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$t$ (hours) & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+$A(t)$ (mg) & $200$ & $140$ & $98$ & $68.6$ & $48.0$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Identify $a=$ \blank{1.6cm} and $b=$ \blank{1.6cm}. Is this growth or decay?
+        \blank{2.0cm} \\
+        What does each of those two numbers \emph{mean} for this patient? \writelines{2}
+  \item \textbf{Confirm the fingerprint.} $\dfrac{140}{200}=$ \blank{1.4cm} and
+        $\dfrac{98}{140}=$ \blank{1.4cm}. \; What is this constant called, and why does finding it
+        prove the model is exponential rather than linear? \writelines{2}
+  \item Find $A(3)$ from the table and write one sentence explaining what it means in context.
+        \writelines{2}
+  \item What is the domain of $A$ \emph{algebraically} --- that is, which exponents are legal?
+        \blank{3.0cm} \\
+        Does the context agree, or does it restrict things further? Explain. \writelines{2}
+  \item The graph of $A$ has horizontal asymptote $y=0$, and the model has \textbf{no}
+        $t$-intercept. State what that means about the drug, then say whether you believe it.
+        \writelines{3}
+  \item A classmate says ``the patient loses $60$ mg every hour --- look, $200$ to $140$.'' Use the
+        table to show that this is wrong, and name what is actually constant instead.
+        \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}
