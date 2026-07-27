@@ -6,11 +6,13 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26); **Lessons 5.0–5.6 are authored & building** (5.6 on 2026-07-27) —
-> 5.7 is still a skeleton and the unit tests are unauthored. Units 6–8 are planned here and not
-> yet scaffolded.
-> **Next action: author Unit 5 Lesson 5.7 (direct, inverse & joint variation) — the last lesson of the
-> unit — then the Unit 5 tests.**
+> scaffolded** (2026-07-26); **all 8 lessons 5.0–5.7 are now authored & building** (5.7 on
+> 2026-07-27) — the unit's **tests are the only unauthored piece left**. Units 6–8 are planned here
+> and not yet scaffolded.
+> **Next action: author the Unit 5 tests** — `tests/{practice_test,actual_test}` and
+> `test_keys/{practice_test_key,actual_test_key}`, then `make -C unit05/tests drop` and
+> `make -C unit05/test_keys drop` to publish the practice pair into `sample_test/` +
+> `sample_test_key/`. After that, Unit 6 (Radical Functions).
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -915,8 +917,48 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > are excluded (answer: no solution; the distractors keep one candidate or both --- a student choosing
 > $\{3,-3\}$ did the algebra perfectly and skipped Step 4).
 > `make -C unit05/lesson06 all` → EXIT 0 (student 13pp, full 31pp); `make -C unit05 all` → EXIT 0.
-> **Next action: Lesson 5.7** --- direct, inverse & joint variation (A2.F.1d, + A2.F.2f); the unit's
-> modeling capstone, and the last lesson of Unit 5 before the unit tests.
+> **Lesson 5.7 authored & builds (2026-07-27):** all components + keys + 11-slide deck done; the unit's
+> modeling capstone and its last lesson. Everything hangs on one instruction --- **run both rows of
+> arithmetic, on every row of the table** --- seeded in the Warm-Up before either name is spoken: two
+> tables where students fill a *quotient* row and a *product* row and discover that P's quotients settle
+> ($5$) while Q's products do ($60$), with Q's quotient row deliberately ugly ($15$, $3.75$,
+> $1.\overline{6}$, $0.6$). Constant quotient ⇒ **direct**, $y=kx$; constant product ⇒ **inverse**,
+> $y=k/x$; neither ⇒ **neither**, which A2.F.1d names explicitly and students never volunteer. The Hook
+> copies 5.6's design (identical surface features, different verdicts): Tables A ($y=6x$) and B
+> ($y=3x+6$) both climb by a constant amount and are both lines, but doubling $x$ from $2$ to $4$ sends
+> A's $y$ from $12$ to $24$ and B's only to $18$ --- and at $x=0$, B gives $6$. **A direct variation is
+> a line through the origin; "climbs steadily" is not the test.** Anchors: gasoline $c=3.40g$ ($k$ =
+> dollars *per gallon*, graph through $(0,0)$ because zero gallons costs zero dollars) and the
+> $240$-mile trip $t=240/r$, where **$k$ is not a rate but the distance** ($rt=d$ in disguise) --- and
+> where the unit closes its loop, because $t=240/r$ *is* the 5.4 parent stretched by $240$, so both
+> asymptotes become sentences (VA $r=0$: "standing still, you never get there"; HA $t=0$: "no speed makes
+> a trip take no time"). The "neither" section carries two traps in opposite directions: $y=5x+15$ (rises
+> steadily, not direct --- a *fee before you buy anything*) and $y=10-x$ (falls steadily, products
+> $9,16,21,24$, not inverse). Finding $k$ closes with the shortcut named as **yesterday's**: a direct
+> variation is literally $y_1/x_1 = y_2/x_2$, a proportion, so cross-multiply (5.6); an inverse one is
+> $x_1y_1=x_2y_2$. Joint/combined variation ($y=kxz$, $y=kx/z$) is present and **labeled enrichment,
+> not assessed** --- A2.F.1d names direct and inverse only --- with students deriving $V=\pi r^2h$ from
+> "$V$ varies jointly as $h$ and $r^2$." **5.6 pays its debt in the interpretation items:** every
+> context rejection today (the road forbidding $r=-30$, a base of $-4$, $w=4.5$ workers, a seesaw rider
+> weighing $-60$ lb) is a rejection the *algebra has no objection to*, and "extraneous" is explicitly
+> not an acceptable word for it. Flagged traps: **$k$ computed from one row and never tested** (activity
+> Tier A part 3 is an error analysis whose arithmetic is *flawless* --- $k=6/2=3$ from the first pair of
+> $y=2x+2$); filling in only the row that matches the guess; "goes down, so inverse"; correct $k$ poured
+> into the wrong *form* ($y=24x$ for an inverse, homework 5, where the sanity check "$x$ up ⇒ $y$ down"
+> catches $288$ before any arithmetic); "neither" refused; $k$ reported as a bare number with no units;
+> and a negative $k$ read as an error (homework 2(f)). Sharpest items: activity Tier E 3(a), where
+> $y=6/x$ is shown to be a *direct* variation in $1/x$ --- which is exactly why $y=k/x$ is the parent
+> $1/x$ scaled by $k$ and why $k$ cannot move the asymptotes; homework 4(d), *why can a direct variation
+> never have an asymptote?* (it is a polynomial --- the 5.0 compare-and-contrast table, fair game on the
+> test); and homework Extension part 3, proving no four-row table can be both direct and inverse
+> ($kx=m/x$ forces $x^2=m/k$, at most two $x$-values), landing on a direct and an inverse through
+> $(2,6)$ meeting again at $(-2,-6)$. Exit ticket item 2's table has products $12,18,18,12$ --- two
+> match on purpose, so anyone who checks a pair and stops agrees with the wrong classmate. Warm-up &
+> exit ticket each fit one page (blank+key); notes 5pp (key 5pp), activity 3pp (key 4pp), homework 3pp
+> (key 4pp), cover 1pp, slides 11 frames --- the extra key pages are the teacher note.
+> `make -C unit05/lesson07 all` → EXIT 0 (student 14pp, full 32pp).
+> **Next action: the Unit 5 tests** --- practice + actual and both keys, drawing across 5.0–5.7, then
+> `drop` the practice pair into `sample_test/` + `sample_test_key/`.
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**

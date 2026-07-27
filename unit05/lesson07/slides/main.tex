@@ -1,6 +1,11 @@
 %! Direct, Inverse \& Joint Variation — Unit 5, Lesson 5.7 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -11,16 +16,322 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.7}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Direct, Inverse \& Joint Variation}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5}
+    {\color{white}\bfseries\LARGE Direct, Inverse \& Joint Variation}\\[0.35cm]
+    {\color{white}\bfseries\large where $y=\frac kx$ goes to work}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Both are lines. Only one is a direct variation.}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Table A}
+        \centering
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        $x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+        $y$ & $6$ & $12$ & $18$ & $24$ \\ \hline
+        \end{tabular}\\[4pt]
+        $x:\;2\to4$ \; gives \; $y:\;12\to\mathbf{24}$
+      \end{block}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Table B}
+        \centering
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        $x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+        $y$ & $9$ & $12$ & $15$ & $18$ \\ \hline
+        \end{tabular}\\[4pt]
+        $x:\;2\to4$ \; gives \; $y:\;12\to\mathbf{18}$
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{}
+    \centering Both climb by the same amount every step. Double the input and only A doubles. \\[3pt]
+    \textbf{At $x=0$: A gives $0$, B gives $6$. A direct variation is a line through the origin.}
+  \end{block}
+\end{frame}
+
+% THE TWO TESTS
+\begin{frame}[t, plain]
+  \forestheader{Two rows of arithmetic decide everything}
+  \sectionlabel[goldacc]{Test both, every time}
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|l|c|c|l|}
+  \hline
+  \textbf{Which row is constant?} & \textbf{Name} & \textbf{Equation} & \textbf{Double $x$ and\dots} \\ \hline
+  the quotients $y\div x$ & direct & $y=kx$ & $y$ doubles \\ \hline
+  the products $x\cdot y$ & inverse & $y=\dfrac kx$ & $y$ is halved \\ \hline
+  neither one & \textbf{neither} & --- & anything at all \\ \hline
+  \end{tabular}
+
+  \vspace{8pt}
+  \begin{block}{}
+    \centering \textbf{One pair of numbers proves nothing.} Every pair has a quotient \emph{and} a
+    product --- the constant has to hold for the whole table before you may name it.
+  \end{block}
+\end{frame}
+
+% THE TWO SHAPES
+\begin{frame}[t, plain]
+  \forestheader{Two tests, two shapes}
+  \sectionlabel{Know them on sight}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-6}{6}{-7}{7}
+        \draw[very thick, forest] (-3.5,-7)--(3.5,7);
+        \fill[charcoal] (0,0) circle (5pt);
+        \fill[charcoal] (2,4) circle (4pt);
+      \end{tikzpicture}\\[2pt]
+      $y=2x$ --- through the origin, no asymptotes
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-7}{7}{-7}{7}
+        \begin{scope} \clip (-7,-7) rectangle (7,7);
+          \draw[very thick, forest, domain=0.86:7, samples=120, smooth] plot (\x,{6/(\x)});
+          \draw[very thick, forest, domain=-7:-0.86, samples=120, smooth] plot (\x,{6/(\x)});
+        \end{scope}
+        \fill[charcoal] (2,3) circle (4pt);
+        \fill[charcoal] (3,2) circle (4pt);
+      \end{tikzpicture}\\[2pt]
+      $y=\dfrac6x$ --- the Lesson 5.4 parent, stretched by $k$
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering An inverse variation is not a new function. It is $\frac1x$ scaled by $k$ --- which is
+    exactly why $k$ cannot move the asymptotes off the axes.
+  \end{block}
+\end{frame}
+
+% DIRECT WORKED
+\begin{frame}[t, plain]
+  \forestheader{Direct, worked: what does a gallon cost?}
+  \sectionlabel[goldacc]{Constant quotient}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.35}
+      \begin{tabular}{|l|c|c|c|c|}
+      \hline
+      $g$ & $4$ & $7$ & $10$ & $12$ \\ \hline
+      $c$ & $13.60$ & $23.80$ & $34.00$ & $40.80$ \\ \hline
+      $c\div g$ & $3.40$ & $3.40$ & $3.40$ & $3.40$ \\ \hline
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{$c=3.40g$}
+        \begin{itemize}\setlength{\itemsep}{3pt}
+          \item Units of $k$: \textbf{dollars per gallon}.
+          \item In words: \textbf{the price of one gallon}.
+          \item $15$ gallons $\Rightarrow \$51.00$.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering The graph runs through $(0,0)$, and it should: zero gallons costs zero dollars. \\[2pt]
+    \textbf{A plan with a fee you pay before you buy anything is never a direct variation.}
+  \end{block}
+\end{frame}
+
+% INVERSE WORKED
+\begin{frame}[t, plain]
+  \forestheader{Inverse, worked: $240$ miles to go}
+  \sectionlabel{Constant product}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \draw[step=1, linegray!45, thin] (0,0) grid (9,14);
+        \draw[->, thick, charcoal] (0,0)--(9.6,0) node[below right, font=\tiny]{$r$};
+        \draw[->, thick, charcoal] (0,0)--(0,14.6) node[left, font=\tiny]{$t$};
+        \node[below, font=\tiny] at (4,0) {$40$};
+        \node[below, font=\tiny] at (8,0) {$80$};
+        \node[left, font=\tiny] at (0,4) {$4$};
+        \node[left, font=\tiny] at (0,8) {$8$};
+        \begin{scope} \clip (0,0) rectangle (9,14);
+          \draw[very thick, forest, domain=1.75:9, samples=140, smooth] plot (\x,{24/(\x)});
+        \end{scope}
+        \fill[charcoal] (3,8) circle (4pt);
+        \fill[charcoal] (4,6) circle (4pt);
+        \fill[charcoal] (6,4) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{block}{$rt=240$ every time, so $t=\dfrac{240}{r}$}
+        \begin{itemize}\setlength{\itemsep}{3pt}
+          \item $k=240$ --- not a rate. It is the \textbf{distance}.
+          \item Which is just $\text{rate}\times\text{time}=\text{distance}$, wearing a new hat.
+          \item $r=40 \Rightarrow t=6$ hours.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  {\footnotesize The equation is happy with $r=-30$. The road is not --- in context, $r>0$.}
+\end{frame}
+
+% ASYMPTOTES MEAN SOMETHING
+\begin{frame}[t, plain]
+  \forestheader{The asymptotes are sentences now}
+  \sectionlabel[goldacc]{Unit 5, closing its loop}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Vertical: $r=0$}
+        The slower you crawl, the longer it takes --- without bound. \\[4pt]
+        \centering\textbf{Standing still, you never get there.}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Horizontal: $t=0$}
+        The faster you drive, the shorter the trip --- but never zero. \\[4pt]
+        \centering\textbf{No speed makes a trip take no time.}
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{}
+    \centering ``$r=0$ is a vertical asymptote'' earns nothing next to the sentence beside it.
+    \textbf{Say what it means.}
+  \end{block}
+\end{frame}
+
+% NEITHER
+\begin{frame}[t, plain]
+  \forestheader{``Neither'' is a complete answer}
+  \sectionlabel{Two traps, opposite directions}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Goes up --- still not direct}
+        \centering
+        \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        $x$ & $2$ & $4$ & $6$ & $8$ \\ \hline
+        $y$ & $25$ & $35$ & $45$ & $55$ \\ \hline
+        \end{tabular}\\[4pt]
+        $y\div x$: $12.5,\,8.75,\,7.5,\,6.875$ \\[2pt]
+        $y=5x+15$ --- a fee, then a rate.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Goes down --- still not inverse}
+        \centering
+        \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        $x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+        $y$ & $9$ & $8$ & $7$ & $6$ \\ \hline
+        \end{tabular}\\[4pt]
+        $x\cdot y$: $9,\,16,\,21,\,24$ \\[2pt]
+        $y=10-x$ --- just a falling line.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering\textbf{A constant \emph{rate of change} makes a line. Only a line through the origin is
+    a variation.}
+  \end{block}
+\end{frame}
+
+% FIND K
+\begin{frame}[t, plain]
+  \forestheader{Find $k$, then answer the question}
+  \sectionlabel[goldacc]{Two steps, every time}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Direct: $y=21$ when $x=6$}
+        $k=\dfrac{21}{6}=3.5$, so $y=3.5x$. \\[4pt]
+        $x=10 \Rightarrow y=35$. \quad $y=56 \Rightarrow x=16$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Inverse: $y=12$ when $x=5$}
+        $k=(5)(12)=60$, so $y=\dfrac{60}{x}$. \\[4pt]
+        $x=4 \Rightarrow y=15$. \quad $y=8 \Rightarrow x=7.5$.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{The shortcut is yesterday's shortcut}
+    \centering
+    Direct: \; $\dfrac{y_1}{x_1}=\dfrac{y_2}{x_2}$ --- a proportion, so \textbf{cross-multiply}
+    (Lesson 5.6). \qquad Inverse: \; $x_1y_1=x_2y_2$. \\[3pt]
+    {\footnotesize But write $k$ down anyway whenever the problem asks what it \emph{means}.}
+  \end{block}
+\end{frame}
+
+% JOINT / COMBINED
+\begin{frame}[t, plain]
+  \forestheader{Joint and combined variation}
+  \sectionlabel{Enrichment --- not on the test}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Joint: $y=kxz$}
+        Direct in two variables at once. \\[4pt]
+        $A=\frac12 bh$: area varies jointly as $b$ and $h$, with $k=\frac12$. \\[4pt]
+        $V$ varies jointly as $h$ and $r^2$, and $V=100\pi$ at $r=5$, $h=4$ \; $\Rightarrow$ \;
+        $k=\pi$, \; $V=\pi r^2h$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Combined: $y=\dfrac{kx}{z}$}
+        Direct in one, inverse in another. \\[4pt]
+        $y=20$ when $x=8$, $z=2$ \; $\Rightarrow$ \; $k=5$, \; $y=\dfrac{5x}{z}$. \\[4pt]
+        Then $x=6$, $z=3$ gives $y=10$.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering A2.F.1d names \emph{direct} and \emph{inverse} only. These two are the same move done
+    twice --- worth knowing, not assessed.
+  \end{block}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Today in one line --- and where the unit ends}
+  \sectionlabel[goldacc]{Close}
+  \begin{block}{}
+    \centering\textbf{Constant quotient $\Rightarrow$ direct. Constant product $\Rightarrow$ inverse.
+    Neither $\Rightarrow$ neither --- and check every row before you name it.}
+  \end{block}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Errors that cost the most}
+        \begin{itemize}\setlength{\itemsep}{2pt}
+          \item Finding $k$ from one row and stopping.
+          \item ``It goes down, so it's inverse.''
+          \item Correct $k$, wrong form: $y=kx$ for an inverse.
+          \item Refusing to write ``neither.''
+          \item Reporting $k$ with no units and no meaning.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Next: the Unit 5 Test}
+        Characteristics, simplifying, multiplying, combining, the parent and its transformations,
+        graphing, solving --- and today. \\[3pt]
+        \centering\textbf{Factor first, restrict early, and check what the answer is supposed to mean.}
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}
