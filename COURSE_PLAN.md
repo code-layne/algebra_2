@@ -16,16 +16,18 @@
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
 > dirs, component skeletons, and the unit `tests/` + `test_keys/` are laid down; **no Unit 7 content
 > authored yet**.
-> **Unit 8 (Logarithmic Functions): map confirmed 2026-07-27, not yet scaffolded** — locked at
-> **7 lessons (8.0–8.6)**. A standards audit found log properties and log equation-solving have
-> **no 2023 VA SOL home**; they are kept as full lessons anyway (8.3, 8.4), labelled **beyond-SOL /
-> precalculus prep** and barred from SOL-style test items — matching how Unit 7 already treats 7.3.
-> Three Unit 7 ↔ Unit 8 collisions were found and **resolved**: `A2.ST.2` is Unit 7's alone (7.5),
-> since the standard never names logarithmic; $\ln$ lands in 8.5; and no-standard content is now
-> handled the same way in both units. Full rationale in the Unit 8 status block in §4.
+> **Unit 8 (Logarithmic Functions): scaffolded 2026-07-27; Lesson 8.0 authored & building** —
+> locked at **7 lessons (8.0–8.6)**. A standards audit found log properties and log equation-solving
+> have **no 2023 VA SOL home**; they are kept as full lessons anyway (8.3, 8.4), labelled
+> **beyond-SOL / precalculus prep** and barred from SOL-style test items — matching how Unit 7
+> already treats 7.3. Three Unit 7 ↔ Unit 8 collisions were found and **resolved**: `A2.ST.2` is
+> Unit 7's alone (7.5), since the standard never names logarithmic; $\ln$ lands in 8.5; and
+> no-standard content is now handled the same way in both units. Full rationale in the Unit 8 status
+> block in §4.
 > **Next action: author Lesson 6.3 (multiplying & dividing radicals; rationalizing with
-> conjugates)**, then proceed 6.4 → 6.7 in order, then the Unit 6 tests, then begin Unit 7 at
-> Lesson 7.0.
+> conjugates)**, then proceed 6.4 → 6.7 in order, then the Unit 6 tests, then Unit 7 at Lesson 7.0.
+> Unit 8 was opened out of order at the user's request; its remaining lessons (8.1–8.6) and unit
+> tests are still skeletons.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -60,7 +62,7 @@
 | 5 | Rational Functions | Rational | 8 | **Complete** |
 | 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.2 done) |
 | 7 | Exponential Functions | Exponential | 6 | **Scaffolded** (map confirmed) |
-| 8 | Logarithmic Functions | Logarithmic | 7 | Planned (**map confirmed**, not scaffolded) |
+| 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
 Units 2–8 each open with **Lesson X.0: Characteristics of ____ Functions**.
 **Out of scope for this course:** conic sections, sequences & series, probability
@@ -1227,7 +1229,28 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
   bites far harder on an exponential than it did on 2.5's line)* — A2.ST.2d/e/g + A2.F.2b
 
 ### Unit 8 — Logarithmic Functions
-> **Status (map confirmed 2026-07-27, not yet scaffolded):** locked at **7 lessons (8.0–8.6)**.
+> **Status (scaffolded 2026-07-27; Lesson 8.0 authored & building):** locked at
+> **7 lessons (8.0–8.6)**. The unit was opened ahead of Units 6–7 at the user's request. So far only
+> `unit08/lesson00` has been scaffolded; `lesson01`–`lesson06` still need `new_lesson.py` runs. The
+> unit assessments were laid down with the unit (`tests/{practice_test,actual_test}`, `test_keys/`,
+> `sample_test{,_key}/`) and are still skeletons. **Lesson 8.0 is
+> fully authored**: lesson plan, cover, warm-up, guided notes, activity, exit ticket, homework, a
+> 11-frame slide deck, and all five answer keys. `make -C unit08/lesson00 all` → EXIT 0
+> (`lesson00_student.pdf` 13 pp, `lesson00_full.pdf` 31 pp); the warm-up and exit ticket each fit
+> **exactly one page** in blank *and* key, and notes/notes_key paginate identically at 5 pp. The §7
+> vocab-box paragraph-break fix is applied in `notes/` and `notes_key/`. The unit tests and Lessons
+> 8.1–8.6 are still to be scaffolded/authored.
+>
+> **Authoring note for the rest of the unit — the TikZ logarithm macro.** pgfmath has no `log_b`, so
+> every logarithmic curve in 8.0 is drawn by *parameterizing on $y$* rather than $x$, which also
+> gives a perfectly smooth curve near the asymptote:
+> ```latex
+> % y = log_b(x-h) + k   <=>   x = b^(y-k) + h.   Args: {b}{h}{k}{ymin}{ymax}
+> \newcommand{\logcurve}[5]{\draw[very thick, forest, domain=#4:#5, samples=120, smooth]
+>   plot ({pow(#1,\x-(#3))+(#2)},{\x});}
+> ```
+> Reuse it verbatim in 8.1–8.6. Asymptotes follow the Unit 5 convention:
+> `\draw[navy, dashed, semithick]`.
 > The map moved twice in one day. It was first cut from a 6-lesson sketch to 5 after a standards
 > audit of `spec/algebra2-vdoe-sol.pdf` found **logarithms in only two 2023 VA SOL standards** —
 > `A2.F.1` (a/b/c/e) and `A2.F.2` (a–h, i/j) — with **no `A2.EO` standard for log properties and
@@ -1258,7 +1281,7 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > identical constraint independently — it binds both units.)*
 > **Authoring note:** apply the §7 vocab-box paragraph-break fix in every notes/notes_key.
 
-- **8.0** Characteristics of logarithmic functions *(the unit's only ● spine row — **inverse of
+- **8.0** Characteristics of logarithmic functions ***(authored & building 2026-07-27)*** *(the unit's only ● spine row — **inverse of
   exponential, domain/range swap**. Built by reflecting Unit 7's $y=b^x$ over $y=x$: domain $x>0$
   and **why** (the exponential's range becomes the log's domain), range all reals, **vertical
   asymptote $x=0$** — the exponential's horizontal asymptote reflected, revisiting the Unit 5

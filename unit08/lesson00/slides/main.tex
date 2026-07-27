@@ -1,0 +1,357 @@
+%! Characteristics of Logarithmic Functions — Unit 8, Lesson 8.0 — Slides (Beamer)
+\documentclass[aspectratio=169, 11pt]{beamer}
+\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% pgfmath has no log_b, so every logarithmic curve is drawn by parameterizing on y:
+%   y = log_b(x-h) + k   <=>   x = b^(y-k) + h.   Args: {b}{h}{k}{ymin}{ymax}
+\newcommand{\logcurve}[5]{\draw[very thick, forest, domain=#4:#5, samples=120, smooth]
+  plot ({pow(#1,\x-(#3))+(#2)},{\x});}
+
+\begin{document}
+
+% TITLE SLIDE (CourseName is not defined in beamer, so the name is literal)
+{
+\setbeamercolor{background canvas}{bg=forest}
+\begin{frame}[plain]
+  \vspace{2.8cm}\hspace{0.55cm}%
+  \begin{minipage}{0.9\textwidth}
+    {\color{goldacc}\bfseries\small LESSON 8.0}\\[0.5cm]
+    {\color{white}\bfseries\LARGE Characteristics of Logarithmic Functions}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 8: Logarithmic Functions}
+  \end{minipage}
+\end{frame}
+}
+
+% HOOK
+\begin{frame}[t, plain]
+  \forestheader{The same graph, tipped over}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.30\textwidth}
+      \centering $y = 2^x \ \longrightarrow\ y=\log_2 x$
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Unit 7 asked: \emph{I have the exponent --- what is the value?}
+        \item This unit asks it backwards: \textbf{I have the value --- what was the exponent?}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.27]
+        \lgrid{-4}{5}{-4}{5}
+        \draw[navy, dashed, thick] (-4,0)--(5,0);
+        \begin{scope}
+          \clip (-4,-4) rectangle (5,5);
+          \draw[very thick, forest, domain=-4:2.32, samples=90, smooth] plot (\x,{pow(2,\x)});
+        \end{scope}
+        \fill[charcoal] (0,1) circle (5pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=2^x$ --- never touches the $x$-axis}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.27]
+        \lgrid{-4}{5}{-4}{5}
+        \draw[navy, dashed, thick] (0,-4)--(0,5);
+        \begin{scope}
+          \clip (-4,-4) rectangle (5,5);
+          \logcurve{2}{0}{0}{-4}{2.32}
+        \end{scope}
+        \fill[charcoal] (1,0) circle (5pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=\log_2 x$ --- never touches the $y$-axis}
+    \end{column}
+  \end{columns}
+  \begin{block}{Today}
+    Which line would you fold the page along --- and what happened to that flat asymptote?
+  \end{block}
+\end{frame}
+
+% DEFINITION
+\begin{frame}[t, plain]
+  \forestheader{A logarithm is an exponent}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \[ \log_b x = \text{the exponent on } b \text{ that gives } x \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Base} $b$ --- the number being raised to a power. As in Unit 7: $b>0$, $b\ne1$.
+        \item \textbf{Argument} --- the expression inside; the value you are trying to \emph{reach}.
+      \end{itemize}
+      \vspace{2pt}
+      {\footnotesize Today it is the \emph{name of a curve}. Computing with it is Lesson 8.1.}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \begin{block}{From the Warm-Up}
+        \centering
+        \begin{tabular}{ll}
+        $2^5=32$ & so $\log_2 32 = 5$ \\[3pt]
+        $2^{-3}=\tfrac18$ & so $\log_2 \tfrac18 = -3$ \\[3pt]
+        $2^{\square}=-8$ & \textbf{impossible} \\
+        \end{tabular}
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize A power of a positive base is \emph{always positive}. So there is nothing for
+      $\log_2(-8)$ to name --- and that single fact is the whole domain story.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FINDING THE DOMAIN
+\begin{frame}[t, plain]
+  \forestheader{Domain: set the argument greater than zero --- \emph{strictly}}
+  \sectionlabel[goldacc]{argument $> 0$}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The one procedure}
+        For $y=\log_b(\text{argument})$, set the \emph{argument} $>0$ and solve. \\[3pt]
+        The input it stops at is \textbf{not} included --- it is a \textbf{vertical asymptote}.
+      \end{block}
+      \vspace{4pt}
+      {\footnotesize Unit 6 allowed radicand $\ge 0$, so a square root graph got to \emph{stand on}
+      its endpoint. A logarithm demands $>0$, so the edge is \textbf{missing}: the graph runs
+      alongside it forever and never arrives.}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item $\log_2(x-1)$: \; $x-1>0 \Rightarrow (1,\infty)$, \; VA $x=1$
+        \item $\log_3(x+4)$: \; $x+4>0 \Rightarrow (-4,\infty)$, \; VA $x=-4$
+        \item $\log(5-x)$: \; $5-x>0 \Rightarrow (-\infty,5)$, \; VA $x=5$ \\
+              {\footnotesize \textbf{Flip the sign!} This one runs \emph{left}.}
+      \end{itemize}
+      \vspace{4pt}
+      {\footnotesize Round brackets every time. A square bracket on a log domain is always wrong.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% PARENT, b > 1
+\begin{frame}[t, plain]
+  \forestheader{The parent, $b>1$: climbs forever --- but slowly}
+  \sectionlabel[goldacc]{$y=\log_2 x$}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-2}{9}{-4}{4}
+        \draw[navy, dashed, thick] (0,-4)--(0,4);
+        \begin{scope}
+          \clip (-2,-4) rectangle (9,4);
+          \logcurve{2}{0}{0}{-4}{3.17}
+        \end{scope}
+        \fill[charcoal] (1,0) circle (4pt);
+        \fill[charcoal] (2,1) circle (4pt);
+        \fill[charcoal] (4,2) circle (4pt);
+        \fill[charcoal] (8,3) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Domain $(0,\infty)$; \; Range: \textbf{all reals}
+        \item \textbf{Vertical asymptote} $x=0$ --- approached, never touched
+        \item $x$-intercept $(1,0)$ \; (because $b^0=1$ for \emph{any} base)
+        \item \textbf{No $y$-intercept}, ever --- $x=0$ is not in the domain
+        \item Increasing on $(0,\infty)$; \; $y<0$ on $(0,1)$, $y>0$ on $(1,\infty)$
+        \item \textbf{No extrema at all}
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{End behavior --- and the notation that matters}
+        As $x\to+\infty$: $y\to+\infty$, but $x$ must \emph{double} to lift $y$ by 1. \\[3pt]
+        On the other side the input cannot reach $-\infty$: as $x\to \mathbf{0^{+}}$,
+        $y\to-\infty$.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% PARENT, 0 < b < 1
+\begin{frame}[t, plain]
+  \forestheader{The other case, $0<b<1$: only the direction changes}
+  \sectionlabel[goldacc]{$y=\log_{1/2} x$}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-2}{9}{-4}{4}
+        \draw[navy, dashed, thick] (0,-4)--(0,4);
+        \begin{scope}
+          \clip (-2,-4) rectangle (9,4);
+          \logcurve{0.5}{0}{0}{-3.17}{4}
+        \end{scope}
+        \fill[charcoal] (1,0) circle (4pt);
+        \fill[charcoal] (2,-1) circle (4pt);
+        \fill[charcoal] (4,-2) circle (4pt);
+        \fill[charcoal] (8,-3) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \textbf{Unchanged:} domain $(0,\infty)$, range all reals, VA $x=0$, $x$-intercept $(1,0)$,
+      no $y$-intercept, no extrema.
+      \vspace{4pt}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item \textbf{Decreasing} on $(0,\infty)$
+        \item As $x\to+\infty$: $y\to-\infty$
+        \item As $x\to 0^{+}$: $y\to+\infty$
+        \item $y>0$ on $(0,1)$, \; $y<0$ on $(1,\infty)$
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{Why so much survives}
+        Whatever the base, $b^{\text{anything}}$ is positive and $b^0=1$. The base only decides which
+        \emph{way} the curve travels --- exactly as growth and decay mirrored each other in 7.0.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% INVERSE RELATIONSHIP
+\begin{frame}[t, plain]
+  \forestheader{Where this graph came from}
+  \sectionlabel[goldacc]{Reflect over $y=x$}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-4}{6}{-4}{6}
+        \draw[navy, dashed, thick] (-4,-4)--(6,6);
+        \begin{scope}
+          \clip (-4,-4) rectangle (6,6);
+          \draw[very thick, goldacc, domain=-4:2.58, samples=90, smooth] plot (\x,{pow(2,\x)});
+          \logcurve{2}{0}{0}{-4}{2.58}
+        \end{scope}
+        \fill[charcoal] (0,1) circle (4pt);
+        \fill[charcoal] (1,0) circle (4pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize \textcolor{goldacc}{$y=2^x$} \; and \; \textcolor{forest}{$y=\log_2 x$}}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Raising to a power and asking ``to what power?'' \textbf{undo} each other --- they are
+              \textbf{inverses}.
+        \item Reflecting over $y=x$ \textbf{swaps coordinates}, so \textbf{domain and range trade
+              places}.
+        \item \textbf{That is why} the domain of $\log_2 x$ is $(0,\infty)$: it is the \emph{range}
+              of $2^x$.
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{The asymptote turns a corner}
+        The exponential's \emph{horizontal} asymptote $y=0$ reflects into the logarithm's
+        \emph{vertical} asymptote $x=0$. \\[3pt]
+        And $(0,1)$ --- a $y$-intercept with no $x$-intercept --- reflects into $(1,0)$: an
+        $x$-intercept with \emph{no $y$-intercept}.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% NO RESTRICTION NEEDED
+\begin{frame}[t, plain]
+  \forestheader{Unit 6 had to cut the parabola in half. Why not here?}
+  \sectionlabel{Connections}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Unit 6}
+        $(-3)^2=3^2=9$ --- two inputs, one output. Reflecting all of $y=x^2$ would fail the vertical
+        line test, so it needed a \textbf{restricted domain} $x\ge0$ before $\sqrt{x}$ could undo it.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Unit 8}
+        $y=b^x$ is always increasing (or always decreasing), so it \textbf{never repeats an output}.
+        All of it reflects as it stands --- \emph{no restriction needed}.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{center}
+    The restriction on $\log_b x$ is not a repair we made --- it is inherited. Its domain is
+    \emph{whatever the exponential's outputs were}, and those were the positives.
+  \end{center}
+\end{frame}
+
+% FULL FEATURE READ
+\begin{frame}[t, plain]
+  \forestheader{Reading the whole feature list}
+  \sectionlabel[goldacc]{$f(x)=\log_2(x-1)$}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-2}{10}{-4}{4}
+        \draw[navy, dashed, thick] (1,-4)--(1,4);
+        \begin{scope}
+          \clip (-2,-4) rectangle (10,4);
+          \logcurve{2}{1}{0}{-4}{3.17}
+        \end{scope}
+        \fill[charcoal] (2,0) circle (4pt);
+        \fill[charcoal] (3,1) circle (4pt);
+        \fill[charcoal] (5,2) circle (4pt);
+        \fill[charcoal] (9,3) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Domain $(1,\infty)$ \; (from $x-1>0$); \; Range: all reals
+        \item \textbf{Vertical asymptote} $x=1$ --- the domain starts there, with a \emph{round}
+              bracket
+        \item Zero $(2,0)$; \; $y$-intercept: \textbf{none} ($x=0$ is not in the domain)
+        \item Increasing on $(1,\infty)$ --- the entire domain
+        \item $f(x)<0$ on $(1,2)$; \; $f(x)>0$ on $(2,\infty)$ \\
+              {\scriptsize (no interval may leak outside the domain)}
+        \item No absolute maximum, no absolute minimum
+        \item $x\to+\infty \Rightarrow f\to+\infty$; \; $x\to 1^{+} \Rightarrow f\to-\infty$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% COMPARE & CONTRAST
+\begin{frame}[t, plain]
+  \forestheader{Two families, one mirror}
+  \sectionlabel{Compare \& contrast}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{lll}
+  \hline
+   & \textbf{Exponential} $y=b^x$ & \textbf{Logarithmic} $y=\log_b x$ \\
+  \hline
+  Domain & all reals & $(0,\infty)$ \\
+  Range & $(0,\infty)$ & all reals \\
+  Asymptote & horizontal, $y=0$ & vertical, $x=0$ \\
+  $x$-intercept & none & $(1,0)$ \\
+  $y$-intercept & $(0,1)$ & none \\
+  Extrema & none & none \\
+  Inverse of & $y=\log_b x$ & $y=b^x$ \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    Every row is the row above it, read backwards. \textbf{That is what an inverse is.}
+  \end{center}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 8 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} read domain (from the argument), range, the vertical asymptote, intercepts,
+  intervals, extrema, and end behavior off a logarithmic graph --- and meet the inverse relationship
+  that produced it.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{8.1} Introduction to logarithms --- log $\rightleftarrows$ exponential form, and how to evaluate one.
+    \item \textbf{8.2} Graphing logarithmic functions \& transformations (the \emph{asymptote} moves).
+    \item \textbf{8.3} Properties of logarithms --- expanding \& condensing.
+    \item \textbf{8.4} Solving logarithmic \& exponential equations, and extraneous solutions.
+    \item \textbf{8.5} Natural logarithms \& logarithmic scales.
+    \item \textbf{8.6} Comparing function families --- the course capstone.
+  \end{itemize}
+\end{frame}
+
+\end{document}
