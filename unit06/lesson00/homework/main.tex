@@ -3,17 +3,126 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)+1});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)+1});}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.0}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Show how you read each feature. Write every domain and range in \textbf{interval notation}.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{From the equation only.} Use the index and the radicand --- no graphing.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Index: even/odd} & \textbf{Condition on the radicand} & \textbf{Domain} & \textbf{Opens left, right, or both ways?} \\
+    \hline
+    $\sqrt{x+6}$ & \blank{1.5cm} & \blank{2.0cm} & \blank{2.0cm} & \blank{1.7cm} \\
+    $\sqrt[3]{x-4}$ & \blank{1.5cm} & \blank{2.0cm} & \blank{2.0cm} & \blank{1.7cm} \\
+    $\sqrt{3x-9}$ & \blank{1.5cm} & \blank{2.0cm} & \blank{2.0cm} & \blank{1.7cm} \\
+    $\sqrt{8-4x}$ & \blank{1.5cm} & \blank{2.0cm} & \blank{2.0cm} & \blank{1.7cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+  \item \textbf{A square root graph that falls.} The graph is $m(x) = -\sqrt{x}+3$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-2}{11}{-2}{4}
+      \begin{scope}
+        \clip (-2,-2) rectangle (11,4);
+        \draw[very thick, forest, domain=0:11, samples=100, smooth] plot (\x,{3-sqrt(\x)});
+      \end{scope}
+      \fill[forest] (0,3) circle (4pt) node[above left, font=\scriptsize]{$(0,3)$};
+      \fill[charcoal] (1,2) circle (3pt);
+      \fill[charcoal] (4,1) circle (3pt) node[above right, font=\scriptsize]{$(4,1)$};
+      \fill[charcoal] (9,0) circle (3pt) node[below right, font=\scriptsize]{$(9,0)$};
+    \end{tikzpicture}
+    \end{center}
+    Domain: \blank{3.0cm} \quad Range: \blank{3.0cm} \quad Endpoint: \blank{2.0cm} \\[3pt]
+    $x$-intercept: \blank{1.8cm} \quad $y$-intercept: \blank{1.8cm} \\[3pt]
+    Increasing or decreasing on its domain? \blank{2.4cm} \\[3pt]
+    Absolute \blank{1.6cm} of \blank{1.0cm} at $x=\blank{1.0cm}$; \; no absolute \blank{1.6cm} \\[3pt]
+    End behavior: as $x\to+\infty$, $m(x)\to\blank{1.4cm}$. \; As $x\to-\infty$: \blank{4.0cm}
+
+  \item \textbf{A cube root graph.} The graph is $n(x) = \sqrt[3]{x}+1$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-9}{9}{-2}{4}
+      \begin{scope}
+        \clip (-9,-2) rectangle (9,4);
+        \cbrtpos{0}{9}
+        \cbrtneg{-9}{0}
+      \end{scope}
+      \fill[charcoal] (-8,-1) circle (3pt) node[below right, font=\scriptsize]{$(-8,-1)$};
+      \fill[charcoal] (-1,0) circle (3pt);
+      \fill[charcoal] (0,1) circle (3pt) node[above left, font=\scriptsize]{$(0,1)$};
+      \fill[charcoal] (8,3) circle (3pt) node[below right, font=\scriptsize]{$(8,3)$};
+    \end{tikzpicture}
+    \end{center}
+    Domain: \blank{3.0cm} \quad Range: \blank{3.0cm} \quad Endpoint: \blank{2.0cm} \\[3pt]
+    $x$-intercept: \blank{1.8cm} \quad $y$-intercept: \blank{1.8cm} \\[3pt]
+    Increasing or decreasing? \blank{2.4cm} \quad Absolute extrema: \blank{2.4cm} \\[3pt]
+    End behavior: as $x\to+\infty$, $n(x)\to\blank{1.2cm}$; \; as $x\to-\infty$,
+    $n(x)\to\blank{1.2cm}$ \\[3pt]
+    The \emph{parent} $y=\sqrt[3]{x}$ is symmetric about the origin. Is $n$? \blank{1.2cm} \;
+    Why or why not? \blank{5.0cm}
+
+  \item \textbf{Explain.} A square root graph always has exactly one absolute extremum, but a cube
+        root graph has none at all. Explain why, using the word \textbf{endpoint}.
+        \writelines{3}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Reading a model in context.} Accident investigators estimate how fast a car was travelling
+from the length of its skid marks. On dry asphalt, a skid of $d$ feet means the car was going about
+\[
+  s(d) = \sqrt{24d} \ \text{ miles per hour.}
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$d$ (feet of skid) & $6$ & $24$ & $54$ & $96$ & $150$ \\ \hline
+$s(d)$ (mph) & $12$ & $24$ & $36$ & $48$ & $60$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Find the domain of $s$ from the radicand. Does the context restrict it any further?
+  \item The graph of $s$ has an endpoint at $(0,0)$. What does that point mean about a car that
+        leaves no skid marks at all?
+  \item A $24$-foot skid means about $24$ mph. To double that estimate to $48$ mph, the table says the
+        skid must be $96$ feet --- \emph{four} times as long, not twice. Explain why, using the shape
+        of a square root graph.
+  \item Solve $s=\sqrt{24d}$ for $d$. Which function family did you get, and what is its relationship
+        to $s(d)$?
+  \item Your answer to (d) also produces a value of $d$ for \emph{negative} speeds. Why is that half
+        thrown away --- and how is this the same idea as restricting $y=x^2$ to $x\ge 0$ in class
+        today?
+\end{enumerate}
+\writelines{5}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 6.1: $n$th Roots \& Rational Exponents.} Today the index decided
+everything --- which inputs are allowed, whether the graph stops or runs forever. Next you will learn
+what an index really \emph{is}: $\sqrt[n]{a}$ written as the exponent $a^{1/n}$, so that
+$a^{m/n}=\sqrt[n]{a^m}$ and every exponent rule you already know suddenly applies to radicals. That
+is also where ``why does an even index refuse a negative?'' gets its full algebraic answer.
+\end{spiralbox}
 
 \end{document}

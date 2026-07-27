@@ -19,68 +19,220 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can read the graphs of the two radical parents ---
+    $y=\sqrt{x}$ and $y=\sqrt[3]{x}$, taught side by side --- and name every characteristic: the
+    \emph{domain}, which for an \emph{even} index must be computed by solving \emph{radicand}
+    $\ge 0$; the \emph{endpoint} where a square root graph begins and the \emph{absolute extremum}
+    it always produces; and the \emph{range}, \emph{intercepts}, \emph{increasing/decreasing} and
+    \emph{positive/negative} intervals, and \emph{end behavior} --- including the honest answer that
+    a square root graph has \emph{no} second end, it simply stops. Students also explain why the two
+    parents look so different (the index), and where each came from: $y=\sqrt{x}$ is $y=x^2$
+    restricted to $x\ge0$ and reflected over $y=x$, while $y=\sqrt[3]{x}$ is \emph{all} of $y=x^3$
+    reflected the same way --- the \emph{inverse relationship} that Lessons~6.6--6.7 will formalize.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2} --- investigate and analyze the characteristics
+    of square root and cube root functions graphically and algebraically. This Lesson~0
+    \emph{introduces} the two rows the \S3 spine marks new for Unit~6: the \textbf{restricted domain
+    from the radicand} and the \textbf{inverse relationship of families}. It covers
+    \textbf{A2.F.2a} (domain, range, zeros, intercepts), \textbf{A2.F.2c} (increasing/decreasing
+    intervals), \textbf{A2.F.2d} (absolute maxima and minima --- the endpoint is one), \textbf{A2.F.2f}
+    (evaluate $f(x)$ and interpret it in context --- the falling-object and skid-mark models), and
+    \textbf{A2.F.2g} (end behavior). \textbf{A2.F.2b} (compare and contrast the characteristics of
+    function families) drives the square-root-vs.-cube-root table and the contrast with Units~4--5.
+    \textbf{A2.F.1a} (distinguish between the graphs of the parent functions) is the lesson's
+    backbone, and \textbf{A2.F.1e} (compare and contrast graphs, tables, and equations) is assessed in
+    the Activity Tier~A table. The \emph{inverse} strand previews \textbf{A2.F.2i/j} without yet
+    requiring the algebraic method.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Identify the \textbf{index} and \textbf{radicand}, and use the index to decide whether the domain is restricted.
+  \item Find the \textbf{domain} of an even-index radical by solving \textbf{radicand} $\ge 0$ --- including the sign-flip case that opens the graph to the \textbf{left}.
+  \item Locate the \textbf{endpoint} and name the \textbf{absolute extremum} it produces (min or max, depending on direction).
+  \item Read \textbf{range}, \textbf{intercepts}/\textbf{zeros}, \textbf{increasing/decreasing} and \textbf{positive/negative} intervals off both radical parents.
+  \item State \textbf{end behavior} --- and say plainly when there is no second end.
+  \item Explain the \textbf{inverse relationship}: $\sqrt{x}$ with $x^2$ (restricted), $\sqrt[3]{x}$ with $x^3$; reflection over $y=x$; domain/range swap.
+  \item \textbf{Compare and contrast} square root with cube root, and both with polynomial and rational.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item \emph{The index runs the show.} Even refuses negatives; odd accepts everything. Every difference between the two parents traces back to that one fact.
+  \item A polynomial was defined everywhere; a rational function lost scattered inputs. A square root loses an entire \textbf{half} of the number line at once.
+  \item Domain is no longer something you \emph{read} --- it is something you \emph{solve for}. That is new this unit.
+  \item An endpoint is included in the domain (solid dot), and since the graph leaves it in only one direction, it is automatically the highest or lowest point.
+  \item ``End behavior'' has had two answers all year. Today one of them is \emph{the graph stops} --- and that is a complete answer, not a missing one.
+  \item Square rooting is undoing squaring. That is why $\sqrt{x}$ accepts exactly the outputs a square can produce, and why $y=x^2$ must be cut in half to be undone at all.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Radical function} & A function with its variable under a radical, $f(x)=\sqrt[n]{\text{expression in }x}$. \\
+\textbf{Index} & The small $n$ in the notch of the radical --- which root is being taken. A plain $\sqrt{\phantom{x}}$ has index $2$. \\
+\textbf{Radicand} & Everything underneath the radical symbol. \\
+\textbf{Even-index rule} & The radicand may not be negative, so the domain is the solution set of \emph{radicand} $\ge 0$. No real number squares to a negative. \\
+\textbf{Odd-index rule} & No restriction: cubing preserves sign, so $\sqrt[3]{-8}=-2$ and the domain is all reals. \\
+\textbf{Endpoint} & The single point where a square root graph begins; included in the domain, drawn as a solid dot, and always an absolute maximum or minimum. \\
+\textbf{Square root parent} & $y=\sqrt{x}$: domain and range $[0,\infty)$, endpoint $(0,0)$, increasing, absolute min $0$, one arm, no symmetry. \\
+\textbf{Cube root parent} & $y=\sqrt[3]{x}$: domain and range all reals, no endpoint, increasing everywhere, no extrema, two arms, origin (odd) symmetry. \\
+\textbf{Inverse relationship} & Two functions that undo each other; inputs and outputs trade places, graphs reflect over $y=x$, and domain and range swap. \\
+\textbf{Restricted domain (for an inverse)} & $y=x^2$ sends two inputs to one output, so half of it must be discarded ($x\ge0$) before it can be undone by $\sqrt{x}$. $y=x^3$ needs no such cut. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses the three skills this lesson stands on, one per new idea: \textbf{(1)}
+    evaluating $\sqrt{36}$, $\sqrt{-36}$, $\sqrt[3]{8}$, and $\sqrt[3]{-8}$ --- so students meet the
+    even/odd index split \emph{numerically}, and discover for themselves that exactly one of the four
+    has no real answer; \textbf{(2)} solving $x-3\ge0$, $2x+8\ge0$, and $5-x\ge0$ --- the Unit~2
+    inequality toolkit, reused as this unit's domain engine, with the third item planting the
+    sign-flip that will produce a graph opening to the \emph{left}; and \textbf{(3)} completing
+    tables for $y=x^2$ (from $x=0$) and $y=\sqrt{x}$ and noticing that the two are the same table with
+    the rows traded. Debrief all three aloud, but do \emph{not} supply the words ``index,''
+    ``radicand,'' or ``inverse'' --- let the Hook graphs name them.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Put the two parent graphs on the board side by side: $y=\sqrt{x}$ and $y=\sqrt[3]{x}$. Open with
+    the observation that reframes the unit: \textbf{``These are both radical functions. One of them
+    covers the entire plane from left to right. The other stops dead at the origin and never appears
+    to the left of it. What is different about them?''} Let students hunt --- most will say ``the
+    little 3'' before they can say why. Then pull the answer out of the Warm-Up: \textbf{``Item 1
+    already told you. Why did $\sqrt{-36}$ fail when $\sqrt[3]{-8}$ was fine?''} (Nothing real squares
+    to a negative; cubing keeps the sign.) Press once more: \textbf{``So which inputs are missing from
+    the square root graph, and how many are we losing?''} (Every negative --- half the number line at
+    once.) Contrast that deliberately with Unit~5: \emph{a rational function lost a few scattered
+    inputs where the denominator was zero; this loses an entire half-line, and the graph does not
+    break --- it simply begins somewhere.} Land the point: \emph{for every family so far we asked what
+    the graph does. Radical functions make us ask something new first --- where is the graph allowed to
+    exist at all? --- and the answer is written under the radical.}
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. Index, radicand, and where the graph is allowed to exist.} Name the two parts
+($\sqrt[n]{\ }$: the \textbf{index} $n$, the \textbf{radicand} underneath) and build the two-row rule
+table from the Warm-Up: even index $\Rightarrow$ radicand cannot be negative; odd index $\Rightarrow$
+anything goes, because $(-2)^3=-8$. Then state the procedure the whole unit rests on: \emph{if the
+index is even, set the radicand $\ge0$ and solve}. Work $\sqrt{x-3}$, $\sqrt{2x+8}$, $\sqrt{5-x}$
+(flip! --- and flag that this one runs \emph{left}), and $\sqrt[3]{x-3}$ (no work needed). Make the
+comparison explicit: domain used to be something students \emph{read}; now it is something they
+\emph{solve for}.
+
+\textbf{2. The square root parent.} Build $y=\sqrt{x}$ from the table $(0,0),(1,1),(4,2),(9,3)$ and
+read every feature: domain and range $[0,\infty)$, the \textbf{endpoint} $(0,0)$ drawn \emph{solid}
+(that input \emph{is} in the domain), increasing on all of $[0,\infty)$, an \textbf{absolute minimum}
+of $0$, no absolute maximum, no symmetry. Spend real time on end behavior: as $x\to+\infty$ it climbs
+forever but \emph{slowly}; as $x\to-\infty$ --- \textbf{nothing}. The graph stops. Say out loud that
+this is the first family of the year for which one of the two end-behavior questions has no answer,
+and that ``it stops'' is the complete, correct answer.
+
+\columnbreak
+
+\textbf{3. The cube root parent.} Same treatment for $y=\sqrt[3]{x}$ from
+$(-8,-2),(-1,-1),(0,0),(1,1),(8,2)$, and let every answer come out different: domain \emph{and} range
+all reals, \emph{no} endpoint, increasing everywhere, \textbf{no extrema at all}, and \textbf{origin
+symmetry} --- verified algebraically ($\sqrt[3]{-8}=-2=-\sqrt[3]{8}$, so $f(-x)=-f(x)$, the odd
+function test from Unit~4). Two arms, like an odd-degree polynomial, but \emph{flattening} rather than
+steepening.
+
+\textbf{4. Where the parents come from --- the inverse relationship.} Return to Warm-Up item~3: the
+two tables were the same table with the rows swapped. Name it: squaring and square-rooting
+\textbf{undo} each other, and on a graph undoing is a \textbf{reflection over $y=x$}. Draw both pairs.
+Then get the payoff: the domain of $\sqrt{x}$ is $[0,\infty)$ \emph{because that is the range of}
+$x^2$. Ask why only half the parabola is drawn --- $(-3)^2=3^2=9$, so reflecting all of it fails the
+vertical line test, and $y=x^2$ needs a \textbf{restricted domain} to be undone at all. Contrast
+$y=x^3$, which never repeats an output and so needs no cut. Say plainly that Lessons 6.6--6.7 turn
+this into a method.
+
+\textbf{5. The full feature list, and the contrast.} Read every characteristic off the anchor
+$f(x)=\sqrt{x+4}-1$ (endpoint $(-4,-1)$, domain $[-4,\infty)$, range $[-1,\infty)$, zero $(-3,0)$,
+$y$-int $(0,1)$, increasing throughout, negative on $[-4,-3)$, absolute min $-1$, one arm). Finish
+with the \textbf{A2.F.2b} table comparing the two radical families row by row, and one sentence
+against the earlier units: a polynomial was defined everywhere with no edges; a rational function lost
+scattered inputs and gained asymptotes; a radical function is the first whose graph can simply
+\emph{begin somewhere and stop}. Preview Lesson~6.1, \emph{$n$th roots \& rational exponents}.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item writing a restricted domain for a \emph{cube} root --- the student has learned ``radical $\Rightarrow$ restriction'' instead of ``\emph{even index} $\Rightarrow$ restriction''; this is the signature error of the lesson;
+  \item solving $5-x\ge0$ as $x\ge5$ --- forgetting the flip, and therefore drawing the graph opening the wrong way (send them back to Warm-Up item~2c);
+  \item inventing a left arm: answering ``$f\to-\infty$ as $x\to-\infty$'' on a square root graph instead of ``the graph stops'';
+  \item hunting for a $y$-intercept on a graph whose domain excludes $0$ (e.g.\ $\sqrt{x-1}$), and being unwilling to write ``none'';
+  \item calling every endpoint a minimum out of reflex --- on $y=-\sqrt{x}+3$ it is a \emph{maximum}; the direction of the arm decides;
+  \item writing an interval that leaks outside the domain (``increasing on $(-\infty,\infty)$'' for $\sqrt{x+4}-1$);
+  \item drawing the endpoint as an open circle --- it is included, because the radicand is $0$ there and $\sqrt{0}=0$ is perfectly real.
+\end{itemize}
+Cold-call prompts: ``What is the index, and does it restrict anything?'' ``What did you set greater
+than or equal to zero, and what did you get?'' ``Which direction does the arm leave the endpoint --- so
+is that a max or a min?'' ``What happens on the left side of this graph? Say it exactly.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Reading Radical Graphs} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} From one pre-drawn graph of $g(x)=\sqrt{x-1}$: identify the radicand
+and solve for the domain, name the endpoint and explain why its dot is solid, give the range and
+$x$-intercept, then \emph{attempt} $g(0)=\sqrt{-1}$ and conclude there is \textbf{no} $y$-intercept.
+Closes on end behavior in both directions --- with the left one required to be answered ``the graph
+stops.''
+
+\columnbreak
+\textbf{Tier A --- Approaching.} An eight-row feature table for two functions chosen so that
+\emph{every row differs}: $p(x)=2-\sqrt{x}$ (endpoint $(0,2)$, decreasing, absolute \emph{max}) beside
+$q(x)=\sqrt[3]{x}-1$ (all reals, no endpoint, no extrema). Then two \emph{justifications}: point to
+the feature of each equation that causes the domain difference, and explain in one breath why $p$ has
+a max, $y=\sqrt{x}$ has a min, and $q$ has neither.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Equation-only work: a four-row table (index / radicand condition /
+domain) over $\sqrt{x-7}$, $\sqrt[3]{x+5}$, $\sqrt{12-3x}$, and $\sqrt{2x+1}$, plus ``which one opens
+left, and how do you know before graphing?'' Then a falling-object model $t(d)=\frac{\sqrt{d}}{4}$:
+domain from algebra \emph{and} context, the endpoint's meaning, why quadrupling the height only doubles
+the time, solving for $d=16t^2$, and recognizing it as the \textbf{inverse} --- then explaining why
+only $t\ge0$ survives, which is the same cut $y=x^2$ needed in the notes.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes): from one graphed radical function
+$f(x)=\sqrt{x+1}-2$, give the domain and range in interval notation, the endpoint, both intercepts,
+the increasing interval, and the absolute extremum (naming which kind and noting that the other does
+not exist); then \textbf{explain} why $f$ has a restricted domain while $\sqrt[3]{x+1}-2$ would not,
+\emph{and} what happens as $x\to-\infty$; then an \textbf{SOL-style multiple-choice} item on the domain
+of $h(x)=\sqrt{5-2x}$ (answer $x\le\frac52$) whose distractors each break exactly one idea (forget the
+inequality flip / mishandle the signs when isolating $x$ / treat an even index as unrestricted).
+Collect and sort into ``got it / sign-flip slip / invented-a-left-arm / even-vs-odd-index confusion''
+to decide whether Lesson~6.1 opens with a re-teach --- the last pile matters most, since 6.1 is built
+entirely on the even/odd index distinction.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} a four-row equation-only table (index / radicand condition / domain / which way it
+opens) over $\sqrt{x+6}$, $\sqrt[3]{x-4}$, $\sqrt{3x-9}$, and $\sqrt{8-4x}$; a full feature read off
+$m(x)=-\sqrt{x}+3$, deliberately a \emph{falling} square root whose endpoint is an absolute
+\textbf{maximum}; a matched full feature read off the cube root $n(x)=\sqrt[3]{x}+1$, closing with
+whether $n$ still has origin symmetry (it does not --- the shift moved the center to $(0,1)$); and one
+justification item on why a square root graph always has exactly one absolute extremum while a cube
+root graph has none. \textbf{Extension:} interpret a skid-mark model $s(d)=\sqrt{24d}$ --- domain from
+the radicand and from context, the endpoint at $(0,0)$ together with the model's honest limitation
+(anti-lock brakes leave no marks), why quadrupling the skid only doubles the speed estimate, solving
+for $d=\frac{s^2}{24}$ and naming it the \textbf{inverse}, and why the negative-speed half is discarded
+--- the same restriction $y=x^2$ required in class. \textbf{Preview:} Lesson~6.1, \emph{$n$th Roots \&
+Rational Exponents} --- what an index really is ($\sqrt[n]{a}=a^{1/n}$, so $a^{m/n}=\sqrt[n]{a^m}$),
+which hands every exponent rule to radicals and gives ``why does an even index refuse a negative?''
+its full algebraic answer.
 \end{skillbox}
 \end{document}

@@ -3,17 +3,173 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)-1});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)-1});}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.0}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Reading Radical Graphs.} A radical function tells you \emph{where it is allowed to
+exist} before it tells you anything else --- and the \textbf{index} is what decides. With your
+partner, read each graph carefully and \emph{justify} your answers. Write every domain and range in
+\textbf{interval notation}, and check each one against the radicand.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+The graph shows $g(x) = \sqrt{x-1}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-3}{11}{-2}{4}
+  \begin{scope}
+    \clip (-3,-2) rectangle (11,4);
+    \draw[very thick, forest, domain=1:11, samples=100, smooth] plot (\x,{sqrt((\x)-1)});
+  \end{scope}
+  \fill[forest] (1,0) circle (4pt) node[below left, font=\scriptsize]{$(1,0)$};
+  \fill[charcoal] (2,1) circle (2.6pt);
+  \fill[charcoal] (5,2) circle (2.6pt) node[above left, font=\scriptsize]{$(5,2)$};
+  \fill[charcoal] (10,3) circle (2.6pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item The \textbf{radicand} is \blank{2.0cm}. Set it $\ge 0$: \blank{2.4cm}, so the
+        \textbf{domain} is \blank{3.0cm}.
+  \item The graph begins at a single point called the \textbf{endpoint}: \blank{1.8cm}. \\
+        It is drawn as a \emph{solid} dot. Why is that input included in the domain?
+        \blank{5.4cm}
+  \item \textbf{Range:} \blank{3.0cm} \quad \textbf{$x$-intercept:} \blank{1.8cm}
+  \item Try to find the \textbf{$y$-intercept} by substituting $x=0$. The radicand becomes
+        \blank{1.4cm}, so $g(0)$ is \blank{3.0cm}. \\
+        What does that tell you about whether this graph has a $y$-intercept? \blank{5.4cm}
+  \item $g$ is \textbf{increasing} on \blank{2.6cm}. \quad It has an absolute
+        \blank{1.6cm} of \blank{1.0cm}, and \emph{no} absolute \blank{1.6cm}.
+  \item \textbf{End behavior:} as $x\to+\infty$, $g(x)\to\blank{1.2cm}$. \\
+        As $x\to-\infty$, $g(x)\to$ \dots\ careful! Explain what actually happens on the left.
+        \blank{5.4cm}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+Two radical functions --- \emph{and only one of them has a restricted domain}. Fill in the whole
+table, then answer the two justification questions.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  % p(x) = 2 - sqrt(x)
+  \begin{scope}
+    \lgrid{-2}{10}{-3}{3}
+    \begin{scope}
+      \clip (-2,-3) rectangle (10,3);
+      \draw[very thick, forest, domain=0:10, samples=100, smooth] plot (\x,{2-sqrt(\x)});
+    \end{scope}
+    \fill[forest] (0,2) circle (4pt);
+    \fill[charcoal] (1,1) circle (3pt);
+    \fill[charcoal] (4,0) circle (3pt);
+    \fill[charcoal] (9,-1) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (4,-4.4) {$p(x)=2-\sqrt{x}$};
+  \end{scope}
+  % q(x) = cbrt(x) - 1
+  \begin{scope}[xshift=15cm]
+    \lgrid{-9}{9}{-4}{2}
+    \begin{scope}
+      \clip (-9,-4) rectangle (9,2);
+      \cbrtpos{0}{9}
+      \cbrtneg{-9}{0}
+    \end{scope}
+    \fill[charcoal] (-8,-3) circle (3pt);
+    \fill[charcoal] (0,-1) circle (3pt);
+    \fill[charcoal] (1,0) circle (3pt);
+    \fill[charcoal] (8,1) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (0,-5.4) {$q(x)=\sqrt[3]{x}-1$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{0.20in}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.32\linewidth} X X@{}}
+ & \textbf{$p(x)=2-\sqrt{x}$} & \textbf{$q(x)=\sqrt[3]{x}-1$} \\
+\hline
+Index (even or odd) & \blank{2.4cm} & \blank{2.4cm} \\
+Domain & \blank{2.4cm} & \blank{2.4cm} \\
+Range & \blank{2.4cm} & \blank{2.4cm} \\
+Endpoint (if any) & \blank{2.4cm} & \blank{2.4cm} \\
+$x$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
+$y$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
+Increasing or decreasing? & \blank{2.4cm} & \blank{2.4cm} \\
+Absolute max or min? & \blank{2.4cm} & \blank{2.4cm} \\
+\end{tabularx}
+\vspace{4pt}
+
+\textbf{Justify 1.} $p$ has a restricted domain and $q$ does not. Point to the exact feature of each
+\emph{equation} that causes this --- and explain why that feature has the effect it does.
+\writelines{3}
+
+\textbf{Justify 2.} $p$ has an absolute \emph{maximum}, but the parent $y=\sqrt{x}$ has an absolute
+\emph{minimum}, and $q$ has neither. Explain all three at once, using the words \textbf{endpoint} and
+\textbf{direction}. \writelines{3}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- No graph allowed.} Find each domain from the equation alone.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{Function} & \textbf{Index: even or odd?} & \textbf{Condition on the radicand} & \textbf{Domain (interval notation)} \\
+\hline
+$\sqrt{x-7}$ & \blank{1.8cm} & \blank{2.4cm} & \blank{2.6cm} \\
+$\sqrt[3]{x+5}$ & \blank{1.8cm} & \blank{2.4cm} & \blank{2.6cm} \\
+$\sqrt{12-3x}$ & \blank{1.8cm} & \blank{2.4cm} & \blank{2.6cm} \\
+$\sqrt{2x+1}$ & \blank{1.8cm} & \blank{2.4cm} & \blank{2.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Exactly one of these four graphs opens to the \textbf{left}. Which one, and what in the equation
+tells you so \emph{before} you graph anything? \writelines{2}
+
+\vspace{5pt}
+\textbf{Part 2 --- A radical model, and the family it came from.} Ignoring air resistance, an object
+dropped from a height of $d$ feet hits the ground after
+\[
+  t(d) = \frac{\sqrt{d}}{4} \ \text{ seconds.}
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$d$ (feet) & $0$ & $16$ & $64$ & $144$ & $256$ \\ \hline
+$t(d)$ (seconds) & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item What is the domain of $t$ \emph{algebraically} (from the radicand)? \blank{3.0cm} \\
+        Does the context agree, or does it restrict things further? Explain. \writelines{2}
+  \item The graph of $t$ has an endpoint at $(0,0)$. What does that point \emph{mean} for a falling
+        object? \writelines{2}
+  \item From the table: going from $d=64$ to $d=256$ multiplies the height by \blank{1.2cm}, but
+        multiplies the falling time by only \blank{1.2cm}. Use the shape of a square root graph to
+        explain why the time grows so much more slowly than the height. \writelines{2}
+  \item Solve $t=\dfrac{\sqrt{d}}{4}$ for $d$ in terms of $t$. \quad $d=\blank{3.0cm}$ \\
+        Which function family is that? \blank{2.6cm} \quad What does this tell you about the
+        relationship between $t(d)$ and the function you just wrote? \writelines{2}
+  \item Your answer to (d) is a parabola, but only \emph{half} of it describes falling objects.
+        Which half, and why? Connect this to the reason $y=x^2$ needed a \textbf{restricted domain}
+        in the notes. \writelines{3}
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}
