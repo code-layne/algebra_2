@@ -3,17 +3,356 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.3}{Guided Notes --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Guided Notes verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Guided Notes --- Key}
-\ansline{TODO: answer}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item \emph{multiply} radical expressions --- including distributing over a sum and multiplying two binomials --- and simplify the result;
+  \item recognize a \emph{conjugate} and explain why a conjugate pair always multiplies to a \emph{rational} number;
+  \item \emph{rationalize} a denominator, with one radical or with a binomial, and explain why the value of the expression never changes.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Rationalizing the denominator}{rewriting a fraction so that no radical is left in the denominator, by multiplying the top and bottom by the same expression}
+\vocabans{Conjugate}{the same binomial with the middle sign reversed --- the conjugate of $a+\sqrt b$ is $a-\sqrt b$; their product $a^{2}-b$ is always rational}
+\vocabans{Multiplying by a form of $1$}{multiplying by a fraction whose numerator and denominator are equal, such as $\sqrt2/\sqrt2$; it changes the \emph{form} of an expression but never its \emph{value}}
+\vocabans{Simplest radical form (all three conditions, at last)}{(1) no factor of the radicand is a perfect $n$th power; (2) no fraction under a radical; (3) no radical in a denominator --- condition 3 is today's work}
+\end{vocabbox}
+
+\begin{hookbox}
+Two students are asked for the exact value of $\dfrac{1}{\sqrt{2}}$. One writes $\dfrac{1}{\sqrt2}$
+and stops. The other writes $\dfrac{\sqrt2}{2}$. Their teacher marks \emph{both} correct.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+$\dfrac{1}{\sqrt2} \approx \dfrac{1}{1.414\,214}=$ \ans{$0.7071$} &
+$\dfrac{\sqrt2}{2} \approx \dfrac{1.414\,214}{2}=$ \ans{$0.7071$} \\
+\end{tabularx}
+\end{center}
+They are the same number. So here is the real question, and it is a fair one:
+\textbf{if both are correct, why does every textbook insist on the second one?}
+\vspace{2pt}
+
+Imagine it is $1850$ and you must actually \emph{compute} one of these by hand, with no calculator.
+Which long division would you rather do --- \; $1 \div 1.414\,214$ \; or \;
+$1.414\,214 \div 2$? \ansline{$1.414214\div2$, easily --- halving a number is something you can do
+in your head, while dividing by a six-digit decimal is a page of long division. That is the entire
+historical reason for the rule: put the ugly number on \emph{top}, where it never has to be divided
+by.}
+\vspace{2pt}
+That is the whole reason the rule exists. A radical on \emph{top} is harmless; a radical on the
+\emph{bottom} is a nuisance. Now look at how the second student got there: they multiplied top and
+bottom by $\sqrt2$, and $\sqrt2\cdot\sqrt2=$ \ans{$2$} --- the radical simply
+\ans{disappeared}. That one fact runs today's entire lesson.
+\end{hookbox}
+
+\begin{notesbox}{1. Multiplying: the Product Property, Run Forwards}
+Yesterday you read $\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$ from \emph{left to right} to pull
+factors out. Today you read the same statement from \emph{right to left}.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.92\linewidth]
+\centering
+$\displaystyle \sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab}$ \qquad --- \qquad
+multiply the \textbf{outsides} together, multiply the \textbf{insides} together, \emph{then}
+simplify.
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{Simplify \emph{last}, and never skip it.} A product often contains a perfect power that
+neither factor had on its own:
+\[
+  \sqrt{6}\cdot\sqrt{10}=\sqrt{\mans{60}}=\mans{2\sqrt{15}}
+  \qquad\qquad
+  \sqrt{3}\cdot\sqrt{12}=\sqrt{\mans{36}}=\mans{6}
+\]
+Neither $\sqrt6$ nor $\sqrt{10}$ could be simplified alone. Multiplying them created a perfect
+square out of nothing --- so \emph{finishing} is not optional.
+
+\vspace{3pt}
+\textbf{With coefficients out front.} Outsides multiply outsides; insides multiply insides.
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $2\sqrt5\cdot3\sqrt{10}=$ \ans{$30\sqrt2$} & (b) \; $\sqrt[3]{4}\cdot\sqrt[3]{6}=$ \ans{$2\sqrt[3]{3}$} &
+(c) \; $\sqrt{2x}\cdot\sqrt{6x^{3}}=$ \ans{$2x^{2}\sqrt3$} \\
+\end{tabularx}
+\end{center}
+{\small\emph{Work:} (a) $6\sqrt{50}=6\cdot5\sqrt2$. \; (b) $\sqrt[3]{24}=\sqrt[3]{8\cdot3}$. \;
+(c) $\sqrt{12x^{4}}=\sqrt{4x^{4}}\cdot\sqrt3$.}
+
+\vspace{2pt}
+\textbf{The one fact the whole lesson rests on.} A square root multiplied by itself:
+\[
+  \sqrt{a}\cdot\sqrt{a}=\sqrt{a^{2}}=\mans{a}
+  \qquad\text{so}\qquad \left(\sqrt{7}\right)^{2}=\mans{7},
+  \qquad \left(3\sqrt5\right)^{2}=9\cdot 5=\mans{45}
+\]
+\textbf{A square root times itself erases the radical.} (For a cube root you need
+\ans{three} copies: $\sqrt[3]{2}\cdot\sqrt[3]{2}\cdot\sqrt[3]{2}=2$. The index still sets the
+group size.)
+
+\vspace{3pt}
+\emph{One restriction.} The indices must \ans{match} before you may combine two radicals. For
+$\sqrt{2}\cdot\sqrt[3]{2}$ there is no radical rule at all --- but Lesson 6.1 handles it:
+$2^{1/2}\cdot 2^{1/3}=2^{\,\mans{5/6}}=\sqrt[6]{\mans{32}}$.
 \end{notesbox}
+
+\begin{notesbox}{2. Distributing and FOIL --- Radicals Behave Like Binomials}
+Nothing new here at all. In Warm-Up item~1 you expanded $3x(2x+5)$ and $(x+4)(x-4)$. Radicals
+follow the identical rules; the radical just plays the role of the variable.
+\[
+  \sqrt{5}\left(\sqrt{3}+\sqrt{10}\right)
+  = \sqrt{\mans{15}}+\sqrt{\mans{50}} = \mans{\sqrt{15}+5\sqrt2}
+  \qquad
+  \sqrt{2}\left(4-\sqrt{2}\right)=\mans{4\sqrt2-2}
+\]
+\emph{Simplify each product separately after distributing} --- in the first one, only the second
+term simplifies.
+
+\vspace{3pt}
+\textbf{Two binomials: FOIL, then collect like radicals (Lesson 6.2).}
+\[
+  \left(2+\sqrt3\right)\left(5-\sqrt3\right)
+  = 10 \;\mans{-}\; 2\sqrt3 \;+\; 5\sqrt3 \;\mans{-}\; 3
+  = \mans{7+3\sqrt3}
+\]
+
+\vspace{3pt}
+\textbf{Squaring a binomial --- the error of the day.}
+\[
+  \left(\sqrt7+\sqrt2\right)^{2}
+  = \left(\sqrt7+\sqrt2\right)\left(\sqrt7+\sqrt2\right)
+  = 7 + \mans{\sqrt{14}} + \mans{\sqrt{14}} + 2 = \mans{9+2\sqrt{14}}
+\]
+It is \textbf{not} $7+2=9$. There is a middle term, for exactly the reason
+$(x+4)^{2}\ne x^{2}+16$ --- which you already rejected in the Warm-Up. \; Your turn:
+\; $\left(3-\sqrt5\right)^{2}=$ \ans{$14-6\sqrt5$}
+\end{notesbox}
+
+\begin{notesbox}{3. The Pair That Comes Out Rational: Conjugates}
+Now multiply a binomial by its \emph{sign-flipped} partner --- Warm-Up item 1(b), with a radical in
+place of the $4$.
+\[
+  \left(4+\sqrt3\right)\left(4-\sqrt3\right)
+  = 16 - 4\sqrt3 + 4\sqrt3 - 3 = \mans{13}
+\]
+Two things happened at once, and both matter. The middle terms \ans{cancelled}, and the last term
+lost its radical because $\sqrt3\cdot\sqrt3=$ \ans{$3$}. What is left is a plain
+\ans{rational} number --- no radical anywhere.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.92\linewidth]
+\centering
+\textbf{Conjugates:} $a+\sqrt{b}$ and $a-\sqrt{b}$ --- same two terms, \textbf{opposite} middle
+sign. \\[3pt]
+$\displaystyle \left(a+\sqrt b\right)\left(a-\sqrt b\right)=a^{2}-b$
+\qquad
+$\displaystyle \left(\sqrt a+\sqrt b\right)\left(\sqrt a-\sqrt b\right)=a-b$ \\[3pt]
+{\small Both products are \textbf{always rational}. It is just difference of squares, and squaring
+is what undoes a square root.}
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{You have seen this move before.} In Lesson 3.4 you multiplied $a+bi$ by $a-bi$ and got
+$a^{2}+b^{2}$ --- a real number. Same trick, different number system: there it turned an
+\emph{imaginary} number real; here it turns an \emph{irrational} number rational. \; Why the
+different sign? Because $i^{2}=$ \ans{$-1$} while $\left(\sqrt b\right)^{2}=$ \ans{$b$}.
+
+\vspace{3pt}
+\textbf{Practice.} Write each conjugate, then multiply the pair.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Expression} & \textbf{Its conjugate} & \textbf{Their product} \\
+\hline
+$6+\sqrt{5}$          & \ans{$6-\sqrt{5}$} & \ans{$36-5=31$} \\
+$\sqrt{7}-2$          & \ans{$\sqrt{7}+2$} & \ans{$7-4=3$} \\
+$\sqrt{11}+\sqrt{3}$  & \ans{$\sqrt{11}-\sqrt{3}$} & \ans{$11-3=8$} \\
+\hline
+\end{tabularx}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{4. Dividing: the Quotient Property, Run Forwards}
+Same idea, one floor down: two radicals with the \emph{same index} can be pulled under one radical.
+\begin{center}
+\renewcommand{\arraystretch}{2.0}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $\dfrac{\sqrt{48}}{\sqrt{3}}=$ \ans{$4$} &
+(b) \; $\dfrac{6\sqrt{20}}{2\sqrt{5}}=$ \ans{$6$} &
+(c) \; $\dfrac{\sqrt{40x^{3}}}{\sqrt{5x}}=$ \ans{$2x\sqrt2$} \\
+\end{tabularx}
+\end{center}
+{\small\emph{Work:} (a) $\sqrt{16}$. \; (b) $3\sqrt{4}=3\cdot2$. \;
+(c) $\sqrt{8x^{2}}=\sqrt{4x^{2}}\cdot\sqrt2$.}
+
+\vspace{2pt}
+Every one of those came out clean. But this one does not:
+\; $\dfrac{\sqrt3}{\sqrt5}=\sqrt{\dfrac{3}{5}}$ --- and now there is a radical sitting in the
+\ans{denominator}, which breaks simplest-form condition \ans{$3$}. That is the condition we
+skipped yesterday. Time to finish it.
+\end{notesbox}
+
+\begin{notesbox}{5. Rationalizing a Denominator with One Radical}
+\textbf{The move:} multiply the top \emph{and} the bottom by the radical that is stuck in the
+bottom. From Warm-Up item~3, that is legal because $\dfrac{\sqrt b}{\sqrt b}=$ \ans{$1$}, and
+multiplying by $1$ cannot change a number's value --- only its \ans{form}.
+\[
+  \frac{1}{\sqrt2}\cdot\frac{\sqrt2}{\sqrt2}
+  = \frac{\sqrt2}{\mans{2}}
+  \qquad\qquad
+  \frac{3}{\sqrt5}\cdot\frac{\mans{\sqrt5}}{\mans{\sqrt5}} = \mans{\frac{3\sqrt5}{5}}
+\]
+The Hook is now closed: the two students had the same number the whole time.
+
+\vspace{3pt}
+\textbf{Your turn.} Rationalize each. In (c), \emph{simplify the denominator first}.
+\begin{center}
+\renewcommand{\arraystretch}{2.2}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $\dfrac{5}{\sqrt{3}}=$ \ans{$\dfrac{5\sqrt3}{3}$} &
+(b) \; $\sqrt{\dfrac{3}{5}}=$ \ans{$\dfrac{\sqrt{15}}{5}$} &
+(c) \; $\dfrac{\sqrt{7}}{\sqrt{12}}=$ \ans{$\dfrac{\sqrt{21}}{6}$} \\
+\end{tabularx}
+\end{center}
+{\small\emph{Work:} (b) $\sqrt{3/5}=\dfrac{\sqrt3}{\sqrt5}\cdot\dfrac{\sqrt5}{\sqrt5}
+=\dfrac{\sqrt{15}}{5}$. \; (c) $\sqrt{12}=2\sqrt3$ first, then
+$\dfrac{\sqrt7}{2\sqrt3}\cdot\dfrac{\sqrt3}{\sqrt3}=\dfrac{\sqrt{21}}{6}$. Multiplying by
+$\sqrt{12}$ instead also works, but leaves $\dfrac{\sqrt{84}}{12}$ to clean up.}
+
+\vspace{2pt}
+\textbf{A higher index changes what you multiply by.} For $\dfrac{1}{\sqrt[3]{2}}$, multiplying by
+$\sqrt[3]{2}$ is \emph{not} enough --- it only gives $\sqrt[3]{4}$ on the bottom, and that is still
+a radical. You need \ans{three} equal factors to escape a cube root, so multiply by
+$\sqrt[3]{4}$:
+\[
+  \frac{1}{\sqrt[3]{2}}\cdot\frac{\sqrt[3]{4}}{\sqrt[3]{4}}
+  = \frac{\sqrt[3]{4}}{\sqrt[3]{\mans{8}}} = \frac{\sqrt[3]{4}}{\mans{2}}
+\]
+This is yesterday's \emph{``the index sets the group size''} showing up again: you multiply by
+whatever \textbf{completes the group}.
+\end{notesbox}
+
+\begin{notesbox}{6. Rationalizing a Binomial Denominator: Use the Conjugate}
+If the bottom is $3-\sqrt5$, multiplying by $\sqrt5$ is useless --- try it and you still have a
+radical down there. Multiply by the \textbf{conjugate} instead, because a conjugate pair is
+guaranteed to come out rational (Section 3).
+\[
+  \frac{6}{3-\sqrt5}\cdot\frac{\mans{3+\sqrt5}}{\mans{3+\sqrt5}}
+  = \frac{6\left(3+\sqrt5\right)}{9-\mans{5}}
+  = \frac{6\left(3+\sqrt5\right)}{\mans{4}}
+  = \mans{\frac{9+3\sqrt5}{2}}
+\]
+Notice the last step: the numerator and the denominator shared a common factor, so the answer
+reduced. \emph{Always check whether it does.}
+
+\vspace{3pt}
+\textbf{Your turn.}
+\begin{center}
+\renewcommand{\arraystretch}{2.4}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+(a) \; $\dfrac{4}{\sqrt5-1}=$ \ans{$\sqrt5+1$} &
+(b) \; $\dfrac{\sqrt2}{\sqrt7+\sqrt3}=$ \ans{$\dfrac{\sqrt{14}-\sqrt6}{4}$} \\
+\end{tabularx}
+\end{center}
+{\small\emph{Work:} (a) conjugate $\sqrt5+1$; denominator $5-1=4$, and
+$\dfrac{4\left(\sqrt5+1\right)}{4}$ reduces completely. \; (b) conjugate $\sqrt7-\sqrt3$;
+denominator $7-3=4$, numerator $\sqrt2\left(\sqrt7-\sqrt3\right)=\sqrt{14}-\sqrt6$.}
+
+\vspace{2pt}
+\textbf{Three ways this goes wrong.} Write the fix next to each.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Multiplying only the \emph{denominator} by the conjugate. \; Why that is illegal:
+        \ans{that is multiplying by $3+\sqrt5$, not by $1$ --- it changes the value}
+  \item Multiplying by the \emph{same} binomial instead of the conjugate. \;
+        $\left(3-\sqrt5\right)^{2}=$ \ans{$14-6\sqrt5$}, which is still \ans{irrational}.
+  \item Forgetting to FOIL the \emph{numerator} when it is also a binomial. \;
+        $\left(2+\sqrt3\right)\left(1+\sqrt3\right)$ has \ans{$4$} products, not $2$.
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+Work these with your class. Assume all variables represent positive real numbers, and leave no
+radical in any denominator.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item Multiply: \; $\sqrt{6}\cdot\sqrt{15}=$ \ans{$3\sqrt{10}$} \quad
+        $3\sqrt2\cdot4\sqrt{6}=$ \ans{$24\sqrt3$} \quad $\sqrt[3]{9}\cdot\sqrt[3]{6}=$ \ans{$3\sqrt[3]{2}$}
+  \item Expand: \; $\sqrt3\left(\sqrt{12}-\sqrt6\right)=$ \ans{$6-3\sqrt2$} \quad
+        $\left(4+\sqrt2\right)\left(3-\sqrt2\right)=$ \ans{$10-\sqrt2$}
+  \item Expand: \; $\left(\sqrt5+\sqrt3\right)^{2}=$ \ans{$8+2\sqrt{15}$} \quad
+        $\left(2\sqrt7-3\right)\left(2\sqrt7+3\right)=$ \ans{$19$}
+  \item Rationalize: \; $\dfrac{8}{\sqrt6}=$ \ans{$\dfrac{4\sqrt6}{3}$} \quad
+        $\dfrac{3}{5+\sqrt2}=$ \ans{$\dfrac{15-3\sqrt2}{23}$}
+  \item \textbf{Explain.} Both answers in item 3 came from squaring or multiplying a pair of
+        binomials with the same two terms, yet one answer still has a radical in it and the other
+        does not. What is the difference between the two problems? \ansline{The \textbf{signs}.
+        In $\left(\sqrt5+\sqrt3\right)^{2}$ both factors have a plus, so the two middle products
+        are both $+\sqrt{15}$ and they \emph{add} to $2\sqrt{15}$ --- the radical survives. In
+        $\left(2\sqrt7-3\right)\left(2\sqrt7+3\right)$ the middle signs are opposite, so the middle
+        products $+6\sqrt7$ and $-6\sqrt7$ \emph{cancel}, and only the two squares are left, both
+        of which are rational. That is exactly what makes the second pair \textbf{conjugates} and
+        why conjugates --- not any old pair --- are the tool for clearing a denominator.}
+\end{enumerate}
+\end{practicebox}
+
+\begin{teachernote}
+\textbf{Pacing.} Sections 1--2 are review wearing a new hat and should take about 12 minutes
+together; do not linger, because students who can FOIL polynomials can already do this.
+\textbf{Section 3 is the intellectual center of the lesson and deserves 10 minutes on its own} ---
+the discovery that one specific pair of factors turns an irrational expression rational is the idea
+everything after it depends on. Section 5 is quick. Section 6 needs 12 minutes and is where the
+lesson is actually assessed.
+
+\textbf{Do not state the conjugate rule before the arithmetic.} Work
+$\left(4+\sqrt3\right)\left(4-\sqrt3\right)$ on the board term by term, let the class watch
+$-4\sqrt3$ and $+4\sqrt3$ cancel, and only then ask ``what kind of number is $13$?'' The word
+\emph{rational} should come from a student. Immediately follow it with
+$\left(4+\sqrt3\right)^{2}=19+8\sqrt3$ --- same two numbers, same operation, radical still there.
+The contrast is the argument, and it is also the exit ticket's hardest distractor.
+
+\textbf{The Lesson 3.4 callback is worth the ninety seconds.} Students met $(a+bi)(a-bi)=a^{2}+b^{2}$
+back in the quadratics unit and used it, if at all, mechanically. Putting it beside
+$\left(a+\sqrt b\right)\left(a-\sqrt b\right)=a^{2}-b$ shows that ``multiply by the conjugate'' is a
+single general move for getting an unwanted kind of number out of a denominator, not two unrelated
+tricks. The sign difference has a reason ($i^{2}=-1$ but $(\sqrt b)^{2}=+b$); make a student say it.
+
+\textbf{Three errors to expect.} (1) \emph{Not simplifying after multiplying} --- $\sqrt6\cdot
+\sqrt{10}$ left as $\sqrt{60}$. This is yesterday's ``check the leftover'' habit failing in a new
+setting, and it is why the Section 1 examples were chosen so that neither factor simplifies alone.
+(2) \emph{Dropping the middle term} in $\left(\sqrt7+\sqrt2\right)^{2}$. Send them straight back to
+Warm-Up 1(c); they have already rejected $(x+4)^{2}=x^{2}+16$ today. (3) \emph{Multiplying only the
+denominator} by the conjugate --- the tell that a student thinks of rationalizing as a manipulation
+of the bottom rather than as multiplying the whole fraction by $1$. That misunderstanding is
+diagnosed by the exit ticket's item 2, not by any computation.
+
+\textbf{Section 5's higher-index example is short but load-bearing.} $\dfrac{1}{\sqrt[3]2}$ needs
+$\sqrt[3]4$, not $\sqrt[3]2$, and the reason is yesterday's sentence --- the index sets the group
+size --- read forwards instead of backwards. Students who got $\sqrt[3]{9}$ wrong on the 6.2 exit
+ticket will get this wrong too; they are the same misconception.
+\end{teachernote}
 
 \end{document}
