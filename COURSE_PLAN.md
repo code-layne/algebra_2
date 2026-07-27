@@ -5,8 +5,9 @@
 > **Status:** Unit 1 is built in source. **Units 2, 3, and 4 are content-complete** — every lesson
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
-> `sample_test_key/`). Units 5–8 are planned here and not yet scaffolded. **Next action: scaffold
-> Unit 5 (Rational Functions)** — confirm its lesson map first. Lesson lists below are proposals to
+> `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
+> scaffolded** (2026-07-26) — no components authored yet. Units 6–8 are planned here and not yet
+> scaffolded. **Next action: author Unit 5 Lesson 5.0.** Lesson lists below are proposals to
 > react to and edit — pacing (days per lesson) is intentionally left open pending the school calendar.
 
 ---
@@ -36,7 +37,7 @@
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 5 | Rational Functions | Rational | ~6 | Planned |
+| 5 | Rational Functions | Rational | 8 | **Scaffolded** |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
@@ -70,7 +71,7 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 | Turning points | | | | ● | · | | | |
 | Zero multiplicity (graph behavior) | | | | ● | · | | | |
 | **Asymptotes (vertical)** | | | | | ● | | | ○ |
-| **Asymptotes (horizontal / slant)** | | | | | ● | | ○ | |
+| **Asymptotes (horizontal)** *(slant = enrichment only)* | | | | | ● | | ○ | |
 | Holes / removable discontinuity | | | | | ● | | | |
 | Domain restrictions | | | | | ● | ○ | | ○ |
 | Restricted domain from radicand | | | | | | ● | | |
@@ -565,7 +566,8 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > `make -C unit04 full` → 195pp (practice test in both, practice key in the full packet only; the
 > actual test and its key stay out of every packet). Note `make -C unit04 all` builds only the
 > lessons --- the tests need their own two `make` calls.
-> **Next action: Unit 5 (Rational Functions)** --- confirm the lesson map, then scaffold.
+> **Unit 4 is complete (all lessons + assessments).** Unit 5's map is confirmed and scaffolded; see
+> its section below.
 - **4.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
@@ -582,14 +584,49 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 - **4.6** Graphing polynomial functions & modeling — A2.F.2a–e/g
 
 ### Unit 5 — Rational Functions
-- **5.0** Characteristics of rational functions *(introduces: vertical &
-  horizontal/slant asymptotes, holes/removable discontinuity, domain restrictions)*
-- **5.1** Simplifying rational expressions
-- **5.2** Multiplying & dividing rational expressions
-- **5.3** Adding & subtracting rational expressions
-- **5.4** Graphing rational functions
-- **5.5** Solving rational equations (incl. extraneous solutions)
-- *(Optional: direct/inverse/joint variation)*
+> **Status (map confirmed & scaffolded 2026-07-26):** lesson map locked at **8 lessons (5.0–5.7)**.
+> Three changes from the original ~6-lesson draft, all driven by `spec/algebra2-vdoe-sol.pdf`:
+> (1) **variation is required, not optional** — **A2.F.1d** (directly/inversely proportional from a
+> table; write the equation and graph a direct or inverse variation in context) is a listed
+> knowledge-and-skill with no other home in the course (Units 6–8 are radical/exp/log), and
+> $y=k/x$ *is* the rational parent — so it becomes a real lesson, **5.7**, as the modeling capstone
+> (matching the 3.7 / 4.6 pattern); (2) **the draft's single "Graphing" lesson was split** into
+> **5.4** (parent $y=1/x$ + transformations) and **5.5** (analyze-and-graph from an equation),
+> because unlike polynomials, **rational functions *are* in A2.F.1's family list**, so
+> **A2.F.1a/b/c/e** (parent-graph distinction, write the equation from a graph, graph via
+> $f(x)+k$, $f(kx)$, $f(x+k)$, $kf(x)$) is a separate obligation from **A2.F.2a/g/h** — same
+> overload that forced the Unit 4 4.4/4.5 split; (3) **complex algebraic fractions (A2.EO.1c)**,
+> unbulleted in the draft, attach to **5.3** since simplifying one *is* combine-then-divide.
+> **Slant/oblique asymptotes are NOT in the 2023 SOL** — A2.F.2h covers vertical and horizontal
+> only. Decision: teach slant as **Tier E enrichment in 5.5** (a callback to 4.3 polynomial
+> division) and **never assess it**; the §3 spine row was amended accordingly.
+> Scope guardrails from the standards: **A2.EO.1b** limits expressions to **monomial and binomial
+> factors, linear and quadratic**; **A2.EI.4b** likewise limits rational equations to **factorable
+> linear and quadratic** expressions. Keep 5.1–5.3 and 5.6 inside those bounds.
+> All 8 lesson dirs `unit05/lesson00`–`lesson07` scaffolded with skeleton `main.tex` for lesson
+> plan + cover, warmup, notes, activity, exit_ticket, homework, slides, and each `*_key`. Unit
+> assessments scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`.
+> **No components authored yet — next action is Lesson 5.0.**
+
+- **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
+  asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**
+- **5.1** Simplifying rational expressions & domain restrictions *(factor-and-cancel with the
+  4.2 toolkit; restrictions read off the **original** denominator — the algebraic engine behind
+  5.0's holes)* — A2.EO.1b/d
+- **5.2** Multiplying & dividing rational expressions *(factor first; keep-change-flip;
+  restrictions from every denominator including the divisor)* — A2.EO.1a
+- **5.3** Adding & subtracting rational expressions + complex fractions *(LCD from factored
+  denominators; a complex fraction as combine-then-divide)* — A2.EO.1a/**c**
+- **5.4** The rational parent function & transformations *(the $y=1/x$ hyperbola; the four
+  transformations move the asymptotes; write the equation from a graph)* — A2.F.1a/b/c/e
+- **5.5** Graphing rational functions from the equation *(factor → holes vs. vertical asymptotes
+  → horizontal asymptote by degree comparison → intercepts → sign chart reused from 4.6 → end
+  behavior; slant asymptote as Tier E only)* — A2.F.2a/g/h + A2.F.1c
+- **5.6** Solving rational equations & extraneous solutions *(LCD-multiply or cross-multiply;
+  extraneous roots are exactly 5.1's excluded values — the unit's payoff loop)* — A2.EI.4a/b/c/d
+- **5.7** Direct, inverse & joint variation *(modeling capstone: proportional vs. inversely
+  proportional from a table, find $k$, write and interpret the equation; joint variation is not
+  named in A2.F.1d — carry it as enrichment)* — A2.F.1d (+ A2.F.2f)
 
 ### Unit 6 — Radical Functions
 - **6.0** Characteristics of radical functions *(introduces: restricted domain
@@ -643,6 +680,12 @@ Per Unit 1's pattern:
   **out of scope** (no material taught).
 - Systems of **linear** equations/inequalities & linear programming →
   **out of scope** (omitted). *(Systems of **quadratics** remain in Unit 3.)*
+- **Direct/inverse variation → a required Unit 5 lesson (5.7)**, not optional — A2.F.1d has no
+  other home in the course. *(Joint variation is not named in the standard; enrichment only.)*
+- **Slant/oblique asymptotes → Tier E enrichment in 5.5, never assessed** — A2.F.2h covers
+  vertical and horizontal asymptotes only.
+- **Unit 5 lesson map → 8 lessons (5.0–5.7)**, splitting graphing into a transformations lesson
+  (A2.F.1) and an analyze-and-graph lesson (A2.F.2).
 
 **Still open:**
 - **Pacing:** days per lesson / target unit lengths, and how they fit the calendar.
