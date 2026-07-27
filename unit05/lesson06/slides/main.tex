@@ -1,6 +1,11 @@
 %! Solving Rational Equations — Unit 5, Lesson 5.6 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -11,16 +16,275 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.6}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Solving Rational Equations}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5}
+    {\color{white}\bfseries\LARGE Solving Rational Equations}\\[0.35cm]
+    {\color{white}\bfseries\large and extraneous solutions}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Same algebra. Different answers.}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Equation (I)}
+        \[ \frac{x^2}{x-2}=\frac{4}{x-2} \]
+        \centering Multiply by $x-2$: \; $x^2=4$
+      \end{block}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Equation (II)}
+        \[ \frac{x^2}{x-3}=\frac{4}{x-3} \]
+        \centering Multiply by $x-3$: \; $x^2=4$
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{}
+    \centering Both give the candidates $x=2$ and $x=-2$. \\[3pt]
+    \textbf{But (I) has one solution and (II) has two.} The algebra cannot tell them apart.
+    Only the check can.
+  \end{block}
+\end{frame}
+
+% THE CHECK TABLE
+\begin{frame}[t, plain]
+  \forestheader{Put the candidates back in}
+  \sectionlabel[goldacc]{And look at row one}
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|c|c|c|c|l|}
+  \hline
+  \textbf{Eq.} & \textbf{$x$} & \textbf{Left} & \textbf{Right} & \textbf{True? False? Neither?} \\ \hline
+  (I)  & $2$  & $\frac40$ & $\frac40$ & \textbf{neither --- not a statement} \\ \hline
+  (I)  & $-2$ & $-1$ & $-1$ & true \\ \hline
+  (II) & $2$  & $-4$ & $-4$ & true \\ \hline
+  (II) & $-2$ & $\frac{4}{-5}$ & $\frac{4}{-5}$ & true \\ \hline
+  \end{tabular}
+
+  \vspace{8pt}
+  \begin{block}{}
+    \centering A number that makes the equation \emph{undefined} was never in the running.
+    You cannot check a value into an equation that does not exist there.
+  \end{block}
+\end{frame}
+
+% EXPRESSION VS EQUATION
+\begin{frame}[t, plain]
+  \forestheader{First: is it an expression or an equation?}
+  \sectionlabel{Do not mix these up}
+  \begin{columns}[T]
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Lesson 5.3 --- expression}
+        \[ \frac{6}{x}-\frac{2}{x-1} \]
+        \textbf{Combine} it. Build the LCD, rewrite each piece over it, keep the denominator.
+      \end{block}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Lesson 5.6 --- equation}
+        \[ \frac{6}{x}-\frac{2}{x-1}=1 \]
+        \textbf{Solve} it. Multiply every term by the LCD and the denominators are gone.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{}
+    \centering\textbf{You may clear denominators only when there is an equals sign.}
+    An expression has no sides to multiply.
+  \end{block}
+\end{frame}
+
+% THE FOUR STEPS
+\begin{frame}[t, plain]
+  \forestheader{The four steps --- always in this order}
+  \sectionlabel[goldacc]{Post this}
+  \begin{enumerate}\setlength{\itemsep}{6pt}
+    \item \textbf{Factor \& restrict.} Factor every denominator; write the list of excluded values
+          \emph{at the top of the page}, before you touch the equation.
+    \item \textbf{Multiply by the LCD.} Every term --- including any term with no denominator. You are
+          multiplying both \emph{sides}, not just the fractions.
+    \item \textbf{Solve} the linear or quadratic equation that is left.
+    \item \textbf{Check.} Compare each candidate to the Step 1 list. Discard any match. Verify the
+          survivors in the \emph{original}.
+  \end{enumerate}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering\textbf{Clearing the denominators solves a \emph{different} equation.
+    The check is what brings you back.}
+  \end{block}
+\end{frame}
+
+% WHY IT HAPPENS
+\begin{frame}[t, plain]
+  \forestheader{Why extraneous solutions exist}
+  \sectionlabel{The Warm-Up, cashed in}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Multiply by a nonzero number}
+        \[ 5=2 \;\xrightarrow{\;\times 3\;}\; 15=6 \]
+        Still false. And you can divide by $3$ to get back --- so nothing changed.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Multiply by zero}
+        \[ 5=2 \;\xrightarrow{\;\times 0\;}\; 0=0 \]
+        \textbf{Now it is true.} And you cannot divide by $0$ to get back.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{}
+    The LCD is an \emph{expression}, and at each excluded value it \emph{is} zero. So the cleared
+    equation can gain answers the original never had --- and those answers can only be the excluded
+    values. \\[3pt]
+    \centering\textbf{An extraneous solution is never a random number. It is always on your Step 1
+    list.}
+  \end{block}
+\end{frame}
+
+% WORKED A
+\begin{frame}[t, plain]
+  \forestheader{Worked Example A: $\dfrac{6}{x}-\dfrac{2}{x-1}=1$}
+  \sectionlabel[goldacc]{Nothing gets thrown away}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Restrictions: $x\neq0$, $x\neq1$. \; LCD $=x(x-1)$.
+        \item Clear: $6(x-1)-2x=x(x-1)$.
+        \item $6x-6-2x=x^2-x \Rightarrow x^2-5x+6=0$.
+        \item $(x-2)(x-3)=0$, so candidates $2$ and $3$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Step 4 --- check}
+        Neither candidate is on $\{0,1\}$. \\[4pt]
+        $x=2$: \; $3-2=1$ \;\checkmark \\[2pt]
+        $x=3$: \; $2-1=1$ \;\checkmark \\[4pt]
+        \centering Solution set $\{2,3\}$.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  {\footnotesize Notice the term on the right. It has no denominator, and the LCD still multiplies it.
+  Forgetting that is the most common wrong answer of the day.}
+\end{frame}
+
+% WORKED B
+\begin{frame}[t, plain]
+  \forestheader{Worked Example B: one survives, one does not}
+  \sectionlabel{$\dfrac{x}{x+1}+\dfrac{2}{x-1}=\dfrac{2}{x^2-1}$}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $x^2-1=(x-1)(x+1)$, so $x\neq1,-1$.
+        \item Clear: $x(x-1)+2(x+1)=2$.
+        \item $x^2+x=0 \Rightarrow x(x+1)=0$.
+        \item Candidates: $0$ and $-1$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Step 4}
+        $-1$ is on the list $\Rightarrow$ \textbf{extraneous}. \\[3pt]
+        $x=0$: \; $0+(-2)=-2$ \;\checkmark \\[3pt]
+        \centering Solution set $\{0\}$.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  {\footnotesize You did not have to substitute $-1$ to reject it. Step 4 is reading two short lists and
+  looking for overlap.}
+\end{frame}
+
+% THE GRAPH
+\begin{frame}[t, plain]
+  \forestheader{Now see it --- and 5.5 does the work}
+  \sectionlabel[goldacc]{Graphical check}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-6}{7}{-4}{6}
+        \draw[navy, dashed, thick] (1,-4)--(1,6);
+        \draw[navy, dashed, thick] (-6,1)--(7,1);
+        \node[navy, font=\tiny, above right] at (1,5.2) {$x=1$};
+        \begin{scope} \clip (-6,-4) rectangle (7,6);
+          \draw[very thick, forest, domain=-6:0.8, samples=110, smooth] plot (\x,{1+1/((\x)-1)});
+          \draw[very thick, forest, domain=1.25:7, samples=110, smooth] plot (\x,{1+1/((\x)-1)});
+        \end{scope}
+        \draw[forest, very thick, fill=white] (-1,0.5) circle (4.4pt);
+        \fill[charcoal] (0,0) circle (3.4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \[ \frac{x(x+1)}{(x-1)(x+1)}=\frac{x}{x-1},\; x\neq-1 \]
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Cancelled factor $\Rightarrow$ \textbf{hole} at $\left(-1,\frac12\right)$.
+        \item Surviving factor $\Rightarrow$ wall at $x=1$.
+        \item Numerator zero at $x=0$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering\textbf{True solutions are $x$-intercepts. Extraneous candidates are holes.}
+    Yesterday's cancel test, sorting today's answers.
+  \end{block}
+\end{frame}
+
+% CROSS-MULTIPLY AND NO SOLUTION
+\begin{frame}[t, plain]
+  \forestheader{Two more things}
+  \sectionlabel{Shortcut, and an answer people refuse to write}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Cross-multiplying}
+        \[ \frac{2}{x-1}=\frac{x}{x+2} \]
+        Only for a \emph{proportion}: one fraction $=$ one fraction. \\[3pt]
+        $2(x+2)=x(x-1) \Rightarrow x=4$ or $x=-1$. Neither excluded. \\[3pt]
+        It is not a new rule --- it is Step 2, pre-cancelled.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{``No solution'' is an answer}
+        \[ \frac{1}{x-2}+\frac{1}{x+2}=\frac{4}{x^2-4} \]
+        Clears to $2x=4$, so the only candidate is $x=2$ --- which is excluded. \\[3pt]
+        Every candidate extraneous $\Rightarrow$ \textbf{no solution}. Write it down and move on.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Today in one line --- and where it goes next}
+  \sectionlabel[goldacc]{Close}
+  \begin{block}{}
+    \centering\textbf{Clearing the denominators solves a different equation --- the check is what
+    brings you back.}
+  \end{block}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Errors that cost the most}
+        \begin{itemize}\setlength{\itemsep}{2pt}
+          \item No restriction list, so no way to check.
+          \item Multiplying the fractions but not the whole side.
+          \item Cross-multiplying with three terms.
+          \item Rejecting an answer for being negative.
+          \item Refusing to write ``no solution.''
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Next: Lesson 5.7}
+        Direct and inverse variation --- the rational parent $y=\frac kx$ as a model. Rejecting answers
+        comes back, but for a new reason: not because the algebra forbids them, because the
+        \emph{situation} does.
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}

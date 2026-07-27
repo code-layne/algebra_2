@@ -6,10 +6,11 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26); **Lessons 5.0–5.5 are authored & building** (5.5 on 2026-07-27) —
-> 5.6–5.7 are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not
+> scaffolded** (2026-07-26); **Lessons 5.0–5.6 are authored & building** (5.6 on 2026-07-27) —
+> 5.7 is still a skeleton and the unit tests are unauthored. Units 6–8 are planned here and not
 > yet scaffolded.
-> **Next action: author Unit 5 Lesson 5.6 (solving rational equations & extraneous solutions).**
+> **Next action: author Unit 5 Lesson 5.7 (direct, inverse & joint variation) — the last lesson of the
+> unit — then the Unit 5 tests.**
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -41,7 +42,7 @@
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.5 done) |
+| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.6 done) |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
@@ -864,8 +865,58 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > item (hole $x=1$, VA $x=-2$, HA $y=1$; the three distractors ignore the degree comparison, flip every
 > sign, and cancel the wrong factor). `make -C unit05/lesson05 all` → EXIT 0 (student 15pp, full 33pp);
 > `make -C unit05 all` → EXIT 0.
-> **Next action: Lesson 5.6** --- solving rational equations & extraneous solutions (A2.EI.4a/b/c/d);
-> the payoff loop, where 5.1's excluded values come back as answers to throw away.
+> **Lesson 5.6 authored & builds (2026-07-27):** all components + keys + 11-slide deck done; the unit's
+> payoff loop, where the excluded values students have listed since 5.1 come back as answers to throw
+> away. Everything hangs on one sentence --- **clearing the denominators solves a \emph{different}
+> equation; the check is what brings you back** --- and the case for it is made before any procedure is
+> taught. The Warm-Up seeds the justification with no algebra in it at all: start from the false
+> statement $5=2$, multiply both sides by $3$ (still false, reversible by dividing), then by $\mathbf0$
+> and get $0=0$ (true, and *not* reversible). The Hook then makes checking non-negotiable with two
+> equations whose algebra is **literally identical** --- $\frac{x^2}{x-2}=\frac{4}{x-2}$ and
+> $\frac{x^2}{x-3}=\frac{4}{x-3}$, both clearing to $x^2=4$ with candidates $\pm2$ --- but which have
+> one solution and two; the row to dwell on is (I) at $x=2$, where both sides read $\frac40$ and the
+> honest answer to ``true or false?'' is **neither**. Taught as **four steps in a fixed order**: factor
+> every denominator and write the restriction list *at the top of the page*; multiply **every term** by
+> the LCD (both *sides*, not just the fractions --- the term with no denominator is the one students
+> drop); solve the linear or quadratic left behind; check each candidate against the list. Two framings
+> carry the lesson: the LCD is an *expression*, so at each excluded value it **is** zero and the step is
+> irreversible exactly there (**A2.EI.4d**); and therefore **an extraneous solution is never a random
+> number --- it is always on the Step 1 list**, which turns Step 4 into comparing two short lists rather
+> than re-substituting. A dedicated opening section separates **5.3 from 5.6** (*you may clear
+> denominators only when there is an equals sign*) --- the predictable carry-over error after a
+> combining lesson. Anchors: $\frac{6}{x}-\frac{2}{x-1}=1$ (candidates $2,3$, nothing thrown away) and
+> $\frac{x}{x+1}+\frac{2}{x-1}=\frac{2}{x^2-1}$ ($-1$ extraneous, $0$ survives). **5.5 pays its debt in
+> the graphical check (A2.EI.4b/c):** combining the second anchor onto one side gives
+> $\frac{x(x+1)}{(x-1)(x+1)}=\frac{x}{x-1}$ --- one cancelling factor, one surviving --- so yesterday's
+> cancel test sorts today's candidates, and the rule is boxed: **true solutions are $x$-intercepts;
+> extraneous candidates are holes (or walls)**. Also covered: cross-multiplying presented as Step 2
+> pre-cancelled and valid *only* for a proportion; and ``no solution'' as a complete answer, with its
+> **two distinct causes** distinguished (every candidate extraneous, vs.\ the cleared equation itself
+> never true --- homework 2(d) vs.\ 2(f) puts both on one page). The lesson's sharpest conceptual item is
+> homework 4(d): $-1$ is excluded and was *never* a candidate, so **every extraneous solution is an
+> excluded value, but not every excluded value is extraneous**. Modeling (**A2.EI.4a/c**): activity
+> Tier E's work-rate problem ($\frac1x+\frac1{x+3}=\frac12$, candidates $3$ and $-2$, *neither
+> extraneous* --- $-2$ is rejected by **context**) and the homework's river current
+> ($\frac{6}{4-c}+\frac{6}{4+c}=4$, $c=\pm2$, with $c\neq4$ a 5.5 vertical asymptote meaning the paddler
+> exactly matches the river). Activity Tier E part 3 answers the question sharp students ask --- clearing
+> can *add* solutions but dividing by a variable expression *loses* them --- on
+> $\frac{x^2}{x-1}=\frac{x}{x-1}$, where the careless division discards the only real solution ($0$) and
+> keeps the extraneous one ($1$). Flagged traps: no restriction list on the page; restrictions off the
+> *simplified* form; only the fractions multiplied by the LCD (homework 5's error analysis is built on
+> it, and Tier A's error analysis has **no error in it at all** --- every line correct, Step 4 skipped);
+> cross-multiplying a three-term equation; a negative or fractional answer rejected on reflex; and
+> ``extraneous'' used as a synonym for ``rejected.'' Standards: **2023 VA SOL A2.EI.4b** (new),
+> **A2.EI.4c**, **A2.EI.4d**, **A2.EI.4a**; applying A2.F.2h + the 5.5 cancel test and A2.EO.1a/b
+> (5.1--5.3); builds on A2.EO.3b (4.2). Prerequisite for **6.4** (radical equations reuse the same
+> extraneous logic). Warm-up & exit ticket each fit one page (blank+key); notes 4pp (key 5pp), activity
+> 3pp (key 4pp), homework 3pp, cover 1pp --- the extra key page in notes/activity is the teacher note
+> only, so every answer page paginates identically to its blank; exit ticket includes an SOL-style MC
+> item on $\frac{x}{x+3}+\frac{3}{x-3}=\frac{18}{x^2-9}$, which clears to $x^2=9$ so *both* candidates
+> are excluded (answer: no solution; the distractors keep one candidate or both --- a student choosing
+> $\{3,-3\}$ did the algebra perfectly and skipped Step 4).
+> `make -C unit05/lesson06 all` → EXIT 0 (student 13pp, full 31pp); `make -C unit05 all` → EXIT 0.
+> **Next action: Lesson 5.7** --- direct, inverse & joint variation (A2.F.1d, + A2.F.2f); the unit's
+> modeling capstone, and the last lesson of Unit 5 before the unit tests.
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**
