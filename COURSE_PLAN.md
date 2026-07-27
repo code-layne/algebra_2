@@ -15,7 +15,14 @@
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
 > dirs, component skeletons, and the unit `tests/` + `test_keys/` are laid down; **no Unit 7 content
-> authored yet**. Unit 8 is planned here and not yet scaffolded.
+> authored yet**.
+> **Unit 8 (Logarithmic Functions): map confirmed 2026-07-27, not yet scaffolded** — locked at
+> **7 lessons (8.0–8.6)**. A standards audit found log properties and log equation-solving have
+> **no 2023 VA SOL home**; they are kept as full lessons anyway (8.3, 8.4), labelled **beyond-SOL /
+> precalculus prep** and barred from SOL-style test items — matching how Unit 7 already treats 7.3.
+> Three Unit 7 ↔ Unit 8 collisions were found and **resolved**: `A2.ST.2` is Unit 7's alone (7.5),
+> since the standard never names logarithmic; $\ln$ lands in 8.5; and no-standard content is now
+> handled the same way in both units. Full rationale in the Unit 8 status block in §4.
 > **Next action: author Lesson 6.3 (multiplying & dividing radicals; rationalizing with
 > conjugates)**, then proceed 6.4 → 6.7 in order, then the Unit 6 tests, then begin Unit 7 at
 > Lesson 7.0.
@@ -53,7 +60,7 @@
 | 5 | Rational Functions | Rational | 8 | **Complete** |
 | 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.2 done) |
 | 7 | Exponential Functions | Exponential | 6 | **Scaffolded** (map confirmed) |
-| 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
+| 8 | Logarithmic Functions | Logarithmic | 7 | Planned (**map confirmed**, not scaffolded) |
 
 Units 2–8 each open with **Lesson X.0: Characteristics of ____ Functions**.
 **Out of scope for this course:** conic sections, sequences & series, probability
@@ -1220,13 +1227,88 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
   bites far harder on an exponential than it did on 2.5's line)* — A2.ST.2d/e/g + A2.F.2b
 
 ### Unit 8 — Logarithmic Functions
-- **8.0** Characteristics of logarithmic functions *(introduces: vertical
-  asymptote revisited, inverse-of-exponential domain/range swap, domain restriction)*
-- **8.1** Introduction to logarithms (log ⇄ exponential form)
-- **8.2** Graphing logarithmic functions & transformations
-- **8.3** Properties of logarithms
-- **8.4** Solving exponential & logarithmic equations
-- **8.5** Modeling with logarithms (natural log, applications)
+> **Status (map confirmed 2026-07-27, not yet scaffolded):** locked at **7 lessons (8.0–8.6)**.
+> The map moved twice in one day. It was first cut from a 6-lesson sketch to 5 after a standards
+> audit of `spec/algebra2-vdoe-sol.pdf` found **logarithms in only two 2023 VA SOL standards** —
+> `A2.F.1` (a/b/c/e) and `A2.F.2` (a–h, i/j) — with **no `A2.EO` standard for log properties and
+> no `A2.EI` standard for logarithmic equations** (the same gap Unit 7 documents for exponentials).
+> It then grew to 7 when the Unit 7 map landed and three collisions were resolved (below).
+>
+> **Collisions with Unit 7, resolved 2026-07-27.** Both unit maps were confirmed the same day in
+> separate sessions; neither saw the other. Rulings:
+> 1. **`A2.ST.2` belonged to Unit 7, not Unit 8.** The standard names the curve of best fit as
+>    "linear, quadratic, exponential, or a combination" — **logarithmic is not in the list**, so
+>    Unit 8 never had a real claim. **7.5 keeps the regression capstone outright**; the Unit 8
+>    modeling lesson was rewritten as **8.5 (natural logs & log scales)** with an `A2.F.2f` anchor.
+> 2. **Natural log now has a definite home: 8.5.** Unit 7's ruling assigned $\ln$ to "8.5", which
+>    the interim 5-lesson map had deleted; the lesson is restored under that number. $e$ itself
+>    stays in **7.4** as the limit of ever-more-frequent compounding, per the Unit 7 ruling.
+> 3. **No-standard content is now handled symmetrically.** Unit 7 keeps **7.3** (common-base
+>    solving) as a full lesson despite having no SOL standard; Unit 8's **8.4** (solving log &
+>    exponential equations) is likewise **restored to a full lesson**, reversing the earlier Tier E
+>    demotion. This keeps the promise **7.4** makes — it ends on $2000=1000(1.05)^t$, "no common
+>    base … which is Unit 8's opening move" — for every student rather than only in enrichment.
+>    **Consequence:** **8.3 (properties of logarithms) had to be promoted out of Tier E as well**,
+>    since condensing is a prerequisite for solving $\log x + \log(x-3) = 1$. Both lessons are
+>    labelled **beyond-SOL / precalculus prep** and must stay off the SOL-style test items.
+>
+> **Authoring constraint for 8.2:** `A2.F.1b` limits **graph → equation** for exponential and
+> logarithmic functions to a **single transformation**. `A2.F.1c` (equation → graph) carries no such
+> cap, so multi-step transformations are fair game in that direction only. *(Unit 7 recorded the
+> identical constraint independently — it binds both units.)*
+> **Authoring note:** apply the §7 vocab-box paragraph-break fix in every notes/notes_key.
+
+- **8.0** Characteristics of logarithmic functions *(the unit's only ● spine row — **inverse of
+  exponential, domain/range swap**. Built by reflecting Unit 7's $y=b^x$ over $y=x$: domain $x>0$
+  and **why** (the exponential's range becomes the log's domain), range all reals, **vertical
+  asymptote $x=0$** — the exponential's horizontal asymptote reflected, revisiting the Unit 5
+  asymptote row in a new place — $x$-intercept $(1,0)$ and no $y$-intercept, increasing $b>1$ vs.
+  decreasing $0<b<1$, end behavior that grows without bound but slowly, no extrema. Inherits 7.0's
+  "no zeros, ever" contrast: the exponential has no $x$-intercept and the log has no $y$-intercept
+  — the same fact reflected. $\log_b x$ arrives as the **name of that curve**, not yet as an
+  operation — the 6.0-before-6.1 move that let students read $\sqrt{x}$ before meeting rational
+  exponents)* — A2.F.2a/b/c/d/e/f/g/h + A2.F.1a/e + A2.F.2i/j
+- **8.1** Introduction to logarithms *(log ⇄ exponential form as one statement read two ways — "a
+  logarithm **is** an exponent"; evaluating by asking "$b$ to what power?"; common log; the four
+  identities $\log_b 1=0$, $\log_b b=1$, $\log_b b^x=x$, $b^{\log_b x}=x$; and **change of base**
+  for calculator work. Domain re-derived algebraically — the log of a negative or zero is
+  undefined, which is 8.0's $x>0$ restriction arriving a second time by a different road)* —
+  supports A2.F.2a/f; the notational foundation the rest of the unit requires
+- **8.2** Graphing logarithmic functions & transformations *($y=a\log_b(x-h)+k$, with the
+  **vertical asymptote as the transformation anchor** — the structural role the endpoint played in
+  6.4 and the vertex in 3.1. Mirrors 7.2 exactly: there, $f(x)+k$ was the only transformation that
+  moved the *horizontal* asymptote and therefore the range; here $f(x+k)$ is the only one that moves
+  the *vertical* asymptote, and therefore the domain. Respect the single-transformation cap on
+  graph → equation)* — A2.F.1a/b/c/e + A2.F.2a/h
+- **8.3** Properties of logarithms *(product, quotient, and power; expanding & condensing. Derived
+  rather than announced — each property is an exponent law in disguise ($b^m\cdot b^n=b^{m+n}$
+  *is* the product rule), the same "insist the old rules survive" move named aloud in 6.1.
+  Signature trap: $\log(x+y)\ne\log x+\log y$, killed numerically. Change of base returns as a
+  consequence rather than a memorized formula)* — **beyond-SOL / precalculus prep, no standard**;
+  kept because 8.4 cannot run without condensing *(same reasoning that kept 7.3)*
+- **8.4** Solving logarithmic & exponential equations *(the lesson **7.4's cliffhanger promises**:
+  $2000=1000(1.05)^t$ finally falls. One-to-one property; take a log of both sides; condense-then-
+  convert for log equations; and **extraneous solutions** — a candidate making any argument $\le 0$
+  is rejected, the *third* appearance of that structure after 5.6 (excluded values) and 6.5
+  (squaring destroys sign), and the first time the rejection comes from a **domain restriction**
+  rather than an algebraic artifact. Verified graphically as an intersection)* — **beyond-SOL /
+  precalculus prep, no standard**; kept for the same reason 7.3 was
+- **8.5** Natural logarithms & logarithmic scales *($\ln$ as $\log_e$, the inverse of the $e^x$
+  introduced in 7.4 — so the 8.0 reflection argument runs once more on a specific base; solving
+  continuous-growth models $A=Pe^{rt}$ for time with $\ln$, half-life and doubling time finished
+  properly. Then **log scales as the answer to "why did anyone invent this"**: pH, Richter, and
+  decibels compress multiplicative ranges into additive ones, so "two points on the Richter scale"
+  means a factor of 100, not a difference of 2 — read off pre-drawn scale diagrams and tables)* —
+  A2.F.2f *(A2.ST.2 deliberately **not** claimed here — it is 7.5's, see collision 1)*
+- **8.6** Comparing function families *(**course capstone**: identify the family from a graph,
+  table, or equation across all eight families met since Unit 1; compare domain/range, asymptotes,
+  intercepts, symmetry, and end behavior side by side; and settle the "which eventually wins"
+  question — linear vs. quadratic vs. exponential vs. logarithmic growth rates off pre-drawn graphs
+  and tables, with the exponential-beats-polynomial and log-loses-to-everything results made
+  concrete. Extends 7.0's constant-difference / second-difference / constant-ratio fingerprint test
+  into a full identification toolkit. Claims the `A2.F.1e` / `A2.F.2b` compare-and-contrast clauses,
+  which every unit since 2.0 has applied in passing but no lesson has ever made the teaching
+  focus)* — A2.F.1e + A2.F.2b
 
 ---
 
@@ -1282,8 +1364,32 @@ Per Unit 1's pattern:
   2026-07-27. Consistent with the probability & statistics exclusion above; A2.ST.2 remains in
   (Lesson 2.5 for lines, Lesson 7.5 for exponentials). Closed — do not re-raise.
 
+- **Unit 8 lesson map → 7 lessons (8.0–8.6)** *(confirmed 2026-07-27)*. Full rationale in the
+  Unit 8 status block in §4.
+- **Properties of logarithms (8.3) and solving logarithmic/exponential equations (8.4) are kept as
+  full lessons despite having no SOL standard** — the same ruling 7.3 got, applied symmetrically.
+  The standards audit found logarithms only in `A2.F.1` and `A2.F.2`: there is **no `A2.EO`
+  standard for log properties and no `A2.EI` standard for logarithmic equations**. Both are
+  labelled **beyond-SOL / precalculus prep** and must stay **off the SOL-style test items**, but
+  they are taught and assessed on the unit test. Keeping 8.4 is what makes 7.4's "no common base"
+  cliffhanger honest for every student; keeping 8.3 is forced by 8.4, which cannot run without
+  condensing. *(Supersedes the interim ruling that demoted both to Tier E.)*
+- **`A2.ST.2` belongs to Unit 7 alone (7.5), not Unit 8** — the standard names the curve of best
+  fit as "linear, quadratic, exponential, or a combination"; **logarithmic is not in the list**.
+  Unit 8's modeling lesson (8.5) therefore claims `A2.F.2f` and covers $\ln$ and log scales
+  instead of regression.
+- **Natural log → Unit 8 (8.5)**, consistent with the 7.4 ruling above; $e$ itself stays in 7.4.
+- **`A2.F.1e` / `A2.F.2b` (compare & contrast the families) → Unit 8 (8.6)** as an explicit lesson,
+  the course capstone. Every unit applied these clauses in passing, but no lesson ever made them
+  the teaching focus.
+
 **Still open:**
-- **Pacing:** days per lesson / target unit lengths, and how they fit the calendar.
+- **Pacing:** days per lesson / target unit lengths, and how they fit the calendar. **Unit 8 at 7
+  lessons is the longest of the back half** — if the calendar is tight, the compression candidate
+  is merging 8.1 into 8.3 (intro + properties as one dense lesson), *not* cutting 8.6.
+- **`A2.EI.2c` (quadratic inequalities in one variable) is uncovered** — cited by no lesson, and
+  Unit 3 is marked complete. Unlike `A2.ST.1` and `A2.ST.3`, which are *knowingly* out of scope per
+  the decisions above, this clause was never declared out. Needs a home. See §8.
 
 ---
 
@@ -1333,6 +1439,11 @@ retrofit below, where the pagination of Units 2–4 can be re-verified in one pa
 Non-blocking issues intentionally postponed so unit authoring keeps moving. **Do not start these until
 Units 6–8 and the final exams are complete.**
 
+- [ ] **Give `A2.EI.2c` (quadratic inequalities in one variable, over $\mathbb{R}$, solved
+      algebraically) a home.** Cited by no lesson in the course; Unit 3 was marked complete without
+      it. Options: a Unit 3 addendum lesson (3.8), a Tier E strand retrofitted into 3.2/3.5, or a
+      finals-review lesson. Decide before the final exam is authored — unlike `A2.ST.1`/`A2.ST.3`,
+      this clause was never declared out of scope.
 - [ ] **Retrofit the vocab-box paragraph-break fix into Units 2, 3, and 4** (§7 above). Affects
       `unit0{2,3,4}/lesson*/notes/main.tex` and `notes_key/main.tex`. All three units currently show
       defect 1, and every Lesson 0 key that defines `\vocabans` (Units 2, 3, 4) shows defect 2.
