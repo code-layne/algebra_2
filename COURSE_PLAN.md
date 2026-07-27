@@ -10,9 +10,14 @@
 > **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
 > locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
 > `test_keys/` are laid down. **Lessons 6.0 and 6.1 are authored & building (2026-07-27)**; lessons
-> 6.2–6.7 and the unit tests are still skeletons. Units 7–8 are planned here and not yet scaffolded.
+> 6.2–6.7 and the unit tests are still skeletons.
+> **Unit 7 (Exponential Functions): map confirmed & unit scaffolded 2026-07-27**, locked at
+> **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
+> standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
+> dirs, component skeletons, and the unit `tests/` + `test_keys/` are laid down; **no Unit 7 content
+> authored yet**. Unit 8 is planned here and not yet scaffolded.
 > **Next action: author Lesson 6.2 (simplifying radicals; adding & subtracting)**, then proceed
-> 6.3 → 6.7 in order, then the Unit 6 tests.
+> 6.3 → 6.7 in order, then the Unit 6 tests, then begin Unit 7 at Lesson 7.0.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -46,7 +51,7 @@
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
 | 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0 done) |
-| 7 | Exponential Functions | Exponential | ~5 | Planned |
+| 7 | Exponential Functions | Exponential | 6 | **Scaffolded** (map confirmed) |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
 
 Units 2–8 each open with **Lesson X.0: Characteristics of ____ Functions**.
@@ -1123,13 +1128,58 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
   in 6.0 — verified with 6.6's composition, $f(g(x))=g(f(x))=x$)* — A2.F.2i/j
 
 ### Unit 7 — Exponential Functions
-- **7.0** Characteristics of exponential functions *(introduces: horizontal
-  asymptote as range boundary, growth vs. decay, constant multiplicative
-  rate/constant ratio)*
-- **7.1** Exponential growth & decay
-- **7.2** Graphing exponential functions & transformations
-- **7.3** Modeling: compound interest, half-life, population
-- **7.4** Solving exponential equations (common base)
+> **Status (map confirmed & scaffolded 2026-07-27):** lesson map locked at **6 lessons (7.0–7.5)**,
+> grounded against `spec/algebra2-vdoe-sol.pdf`. Two changes from the original ~5-lesson sketch:
+> the order was set to characteristics → model form → graphing → solving → modeling → capstone
+> (matching the Unit 5/6 shape), and a **new 7.5 (exponential regression & choosing a model)** was
+> added because **A2.ST.2's exponential branch is otherwise unaddressed** — Lesson 2.5 covered that
+> standard for lines only. All 6 lesson dirs `unit07/lesson00`–`lesson05` scaffolded with skeleton
+> `main.tex` for lesson plan + cover, warmup, notes, activity, exit_ticket, homework, slides, and
+> each `*_key`. Unit assessments scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`,
+> `sample_test{,_key}/`. Skeletons compile (`make -C unit07/lesson00 all` and
+> `make -C unit07/lesson04 all` → EXIT 0). **No content authored yet.**
+> **Standards coverage — note the shape:** there is **no `A2.EI` standard for exponential
+> equations** (the EI strand runs absolute value → quadratic → quadratic systems → rational →
+> radical → polynomial and stops), and **no `A2.EO` standard either**. Unit 7 therefore rests
+> entirely on **A2.F.1a/b/c/e** (exponential parent + transformations + compare/contrast),
+> **A2.F.2a–h** (characteristics; **h** names exponential explicitly for horizontal asymptotes),
+> and **A2.ST.2d/e/g** (exponential curve of best fit). This is a genuinely lighter standards load
+> than Units 5–6, which is why the unit is 6 lessons rather than 8.
+> Lesson 7.0 introduces the one new spine row: ● growth vs. decay / constant ratio, and revisits
+> ○ horizontal asymptote (● in U5) now as a **range boundary**.
+> **Authoring note:** apply the §7 vocab-box paragraph-break fix in every notes/notes_key.
+
+- **7.0** Characteristics of exponential functions *(introduces: growth vs. decay and the constant
+  multiplicative rate / **constant ratio**; revisits the horizontal asymptote as a **range
+  boundary**. Growth $y=2^x$ and decay $y=(\frac12)^x$ taught side by side, as Unit 6 did for the
+  two radical parents. The escalation reverses: U6 took away half the **domain**, exponential hands
+  the domain back and takes half the **range**. First family in the course with **no zeros, ever**;
+  no extrema, no turning points; end behavior with two different *kinds* of end — one arm to
+  $\infty$, the other flattening onto the asymptote, the mirror of 6.0's "the graph stops". Family
+  fingerprint from a table: constant difference (2.0) / constant second difference (3.0) /
+  **constant ratio**)* — A2.F.2a/b/c/d/f/g/h + A2.F.1a/e
+- **7.1** Exponential growth & decay — building $y=ab^x$ *($a$ = initial value, $b$ = growth factor;
+  why $b>0$ and $b\ne1$; the percent↔factor translation ("up 8%" $\Rightarrow b=1.08$; "loses 15%"
+  $\Rightarrow b=0.85$) with its two signature errors ($b=0.08$, and $b=1.15$ for a decrease);
+  writing the equation from a table, from two points, from a story)* — A2.F.2f, feeding A2.ST.2d/e
+- **7.2** Graphing exponential functions & transformations *($f(x)+k$ is the only transformation
+  that **moves the asymptote** — and therefore the range; $kf(x)$ moves the $y$-intercept but not
+  the HA; $f(x+k)$ and $f(kx)$; reflections carry real content — $f(-x)$ turns growth into decay
+  because $2^{-x}=(\frac12)^x$, a 6.1 exponent identity rather than a new rule)* —
+  A2.F.1b/c/e + A2.F.2a/h
+- **7.3** Solving exponential equations with a common base *(one-to-one property: rewrite both sides
+  over one base, equate exponents; runs on Unit 6's machinery — $8^x=4$, $3^x=\frac1{27}$,
+  $\sqrt[3]{2}=2^{1/3}$; verified graphically as an intersection)* — **supporting skill, no SOL
+  standard**; kept because Unit 8 needs it and it sets up 7.4's wall
+- **7.4** Modeling: compound interest, half-life, and $e$ *($A=P(1+\frac rn)^{nt}$ compounded
+  annually → quarterly → daily, the limit that **produces $e$**, then $A=Pe^{rt}$; half-life
+  $A_0(\frac12)^{t/h}$, doubling time, depreciation. Ends on a deliberate **wall**:
+  $2000=1000(1.05)^t$ has no common base — readable off a graph, not yet solvable — which is Unit
+  8's opening move, the same device used at 4.2→4.3)* — A2.F.2f/a/h
+- **7.5** Exponential regression & choosing a model *(unit capstone: linear vs. quadratic vs.
+  exponential from real data — 7.0's fingerprint test applied to a scatterplot — model from
+  technology, interpret $a$ and $b$ in context, predict, and an "extrapolation breaks" beat that
+  bites far harder on an exponential than it did on 2.5's line)* — A2.ST.2d/e/g + A2.F.2b
 
 ### Unit 8 — Logarithmic Functions
 - **8.0** Characteristics of logarithmic functions *(introduces: vertical
@@ -1179,6 +1229,20 @@ Per Unit 1's pattern:
   $\sqrt[3]{x}$ as an afterthought.
 - **Inverse functions & composition → Unit 6 (6.6–6.7)**, not a standalone unit — A2.F.2i/j/k have
   no other home, and the square-root/quadratic pair is the natural motivating example.
+- **Unit 7 lesson map → 6 lessons (7.0–7.5)**, not the original ~5 — a regression/model-choice
+  capstone (7.5) was added to cover **A2.ST.2's exponential branch**, which Lesson 2.5 handled for
+  lines only. The unit stays shorter than 5–6 because exponentials have **no A2.EO and no A2.EI
+  standard** at all.
+- **Common-base exponential solving (7.3) is kept despite having no SOL standard** — Unit 8's
+  logarithmic solving depends on it, and it is what makes 7.4's "no common base exists" wall honest.
+- **Exponential transformations given a *graph* are capped at a single transformation** per the
+  explicit clause in A2.F.1b. Multi-transformation work is equation→graph and Tier E only *(same
+  treatment slant asymptotes got in 5.5 and two-radical equations in 6.5)*.
+- **$e$ does not get its own lesson** — it is introduced inside 7.4 as the limit of ever-more-
+  frequent compounding, since the standards never name it separately. Natural log stays in 8.5.
+- **A2.ST.1 (normal distribution, $z$-scores, Empirical Rule) → out of scope**, confirmed
+  2026-07-27. Consistent with the probability & statistics exclusion above; A2.ST.2 remains in
+  (Lesson 2.5 for lines, Lesson 7.5 for exponentials). Closed — do not re-raise.
 
 **Still open:**
 - **Pacing:** days per lesson / target unit lengths, and how they fit the calendar.
