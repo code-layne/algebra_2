@@ -3,17 +3,109 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.4}{Exit Ticket --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.06in}
 
-% TODO: copy the blank Exit Ticket verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Exit Ticket --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+No notes. Find the asymptotes before you do anything else.
+
+\vspace{0.04in}
+
+\begin{enumerate}[leftmargin=1.8em, itemsep=7pt]
+  \item \textbf{Read the equation.} \; $g(x)=\dfrac{-3}{x+2}-1$
+
+        \vspace{3pt}
+        $a=$ \ans{$-3$} \quad $h=$ \ans{$-2$} \quad $k=$ \ans{$-1$} \quad
+        Center: $($\ans{$-2$}$,\,$\ans{$-1$}$)$
+
+        \vspace{3pt}
+        Vertical asymptote: \ans{$x=-2$} \quad Horizontal asymptote: \ans{$y=-1$} \quad
+        $y$-intercept: \ans{$(0,-\frac52)$}
+
+        \vspace{3pt}
+        Domain: \ans{all reals, $x\neq-2$} \quad Range: \ans{all reals, $y\neq-1$}
+
+        \vspace{3pt}
+        Does this graph ever \emph{cross} its horizontal asymptote? Answer and explain in one
+        sentence. \ansline{No --- that would need $\frac{-3}{x+2}=0$, and a fraction is zero only when its numerator is.}
+
+  \item \textbf{Write the equation.} The asymptotes are dashed and two points are marked.
+        \begin{center}
+        \begin{minipage}{0.42\linewidth}\centering
+        \begin{tikzpicture}[scale=0.30]
+          \lgrid{-4}{8}{-5}{5}
+          \draw[navy, dashed, semithick] (2,-5)--(2,5);
+          \draw[navy, dashed, semithick] (-4,-1)--(8,-1);
+          \node[navy, font=\scriptsize, above right] at (2,4.2) {$x=2$};
+          \node[navy, font=\scriptsize, below left] at (-0.6,-1) {$y=-1$};
+          \begin{scope}
+            \clip (-4,-5) rectangle (8,5);
+            \draw[very thick, forest, domain=-4:1.6, samples=110, smooth] plot (\x,{3/((\x)-2)-1});
+            \draw[very thick, forest, domain=2.4:8, samples=110, smooth] plot (\x,{3/((\x)-2)-1});
+          \end{scope}
+          \fill[charcoal] (3,2) circle (3.4pt) node[above right, font=\scriptsize]{$(3,2)$};
+          \fill[charcoal] (5,0) circle (3.4pt) node[above right, font=\scriptsize]{$(5,0)$};
+        \end{tikzpicture}
+        \end{minipage}%
+        \begin{minipage}{0.55\linewidth}
+        \small
+        $h=$ \ans{$2$} \quad $k=$ \ans{$-1$}
+
+        \vspace{3pt}
+        Substitute $(3,2)$ and solve for $a$:
+
+        \ans{$2=\dfrac{a}{3-2}-1 \;\Rightarrow\; a-1=2 \;\Rightarrow\; a=3$}
+
+        $a=$ \ans{$3$} \quad Equation: \ans{$y=\frac{3}{x-2}-1$}
+
+        \vspace{3pt}
+        Check on $(5,0)$: \ans{$\frac33-1=0$, matches}
+        \end{minipage}
+        \end{center}
+
+  \item \textbf{SOL-style multiple choice.} Which function has a vertical asymptote at $x=-4$ and a
+        horizontal asymptote at $y=3$?
+        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
+          \item $y=\dfrac{2}{x-4}+3$
+          \item $y=\dfrac{2}{x+4}+3$
+                \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+          \item $y=\dfrac{2}{x+3}+4$
+          \item $y=\dfrac{3}{x+4}+2$
+        \end{enumerate}
+        \vspace{2pt}
+        {\small $x+4=0$ gives the wall at $x=-4$, and the $+3$ outside is the horizontal asymptote
+        $y=3$. \textbf{A} shifts the wall the wrong way ($x-4$ puts it at $+4$). \textbf{C} swaps the
+        two jobs, putting the wall at $-3$ and the floor at $4$. \textbf{D} reads the horizontal
+        asymptote off the \emph{numerator} --- but the $3$ on top is $a$, the stretch, and it moves no
+        asymptote at all.}
+\end{enumerate}
+
+\begin{teachernote}
+Graded for completion --- ``mistakes happen, blanks don't.'' Sort into four piles: \textbf{(1) got it};
+\textbf{(2) sign of $h$} --- wrote $x=2$ in item 1, or chose \textbf{A}; \textbf{(3) the two jobs
+crossed} --- range given as ``all reals,'' option \textbf{C}, or $a$ and $k$ swapped; \textbf{(4)
+equation-from-a-graph} --- item 2 blank or $a$ wrong.
+
+\vspace{3pt}
+Pile 2 is the fastest fix. Pile 3 is the one to re-teach before tomorrow: 5.5 takes the asymptotes off
+the face of the equation entirely, and a student who cannot say which letter moves which asymptote has
+nothing to hold onto there.
+
+\vspace{3pt}
+Item 1's last question is the interpretation half, not a bonus --- and its answer (\emph{never}) is
+stronger than 5.0's (\emph{may}), because a transformed parent has a constant numerator. Anyone who
+wrote ``asymptotes can never be crossed'' is right for the wrong reason: correct it out loud, since
+5.0's $\frac{2x}{x^2+1}$ crosses $y=0$ at the origin. Item 2 is the A2.F.1b item and the likeliest SOL
+question here; a student who got $h$ and $k$ but stalled on $a$ needs a minute, not a reteach.
+\end{teachernote}
 
 \end{document}

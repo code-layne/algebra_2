@@ -3,17 +3,194 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.4}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Every graphing question starts the same way: \textbf{find the two asymptotes.} $x=h$ comes from the
+denominator (and does the opposite of what it says), $y=k$ comes from the number added outside.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{Asymptotes at a glance.} Give both asymptotes and describe the move from $y=\frac1x$.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $y=\dfrac{1}{x-7}$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
+      \item $y=\dfrac{1}{x}+9$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
+      \item $y=-\dfrac{1}{x}$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
+      \item $y=\dfrac{5}{x+1}$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
+      \item $y=\dfrac{1}{x-2}+6$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
+      \item $y=\dfrac{-4}{x+3}-2$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
+    \end{enumerate}
+
+  \item \textbf{The full read.} For each function give the center, both asymptotes, the domain, the
+        range, and both intercepts. One of the three has no $x$-intercept --- say which and why.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=8pt]
+      \item $g(x)=\dfrac{4}{x-1}-2$ \\[3pt]
+            Center $(\blank{0.7cm},\,\blank{0.7cm})$ \; VA \blank{1.2cm} \; HA \blank{1.2cm} \;
+            Domain \blank{1.8cm} \; Range \blank{1.8cm} \\[3pt]
+            $y$-int \blank{1.4cm} \quad $x$-int \blank{1.4cm}
+      \item $p(x)=\dfrac{-6}{x+3}+3$ \\[3pt]
+            Center $(\blank{0.7cm},\,\blank{0.7cm})$ \; VA \blank{1.2cm} \; HA \blank{1.2cm} \;
+            Domain \blank{1.8cm} \; Range \blank{1.8cm} \\[3pt]
+            $y$-int \blank{1.4cm} \quad $x$-int \blank{1.4cm}
+      \item $q(x)=\dfrac{1}{x+5}$ \\[3pt]
+            Center $(\blank{0.7cm},\,\blank{0.7cm})$ \; VA \blank{1.2cm} \; HA \blank{1.2cm} \;
+            Domain \blank{1.8cm} \; Range \blank{1.8cm} \\[3pt]
+            $y$-int \blank{1.4cm} \quad $x$-int \blank{1.4cm}
+    \end{enumerate}
+    \vspace{2pt}
+    Which one has no $x$-intercept, and what is it about its equation that guarantees that?
+    \blank{6.0cm}
+
+  \item \textbf{Write the equation from the graph.} Asymptotes are dashed; two points are marked on
+        each.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.33]
+      \begin{scope}
+        \lgrid{-2}{8}{-2}{6}
+        \draw[navy, dashed, semithick] (3,-2)--(3,6);
+        \draw[navy, dashed, semithick] (-2,2)--(8,2);
+        \node[navy, font=\scriptsize, above right] at (3,5.2) {$x=3$};
+        \node[navy, font=\scriptsize, below right] at (6.4,2) {$y=2$};
+        \begin{scope} \clip (-2,-2) rectangle (8,6);
+          \draw[very thick, forest, domain=-2:2.75, samples=110, smooth] plot (\x,{-1/((\x)-3)+2});
+          \draw[very thick, forest, domain=3.25:8, samples=110, smooth] plot (\x,{-1/((\x)-3)+2});
+        \end{scope}
+        \fill[charcoal] (2,3) circle (3.2pt) node[above left, font=\scriptsize]{$(2,3)$};
+        \fill[charcoal] (4,1) circle (3.2pt) node[below right, font=\scriptsize]{$(4,1)$};
+        \node[charcoal, font=\small\bfseries] at (3,-4.2){(a)};
+      \end{scope}
+      \begin{scope}[xshift=15cm]
+        \lgrid{-7}{5}{-5}{5}
+        \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
+        \node[navy, font=\scriptsize, above right] at (-2,4.2) {$x=-2$};
+        \begin{scope} \clip (-7,-5) rectangle (5,5);
+          \draw[very thick, forest, domain=-7:-2.4, samples=110, smooth] plot (\x,{-2/((\x)+2)});
+          \draw[very thick, forest, domain=-1.6:5, samples=110, smooth] plot (\x,{-2/((\x)+2)});
+        \end{scope}
+        \fill[charcoal] (0,-1) circle (3.2pt) node[below right, font=\scriptsize]{$(0,-1)$};
+        \fill[charcoal] (-3,2) circle (3.2pt) node[above left, font=\scriptsize]{$(-3,2)$};
+        \node[charcoal, font=\small\bfseries] at (-1,-7.2){(b)};
+      \end{scope}
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-4pt}
+    (a) $h=$ \blank{1.0cm} \; $k=$ \blank{1.0cm} \; $a=$ \blank{1.0cm} \; Equation: \blank{2.8cm}
+    \\[4pt]
+    (b) The horizontal asymptote is not drawn --- read it off the graph: \blank{1.2cm}. \\[3pt]
+    \phantom{(b)} $h=$ \blank{1.0cm} \; $k=$ \blank{1.0cm} \; $a=$ \blank{1.0cm} \; Equation:
+    \blank{2.8cm}
+
+  \item \textbf{Unmask the disguise.} Each of these \emph{is} a transformed $\frac1x$. Rewrite the
+        numerator using the denominator, then read off both asymptotes.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=7pt]
+      \item $y=\dfrac{x+5}{x+2}=\;$\blank{2.6cm} \quad VA \blank{1.2cm} \quad HA \blank{1.2cm}
+      \item $y=\dfrac{4x-3}{x-1}=\;$\blank{2.6cm} \quad VA \blank{1.2cm} \quad HA \blank{1.2cm}
+      \item $y=\dfrac{2x}{x+4}=\;$\blank{2.6cm} \quad VA \blank{1.2cm} \quad HA \blank{1.2cm}
+    \end{enumerate}
+    \vspace{2pt}
+    Check all three horizontal asymptotes a second way, using Lesson 5.0's degree comparison. Do they
+    agree? \blank{1.2cm} \; Why must they? \blank{4.6cm}
+
+  \item \textbf{Compare and contrast.} Two tables of values:
+    \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{minipage}{0.44\linewidth}\centering
+    \textbf{Table I} \\[2pt]
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & $1$ & $2$ & $4$ & $10$ \\ \hline
+    $y$ & $12$ & $6$ & $3$ & $1.2$ \\ \hline
+    \end{tabular}
+    \end{minipage}%
+    \begin{minipage}{0.44\linewidth}\centering
+    \textbf{Table II} \\[2pt]
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+    $y$ & $3$ & $6$ & $9$ & $12$ \\ \hline
+    \end{tabular}
+    \end{minipage}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item In Table II, the \emph{differences} between consecutive $y$-values are constant, so it
+            comes from a \blank{1.8cm} function: $y=$ \blank{1.4cm}.
+      \item In Table I, the differences are not constant --- but every \emph{product} $x\cdot y$ is
+            \blank{1.0cm}. So $y=$ \blank{1.4cm}, which is the rational parent stretched by
+            \blank{1.0cm}.
+      \item Give two features the graph of Table I's function has that Table II's does not.
+            \writeline
+    \end{enumerate}
+
+  \item \textbf{Free throws.} A player has made $12$ of her first $20$ attempts. She then makes the
+        next $x$ shots in a row, so her season percentage is
+        \[ P(x)=\frac{12+x}{20+x}. \]
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $P(0)=$ \blank{1.2cm} \quad $P(20)=$ \blank{1.2cm} \quad $P(80)=$ \blank{1.2cm}
+      \item Rewrite $P$ in the form $\dfrac{a}{x-h}+k$ by writing $12+x$ as $(x+20)-\blank{0.8cm}$:
+            \\[3pt]
+            $P(x)=$ \blank{3.0cm}, \quad so $a=$ \blank{1.0cm}, \; $h=$ \blank{1.0cm}, \;
+            $k=$ \blank{1.0cm}.
+      \item The horizontal asymptote is \blank{1.2cm}. What does it mean about this player?
+            \writeline
+      \item How many in a row does she need to reach $90\%$? \blank{1.4cm} \; To reach $95\%$?
+            \blank{1.4cm} \; To reach $100\%$? \blank{2.4cm}
+      \item The algebra puts a vertical asymptote at $x=$ \blank{1.2cm}. Which values of $x$ actually
+            make sense here? \blank{2.6cm}
+    \end{enumerate}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Part 1 --- Three students, one function.} Each described $y=\dfrac{-2}{x-5}+4$. Mark each
+description right or wrong, and name the error.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Student} & \textbf{Description} & \textbf{Right or wrong --- and why?} \\
+\hline
+Jonah & VA $x=-5$, HA $y=4$ & \blank{5.4cm} \\
+Kira  & VA $x=5$, HA $y=-2$ & \blank{5.4cm} \\
+Liam  & VA $x=5$, HA $y=4$; right $5$, up $4$, stretched by $2$ & \blank{5.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{2pt}
+Liam's is the dangerous one: both asymptotes are right, and he still missed something the graph shows
+plainly. What did he leave out, and where do the branches actually sit? \writelines{2}
+
+\vspace{4pt}
+\textbf{Part 2 --- Design one.} Write the equation of a rational function whose vertical asymptote is
+$x=4$, whose horizontal asymptote is $y=-3$, and whose $y$-intercept is $(0,-2)$.
+\begin{center}
+$y=$ \blank{4.0cm}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
+  \item Write your answer as a single fraction (Lesson 5.3, run forwards): \blank{3.0cm}
+  \item Confirm the horizontal asymptote from that single fraction with the degree comparison.
+  \item Explain why the $y$-intercept was enough to pin down $a$, but a point \emph{on} the line $y=-3$
+        never could have been.
+\end{enumerate}
+\writelines{2}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 5.5: Graphing Rational Functions.} Today every function was a
+transformed $\frac1x$: one factor in the denominator, one wall, asymptotes readable off the face of the
+equation. Tomorrow the denominator factors into \emph{two} pieces and the picture must be assembled
+instead of read --- sort each restriction into a hole or a wall (5.0), find the horizontal asymptote by
+degree comparison, compute the intercepts, and use a sign chart. Everything today still applies; it
+just stops being visible.
+\end{spiralbox}
 
 \end{document}

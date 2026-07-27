@@ -3,17 +3,405 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.4}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item recognize the \textbf{rational parent function} $f(x)=\dfrac{1}{x}$ and read its asymptotes, domain, range, and end behavior off its graph;
+  \item graph $g(x)=\dfrac{a}{x-h}+k$ from its equation by moving the parent's \emph{asymptotes} first (A2.F.1c);
+  \item \textbf{write the equation} of a rational function from its graph, reading $h$ and $k$ off the asymptotes and $a$ off one point (A2.F.1b);
+  \item compare the rational parent with the parents I already know, and recognize a linear-over-linear function as a \emph{disguised} $\dfrac1x$ (A2.F.1a/e).
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Rational parent function $f(x)=\frac1x$}
+\termblanklong{Hyperbola / branch}
+\termblanklong{General form $g(x)=\frac{a}{x-h}+k$}
+\termblanklong{Center of the hyperbola $(h,k)$}
+\end{vocabbox}
+
+\begin{hookbox}
+Below are two tables. The left one is the parent $y=\dfrac1x$. The right one is $y=\dfrac{1}{x-3}$.
+Fill in the missing outputs.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{minipage}{0.46\linewidth}\centering
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\frac1x$ \\ \hline
+$-2$   & $-\frac12$ \\ \hline
+$-1$   & \blank{1.0cm} \\ \hline
+$0$    & \blank{1.0cm} \\ \hline
+$1$    & \blank{1.0cm} \\ \hline
+$2$    & $\frac12$ \\ \hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{0.46\linewidth}\centering
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\frac{1}{x-3}$ \\ \hline
+$1$ & $-\frac12$ \\ \hline
+$2$ & \blank{1.0cm} \\ \hline
+$3$ & \blank{1.0cm} \\ \hline
+$4$ & \blank{1.0cm} \\ \hline
+$5$ & $\frac12$ \\ \hline
+\end{tabular}
+\end{minipage}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Compare the two \emph{output} columns. What do you notice? \writeline
+  \item The parent blows up at $x=\blank{0.8cm}$. The new function blows up at $x=\blank{0.8cm}$.
+        Both tables settle toward $y=\blank{0.8cm}$ far from the blow-up.
+\end{itemize}
+The outputs never changed --- they just arrived \emph{three inputs later}. That is the sentence for the
+whole period: \textbf{shifting a rational function carries its asymptotes with it.} The wall moved. The
+floor did not.
+\end{hookbox}
+
+\begin{notesbox}{1. The Parent Function $f(x)=\dfrac{1}{x}$}
+This is the fifth parent function of the course, and the first one that is not in one piece. Its graph is
+called a \textbf{hyperbola}, and each of its two halves is a \textbf{branch}.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-5}{5}{-5}{5}
+  \begin{scope}
+    \clip (-5,-5) rectangle (5,5);
+    \draw[very thick, forest, domain=-5:-0.2, samples=120, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest, domain=0.2:5,  samples=120, smooth] plot (\x,{1/(\x)});
+  \end{scope}
+  \fill[charcoal] (1,1) circle (3pt) node[above right, font=\scriptsize]{$(1,1)$};
+  \fill[charcoal] (-1,-1) circle (3pt) node[below left, font=\scriptsize]{$(-1,-1)$};
+\end{tikzpicture}
+\end{center}
+\textbf{Read the hyperbola.}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Domain: \blank{3.4cm} \quad Range: \blank{3.4cm}
+  \item Vertical asymptote: \blank{1.4cm} \quad Horizontal asymptote: \blank{1.4cm}
+  \item $x$-intercept: \blank{1.6cm} \quad $y$-intercept: \blank{1.6cm}
+  \item End behavior: as $x\to\infty$, $y\to\blank{0.8cm}$; \; as $x\to-\infty$, $y\to\blank{0.8cm}$.
+\end{itemize}
+
+\vspace{3pt}
+Two of those answers are new, and both are worth a box:
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{This parent has no intercepts at all.} A fraction is zero only when its \emph{numerator} is
+zero, and $1$ is never zero --- so the graph never touches the $x$-axis. And $x=0$ is not in the
+domain, so it never touches the $y$-axis either.\vspace{2pt}}}
+\end{center}
+
+\vspace{3pt}
+The graph falls from left to right on \emph{each} branch, so $\frac1x$ is decreasing on
+\blank{2.0cm} and on \blank{2.0cm} --- written as two intervals, never as one, because
+\blank{4.0cm}. (Lesson 5.0: an interval may never span a wall.)
+
+\vspace{3pt}
+Finally, note the symmetry you named in Unit 4: rotating this graph $180^\circ$ about the origin lands
+it back on itself, so $\frac1x$ has \blank{2.4cm} symmetry and is an \blank{1.2cm} function.
 \end{notesbox}
+
+\begin{notesbox}{2. The Two Shifts: Each One Moves an Asymptote}
+The same rule you have used since Unit 2 still holds --- \emph{outside is vertical and honest, inside is
+horizontal and backwards.} What is new is \emph{what} gets moved.
+
+\vspace{4pt}
+\textbf{(a) Horizontal shift: $f(x+k)$ moves the vertical asymptote.} \; $y=\dfrac{1}{x-3}$
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-4}{7}{-4}{4}
+  \draw[navy, dashed, semithick] (3,-4)--(3,4);
+  \node[navy, font=\scriptsize, above] at (3,4) {$x=3$};
+  \begin{scope}
+    \clip (-4,-4) rectangle (7,4);
+    \draw[very thick, forest!35, dashed, domain=-4:-0.25, samples=100, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest!35, dashed, domain=0.25:7,   samples=100, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest, domain=-4:2.75, samples=110, smooth] plot (\x,{1/((\x)-3)});
+    \draw[very thick, forest, domain=3.25:7,  samples=110, smooth] plot (\x,{1/((\x)-3)});
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+The dashed curve is the parent. The solid curve is the parent moved \blank{1.4cm} $3$ units. Its
+vertical asymptote is now \blank{1.4cm}; its horizontal asymptote is still \blank{1.4cm}.
+Domain: \blank{3.0cm} \; Range: \blank{3.0cm}
+
+\vspace{5pt}
+\textbf{(b) Vertical shift: $f(x)+k$ moves the horizontal asymptote.} \; $y=\dfrac{1}{x}+2$
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-5}{5}{-3}{6}
+  \draw[navy, dashed, semithick] (-5,2)--(5,2);
+  \node[navy, font=\scriptsize, below right] at (3.4,2) {$y=2$};
+  \begin{scope}
+    \clip (-5,-3) rectangle (5,6);
+    \draw[very thick, forest!35, dashed, domain=-5:-0.33, samples=100, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest!35, dashed, domain=0.33:5,   samples=100, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest, domain=-5:-0.2, samples=110, smooth] plot (\x,{1/(\x)+2});
+    \draw[very thick, forest, domain=0.25:5,  samples=110, smooth] plot (\x,{1/(\x)+2});
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+The solid curve is the parent moved \blank{1.4cm} $2$ units. Its horizontal asymptote is now
+\blank{1.4cm}; its vertical asymptote is still \blank{1.4cm}.
+Domain: \blank{3.0cm} \; Range: \blank{3.0cm}
+
+\vspace{4pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{The asymptotes are the parent's axes, and they travel with it.} Move the graph right $3$ and up
+$2$, and the wall goes to $x=3$ and the floor goes to $y=2$. Find those two lines first and the rest of
+the graph has nowhere else to be.\vspace{2pt}}}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{3. The Stretch and the Flip: $kf(x)$ --- and a Surprise About $f(kx)$}
+Multiplying the \emph{outputs} by $a$ pulls the branches away from the asymptotes (or pushes them in),
+and a negative $a$ flips the graph across the horizontal asymptote. \textbf{Neither asymptote moves.}
+\begin{center}
+\begin{tikzpicture}[scale=0.34]
+  \begin{scope}
+    \lgrid{-5}{5}{-5}{5}
+    \begin{scope} \clip (-5,-5) rectangle (5,5);
+      \draw[very thick, forest, domain=-5:-0.2, samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest, domain=0.2:5,  samples=100, smooth] plot (\x,{1/(\x)});
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-6.6){$y=\frac1x$ \; (parent)};
+  \end{scope}
+  \begin{scope}[xshift=13cm]
+    \lgrid{-5}{5}{-5}{5}
+    \begin{scope} \clip (-5,-5) rectangle (5,5);
+      \draw[very thick, forest!35, dashed, domain=-5:-0.2, samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest!35, dashed, domain=0.2:5,  samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest, domain=-5:-0.6, samples=100, smooth] plot (\x,{3/(\x)});
+      \draw[very thick, forest, domain=0.6:5,  samples=100, smooth] plot (\x,{3/(\x)});
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-6.6){$y=\frac3x$};
+  \end{scope}
+  \begin{scope}[xshift=26cm]
+    \lgrid{-5}{5}{-5}{5}
+    \begin{scope} \clip (-5,-5) rectangle (5,5);
+      \draw[very thick, forest!35, dashed, domain=-5:-0.2, samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest!35, dashed, domain=0.2:5,  samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest, domain=-5:-0.2, samples=100, smooth] plot (\x,{-1/(\x)});
+      \draw[very thick, forest, domain=0.2:5,  samples=100, smooth] plot (\x,{-1/(\x)});
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-6.6){$y=-\frac1x$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $|a|>1$ pushes the branches \blank{2.6cm} the asymptotes; \; $0<|a|<1$ pulls them
+        \blank{2.6cm}.
+  \item $a>0$ puts the branches in the \blank{1.2cm} and \blank{1.2cm} regions (upper right, lower
+        left of the center); $a<0$ puts them in the other two.
+  \item Both asymptotes of $y=\frac ax$ are still \blank{1.4cm} and \blank{1.4cm}, no matter what
+        $a$ is.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Now the surprise.} The fourth transformation, $f(kx)$, multiplies the \emph{inputs}. On every
+parent so far it did something a vertical stretch could not. Watch what it does here:
+\[
+  f(x)=\frac1x \quad\Longrightarrow\quad f(4x)=\frac{1}{4x}
+  =\frac{\rule{0.9cm}{0.4pt}}{x} \;.
+\]
+So a horizontal compression of $\frac1x$ by a factor of $4$ is the \emph{same graph} as a vertical
+\blank{2.4cm} by a factor of \blank{1.0cm}. For this parent --- and only for this parent ---
+$f(kx)$ and $kf(x)$ produce the \blank{2.4cm} family of curves. That is why one letter, $a$, is
+enough to describe every stretch of a hyperbola.
+\end{notesbox}
+
+\begin{notesbox}{4. All Together: $g(x)=\dfrac{a}{x-h}+k$}
+Every transformation of the parent can be written in this \textbf{general form}. Read it in this order,
+and the graph builds itself:
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Piece} & \textbf{What it controls} & \textbf{Why} \\
+\hline
+$h$ & vertical asymptote $x=\blank{1.0cm}$ & the denominator is zero there \\
+$k$ & horizontal asymptote $y=\blank{1.0cm}$ & far out, $\frac{a}{x-h}$ dies to $0$ and only $k$ is left \\
+$(h,k)$ & the \textbf{center} of the hyperbola & where the two asymptotes cross \\
+$a$ & how far the branches sit from the center, and which pair of regions they occupy & it multiplies every output \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\textbf{The anchor.} \; $g(x)=\dfrac{2}{x-3}+1$
+\begin{center}
+\begin{minipage}{0.50\linewidth}\centering
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-3}{8}{-4}{6}
+  \draw[navy, dashed, semithick] (3,-4)--(3,6);
+  \draw[navy, dashed, semithick] (-3,1)--(8,1);
+  \node[navy, font=\scriptsize, above] at (3,6) {$x=3$};
+  \node[navy, font=\scriptsize, below left] at (-0.6,1) {$y=1$};
+  \begin{scope}
+    \clip (-3,-4) rectangle (8,6);
+    \draw[very thick, forest, domain=-3:2.6, samples=110, smooth] plot (\x,{2/((\x)-3)+1});
+    \draw[very thick, forest, domain=3.4:8, samples=110, smooth] plot (\x,{2/((\x)-3)+1});
+  \end{scope}
+  \fill[charcoal] (1,0) circle (3pt) node[below left, font=\scriptsize]{$(1,0)$};
+  \fill[charcoal] (5,2) circle (3pt) node[above right, font=\scriptsize]{$(5,2)$};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.48\linewidth}
+\small
+$a=\blank{0.8cm}$, \quad $h=\blank{0.8cm}$, \quad $k=\blank{0.8cm}$
+
+\vspace{3pt}
+Vertical asymptote: \blank{1.4cm}
+
+Horizontal asymptote: \blank{1.4cm}
+
+Center: $(\blank{0.6cm},\,\blank{0.6cm})$
+
+\vspace{3pt}
+Domain: \blank{2.6cm}
+
+Range: \blank{2.6cm}
+
+\vspace{3pt}
+In words: the parent moved \blank{1.2cm} $3$, \blank{1.2cm} $1$, and was stretched by
+\blank{0.8cm}.
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+\textbf{The intercepts are computed, not guessed.}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $y$-intercept: set $x=0$. \; $g(0)=\dfrac{2}{0-3}+1=\blank{1.6cm}$
+  \item $x$-intercept: set $g(x)=0$ and solve. \; $\dfrac{2}{x-3}=\blank{1.0cm}$, \; so
+        $x-3=\blank{1.2cm}$ and $x=\blank{1.0cm}$.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{One question worth asking now:} does this graph ever cross its horizontal asymptote? Set
+$g(x)=1$: that would need $\dfrac{2}{x-3}=\blank{1.0cm}$, which is impossible because
+\blank{4.4cm}. So a \emph{transformed parent} never crosses its horizontal asymptote --- even though
+Lesson 5.0 showed that other rational functions sometimes do.
+\end{notesbox}
+
+\begin{notesbox}{5. Writing the Equation from a Graph (A2.F.1b)}
+Run Section 4 backwards. \textbf{Asymptotes give you $h$ and $k$ for free; then one point gives you $a$.}
+\begin{center}
+\begin{minipage}{0.50\linewidth}\centering
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-6}{5}{-6}{3}
+  \draw[navy, dashed, semithick] (-1,-6)--(-1,3);
+  \draw[navy, dashed, semithick] (-6,-2)--(5,-2);
+  \node[navy, font=\scriptsize, above right] at (-1,2.2) {$x=-1$};
+  \node[navy, font=\scriptsize, above left] at (4.6,-2) {$y=-2$};
+  \begin{scope}
+    \clip (-6,-6) rectangle (5,3);
+    \draw[very thick, forest, domain=-6:-1.35, samples=110, smooth] plot (\x,{2/((\x)+1)-2});
+    \draw[very thick, forest, domain=-0.6:5,  samples=110, smooth] plot (\x,{2/((\x)+1)-2});
+  \end{scope}
+  \fill[charcoal] (0,0) circle (3pt) node[above right, font=\scriptsize]{$(0,0)$};
+  \fill[charcoal] (1,-1) circle (3pt) node[above right, font=\scriptsize]{$(1,-1)$};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.48\linewidth}
+\small
+\textbf{Step 1.} Vertical asymptote $x=\blank{1.0cm}$, so $h=\blank{1.0cm}$.
+
+\vspace{3pt}
+\textbf{Step 2.} Horizontal asymptote $y=\blank{1.0cm}$, so $k=\blank{1.0cm}$.
+
+\vspace{3pt}
+\textbf{Step 3.} So far: $y=\dfrac{a}{x-(\rule{0.9cm}{0.4pt})}+(\rule{0.9cm}{0.4pt})$.
+
+\vspace{3pt}
+\textbf{Step 4.} Pick a point the curve clearly passes through --- say $(1,-1)$ --- and substitute:
+\[ -1=\frac{a}{1+1}-2 \]
+Solve: $a=\blank{1.0cm}$.
+
+\vspace{3pt}
+\textbf{Step 5.} Equation: \blank{3.0cm}
+\end{minipage}
+\end{center}
+\vspace{2pt}
+Check your equation on the \emph{other} marked point, $(0,0)$: \; $\dfrac{a}{0+1}-2=\blank{1.2cm}$.
+\; Does it match the graph? \blank{1.0cm}
+
+\vspace{3pt}
+\textbf{Watch the sign of $h$.} The asymptote is at $x=-1$, and the equation says $x-(-1)=x+1$. The
+number you \emph{see} in the denominator is the \blank{2.0cm} of the asymptote's location --- the same
+``inside is backwards'' rule from the Warm-Up.
+\end{notesbox}
+
+\begin{notesbox}{6. Compare, Contrast, and One Disguise (A2.F.1a/e)}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+ & $y=x^2$ & $y=|x|$ & $y=\frac1x$ \\
+\hline
+Domain & all reals & all reals & \blank{2.2cm} \\
+Range & $y\ge0$ & $y\ge0$ & \blank{2.2cm} \\
+Asymptotes & none & none & \blank{2.2cm} \\
+Intercepts & $(0,0)$ & $(0,0)$ & \blank{2.2cm} \\
+In how many pieces? & one & one & \blank{2.2cm} \\
+Symmetry & $y$-axis & $y$-axis & \blank{2.2cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{The disguise.} Not every rational function \emph{looks} like $\frac{a}{x-h}+k$. Here is one
+that is one anyway:
+\[
+  y=\frac{x-1}{x-3}
+  =\frac{(x-3)+\rule{0.8cm}{0.4pt}}{x-3}
+  =\frac{x-3}{x-3}+\frac{\rule{0.8cm}{0.4pt}}{x-3}
+  = \rule{2.4cm}{0.4pt}
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Which function from Section 4 is this? \blank{4.0cm}
+  \item Its vertical asymptote is \blank{1.4cm} and its horizontal asymptote is \blank{1.4cm} ---
+        and you can now get the second one two different ways: the degree comparison from Lesson 5.0,
+        or the \blank{1.0cm} in the general form. They agree, because the leftover $k$ \emph{is} what
+        the function settles down to.
+\end{itemize}
+\vspace{2pt}
+Whenever the top and the bottom are both \blank{1.6cm} (degree $1$), the function is a shifted,
+stretched $\frac1x$ --- and the trick to see it is to rewrite the numerator using the denominator.
+\end{notesbox}
+
+\begin{practicebox}
+For $g(x)=\dfrac{-4}{x+2}+3$, fill in each feature without graphing.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item $a=\blank{0.8cm}$, \; $h=\blank{0.8cm}$, \; $k=\blank{0.8cm}$; \quad center
+        $(\blank{0.7cm},\,\blank{0.7cm})$.
+  \item Vertical asymptote \blank{1.6cm}; \quad horizontal asymptote \blank{1.6cm}.
+  \item Domain \blank{3.0cm}; \quad range \blank{3.0cm}.
+  \item $y$-intercept: $g(0)=\blank{1.4cm}$. \quad $x$-intercept: solve $\dfrac{-4}{x+2}=-3$ to get
+        $x=\blank{1.4cm}$.
+  \item In words, describe how the parent moved and changed. \writeline
+\end{enumerate}
+\end{practicebox}
 
 \end{document}

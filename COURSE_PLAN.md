@@ -6,10 +6,10 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26); **Lessons 5.0–5.3 are authored & building** (2026-07-26) —
-> 5.4–5.7 are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not
+> scaffolded** (2026-07-26); **Lessons 5.0–5.4 are authored & building** (2026-07-26) —
+> 5.5–5.7 are still skeletons and the unit tests are unauthored. Units 6–8 are planned here and not
 > yet scaffolded.
-> **Next action: author Unit 5 Lesson 5.4 (the rational parent function $y=1/x$ & transformations).**
+> **Next action: author Unit 5 Lesson 5.5 (graphing rational functions from the equation).**
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -41,7 +41,7 @@
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.3 done) |
+| 5 | Rational Functions | Rational | 8 | **In progress** (5.0–5.4 done) |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
@@ -783,8 +783,48 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > on $\frac{1/x-1/5}{x-5}$ (distractors: the lost $-1$ from opposite binomials / the main bar's restriction
 > forgotten / never simplified, restrictions read off its own denominator).
 > `make -C unit05/lesson03 all` → EXIT 0 (student 14pp, full 30pp); `make -C unit05 all` → EXIT 0.
-> **Next action: Lesson 5.4** --- the rational parent function $y=1/x$ and transformations
-> (A2.F.1a/b/c/e).
+> **Lesson 5.4 authored & builds (2026-07-26):** all components + keys + 11-slide deck done; the lesson
+> where the unit's expressions go back on the grid. Everything hangs on one sentence --- **the asymptotes
+> are the parent's axes, and they travel with the graph** --- and it is discovered numerically before it is
+> named: the Hook puts two tables side by side, $y=\frac1x$ at $x=-2\ldots2$ and $y=\frac{1}{x-3}$ at
+> $x=1\ldots5$, whose \emph{output} columns come out identical ($-\frac12,-1,\text{undef.},1,\frac12$), so
+> the blow-up moved to $x=3$ while the settling-down value stayed at $y=0$. Introduces the **rational
+> parent** $f(x)=\frac1x$ --- the two-branch **hyperbola**, VA $x=0$, HA $y=0$, origin symmetry (4.0),
+> decreasing on *each* branch (5.0's union rule), and the fact no other parent in the course shares:
+> **no intercepts at all** (a fraction is zero only when its numerator is; $x=0$ is not in the domain).
+> Then **general form** $g(x)=\frac{a}{x-h}+k$ read in a fixed order --- $h\Rightarrow$ VA, $k\Rightarrow$ HA,
+> $(h,k)$ the **center** where they cross (*not* a point of the graph), $a$ the stretch/reflection that moves
+> **neither** asymptote. The four A2.F.1c transformations are all met, including the honest treatment of
+> $f(kx)$: on this parent it collapses into $kf(x)$, since $\frac{1}{4x}=\frac{1/4}{x}$ --- which is why one
+> letter $a$ suffices. Anchor $g(x)=\frac{2}{x-3}+1$ (VA $x=3$, HA $y=1$, center $(3,1)$, $y$-int $\frac13$,
+> $x$-int $(1,0)$), plus the sharpened asymptote claim: a *transformed parent* **never** crosses its HA
+> (that needs $\frac{2}{x-3}=0$) --- stronger than 5.0's "may cross," and worth contrasting with
+> $\frac{2x}{x^2+1}$. **A2.F.1b** gets its own section (asymptotes $\rightarrow h,k$; one point $\rightarrow a$;
+> **second point $\rightarrow$ check**) on $y=\frac{2}{x+1}-2$, and it is flagged as the likeliest SOL item on
+> the standard. Closes on **A2.F.1a/e**: a compare-and-contrast table against $y=x^2$/$y=|x|$, then **the
+> disguise** --- $\frac{x-1}{x-3}=\frac{(x-3)+2}{x-3}=1+\frac{2}{x-3}$, which *is* the anchor, and which lands
+> on exactly the Warm-Up's item-3 pattern from the opposite direction; this is also *why* 5.0's degree rule
+> holds for linear-over-linear, since the leftover constant **is** the ratio of the leading coefficients.
+> Flagged traps: the **sign of $h$** (the signature error, costlier here because it puts the wall on the
+> wrong side of the axis); the HA **read off the numerator** ($a$ and $k$ do different jobs); the two roles
+> **crossed**; "the parent goes through $(0,0)$"; **range** given as "all reals" (the HA is a *range*
+> exclusion); decreasing on $(-\infty,\infty)$; and $(h,k)$ plotted as a point of the graph. Modeling
+> (**A2.F.2f**): activity Tier E dilutes brine, $C(x)=\frac{20}{5+x}$ (HA $y=0$ --- the salt never leaves;
+> VA $x=-5$ is real algebra and meaningless chemistry; halving the concentration costs 5, then 10, then 20
+> more liters --- diminishing returns), and the homework models free throws, $P(x)=\frac{12+x}{20+x}
+> =1-\frac{8}{x+20}$ (HA $y=1$: $90\%$ costs 60 makes in a row, $95\%$ costs 140, $100\%$ takes forever).
+> Homework problem 5 is the **A2.F.1e** table item --- constant *differences* ($y=3x$) against constant
+> *products* ($xy=12$) --- which quietly seeds **5.7**'s inverse variation; do not name it there. All graphs
+> pre-drawn via `plot`+`\clip` with branches truncated at the window edge (no sketch-from-scratch); the
+> activity's three matching windows share $y\in[-5,5]$ so they sit on a common baseline. Standards:
+> **2023 VA SOL A2.F.1a/b/c/e** (new), applying **A2.F.2h**, **A2.F.2a**, **A2.F.2c**, **A2.F.2g**, and
+> **A2.F.2f**; builds on Units 2--3 transformations and 5.3's combining. Warm-up & exit ticket each fit one
+> page (blank+key); notes 5pp, activity 3pp, homework 3pp, cover 1pp --- **every key paginates identically to
+> its blank**; exit ticket includes an SOL-style MC item (VA $x=-4$, HA $y=3$; the three distractors flip the
+> sign of $h$, swap the two jobs, and read the HA off the numerator).
+> `make -C unit05/lesson04 all` → EXIT 0 (student 14pp, full 30pp); `make -C unit05 all` → EXIT 0.
+> **Next action: Lesson 5.5** --- graphing rational functions from the equation (A2.F.2a/g/h + A2.F.1c);
+> slant asymptote as Tier E only, never assessed.
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**
