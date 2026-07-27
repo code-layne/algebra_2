@@ -6,11 +6,13 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) closed out 2026-07-27**: all 8 lessons 5.0–5.7
-> authored & building, and the **unit tests are now authored, built, and published**. Units 6–8 are
+> authored & building, and the **unit tests are now authored, built, and published**.
+> **Unit 6 (Radical Functions): lesson map confirmed & unit scaffolded 2026-07-27** — locked at
+> **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` + `test_keys/`
+> are laid down and the skeletons compile. **No Unit 6 content is authored yet.** Units 7–8 are
 > planned here and not yet scaffolded.
-> **Next action: Unit 6 (Radical Functions)** — confirm the lesson map against
-> `spec/algebra2-vdoe-sol.pdf`, scaffold the unit (which also lays down its `tests/` + `test_keys/`),
-> then author 6.0 first.
+> **Next action: author Lesson 6.0 (Characteristics of Radical Functions)**, then proceed 6.1 → 6.7
+> in order, then the Unit 6 tests.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -43,7 +45,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | ~5 | Planned |
+| 6 | Radical Functions | Radical / power | 8 | **Scaffolded** |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
 
@@ -1003,14 +1005,50 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
   named in A2.F.1d — carry it as enrichment)* — A2.F.1d (+ A2.F.2f)
 
 ### Unit 6 — Radical Functions
-- **6.0** Characteristics of radical functions *(introduces: restricted domain
-  from radicand, endpoint behavior, inverse relationship to power functions)*
-- **6.1** nth roots & rational exponents
-- **6.2** Simplifying & operations with radical expressions
-- **6.3** Graphing radical functions & transformations
-- **6.4** Solving radical equations (incl. extraneous solutions)
-- **6.5** Inverse functions & composition
-  *(natural home — radicals are inverses of power functions)*
+> **Status (map confirmed & scaffolded 2026-07-27):** lesson map locked at **8 lessons (6.0–6.7)**,
+> grounded against `spec/algebra2-vdoe-sol.pdf`. Two changes from the original ~5-lesson sketch:
+> the single "simplifying & operations" lesson was **split into 6.2 (simplify + add/subtract) and
+> 6.3 (multiply/divide + rationalizing)** — A2.EO.2a/b carries the same load the parallel rational-
+> expression standard got across 5.1–5.3 — and the "inverse functions & composition" lesson was
+> **split into 6.6 (composition) and 6.7 (inverses)**, since A2.F.2i, j, and k are three separate
+> K&S and composition is the *prerequisite* that verifies an inverse. All 8 lesson dirs
+> `unit06/lesson00`–`lesson07` scaffolded with skeleton `main.tex` for lesson plan + cover, warmup,
+> notes, activity, exit_ticket, homework, slides, and each `*_key`. Unit assessments scaffolded:
+> `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`. Skeletons compile
+> (`make -C unit06/lesson01 all` → EXIT 0). **No content authored yet.**
+> Unit shape deliberately mirrors Unit 5: characteristics → algebra engine → graphing → solving →
+> capstone. Lesson 6.0 introduces the two new spine rows: ● restricted domain from the radicand,
+> ● inverse relationship of families.
+> **Standards coverage:** **A2.EO.2a/b/c** (simplify, operate on, and convert radical expressions ⇄
+> rational exponents), **A2.EI.5a/b/c** (solve/verify/justify radical equations), **A2.F.1a/b/c/e**
+> (square root *and* cube root parents + transformations), **A2.F.2a–g** (characteristics), and
+> **A2.F.2i/j/k** (inverses and composition — Unit 6 is their only home in the course; Unit 8
+> revisits the idea only as exponential ⇄ logarithmic).
+> **Authoring note:** apply the §7 vocab-box paragraph-break fix in every notes/notes_key.
+
+- **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
+  endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$
+  with domain $x\ge0$, an endpoint at the origin, an absolute min, one arm, vs. $y=\sqrt[3]{x}$
+  with all reals, origin symmetry, and no extrema)* — A2.F.2a/b/c/d/e/f/g + A2.F.1a/e
+- **6.1** $n$th roots & rational exponents *(index, even vs. odd index — why $\sqrt{-16}$ fails but
+  $\sqrt[3]{-8}$ does not, principal root, $a^{m/n}=\sqrt[n]{a^m}$, exponent properties on rational
+  exponents; the algebraic reason behind 6.0's domain split)* — A2.EO.2c
+- **6.2** Simplifying radicals; adding & subtracting *(product/quotient properties, algebraic
+  radicands, higher indices, then like-radical collection)* — A2.EO.2a/b
+- **6.3** Multiplying & dividing radicals; rationalizing *(distribute/FOIL over radicals;
+  **conjugates** for binomial denominators — callback to 3.4's complex conjugates)* — A2.EO.2b
+- **6.4** Graphing radical functions & transformations *($y=a\sqrt{x-h}+k$ and
+  $y=a\sqrt[3]{x-h}+k$; the endpoint is the transformation anchor; equation→graph and graph→equation
+  both directions)* — A2.F.1b/c/e + A2.F.2a
+- **6.5** Solving radical equations & extraneous solutions *(isolate → raise to the $n$th power →
+  **always check**; extraneous roots explained as squaring destroying sign information — the
+  structural echo of 5.6's excluded values; also $x^{m/n}=k$; verified graphically as an
+  intersection)* — A2.EI.5a/b/c
+- **6.6** Composition of functions *($(f\circ g)(x)$ numerically, graphically, and algebraically;
+  order matters; domain of a composition)* — A2.F.2k
+- **6.7** Inverse functions *(unit capstone: swap-and-solve, reflection over $y=x$, domain/range
+  swap, why $y=x^2$ needs a restricted domain to have a square-root inverse — closes the loop opened
+  in 6.0 — verified with 6.6's composition, $f(g(x))=g(f(x))=x$)* — A2.F.2i/j
 
 ### Unit 7 — Exponential Functions
 - **7.0** Characteristics of exponential functions *(introduces: horizontal
@@ -1060,6 +1098,15 @@ Per Unit 1's pattern:
   vertical and horizontal asymptotes only.
 - **Unit 5 lesson map → 8 lessons (5.0–5.7)**, splitting graphing into a transformations lesson
   (A2.F.1) and an analyze-and-graph lesson (A2.F.2).
+- **Unit 6 lesson map → 8 lessons (6.0–6.7)**, splitting radical operations into 6.2/6.3 and
+  composition (6.6) from inverses (6.7).
+- **Radical equations capped at one radical** per A2.EI.5a — two-radical equations are Tier E
+  enrichment only, never assessed *(same treatment slant asymptotes got in 5.5)*.
+- **Cube root gets equal billing with square root** throughout Unit 6 — A2.F.1 and A2.F.2 both name
+  the two families explicitly, so 6.0 and 6.4 teach them side by side rather than treating
+  $\sqrt[3]{x}$ as an afterthought.
+- **Inverse functions & composition → Unit 6 (6.6–6.7)**, not a standalone unit — A2.F.2i/j/k have
+  no other home, and the square-root/quadratic pair is the natural motivating example.
 
 **Still open:**
 - **Pacing:** days per lesson / target unit lengths, and how they fit the calendar.
