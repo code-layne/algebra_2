@@ -6,9 +6,12 @@
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) has its lesson map confirmed and all 8 lessons
-> scaffolded** (2026-07-26) — no components authored yet. Units 6–8 are planned here and not yet
-> scaffolded. **Next action: author Unit 5 Lesson 5.0.** Lesson lists below are proposals to
-> react to and edit — pacing (days per lesson) is intentionally left open pending the school calendar.
+> scaffolded** (2026-07-26); **Lesson 5.0 is authored & building** (2026-07-26) — 5.1–5.7 are still
+> skeletons and the unit tests are unauthored. Units 6–8 are planned here and not yet scaffolded.
+> **Next action: author Unit 5 Lesson 5.1 (Simplifying Rational Expressions & Domain Restrictions).**
+> Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
+> left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
+> vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
 
 ---
 
@@ -37,7 +40,7 @@
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 5 | Rational Functions | Rational | 8 | **Scaffolded** |
+| 5 | Rational Functions | Rational | 8 | **In progress** (5.0 done) |
 | 6 | Radical Functions | Radical / power | ~5 | Planned |
 | 7 | Exponential Functions | Exponential | ~5 | Planned |
 | 8 | Logarithmic Functions | Logarithmic | ~5 | Planned |
@@ -606,7 +609,51 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > All 8 lesson dirs `unit05/lesson00`–`lesson07` scaffolded with skeleton `main.tex` for lesson
 > plan + cover, warmup, notes, activity, exit_ticket, homework, slides, and each `*_key`. Unit
 > assessments scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`.
-> **No components authored yet — next action is Lesson 5.0.**
+> **Lesson 5.0 authored & builds (2026-07-26):** all components + keys + 10-slide deck done; the lesson
+> where the course loses \emph{continuity}. Everything hangs on one sentence --- **the denominator runs
+> the show** --- introduced from the Warm-Up, whose three items seed the three new ideas numerically
+> before any of them is named: solving *denominator* $=0$ (the 4.2 factoring toolkit, reused as the
+> domain-restriction engine); evaluating $\frac{1}{x-1}$ in **two** tables, one closing in on $x=1$
+> ($-10,-100,100,10$ --- blows up *and* flips sign) and one running out to $x=1001$
+> ($0.1,0.01,0.001$ --- settles down); and cancelling $\frac{x^2-4}{x-2}$ only to find the original
+> gives $\tfrac00$ at $x=2$. Introduces **A2.F.2h** --- the *equations* of **vertical** and
+> **horizontal** asymptotes --- plus **holes** and **domain restrictions**, organized around two
+> contrasts that carry the whole lesson: a vertical asymptote is a restriction on *inputs* (untouchable,
+> and the reason intervals must be written as **unions**) while a horizontal asymptote only describes
+> *outputs* at the far ends (so a graph **may** cross it --- checked on $\frac{2x}{x^2+1}$ at $x=0$);
+> and the **cancel test** decides whether a restriction is a wall or a single missing point. The
+> horizontal asymptote is taught as the **degree comparison** ($n<m\Rightarrow y=0$; $n=m\Rightarrow$
+> ratio of leading coefficients; $n>m\Rightarrow$ none), with the horizontal asymptote presented as
+> *being* the end-behavior statement (**A2.F.2g**). Anchor $f(x)=\frac{x+2}{x-1}$ (VA $x=1$, HA $y=1$,
+> zero $(-2,0)$, $y$-int $(0,-2)$, decreasing on *each* branch, range excludes $1$); hole examples
+> $\frac{x^2-4}{x-2}=x+2$ ($x\neq2$, hole $(2,4)$) and the both-at-once
+> $\frac{x-3}{x^2-9}=\frac{1}{x+3}$ ($x\neq3$: hole at $3$, wall at $-3$); supporting graphs
+> $\frac{4}{x^2-4}$ (two walls, no $x$-intercept --- constant numerator), $\frac{2}{x+2}$,
+> $\frac{x-2}{x+1}$, $\frac{x^2-1}{x-1}$ (a *line with a hole*), $\frac{x-4}{x-2}$,
+> $\frac{x^2-x-6}{x-3}$. Closes on the **A2.F.2b** compare-and-contrast table (polynomial: continuous,
+> domain all reals, no asymptotes, arms to $\pm\infty$ / rational: possibly discontinuous, restricted
+> domain, asymptotes, arms flattening, intervals as unions) --- what makes this a Lesson 0 rather than a
+> graphing lesson. Flagged traps: setting the *numerator* to zero for a VA; answering ``$1$'' instead of
+> ``$x=1$''; announcing a VA at *every* excluded value without the cancel test; reading restrictions off
+> the *simplified* form (the same error that becomes extraneous solutions in 5.6); one interval spanning
+> a wall; and both overgeneralizations about asymptotes (that a HA can never be crossed, and that every
+> rational function must have a VA). Modeling (**A2.F.2f**): activity Tier E interprets average cost
+> $A(n)=\frac{6n+250}{n}$ (HA $y=6$ is the true per-shirt cost, never reached because
+> $A(n)=6+\frac{250}{n}$; $n=0$ meaningless), and the homework extension reads a drug concentration
+> $C(t)=\frac{5t}{t^2+1}$ --- HA $y=0$ as the drug clearing, peak $2.5$ mg/L at $t=1$, the graph
+> *sitting on* its HA at $t=0$, and the deliberately unsettling case of a rational function with **no**
+> vertical asymptote at all (domain $t\ge0$ comes from context, not algebra). All graphs pre-drawn via
+> `plot`+`\clip` with branches truncated at the window edge and holes as open circles (no
+> sketch-from-scratch). Standards: **2023 VA SOL A2.F.2h** (new), **A2.F.2a** (incl. graphs with
+> discontinuities), **A2.F.2c**, **A2.F.2g**, **A2.F.2b**; builds on A2.EO.3b (4.2 factoring).
+> **Slant asymptotes deliberately absent** (not in the 2023 SOL; Tier E of 5.5 only, never assessed).
+> Warm-up & exit ticket each fit one page (blank+key); notes 5pp, activity 3pp, homework 3pp, cover 1pp
+> --- every key paginates identically to its blank; exit ticket includes an SOL-style MC item
+> ($h(x)=\frac{x-4}{x^2-16}$: hole at $x=4$, wall at $x=-4$; the three distractors ignore the
+> cancelling, swap the two factors, and read restrictions off the simplified form).
+> `make -C unit05/lesson00 all` → EXIT 0 (student 14pp, full 28pp).
+> **Next action: Lesson 5.1** --- the algebra behind 5.0's holes (factor-and-cancel, restrictions from
+> the *original* denominator).
 
 - **5.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**
@@ -701,3 +748,49 @@ Per Unit 1's pattern:
   (or `X.0` in titles) so content lessons keep 1-based numbers.
 - **Build:** `make -C unitXX all`; root `make all` / `make student` / `make full`.
 - **Authoring:** use the `lesson-planning` skill.
+
+### Vocab-box paragraph breaks — required from Unit 5 onward
+
+`\termblanklong` (blank) and the key-local `\vocabans` (key) both **open with `\noindent`, which is a
+no-op in the middle of a paragraph**, and `\ansline` ends with `\dotfill` but never ends the
+paragraph. Left alone, this produces two visible defects in the `vocabbox`:
+
+1. **In the blank:** the intro sentence ("Fill in each term as we build it together.") and the *first*
+   term label run together on one line.
+2. **In the key:** every term label after the first is pulled onto the end of the *previous* answer's
+   dotted line — badly garbled, worse than the blank.
+
+**Do this in every notes/notes_key from Unit 5 on** (Lesson 5.0 is the reference implementation):
+
+```latex
+% notes/main.tex — force a paragraph break before the first term
+Fill in each term as we build it together.
+\par\vspace{2pt}
+\termblanklong{First term}
+
+% notes_key/main.tex — define \vocabans with \par on BOTH ends
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+```
+
+Fixing it per-lesson (rather than patching `\termblanklong` in
+`shared/algebra2-article.sty`) is deliberate: a shared-package change would re-flow the notes of every
+already-verified unit at once. The shared fix is the right long-term answer, but it belongs with the
+retrofit below, where the pagination of Units 2–4 can be re-verified in one pass.
+
+---
+
+## 8. Deferred cleanup — do after Unit 8 and the finals are done
+
+Non-blocking issues intentionally postponed so unit authoring keeps moving. **Do not start these until
+Units 6–8 and the final exams are complete.**
+
+- [ ] **Retrofit the vocab-box paragraph-break fix into Units 2, 3, and 4** (§7 above). Affects
+      `unit0{2,3,4}/lesson*/notes/main.tex` and `notes_key/main.tex`. All three units currently show
+      defect 1, and every Lesson 0 key that defines `\vocabans` (Units 2, 3, 4) shows defect 2.
+      Preferred approach once nothing else is in flight: fix `\termblanklong` in
+      `shared/algebra2-article.sty` to emit a leading `\par`, add the trailing `\par` to `\ansline` in
+      `shared/algebra2-key.sty`, then drop the per-lesson workarounds. **Re-verify after:** every
+      warm-up and exit ticket still fits exactly one page (blank *and* key), and each key still
+      paginates identically to its blank —
+      `pdfinfo target/unitXX/lessonYY/<comp>/main.pdf | grep Pages`.

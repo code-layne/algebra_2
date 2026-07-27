@@ -3,17 +3,300 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.0}{Guided Notes --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Guided Notes verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Guided Notes --- Key}
-\ansline{TODO: answer}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item find a rational function's \emph{domain restrictions}, and tell a \emph{vertical asymptote} from a \emph{hole};
+  \item write the \emph{equations} of the vertical and horizontal asymptotes, from a graph or an equation, and use the horizontal asymptote to state \emph{end behavior};
+  \item read a rational graph's \emph{domain}, \emph{range}, \emph{intercepts}/\emph{zeros}, and \emph{increasing/decreasing} and \emph{positive/negative} intervals, and contrast it with a polynomial graph.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Rational function}{a quotient of two polynomials, $R(x)=\frac{P(x)}{Q(x)}$, where $Q(x)\neq 0$}
+\vocabans{Domain restriction (excluded value)}{an input that makes the \emph{denominator} zero, so it is thrown out of the domain (division by zero is undefined)}
+\vocabans{Vertical asymptote}{a vertical line $x=a$ the graph approaches but never touches or crosses; comes from a denominator factor that does \emph{not} cancel}
+\vocabans{Horizontal asymptote}{a horizontal line $y=b$ the graph approaches as $x\to\pm\infty$ --- the end-behavior statement; the graph \emph{may} cross it in the middle}
+\vocabans{Hole (removable discontinuity)}{a single missing point, produced by a restriction whose factor \emph{cancels}; its $y$-value comes from the simplified expression}
+\end{vocabbox}
+
+\begin{hookbox}
+Here is the graph of $f(x) = \dfrac{x+2}{x-1}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-4}{5}{-4}{5}
+  \draw[navy, dashed, semithick] (1,-4)--(1,5);
+  \draw[navy, dashed, semithick] (-4,1)--(5,1);
+  \node[navy, font=\scriptsize, above] at (1,5) {$x=1$};
+  \node[navy, font=\scriptsize, below] at (4.3,1) {$y=1$};
+  \begin{scope}
+    \clip (-4,-4) rectangle (5,5);
+    \draw[very thick, forest, domain=-4:0.4, samples=90, smooth]
+      plot (\x,{((\x)+2)/((\x)-1)});
+    \draw[very thick, forest, domain=1.75:5, samples=90, smooth]
+      plot (\x,{((\x)+2)/((\x)-1)});
+  \end{scope}
+  \fill[charcoal] (-2,0) circle (3pt) node[above left, font=\scriptsize]{$(-2,0)$};
+  \fill[charcoal] (0,-2) circle (3pt) node[right, font=\scriptsize]{$(0,-2)$};
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Every graph we have read this year --- lines, parabolas, polynomials --- was \emph{one unbroken curve}. This one comes in \textbf{two pieces}. What input is missing, and why? \ansline{$x=1$ --- it makes the denominator $x-1$ zero, so $f(1)$ does not exist.}
+  \item At both far ends the curve hugs the line $y=1$ but never lands on it. What is $f(x)$ doing as $x$ runs off to the left and to the right? \ansline{Getting closer and closer to $1$ from below on the left and from above on the right --- it approaches $1$ without reaching it.}
+\end{itemize}
+A rational function is a \emph{fraction} of polynomials, and the \textbf{denominator runs the show}:
+it decides which inputs are thrown out, where the graph breaks, and what the graph settles down to at
+the far ends. Today we learn to read all of it.
+\end{hookbox}
+
+\begin{notesbox}{1. What Makes a Function Rational --- and Where It Is Undefined}
+A \textbf{rational function} is a \emph{quotient of two polynomials}:
+\[
+  R(x) = \frac{P(x)}{Q(x)}, \qquad Q(x) \neq 0 .
+\]
+Division by zero is undefined, so \emph{every} input that makes the denominator zero is thrown out of
+the domain. Such an input is called a \textbf{domain restriction} or an \textbf{excluded value}.
+
+\vspace{3pt}
+\textbf{The one procedure behind this whole unit:} to find the restrictions, set the
+\ans{denominator} equal to \ans{0} and solve.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item For $f(x)=\dfrac{x+2}{x-1}$: solve $x-1=0$, so $x=$ \ans{1} is excluded.
+        Domain: \ans{all real numbers except $x=1$}.
+  \item For $g(x)=\dfrac{5}{x^2-9}$: solve $x^2-9=0$, so $x=$ \ans{$3,\ -3$} are excluded.
+        Domain: \ans{all real numbers except $x=\pm 3$}.
+  \item \textbf{Careful:} the \emph{numerator} is allowed to be zero --- that just makes
+        $R(x)=$ \ans{0}, which is an $x$-intercept (a \textbf{zero} of the function), not a
+        restriction.
+\end{itemize}
+
+\vspace{3pt}
+Because inputs are missing, a rational graph can be \textbf{discontinuous} --- it can have breaks.
+This is the first function family of the year whose graph is not one connected piece. A break shows up
+in exactly \textbf{two} ways, and the rest of the lesson is about telling them apart:
+\begin{center}
+\small
+a \textbf{vertical asymptote} (the graph flies off near that input) \quad or \quad
+a \textbf{hole} (a single missing point).
+\end{center}
 \end{notesbox}
+
+\begin{notesbox}{2. Vertical Asymptotes: the Walls}
+A \textbf{vertical asymptote} is a vertical line the graph approaches but \emph{never} touches or
+crosses. Near it the outputs grow without bound --- exactly what Warm-Up item~2 showed.
+
+\vspace{3pt}
+\textbf{How to find it.} If $x=a$ is a domain restriction and the factor $(x-a)$ does \emph{not}
+cancel, then $x=a$ is a vertical asymptote.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Write the answer as an \textbf{equation of a line}, not just a number:
+        \ans{$x=1$}, not ``$1$.''
+  \item For the anchor $f(x)=\dfrac{x+2}{x-1}$, the vertical asymptote is \ans{$x=1$}.
+  \item A graph can \emph{never} cross a vertical asymptote, because that input is
+        \ans{not in the domain} --- there is no point to plot.
+  \item The two branches on either side of a vertical asymptote are why the domain must be written
+        as a \textbf{union}: for $f$, domain $=(-\infty,\ \ans{1}) \cup (\ans{1},\ \infty)$.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{3. Horizontal Asymptotes \& End Behavior: the Level}
+A \textbf{horizontal asymptote} is a horizontal line the graph approaches as $x\to-\infty$ and
+$x\to+\infty$. It \emph{is} the end-behavior statement for a rational function: instead of arms that
+run off to $\pm\infty$ like a polynomial's, a rational graph's arms usually \textbf{flatten out
+toward a level}.
+
+\vspace{2pt}
+For the anchor: as $x\to+\infty,\ f(x)\to$ \ans{1}; \; as $x\to-\infty,\ f(x)\to$ \ans{1};
+\; so the horizontal asymptote is \ans{$y=1$}.
+
+\vspace{4pt}
+\textbf{Finding it from the equation: compare the degrees.} Let $n=\deg$ of the numerator and
+$m=\deg$ of the denominator.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Case} & \textbf{Horizontal asymptote} & \textbf{Example} \\
+\hline
+$n<m$ (bottom-heavy) & $y=$ \ans{0} & $\dfrac{4}{x^2+1}$: \; HA is \ans{$y=0$} \\
+$n=m$ (tie) & $y=\dfrac{\text{lead coef.\ of }P}{\text{lead coef.\ of }Q}$ & $\dfrac{x+2}{x-1}$: \; HA is \ans{$y=1$} \\
+$n>m$ (top-heavy) & \ans{none} & $\dfrac{x^2}{x+1}$: \; the outputs grow \ans{without bound} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{Two warnings.}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item A horizontal asymptote describes the \emph{far ends} only. Unlike a vertical asymptote, a
+        graph \textbf{may} cross its horizontal asymptote in the middle. (Check: $y=\dfrac{2x}{x^2+1}$
+        has HA $y=0$, and at $x=0$ the output is \ans{0} --- so it \emph{sits on} the line
+        there.)
+  \item In the top-heavy case there is \emph{no} horizontal asymptote at all --- the graph's end
+        behavior looks like a \ans{polynomial's} instead.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Holes: When a Restriction Cancels}
+Sometimes a restriction does \emph{not} produce a wall. Look at
+\[
+  h(x) = \frac{x^2-4}{x-2} = \frac{(x-2)(x+2)}{x-2} = x+2, \qquad x \neq 2 .
+\]
+The factor $(x-2)$ cancels, so the graph is just the \emph{line} $y=x+2$ --- with the single point at
+$x=2$ punched out. That missing point is a \textbf{hole}, also called a \textbf{removable
+discontinuity}.
+\begin{center}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-4}{4}{-3}{7}
+  \begin{scope}
+    \clip (-4,-3) rectangle (4,7);
+    \draw[very thick, forest] (-4,-2)--(4,6);
+  \end{scope}
+  \draw[forest, very thick, fill=white] (2,4) circle (4.2pt);
+  \node[keyred, font=\scriptsize, right] at (-2.0,6.2) {hole at $(2,4)$};
+  \draw[keyred, thin, ->] (-0.1,6.0) -- (1.75,4.25);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item \textbf{The cancel test.} Factor the top and bottom. A restriction whose factor
+        \textbf{cancels} gives a \ans{hole}; a restriction whose factor \textbf{stays} in the
+        denominator gives a \ans{vertical asymptote}.
+  \item \textbf{Find the hole's coordinates} by substituting the excluded value into the
+        \emph{simplified} expression: here $x=2$ gives $y=$ \ans{4}, so the hole is at
+        $(\ans{2},\ \ans{4})$.
+  \item \textbf{Cancelling never restores the input.} Even though the simplified form $x+2$ looks
+        perfectly happy at $x=2$, the original function is still \ans{undefined} there. Always read
+        restrictions off the \textbf{original} denominator.
+  \item \textbf{Both at once.} For $k(x)=\dfrac{x-3}{x^2-9}=\dfrac{x-3}{(x-3)(x+3)}=\dfrac{1}{x+3}$,
+        $x\neq 3$: the restriction $x=3$ cancels, so it is a \ans{hole}; the restriction
+        $x=-3$ does not cancel, so it is a \ans{vertical asymptote}.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{5. The Full Feature List --- and How Rational Differs from Polynomial}
+Now read \emph{every} characteristic off the anchor $f(x)=\dfrac{x+2}{x-1}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.52]
+  \lgrid{-4}{6}{-5}{6}
+  \draw[navy, dashed, semithick] (1,-5)--(1,6);
+  \draw[navy, dashed, semithick] (-4,1)--(6,1);
+  \node[navy, font=\scriptsize, above] at (1,6) {$x=1$};
+  \node[navy, font=\scriptsize, below] at (5.0,1) {$y=1$};
+  \begin{scope}
+    \clip (-4,-5) rectangle (6,6);
+    \draw[very thick, forest, domain=-4:0.5, samples=100, smooth]
+      plot (\x,{((\x)+2)/((\x)-1)});
+    \draw[very thick, forest, domain=1.6:6, samples=100, smooth]
+      plot (\x,{((\x)+2)/((\x)-1)});
+  \end{scope}
+  \fill[charcoal] (-2,0) circle (2.6pt) node[above left, font=\scriptsize]{$(-2,0)$};
+  \fill[charcoal] (0,-2) circle (2.6pt) node[right, font=\scriptsize]{$(0,-2)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Vertical asymptote:} \ans{$x=1$} \quad \textbf{Horizontal asymptote:}
+        \ans{$y=1$}
+  \item \textbf{Domain:} \ans{$(-\infty,1)\cup(1,\infty)$} \quad \textbf{Range:}
+        \ans{$(-\infty,1)\cup(1,\infty)$} \\
+        (The range excludes the horizontal-asymptote value because the graph never \emph{reaches}
+        it.)
+  \item \textbf{$x$-intercept / zero:} \ans{$(-2,0)$} --- found by setting the \ans{numerator} equal to
+        zero. \quad \textbf{$y$-intercept:} \ans{$(0,-2)$} --- found by evaluating $f(0)$.
+  \item \textbf{Increasing / decreasing:} the curve falls on \emph{both} branches, so $f$ is
+        decreasing on \ans{$(-\infty,1)$} and on \ans{$(1,\infty)$}. \emph{Never} write a single interval
+        across a vertical asymptote --- the function is undefined there.
+  \item \textbf{Positive / negative:} $f(x)>0$ on \ans{$(-\infty,-2)\cup(1,\infty)$}; \quad $f(x)<0$ on
+        \ans{$(-2,1)$}.
+  \item \textbf{End behavior:} as $x\to\pm\infty$, $f(x)\to$ \ans{1}.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Compare and contrast} (this is what makes rational functions a new family):
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+ & \textbf{Polynomial (Unit 4)} & \textbf{Rational (Unit 5)} \\
+\hline
+Graph & smooth and \emph{continuous} & may be \ans{discontinuous} (breaks) \\
+Domain & \emph{all} real numbers & all reals \ans{except the excluded values} \\
+Asymptotes & \ans{none} & vertical and/or horizontal \\
+End behavior & arms run to $\pm\infty$ & arms usually flatten toward \ans{a horizontal asymptote} \\
+\hline
+\end{tabularx}
+\end{center}
+\end{notesbox}
+
+\begin{practicebox}
+The graph below is $r(x) = \dfrac{4}{x^2-4} = \dfrac{4}{(x-2)(x+2)}$. Read each characteristic and
+write it on the line.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-5}{5}{-5}{5}
+  \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
+  \draw[navy, dashed, semithick] (2,-5)--(2,5);
+  \node[navy, font=\scriptsize, above] at (-2,5) {$x=-2$};
+  \node[navy, font=\scriptsize, above] at (2,5) {$x=2$};
+  \begin{scope}
+    \clip (-5,-5) rectangle (5,5);
+    \draw[very thick, forest, domain=-5:-2.19, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
+    \draw[very thick, forest, domain=-1.789:1.789, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
+    \draw[very thick, forest, domain=2.19:5, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
+  \end{scope}
+  \fill[charcoal] (0,-1) circle (2.6pt) node[below right, font=\scriptsize]{$(0,-1)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Vertical asymptotes: \ans{$x=-2$} and \ans{$x=2$}. \quad Domain:
+        \ans{$(-\infty,-2)\cup(-2,2)\cup(2,\infty)$}
+  \item Horizontal asymptote: \ans{$y=0$}. \quad Which degree case is this
+        ($n<m$, $n=m$, $n>m$)? \ans{$n<m$}
+  \item $y$-intercept: \ans{$(0,-1)$}. \quad Does $r$ have an $x$-intercept? \ans{No.}
+        Why or why not? \ans{The numerator is the constant $4$, which is never $0$.}
+  \item How many pieces does this graph come in? \ans{3} \quad Is $r(x)$ positive or negative
+        between the two asymptotes? \ans{negative}
+\end{enumerate}
+\end{practicebox}
+
+\begin{teachernote}
+\textbf{Pacing.} Sections 1--3 are the required core (A2.F.2h). If time is short, run Section~4
+(holes) on the two worked examples only and push the ``both at once'' bullet to the Activity ---
+Tier~A repeats it. Section~5's compare-and-contrast table is the A2.F.2b beat; do not skip it, since it
+is what makes this a Lesson~0 rather than a graphing lesson.
+
+\textbf{Errors to expect.} (1) Setting the \emph{numerator} to zero to find a vertical asymptote ---
+insist out loud that zeros come from the top and restrictions from the bottom. (2) Answering ``$1$''
+instead of ``$x=1$''; A2.F.2h asks for the \emph{equation} of the asymptote, so mark bare numbers
+wrong from day one. (3) Writing ``decreasing on $(-\infty,\infty)$'' for the anchor --- a single
+interval cannot span a vertical asymptote. (4) Reading restrictions off the \emph{simplified} form,
+which loses the hole entirely; this is the error the whole unit turns on (extraneous solutions in 5.6
+are the same mistake wearing a disguise). (5) Believing a graph can never cross a horizontal
+asymptote --- the $\frac{2x}{x^2+1}$ check exists precisely to kill that.
+
+\textbf{Language.} Two useful one-liners: ``a vertical asymptote is a \emph{wall}, a horizontal
+asymptote is a \emph{level},'' and ``the numerator makes zeros; the denominator makes trouble.''
+\end{teachernote}
 
 \end{document}

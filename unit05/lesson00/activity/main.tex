@@ -3,17 +3,152 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.0}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Reading Rational Graphs.} Every characteristic of a rational function is something you
+can \emph{point to} on its graph --- or predict from its denominator. With your partner, read each
+graph carefully and \emph{justify} your answers. Write every asymptote as an \textbf{equation}
+($x=3$, $y=0$), never as a bare number.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+The graph shows $g(x) = \dfrac{2}{x+2}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-6}{4}{-5}{5}
+  \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
+  \node[navy, font=\scriptsize, above] at (-2,5) {$x=-2$};
+  \begin{scope}
+    \clip (-6,-5) rectangle (4,5);
+    \draw[very thick, forest, domain=-6:-2.4, samples=80, smooth] plot (\x,{2/((\x)+2)});
+    \draw[very thick, forest, domain=-1.6:4, samples=80, smooth] plot (\x,{2/((\x)+2)});
+  \end{scope}
+  \fill[charcoal] (0,1) circle (3pt) node[above right, font=\scriptsize]{$(0,1)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item The graph comes in \blank{1.0cm} pieces. The input that is missing is $x=\blank{1.2cm}$,
+        because it makes the \blank{3.0cm} equal to zero.
+  \item \textbf{Vertical asymptote:} \blank{2.0cm} \quad \textbf{Horizontal asymptote:}
+        \blank{2.0cm} \quad (write each as an \emph{equation})
+  \item \textbf{Domain:} \blank{6.0cm}
+  \item \textbf{$y$-intercept:} \blank{1.8cm}. \quad Does $g$ have an \textbf{$x$-intercept}?
+        \blank{1.2cm} \; Explain, using the numerator. \blank{5.4cm}
+  \item On each piece the curve falls, so $g$ is \textbf{decreasing} on \blank{2.4cm} and on
+        \blank{2.4cm}. \quad $g(x)>0$ on \blank{2.4cm}.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+Two rational functions --- \emph{but only one of them has asymptotes}. Fill in the whole table, then
+answer the justification question.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  % p(x) = (x-2)/(x+1)
+  \begin{scope}
+    \lgrid{-6}{5}{-5}{6}
+    \draw[navy, dashed, semithick] (-1,-5)--(-1,6);
+    \draw[navy, dashed, semithick] (-6,1)--(5,1);
+    \begin{scope}
+      \clip (-6,-5) rectangle (5,6);
+      \draw[very thick, forest, domain=-6:-1.6, samples=90, smooth]
+        plot (\x,{((\x)-2)/((\x)+1)});
+      \draw[very thick, forest, domain=-0.5:5, samples=90, smooth]
+        plot (\x,{((\x)-2)/((\x)+1)});
+    \end{scope}
+    \fill[charcoal] (2,0) circle (3pt); \fill[charcoal] (0,-2) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (-0.5,-6.4){$p(x)=\dfrac{x-2}{x+1}$};
+  \end{scope}
+  % q(x) = (x^2-1)/(x-1)
+  \begin{scope}[xshift=13.5cm]
+    \lgrid{-4}{4}{-3}{5}
+    \begin{scope}
+      \clip (-4,-3) rectangle (4,5);
+      \draw[very thick, forest] (-4,-3)--(4,5);
+    \end{scope}
+    \draw[forest, very thick, fill=white] (1,2) circle (4.2pt);
+    \node[charcoal, font=\scriptsize] at (0,-4.4){$q(x)=\dfrac{x^2-1}{x-1}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{0.16in}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
+ & \textbf{$p(x)=\dfrac{x-2}{x+1}$} & \textbf{$q(x)=\dfrac{x^2-1}{x-1}$} \\
+\hline
+Excluded value(s) & \blank{2.4cm} & \blank{2.4cm} \\
+Vertical asymptote & \blank{2.4cm} & \blank{2.4cm} \\
+Horizontal asymptote & \blank{2.4cm} & \blank{2.4cm} \\
+Hole (if any) & \blank{2.4cm} & \blank{2.4cm} \\
+$x$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
+$y$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
+Increasing or decreasing? & \blank{2.4cm} & \blank{2.4cm} \\
+\end{tabularx}
+\vspace{4pt}
+
+\textbf{Justify.} Factor $q(x)=\dfrac{x^2-1}{x-1}$ completely and simplify it. Then explain why
+$x=1$ produces a \emph{hole} rather than a \emph{vertical asymptote} --- and why $x=1$ is
+\emph{still} excluded from the domain even after you cancel. \writelines{3}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- No graph allowed.} For each function, factor where you can, then fill in the row.
+Write ``none'' when there is nothing to report.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+\hline
+\textbf{Function} & \textbf{Excluded value(s)} & \textbf{Vert.\ asymptote(s)} & \textbf{Hole} & \textbf{Horiz.\ asymptote} \\
+\hline
+\TallMath{\frac{3}{x-5}} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} \\
+\TallMath{\frac{2x}{x+4}} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} \\
+\TallMath{\frac{x^2-25}{x-5}} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} \\
+\TallMath{\frac{x+1}{x^2+3x+2}} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Exactly one of the four has \emph{no} horizontal asymptote. Which one, and what is it about the
+degrees that causes that? \writelines{2}
+
+\vspace{5pt}
+\textbf{Part 2 --- What an asymptote \emph{means}.} A club pays a one-time \$250 screen-printing setup
+fee plus \$6 per shirt. The \textbf{average cost per shirt} for $n$ shirts is
+\[
+  A(n) = \frac{6n + 250}{n}.
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$n$ (shirts) & $10$ & $25$ & $50$ & $125$ & $250$ \\ \hline
+$A(n)$ (dollars) & $31$ & $16$ & $11$ & $8$ & $7$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Use the degree comparison to find the horizontal asymptote of $A$. \blank{3.0cm} \\
+        What does that number \emph{mean} for the club? \writelines{2}
+  \item The average cost gets closer and closer to that level but never equals it. Explain why, in
+        terms of the \$250 setup fee. \writelines{2}
+  \item $n=0$ is an excluded value, so $A$ has a vertical asymptote at $n=0$. Explain why $n=0$ would
+        be meaningless here \emph{even if} the algebra allowed it, and state a sensible domain for
+        this model. \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}
