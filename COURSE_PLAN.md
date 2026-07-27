@@ -9,8 +9,8 @@
 > authored & building, and the **unit tests are now authored, built, and published**.
 > **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
 > locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
-> `test_keys/` are laid down. **Lessons 6.0 and 6.1 are authored & building (2026-07-27)**; lessons
-> 6.2–6.7 and the unit tests are still skeletons.
+> `test_keys/` are laid down. **Lessons 6.0, 6.1, and 6.2 are authored & building (2026-07-27)**;
+> lessons 6.3–6.7 and the unit tests are still skeletons.
 > **Unit 7 (Exponential Functions): map confirmed & unit scaffolded 2026-07-27**, locked at
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
@@ -23,8 +23,9 @@
 > Three Unit 7 ↔ Unit 8 collisions were found and **resolved**: `A2.ST.2` is Unit 7's alone (7.5),
 > since the standard never names logarithmic; $\ln$ lands in 8.5; and no-standard content is now
 > handled the same way in both units. Full rationale in the Unit 8 status block in §4.
-> **Next action: author Lesson 6.2 (simplifying radicals; adding & subtracting)**, then proceed
-> 6.3 → 6.7 in order, then the Unit 6 tests, then begin Unit 7 at Lesson 7.0.
+> **Next action: author Lesson 6.3 (multiplying & dividing radicals; rationalizing with
+> conjugates)**, then proceed 6.4 → 6.7 in order, then the Unit 6 tests, then begin Unit 7 at
+> Lesson 7.0.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
@@ -57,7 +58,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0 done) |
+| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.2 done) |
 | 7 | Exponential Functions | Exponential | 6 | **Scaffolded** (map confirmed) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | Planned (**map confirmed**, not scaffolded) |
 
@@ -1109,6 +1110,43 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > $\sqrt[4]{x^3}$; distractors = the flipped fraction, index×power, and reading a root as a negative
 > exponent). `make -C unit06/lesson01 all` → EXIT 0 (student 13pp, full 27pp);
 > `make -C unit06 all` → EXIT 0.
+> **Lesson 6.2 authored & builds (2026-07-27):** all components + keys + 11-slide deck done. One
+> sentence carries the lesson — **a radical splits over multiplication and never over addition** —
+> and it is *established by the students* rather than announced: the Hook puts three statements on
+> the board ($\sqrt8\cdot\sqrt2=4$, $\sqrt9+\sqrt{16}=\sqrt{25}$, $\sqrt8+\sqrt{18}=5\sqrt2$) and asks
+> which is the lie. The one that *looks* absurd is true (to three decimals) and the reasonable-looking
+> one is false, so the class discovers both halves of the day in three minutes. The properties are
+> then **derived, not stated**: $\sqrt[n]{ab}=(ab)^{1/n}=a^{1/n}b^{1/n}$ is 6.1's power-of-a-product
+> rule, with the even-index fine print ($a,b\ge0$) flagged as the place a student who cannot tell when
+> a root exists will turn $\sqrt{-8}$ into $\sqrt{-4}\cdot\sqrt2$ — the exact pile 6.1's exit ticket
+> told the teacher to sort for. Four further beats: **simplest form** as three conditions with
+> condition 3 (no radical in a denominator) *explicitly deferred to 6.3* so students know something is
+> being held back; **largest** perfect power, taught by working $\sqrt{72}$ both ways so that
+> $2\sqrt{18}$ is framed as true-but-unfinished and the closing habit becomes "check the leftover";
+> **the index sets the group size** (pairs escape a square root, triples a cube root — so $\sqrt[3]9$
+> is *already* simplest even though 9 is a perfect square, the lesson's most-missed idea); and
+> algebraic radicands via **divide the exponent by the index**, whose real content is the unifying
+> claim that $\sqrt{x^7}=x^{7/2}=x^{3\frac12}=x^3\sqrt x$ — **simplifying a radical and rewriting an
+> improper fraction as a mixed number are the same move** (pre-assembled in Warm-Up item 3, and the
+> homework's closing item makes students say it). Adding is taught as literal like-term collection
+> against Warm-Up item 2 ($3\sqrt5+7\sqrt5$ beside $3x+7x$), with the signature habit **simplify
+> first, decide second** — "cannot combine" must be earned, never guessed. Tier E proves
+> $\sqrt a+\sqrt b=\sqrt{a+b}$ forces $ab=0$ (square, cancel, the surviving $2\sqrt{ab}$ is exactly
+> what the error deletes), generalizes the staircase $\sqrt2+\sqrt8+\cdots+\sqrt{2n^2}
+> =\frac{n(n+1)}2\sqrt2$, and closes with a deliberate bridge to 6.4: $f(x)=\sqrt{8x}=2\sqrt{2x}$ is
+> $g(x)=\sqrt{2x}$ **vertically stretched**, domain and endpoint unchanged. Homework extension is the
+> **pendulum** $T(L)=2\pi\sqrt{L/32}$ — same shape as 6.1's Kepler and 6.0's free-fall models — with
+> $L=2,8,18,32$ ft chosen so the fraction reduces to a perfect square and the periods come out exactly
+> $\frac\pi2,\pi,\frac{3\pi}2,2\pi$; quadrupling the length only doubles the period (what a $\frac12$
+> exponent does), a clockmaker's "just double the length" is refuted, and $\sqrt{L/32}=\sqrt{2L}/8$
+> previews rationalizing before the word exists. Standards: **2023 VA SOL A2.EO.2a** (governing) and
+> the *additive half* of **A2.EO.2b** — multiply/divide/rationalize are held for 6.3, which is why
+> A2.EO.2b splits across the pair — revisiting **A2.EO.2c** as the source of both properties, and
+> reaching **A2.F.2f** / previewing **A2.F.1b/c** through the pendulum and the vertical-stretch item.
+> Warm-up & exit ticket each fit one page (blank+key); notes 4pp/4pp, activity 3pp/3pp, homework
+> 2pp (key 3pp); exit ticket includes an SOL-style MC item ($\sqrt{50}+\sqrt{32}$; distractors =
+> added radicands, simplified-then-added-radicands, and multiplied coefficients).
+> `make -C unit06/lesson02 all` → EXIT 0 (student 12pp, full 28pp); `make -C unit06 all` → EXIT 0.
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$
