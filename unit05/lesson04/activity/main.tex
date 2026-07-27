@@ -3,17 +3,217 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.4}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Move the Walls.} One habit carries everything today: \emph{find the two asymptotes
+first.} They are the parent's axes, relocated --- $x=h$ from the denominator and $y=k$ from the number
+tacked on outside. Once those two dashed lines are down, the branches have nowhere else to go. And keep
+Unit 2's warning in front of you: the number \emph{inside} does the opposite of what it says.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- One move at a time.} For each function, name both asymptotes and say what the parent
+$y=\frac1x$ did.
+\begin{enumerate}[leftmargin=1.9em, itemsep=8pt]
+  \item $y=\dfrac{1}{x-5}$ \\[3pt]
+        VA: \blank{1.4cm} \quad HA: \blank{1.4cm} \quad The parent moved \blank{3.0cm}
+  \item $y=\dfrac{1}{x}-4$ \\[3pt]
+        VA: \blank{1.4cm} \quad HA: \blank{1.4cm} \quad The parent moved \blank{3.0cm}
+  \item $y=\dfrac{1}{x+6}$ \\[3pt]
+        VA: \blank{1.4cm} \quad HA: \blank{1.4cm} \quad The parent moved \blank{3.0cm}
+  \item $y=\dfrac{2}{x-1}+3$ \\[3pt]
+        $a=$ \blank{0.8cm} \quad $h=$ \blank{0.8cm} \quad $k=$ \blank{0.8cm} \quad
+        Center: $(\blank{0.7cm},\,\blank{0.7cm})$ \\[3pt]
+        VA: \blank{1.4cm} \quad HA: \blank{1.4cm} \quad Domain: \blank{2.0cm} \quad
+        Range: \blank{2.0cm}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 2 --- Match the graph to the equation.} Write \textbf{A}, \textbf{B}, or \textbf{C} in each
+blank. The dashed navy lines are the asymptotes.
+\begin{center}
+\begin{tikzpicture}[scale=0.30]
+  % All three windows share y from -5 to 5 so the graphs sit on a common baseline.
+  \begin{scope}
+    \lgrid{-3}{6}{-5}{5}
+    \draw[navy, dashed, semithick] (2,-5)--(2,5);
+    \begin{scope} \clip (-3,-5) rectangle (6,5);
+      \draw[very thick, forest, domain=-3:1.8, samples=100, smooth] plot (\x,{1/((\x)-2)});
+      \draw[very thick, forest, domain=2.2:6, samples=100, smooth] plot (\x,{1/((\x)-2)});
+    \end{scope}
+    \node[charcoal, font=\small\bfseries] at (1.5,-6.8){A};
+  \end{scope}
+  \begin{scope}[xshift=12cm]
+    \lgrid{-5}{5}{-5}{5}
+    \draw[navy, dashed, semithick] (-5,3)--(5,3);
+    \begin{scope} \clip (-5,-5) rectangle (5,5);
+      \draw[very thick, forest, domain=-5:-0.125, samples=110, smooth] plot (\x,{1/(\x)+3});
+      \draw[very thick, forest, domain=0.5:5, samples=110, smooth] plot (\x,{1/(\x)+3});
+    \end{scope}
+    \node[charcoal, font=\small\bfseries] at (0,-6.8){B};
+  \end{scope}
+  \begin{scope}[xshift=24cm]
+    \lgrid{-6}{4}{-5}{5}
+    \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
+    \draw[navy, dashed, semithick] (-6,-3)--(4,-3);
+    \begin{scope} \clip (-6,-5) rectangle (4,5);
+      \draw[very thick, forest, domain=-6:-2.5, samples=110, smooth] plot (\x,{1/((\x)+2)-3});
+      \draw[very thick, forest, domain=-1.125:4, samples=110, smooth] plot (\x,{1/((\x)+2)-3});
+    \end{scope}
+    \node[charcoal, font=\small\bfseries] at (-1,-6.8){C};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\blank{1.0cm} \; $y=\dfrac{1}{x}+3$ \hfill
+\blank{1.0cm} \; $y=\dfrac{1}{x+2}-3$ \hfill
+\blank{1.0cm} \; $y=\dfrac{1}{x-2}$ \hfill\hfill
+
+\vspace{5pt}
+\textbf{Part 3 --- The parent, from memory.} No graph, no calculator.
+\begin{center}
+$y=\dfrac1x$: \quad VA \blank{1.2cm} \quad HA \blank{1.2cm} \quad $x$-int \blank{1.2cm} \quad
+$y$-int \blank{1.2cm} \quad symmetry \blank{1.6cm}
+\end{center}
+Why does this parent have no intercepts, when every other parent you have graphed passes through the
+origin? \writeline
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- The full table.} Fill in every cell. Watch the signs.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+\hline
+\textbf{Function} & \textbf{$a$, $h$, $k$} & \textbf{VA \& HA} & \textbf{Domain \& range} & \textbf{$y$-intercept} \\
+\hline
+\TallMath{y=\frac{4}{x-1}}      & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.6cm} \\
+\TallMath{y=\frac{1}{x}-5}      & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.6cm} \\
+\TallMath{y=\frac{-2}{x+3}+1}   & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.6cm} \\
+\TallMath{y=\frac{6}{x+2}-2}    & \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{1.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+One of those four functions has \emph{no} $y$-intercept. Which one, and why not? \blank{5.0cm}
+
+\vspace{5pt}
+\textbf{Part 2 --- Write the equation from the graph.} The dashed navy lines are the asymptotes, and two
+points are marked.
+\begin{center}
+\begin{minipage}{0.48\linewidth}\centering
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-4}{7}{-1}{7}
+  \draw[navy, dashed, semithick] (1,-1)--(1,7);
+  \draw[navy, dashed, semithick] (-4,3)--(7,3);
+  \node[navy, font=\scriptsize, above right] at (1,6.2) {$x=1$};
+  \node[navy, font=\scriptsize, below right] at (5.4,3) {$y=3$};
+  \begin{scope}
+    \clip (-4,-1) rectangle (7,7);
+    \draw[very thick, forest, domain=-4:0.6, samples=110, smooth] plot (\x,{-2/((\x)-1)+3});
+    \draw[very thick, forest, domain=1.4:7, samples=110, smooth] plot (\x,{-2/((\x)-1)+3});
+  \end{scope}
+  \fill[charcoal] (0,5) circle (3pt) node[above left, font=\scriptsize]{$(0,5)$};
+  \fill[charcoal] (3,2) circle (3pt) node[below right, font=\scriptsize]{$(3,2)$};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.48\linewidth}
+\small
+(a) $h=$ \blank{1.0cm} \quad $k=$ \blank{1.0cm}
+
+\vspace{4pt}
+(b) Substitute the point $(3,2)$ into $y=\dfrac{a}{x-h}+k$ and solve for $a$:
+
+\vspace{16pt}
+$a=$ \blank{1.2cm}
+
+\vspace{4pt}
+(c) Equation: \blank{3.4cm}
+
+\vspace{4pt}
+(d) Verify with the \emph{other} point, $(0,5)$: \blank{2.4cm}
+\end{minipage}
+\end{center}
+
+\vspace{4pt}
+\textbf{Part 3 --- Error analysis.} A student writes:
+\begin{center}
+\fbox{\parbox{0.74\linewidth}{\centering \vspace{2pt}
+For $y=\dfrac{1}{x+4}-1$: \; ``VA is $x=4$ and HA is $y=1$.'' \\[3pt]
+{\small ``I just read the two numbers off the equation.''}\vspace{2pt}}}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Both are wrong. Give the correct asymptotes: VA \blank{1.4cm} \quad HA \blank{1.4cm}
+  \item Disprove the vertical asymptote with a number: evaluate the function at $x=4$.
+        $y=$ \blank{1.6cm} \; --- a value exists there, so $x=4$ cannot be a wall.
+  \item Now evaluate at $x=-4$: \blank{2.0cm}
+  \item In one sentence, state the rule the student broke.
+        \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Unmask the disguise.} Each function below \emph{is} a transformed $\frac1x$, but it is
+not written that way. Rewrite the numerator using the denominator, then read off the asymptotes.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=8pt]
+  \item $y=\dfrac{3x+5}{x+1}=\dfrac{3(\rule{1.2cm}{0.4pt})+\rule{0.8cm}{0.4pt}}{x+1}=$ \blank{2.6cm}
+        \\[3pt]
+        $a=$ \blank{0.8cm} \quad $h=$ \blank{0.8cm} \quad $k=$ \blank{0.8cm} \quad
+        VA \blank{1.2cm} \quad HA \blank{1.2cm}
+  \item $y=\dfrac{2x-7}{x-4}=$ \blank{2.6cm} \\[3pt]
+        VA \blank{1.2cm} \quad HA \blank{1.2cm}
+  \item Check (b) against Lesson 5.0's degree comparison: the degrees of top and bottom are
+        \blank{1.4cm}, so the HA is the ratio of the \blank{3.2cm}, which is \blank{1.0cm}. Same
+        answer? \blank{0.9cm}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 2 --- Build one backwards.} Write the equation of a rational function whose vertical
+asymptote is $x=-3$, whose horizontal asymptote is $y=4$, and whose graph passes through $(-2,1)$.
+\begin{center}
+$y=$ \blank{4.0cm}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
+  \item Now write your answer as a \emph{single} fraction (Lesson 5.3, run forwards): \blank{3.0cm}
+  \item Confirm the horizontal asymptote from that single fraction using the degree comparison.
+        \blank{4.4cm}
+  \item Could a function have those two asymptotes and pass through $(-3,1)$? Explain.
+        \writeline
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- Diluting the brine.} A tank holds $20$ grams of salt dissolved in $5$ liters of
+water. You pour in $x$ more liters of \emph{pure} water. The concentration is
+\[ C(x)=\frac{20}{5+x} \quad \text{grams per liter.} \]
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Fill in: $C(0)=$ \blank{1.0cm}, \; $C(5)=$ \blank{1.0cm}, \; $C(15)=$ \blank{1.0cm}, \;
+        $C(35)=$ \blank{1.0cm} g/L.
+  \item Written as $\dfrac{a}{x-h}+k$: \; $a=$ \blank{0.8cm}, \; $h=$ \blank{0.8cm}, \;
+        $k=$ \blank{0.8cm}. So the horizontal asymptote is \blank{1.2cm}.
+  \item What does that horizontal asymptote mean about the salt? \writeline
+  \item The algebra puts a vertical asymptote at $x=$ \blank{1.2cm}. Does that number mean anything
+        for this tank? \blank{1.2cm} \; What values of $x$ actually make sense? \blank{2.0cm}
+  \item How much water gets the concentration to $2$ g/L? \blank{1.4cm} L. \; To $1$ g/L?
+        \blank{1.4cm} L. \; To $0.5$ g/L? \blank{1.4cm} L. \\[3pt]
+        So each \emph{halving} of the concentration costs \blank{1.6cm} water than the halving before
+        it. Explain what the graph is doing near its horizontal asymptote. \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}
