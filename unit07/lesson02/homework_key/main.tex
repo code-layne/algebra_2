@@ -3,17 +3,228 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax
+% ln2 = 0.693147   ln(1/2) = -0.693147
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+\newcommand{\hasym}[3]{\draw[navy, dashed, semithick] (#1,#3)--(#2,#3);}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.2}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Homework verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Homework --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Practice}
+Find the asymptote before the range, every time. Give ranges in interval notation.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{Straight from the equation.} Fill in every cell.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Asymptote} & \textbf{Range} & \textbf{$y$-intercept} & \textbf{Growth or decay?} \\
+    \hline
+    $y=2^{x}+4$ & \ans{$y=4$} & \ans{$(4,\infty)$} & \ans{$(0,5)$} & \ans{growth} \\
+    $y=5(3)^{x}$ & \ans{$y=0$} & \ans{$(0,\infty)$} & \ans{$(0,5)$} & \ans{growth} \\
+    $y=\left(\frac{1}{2}\right)^{x}-2$ & \ans{$y=-2$} & \ans{$(-2,\infty)$} & \ans{$(0,-1)$} & \ans{decay} \\
+    $y=-4^{x}$ & \ans{$y=0$} & \ans{$(-\infty,0)$} & \ans{$(0,-1)$} & \ans{growth ($b=4$); falls since $a<0$} \\
+    $y=2^{\,x-3}$ & \ans{$y=0$} & \ans{$(0,\infty)$} & \ans{$\left(0,\frac18\right)$} & \ans{growth} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Which rows in that table have an $x$-intercept? \ans{Only the third --- it is the only row where $a$ and $k$ have opposite signs.}
+
+  \item \textbf{Say what moved.} Each function below is a transformation of the parent $y=3^{x}$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X l@{}}
+    \hline
+    \textbf{Function} & \textbf{The move(s), in words} & \textbf{New asymptote} \\
+    \hline
+    $y=3^{x}-7$ & \ans{down $7$} & \ans{$y=-7$} \\
+    $y=3^{\,x+4}$ & \ans{left $4$} & \ans{$y=0$} \\
+    $y=\frac{1}{2}\cdot 3^{x}$ & \ans{vertical compression by a factor of $\frac12$} & \ans{$y=0$} \\
+    $y=3^{-x}$ & \ans{reflect over the $y$-axis; same as $\left(\frac13\right)^{x}$, so decay} & \ans{$y=0$} \\
+    $y=-3^{x}+2$ & \ans{reflect over the $x$-axis, then up $2$} & \ans{$y=2$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+  \item \textbf{Match.} Each graph is a transformation of $y=2^{x}$; the dashed line is its asymptote.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.27]
+      % W: y = 2^x + 1
+      \begin{scope}
+        \lgrid{-3}{4}{-6}{8}
+        \begin{scope}\clip (-3,-6) rectangle (4,8); \expgraph{1}{0.693147}{0}{1}{-3}{4} \end{scope}
+        \hasym{-3}{4}{1}
+        \node[charcoal, font=\small] at (0.5,-7.6) {\textbf{W}};
+      \end{scope}
+      % X: y = 2^x - 4
+      \begin{scope}[xshift=9.5cm]
+        \lgrid{-3}{4}{-6}{8}
+        \begin{scope}\clip (-3,-6) rectangle (4,8); \expgraph{1}{0.693147}{0}{-4}{-3}{4} \end{scope}
+        \hasym{-3}{4}{-4}
+        \node[charcoal, font=\small] at (0.5,-7.6) {\textbf{X}};
+      \end{scope}
+      % Y: y = 2^(-x)
+      \begin{scope}[xshift=19cm]
+        \lgrid{-3}{4}{-6}{8}
+        \begin{scope}\clip (-3,-6) rectangle (4,8); \expgraph{1}{-0.693147}{0}{0}{-3}{4} \end{scope}
+        \hasym{-3}{4}{0}
+        \node[charcoal, font=\small] at (0.5,-7.6) {\textbf{Y}};
+      \end{scope}
+      % Z: y = -2^x + 4
+      \begin{scope}[xshift=28.5cm]
+        \lgrid{-3}{4}{-6}{8}
+        \begin{scope}\clip (-3,-6) rectangle (4,8); \expgraph{-1}{0.693147}{0}{4}{-3}{4} \end{scope}
+        \hasym{-3}{4}{4}
+        \node[charcoal, font=\small] at (0.5,-7.6) {\textbf{Z}};
+      \end{scope}
+    \end{tikzpicture}
+    \end{center}
+    \vspace{2pt}
+    $y=2^{x}+1$ is \ans{W} \quad $y=2^{x}-4$ is \ans{X} \quad
+    $y=2^{-x}$ is \ans{Y} \quad $y=-2^{x}+4$ is \ans{Z}
+
+    \vspace{3pt}
+    Two of those four graphs cross the $x$-axis. Name them, and give the $x$-intercept of each by
+    reading the graph. \ans{X and Z --- both cross at $(2,0)$. They are the two whose asymptote is on the opposite side of the $x$-axis from the graph.}
+
+  \item \textbf{Backwards.} Each curve has the form $y=a\,b^{x}+k$. Use the asymptote first.
+    \begin{center}
+    \begin{minipage}[c]{0.30\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-3}{4}{-5}{9}
+      \begin{scope}\clip (-3,-5) rectangle (4,9); \expgraph{2}{0.693147}{0}{-3}{-3}{4} \end{scope}
+      \hasym{-3}{4}{-3}
+      \fill[charcoal] (0,-1) circle (3.5pt) node[left, font=\scriptsize]{$(0,-1)$};
+      \fill[charcoal] (1,1) circle (3.5pt) node[right, font=\scriptsize]{$(1,1)$};
+      \node[navy, font=\scriptsize, left] at (-1.2,-3.7) {$y=-3$};
+    \end{tikzpicture}\\[2pt]{\small (a)}
+    \end{minipage}
+    \hspace{0.02\linewidth}
+    \begin{minipage}[c]{0.30\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-2}{5}{-1}{12}
+      \begin{scope}\clip (-2,-1) rectangle (5,12); \expgraph{6}{-0.693147}{0}{1}{-2}{5} \end{scope}
+      \hasym{-2}{5}{1}
+      \fill[charcoal] (0,7) circle (3.5pt) node[right, font=\scriptsize]{$(0,7)$};
+      \fill[charcoal] (1,4) circle (3.5pt) node[right, font=\scriptsize]{$(1,4)$};
+      \node[navy, font=\scriptsize, right] at (2.6,1.7) {$y=1$};
+    \end{tikzpicture}\\[2pt]{\small (b)}
+    \end{minipage}
+    \hspace{0.02\linewidth}
+    \begin{minipage}[c]{0.32\linewidth}
+    \small
+    (a) $k=$ \ans{$-3$} \; $a=$ \ans{2} \; $b=$ \ans{2} \\[4pt]
+    \hspace*{1.0em} $y=$ \ans{$2(2)^{x}-3$} \\[10pt]
+    (b) $k=$ \ans{1} \; $a=$ \ans{6} \; $b=$ \ans{$\frac12$} \\[4pt]
+    \hspace*{1.0em} $y=$ \ans{$6\left(\frac12\right)^{x}+1$}
+    \end{minipage}
+    \end{center}
+
+  \item \textbf{Error analysis.} Name the error, then give the correct answer.
+
+    \textbf{(a)} Asked to describe $y=5^{\,x-2}$, Marcus wrote: ``The asymptote is $y=-2$ and the
+    range is $(-2,\infty)$.''
+    \ansline{Marcus treated an \emph{inside} number as a vertical shift. The $-2$ is in the exponent,
+    so it moves the graph \textbf{right $2$} and touches neither the asymptote nor the range.\\[3pt]
+    Correct: asymptote $y=0$, range $(0,\infty)$.}
+
+    \textbf{(b)} Tara says $y=-6^{x}$ and $y=6^{-x}$ are both decay functions ``because of the
+    negative.'' Fix both halves of that claim.
+    \ansline{$y=-6^{x}$: the negative is on the \emph{output}, so it reflects over the $x$-axis. The
+    base is still $6$, so it is still a \textbf{growth} function; range $(-\infty,0)$.\\[3pt]
+    $y=6^{-x}$: the negative is on the \emph{input}, so it reflects over the $y$-axis and equals
+    $\left(\frac16\right)^{x}$ --- this one \textbf{is} decay; range $(0,\infty)$.}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{A soda out of the refrigerator.} A can of soda at $38^{\circ}$F is set on a counter in a
+room held at $72^{\circ}$F. Its temperature after $t$ minutes is
+\[
+  T(t) = 72 - 34(0.9)^{t}.
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$t$ (min) & $0$ & $5$ & $10$ & $15$ & $20$ & $30$ \\ \hline
+$T(t)$ ($^{\circ}$F) & $38$ & $51.9$ & $60.1$ & $65.0$ & $67.9$ & $70.6$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Identify $a$, $b$, and $k$. Why is $a$ \emph{negative} here, when the soda is warming up?
+  \item What is the horizontal asymptote, and what does it mean about this soda?
+  \item Give the range of $T$ as an algebraic function, then give the temperatures the soda actually
+        takes for $t\ge0$. Explain why the two differ, and why one endpoint is a bracket.
+  \item Because $a<0$ and $k>0$ have opposite signs, this function \emph{does} have an
+        $x$-intercept. Solving $34(0.9)^{t}=72$ would require $(0.9)^{t}=2.118\ldots$ --- explain why
+        that forces $t$ to be \emph{negative}, and say why the $x$-intercept is therefore irrelevant
+        to this story.
+  \item At what time is the soda exactly $72^{\circ}$F? Justify with the asymptote.
+\end{enumerate}
+\ansline{(a) $a=-34$, $b=0.9$, $k=72$. The sign of $a$ says which side of the asymptote the graph
+lives on, and this soda starts \emph{below} room temperature: $38-72=-34$.}
+\ansline{(b) $y=72$ --- room temperature. The soda warms toward $72^{\circ}$ and gets arbitrarily
+close, but never actually reaches it.}
+\ansline{(c) Algebraically the range is $(-\infty,72)$. For $t\ge0$ the soda only takes temperatures
+in $[38,72)$. The algebraic range allows negative $t$; the story starts the clock at $t=0$, where
+$T=38$ is actually attained --- hence the bracket. The $72$ stays excluded because it is the asymptote.}
+\ansline{(d) A base between $0$ and $1$ raised to a \emph{positive} power gives something less than
+$1$, so $(0.9)^{t}=2.118$ can only happen for $t<0$ --- roughly seven minutes before the can came out
+of the refrigerator. That is outside the story's domain, so the $x$-intercept never occurs here.}
+\ansline{(e) Never. $72$ is the horizontal asymptote, a boundary the range excludes.}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 7.3: Solving Exponential Equations with a Common Base.} In problem 3
+you found the $x$-intercept of $y=2^{x}-4$ by \emph{looking} at the graph. Next lesson you solve for
+it: $2^{x}-4=0$ becomes $2^{x}=4$, and since $4$ is already a power of $2$, the exponents can simply
+be matched. That one-to-one move runs entirely on Unit 6's exponent machinery --- $8^{x}=4$,
+$3^{x}=\frac{1}{27}$, $\sqrt[3]{2}=2^{1/3}$ --- and every answer can be checked as an intersection on
+a graph like the ones above. Notice, though, what it \emph{cannot} do: the coffee equation
+$132(0.85)^{t}=32$ from the Activity and the soda's $(0.9)^{t}=2.118$ above have no common base at
+all. Hold on to those two.
+\end{spiralbox}
+
+\begin{teachernote}
+\textbf{Problem 1's fourth row is the one to grade carefully.} $y=-4^{x}$ has base $4$, so it is a
+\emph{growth} function whose graph falls --- $a<0$ only chooses the side of the asymptote. Anyone who
+wrote ``decay'' has drifted back to reading the family off the wrong number, and that misconception
+will cost them in 7.5 when a regression returns a negative coefficient.
+
+\textbf{Problem 1's closing question is the payoff of the whole lesson.} Only the third row has an
+$x$-intercept, and the reason is the rule from Section 2 of the notes: the graph crosses the $x$-axis
+exactly when $a$ and $k$ have opposite signs. Rows with $k=0$ can never cross --- that is Lesson 7.0's
+``no zeros, ever,'' now stated precisely.
+
+\textbf{Problem 3's two crossers both land at $x=2$.} That is not a coincidence worth hiding: X solves
+$2^{x}=4$ and Z solves $2^{x}=4$ as well. Point it out --- it is the exact equation Lesson 7.3 opens
+with, and students will have already found the answer by eye.
+
+\textbf{Problem 4(b) is the item most likely to be skipped.} $b=\frac12$ comes from
+$6b+1=4$, which many students will not set up because they expect $b$ to be a whole number. If several
+groups miss it, the re-teach is step 3 of the notes' method, not the arithmetic.
+
+\textbf{The Extension is a contextual-domain conversation, not a computation.} Part (c) is the one to
+discuss at the board: an algebraic range and a realistic range are different objects, and the bracket
+at $38$ is there because the situation actually attains its starting value. Part (d) is answerable
+\emph{without} logarithms --- a base under $1$ can only exceed $1$ at a negative exponent --- and it is
+worth insisting students argue it that way, because that reasoning is what Lesson 7.3 formalizes. If a
+student asks how to solve $(0.9)^{t}=2.118$ exactly, tell them the tool does not exist yet and that
+Unit 8 builds it. Do not name logarithms.
+\end{teachernote}
 
 \end{document}

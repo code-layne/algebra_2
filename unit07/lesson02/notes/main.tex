@@ -3,17 +3,308 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% g(x) = a*b^(x-h) + k, plotted as a*exp((ln b)(x-h))+k: pgfmath's pow() is unreliable for
+% negative and fractional exponents, but exp() is not.
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax
+% ln2 = 0.693147   ln3 = 1.098612   ln(1/2) = -0.693147   ln(1/3) = -1.098612
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+% Horizontal asymptote line: {xmin}{xmax}{k}
+\newcommand{\hasym}[3]{\draw[navy, dashed, semithick] (#1,#3)--(#2,#3);}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.2}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item graph $g(x)=a\,b^{\,x-h}+k$ by moving the parent $y=b^{x}$, and read off its horizontal asymptote, range, and $y$-intercept without plotting a single point;
+  \item explain why $f(x)+k$ is the \emph{only} transformation that moves the asymptote --- and therefore the only one that changes the range;
+  \item tell the two minus signs apart: $-b^{x}$ flips the graph over the $x$-axis, while $b^{-x}$ flips it over the $y$-axis and turns growth into decay.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Transformation form $g(x)=a\,b^{\,x-h}+k$}
+\termblanklong{Vertical shift $k$ --- the asymptote mover}
+\termblanklong{Horizontal shift $h$}
+\termblanklong{Vertical stretch / compression / reflection ($a$)}
+\termblanklong{Reflection across the $y$-axis, $f(-x)$}
+\end{vocabbox}
+
+\begin{hookbox}
+Three graphs. Two of the equations contain a $3$, and both graphs moved --- but only \emph{one} of
+them moved the dashed line.
+\begin{center}
+\begin{tikzpicture}[scale=0.30]
+  % I: y = 2^x
+  \begin{scope}
+    \lgrid{-3}{6}{-5}{8}
+    \begin{scope}
+      \clip (-3,-5) rectangle (6,8);
+      \expgraph{1}{0.693147}{0}{0}{-3}{6}
+    \end{scope}
+    \hasym{-3}{6}{0}
+    \node[charcoal, font=\small] at (1.5,-6.6) {\textbf{I}};
+  \end{scope}
+  % II: y = 2^x - 3
+  \begin{scope}[xshift=11.5cm]
+    \lgrid{-3}{6}{-5}{8}
+    \begin{scope}
+      \clip (-3,-5) rectangle (6,8);
+      \expgraph{1}{0.693147}{0}{-3}{-3}{6}
+    \end{scope}
+    \hasym{-3}{6}{-3}
+    \node[charcoal, font=\small] at (1.5,-6.6) {\textbf{II}};
+  \end{scope}
+  % III: y = 2^(x-3)
+  \begin{scope}[xshift=23cm]
+    \lgrid{-3}{6}{-5}{8}
+    \begin{scope}
+      \clip (-3,-5) rectangle (6,8);
+      \expgraph{1}{0.693147}{3}{0}{-3}{6}
+    \end{scope}
+    \hasym{-3}{6}{0}
+    \node[charcoal, font=\small] at (1.5,-6.6) {\textbf{III}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+Match each equation to its graph: \quad $y=2^{x}-3$ \; is \blank{1.0cm} \quad
+$y=2^{x-3}$ \; is \blank{1.0cm} \quad $y=2^{x}$ \; is \blank{1.0cm}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Which graph's dashed asymptote is in a \emph{new} place? What is it now? \writeline
+  \item In Lesson 7.0 you learned that an exponential function \textbf{never} crosses the $x$-axis. Graph II crosses it. What changed? \writeline
+\end{itemize}
+Today the whole lesson hangs on one sentence: \textbf{the asymptote moves for exactly one reason, and
+everything that depends on the asymptote moves with it.}
+\end{hookbox}
+
+\begin{notesbox}{1. One Form, Four Jobs}
+Every exponential graph in this unit can be written in \textbf{transformation form}:
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.86\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering
+$g(x) = a\,b^{\,x-h} + k$ \qquad starting from the parent \qquad $y=b^{x}$
+\end{tcolorbox}
+\end{center}
+Each letter does one job. Fill in the last column --- it is the one that matters today.
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l l X c@{}}
+\hline
+ & \textbf{Where it sits} & \textbf{What it does to the graph} & \textbf{Asymptote moves?} \\
+\hline
+$k$ & outside & shifts the graph \blank{2.0cm} by $k$ & \blank{1.2cm} \\
+$h$ & inside, with the $x$ & shifts the graph \blank{2.0cm} by $h$ & \blank{1.2cm} \\
+$a$ & multiplied out front & stretches ($|a|>1$) or compresses ($|a|<1$); if $a<0$ it flips over the \blank{1.6cm}-axis & \blank{1.2cm} \\
+$-x$ & inside, on the $x$ & flips the graph over the \blank{1.6cm}-axis & \blank{1.2cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+The signs behave exactly as they did for the parabola and the square root in the Warm-Up: $h$ is
+subtracted, so $b^{\,x-3}$ moves \blank{1.4cm} $3$ and $b^{\,x+3}$ moves \blank{1.4cm} $3$.
+
+\vspace{4pt}
+\textbf{Worked example: $g(x)=2^{\,x-1}+3$.} Read all four features off the equation alone.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Parent: $y=$ \blank{1.4cm}, so the graph is \blank{2.4cm} (growth or decay).
+  \item Transformations: right \blank{0.9cm}, up \blank{0.9cm}.
+  \item Horizontal asymptote: $y=$ \blank{1.2cm} \quad Range: \blank{2.4cm}
+  \item $y$-intercept: $g(0)=2^{\,-1}+3=$ \blank{1.6cm}, so the point is \blank{2.0cm}.
+\end{enumerate}
+\emph{Notice:} the shift right did nothing to the asymptote or the range. Only the $+3$ did.
 \end{notesbox}
+
+\begin{notesbox}{2. Why $k$ Is Different: It Takes the Range With It}
+Lesson 7.0's headline was \emph{an asymptote is a boundary the range excludes.} So if the boundary
+moves, the range moves. Nothing else in the form can do that.
+\begin{center}
+\begin{minipage}[c]{0.44\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-3}{4}{-6}{6}
+  \begin{scope}
+    \clip (-3,-6) rectangle (4,6);
+    \expgraph{1}{0.693147}{0}{-4}{-3}{4}
+  \end{scope}
+  \hasym{-3}{4}{-4}
+  \node[navy, font=\scriptsize, right] at (1.7,-4.6) {$y=-4$};
+  \fill[charcoal] (0,-3) circle (3pt) node[left, font=\scriptsize]{$(0,-3)$};
+  \fill[charcoal] (2,0) circle (3pt) node[above left, font=\scriptsize]{$(2,0)$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.52\linewidth}
+\small
+\textbf{$y=2^{x}-4$.} The whole parent graph slid down $4$ --- \emph{including} its asymptote.
+\begin{itemize}[leftmargin=1.3em, itemsep=3pt]
+  \item Asymptote: was $y=0$, now $y=$ \blank{1.2cm}
+  \item Range: was $(0,\infty)$, now \blank{2.4cm}
+  \item $y$-intercept: $2^{0}-4=$ \blank{1.4cm}
+  \item $x$-intercept: read it off the graph. \blank{1.6cm}
+\end{itemize}
+Check it: $2^{\,\square}-4=0$ when $\square=$ \blank{1.0cm}. \checkmark
+\end{minipage}
+\end{center}
+
+\vspace{3pt}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{Two things to fix in your head right now.}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt]
+  \item \textbf{The range starts at the asymptote and never includes it.} For $a>0$ the range of
+        $a\,b^{\,x-h}+k$ is \blank{2.4cm}; for $a<0$ it is \blank{2.6cm}. Always a
+        \emph{parenthesis} at $k$, never a bracket.
+  \item \textbf{``Exponentials have no $x$-intercept'' was a statement about $y=ab^{x}$.} Shifting
+        vertically is exactly what can create one --- the graph gets an $x$-intercept whenever $k$
+        pushes it across the $x$-axis, that is, whenever $a$ and $k$ have \blank{2.4cm} signs.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{2pt}
+\textbf{Your turn.} For $y=\left(\frac{1}{2}\right)^{x}+5$: \; asymptote $y=$ \blank{1.2cm},
+\; range \blank{2.4cm}, \; $y$-intercept \blank{1.8cm}, \; growth or decay? \blank{1.8cm}
+\end{notesbox}
+
+\begin{notesbox}{3. Two Minus Signs, Two Completely Different Flips}
+A minus sign in front of the base and a minus sign in the exponent are \emph{not} the same move.
+\begin{center}
+\begin{minipage}[c]{0.31\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{3}{-8}{3}
+  \begin{scope}
+    \clip (-3,-8) rectangle (3,3);
+    \expgraph{-1}{0.693147}{0}{0}{-3}{3}
+  \end{scope}
+  \hasym{-3}{3}{0}
+  \fill[charcoal] (0,-1) circle (3pt) node[left, font=\scriptsize]{$(0,-1)$};
+\end{tikzpicture}\\[2pt]
+{\small $y=-2^{x}$}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.31\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{3}{-2}{9}
+  \begin{scope}
+    \clip (-3,-2) rectangle (3,9);
+    \expgraph{1}{-0.693147}{0}{0}{-3}{3}
+  \end{scope}
+  \hasym{-3}{3}{0}
+  \fill[charcoal] (0,1) circle (3pt) node[above right, font=\scriptsize]{$(0,1)$};
+\end{tikzpicture}\\[2pt]
+{\small $y=2^{-x}$}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.33\linewidth}
+\small
+Both started from the same parent $y=2^{x}$, whose graph rises through $(0,1)$ with range
+$(0,\infty)$. One of them is still \emph{growth}; one of them is not.
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l l X X@{}}
+\hline
+\textbf{Function} & \textbf{Flips over the\dots} & \textbf{Range} & \textbf{Growth or decay?} \\
+\hline
+$y=2^{x}$ (parent) & --- & $(0,\infty)$ & growth \\
+$y=-2^{x}$ & \blank{1.6cm}-axis & \blank{2.2cm} & \blank{2.4cm} \\
+$y=2^{-x}$ & \blank{1.6cm}-axis & \blank{2.2cm} & \blank{2.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{Why the $y$-axis flip changes the family.} This is not a new rule --- it is the
+negative-exponent property from Unit 6, and you already checked it in the Warm-Up:
+\[
+  2^{-x} \;=\; \frac{1}{2^{x}} \;=\; \left(\frac{1}{2}\right)^{x}
+\]
+So reflecting a growth curve across the $y$-axis \emph{is} the decay curve, with base
+\blank{1.4cm}. And neither flip touched the asymptote --- both are still \blank{1.4cm}, because
+neither one is a \blank{2.2cm} shift.
+\end{notesbox}
+
+\begin{notesbox}{4. Reading Backwards: From a Graph to an Equation}
+Three steps, in this order. The asymptote goes first, because it is the only feature you can read
+without doing any arithmetic.
+\begin{center}
+\begin{minipage}[c]{0.44\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{4}{-1}{12}
+  \begin{scope}
+    \clip (-3,-1) rectangle (4,12);
+    \expgraph{3}{0.693147}{0}{2}{-3}{4}
+  \end{scope}
+  \hasym{-3}{4}{2}
+  \node[navy, font=\scriptsize, left] at (-1.2,2.7) {$y=2$};
+  \fill[charcoal] (0,5) circle (3pt) node[left, font=\scriptsize]{$(0,5)$};
+  \fill[charcoal] (1,8) circle (3pt) node[right, font=\scriptsize]{$(1,8)$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.52\linewidth}
+\small
+The curve has the form $y=a\,b^{x}+k$.
+\begin{enumerate}[leftmargin=1.6em, itemsep=4pt]
+  \item \textbf{The dashed line gives $k$:} \; $k=$ \blank{1.0cm}
+  \item \textbf{The $y$-intercept gives $a$.} At $x=0$ the model reads $a\cdot b^{0}+k = a+k$, so
+        $a+$ \blank{0.8cm} $=5$ and $a=$ \blank{1.0cm}.
+  \item \textbf{One more point gives $b$.} Using $(1,8)$: \; $8=$ \blank{0.8cm}$\cdot b+$
+        \blank{0.8cm}, so $b=$ \blank{1.0cm}.
+\end{enumerate}
+Equation: $y=$ \blank{3.0cm}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+\textbf{Check it} the way you checked models in Lesson 7.1: does your equation give the right output
+at a point you did \emph{not} use? At $x=2$ the equation gives \blank{2.2cm}, and the curve is
+climbing steeply past the top of the grid --- consistent.
+
+\vspace{3pt}
+\emph{A warning about step 1.} If you skip the asymptote and grab $a$ straight off the $y$-intercept,
+you will write $a=5$ here. That is the most common wrong answer on this page: the $y$-intercept is
+$a+k$, not $a$, and the two agree only when $k=$ \blank{1.0cm}.
+\end{notesbox}
+
+\begin{practicebox}
+Answer from the equation alone --- no tables, no plotting.
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item $y=5^{x}+2$: \quad asymptote $y=$ \blank{1.2cm} \quad range \blank{2.2cm} \quad
+        $y$-intercept \blank{1.8cm} \quad growth or decay? \blank{1.8cm}
+
+  \item $y=\left(\frac{1}{3}\right)^{x}-4$: \quad asymptote $y=$ \blank{1.2cm} \quad range
+        \blank{2.2cm} \quad $y$-intercept \blank{1.8cm} \quad growth or decay? \blank{1.8cm}
+
+  \item Describe $y=-3^{\,x-2}$ as a sequence of moves applied to the parent $y=3^{x}$, then give its
+        asymptote and range. \writeline
+
+  \item One of $y=4^{x}+1$ and $y=4^{x+1}$ has range $(1,\infty)$; the other has range $(0,\infty)$.
+        Say which is which, and explain how you know without graphing either one. \writelines{2}
+\end{enumerate}
+\end{practicebox}
 
 \end{document}

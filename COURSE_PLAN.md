@@ -21,7 +21,7 @@
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
 > dirs, component skeletons, and the unit `tests/` + `test_keys/` are laid down.
-> **Lessons 7.0 (2026-07-27) and 7.1 (2026-07-28) are authored & building**; lessons 7.2–7.5 and
+> **Lessons 7.0 (2026-07-27), 7.1 and 7.2 (2026-07-28) are authored & building**; lessons 7.3–7.5 and
 > the unit tests are still skeletons.
 > **Unit 8 (Logarithmic Functions): scaffolded 2026-07-27; Lesson 8.0 authored & building** —
 > locked at **7 lessons (8.0–8.6)**. A standards audit found log properties and log equation-solving
@@ -33,9 +33,9 @@
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Two units are now open.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
 > sequence (2026-07-27); Units 6 and 1 have since closed. **Next actions, in priority order:
-> (1) continue Unit 7 at Lesson 7.2** (graphing & transformations; $f(x)+k$ is the only
-> transformation that moves the asymptote), which Lesson 7.1's homework spiral and slide roadmap
-> already set up explicitly; **(2) continue Unit 8 at
+> (1) continue Unit 7 at Lesson 7.3** (solving with a common base), which Lesson 7.2's homework
+> spiral, exit-ticket sort, and slide roadmap all set up explicitly — 7.2's matching item leaves
+> two graphs crossing at $x=2$, i.e. $2^{x}=4$, which is 7.3's opening equation; **(2) continue Unit 8 at
 > Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
 > and 8.5 needs the $e$ introduced there — so Unit 7 should not fall far behind Unit 8.
@@ -72,7 +72,7 @@
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
 | 6 | Radical Functions | Radical / power | 8 | **Complete** |
-| 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0–7.1 done) |
+| 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0–7.2 done) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
 Units 2–8 each open with **Lesson X.0: Characteristics of ____ Functions**.
@@ -1715,6 +1715,49 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **A2.F.2a/h** (range and asymptote used to validate a model), and it is the stated prerequisite
 > for **A2.ST.2d/e** in 7.5 — the Activity's reverse-translation table is exactly the "technology
 > hands you $a$ and $b$; say what they mean" skill.
+>
+> **Lesson 7.2 authored & builds (2026-07-28):** all components + keys + a 10-slide deck.
+> `make -C unit07/lesson02 all` → EXIT 0 (student 13pp, full 29pp); warm-up and exit ticket each fit
+> **exactly one page** blank *and* key; homework 3pp/3pp; notes 4pp (key 5pp) and activity 3pp (key
+> 4pp), where the extra key page is **teacher note only** and pp. 1–4 / 1–3 align with the blank. The
+> §7 vocab-box fix is applied. The lesson is organized around one sentence — **only $f(x)+k$ moves the
+> asymptote, and everything that depends on the asymptote moves with it** — which is what finally
+> gives the inside/outside distinction consequences: $h$ slides the graph past an asymptote that never
+> budges, $a$ picks the *side* of it, and only $k$ relocates it to $y=k$, taking the range
+> $(k,\infty)$ / $(-\infty,k)$ with it. The Hook deliberately mirrors 6.4's: three pre-drawn graphs of
+> $2^{x}$, $2^{x}-3$, and $2^{\,x-3}$ with their asymptotes dashed — *two equations contain a $3$,
+> both graphs moved, why is only one dashed line somewhere new?* — closing by pointing at graph II
+> crossing the $x$-axis and asking students to reconcile it with Lesson 7.0. That is the unit's second
+> **refinement, not contradiction** beat: 7.0's "no zeros, ever" was a claim about $y=ab^{x}$ (i.e.
+> $k=0$), and the precise rule is that the graph has an $x$-intercept **exactly when $a$ and $k$ have
+> opposite signs** — a criterion reused as the closing question of the Homework feature table, in
+> Tier A's matching, and in Tier E Part 2. The signature error of the day is the **two minus signs**:
+> $-b^{x}$ negates the *output* (flip over the $x$-axis, range to the other side of the asymptote,
+> base unchanged so **still growth**) versus $b^{-x}$ negating the *input* (flip over the $y$-axis,
+> range unchanged, and genuinely **decay**, since $b^{-x}=\left(\frac1b\right)^{x}$ — the Unit 6
+> negative-exponent property, earned numerically in Warm-Up item 3 before it is ever stated).
+> "$-2^{x}$ is decay" is refused throughout and tied back to 7.0's *read the family off $b$, never off
+> $a$*; the Homework's $y=-4^{x}$ row and the slides' four-row family table are the deliberate traps.
+> Graph → equation is taught as a strict **three-step order** — dashed line gives $k$, the
+> $y$-intercept is $a+k$ (so subtract before claiming $a$), one more point gives $b$ — because
+> skipping step 1 produces $a=5$ instead of $3$ every time; this is the reading 7.5 leans on, and
+> Tier A repeats it with a *negative* $k$ so that $a$ comes out **larger** than the intercept. Tier E
+> carries the one piece of genuinely new mathematics: $2^{\,x-3}=\frac18\cdot2^{x}$, so for this
+> family a horizontal shift and a vertical compression are the **same transformation** (the
+> exponential analogue of 6.4's input/output equivalence), with part (d) testing the same trick on
+> $(x-3)^{2}$, where it fails. Two modeling contexts make $k$ physical: cooling coffee
+> $T(t)=68+132(0.85)^{t}$ (Activity Tier E) and a soda warming, $T(t)=72-34(0.9)^{t}$ (Homework
+> extension, where $a<0$ because the soda starts *below* the asymptote) — both with an
+> algebraic-versus-contextual range beat, and both ending on an equation with **no common base**
+> ($132(0.85)^{t}=32$ and $(0.9)^{t}=2.118$), left standing on purpose for 7.4 / Unit 8; logarithms
+> are never named. The soda's $x$-intercept question is answerable *without* logs — a base under $1$
+> exceeds $1$ only at a negative exponent — which is the reasoning 7.3 formalizes. All graphs
+> pre-drawn via `plot`+`\clip` as $a\,e^{(\ln b)(x-h)}+k$ (no sketch-from-scratch). Standards:
+> **A2.F.1b/c** (primary — transformations of the exponential parent and the effect of each
+> parameter), **A2.F.1e** (equation ↔ graph ↔ table, run in both directions), **A2.F.2h** and
+> **A2.F.2a** (horizontal asymptote and range — the measure applied to every item on every page).
+> Exit ticket includes an SOL-style MC item (range of $3(2)^{x}-6$; distractors = bracket error /
+> ignored the shift / sign of $k$ backwards).
 
 - **7.0** Characteristics of exponential functions *(introduces: growth vs. decay and the constant
   multiplicative rate / **constant ratio**; revisits the horizontal asymptote as a **range
@@ -1734,7 +1777,7 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
   that **moves the asymptote** — and therefore the range; $kf(x)$ moves the $y$-intercept but not
   the HA; $f(x+k)$ and $f(kx)$; reflections carry real content — $f(-x)$ turns growth into decay
   because $2^{-x}=(\frac12)^x$, a 6.1 exponent identity rather than a new rule)* —
-  A2.F.1b/c/e + A2.F.2a/h
+  A2.F.1b/c/e + A2.F.2a/h — **authored & building 2026-07-28**
 - **7.3** Solving exponential equations with a common base *(one-to-one property: rewrite both sides
   over one base, equate exponents; runs on Unit 6's machinery — $8^x=4$, $3^x=\frac1{27}$,
   $\sqrt[3]{2}=2^{1/3}$; verified graphically as an intersection)* — **supporting skill, no SOL
