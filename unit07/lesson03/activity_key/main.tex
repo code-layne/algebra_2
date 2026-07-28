@@ -3,17 +3,242 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax   (ln2 = 0.693147, ln3 = 1.098612)
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+\newcommand{\solline}[3]{\draw[goldacc, very thick] (#1,#3)--(#2,#3);}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.3}{Group Activity --- Answer Key}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Group Activity verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Group Activity --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Make the Bases Match --- Then Say Why You're Allowed To.} Every equation below is solved
+the same way: rewrite both sides over one base, then set the exponents equal. Your partner's job is to
+stop you after Step 1 and ask the two questions that keep you honest: \textbf{are both sides really
+powers of the same base?} and \textbf{did the exponent get multiplied, or did you accidentally add?}
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Warm the toolbox.} Write each number as a power of the base named in the row.
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Base $2$} & $8$ & $16$ & $64$ & $\frac12$ & $\frac{1}{16}$ \\
+\textbf{exponent} & \ans{3} & \ans{4} & \ans{6} & \ans{$-1$} & \ans{$-4$} \\
+\hline
+\textbf{Base $3$} & $9$ & $27$ & $\frac19$ & $1$ & $\frac{1}{81}$ \\
+\textbf{exponent} & \ans{2} & \ans{3} & \ans{$-2$} & \ans{0} & \ans{$-4$} \\
+\hline
+\textbf{Base $5$} & $25$ & $125$ & $\frac{1}{25}$ & $1$ & $625$ \\
+\textbf{exponent} & \ans{2} & \ans{3} & \ans{$-2$} & \ans{0} & \ans{4} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{5pt}
+\textbf{Part 2 --- Six equations.} Rewrite, match, solve. Use the space for the common-base step.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X c@{\hspace{2em}} l X c@{}}
+\hline
+\textbf{(a)} $2^{x}=64$ & \ans{$2^{x}=2^{6}$} & $x=$ \ans{6} &
+\textbf{(b)} $5^{\,x-1}=25$ & \ans{$5^{\,x-1}=5^{2}$} & $x=$ \ans{3} \\
+\textbf{(c)} $3^{x}=\frac19$ & \ans{$3^{x}=3^{-2}$} & $x=$ \ans{$-2$} &
+\textbf{(d)} $4^{x}=64$ & \ans{$2^{\,2x}=2^{6}$} & $x=$ \ans{3} \\
+\textbf{(e)} $10^{\,2x}=1000$ & \ans{$10^{\,2x}=10^{3}$} & $x=$ \ans{$\frac32$} &
+\textbf{(f)} $7^{\,x+2}=1$ & \ans{$7^{\,x+2}=7^{0}$} & $x=$ \ans{$-2$} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\textbf{Part 3 --- Prove two of them.} Substitute your answers back in and show the arithmetic.
+
+\vspace{2pt}
+\hspace*{1.2em} (b) \; $5^{\,\blacksquare-1}=$ \ans{$5^{\,3-1}=5^{2}=25$} \hfill (f) \;
+$7^{\,\blacksquare+2}=$ \ans{$7^{\,-2+2}=7^{0}=1$}
+
+\vspace{4pt}
+Item (f) surprises people. Why does an exponent of $0$ turn out to be the answer, when there is no
+visible power on the right-hand side? \ans{Because $1$ \emph{is} a power of $7$: $7^{0}=1$, so the right side was $7^{0}$ all along.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Both sides need work.} In every one of these, at least one side has to be rewritten
+before the bases match. Show that step.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}l X c@{\hspace{2em}} l X c@{}}
+\hline
+\textbf{(a)} $9^{x}=27$ & \ans{$3^{\,2x}=3^{3}$} & $x=$ \ans{$\frac32$} &
+\textbf{(b)} $8^{\,x+1}=16$ & \ans{$2^{\,3x+3}=2^{4}$} & $x=$ \ans{$\frac13$} \\
+\textbf{(c)} $\left(\frac13\right)^{x}=81$ & \ans{$3^{-x}=3^{4}$} & $x=$ \ans{$-4$} &
+\textbf{(d)} $25^{x}=125^{\,x-1}$ & \ans{$5^{\,2x}=5^{\,3x-3}$} & $x=$ \ans{3} \\
+\textbf{(e)} $4^{\,3x}=8^{\,x+2}$ & \ans{$2^{\,6x}=2^{\,3x+6}$} & $x=$ \ans{2} &
+\textbf{(f)} $6^{\,2x-1}=\frac{1}{36}$ & \ans{$6^{\,2x-1}=6^{-2}$} & $x=$ \ans{$-\frac12$} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{Part 2 --- The same answers, read off a picture.} The curve is $y=3^{x}$. Each gold line is one
+right-hand side.
+\begin{center}
+\begin{minipage}[c]{0.40\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{3}{-3}{10}
+  \begin{scope}
+    \clip (-3,-3) rectangle (3,10);
+    \expgraph{1}{1.098612}{0}{0}{-3}{3}
+  \end{scope}
+  \solline{-3}{3}{9}
+  \solline{-3}{3}{1}
+  \draw[redacc, dashed, very thick] (-3,-2)--(3,-2);
+  \node[goldacc, font=\scriptsize, left] at (-1.4,9.6) {$y=9$};
+  \node[goldacc, font=\scriptsize, left] at (-1.4,1.6) {$y=1$};
+  \node[redacc, font=\scriptsize, left] at (-1.4,-2.6) {$y=-2$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.56\linewidth}
+\small
+Read each solution off the graph, then confirm it algebraically in the middle column.
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X c@{}}
+\hline
+\textbf{Equation} & \textbf{Common base} & \textbf{$x=$} \\
+\hline
+$3^{x}=9$ & \ans{$3^{x}=3^{2}$} & \ans{2} \\
+$3^{x}=1$ & \ans{$3^{x}=3^{0}$} & \ans{0} \\
+$3^{x}=-2$ & \ans{impossible} & \ans{none} \\
+\hline
+\end{tabularx}
+\vspace{3pt}
+How many times can a horizontal line cross an exponential curve? \ans{at most once}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+For the row with no answer, say what rules it out --- and name the feature of the graph you used.
+\ans{$-2$ is not in the range $(0,\infty)$; the horizontal asymptote $y=0$ is a floor the curve never reaches, let alone crosses.}
+
+\vspace{5pt}
+\textbf{Part 3 --- Error analysis.} Name the error, then give the correct solution.
+
+\vspace{2pt}
+\textbf{(a)} Devon solved $8^{x}=4$ like this: ``$\left(2^{3}\right)^{x}=2^{2}$, so $2^{\,3+x}=2^{2}$,
+so $3+x=2$ and $x=-1$.''
+\ansline{Devon added the exponents where the rule multiplies them: a power of a power gives $\left(2^{3}\right)^{x}=2^{\,3x}$, not $2^{\,3+x}$.}
+\ansline{Correct: $2^{\,3x}=2^{2}$, so $3x=2$ and $x=\frac23$. Check: $8^{2/3}=\left(\sqrt[3]{8}\right)^{2}=4$.}
+
+\vspace{2pt}
+\textbf{(b)} Priya solved $9^{x}=27$ like this: ``$3^{2}=9$ and $3^{3}=27$, so $x=3$.''
+\ansline{Priya never rewrote the left side. Her $x$ sits on a base of $9$, so she cannot compare it with an exponent on a base of $3$ --- she matched the wrong two numbers.}
+\ansline{Correct: $9^{x}=\left(3^{2}\right)^{x}=3^{\,2x}$ and $27=3^{3}$, so $2x=3$ and $x=\frac32$.}
+
+\vspace{2pt}
+One of those two students would be helped most by rereading Warm-Up item 2. Which one, and why?
+\ans{Devon --- item 2 is exactly the add-versus-multiply contrast ($2^{3}\cdot2^{4}=128$ against $\left(2^{3}\right)^{4}=4096$).}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Radicals are exponents too} (Lesson 6.1). Convert first, then match.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}l X c@{\hspace{2em}} l X c@{}}
+\hline
+\textbf{(a)} $2^{x}=\sqrt[3]{2}$ & \ans{$2^{x}=2^{1/3}$} & $x=$ \ans{$\frac13$} &
+\textbf{(b)} $4^{x}=\sqrt{8}$ & \ans{$2^{\,2x}=2^{3/2}$} & $x=$ \ans{$\frac34$} \\
+\textbf{(c)} $\left(\frac15\right)^{\,x-1}=\sqrt[3]{25}$ & \ans{$5^{\,1-x}=5^{2/3}$} & $x=$ \ans{$\frac13$} &
+\textbf{(d)} $2^{x}\cdot 8^{\,x-1}=32$ & \ans{$2^{\,4x-3}=2^{5}$} & $x=$ \ans{2} \\
+\hline
+\end{tabularx}
+\end{center}
+Item (d) needs a rule the others did not. Which one, and where did you use it?
+\ans{The product rule: $2^{x}\cdot2^{\,3x-3}=2^{\,x+3x-3}=2^{\,4x-3}$ --- exponents \emph{add} when powers of the same base are multiplied.}
+
+\vspace{6pt}
+\textbf{Part 2 --- The fine print, tested.} The one-to-one property says: if $b^{m}=b^{n}$ with $b>0$
+and $b\neq1$, then $m=n$. Both conditions are doing real work.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Find two \emph{different} numbers $m$ and $n$ with $1^{m}=1^{n}$. \; $m=$ \ans{2}
+        \quad $n=$ \ans{7} \quad \emph{(any two will do --- both sides are $1$)}
+  \item So how many solutions does $1^{x}=1$ have? \ans{infinitely many --- every real number}
+  \item In Lesson 7.1 you were told $b\neq1$ because the graph would be a flat line. State the
+        \emph{solving} reason for the same restriction, in one sentence.
+        \ansline{If $b=1$, both sides equal $1$ no matter what the exponents are, so matching the bases tells you nothing at all about $m$ and $n$.}
+  \item Now the other condition. Explain why a base like $-2$ is not allowed, using
+        $(-2)^{1/2}$ as your example.
+        \ansline{$(-2)^{1/2}=\sqrt{-2}$ is not a real number, so a negative base does not even define a function at every real exponent --- there is no curve for the property to describe.}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- A colony, and the first thing this method cannot do.} A bacterial colony starts at
+$50$ cells and doubles every hour, so after $t$ hours there are
+\[
+  P(t) = 50\cdot 2^{\,t} \quad\text{cells.}
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+$t$ (hours) & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ \\ \hline
+$P(t)$ & $50$ & $100$ & \ans{200} & \ans{400} & \ans{800} & \ans{1600} & \ans{3200} \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item When does the colony reach $3200$ cells? Set up $50\cdot2^{t}=3200$, divide first, then match
+        bases. \ans{$2^{t}=64=2^{6}$, so $t=6$ hours.}
+  \item When does it reach $12{,}800$ cells? \ans{$2^{t}=256=2^{8}$, so $t=8$ hours.}
+  \item Now try $1000$ cells. Divide first: $2^{t}=$ \ans{20}. What goes wrong at the
+        common-base step?
+        \ansline{$20$ is not a power of $2$ --- it sits between $2^{4}=16$ and $2^{5}=32$ --- so there is no way to write both sides over one base.}
+  \item Use the table to trap the answer: the colony passes $1000$ cells between $t=$ \ans{4}
+        and $t=$ \ans{5} hours.
+  \item Exactly one of these two has \emph{no} solution; the other has a solution you cannot yet find.
+        Say which is which, and give a different reason for each. \\[3pt]
+        \hspace*{1.2em} $50\cdot2^{t}=1000$ \qquad\qquad $50\cdot2^{t}=0$
+        \ansline{$50\cdot2^{t}=1000$ \emph{does} have a solution: $1000$ is a possible output, and the graph crosses $y=1000$ between $t=4$ and $t=5$.}
+        \ansline{What fails there is the \emph{method}, not the equation --- $20$ is not a power of $2$.}
+        \ansline{$50\cdot2^{t}=0$ has no solution at all: $2^{t}>0$ for every $t$, so $P(t)$ is never $0$ --- $y=0$ is the asymptote.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{teachernote}
+\textbf{Tier R item (f) and Tier A's $3^{x}=1$ are the same idea and both are worth a stop.} Students
+read ``$=1$'' as ``no exponent'' rather than as $b^{0}$. Once they see that $1$ is a legal power of every
+base, $7^{\,x+2}=1$ stops being a special case. Expect ``no solution'' as the wrong answer here.
+
+\textbf{The two Tier A errors need different re-teaches, which is why both are on the page.} Devon's is
+mechanical --- one exponent rule, fixable in a minute by pointing at Warm-Up item 2. Priya's is
+conceptual: she compared an exponent sitting on a base of $9$ with an exponent sitting on a base of $3$.
+Ask her question out loud --- \emph{whose exponent is $x$?} --- before offering any algebra. Students who
+make Priya's error will also write $x=2$ for $4^{x}=16^{2}$, so check that in circulation.
+
+\textbf{Tier E Part 2 is where the lesson's ``why'' gets proved rather than asserted.} Part (b)'s
+``infinitely many'' usually lands as a surprise, and it is the cleanest possible demonstration that
+matching bases can fail. Tie it back: this is the \emph{same} $b\neq1$ students accepted on faith in
+Lesson 7.1.
+
+\textbf{Part 3(e) is the item to grade first.} It separates ``no solution exists'' from ``a solution
+exists that my method cannot find'' --- exactly the distinction Lesson 7.4 and Unit 8 are built on.
+Students who collapse the two will later believe that logarithms somehow solve $2^{t}=-5$. If a group
+finishes early, ask them to add a third equation to the pair that has infinitely many solutions.
+\end{teachernote}
 
 \end{document}
