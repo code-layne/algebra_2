@@ -300,6 +300,22 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > `unit0{2..8}/lesson*/cover/main.tex`. They are placeholders that get rewritten when each lesson is
 > authored, so no separate sweep is needed — just take the header block from a `unit01` cover (or
 > re-run the scaffolder) rather than editing the stale skeleton in place.
+>
+> **Lesson 1.0 guided-notes pagination fixed 2026-07-28 (user report) — this is the case that
+> named the *boxguard* rule; see §7.** Four boxes were breaking badly: the Hook printed ~4 lines
+> at the bottom of p.1, notesbox 2 printed a 2-line stub at the bottom of p.2, notesbox 3 split
+> mid-sentence, and the Guided Practice printed only its title + 1 line at the bottom of p.4.
+> Fixed in both `notes/main.tex` and `notes_key/main.tex` (lockstep): `\boxguard` before each
+> `notesbox`/`practicebox`/`teachernote`; `\boxguard[30]` before notesbox 3, which opens with an
+> unbreakable `fbox` + `tabularx` that a 16-line guard could not save; `\boxguard[14]`/`[10]`
+> before the "Now justify a solution" and "Back to Ana and Ben" lead-ins so neither heading
+> orphans from its table; and an explicit `\newpage` before `\begin{hookbox}` — per user
+> instruction the whole Hook starts p.2. `\boxguard` itself was promoted to
+> `shared/algebra2-boxes.sty` the same day, so no lesson needs the `needspace` preamble.
+> *Known tradeoff:* pushing notesbox 3 whole leaves ~4in blank at the bottom of p.3 — its opening
+> table is ~2.9in and unbreakable, so no split point fills that page without recreating the stub.
+> `make -C unit01/lesson00 all` → EXIT 0; notes still **5pp** blank and **5pp** key, so the packet
+> page counts are unchanged (unit student 63pp / unit full 119pp).
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -2131,6 +2147,38 @@ Fixing it per-lesson (rather than patching `\termblanklong` in
 `shared/algebra2-article.sty`) is deliberate: a shared-package change would re-flow the notes of every
 already-verified unit at once. The shared fix is the right long-term answer, but it belongs with the
 retrofit below, where the pagination of Units 2–4 can be re-verified in one pass.
+
+### Boxguard — the page-break rule (named 2026-07-28)
+
+**"Boxguard" names both the defect and the fix.** When a review turns up "lesson 2.3 has a
+boxguard problem on page 4," it means a box broke across a page leaving roughly an inch — a
+title plus a line or two — at the **top or bottom** of a page. **Push the whole box to the next
+page.** Breaking a box is fine only when each side of the break gets a substantial chunk. The
+white space you give up is cheaper than a stub that reads as a printing mistake.
+
+`\boxguard` is defined in **`shared/algebra2-boxes.sty`** (and so reaches every key through
+`algebra2-key.sty`) — no per-file preamble needed:
+
+```latex
+\boxguard                      % default: needs 16 lines of room, else break
+\begin{notesbox}{2. ...}
+
+\boxguard[30]                  % box OPENS with an unbreakable \fbox / tabularx
+\begin{notesbox}{3. ...}
+
+\boxguard[14]                  % inside a box: keep a lead-in with its table
+\textbf{Now justify a solution, line by line.}
+```
+
+Prefer `\boxguard` to a hard `\newpage` — it self-adjusts when content above it changes.
+Reserve `\newpage` for an explicit "this box must start a page" instruction (Lesson 1.0's Hook
+is the one such case). Apply every guard to the blank **and** its `_key`, then rebuild and check
+the pages with `pdftoppm -r 60 -png <pdf> /tmp/pg`; page counts should not move.
+
+Unlike the vocab-box fix above, this one **is** a shared-package change — it is purely additive
+(`\RequirePackage{needspace}` + one `\newcommand`), so no already-verified unit re-flows until
+a lesson actually calls `\boxguard`. Per user decision there is **no bulk sweep**: fix boxguard
+problems lesson-by-lesson as they are found in review.
 
 ---
 

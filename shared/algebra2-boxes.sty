@@ -5,7 +5,34 @@
 % lesson-plan documents can set their own geometry independently.
 \RequirePackage{algebra2-colors}
 \RequirePackage[most]{tcolorbox}
+\RequirePackage{needspace}
 \tcbuselibrary{breakable, skins}
+
+% ── \boxguard — the page-break guard ──────────────────────────────────────────
+% THE BOXGUARD RULE: never let a box break leaving a ~1in sliver — a title plus
+% a line or two — at the top or bottom of a page. If that little would print,
+% push the WHOLE box to the next page. Breaking is fine only when each side of
+% the break gets a substantial chunk.
+%
+% Put \boxguard on its own line immediately BEFORE \begin{...} of any breakable
+% box. If fewer than 16 lines remain on the page, the box starts on the next one.
+%
+%   \boxguard
+%   \begin{notesbox}{2. ...}
+%
+% Raise the count when a box OPENS with something unbreakable — an \fbox or a
+% tabularx never splits, so the default guard can still strand a stub:
+%
+%   \boxguard[30]
+%   \begin{notesbox}{3. ...}
+%
+% Inside a long box, guard a bold lead-in that introduces a table so the heading
+% never orphans from its table: \boxguard[14] before the lead-in paragraph.
+%
+% Prefer \boxguard over a hard \newpage — it self-adjusts when content above it
+% changes. Reserve \newpage for "this box must start a page" instructions.
+% Apply every guard to the blank AND its _key file; they stay in lockstep.
+\newcommand{\boxguard}[1][16]{\Needspace{#1\baselineskip}}
 
 % ── Lesson-plan box ───────────────────────────────────────────────────────────
 % Usage: \begin{skillbox}[Title]{background-color} ... \end{skillbox}
