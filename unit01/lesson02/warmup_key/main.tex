@@ -4,16 +4,94 @@
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Pre-drawn number line; #1 receives the shading/endpoint overlay.
+\newcommand{\numline}[1]{%
+  \begin{tikzpicture}[baseline=-3pt, x=0.58cm, y=0.58cm]
+    \draw[<->, thick, charcoal] (-5.6,0) -- (5.6,0);
+    \foreach \t in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {\draw[charcoal] (\t,0.13) -- (\t,-0.13);}
+    \foreach \t in {-4,-2,0,2,4} {\node[below=0pt, font=\scriptsize] at (\t,-0.10) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.2}{Warm-Up --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.06in}
 
-% TODO: copy the blank Warm-Up verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Warm-Up --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Getting Ready: Skills We'll Use Today}
+\small Three skills, one from each of the last two lessons. Work quickly.
+
+\vspace{3pt}
+\textbf{1. Name the move (Lesson 1.0).} The work is done for you. Write the \emph{property} that
+makes each line legal.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+\textbf{Line} & \textbf{Why is this allowed?} \\
+\hline
+$5(x-3)=2x+9$ & \emph{given} \\
+$5x-15=2x+9$ & \ans{distributive property} \\
+$3x-15=9$ & \ans{subtraction property of equality (subtract $2x$ from both sides)} \\
+$3x=24$ & \ans{addition property of equality (add $15$ to both sides)} \\
+$x=8$ & \ans{division property of equality (divide both sides by $3$)} \\
+\hline
+\end{tabularx}
+\end{center}
+``I moved it to the other side'' is not one of the answers. Every line has a \emph{name}.
+
+\vspace{3pt}
+\textbf{2. Factor completely (Lesson 1.1).}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}l l@{}}
+(a) \; $x^2-5x-14=$ \ans{$(x-7)(x+2)$} &
+(b) \; $3x^2-27=$ \ans{$3(x+3)(x-3)$} \\
+\end{tabular}
+\end{center}
+Now finish this sentence, which you already believe: \\
+If two numbers multiply to give \textbf{zero}, then \ans{the first} or \ans{the second} must be zero.
+\\[2pt]
+Does the same reasoning work if the two numbers multiply to give \textbf{eight}? \ans{No}
+
+\vspace{4pt}
+\textbf{3. Read the picture.} Each number line below shows a \emph{solution set}. Write the
+inequality it represents.
+\begin{center}
+\begin{tabular}{@{}c c@{}}
+(a) & (b) \\[2pt]
+\numline{\draw[ultra thick, forest] (-1,0) -- (5.55,0);
+         \draw[thick, forest, fill=white] (-1,0) circle (2.7pt);}
+&
+\numline{\draw[ultra thick, forest] (3,0) -- (-5.55,0);
+         \fill[forest] (3,0) circle (2.7pt);}
+\\[3pt]
+$x$ \ans{$>-1$} & $x$ \ans{$\le 3$} \\
+\end{tabular}
+\end{center}
+Roughly how many numbers are in solution set (a)? \ans{infinitely many} \\
+That answer is exactly why we \emph{draw} a solution set instead of listing it.
+
 \end{notesbox}
+
+\begin{teachernote}
+\small
+\textbf{Item 1 is Lesson 1.0 being cashed in.} Refuse ``I moved it over'' out loud --- the whole
+point of 1.0 was that each move has a name and the name is what makes it legal. If the room cannot
+produce ``subtraction property of equality,'' spend two extra minutes here; the notes ask for the
+same column three more times today.
+
+\textbf{Item 2 delivers the zero product property without announcing it.} Students state it
+themselves in the fill-in sentence, and the ``does it work for eight?'' question is the guard that
+matters --- from $(x-2)(x+5)=8$ nothing follows, and that error appears every year. Say the reason:
+zero is the only number with no way to be built from two nonzero factors.
+
+\textbf{Item 3 motivates graphing.} Take the ``how many numbers'' answer publicly. Because the set
+is infinite, no list can express it, so the picture is not decoration --- it is the only available
+notation. Also flag the two circle conventions now: open for $<$ and $>$, closed for $\le$ and
+$\ge$, since \textbf{A.EI.1c} grades that detail.
+\end{teachernote}
 
 \end{document}

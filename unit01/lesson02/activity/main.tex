@@ -4,16 +4,206 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Pre-drawn number line; #1 receives any shading/endpoint overlay (empty = blank axis).
+\newcommand{\numline}[1]{%
+  \begin{tikzpicture}[baseline=-3pt, x=0.52cm, y=0.52cm]
+    \draw[<->, thick, charcoal] (-5.6,0) -- (5.6,0);
+    \foreach \t in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {\draw[charcoal] (\t,0.13) -- (\t,-0.13);}
+    \foreach \t in {-4,-2,0,2,4} {\node[below=0pt, font=\scriptsize] at (\t,-0.10) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.2}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{How Many Answers Does This Question Have?} An equation is a question, and the honest
+answer is sometimes ``every number'' and sometimes ``none.'' With your partner, decide \emph{what
+kind of question} each item is before you touch it --- then answer it, and check. Argue about the
+ones you disagree on before writing anything down.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Solve, and name one move.} Solve each equation. In the last column, name
+\emph{one} property of equality you used.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Equation} & \textbf{Solution} & \textbf{One property you used} \\
+\hline
+(a) \; $3x+7=22$ & $x=$ \blank{1.4cm} & \blank{5.4cm} \\
+(b) \; $2(x-4)=10$ & $x=$ \blank{1.4cm} & \blank{5.4cm} \\
+(c) \; $5x-3=2x+12$ & $x=$ \blank{1.4cm} & \blank{5.4cm} \\
+(d) \; $\dfrac{x}{4}+2=7$ & $x=$ \blank{1.4cm} & \blank{5.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Pick any one and check it by substituting into the original. Which one, and does it check?
+\blank{6.4cm}
+
+\vspace{4pt}
+\textbf{Part 2 --- Read the last line only.} Four students finished four different equations. You
+are given only their \emph{final} line. Say how many solutions each equation has. Do not solve
+anything.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Final line} & \textbf{How many solutions?} & \textbf{How you knew} \\
+\hline
+(a) \; $x=3$ & \blank{2.8cm} & \blank{4.6cm} \\
+(b) \; $5=5$ & \blank{2.8cm} & \blank{4.6cm} \\
+(c) \; $0=7$ & \blank{2.8cm} & \blank{4.6cm} \\
+(d) \; $-2=-2$ & \blank{2.8cm} & \blank{4.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+In (b), (c), and (d) the variable disappeared. Is that a mistake? \blank{1.6cm} \; What decides
+which answer you give? \blank{6.0cm}
+
+\vspace{4pt}
+\textbf{Part 3 --- Solve and shade.} Solve, then shade the solution set. Watch your circle: open
+$\circ$ for $<$ and $>$, closed $\bullet$ for $\le$ and $\ge$.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}X c@{}}
+\hline
+(a) \; $2x+1<7$ \qquad $x$ \blank{2.0cm} & \numline{} \\
+(b) \; $-4x\ge 8$ \qquad $x$ \blank{2.0cm} & \numline{} \\
+\hline
+\end{tabularx}
+\end{center}
+One of those two required you to reverse the symbol. Which, and why? \blank{6.4cm}
+
+\vspace{4pt}
+\textbf{Part 4 --- Quadratics that factor.} Every one of these factors cleanly. Set one side to
+\textbf{zero} first if it is not already.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{@{}l l@{}}
+(a) \; $x^2-9=0$, \quad $x=$ \blank{3.0cm} &
+(b) \; $x^2+6x+8=0$, \quad $x=$ \blank{3.0cm} \\
+(c) \; $x^2-7x+12=0$, \quad $x=$ \blank{3.0cm} &
+(d) \; $x^2+5x=0$, \quad $x=$ \blank{3.0cm} \\
+\end{tabular}
+\end{center}
+\textbf{Check yourself.} Substitute \emph{one} of your answers to (b) into $x^2+6x+8$. Do you get
+zero? \blank{4.0cm} \\
+Every quadratic here had \emph{two} answers. Item (a) is the one people get half right --- why?
+\blank{5.4cm}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Mixed, and nobody is telling you which kind it is.} Decide first, then work.
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item \TallMath{\frac{2x}{3}-1=\frac{x}{2}+2} \qquad $x=$ \blank{2.6cm}
+        \quad \emph{(Hint you should not need: multiply every term by the same number first.)}
+  \item Solve for $x$: \; $ax+3x=b$. \qquad $x=$ \blank{3.4cm}
+        \\[2pt]
+        The variable appears \emph{twice}. What did you have to do before you could divide?
+        \blank{5.0cm}
+  \item $8-2x\le 14$ \qquad $x$ \blank{2.0cm} \qquad \numline{}
+  \item $x^2=4x+21$ \qquad Step 1: \blank{4.0cm} \qquad $x=$ \blank{2.6cm}
+  \item $x^2+6x+4=0$ \; --- nothing factors. Use the formula and \textbf{simplify the radical}.
+        \\[2pt]
+        $x=$ \blank{3.4cm} \quad Is your answer rational or irrational? \blank{2.6cm}
+\end{enumerate}
+
+\vspace{3pt}
+\textbf{Part 2 --- Two situations, answered in sentences.}
+\begin{enumerate}[leftmargin=1.9em, itemsep=8pt, start=6]
+  \item A parking garage charges \$4 to enter plus \$2.50 per hour. You have \$20.
+        \\[2pt]
+        Inequality: \blank{4.4cm} \qquad Solve: $h$ \blank{2.4cm}
+        \\[2pt]
+        Answer the question that was asked, in a sentence: \writeline
+  \item A ball is thrown upward. Its height in feet after $t$ seconds is $-16t^2+64t$. When is the
+        ball $48$ feet high?
+        \\[2pt]
+        Equation: \blank{4.4cm} \qquad $t=$ \blank{3.0cm}
+        \\[2pt]
+        You got \emph{two} answers, and both are real times. Explain what is physically happening at
+        each one. \writeline
+\end{enumerate}
+
+\vspace{3pt}
+\textbf{Part 3 --- Predict, then solve.} For $2x^2-4x-3=0$:
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+$b^2-4ac=$ \blank{2.0cm} & Prediction: \blank{3.0cm} real solutions & Now solve: $x=$ \blank{4.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Did the count match your prediction? \blank{1.6cm} \; Why is predicting first worth anything at all?
+\writeline
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Put the parameter inside the equation.} Until now the number of solutions was
+something you discovered \emph{after} solving. Make it a condition instead.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Number of solutions} & \textbf{For which $k$ does} $kx+6=3x+6$ ? & \textbf{For which $k$ does} $kx+6=3x+9$ ? \\
+\hline
+exactly one & \blank{3.6cm} & \blank{3.6cm} \\
+no solution & \blank{3.6cm} & \blank{3.6cm} \\
+infinitely many & \blank{3.6cm} & \blank{3.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+One box in each column has \emph{no} possible $k$. Say which, and why that case simply cannot happen
+for that equation. \writelines{2}
+
+\vspace{4pt}
+\textbf{Part 2 --- Spot the error.} Each student made \textbf{exactly one} mistake. \textbf{Name}
+what went wrong --- naming it is the part that counts --- and give the correct answer.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}c l X l@{}}
+\hline
+ & \textbf{Student's work} & \textbf{What went wrong (name it)} & \textbf{Correct} \\
+\hline
+(a) & $-2x>10 \Rightarrow x>-5$ & \blank{4.6cm} & \blank{2.4cm} \\
+(b) & $(x-3)(x+2)=6$, so & \blank{4.6cm} & \blank{2.4cm} \\
+    & $\quad x-3=6$ or $x+2=6$ & & \\
+(c) & $x^2=25 \Rightarrow x=5$ & \blank{4.6cm} & \blank{2.4cm} \\
+(d) & $3(x-4)=3x-12$: ``the $x$'s & \blank{4.6cm} & \blank{2.4cm} \\
+    & $\quad$ cancel, so no solution'' & & \\
+\hline
+\end{tabularx}
+\end{center}
+Two of these four are failures to \emph{interpret} rather than failures to compute. Which two?
+\blank{4.0cm}
+
+\vspace{4pt}
+\textbf{Part 3 --- The discriminant as a condition.} Consider $x^2-6x+c=0$, where $c$ can be any
+real number.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
+  \item Write the discriminant in terms of $c$: \blank{3.4cm}
+  \item Two real solutions when $c$ \blank{2.4cm}; one real solution when $c$ \blank{2.4cm};
+        no real solutions when $c$ \blank{2.4cm}
+  \item You just answered a question about \emph{equations} by solving an \emph{inequality}. Say in
+        one sentence why that was the right tool. \writeline
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 4 --- Why zero and nothing else.} The zero product property says $mn=0$ forces $m=0$ or
+$n=0$. There is no version of it for $mn=8$. Explain why not --- and use the word \textbf{factors}.
+\writelines{3}
+\end{tcolorbox}
 
 \end{document}
