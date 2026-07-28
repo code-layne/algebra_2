@@ -12,11 +12,10 @@
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) closed out 2026-07-27**: all 8 lessons 5.0–5.7
 > authored & building, and the **unit tests are now authored, built, and published**.
-> **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
-> locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
-> `test_keys/` are laid down.
-> **All eight lessons 6.0–6.7 are authored & building (6.0–6.6 on 2026-07-27, 6.7 on 2026-07-28)**;
-> **the unit tests are the only Unit 6 skeletons left.**
+> **Unit 6 (Radical Functions) closed out 2026-07-28** — locked at **8 lessons (6.0–6.7)**, all
+> authored & building (6.0–6.6 on 2026-07-27, 6.7 and the tests on 2026-07-28), and the
+> **unit tests are now authored, built, and published** (practice + actual and both keys; the
+> practice pair dropped into `sample_test/` + `sample_test_key/`). Nothing in Unit 6 is a skeleton.
 > **Unit 7 (Exponential Functions): map confirmed & unit scaffolded 2026-07-27**, locked at
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
@@ -31,16 +30,10 @@
 > Unit 7's alone (7.5), since the standard never names logarithmic; $\ln$ lands in 8.5; and
 > no-standard content is now handled the same way in both units. Full rationale in the Unit 8 status
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
-> **Three units are now open at once.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
-> sequence (2026-07-27). **Next actions, in priority order: (1) finish Unit 6 by authoring its
-> tests** (`tests/{practice_test,actual_test}` + `test_keys/`, then `make -C unit06/tests drop` and
-> `make -C unit06/test_keys drop` to publish the practice pair into `sample_test{,_key}/`). All eight
-> lessons are done, and 6.7's homework spiral box already advertises the test's contents to students
-> — convert, simplify, rationalize, read a graph, transform, solve with an extraneous check, compose
-> with a domain, and build *and justify* an inverse — so the blueprint is effectively written; the
-> A2.F.2i items must demand the justification, not just the formula, and the A2.EI.5 items must
-> include at least one genuinely extraneous root. **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
-> which Lesson 7.0's homework and exit ticket already set up explicitly; **(3) continue Unit 8 at
+> **Two units are now open.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
+> sequence (2026-07-27); Unit 6 has since closed. **Next actions, in priority order:
+> (1) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
+> which Lesson 7.0's homework and exit ticket already set up explicitly; **(2) continue Unit 8 at
 > Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
 > and 8.5 needs the $e$ introduced there — so Unit 7 should not fall far behind Unit 8.
@@ -76,7 +69,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | 8 | **In progress** (all 8 lessons done; tests left) |
+| 6 | Radical Functions | Radical / power | 8 | **Complete** |
 | 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0 done) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
@@ -1494,6 +1487,42 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > three named errors, one each: $\frac{x}{3}-12$ is Rosa's order error, $\frac{1}{3x+12}$ reads the
 > $-1$ as an exponent, and $3x-12$ undoes nothing.
 > `make -C unit06/lesson07 all` → EXIT 0 (student 15pp, full 33pp).
+> **Unit 6 tests authored & published (2026-07-28) --- the unit is closed:** practice + actual and
+> both keys, structured exactly like Unit 5's (Part A vocabulary matching 8 pts, Part B multiple
+> choice 12 pts, Part C short answer 40 pts, Part D extended response 12 pts = 72 pts); blanks are
+> 4pp, keys 5pp. The two forms are **item-for-item parallel with different numbers and contexts**, so
+> the practice copy is a genuine study copy and not a preview. The blueprint is the one 6.7's
+> homework spiral box already advertises to students --- convert, simplify, rationalize, read a
+> graph, transform, solve with an extraneous check, compose with a domain, build *and justify* an
+> inverse --- one Part C item each, in that order. Two constraints were treated as non-negotiable and
+> are worth preserving in Units 7--8. First, **A2.F.2i is assessed as a justification, not a
+> formula**: C8(b) and D1(e) both demand the composition test in *both* orders, and the scoring note
+> says outright that one order is not a verdict; D1(f) then makes students explain why the
+> unrestricted parabola is not the inverse (two arms / horizontal line test), which is 6.7's closing
+> idea. D1(d) is scored so that guessing $x\ge0$ --- the reflex --- earns nothing: the restriction
+> must be named as **the range of $f$**. Second, **A2.EI.5 carries a genuinely extraneous root**:
+> C6(a) ($\sqrt{2x+3}=x$ practice, $\sqrt{3x+4}=x$ actual) produces two candidates of which exactly
+> one survives, and the key attaches Tier A's predictive rule (the rejected candidate is the one
+> making the non-radical side negative). C6 also runs the odd-index case (cubing is reversible, no
+> extraneous risk), the free shortcut (an isolated even root equal to a negative --- answerable
+> before any algebra), and $x^{m/n}=k$ with an even numerator, where the $\pm$ must be written in by
+> hand. The graph item is pre-drawn (no sketch-from-scratch) and its part (f) polices 6.0's signature
+> beat --- as $x\to-\infty$ **the graph stops** is the complete answer, and the teacher note forbids
+> accepting a blank or ``$-\infty$''. The MC ``no real solution'' item deliberately keeps
+> $\sqrt[3]{\ }=\text{negative}$ as a distractor, since choosing it is a Unit 6 *spine* failure
+> (``roots can't be negative'' instead of ``*even* roots can't''), not a procedural slip. Both Part D
+> modeling items are new contexts rather than reruns of the lessons' models (roller-coaster drop
+> speed $v(h)=8\sqrt h$ on the practice, highway-ramp safe speed $s(r)=4\sqrt r$ on the actual), each
+> chosen for whole-number outputs, each inverted, and each closing on part (e): *why was there never
+> any extraneous danger here?* --- both sides non-negative, so squaring hid no sign. Standards
+> covered: **A2.EO.2a/b/c**, **A2.EI.5a/b/c**, **A2.F.1b/c/e**, **A2.F.2a/f**, **A2.F.2i/j/k**.
+> `make -C unit06/tests all` and `make -C unit06/test_keys all` → EXIT 0, and both `drop` targets ran
+> (they are folded into `all`), so `unit06/sample_test/main.pdf` (4pp) and
+> `unit06/sample_test_key/main.pdf` (5pp) hold the practice pair. `make -C unit06 student full` →
+> EXIT 0: `target/compiled/unit06_student.pdf` is 115pp (practice test merged in) and
+> `target/compiled/unit06_full.pdf` is 250pp (practice test + practice key merged in). Note that the
+> unit-level `all` target builds only the lessons --- the merged unit packets come from
+> `student`/`full`, and they land in `target/compiled/`, not `target/unit06/`.
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$
