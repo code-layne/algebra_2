@@ -10,9 +10,9 @@ Each level below the root is a thin `Makefile` that includes a `shared/*.mk`. Th
 creates them as needed (see "Scaffolding a lesson"), so you rarely write them by hand:
 
 - **Root `Makefile`** — discovers `unit*/Makefile`, delegates, and merges unit PDFs into
-  `target/compiled/curriculum_{student,full}.pdf`. (Already present in this repo.)
+  `target/compiled/curriculum_{student,key,full}.pdf`. (Already present in this repo.)
 - **`unitXX/Makefile`** (`include ../shared/unit.mk`) — discovers `lesson*/Makefile`,
-  delegates, and merges lesson PDFs into `target/compiled/unitXX_{student,full}.pdf`. It also
+  delegates, and merges lesson PDFs into `target/compiled/unitXX_{student,key,full}.pdf`. It also
   merges the unit's `unit_cover`, `sample_test`, and `sample_test_key` (see "Unit assessments").
 - **`lessonYY/Makefile`** (`include ../../shared/lesson.mk`) — the engine. It:
   - **Discovers a component if it has `main.tex` or `main.pdf`.** Authored components
@@ -21,9 +21,12 @@ creates them as needed (see "Scaffolding a lesson"), so you rarely write them by
   - Compiles each `<comp>/main.tex` with
     `latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error`,
     sending output to `target/UNIT/LESSON/<comp>/` and a stamp to `.stamps/`.
-  - Builds two merged packets:
+  - Builds three merged packets:
     - **student** = `cover warmup notes activity exit_ticket homework` (blank versions present),
       in that pedagogical order → `lessonYY_student.pdf`.
+    - **key** = the *same* packet with every blank component swapped for its `_key` (cover has no
+      key and appears unchanged) → `lessonYY_key.pdf`. It carries no lesson plan and no slides —
+      it is the student packet, answered, **page for page** (see "Packet pagination").
     - **full** = the lesson plan (`main.tex`) + `slides` + `cover` + the **`_key`** version of
       each keyed component (falling back to the blank if no key) → `lessonYY_full.pdf`. The
       `slides` component is built only when present and requires `shared/algebra2-beamer.sty`.
@@ -32,12 +35,13 @@ creates them as needed (see "Scaffolding a lesson"), so you rarely write them by
 
 ```bash
 make -C unitXX/lessonYY student   # student packet for one lesson
+make -C unitXX/lessonYY key       # answer-key packet, paginated to match the student packet
 make -C unitXX/lessonYY full      # teacher/full packet (plan + slides + cover + keys)
-make -C unitXX/lessonYY all       # both (runs student then full)
+make -C unitXX/lessonYY all       # all three (student, key, then full)
 make -C unitXX/lessonYY clean     # remove this lesson's target/ and stamps
 
-make -C unitXX student|full       # merge a whole unit
-make student|full                 # merge the whole curriculum (from project root)
+make -C unitXX student|key|full   # merge a whole unit
+make student|key|full             # merge the whole curriculum (from project root)
 make clean | distclean            # clean everything (distclean also removes target/ and .stamps)
 ```
 
@@ -75,24 +79,31 @@ To include a ready-made PDF as a component, drop it in as `<comp>/main.pdf` (and
 `pdfunite` — no `main.tex`, no compile step. `make clean` removes only `target/` and stamps, so
 your source PDFs are never deleted.
 
-## Packet pagination and imposition (student packets)
+## Packet pagination and imposition (student + key packets)
 
 Each component is its own document, so each numbers its pages from 1 and a naively merged packet
-reads `1 / 1 / 1 2 3 4 5 / …`. After `pdfunite` builds the **student** packet, `shared/lesson.mk`
-therefore runs one extra XeLaTeX pass over the merged PDF (`shared/paginate.tex`, invoked through
-the `paginate` define) that:
+reads `1 / 1 / 1 2 3 4 5 / …`. After `pdfunite` builds the **student** or **key** packet,
+`shared/lesson.mk` therefore runs one extra XeLaTeX pass over the merged PDF
+(`shared/paginate.tex`, invoked through the `paginate` define) that:
 
 - **numbers the packet end to end** — every page is re-placed at its original size and the
   packet-wide number is stamped in the article class's own footer position, masking the
-  component-local one with a white band inside the bottom margin; and
+  component-local one with a white band inside the bottom margin;
 - **starts every component on an odd page** — the recipe reads each component's page count with
-  `pdfinfo`, builds a pdfpages page list with `{}` (empty page) after any odd-length component,
-  and passes it in as `\PacketPages`. Inserted blanks are numbered like any other page.
+  `pdfinfo` and builds a pdfpages page list with `{}` (empty page) padding, passed in as
+  `\PacketPages`. Inserted blanks are numbered like any other page; and
+- **keeps the student and key packets page for page** — each component gets the same *slot* in
+  both packets, `max(blank pages, key pages)` rounded up to even, and the shorter side is padded
+  with blank versos to fill it. So the teacher's page 7 is the student's page 7. Both targets
+  compute the slots from the same two PDF lists, so they agree whether built together or
+  separately — which is why `make student` compiles the `_key` components too.
 
 This is automatic for every lesson — **no `.tex` change and no per-lesson sweep**. Notes:
 
 - The last component is padded too, so every lesson packet has an **even** page count. Student
   packets are **duplex** documents — that is what the imposition is for.
+- A key component that runs longer than its blank (answers take room) costs the *student* packet
+  padding pages. That is the price of matched pagination; keep keys tight where you can.
 - It assumes letter-size pages and the `algebra2-article` bottom margin. A prefab drop-in of a
   different page size would get its number misplaced; re-measure and adjust `\PgBaseline` if the
   shared geometry ever changes.
@@ -101,7 +112,9 @@ This is automatic for every lesson — **no `.tex` change and no per-lesson swee
   per-component numbering.
 - **Unit packets are deliberately out of scope**: they inherit even lesson packets, but `unit.mk`
   neither numbers them nor pads `unit_cover` (1pp), so the first lesson opens on a verso. The
-  lesson packet is the artifact students are handed.
+  lesson packet is the artifact students are handed. The unit **key** packet still lines up with
+  the unit **student** packet, since it is built from the same cover and the same (equal-length)
+  lesson packets; only the trailing sample test / sample test key can differ in length.
 - The pass writes to `target/UNIT/LESSON/.paginate/`; on failure the recipe prints
   `paginate.log`.
 

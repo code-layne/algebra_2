@@ -3,7 +3,7 @@
 COMPILED_DIR := target/compiled
 UNITS := $(patsubst %/Makefile,%,$(sort $(wildcard unit*/Makefile)))
 
-.PHONY: all student full clean distclean $(UNITS)
+.PHONY: all student key full clean distclean $(UNITS)
 
 all: $(UNITS)
 
@@ -19,6 +19,15 @@ student:
 	  echo "✓  Curriculum student → target/compiled/curriculum_student.pdf"; \
 	fi
 
+key:
+	@for u in $(UNITS); do $(MAKE) -C $$u key || exit 1; done
+	@mkdir -p $(COMPILED_DIR)
+	@pdfs=$$(ls $(COMPILED_DIR)/unit*_key.pdf 2>/dev/null | sort); \
+	if [ -n "$$pdfs" ]; then \
+	  pdfunite $$pdfs $(COMPILED_DIR)/curriculum_key.pdf; \
+	  echo "✓  Curriculum key     → target/compiled/curriculum_key.pdf"; \
+	fi
+
 full:
 	@for u in $(UNITS); do $(MAKE) -C $$u full || exit 1; done
 	@mkdir -p $(COMPILED_DIR)
@@ -30,7 +39,8 @@ full:
 
 clean:
 	@for u in $(UNITS); do $(MAKE) -C $$u clean; done
-	rm -f $(COMPILED_DIR)/curriculum_student.pdf $(COMPILED_DIR)/curriculum_full.pdf
+	rm -f $(COMPILED_DIR)/curriculum_student.pdf $(COMPILED_DIR)/curriculum_key.pdf \
+	      $(COMPILED_DIR)/curriculum_full.pdf
 
 distclean: clean
 	rm -rf target .stamps
