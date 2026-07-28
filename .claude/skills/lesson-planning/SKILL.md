@@ -54,9 +54,10 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
 
 `shared/lesson.mk` discovers a component if it has a `main.tex` **or** a `main.pdf`, compiles
 the `main.tex` ones with `latexmk -xelatex`, and merges all of them with `pdfunite` in
-pedagogical order into `lessonYY_student.pdf` (cover + blank components) and `lessonYY_full.pdf`
-(cover + keyed versions, plus the lesson plan and slides). A prefab `main.pdf` is fed straight to
-`pdfunite` from the source tree with no compile step (Step 4).
+pedagogical order into `lessonYY_student.pdf` (cover + blank components), `lessonYY_key.pdf` (the
+same packet with each blank swapped for its key, **paginated to match page for page**), and
+`lessonYY_full.pdf` (cover + keyed versions, plus the lesson plan and slides). A prefab `main.pdf`
+is fed straight to `pdfunite` from the source tree with no compile step (Step 4).
 
 The characteristics lesson is **`lesson00`** (Lesson X.0); content lessons keep 1-based numbers.
 
@@ -195,11 +196,12 @@ Build from the lesson directory (or the unit/root for wider packets):
 
 ```bash
 make -C unit02/lesson03 student   # cover + blank student components → lessonYY_student.pdf
+make -C unit02/lesson03 key       # same packet, answered, page-for-page → lessonYY_key.pdf
 make -C unit02/lesson03 full      # lesson plan + slides + keyed versions → lessonYY_full.pdf
-make -C unit02/lesson03 all       # both
+make -C unit02/lesson03 all       # all three
 ```
 
-`make -C unitXX student|full` merges a unit; `make student|full` at the root merges the whole
+`make -C unitXX student|key|full` merges a unit; `make student|key|full` at the root merges the whole
 curriculum. Output lands in `target/`. The build needs XeLaTeX, `latexmk`, and `pdfunite`; if a
 compile fails, surface the `.log` and fix the offending `.tex` rather than editing the build
 system. Details and troubleshooting in `references/build.md`.

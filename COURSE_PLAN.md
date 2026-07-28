@@ -337,6 +337,20 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **1, 3, 5, 11, 15, 17** with numbered blanks at 2, 4, 10, 14, 16, 20. `make -C unit01 student` → EXIT 0;
 > all four lesson packets even (20 / 18 / 20 / 20pp), unit student **84pp**. Component layout is
 > untouched (footer overlay only); `full` packets are deliberately unchanged.
+>
+> **New `key` packet, paginated in lockstep with the student packet, 2026-07-28 (user request) —
+> see §7.** `make key` (lesson, unit, and root) now builds `lessonYY_key.pdf` / `unitXX_key.pdf` /
+> `curriculum_key.pdf`: the student packet with every blank component swapped for its `_key`, no
+> lesson plan and no slides — that stays the job of `full`. The pagination pass in
+> `shared/lesson.mk` was generalized to lay the two packets out against each other: each component
+> occupies a slot of `max(blank pages, key pages)` rounded up to even in **both** packets, with the
+> shorter side padded by blank versos, so the teacher's page 7 is the student's page 7. Both
+> targets derive the slots from the same two PDF lists, so they agree whether built together or
+> separately — which is why `make student` now compiles the `_key` components too. Verified on
+> Unit 1: Lesson 1.3 is the case where the key runs long (notes 6→7pp, activity 3→4pp) and both
+> packets still come out **22pp** with components opening on **1, 3, 5, 13, 17, 19**; all four
+> lessons match (20 / 18 / 20 / 22pp each side) and unit student = unit key = **86pp**. Note the
+> tradeoff: a long key costs the *student* packet padding pages, so keep keys tight.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -2338,6 +2352,45 @@ update `\PgBaseline` in `shared/paginate.tex`:
 ```bash
 pdftotext -f 3 -l 3 -bbox target/compiled/unit01/lesson00_student.pdf /tmp/p.html && tail -3 /tmp/p.html
 ```
+
+### The `key` packet — the student packet, answered, page for page (2026-07-28)
+
+`full` is the *teacher's* packet: lesson plan, slides, keys, unpaginated, mixed page sizes. What
+was missing was a packet to teach **from** — the thing the students are holding, with the answers
+filled in. That is **`key`**:
+
+```bash
+make -C unitXX/lessonYY key    # → target/compiled/unitXX/lessonYY_key.pdf
+make -C unitXX key             # → target/compiled/unitXX_key.pdf
+make key                       # → target/compiled/curriculum_key.pdf
+```
+
+It is `student` with each blank component swapped for its `_key` — same cover, same components,
+same order, no lesson plan, no slides. `full` is unchanged and still exists for planning.
+
+**The two packets are paginated in lockstep** (user requirement: "if I say page 7, their page 7
+needs to be my page 7"). The `paginate` define in `shared/lesson.mk` now takes the counterpart
+packet's PDF list as a third argument and gives each component the *same slot* in both packets:
+
+> slot = `max(blank pages, key pages)` rounded up to even; the shorter side is padded with blank
+> versos to fill it.
+
+Recto starts and end-to-end numbering fall out of the same rule, so nothing about the student
+packet's existing behavior changed except that a long key can now cost it padding pages — **keep
+keys tight.** Both targets compute the slots from the same two lists, so `make student` and
+`make key` agree whether run together or separately; the price is that `make student` compiles
+the `_key` components too.
+
+Verified on Unit 1 Lesson 1.3, the case where the key runs long (notes 6→7pp, activity 3→4pp):
+both packets are 22pp with components opening on 1, 3, 5, 13, 17, 19. Check any lesson with:
+
+```bash
+pdfinfo target/compiled/unit01/lesson03_student.pdf | grep Pages && pdfinfo target/compiled/unit01/lesson03_key.pdf | grep Pages
+```
+
+Unit-level `key` mirrors unit-level `student` piece for piece (unit cover, the equal-length lesson
+packets, then `sample_test_key` in place of `sample_test`). Only that trailing pair can differ in
+length, and it sits at the end.
 
 ---
 

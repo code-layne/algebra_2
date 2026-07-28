@@ -44,6 +44,14 @@ KEYED_COMPS   := $(foreach c,$(KEYED_PAIRS),\
                    $(or $(call comp-present,$(c)_key),$(call comp-present,$(c))))
 FULL_COMPS    := $(COVER_COMP) $(KEYED_COMPS)
 
+# Key packet: the student packet with every blank component swapped for its key.
+# Derived from STUDENT_COMPS (not KEYED_PAIRS) so the two packets pair up 1:1,
+# component for component — that pairing is what lets the pagination pass give
+# both packets identical page boundaries. A component with no _key sibling
+# (cover) appears unchanged in both.
+key-of        = $(or $(call comp-present,$1_key),$1)
+KEY_COMPS     := $(foreach c,$(STUDENT_COMPS),$(call key-of,$(c)))
+
 # Root lesson plan and slides may also be prefab PDFs.
 HAS_ROOT      := $(or $(wildcard main.tex),$(wildcard main.pdf))
 ROOT_STAMP    := $(if $(wildcard main.tex),$(STAMP_DIR)/main.stamp)
@@ -63,27 +71,51 @@ FULL_STAMPS    := $(ROOT_STAMP) $(SLIDES_STAMP) \
 FULL_PDFS      := $(ROOT_PDF) $(SLIDES_PDF) \
                   $(foreach c,$(FULL_COMPS),$(call comp-pdf,$(c)))
 
-# ── Packet-wide pagination + recto starts ─────────────────────────────────────
+KEY_STAMPS     := $(foreach c,$(KEY_COMPS),$(call comp-stamp,$(c)))
+KEY_PDFS       := $(foreach c,$(KEY_COMPS),$(call comp-pdf,$(c)))
+
+# Both packets are laid out against each other, so either target needs every
+# component of both compiled before it can be paginated.
+ALIGN_STAMPS   := $(sort $(STUDENT_STAMPS) $(KEY_STAMPS))
+
+# ── Packet-wide pagination + recto starts + student/key alignment ─────────────
 # Each component is its own document, so each numbers its pages from 1. After
 # the merge, this pass rebuilds the packet so page numbers run across the whole
-# document AND every component starts on an odd (right-hand) page: a blank
-# verso is inserted after any component with an odd page count, including the
-# last, so the packet itself is even and one lesson never pushes the next one
-# onto a verso. (unit.mk's own unit_cover/sample_test are NOT padded, so a unit
-# packet is not recto-correct end to end.) See shared/paginate.tex.
+# document AND every component starts on an odd (right-hand) page: blank versos
+# are inserted after a component that would otherwise leave the next one on a
+# verso, including after the last, so the packet itself is even and one lesson
+# never pushes the next one onto a verso. (unit.mk's own unit_cover/sample_test
+# are NOT padded, so a unit packet is not recto-correct end to end.)
+#
+# The student and key packets are also kept page-for-page in step: each
+# component occupies the SAME slot size in both — max(blank pages, key pages)
+# rounded up to even — so page 7 of the key is page 7 of the student packet.
+# The shorter of the two is padded with blank versos to fill its slot. Both
+# targets compute the same slot sizes from the same two PDF lists, so they stay
+# aligned whether built together or separately. See shared/paginate.tex.
 #   $1 = merged PDF, rewritten in place.
 #   $2 = the component PDFs that were merged, in the same order.
+#   $3 = the counterpart packet's component PDFs, in the same order (1:1 with $2).
 PAGINATE_DIR := $(PDF_DIR)/.paginate
 
 define paginate
 	@mkdir -p $(PAGINATE_DIR)
 	@set -e; \
+	set -- $3; \
 	spec=; first=1; \
 	for f in $2; do \
 	  n=$$(pdfinfo "$$f" | awk '/^Pages/{print $$2}'); \
+	  slot=$$n; \
+	  if [ $$# -gt 0 ]; then \
+	    m=$$(pdfinfo "$$1" | awk '/^Pages/{print $$2}'); \
+	    shift; \
+	    if [ $$m -gt $$slot ]; then slot=$$m; fi; \
+	  fi; \
+	  slot=$$(( (slot + 1) / 2 * 2 )); \
 	  last=$$((first + n - 1)); \
 	  spec="$$spec,$$first-$$last"; \
-	  if [ $$((n % 2)) -ne 0 ]; then spec="$$spec,{}"; fi; \
+	  pad=$$((slot - n)); \
+	  while [ $$pad -gt 0 ]; do spec="$$spec,{}"; pad=$$((pad - 1)); done; \
 	  first=$$((last + 1)); \
 	done; \
 	spec=$${spec#,}; \
@@ -97,18 +129,28 @@ define paginate
 endef
 
 # ── Targets ───────────────────────────────────────────────────────────────────
-.PHONY: all student full clean
+.PHONY: all student key full clean
 
-all: student full
+all: student key full
 
-student: $(STUDENT_STAMPS)
+student: $(ALIGN_STAMPS)
 ifneq ($(strip $(STUDENT_PDFS)),)
 	@mkdir -p $(COMPILED_DIR)
 	pdfunite $(STUDENT_PDFS) $(COMPILED_DIR)/$(LESSON)_student.pdf
-	$(call paginate,$(COMPILED_DIR)/$(LESSON)_student.pdf,$(STUDENT_PDFS))
+	$(call paginate,$(COMPILED_DIR)/$(LESSON)_student.pdf,$(STUDENT_PDFS),$(KEY_PDFS))
 	@echo "✓  Student packet → target/compiled/$(UNIT)/$(LESSON)_student.pdf (paginated $(LESSON)-wide, components start recto)"
 else
 	@echo "  (no student components in $(UNIT)/$(LESSON))"
+endif
+
+key: $(ALIGN_STAMPS)
+ifneq ($(strip $(KEY_PDFS)),)
+	@mkdir -p $(COMPILED_DIR)
+	pdfunite $(KEY_PDFS) $(COMPILED_DIR)/$(LESSON)_key.pdf
+	$(call paginate,$(COMPILED_DIR)/$(LESSON)_key.pdf,$(KEY_PDFS),$(STUDENT_PDFS))
+	@echo "✓  Key packet     → target/compiled/$(UNIT)/$(LESSON)_key.pdf (page-for-page with the student packet)"
+else
+	@echo "  (no keyed components in $(UNIT)/$(LESSON))"
 endif
 
 full: $(FULL_STAMPS)
@@ -136,4 +178,5 @@ $(STAMP_DIR)/main.stamp: main.tex $(SHARED_STYS)
 
 clean:
 	rm -rf $(STAMP_DIR) $(PDF_DIR)
-	rm -f $(COMPILED_DIR)/$(LESSON)_student.pdf $(COMPILED_DIR)/$(LESSON)_full.pdf
+	rm -f $(COMPILED_DIR)/$(LESSON)_student.pdf $(COMPILED_DIR)/$(LESSON)_key.pdf \
+	      $(COMPILED_DIR)/$(LESSON)_full.pdf
