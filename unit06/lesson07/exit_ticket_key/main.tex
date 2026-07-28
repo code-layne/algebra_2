@@ -3,17 +3,87 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.7}{Exit Ticket --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Exit Ticket verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Exit Ticket --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+No notes. Reverse the operations \emph{and} the order --- and test anything you build.
+
+\begin{enumerate}[leftmargin=1.8em, itemsep=10pt]
+  \item \textbf{Test the pair.} Let $f(x)=4x-8$ and $g(x)=\dfrac{x+8}{4}$.
+
+        {\small \emph{Work:} (a) $f\!\left(\frac{x+8}{4}\right)=4\!\left(\frac{x+8}{4}\right)-8
+        =(x+8)-8=x$. \\
+        (b) $g(4x-8)=\frac{(4x-8)+8}{4}=\frac{4x}{4}=x$.}
+
+        (a) $f\big(g(x)\big)=$ \ans{$x$} \hspace{0.35in}
+        (b) $g\big(f(x)\big)=$ \ans{$x$} \hspace{0.35in}
+        (c) Inverses? \ans{yes}
+
+        \vspace{4pt}
+        (d) Why does the test require \emph{both} orders instead of just one? \ans{One order can
+        pass while the other fails --- e.g.\ $\left(\sqrt{x}\,\right)^{2}=x$ but $\sqrt{x^{2}}=|x|$.}
+
+  \item \textbf{Build one, and mind the domain.} Let $f(x)=\sqrt{x-1}$.
+
+        {\small \emph{Work:} $y=\sqrt{x-1}\;\Rightarrow\; x=\sqrt{y-1}\;\Rightarrow\; x^{2}=y-1
+        \;\Rightarrow\; y=x^{2}+1$. \; $f$ outputs only numbers $\ge0$, so $f^{-1}$ may accept only
+        $x\ge0$.}
+
+        (a) $f^{-1}(x)=$ \ans{$x^{2}+1$, $x\ge0$} \hspace{0.3in}
+        (b) Domain of $f^{-1}$: \ans{$x\ge0$}
+
+        \vspace{5pt}
+        (c) In one sentence, say where that restriction comes from --- your sentence should mention
+        the \emph{range} of $f$. \ansline{A square root never returns a negative number, so the
+        range of $f$ is $y\ge0$ --- and the range of $f$ is exactly the set of inputs $f^{-1}$ is
+        allowed to take.}
+
+  \item \textbf{SOL-style multiple choice.} If $f(x)=3x+12$, which function is $f^{-1}(x)$?
+        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
+          \item $\dfrac{x-12}{3}$ \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+          \item $\dfrac{x}{3}-12$
+          \item $\dfrac{1}{3x+12}$
+          \item $3x-12$
+        \end{enumerate}
+        \vspace{2pt}
+        \begin{itemize}[leftmargin=1.4em, nosep]
+          \item \textbf{A} is correct: $f$ multiplies by $3$ \emph{then} adds $12$, so the inverse
+                subtracts $12$ \emph{then} divides by $3$.
+          \item \textbf{B} reversed the operations but \textbf{not the order} --- it divides first.
+                This is Rosa's $\frac59f-32$ from the Hook, and the most common miss on this item.
+          \item \textbf{C} read the $-1$ as an \textbf{exponent} and wrote the reciprocal.
+                $f^{-1}(x)$ is never $\frac{1}{f(x)}$.
+          \item \textbf{D} only flipped a sign. Nothing here undoes anything: check $f(1)=15$, and
+                D sends $15$ to $33$.
+        \end{itemize}
+\end{enumerate}
+
+\begin{teachernote}
+\small Graded for completion. Sort into four piles --- and note that this is the last exit ticket
+before the Unit 6 test, so the piles are also your review list.
+\begin{itemize}[leftmargin=1.3em, nosep]
+  \item \textbf{Got it} --- $x$ and $x$, $x^{2}+1$ with $x\ge0$, item 3 $=$ A.
+  \item \textbf{Order reversed} --- item 3 $=$ B. Pure socks-and-shoes. Send them back to Warm-Up
+        item 3: nobody undoes ``double, then add $5$'' by halving first. Two minutes fixes it.
+  \item \textbf{$f^{-1}$ read as an exponent} --- item 3 $=$ C. Rare but total: the student thinks
+        the lesson was about reciprocals. Re-run the Section 1 red box one-on-one with $f(x)=2x$.
+  \item \textbf{Domain dropped} --- item 2(a) answered $x^{2}+1$ with no condition, or 2(c) written
+        as ``because of the square root.'' \textbf{This is the pile that matters.} The sentence you
+        want names the \emph{range of $f$} as the source of the restriction. These students will
+        lose the A2.F.2i justification points on the test, where a bare formula is not a complete
+        answer.
+\end{itemize}
+\textbf{Item 1(d) is the conceptual item} and it is worth reading closely. ``Because you have to
+check both'' is a restatement, not a reason; the answer you want produces the counterexample --- one
+order can pass while the other fails, which is exactly the $\left(\sqrt{x}\,\right)^{2}$ versus
+$\sqrt{x^{2}}$ pair they have now seen in three consecutive lessons.
+\end{teachernote}
 
 \end{document}

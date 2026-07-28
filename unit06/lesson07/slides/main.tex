@@ -1,6 +1,11 @@
 %! Inverse Functions — Unit 6, Lesson 6.7 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -12,15 +17,459 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 6.7}\\[0.5cm]
     {\color{white}\bfseries\LARGE Inverse Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6: Radical Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Two students, one formula, two answers}
+  \sectionlabel{Hook}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \footnotesize
+      Celsius to Fahrenheit:
+      \[ F(c)=\tfrac{9}{5}c+32 \]
+      \emph{multiply by $\tfrac95$, then add $32$.}
+      \vspace{4pt}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{|c|c|c|c|}
+      \hline
+      $c$ & $0$ & $100$ & $20$ \\ \hline
+      $F(c)$ & $32$ & $212$ & $68$ \\ \hline
+      \end{tabular}
+      \end{center}
+      \vspace{6pt}
+      Now go the \emph{other} way.
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      \begin{center}
+      \renewcommand{\arraystretch}{1.5}
+      \begin{tabular}{|l|l|c|}
+      \hline
+      \textbf{Rosa} & $C(f)=\frac{5}{9}f-32$ & at $212$: $\approx85.8$ \\ \hline
+      \textbf{Malik} & $C(f)=\frac{5}{9}(f-32)$ & at $212$: $\mathbf{100}$ \\ \hline
+      \end{tabular}
+      \end{center}
+      \vspace{6pt}
+      \begin{block}{Rosa reversed both operations correctly}
+        What she did \emph{not} reverse was the \textbf{order}. \\[3pt]
+        Same mistake as: undoing ``double, then add $5$'' by halving first.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{3pt}
+  \begin{center}
+    \textbf{To undo a process, reverse the operations \emph{and} the order. Shoes before socks.}
+  \end{center}
+\end{frame}
+
+% THE NOTATION
+\begin{frame}[t, plain]
+  \forestheader{A function that undoes another}
+  \sectionlabel[goldacc]{The notation}
+  \begin{center}
+  \begin{tikzpicture}[every node/.style={font=\small}]
+    \node (x) at (0,0) {$x$};
+    \node[draw=forest, very thick, rounded corners, fill=forest!12, minimum width=1.5cm,
+          minimum height=0.9cm] (f) at (3.0,0) {$f$};
+    \node[draw=navy, very thick, rounded corners, fill=navy!12, minimum width=1.5cm,
+          minimum height=0.9cm] (fi) at (7.4,0) {$f^{-1}$};
+    \node (out) at (10.4,0) {$x$};
+    \draw[->, very thick, charcoal] (x)--(f);
+    \draw[->, very thick, charcoal] (f)--node[above, font=\scriptsize]{$f(x)$}(fi);
+    \draw[->, very thick, charcoal] (fi)--(out);
+  \end{tikzpicture}
+  \end{center}
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{block}{The $-1$ is \emph{not} an exponent}
+        $f^{-1}(x)$ is a \textbf{label}: ``the undoing function.'' \\[4pt]
+        $f^{-1}(x) \ne \dfrac{1}{f(x)}$ \quad --- ever.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{center}
+      \renewcommand{\arraystretch}{1.5}
+      \begin{tabular}{|l|c|c|}
+      \hline
+      $f(x)=2x$ & rule & at $x=4$ \\ \hline
+      $f^{-1}(x)$ & $\frac{x}{2}$ & $2$ \\ \hline
+      $\frac{1}{f(x)}$ & $\frac{1}{2x}$ & $\frac18$ \\ \hline
+      \end{tabular}
+      \end{center}
+      \vspace{4pt}
+      \centering Two completely different functions.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE TEST
+\begin{frame}[t, plain]
+  \forestheader{The test: compose \emph{both} ways and look for $x$}
+  \sectionlabel{Justify it}
+  \begin{center}
+    \textbf{$f$ and $g$ are inverses} \quad exactly when \quad
+    $f\big(g(x)\big)=x$ \; \textbf{and} \; $g\big(f(x)\big)=x$.
+  \end{center}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \textbf{Passes.} $f(x)=2x+6$, \; $g(x)=\frac{x-6}{2}$
+      \[ 2\!\left(\tfrac{x-6}{2}\right)+6=x \qquad \tfrac{(2x+6)-6}{2}=x \]
+      \vspace{2pt}
+      \textbf{Fails.} $h(x)=\frac{x}{2}-6$ --- right operations, wrong order
+      \[ f\big(h(x)\big)=2\!\left(\tfrac{x}{2}-6\right)+6=x-6 \]
+      \centering \emph{Off by a constant --- only composition catches it.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{block}{Why \emph{both} orders? Yesterday's cliffhanger}
+        $f(x)=x^{2}$, \; $g(x)=\sqrt{x}$: \\[4pt]
+        $\left(\sqrt{x}\,\right)^{2}=x$ \quad --- but only for $x\ge0$ \\[3pt]
+        $\sqrt{x^{2}}=|x|$ \quad --- which is \emph{not} $x$ when $x<0$ \\[4pt]
+        One order passing is \textbf{not} a verdict.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% SWAP AND SOLVE
+\begin{frame}[t, plain]
+  \forestheader{Building the partner: swap and solve}
+  \sectionlabel[goldacc]{The construction}
+  \begin{center}
+    \textbf{1.} Write $y=f(x)$. \quad \textbf{2.} Trade $x$ and $y$. \quad
+    \textbf{3.} Solve for $y$. \quad \textbf{4.} Rename it $f^{-1}(x)$.
+  \end{center}
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{center}
+      \renewcommand{\arraystretch}{1.45}
+      \begin{tabular}{|l|l|l|}
+      \hline
+      $f(x)$ & \textbf{swap} & $f^{-1}(x)$ \\ \hline
+      $3x-7$ & $x=3y-7$ & $\frac{x+7}{3}$ \\ \hline
+      $\frac{x}{4}+2$ & $x=\frac{y}{4}+2$ & $4x-8$ \\ \hline
+      $x^{3}+1$ & $x=y^{3}+1$ & $\sqrt[3]{x-1}$ \\ \hline
+      $\sqrt{x-2}$ & $x=\sqrt{y-2}$ & $x^{2}+2$, \; $x\ge0$ \\ \hline
+      \end{tabular}
+      \end{center}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \footnotesize
+      Step 3 is nothing new --- it is \emph{solve for the other variable}, from the Warm-Up.
+      \vspace{5pt}
+      \begin{block}{The last row is the hard one}
+        $x^{2}+2$ \textbf{without} $x\ge0$ is a different function --- and it fails the test.
+        \\[3pt]
+        $f$ never sent anything to $-3$, so $f^{-1}(-3)$ has no right to answer.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% REFLECTION
+\begin{frame}[t, plain]
+  \forestheader{Swap the equation $=$ swap every point}
+  \sectionlabel{Reflection over $y=x$}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \footnotesize
+      If $(a,b)$ is on $f$, then $(b,a)$ is on $f^{-1}$.
+      \vspace{5pt}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.25}
+      \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      $x$ & $0$ & $1$ & $4$ & $9$ \\ \hline
+      $\sqrt{x}$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+      \end{tabular}
+      \\[6pt]
+      \renewcommand{\arraystretch}{1.25}
+      \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      $x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+      $f^{-1}(x)$ & $0$ & $1$ & $4$ & $9$ \\ \hline
+      \end{tabular}
+      \end{center}
+      \vspace{5pt}
+      The rows just traded places. \\
+      \textbf{A2.F.2j:} $f^{-1}$ is the mirror image of $f$ across $y=x$.
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.52]
+        \lgrid{-2}{6}{-2}{6}
+        \draw[dashed, very thick, charcoal] (-1.6,-1.6)--(5.6,5.6);
+        \begin{scope}
+          \clip (-2,-2) rectangle (6,6);
+          \draw[very thick, forest, domain=0:6, samples=140, smooth] plot (\x,{sqrt(\x)});
+          \draw[very thick, navy, domain=0:2.5, samples=140, smooth] plot (\x,{(\x)*(\x)});
+        \end{scope}
+        \fill[forest] (0,0) circle (3.4pt);
+        \node[forest, font=\scriptsize] at (5.0,1.5) {$y=\sqrt{x}$};
+        \node[navy, font=\scriptsize] at (3.8,5.0) {$y=x^{2}$};
+        \node[charcoal, font=\scriptsize] at (5.0,3.6) {$y=x$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% POINTS ON y = x
+\begin{frame}[t, plain]
+  \forestheader{Intercepts swap. Points on $y=x$ never move.}
+  \sectionlabel[goldacc]{Reading the picture}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.40]
+        \lgrid{-6}{6}{-6}{6}
+        \draw[dashed, very thick, charcoal] (-5.6,-5.6)--(5.6,5.6);
+        \begin{scope}
+          \clip (-6,-6) rectangle (6,6);
+          \draw[very thick, forest] (-1,-6)--(6,8);
+          \draw[very thick, navy] (-6,-1)--(8,6);
+        \end{scope}
+        \fill[charcoal] (4,4) circle (4pt);
+        \node[forest, font=\scriptsize] at (-3.4,-2.2) {$f(x)=2x-4$};
+        \node[navy, font=\scriptsize] at (-3.4,1.8) {$f^{-1}$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      \begin{center}
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{|l|l|}
+      \hline
+      \textbf{on $f$} & \textbf{on $f^{-1}$} \\ \hline
+      $(0,-4)$ & $(-4,0)$ \\ \hline
+      $(2,0)$ & $(0,2)$ \\ \hline
+      $(4,4)$ & $(4,4)$ \\ \hline
+      \end{tabular}
+      \end{center}
+      \vspace{5pt}
+      \begin{block}{Two consequences}
+        The $x$-intercept of one is the $y$-intercept of the other. \\[3pt]
+        $f$ and $f^{-1}$ can only meet \textbf{on the mirror line} --- which is why solving
+        $f(x)=x$ finds it.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% HORIZONTAL LINE TEST
+\begin{frame}[t, plain]
+  \forestheader{Does the inverse get to be a \emph{function}?}
+  \sectionlabel{Horizontal line test}
+  \begin{center}
+    \begin{minipage}[c]{0.30\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-4}{4}{-5}{7}
+      \begin{scope}
+        \clip (-4,-5) rectangle (4,7);
+        \draw[very thick, navy, domain=-2.7:2.7, samples=120, smooth] plot (\x,{(\x)*(\x)});
+      \end{scope}
+      \draw[very thick, redacc, dashed] (-4,4)--(4,4);
+      \fill[redacc] (-2,4) circle (4.5pt);
+      \fill[redacc] (2,4) circle (4.5pt);
+    \end{tikzpicture}
+    \\[2pt] {\scriptsize $y=x^{2}$ \\ \textbf{Fails} --- two hits}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.30\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-4}{4}{-5}{7}
+      \begin{scope}
+        \clip (-4,-5) rectangle (4,7);
+        \draw[very thick, navy, domain=0:2.7, samples=120, smooth] plot (\x,{(\x)*(\x)});
+      \end{scope}
+      \draw[very thick, greenacc, dashed] (-4,4)--(4,4);
+      \fill[greenacc] (2,4) circle (4.5pt);
+      \fill[navy] (0,0) circle (3.6pt);
+    \end{tikzpicture}
+    \\[2pt] {\scriptsize $y=x^{2},\ x\ge0$ \\ \textbf{Passes} --- restricted}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.30\textwidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-4}{4}{-5}{7}
+      \begin{scope}
+        \clip (-4,-5) rectangle (4,7);
+        \draw[very thick, forest, domain=-1.75:1.9, samples=140, smooth]
+          plot (\x,{(\x)*(\x)*(\x)});
+      \end{scope}
+      \draw[very thick, greenacc, dashed] (-4,4)--(4,4);
+      \fill[greenacc] (1.587,4) circle (4.5pt);
+    \end{tikzpicture}
+    \\[2pt] {\scriptsize $y=x^{3}$ \\ \textbf{Passes} --- untouched}
+    \end{minipage}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    $(-2,4)$ and $(2,4)$ swap into $(4,-2)$ and $(4,2)$ --- one input, two outputs. \\[3pt]
+    \textbf{An inverse function exists exactly when no horizontal line crosses twice.}
+  \end{center}
+\end{frame}
+
+% THE CAPSTONE
+\begin{frame}[t, plain]
+  \forestheader{The question Lesson 6.0 opened --- answered}
+  \sectionlabel[goldacc]{The capstone}
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{lll}
+  \hline
+   & \textbf{$y=x^{2}$ \; and \; $y=\sqrt{x}$} & \textbf{$y=x^{3}$ \; and \; $y=\sqrt[3]{x}$} \\
+  \hline
+  Arms & \textbf{two} & \textbf{one} \\
+  Repeats an output? & yes ($-2$ and $2$ both give $4$) & never \\
+  Horizontal line test & fails & passes \\
+  Restriction needed? & \textbf{yes}, $x\ge0$ & \textbf{no} \\
+  So the root's domain is & only $x\ge0$ & all real numbers \\
+  Endpoint & yes, at the origin & none \\
+  Extrema & absolute minimum & none \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{8pt}
+  \begin{center}
+    \textbf{One sentence generates the whole table:} \\[3pt]
+    $x^{2}$ has two arms and $x^{3}$ has one --- so the square must be cut down before it is allowed
+    a partner, and the cube never has to be.
+  \end{center}
+\end{frame}
+
+% DOMAIN AND RANGE
+\begin{frame}[t, plain]
+  \forestheader{Domain and range trade places}
+  \sectionlabel{Where restrictions come from}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \footnotesize
+      \begin{center}
+      domain of $f^{-1}$ $=$ \textbf{range} of $f$ \\[3pt]
+      range of $f^{-1}$ $=$ \textbf{domain} of $f$
+      \end{center}
+      \vspace{6pt}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.5}
+      \begin{tabular}{|l|c|c|}
+      \hline
+       & \textbf{Domain} & \textbf{Range} \\ \hline
+      $f(x)=\sqrt{x-2}$ & $x\ge2$ & $y\ge0$ \\ \hline
+      $f^{-1}(x)=x^{2}+2$ & $x\ge0$ & $y\ge2$ \\ \hline
+      \end{tabular}
+      \end{center}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      \begin{block}{The restriction is never guessed}
+        It is the \textbf{range of $f$}, written down. \\[4pt]
+        $\sqrt{x}-3$ has range $y\ge-3$ --- so its inverse takes $x\ge-3$, \emph{not} $x\ge0$.
+      \end{block}
+      \vspace{4pt}
+      A student who writes $x\ge0$ every time has pattern-matched. The question is always:
+      \emph{what does $f$ actually put out?}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ERRORS
+\begin{frame}[t, plain]
+  \forestheader{Three ways to get it wrong --- and one number that catches each}
+  \sectionlabel[goldacc]{Watch out}
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|l|l|l|}
+  \hline
+  \textbf{The error} & \textbf{Looks like} & \textbf{Caught by} \\ \hline
+  Reversed operations, \emph{not} the order &
+    $f(x)=3x+12 \Rightarrow \frac{x}{3}-12$ & $f(1)=15$; the inverse must return $1$ \\ \hline
+  $-1$ read as an exponent &
+    $f(x)=5x \Rightarrow \frac{1}{5x}$ & $f(3)=15$; that rule gives $\frac{1}{75}$ \\ \hline
+  Restriction dropped &
+    $\sqrt{x-1}\Rightarrow x^{2}+1$, no condition & test at $x=-2$: $f$ never output $-2$ \\ \hline
+  \end{tabular}
+  \end{center}
+  \vspace{8pt}
+  \begin{center}
+    All three survive an eyeball check. \\[3pt]
+    \textbf{None of them survives composing both ways.}
+  \end{center}
+\end{frame}
+
+% SUMMARY
+\begin{frame}[t, plain]
+  \forestheader{Inverse functions, in one table}
+  \sectionlabel{Summary}
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{ll}
+  \hline
+  What it means & $f^{-1}$ undoes $f$: if $f$ sends $a$ to $b$, $f^{-1}$ sends $b$ to $a$ \\
+  The notation & a label, never an exponent --- $f^{-1}(x)\ne\frac{1}{f(x)}$ \\
+  How to prove it & compose \textbf{both} ways; both must give $x$ \\
+  How to build it & swap $x$ and $y$, solve for $y$ --- reverse the operations \emph{and} the order \\
+  What it looks like & the reflection of $f$ over the line $y=x$ \\
+  Domain \& range & they trade places --- and that is where every restriction comes from \\
+  When it exists & exactly when $f$ passes the horizontal line test \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{8pt}
+  \begin{center}
+    $\left(\sqrt{x}\,\right)^{2}=x$ but $\sqrt{x^{2}}=|x|$. \\[3pt]
+    \textbf{That is why the test needs both orders --- and why $y=x^{2}$ needs a restricted domain.}
+  \end{center}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{That is Unit 6 --- the loop is closed}
+  \sectionlabel{Connections}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item \textbf{6.0} --- why does $\sqrt{x}$ get only half the number line? \emph{(asked)}
+        \item \textbf{6.1} --- radicals are exponents in disguise
+        \item \textbf{6.2--6.3} --- simplify, operate, rationalize
+        \item \textbf{6.4} --- graph and transform; the endpoint is the anchor
+        \item \textbf{6.5} --- solve, and always check for extraneous roots
+        \item \textbf{6.6} --- composition; order is part of the answer
+        \item \textbf{6.7} --- inverses. \emph{(answered)}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \footnotesize
+      \begin{block}{Next: the Unit 6 test}
+        Convert, simplify, rationalize, read a graph, transform, solve and check, compose and find a
+        domain, build and \emph{justify} an inverse. \\[4pt]
+        The practice test is in your packet.
+      \end{block}
+      \vspace{4pt}
+      \begin{center}
+        \textbf{$x^{2}$ has two arms. $x^{3}$ has one.} \\[3pt]
+        Everything else followed.
+      \end{center}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}
