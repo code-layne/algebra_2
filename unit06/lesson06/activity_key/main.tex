@@ -3,17 +3,274 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slots (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\mexp}[1]{{\color{keyred}#1}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.6}{Group Activity --- Answer Key}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Group Activity verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Group Activity --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Wired in Series.} Two machines, one after the other --- and the wire between them
+carries exactly one number. With your partner, write that middle number down \emph{every single
+time}. Most mistakes today are not arithmetic; they are running the machines in the wrong order.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- One step at a time.} \; Let $f(x)=x+4$ and $g(x)=3x$.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{0.96\linewidth}{@{}l X X X@{}}
+\hline
+ & \textbf{Which runs first?} & \textbf{The middle number} & \textbf{Final answer} \\
+\hline
+$(f\circ g)(2)$ & \ans{$g$} & $g(2)=\mans{6}$ & $f(\mans{6})=\mans{10}$ \\
+$(g\circ f)(2)$ & \ans{$f$} & $f(2)=\mans{6}$ & $g(\mans{6})=\mans{18}$ \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-4pt}
+Same two functions, same input, two answers. Which one is bigger, and why does the order do that?
+\ans{$(g\circ f)(2)=18$. When tripling happens \emph{last}, the $+4$ gets tripled too.}
+
+\vspace{6pt}
+\textbf{Part 2 --- Now you run them.} Let $f(x)=2x-1$ and $g(x)=x^{2}$. Show the middle number.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+(a) \; $(f\circ g)(3)$: \; middle $=\mans{9}$, \; answer $=\mans{17}$ &
+(b) \; $(g\circ f)(3)$: \; middle $=\mans{5}$, \; answer $=\mans{25}$ \\
+(c) \; $(f\circ g)(-2)$: \; middle $=\mans{4}$, \; answer $=\mans{7}$ &
+(d) \; $(g\circ f)(0)$: \; middle $=\mans{-1}$, \; answer $=\mans{1}$ \\
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{Part 3 --- Read it off the graphs.} These are the same two graphs from your notes.
+\begin{center}
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-5}{7}{-3}{5}
+  \draw[very thick, forest] (-4,-2)--(0,2)--(4,0)--(6,4);
+  \fill[forest] (0,2) circle (3.4pt);
+  \fill[forest] (4,0) circle (3.4pt);
+  \node[forest, font=\scriptsize] at (-2.6,2.6) {$y=f(x)$};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-5}{7}{-3}{5}
+  \draw[very thick, navy] (-4,4)--(2,-2)--(6,2);
+  \fill[navy] (2,-2) circle (3.4pt);
+  \node[navy, font=\scriptsize] at (4.4,3.4) {$y=g(x)$};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\vspace{-2pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.96\linewidth}{@{}X X X X@{}}
+\hline
+ & \textbf{Middle number} & \textbf{Read on which graph?} & \textbf{Answer} \\
+\hline
+(a) $(f\circ g)(-4)$ & \ans{$4$} & \ans{$g$} & \ans{$0$} \\
+(b) $(g\circ f)(-4)$ & \ans{$-2$} & \ans{$f$} & \ans{$2$} \\
+(c) $(f\circ g)(6)$ & \ans{$2$} & \ans{$g$} & \ans{$1$} \\
+(d) $(g\circ f)(2)$ & \ans{$1$} & \ans{$f$} & \ans{$-1$} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-4pt}
+Rows (a) and (b) start from the same input, $x=-4$. Explain to your partner why they do not finish
+at the same place. \ans{They hand different middle numbers along the wire: (a) sends $g(-4)=4$ into
+$f$, (b) sends $f(-4)=-2$ into $g$.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Both orders, in general.} For each pair, find both compositions and then decide
+whether they are the same function.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}l X X c@{}}
+\hline
+\textbf{$f$ and $g$} & \textbf{$(f\circ g)(x)$} & \textbf{$(g\circ f)(x)$} & \textbf{Same?} \\
+\hline
+(a) $f(x)=3x$, \; $g(x)=x-2$ & \ans{$3x-6$} & \ans{$3x-2$} & \ans{no} \\
+(b) $f(x)=x^{2}$, \; $g(x)=x+1$ & \ans{$x^{2}+2x+1$} & \ans{$x^{2}+1$} & \ans{no} \\
+(c) $f(x)=\sqrt{x}$, \; $g(x)=x-9$ & \ans{$\sqrt{x-9}$} & \ans{$\sqrt{x}-9$} & \ans{no} \\
+(d) $f(x)=x+3$, \; $g(x)=x-3$ & \ans{$x$} & \ans{$x$} & \ans{yes} \\
+(e) $f(x)=3x-1$, \; $g(x)=\dfrac{x+1}{3}$ & \ans{$x$} & \ans{$x$} & \ans{yes} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{1.35in}
+
+\textbf{Part 2 --- What did you just find?}
+\begin{enumerate}[label=\textbf{J\arabic*.}, leftmargin=2.4em, itemsep=6pt]
+  \item Rows (d) and (e) behaved differently from the others: \emph{both} orders came out to the
+        same thing, and that thing was remarkably plain. What was it? What are those two functions
+        doing to each other --- and what word would you invent for a pair like that?
+        \ansline{Both compositions came out to $x$ itself --- whatever you start with, you get back.
+        Each function \emph{undoes} the other: $g$ subtracts $3$ and $f$ adds it back; $g$ divides
+        the shifted number by $3$ and $f$ multiplies and shifts back. Student wording will vary
+        (``opposites,'' ``reversers,'' ``undo-ers''); the real word is \textbf{inverse functions},
+        which is Lesson 6.7. Note for them that the check $f(g(x))=g(f(x))=x$ is exactly what they
+        just performed.}
+  \item Row (c) is the one to be careful with. The two answers do not have the same domain. State
+        both domains, and for each one say \emph{which stage} of the composition does the refusing.
+        \ansline{$\sqrt{x-9}$ has domain $x\ge9$: stage 1 accepts everything, but stage 2 (the
+        square root) demands $x-9\ge0$. \; $\sqrt{x}-9$ has domain $x\ge0$: here the square root
+        \emph{is} stage 1, so it refuses negatives immediately; subtracting $9$ afterwards restricts
+        nothing.}
+  \item A classmate answered row (b) with $(f\circ g)(x)=x^{2}+1$. That is a real function --- just
+        not the one that was asked for. Which composition did they actually compute, and what is the
+        one-sentence fix? \ansline{They computed $(g\circ f)(x)$ --- squared first, added $1$
+        second. Fix: the function next to the $x$ runs first, so $f$ receives the \emph{whole}
+        expression $x+1$ and squares all of it: $(x+1)^{2}$.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 3 --- Domains, on purpose.} Find $(f\circ g)(x)$, simplify it, and \emph{then} work out
+the domain from the two machines.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{$f$ and $g$} & \textbf{$(f\circ g)(x)$, simplified} & \textbf{Domain} \\
+\hline
+(a) $f(x)=\sqrt{x}$, \; $g(x)=x+2$ & \ans{$\sqrt{x+2}$} & \ans{$x\ge-2$} \\
+(b) $f(x)=\sqrt{x-1}$, \; $g(x)=4x$ & \ans{$\sqrt{4x-1}$} & \ans{$x\ge\tfrac14$} \\
+(c) $f(x)=x^{2}+1$, \; $g(x)=\sqrt{x}$ & \ans{$x+1$} & \ans{$x\ge0$} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+Row (c) simplifies to something with no radical left in it at all. Why is its domain still
+restricted? \ansline{Because the restriction happens at \emph{Gate 1}: the inner machine is
+$\sqrt{x}$, and it refuses a negative input before the squaring ever runs. Squaring afterwards
+cleans up the radical in the \emph{formula}, but it cannot go back and admit inputs that were
+already turned away.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Settle the jacket argument for every price.} Keep $f(x)=0.80x$ (the $20\%$
+discount) and $g(x)=x-10$ (the coupon), but stop using \$$80$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Find both compositions as rules. \; $(f\circ g)(x)=\ans{$0.8x-8$}$ \; and \;
+        $(g\circ f)(x)=\ans{$0.8x-10$}$
+        \vspace{0.35in}
+  \item Subtract one from the other. The gap between the two orders is \ans{\$$2$} --- and it does
+        not depend on the price at all. Explain where that number comes from in terms of the
+        \$$10$ coupon and the $20\%$ discount. \ansline{Applying the coupon first means the $20\%$
+        discount is also taken off the \$$10$ you already saved: $0.20\times10=\$2$ of the coupon is
+        discounted away. The $x$-terms cancel in the subtraction, so the loss is \$$2$ at every
+        price.}
+  \item Which order does the \emph{store} prefer, and which does the \emph{customer} prefer? Does
+        your answer change for an expensive jacket? \ansline{The store prefers coupon-first (the
+        customer pays \$$2$ more); the customer prefers discount-first. It never changes --- the gap
+        is the constant $2$, not a percentage of the price.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 2 --- When \emph{do} two linear functions commute?} Let $f(x)=ax+b$ and $g(x)=cx+d$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=4]
+  \item Compose both ways and simplify. \; $(f\circ g)(x)=\ans{$acx+ad+b$}$, \;
+        $(g\circ f)(x)=\ans{$acx+cb+d$}$
+        \vspace{0.40in}
+  \item The $x$-terms are identical no matter what. So the two compositions are equal for
+        \emph{every} $x$ exactly when the constants match: \ans{$ad+b=cb+d$}
+  \item Test your condition on Tier A row (d) ($f(x)=x+3$, $g(x)=x-3$) and on the jacket pair
+        ($f(x)=0.8x$, $g(x)=x-10$). Does it predict the right verdict both times? \ansline{Row (d):
+        $a=1,b=3,c=1,d=-3$, so $ad+b=0$ and $cb+d=0$ --- equal, and indeed both compositions gave
+        $x$. Jacket: $a=0.8,b=0,c=1,d=-10$, so $ad+b=-8$ and $cb+d=-10$ --- not equal, and the gap
+        between them, $-8-(-10)=2$, is the \$$2$ from Part 1.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 3 --- More than two machines.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=7]
+  \item Let $f(x)=x^{2}$, $g(x)=x-1$, $h(x)=3x$. Find $(f\circ g\circ h)(2)$ by going right to left.
+        \; middles: \ans{$6$}, \ans{$5$} \; answer $=\ans{$25$}$
+  \item Take $h(x)=2\sqrt{x-5}+1$ apart into \emph{three} machines run in order. \\
+        First: \ans{$x-5$} \quad Second: \ans{$\sqrt{x}$} \quad Third: \ans{$2x+1$}
+  \item In Lesson 6.4 you called $2\sqrt{x-5}+1$ ``the parent, shifted right $5$, stretched by $2$,
+        shifted up $1$.'' Compare that list with your answer to (h). What is a transformation,
+        really? \ansline{It is the same list. A transformation \emph{is} a composition: the inside
+        machine changes the input before the parent sees it (horizontal moves), and the outside
+        machine changes the parent's answer afterwards (vertical moves).}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 4 --- The pair that almost undoes itself.} Complete both columns. Write ``undefined''
+where the expression does not exist over the real numbers.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.9\linewidth}{@{}c X X@{}}
+\hline
+\textbf{$x$} & \TallMath{\left(\sqrt{x}\,\right)^{2}} & \TallMath{\sqrt{x^{2}}} \\
+\hline
+$-4$ & \ans{undefined} & \ans{$4$} \\
+$-1$ & \ans{undefined} & \ans{$1$} \\
+$0$ & \ans{$0$} & \ans{$0$} \\
+$4$ & \ans{$4$} & \ans{$4$} \\
+$9$ & \ans{$9$} & \ans{$9$} \\
+\hline
+\end{tabularx}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt, start=10]
+  \item As formulas, $\left(\sqrt{x}\,\right)^{2}=\ans{$x$}$ and $\sqrt{x^{2}}=\ans{$|x|$}$
+        (Lesson 6.1). One of them is defined for every real number; the other is not.
+        \ans{$\sqrt{x^{2}}$ is defined everywhere; $\left(\sqrt{x}\,\right)^{2}$ needs $x\ge0$.}
+  \item On which inputs do \emph{both} columns hand you back the $x$ you started with?
+        \ans{$x\ge0$}
+  \item So squaring and square-rooting undo each other --- but only on part of the number line.
+        Tomorrow you will meet the word for two functions that undo each other everywhere. What do
+        you predict has to be done to $y=x^{2}$ first, to make that possible? \ansline{Its domain
+        has to be \emph{restricted} to $x\ge0$ (keep only the right half of the parabola). On that
+        half, squaring and square-rooting really are perfect opposites in both orders --- which is
+        the answer to the question left open in Lesson 6.0.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{teachernote}
+\small \textbf{Assign one tier, not all three.} Tier R is a procedure clinic; Tier A is the target
+work and every student headed for the exit ticket should get through its Part 1 and J2; Tier E is a
+genuine extension and its Part 4 is the direct set-up for Lesson 6.7.
+\begin{itemize}[leftmargin=1.3em, nosep]
+  \item \textbf{Insist on the middle number} in Tier R. A pair that stops writing it is a pair about
+        to reverse an order. Tier R Part 3 rows (a) and (b) exist only to make that visible: same
+        starting input, different wire, different destination.
+  \item \textbf{Tier A rows (d) and (e) are the point of the whole activity.} Do \emph{not} tell
+        groups what they have found. Let J1 be answered in their own words and collect the wordings
+        --- ``they cancel,'' ``they undo each other,'' ``you get $x$ back'' --- and open Lesson 6.7
+        by putting those exact phrases on the board next to the word \emph{inverse}. Row (e) matters
+        because it is the first pair students could not have guessed by eye.
+  \item \textbf{J2 is the item to grade closely.} ``Different domains'' is not the answer; naming
+        \emph{which stage} refuses, and \emph{what number} it refuses, is. Students who cannot do
+        this will not follow 6.7's restricted-domain argument.
+  \item \textbf{Tier A Part 3(c) is the sleeper.} $x+1$ with domain $x\ge0$ looks like a mistake to
+        students. It is the same phenomenon as Tier E Part 4 in smaller print --- if a group finds
+        it and argues about it, that argument is worth more than finishing the page.
+  \item \textbf{Tier E Part 2} is the only fully general result in the lesson, and it is worth
+        pointing out that the two $x$-terms come out identical \emph{automatically}: composition of
+        linear functions always multiplies the slopes, which is why only the constants can disagree.
+\end{itemize}
+\end{teachernote}
 
 \end{document}

@@ -3,17 +3,371 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.6}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item evaluate $(f\circ g)(x)=f(g(x))$ \emph{numerically}, \emph{graphically}, and \emph{algebraically}, working \textbf{inside out};
+  \item show that $(f\circ g)(x)$ and $(g\circ f)(x)$ are usually \emph{different functions}, and find the \textbf{domain} of a composition by checking \emph{both} stages;
+  \item write a given function as a composition of two simpler ones --- and explain why every transformation in Lesson 6.4 was a composition already.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Composition of functions}
+\termblanklong{The notation $(f\circ g)(x)$}
+\termblanklong{Inner function / outer function}
+\termblanklong{Inside out}
+\termblanklong{Domain of a composition}
+\termblanklong{Decomposition}
+\end{vocabbox}
+
+\begin{hookbox}
+A jacket is marked \$$80$. The store is running two offers at the same time:
+\begin{center}
+\small
+\textbf{Offer 1: $20\%$ off} \quad $\rightarrow$ \quad $f(x)=0.80x$ \hspace{0.5in}
+\textbf{Offer 2: \$$10$ coupon} \quad $\rightarrow$ \quad $g(x)=x-10$
+\end{center}
+Two cashiers apply \emph{both} offers, in opposite orders. Follow the money.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.96\linewidth}{@{}X c c c@{}}
+\hline
+ & \textbf{Start} & \textbf{After the first offer} & \textbf{You pay} \\
+\hline
+\textbf{Cashier A:} coupon first, then the discount & \$$80$ & \blank{1.8cm} & \blank{1.8cm} \\
+\textbf{Cashier B:} discount first, then the coupon & \$$80$ & \blank{1.8cm} & \blank{1.8cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Which line would you rather stand in, and by how much? \blank{5.0cm}
+  \item Nobody made an arithmetic mistake. So what \emph{was} the difference between the two
+        cashiers? \writeline
+\end{itemize}
+Today we give that difference a notation. Two functions, run one after the other, make a
+\textbf{composition} --- and \textbf{the order is part of the answer.}
+\end{hookbox}
+
+\begin{notesbox}{1. Wiring Two Functions in Series}
+A \textbf{composition} takes the \emph{output} of one function and uses it as the
+\blank{2.0cm} of another. Picture two machines wired in series:
+\begin{center}
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \node (x) at (0,0) {$x$};
+  \node[draw=forest, thick, rounded corners, fill=forestbg, minimum width=1.4cm,
+        minimum height=0.85cm] (g) at (2.2,0) {$g$};
+  \node[draw=navy, thick, rounded corners, fill=sky, minimum width=1.4cm,
+        minimum height=0.85cm] (f) at (6.0,0) {$f$};
+  \node (out) at (8.9,0) {$f\big(g(x)\big)$};
+  \draw[->, thick, charcoal] (x)--(g);
+  \draw[->, thick, charcoal] (g)--node[above, font=\scriptsize]{$g(x)$}(f);
+  \draw[->, thick, charcoal] (f)--(out);
+  \node[font=\scriptsize, forest] at (2.2,-0.85) {runs \textbf{first}};
+  \node[font=\scriptsize, navy] at (6.0,-0.85) {runs \textbf{second}};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering\small
+\textbf{Notation.} \quad $(f\circ g)(x)=f\big(g(x)\big)$ \quad --- read it ``\emph{$f$ of $g$ of
+$x$}.'' \\[4pt]
+The function written \textbf{next to the $x$} goes \blank{1.6cm}. \\[3pt]
+$g$ is the \textbf{\blank{1.8cm} function} (it is inside the parentheses); \;
+$f$ is the \textbf{\blank{1.8cm} function}. \\[3pt]
+\textbf{Always work \blank{2.6cm}.}
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{Careful:} $(f\circ g)(x)$ is \emph{not} $f(x)\cdot g(x)$. The little circle is not a
+multiplication dot --- it means ``\blank{3.0cm}.''
+
+\vspace{4pt}
+\textbf{You did one already.} In Warm-Up item 1 you found $g(-1)=\blank{1.0cm}$ and then put that
+answer into $f$, getting \blank{1.0cm}. In today's notation, that was
+$(f\circ g)(-1)=\blank{1.0cm}$.
 \end{notesbox}
+
+\begin{notesbox}{2. Composing Numerically}
+With $f(x)=2x-3$ and $g(x)=x^{2}+1$ --- the same two functions from the Warm-Up --- evaluate each
+composition in \emph{two labelled steps}. Never skip the middle number; it is where the mistakes
+live.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.96\linewidth}{@{}X X X X@{}}
+\hline
+ & \textbf{Step 1: inside} & \textbf{Step 2: outside} & \textbf{Answer} \\
+\hline
+(a) $(f\circ g)(3)$ & $g(3)=\blank{1.2cm}$ & $f(\blank{1.0cm})=\blank{1.2cm}$ & \blank{1.4cm} \\
+(b) $(g\circ f)(3)$ & $f(3)=\blank{1.2cm}$ & $g(\blank{1.0cm})=\blank{1.2cm}$ & \blank{1.4cm} \\
+(c) $(f\circ f)(4)$ & $f(4)=\blank{1.2cm}$ & $f(\blank{1.0cm})=\blank{1.2cm}$ & \blank{1.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+Parts (a) and (b) used the same two functions and the same input, and gave
+\blank{3.0cm} answers.
+
+\vspace{4pt}
+\textbf{From a table.} You do not need formulas --- values are enough.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|c|c|c|c|c|c|@{}}
+\hline
+$x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ \\
+\hline
+$s(x)$ & $1$ & $2$ & $-1$ & $0$ & $-2$ \\
+\hline
+$t(x)$ & $0$ & $-2$ & $1$ & $-1$ & $2$ \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+Same input, three different compositions --- watch how far apart the answers land.
+\begin{center}
+\small
+$(s\circ t)(0)=s(\blank{0.9cm})=\blank{0.9cm}$ \hspace{0.28in}
+$(t\circ s)(0)=t(\blank{0.9cm})=\blank{0.9cm}$ \hspace{0.28in}
+$(s\circ s)(0)=s(\blank{0.9cm})=\blank{0.9cm}$
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{3. Composing Graphically}
+Same idea, with the values read off two graphs instead of a rule. Find the inside value on
+\emph{its} graph, then carry that number over and use it as an $x$ on the \emph{other} graph.
+\begin{center}
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-5}{7}{-3}{5}
+  \draw[very thick, forest] (-4,-2)--(0,2)--(4,0)--(6,4);
+  \fill[forest] (0,2) circle (3.4pt);
+  \fill[forest] (4,0) circle (3.4pt);
+  \node[forest, font=\scriptsize] at (-2.6,2.6) {$y=f(x)$};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-5}{7}{-3}{5}
+  \draw[very thick, navy] (-4,4)--(2,-2)--(6,2);
+  \fill[navy] (2,-2) circle (3.4pt);
+  \node[navy, font=\scriptsize] at (4.4,3.4) {$y=g(x)$};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\vspace{-2pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.96\linewidth}{@{}X X X X@{}}
+\hline
+ & \textbf{Read the inside} & \textbf{Then read the outside} & \textbf{Answer} \\
+\hline
+(a) $(f\circ g)(0)$ & $g(0)=\blank{1.1cm}$ & $f(\blank{0.9cm})=\blank{1.1cm}$ & \blank{1.2cm} \\
+(b) $(g\circ f)(0)$ & $f(0)=\blank{1.1cm}$ & $g(\blank{0.9cm})=\blank{1.1cm}$ & \blank{1.2cm} \\
+(c) $(f\circ g)(-2)$ & $g(-2)=\blank{1.1cm}$ & $f(\blank{0.9cm})=\blank{1.1cm}$ & \blank{1.2cm} \\
+(d) $(g\circ f)(6)$ & $f(6)=\blank{1.1cm}$ & $g(\blank{0.9cm})=\blank{1.1cm}$ & \blank{1.2cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+\textbf{The habit:} an output on one graph becomes an \blank{2.0cm} on the other. Circle the middle
+number every time --- it is the only thing being handed from one machine to the next.
+\end{notesbox}
+
+\begin{notesbox}{4. Composing Algebraically}
+Now compose without any particular input. The move is exactly Warm-Up item 2: substitute the
+\emph{whole} inside function, in parentheses, for every $x$ in the outside function.
+
+\vspace{3pt}
+With $f(x)=2x-3$ and $g(x)=x^{2}+1$ again:
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\small
+\textbf{(a)} $(f\circ g)(x)=f\big(g(x)\big)$
+\[ =f\big(\blank{2.0cm}\big) \]
+\[ =2\big(\blank{2.0cm}\big)-3=\blank{2.2cm} \]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\small
+\textbf{(b)} $(g\circ f)(x)=g\big(f(x)\big)$
+\[ =g\big(\blank{2.0cm}\big) \]
+\[ =\big(\blank{2.0cm}\big)^{2}+1=\blank{3.0cm} \]
+\end{minipage}
+\end{center}
+\vspace{2pt}
+Check your two rules against Section 2: put $x=3$ into each and confirm you get the same numbers you
+already found. \; (a) gives \blank{1.2cm}, \; (b) gives \blank{1.2cm}. \; \checkmark
+
+\vspace{4pt}
+\textbf{The one habit that prevents most errors:} write the parentheses \emph{before} you write what
+goes in them. Dropping them turns $\big(2x-3\big)^{2}+1$ into $2x-3^{2}+1$, which is a different
+problem entirely.
+\end{notesbox}
+
+\begin{notesbox}{5. Order Matters --- and This Unit Has the Best Example}
+Let $f(x)=\sqrt{x}$ \; and \; $g(x)=x-4$. Compose them both ways.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.96\linewidth}{@{}X|X@{}}
+\textbf{$(f\circ g)(x)=f(x-4)=$ \blank{2.4cm}} & \textbf{$(g\circ f)(x)=g\!\left(\sqrt{x}\,\right)=$ \blank{2.4cm}} \\
+\hline
+Subtract \emph{first}, then take the root: the change happens \textbf{inside} the radical. &
+Take the root \emph{first}, then subtract: the change happens \textbf{outside} the radical. \\
+From Lesson 6.4, that is the parent shifted \blank{2.4cm}. &
+From Lesson 6.4, that is the parent shifted \blank{2.4cm}. \\
+\end{tabularx}
+\end{center}
+\begin{center}
+\begin{minipage}[c]{0.52\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-1}{14}{-5}{4}
+  \begin{scope}
+    \clip (-1,-5) rectangle (14,4);
+    \draw[very thick, forest, domain=4:14, samples=110, smooth] plot (\x,{sqrt((\x)-4)});
+    \draw[very thick, navy, domain=0:14, samples=110, smooth] plot (\x,{sqrt(\x)-4});
+  \end{scope}
+  \fill[forest] (4,0) circle (4pt);
+  \fill[navy] (0,-4) circle (4pt);
+  \node[forest, font=\scriptsize] at (10.6,2.6) {$y=\sqrt{x-4}$};
+  \node[navy, font=\scriptsize] at (10.4,-2.6) {$y=\sqrt{x}-4$};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.44\linewidth}
+\small
+Two different curves, from the \emph{same two functions}. \\[5pt]
+$y=\sqrt{x-4}$ starts at $(\blank{0.8cm},\blank{0.8cm})$; domain \blank{1.8cm}. \\[5pt]
+$y=\sqrt{x}-4$ starts at $(\blank{0.8cm},\blank{0.8cm})$; domain \blank{1.8cm}. \\[5pt]
+They do not even accept the same inputs, so
+\[ (f\circ g)(x)\ \blank{0.9cm}\ (g\circ f)(x). \]
+\end{minipage}
+\end{center}
+\vspace{2pt}
+\begin{center}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.7pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Every transformation you learned in 6.4 was a composition.} A change made
+\emph{inside} the radical --- $f(x-h)$, $f(kx)$ --- is $f$ composed with an inner function that gets
+at the input \emph{before} $f$ ever sees it. A change made \emph{outside} --- $a\,f(x)+k$ --- is an
+outer function applied to $f$'s answer. That is the long-awaited reason inside changes feel
+``backwards'': $\sqrt{x-4}$ moves the graph to the \emph{right} because the inner machine hands
+$\sqrt{\phantom{x}}$ a number that is $4$ \emph{smaller}, so $x$ has to be $4$ \emph{bigger} to make
+up for it.
+\end{tcolorbox}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{6. The Domain of a Composition: An Input Must Survive \emph{Both} Stages}
+An input travels through two machines, so it can be rejected in two places.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\small
+\textbf{Gate 1.} \; $x$ must be in the domain of the \blank{2.0cm} function, $g$. \\[3pt]
+\textbf{Gate 2.} \; The number $g(x)$ must be in the domain of the \blank{2.0cm} function, $f$.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{Example.} $f(x)=\sqrt{x}$, $g(x)=2x-10$. Then $(f\circ g)(x)=\blank{2.6cm}$. \; Gate 1 lets
+everything through, but Gate 2 demands $2x-10\ \blank{0.8cm}\ 0$, so the domain is
+\blank{2.4cm}.
+
+\vspace{5pt}
+\textbf{Now the surprise, and it is the most important thing on this page.}
+Let $f(x)=x^{2}$ and $g(x)=\sqrt{x}$.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.96\linewidth}{@{}X|X@{}}
+\textbf{$(f\circ g)(x)=\left(\sqrt{x}\,\right)^{2}=$ \blank{1.4cm}} &
+\textbf{$(g\circ f)(x)=\sqrt{x^{2}}=$ \blank{1.4cm}} \; (Lesson 6.1!) \\
+\hline
+The formula looks like it accepts every real number. But can you compute it at $x=-9$?
+\blank{2.0cm} & This one really does accept every real number --- squaring cleans the sign up
+\emph{before} the root ever sees it. \\
+Why not? \blank{5.0cm} & At $x=-9$ it gives \blank{1.4cm}, not $-9$. \\
+Domain: \blank{2.6cm} & Domain: \blank{2.6cm} \\
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+\textbf{The rule this forces:} find the domain from the \blank{2.6cm}, not from the simplified
+answer. Simplifying can erase the evidence that a gate was ever there.
+\begin{center}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.7pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Hold on to this until tomorrow.} Squaring and square-rooting \emph{almost} undo each
+other --- one order gives you $x$ back but only for $x\ge0$, and the other order gives you $|x|$.
+Neither one is honestly ``$x$ for every real number.'' In Lesson 6.7 that is exactly why $y=x^{2}$
+has to have its domain \emph{restricted} before it is allowed a square-root inverse --- the loose
+end you first noticed back in Lesson 6.0.
+\end{tcolorbox}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{7. Reading a Composition Backwards (Decomposition)}
+Sometimes the useful question is the reverse: \emph{what two machines built this?} Look for the
+work done \textbf{first} --- that is the inner function; everything wrapped around it is the outer
+function.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.96\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Given $h(x)$} & \textbf{Inner $g(x)$ (done first)} & \textbf{Outer $f(x)$ (done second)} \\
+\hline
+$h(x)=\sqrt{3x+1}$ & \blank{3.0cm} & \blank{3.0cm} \\
+$h(x)=(x-5)^{3}$ & \blank{3.0cm} & \blank{3.0cm} \\
+$h(x)=\sqrt[3]{x}+7$ & \blank{3.0cm} & \blank{3.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+There is more than one right answer to a decomposition --- but the one you want is the one where the
+inner function is what your \emph{hands} would do first if you were evaluating $h(4)$ with a
+calculator.
+\end{notesbox}
+
+\begin{practicebox}
+Show the inside step every time.
+
+\vspace{4pt}
+\textbf{1.} Let $f(x)=x-3$ and $g(x)=x^{2}$. \\[3pt]
+\hspace*{0.2in} $(f\circ g)(4)=\blank{1.6cm}$ \hspace{0.3in} $(g\circ f)(4)=\blank{1.6cm}$
+\vspace{0.35in}
+
+\textbf{2.} Let $f(x)=\sqrt{x}$ and $g(x)=2x-6$. Find $(f\circ g)(x)$ and state its domain.
+\vspace{0.55in}
+
+$(f\circ g)(x)=\blank{3.0cm}$ \hspace{0.3in} Domain: \blank{3.0cm}
+
+\vspace{6pt}
+\textbf{3.} Write $h(x)=(x+5)^{3}$ as $f(g(x))$. \; $g(x)=\blank{2.4cm}$, \;
+$f(x)=\blank{2.4cm}$
+
+\vspace{6pt}
+\textbf{4.} A classmate says $(f\circ g)(x)$ and $(g\circ f)(x)$ ``are the same thing written two
+ways.'' Give them one specific counterexample from today. \writeline
+\end{practicebox}
 
 \end{document}

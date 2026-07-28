@@ -3,17 +3,200 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.6}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Work \textbf{inside out}, and write the middle number every time. An answer with no middle step is
+an answer you cannot check.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{From rules.} Let $f(x)=x^{2}-3$ and $g(x)=2x+5$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}X X X@{}}
+    (a) \; $(f\circ g)(1)=\blank{1.6cm}$ &
+    (b) \; $(g\circ f)(1)=\blank{1.6cm}$ &
+    (c) \; $(f\circ f)(2)=\blank{1.6cm}$ \\
+    (d) \; $(g\circ g)(-1)=\blank{1.6cm}$ &
+    (e) \; $(f\circ g)(-2)=\blank{1.6cm}$ &
+    (f) \; $(g\circ f)(-3)=\blank{1.6cm}$ \\
+    \end{tabularx}
+    \end{center}
+    Parts (a) and (b) use the same functions and the same input. Whose fault is the difference?
+    \blank{6.0cm}
+
+  \item \textbf{From a table.} Use only the values below.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}|c|c|c|c|c|c|c|@{}}
+    \hline
+    $x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\
+    \hline
+    $p(x)$ & $3$ & $1$ & $0$ & $-1$ & $2$ & $-2$ \\
+    \hline
+    $q(x)$ & $-1$ & $2$ & $3$ & $0$ & $1$ & $-2$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}X X X@{}}
+    (a) \; $(p\circ q)(0)=\blank{1.4cm}$ &
+    (b) \; $(q\circ p)(0)=\blank{1.4cm}$ &
+    (c) \; $(p\circ q)(-1)=\blank{1.4cm}$ \\
+    (d) \; $(q\circ p)(2)=\blank{1.4cm}$ &
+    (e) \; $(p\circ p)(1)=\blank{1.4cm}$ &
+    (f) \; $(q\circ q)(3)=\blank{1.4cm}$ \\
+    \end{tabularx}
+    \end{center}
+    (g) Find the value of $x$ for which $(p\circ q)(x)=0$. \; $x=\blank{1.6cm}$ \\[2pt]
+    \hspace*{0.3in}\emph{Hint: work backwards --- which input does $p$ send to $0$?}
+
+  \item \textbf{Algebraically, with domains.} Let $f(x)=x-6$, \; $g(x)=\sqrt{x}$, \; and
+        $h(x)=x^{2}+2$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}l X X@{}}
+    \hline
+    \textbf{Composition} & \textbf{Simplified rule} & \textbf{Domain} \\
+    \hline
+    (a) \; $(g\circ f)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    (b) \; $(f\circ g)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    (c) \; $(h\circ f)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    (d) \; $(f\circ h)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    (e) \; $(g\circ h)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    \vspace{0.9in}
+    Two of these five have restricted domains and three do not. What do the restricted ones have in
+    common that (e) --- which also contains a square root --- does not? \blank{6.0cm}
+
+  \item \textbf{From two graphs.} Below are $y=u(x)$ and $y=v(x)$.
+    \begin{center}
+    \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-5}{5}{-5}{5}
+      \draw[very thick, forest] (-4,2)--(0,-2)--(4,2);
+      \fill[forest] (0,-2) circle (3.4pt);
+      \node[forest, font=\scriptsize] at (-3.0,3.4) {$y=u(x)$};
+    \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-5}{5}{-5}{5}
+      \draw[very thick, navy] (-4,-5)--(4,3);
+      \fill[navy] (1,0) circle (3.4pt);
+      \node[navy, font=\scriptsize] at (2.6,3.6) {$y=v(x)$};
+    \end{tikzpicture}
+    \end{minipage}
+    \end{center}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}X X X@{}}
+    (a) \; $(u\circ v)(0)=\blank{1.4cm}$ &
+    (b) \; $(v\circ u)(0)=\blank{1.4cm}$ &
+    (c) \; $(u\circ v)(-3)=\blank{1.4cm}$ \\
+    (d) \; $(v\circ u)(-3)=\blank{1.4cm}$ &
+    (e) \; $(u\circ v)(3)=\blank{1.4cm}$ &
+    (f) \; $(v\circ u)(3)=\blank{1.4cm}$ \\
+    \end{tabularx}
+    \end{center}
+    (g) Parts (e) and (f) came out \emph{equal}, even though (a) and (b) did not. Try $x=4$ as
+    well: $(u\circ v)(4)=\blank{1.2cm}$ and $(v\circ u)(4)=\blank{1.2cm}$. Where on the number line
+    do the two orders seem to agree, and what is special about $u$ there? \blank{6.0cm}
+
+  \item \textbf{Error analysis.} Two classmates are asked for $(f\circ g)(x)$ where $f(x)=x^{2}$ and
+        $g(x)=x+3$.
+    \begin{center}
+    \begin{tcolorbox}[colback=white, colframe=charcoal!45, boxrule=0.7pt, arc=1.5mm,
+        width=0.72\linewidth, left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+    \centering\small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l l@{}}
+    \textbf{Amara writes:} & $(f\circ g)(x)=x^{2}\cdot(x+3)=x^{3}+3x^{2}$ \\
+    \textbf{Ben writes:} & $(f\circ g)(x)=x^{2}+3$ \\
+    \end{tabular}
+    \end{tcolorbox}
+    \end{center}
+    \vspace{-4pt}
+    (a) What is the correct answer? \blank{4.0cm} \\[3pt]
+    (b) Evaluate all three expressions at $x=2$: correct $=\blank{1.2cm}$, Amara $=\blank{1.2cm}$,
+    Ben $=\blank{1.2cm}$ \\[3pt]
+    (c) Name each mistake in a few words --- they are two \emph{different} misunderstandings, not
+    the same slip twice. \\[2pt]
+    Amara: \blank{5.4cm} \\[3pt]
+    Ben: \blank{5.4cm}
+
+  \item \textbf{Explain.} Let $f(x)=x^{2}$ and $g(x)=\sqrt{x}$. The composition
+        $(f\circ g)(x)=\left(\sqrt{x}\,\right)^{2}$ simplifies all the way down to just $x$ --- and
+        yet its domain is \emph{not} all real numbers. Explain why, using the words \textbf{stage}
+        (or \emph{gate}) and \textbf{domain}. Then say what $(g\circ f)(x)$ simplifies to instead,
+        and why that one \emph{does} accept every real number. \writelines{5}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{The view from the mast.} In Lesson 6.4 you met the horizon formula: from an eye height of
+$h$ feet above the water, you can see about
+\[
+  d(h)=\sqrt{1.5h} \ \text{ miles.}
+\]
+A sailor starts with their eyes $6$ feet above the deck and climbs the mast at a steady $6$ feet per
+second, so after $t$ seconds their eye height is
+\[
+  h(t)=6t+6 \ \text{ feet.}
+\]
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Which function has to run first if you want the horizon distance after $t$ seconds ---
+        $d$ or $h$? Write the composition you need in $\circ$ notation.
+  \item Build the rule. Show that $(d\circ h)(t)=\sqrt{1.5(6t+6)}$ simplifies to
+        $3\sqrt{t+1}$.
+  \item Complete the table. Every entry is a whole number of miles.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{}|c|c|c|c|c|@{}}
+    \hline
+    $t$ (seconds) & $0$ & $3$ & $8$ & $15$ \\
+    \hline
+    $(d\circ h)(t)$ (miles) & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} \\
+    \hline
+    \end{tabular}
+    \end{center}
+  \item Your composition is $3\sqrt{t+1}$ --- which, in the language of Lesson 6.4, is the parent
+        $y=\sqrt{t}$ with a horizontal shift and a vertical stretch. Name both, and explain what
+        each one \emph{means} about the sailor.
+  \item It takes $3$ seconds of climbing to go from $3$ miles of visibility to $6$. How long to get
+        from $6$ miles to $12$? Which feature of a square root graph made that answer inevitable?
+  \item The algebra is happy to compute $(d\circ h)(-1)=0$. What does the \emph{situation} say about
+        that input, and what is the domain of the composition \emph{in context}?
+\end{enumerate}
+\writelines{5}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 6.7: Inverse Functions.} A few of today's pairs did something the
+others did not: composed in \emph{either} order, they handed back the $x$ you started with. That is
+not a coincidence and it is not a curiosity --- it is the definition of a pair of \textbf{inverse}
+functions, and $f(g(x))=g(f(x))=x$ is the test. In 6.7 you will learn to \emph{build} the partner
+for a given function (swap and solve), see the pair as reflections of each other over the line
+$y=x$, and watch the domain and range trade places. And the loose thread from today's Section 6
+finally gets tied: $\left(\sqrt{x}\,\right)^{2}$ gives back $x$ only when $x\ge0$, which is exactly
+why $y=x^{2}$ has to have its domain restricted before it is allowed a square-root inverse --- the
+question you first raised all the way back in Lesson 6.0.
+\end{spiralbox}
 
 \end{document}
