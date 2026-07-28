@@ -59,8 +59,8 @@ divider. The scaffolder writes these; see `assets/skeletons/test.tex`.
 | `\writelines{n}` | `n` stacked write-lines |
 | `\termblank{Term}` | Bold forest term + inline blank, then a write-line |
 | `\termblanklong{Term}` | Bold forest term on its own line + two write-lines (vocab style) |
-| `\namedateperiod` | Name / Date / Period row |
-| `\namepartnerperiod` | Name / Partner / Period row (group activities) |
+| `\namedateperiod` | Name / Date / Period row — **cover and unit tests only** (Namestrip) |
+| `\namepartnerperiod` | Name / Partner / Period row — **not used**; superseded by Namestrip |
 | `\pageheader{Unit X, Lesson Y.Z}{Document Type}` | Full-width forest banner header |
 
 **`\noindent` trap — required fix in every `vocabbox` from Unit 5 on.** `\termblanklong` opens with

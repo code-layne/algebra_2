@@ -317,14 +317,16 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > `make -C unit01/lesson00 all` → EXIT 0; notes still **5pp** blank and **5pp** key, so the packet
 > page counts are unchanged (unit student 63pp / unit full 119pp).
 >
-> **Lesson 1.0 name/date/period stripped to the cover only (2026-07-28, user request).** Removed
+> **Lesson 1.0 namestripped 2026-07-28 (user request) — this is the case that named the
+> *namestrip* rule; see §7.** Removed
 > the `\namedateperiod` line from `warmup`, `notes`, `exit_ticket`, `homework` and the
 > `\namepartnerperiod` line from `activity` — plus all five matching `_key` files (lockstep) —
 > so the student writes their name once, on `cover/main.tex` (line 24), which keeps it. Rationale:
 > the components are stapled behind the cover, so the repeated header was redundant. `make -C
 > unit01/lesson00 all` → EXIT 0; warm-up and exit ticket still **1pp** blank and **1pp** key.
-> *If this becomes the course-wide convention, the same two lines need sweeping out of
-> `unit0{2..8}/lesson*/{warmup,notes,activity,exit_ticket,homework}{,_key}/main.tex`.*
+> Promoted to a named convention the same day (§7): the scaffolder no longer emits a name row,
+> and `scripts/namestrip.py` applies the fix to older lessons on request. **No bulk sweep** —
+> Units 2–8 keep theirs until each lesson is namestripped individually.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -2188,6 +2190,42 @@ Unlike the vocab-box fix above, this one **is** a shared-package change — it i
 (`\RequirePackage{needspace}` + one `\newcommand`), so no already-verified unit re-flows until
 a lesson actually calls `\boxguard`. Per user decision there is **no bulk sweep**: fix boxguard
 problems lesson-by-lesson as they are found in review.
+
+### Namestrip — the name/date/period rule (named 2026-07-28)
+
+**"Namestrip" names both the defect and the fix.** When a review turns up "lesson 3.2 needs a
+namestrip," it means the name/date/period row is repeating on components that sit *behind* the
+cover sheet. **The row belongs on the cover and nowhere else in the lesson.** The student writes
+their name once; every other component is stapled behind it, so a second row is redundant and
+costs vertical space at the top of every page — space that matters most on the warm-up and exit
+ticket, which are held to one page.
+
+Strip `\namedateperiod` from `warmup`, `notes`, `exit_ticket`, `homework` and
+`\namepartnerperiod` from `activity` — **and from all five `_key` files**, which stay in
+lockstep. Two exemptions:
+
+- **`cover/`** — the one place the row belongs. Never strip it.
+- **`unitXX/tests/` and `test_keys/`** — the actual test is taken in a testing setting, not
+  stapled behind a lesson cover, so the tests keep their name row.
+
+Apply it with the skill script rather than by hand — it skips `cover/`, hits blanks and keys
+together, and is idempotent:
+
+```bash
+python3 .claude/skills/lesson-planning/scripts/namestrip.py --project . --unit 02 --lesson 03
+python3 .claude/skills/lesson-planning/scripts/namestrip.py --project . --unit 02 --lesson 03 --check
+```
+
+`--check` reports without writing and exits 1 if it finds anything, so it also works as a review
+gate. Rebuild afterward and confirm the warm-up and exit ticket are **still 1 page** blank *and*
+key.
+
+**Going forward this is automatic:** `new_lesson.py` and the `worksheet.tex` /
+`worksheet_key.tex` skeletons no longer emit a name row (they carry a `% NAMESTRIP:` comment
+explaining why), so newly scaffolded lessons are born correct. Like boxguard, there is **no bulk
+sweep** of already-authored lessons: Units 2–8 still carry the row on ~508 component files, and
+stripping them all at once would re-flow the pagination of every verified lesson. **Namestrip
+lesson-by-lesson as reported.** Lesson 1.0 is the reference implementation.
 
 ---
 

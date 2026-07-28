@@ -58,7 +58,7 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
 
 `cover/main.tex` — student-facing front page of the packet. No key. Structure:
 - Full-bleed forest banner (tikz) with `\LARGE` course name, unit, and `Lesson <id>  <title>`.
-- `\namedateperiod`.
+- `\namedateperiod` — **the only place in the lesson it appears.** See "Namestrip" below.
 - `learningtargetbox` — an "I can…" list, one target per priority skill (or standard).
 - `tocbox` — a `tabularx` listing each packet component (#, Component, Description, Score blank)
   with a Total row. Keep the rows aligned with the components you actually scaffolded.
@@ -70,13 +70,13 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
 thumbnail shown on the lesson plan. Frequently a **prefab PDF**: if so, just drop it in as
 `warmup/main.pdf` (and `warmup_key/main.pdf`) — `lesson.mk` merges it directly, and the lesson
 plan can embed its thumbnail via `\includegraphics{warmup/main}`. If authored: 3–5 quick
-problems with work space (`\vspace`), `\namedateperiod`, and the spiral review stays text-only
+problems with work space (`\vspace`), no name row, and the spiral review stays text-only
 in the plan. Key mirrors with `\ans`.
 
 ## Guided notes
 
 `notes/` (+ `notes_key/`) — the student's fill-in notes. Structure:
-- `\pageheader{Unit X, Lesson Y.Z}{Guided Notes}` + `\namedateperiod`.
+- `\pageheader{Unit X, Lesson Y.Z}{Guided Notes}` (no name row).
 - `objectivebox` — "By the end of this lesson, I will be able to…" with `\writeline`s for
   students to fill (the key uses `\ansline{...}`, one per priority skill).
 - `vocabbox` — `\termblanklong{Term}` per key term (key replaces each with `\ans{definition}`).
@@ -88,7 +88,7 @@ in the plan. Key mirrors with `\ans`.
 ## Activity
 
 `activity/` (+ `activity_key/`) — differentiated group practice.
-- `\pageheader{Unit X, Lesson Y.Z}{Group Activity}` + `\namepartnerperiod`.
+- `\pageheader{Unit X, Lesson Y.Z}{Group Activity}` (no name/partner row).
 - Three `tcolorbox`es titled **Tier R — Remediate**, **Tier A — Approaching Proficiency**,
   **Tier E — Extension** (`colframe=black!40`), each with problems and generous `\vspace` work
   room. Tiers escalate in difficulty and align to the same skills; the top tier should reach an
@@ -99,16 +99,35 @@ in the plan. Key mirrors with `\ans`.
 ## Exit ticket
 
 `exit_ticket/` (+ `exit_ticket_key/`) — a short independent check (2–3 items), no notes.
-`\pageheader{...}{Exit Ticket}` + `\namedateperiod`; a tight `enumerate` with a little work
+`\pageheader{...}{Exit Ticket}` (no name row); a tight `enumerate` with a little work
 space. Include at least one "what does this result mean?" item. Key fills with `\ans`. Graded
 for completion ("mistakes happen, blanks don't").
 
 ## Homework
 
 `homework/` (+ `homework_key/`) — independent practice + stretch.
-`\pageheader{...}{Homework}` + `\namedateperiod`; a numbered practice set, an `extensionbox`
+`\pageheader{...}{Homework}` (no name row); a numbered practice set, an `extensionbox`
 ("Extension — optional"), and a short preview of the next lesson. Key fills with `\ans` and
 shows worked steps for the harder items.
+
+## Namestrip — where the name/date/period row goes
+
+**The name row appears exactly once per lesson: on the cover.** Do not put `\namedateperiod`
+(or `\namepartnerperiod`) in `warmup`, `notes`, `activity`, `exit_ticket`, or `homework` — or in
+any `_key`. The components are stapled behind the cover, so a row on each one is redundant and
+costs vertical space at the top of every page. Exempt: `cover/` (it's the one place it belongs)
+and `unitXX/tests/` (taken in a testing setting, not behind a cover).
+
+New lessons come out of the scaffolder already correct. To apply it to a lesson authored before
+the convention:
+
+```bash
+python3 .claude/skills/lesson-planning/scripts/namestrip.py --project . --unit 02 --lesson 03
+```
+
+Add `--check` to report without changing anything (exits 1 if it finds any). The script skips
+`cover/`, hits blanks and keys together, and is idempotent. Rebuild afterward and confirm the
+warm-up and exit ticket are still one page each, blank and key.
 
 ## Slides
 
@@ -123,7 +142,9 @@ the beamer theme is bespoke.
 
 Unit-level, not per-lesson — scaffolded once per unit under `unitXX/tests/` and
 `unitXX/test_keys/` (see SKILL "What a unit is" and `references/build.md`). Author **two blank
-tests and their two keys**, all with `\pageheader{Unit X: <Title>}{...}` + `\namedateperiod`:
+tests and their two keys**, all with `\pageheader{Unit X: <Title>}{...}` + `\namedateperiod`
+(tests are **exempt from Namestrip** — they are taken in a testing setting, not stapled behind a
+lesson cover, so they keep their name row):
 
 - **`tests/practice_test/main.tex`** — the study copy students keep. Opens with a `remindbox`
   telling students it mirrors the real test in format and ideas but uses different numbers.
