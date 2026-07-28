@@ -19,68 +19,216 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can graph $g(x)=a\,b^{\,x-h}+k$ by \emph{moving the parent}
+    $y=b^{x}$, and can read the horizontal asymptote, the range, and the $y$-intercept straight off
+    the equation without plotting a point. The lesson turns on a single asymmetry: of the four
+    transformations, \emph{only} the vertical shift $f(x)+k$ moves the asymptote --- so it is the only
+    one that changes the range, and the only one that can give the graph an $x$-intercept at all.
+    Students also separate the two minus signs that look alike and are not: $-b^{x}$ reflects across
+    the $x$-axis (moving the graph to the other side of the asymptote), while $b^{-x}$ reflects
+    across the $y$-axis and turns growth into decay, because $b^{-x}=\left(\frac1b\right)^{x}$.
+    Finally, students run the reading backwards --- given a graph, recover $k$ from the asymptote, $a$
+    from the $y$-intercept \emph{minus $k$}, and $b$ from one more point.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.1b} and \textbf{A2.F.1c} are the assessed standards
+    of the day --- the transformation lens ($a$, $h$, $k$, and reflections) applied to the exponential
+    parent, and the effect of each parameter on the graph. \textbf{A2.F.1e} (compare and contrast
+    graphs, tables, and equations of a function family) is the structural spine: every section moves
+    between an equation, a pre-drawn graph, and a table of values, and Section 4 reverses the
+    direction entirely. \textbf{A2.F.2h} (horizontal asymptotes; the standard names exponential
+    explicitly) and \textbf{A2.F.2a} (domain and range) are what the whole lesson is measured
+    against --- ``did the asymptote move, and what is the range now?'' is the question asked on every
+    item. \emph{Note:} Unit 7 has no \texttt{A2.EO} or \texttt{A2.EI} standard --- the unit rests
+    entirely on \texttt{A2.F} and \texttt{A2.ST.2}.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Read $a$, $h$, and $k$ out of $g(x)=a\,b^{\,x-h}+k$ and name the move each one makes.
+  \item Give the \textbf{horizontal asymptote} of any transformed exponential: $y=k$, and nothing else can change it.
+  \item Give the \textbf{range}: $(k,\infty)$ when $a>0$, $(-\infty,k)$ when $a<0$ --- always a parenthesis at $k$.
+  \item Find the $y$-intercept as $a+k$, not $a$.
+  \item Distinguish $-b^{x}$ (flip over the $x$-axis) from $b^{-x}$ (flip over the $y$-axis, growth $\to$ decay).
+  \item Decide whether a graph has an \textbf{$x$-intercept} from the signs of $a$ and $k$ alone.
+  \item Match a pre-drawn graph to its equation using the dashed asymptote first.
+  \item \textbf{Write the equation} of a transformed exponential from its graph: $k$, then $a$, then $b$.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item \emph{Only $f(x)+k$ moves the asymptote --- and everything that depends on the asymptote moves with it.} One sentence; it decides every item today.
+  \item The asymptote is the \emph{boundary of the range} (Lesson 7.0). Move the boundary and the range moves; leave it and the range cannot change no matter how far sideways the graph slides.
+  \item A horizontal shift is invisible to the range. That is genuinely surprising, and it is why the inside/outside distinction finally has consequences.
+  \item Growth versus decay is read off $b$ against $1$ --- never off $a$. A negative $a$ chooses the \emph{side} of the asymptote, not the family.
+  \item ``Exponentials never cross the $x$-axis'' was a claim about $y=ab^{x}$. It is now refined, not contradicted: crossing happens exactly when $a$ and $k$ have opposite signs.
+  \item Reading a graph backwards is the same three facts in reverse order --- and the order matters, because the $y$-intercept is $a+k$.
+  \item In a real model the asymptote is a physical thing (room temperature), which is why $k$ is worth this much attention.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Transformation form} & $g(x)=a\,b^{\,x-h}+k$ --- the parent $y=b^{x}$ with all four moves attached. \\
+\textbf{Vertical shift $k$} & Slides the graph up or down \emph{together with} its asymptote, which becomes $y=k$. The only asymptote-mover in the form. \\
+\textbf{Horizontal shift $h$} & $b^{\,x-h}$ slides the graph $h$ right ($h$ left if negative). Asymptote and range unchanged. \\
+\textbf{Vertical stretch / compression $a$} & $|a|>1$ stretches, $0<|a|<1$ compresses. Sets the $y$-intercept; never moves the asymptote. \\
+\textbf{Reflection across the $x$-axis} & $a<0$. Puts the graph on the other side of the asymptote, so the range becomes $(-\infty,k)$. The family is unchanged. \\
+\textbf{Reflection across the $y$-axis} & $f(-x)$. For an exponential this \emph{changes the base}: $b^{-x}=\left(\frac1b\right)^{x}$, so growth becomes decay. \\
+\textbf{Horizontal asymptote $y=k$} & The boundary the range excludes (Lesson 7.0), now movable. \\
+\textbf{Range from the asymptote} & $(k,\infty)$ if $a>0$; $(-\infty,k)$ if $a<0$. Parenthesis at $k$, always. \\
+\textbf{$x$-intercept condition} & The graph crosses the $x$-axis exactly when $a$ and $k$ have opposite signs (and never when $k=0$). \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses exactly what today needs, in the order the lesson uses it. \textbf{(1)}
+    Shift directions on two \emph{familiar} parents --- $y=(x-3)^{2}+1$ and $y=\sqrt{x+2}-5$ ---
+    finishing with the general statement that outside moves it vertically and inside moves it
+    horizontally. This is the only part of today that is not new, and it is the part students must
+    bring intact, because the whole lesson is about which of those two moves the asymptote.
+    \textbf{(2)} A recall check on $y=3(2)^{x}$ --- $a$, $b$, growth/decay, $y$-intercept, asymptote,
+    range --- because every answer today is measured against ``$y=0$ and $(0,\infty)$,'' and a student
+    who cannot produce the parent's pair cannot say what changed. \textbf{(3)} $2^{-2}$ against
+    $\left(\frac12\right)^{2}$ and $2^{-3}$ against $\left(\frac12\right)^{3}$, which earns
+    $2^{-x}=\left(\frac12\right)^{x}$ \emph{numerically} before Section 3 states it as the reflection
+    rule. Debrief item 1 at the board and leave ``outside $=$ vertical, inside $=$ horizontal'' written
+    where it will stay all period.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Three graphs on the board, all built from $y=2^{x}$: \textbf{I} is the parent, \textbf{II} is
+    $y=2^{x}-3$, and \textbf{III} is $y=2^{\,x-3}$ --- each drawn with its horizontal asymptote as a
+    dashed line. Do not label them. Ask the class to match the three equations to the three graphs,
+    and then ask the question the whole lesson hangs on: \textbf{``Two of these equations contain a
+    $3$, and both of those graphs moved. Why is only \emph{one} of the dashed lines somewhere new?''}
+    Take answers until someone connects it to the Warm-Up: the $3$ that is \emph{outside} carries the
+    whole picture --- asymptote included --- down with it, and the $3$ that is \emph{inside} only
+    slides the picture sideways past an asymptote that never budged. Then close the trap: point at
+    graph II crossing the $x$-axis and ask, \textbf{``In Lesson 7.0 you proved an exponential can
+    never cross the $x$-axis. Explain that graph.''} Let the class resolve it --- 7.0's claim was
+    about $y=ab^{x}$, and the vertical shift is exactly what changes it. Do \emph{not} generalize to
+    $a\,b^{\,x-h}+k$ yet; Section 1 earns the form.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. One form, four jobs.} Write $g(x)=a\,b^{\,x-h}+k$ and fill the four-row table together.
+Three of the four columns are review from Units 3 and 6; the fourth --- \emph{does the asymptote
+move?} --- is the new content, and it reads YES, no, no, no. Say the asymmetry out loud rather than
+letting students infer it. Then work $g(x)=2^{\,x-1}+3$ end to end: parent, moves, asymptote $y=3$,
+range $(3,\infty)$, and the $y$-intercept $g(0)=2^{-1}+3=3.5$ --- which is already the lesson's
+sneakiest fact, since the intercept is neither $a$ nor $k$. Close the section by naming what the
+shift right did to the range: nothing.
+
+\textbf{2. Why $k$ takes the range with it.} Anchor on $y=2^{x}-4$ with its graph. The whole picture,
+asymptote included, slid down $4$: asymptote $y=-4$, range $(-4,\infty)$, $y$-intercept $(0,-3)$, and
+--- the payoff --- an \textbf{$x$-intercept at $(2,0)$}, verified by $2^{2}-4=0$. Spend real time on
+the red box. The bracket error ($[k,\infty)$) is Lesson 7.0's error wearing new clothes and will
+reappear on the exit ticket. The second bullet is the one to say slowly: 7.0's ``no zeros, ever'' is
+being \emph{refined}, and the refined rule is that the graph crosses exactly when $a$ and $k$ have
+opposite signs.
+
+\columnbreak
+
+\textbf{3. Two minus signs.} Put $y=-2^{x}$ and $y=2^{-x}$ side by side and fill the comparison table.
+The $x$-axis flip moves the graph to the other side of an unmoved asymptote --- range $(-\infty,0)$,
+but the base is still $2$, so it is \emph{still growth}, just falling. The $y$-axis flip leaves the
+range alone and changes the family, because $2^{-x}=\frac{1}{2^{x}}=\left(\frac12\right)^{x}$ --- the
+Warm-Up's arithmetic, now a rule. Neither one touched the asymptote, because neither one is a vertical
+shift. Expect ``$-2^{x}$ is decay''; refuse it and point back at 7.0.
+
+\textbf{4. Reading backwards.} Three steps, \emph{in order}: the dashed line gives $k$; the
+$y$-intercept is $a+k$, so subtract before claiming $a$; one more point gives $b$. Work the graph with
+asymptote $y=2$ through $(0,5)$ and $(1,8)$ to $y=3(2)^{x}+2$, then check it at $x=2$. Finish with the
+warning: a student who skips step 1 writes $a=5$ here, every time. This is the skill Lesson 7.5 leans
+on. Preview Lesson~7.3.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item treating an \textbf{inside} number as a vertical shift --- ``$y=5^{\,x-2}$ has asymptote $y=-2$''; this is \emph{the} signature error of the lesson;
+  \item claiming the range changed after a \textbf{horizontal} shift, or after a stretch;
+  \item the \textbf{bracket} error --- writing the range as $[k,\infty)$; the asymptote is excluded, always;
+  \item reading the $y$-intercept as $a$ instead of $a+k$ (and the reverse: writing $a$ for the intercept when going backwards);
+  \item calling $-b^{x}$ \textbf{decay}; the base decides the family, the sign of $a$ decides the side of the asymptote;
+  \item confusing $-b^{x}$ with $b^{-x}$ --- ask which axis, not which sign;
+  \item the horizontal-shift direction ($b^{\,x-3}$ moves \emph{right}), the Unit 3 / Unit 6 sign flip;
+  \item hunting for an $x$-intercept on a graph that has none, or missing one on a graph that does --- send them to the signs of $a$ and $k$;
+  \item in Tier E, concluding that $2^{\,x-3}=\frac18\cdot2^{x}$ means shifts and stretches are interchangeable \emph{in general} --- part (d) exists to kill that.
+\end{itemize}
+Cold-call prompts: ``Did the asymptote move? Say why or why not.'' ``What is the range now --- and is
+that a bracket or a parenthesis?'' ``Your $a$ and the $y$-intercept are different numbers. Which is
+which?'' ``Is that a negative on the input or on the output?'' ``Does this graph cross the $x$-axis?
+Answer from the signs, not the picture.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{Move It --- and Say What Moved} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} A four-row ``what moved?'' table off the parent $y=3^{x}$ (up $4$,
+right $2$, down $5$, flip over the $x$-axis) closing with the question that \emph{is} the lesson:
+which two rows kept the parent's asymptote, and what do they have in common? Then one function taken
+all the way through --- $g(x)=2^{x}+3$: parent, move, asymptote, a table of five values, the
+$y$-intercept, the range, why no input ever gives exactly $3$, and why there is no $x$-intercept.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} Four pre-drawn graphs of transformations of $y=2^{x}$ matched to
+their equations, each with asymptote and range read from the \emph{equation}, and then the diagnostic
+question: exactly one of the four has an $x$-intercept --- which, and why is it the only one? Next,
+graph $\to$ equation with a \emph{negative} $k$ (asymptote $y=-1$, intercept $(0,2)$), where $a=3$
+comes out \emph{larger} than the intercept. Then the \textbf{Justify}: Nadia's claim that $-5^{x}$ and
+$5^{-x}$ are ``the same thing, both have a negative'' --- axis, range, and family required for each.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Three parts. \emph{A shift in disguise:} $2^{\,x-3}=\frac18\cdot2^{x}$
+proved by exponent rules and checked in a table --- a horizontal shift and a vertical compression are
+the \emph{same} move for this family --- with part (d) testing the same trick on $(x-3)^{2}$, where it
+fails. \emph{All four moves at once:} $g(x)=-2(3)^{\,x-1}+5$, including an exact $y$-intercept of
+$\frac{13}{3}$ and an $x$-intercept decided from signs. \emph{Coffee:} $T(t)=68+132(0.85)^{t}$, where
+the asymptote is \textbf{room temperature} --- with an algebraic-versus-contextual range beat and a
+closing $132(0.85)^{t}=32$ that has no common base.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes), four items on one page: \textbf{(1)} read $y=4^{x}-5$
+for asymptote, range, $y$-intercept, and family --- the family answer is \emph{growth}, a deliberate
+check that students are still reading $b$ and not the negative intercept; \textbf{(2)} the
+inside/outside discrimination --- which of $y=2^{\,x+3}$ and $y=2^{x}+3$ has range $(3,\infty)$, plus
+one sentence on what the other does instead; \textbf{(3)} write the equation from a pre-drawn graph
+(asymptote $y=1$, $y$-intercept $(0,3)$, through $(1,5)$), the hardest and most informative item, where
+$a=3$ is the error to look for; and \textbf{(4)} an \textbf{SOL-style multiple-choice} item --- the
+range of $g(x)=3(2)^{x}-6$ --- whose distractors are the three errors of the day: $[-6,\infty)$ is the
+bracket error, $(0,\infty)$ ignored the shift, and $(6,\infty)$ lost the sign of $k$. Sort the collected
+tickets into \emph{got it / inside-outside / bracket / grabbed the intercept}. Only the inside-outside
+pile needs a full re-teach, and it should be run off the Hook's graphs II and III, where the same $3$
+does two different things.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} a five-row feature table (asymptote / range / $y$-intercept / family) whose fourth
+row, $y=-4^{x}$, is the ``still growth, but falling'' trap, closing with \emph{which rows have an
+$x$-intercept?} --- answer: only the one where $a$ and $k$ have opposite signs; five transformations
+described in words with their new asymptotes; a four-graph matching set where \emph{two} graphs cross
+the $x$-axis and both cross at $x=2$ (deliberately, since both reduce to $2^{x}=4$); two graph-to-equation
+problems, the second with $b=\frac12$ coming out of $6b+1=4$, which students will not expect; and an
+\textbf{error-analysis} pair carrying the lesson --- Marcus reading $y=5^{\,x-2}$ as a vertical shift,
+and Tara calling both $-6^{x}$ and $6^{-x}$ decay. \textbf{Extension:} a soda at $38^{\circ}$F warming
+in a $72^{\circ}$ room, $T(t)=72-34(0.9)^{t}$ --- $a$ is \emph{negative} because the soda starts below
+the asymptote, the asymptote is room temperature, the algebraic range $(-\infty,72)$ differs from the
+contextual $[38,72)$, and the $x$-intercept genuinely exists but sits at negative $t$, which students
+argue \emph{without} logarithms (a base under $1$ exceeds $1$ only at a negative exponent). Do not name
+logarithms; that is Unit 8. \textbf{Preview:} Lesson~7.3, \emph{Solving Exponential Equations with a
+Common Base} --- where the $x$-intercept students found by \emph{looking} at $y=2^{x}-4$ gets solved,
+because $2^{x}=4$ has a common base. The coffee and soda equations do not, and both are left standing.
 \end{skillbox}
 \end{document}
