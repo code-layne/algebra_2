@@ -3,17 +3,326 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Growth curve on a money-sized grid. pgfmath's pow() is unreliable for fractional
+% exponents, so every exponential is plotted as a*exp((ln b)t).
+% ln(1.05) = 0.0487902   ln(1.06) = 0.0582689   ln(0.5) = -0.693147   ln(2) = 0.693147
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.4}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item build and evaluate an exponential model for compound interest, continuous growth, half-life, and doubling --- and say what the answer \emph{means} in the situation;
+  \item explain why the base is always the factor for \emph{one period} and the exponent always \emph{counts periods}, so the rate is divided and the time is multiplied;
+  \item describe where the number $e$ comes from and use $A=Pe^{rt}$;
+  \item recognize an exponential equation that no common base will ever solve, and locate its answer on a graph anyway.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Principal, $P$}
+\termblanklong{Compounding period}
+\termblanklong{Compound interest formula, $A=P\left(1+\frac{r}{n}\right)^{nt}$}
+\termblanklong{The number $e$, and continuous compounding $A=Pe^{rt}$}
+\termblanklong{Half-life}
+\termblanklong{Doubling time}
+\end{vocabbox}
+
+\begin{hookbox}
+Four banks, one deposit of \$1000, one year, and the same advertised rate of $6\%$. The only difference
+is how often each bank stops and adds the interest in.
+
+\vspace{4pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Bank} & \textbf{Interest added} & \textbf{Balance after 1 year} \\
+\hline
+Ashmore     & once a year (annually) & \$1060.00 \\
+Bellhaven   & 4 times a year (quarterly) & \$1061.36 \\
+Corliss     & 12 times a year (monthly) & \$1061.68 \\
+Dunmore     & 365 times a year (daily) & \$1061.83 \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item Dunmore adds interest \textbf{365 times} as often as Ashmore. How much more does that earn you over the year? \blank{2.4cm}
+  \item Going from once a year to four times a year gained \blank{1.6cm}. Going from 12 times to 365 times gained \blank{1.6cm}. What is happening to the size of the gains? \writeline
+  \item Predict: is there a bank so aggressive --- compounding every second, every instant --- that it doubles your money in a year? Or is something stopping it? \writeline
+\end{itemize}
+\end{hookbox}
+
+\boxguard
+\begin{notesbox}{1. Cutting the Year Into Pieces}
+Lesson 7.1 built $y=ab^{x}$, where $b$ was the growth factor for \emph{one} year and $x$ counted
+\emph{years}. Nothing about that changes today --- except that the ``one period'' does not have to be a
+year.
+
+\vspace{4pt}
+If an account pays an annual rate $r$ but adds the interest $n$ times per year, then each period uses
+only a fraction of the rate, and there are more periods to count:
+
+\vspace{2pt}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt]
+  \item the rate for one period is \blank{1.6cm}, so the \textbf{factor} for one period is $1+$ \blank{1.6cm};
+  \item in $t$ years the number of periods is \blank{1.6cm}.
+\end{itemize}
+
+\vspace{4pt}
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.92\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering
+\textbf{Compound Interest} \\[3pt]
+\TallMath{A = P\left(1+\frac{r}{n}\right)^{nt}}
+\\[1pt]
+{\small $P$ = principal (starting amount) \quad $r$ = annual rate as a \emph{decimal} \quad
+$n$ = compoundings per year \quad $t$ = years}
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{Read the formula as one sentence:} the base $\left(1+\frac{r}{n}\right)$ is what happens in
+\blank{3.6cm}, and the exponent $nt$ \blank{3.6cm}. Every error today is a place where those two stop
+agreeing with each other.
+
+\vspace{5pt}
+\textbf{Worked example.} \$2500 is invested at $4\%$ compounded quarterly for $6$ years.
+
+\vspace{3pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.95\linewidth}{@{}l X@{}}
+\hline
+$P=$ \blank{1.6cm} \quad $r=$ \blank{1.6cm} \quad $n=$ \blank{1.2cm} \quad $t=$ \blank{1.2cm}
+  & \emph{$4\%$ becomes $0.04$ --- Lesson 7.1's translation, unchanged.} \\
+Rate per quarter: $\frac{r}{n}=$ \blank{1.6cm} \quad Base: \blank{1.8cm}
+  & \emph{One quarter's worth of interest, not one year's.} \\
+Number of quarters: $nt=$ \blank{1.6cm}
+  & \emph{Six years of quarters --- the exponent counts periods.} \\
+$A=$ \blank{4.6cm} $=$ \blank{2.2cm}
+  & \emph{Round money to the nearest cent, only at the end.} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+The same \$2500 at $4\%$ compounded \emph{annually} for 6 years would be
+$2500(1.04)^{6}=\$3163.30$. Compounding quarterly is worth an extra \blank{1.8cm} --- real, but small.
 \end{notesbox}
+
+\boxguard
+\begin{notesbox}{2. Where the Gains Stop: the Number $e$}
+The Hook found gains that shrink fast. To see what they shrink \emph{toward}, strip the money away and
+ask the cleanest version of the question: start with \$1 at $100\%$ for one year, and chop the year into
+$m$ equal pieces. The balance is $\left(1+\frac1m\right)^{m}$.
+
+\vspace{3pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{pieces $m$} & $1$ & $10$ & $100$ & $1000$ & $10{,}000$ & $100{,}000$ \\
+\hline
+$\left(1+\frac1m\right)^{m}$ & $2$ & $2.59374$ & $2.70481$ & \blank{1.5cm} & \blank{1.5cm} & \blank{1.5cm} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{3pt}
+The values climb, but they are not climbing \emph{toward infinity} --- they are closing in on one
+number. That number is called \blank{1.2cm}, and to five decimal places it is \blank{2.4cm}. Like
+$\pi$, it never terminates and never repeats, and like $\pi$, it has a button on your calculator.
+
+\vspace{4pt}
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.92\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering
+\textbf{Continuous Compounding} \\[3pt]
+\TallMath{A = Pe^{\,rt}}
+\\[1pt]
+{\small No $n$ appears --- the compounding has been chopped so fine that counting periods is over.}
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{Same investment, no more chopping.} \$2500 at $4\%$ compounded \emph{continuously} for 6 years:
+$A=2500e^{\,0.04\cdot6}=2500e^{\,0.24}=$ \blank{2.2cm}.
+
+\vspace{3pt}
+Compare the three answers for the identical deal: annually \$3163.30, quarterly \$3174.34, continuously
+\blank{2.2cm}. Continuous compounding is the \textbf{ceiling} --- the most that rate can possibly
+produce --- and it beats quarterly by only \blank{1.8cm}. This answers the Hook: no bank can double
+your money by compounding more often, because $e^{\,r}$ is where the chopping runs out.
+
+\vspace{2pt}
+\emph{Why anyone cares:} populations, cooling, and radioactive decay do not wait for the end of a
+quarter. They change continuously, so $e$ is their natural base --- which is why it comes back in Unit 8.
+\end{notesbox}
+
+\boxguard
+\begin{notesbox}{3. Half-Life and Doubling Time: the Same Idea on a Different Clock}
+A \textbf{half-life} is the time it takes for half of a quantity to disappear. A \textbf{doubling time}
+is the time it takes for a quantity to double. Both name \emph{how long one period lasts}, and both
+models are built exactly the way the interest formula was.
+
+\vspace{4pt}
+\begin{center}
+\begin{tcolorbox}[colback=sky, colframe=navy, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering
+\textbf{Half-life $h$:} \; \TallMath{A(t) = A_{0}\left(\tfrac12\right)^{t/h}}
+\qquad
+\textbf{Doubling time $d$:} \; \TallMath{A(t) = A_{0}\,2^{\,t/d}}
+\\[1pt]
+{\small The base says what one period does. The exponent $t/h$ (or $t/d$) counts how many periods have
+gone by.}
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{Why $t/h$ and not $t$?} Because $t$ is measured in hours or years, and the exponent must be
+measured in \emph{periods}. If the half-life is 6 hours, then in 18 hours there have been
+\blank{1.2cm} halvings, and in 9 hours there have been \blank{1.2cm} --- the Warm-Up answer. Dividing
+by $h$ is the unit conversion.
+
+\vspace{5pt}
+\textbf{Worked example.} A hospital gives a patient 80 mg of a tracer whose half-life is 6 hours.
+
+\vspace{3pt}
+\hspace*{1.0em} Model: $A(t)=$ \blank{4.0cm} \quad where $t$ is in \blank{1.6cm}.
+
+\vspace{4pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+$t$ (hours) & $0$ & $6$ & $12$ & $18$ & $9$ \\ \hline
+halvings $t/6$ & $0$ & \blank{1.0cm} & \blank{1.0cm} & \blank{1.0cm} & \blank{1.0cm} \\ \hline
+$A(t)$ (mg) & $80$ & \blank{1.3cm} & \blank{1.3cm} & \blank{1.3cm} & \blank{1.3cm} \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{2pt}
+The last column is the one worth arguing about: $t=9$ is \emph{between} two halvings, the exponent is
+$1.5$, and the answer lands sensibly between 40 and 20.
+
+\vspace{3pt}
+\textbf{Will the tracer ever be completely gone?} \blank{2.0cm} --- and the reason is Lesson 7.0's, not
+a new one: the range of this model is \blank{2.2cm} and the graph has a horizontal asymptote at
+\blank{1.6cm}. Half of something is never nothing. \emph{(In context, of course, the amount eventually
+falls below anything a machine can detect --- but the model never reaches zero.)}
+
+\vspace{4pt}
+\begin{tcolorbox}[colback=greenbg, colframe=greenacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{Yesterday's method still works here.} When does the tracer drop to 10 mg? Divide first, then
+use a common base (Lesson 7.3).
+
+\vspace{3pt}
+\hspace*{1.0em} From $80\left(\frac12\right)^{t/6}=10$: \quad
+$\left(\frac12\right)^{t/6}=$ \blank{1.2cm} $=\left(\frac12\right)^{\blacksquare}$ with
+$\blacksquare=$ \blank{0.9cm}, \quad so $\frac{t}{6}=$ \blank{0.9cm} \; and \; $t=$ \blank{1.4cm} hours.
+
+\vspace{3pt}
+That worked because $10$ is $80$ cut in half three times. Ask for 25 mg instead and the method dies.
+\end{tcolorbox}
+\end{notesbox}
+
+\boxguard[30]
+\begin{notesbox}{4. The Wall}
+Here is the question every investor actually asks: \textbf{when does my money double?} Put \$1000 into
+an account paying $5\%$ compounded annually. The model is $A(t)=1000(1.05)^{t}$, and doubling means
+solving $1000(1.05)^{t}=2000$. Divide both sides by $1000$: \; $(1.05)^{t}=$ \blank{1.2cm}.
+
+\vspace{3pt}
+
+\begin{center}
+\begin{minipage}[c]{0.46\linewidth}
+\centering
+\begin{tikzpicture}[x=0.26cm, y=0.00155cm]
+  \draw[linegray!40, very thin, xstep=2, ystep=500] (0,0) grid (20,3000);
+  \draw[->, semithick, charcoal] (0,0)--(21.5,0) node[above right, font=\scriptsize]{$t$ (yr)};
+  \draw[->, semithick, charcoal] (0,0)--(0,3250) node[left, font=\scriptsize]{$A$};
+  \foreach \t in {5,10,15,20} \node[below, font=\tiny] at (\t,0) {$\t$};
+  \foreach \a in {1000,2000,3000} \node[left, font=\tiny] at (0,\a) {$\a$};
+  \draw[very thick, forest, domain=0:20, samples=120, smooth]
+    plot (\x,{1000*exp(0.0487902*(\x))});
+  \draw[goldacc, very thick] (0,2000)--(20,2000);
+  \node[goldacc, font=\scriptsize, above] at (5,2020) {$A=2000$};
+  \fill[charcoal] (14,1979.9) circle (2.2pt);
+  \fill[charcoal] (15,2078.9) circle (2.2pt);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.50\linewidth}
+\small
+\begin{itemize}[leftmargin=1.3em, itemsep=2pt]
+  \item The gold line \emph{does} cross the curve, so the answer \textbf{exists}.
+  \item $1000(1.05)^{14}=\$1979.93$ and $1000(1.05)^{15}=\$2078.93$, so the money doubles between year
+        \blank{1.0cm} and year \blank{1.0cm}.
+  \item Now try Step 1 of Lesson 7.3 on $(1.05)^{t}=2$: rewrite both sides over one base.
+        \blank{4.6cm}
+  \item So this is \emph{not} a ``no solution'' equation. Compare $2^{x}=-3$: that one has no solution
+        at all, because $-3$ is not in the \blank{2.0cm}.
+\end{itemize}
+\end{minipage}
+\end{center}
+
+\vspace{3pt}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{The running list.} Every equation below has an answer. Not one of them has a common base.
+\[
+  2^{x}=5 \qquad 132(0.85)^{t}=32 \qquad (0.9)^{t}=2.118 \qquad (1.05)^{t}=2
+\]
+Half-life questions often \emph{do} land on a common base --- halving to $\frac18$ is what the base
+does. Interest questions almost never do. The tool that finishes all four is a \textbf{logarithm}, and
+it is the whole of Unit 8.
+\end{tcolorbox}
+\end{notesbox}
+
+\begin{practicebox}
+Show the substitution before you reach for the calculator. Round money to the nearest cent.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item \$3000 is invested at $5\%$ compounded monthly for 4 years. \\[2pt]
+        $\dfrac{r}{n}=$ \blank{1.8cm} \quad $nt=$ \blank{1.4cm} \quad
+        $A=$ \blank{4.2cm} $=$ \blank{2.2cm}
+
+  \item The same \$3000 at $5\%$ compounded \emph{continuously} for 4 years. \\[2pt]
+        $A=$ \blank{3.6cm} $=$ \blank{2.2cm} \quad Extra earned by compounding continuously:
+        \blank{1.8cm}
+
+  \item A 240 mg dose of a drug has a half-life of 8 hours. Write the model, then find how much
+        remains after 24 hours. \\[2pt]
+        $A(t)=$ \blank{4.0cm} \hfill $A(24)=$ \blank{2.4cm}
+
+  \item Which of these can be solved with Lesson 7.3's common-base method, and which cannot? Circle
+        one on each line and say how you can tell at a glance.
+        \\[2pt]
+        \hspace*{1.0em} $240\left(\frac12\right)^{t/8}=30$ \quad \textbf{yes} / \textbf{no}
+        \hfill
+        $5000(1.03)^{t}=10{,}000$ \quad \textbf{yes} / \textbf{no}
+        \\[2pt]
+        \writeline
+\end{enumerate}
+\end{practicebox}
 
 \end{document}

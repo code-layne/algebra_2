@@ -3,17 +3,147 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% ln(1.06) = 0.0582689
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.4}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Every answer needs a visible substitution. Round money to the nearest cent and milligrams to two
+decimal places.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{Four accounts.} Write the base and the exponent first, then evaluate.
+    \begin{center}
+    \small
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}l X c c c@{}}
+    \hline
+    & \textbf{Deposit, rate, compounding, time} & \textbf{base} & \textbf{exponent} & \textbf{$A$} \\
+    \hline
+    \textbf{(a)} & \$1200 at $4.5\%$, quarterly, $6$ years & \blank{1.9cm} & \blank{1.3cm} & \blank{2.2cm} \\
+    \textbf{(b)} & \$7500 at $2.4\%$, monthly, $3$ years & \blank{1.9cm} & \blank{1.3cm} & \blank{2.2cm} \\
+    \textbf{(c)} & \$2500 at $5\%$, annually, $12$ years & \blank{1.9cm} & \blank{1.3cm} & \blank{2.2cm} \\
+    \textbf{(d)} & \$900 at $6\%$, daily ($n=365$), $4$ years & \blank{1.9cm} & \blank{1.3cm} & \blank{2.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    \emph{Work space --- show the substitution for at least two of the four.}
+    \vspace{1.05in}
+
+  \item \textbf{Quarterly against continuous.} \$6000 is invested at $4\%$ for $10$ years.
+
+    \vspace{3pt}
+    \hspace*{1.0em} Compounded quarterly: $A=$ \blank{3.6cm} $=$ \blank{2.2cm}
+
+    \vspace{3pt}
+    \hspace*{1.0em} Compounded continuously: $A=$ \blank{3.0cm} $=$ \blank{2.2cm}
+
+    \vspace{3pt}
+    Over ten years, continuous compounding is worth \blank{2.0cm} more. Explain why that is so small
+    when the compounding went from $40$ times to infinitely many. \writeline
+
+  \item \textbf{Caffeine.} A $200$ mg coffee has a half-life of about $5$ hours in the body.
+
+    \vspace{3pt}
+    \hspace*{1.0em} $A(t)=$ \blank{4.0cm} \; where $t$ is in \blank{1.6cm}.
+
+    \vspace{3pt}
+    \begin{center}
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|}
+    \hline
+    $t$ (hours) & $0$ & $5$ & $10$ & $15$ & $20$ \\ \hline
+    $A(t)$ (mg) & $200$ & \blank{1.3cm} & \blank{1.3cm} & \blank{1.3cm} & \blank{1.3cm} \\ \hline
+    \end{tabular}
+    \end{center}
+
+    \vspace{2pt}
+    \textbf{(a)} How much is left $8$ hours after the coffee? \blank{2.2cm} \; Check it against the
+    table: it must land between \blank{1.4cm} and \blank{1.4cm}.
+
+    \vspace{3pt}
+    \textbf{(b)} According to this model, is the caffeine ever completely gone? \blank{1.4cm} \;
+    Name the graph feature that decides it. \blank{4.6cm}
+
+  \item \textbf{Read the doubling off the graph.} \$800 is invested at $6\%$ compounded annually, so
+    $A(t)=800(1.06)^{t}$.
+    \begin{center}
+    \begin{minipage}[c]{0.44\linewidth}
+    \centering
+    \begin{tikzpicture}[x=0.25cm, y=0.0019cm]
+      \draw[linegray!40, very thin, xstep=2, ystep=400] (0,0) grid (20,2400);
+      \draw[->, semithick, charcoal] (0,0)--(21.5,0) node[above right, font=\scriptsize]{$t$ (yr)};
+      \draw[->, semithick, charcoal] (0,0)--(0,2600) node[left, font=\scriptsize]{$A$};
+      \foreach \t in {5,10,15,20} \node[below, font=\tiny] at (\t,0) {$\t$};
+      \foreach \a in {800,1600,2400} \node[left, font=\tiny] at (0,\a) {$\a$};
+      \draw[very thick, forest, domain=0:20, samples=120, smooth]
+        plot (\x,{800*exp(0.0582689*(\x))});
+      \draw[goldacc, very thick] (0,1600)--(20,1600);
+      \node[goldacc, font=\scriptsize, above] at (4,1620) {$A=1600$};
+    \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[c]{0.52\linewidth}
+    \small
+    \textbf{(a)} $A(11)=$ \blank{2.0cm} \quad $A(12)=$ \blank{2.0cm}
+
+    \vspace{3pt}
+    \textbf{(b)} The money doubles between year \blank{1.0cm} and year \blank{1.0cm}.
+
+    \vspace{3pt}
+    \textbf{(c)} Write the equation you would have to solve to find the exact doubling time, then
+    divide to simplify it. \blank{4.0cm}
+
+    \vspace{3pt}
+    \textbf{(d)} Try Step 1 of Lesson 7.3 on it. What stops you? \blank{4.0cm}
+    \end{minipage}
+    \end{center}
+
+  \item \textbf{Error analysis.} Name the error, then give the correct model and value.
+
+    \vspace{2pt}
+    \textbf{(a)} Tobias models \$5000 at $6\%$ compounded monthly for $4$ years as
+    $A=5000(1.06)^{48}$, and reports \$81{,}969.36. \writelines{2}
+
+    \vspace{2pt}
+    \textbf{(b)} Marisol models a $90$ mg dose with a $6$-hour half-life as
+    $A(t)=90\left(\frac12\right)^{t}$, and reports that $0.00034$ mg is left after $18$ hours.
+    \writelines{2}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{A truck that loses value the way a drug leaves the body.} A delivery truck costs \$32{,}000 new
+and loses $18\%$ of its value every year.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Write the model $V(t)$, then find the truck's value after $4$ years. Say which number in your
+        model is the $18\%$, and why it is not $0.18$.
+  \item A ``half-life'' for a truck would be the time until it is worth half what it cost. Write the
+        equation for that, then divide to get it into the form $(0.82)^{t}=\text{something}$.
+  \item You know $(0.82)^{3}\approx0.551$ and $(0.82)^{4}\approx0.452$. Between which two whole years
+        does the truck lose half its value? Does your answer to (b) have a common base?
+  \item According to this model, does the truck ever become worthless? Answer with the range and the
+        asymptote --- then say in one sentence why that is a limitation of the \emph{model} rather
+        than a fact about trucks.
+\end{enumerate}
+\writelines{6}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 7.5: Exponential Regression \& Choosing a Model.} Today every model was
+handed to you: a rate, a half-life, a doubling time. Real data arrives as a pile of points with nobody
+to tell you which family it belongs to. Next lesson you bring back Lesson 7.0's fingerprint test ---
+constant difference, constant second difference, constant \emph{ratio} --- and use it to decide whether
+a data set is linear, quadratic, or exponential before letting technology fit a curve. Then you
+interpret the $a$ and the $b$ the calculator hands you, exactly as you did today with $P$ and
+$1+\frac{r}{n}$. \textbf{And the list is still standing:} $2^{x}=5$, $132(0.85)^{t}=32$,
+$(0.9)^{t}=2.118$, $(1.05)^{t}=2$, and now $(0.82)^{t}=0.5$. Every one has an answer; not one has a
+common base. Unit 8 is where you finally write those answers down.
+\end{spiralbox}
 
 \end{document}
