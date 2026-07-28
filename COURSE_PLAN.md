@@ -273,10 +273,29 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > *(Reminder: `remember picture` overlays need **two** xelatex passes — a single pass drops the
 > banner fill entirely.)*
 >
-> **Known, not yet fixed:** the four **lesson** covers (`unit01/lesson0{0,1,2,3}/cover/main.tex`)
-> share the same defect at smaller scale — 0.9in banner with `\vspace{-0.8in}` starts their text
-> 0.2in above the page edge, clipping the ``Algebra 2: Shepherd'' line. Awaiting user go-ahead to
-> apply the same anchored-node fix.
+> **Lesson covers fixed 2026-07-28.** The four **lesson** covers
+> (`unit01/lesson0{0,1,2,3}/cover/main.tex`) carried the same defect at smaller scale — a 0.9in
+> banner with `\vspace{-0.8in}` started their text ~0.2in **above** the page edge, clipping the tops
+> of the ``Algebra 2: Shepherd'' line. Same fix applied to all four: header text moved into a tikz
+> `\node` anchored at `([yshift=-0.28in]current page.north)`, banner grown 0.9in → **1.16in**, body
+> cleared with a positive `\vspace*{0.56in}`. Row content, order, colors, and sizes are unchanged
+> (`\LARGE` white / `\large` `forestmid` / `\large` white) — only the positioning changed. Header
+> text now starts **0.257in** from the paper edge, clear of the printer's unprintable margin, with
+> ~0.2in of banner padding above and below.
+> *Anchoring costs ~10pt of vertical space, which put lesson 1.1's `remindbox` onto a second page.*
+> Reclaimed it by tightening the three inter-box gaps on all four covers (`0.18→0.12in`,
+> `0.14→0.10in`, `0.10→0.06in`) so every cover is still **exactly 1pp** — these covers run within
+> ~11pt of the bottom margin, so treat their vertical budget as full when editing.
+> `make -C unit01 student full` → EXIT 0, unit student still **63pp** and unit full still **119pp**,
+> so nothing downstream shifted.
+>
+> **Root cause fixed at the source:** the negative-`\vspace` banner came from the scaffolder
+> template `.claude/skills/lesson-planning/assets/skeletons/cover.tex`, which now carries the
+> anchored-node form, so newly scaffolded covers are correct from the start.
+> **Still carrying the old pattern:** the **44 already-scaffolded, unauthored** cover skeletons in
+> `unit0{2..8}/lesson*/cover/main.tex`. They are placeholders that get rewritten when each lesson is
+> authored, so no separate sweep is needed — just take the header block from a `unit01` cover (or
+> re-run the scaffolder) rather than editing the stale skeleton in place.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
