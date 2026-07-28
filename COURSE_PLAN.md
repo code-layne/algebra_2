@@ -15,8 +15,8 @@
 > **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
 > locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
 > `test_keys/` are laid down.
-> **Lessons 6.0 through 6.6 are authored & building (2026-07-27)**;
-> **lesson 6.7 and the unit tests are the only Unit 6 skeletons left.**
+> **All eight lessons 6.0–6.7 are authored & building (6.0–6.6 on 2026-07-27, 6.7 on 2026-07-28)**;
+> **the unit tests are the only Unit 6 skeletons left.**
 > **Unit 7 (Exponential Functions): map confirmed & unit scaffolded 2026-07-27**, locked at
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
@@ -32,13 +32,14 @@
 > no-standard content is now handled the same way in both units. Full rationale in the Unit 8 status
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Three units are now open at once.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
-> sequence (2026-07-27). **Next actions, in priority order: (1) stay in Unit 6 and author 6.7**
-> (inverse functions — the unit capstone), then the Unit 6 tests. 6.6 was written as its direct
-> set-up and hands off in four explicit places: Activity Tier A rows (d)/(e) and Tier E Part 4,
-> Notes §6's $\left(\sqrt{x}\right)^2=x$-only-on-$x\ge0$ surprise, Homework items 2(g) and 6, and the
-> exit ticket's "domain missing" pile — so 6.7 should open by putting students' own Tier A J1 wordings
-> on the board next to the word *inverse*, and by re-running Notes §6 for anyone who read the domain
-> off the simplified rule. **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
+> sequence (2026-07-27). **Next actions, in priority order: (1) finish Unit 6 by authoring its
+> tests** (`tests/{practice_test,actual_test}` + `test_keys/`, then `make -C unit06/tests drop` and
+> `make -C unit06/test_keys drop` to publish the practice pair into `sample_test{,_key}/`). All eight
+> lessons are done, and 6.7's homework spiral box already advertises the test's contents to students
+> — convert, simplify, rationalize, read a graph, transform, solve with an extraneous check, compose
+> with a domain, and build *and justify* an inverse — so the blueprint is effectively written; the
+> A2.F.2i items must demand the justification, not just the formula, and the A2.EI.5 items must
+> include at least one genuinely extraneous root. **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
 > which Lesson 7.0's homework and exit ticket already set up explicitly; **(3) continue Unit 8 at
 > Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
@@ -75,7 +76,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.6 done) |
+| 6 | Radical Functions | Radical / power | 8 | **In progress** (all 8 lessons done; tests left) |
 | 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0 done) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
@@ -1097,7 +1098,8 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > `unit06/lesson00`–`lesson07` scaffolded with skeleton `main.tex` for lesson plan + cover, warmup,
 > notes, activity, exit_ticket, homework, slides, and each `*_key`. Unit assessments scaffolded:
 > `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`. Skeletons compile
-> (`make -C unit06/lesson01 all` → EXIT 0). **No content authored yet.**
+> (`make -C unit06/lesson01 all` → EXIT 0). **All 8 lessons are now authored and building
+> (`make -C unit06 all` → EXIT 0, 2026-07-28); only `tests/` and `test_keys/` remain skeletons.**
 > Unit shape deliberately mirrors Unit 5: characteristics → algebra engine → graphing → solving →
 > capstone. Lesson 6.0 introduces the two new spine rows: ● restricted domain from the radicand,
 > ● inverse relationship of families.
@@ -1436,6 +1438,62 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > $x^{2}-25$ is the Unit 4 perfect-square error inside an otherwise correct composition, and
 > $x^{3}-5x^{2}$ is reading $\circ$ as multiplication.
 > `make -C unit06/lesson06 all` → EXIT 0 (student 15pp, full 32pp); `make -C unit06 all` → EXIT 0.
+> **Lesson 6.7 authored & builds (2026-07-28) --- the unit capstone:** all components + keys +
+> 13-slide deck done. The lesson answers the question Lesson 6.0 opened, and it does so with one
+> sentence held back for six lessons: **$x^{2}$ has two arms and $x^{3}$ has one.** Everything else
+> --- why $\sqrt{x}$ gets half the number line and $\sqrt[3]{x}$ gets all of it, why one has an
+> endpoint and an absolute minimum and the other has neither --- is a consequence, and §5 says so
+> explicitly with three pre-drawn graphs (full parabola failing a horizontal line at $y=4$, the
+> restricted right arm passing, $y=x^{3}$ passing untouched). The **Hook is Celsius/Fahrenheit**, and
+> it is built to produce the day's signature error rather than warn about it: Rosa writes
+> $C(f)=\frac59f-32$ and Malik writes $\frac59(f-32)$, both are tested at $f=212$ where the room
+> already knows the answer is $100$, and the question that carries the period is *Rosa reversed both
+> operations correctly --- what did she not reverse?* Warm-Up item 3 pre-loads it in arithmetic
+> ("double, then add $5$, and I get $17$" --- nobody halves first), so **reverse the operations
+> \emph{and} the order; shoes before socks** is said by a student before the formula appears; Warm-Up
+> item 1 is *solve for the other variable*, i.e.\ swap-and-solve's engine, already in students' hands;
+> and Warm-Up item 2 is 6.6's own Tier A discovery ($2x+6$ against $\frac{x-6}{2}$, $x$ both ways)
+> promoted to a warm-up, with the teacher note instructing that yesterday's student-invented wordings
+> go on the board beside the word *inverse*. **Ordering is deliberate: the test (§2) precedes the
+> construction (§3)**, so nobody builds a partner without owning a verdict procedure. §2 runs three
+> cases --- a pass, a near-miss ($h(x)=\frac{x}{2}-6$ composes to $x-6$, off by a constant, which is
+> why only composition catches it), and 6.6's cliffhanger, $\left(\sqrt{x}\,\right)^{2}=x$ against
+> $\sqrt{x^{2}}=|x|$, which is the standing proof that **one order passing is not a verdict**. §3's
+> swap-and-solve table ends on $\sqrt{x-2}\to x^{2}+2$ **for $x\ge0$**, and the restriction is treated
+> as load-bearing throughout: it is the **range of $f$, written down** (§6), never guessed --- the
+> reason Activity Tier A row (f), $\sqrt{x}-3$, needs $x\ge-3$ and is the assessed discriminator,
+> since reflex says $x\ge0$. §1's red box owns the year's only treatment of **$f^{-1}$ as a label,
+> not an exponent** ($f(x)=2x$: $\frac{x}{2}$ against $\frac{1}{2x}$, which at $x=4$ are $2$ and
+> $\frac18$). §4 does A2.F.2j: the $\sqrt{x}$ table's rows literally trade places (the table students
+> built in 6.0), the graphs are read with $y=x$ dashed, intercepts swap, and $f$ and $f^{-1}$ meet at
+> $(4,4)$ **on the mirror line** --- the fact Tier E Part 1 then cashes in. Activity **Tier R** is
+> arithmetic-first and withholds the word "inverse" until the last column; **Tier A** J3 is the
+> deepest item (swap-and-solve happily produces a formula for $x^{2}-4$, which has no inverse
+> function, so the horizontal line test is what licenses the word *the*); **Tier E** finishes the Hook
+> and finds $-40^{\circ}$ by solving $F(c)=c$ --- explained with the mirror line, not algebra ---
+> then does involutions ($6-x$, $\frac1x$, and the Unit 5 callback $\frac{2x+3}{x-2}$), proves
+> $(f\circ g)^{-1}=g^{-1}\circ f^{-1}$ by testing both orders (socks and shoes, formalized: the Hook's
+> error in general form), and restricts $y=x^{2}$ to $x\le0$ instead to get $-\sqrt{x}$, closing on
+> $A=\pi r^{2}$, where the situation picks the branch for you. Homework carries the three named errors
+> once each and catches each with a single number --- Priya takes a reciprocal ($f(3)=15$; her rule
+> gives $\frac{1}{75}$), Devon reverses the operations but not the order ($f(4)=-8$; his gives $-23$),
+> and item 2(c), $7-2x$, is the sleeper sign trap. The **extension is a pendulum**,
+> $T(L)=2\pi\sqrt{L/32}$ inverted to $L(T)=\frac{8T^{2}}{\pi^{2}}$ --- the unit's only place where the
+> *inverse* is what a real person needs, since a clockmaker asks how long to make it, not how fast it
+> swings; a $2$-second swing gives $\approx3.24$ ft $\approx39$ inches, checkable against any real
+> grandfather clock, quadrupling $L$ doubles $T$ ($\sqrt{4L}=2\sqrt{L}$, 6.0's flattening), and part
+> (f) is the quiet one: every restricted domain this week had to be argued for, and here the context
+> supplies it free. Standards: **2023 VA SOL A2.F.2i** (governing --- inverse of a linear, quadratic,
+> or square root function algebraically *and* graphically, **plus the "justify and explain why two
+> functions are inverses" clause**, which is the composition test and is assessed in every component)
+> and **A2.F.2j** (reflection over $y=x$); rests on **A2.F.2k** (6.6, now a proof tool) and revisits
+> **A2.F.2a**, **A2.EO.2a/c**, **A2.EI.5a**, **A2.F.2f**. All graphs pre-drawn; no sketch-from-scratch.
+> Warm-up & exit ticket each fit one page (blank+key); notes 5pp/5pp, activity 4pp/4pp, homework 3pp
+> (key 4pp --- the extra page is the teacher note); lesson plan 4pp. Exit ticket includes an
+> SOL-style MC item ($f(x)=3x+12$; answer $\frac{x-12}{3}$) whose three distractors are the lesson's
+> three named errors, one each: $\frac{x}{3}-12$ is Rosa's order error, $\frac{1}{3x+12}$ reads the
+> $-1$ as an exponent, and $3x-12$ undoes nothing.
+> `make -C unit06/lesson07 all` → EXIT 0 (student 15pp, full 33pp).
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$

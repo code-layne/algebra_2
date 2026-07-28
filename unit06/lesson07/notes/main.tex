@@ -3,17 +3,430 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.7}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item \textbf{justify} that two functions are inverses by composing them \emph{both} ways and getting $f\big(g(x)\big)=g\big(f(x)\big)=x$;
+  \item \textbf{build} the inverse of a linear, cubic, quadratic, or square root function by \emph{swapping and solving}, and find points of $f^{-1}$ from a table or a graph of $f$;
+  \item explain why the graph of $f^{-1}$ is the reflection of $f$ over the line $y=x$, why domain and range trade places, and why $y=x^{2}$ must have its domain \textbf{restricted} before it is allowed a square root inverse.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Inverse function}
+\termblanklong{The notation $f^{-1}(x)$}
+\termblanklong{The inverse test}
+\termblanklong{Swap and solve}
+\termblanklong{Reflection over $y=x$}
+\termblanklong{Horizontal line test}
+\termblanklong{Restricted domain}
+\end{vocabbox}
+
+\begin{hookbox}
+Your weather app shows the temperature in $^\circ$F; your cousin's shows $^\circ$C. The rule that
+turns Celsius into Fahrenheit is
+\[
+  F(c)=\tfrac{9}{5}c+32 \qquad\text{---\; \emph{multiply by $\tfrac95$, then add $32$.}}
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|l|c|c|c|@{}}
+\hline
+$c$ ($^\circ$C) & $0$ & $100$ & $20$ \\
+\hline
+$F(c)$ ($^\circ$F) & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} \\
+\hline
+\end{tabular}
+\end{center}
+Now you need the rule that goes the \emph{other} way. Two students try it:
+\begin{center}
+\small
+\begin{tcolorbox}[colback=white, colframe=charcoal!45, boxrule=0.7pt, arc=1.5mm,
+    width=0.86\linewidth, left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}l l@{}}
+\textbf{Rosa writes:} & $C(f)=\tfrac{5}{9}f-32$ \\
+\textbf{Malik writes:} & $C(f)=\tfrac{5}{9}(f-32)$ \\
+\end{tabular}
+\end{tcolorbox}
+\end{center}
+\vspace{-2pt}
+Test both at $f=212$, where you already know the answer must be $100$.
+\; Rosa: \blank{2.0cm} \; Malik: \blank{2.0cm}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Rosa reversed both operations correctly. What did she \emph{not} reverse? \blank{4.6cm}
+  \item Where have you seen that mistake already this week? \writeline
+\end{itemize}
+Today: how to build the ``other way'' rule for \emph{any} function --- and how to prove you got it
+right.
+\end{hookbox}
+
+\begin{notesbox}{1. A Function That Undoes Another}
+Two functions are \textbf{inverses} when each one \blank{2.6cm} the other: whatever $f$ does to a
+number, its partner takes it straight back.
+\begin{center}
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \node (x) at (0,0) {$x$};
+  \node[draw=forest, thick, rounded corners, fill=forestbg, minimum width=1.4cm,
+        minimum height=0.85cm] (f) at (2.4,0) {$f$};
+  \node[draw=navy, thick, rounded corners, fill=sky, minimum width=1.4cm,
+        minimum height=0.85cm] (fi) at (6.4,0) {$f^{-1}$};
+  \node (out) at (9.1,0) {$x$ \;\emph{(back where you started)}};
+  \draw[->, thick, charcoal] (x)--(f);
+  \draw[->, thick, charcoal] (f)--node[above, font=\scriptsize]{$f(x)$}(fi);
+  \draw[->, thick, charcoal] (fi)--(out);
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\small
+\textbf{The notation --- and the year's most misread symbol.} The inverse of $f$ is written
+$f^{-1}(x)$, read ``\emph{$f$ inverse of $x$}.''
+\\[3pt]
+That $-1$ is \textbf{not an exponent}. \quad
+$f^{-1}(x)\ \blank{0.9cm}\ \dfrac{1}{f(x)}$ \quad --- ever.
+\\[3pt]
+Here $-1$ is a \emph{label} meaning ``the undoing function.'' If $f(x)=2x$, then
+$f^{-1}(x)=\blank{1.6cm}$, \; while $\dfrac{1}{f(x)}=\blank{1.6cm}$. Two completely different
+functions.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{Warm-Up item 3, in this language.} The trick was ``double, then add $5$.'' Its inverse is
+``\blank{2.2cm}, then \blank{2.2cm}'' --- the opposite operations, in the
+\blank{2.2cm} order. Like taking off your shoes before your socks.
 \end{notesbox}
+
+\begin{notesbox}{2. The Test: Compose Both Ways and Look for $x$}
+Yesterday's tool is today's proof. If $f$ and $g$ really undo each other, then feeding a number
+through both machines must return it unchanged --- \emph{no matter which one runs first}.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering\small
+\textbf{The inverse test.} \quad $f$ and $g$ are inverses \; exactly when \;
+$f\big(g(x)\big)=\blank{1.0cm}$ \; \textbf{and} \; $g\big(f(x)\big)=\blank{1.0cm}$.
+\\[3pt]
+Both orders. Every time. One is not enough.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{(a) A pair that passes} --- the one from your Warm-Up. \quad $f(x)=2x+6$, \;
+$g(x)=\dfrac{x-6}{2}$. \quad Both orders gave \blank{1.0cm}, so they \blank{2.4cm} inverses.
+
+\vspace{5pt}
+\textbf{(b) A pair that fails --- and it is the Hook's mistake.} Keep $f(x)=2x+6$, but try
+$h(x)=\dfrac{x}{2}-6$ (halve, then subtract $6$: the right operations, in the wrong order).
+\[
+  f\big(h(x)\big)=2\!\left(\frac{x}{2}-6\right)+6=\blank{2.6cm}
+\]
+Not $x$, so $h$ is \blank{2.4cm}. Notice it is \emph{close} --- off by a constant --- which is
+exactly why this error survives an eyeball check and only composition catches it.
+
+\vspace{5pt}
+\textbf{(c) The pair from yesterday that passes \emph{one} order only.} $f(x)=x^{2}$ and
+$g(x)=\sqrt{x}$.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.96\linewidth}{@{}X|X@{}}
+$f\big(g(x)\big)=\left(\sqrt{x}\,\right)^{2}=\blank{1.2cm}$ \; --- but only for $x\ \blank{1.0cm}\ 0$ &
+$g\big(f(x)\big)=\sqrt{x^{2}}=\blank{1.2cm}$ \; (Lesson 6.1) --- which is \emph{not} $x$ when $x<0$ \\
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+So $x^{2}$ and $\sqrt{x}$ are \emph{almost} inverses --- and ``almost'' is precisely why the test
+demands \blank{2.4cm} orders. Section 5 fixes this pair for good.
+\end{notesbox}
+
+\begin{notesbox}{3. Building the Inverse: Swap and Solve}
+Testing a partner someone hands you is easy. Now build one from scratch. The idea comes straight
+from what an inverse \emph{is}: it trades inputs for outputs.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\small
+\textbf{Swap and solve.} \quad
+\textbf{Step 1.} Write $y=f(x)$. \quad
+\textbf{Step 2.} \blank{2.4cm} $x$ and $y$. \quad
+\textbf{Step 3.} Solve for \blank{0.8cm}. \quad
+\textbf{Step 4.} Rename it $f^{-1}(x)$.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+Step 3 is nothing new --- it is Warm-Up item 1, \emph{solve for the other variable}.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.98\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{$f(x)$} & \textbf{Swap} & \textbf{Solve for $y$} & \textbf{$f^{-1}(x)$} \\
+\hline
+(a) $f(x)=3x-7$ & $x=3y-7$ & \blank{2.6cm} & \blank{2.6cm} \\
+(b) $f(x)=\dfrac{x}{4}+2$ & \blank{2.2cm} & \blank{2.6cm} & \blank{2.6cm} \\
+(c) $f(x)=x^{3}+1$ & \blank{2.2cm} & \blank{2.6cm} & \blank{2.6cm} \\
+(d) $f(x)=\sqrt{x-2}$ & \blank{2.2cm} & \blank{2.6cm} & \blank{2.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+Rows (c) and (d) are this unit's own pair of moves: a \blank{2.4cm} undoes a cube, and
+\blank{2.4cm} undoes a square root. That is what ``inverse families'' meant back in Lesson 6.0.
+
+\vspace{4pt}
+\textbf{Row (d) needs one more word.} $f(x)=\sqrt{x-2}$ never outputs a negative number, so the
+partner is only allowed to \emph{accept} the numbers $f$ can produce:
+\[
+  f^{-1}(x)=x^{2}+2 \quad\text{for}\quad x\ \blank{1.0cm}\ 0.
+\]
+Without that condition, $x^{2}+2$ is a different function --- and it fails the test. Check: at
+$x=-3$, $f^{-1}$ would report \blank{1.2cm}, but $f$ never sent anything to $-3$ in the first place.
+
+\vspace{4pt}
+\textbf{Always finish by testing.} Verify row (a) with Section 2: $f\big(f^{-1}(x)\big)=\blank{2.6cm}$
+and $f^{-1}\big(f(x)\big)=\blank{2.6cm}$. \; \checkmark
+\end{notesbox}
+
+\begin{notesbox}{4. Points, Tables, and the Reflection Over $y=x$}
+Swapping $x$ and $y$ in the \emph{equation} is the same move as swapping the coordinates of every
+\blank{2.6cm}.
+\begin{center}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.7pt, arc=1.5mm, width=0.90\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\centering\small
+If $(a,b)$ is on the graph of $f$, then $\big(\blank{0.7cm},\blank{0.7cm}\big)$ is on the graph of
+$f^{-1}$ --- and $f(a)=b$ says exactly the same thing as $f^{-1}(b)=\blank{0.9cm}$.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{From a table.} Here is $f(x)=\sqrt{x}$ --- the table you built back in Lesson 6.0.
+\begin{center}
+\begin{minipage}[c]{0.46\linewidth}
+\centering\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|c|c|c|c|c|@{}}
+\hline
+$x$ & $0$ & $1$ & $4$ & $9$ \\
+\hline
+$f(x)$ & $0$ & $1$ & $2$ & $3$ \\
+\hline
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.46\linewidth}
+\centering\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|c|c|c|c|c|@{}}
+\hline
+$x$ & \blank{0.6cm} & \blank{0.6cm} & \blank{0.6cm} & \blank{0.6cm} \\
+\hline
+$f^{-1}(x)$ & \blank{0.6cm} & \blank{0.6cm} & \blank{0.6cm} & \blank{0.6cm} \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{center}
+\vspace{-2pt}
+The two rows just traded places, so $f^{-1}(x)=\blank{1.6cm}$ --- and you have known this pair since
+Lesson 6.0.
+
+\vspace{5pt}
+\textbf{What that does to the picture.} Trading $x$ for $y$ flips the plane across the line
+$y=x$ (drawn dashed). \; \textbf{A2.F.2j:} \emph{the graph of $f^{-1}$ is the reflection of the graph
+of $f$ over the line} \blank{1.6cm}.
+\begin{center}
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-1}{6}{-1}{6}
+  \draw[dashed, thick, charcoal] (-0.6,-0.6)--(5.6,5.6);
+  \begin{scope}
+    \clip (-1,-1) rectangle (6,6);
+    \draw[very thick, forest, domain=0:6, samples=140, smooth] plot (\x,{sqrt(\x)});
+    \draw[very thick, navy, domain=0:2.5, samples=140, smooth] plot (\x,{(\x)*(\x)});
+  \end{scope}
+  \fill[forest] (0,0) circle (3.6pt);
+  \node[forest, font=\scriptsize] at (4.6,1.2) {$y=\sqrt{x}$};
+  \node[navy, font=\scriptsize] at (3.7,5.2) {$y=x^{2}$};
+  \node[charcoal, font=\scriptsize] at (4.6,3.4) {$y=x$};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-6}{6}{-6}{6}
+  \draw[dashed, thick, charcoal] (-5.6,-5.6)--(5.6,5.6);
+  \begin{scope}
+    \clip (-6,-6) rectangle (6,6);
+    \draw[very thick, forest] (-1,-6)--(6,8);
+    \draw[very thick, navy] (-6,-1)--(8,6);
+  \end{scope}
+  \fill[charcoal] (4,4) circle (3.6pt);
+  \node[forest, font=\scriptsize] at (-3.4,-2.2) {$f(x)=2x-4$};
+  \node[navy, font=\scriptsize] at (-3.2,1.6) {$f^{-1}$};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\vspace{-2pt}
+Read the right-hand picture: $f(x)=2x-4$ passes through $(0,-4)$ and $(2,0)$, so $f^{-1}$ passes
+through $\big(\blank{0.7cm},\blank{0.7cm}\big)$ and $\big(\blank{0.7cm},\blank{0.7cm}\big)$. The
+$x$-intercept of one is the \blank{2.4cm}-intercept of the other. The two graphs cross at
+$(4,4)$ --- and that point sits on \blank{1.4cm}, which is the only place a graph and its
+reflection can meet.
+\end{notesbox}
+
+\begin{notesbox}{5. When Does the Inverse Fail to Be a Function?}
+Swapping coordinates always produces a \emph{relation}. It does not always produce a
+\emph{function}, and this is where the unit's oldest question finally gets answered.
+\begin{center}
+\begin{minipage}[c]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-4}{4}{-5}{7}
+  \begin{scope}
+    \clip (-4,-5) rectangle (4,7);
+    \draw[very thick, navy, domain=-2.7:2.7, samples=120, smooth] plot (\x,{(\x)*(\x)});
+  \end{scope}
+  \draw[very thick, redacc, dashed] (-4,4)--(4,4);
+  \fill[redacc] (-2,4) circle (4pt);
+  \fill[redacc] (2,4) circle (4pt);
+\end{tikzpicture}
+\\[2pt]
+{\scriptsize $y=x^{2}$ \\ \textbf{Fails} --- $y=4$ hits twice}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-4}{4}{-5}{7}
+  \begin{scope}
+    \clip (-4,-5) rectangle (4,7);
+    \draw[very thick, navy, domain=0:2.7, samples=120, smooth] plot (\x,{(\x)*(\x)});
+  \end{scope}
+  \draw[very thick, greenacc, dashed] (-4,4)--(4,4);
+  \fill[greenacc] (2,4) circle (4pt);
+  \fill[navy] (0,0) circle (3.6pt);
+\end{tikzpicture}
+\\[2pt]
+{\scriptsize $y=x^{2},\ x\ge0$ \\ \textbf{Passes} --- domain restricted}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-4}{4}{-5}{7}
+  \begin{scope}
+    \clip (-4,-5) rectangle (4,7);
+    \draw[very thick, forest, domain=-1.75:1.9, samples=140, smooth] plot (\x,{(\x)*(\x)*(\x)});
+  \end{scope}
+  \draw[very thick, greenacc, dashed] (-4,4)--(4,4);
+  \fill[greenacc] (1.587,4) circle (4pt);
+\end{tikzpicture}
+\\[2pt]
+{\scriptsize $y=x^{3}$ \\ \textbf{Passes} --- no restriction}
+\end{minipage}
+\end{center}
+\vspace{2pt}
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\small
+\textbf{Horizontal line test.} A function has an inverse that is \emph{also a function} exactly when
+no \blank{2.6cm} line crosses its graph more than \blank{1.2cm} time.
+\\[3pt]
+\emph{Why:} two points at the same height, $(-2,4)$ and $(2,4)$, swap into
+$\big(4,\blank{0.7cm}\big)$ and $\big(4,\blank{0.7cm}\big)$ --- one input with two outputs, which
+breaks the \blank{2.4cm} line test.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{The fix, and the answer to the question you asked in Lesson 6.0.} Cut $y=x^{2}$ down to
+$x\ge0$ --- a \textbf{restricted domain} --- and only one arm survives. \emph{That} half passes the
+horizontal line test, and its inverse is $y=\blank{1.6cm}$.
+\begin{center}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.7pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\small
+Now the whole unit lines up. $y=x^{2}$ has \textbf{two} arms, so it needs a restriction and its
+inverse $y=\sqrt{x}$ gets only \emph{half} the number line as a domain. $y=x^{3}$ has
+\textbf{one} arm and never repeats an output, so it needs \emph{no} restriction and
+$y=\sqrt[3]{x}$ accepts \blank{2.6cm}. That single difference is where every contrast between the
+square root and cube root families came from --- domain, endpoint, symmetry, extrema, end behavior.
+\end{tcolorbox}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{6. Domain and Range Trade Places}
+An inverse reads the arrows backwards, so what went \emph{in} now comes \emph{out}.
+\begin{center}
+\begin{tcolorbox}[colback=sky, colframe=navy, boxrule=0.7pt, arc=1.5mm, width=0.90\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\centering\small
+domain of $f^{-1}$ $=$ \blank{2.6cm} of $f$ \hspace{0.35in}
+range of $f^{-1}$ $=$ \blank{2.6cm} of $f$
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+Fill the table for the pair you built in Section 3, $f(x)=\sqrt{x-2}$.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.94\linewidth}{@{}l X X@{}}
+\hline
+ & \textbf{Domain} & \textbf{Range} \\
+\hline
+$f(x)=\sqrt{x-2}$ & \blank{3.0cm} & \blank{3.0cm} \\
+$f^{-1}(x)=x^{2}+2$ & \blank{3.0cm} & \blank{3.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+The two rows are the same two sets, swapped --- which is why the restriction $x\ge0$ on $f^{-1}$ was
+\emph{not} optional bookkeeping. It is the \blank{2.0cm} of $f$, written down.
+\end{notesbox}
+
+\begin{practicebox}
+Show your steps, and test every inverse you build.
+
+\vspace{4pt}
+\textbf{1.} Are $f(x)=5x-1$ and $g(x)=\dfrac{x+1}{5}$ inverses? Compose \emph{both} ways.
+\vspace{0.55in}
+
+$f\big(g(x)\big)=\blank{2.4cm}$ \hspace{0.3in} $g\big(f(x)\big)=\blank{2.4cm}$ \hspace{0.3in}
+Verdict: \blank{2.4cm}
+
+\vspace{6pt}
+\textbf{2.} Find $f^{-1}(x)$ for $f(x)=\sqrt[3]{x}+2$. \; Swap and solve.
+\vspace{0.55in}
+
+$f^{-1}(x)=\blank{3.0cm}$
+
+\vspace{6pt}
+\textbf{3.} The point $(-3,7)$ is on the graph of $f$. Name a point that must be on the graph of
+$f^{-1}$: \blank{2.0cm} \; What is $f^{-1}(7)$? \blank{1.4cm}
+
+\vspace{6pt}
+\textbf{4.} In one sentence: why does $y=x^{2}$ need a restricted domain before it can have an
+inverse function, while $y=x^{3}$ does not? \writeline
+\end{practicebox}
 
 \end{document}
