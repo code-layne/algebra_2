@@ -4,16 +4,77 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Pre-drawn coordinate grid; #1 receives the plotted curve and any overlay.
+\newcommand{\gridplot}[1]{%
+  \begin{tikzpicture}[x=0.30cm, y=0.19cm]
+    \draw[step=1, linegray!45, very thin] (-5,-7) grid (5,7);
+    \draw[->, charcoal, thick] (-5.4,0) -- (5.4,0) node[right, font=\scriptsize] {$x$};
+    \draw[->, charcoal, thick] (0,-7.4) -- (0,7.4) node[above, font=\scriptsize] {$y$};
+    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    \foreach \t in {-6,-4,-2,2,4,6} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.3}{Exit Ticket}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Exit Ticket. See references/components.md for the expected structure.
-\begin{notesbox}{Exit Ticket}
-\writelines{4}
-\end{notesbox}
+No notes. Show enough work that a wrong answer can still earn a right idea.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item \textbf{Function or not?} Circle your answer, then give the domain and range of the one
+        that \emph{is} a function.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \hline
+    (a) \; $\{(-2,5),\,(0,1),\,(3,7),\,(0,4)\}$ & function \quad / \quad not a function \\
+    (b) \; \begin{tabular}{@{}c|c|c|c|c@{}}
+             $x$ & $-1$ & $0$ & $1$ & $2$ \\ \hline
+             $y$ & $4$ & $4$ & $4$ & $4$ \\
+           \end{tabular}
+      & function \quad / \quad not a function \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Domain: \blank{4.0cm} \qquad Range: \blank{4.0cm}
+    \\[2pt]
+    One of those two breaks the rule. \emph{Which rule, in your own words?} \writeline
+
+  \item \textbf{Work with the rule.} Let \; $f(x)=-3x+12$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l l l@{}}
+    (a) \; $f(2)=$ \blank{2.0cm} &
+    (b) \; $y$-intercept: \blank{2.0cm} &
+    (c) \; slope: \blank{1.6cm} \\
+    \end{tabular}
+    \end{center}
+    (d) \; Find the \textbf{zero} of $f$. \; Equation you solved: \blank{3.2cm} \quad
+    $x=$ \blank{1.6cm}
+    \\[3pt]
+    (e) \; Where would that zero show up on the graph of $f$? \writeline
+
+  \item \textbf{SOL-style multiple choice.} Which equation represents the line shown?
+    \begin{center}
+    \begin{tabular}{@{}c l@{}}
+    \gridplot{\draw[forest, very thick, domain=-1.4:5, smooth, variable=\x] plot ({\x},{-2*\x+4});}
+    &
+    \begin{minipage}[c]{0.44\linewidth}
+    \begin{enumerate}[label=\Alph*., leftmargin=1.7em, itemsep=3pt]
+      \item $y=2x+4$
+      \item $y=-2x+4$
+      \item $y=-2x-4$
+      \item $y=-\tfrac12 x+4$
+    \end{enumerate}
+    \end{minipage}
+    \\
+    \end{tabular}
+    \end{center}
+    In one sentence: what does the wrong answer you were most tempted by get wrong? \writeline
+\end{enumerate}
 
 \end{document}

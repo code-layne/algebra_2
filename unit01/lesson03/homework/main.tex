@@ -4,16 +4,263 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Pre-drawn coordinate grid; #1 receives the plotted curve and any overlay.
+\newcommand{\gridplot}[1]{%
+  \begin{tikzpicture}[x=0.31cm, y=0.24cm]
+    \draw[step=1, linegray!45, very thin] (-6,-6) grid (6,6);
+    \draw[->, charcoal, thick] (-6.4,0) -- (6.4,0) node[right, font=\scriptsize] {$x$};
+    \draw[->, charcoal, thick] (0,-6.4) -- (0,6.4) node[above, font=\scriptsize] {$y$};
+    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    \foreach \t in {-4,-2,2,4} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
+% Small matching grid.
+\newcommand{\minigrid}[1]{%
+  \begin{tikzpicture}[x=0.24cm, y=0.18cm]
+    \draw[step=1, linegray!45, very thin] (-4,-6) grid (4,6);
+    \draw[->, charcoal] (-4.3,0) -- (4.3,0);
+    \draw[->, charcoal] (0,-6.3) -- (0,6.3);
+    \foreach \t in {-2,2} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.3}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Every ``zero'' answer must also be given as a \textbf{point}. Every context answer must be a
+\textbf{sentence with units}.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Function or not?} Circle one. Give the domain and range of each relation that
+        \emph{is} a function.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}l X X@{}}
+    \hline
+    \textbf{Relation} & \textbf{Function?} & \textbf{Domain / Range} \\
+    \hline
+    (a) \; $\{(-1,2),(0,4),(3,2)\}$ & yes \; / \; no & \blank{4.2cm} \\
+    (b) \; $\{(4,1),(4,2),(6,3)\}$ & yes \; / \; no & \blank{4.2cm} \\
+    (c) \; the line $y=-7$ & yes \; / \; no & \blank{4.2cm} \\
+    (d) \; the line $x=-7$ & yes \; / \; no & \blank{4.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Items (c) and (d) look almost identical and only one is a function. Explain the difference.
+    \blank{7.0cm}
+
+  \item \textbf{Both directions.} Let $f(x)=5x-15$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{@{}X X@{}}
+    \hline
+    \textbf{Forward} & \textbf{Backward} \\
+    \hline
+    $f(1)=$ \blank{1.8cm} & $f(x)=0$ when $x=$ \blank{1.8cm} \\
+    $f(4)=$ \blank{1.8cm} & $f(x)=10$ when $x=$ \blank{1.8cm} \\
+    $f(-2)=$ \blank{1.8cm} & $f(x)=-15$ when $x=$ \blank{1.8cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Write the zero of $f$ as a point: \blank{2.2cm} \; and say what that point is on the graph:
+    \blank{4.0cm}
+
+  \item \textbf{Read the line.} The graph below is $f$.
+    \begin{center}
+    \begin{tabular}{@{}c l@{}}
+    \gridplot{\draw[forest, very thick, domain=-6:6, smooth, variable=\x] plot ({\x},{0.5*\x-2});}
+    &
+    \begin{minipage}[c]{0.56\linewidth}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \hline
+    Domain & \blank{3.2cm} \\
+    Range & \blank{3.2cm} \\
+    $y$-intercept & \blank{3.2cm} \\
+    Zero & \blank{3.2cm} \\
+    Slope & \blank{3.2cm} \\
+    $f(6)=$ \blank{1.4cm} & $f(x)=-3$ at $x=$ \blank{1.4cm} \\
+    Equation of $f$ & \blank{3.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{minipage}
+    \\
+    \end{tabular}
+    \end{center}
+
+  \item \textbf{One line, three costumes.} Start from $y-1=3(x-2)$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X@{}}
+    \hline
+    \textbf{Form} & \textbf{The equation} & \textbf{What it shows at a glance} \\
+    \hline
+    point-slope & $y-1=3(x-2)$ & \blank{4.2cm} \\
+    slope-intercept & \blank{3.4cm} & \blank{4.2cm} \\
+    standard & \blank{3.4cm} & \blank{4.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Are these three different lines or one line? \blank{2.4cm} \; What Lesson 1.2 skill did you just
+    use? \blank{4.4cm}
+
+  \item \textbf{Write the equation.}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \hline
+    (a) \; slope $-4$, through $(1,9)$ & \blank{5.6cm} \\
+    (b) \; through $(-3,2)$ and $(1,10)$ & \blank{5.6cm} \\
+    (c) \; horizontal, through $(5,-8)$ & \blank{5.6cm} \\
+    (d) \; vertical, through $(5,-8)$ & \blank{5.6cm} \\
+    (e) \; through $(0,-3)$, parallel to $y=\tfrac25x+1$ & \blank{5.6cm} \\
+    (f) \; through $(0,-3)$, perpendicular to $y=\tfrac25x+1$ & \blank{5.6cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Exactly one of (a)--(f) is not a function. Which? \blank{2.0cm}
+
+  \item \textbf{Transforming the parent $y=x$.} Each graph below shows $y=x$ dashed and a
+        transformed line solid. Write the equation of the solid line, and name the move.
+    \begin{center}
+    \begin{tabular}{@{}c c c@{}}
+    \minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+              \draw[forest, very thick] (-3,-6) -- (3,6);} &
+    \minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+              \draw[forest, very thick] (-2,-6) -- (4,0);} &
+    \minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+              \draw[forest, very thick] (-4,2) -- (4,-2);} \\
+    (a) \blank{1.6cm} & (b) \blank{1.6cm} & (c) \blank{1.6cm} \\
+    \blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} \\
+    \end{tabular}
+    \end{center}
+    Which of the three moves left the \emph{slope} alone? \blank{1.6cm} \; Which left the
+    \emph{$y$-intercept} alone? \blank{2.6cm}
+
+  \item \textbf{Read the parabola.} The graph below is $p(x)=-x^2+2x+3$.
+    \begin{center}
+    \begin{tabular}{@{}c l@{}}
+    \gridplot{\draw[forest, very thick, domain=-2.1:4.1, smooth, variable=\x]
+                plot ({\x},{-\x*\x+2*\x+3});}
+    &
+    \begin{minipage}[c]{0.56\linewidth}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \hline
+    Zeros & \blank{3.2cm} \\
+    $y$-intercept & \blank{3.2cm} \\
+    Vertex & \blank{3.2cm} \\
+    Maximum or minimum? & \blank{3.2cm} \\
+    Domain & \blank{3.2cm} \\
+    Range & \blank{3.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{minipage}
+    \\
+    \end{tabular}
+    \end{center}
+    Factor $-x^2+2x+3$ and check that the factors predict the zeros you read. \blank{6.0cm} \\
+    The range is not ``all real numbers'' this time. Why not? \blank{6.4cm}
+
+  \item \textbf{An exponential in context.} A car bought for \$$24{,}000$ is worth
+        $V(t)=24000\cdot(0.8)^{\,t}$ dollars after $t$ years.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}X|c|c|c@{}}
+    \hline
+    $t$ (years) & $0$ & $1$ & $2$ \\
+    \hline
+    $V(t)$ & \blank{2.2cm} & \blank{2.2cm} & \blank{2.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    In $V(t)=ab^{\,t}$: \; $a=$ \blank{2.0cm} means \blank{4.0cm} \\
+    $b=0.8$, so each year the car keeps \blank{1.6cm}\% of its value --- meaning it \emph{loses}
+    \blank{1.6cm}\%.
+    \\[2pt]
+    Will the car ever be worth exactly \$$0$ according to this model? \blank{1.6cm} \; Explain, and
+    say whether that is realistic. \writeline
+
+  \item \textbf{Name the family from the table alone.} No graphing, no guessing --- use differences
+        and ratios, and say which you used.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.45}
+    \begin{tabularx}{\linewidth}{@{}l|c c c c|X@{}}
+    \hline
+    \textbf{At} $x=0,1,2,3$ & \multicolumn{4}{c|}{\textbf{the $y$ values are\dots}} & \textbf{Family, and the evidence} \\
+    \hline
+    (a) & $-2$ & $1$ & $4$ & $7$ & \blank{5.4cm} \\
+    (b) & $5$ & $15$ & $45$ & $135$ & \blank{5.4cm} \\
+    (c) & $2$ & $3$ & $6$ & $11$ & \blank{5.4cm} \\
+    (d) & $100$ & $50$ & $25$ & $12.5$ & \blank{5.4cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Two of the four are exponential. What is different about them? \blank{6.0cm}
+
+  \item \textbf{Explain.} A classmate says: ``$\{(1,3),(2,3),(5,3)\}$ can't be a function, and
+        neither can $x=4$, because in both cases one value keeps repeating.'' Exactly one of those
+        two claims is right. Say which, and explain the difference in terms of \textbf{inputs} and
+        \textbf{outputs}.
+        \writelines{4}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Determined, undetermined, and overtaken.} Three questions about what it takes to pin a
+function down --- and what happens when families race.
+\begin{enumerate}[label=(\arabic*), leftmargin=1.9em, itemsep=6pt]
+  \item $g$ is \textbf{linear}, $g(1)=-2$, and $g(4)=7$.
+        \\[2pt]
+        Slope: \blank{1.8cm} \quad Rule: $g(x)=$ \blank{3.2cm} \quad $g(0)=$ \blank{1.6cm} \quad
+        Zero: \blank{2.0cm}
+        \\[2pt]
+        Now delete the word ``linear.'' Is the rule still determined? \blank{1.6cm} \; Why?
+        \writeline
+  \item A quadratic $q$ has zeros $-3$ and $5$.
+        \\[2pt]
+        Write one possible rule in factored form: \blank{4.0cm} \\
+        Write a \emph{different} rule with the same two zeros: \blank{4.0cm} \\
+        What is the $x$-coordinate of the vertex, and how do you know it is the same for both?
+        \writeline
+  \item \textbf{The race, one more time.} Compare $L(x)=100x$ and $E(x)=2^x$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}X|c|c|c|c|c@{}}
+    \hline
+    $x$ & $1$ & $5$ & $10$ & $15$ & $20$ \\
+    \hline
+    $L(x)=100x$ & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} \\
+    $E(x)=2^x$ & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    $L$ starts enormously ahead. Between which two of those inputs does $E$ pass it?
+    \blank{3.0cm}
+    \\[2pt]
+    A classmate says ``$100x$ is bigger because $100$ is bigger than $2$.'' In two sentences,
+    explain what that argument confuses. \writelines{2}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{That is all of Unit 1.} Three domain areas, in order: \emph{expressions} (1.1) were recipes
+you could rewrite but never solve; \emph{equations} (1.2) were questions with one, no, or infinitely
+many answers; and \emph{functions} (1.3) are machines whose graphs display every answer at once ---
+which is why a ``zero'' and an ``$x$-intercept'' turned out to be the same thing said in two
+languages. Lesson 1.0's properties were underneath all of it, licensing every step.
+\\[3pt]
+\textbf{Next: the Unit 1 test,} then \textbf{Unit 2 --- Linear Functions}, which opens with Lesson
+2.0, \emph{Characteristics of Linear Functions}. Every unit from here on begins the same way: meet
+the new family, learn to read its graph, and only then learn to manipulate it. Today's six
+questions --- domain, range, zeros, intercepts, rate of change, increasing or decreasing --- are the
+questions you will ask of \emph{every} family for the rest of the year, and the list only grows.
+\end{spiralbox}
 
 \end{document}

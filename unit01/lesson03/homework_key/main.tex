@@ -4,16 +4,330 @@
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Pre-drawn coordinate grid; #1 receives the plotted curve and any overlay.
+\newcommand{\gridplot}[1]{%
+  \begin{tikzpicture}[x=0.31cm, y=0.24cm]
+    \draw[step=1, linegray!45, very thin] (-6,-6) grid (6,6);
+    \draw[->, charcoal, thick] (-6.4,0) -- (6.4,0) node[right, font=\scriptsize] {$x$};
+    \draw[->, charcoal, thick] (0,-6.4) -- (0,6.4) node[above, font=\scriptsize] {$y$};
+    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    \foreach \t in {-4,-2,2,4} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
+% Small matching grid.
+\newcommand{\minigrid}[1]{%
+  \begin{tikzpicture}[x=0.24cm, y=0.18cm]
+    \draw[step=1, linegray!45, very thin] (-4,-6) grid (4,6);
+    \draw[->, charcoal] (-4.3,0) -- (4.3,0);
+    \draw[->, charcoal] (0,-6.3) -- (0,6.3);
+    \foreach \t in {-2,2} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.3}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Homework verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Homework --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Practice}
+Every ``zero'' answer must also be given as a \textbf{point}. Every context answer must be a
+\textbf{sentence with units}.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=8pt]
+  \item \textbf{Function or not?} Circle one. Give the domain and range of each relation that
+        \emph{is} a function.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}l X X@{}}
+    \hline
+    \textbf{Relation} & \textbf{Function?} & \textbf{Domain / Range} \\
+    \hline
+    (a) \; $\{(-1,2),(0,4),(3,2)\}$ & \ans{yes} \; / \; no & \ans{$D=\{-1,0,3\}$, $R=\{2,4\}$} \\
+    (b) \; $\{(4,1),(4,2),(6,3)\}$ & yes \; / \; \ans{no} & \ans{---} \\
+    (c) \; the line $y=-7$ & \ans{yes} \; / \; no & \ans{$D=$ all reals, $R=\{-7\}$} \\
+    (d) \; the line $x=-7$ & yes \; / \; \ans{no} & \ans{---} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Items (c) and (d) look almost identical and only one is a function. Explain the difference.
+    \ansline{$y=-7$ gives \emph{every} input the single output $-7$ --- one in, one out, so it is a
+    function (a horizontal line). $x=-7$ gives the single input $-7$ \emph{every} output there is,
+    so that one input has infinitely many outputs and it fails the vertical line test. Repeating an
+    output is allowed; repeating an input is not.}
+
+  \item \textbf{Both directions.} Let $f(x)=5x-15$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{@{}X X@{}}
+    \hline
+    \textbf{Forward} & \textbf{Backward} \\
+    \hline
+    $f(1)=$ \ans{$-10$} & $f(x)=0$ when $x=$ \ans{$3$} \\
+    $f(4)=$ \ans{$5$} & $f(x)=10$ when $x=$ \ans{$5$} \\
+    $f(-2)=$ \ans{$-25$} & $f(x)=-15$ when $x=$ \ans{$0$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Write the zero of $f$ as a point: \ans{$(3,0)$} \; and say what that point is on the graph:
+    \ans{the $x$-intercept}
+
+  \item \textbf{Read the line.} The graph below is $f$.
+    \begin{center}
+    \begin{tabular}{@{}c l@{}}
+    \gridplot{\draw[forest, very thick, domain=-6:6, smooth, variable=\x] plot ({\x},{0.5*\x-2});
+              \fill[keyred] (4,0) circle (2.2pt);
+              \fill[keyred] (0,-2) circle (2.2pt);}
+    &
+    \begin{minipage}[c]{0.56\linewidth}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \hline
+    Domain & \ans{all real numbers} \\
+    Range & \ans{all real numbers} \\
+    $y$-intercept & \ans{$(0,-2)$} \\
+    Zero & \ans{$x=4$, i.e.\ $(4,0)$} \\
+    Slope & \ans{$\tfrac12$} \\
+    $f(6)=$ \ans{$1$} & $f(x)=-3$ at $x=$ \ans{$-2$} \\
+    Equation of $f$ & \ans{$y=\tfrac12x-2$} \\
+    \hline
+    \end{tabularx}
+    \end{minipage}
+    \\
+    \end{tabular}
+    \end{center}
+
+  \item \textbf{One line, three costumes.} Start from $y-1=3(x-2)$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X@{}}
+    \hline
+    \textbf{Form} & \textbf{The equation} & \textbf{What it shows at a glance} \\
+    \hline
+    point-slope & $y-1=3(x-2)$ & \ans{slope $3$ and the point $(2,1)$} \\
+    slope-intercept & \ans{$y=3x-5$} & \ans{slope $3$, $y$-intercept $(0,-5)$} \\
+    standard & \ans{$3x-y=5$} & \ans{both intercepts fast: $(\frac53,0)$ and $(0,-5)$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Are these three different lines or one line? \ans{one line} \; What Lesson 1.2 skill did you just
+    use? \ans{solving a literal equation --- rearranging for a chosen variable}
+
+  \item \textbf{Write the equation.}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \hline
+    (a) \; slope $-4$, through $(1,9)$ & \ans{$y=-4x+13$} \\
+    (b) \; through $(-3,2)$ and $(1,10)$ & \ans{$m=2$, so $y=2x+8$} \\
+    (c) \; horizontal, through $(5,-8)$ & \ans{$y=-8$} \\
+    (d) \; vertical, through $(5,-8)$ & \ans{$x=5$} \\
+    (e) \; through $(0,-3)$, parallel to $y=\tfrac25x+1$ & \ans{$y=\tfrac25x-3$} \\
+    (f) \; through $(0,-3)$, perpendicular to $y=\tfrac25x+1$ & \ans{$y=-\tfrac52x-3$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Exactly one of (a)--(f) is not a function. Which? \ans{(d)}
+
+  \item \textbf{Transforming the parent $y=x$.} Each graph below shows $y=x$ dashed and a
+        transformed line solid. Write the equation of the solid line, and name the move.
+    \begin{center}
+    \begin{tabular}{@{}c c c@{}}
+    \minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+              \draw[forest, very thick] (-3,-6) -- (3,6);} &
+    \minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+              \draw[forest, very thick] (-2,-6) -- (4,0);} &
+    \minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+              \draw[forest, very thick] (-4,2) -- (4,-2);} \\
+    (a) \ans{$y=2x$} & (b) \ans{$y=x-4$} & (c) \ans{$y=-\tfrac12x$} \\
+    \ans{$k\,f(x)$, $k=2$} & \ans{$f(x)+k$, $k=-4$} & \ans{$k\,f(x)$, $k=-\tfrac12$} \\
+    \end{tabular}
+    \end{center}
+    Which of the three moves left the \emph{slope} alone? \ans{(b)} \; Which left the
+    \emph{$y$-intercept} alone? \ans{(a) and (c)}
+
+  \item \textbf{Read the parabola.} The graph below is $p(x)=-x^2+2x+3$.
+    \begin{center}
+    \begin{tabular}{@{}c l@{}}
+    \gridplot{\draw[forest, very thick, domain=-2.1:4.1, smooth, variable=\x]
+                plot ({\x},{-\x*\x+2*\x+3});
+              \fill[keyred] (-1,0) circle (2.2pt);
+              \fill[keyred] (3,0) circle (2.2pt);
+              \fill[keyred] (1,4) circle (2.2pt);}
+    &
+    \begin{minipage}[c]{0.56\linewidth}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \hline
+    Zeros & \ans{$x=-1$ and $x=3$} \\
+    $y$-intercept & \ans{$(0,3)$} \\
+    Vertex & \ans{$(1,4)$} \\
+    Maximum or minimum? & \ans{maximum, value $4$} \\
+    Domain & \ans{all real numbers} \\
+    Range & \ans{$y\le 4$} \\
+    \hline
+    \end{tabularx}
+    \end{minipage}
+    \\
+    \end{tabular}
+    \end{center}
+    Factor $-x^2+2x+3$ and check that the factors predict the zeros you read.
+    \ans{$-(x^2-2x-3)=-(x-3)(x+1)$, so the zeros are $3$ and $-1$ --- exactly what the graph shows.} \\
+    The range is not ``all real numbers'' this time. Why not?
+    \ans{the graph turns around at a maximum of $4$ and never goes above it}
+
+  \item \textbf{An exponential in context.} A car bought for \$$24{,}000$ is worth
+        $V(t)=24000\cdot(0.8)^{\,t}$ dollars after $t$ years.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}X|c|c|c@{}}
+    \hline
+    $t$ (years) & $0$ & $1$ & $2$ \\
+    \hline
+    $V(t)$ & \ans{$\$24{,}000$} & \ans{$\$19{,}200$} & \ans{$\$15{,}360$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    In $V(t)=ab^{\,t}$: \; $a=$ \ans{$24000$} means \ans{the price when new ($t=0$)} \\
+    $b=0.8$, so each year the car keeps \ans{$80$}\% of its value --- meaning it \emph{loses}
+    \ans{$20$}\%.
+    \\[2pt]
+    Will the car ever be worth exactly \$$0$ according to this model? \ans{No} \; Explain, and
+    say whether that is realistic.
+    \ansline{Multiplying by $0.8$ shrinks the value every year but never reaches zero --- the model
+    has no zero, so its graph has no $x$-intercept. That is unrealistic in the long run: a real car
+    eventually becomes scrap with a fixed value, so the model is trustworthy for a handful of years
+    and not for fifty.}
+
+  \item \textbf{Name the family from the table alone.} No graphing, no guessing --- use differences
+        and ratios, and say which you used.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.45}
+    \begin{tabularx}{\linewidth}{@{}l|c c c c|X@{}}
+    \hline
+    \textbf{At} $x=0,1,2,3$ & \multicolumn{4}{c|}{\textbf{the $y$ values are\dots}} & \textbf{Family, and the evidence} \\
+    \hline
+    (a) & $-2$ & $1$ & $4$ & $7$ & \ans{linear --- constant difference $+3$} \\
+    (b) & $5$ & $15$ & $45$ & $135$ & \ans{exponential --- constant ratio $3$} \\
+    (c) & $2$ & $3$ & $6$ & $11$ & \ans{quadratic --- differences $1,3,5$; second difference $2$} \\
+    (d) & $100$ & $50$ & $25$ & $12.5$ & \ans{exponential --- constant ratio $\tfrac12$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Two of the four are exponential. What is different about them?
+    \ans{(b) has ratio $>1$ and grows; (d) has ratio between $0$ and $1$ and decays.}
+
+  \item \textbf{Explain.} A classmate says: ``$\{(1,3),(2,3),(5,3)\}$ can't be a function, and
+        neither can $x=4$, because in both cases one value keeps repeating.'' Exactly one of those
+        two claims is right. Say which, and explain the difference in terms of \textbf{inputs} and
+        \textbf{outputs}.
+        \ansline{Only the claim about $x=4$ is right, and the classmate's reason is wrong in both
+        cases. In $\{(1,3),(2,3),(5,3)\}$ the repeated value $3$ is an \textbf{output}: three
+        different inputs happen to land on the same result, which the definition never forbids. It
+        \emph{is} a function --- it is the horizontal line $y=3$ sampled at three points.\\[3pt]
+        The line $x=4$ fails for the opposite reason: the repeated value $4$ is an \textbf{input},
+        and it is paired with every $y$ there is, so the rule cannot say what $f(4)$ means. One
+        input, one output is the whole promise --- and it constrains inputs only. The vertical line
+        test is that sentence drawn: a vertical line hits $x=4$ everywhere, and $y=3$ exactly once.}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Determined, undetermined, and overtaken.} Three questions about what it takes to pin a
+function down --- and what happens when families race.
+\begin{enumerate}[label=(\arabic*), leftmargin=1.9em, itemsep=5pt]
+  \item $g$ is \textbf{linear}, $g(1)=-2$, and $g(4)=7$.
+        \\[2pt]
+        Slope: \ans{$3$} \quad Rule: $g(x)=$ \ans{$3x-5$} \quad $g(0)=$ \ans{$-5$} \quad
+        Zero: \ans{$x=\tfrac53$}
+        \\[2pt]
+        Now delete the word ``linear.'' Is the rule still determined? \ans{No} \; Why?
+        \ansline{Infinitely many curves pass through $(1,-2)$ and $(4,7)$. For example
+        $q(x)=x^2-2x-1$ gives $q(1)=-2$ and $q(4)=7$ as well --- but $q(0)=-1$, not $-5$. Two points
+        determine a \emph{line} and nothing more, so the word ``linear'' is doing real work.}
+  \item A quadratic $q$ has zeros $-3$ and $5$.
+        \\[2pt]
+        Write one possible rule in factored form: \ans{$q(x)=(x+3)(x-5)$} \\
+        Write a \emph{different} rule with the same two zeros: \ans{$q(x)=2(x+3)(x-5)$} \\
+        What is the $x$-coordinate of the vertex, and how do you know it is the same for both?
+        \ansline{$x=1$, the midpoint of $-3$ and $5$. A parabola is symmetric about the vertical
+        line through its vertex, so that line must sit halfway between the two $x$-intercepts ---
+        and stretching by a factor of $2$ changes how tall the curve is, not where it crosses.}
+  \item \textbf{The race, one more time.} Compare $L(x)=100x$ and $E(x)=2^x$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}X|c|c|c|c|c@{}}
+    \hline
+    $x$ & $1$ & $5$ & $10$ & $15$ & $20$ \\
+    \hline
+    $L(x)=100x$ & \ans{$100$} & \ans{$500$} & \ans{$1000$} & \ans{$1500$} & \ans{$2000$} \\
+    $E(x)=2^x$ & \ans{$2$} & \ans{$32$} & \ans{$1024$} & \ans{$32768$} & \ans{$1{,}048{,}576$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    $L$ starts enormously ahead. Between which two of those inputs does $E$ pass it?
+    \ans{between $x=5$ and $x=10$}
+    \\[2pt]
+    A classmate says ``$100x$ is bigger because $100$ is bigger than $2$.'' In two sentences,
+    explain what that argument confuses.
+    \ansline{It compares the two numbers' \emph{sizes} instead of the two functions' \emph{kinds of
+    growth}: $100$ is how much $L$ adds each step, while $2$ is what $E$ multiplies by. A head start
+    is a fixed advantage and repeated multiplication is not, so the size of the coefficient decides
+    only \emph{when} the exponential wins --- never \emph{whether} it does.}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{That is all of Unit 1.} Three domain areas, in order: \emph{expressions} (1.1) were recipes
+you could rewrite but never solve; \emph{equations} (1.2) were questions with one, no, or infinitely
+many answers; and \emph{functions} (1.3) are machines whose graphs display every answer at once ---
+which is why a ``zero'' and an ``$x$-intercept'' turned out to be the same thing said in two
+languages. Lesson 1.0's properties were underneath all of it, licensing every step.
+\\[3pt]
+\textbf{Next: the Unit 1 test,} then \textbf{Unit 2 --- Linear Functions}, which opens with Lesson
+2.0, \emph{Characteristics of Linear Functions}. Every unit from here on begins the same way: meet
+the new family, learn to read its graph, and only then learn to manipulate it. Today's six
+questions --- domain, range, zeros, intercepts, rate of change, increasing or decreasing --- are the
+questions you will ask of \emph{every} family for the rest of the year, and the list only grows.
+\end{spiralbox}
+
+\begin{teachernote}
+\small
+\textbf{Grade problem 1 first, then problem 10.} They are the same question asked twice, and
+together they diagnose the one misconception that does real damage: students who think a repeated
+\emph{output} disqualifies a relation. Anyone who marked (a) or (c) ``not a function'' will call
+every parabola a non-function in Unit 3 and every horizontal-line model a non-function in Unit 2.
+One sentence fixes it --- the promise constrains inputs only --- and it is cheaper to say now.
+
+\textbf{Problem 2 is the Unit 1 through-line, graded.} The left column is arithmetic; the right
+column is Lesson 1.2. If a student can do the left and not the right, the gap is equation solving,
+not function notation, and the Unit 1 test will expose it in three different places.
+
+\textbf{Problem 5(d) and problem 1(d) are the same fact} arriving from opposite directions --- write
+a vertical line, then be told it is not a function. If a student answers 5(d) as ``$y=5$'' they have
+the vertical/horizontal pair backwards, which is worth thirty seconds of correction and is a
+perennial SOL item.
+
+\textbf{Problem 7's factoring check is where A.F.2d gets earned.} Reading zeros off a picture is
+easy; producing $-(x-3)(x+1)$ and watching it agree is the connection the standard actually asks
+for. Watch for the dropped leading negative --- students who factor $x^2-2x-3$ and forget the sign
+get the right zeros for the wrong function and will not notice, because the zeros are unaffected.
+
+\textbf{Problem 8 is the honest-modelling beat.} ``The car is never worth \$0'' is mathematically
+correct and practically false, and saying so is not a digression --- \textbf{A.F.2e} asks students
+to interpret characteristics \emph{in context}, which includes noticing where the model stops
+describing reality. Accept any answer that separates what the function says from what a used car
+lot would say.
+
+\textbf{The Extension's item (3) is the best question on the page} and the one to put on the board
+if anyone gets it. It also plants Unit 7: exponential growth is not ``fast growth,'' it is growth
+whose \emph{rate} is proportional to what is already there, which is why no linear head start
+survives it.
+
+\textbf{Unit 1 ends here.} Use this set to build the review day: the four piles from the exit ticket
+plus problems 1, 2, and 7 cover most of what the unit test will ask.
+\end{teachernote}
 
 \end{document}

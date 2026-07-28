@@ -4,16 +4,330 @@
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Small grid, quadrant-spanning; #1 receives the plotted curve and any overlay.
+\newcommand{\minigrid}[1]{%
+  \begin{tikzpicture}[x=0.28cm, y=0.20cm]
+    \draw[step=1, linegray!45, very thin] (-5,-6) grid (5,6);
+    \draw[->, charcoal] (-5.3,0) -- (5.3,0) node[right, font=\tiny] {$x$};
+    \draw[->, charcoal] (0,-6.3) -- (0,6.3) node[above, font=\tiny] {$y$};
+    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    \foreach \t in {-4,-2,2,4} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
+% First-quadrant grid for contextual models.
+\newcommand{\ctxgrid}[1]{%
+  \begin{tikzpicture}[x=0.34cm, y=0.20cm]
+    \draw[step=1, linegray!45, very thin] (0,0) grid (7,10);
+    \draw[->, charcoal, thick] (-0.3,0) -- (7.4,0) node[right, font=\tiny] {$x$};
+    \draw[->, charcoal, thick] (0,-0.4) -- (0,10.5) node[above, font=\tiny] {$A$};
+    \foreach \t in {2,4,6} {\node[below, font=\tiny] at (\t,-0.4) {$\t$};}
+    \foreach \t in {4,8} {\node[left, font=\tiny] at (-0.2,\t) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.3}{Group Activity --- Answer Key}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: copy the blank Group Activity verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Group Activity --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{One In, One Out --- Three Families, One Set of Questions.} Every item on this page
+asks one of the same six questions: \emph{is it a function? what is the domain? the range? the
+zeros? the intercepts? how fast is it changing?} With your partner, say out loud which question you
+are being asked \emph{before} you start computing. Argue about the ones you disagree on first.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Function or not?} Circle one for each. For every relation that \emph{is} a
+function, give its domain and range.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Relation} & \textbf{Function?} & \textbf{Domain / Range (if it is)} \\
+\hline
+(a) \; $\{(1,4),(2,8),(3,12)\}$ & \ans{yes} \; / \; no & \ans{$D=\{1,2,3\}$, $R=\{4,8,12\}$} \\
+(b) \; $\{(0,5),(2,5),(4,5)\}$ & \ans{yes} \; / \; no & \ans{$D=\{0,2,4\}$, $R=\{5\}$} \\
+(c) \; $\{(3,1),(5,2),(3,9)\}$ & yes \; / \; \ans{no} & \ans{---} \\
+\hline
+\end{tabularx}
+\end{center}
+\begin{center}
+\begin{tabular}{@{}c l@{}}
+\minigrid{\draw[forest, very thick, domain=-2.4:2.4, smooth, variable=\y]
+            plot ({\y*\y-4},{\y});
+          \draw[keyred, dashed] (0,-6) -- (0,6);
+          \fill[keyred] (0,2) circle (2.0pt);
+          \fill[keyred] (0,-2) circle (2.0pt);}
+&
+\begin{minipage}[c]{0.56\linewidth}
+(d) \; Is this graph a function? \ans{No}
+\\[5pt]
+Which test did you use? \ans{the vertical line test}
+\\[5pt]
+Draw the vertical line $x=0$ on the picture. How many times does it hit the curve?
+\ans{twice}
+\end{minipage}
+\\
+\end{tabular}
+\end{center}
+Exactly one of (a), (b), (c) fails. Which, and what did it do wrong?
+\ans{(c) --- the input $3$ is paired with both $1$ and $9$.}
+
+\vspace{4pt}
+\textbf{Part 2 --- Talk to the machine.} Let $f(x)=3x-12$.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+\hline
+\textbf{Forward (evaluate)} & \textbf{Backward (solve)} \\
+\hline
+$f(0)=$ \ans{$-12$} & $f(x)=0$ when $x=$ \ans{$4$} \\
+$f(2)=$ \ans{$-6$} & $f(x)=9$ when $x=$ \ans{$7$} \\
+$f(-3)=$ \ans{$-21$} & $f(x)=-3$ when $x=$ \ans{$3$} \\
+\hline
+\end{tabularx}
+\end{center}
+The answer in the top-right box has a special name. What is it? \ans{the zero of $f$} \\
+Write it as a \emph{point} instead of a number: \ans{$(4,0)$}
+
+\vspace{4pt}
+\textbf{Part 3 --- Interrogate a line.} Answer only from the picture, then write its equation.
+\begin{center}
+\begin{tabular}{@{}c l@{}}
+\minigrid{\draw[forest, very thick, domain=-0.3:5, smooth, variable=\x] plot ({\x},{-2*\x+6});
+          \fill[keyred] (0,6) circle (2.2pt);
+          \fill[keyred] (3,0) circle (2.2pt);}
+&
+\begin{minipage}[c]{0.58\linewidth}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+$y$-intercept & \ans{$(0,6)$} \\
+$x$-intercept & \ans{$(3,0)$} \\
+Zero & \ans{$x=3$} \\
+Slope & \ans{$-2$} \\
+Equation ($y=mx+b$) & \ans{$y=-2x+6$} \\
+\hline
+\end{tabularx}
+\end{minipage}
+\\
+\end{tabular}
+\end{center}
+Two rows in that table always hold the same number. Which two?
+\ans{the $x$-intercept and the zero}
+
+\vspace{4pt}
+\textbf{Part 4 --- Name the family.} Use differences and ratios. No graphing.
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{@{}l|c c c c|X@{}}
+\hline
+\textbf{At} $x=0,1,2,3$ & \multicolumn{4}{c|}{\textbf{the $y$ values are\dots}} & \textbf{Linear, quadratic, or exponential? Why?} \\
+\hline
+(a) & $7$ & $10$ & $13$ & $16$ & \ans{linear --- add $3$ every time} \\
+(b) & $4$ & $8$ & $16$ & $32$ & \ans{exponential --- multiply by $2$} \\
+(c) & $0$ & $3$ & $8$ & $15$ & \ans{quadratic --- differences $3,5,7$, second difference $2$} \\
+\hline
+\end{tabularx}
+\end{center}
+Which one did you have to take differences \emph{twice} for? \ans{(c)}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Write the line. Nobody is telling you which method.}
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
+  \item Through $(-2,7)$ and $(2,-1)$. \qquad $m=$ \ans{$-2$} \qquad Equation: \ans{$y=-2x+3$}
+  \item Slope $\tfrac23$, through $(3,-4)$. Give it in \emph{point-slope} form first, then
+        slope-intercept.
+        \\[2pt]
+        Point-slope: \ans{$y+4=\tfrac23(x-3)$} \qquad Slope-intercept: \ans{$y=\tfrac23x-6$}
+  \item Through $(2,1)$, \textbf{parallel} to $3x+y=8$. \; \emph{(Rewrite the given line first.)}
+        \\[2pt]
+        Given line's slope: \ans{$-3$} \qquad Equation: \ans{$y=-3x+7$}
+  \item Through $(2,1)$, \textbf{perpendicular} to $3x+y=8$. \qquad Equation:
+        \ans{$y=\tfrac13x+\tfrac13$}
+  \item Which of items 1--4 describes a line that is \emph{not} a function? \ans{none of them}
+        \; (Careful --- this one is a trap.)
+\end{enumerate}
+
+\vspace{3pt}
+\textbf{Part 2 --- A quadratic doing a job.} A rectangular vegetable bed is built against a barn
+wall, so only three sides are fenced. With $x$ metres of width, the area in square metres is
+$A(x)=x(6-x)$.
+\begin{center}
+\begin{tabular}{@{}c l@{}}
+\ctxgrid{\draw[forest, very thick, domain=0:6, smooth, variable=\x] plot ({\x},{\x*(6-\x)});
+         \fill[keyred] (3,9) circle (2.2pt);
+         \fill[keyred] (0,0) circle (2.2pt);
+         \fill[keyred] (6,0) circle (2.2pt);}
+&
+\begin{minipage}[c]{0.54\linewidth}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+Zeros of $A$ & \ans{$x=0$ and $x=6$} \\
+Vertex & \ans{$(3,9)$} \\
+Max or min? & \ans{maximum} \\
+Domain \emph{here} & \ans{$0<x<6$} \\
+Range \emph{here} & \ans{$0<A\le 9$} \\
+\hline
+\end{tabularx}
+\end{minipage}
+\\
+\end{tabular}
+\end{center}
+What width gives the largest bed, and how large is it? Answer in a sentence with units.
+\ansline{A width of $3$ metres gives the largest bed, $9$ square metres. (The vertex input answers
+\emph{where}; the vertex output answers \emph{how much}.)}
+\\[2pt]
+The zeros are $x=0$ and $x=6$. Explain what each one \emph{means about the bed} --- why is neither
+a useful answer?
+\ansline{At $x=0$ the bed has no width and at $x=6$ it has no depth --- in both cases the area is
+zero, so there is no bed at all. They are honest solutions of $A(x)=0$ and useless as designs, which
+is why the domain in context is the \emph{open} interval $0<x<6$.}
+
+\vspace{3pt}
+\textbf{Part 3 --- An exponential doing a job.} A rumour spreads: $3$ people know it at
+$8{:}00$~a.m., and the number \emph{triples} every hour. Let $N(t)=3\cdot 3^{\,t}$, with $t$ in hours
+after $8{:}00$.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}X|c|c|c|c@{}}
+\hline
+$t$ & $0$ & $1$ & $2$ & $3$ \\
+\hline
+$N(t)$ & \ans{$3$} & \ans{$9$} & \ans{$27$} & \ans{$81$} \\
+\hline
+\end{tabularx}
+\end{center}
+In $N(t)=ab^{\,t}$: \; $a=$ \ans{$3$} and it means \ans{how many knew at $8{:}00$}; \;
+$b=$ \ans{$3$} and it means \ans{the number triples each hour}
+\\[2pt]
+At what time do $243$ people know? \ans{$12{:}00$ noon ($t=4$)} \\
+Is there any time at which \emph{nobody} knows the rumour, according to this model? \ans{No} \;
+Explain.
+\ansline{$N(t)=0$ has no solution: tripling a positive number never gives zero, and running the
+model backwards divides by $3$ forever ($1$, $\frac13$, $\frac19$, \dots) --- shrinking toward zero
+without arriving. The model says the rumour always existed, which is exactly where the model stops
+being realistic.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Build a function from conditions only.} You are told just this: $f$ is
+\textbf{linear}, $f(2)=7$, and $f(5)=16$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+  \item Find the slope. \ans{$3$} \; What two \emph{points} did you use? \ans{$(2,7)$ and $(5,16)$}
+  \item Write the rule $f(x)=$ \ans{$3x+1$}
+  \item Find $f(0)$. \ans{$1$} \quad Find $x$ with $f(x)=100$. \ans{$33$}
+  \item Why was the word \textbf{linear} essential? Give a different function through the same two
+        points to prove the rule would not be determined without it.
+        \ansline{Infinitely many functions pass through two given points --- ``linear'' is what
+        pins it down to exactly one. For instance $g(x)=x^2-4x+11$ also has $g(2)=7$ and $g(5)=16$,
+        but $g(0)=11$, not $1$. Two points determine a \emph{line}; on their own they determine
+        nothing.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 2 --- Spot the error.} Each student made \textbf{exactly one} mistake. \textbf{Name}
+it --- naming is the part that counts --- then give the correct answer.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}c l X l@{}}
+\hline
+ & \textbf{Student's claim} & \textbf{What went wrong (name it)} & \textbf{Correct} \\
+\hline
+(a) & ``$\{(1,5),(2,5),(3,5)\}$ is not a & \ans{applied the one-in-one-out rule to outputs instead of inputs} & \ans{it \emph{is} a function} \\
+    & $\quad$ function --- $5$ repeats.'' & & \\
+(b) & ``The zero of $f(x)=2x+8$ & \ans{read off a coefficient instead of solving $f(x)=0$} & \ans{$x=-4$} \\
+    & $\quad$ is $8$.'' & & \\
+(c) & ``Through $(0,2)$ perpendicular & \ans{took the reciprocal but not the opposite sign} & \ans{$y=-\tfrac14x+2$} \\
+    & $\quad$ to $y=4x$: \; $y=\tfrac14x+2$.'' & & \\
+(d) & ``$y=2^x$ has an $x$-intercept & \ans{confused approaching zero with reaching it} & \ans{no $x$-intercept} \\
+    & $\quad$ because it keeps dropping.'' & & \\
+\hline
+\end{tabularx}
+\end{center}
+Two of these four are errors about a \emph{definition}; two are errors about a \emph{procedure}.
+Sort them. \ans{definitions: (a) and (d); procedures: (b) and (c)}
+
+\vspace{4pt}
+\textbf{Part 3 --- The overtake.} Extend the Hook's race.
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{@{}X|c|c|c|c|c|c|c@{}}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ \\
+\hline
+$x^2$ & $0$ & $1$ & $4$ & \ans{$9$} & \ans{$16$} & \ans{$25$} & \ans{$36$} \\
+$2^x$ & $1$ & $2$ & $4$ & \ans{$8$} & \ans{$16$} & \ans{$32$} & \ans{$64$} \\
+\hline
+\end{tabularx}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+  \item At which two inputs are they \emph{equal}? \ans{$x=2$ and $x=4$}
+  \item Between those two, which one is ahead? \ans{$x^2$ (at $x=3$: $9>8$)} \; After the second one?
+        \ans{$2^x$, permanently}
+  \item Each step, $x^2$ gains a growing amount and $2^x$ \emph{doubles}. Explain in two sentences
+        why doubling must eventually win, no matter how far behind it starts.
+        \ansline{Going from $x$ to $x+1$ adds $2x+1$ to $x^2$ --- an amount that grows, but only by
+        $2$ each step. Doubling instead adds the \emph{entire current value}, which is itself
+        growing without bound, so once $2^x$ catches up its head start compounds and the gap only
+        widens.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 4 --- Two tests, two questions.} The vertical line test decides whether a graph is a
+function. Now consider a \textbf{horizontal} line test.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+  \item The graph of $y=x^2$ is crossed \emph{twice} by the horizontal line $y=4$. Is $y=x^2$ still
+        a function? \ans{Yes} \; Why does that not break the promise?
+        \ansline{Two crossings of a horizontal line means two \emph{inputs} ($-2$ and $2$) share one
+        \emph{output}, which was never forbidden. The promise is that one input has one output.}
+  \item The graph of $x=3$ is crossed \emph{once} by every horizontal line, and it still is not a
+        function. What exactly does each test measure?
+        \ansline{The vertical line test asks whether any one \emph{input} has more than one output
+        --- that is the definition of a function, so it is the only test that decides the question.
+        The horizontal line test asks whether any one \emph{output} comes from more than one input;
+        it says nothing about being a function, and answering ``no'' to it is a stronger property
+        with its own name, which you will meet in Unit 6 when functions get undone.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{teachernote}
+\small
+\textbf{Tier R Part 2 is the highest-leverage block on the page.} The forward column is arithmetic
+and the backward column is Lesson 1.2, and putting them in one table is what makes ``a zero is a
+solution of $f(x)=0$'' feel obvious rather than memorised. Anyone who can do the left column but
+freezes on the right does not have a function problem --- they have an equation-solving problem, and
+should be sent back to 1.2's notes rather than reread today's definition.
+
+\textbf{Tier A Part 1 item 5 is a deliberate trap and worth debriefing publicly.} The answer is
+\emph{none}: every line written as $y=mx+b$ passes the vertical line test. Only $x=a$ fails, and
+$x=a$ can never be written in slope-intercept form because it has no slope. Students who answer
+``item 3, because it's parallel to a steep line'' are guessing.
+
+\textbf{Tier A Part 2's two zeros are the interpretation beat.} $x=0$ and $x=6$ are correct
+solutions of $A(x)=0$ and useless as bed designs. Students trained to ``throw out the negative
+answer'' need the sharper rule: you discard a solution when the \emph{context} forbids it, and you
+must be able to say what the context objected to.
+
+\textbf{Tier E Part 4 is the best thing on the page.} It forces students to state what the vertical
+line test actually measures, and (b) is the item that separates memorised procedure from
+understanding. Do not name ``one-to-one'' or ``inverse'' --- those belong to Unit 6 --- but if a
+group gets there on their own, tell them they have found next year's question a year early.
+
+\textbf{Tier E Part 1(d) is deliberately open.} Any curved function through $(2,7)$ and $(5,16)$
+proves the point; accept a described curve, a sketchless argument, or a piecewise rule. The idea
+being paid for is that \emph{two points determine a line} --- and only a line.
+\end{teachernote}
 
 \end{document}

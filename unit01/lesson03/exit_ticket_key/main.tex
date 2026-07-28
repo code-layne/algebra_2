@@ -4,16 +4,104 @@
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Pre-drawn coordinate grid; #1 receives the plotted curve and any overlay.
+\newcommand{\gridplot}[1]{%
+  \begin{tikzpicture}[x=0.30cm, y=0.19cm]
+    \draw[step=1, linegray!45, very thin] (-5,-7) grid (5,7);
+    \draw[->, charcoal, thick] (-5.4,0) -- (5.4,0) node[right, font=\scriptsize] {$x$};
+    \draw[->, charcoal, thick] (0,-7.4) -- (0,7.4) node[above, font=\scriptsize] {$y$};
+    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    \foreach \t in {-6,-4,-2,2,4,6} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.3}{Exit Ticket --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.04in}
 
-% TODO: copy the blank Exit Ticket verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Exit Ticket --- Key}
-\ansline{TODO: answer}
-\end{notesbox}
+No notes. Show enough work that a wrong answer can still earn a right idea.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=3pt]
+  \item \textbf{Function or not?} Circle your answer, then give the domain and range of the one
+        that \emph{is} a function.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabularx}{\linewidth}{@{}l X@{}}
+    \hline
+    (a) \; $\{(-2,5),\,(0,1),\,(3,7),\,(0,4)\}$ & function \quad / \quad \ans{not a function} \\
+    (b) \; \begin{tabular}{@{}c|c|c|c|c@{}}
+             $x$ & $-1$ & $0$ & $1$ & $2$ \\ \hline
+             $y$ & $4$ & $4$ & $4$ & $4$ \\
+           \end{tabular}
+      & \ans{function} \quad / \quad not a function \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    Domain: \ans{$\{-1,0,1,2\}$} \qquad Range: \ans{$\{4\}$}
+    \\[2pt]
+    One of those two breaks the rule. \emph{Which rule, in your own words?}
+    \ansline{Each input gets exactly one output. In (a) the input $0$ is paired with both $1$ and
+    $4$, so the rule cannot decide --- that is what disqualifies it. (b) repeats an \emph{output},
+    which is allowed: nothing says two inputs cannot land on the same value.}
+
+  \item \textbf{Work with the rule.} Let \; $f(x)=-3x+12$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l l l@{}}
+    (a) \; $f(2)=$ \ans{$6$} &
+    (b) \; $y$-intercept: \ans{$(0,12)$} &
+    (c) \; slope: \ans{$-3$} \\
+    \end{tabular}
+    \end{center}
+    (d) \; Find the \textbf{zero} of $f$. \; Equation you solved: \ans{$-3x+12=0$} \quad
+    $x=$ \ans{$4$}
+    \\[3pt]
+    (e) \; Where would that zero show up on the graph of $f$?
+    \ansline{As the $x$-intercept --- the graph crosses the $x$-axis at $(4,0)$.}
+
+  \item \textbf{SOL-style multiple choice.} Which equation represents the line shown?
+    \begin{center}
+    \begin{tabular}{@{}c l@{}}
+    \gridplot{\draw[forest, very thick, domain=-1.4:5, smooth, variable=\x] plot ({\x},{-2*\x+4});
+              \fill[keyred] (0,4) circle (2.4pt);
+              \fill[keyred] (2,0) circle (2.4pt);}
+    &
+    \begin{minipage}[c]{0.44\linewidth}
+    \begin{enumerate}[label=\Alph*., leftmargin=1.7em, itemsep=3pt]
+      \item $y=2x+4$
+      \item $y=-2x+4$ \quad \textcolor{keyred}{\textbf{$\leftarrow$}}
+      \item $y=-2x-4$
+      \item $y=-\tfrac12 x+4$
+    \end{enumerate}
+    \end{minipage}
+    \\
+    \end{tabular}
+    \end{center}
+    In one sentence: what does the wrong answer you were most tempted by get wrong?
+    \ansline{Answers vary --- A has the line going up instead of down, C reads the $y$-intercept as
+    $-4$, and D swaps rise and run to get $-\frac12$ instead of $-2$.}
+\end{enumerate}
+
+\begin{teachernote}
+\footnotesize
+\textbf{Answer 3: B.} The line falls $2$ for every $1$ right, so $m=-2$, and it crosses at $(0,4)$.
+Each distractor breaks exactly one thing: \textbf{A} loses the sign of the slope, \textbf{C} the sign
+of the intercept, \textbf{D} swaps rise and run. A student choosing D can read a graph but has the
+ratio upside down --- a two-minute fix; a student choosing A is not attending to direction at all.
+
+\textbf{Sort into four piles:} \emph{got it} / \emph{definition} (item 1 --- called (a) a function,
+or called (b) \emph{not} one because outputs repeat) / \emph{zero} (item 2d/2e) / \emph{slope}
+(item 3). The \emph{definition} pile costs the most later: a student who thinks repeated
+\emph{outputs} disqualify a relation will call every parabola a non-function in Unit 3, and one
+sentence fixes it --- the promise is about inputs only. The \emph{zero} pile is the Unit 1
+through-line: 2(d) is Lesson 1.2's equation solving renamed, and 2(e) is the whole point of the
+renaming --- the number you solved for is a \emph{place on the graph}.
+
+\textbf{Unit 1 ends here,} so let the piles set the review day's emphasis rather than tomorrow's
+reteach.
+\end{teachernote}
 
 \end{document}

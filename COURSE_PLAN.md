@@ -5,9 +5,9 @@
 > **Status:** **Unit 1 is being rewritten from scratch (started 2026-07-27)** as a review of
 > *Algebra 1*, organized by the Algebra 1 SOL domain areas and with every All Things Algebra
 > drop-in removed — 4 lessons (1.0–1.3), 13 authored work products each, plus its own tests.
-> **Lessons 1.0, 1.1, and 1.2 are complete and building** (all 13 work products each); **1.3 and
-> the four test files are still skeletons.** Details and the next actions are in the
-> Unit 1 block in §4. **Units 2, 3, 4, and 5 are content-complete** — every lesson
+> **All four lessons (1.0–1.3) are complete and building** (all 13 work products each, 1.3 closed
+> out 2026-07-28); **only the four test files are still skeletons.** Details and the next actions
+> are in the Unit 1 block in §4. **Units 2, 3, 4, and 5 are content-complete** — every lesson
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) closed out 2026-07-27**: all 8 lessons 5.0–5.7
@@ -32,9 +32,12 @@
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Two units are now open.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
 > sequence (2026-07-27); Unit 6 has since closed. **Next actions, in priority order:
-> (1) continue Unit 7 at Lesson 7.2** (graphing & transformations; $f(x)+k$ is the only
+> (1) author the four Unit 1 test files** (`tests/{practice_test,actual_test}` and both keys) and
+> run `make -C unit01/tests drop` and `make -C unit01/test_keys drop` — this is the only thing
+> standing between Unit 1 and complete, now that 1.3 is done;
+> **(2) continue Unit 7 at Lesson 7.2** (graphing & transformations; $f(x)+k$ is the only
 > transformation that moves the asymptote), which Lesson 7.1's homework spiral and slide roadmap
-> already set up explicitly; **(2) continue Unit 8 at
+> already set up explicitly; **(3) continue Unit 8 at
 > Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
 > and 8.5 needs the $e$ introduced there — so Unit 7 should not fall far behind Unit 8.
@@ -65,7 +68,7 @@
 
 | Unit | Title | Function family | Lessons (incl. L0) | Status |
 |:---:|---|---|:---:|---|
-| 1 | Foundations: Algebra 1 Review | (review) | 4 (1.0–1.3) | **Being rewritten** (1.0 done) |
+| 1 | Foundations: Algebra 1 Review | (review) | 4 (1.0–1.3) | **All 4 lessons done**; tests pending |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
@@ -195,9 +198,39 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > `remindbox` onto a second page. The table never spans pages, and `\rowcolor` renders identically
 > without it. Lesson 1.1's cover still loads it and happens to fit; if 1.3's cover runs to 2 pages,
 > this is the first thing to check.)*
-> **Lesson 1.3 and all four test files are still skeletons.**
-> **Next actions, in order: (1) author 1.3**; **(2) author the four test files**
-> and run both `drop` targets to replace the ATA sample-test PDFs; **(3)** full compile scan of
+> **Lesson 1.3 is authored and building (2026-07-28) — all 13 components.** Reviews the
+> **Functions** domain, the last of the three, and carries the §3 spine's U1 row (function
+> definition & notation, domain & range from a graph). Covers relation vs.\ function across all four
+> representations with the **vertical line test derived as the definition drawn**; domain and range
+> (including when restricted by context); function notation in **both directions** — forward is
+> arithmetic, backward is Lesson 1.2 — which is what makes *zero*, *solution of $f(x)=0$*, and
+> *$x$-intercept* three names for one thing; a line read for all six characteristics and interpreted
+> in context (draining pool $V(t)=800-25t$); the three **forms** as one equation solved for different
+> things (1.2's literal equations), equation-writing from a graph / two points / slope+point /
+> $x=a$ / $y=c$, parallel and perpendicular; the parent $y=x$ under $k\,f(x)$ and $f(x)+k$ (each move
+> touches exactly one feature — the deposit that Units 2, 3, and 7 withdraw); quadratic and
+> exponential characteristics read off pre-drawn graphs; and **compare-and-contrast of the three
+> families** (constant difference / constant *second* difference / constant ratio) per **A.F.2h**.
+> The spine is **one in, one out** plus **the same six questions asked of three families**: the Hook
+> races $x$, $x^2$, $2^x$ and the exponential *ties twice* ($x=2$, $x=4$) before leaving for good, so
+> "which is bigger" is never fair without saying *where*. Unifying thread: the Warm-Up asks for the
+> single rule $2x-6$ three ways — solved, evaluated, graphed — and the answers agree, which is
+> **A.F.1h** stated by the class; and the quadratic anchor $x^2-2x-3=(x-3)(x+1)$ carries over from
+> 1.2. Standards: **A.F.1a–h, A.F.2a–h**. Nothing is sketched from scratch: the A.F.1f / A.F.2c/f
+> graphing clauses are met by equation↔graph matching, table completion, and feature reading.
+> `make -C unit01/lesson03 all` → EXIT 0 (student 16 pp, full 33 pp). Component pages: cover 1,
+> warm-up 1/1, notes 6/**7**, activity 3/**4**, exit ticket **1/1**, homework 4/4, plan 6, slides 9.
+> Warm-up and exit ticket are one page in both blank and key. *Two keys run one page longer than
+> their blanks* — notes_key p7 is **teacher note only** (pp. 1–6 align with the blank) and
+> activity_key p4 is the tail of Tier E plus its teacher note; this matches the Units 2–4 pattern
+> rather than 1.0–1.2's exact-parity, and is the deliberate cost of keeping the guidance intact.
+> Exit ticket includes an SOL-style MC item (equation from a pre-drawn line, $y=-2x+4$) whose three
+> distractors break the sign of the slope, the sign of the intercept, and rise-vs-run respectively.
+> *(1.3's cover follows 1.2's fix — **`ltablex` is not loaded** — and comes out at one page.)*
+> **All four Unit 1 lessons (1.0–1.3) are now authored & building.**
+> **The four test files are still skeletons.**
+> **Next actions, in order: (1) author the four test files**
+> and run both `drop` targets to replace the ATA sample-test PDFs; **(2)** full compile scan of
 > `unit01`, then re-verify the one-page rule on all four warm-ups and exit tickets.
 > *(Note: the in-place `xelatex` compile scan drops `main.pdf` into component **source** dirs, which
 > `lesson.mk` would then treat as prefab drop-ins — always `git clean -f unitXX` afterwards.)*
