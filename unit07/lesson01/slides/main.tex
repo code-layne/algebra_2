@@ -1,6 +1,16 @@
 %! Exponential Growth and Decay — Unit 7, Lesson 7.1 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% Exponentials are plotted as a*e^{(ln b)x}: pgfmath's pow() is unreliable for negative and
+% fractional exponents, but exp() is not. #2 is ln(b).
+% ln2 = 0.693147   ln3 = 1.098612
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
@@ -12,15 +22,312 @@
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 7.1}\\[0.5cm]
     {\color{white}\bfseries\LARGE Exponential Growth and Decay}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 7}
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 7: Exponential Functions}
   \end{minipage}
 \end{frame}
 }
 
-% CONTENT SLIDE
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{TODO: section title}
-  % TODO: slide content
+  \forestheader{Two towns, the same population, two very different plans}
+  \sectionlabel{Hook}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{ll}
+  \hline
+  \textbf{Riverton} & $8{,}000$ people today. \emph{``We expect to gain $300$ people every year.''} \\
+  \textbf{Kellsboro} & $8{,}000$ people today. \emph{``We expect to grow by $4\%$ every year.''} \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Which one \emph{adds}? Which one \emph{multiplies}?
+        \item Kellsboro grows $4\%$ this year, then $4\%$ again next year --- of \textbf{what}?
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Try the obvious model}
+        $P(t)=8000(0.04)^{t}$ \quad$\Rightarrow$\quad $P(1)=320$ people. \\[3pt]
+        A town of $8{,}000$ does not grow to $320$. So $0.04$ is \textbf{not} the base.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE JOB
+\begin{frame}[t, plain]
+  \forestheader{Building a model means finding exactly two numbers}
+  \sectionlabel{The job}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \[ y = a\,b^{\,x} \]
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item $a$ --- the \textbf{initial value}: the output at $x=0$, and the $y$-intercept.
+        \item $b$ --- the \textbf{factor}: what you \textbf{multiply} by for each one-unit step.
+      \end{itemize}
+      \vspace{4pt}
+      {\footnotesize Yesterday you \emph{read} $a$ and $b$ off a graph. Today you \emph{write} them in.}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \begin{block}{Three places a model comes from}
+        \begin{enumerate}\setlength{\itemsep}{3pt}
+          \item A \textbf{table} --- hands you both numbers directly.
+          \item \textbf{Two points} --- dividing recovers $b$.
+          \item A \textbf{sentence} --- gives a \emph{percent}, which must be translated.
+        \end{enumerate}
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize Only the third one is hard. It is the whole lesson.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% FROM A TABLE
+\begin{frame}[t, plain]
+  \forestheader{From a table: $a$ is a column, $b$ is a ratio}
+  \sectionlabel[goldacc]{Source 1}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+  $y$ & $3$ & $12$ & $48$ & $192$ & $768$ \\ \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $a=3$ --- straight off the $x=0$ column.
+        \item $\dfrac{12}{3}=\dfrac{48}{12}=\dfrac{192}{48}=4$, so $b=4$.
+        \item $y = 3\cdot 4^{x}$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Always check a row you did not use}
+        $x=4$: \; $3\cdot4^{4}=768$ \checkmark \\[3pt]
+        {\scriptsize And always divide \emph{later} by \emph{earlier} --- upside down turns decay
+        into growth.}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% PERCENT TO FACTOR
+\begin{frame}[t, plain]
+  \forestheader{From a sentence: a percent is not a base}
+  \sectionlabel[goldacc]{Source 2 --- the translation}
+  \begin{center}
+    Up $8\%$ $\Rightarrow$ you now have $\mathbf{108\%}$ of what you had $\Rightarrow$ multiply by
+    $\mathbf{1.08}$ \\[3pt]
+    Down $15\%$ $\Rightarrow$ you now have $\mathbf{85\%}$ $\Rightarrow$ multiply by $\mathbf{0.85}$
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    \Large $\textbf{Growth: } b = 1+r \qquad\qquad \textbf{Decay: } b = 1-r$
+  \end{center}
+  \vspace{6pt}
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{llll}
+  \hline
+  \textbf{The sentence says\dots} & \textbf{$r$} & \textbf{Direction} & \textbf{$b$} \\
+  \hline
+  increases by $3.5\%$ each year & $0.035$ & grows & $1.035$ \\
+  loses $40\%$ of it each hour & $0.40$ & shrinks & $0.60$ \\
+  $100\%$ of it remains each day & $0$ & neither & $1$ --- the \emph{illegal} base from 7.0 \\
+  \textbf{doubles} each year & $1$ & grows & $2$ \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{frame}
+
+% THE TWO ERRORS
+\begin{frame}[t, plain]
+  \forestheader{The two errors everybody makes today}
+  \sectionlabel{Watch out}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{``Up $8\%$'' written as $b=0.08$}
+        $0.08 < 1$, so this is a \textbf{decay} model. \\[3pt]
+        It says only $8\%$ survives each step --- a $\mathbf{92\%}$ \textbf{loss}, not an $8\%$ gain.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{``Down $15\%$'' written as $b=1.15$}
+        $1.15 > 1$, so this \textbf{grows}. \\[3pt]
+        It models a $15\%$ \textbf{increase} --- the right size, the wrong direction.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \begin{center}
+    \Large The base is the fraction you \textbf{end up with}, \\[3pt]
+    never the percent that \emph{changed}.
+  \end{center}
+  \vspace{6pt}
+  \begin{center}
+    {\footnotesize \textbf{Two-second check:} is $b$ on the correct side of $1$?
+    Growth needs $b>1$; decay needs $0<b<1$.}
+  \end{center}
+\end{frame}
+
+% STORY TO MODEL
+\begin{frame}[t, plain]
+  \forestheader{Three moves, every single time}
+  \sectionlabel[goldacc]{Story $\to$ model $\to$ story}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Growth.} A town of $12{,}000$ grows $3\%$ a year.
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $a=12{,}000$
+        \item $r=0.03 \Rightarrow b=1.03$
+        \item $P(t)=12{,}000(1.03)^{t}$
+        \item $P(10)=12{,}000(1.3439)\approx \mathbf{16{,}127}$
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize \emph{In ten years the town will have about $16{,}127$ people.}}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Decay.} A \$$24{,}000$ car loses $12\%$ a year.
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $a=24{,}000$
+        \item $r=0.12 \Rightarrow b=0.88$
+        \item $V(t)=24{,}000(0.88)^{t}$
+        \item $V(5)=24{,}000(0.5277)\approx \mathbf{\$12{,}666}$
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize \emph{Why $0.88$ and not $0.12$? Because $0.12$ is what it \textbf{loses};
+      $b$ is what \textbf{remains}.}}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{center}
+    {\footnotesize A number alone is not an answer. \textbf{Interpret it in a sentence} --- that is
+    the standard being assessed.}
+  \end{center}
+\end{frame}
+
+% TWO POINTS
+\begin{frame}[t, plain]
+  \forestheader{From two points: dividing makes $a$ disappear}
+  \sectionlabel[goldacc]{Source 3}
+  \begin{columns}[T]
+    \begin{column}{0.38\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-4}{4}{-1}{9}
+        \begin{scope}
+          \clip (-4,-1) rectangle (4,9);
+          \expcurve{2}{0.693147}{-4}{2.17}
+        \end{scope}
+        \draw[navy, dashed, thick] (-4,0)--(4,0);
+        \fill[charcoal] (-1,1) circle (4pt) node[below right, font=\tiny]{$(-1,1)$};
+        \fill[charcoal] (2,8) circle (4pt) node[left, font=\tiny]{$(2,8)$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      Both points into $y=ab^{x}$: \quad $1=a\,b^{-1}$ \; and \; $8=a\,b^{2}$.
+      \[ \frac{8}{1} = \frac{a\,b^{2}}{a\,b^{-1}} = b^{\,3} \quad\Rightarrow\quad b=2 \]
+      Then back-substitute: \; $8=a\cdot 2^{2}$, so $a=2$, giving $y=2\cdot2^{x}$. \\[4pt]
+      Check against the graph: it should cross the $y$-axis at $(0,2)$ --- and it does.
+      \vspace{3pt}
+      \begin{block}{The part everyone drops}
+        The exponent $3$ is the \textbf{gap} between the $x$-values, $2-(-1)$ --- not one of them.
+        And finding $b$ is only half the job; $a$ still has to come back.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% RUN IT BACKWARDS
+\begin{frame}[t, plain]
+  \forestheader{Run the translation backwards to read any model}
+  \sectionlabel{Interpret}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{llll}
+  \hline
+  \textbf{Model} & \textbf{Starts at} & \textbf{Rate} & \textbf{Direction} \\
+  \hline
+  $y=500(1.045)^{t}$ & $500$ & $4.5\%$ & increase \\
+  $y=2200(0.91)^{t}$ & $2200$ & $9\%$ & decrease \\
+  $y=75(2)^{t}$ & $75$ & $100\%$ & increase --- it doubles \\
+  $y=1000(1.005)^{t}$ & $1000$ & $0.5\%$ & increase \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{8pt}
+  \begin{center}
+    Subtract from $1$ or subtract $1$: \; $0.91 \Rightarrow 1-0.91 = 0.09 \Rightarrow 9\%$
+    \textbf{down}; \quad $1.045 \Rightarrow 1.045-1 = 0.045 \Rightarrow 4.5\%$ \textbf{up}.
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    {\footnotesize This is the skill Lesson 7.5 needs: technology will hand you $a$ and $b$, and you
+    have to say what they \emph{mean}.}
+  \end{center}
+\end{frame}
+
+% LINEAR VS EXPONENTIAL
+\begin{frame}[t, plain]
+  \forestheader{Same first step, completely different futures}
+  \sectionlabel{Compare \& contrast}
+  \begin{center}
+    A $240$-gallon tank. \textbf{Leak A} loses $60$ gallons a day. \textbf{Leak B} loses $25\%$ a day.
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{|l|c|c|c|c|c|c|}
+  \hline
+  Day $d$ & $0$ & $1$ & $2$ & $3$ & $4$ & $14$ \\ \hline
+  $A(d)=240-60d$ & $240$ & $180$ & $120$ & $60$ & $0$ & $-600$ \\ \hline
+  $B(d)=240(0.75)^{d}$ & $240$ & $180$ & $135$ & $101.25$ & $75.94$ & $4.28$ \\ \hline
+  \end{tabular}
+  \end{center}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Day 1 is \textbf{identical} --- $25\%$ of $240$ \emph{is} $60$.
+        \item After that A keeps subtracting $60$; B takes $25\%$ of a shrinking number: $45$, $33.75$, $25.31$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Constant difference vs.\ constant ratio}
+        A hits zero on day 4 and then goes \emph{negative} --- impossible. B has an asymptote at $0$
+        and \textbf{never} gets there.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 7 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} build $y=ab^{x}$ from a table, from two points, and from a sentence --- translating
+  a percent rate $r$ into a factor $b=1\pm r$ --- then evaluate the model and interpret the result in
+  context.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{7.2} Graphing \& transformations --- $f(x)+k$ is the one that \emph{moves the asymptote}, and $2^{-x}=\left(\frac12\right)^{x}$ becomes the reflection rule.
+    \item \textbf{7.3} Solving with a common base.
+    \item \textbf{7.4} Compound interest, half-life, and $e$ --- ending on an equation we cannot yet solve.
+    \item \textbf{7.5} Exponential regression --- technology hands you $a$ and $b$; today is why that means anything.
+  \end{itemize}
+  \vspace{6pt}
+  \begin{center}
+    {\footnotesize Tonight's extension already hits the wall: $20{,}000(0.98)^{t}=12{,}000(1.05)^{t}$
+    has no common base. Read it off a table --- for now.}
+  \end{center}
 \end{frame}
 
 \end{document}

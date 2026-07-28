@@ -3,17 +3,156 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.1}{Homework}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: author the Homework. See references/components.md for the expected structure.
-\begin{notesbox}{Homework}
-\writelines{4}
+\begin{notesbox}{Practice}
+Show the two numbers ($a$ and $b$) for every model. Round money to the nearest cent and counts of
+living things down to a whole number.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{Percent and factor, both directions.}
+
+    \textbf{(a)} Write the factor $b$ for each description.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{@{}X l l X@{}}
+    \hline
+    \textbf{The sentence says\dots} & \textbf{Rate $r$} & \textbf{Grows or shrinks?} & \textbf{Factor $b$} \\
+    \hline
+    grows by $12\%$ each year & \blank{1.3cm} & \blank{1.7cm} & \blank{1.7cm} \\
+    decreases by $5\%$ each month & \blank{1.3cm} & \blank{1.7cm} & \blank{1.7cm} \\
+    loses $8\%$ of it each hour & \blank{1.3cm} & \blank{1.7cm} & \blank{1.7cm} \\
+    doubles each day & \blank{1.3cm} & \blank{1.7cm} & \blank{1.7cm} \\
+    increases by $0.75\%$ each year & \blank{1.3cm} & \blank{1.7cm} & \blank{1.7cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+    \textbf{(b)} Now go backwards. Each model is built --- describe it in words.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{@{}l X X X@{}}
+    \hline
+    \textbf{Model} & \textbf{Initial value} & \textbf{Percent rate} & \textbf{Increase or decrease?} \\
+    \hline
+    $y=300(1.09)^{t}$ & \blank{2.0cm} & \blank{2.0cm} & \blank{2.2cm} \\
+    $y=64(0.85)^{t}$ & \blank{2.0cm} & \blank{2.0cm} & \blank{2.2cm} \\
+    $y=1500(1.5)^{t}$ & \blank{2.0cm} & \blank{2.0cm} & \blank{2.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+  \item \textbf{From tables.} For each table, decide whether it can be modeled by $y=ab^{x}$. If it
+    can, give $a$, $b$, and the equation. If it cannot, say what family it belongs to and why.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+    A: $y$ & $6$ & $18$ & $54$ & $162$ & $486$ \\ \hline
+    B: $y$ & $160$ & $80$ & $40$ & $20$ & $10$ \\ \hline
+    C: $y$ & $2$ & $5$ & $8$ & $11$ & $14$ \\ \hline
+    \end{tabular}
+    \end{center}
+    A: \; $a=$ \blank{1.3cm} \quad $b=$ \blank{1.3cm} \quad $y=$ \blank{3.2cm} \\[3pt]
+    B: \; $a=$ \blank{1.3cm} \quad $b=$ \blank{1.3cm} \quad $y=$ \blank{3.2cm} \\[3pt]
+    C: \; \blank{9.0cm}
+
+  \item \textbf{From a graph.} The curve below is $y=ab^{x}$, with two points labeled.
+    \begin{center}
+    \begin{minipage}[c]{0.42\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-1}{6}{-1}{10}
+      \begin{scope}
+        \clip (-1,-1) rectangle (6,10);
+        \expcurve{8}{-0.693147}{-0.32}{6}
+      \end{scope}
+      \draw[navy, dashed, semithick] (-1,0)--(6,0);
+      \fill[charcoal] (0,8) circle (3pt) node[right, font=\scriptsize]{$(0,8)$};
+      \fill[charcoal] (3,1) circle (3pt) node[above right, font=\scriptsize]{$(3,1)$};
+    \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[c]{0.54\linewidth}
+    $a=$ \blank{1.8cm} \; (read it off the $y$-axis) \\[6pt]
+    Substituting $(3,1)$: \; $1=a\,b^{3}$, so $b^{3}=$ \blank{1.4cm} \\[6pt]
+    and $b=$ \blank{1.4cm}. \quad Growth or decay? \blank{1.8cm} \\[6pt]
+    $y=$ \blank{3.0cm} \\[6pt]
+    Range: \blank{2.2cm} \quad Asymptote: \blank{2.0cm}
+    \end{minipage}
+    \end{center}
+
+  \item \textbf{From stories.} Build each model, evaluate it, and interpret the result.
+
+    \textbf{(a)} A culture starts with $250$ bacteria cells and the count increases by $40\%$ every
+    hour. \\[3pt]
+    $C(t)=$ \blank{3.4cm} \quad $C(6)=$ \blank{3.0cm} $\approx$ \blank{2.0cm} cells \\[3pt]
+    What does $C(6)$ mean? \writeline
+
+    \vspace{4pt}
+    \textbf{(b)} A phone bought for \$$900$ loses $22\%$ of its value each year. \\[3pt]
+    $V(t)=$ \blank{3.4cm} \quad $V(4)=$ \blank{3.0cm} $\approx$ \blank{2.0cm} \\[3pt]
+    What does $V(4)$ mean? \writeline
+
+  \item \textbf{Error analysis.} For each student, name the error, say what their model
+    \emph{actually} describes, and write the correct model.
+
+    \textbf{(a)} ``A \$$18{,}000$ truck loses $15\%$ of its value each year.'' \\
+    \hspace*{1.2em} Jonah wrote $V(t) = 18{,}000(1.15)^{t}$. \writelines{2}
+
+    \textbf{(b)} ``A colony of $250$ bees grows $7\%$ each week.'' \\
+    \hspace*{1.2em} Priya wrote $P(w) = 250(0.07)^{w}$. \writelines{2}
+\end{enumerate}
 \end{notesbox}
+
+\begin{extensionbox}
+\textbf{Two towns, ten years.} Ashford has $20{,}000$ people and is \textbf{losing $2\%$} of its
+population each year. Brookvale has $12{,}000$ people and is \textbf{gaining $5\%$} each year.
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Year $t$ & $0$ & $2$ & $4$ & $6$ & $8$ & $10$ \\ \hline
+Ashford & $20{,}000$ & $19{,}208$ & $18{,}447$ & $17{,}717$ & $17{,}015$ & $16{,}341$ \\ \hline
+Brookvale & $12{,}000$ & $13{,}230$ & $14{,}586$ & $16{,}081$ & $17{,}730$ & $19{,}547$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Write both models, $A(t)$ and $B(t)$.
+  \item Verify one entry in each row of the table by evaluating your model.
+  \item Brookvale starts $8{,}000$ people behind. Between which two years in the table does it pass
+        Ashford? What tells you that from the table alone?
+  \item To find the crossing \emph{exactly} you would have to solve
+        $20{,}000(0.98)^{t} = 12{,}000(1.05)^{t}$. Try rewriting both sides with a common base ---
+        what goes wrong?
+  \item Ashford's model has horizontal asymptote $A=0$. What does that claim about the town, and how
+        far into the future would you trust this model? Explain.
+\end{enumerate}
+\writelines{6}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 7.2: Graphing Exponential Functions \& Transformations.} You can now
+build $y=ab^{x}$. Next you will move it: shift it, stretch it, and flip it, using the same
+transformation rules you have applied since Unit 2. One of them behaves differently here than
+anywhere else in the course --- adding $k$ to the outside, $f(x)+k$, is the only transformation that
+\emph{moves the horizontal asymptote}, and therefore the only one that changes the range. Also worth
+noticing today: $y=8\left(\frac12\right)^{x}$ in problem 3 could just as well have been written
+$y=8\cdot 2^{-x}$. In 7.2 that stops being a curiosity and becomes a rule --- reflecting an
+exponential across the $y$-axis turns growth into decay.
+\end{spiralbox}
 
 \end{document}

@@ -20,8 +20,8 @@
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
 > dirs, component skeletons, and the unit `tests/` + `test_keys/` are laid down.
-> **Lesson 7.0 is authored & building (2026-07-27)**; lessons 7.1–7.5 and the unit tests are still
-> skeletons.
+> **Lessons 7.0 (2026-07-27) and 7.1 (2026-07-28) are authored & building**; lessons 7.2–7.5 and
+> the unit tests are still skeletons.
 > **Unit 8 (Logarithmic Functions): scaffolded 2026-07-27; Lesson 8.0 authored & building** —
 > locked at **7 lessons (8.0–8.6)**. A standards audit found log properties and log equation-solving
 > have **no 2023 VA SOL home**; they are kept as full lessons anyway (8.3, 8.4), labelled
@@ -32,8 +32,9 @@
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Two units are now open.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
 > sequence (2026-07-27); Unit 6 has since closed. **Next actions, in priority order:
-> (1) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
-> which Lesson 7.0's homework and exit ticket already set up explicitly; **(2) continue Unit 8 at
+> (1) continue Unit 7 at Lesson 7.2** (graphing & transformations; $f(x)+k$ is the only
+> transformation that moves the asymptote), which Lesson 7.1's homework spiral and slide roadmap
+> already set up explicitly; **(2) continue Unit 8 at
 > Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
 > and 8.5 needs the $e$ introduced there — so Unit 7 should not fall far behind Unit 8.
@@ -70,7 +71,7 @@
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
 | 6 | Radical Functions | Radical / power | 8 | **Complete** |
-| 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0 done) |
+| 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0–7.1 done) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
 Units 2–8 each open with **Lesson X.0: Characteristics of ____ Functions**.
@@ -1601,6 +1602,43 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > includes an SOL-style MC item (range of $6\left(\frac13\right)^x$; distractors = closed bracket /
 > forgot the floor / decay-means-negative). `make -C unit07/lesson00 all` → EXIT 0 (student 15pp,
 > full 31pp).
+>
+> **Lesson 7.1 authored & builds (2026-07-28):** all components + keys + an 11-slide deck.
+> `make -C unit07/lesson01 all` → EXIT 0 (student 13pp, full 29pp); warm-up and exit ticket each fit
+> **exactly one page** blank *and* key, and notes/notes_key paginate identically at 4pp
+> (activity 3pp / key 4pp, homework 3pp / key 3pp, lesson plan 4pp). The §7 vocab-box fix is applied.
+> The lesson is organized around one sentence — **the base is the fraction you end up with, not the
+> percent that changed** — because the three errors students actually make are all violations of it:
+> $b=0.08$ for "up $8\%$" (percent-as-base), $b=1.15$ for "down $15\%$" (sign error), and
+> $b=0.12$ for "loses $12\%$". The Warm-Up earns the rule numerically before it is stated — a \$50
+> jacket worked *twice*, once by finding the change and once as a single multiplication, ending on
+> "the new price is ___% of the old price," so students say **$108\%$** before they ever see $1+r$.
+> Three build-sources are taught in the order table → story → two points, deliberately mirroring
+> **A2.F.1e**: the *same* form gets written from three different representations. From a table both
+> numbers are free ($a$ is the $x=0$ column, $b$ is 7.0's constant ratio); from a story the percent
+> must be translated; from two points, **dividing the two equations cancels $a$** and the leftover
+> exponent is the **gap** between the inputs (the part students drop), with the cube root pulled
+> straight from Unit 6. The Hook is two towns with the same population — Riverton "+300 people a
+> year" vs. Kellsboro "+4% a year" — which reactivates 7.0's add-vs-multiply fingerprint and asks
+> "$4\%$ *of what?*"; the teacher then writes $8000(0.04)^t$ on the board on purpose and lets
+> $P(1)=320$ kill it. **A2.F.2f is the assessed standard**: every model built is evaluated *and*
+> read back as a sentence (town $P(10)\approx16{,}127$; car $V(5)\approx\$12{,}666$; books
+> $V(3)\approx\$2940.10$; bacteria $C(6)\approx1882$; phone $V(4)\approx\$333.14$), and a bare
+> number is explicitly not an answer. Error analysis is a first-class item type here, in three
+> places (Activity Tier A's three-student deer herd, Homework 5's Jonah/Priya, ET distractors) and
+> always phrased as *what situation would this model be right for?* — because the sign error and the
+> percent-as-base error need different re-teaches. Activity Tier E Part 3 (a 240-gal tank losing
+> 60 gal/day vs. 25%/day, identical on day 1) is the linear-vs-exponential contrast in context and
+> revisits 7.0's asymptote: the linear model goes **negative** by day 14, the exponential one never
+> reaches 0. The homework extension (Ashford $20{,}000$ at $-2\%$ vs. Brookvale $12{,}000$ at $+5\%$)
+> locates the crossing between years 6 and 8 from a table and then **fails** to solve
+> $20{,}000(0.98)^t=12{,}000(1.05)^t$ for lack of a common base — **7.4's wall, arriving early on
+> purpose**; leave it standing and do not mention logarithms. All graphs pre-drawn via
+> `plot`+`\clip` as $a\,e^{(\ln b)x}$ (no sketch-from-scratch). Standards: **A2.F.2f** (primary),
+> **A2.F.1e** (three representations of one form), **A2.F.2b** (linear vs. exponential),
+> **A2.F.2a/h** (range and asymptote used to validate a model), and it is the stated prerequisite
+> for **A2.ST.2d/e** in 7.5 — the Activity's reverse-translation table is exactly the "technology
+> hands you $a$ and $b$; say what they mean" skill.
 
 - **7.0** Characteristics of exponential functions *(introduces: growth vs. decay and the constant
   multiplicative rate / **constant ratio**; revisits the horizontal asymptote as a **range
@@ -1615,6 +1653,7 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
   why $b>0$ and $b\ne1$; the percent↔factor translation ("up 8%" $\Rightarrow b=1.08$; "loses 15%"
   $\Rightarrow b=0.85$) with its two signature errors ($b=0.08$, and $b=1.15$ for a decrease);
   writing the equation from a table, from two points, from a story)* — A2.F.2f, feeding A2.ST.2d/e
+  — **authored & building 2026-07-28**
 - **7.2** Graphing exponential functions & transformations *($f(x)+k$ is the only transformation
   that **moves the asymptote** — and therefore the range; $kf(x)$ moves the $y$-intercept but not
   the HA; $f(x+k)$ and $f(kx)$; reflections carry real content — $f(-x)$ turns growth into decay
