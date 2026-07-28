@@ -15,6 +15,10 @@ General rules:
 - Student components preamble with `algebra2-article` + `algebra2-boxes`; keys with
   `algebra2-article` + `algebra2-key`.
 - Keep the **key structurally identical** to its blank — it is the blank with answers filled in.
+  **A component must come out the same number of pages on both sides.** Every worked solution goes
+  in a `work` block authored identically in the two files (see "The work rule" in
+  `references/conventions.md`); a prose answer that wraps to n lines gets `\writelines{n}` in the
+  blank. Build both and compare page counts before you call a component done.
 - Content is **standards-based and original**: source topic/sequencing from `COURSE_PLAN.md`
   and the standards the user supplies; never copy the `spec/` publisher reference (copyright).
 - Every component runs the loop **read/interpret → justify** ("what does this feature mean
@@ -176,6 +180,17 @@ test keys too):
   `itemize`.
 - `\ans` is text-mode: never put it inside `$...$` — wrap math fragments instead
   (`\ans{$\sqrt{n}$}`) — and never let it span a blank line.
-- Use the `teachernote` environment for teacher-only guidance (pacing, common errors).
-- Because the key matches the blank line-for-line, the two paginate identically — verify by
-  building both and comparing.
+- Use the `teachernote` environment for teacher-only guidance (pacing, common errors). It is the
+  one block with no counterpart in the blank, so it is the likeliest reason a key runs a page
+  long — keep it tight, and check the component's page count after adding one.
+- **Worked solutions are not `\ans{}` material.** An inline `$a=b \Rightarrow c=d \Rightarrow e=f$`
+  crammed into one cell violates the work rule and gives the student no room; use a `work` block,
+  identical in both files. See `references/conventions.md`.
+- Because the key matches the blank line-for-line, the two paginate identically — verify it:
+  ```bash
+  for c in warmup notes activity exit_ticket homework; do
+    echo -n "$c: "; pdfinfo target/UNIT/LESSON/$c/main.pdf | grep -c . >/dev/null
+    printf '%s vs %s\n' "$(pdfinfo target/UNIT/LESSON/$c/main.pdf | awk '/^Pages/{print $2}')" \
+                        "$(pdfinfo target/UNIT/LESSON/${c}_key/main.pdf | awk '/^Pages/{print $2}')"
+  done
+  ```

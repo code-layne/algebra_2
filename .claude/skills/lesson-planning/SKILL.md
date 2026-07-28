@@ -167,6 +167,12 @@ and a worked skeleton for every component and its key. Hold to these invariants:
   wrap every answer in `\ans{...}` (inline) or `\ansline{...}` (fills a write-line). Mirror the
   blank document exactly, then fill the blanks. Use `teachernote` for teacher-only guidance.
   There is **no** answer-key toggle — never try to build one.
+- **The work rule: a component must be the same number of pages blank and keyed.** Put every
+  worked solution in a `work` block — one statement per line, `&` before the relation so the whole
+  block aligns on it — authored **byte-identically in the blank and the key**. The blank reserves
+  the block's exact height and prints nothing; the key prints it. Never cram steps into one line
+  as `$a=b \Rightarrow c=d$`. Full spec in `references/conventions.md`; `unit01/lesson02` is the
+  reference implementation.
 - Use the project's box vocabulary (`skillbox`, `objectivebox`, `learningtargetbox`, `vocabbox`,
   `hookbox`, `notesbox`, `practicebox`, `scenariobox`, `tocbox`, etc.) and fill-in helpers
   (`\blank`, `\writeline`, `\termblanklong`, `\namedateperiod`) rather than reinventing layout.
@@ -235,7 +241,9 @@ branch, so the Step 0 sync always brings the latest state forward.
 - Structure comes from `COURSE_PLAN.md`; content is standards-based and **original** — the `spec/`
   All Things Algebra materials are copyrighted, used only as a topic/difficulty model.
 - Mirror a built Unit 1 lesson for tone and preamble; the live project overrides these docs.
-- Keep blank and key documents in lockstep — the key is the blank with answers filled in.
+- Keep blank and key documents in lockstep — the key is the blank with answers filled in, and it
+  must come out the **same number of pages**. Worked solutions live in shared `work` blocks (the
+  work rule); a key that runs long costs the student packet blank padding.
 - Function-family pedagogy: study a function type's behavior (Lesson 0) before manipulating it;
   build graph-reading fluency; no "sketch from scratch" questions.
 - Don't modify `shared/` or the Makefiles to make a lesson build; fix the lesson's `.tex`.

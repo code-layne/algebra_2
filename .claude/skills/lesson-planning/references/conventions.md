@@ -111,6 +111,45 @@ Titled student boxes (title is fixed by the environment unless it takes an argum
 | `tocbox` | "What's in This Packet" (cover) | — |
 | `remindbox` | "Keep in Mind" (cover / practice-test intro) | — |
 
+## The work rule — `\begin{work}` (from `-boxes`, visible under `-key`)
+
+**Any worked solution goes in a `work` block, and that block is byte-identical in the blank and
+the key.** The package swap decides only whether it is shipped: under `-boxes` the blank builds
+the box and emits a `\vphantom` of it (exact height, nothing on the page and nothing in the PDF's
+text layer); under `-key` the same box is printed in `keyred`. The two therefore *cannot* drift —
+which is what keeps a component the same length on both sides.
+
+```latex
+% notes/main.tex AND notes_key/main.tex — the same six lines in both files
+\begin{work}
+  3(x-2) &= 3x-5 \\
+    3x-6 &= 3x-5 \\
+      -6 &= -5
+\end{work}
+```
+
+Format, non-negotiable:
+
+- **One statement per line.** Never two steps on one row, and never an inline
+  `a=b \Rightarrow c=d` chain — that is the idiom this rule replaces.
+- **The `&` goes immediately before the relation**, so every relation in the block lands in one
+  column. This works for `=`, `<`, `>`, `\le`, `\ge` — including a line where the symbol reverses.
+- **Simplifying:** row 1 is the original expression, the relation, and the first simplification;
+  every later row starts at the `&=` and aligns to the one above.
+- **Solving:** one row per step, each aligned on its relation.
+
+Do not wrap a `work` block in `\[ \]`, `align`, or `equation` — it supplies its own display. It is
+set flush left (2em indent), not centered.
+
+**When it applies:** a task that asks for multi-step work. A table cell holding a single final
+answer is already the same size in both files — leave those as `\blank{}`/`\ans{}`. `work` blocks
+do not go inside table cells; if a table asks for real work, pull the items out of the table.
+
+`\workrowsep` (default `0pt`) adds leading between rows. It moves the blank and the key together,
+so raising it for handwriting room can never break the match.
+
+`unit01/lesson02` is the reference implementation.
+
 ## Answer-key macros (from `-key`)
 
 | Macro / env | Effect |
@@ -118,6 +157,12 @@ Titled student boxes (title is fixed by the environment unless it takes an argum
 | `\ans{text}` | Inline answer in bold `keyred`; use in place of a blank |
 | `\ansline{text}` | Bold `keyred` answer that fills a write-line with a dotted trail |
 | `teachernote` (env) | Red "Teacher Note" callout for teacher-only guidance |
+| `work` (env) | Worked steps — **defined in `-boxes`**, authored identically in both files; see "The work rule" |
+
+**`\ansline` is the other place lengths drift.** A `\writeline` in the blank is exactly one line;
+an `\ansline` whose prose wraps to four is three lines longer. When a key's prose answer runs long,
+give the blank `\writelines{n}` for the same n — the same principle as the work rule, applied by
+hand because prose cannot be measured from a shared body.
 
 **Key-authoring rule:** copy the blank component verbatim, then replace each blank/`\writeline`
 with `\ans{…}`/`\ansline{…}` and mark correct multiple-choice options, e.g.

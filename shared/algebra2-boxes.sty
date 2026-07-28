@@ -34,6 +34,74 @@
 % Apply every guard to the blank AND its _key file; they stay in lockstep.
 \newcommand{\boxguard}[1][16]{\Needspace{#1\baselineskip}}
 
+% ── \begin{work} … \end{work} — worked steps, one statement per line ──────────
+% THE WORK RULE: a worked solution takes the SAME vertical space in the blank as
+% it does in the key. The block below is authored ONCE and appears byte-identical
+% in both files; the package swap decides only whether it is shipped.
+%
+%   algebra2-boxes (blank) → builds the box, ships a \vphantom of it, so the
+%                            student gets exactly the room the answer needs and
+%                            the PDF contains nothing (no ink, no text layer).
+%   algebra2-key   (key)   → builds the same box and ships it, in keyred.
+%
+% Both branches build the box through the same code with the same formatting, so
+% the metrics cannot drift. That is what retires the blank/key page mismatch —
+% components stay the same length without anyone counting lines.
+%
+% Format rules (COURSE_PLAN.md §7 — "The work rule"):
+%   * ONE STATEMENT PER LINE. Never two steps on one row.
+%   * The `&` goes immediately BEFORE the relation, so every relation in the
+%     block lands in the same column.
+%   * SIMPLIFYING — the first row is the original expression, the relation, and
+%     the first simplification; each later row starts at the `&=` and aligns to
+%     the one above:
+%         \begin{work}
+%           3(x+2)-4x &= 3x+6-4x \\
+%                     &= -x+6
+%         \end{work}
+%   * SOLVING — one row per step, every row aligned on its relation sign
+%     (=, <, >, \le, \ge), including a reversal:
+%         \begin{work}
+%           -2x+1 &> 9    \\
+%             -2x &> 8    \\
+%               x &< -4
+%         \end{work}
+%
+% Put the block where the student would work — after the prompt, before the next
+% item. Do not wrap it in \[ \] or an align: it supplies its own display.
+\newsavebox{\alg@work@box}
+\newif\ifalg@workvisible \alg@workvisiblefalse
+% Indent of the block from the left margin. Worked steps are set flush left, not
+% centered like a display: the key should read as a column of work, and it is
+% where the student writes theirs in the blank.
+\newlength{\alg@workindent} \setlength{\alg@workindent}{2em}
+% Extra leading between rows, on top of amsmath's \jot. 0pt sets the rows at
+% typeset spacing — the key is compact and the blank reserves exactly that. Raise
+% it (8–12pt) if students need handwriting room; it moves the blank and the key
+% together, so the two can never drift apart.
+\newlength{\workrowsep} \setlength{\workrowsep}{0pt}
+
+\newenvironment{work}
+  {\par\addvspace{\abovedisplayskip}%
+   \begin{lrbox}{\alg@work@box}%
+   \begin{minipage}{\linewidth}%
+   \addtolength{\jot}{\workrowsep}%
+   \color{keyred}\boldmath\bfseries
+   \noindent\hspace*{\alg@workindent}%
+   $\displaystyle\begin{aligned}}
+  {\end{aligned}$%
+   \end{minipage}%
+   \end{lrbox}%
+   \noindent
+   \ifalg@workvisible
+     \usebox{\alg@work@box}%
+   \else
+     % \vphantom ships an empty \null box carrying only the height and depth —
+     % the content itself never reaches the page or the text layer.
+     \vphantom{\usebox{\alg@work@box}}%
+   \fi
+   \par\addvspace{\belowdisplayskip}}
+
 % ── Lesson-plan box ───────────────────────────────────────────────────────────
 % Usage: \begin{skillbox}[Title]{background-color} ... \end{skillbox}
 \newtcolorbox{skillbox}[2][]{

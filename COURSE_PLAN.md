@@ -351,6 +351,13 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > packets still come out **22pp** with components opening on **1, 3, 5, 13, 17, 19**; all four
 > lessons match (20 / 18 / 20 / 22pp each side) and unit student = unit key = **86pp**. Note the
 > tradeoff: a long key costs the *student* packet padding pages, so keep keys tight.
+>
+> **Lesson 1.2 is the work-rule pilot, 2026-07-28 (user request) — see §7.** Every worked solution
+> in 1.2 now lives in a `\begin{work}` block authored identically in the blank and the key. Notes
+> 5→6, activity 3→4, homework 3→4 (each matched on both sides); the packet is still **20pp** and its
+> blank pages went **6 → 3**. Remaining: the 1pp cover, the 1pp warm-up, and the exit ticket, whose
+> key runs 2pp because of its `teachernote`. The other three Unit 1 lessons are **not** converted —
+> 1.2 is the reference implementation to review before any sweep.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -2391,6 +2398,69 @@ pdfinfo target/compiled/unit01/lesson03_student.pdf | grep Pages && pdfinfo targ
 Unit-level `key` mirrors unit-level `student` piece for piece (unit cover, the equal-length lesson
 packets, then `sample_test_key` in place of `sample_test`). Only that trailing pair can differ in
 length, and it sits at the end.
+
+### The work rule — a component is the same length blank and keyed (2026-07-28)
+
+The blank-slot problem, attacked at the source instead of the packet. Padding has two causes:
+**parity** (an odd-length component) and **blank/key mismatch** (the key needs room the blank did
+not give). The mismatch was self-inflicted: blanks left a one-line `\blank{8.0cm}` where a
+four-step solve belongs, and keys crammed the solve back in as
+`\ans{$3x-6=x-6 \Rightarrow 2x=0 \Rightarrow x=0$}`. Neither side was honest about the space.
+
+**The rule (user decision, 2026-07-28):** every worked solution lives in a `\begin{work}` block
+that is **byte-identical in the blank and the key**. Under `algebra2-boxes` the blank builds the
+box and ships a `\vphantom` of it — exact height, nothing on the page, nothing in the PDF text
+layer. Under `algebra2-key` the same box prints in `keyred`. Same code path, same metrics, so the
+two cannot drift.
+
+Format, as specified: **one statement per line**; the `&` immediately before the relation so the
+whole block aligns on it; when *simplifying*, row 1 is the original expression, the relation, and
+the first simplification, and each later row starts at the `&=`; when *solving*, one row per step,
+every row aligned on its relation (`=`, `<`, `>`, `\le`, `\ge`), reversals included.
+
+```latex
+\begin{work}
+  x &= \frac{4\pm\sqrt{(-4)^2-4(1)(-7)}}{2(1)} \\
+    &= \frac{4\pm\sqrt{16+28}}{2} \\
+    &= \frac{4\pm\sqrt{44}}{2}    \\
+    &= 2\pm\sqrt{11}
+\end{work}
+```
+
+Scope: multi-step work only. A table cell holding one final answer is already the same size on
+both sides — leave those as `\blank{}`/`\ans{}`. `work` does not go inside a table cell; if a table
+asks for real work, pull those items out of the table (that is what the Lesson 1.2 Hook needed).
+`\workrowsep` (default `0pt`, i.e. typeset spacing exactly as specified) adds leading between rows
+and moves both sides together, so raising it for handwriting room cannot break the match.
+
+**Pilot: Lesson 1.2**, converted end to end (Hook, quadratic-formula chain, guided practice,
+Tier A Part 1, homework items 6 and 8, the whole exit ticket).
+
+| component | before (blank/key) | after | pads before → after |
+|---|---|---|---|
+| notes | 5 / 5 | 6 / 6 | 1 → 0 |
+| activity | 3 / 3 | 4 / 4 | 1 → 0 |
+| homework | 3 / 3 | 4 / 4 | 1 → 0 |
+| exit ticket | 1 / 1 | 1 / 2 | 1 → 1 |
+
+The packet is **still 20pp** and its blank pages went **6 → 3**: the components absorbed exactly
+the pages that used to be padding, and the room landed where students actually work. The three
+that remain are the 1pp cover, the 1pp warm-up (both structural parity), and the exit ticket.
+
+**Two things the pilot exposed.**
+
+1. **`teachernote` is now the main source of mismatch.** It is the one block with no counterpart in
+   the blank. Lesson 1.2's exit ticket is 1pp blank / 2pp keyed purely because of it, even after the
+   note was cut roughly in half — the items now fill page 1 on their own. Open question for the
+   user: trim notes to fit, or move teacher prose to the lesson plan (which is teacher-facing
+   already and outside the page-matched packet)?
+2. **`\ansline` prose drifts the same way**, without a shared body to measure. Homework item 8 came
+   out 3 / 4 until the blank's `\writelines{3}` was raised to `\writelines{5}` to match the key's
+   wrapped answer. Applied by hand; noted in `references/conventions.md`.
+
+Lesson 1.2 had no blank/key mismatch to begin with, so its gain came from the components growing
+into their padding. The lessons where the rule directly removes a mismatch are the ones already
+flagged — Unit 1 Lesson 1.3 (notes 6/7, activity 3/4), Unit 6 Lessons 6.3 and 6.4.
 
 ---
 
