@@ -257,6 +257,26 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **Unit 1 is complete (all lessons + assessments).**
 > *(Note: the in-place `xelatex` compile scan drops `main.pdf` into component **source** dirs, which
 > `lesson.mk` would then treat as prefab drop-ins — always `git clean -fdx unitXX` afterwards.)*
+>
+> **`unit_cover` header fixed 2026-07-28 (user report).** The banner header was rendering with its
+> top rows off the sheet: a 1.4in `forest` banner with `\vspace{-1.3in}` against the 0.6in top
+> margin started the text block **0.7in above the page edge**, so ``Algebra 2'' and
+> ``Unit 1: Foundations'' fell off entirely and only the ``Shepherd 2026--2027'' line survived as
+> the visible top row. The header text is now set inside a **tikz `\node` anchored to
+> `current page.north`** rather than positioned by negative vertical space, which makes overshoot
+> structurally impossible; banner is 1.70in with ~0.30in padding above and below the text, and the
+> body clears it with a positive `\vspace*{1.38in}`. Row order per user instruction: course name
+> **Algebra 2** (30pt white) → **Unit 1: Foundations** (19pt white) → **Shepherd 2026--2027**
+> (12.5pt `goldacc`, no longer the top row). `Algebra\kern0.10em\ 2` — at 30pt the ``a 2'' pair
+> kerns tight enough to read as ``Algebra2''. All text sits ≥0.75in from every paper edge;
+> cover is 1pp and `make -C unit01 student` → EXIT 0 with the fixed cover as page 1 of 63.
+> *(Reminder: `remember picture` overlays need **two** xelatex passes — a single pass drops the
+> banner fill entirely.)*
+>
+> **Known, not yet fixed:** the four **lesson** covers (`unit01/lesson0{0,1,2,3}/cover/main.tex`)
+> share the same defect at smaller scale — 0.9in banner with `\vspace{-0.8in}` starts their text
+> 0.2in above the page edge, clipping the ``Algebra 2: Shepherd'' line. Awaiting user go-ahead to
+> apply the same anchored-node fix.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)

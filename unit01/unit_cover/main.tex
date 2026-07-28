@@ -7,19 +7,21 @@
 \begin{document}
 
 % ── Full-bleed forest banner ────────────────────────────────────────────────────
+% The header text is set INSIDE a tikz node anchored to the page so it can never
+% drift above the paper edge (a negative \vspace here pushes it off the sheet).
 \begin{tikzpicture}[remember picture, overlay]
   \fill[forest] (current page.north west)
-    rectangle ([yshift=-1.4in]current page.north east);
+    rectangle ([yshift=-1.70in]current page.north east);
+  \node[anchor=north, align=center, inner sep=0pt, text width=\paperwidth]
+    at ([yshift=-0.30in]current page.north) {%
+      {\color{white}\bfseries\fontsize{30}{34}\selectfont Algebra\kern0.10em\ 2}\\[11pt]
+      {\color{white}\bfseries\fontsize{19}{23}\selectfont Unit 1: Foundations}\\[11pt]
+      {\color{goldacc}\bfseries\fontsize{12.5}{15}\selectfont Shepherd \quad 2026--2027}%
+    };
 \end{tikzpicture}
-\vspace{-1.3in}
 
-\begin{center}
-  {\color{white}\bfseries\fontsize{28}{34}\selectfont Algebra 2}\\[8pt]
-  {\color{goldacc}\bfseries\Large Shepherd \quad 2026--2027}\\[14pt]
-  {\color{white}\bfseries\LARGE Unit 1: Foundations}\\[4pt]
-\end{center}
-
-\vspace{0.30in}
+% Push the body clear of the 1.70in banner (page top margin is 0.60in).
+\vspace*{1.38in}
 
 % ── Unit overview ─────────────────────────────────────────────────────────────
 \begin{tcolorbox}[colback=forestbg,colframe=forest,boxrule=0.9pt,arc=2mm,
