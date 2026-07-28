@@ -1693,8 +1693,9 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > standard for lines only. All 6 lesson dirs `unit07/lesson00`–`lesson05` scaffolded with skeleton
 > `main.tex` for lesson plan + cover, warmup, notes, activity, exit_ticket, homework, slides, and
 > each `*_key`. Unit assessments scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`,
-> `sample_test{,_key}/`. Skeletons compile (`make -C unit07/lesson00 all` and
-> `make -C unit07/lesson04 all` → EXIT 0). **No content authored yet.**
+> `sample_test{,_key}/`. **Authored to date: 7.0, 7.1, 7.2, 7.3, and 7.4 — all building.** Remaining:
+> **7.5 (still skeleton)** and the four unit assessments, which should be written last so they can draw
+> on the whole unit.
 > **Standards coverage — note the shape:** there is **no `A2.EI` standard for exponential
 > equations** (the EI strand runs absolute value → quadratic → quadratic systems → rational →
 > radical → polynomial and stops), and **no `A2.EO` standard either**. Unit 7 therefore rests
@@ -1858,6 +1859,50 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > which is 7.4's opening move. Logarithms are never named. All graphs pre-drawn via `plot`+`\clip` (the
 > parabola plotted directly, exponentials as $a\,e^{(\ln b)x}$); the Hook's lead-in and its two graphs
 > are wrapped in a `minipage` so the page break cannot orphan the sentence from the picture.
+>
+> **Lesson 7.4 authored & builds (2026-07-28):** all components + keys + a 10-slide deck.
+> `make -C unit07/lesson04 all` → EXIT 0 (student 13pp, full 28pp); warm-up and exit ticket each fit
+> **exactly one page** blank *and* key, activity and homework paginate identically to their keys at 3pp,
+> and notes are 4pp against a 5pp key whose extra page is **teacher note only** (pp. 1–4 align). The §7
+> vocab-box fix is applied, and `\boxguard` is used before notes Sections 1–3 and `\boxguard[30]` before
+> Section 4 (which opens with a tikzpicture). The lesson is organized around one sentence — **the base is
+> what happens in one period, and the exponent counts the periods** — because compound interest,
+> continuous growth, half-life, and doubling are that one sentence four times, and because the day's two
+> signature errors are that sentence broken in half in opposite directions: $1000(1.08)^{20}$ keeps the
+> annual rate with the quarterly count, $1000(1.02)^{5}$ splits the rate but counts years. They appear as
+> **Renata and Miles** in Activity Tier A (with the closing question asking students to name the one
+> sentence both broke) and again in different models as **Tobias** (annual base, monthly count) and
+> **Marisol** ($t$ where $t/h$ belongs) in the homework, where the absurd sizes of the wrong answers
+> (\$81,969.36 from \$5000; $0.00034$ mg from 90 mg) are taught as the reasonableness check. The Hook is
+> four banks paying $6\%$ on \$1000 — \$1060.00 / \$1061.36 / \$1061.68 / \$1061.83 — printed rather than
+> computed, because the surprise is the *differences* ($+\$1.36$, $+\$0.32$, $+\$0.15$): compounding 365
+> times as often earns **\$1.83**. That shrinking is what makes $e$ necessary rather than decorative, and
+> $e$ is **earned numerically** from $\left(1+\frac1m\right)^{m}$ ($2.71692$, $2.71815$, $2.71827$ — "the
+> digits are freezing from the left") and named as *the number the chopping runs into*, never by a
+> formula; $A=Pe^{rt}$ is then read as a **ceiling**, and the \$2500-at-$4\%$-for-6-years thread
+> (\$3163.30 annually / \$3174.34 quarterly / \$3178.12 continuously) answers the Hook out loud —
+> compounding schedules are not where returns come from. Half-life arrives as *the same sentence on a
+> different clock*: the Warm-Up produces **1.5 halvings in 9 hours** before any formula, so $t/h$ is a
+> unit conversion rather than a rule, and the 80 mg tracer table saves $t=9$ ($28.28$ mg) for last as the
+> fractional-exponent beat — the direct descendant of 7.3's $x=\frac23$. **7.3's method is shown to
+> survive selectively**, which is a genuinely new structural point: $80\left(\frac12\right)^{t/6}=10$ has
+> a common base ($\frac18$) and $=25$ does not ($\frac5{16}$), so half-life questions often *are* 7.3
+> problems while interest questions essentially never are (Activity Tier E Part 3 pairs 75 mg against
+> 200 mg on one drug to isolate exactly this). The lesson ends on the promised **wall**:
+> $1000(1.05)^{t}=2000\Rightarrow(1.05)^{t}=2$, bracketed on a pre-drawn graph between $t=14$
+> (\$1979.93) and $t=15$ (\$2078.93) so the answer visibly **exists**, held against $2^{x}=-3$ which has
+> none — the 7.3 distinction, one day later, in a context students care about. The running list is now
+> five long ($2^{x}=5$, the coffee, the soda, the investment, and the homework's truck
+> $(0.82)^{t}=0.5$); logarithms are never named. Two beyond-computation beats: Tier E's **Rule of 72**
+> is taught as *calibration* (excellent at $8\%$, drifting at $5\%$ and $12\%$) with "why 72?" answered
+> only as "that is a logarithm question, and it is Unit 8"; and the homework Extension's depreciating
+> truck ends on the asymptote being **mathematically right and physically wrong**, deliberate set-up for
+> 7.5's extrapolation discussion. Every graph is pre-drawn on a money-sized grid (anisotropic tikz unit
+> vectors, `xstep`/`ystep` grids) with the curve plotted as $P\,e^{(\ln b)t}$. Standards:
+> **A2.F.2f** (primary), **A2.F.2a** and **A2.F.2h** (range and horizontal asymptote of every decay
+> model), **A2.F.1e** (verbal → equation → table/graph). Exit ticket includes an SOL-style MC item
+> (\$1500 at $4.8\%$ quarterly for 7 yr; the three distractors are *neither converted*, Miles's error,
+> and Renata's error, so the wrong answer names the re-teach).
 
 - **7.0** Characteristics of exponential functions *(introduces: growth vs. decay and the constant
   multiplicative rate / **constant ratio**; revisits the horizontal asymptote as a **range
@@ -1887,7 +1932,8 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
   annually → quarterly → daily, the limit that **produces $e$**, then $A=Pe^{rt}$; half-life
   $A_0(\frac12)^{t/h}$, doubling time, depreciation. Ends on a deliberate **wall**:
   $2000=1000(1.05)^t$ has no common base — readable off a graph, not yet solvable — which is Unit
-  8's opening move, the same device used at 4.2→4.3)* — A2.F.2f/a/h
+  8's opening move, the same device used at 4.2→4.3)* — A2.F.2f/a/h — **authored & building
+  2026-07-28**
 - **7.5** Exponential regression & choosing a model *(unit capstone: linear vs. quadratic vs.
   exponential from real data — 7.0's fingerprint test applied to a scatterplot — model from
   technology, interpret $a$ and $b$ in context, predict, and an "extrapolation breaks" beat that
@@ -1912,9 +1958,15 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > `\draw[navy, dashed, semithick]` convention. 7.0 also already makes the
 > **attained endpoint vs. never-reached asymptote** contrast against Unit 6, which is exactly the
 > distinction 8.0 carries into the log domain ($>0$, not $\ge 0$). No edits were needed.
-> **Still open for the later Unit 8 lessons:** 8.4 pays off the cliffhanger 7.4 is supposed to end on
-> ($2000=1000(1.05)^t$, no common base), and 8.5 needs the $e$ that 7.4 introduces — so **7.4 must be
-> authored before 8.4 or 8.5**.
+> **7.4 landed 2026-07-28, so 8.4 and 8.5 are unblocked.** 8.4's cliffhanger is now concrete and
+> five equations long — 7.4's notes and homework leave students with a posted list ($2^{x}=5$,
+> $132(0.85)^{t}=32$, $(0.9)^{t}=2.118$, $(1.05)^{t}=2$, $(0.82)^{t}=0.5$), every one of which has an
+> answer and none of which has a common base; **8.4 should take that exact list down, in that order.**
+> 8.5 can rely on $e$ being introduced numerically (the $\left(1+\frac1m\right)^{m}$ table, $e$ as *the
+> number the chopping runs into*, $A=Pe^{rt}$ as a **ceiling**) but **not** on any limit notation or
+> any use of $\ln$ — 7.4 never names logarithms. 7.4 also establishes the *base-is-one-period /
+> exponent-counts-periods* sentence and the half-life form $A_{0}\left(\frac12\right)^{t/h}$, which is
+> what 8.5 finally solves for $t$.
 >
 > The map moved twice in one day. It was first cut from a 6-lesson sketch to 5 after a standards
 > audit of `spec/algebra2-vdoe-sol.pdf` found **logarithms in only two 2023 VA SOL standards** —

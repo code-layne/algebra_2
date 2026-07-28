@@ -9,7 +9,7 @@
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
 \newcommand{\UnitNumberName}{Unit 7: Exponential Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 7.4: Modeling with Exponential Functions: Interest, Half-Life, and $e$}
+\newcommand{\LessonNumberName}{Lesson 7.4: Modeling --- Compound Interest, Half-Life, and $e$}
 
 \begin{document}
 \begin{center}
@@ -19,68 +19,221 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} TODO --- restate the lesson aim in student terms.
-    % For AP courses append the governing big idea, e.g. (Big Idea: VAR)
+    \textbf{Primary Objective:} Students can build, evaluate, and interpret exponential models drawn
+    from money and medicine --- compound interest $A=P\left(1+\frac{r}{n}\right)^{nt}$, continuous
+    growth $A=Pe^{rt}$, half-life $A_{0}\left(\frac12\right)^{t/h}$, and doubling
+    $A_{0}2^{\,t/d}$ --- and can say, for any of them, what one period is and how many periods the
+    exponent is counting. Students use the \textbf{range} and \textbf{horizontal asymptote} to state
+    what a decay model never does, and they leave able to distinguish an equation with \emph{no}
+    solution from one whose solution exists but is out of the reach of a common base.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL): A2.F.2f} (primary --- represent and interpret contextual
+    situations with exponential functions, including evaluating and explaining the meaning of the
+    result), with \textbf{A2.F.2a} (domain and range, including the range boundary a decay model never
+    crosses) and \textbf{A2.F.2h} (horizontal asymptotes --- the standard names exponential functions
+    explicitly). \textbf{A2.F.1e} is exercised throughout, since each model is written from a verbal
+    description and then read back from a table or a graph. \emph{Note:} as documented in 7.3, the
+    2023 standards contain no \texttt{A2.EI} strand for exponential equations, so the closing wall is
+    taught as \emph{modeling}, not as solving --- the equation is set up and located on a graph, and
+    left unsolved on purpose.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
-% Fill in the \item text ONLY. Two tabularx cells, one itemize each — do not re-nest or
-% re-balance the environments (that is the classic source of a stray \end{itemize}).
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: priority skill (AP Skill x.y for AP courses).
+  \item Identify $P$, $r$, $n$, and $t$ from a verbal description and substitute into $A=P\left(1+\frac{r}{n}\right)^{nt}$.
+  \item Convert an annual rate into a rate per period ($\frac{r}{n}$) and a time in years into a count of periods ($nt$).
+  \item Read the table $\left(1+\frac1m\right)^{m}$ as closing in on $e\approx2.71828$, and use $A=Pe^{rt}$.
+  \item Compare compounding schedules and quantify how little the extra chopping is worth.
+  \item Build $A_{0}\left(\frac12\right)^{t/h}$ from a half-life and $A_{0}2^{\,t/d}$ from a doubling time.
+  \item Evaluate at a time that is \emph{not} a whole number of periods, and check the answer's size against the table.
+  \item State the range and horizontal asymptote of a decay model and interpret them in context.
+  \item Set up the doubling equation, bracket its answer on a graph, and say why a common base cannot finish it.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item TODO: key understanding --- the ``why'' (paraphrased from EKs for AP courses).
+  \item \emph{The base is what happens in one period; the exponent counts the periods.} Every formula today is that sentence.
+  \item Nothing here is a new function family --- it is Lesson 7.1's $y=ab^{x}$ with a shorter ``one period.''
+  \item The rate is divided and the time is multiplied \textbf{together}. Doing one without the other is the whole error surface.
+  \item Compounding more often has a \textbf{ceiling}, and $e$ is that ceiling. This is why continuous models exist, not a way to earn more.
+  \item Half-life and interest are the same structure --- the clock changed, not the mathematics.
+  \item A fractional exponent means a time between two periods. It is normal, and Lesson 6.1 already licensed it.
+  \item ``It never reaches zero'' is a claim about the asymptote (7.0), and it is where the model stops describing reality.
+  \item Knowing exactly which questions this unit cannot answer is what makes Unit 8 necessary rather than arbitrary.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-    % TODO: key terms + definitions for this lesson.
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Principal, $P$} & The starting amount, before any interest. It is the $a$ of $y=ab^{x}$. \\
+\textbf{Compounding period} & The time between two moments when interest is added; $n$ of them fit in a year, so each earns $\frac{r}{n}$. \\
+\textbf{Compound interest} & \TallMath{A = P\left(1+\frac{r}{n}\right)^{nt}} \\
+\textbf{The number $e$} & $e\approx2.71828$, the value $\left(1+\frac1m\right)^{m}$ closes in on as $m$ grows. Irrational, like $\pi$. \\
+\textbf{Continuous compounding} & \TallMath{A = Pe^{\,rt}} --- the ceiling: no $n$ is left to increase. \\
+\textbf{Half-life $h$} & The time for half of a quantity to disappear: $A(t)=A_{0}\left(\frac12\right)^{t/h}$. \\
+\textbf{Doubling time $d$} & The time for a quantity to double: $A(t)=A_{0}\,2^{\,t/d}$. \\
+\textbf{Why $t/h$, not $t$} & The exponent must be counted in \emph{periods}. Dividing by $h$ converts hours (or years) into halvings. \\
+\textbf{Out of reach vs.\ nonexistent} & $(1.05)^{t}=2$ has an answer no common base can name; $2^{x}=-3$ has none at all. \\
+\end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-        \begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
-            Please see attached spiral review.  % TODO: list skills reviewed
-        \end{minipage}
-        &
-        \begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering
-            % TODO: spiral-review thumbnail. Authored warm-ups compile to
-            % target/, so leave this text-only unless you keep a source
-            % PDF in the warmup/ directory to embed.
-        \end{minipage}
-    \end{tabularx}
+    The Warm-Up rehearses exactly what today needs, in the order the lesson uses it. \textbf{(1)} A
+    $6\%$ annual rate split across $n=1,4,12$: rate per period, factor per period, and the number of
+    periods in five years. This is Lesson 7.1's percent-to-factor translation (\texttt{A2.F.2f}) with
+    one new column, and \emph{both} of the day's signature errors are the quarterly row done half-way.
+    Debrief it at the board and leave $0.015$, $1.015$, $20$ written where they will stay all period.
+    \textbf{(2)} Powers of $\frac12$, including $\left(\frac12\right)^{1/2}$ and
+    $\left(\frac12\right)^{1.5}$ (Unit 6 rational exponents), then the question that matters: how many
+    \emph{halvings} happen in 18 hours, and in 9 hours? The answer $1.5$ is the half-life exponent
+    arriving before the formula does --- do not resolve it algebraically, just point at the decimal
+    they already computed. \textbf{(3)} Lesson 7.3, twice: solve $2^{t}=32$ by common base, then look
+    at $(1.05)^{t}=2$ and say why Step 1 is impossible. Accept a short answer; Section 4 finishes it.
+    If a student says ``no solution,'' correct it immediately --- that distinction is the spine of the
+    last ten minutes.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    % TODO: the engaging entry question / scenario.
+    Four banks, printed on the page, all advertising $6\%$ on the same \$1000 for one year: Ashmore
+    compounds annually and pays \$1060.00; Bellhaven quarterly, \$1061.36; Corliss monthly, \$1061.68;
+    Dunmore daily, \$1061.83. \textbf{Do not compute these at the board} --- the surprise is not the
+    arithmetic, it is the differences. Ask: \textbf{``Dunmore stops and adds interest 365 times as often
+    as Ashmore. What does all that extra work earn you?''} The answer, \$1.83 over an entire year, lands
+    hard, because nearly every student predicts that daily compounding is dramatically better. Then make
+    them look at the pattern of gains: $+\$1.36$, then $+\$0.32$, then $+\$0.15$. \textbf{``Each extra
+    chop of the year buys less than the one before. Where does that stop?''} Close by taking a real
+    prediction and writing the guesses on the board: \textbf{is there a bank so aggressive --- compounding
+    every second, every instant --- that it doubles your money in a year, or is something stopping all of
+    them?} Section 2 settles it, and the answer has a name.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
-    % TODO: instructional walkthrough. Use \begin{multicols}{2} for density.
+\begin{multicols}{2}
+\textbf{1. Cutting the year into pieces.} Start from Lesson 7.1's $y=ab^{x}$ and change exactly one
+thing: ``one period'' no longer has to be a year. Build $\frac{r}{n}$ and $nt$ as a pair, never
+separately, then box $A=P\left(1+\frac{r}{n}\right)^{nt}$ and read it aloud as the sentence the whole
+lesson runs on: \emph{the base is what happens in one period, and the exponent counts the periods.}
+Work \$2500 at $4\%$ quarterly for 6 years line by line --- $P$, $r$, $n$, $t$, then $\frac{r}{n}=0.01$,
+then $nt=24$, then $A=\$3174.34$ --- and set it beside the annual answer, \$3163.30. The extra \$11.04
+is deliberately unimpressive; it is the Hook restated in a second context.
+
+\textbf{2. Where the gains stop.} Strip the money out and ask the cleanest version: \$1 at $100\%$ for
+a year, in $m$ pieces, is $\left(1+\frac1m\right)^{m}$. Fill the last three cells together and say what
+students can see --- the digits are freezing from the left. Name $e\approx2.71828$ as \emph{the number
+the chopping runs into}, not as a formula, and put it next to $\pi$: irrational, endless, and on the
+calculator. Then $A=Pe^{rt}$, with the observation that the $n$ is gone because there is nothing left to
+increase. Return to the worked example: continuously, \$2500 becomes \$3178.12 --- \$3.78 more than
+quarterly. That is the answer to the Hook, and it should be said as a sentence: \textbf{compounding
+schedules are not where returns come from.}
+
+\columnbreak
+
+\textbf{3. A different clock.} Half-life and doubling time are the same structure, so present them as
+a pair and let the sentence do the work again: the base says what one period does, and $t/h$ counts the
+periods. \textbf{Spend real time on why the exponent is $t/h$ and not $t$} --- it is a unit conversion,
+hours into halvings, and the Warm-Up already produced $1.5$. Fill the 80 mg tracer table across, saving
+$t=9$ for last: a fractional exponent, an answer of $28.28$ mg, and a size check against $40$ and $20$.
+Then the Lesson 7.0 question --- will it ever be gone? --- answered from the \textbf{asymptote} and the
+\textbf{range} $(0,80]$, never from arithmetic. Close the section with the green box: $10$ mg \emph{is}
+reachable by yesterday's method, because $10$ is $80$ halved three times.
+
+\textbf{4. The wall.} Ask the question every investor asks: when does \$1000 at $5\%$ double? Set up
+$1000(1.05)^{t}=2000$, divide to $(1.05)^{t}=2$, and go to the graph. The gold line crosses, between
+$t=14$ (\$1979.93) and $t=15$ (\$2078.93), so \textbf{the answer exists}. Then run Step 1 of Lesson 7.3
+and watch it fail: $2$ is not a power of $1.05$. Put that beside $2^{x}=-3$, which has no solution at
+all, and insist on the difference in words. Post the running list --- now five equations long. Do not
+name logarithms.
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-    % TODO: what to circulate and check for; cold-call prompts.
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item the annual rate kept as the base while the exponent is converted --- $1000(1.08)^{20}$ for a quarterly account; the tell is an absurd balance;
+  \item the rate split but the time not --- $1000(1.02)^{5}$; the tell is a balance barely above the principal;
+  \item $t$ used where $t/h$ belongs in a half-life model --- $90\left(\frac12\right)^{18}$ instead of $90\left(\frac12\right)^{18/6}$;
+  \item $r$ entered as a percent rather than a decimal ($n=4$, $r=8$), which is Lesson 7.1's error one unit later;
+  \item rounding the base or an intermediate power before the final step --- money answers drift by dollars;
+  \item distrusting a fractional number of half-lives and ``fixing'' $t/h=3.4$ to $3$;
+  \item answering ``the drug is gone'' or ``the truck is worthless'' without the asymptote --- the Unit 6 endpoint habit that 7.0 was built to break;
+  \item \textbf{answering ``no solution'' for $(1.05)^{t}=2$}; the correct statement is that the solution exists and today's method cannot reach it;
+  \item in Tier E, treating the Rule of 72 as exact rather than as an estimate calibrated near $8\%$.
+\end{itemize}
+Cold-call prompts: ``What is one period here?'' ``How many of them fit in the time you were given?''
+``Did you divide the rate \emph{and} multiply the time, or only one?'' ``Is that answer a reasonable
+size --- would \$5000 really become \$82{,}000 in four years?'' ``Does that equation have no answer, or
+an answer we can't reach yet? Those are different sentences.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-    % TODO: Tier R / Tier A / Tier E (mirror activity/).
+\textbf{The Base Is One Period. The Exponent Counts Periods.} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} A setup-before-you-solve table for \$2000 at $3\%$ over 10 years,
+annually versus quarterly (the gain is \$8.87 --- ask whether that matched the group's guess); a 600 mg
+medicine with a 12-hour half-life, filled across four halvings, closing on \emph{which feature of the
+graph says it never reaches zero}; and a three-row diagnostic in which students name \emph{what one
+period is} for a quarterly model, a half-life model, and a doubling model. \textbf{Check Part 3 first
+when you circulate} --- it predicts everything else on the page.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} \$5000 at $3.6\%$ for eight years, monthly (\$6665.91) against
+continuously (\$6668.79), with a written response to the classmate who expects continuous compounding to
+win by a lot; a 120 mg dose with a 5-hour half-life evaluated at $t=10$ and at $t=17$, where $3.4$
+halvings must be justified and size-checked against $15$ and $7.5$ mg; and the \textbf{error analysis}
+--- Renata writes $1000(1.08)^{20}$, Miles writes $1000(1.02)^{5}$. They are opposite halves of one
+mistake and need different re-teaches, which is exactly what the closing question asks students to
+articulate.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Three parts. \emph{The ceiling, at a real rate:}
+$\left(1+\frac{0.06}{n}\right)^{n}$ across $n=1,4,12,365$ and then $e^{0.06}=1.061837$, with ``how much
+more could compounding every \emph{second} pay?'' (about half a cent). \emph{The Rule of 72:} tested at
+$5\%$, $8\%$, and $12\%$ against the true doubling times --- it is excellent near $8\%$ and drifts on
+either side, which is calibration, not a formula. Students who ask \emph{why 72} are asking a logarithm
+question; say so and stop. \emph{Which can you finish?} Four modeling questions reduced to equations,
+two solvable by common base and two not --- including the same drug and half-life targeted at $75$ mg
+(works) and $200$ mg (does not).
+\end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-    % TODO: exit-ticket summary + assessment note (mirror exit_ticket/).
+\textbf{Exit Ticket} (independent, no notes), four items on one page: \textbf{(1)} \$4000 at $3\%$
+compounded monthly for 5 years, with the base ($1.0025$) and exponent ($60$) written before the answer
+(\$4646.47); \textbf{(2)} a 50 mg dose with a 4-day half-life --- write the model, evaluate at 12 days
+($6.25$ mg), and say from the \emph{asymptote} whether it ever reaches $0$; \textbf{(3)} an
+\textbf{SOL-style multiple-choice item} --- \$1500 at $4.8\%$ compounded quarterly for 7 years, with
+distractors $1500(1.048)^{7}$ (neither converted), $1500(1.012)^{7}$ (Miles's error), and
+$1500(1.048)^{28}$ (Renata's error) against the correct $1500(1.012)^{28}$, so the wrong answer names
+the re-teach; and \textbf{(4)} the wall: $(1.012)^{4t}=2$ cannot be finished with a common base ---
+\emph{does it still have an answer?} ``No'' is wrong, and it is the single most informative response on
+the page. Sort the collected tickets into \emph{got it / setup / asymptote / the wall}. The
+\emph{setup} pile needs practice, not re-teaching. A large \emph{wall} pile changes how 7.5 opens and
+must be fixed before Unit 8: five minutes on the Section 4 graph with the gold line visibly crossing.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-    % TODO: homework overview + extension + preview of next lesson (mirror homework/).
+\textbf{Homework:} four accounts at four compounding frequencies, with the base and exponent written
+before the balance (the daily row's exponent of $1460$ is the one to check); \$6000 at $4\%$ for ten
+years quarterly against continuously, whose \$17.77 gap must be \emph{explained}; a caffeine model
+(200 mg, 5-hour half-life) evaluated at a non-half-life time and size-checked against the table, then
+asked whether the caffeine is ever gone; a \textbf{graph read} of $800(1.06)^{t}$ against $y=1600$,
+where students bracket the doubling between years 11 and 12, write the equation, and say what stops
+Step 1; and \textbf{error analysis} repeating the day's two errors in two different models --- Tobias
+keeps an annual base with a monthly count, Marisol counts hours instead of halvings, and both absurd
+answers (\$81{,}969.36 from \$5000; $0.00034$ mg from 90 mg) are reasonableness checks students should
+have run themselves. \textbf{Extension:} a \$32{,}000 truck losing $18\%$ a year, where depreciation and
+half-life are revealed to be the same object --- the base is $0.82$ and not $0.18$, the ``half-life of a
+truck'' is $(0.82)^{t}=0.5$ (between years 3 and 4, no common base, fifth entry on the running list),
+and the model's asymptote says the truck is never worthless, which is mathematically right and
+physically wrong. That last beat is deliberate set-up for 7.5's extrapolation discussion.
+\textbf{Preview:} Lesson~7.5, \emph{Exponential Regression \& Choosing a Model} --- where nobody hands
+you the rate, and Lesson 7.0's fingerprint test decides the family before technology fits anything.
 \end{skillbox}
 \end{document}
