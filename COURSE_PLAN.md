@@ -2,12 +2,13 @@
 
 **Course:** Algebra 2: Shepherd · **School year:** 2026–2027
 
-> **Status:** **Unit 1 is being rewritten from scratch (started 2026-07-27)** as a review of
+> **Status:** **Unit 1 was rewritten from scratch (2026-07-27 → 2026-07-28)** as a review of
 > *Algebra 1*, organized by the Algebra 1 SOL domain areas and with every All Things Algebra
 > drop-in removed — 4 lessons (1.0–1.3), 13 authored work products each, plus its own tests.
-> **All four lessons (1.0–1.3) are complete and building** (all 13 work products each, 1.3 closed
-> out 2026-07-28); **only the four test files are still skeletons.** Details and the next actions
-> are in the Unit 1 block in §4. **Units 2, 3, 4, and 5 are content-complete** — every lesson
+> **Unit 1 closed out 2026-07-28**: all four lessons (1.0–1.3) authored & building, and the
+> **unit tests are now authored, built, and published** (practice + actual and both keys; the
+> practice pair dropped over the old ATA `sample_test/` + `sample_test_key/` PDFs). Nothing in
+> Unit 1 is a skeleton. Details are in the Unit 1 block in §4. **Units 2, 3, 4, and 5 are content-complete** — every lesson
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
 > unit tests (practice + actual and both keys, with the practice pair published to `sample_test/` +
 > `sample_test_key/`). **Unit 5 (Rational Functions) closed out 2026-07-27**: all 8 lessons 5.0–5.7
@@ -31,13 +32,10 @@
 > no-standard content is now handled the same way in both units. Full rationale in the Unit 8 status
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Two units are now open.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
-> sequence (2026-07-27); Unit 6 has since closed. **Next actions, in priority order:
-> (1) author the four Unit 1 test files** (`tests/{practice_test,actual_test}` and both keys) and
-> run `make -C unit01/tests drop` and `make -C unit01/test_keys drop` — this is the only thing
-> standing between Unit 1 and complete, now that 1.3 is done;
-> **(2) continue Unit 7 at Lesson 7.2** (graphing & transformations; $f(x)+k$ is the only
+> sequence (2026-07-27); Units 6 and 1 have since closed. **Next actions, in priority order:
+> (1) continue Unit 7 at Lesson 7.2** (graphing & transformations; $f(x)+k$ is the only
 > transformation that moves the asymptote), which Lesson 7.1's homework spiral and slide roadmap
-> already set up explicitly; **(3) continue Unit 8 at
+> already set up explicitly; **(2) continue Unit 8 at
 > Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
 > and 8.5 needs the $e$ introduced there — so Unit 7 should not fall far behind Unit 8.
@@ -68,7 +66,7 @@
 
 | Unit | Title | Function family | Lessons (incl. L0) | Status |
 |:---:|---|---|:---:|---|
-| 1 | Foundations: Algebra 1 Review | (review) | 4 (1.0–1.3) | **All 4 lessons done**; tests pending |
+| 1 | Foundations: Algebra 1 Review | (review) | 4 (1.0–1.3) | **Complete** |
 | 2 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
@@ -127,7 +125,7 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 
 ## 4. Unit-by-unit lesson breakdown
 
-### Unit 1 — Foundations: Algebra 1 Review *(being rewritten — in progress)*
+### Unit 1 — Foundations: Algebra 1 Review *(complete)*
 
 > **Full rewrite started 2026-07-27**, replacing the original 3-lesson Unit 1. Two things changed.
 > **(1) The unit is now organized by the three 2023 VA SOL *Algebra 1* domain areas**, with a
@@ -228,12 +226,37 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > distractors break the sign of the slope, the sign of the intercept, and rise-vs-run respectively.
 > *(1.3's cover follows 1.2's fix — **`ltablex` is not loaded** — and comes out at one page.)*
 > **All four Unit 1 lessons (1.0–1.3) are now authored & building.**
-> **The four test files are still skeletons.**
-> **Next actions, in order: (1) author the four test files**
-> and run both `drop` targets to replace the ATA sample-test PDFs; **(2)** full compile scan of
-> `unit01`, then re-verify the one-page rule on all four warm-ups and exit tickets.
+> **Unit 1 tests authored & build (2026-07-28):** `tests/practice_test` (5pp) + `tests/actual_test`
+> (5pp) and their keys `test_keys/practice_test_key` (5pp) + `test_keys/actual_test_key` (5pp) —
+> every key paginates to the same length as its blank. Four parts each — A Vocabulary (8-term
+> matching, 8 pts), B Multiple Choice (6 items incl. an SOL-style equation-from-a-graph item,
+> 12 pts), C Short Answer & Computation (8 items, 40 pts), D Extended Response (2 justify items,
+> 12 pts) — drawing across all four lessons: rational vs. irrational and property-naming with a
+> closure **counterexample** (1.0); translate/evaluate with $|\cdot|$, $\sqrt{\ }$, $\sqrt[3]{\ }$,
+> laws of exponents, polynomial $+/-/\times$, **factor completely**, radicals ↔ rational exponents
+> (1.1); multistep linear equations justified property-by-property, the **one / none / infinitely
+> many** classification, literal equations, an inequality with the flip graphed on a pre-drawn
+> number line, and quadratics by factoring + zero product property / square roots / the quadratic
+> formula with the **discriminant** used as a predictor (1.2); and a pre-drawn line read for
+> $g(a)$, the **zero** ($=$ solution of $g(x)=0$ $=$ $x$-intercept), slope, intercepts, equation,
+> increasing/decreasing, domain, and parallel/perpendicular lines (1.3). Part D is the unit's two
+> closing ideas: **the same six questions asked of three families** (identify linear / quadratic /
+> exponential from tables by constant difference, constant *second* difference, constant ratio,
+> then show the three trade places, so ``which is bigger'' needs a *where*) and a two-price
+> **modeling** item whose break-even is solved with each property of equality named, verified in
+> both functions, and pushed into an **identity** ($12v+40=12v+40$) to force the
+> one/none/infinitely-many distinction into context. Nothing is sketched from scratch — the line
+> and the number line are pre-drawn. Practice and actual are parallel forms (same structure,
+> different numbers, contexts, and vocabulary letters). Part D sits on its own page in the blanks
+> via a `\newpage`; the keys omit it so both documents come out at 5pp.
+> `make -C unit01/tests all` and `make -C unit01/test_keys all` → EXIT 0; practice test + key
+> published to `sample_test/` and `sample_test_key/` via the `drop` targets, replacing the ATA PDFs.
+> **Verified 2026-07-28:** full in-place `xelatex` scan of every `unit01/**/main.tex` → zero
+> failures; all four warm-ups and all four exit tickets are exactly one page in both blank and key;
+> `make -C unit01 student full` → EXIT 0 (unit student 63pp, unit full 119pp).
+> **Unit 1 is complete (all lessons + assessments).**
 > *(Note: the in-place `xelatex` compile scan drops `main.pdf` into component **source** dirs, which
-> `lesson.mk` would then treat as prefab drop-ins — always `git clean -f unitXX` afterwards.)*
+> `lesson.mk` would then treat as prefab drop-ins — always `git clean -fdx unitXX` afterwards.)*
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)

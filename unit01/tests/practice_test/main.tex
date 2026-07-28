@@ -1,7 +1,28 @@
-%! Unit 1: TODO: Unit Title — Summative Assessment — Practice Test --- Study Copy (blank)
+%! Unit 1: Foundations --- Algebra 1 Review — Summative Assessment — Practice Test --- Study Copy (blank)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
+
+% Pre-drawn coordinate grid; #1 receives the plotted line and any overlay.
+\newcommand{\gridplot}[1]{%
+  \begin{tikzpicture}[x=0.30cm, y=0.19cm]
+    \draw[step=1, linegray!45, very thin] (-5,-7) grid (5,7);
+    \draw[->, charcoal, thick] (-5.4,0) -- (5.4,0) node[right, font=\scriptsize] {$x$};
+    \draw[->, charcoal, thick] (0,-7.4) -- (0,7.4) node[above, font=\scriptsize] {$y$};
+    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    \foreach \t in {-6,-4,-2,2,4,6} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
+% Pre-drawn number line from -6 to 6; #1 receives the graphed solution.
+\newcommand{\numline}[1]{%
+  \begin{tikzpicture}[x=0.55cm, y=0.55cm]
+    \draw[<->, charcoal, thick] (-6.7,0) -- (6.7,0);
+    \foreach \t in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
+      \draw[charcoal] (\t,-0.16) -- (\t,0.16);
+      \node[below=1pt, font=\tiny] at (\t,-0.16) {$\t$};}
+    #1
+  \end{tikzpicture}}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -11,7 +32,7 @@
 
 \begin{document}
 
-\pageheader{Unit 1: TODO: Unit Title}{Practice Test --- Study Copy}
+\pageheader{Unit 1: Foundations --- Algebra 1 Review}{Practice Test --- Study Copy}
 \namedateperiod
 
 \vspace{0.10in}
@@ -23,16 +44,244 @@ with no notes, then check your answers against the key.
 \end{remindbox}
 
 % ======================================================================
-\parthead{Part A --- Vocabulary}
-% TODO: matching / fill-in vocabulary items for this unit.
+\parthead{Part A --- Vocabulary (8 pts)}
+Write the letter of the best description next to each term.
 
-\parthead{Part B --- Multiple Choice}
-% TODO: multiple-choice items (concept checks); an SOL-style MC item fits well here.
+\vspace{4pt}
+\noindent
+\begin{minipage}[t]{0.34\textwidth}
+\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
+  \item Counterexample \blank{1.2cm}
+  \item Closure \blank{1.2cm}
+  \item Factor completely \blank{1.2cm}
+  \item Literal equation \blank{1.2cm}
+  \item Identity \blank{1.2cm}
+  \item Discriminant \blank{1.2cm}
+  \item Zero of a function \blank{1.2cm}
+  \item Rate of change \blank{1.2cm}
+\end{enumerate}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.63\textwidth}
+\small
+\begin{description}[leftmargin=1.4em, itemsep=3pt]
+  \item[(A)] The number $b^2-4ac$, which counts a quadratic's real solutions \emph{before} you solve it.
+  \item[(B)] An equation true for every real number, so its solution set is all real numbers.
+  \item[(C)] One example that proves a general claim false; no number of successes can replace it.
+  \item[(D)] The property that performing an operation on members of a set always lands you back inside that set.
+  \item[(E)] An equation with more than one letter, solved for one letter in terms of the others.
+  \item[(F)] To rewrite an expression as a product --- GCF first --- until no factor breaks down further over the integers.
+  \item[(G)] The constant ratio of change in output to change in input for a linear function; the slope.
+  \item[(H)] An input whose output is $0$; also a solution of $f(x)=0$ and an $x$-intercept of the graph.
+\end{description}
+\end{minipage}
 
-\parthead{Part C --- Short Answer \& Computation}
-% TODO: computation items; leave \vspace work room after each.
+% ======================================================================
+\parthead{Part B --- Multiple Choice (12 pts)}
+Circle the best answer.
 
-\parthead{Part D --- Extended Response}
-% TODO: one or two interpret/justify items ("what does this mean, and how do you know?").
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item Which property justifies the step $5(x-3)=5x-15$?
+    \\[3pt]\hspace*{1.2em} (A) Commutative property of multiplication
+    \hspace{0.7cm} (B) Distributive property
+    \\[2pt]\hspace*{1.2em} (C) Associative property of multiplication
+    \hspace{0.7cm} (D) Multiplicative identity
+  \item Simplified with no negative exponents, $\dfrac{18a^5b^{-3}}{6a^2b}$ is
+    \hfill (A) $\dfrac{3a^3}{b^4}$ \quad (B) $\dfrac{3a^3}{b^2}$ \quad (C) $3a^3b^4$ \quad (D) $\dfrac{12a^3}{b^4}$
+  \item The solution of $-4x+9\ge 25$ is
+    \hfill (A) $x\ge -4$ \quad (B) $x\le -4$ \quad (C) $x\le 4$ \quad (D) $x\ge 4$
+  \item How many \emph{real} solutions does $2x^2-3x+5=0$ have?
+    \hfill (A) two \quad (B) one \quad (C) none \quad (D) infinitely many
+  \item Which relation is \emph{not} a function?
+    \\[3pt]\hspace*{1.2em} (A) $\{(-3,1),(0,1),(2,1),(5,1)\}$
+    \hspace{0.9cm} (B) $\{(1,-3),(1,0),(2,5)\}$
+    \\[2pt]\hspace*{1.2em} (C) $\{(-2,4),(-1,1),(0,0),(1,1)\}$
+    \hspace{0.9cm} (D) $y=3x-7$
+  \item \textbf{SOL-style.} Which equation represents the line shown?
+    \begin{center}
+    \begin{tabular}{@{}c l@{}}
+    \gridplot{\draw[forest, very thick, domain=-4.4:5, smooth, variable=\x] plot ({\x},{(2/3)*\x-2});}
+    &
+    \begin{minipage}[c]{0.46\linewidth}
+    \begin{enumerate}[label=(\Alph*), leftmargin=1.7em, itemsep=3pt]
+      \item $y=\tfrac32 x-2$
+      \item $y=\tfrac23 x-2$
+      \item $y=-\tfrac23 x-2$
+      \item $y=\tfrac23 x+2$
+    \end{enumerate}
+    \end{minipage}
+    \\
+    \end{tabular}
+    \end{center}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part C --- Short Answer \& Computation (40 pts)}
+Show your work. A wrong answer with a right idea can still earn credit.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Numbers and justification.}
+        \\[4pt]
+        (a) Label each number \textbf{R} (rational) or \textbf{I} (irrational).
+        \\[3pt]
+        \hspace*{1.2em}$\sqrt{49}$ \blank{1.0cm} \quad $\sqrt{7}$ \blank{1.0cm} \quad
+        $-\tfrac58$ \blank{1.0cm} \quad $0.\overline{3}$ \blank{1.0cm} \quad $\pi$ \blank{1.0cm}
+        \\[4pt]
+        (b) Name the property that justifies each step.
+        \\[3pt]
+        \hspace*{1.2em}$2(x+5)=2x+10$ \blank{4.6cm}
+        \\[3pt]
+        \hspace*{1.2em}$2x+10-10=14-10$ \blank{4.6cm}
+        \\[3pt]
+        \hspace*{1.2em}$3+x=x+3$ \blank{4.6cm}
+        \\[4pt]
+        (c) ``The set of integers is closed under division.'' Disprove it.
+        \\[2pt] \blank{11.0cm}
+
+  \item \textbf{Translate and evaluate.}
+        \\[4pt]
+        (a) Write an expression for ``seven less than four times a number $n$.'' \blank{3.2cm}
+        \\[4pt]
+        (b) Evaluate $\dfrac{|a-b|}{2}+\sqrt{c}$ \; for $a=-3$, $b=5$, $c=16$.
+        \vspace{1.5cm}
+        \\
+        (c) Evaluate $\sqrt[3]{x}-2y$ \; for $x=-27$, $y=\tfrac12$.
+        \vspace{1.4cm}
+
+  \item \textbf{Exponents and polynomial operations.}
+        \\[6pt]
+        (a) $(3x^2y^4)(-2x^5y)$ \hspace{2.0cm} (b) $\dfrac{20p^6q^2}{5p^6q^5}$ \; (no negative exponents)
+        \vspace{1.9cm}
+        \\
+        (c) $(2x-5)(3x+4)$ \hspace{2.2cm} (d) $(4x^2-x+6)-(x^2+3x-2)$
+        \vspace{1.9cm}
+
+  \item \textbf{Factor completely.} GCF first, every time.
+        \\[6pt]
+        (a) $3x^2-27$ \hspace{2.7cm} (b) $x^2-2x-3$
+        \vspace{1.8cm}
+        \\
+        (c) $2x^2+11x+12$ \hspace{2.0cm} (d) $4x^3-12x^2+8x$
+        \vspace{2.0cm}
+
+  \item \textbf{Radicals and rational exponents.}
+        \\[4pt]
+        (a) $\sqrt{50}=$ \blank{2.2cm} \hspace{1.4cm}
+        (b) $\sqrt[3]{40}=$ \blank{2.2cm}
+        \\[4pt]
+        (c) Write $\sqrt{x^3}$ with a rational exponent. \blank{2.6cm}
+        \\[4pt]
+        (d) Write $8^{1/3}$ as a radical, then evaluate it. \blank{4.0cm}
+        \\[4pt]
+        (e) $\sqrt{12}+\sqrt{27}=$
+        \vspace{1.4cm}
+
+  \item \textbf{Linear equations and inequalities.}
+        \\[4pt]
+        (a) Solve $3(2x-4)=4x+2$.
+        \vspace{1.7cm}
+        \\
+        (b) Classify each solution set as \textbf{one solution}, \textbf{no solution}, or
+        \textbf{infinitely many}. You should not need to finish solving.
+        \\[3pt]
+        \hspace*{1.2em}$5x+3=5x-8$ \blank{3.6cm} \hspace{0.8cm}
+        $2(x+6)=2x+12$ \blank{3.6cm}
+        \\[4pt]
+        (c) Solve $A=\tfrac12 bh$ for $h$. \blank{3.4cm}
+        \\[4pt]
+        (d) Solve $-2x+1<9$, then graph the solution on the number line.
+        \\[2pt] \hspace*{1.2em}$x$ \blank{2.6cm}
+        \begin{center}\numline{}\end{center}
+
+  \item \textbf{Quadratic equations.}
+        \\[6pt]
+        (a) Solve by factoring: $x^2-2x-3=0$
+        \vspace{1.8cm}
+        \\
+        (b) Solve by square roots: $(x+1)^2=49$
+        \vspace{1.8cm}
+        \\
+        (c) Solve with the quadratic formula: $x^2+4x-6=0$ \; (exact answer)
+        \vspace{2.3cm}
+        \\
+        (d) \emph{Without solving}, use the discriminant to say how many real solutions
+        $9x^2-12x+4=0$ has. \blank{3.0cm}
+        \\[2pt] \hspace*{1.2em}Discriminant: \blank{3.0cm}
+
+  \item \textbf{Read the graph.} The linear function $g$ is graphed below; each gridline is one unit.
+        \begin{center}
+        \gridplot{\draw[forest, very thick, domain=-5:5, smooth, variable=\x] plot ({\x},{-0.5*\x+2});}
+        \end{center}
+        (a) $g(-2)=$ \blank{1.8cm} \hspace{1.2cm}
+        (b) Solve $g(x)=0$: \; $x=$ \blank{1.8cm}
+        \\[4pt]
+        (c) That number in (b) is called the \blank{2.6cm} of $g$, and on the graph it is the
+        point \blank{2.2cm}.
+        \\[4pt]
+        (d) Slope: \blank{1.8cm}; \quad $y$-intercept: \blank{2.0cm}; \quad
+        equation of $g$: \blank{3.2cm}
+        \\[4pt]
+        (e) Is $g$ increasing or decreasing? \blank{2.6cm} \quad Domain: \blank{2.4cm}
+        \\[4pt]
+        (f) Write the equation of the line through $(0,-3)$ \textbf{parallel} to $g$
+        \blank{3.2cm}, and the line through $(0,2)$ \textbf{perpendicular} to $g$
+        \blank{3.2cm}.
+\end{enumerate}
+
+% ======================================================================
+\newpage
+\parthead{Part D --- Extended Response (12 pts)}
+Explain your reasoning in full sentences.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item \textbf{Three families, six questions.} Each table below is generated by a linear, a
+        quadratic, or an exponential rule.
+        \begin{center}
+        \renewcommand{\arraystretch}{1.25}
+        \begin{tabular}{@{}c@{\hspace{1.1cm}}c@{\hspace{1.1cm}}c@{}}
+        \begin{tabular}{@{}c|c@{}}
+          $x$ & $A(x)$ \\ \hline
+          $0$ & $5$ \\ $1$ & $8$ \\ $2$ & $11$ \\ $3$ & $14$ \\
+        \end{tabular}
+        &
+        \begin{tabular}{@{}c|c@{}}
+          $x$ & $B(x)$ \\ \hline
+          $0$ & $3$ \\ $1$ & $6$ \\ $2$ & $12$ \\ $3$ & $24$ \\
+        \end{tabular}
+        &
+        \begin{tabular}{@{}c|c@{}}
+          $x$ & $C(x)$ \\ \hline
+          $0$ & $1$ \\ $1$ & $2$ \\ $2$ & $5$ \\ $3$ & $10$ \\
+        \end{tabular}
+        \\
+        \end{tabular}
+        \end{center}
+        \textbf{(a)} Name the family of each table and give the numerical evidence --- constant
+        difference, constant \emph{second} difference, or constant ratio.
+        \textbf{(b)} Write a rule for each function.
+        \textbf{(c)} Which function is largest at $x=1$? At $x=5$? Show the values.
+        \textbf{(d)} A classmate says ``$B$ is just the biggest one.'' Use your answers to (c) to
+        explain why ``which is bigger'' is not a fair question until someone says \emph{where}.
+        \textbf{(e)} If $B$ modeled a population of bacteria in hours, what domain would make sense,
+        and why is that narrower than the domain of the rule by itself?
+        \vspace{5.6cm}
+
+  \item \textbf{Modeling and solution sets.} Two climbing gyms price a day pass differently.
+        \\[3pt]
+        \hspace*{1.2em}\textbf{Summit:} a one-time \$40 membership fee, then \$12 per visit.
+        \\[2pt]
+        \hspace*{1.2em}\textbf{Basecamp:} no fee, \$22 per visit.
+        \\[4pt]
+        \textbf{(a)} Write a function for the total cost at each gym after $v$ visits.
+        \textbf{(b)} Find the number of visits at which the two costs are equal. Show every step,
+        and name the property of equality that justifies each one.
+        \textbf{(c)} Verify your answer by substituting it into \emph{both} functions.
+        \textbf{(d)} Which gym is cheaper for $2$ visits? For $10$ visits? Give the costs.
+        \textbf{(e)} Suppose Basecamp changed its pricing to a \$40 fee plus \$12 per visit. Setting
+        the two costs equal would give $12v+40=12v+40$. What is the solution set, what is that kind
+        of equation called, and what does it mean about the two gyms?
+        \textbf{(f)} What domain makes sense for $v$ in this situation, and why?
+        \vspace{5.4cm}
+\end{enumerate}
 
 \end{document}
