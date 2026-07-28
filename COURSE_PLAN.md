@@ -21,8 +21,11 @@
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
 > dirs, component skeletons, and the unit `tests/` + `test_keys/` are laid down.
-> **Lessons 7.0 (2026-07-27), 7.1 and 7.2 (2026-07-28) are authored & building**; lessons 7.3–7.5 and
-> the unit tests are still skeletons.
+> **Lessons 7.0 (2026-07-27), 7.1, 7.2 and 7.3 (2026-07-28) are authored & building**; lessons 7.4–7.5
+> and the unit tests are still skeletons. **7.3 is the first no-SOL-standard lesson authored in the
+> course**, and it set the pattern the Unit 8 twins (8.3, 8.4) must follow: the standards line reads
+> ``none --- beyond-SOL / precalculus prep,'' and the exit ticket carries an **ordinary** multiple-choice
+> item rather than the SOL-style item used in 7.0–7.2.
 > **Unit 8 (Logarithmic Functions): scaffolded 2026-07-27; Lesson 8.0 authored & building** —
 > locked at **7 lessons (8.0–8.6)**. A standards audit found log properties and log equation-solving
 > have **no 2023 VA SOL home**; they are kept as full lessons anyway (8.3, 8.4), labelled
@@ -33,10 +36,11 @@
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Two units are now open.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
 > sequence (2026-07-27); Units 6 and 1 have since closed. **Next actions, in priority order:
-> (1) continue Unit 7 at Lesson 7.3** (solving with a common base), which Lesson 7.2's homework
-> spiral, exit-ticket sort, and slide roadmap all set up explicitly — 7.2's matching item leaves
-> two graphs crossing at $x=2$, i.e. $2^{x}=4$, which is 7.3's opening equation; **(2) continue Unit 8 at
-> Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
+> (1) continue Unit 7 at Lesson 7.4** (compound interest, half-life, and $e$), which now carries four
+> promised-but-unsolved equations forward — $2^{x}=5$ and $1000(1.05)^{t}=2000$ from 7.3, plus 7.2's
+> coffee $132(0.85)^{t}=32$ and soda $(0.9)^{t}=2.118$ — and which **8.4 and 8.5 both depend on**;
+> **(2) continue Unit 8 at Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same
+> way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
 > and 8.5 needs the $e$ introduced there — so Unit 7 should not fall far behind Unit 8.
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
@@ -1797,6 +1801,47 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **A2.F.2a** (horizontal asymptote and range — the measure applied to every item on every page).
 > Exit ticket includes an SOL-style MC item (range of $3(2)^{x}-6$; distractors = bracket error /
 > ignored the shift / sign of $k$ backwards).
+>
+> **Lesson 7.3 authored & builds (2026-07-28):** all components + keys + a 10-slide deck.
+> `make -C unit07/lesson03 all` → EXIT 0 (student 13pp, full 27pp); warm-up and exit ticket each fit
+> **exactly one page** blank *and* key, and notes (4pp), activity (3pp) and homework (3pp) each
+> paginate identically to their keys. The §7 vocab-box fix is applied. **This is the course's first
+> no-standard lesson, and it establishes the house pattern for 8.3 and 8.4:** the Primary Objective box
+> states **``Standards (2023 VA SOL): none --- beyond-SOL / precalculus prep''** with the audit
+> reasoning inline (no `A2.EI` strand for exponential equations, no `A2.EO` standard either), names the
+> two standards merely *exercised* rather than claimed (**A2.EO.2c** supplies every Step-1 rewrite,
+> **A2.F.2a** is what rules solutions out), and the exit ticket deliberately carries an **ordinary**
+> multiple-choice item, with a note in the plan saying why it is not SOL-style.
+> The lesson is organized around one sentence — **you may drop the base because an exponential never
+> uses the same output twice** — which converts the one-to-one property from a rule into a consequence
+> of Lesson 7.0's *no turning points*. The Hook is the whole lesson in one picture: $y=x^{2}$ and
+> $y=2^{x}$ with the **same** gold line $y=4$ across both, two crossings against one, so that $x=\pm2$
+> versus $x=2$ is explained by shape before any algebra — and the Unit 3 $\pm$ reflex is named and
+> refused on the spot. Section 1 then pays off a debt from 7.1: students accepted $b>0$, $b\neq1$ as a
+> rule about *models*, and $1^{5}=1^{9}$ shows those are exactly the conditions that make *solving*
+> valid (Tier E Part 2 makes students build the counterexample themselves and discover $1^{x}=1$ has
+> infinitely many solutions). Step 1 is openly Unit 6 work and is where every mechanical error lives;
+> both are defused **numerically in the Warm-Up before being stated** — $2^{3}\cdot2^{4}=128=2^{7}$
+> against $\left(2^{3}\right)^{4}=4096=2^{12}$ — and they recur as the two named students in the
+> Activity (Devon adds instead of multiplying; Priya never rewrites the left side of $9^{x}=27$) and
+> again with new numbers in the homework (Jamal, Elise). Non-integer answers are treated as a
+> first-class teaching point rather than an accident: $\frac23$ is checked in full as
+> $8^{2/3}=\left(\sqrt[3]8\right)^{2}=4$, and the homework asks students to *list* their three
+> fractional answers and say why that is not a symptom of error. Section 4 makes every solution an
+> intersection — $2^{x}=4$ at $x=2$ is precisely where $y=2^{x}-4$ crossed the $x$-axis in 7.2, the
+> payoff 7.2's homework and roadmap both promised — and establishes the count: one solution when
+> $c>0$, none when $c\le0$, never two. **The distinction the whole lesson builds toward is between two
+> failures that look identical on paper:** $2^{x}=-3$ has *no solution* (a range fact, no algebra
+> needed), while $2^{x}=5$ *has* one this method cannot reach. That pair is the Exit Ticket's item-4
+> follow-up (``does $2^{x}=10$ still have a solution?'' — ``no'' is the wrong answer and the single most
+> informative response on the page), Tier E Part 3(e) ($50\cdot2^{t}=1000$ against $50\cdot2^{t}=0$),
+> and the homework Extension, where $4^{x}\cdot2^{\,x+1}=8^{\,x-1}$ reduces to $1=-3$ and is then
+> re-read in **7.2's** language as two vertical stretches of $y=8^{x}$ ($2\cdot8^{x}$ and
+> $\frac18\cdot8^{x}$) that cannot meet because $8^{x}$ is never $0$. Students leave with a written list
+> of four unsolved-but-solvable equations — $2^{x}=5$, the coffee, the soda, and $1000(1.05)^{t}=2000$ —
+> which is 7.4's opening move. Logarithms are never named. All graphs pre-drawn via `plot`+`\clip` (the
+> parabola plotted directly, exponentials as $a\,e^{(\ln b)x}$); the Hook's lead-in and its two graphs
+> are wrapped in a `minipage` so the page break cannot orphan the sentence from the picture.
 
 - **7.0** Characteristics of exponential functions *(introduces: growth vs. decay and the constant
   multiplicative rate / **constant ratio**; revisits the horizontal asymptote as a **range
@@ -1820,7 +1865,8 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 - **7.3** Solving exponential equations with a common base *(one-to-one property: rewrite both sides
   over one base, equate exponents; runs on Unit 6's machinery — $8^x=4$, $3^x=\frac1{27}$,
   $\sqrt[3]{2}=2^{1/3}$; verified graphically as an intersection)* — **supporting skill, no SOL
-  standard**; kept because Unit 8 needs it and it sets up 7.4's wall
+  standard**; kept because Unit 8 needs it and it sets up 7.4's wall — **authored & building
+  2026-07-28**
 - **7.4** Modeling: compound interest, half-life, and $e$ *($A=P(1+\frac rn)^{nt}$ compounded
   annually → quarterly → daily, the limit that **produces $e$**, then $A=Pe^{rt}$; half-life
   $A_0(\frac12)^{t/h}$, doubling time, depreciation. Ends on a deliberate **wall**:

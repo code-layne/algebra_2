@@ -3,17 +3,264 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% y = a*b^(x-h) + k, plotted as a*exp((ln b)(x-h))+k: pgfmath's pow() is unreliable for
+% negative and fractional exponents, but exp() is not.
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax
+% ln2 = 0.693147   ln3 = 1.098612   ln(1/2) = -0.693147
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+% Horizontal asymptote (navy dashed): {xmin}{xmax}{k}
+\newcommand{\hasym}[3]{\draw[navy, dashed, semithick] (#1,#3)--(#2,#3);}
+% The horizontal line we are solving against (gold): {xmin}{xmax}{c}
+\newcommand{\solline}[3]{\draw[goldacc, very thick] (#1,#3)--(#2,#3);}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.3}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item solve an exponential equation by rewriting both sides as powers of \emph{one} base and then setting the exponents equal;
+  \item explain \emph{why} that move is legal --- an exponential function never produces the same output twice, so matching bases forces the exponents to match;
+  \item read a solution off a graph as the point where a horizontal line crosses the curve, and decide from the \emph{range} when an exponential equation has no solution at all.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Exponential equation}
+\termblanklong{Common base}
+\termblanklong{One-to-one property of exponents}
+\termblanklong{Power of a power, $\left(b^{m}\right)^{n}=b^{mn}$}
+\termblanklong{Solution as an intersection}
+\end{vocabbox}
+
+\begin{hookbox}
+% The lead-in and the two graphs must not be separated by a page break.
+\begin{minipage}{\linewidth}
+Two equations. Both say ``something equals $4$.'' One has \emph{two} answers and the other has exactly
+\emph{one} --- and the graphs say why before you do any algebra.
+\begin{center}
+\begin{tikzpicture}[scale=0.38]
+  % LEFT: y = x^2 meets y = 4 twice
+  \begin{scope}
+    \lgrid{-3}{3}{-1}{9}
+    \begin{scope}
+      \clip (-3,-1) rectangle (3,9);
+      \draw[very thick, forest, domain=-3:3, samples=90, smooth] plot (\x,{(\x)*(\x)});
+    \end{scope}
+    \solline{-3}{3}{4}
+    \fill[charcoal] (-2,4) circle (3pt);
+    \fill[charcoal] (2,4) circle (3pt);
+    \node[charcoal, font=\small] at (0,-2.6) {$y=x^{2}$ \; and \; $y=4$};
+  \end{scope}
+  % RIGHT: y = 2^x meets y = 4 once
+  \begin{scope}[xshift=8.5cm]
+    \lgrid{-3}{3}{-1}{9}
+    \begin{scope}
+      \clip (-3,-1) rectangle (3,9);
+      \expgraph{1}{0.693147}{0}{0}{-3}{3}
+    \end{scope}
+    \solline{-3}{3}{4}
+    \fill[charcoal] (2,4) circle (3pt);
+    \node[charcoal, font=\small] at (0,-2.6) {$y=2^{x}$ \; and \; $y=4$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\vspace{4pt}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Solve $x^{2}=4$: \; $x=$ \blank{2.2cm} \qquad Solve $2^{x}=4$: \; $x=$ \blank{2.2cm}
+  \item The gold line is at the same height in both pictures. Why does it hit one curve twice and the other only once? \writeline
+  \item Which fact about the \emph{shape} of an exponential graph (Lesson 7.0) guarantees the right-hand picture can never look like the left-hand one? \writeline
+\end{itemize}
+Everything today rests on that last answer: \textbf{an exponential function never uses the same output
+twice, so if the bases match, the exponents have no choice but to match too.}
+\end{hookbox}
+
+\begin{notesbox}{1. Why You Are Allowed to Drop the Base}
+An \textbf{exponential equation} is an equation with the variable in an \blank{2.6cm}.
+
+\vspace{4pt}
+Lesson 7.0 established that an exponential graph has \textbf{no turning points} --- it is always
+increasing or always decreasing, never both. A function like that can never come back to an output it
+has already used, so a horizontal line crosses it \blank{2.6cm} time(s) at most.
+
+\vspace{4pt}
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.90\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering
+\textbf{One-to-One Property of Exponents} \\[3pt]
+If \; $b^{\,m} = b^{\,n}$ \; and \; $b>0$, $b\neq1$, \qquad then \; $m=n$.
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{The fine print is not decoration.} Lesson 7.1 told you an exponential model needs $b>0$ and
+$b\neq1$. Here is what goes wrong when $b=1$: \; $1^{5}=$ \blank{1.0cm} \; and \; $1^{9}=$
+\blank{1.0cm}, \; so $1^{5}=1^{9}$ even though $5\neq9$. With $b=1$ the graph is a flat line, which
+repeats \emph{every} output --- matching exponents would be nonsense. The restriction you first met as
+a rule about \emph{models} turns out to be exactly the condition that makes today's \emph{solving}
+legal.
+
+\vspace{3pt}
+\emph{And $b>0$?} A negative base breaks at fractional exponents: $(-4)^{1/2}=\sqrt{-4}$ is not a real
+number (Unit 6).
 \end{notesbox}
+
+\begin{notesbox}{2. Getting the Bases to Match}
+The property applies only when the two sides are powers of the \textbf{same base}, so most of the work
+in this lesson is the rewriting you did in the Warm-Up. Fill in every exponent.
+
+\vspace{3pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{Powers of $2$} & $4$ & $8$ & $16$ & $32$ & $64$ & $\sqrt{2}$ \\
+\textbf{exponent on $2$} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} \\
+\hline
+\textbf{Powers of $3$} & $9$ & $27$ & $81$ & $\frac13$ & $\frac19$ & $\frac{1}{27}$ \\
+\textbf{exponent on $3$} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} \\
+\hline
+\textbf{Powers of $5$} & $25$ & $125$ & $\frac15$ & $\frac{1}{25}$ & $\sqrt{5}$ & $\sqrt[3]{5}$ \\
+\textbf{exponent on $5$} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{4pt}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{The two mistakes this lesson is made of.} Both are Unit 6 exponent rules, not new ideas.
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt]
+  \item \textbf{Power of a power multiplies.} $\left(2^{3}\right)^{x}$ is $2$ to the power
+        \blank{1.6cm} --- \emph{not} $2^{\,3+x}$. You checked this numerically in the Warm-Up:
+        $\left(2^{3}\right)^{4}=4096=2^{12}$, while $2^{3}\cdot2^{4}=128=2^{7}$.
+  \item \textbf{Distribute across the \emph{whole} exponent.} $\left(3^{2}\right)^{x+4}=3^{\,2(x+4)}$,
+        and $2(x+4)=$ \blank{2.2cm}. Writing $3^{\,2x+4}$ multiplies the $x$ and forgets the $4$.
+\end{itemize}
+\end{tcolorbox}
+\end{notesbox}
+
+\begin{notesbox}{3. The Method: Three Steps}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.94\linewidth}{@{}l X@{}}
+\textbf{Step 1} & Rewrite \emph{both} sides as powers of one common base. \\
+\textbf{Step 2} & The bases match, so set the \blank{2.6cm} equal to each other. \\
+\textbf{Step 3} & Solve what is left --- it is usually a linear equation --- and check. \\
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X c@{}}
+\hline
+\textbf{Equation} & \textbf{Step 1: one common base} & \textbf{Step 2: exponents equal} & \textbf{Step 3: $x=$} \\
+\hline
+\textbf{A.} $2^{\,x+1}=32$ & \blank{3.4cm} & \blank{3.0cm} & \blank{1.4cm} \\
+\textbf{B.} $8^{x}=4$ & \blank{3.4cm} & \blank{3.0cm} & \blank{1.4cm} \\
+\textbf{C.} $3^{x}=\frac{1}{27}$ & \blank{3.4cm} & \blank{3.0cm} & \blank{1.4cm} \\
+\textbf{D.} $9^{\,x-2}=27^{x}$ & \blank{3.4cm} & \blank{3.0cm} & \blank{1.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\textbf{Checking B is worth doing out loud.} Its answer is a fraction, which always feels wrong the
+first time. Substitute it back with Lesson 6.1's rational exponents:
+$8^{\,2/3}=\left(\sqrt[3]{8}\right)^{2}=$ \blank{1.6cm}, and the right side of B was
+\blank{1.4cm}. \checkmark
+
+\vspace{2pt}
+A non-integer answer is not a red flag. The exponent is a \emph{location on the $x$-axis}, and nothing
+requires it to land on a whole number.
+\end{notesbox}
+
+\begin{notesbox}{4. The Same Answer, Read Off a Graph}
+Every equation above is really a question about where two graphs meet: the curve $y=b^{x}$ and a
+horizontal line.
+\begin{center}
+\begin{minipage}[c]{0.42\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{4}{-4}{9}
+  \begin{scope}
+    \clip (-3,-4) rectangle (4,9);
+    \expgraph{1}{0.693147}{0}{0}{-3}{4}
+  \end{scope}
+  \solline{-3}{4}{4}
+  \draw[redacc, dashed, very thick] (-3,-3)--(4,-3);
+  \node[goldacc, font=\scriptsize, right] at (2.3,4.7) {$y=4$};
+  \node[redacc, font=\scriptsize, right] at (2.3,-3.6) {$y=-3$};
+  \fill[charcoal] (2,4) circle (3pt) node[above left, font=\scriptsize]{$(2,4)$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.54\linewidth}
+\small
+\begin{itemize}[leftmargin=1.3em, itemsep=4pt]
+  \item The gold line meets the curve at $x=$ \blank{1.2cm}, the solution of $2^{x}=4$ --- the same
+        answer the algebra gave.
+  \item This is also the point where $y=2^{x}-4$ crossed the $x$-axis in Lesson 7.2. Then you
+        \emph{read} it off a picture; now you can \emph{solve} for it.
+  \item The red line $y=-3$ never meets the curve, so $2^{x}=-3$ has \blank{2.6cm}.
+  \item That is not an algebra failure --- it is the \textbf{range}. The range of $y=2^{x}$ is
+        \blank{2.2cm}, and $-3$ is not in it.
+\end{itemize}
+\end{minipage}
+\end{center}
+
+\vspace{3pt}
+So for $b^{x}=c$: if $c>0$ there is exactly \blank{1.6cm} solution; if $c\le0$ there are
+\blank{1.6cm}. An equation of this shape never has two answers --- that $\pm$ belongs to the parabola
+in the Hook, not here.
+
+\vspace{5pt}
+\begin{tcolorbox}[colback=sky, colframe=navy, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{A wall, on purpose.} Look at $2^{x}=5$. The line $y=5$ sits between $y=4$ and $y=8$, so it
+\emph{does} cross the curve --- between $x=$ \blank{1.0cm} and $x=$ \blank{1.0cm}. The solution
+exists. But $5$ is not a power of $2$, so Step 1 is impossible and today's method cannot reach it.
+
+\vspace{2pt}
+Keep these three. Every one of them has a solution; not one of them has a common base:
+\[
+  2^{x}=5 \qquad 132(0.85)^{t}=32 \;\;\text{(the coffee)} \qquad (0.9)^{t}=2.118 \;\;\text{(the soda)}
+\]
+That gap is what Lesson 7.4 walks straight up to, and what Unit 8 finally closes.
+\end{tcolorbox}
+\end{notesbox}
+
+\begin{practicebox}
+Solve each equation. Show the common-base step --- the answer alone is not the work.
+\begin{enumerate}[leftmargin=1.7em, itemsep=9pt]
+  \item $5^{x}=125$ \hfill $x=$ \blank{2.0cm}
+
+  \item $\left(\frac{1}{2}\right)^{x}=16$ \hfill $x=$ \blank{2.0cm}
+
+  \item $4^{\,x+1}=8$ \hfill $x=$ \blank{2.0cm}
+
+  \item Explain why $3^{x}=0$ has no solution. Use the range and the asymptote, not algebra.
+        \writelines{2}
+\end{enumerate}
+\end{practicebox}
 
 \end{document}
