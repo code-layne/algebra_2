@@ -4,16 +4,76 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Pre-drawn number line; #1 receives the shading/endpoint overlay.
+\newcommand{\numline}[1]{%
+  \begin{tikzpicture}[baseline=-3pt, x=0.58cm, y=0.58cm]
+    \draw[<->, thick, charcoal] (-5.6,0) -- (5.6,0);
+    \foreach \t in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {\draw[charcoal] (\t,0.13) -- (\t,-0.13);}
+    \foreach \t in {-4,-2,0,2,4} {\node[below=0pt, font=\scriptsize] at (\t,-0.10) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.2}{Warm-Up}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.06in}
 
-% TODO: author the Warm-Up. See references/components.md for the expected structure.
-\begin{notesbox}{Warm-Up}
-\writelines{4}
+\begin{notesbox}{Getting Ready: Skills We'll Use Today}
+\small Three skills, one from each of the last two lessons. Work quickly.
+
+\vspace{3pt}
+\textbf{1. Name the move (Lesson 1.0).} The work is done for you. Write the \emph{property} that
+makes each line legal.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+\textbf{Line} & \textbf{Why is this allowed?} \\
+\hline
+$5(x-3)=2x+9$ & \emph{given} \\
+$5x-15=2x+9$ & \blank{7.6cm} \\
+$3x-15=9$ & \blank{7.6cm} \\
+$3x=24$ & \blank{7.6cm} \\
+$x=8$ & \blank{7.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+``I moved it to the other side'' is not one of the answers. Every line has a \emph{name}.
+
+\vspace{3pt}
+\textbf{2. Factor completely (Lesson 1.1).}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}l l@{}}
+(a) \; $x^2-5x-14=$ \blank{3.6cm} &
+(b) \; $3x^2-27=$ \blank{3.6cm} \\
+\end{tabular}
+\end{center}
+Now finish this sentence, which you already believe: \\
+If two numbers multiply to give \textbf{zero}, then \blank{4.2cm} or \blank{4.2cm} must be zero.
+\\[2pt]
+Does the same reasoning work if the two numbers multiply to give \textbf{eight}? \blank{1.6cm}
+
+\vspace{4pt}
+\textbf{3. Read the picture.} Each number line below shows a \emph{solution set}. Write the
+inequality it represents.
+\begin{center}
+\begin{tabular}{@{}c c@{}}
+(a) & (b) \\[2pt]
+\numline{\draw[ultra thick, forest] (-1,0) -- (5.55,0);
+         \draw[thick, forest, fill=white] (-1,0) circle (2.7pt);}
+&
+\numline{\draw[ultra thick, forest] (3,0) -- (-5.55,0);
+         \fill[forest] (3,0) circle (2.7pt);}
+\\[3pt]
+$x$ \blank{2.6cm} & $x$ \blank{2.6cm} \\
+\end{tabular}
+\end{center}
+Roughly how many numbers are in solution set (a)? \blank{4.0cm} \\
+That answer is exactly why we \emph{draw} a solution set instead of listing it.
+
 \end{notesbox}
 
 \end{document}

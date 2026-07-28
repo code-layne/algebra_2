@@ -5,7 +5,7 @@
 > **Status:** **Unit 1 is being rewritten from scratch (started 2026-07-27)** as a review of
 > *Algebra 1*, organized by the Algebra 1 SOL domain areas and with every All Things Algebra
 > drop-in removed — 4 lessons (1.0–1.3), 13 authored work products each, plus its own tests.
-> **Lessons 1.0 and 1.1 are complete and building** (all 13 work products each); **1.2 and 1.3 and
+> **Lessons 1.0, 1.1, and 1.2 are complete and building** (all 13 work products each); **1.3 and
 > the four test files are still skeletons.** Details and the next actions are in the
 > Unit 1 block in §4. **Units 2, 3, 4, and 5 are content-complete** — every lesson
 > (plan, cover, warm-up, notes, activity, exit ticket, homework, all keys, and a slide deck) plus the
@@ -174,9 +174,29 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > every key paginates identically to its blank, and warm-up + exit ticket are one page in both.
 > Exit ticket includes an SOL-style MC item ($\frac{15x^4y^{-1}}{5x^2y^3}$) whose three distractors
 > each break exactly one exponent law.
-> **Lessons 1.2 and 1.3 and all four test files are still skeletons.**
-> **Next actions, in order: (1) author 1.2**; **(2) author 1.3**; **(3) author the four test files**
-> and run both `drop` targets to replace the ATA sample-test PDFs; **(4)** full compile scan of
+> **Lesson 1.2 is authored and building (2026-07-28) — all 13 components.** Reviews the
+> **Equations and Inequalities** domain minus systems: multistep linear equations justified
+> property-by-property, the **one / none / infinitely many** classification, literal equations,
+> inequalities with the flip *derived* from $2<6 \Rightarrow -2>-6$ (reflection reverses order) and
+> graphed on pre-drawn number lines, and quadratics by square roots / factoring $+$ zero product
+> property / the quadratic formula, with the **discriminant** used to predict the count before
+> solving. The spine is **an expression is a recipe, an equation is a question** — so the answer is a
+> *solution set* that may hold one, no, or every number; the Hook runs
+> $3(x-2)=x-6 / 3x-6 / 3x-5$ against $x^2=9 / 0 / -9$ to put *one/none/all* and *two/one/none* on the
+> board together. Standards: **A.EI.1a–f, A.EI.3a–c** (A.EI.2 omitted per §6).
+> `make -C unit01/lesson02 all` → EXIT 0 (student 14 pp, full 26 pp). Component pages: cover 1,
+> warm-up 1/1, notes 5/5, activity 3/3, exit ticket **1/1**, homework 3/3, plan 4, slides 8 —
+> every key paginates identically to its blank, and warm-up + exit ticket are one page in both.
+> Exit ticket includes an SOL-style MC item ($-3x+7>19$) whose distractors omit the flip or lose the
+> sign of the endpoint.
+> *(Gotcha found and fixed in 1.2's cover: **`ltablex` must not be loaded there.** It converts the
+> `tocbox` tabularx into a `longtable`, which forces a page break right after the box and pushes
+> `remindbox` onto a second page. The table never spans pages, and `\rowcolor` renders identically
+> without it. Lesson 1.1's cover still loads it and happens to fit; if 1.3's cover runs to 2 pages,
+> this is the first thing to check.)*
+> **Lesson 1.3 and all four test files are still skeletons.**
+> **Next actions, in order: (1) author 1.3**; **(2) author the four test files**
+> and run both `drop` targets to replace the ATA sample-test PDFs; **(3)** full compile scan of
 > `unit01`, then re-verify the one-page rule on all four warm-ups and exit tickets.
 > *(Note: the in-place `xelatex` compile scan drops `main.pdf` into component **source** dirs, which
 > `lesson.mk` would then treat as prefab drop-ins — always `git clean -f unitXX` afterwards.)*
