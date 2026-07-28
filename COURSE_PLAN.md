@@ -15,8 +15,8 @@
 > **Unit 6 (Radical Functions): in progress** — lesson map confirmed & unit scaffolded 2026-07-27,
 > locked at **8 lessons (6.0–6.7)**; all lesson dirs, component skeletons, and the unit `tests/` +
 > `test_keys/` are laid down.
-> **Lessons 6.0, 6.1, 6.2, 6.3, 6.4, and 6.5 are authored & building (2026-07-27)**;
-> lessons 6.6–6.7 and the unit tests are still skeletons.
+> **Lessons 6.0 through 6.6 are authored & building (2026-07-27)**;
+> **lesson 6.7 and the unit tests are the only Unit 6 skeletons left.**
 > **Unit 7 (Exponential Functions): map confirmed & unit scaffolded 2026-07-27**, locked at
 > **6 lessons (7.0–7.5)** — shorter than Units 5–6 because exponentials have no A2.EO and no A2.EI
 > standard; a regression capstone (7.5) was added to cover A2.ST.2's exponential branch. All lesson
@@ -32,13 +32,13 @@
 > no-standard content is now handled the same way in both units. Full rationale in the Unit 8 status
 > block in §4. Lessons 8.1–8.6 and the Unit 8 tests are still skeletons.
 > **Three units are now open at once.** Lessons 7.0 and 8.0 were both authored ahead of the Unit 6
-> sequence (2026-07-27), so **Unit 6 lessons 6.6–6.7 and the Unit 6 tests remain the largest
-> outstanding block**. **Next actions, in priority order: (1) stay in Unit 6 and author 6.6**
-> (composition of functions), then 6.7 and the Unit 6 tests — 6.5's homework, slides, and exit-ticket
-> teacher note all hand off to 6.6 explicitly (one operation undoing another becomes
-> $(f\circ g)(x)=f(g(x))$, where order matters), and 6.6 is in turn the *prerequisite* for 6.7's
-> inverse test $f(g(x))=g(f(x))=x$, which finally pays off the reflection over $y=x$ opened in 6.0 —
-> so keep that chain intact; **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
+> sequence (2026-07-27). **Next actions, in priority order: (1) stay in Unit 6 and author 6.7**
+> (inverse functions — the unit capstone), then the Unit 6 tests. 6.6 was written as its direct
+> set-up and hands off in four explicit places: Activity Tier A rows (d)/(e) and Tier E Part 4,
+> Notes §6's $\left(\sqrt{x}\right)^2=x$-only-on-$x\ge0$ surprise, Homework items 2(g) and 6, and the
+> exit ticket's "domain missing" pile — so 6.7 should open by putting students' own Tier A J1 wordings
+> on the board next to the word *inverse*, and by re-running Notes §6 for anyone who read the domain
+> off the simplified rule. **(2) continue Unit 7 at Lesson 7.1** (building $y=ab^x$; the percent↔factor translation),
 > which Lesson 7.0's homework and exit ticket already set up explicitly; **(3) continue Unit 8 at
 > Lesson 8.1** (introduction to logarithms), which Lesson 8.0 sets up the same way. Note that
 > 7.1–7.5 are a prerequisite chain for the *later* Unit 8 lessons — 8.4 pays off 7.4's cliffhanger
@@ -75,7 +75,7 @@
 | 3 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
 | 4 | Polynomial Functions | Polynomial | 7 | **Complete** |
 | 5 | Rational Functions | Rational | 8 | **Complete** |
-| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.5 done) |
+| 6 | Radical Functions | Radical / power | 8 | **In progress** (6.0–6.6 done) |
 | 7 | Exponential Functions | Exponential | 6 | **In progress** (7.0 done) |
 | 8 | Logarithmic Functions | Logarithmic | 7 | **In progress** (8.0 done) |
 
@@ -1376,6 +1376,66 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > who learned ``roots can't be negative'' instead of ``*even* roots can't'' picks it, and that is a
 > Unit 6 spine failure rather than a slip in today's procedure.
 > `make -C unit06/lesson05 all` → EXIT 0 (student 15pp, full 29pp); `make -C unit06 all` → EXIT 0.
+> **Lesson 6.6 authored & builds (2026-07-27):** all components + keys + 12-slide deck done. The
+> lesson makes two claims and spends the period earning both. The first is **order is part of the
+> answer**, and it is settled before any notation exists: the Hook puts a \$80 jacket in front of two
+> cashiers who apply a $20\%$ discount and a \$10 coupon in opposite orders and reach \$54 and \$56.
+> Neither made a mistake --- which is the whole point, and the missing \$2 turns out to be $20\%$ of
+> the coupon, i.e.\ the discount eating the student's own savings. Warm-Up item 3 pre-assembles it in
+> arithmetic ($10-4$ then double $=12$; double then $-4=16$), so ``order matters'' is said out loud by
+> a student before the jacket appears; Warm-Up item 1(d) has students evaluate $g(-1)=2$ and feed the
+> answer into $f$ --- **a composition computed before the symbol exists**, so nobody leaves thinking
+> composition is a new operation; and item 2's $h(x+1)$ *is* the algebraic method of §4, which is why
+> the parentheses are policed there. The notation is taught as a reading rule --- **the function next
+> to the $x$ runs first, work inside out** --- with the day's signature error framed correctly as a
+> *reading* error, not a mathematical one, and the enforcement mechanism is procedural: **write the
+> middle number down**, since the wire between the two machines carries exactly one value and a
+> student composing in their head is a student about to reverse the order. A2.F.2k's three
+> representations are each given their own section (values \& a table in §2, two pre-drawn
+> piecewise-linear graphs in §3, algebra in §4), with §2's table trio deliberately built so that one
+> input, $x=0$, yields three different answers ($0$, $-2$, $2$) --- ``order matters'' made undeniable
+> from values alone. §5 is where the unit pays: the anchor pair $f(x)=\sqrt{x}$, $g(x)=x-4$ gives
+> $\sqrt{x-4}$ one way and $\sqrt{x}-4$ the other --- **two graphs students already read in 6.4**, with
+> different endpoints *and* different domains --- and the section closes by revealing that **every
+> transformation in 6.4 was a composition**, which is the long-deferred answer to *why inside changes
+> act backwards*: the inner machine hands the root a number $4$ smaller, so $x$ must be $4$ bigger to
+> compensate. §6 is the intellectual center and the bridge to 6.7. Domain is computed through **two
+> gates** ($x$ in $g$'s domain, $g(x)$ in $f$'s), and then the surprise: with $f(x)=x^{2}$ and
+> $g(x)=\sqrt{x}$, $\left(\sqrt{x}\,\right)^{2}$ simplifies all the way to $x$ and **still refuses
+> $x=-9$**, because Gate 1 turned it away before stage 2 ever ran --- *simplifying erases the evidence
+> of a gate, not the gate*. Beside it sits $\sqrt{x^{2}}=|x|$ (6.1's $\sqrt[n]{a^{n}}$ rule, the only
+> place this week where variables are not assumed non-negative), which accepts everything but is not
+> $x$. **Neither order is honestly ``$x$ for every real number,''** and that discomfort is left
+> deliberately unresolved --- it is exactly why 6.7 must restrict the domain of $y=x^{2}$, the thread
+> opened in 6.0. §7 adds decomposition (not in A2.F.2k; included because it makes 6.7 and next year's
+> calculus easier), taught by ``what would your hands do first on a calculator?'' The inverse preview
+> is *earned rather than announced*: Activity Tier A rows (d) $x+3$/$x-3$ and (e) $3x-1$/$\frac{x+1}{3}$
+> come out to $x$ in **both** orders, and J1 asks students to invent a word for it --- the teacher note
+> instructs collecting those wordings to open 6.7 beside the word *inverse*. Tier E generalizes the
+> jacket ($0.8x-8$ vs.\ $0.8x-10$, a constant \$2 gap at every price), derives the full linear
+> commuting condition ($f(g(x))=acx+ad+b$, $g(f(x))=acx+cb+d$, equal iff $ad+b=cb+d$, tested against
+> both earlier pairs), decomposes $2\sqrt{x-5}+1$ into three machines and compares that list with 6.4's
+> transformation list, and closes on the $\left(\sqrt{x}\,\right)^{2}$ vs.\ $\sqrt{x^{2}}$ table at
+> $x=-4,-1,0,4,9$. Homework 5 carries **two different** misconceptions side by side --- Amara reads
+> $\circ$ as multiplication, Ben reverses the order --- settled by evaluating all three expressions at
+> $x=2$ ($25$/$20$/$7$); homework 3's follow-up kills the wrong generalization ``a square root means a
+> restricted domain'' via row (e), $\sqrt{x^{2}+2}$, whose radicand can never go negative; and homework
+> 2(g) is the unit's first *backwards* question (for what $x$ is $(p\circ q)(x)=0$?), the seed of 6.7's
+> swap-and-solve. The homework extension composes 6.4's horizon model $d(h)=\sqrt{1.5h}$ with a mast
+> climb $h(t)=6t+6$ to get $(d\circ h)(t)=3\sqrt{t+1}$ --- whole-number distances $3,6,9,12$ miles at
+> $t=0,3,8,15$, a horizontal shift that *is* the sailor's 6-foot head start, a vertical stretch that is
+> the $\sqrt{1.5\cdot6}=3$ hidden in the formula, the quadrupling (3 seconds buys the second 3 miles,
+> 12 more buys the next 6), and a context-domain rejection of $t=-1$. Standards: **2023 VA SOL
+> A2.F.2k** (governing --- composition algebraically *and* graphically), direct prerequisite for
+> **A2.F.2i/j** (6.7); revisits **A2.F.1b/c** (6.4's transformations, now revealed as compositions),
+> **A2.F.2a** (domain via two gates), **A2.EO.2a** (6.1's $\sqrt{x^{2}}=|x|$), and **A2.F.2f** (the
+> mast-climb model). All graphs pre-drawn; no sketch-from-scratch. Warm-up & exit ticket each fit one
+> page (blank+key); notes 5pp/5pp, activity 4pp/4pp, homework 3pp (key 4pp --- the extra page is the
+> teacher note). Exit ticket includes an SOL-style MC item ($f(x)=x^{2}$, $g(x)=x-5$; answer
+> $(x-5)^{2}$) whose three distractors are three *distinct* failures: $x^{2}-5$ is the order error,
+> $x^{2}-25$ is the Unit 4 perfect-square error inside an otherwise correct composition, and
+> $x^{3}-5x^{2}$ is reading $\circ$ as multiplication.
+> `make -C unit06/lesson06 all` → EXIT 0 (student 15pp, full 32pp); `make -C unit06 all` → EXIT 0.
 
 - **6.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$

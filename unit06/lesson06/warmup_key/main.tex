@@ -3,17 +3,90 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.6}{Warm-Up --- Answer Key}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.10in}
 
-% TODO: copy the blank Warm-Up verbatim, then fill blanks with \ans{} / \ansline{}.
-\begin{notesbox}{Warm-Up --- Key}
-\ansline{TODO: answer}
+\begin{notesbox}{Getting Ready: Skills We'll Use Today}
+\small Three short items. Item 1 part (d) is today's whole lesson --- you just have not been told
+its name yet.
+
+\vspace{4pt}
+\textbf{1. Function notation (Unit 1).} Let $f(x)=2x-3$ and $g(x)=x^{2}+1$.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{@{}l l l@{}}
+(a) \; $f(5)=$ \ans{$7$} &
+(b) \; $g(5)=$ \ans{$26$} &
+(c) \; $g(-1)=$ \ans{$2$} \\
+\end{tabular}
+\end{center}
+\vspace{-6pt}
+(d) Now take your answer to part (c) and feed it into $f$:
+\[
+  f\big(\text{your answer to (c)}\big)=f\big(\mans{2}\big)=\mans{1}
+\]
+
+\vspace{0.14in}
+
+\textbf{2. Substituting a whole expression (Unit 4).} Let $h(x)=x^{2}-4x$. Replace \emph{every} $x$
+with what is inside the parentheses, then simplify.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{@{}l l l@{}}
+(a) \; $h(3)=$ \ans{$-3$} &
+(b) \; $h(a)=$ \ans{$a^{2}-4a$} &
+(c) \; $h(x+1)=$ \ans{$x^{2}-2x-3$} \\
+\end{tabular}
+\end{center}
+\vspace{-4pt}
+In part (c) the thing you substituted was not a number at all. What did you have to do to every
+single $x$ in the rule? \ansline{Replace it with the entire expression $(x+1)$, in parentheses, and
+then expand: $(x+1)^{2}-4(x+1)=x^{2}+2x+1-4x-4$.}
+
+\vspace{0.18in}
+
+\textbf{3. Does order matter?} Start with the number $10$ and run two operations --- \emph{subtract
+$4$} and \emph{double} --- in each of the two possible orders.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.96\linewidth}{@{}X c c@{}}
+\hline
+ & \textbf{After the first step} & \textbf{Final answer} \\
+\hline
+(a) Subtract $4$, \emph{then} double & \ans{$6$} & \ans{$12$} \\
+(b) Double, \emph{then} subtract $4$ & \ans{$20$} & \ans{$16$} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+Finish the sentence. \emph{Same two operations, same starting number --- but changing the}
+\ans{order} \emph{changed the} \ans{answer}.
+
 \end{notesbox}
+
+\begin{teachernote}
+\small Five minutes. Each item is a tool the notes pick up within twenty minutes, so resist
+explaining any of them now.
+\begin{itemize}[leftmargin=1.3em, nosep]
+  \item \textbf{Item 1(d) is a composition, computed before the word exists.} Students evaluate
+        $g$ at $-1$, get $2$, and put $2$ into $f$ --- that is exactly $(f\circ g)(-1)=1$. When the
+        notation appears in Section 1, point back here and say: \emph{you already did this; today it
+        gets a name.} Nobody should feel that composition is a new operation.
+  \item \textbf{Item 2 is the algebraic mechanism.} The entire method of Section 4 is ``substitute
+        the whole expression, in parentheses, for every $x$.'' Part (c) proves they can already do
+        it. The parentheses in $h(x+1)$ are the thing to police --- students who drop them get
+        $x^{2}+1-4x+1$ and will make the same slip on $(2x-3)^{2}+1$ later.
+  \item \textbf{Item 3 is the Hook in miniature.} $12$ versus $16$. Get a student to say
+        ``order matters'' out loud now, on arithmetic they cannot argue with, so that when the
+        jacket comes out at two different prices nobody thinks a mistake was made.
+\end{itemize}
+\end{teachernote}
 
 \end{document}
