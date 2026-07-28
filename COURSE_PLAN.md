@@ -316,6 +316,15 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > table is ~2.9in and unbreakable, so no split point fills that page without recreating the stub.
 > `make -C unit01/lesson00 all` → EXIT 0; notes still **5pp** blank and **5pp** key, so the packet
 > page counts are unchanged (unit student 63pp / unit full 119pp).
+>
+> **Lesson 1.0 name/date/period stripped to the cover only (2026-07-28, user request).** Removed
+> the `\namedateperiod` line from `warmup`, `notes`, `exit_ticket`, `homework` and the
+> `\namepartnerperiod` line from `activity` — plus all five matching `_key` files (lockstep) —
+> so the student writes their name once, on `cover/main.tex` (line 24), which keeps it. Rationale:
+> the components are stapled behind the cover, so the repeated header was redundant. `make -C
+> unit01/lesson00 all` → EXIT 0; warm-up and exit ticket still **1pp** blank and **1pp** key.
+> *If this becomes the course-wide convention, the same two lines need sweeping out of
+> `unit0{2..8}/lesson*/{warmup,notes,activity,exit_ticket,homework}{,_key}/main.tex`.*
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
