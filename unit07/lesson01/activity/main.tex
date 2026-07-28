@@ -3,17 +3,201 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
 \pageheader{Unit 7, Lesson 7.1}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Group Activity. See references/components.md for the expected structure.
-\begin{notesbox}{Group Activity}
-\writelines{4}
-\end{notesbox}
+\begin{headlinebox}{forestbg}
+\small\textbf{Building the Model.} Yesterday the equation was handed to you. Today you write it. Every
+problem below gives you a \emph{source} --- a table, a graph, or a sentence --- and asks for the same
+two numbers: the initial value $a$ and the factor $b$. With your partner, build each model, then
+\textbf{check it}: does $x=0$ give back the starting amount, and is $b$ on the correct side of $1$?
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Percent to factor.} Fill in each row. Remember: $b=1+r$ when it grows,
+$b=1-r$ when it shrinks.
+\begin{center}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\linewidth}{@{}X l l X@{}}
+\hline
+\textbf{The sentence says\dots} & \textbf{Rate $r$} & \textbf{Grows or shrinks?} & \textbf{Factor $b$} \\
+\hline
+increases by $6\%$ each year & \blank{1.4cm} & \blank{1.8cm} & \blank{1.8cm} \\
+decreases by $6\%$ each year & \blank{1.4cm} & \blank{1.8cm} & \blank{1.8cm} \\
+grows by $25\%$ each week & \blank{1.4cm} & \blank{1.8cm} & \blank{1.8cm} \\
+loses $40\%$ of it each hour & \blank{1.4cm} & \blank{1.8cm} & \blank{1.8cm} \\
+\hline
+\end{tabularx}
+\end{center}
+The first two rows describe the same percent. Why do they give \emph{different} bases?
+\blank{7.0cm}
+
+\vspace{6pt}
+\textbf{Part 2 --- One full model.} An ant colony has $60$ ants and grows by $25\%$ each week.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item $a=$ \blank{1.6cm} \quad $r=$ \blank{1.4cm} \quad $b=$ \blank{1.6cm}
+  \item Write the model: $N(w)=$ \blank{3.6cm} \quad (where $w$ is weeks)
+  \item \textbf{Check it.} What does your model give at $w=0$? \blank{1.6cm} \;
+        Does that match the story? \blank{1.4cm}
+  \item After $1$ week: $N(1)=$ \blank{2.0cm}. \; Is that $25\%$ more than $60$?
+        \blank{1.4cm}
+  \item After $4$ weeks: $N(4)=$ \blank{2.6cm} $\approx$ \blank{1.6cm} ants. \\
+        (Ants come in whole numbers --- round down.)
+  \item A classmate wrote $N(w)=60(0.25)^{w}$. What does \emph{that} model describe?
+        \blank{5.6cm}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Three sources, one form.} Build $y=ab^{x}$ from each.
+
+\vspace{5pt}
+\textbf{(a) From a table.}
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+$y$ & $9$ & $27$ & $81$ & $243$ \\ \hline
+\end{tabular}
+\end{center}
+Ratios: $\frac{27}{9}=$ \blank{1.0cm}, \; $\frac{81}{27}=$ \blank{1.0cm}. \quad
+$a=$ \blank{1.4cm} \quad $b=$ \blank{1.4cm} \quad $y=$ \blank{2.8cm}
+
+\vspace{6pt}
+\textbf{(b) From a graph.} Use the three labeled points.
+\begin{center}
+\begin{minipage}[c]{0.44\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-1}{5}{-1}{10}
+  \begin{scope}
+    \clip (-1,-1) rectangle (5,10);
+    \expcurve{9}{-1.098612}{-0.09}{5}
+  \end{scope}
+  \draw[navy, dashed, semithick] (-1,0)--(5,0);
+  \fill[charcoal] (0,9) circle (3pt) node[right, font=\scriptsize]{$(0,9)$};
+  \fill[charcoal] (1,3) circle (3pt) node[right, font=\scriptsize]{$(1,3)$};
+  \fill[charcoal] (2,1) circle (3pt) node[above right, font=\scriptsize]{$(2,1)$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.52\linewidth}
+$a=$ \blank{1.8cm} \; (read it off the $y$-axis) \\[6pt]
+$b=\dfrac{3}{9}=$ \blank{1.4cm} \\[6pt]
+Growth or decay? \blank{2.2cm} \\[6pt]
+$y=$ \blank{3.0cm} \\[6pt]
+Horizontal asymptote: \blank{2.0cm}
+\end{minipage}
+\end{center}
+
+\vspace{4pt}
+\textbf{(c) From a story.} A savings account holds \$$800$ and earns $4\%$ interest each year.
+\\[3pt]
+$a=$ \blank{1.6cm} \quad $r=$ \blank{1.4cm} \quad $b=$ \blank{1.6cm} \quad
+$S(t)=$ \blank{3.2cm} \\[3pt]
+$S(6)=$ \blank{2.6cm} $\approx$ \blank{2.0cm}. \; What does that number mean?
+\blank{5.0cm}
+
+\vspace{6pt}
+\textbf{Justify.} A deer population starts at $500$ and \textbf{declines $20\%$ each year}. Three
+students hand in three different models:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.94\linewidth}{@{}l l X@{}}
+\hline
+Maya & $P(t)=500(1.2)^{t}$ & \\
+Devon & $P(t)=500(0.2)^{t}$ & \\
+Rosa & $P(t)=500(0.8)^{t}$ & \\
+\hline
+\end{tabularx}
+\end{center}
+Who is right? Then --- and this is the real question --- say what each \emph{wrong} model actually
+describes. Be specific: give the percent and the direction. \writelines{4}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Two points, neither of them the $y$-intercept.} Divide to cancel $a$, then solve
+for $b$, then go back for $a$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=7pt]
+  \item The curve $y=ab^{x}$ passes through $(2,45)$ and $(5,1215)$. \\[3pt]
+        $\dfrac{1215}{45}=$ \blank{1.4cm} $=b^{\,\square}$ where $\square=$ \blank{1.0cm}, so
+        $b=$ \blank{1.4cm}. \\[3pt]
+        Now use $(2,45)$: \; $45=a\cdot$ \blank{1.4cm}, so $a=$ \blank{1.4cm}. \quad
+        $y=$ \blank{2.6cm}
+  \item The curve $y=ab^{x}$ passes through $(1,60)$ and $(4,7.5)$. \\[3pt]
+        $b=$ \blank{1.6cm} \quad $a=$ \blank{1.6cm} \quad $y=$ \blank{2.8cm} \\[3pt]
+        How could you tell this one would be \emph{decay} before doing any arithmetic?
+        \blank{5.0cm}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 2 --- Run the translation backwards.} Each model is already built. Report the starting
+amount and the percent change \emph{per period}, and say which direction.
+\begin{center}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{Model} & \textbf{Initial value} & \textbf{Percent rate $r$} & \textbf{Increase or decrease?} \\
+\hline
+$y=500(1.045)^{t}$ & \blank{2.0cm} & \blank{2.0cm} & \blank{2.2cm} \\
+$y=2200(0.91)^{t}$ & \blank{2.0cm} & \blank{2.0cm} & \blank{2.2cm} \\
+$y=75(2)^{t}$ & \blank{2.0cm} & \blank{2.0cm} & \blank{2.2cm} \\
+$y=1000(1.005)^{t}$ & \blank{2.0cm} & \blank{2.0cm} & \blank{2.2cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{Part 3 --- The same first step, two different futures.} A tank holds $240$ gallons. Compare
+two leaks:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.94\linewidth}{@{}l X@{}}
+\hline
+\textbf{Leak A} & The tank loses $60$ gallons every day. \\
+\textbf{Leak B} & The tank loses $25\%$ of whatever is in it every day. \\
+\hline
+\end{tabularx}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Write both models. \quad $A(d)=$ \blank{3.0cm} \quad $B(d)=$ \blank{3.0cm}
+  \item Fill in the table (round to the nearest hundredth).
+    \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    Day $d$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \hline
+    $A(d)$ & $240$ & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} \\ \hline
+    $B(d)$ & $240$ & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} & \blank{1.1cm} \\ \hline
+    \end{tabular}
+    \end{center}
+  \item On day $1$ the two leaks lose the \emph{same} amount. Show that, then explain why they come
+        apart after that. \writelines{2}
+  \item Leak A empties the tank. On what day? \blank{1.6cm} \; Leak B never does.
+        Use Lesson 7.0's language --- \textbf{asymptote} --- to explain why not. \writelines{2}
+  \item After two weeks ($d=14$), Leak A's formula gives \blank{2.2cm} gallons and Leak B's
+        gives about \blank{2.2cm} gallons. One of those answers is \emph{impossible} and the
+        other is merely \emph{unrealistic}. Explain both. \writelines{3}
+\end{enumerate}
+\end{tcolorbox}
 
 \end{document}
