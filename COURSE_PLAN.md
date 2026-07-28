@@ -327,6 +327,16 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > Promoted to a named convention the same day (§7): the scaffolder no longer emits a name row,
 > and `scripts/namestrip.py` applies the fix to older lessons on request. **No bulk sweep** —
 > Units 2–8 keep theirs until each lesson is namestripped individually.
+>
+> **Student packets paginated document-wide and imposed recto 2026-07-28 (user request) — see
+> §7.** Reported on Lesson 1.0: the packet read `1 / 1 / 1 2 3 4 5 / 1 2 3 / 1 / 1 2 3` because
+> every component is its own document. Fixed **at the merge step**, not in the lesson, so it
+> applies to every lesson at once: `shared/lesson.mk` now runs `shared/paginate.tex` over the
+> merged student PDF — continuous numbering, plus a blank verso after any odd-length component so
+> each one opens on an odd page. Lesson 1.0 is now **20pp**, components opening on
+> **1, 3, 5, 11, 15, 17** with numbered blanks at 2, 4, 10, 14, 16, 20. `make -C unit01 student` → EXIT 0;
+> all four lesson packets even (20 / 18 / 20 / 20pp), unit student **84pp**. Component layout is
+> untouched (footer overlay only); `full` packets are deliberately unchanged.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -2226,6 +2236,56 @@ explaining why), so newly scaffolded lessons are born correct. Like boxguard, th
 sweep** of already-authored lessons: Units 2–8 still carry the row on ~508 component files, and
 stripping them all at once would re-flow the pagination of every verified lesson. **Namestrip
 lesson-by-lesson as reported.** Lesson 1.0 is the reference implementation.
+
+### Packet pagination — one document, numbered as one document (2026-07-28)
+
+Every component compiles as its own document, so each one numbers its pages from 1. Merged, a
+student packet used to read `1 / 1 / 1 2 3 4 5 / 1 2 3 / 1 / 1 2 3` — the student cannot say
+"turn to page 9." **The student packet is one document: numbered end to end, and imposed so that
+every component starts on a right-hand page.**
+
+Unlike boxguard and namestrip, this is **not a per-lesson fix and needs no sweep.** It lives in
+the build: after `pdfunite` merges the student packet, `shared/lesson.mk` runs a pagination pass
+(`shared/paginate.tex`) that
+
+1. re-places every page at its original size and stamps the packet-wide number in the article
+   class's own footer position, and
+2. **inserts a blank verso after any component with an odd page count**, so each component opens
+   on an odd page — the student turns to a new component, not into the middle of one.
+
+Every lesson gets both on its next `make … student`; no `.tex` file changes.
+
+**Student packets are duplex documents** (user decision, 2026-07-28) — that is what the
+imposition is for, and single-sided the inserted blanks would just be wasted sheets. Duplex
+absorbs them almost for free: Lesson 1.0 went 14pp → 20pp, but only 7 sheets → 10. The last
+component is padded too, so a lesson packet always has an **even** page count.
+
+**Inserted blanks are numbered** (user decision, 2026-07-28) — the blank verso is a real page of
+the packet, so it carries its folio like any other and a student flipping through sees an
+unbroken run. Lesson 1.0's blanks read 2, 4, 10, 14, 16, 20.
+
+Two deliberate limits:
+
+- **Blank components keep printing their own number**; the pass covers it with a white band
+  inside the 0.75in bottom margin (well clear of body content) and prints the packet number in
+  its place. The masked digit survives in the invisible text layer — harmless in print, but it
+  is why `pdftotext` shows two numbers per page. Suppressing it at the source would mean
+  compiling every student component a second time.
+- **`full` packets are not paginated or imposed.** They interleave letter-size documents with
+  16:9 Beamer slides (`453.54 × 255.12pt`), and a single letter-paper stamping pass would
+  misplace the number on the slide pages. Teacher packets keep per-component numbering.
+- **Unit- and course-level packets are out of scope** (user decision, 2026-07-28: "just the
+  lesson packets"). They inherit even, recto-correct lesson packets, but `unit.mk` neither
+  numbers them nor pads its own bookends — `unit_cover` is 1pp, so in `unit01_student.pdf` the
+  first lesson opens on a verso. **The lesson packet is the thing that gets handed to students;**
+  if unit-level printing ever matters, run the same pass over the unit merge.
+
+If the geometry in `shared/algebra2-article.sty` ever changes, re-measure the footer baseline and
+update `\PgBaseline` in `shared/paginate.tex`:
+
+```bash
+pdftotext -f 3 -l 3 -bbox target/compiled/unit01/lesson00_student.pdf /tmp/p.html && tail -3 /tmp/p.html
+```
 
 ---
 

@@ -75,6 +75,36 @@ To include a ready-made PDF as a component, drop it in as `<comp>/main.pdf` (and
 `pdfunite` — no `main.tex`, no compile step. `make clean` removes only `target/` and stamps, so
 your source PDFs are never deleted.
 
+## Packet pagination and imposition (student packets)
+
+Each component is its own document, so each numbers its pages from 1 and a naively merged packet
+reads `1 / 1 / 1 2 3 4 5 / …`. After `pdfunite` builds the **student** packet, `shared/lesson.mk`
+therefore runs one extra XeLaTeX pass over the merged PDF (`shared/paginate.tex`, invoked through
+the `paginate` define) that:
+
+- **numbers the packet end to end** — every page is re-placed at its original size and the
+  packet-wide number is stamped in the article class's own footer position, masking the
+  component-local one with a white band inside the bottom margin; and
+- **starts every component on an odd page** — the recipe reads each component's page count with
+  `pdfinfo`, builds a pdfpages page list with `{}` (empty page) after any odd-length component,
+  and passes it in as `\PacketPages`. Inserted blanks are numbered like any other page.
+
+This is automatic for every lesson — **no `.tex` change and no per-lesson sweep**. Notes:
+
+- The last component is padded too, so every lesson packet has an **even** page count. Student
+  packets are **duplex** documents — that is what the imposition is for.
+- It assumes letter-size pages and the `algebra2-article` bottom margin. A prefab drop-in of a
+  different page size would get its number misplaced; re-measure and adjust `\PgBaseline` if the
+  shared geometry ever changes.
+- **`full` packets are neither paginated nor imposed** — they mix letter pages with 16:9 Beamer
+  slides, so one letter-paper stamping pass cannot number both. Teacher packets keep
+  per-component numbering.
+- **Unit packets are deliberately out of scope**: they inherit even lesson packets, but `unit.mk`
+  neither numbers them nor pads `unit_cover` (1pp), so the first lesson opens on a verso. The
+  lesson packet is the artifact students are handed.
+- The pass writes to `target/UNIT/LESSON/.paginate/`; on failure the recipe prints
+  `paginate.log`.
+
 ## Unit assessments (tests)
 
 Each unit carries summative assessments alongside its lessons, scaffolded automatically when the

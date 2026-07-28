@@ -63,6 +63,39 @@ FULL_STAMPS    := $(ROOT_STAMP) $(SLIDES_STAMP) \
 FULL_PDFS      := $(ROOT_PDF) $(SLIDES_PDF) \
                   $(foreach c,$(FULL_COMPS),$(call comp-pdf,$(c)))
 
+# ── Packet-wide pagination + recto starts ─────────────────────────────────────
+# Each component is its own document, so each numbers its pages from 1. After
+# the merge, this pass rebuilds the packet so page numbers run across the whole
+# document AND every component starts on an odd (right-hand) page: a blank
+# verso is inserted after any component with an odd page count, including the
+# last, so the packet itself is even and one lesson never pushes the next one
+# onto a verso. (unit.mk's own unit_cover/sample_test are NOT padded, so a unit
+# packet is not recto-correct end to end.) See shared/paginate.tex.
+#   $1 = merged PDF, rewritten in place.
+#   $2 = the component PDFs that were merged, in the same order.
+PAGINATE_DIR := $(PDF_DIR)/.paginate
+
+define paginate
+	@mkdir -p $(PAGINATE_DIR)
+	@set -e; \
+	spec=; first=1; \
+	for f in $2; do \
+	  n=$$(pdfinfo "$$f" | awk '/^Pages/{print $$2}'); \
+	  last=$$((first + n - 1)); \
+	  spec="$$spec,$$first-$$last"; \
+	  if [ $$((n % 2)) -ne 0 ]; then spec="$$spec,{}"; fi; \
+	  first=$$((last + 1)); \
+	done; \
+	spec=$${spec#,}; \
+	TEXINPUTS="$(TEXINPUTS)" xelatex -interaction=nonstopmode -halt-on-error \
+	    -output-directory="$(PAGINATE_DIR)" -jobname=paginated \
+	    '\def\PacketSource{'"$1"'}\def\PacketPages{'"$$spec"'}\input{paginate}' \
+	    > $(PAGINATE_DIR)/paginate.log 2>&1 \
+	  && mv $(PAGINATE_DIR)/paginated.pdf $1 \
+	  || { echo "!  pagination pass failed — see $(PAGINATE_DIR)/paginate.log"; \
+	       grep -E "^(!|l\.)" $(PAGINATE_DIR)/paginate.log | head -10; exit 1; }
+endef
+
 # ── Targets ───────────────────────────────────────────────────────────────────
 .PHONY: all student full clean
 
@@ -72,7 +105,8 @@ student: $(STUDENT_STAMPS)
 ifneq ($(strip $(STUDENT_PDFS)),)
 	@mkdir -p $(COMPILED_DIR)
 	pdfunite $(STUDENT_PDFS) $(COMPILED_DIR)/$(LESSON)_student.pdf
-	@echo "✓  Student packet → target/compiled/$(UNIT)/$(LESSON)_student.pdf"
+	$(call paginate,$(COMPILED_DIR)/$(LESSON)_student.pdf,$(STUDENT_PDFS))
+	@echo "✓  Student packet → target/compiled/$(UNIT)/$(LESSON)_student.pdf (paginated $(LESSON)-wide, components start recto)"
 else
 	@echo "  (no student components in $(UNIT)/$(LESSON))"
 endif
