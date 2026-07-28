@@ -33,7 +33,9 @@ DOC_TITLE = {
     "exit_ticket": "Exit Ticket",
     "homework": "Homework",
 }
-NAME_ROW = {"activity": r"\namepartnerperiod"}  # default: \namedateperiod
+# NAMESTRIP (COURSE_PLAN.md §7): worksheet components carry NO name/date/period row —
+# the student writes their name once, on the cover, and the components are stapled behind
+# it. Only cover.tex and the unit tests (taken in a testing setting) keep \namedateperiod.
 
 
 def fail(msg: str) -> "NoReturn":  # type: ignore[name-defined]
@@ -246,7 +248,6 @@ def main() -> None:
               args.force)
 
     for comp in components:
-        name_row = NAME_ROW.get(comp, r"\namedateperiod")
         if comp in prefab:
             prefab_dir(dest / comp)
         elif comp == "cover":
@@ -254,7 +255,7 @@ def main() -> None:
         elif comp == "slides":
             write(dest / "slides" / "main.tex", render("slides.tex", base), args.force)
         else:  # authored worksheet component
-            subs = {**base, "DOCTITLE": DOC_TITLE[comp], "NAMEROW": name_row}
+            subs = {**base, "DOCTITLE": DOC_TITLE[comp]}
             write(dest / comp / "main.tex", render("worksheet.tex", subs), args.force)
         # answer key for keyed components
         if comp in KEYED:
@@ -262,7 +263,7 @@ def main() -> None:
             if key in prefab:
                 prefab_dir(dest / key)
             else:
-                subs = {**base, "DOCTITLE": DOC_TITLE[comp], "NAMEROW": name_row}
+                subs = {**base, "DOCTITLE": DOC_TITLE[comp]}
                 write(dest / key / "main.tex", render("worksheet_key.tex", subs), args.force)
 
     print("\nnext:")
