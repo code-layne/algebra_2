@@ -4,16 +4,473 @@
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+% Pre-drawn coordinate grid; #1 receives the plotted curve and any overlay.
+\newcommand{\gridplot}[1]{%
+  \begin{tikzpicture}[x=0.36cm, y=0.24cm]
+    \draw[step=1, linegray!45, very thin] (-5,-7) grid (5,7);
+    \draw[->, charcoal, thick] (-5.4,0) -- (5.4,0) node[right, font=\scriptsize] {$x$};
+    \draw[->, charcoal, thick] (0,-7.4) -- (0,7.4) node[above, font=\scriptsize] {$y$};
+    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    \foreach \t in {-6,-4,-2,2,4,6} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
+% Smaller grid for side-by-side matching tasks.
+\newcommand{\minigrid}[1]{%
+  \begin{tikzpicture}[x=0.26cm, y=0.19cm]
+    \draw[step=1, linegray!45, very thin] (-4,-6) grid (4,6);
+    \draw[->, charcoal] (-4.3,0) -- (4.3,0);
+    \draw[->, charcoal] (0,-6.3) -- (0,6.3);
+    \foreach \t in {-2,2} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
+    #1
+  \end{tikzpicture}}
+
+% Exponential window (tall y-range, no grid).
+\newcommand{\expgraph}[1]{%
+  \begin{tikzpicture}[x=0.42cm, y=0.098cm]
+    \draw[->, charcoal, thick] (-3.6,0) -- (4.6,0) node[right, font=\scriptsize] {$x$};
+    \draw[->, charcoal, thick] (0,-2.5) -- (0,19.5) node[above, font=\scriptsize] {$y$};
+    \foreach \t in {-3,-2,-1,1,2,3,4} {\draw[charcoal] (\t,1.2) -- (\t,-1.2);}
+    \foreach \t in {-2,2,4} {\node[below, font=\tiny] at (\t,-1.4) {$\t$};}
+    \foreach \t in {4,8,12,16} {\draw[charcoal] (0.1,\t) -- (-0.1,\t);
+      \node[left, font=\tiny] at (-0.12,\t) {$\t$};}
+    \draw[forest, very thick, domain=-3.4:4.15, smooth, variable=\x] plot ({\x},{pow(2,\x)});
+    #1
+  \end{tikzpicture}}
+
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.3}{Guided Notes}
 \namedateperiod
 
-\vspace{0.15in}
+\vspace{0.08in}
 
-% TODO: author the Guided Notes. See references/components.md for the expected structure.
-\begin{notesbox}{Guided Notes}
-\writelines{4}
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item decide whether a relation --- given as ordered pairs, a table, a mapping, or a graph --- is a \emph{function}, and state its \emph{domain} and \emph{range};
+  \item use function notation: find $f(x)$ from $x$, and find $x$ from $f(x)$, algebraically and graphically;
+  \item determine a linear function's domain, range, \emph{zeros}, slope, and intercepts, and interpret each one in context;
+  \item write a linear equation in slope-intercept, point-slope, and standard form --- from a graph, from two points, from a slope and a point, and parallel or perpendicular to a given line;
+  \item explain how transforming the parent $y=x$ by $kf(x)$ and $f(x)+k$ changes the slope and the $y$-intercept;
+  \item read the key characteristics of \emph{quadratic} and \emph{exponential} functions off their graphs;
+  \item compare and contrast the three families using tables and graphs.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Relation vs.\ function}
+\termblanklong{Domain and range}
+\termblanklong{Function notation $f(x)$}
+\termblanklong{Zero of a function}
+\termblanklong{Slope (rate of change)}
+\termblanklong{Forms of a linear function}
+\termblanklong{Parent function and transformation}
+\termblanklong{Constant difference vs.\ constant ratio}
+\end{vocabbox}
+
+\begin{hookbox}
+\textbf{Part 1 --- One in, one out.} Three rules. For each, decide whether \emph{every} input gets
+\emph{exactly one} output.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X l@{}}
+\hline
+\textbf{Rule} & \textbf{What goes wrong, if anything} & \textbf{One in, one out?} \\
+\hline
+(a) \; $\{(1,3),(2,5),(4,9)\}$ & \blank{5.4cm} & \blank{1.6cm} \\
+(b) \; $\{(1,3),(2,5),(1,7)\}$ & \blank{5.4cm} & \blank{1.6cm} \\
+(c) \; $\{(1,6),(2,6),(4,6)\}$ & \blank{5.4cm} & \blank{1.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Exactly one of those three fails. Which, and what is the rule it broke? \blank{7.4cm}
+
+\vspace{3pt}
+\textbf{Part 2 --- Three machines, same inputs.} Fill in the table.
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{@{}X|c|c|c|c|c|c@{}}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\
+\hline
+$f(x)=x$ & $0$ & $1$ & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} \\
+$g(x)=x^2$ & $0$ & $1$ & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} \\
+$h(x)=2^x$ & $1$ & $2$ & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Who is biggest at $x=2$? \blank{2.2cm} \quad At $x=4$? \blank{2.2cm} \quad At $x=5$? \blank{2.2cm}
+\\[2pt]
+The answer \emph{changed}. Write down what that tells you: \blank{7.6cm}
+\\[2pt]
+\textbf{The idea the whole lesson hangs on:} an equation was a question about \emph{numbers}. A
+\textbf{function} is a \emph{machine} --- and its graph shows every answer at once. Today we ask one
+fixed set of questions (domain, range, zeros, intercepts, rate) of \textbf{three} families, and see
+how differently each one answers.
+\end{hookbox}
+
+\begin{notesbox}{1. What Makes a Rule a Function --- and How We Talk to It}
+A \textbf{relation} is any pairing of inputs with outputs. It is a \textbf{function} when every
+input has \blank{4.0cm} output.
+\\[2pt]
+Note carefully what is \emph{not} forbidden: two different inputs \emph{may} share the same output.
+The promise is about \blank{2.0cm} only. (Hook item (c) is a function.)
+
+\vspace{3pt}
+\textbf{The same relation, four ways.} A function can arrive as ordered pairs, a table, a mapping,
+or a graph. The test looks different each time, but it is always the same test.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+\textbf{Given as\dots} & \textbf{How you check} \\
+\hline
+ordered pairs / a table & look for a repeated \blank{3.0cm} with different outputs \\
+a mapping diagram & look for an input arrow that \blank{4.6cm} \\
+a graph & the \textbf{vertical line test}: \blank{6.2cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\emph{Why the vertical line test works.} A vertical line is the set of all points with one fixed
+$x$. If it hits the graph twice, that single input has \blank{3.4cm} outputs --- the promise is
+broken. The test is not a trick; it is the definition, \emph{drawn}.
+\begin{center}
+\begin{tabular}{@{}c c c@{}}
+\minigrid{\draw[forest, very thick] (-4,-3) -- (4,5);} &
+\minigrid{\draw[forest, very thick] (2,-6) -- (2,6);} &
+\minigrid{\draw[forest, very thick, domain=-2.3:2.3, smooth, variable=\x] plot ({\x},{\x*\x-2});} \\
+function? \blank{1.0cm} & function? \blank{1.0cm} & function? \blank{1.0cm} \\
+\end{tabular}
+\end{center}
+The middle one is the line $x=2$. It \emph{is} a perfectly good line --- it is just not a
+\blank{2.2cm}, because the single input $2$ is paired with every $y$ there is.
+
+\vspace{4pt}
+\textbf{Domain and range.} The \textbf{domain} is the set of all \blank{2.4cm}; the \textbf{range}
+is the set of all \blank{2.4cm}.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Function} & \textbf{Domain} & \textbf{Range} \\
+\hline
+$\{(-3,4),(0,1),(2,4),(5,9)\}$ & \blank{4.0cm} & \blank{4.0cm} \\
+the line in the Warm-Up, $2x-6$ & \blank{4.0cm} & \blank{4.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+For a set of pairs the domain is a \emph{list}. For an unbroken line it is \emph{all real numbers}
+--- because you may put any number in.
+
+\vspace{4pt}
+\textbf{Function notation.} $f(x)$ is read ``$f$ of $x$.'' It is \emph{not} multiplication.
+\begin{center}
+\fbox{\parbox{0.95\linewidth}{\centering
+$f$ is the \blank{2.0cm} of the machine \quad $\cdot$ \quad $x$ is the \blank{2.0cm} \quad
+$\cdot$ \quad $f(x)$ is the \blank{2.0cm} \\[3pt]
+So ``$f(3)=0$'' and ``the point $(3,0)$ is on the graph'' are the \blank{2.2cm} sentence.}}
+\end{center}
+Let $f(x)=2x-6$. Fill both directions --- going \emph{forward} is arithmetic; going
+\emph{backward} is solving an equation, which is all of Lesson 1.2.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+\hline
+\textbf{Forward: given $x$, find $f(x)$} & \textbf{Backward: given $f(x)$, find $x$} \\
+\hline
+$f(0)=$ \blank{1.6cm} & $f(x)=4$ when $x=$ \blank{1.6cm} \\
+$f(5)=$ \blank{1.6cm} & $f(x)=-2$ when $x=$ \blank{1.6cm} \\
+$f(-1)=$ \blank{1.6cm} & $f(x)=0$ when $x=$ \blank{1.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+That last box has a name. The value of $x$ that makes $f(x)=0$ is called a \textbf{zero} of the
+function, and on the graph it is the \blank{3.2cm}.
+\\[2pt]
+\emph{So Lesson 1.2 was never really about equations.} Every time you solved $ax+b=0$ or
+$ax^2+bx+c=0$, you were finding \blank{4.6cm}.
 \end{notesbox}
+
+\begin{notesbox}{2. Linear Functions --- Every Characteristic, Read Off One Graph}
+Below is $f(x)=2x-6$ again, this time as an object to interrogate. Answer each question from the
+picture, then check it against the rule.
+\begin{center}
+\begin{tabular}{@{}c l@{}}
+\gridplot{\draw[forest, very thick, domain=-0.6:5, smooth, variable=\x] plot ({\x},{2*\x-6});}
+&
+\begin{minipage}[c]{0.56\linewidth}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+\textbf{Domain} & \blank{3.6cm} \\
+\textbf{Range} & \blank{3.6cm} \\
+\textbf{Zero} & $x=$ \blank{3.2cm} \\
+\textbf{$x$-intercept} & \blank{3.6cm} \\
+\textbf{$y$-intercept} & \blank{3.6cm} \\
+\textbf{Slope} & \blank{3.6cm} \\
+\hline
+\end{tabularx}
+\end{minipage}
+\\
+\end{tabular}
+\end{center}
+Two of those six rows are the same fact written two ways. Which two? \blank{5.0cm}
+\\[2pt]
+\textbf{Slope is a rate.} \; \TallMath{m=\frac{\text{change in } y}{\text{change in } x}
+=\frac{y_2-y_1}{x_2-x_1}}
+\\[2pt]
+Use the points $(3,0)$ and $(5,4)$ from the graph: \; $m=$ \blank{4.0cm}
+\\[2pt]
+Say it in words: every time $x$ goes up by $1$, $y$ goes \blank{3.2cm}. That constant, unchanging
+step is what makes the function \blank{2.0cm}.
+
+\vspace{4pt}
+\textbf{Now in context, where the numbers mean something.} A pool is being drained. The volume in
+gallons after $t$ minutes is $V(t)=800-25t$.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+\textbf{Feature} & \textbf{What it means \emph{here} --- with units} \\
+\hline
+$y$-intercept $=800$ & \blank{7.0cm} \\
+slope $=-25$ & \blank{7.0cm} \\
+zero: $V(t)=0$ at $t=$ \blank{1.2cm} & \blank{7.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+What is the domain \emph{in this situation}? \blank{3.2cm} \; Why is it not all real numbers?
+\writeline
+\end{notesbox}
+
+\begin{notesbox}{3. Writing the Line --- Three Forms, Four Situations}
+Same line, three costumes. Each form is honest about a different thing.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Form} & \textbf{Looks like} & \textbf{Hands you, for free\dots} \\
+\hline
+slope-intercept & $y=mx+b$ & \blank{5.6cm} \\
+point-slope & $y-y_1=m(x-x_1)$ & \blank{5.6cm} \\
+standard & $Ax+By=C$ & \blank{5.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Rewrite $y-4=2(x-5)$ in slope-intercept form: \blank{4.0cm} \; then in standard form:
+\blank{4.0cm} \\
+Did the line change? \blank{1.2cm} \; This is Lesson 1.2's \emph{literal equations} --- one
+equation, solved for different things.
+
+\vspace{4pt}
+\textbf{Write the equation.} Four situations, one strategy: get a slope, get a point.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{You are given\dots} & \textbf{Work} & \textbf{Equation} \\
+\hline
+(a) slope $-3$, point $(2,5)$ & \blank{3.6cm} & \blank{3.4cm} \\
+(b) the points $(1,2)$ and $(4,11)$ & \blank{3.6cm} & \blank{3.4cm} \\
+(c) a vertical line through $(7,-2)$ & \emph{no slope exists} & \blank{3.4cm} \\
+(d) a horizontal line through $(7,-2)$ & \emph{slope is} \blank{1.0cm} & \blank{3.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
+Only one of (c) and (d) is a function. Which, and why? \blank{6.6cm}
+
+\vspace{3pt}
+\textbf{Parallel and perpendicular.} Parallel lines have \blank{3.0cm} slopes. Perpendicular lines
+have slopes that are \blank{5.0cm} (multiply to $-1$).
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}l l@{}}
+Through $(0,1)$, parallel to $y=\tfrac12x-4$: & \blank{4.4cm} \\
+Through $(0,1)$, perpendicular to $y=\tfrac12x-4$: & \blank{4.4cm} \\
+\end{tabular}
+\end{center}
+
+\vspace{3pt}
+\textbf{Transforming the parent.} The \textbf{parent} linear function is $y=x$: slope $1$,
+$y$-intercept $0$. Two moves change it, and each one touches exactly one feature.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Change} & \textbf{New slope} & \textbf{New $y$-intercept} \\
+\hline
+$k\,f(x)$: \; $y=3x$ & \blank{2.6cm} & \blank{2.6cm} \\
+$f(x)+k$: \; $y=x+3$ & \blank{2.6cm} & \blank{2.6cm} \\
+$k\,f(x)$ with $k<0$: \; $y=-x$ & \blank{2.6cm} & \blank{2.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+So multiplying changes the \blank{2.0cm} and adding changes the \blank{3.0cm}. Match each equation
+to its graph (the dashed line is the parent $y=x$ in every panel).
+\begin{center}
+\begin{tabular}{@{}c c c@{}}
+\minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+          \draw[forest, very thick] (-2,-6) -- (2,6);} &
+\minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+          \draw[forest, very thick] (-4,-1) -- (3,6);} &
+\minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
+          \draw[forest, very thick] (-4,4) -- (4,-4);} \\
+\blank{1.8cm} & \blank{1.8cm} & \blank{1.8cm} \\
+\end{tabular}
+\end{center}
+\emph{Remember this pair of moves.} In Unit 2 the same two transformations get applied to a V, in
+Unit 3 to a parabola, and in Unit 7 to a growth curve. The parent changes; the moves do not.
+\end{notesbox}
+
+\begin{notesbox}{4. The Other Two Families --- Quadratic and Exponential}
+Same questions. Different answers. Read everything off the pictures.
+
+\vspace{3pt}
+\textbf{Quadratic: $g(x)=x^2-2x-3$.} You met this curve in Lesson 1.2, where you solved
+$x^2-2x-3=0$. Now the solutions have a job.
+\begin{center}
+\begin{tabular}{@{}c l@{}}
+\gridplot{\draw[forest, very thick, domain=-2.2:4.2, smooth, variable=\x] plot ({\x},{\x*\x-2*\x-3});}
+&
+\begin{minipage}[c]{0.56\linewidth}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+\textbf{Zeros ($x$-intercepts)} & \blank{3.6cm} \\
+\textbf{$y$-intercept} & \blank{3.6cm} \\
+\textbf{Vertex} & \blank{3.6cm} \\
+\textbf{Maximum or minimum?} & \blank{3.6cm} \\
+\textbf{Domain} & \blank{3.6cm} \\
+\textbf{Range} & \blank{3.6cm} \\
+\hline
+\end{tabularx}
+\end{minipage}
+\\
+\end{tabular}
+\end{center}
+The factored form is $g(x)=(x-3)(x+1)$. Where do you \emph{see} the $3$ and the $-1$ on the graph?
+\blank{5.4cm} \\
+That is the connection between the algebra and the picture: the factored form displays the
+\blank{2.4cm}, the standard form displays the \blank{3.0cm}.
+\\[2pt]
+\textbf{The range is the new one.} For the line, the range was every real number. Here it is not ---
+because the graph has a \blank{2.4cm} it never goes below. Range: \blank{3.0cm}
+
+\vspace{4pt}
+\textbf{Exponential: $h(x)=2^x$.} Here $y=ab^x$ with $a=$ \blank{0.9cm} and $b=$ \blank{0.9cm}.
+\begin{center}
+\begin{tabular}{@{}c l@{}}
+\expgraph{}
+&
+\begin{minipage}[c]{0.56\linewidth}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+\textbf{$y$-intercept} & \blank{3.6cm} \\
+\textbf{Any $x$-intercept?} & \blank{3.6cm} \\
+\textbf{Domain} & \blank{3.6cm} \\
+\textbf{Range} & \blank{3.6cm} \\
+\textbf{Increasing or decreasing?} & \blank{3.6cm} \\
+\hline
+\end{tabularx}
+\end{minipage}
+\\
+\end{tabular}
+\end{center}
+This family has \textbf{no zero at all}. Explain why not, using the table you built in the Hook:
+\writeline
+The $y$-intercept of $y=ab^x$ is always $a$, because $b^0=$ \blank{1.0cm} --- so the $a$ is the
+\emph{starting amount}.
+
+\vspace{3pt}
+\textbf{In context.} A colony starts at $50$ bacteria and doubles every hour: $P(t)=50\cdot 2^{\,t}$.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}X|c|c|c|c@{}}
+\hline
+$t$ (hours) & $0$ & $1$ & $2$ & $3$ \\
+\hline
+$P(t)$ & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
+What does the $50$ mean here? \blank{4.6cm} \; The $2$? \blank{4.6cm}
+\\[2pt]
+Going \emph{backward}: after how many hours are there $800$ bacteria? \blank{2.0cm} \;
+(You can read this off the table --- no new algebra needed yet.)
+\end{notesbox}
+
+\begin{notesbox}{5. Three Families, Side by Side}
+Return to the Hook table and look at how each column \emph{grows}.
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{@{}l|c|c|c|c|c|X@{}}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ & $4$ & \textbf{How it changes} \\
+\hline
+$f(x)=x$ & $0$ & $1$ & $2$ & $3$ & $4$ & add \blank{1.0cm} each time \\
+$g(x)=x^2$ & $0$ & $1$ & $4$ & $9$ & $16$ & differences $1,3,5,7$ --- \emph{those} go up by \blank{1.0cm} \\
+$h(x)=2^x$ & $1$ & $2$ & $4$ & $8$ & $16$ & \blank{2.0cm} by $2$ each time \\
+\hline
+\end{tabularx}
+\end{center}
+\fbox{\parbox{0.95\linewidth}{\centering
+\textbf{Linear:} constant \blank{2.6cm}. \quad
+\textbf{Quadratic:} constant \emph{second} \blank{2.2cm}. \quad
+\textbf{Exponential:} constant \blank{2.0cm}.}}
+\\[3pt]
+This is how you identify a family from a \emph{table} alone, with no equation and no graph.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l|c c c c|X@{}}
+\hline
+\textbf{At} $x=0,1,2,3$ & \multicolumn{4}{c|}{\textbf{the $y$ values are\dots}} & \textbf{Which family? How do you know?} \\
+\hline
+(a) & $5$ & $8$ & $11$ & $14$ & \blank{6.0cm} \\
+(b) & $3$ & $6$ & $12$ & $24$ & \blank{6.0cm} \\
+(c) & $1$ & $4$ & $9$ & $16$ & \blank{6.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{The comparison that matters.} Fill in the last row of the summary.
+\begin{center}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+ & \textbf{Linear $x$} & \textbf{Quadratic $x^2$} & \textbf{Exponential $2^x$} \\
+\hline
+Domain & all reals & all reals & all reals \\
+Range & all reals & \blank{2.6cm} & \blank{2.6cm} \\
+Number of zeros & \blank{1.6cm} & $0$, $1$, or $2$ & \blank{1.6cm} \\
+Eventually largest? & \blank{2.2cm} & \blank{2.2cm} & \blank{2.2cm} \\
+\hline
+\end{tabularx}
+\end{center}
+In the Hook the exponential was \emph{tied} at $x=2$ and again at $x=4$, then pulled ahead for good.
+Write the moral in one sentence: \writeline
+\end{notesbox}
+
+\begin{practicebox}
+\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
+  \item Is $\{(2,7),(3,7),(5,1)\}$ a function? \blank{1.4cm} \; Domain: \blank{2.6cm} \;
+        Range: \blank{2.6cm}
+  \item $f(x)=4x-10$. \quad $f(3)=$ \blank{1.4cm} \quad $f(x)=6$ when $x=$ \blank{1.4cm} \quad
+        Zero: \blank{1.4cm}
+  \item Write the equation of the line through $(2,-1)$ and $(6,7)$. \blank{4.4cm}
+  \item Write the equation of the line through $(0,5)$ perpendicular to $y=4x-1$. \blank{4.0cm}
+  \item A parabola has $x$-intercepts $-2$ and $6$ and opens upward. Is its vertex a maximum or a
+        minimum? \blank{2.2cm} \; What is the $x$-coordinate of the vertex? \blank{1.6cm}
+  \item A table reads $y=2,\ 10,\ 50,\ 250$ for $x=0,1,2,3$. Which family, and what is the rule?
+        \blank{5.0cm}
+\end{enumerate}
+\end{practicebox}
 
 \end{document}

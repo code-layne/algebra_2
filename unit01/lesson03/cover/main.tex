@@ -2,8 +2,9 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\usepackage{ltablex}
-\keepXColumns
+% NOTE: ltablex is deliberately NOT loaded here. It turns the tocbox's tabularx into a
+% longtable, which forces a page break right after the box and pushes remindbox onto a
+% second page. The table never spans pages, so \rowcolor renders identically without it.
 
 \begin{document}
 
@@ -16,7 +17,7 @@
 
 \begin{center}
   {\color{white}\textbf{\LARGE Algebra 2: Shepherd}}\\[4pt]
-  {\color{forestmid}\large\textbf{Unit 1}}\\[6pt]
+  {\color{forestmid}\large\textbf{Unit 1 \quad Foundations: Algebra 1 Review}}\\[6pt]
   {\color{white}\textbf{\large Lesson 1.3 \quad Functions}}
 \end{center}
 
@@ -27,8 +28,13 @@
 \begin{learningtargetbox}
 \small
 \begin{enumerate}[leftmargin=1.5em, itemsep=5pt]
-  \item \ldots{} TODO: learning target 1 (restate a Learning Objective as "I can ...").
-  \item \ldots{} TODO: learning target 2.
+  \item \ldots{} decide whether a relation --- given as ordered pairs, a table, a mapping, or a graph --- is a \textbf{function}, explain my decision with the \textbf{vertical line test}, and state its \textbf{domain} and \textbf{range}.
+  \item \ldots{} use \textbf{function notation} in both directions: find $f(x)$ from a given $x$, and find $x$ from a given $f(x)$ --- from a rule or from a graph.
+  \item \ldots{} find a linear function's \textbf{zeros}, \textbf{intercepts}, and \textbf{slope}, say what each one means \emph{in context} with units, and explain why a zero and an $x$-intercept are the same fact.
+  \item \ldots{} write the equation of a line in \textbf{slope-intercept}, \textbf{point-slope}, and \textbf{standard} form --- from a graph, from two points, from a slope and a point, and \textbf{parallel} or \textbf{perpendicular} to a given line.
+  \item \ldots{} explain how $k\,f(x)$ and $f(x)+k$ transform the parent $y=x$: one changes the \textbf{slope}, the other changes the \textbf{$y$-intercept}.
+  \item \ldots{} read the key characteristics of a \textbf{quadratic} (zeros, $y$-intercept, vertex, max or min, domain, range) and an \textbf{exponential} $y=ab^x$ (starting value, growth or decay, domain, range, no zeros) off their graphs.
+  \item \ldots{} \textbf{compare and contrast} linear, quadratic, and exponential functions from tables and graphs --- constant difference, constant second difference, constant ratio.
 \end{enumerate}
 \end{learningtargetbox}
 
@@ -41,13 +47,36 @@
 \rowcolor{forestbg}
 \textbf{\#} & \textbf{Component} & \textbf{Description} & \textbf{Score} \\
 \midrule
-1 & Warm-Up      & TODO & \blank{1.2cm} \\
-2 & Group Activity & TODO & \blank{1.2cm} \\
-3 & Exit Ticket  & TODO & \blank{1.2cm} \\
-4 & Homework     & TODO & \blank{1.2cm} \\
+1 & Warm-Up        & One rule asked three ways --- solved, evaluated, and read off a graph & \blank{1.2cm} \\
+2 & Guided Notes   & Functions and notation, a line's characteristics, the three forms and transformations, quadratic and exponential graphs, and the three families side by side & \blank{1.2cm} \\
+3 & Group Activity & \emph{One In, One Out} --- the same six questions asked of every family, by tier & \blank{1.2cm} \\
+4 & Exit Ticket    & Quick check: one function-or-not, one zero, and an SOL-style equation-from-a-graph item & \blank{1.2cm} \\
+5 & Homework       & The whole Functions domain --- plus the overtake & \blank{1.2cm} \\
 \midrule
   & \multicolumn{2}{r}{\textbf{Total}} & \blank{1.2cm} \\
 \end{tabularx}
 \end{tocbox}
+
+\vspace{0.10in}
+
+\begin{remindbox}
+\small In Lesson 1.1 an \textbf{expression} was a recipe. In Lesson 1.2 an \textbf{equation} was a
+\emph{question} with one, no, or infinitely many answers. A \textbf{function} is neither: it is a
+\emph{machine} that takes an input and returns an output --- and its promise is that every input
+gets \textbf{exactly one} output. Two inputs may share an output; one input may never have two. That
+single sentence is the whole definition, and the \textbf{vertical line test} is that sentence drawn.
+\\[3pt]
+Function notation is how you speak to the machine. ``$f(3)=0$'' and ``the point $(3,0)$ is on the
+graph'' say the same thing. Going \emph{forward} --- given $x$, find $f(x)$ --- is arithmetic. Going
+\emph{backward} --- given $f(x)$, find $x$ --- is solving an equation, which is all of Lesson 1.2.
+So the \textbf{zero} of a function, the solution of $f(x)=0$, and the \textbf{$x$-intercept} of its
+graph are three names for one thing.
+\\[3pt]
+Today you meet three families and ask each the same six questions: domain, range, zeros,
+intercepts, rate of change, increasing or decreasing. \textbf{Linear} functions add the same amount
+every step. \textbf{Quadratic} functions turn around at a vertex, so their range stops somewhere.
+\textbf{Exponential} functions multiply by the same amount every step --- which is why they have no
+zeros at all, and why they eventually beat everything else no matter how far behind they start.
+\end{remindbox}
 
 \end{document}
