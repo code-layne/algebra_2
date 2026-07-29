@@ -1,6 +1,13 @@
 # shared/lesson.mk — included by every lesson-level Makefile.
 # Auto-detects PROJECT_ROOT, UNIT, and LESSON from CURDIR.
 #
+# A lesson builds FIVE work products into target/compiled/$(UNIT)/:
+#   lessonYY_plan.pdf     the teacher-facing lesson plan (the lesson-root main.tex)
+#   lessonYY_slides.pdf   the Beamer deck
+#   lessonYY_slides.pptx  the same deck wrapped for PowerPoint (page image per slide)
+#   lessonYY_student.pdf  cover + blank components, paginated packet-wide
+#   lessonYY_key.pdf      the same packet answered, page for page with the student one
+#
 # A component subdirectory may provide EITHER:
 #   - main.tex  → compiled with latexmk to target/.../<comp>/main.pdf, or
 #   - main.pdf  → a prefab PDF, used as-is straight from the source tree.
@@ -37,12 +44,6 @@ STUDENT_ORDER := cover warmup notes activity exit_ticket homework
 KEYED_PAIRS   := warmup notes activity exit_ticket homework
 
 STUDENT_COMPS := $(foreach c,$(STUDENT_ORDER),$(call comp-present,$(c)))
-COVER_COMP    := $(call comp-present,cover)
-
-# Full version: prefer <c>_key over the blank <c>; cover has no key.
-KEYED_COMPS   := $(foreach c,$(KEYED_PAIRS),\
-                   $(or $(call comp-present,$(c)_key),$(call comp-present,$(c))))
-FULL_COMPS    := $(COVER_COMP) $(KEYED_COMPS)
 
 # Key packet: the student packet with every blank component swapped for its key.
 # Derived from STUDENT_COMPS (not KEYED_PAIRS) so the two packets pair up 1:1,
@@ -53,26 +54,42 @@ key-of        = $(or $(call comp-present,$1_key),$1)
 KEY_COMPS     := $(foreach c,$(STUDENT_COMPS),$(call key-of,$(c)))
 
 # Root lesson plan and slides may also be prefab PDFs.
+# comp-dep is the prerequisite that guarantees the PDF exists: the build stamp
+# for a compiled component, or the source PDF itself for a prefab (which has no
+# rule to build it). Using comp-pdf as a prerequisite would break the prefab
+# case — a compiled target under target/ has no rule of its own.
+comp-dep      = $(if $(wildcard $1/main.tex),$(STAMP_DIR)/$1/main.stamp,$(wildcard $1/main.pdf))
+
 HAS_ROOT      := $(or $(wildcard main.tex),$(wildcard main.pdf))
 ROOT_STAMP    := $(if $(wildcard main.tex),$(STAMP_DIR)/main.stamp)
 ROOT_PDF      := $(if $(HAS_ROOT),$(if $(wildcard main.tex),$(PDF_DIR)/main.pdf,main.pdf))
+ROOT_DEP      := $(if $(wildcard main.tex),$(STAMP_DIR)/main.stamp,$(wildcard main.pdf))
 
 HAS_SLIDES    := $(call comp-present,slides)
 SLIDES_STAMP  := $(call comp-stamp,slides)
 SLIDES_PDF    := $(if $(HAS_SLIDES),$(call comp-pdf,slides))
+SLIDES_DEP    := $(if $(HAS_SLIDES),$(call comp-dep,slides))
 
 # ── Stamp and PDF lists ───────────────────────────────────────────────────────
 # Stamps drive compilation (tex only); PDF lists drive the pdfunite merge.
 STUDENT_STAMPS := $(foreach c,$(STUDENT_COMPS),$(call comp-stamp,$(c)))
 STUDENT_PDFS   := $(foreach c,$(STUDENT_COMPS),$(call comp-pdf,$(c)))
 
-FULL_STAMPS    := $(ROOT_STAMP) $(SLIDES_STAMP) \
-                  $(foreach c,$(FULL_COMPS),$(call comp-stamp,$(c)))
-FULL_PDFS      := $(ROOT_PDF) $(SLIDES_PDF) \
-                  $(foreach c,$(FULL_COMPS),$(call comp-pdf,$(c)))
-
 KEY_STAMPS     := $(foreach c,$(KEY_COMPS),$(call comp-stamp,$(c)))
 KEY_PDFS       := $(foreach c,$(KEY_COMPS),$(call comp-pdf,$(c)))
+
+# ── The five work products ────────────────────────────────────────────────────
+PLAN_OUT     := $(if $(HAS_ROOT),$(COMPILED_DIR)/$(LESSON)_plan.pdf)
+SLIDES_OUT   := $(if $(HAS_SLIDES),$(COMPILED_DIR)/$(LESSON)_slides.pdf)
+PPTX_OUT     := $(if $(HAS_SLIDES),$(COMPILED_DIR)/$(LESSON)_slides.pptx)
+STUDENT_OUT  := $(COMPILED_DIR)/$(LESSON)_student.pdf
+KEY_OUT      := $(COMPILED_DIR)/$(LESSON)_key.pdf
+
+# PDF → PPTX: one full-bleed page image per slide, no external dependencies
+# beyond the poppler tools the build already uses. Override PPTX_DPI to trade
+# file size against projected sharpness.
+PPTX_SCRIPT  := $(PROJECT_ROOT)/shared/pdf2pptx.py
+PPTX_DPI     ?= 300
 
 # Both packets are laid out against each other, so either target needs every
 # component of both compiled before it can be paginated.
@@ -129,9 +146,43 @@ define paginate
 endef
 
 # ── Targets ───────────────────────────────────────────────────────────────────
-.PHONY: all student key full clean
+# `slides` and `pptx` are .PHONY, so the slides/ directory never shadows them.
+.PHONY: all plan slides pptx student key clean
 
-all: student key full
+all: plan slides pptx student key
+
+# ── plan / slides / pptx ──────────────────────────────────────────────────────
+
+plan: $(PLAN_OUT)
+ifeq ($(strip $(HAS_ROOT)),)
+	@echo "  (no lesson plan in $(UNIT)/$(LESSON))"
+endif
+
+slides: $(SLIDES_OUT)
+ifeq ($(strip $(HAS_SLIDES)),)
+	@echo "  (no slides in $(UNIT)/$(LESSON))"
+endif
+
+pptx: $(PPTX_OUT)
+ifeq ($(strip $(HAS_SLIDES)),)
+	@echo "  (no slides in $(UNIT)/$(LESSON) — nothing to convert)"
+endif
+
+$(COMPILED_DIR)/$(LESSON)_plan.pdf: $(ROOT_DEP)
+	@mkdir -p $(COMPILED_DIR)
+	@cp $(ROOT_PDF) $@
+	@echo "✓  Lesson plan    → target/compiled/$(UNIT)/$(LESSON)_plan.pdf"
+
+$(COMPILED_DIR)/$(LESSON)_slides.pdf: $(SLIDES_DEP)
+	@mkdir -p $(COMPILED_DIR)
+	@cp $(SLIDES_PDF) $@
+	@echo "✓  Slides (PDF)   → target/compiled/$(UNIT)/$(LESSON)_slides.pdf"
+
+$(COMPILED_DIR)/$(LESSON)_slides.pptx: $(COMPILED_DIR)/$(LESSON)_slides.pdf $(PPTX_SCRIPT)
+	@python3 $(PPTX_SCRIPT) $< $@ --dpi $(PPTX_DPI) --title "$(UNIT) $(LESSON) slides"
+	@echo "✓  Slides (PPTX)  → target/compiled/$(UNIT)/$(LESSON)_slides.pptx"
+
+# ── student / key packets ─────────────────────────────────────────────────────
 
 student: $(ALIGN_STAMPS)
 ifneq ($(strip $(STUDENT_PDFS)),)
@@ -153,15 +204,6 @@ else
 	@echo "  (no keyed components in $(UNIT)/$(LESSON))"
 endif
 
-full: $(FULL_STAMPS)
-ifneq ($(strip $(FULL_PDFS)),)
-	@mkdir -p $(COMPILED_DIR)
-	pdfunite $(FULL_PDFS) $(COMPILED_DIR)/$(LESSON)_full.pdf
-	@echo "✓  Full lesson     → target/compiled/$(UNIT)/$(LESSON)_full.pdf"
-else
-	@echo "  (no content in $(UNIT)/$(LESSON))"
-endif
-
 # ── Pattern rule: compile a component subdirectory (tex components only) ───────
 $(STAMP_DIR)/%/main.stamp: %/main.tex $(SHARED_STYS)
 	@mkdir -p $(dir $@) $(PDF_DIR)/$*
@@ -178,5 +220,7 @@ $(STAMP_DIR)/main.stamp: main.tex $(SHARED_STYS)
 
 clean:
 	rm -rf $(STAMP_DIR) $(PDF_DIR)
-	rm -f $(COMPILED_DIR)/$(LESSON)_student.pdf $(COMPILED_DIR)/$(LESSON)_key.pdf \
+	rm -f $(COMPILED_DIR)/$(LESSON)_plan.pdf \
+	      $(COMPILED_DIR)/$(LESSON)_slides.pdf $(COMPILED_DIR)/$(LESSON)_slides.pptx \
+	      $(COMPILED_DIR)/$(LESSON)_student.pdf $(COMPILED_DIR)/$(LESSON)_key.pdf \
 	      $(COMPILED_DIR)/$(LESSON)_full.pdf

@@ -24,7 +24,9 @@ SKEL_DIR = Path(__file__).resolve().parent.parent / "assets" / "skeletons"
 KEYED = ["warmup", "notes", "activity", "exit_ticket", "homework"]
 NO_KEY = ["cover", "slides"]
 ALL_COMPONENTS = KEYED + NO_KEY
-DEFAULT_COMPONENTS = ["cover", "warmup", "notes", "activity", "exit_ticket", "homework"]
+# slides is a default: every lesson owes a deck, since lessonYY_slides.pdf and
+# lessonYY_slides.pptx are two of the five work products the build produces.
+DEFAULT_COMPONENTS = ["cover", "warmup", "notes", "activity", "exit_ticket", "homework", "slides"]
 
 DOC_TITLE = {
     "warmup": "Warm-Up",
@@ -111,8 +113,8 @@ def scaffold_unit_tests(project: Path, unit_dir: str, unit_int: str,
       sample_test/     drop-in for the PDF the tests/ `drop` target publishes
       sample_test_key/ drop-in for the PDF the test_keys/ `drop` target publishes
     The practice test/key double as the sample_test/sample_test_key that
-    shared/unit.mk merges into the student/full packets; the actual test/key stay
-    out of every packet.
+    shared/unit.mk merges into the unit student/key packets; the actual test/key
+    stay out of every packet.
     """
     udir = project / unit_dir
     print(f"  unit tests for {unit_dir}/ ...")
@@ -271,6 +273,8 @@ def main() -> None:
     if prefab:
         print(f"  2. Drop supplied PDFs as main.pdf in: {', '.join(sorted(prefab))}")
     print(f"  3. Build:  make -C {unit_dir}/{lesson_dir} all")
+    print(f"     → target/compiled/{unit_dir}/{lesson_dir}_"
+          "{plan.pdf,slides.pdf,slides.pptx,student.pdf,key.pdf}")
     if scaffold_tests:
         print(f"  4. Author the unit tests in {unit_dir}/tests/ and {unit_dir}/test_keys/,")
         print(f"     then publish the sample test:  make -C {unit_dir}/tests all && "
