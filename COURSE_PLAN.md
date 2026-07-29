@@ -53,6 +53,10 @@
 > stubs were deliberately left rather than pay a page and a blank/key mismatch — see the boxguard
 > block in §7, which also records that **`\boxguard` is inert inside a breakable `tcolorbox`**.
 > Unit 1 is now retrofitted end to end (1.0 and 1.2 previously; 1.1 and 1.3 today).
+> **One of those two stubs is now closed (2026-07-29):** 1.1's notes Section 2 (Laws of Exponents)
+> is guarded with `\boxguard[30]` and the page it cost was bought back with mirrored spacing trims
+> in Sections 2–4 — notes back to 4/4, packet still 18pp. Only 1.3's Section 3 tail remains, and
+> that one needs a content fix, not a guard. Method note in §7's boxguard block, limit 2.
 >
 > **Lessons 1.0 and 1.3 slides de-overflowed 2026-07-28** (user reported "The trap" printing off
 > 1.0 slide 3, then the same fault in 1.3). Seven frames across the two decks were spilling — 1.3
@@ -2435,7 +2439,14 @@ a lesson actually calls `\boxguard`. Per user decision there is **no bulk sweep*
 problems lesson-by-lesson as they are found in review.
 
 **Applied so far:** Lesson 1.0 (reference), **Lessons 1.1 and 1.3 (2026-07-28)**, **all of Unit 2
-— Lessons 2.0–2.5 (2026-07-29)**, 10 guard sites (each applied to a blank and its key, 20 lines).
+— Lessons 2.0–2.5 (2026-07-29)**, 10 guard sites (each applied to a blank and its key, 20 lines),
+plus **1.1 notes Section 2 (2026-07-29)** — the stub the earlier pass had declined; see limit 2.
+
+**Boxguard is opt-in and nothing detects a missed one.** `\boxguard` only acts where an author
+typed it: across the authored lessons today, **48 of 838** breakable boxes carry a guard. A box
+that strands a stub is not a compile error and `make` still exits 0, so violations surface only
+when someone looks at the PDF. That is why 1.1's Section 2 stub survived a retrofit that had
+already touched the same file — it was seen, priced at a page, and declined (limit 2).
 
 **What the Unit 2 sweep confirmed.** Every guard that landed was *free* — no packet grew. The
 useful new observation is that a guard can be needed on **only one side**: on 2.3 the first two
@@ -2475,12 +2486,20 @@ Unit 2 totals after the re-run: **12 guard sites, 24 lines** — 2.0 ×2, 2.1 ×
    **1.3's Section 3 tail is therefore left as-is** — it needs a content fix (split the box in two,
    or trim two lines), not a guard. Ignore the "inside a box" example in the skill's convention
    table until that claim is re-verified.
-2. **A guard that costs a page also costs the blank/key match.** 1.1's notes Section 2 opens with a
-   title+one-line stub at the foot of page 2. Guarding it pushes the blank to 5pp while the key
-   stays at 4 — a mismatch plus 2 pages of packet padding. Guard values are binary here (any value
-   that fires causes the overflow), so **the stub is left and the match kept.** Where a guard is
-   free it is applied: 1.1's Hook (blank) and Section 4 (key) are both guarded and both packets
-   still come out 18pp.
+2. **A guard that costs a page also costs the blank/key match — but the page can be bought back.**
+   1.1's notes Section 2 opened with a title+one-line stub at the foot of page 2. Guarding it
+   (`\boxguard[30]`, blank + key) pushes the blank to 5pp while the key stays at 4 — a mismatch plus
+   2 pages of packet padding, and guard values are binary here (any value that fires causes the
+   overflow). The 2026-07-28 pass therefore left the stub. **Resolved 2026-07-29 by paying for the
+   guard instead of declining it:** the blank overflowed by only ~4 lines, so mirrored spacing trims
+   in Sections 2–4 recovered them — `\arraystretch` 1.7→1.5 on the Section 3 divide and Section 4
+   radicals tables, 1.6→1.5 on the Section 2 "Apply them", Section 3 factoring, and Section 4
+   rational-exponent tables, `\\[10pt]`→`\\[8pt]`, and Guided Practice `itemsep` 4pt→3pt. Notes are
+   **4/4** again and the packets stay **18pp**, with Section 2 now opening page 3 whole and Section 3
+   breaking with a substantial chunk on each side. Generalize: before declining a guard, measure the
+   overflow — a few lines of table stretch is usually cheaper than the stub.
+
+   Where a guard is free it is applied: 1.1's Hook (blank) and Section 4 (key) are both guarded.
 
 ### Namestrip — the name/date/period rule (named 2026-07-28)
 
