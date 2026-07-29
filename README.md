@@ -56,12 +56,19 @@ lands in `target/`.
 
 `shared/cover.py` generates a unit's binder cover sheet — a two-page letter PDF (front and back
 of the binder, the same sheet twice) whose background art is built from that unit's own lessons.
-A unit opts in by having a `binder_cover/` directory; `make` in the unit regenerates the cover
-when its content changes and merges it as the first component of both packets.
+A unit opts in by having a `binder_cover/` directory, and the cover leads both packets.
 
 ```bash
 mkdir unitXX/binder_cover        # opt the unit in
-make -C unitXX binder_cover      # generate unitXX/binder_cover/main.pdf
+make -C unitXX binder_cover      # draw it, if it does not exist yet
+```
+
+**The cover is drawn once and then left alone.** `binder_cover/main.pdf` is a committed artifact,
+so `make` creates it only when it is *absent* — editing a lesson never silently redraws the
+cover. When you do want it caught up with the unit's current content, ask for it:
+
+```bash
+make -C unitXX clean_unit_cover  # throw the cover away and draw a new one
 ```
 
 With no further work the art is auto-discovered from the unit's lesson sources. To compose it by

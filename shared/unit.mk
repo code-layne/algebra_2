@@ -25,22 +25,13 @@ UNIT_COVER_PDF      := $(if $(HAS_UNIT_COVER),$(COMPILED_DIR)/$(UNIT)/unit_cover
 SAMPLE_TEST_PDF     := $(if $(HAS_SAMPLE_TEST),$(COMPILED_DIR)/$(UNIT)/sample_test.pdf)
 SAMPLE_TEST_KEY_PDF := $(if $(HAS_SAMPLE_TEST_KEY),$(COMPILED_DIR)/$(UNIT)/sample_test_key.pdf)
 
-# What the cover is actually derived from, so it rebuilds when its content
-# changes and stays put otherwise. With a hand-tuned spec that is the spec plus
-# the lesson plan the unit title is read from; without one, auto-discovery
-# reads the lesson components instead, so those become the inputs.
 PYTHON       ?= python3
 COVER_SCRIPT := $(PROJECT_ROOT)/shared/cover.py
-COVER_SPEC   := $(wildcard binder_cover/spec.py)
-COVER_TITLE  := $(firstword $(sort $(wildcard lesson*/main.tex)))
-COVER_SCAN   := $(if $(COVER_SPEC),,$(wildcard lesson*/notes/main.tex \
-                  lesson*/activity/main.tex lesson*/homework/main.tex))
-COVER_DEPS   := $(COVER_SCRIPT) $(COVER_SPEC) $(COVER_TITLE) $(COVER_SCAN)
 
 # A unit aggregates only the two packets that concatenate meaningfully. The
 # other three lesson products (plan, 3-up slides PDF, slides PPTX) stay per-lesson —
 # they are teacher artifacts, not something to hand out as one bound document.
-.PHONY: all student key clean $(LESSONS) \
+.PHONY: all student key clean clean_unit_cover $(LESSONS) \
         binder_cover _binder_cover _unit_cover _sample_test _sample_test_key
 
 all: _binder_cover $(LESSONS)
@@ -52,11 +43,29 @@ $(LESSONS):
 
 # The generated prefab. Declared .PHONY above so the binder_cover/ directory
 # never shadows the convenience target of the same name.
+#
+# The rule has NO prerequisites on purpose: once generated, the cover is a
+# committed artifact and stays put. Editing a lesson must not silently redraw
+# the binder cover, and a regenerated cover is byte-different every time
+# (cairosvg stamps a creation date) even when the art is identical, so
+# dependency-tracking it would churn the repo for nothing. make creates it only
+# when it is absent. To refresh it against the unit's current content:
+#
+#     make -C unitXX clean_unit_cover
 ifdef HAS_BINDER_COVER
 binder_cover: $(BINDER_COVER_SRC)
 
-$(BINDER_COVER_SRC): $(COVER_DEPS)
+$(BINDER_COVER_SRC):
 	$(PYTHON) $(COVER_SCRIPT) $(CURDIR)
+endif
+
+# Throw the current cover away and draw a new one from the unit as it stands.
+clean_unit_cover:
+ifdef HAS_BINDER_COVER
+	rm -f $(BINDER_COVER_SRC) $(BINDER_COVER_PDF)
+	@$(MAKE) --no-print-directory $(BINDER_COVER_SRC)
+else
+	@echo "  (no binder_cover/ in $(UNIT) — nothing to regenerate)"
 endif
 
 _binder_cover: $(BINDER_COVER_SRC)
