@@ -383,6 +383,30 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > teacher notes moved to the plan; all components match their keys, but the packet stays **20pp with
 > 6 pads**, all parity. Lessons 1.1 and 1.3 are **not** converted.
 >
+> **Lesson 1.2 guided-notes Hook boxguarded 2026-07-29 (user report).** The `hookbox` printed a
+> ~3-line sliver at the bottom of p.1 (title + "Solve all three." + item (a)) and resumed on p.2 —
+> the same failure 1.0's Hook had. Fixed with a single `\boxguard` on its own line before
+> `\begin{hookbox}` in **both** `notes/main.tex` and `notes_key/main.tex`; the default 16-line guard
+> is enough here (the Hook opens with running text, not an unbreakable `fbox`/`tabularx`), so no
+> `\newpage` was needed. The whole Hook now starts p.2 in the blank and the key. `make -C
+> unit01/lesson02 all` → EXIT 0; notes still **6pp** blank and **6pp** key, every component still
+> matches its key (1/6/4/1/4), and the packets stay **20pp** student = **20pp** key. No other box
+> was pushed into a stub by the reflow (pp. 3–6 re-checked).
+>
+> **Lesson 1.2 activity Tier R Part 4 pushed to p.2, 2026-07-29 (user report).** Part 4
+> ("Quadratics that factor") started at the foot of p.1 and left its closing line — "Every quadratic
+> here had *two* answers…" — stranded alone at the top of p.2, in the blank and the key alike.
+> **`\boxguard` cannot fix this**: the tier boxes are `breakable` `tcolorbox`es and `\needspace` is
+> inert inside one (§7, limit 1). The working tool is **`\tcbbreak`** — tcolorbox's own forced split,
+> valid only inside a breakable box — placed on its own line in place of the `\vspace{4pt}` before
+> the Part 4 lead-in, mirrored in `activity/main.tex` and `activity_key/main.tex`. Part 4 now opens
+> p.2 whole on both sides. Bonus: the reflow also absorbed the **Tier E Part 4 stub** that had been
+> sitting alone at the top of the blank's p.4. `make -C unit01/lesson02 all` → EXIT 0; activity still
+> **4pp** blank and **4pp** key, all components match (1/6/4/1/4), packets still **20pp** each.
+> *Still open in this component:* Tier E's "Part 2 --- Spot the error" lead-in ends p.3 two lines
+> above its table on p.4 (blank only) — same breakable-box limitation, would need a second
+> `\tcbbreak` and costs vertical space, so left as-is.
+>
 > **Lesson 1.0 slide overflow fixed 2026-07-28 (user report).** Reported on slide 3: the "The trap"
 > `block` rendered past the bottom edge of the frame. Root cause is generic to this deck — a
 > `[t, plain]` beamer frame has **no overflow protection**, so a `columns` block plus a trailing
@@ -2485,7 +2509,12 @@ Unit 2 totals after the re-run: **12 guard sites, 24 lines** — 2.0 ×2, 2.1 ×
    The box is also ~8in tall, so it cannot be pushed whole (that would leave ~7.5in blank on page 4).
    **1.3's Section 3 tail is therefore left as-is** — it needs a content fix (split the box in two,
    or trim two lines), not a guard. Ignore the "inside a box" example in the skill's convention
-   table until that claim is re-verified.
+   table until that claim is re-verified. **Remedy found 2026-07-29 (1.2 activity, Tier R):** when
+   the goal is simply *start this part on the next page*, use tcolorbox's own **`\tcbbreak`** on its
+   own line at the split point. It is defined only inside a `breakable` box, splits the box's vbox
+   where you ask rather than measuring the outer page, and so does exactly what `\needspace` cannot.
+   It is an *unconditional* break, so mirror it in the blank and the key and re-check both page
+   counts; it does not replace `\boxguard` for the conditional case.
 2. **A guard that costs a page also costs the blank/key match — but the page can be bought back.**
    1.1's notes Section 2 opened with a title+one-line stub at the foot of page 2. Guarding it
    (`\boxguard[30]`, blank + key) pushes the blank to 5pp while the key stays at 4 — a mismatch plus
