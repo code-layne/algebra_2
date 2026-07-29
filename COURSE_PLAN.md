@@ -2217,6 +2217,12 @@ Per Unit 1's pattern:
   (or `X.0` in titles) so content lessons keep 1-based numbers.
 - **Build:** `make -C unitXX all`; root `make all` / `make student` / `make full`.
 - **Authoring:** use the `lesson-planning` skill.
+- **Retrofitting:** the conventions below land *after* lessons are written, so an existing lesson
+  can be behind on one. Bring it forward by name — the skill has a Retrofit section listing every
+  convention with its fix and script:
+  `/lesson-planning apply boxguard namestrip retrofit to 1.1 and 1.3`
+  (naming none applies all). Retrofittable names: **boxguard**, **namestrip**, **vocabpar**,
+  **work rule**, **teachernotes**.
 
 ### Vocab-box paragraph breaks — required from Unit 5 onward
 

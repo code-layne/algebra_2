@@ -11,6 +11,9 @@ description: >-
   ____ Functions," with a cumulative characteristics-of-functions spine. Decompose units into
   lessons from it. Trigger this even when the user just says "make lesson 2.3" or "I need a
   warm-up and key for tomorrow," and even if they don't say "skill" or "LaTeX."
+  Also use it to RETROFIT an already-authored lesson to a named convention — boxguard,
+  namestrip, vocabpar, the work rule, teachernotes — as in "apply boxguard namestrip retrofit
+  to 1.1 and 1.3." See the Retrofit section.
 ---
 
 # Lesson Planning — Algebra 2
@@ -224,6 +227,30 @@ lesson maps) and note the concrete next actions and any open questions for the u
 the end of **every** execution, even a partial one; keep it terse and current (overwrite stale
 entries rather than appending a changelog). Since it lives in the repo, it travels with the
 branch, so the Step 0 sync always brings the latest state forward.
+
+## Retrofit — apply a named convention to a lesson already authored
+
+Conventions land after lessons are written, so an existing lesson can be behind on one. The user
+invokes this by name:
+
+> `/lesson-planning apply boxguard namestrip retrofit to 1.1 and 1.3`
+
+Apply **only the conventions named** (all of them if none are named), to the lessons named, then
+build and report. Each has a fix and, where it is mechanical, a script:
+
+| Name | The rule | How to apply |
+| --- | --- | --- |
+| **boxguard** | No box stranded as a ~1in sliver across a page break | `\boxguard` (or `\boxguard[n]`) on its own line before the `\begin{...}` — blank **and** key |
+| **namestrip** | Name/date/period row on the cover only | `python3 .claude/skills/lesson-planning/scripts/namestrip.py --project . --unit NN --lesson MM` (`--check` to preview) |
+| **vocabpar** | `\par` around `\termblanklong`/`\ansline` in a `vocabbox` | Hand fix per lesson; `unit05/lesson00` is the reference |
+| **work rule** | A component is the same length blank and keyed | `work` blocks authored identically in both files; `steptable`/`\step` for printed solutions; `\writelines{n}` to match a wrapped `\ansline`. References: `unit01/lesson02` (work), `unit01/lesson00` (steptable) |
+| **teachernotes** | Teacher prose in the lesson plan, one titled note per component | `python3 .claude/skills/lesson-planning/scripts/movenotes.py unitNN/lessonMM` (`--check` to preview) |
+
+Full spec for each: `references/conventions.md` and `COURSE_PLAN.md` §7.
+
+**Always finish a retrofit with the evidence**, per lesson: `make -C unitXX/lessonYY all` exits 0,
+and every component's page count equals its `_key`'s. Report any component that still differs and
+why. Then Step 6.
 
 ## Reference files
 
