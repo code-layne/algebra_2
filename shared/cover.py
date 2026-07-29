@@ -999,15 +999,25 @@ def main(argv=None) -> int:
     ap.add_argument("--teacher", default="Shepherd")
     ap.add_argument("--seed", type=int, default=7, help="auto-layout jitter seed")
     ap.add_argument("--check-fonts", action="store_true",
-                    help="report missing fonts and exit")
+                    help="preflight the fonts and cairosvg, then exit")
     args = ap.parse_args(argv)
 
     missing = check_fonts()
     if args.check_fonts:
         for m in missing:
-            print("missing:", m, file=sys.stderr)
-        print("all cover fonts present" if not missing else
-              "install the OTFs above where the OS font service can see them")
+            print("missing font:", m, file=sys.stderr)
+        if missing:
+            print("install the OTFs above where the OS font service can see "
+                  "them — see the README", file=sys.stderr)
+        else:
+            print("all cover fonts present")
+        try:
+            import cairosvg                                   # noqa: F401
+            print("cairosvg present")
+        except ImportError as e:
+            print(f"missing cairosvg: {e} — python3 -m pip install --user "
+                  "cairosvg", file=sys.stderr)
+            return 1
         return 1 if missing else 0
     if missing:
         print("!  cover.py: missing fonts — output will fall back to system faces:",
