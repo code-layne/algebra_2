@@ -508,6 +508,41 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > parallel with different numbers/contexts. `make -C unit02/tests all` and
 > `make -C unit02/test_keys all` → EXIT 0; practice test + key published to `sample_test/` and
 > `sample_test_key/`. **Unit 2 is content-complete; next is Unit 3 scaffolding.**
+>
+> **Unit 2 retrofitted to four conventions (2026-07-29)** — teachernotes → work rule → namestrip →
+> boxguard, in that order, on all six lessons (2.0–2.5), one agent per lesson in parallel. Totals:
+> **30 teacher notes** moved to the plans (zero left in any lesson key), **82 `work` blocks** added
+> byte-identically across blanks and keys, **23 `\writelines{n}`** adjustments, **60 name rows**
+> stripped (covers kept), **12 boxguard sites** (24 lines, blank + key each). `make -C unit02/lessonYY
+> all` → **EXIT 0** for all six; **all 30 keyed components match their keys page for page**; every
+> warm-up and exit ticket holds the 1-page constraint blank *and* keyed; all 30 work products
+> present. Packets are **14pp student / 14pp key** for every lesson — 2.0 and 2.3 each shed 2pp
+> (16 → 14) as their activity mismatches closed.
+>
+> Component shape is now uniform across the unit: warm-up 1/1, notes 3/3, activity 2/2, exit ticket
+> 1/1, homework 2/2 — **except 2.5's notes at 4/4**, the one outlier (namestrip did not reclaim
+> enough to drop it to 3). Each lesson plan grew 3pp → 4pp absorbing its five teacher notes.
+>
+> Ordering matters and was validated: teachernotes closed the mismatch outright on 2.0 and 2.3 but
+> *opened* one on 2.2; namestrip opened one on 2.4; boxguard closed what the earlier passes
+> disturbed. **Run them in this order.**
+>
+> **Open defect — 29 Rule-1 `\ans{}`-inside-`$…$` violations remain in Unit 2 keys**, concentrated in
+> **2.1 (26: `notes_key` ×20, `homework_key` ×6)** and **2.3 (3: `notes_key`:51, `warmup_key`:33 and
+> :53)**. Forms like `$y = \ans{$4x-3$}$` and `$t=\ans{$2$}$` do not error — LaTeX limps through
+> because the inner `$` closes the outer math — but the answer is then set in **text mode inside a
+> math expression**, and the construct is exactly what the global rule forbids. Fix by closing math
+> first: `$y = $ \ans{$4x-3$}`. Detect them with a math-mode-aware scan, **not** a regex: a pattern
+> like `\$[^$]*\\ans` reports every line that merely contains `$…$` somewhere plus an `\ans`
+> elsewhere, which is ~154 false positives here and reads as "clean" when the pattern itself errors.
+>
+> Also fixed in passing: a Rule-1 `\ans{}`-inside-`$…$` violation in `unit02/lesson03/activity_key`,
+> and two stray `main.pdf` files removed from `unit02/lesson05/notes{,_key}/` (inert — [shared/lesson.mk:46](shared/lesson.mk:46)
+> `comp-pdf` prefers `main.tex` when both exist — but exactly the hazard the Unit 1 note warns of).
+> **Still open on Unit 2: vocabpar** on 2.0, 2.1, 2.2, 2.4, 2.5 (2.3 done); and three content-level
+> box stubs that a guard cannot fix because they sit inside breakable `tcolorbox`es (2.0 homework
+> Practice, 2.2 activity Tier A 3 / homework Practice 5, 2.4 homework Practice) — those need a box
+> split or two trimmed lines, not a guard.
 
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*
@@ -2346,6 +2381,27 @@ Fixing it per-lesson (rather than patching `\termblanklong` in
 already-verified unit at once. The shared fix is the right long-term answer, but it belongs with the
 retrofit below, where the pagination of Units 2–4 can be re-verified in one pass.
 
+**The defect is present throughout Unit 2, confirmed 2026-07-29.** The four-convention sweep of
+Units 2.0–2.5 found the garbled `vocabbox` in the `notes_key` of every lesson inspected; on **2.2**
+it reaches past the vocab box into `homework_key` items 7 and extension (b), so the collision is
+not confined to `vocabbox` — anywhere an `\ansline` is followed by a `\noindent`-opening macro is
+exposed. Each affected key already defines a local `\vocabans`, but without the `\par` on both ends.
+
+**vocabpar changes box heights, so boxguard must be re-run after it.** On 2.3 the taller vocab
+boxes flipped a guard verdict that the first pass had recorded as impossible — see the boxguard
+section's "Re-run boxguard" note. Sequence vocabpar **before** boxguard.
+
+**Lesson 2.3 fixed 2026-07-29** (the first Unit 2 lesson to get it), by hand, per the 5.0 pattern:
+`\par\vspace{2pt}` before the first term in `notes/main.tex`, and `\par` on both ends of
+`\vocabans` plus the same `\par\vspace{2pt}` in `notes_key/main.tex`. **It was free** — notes stayed
+3/3 and the packet stayed 14pp, so the fear that this re-flows pagination did not materialize here.
+Both sides verified by rendering page 1: the blank's intro sentence and first term are on separate
+lines, and the key's five term labels each sit above their own dotted answer line.
+
+That 2.3 came out free is evidence the Units 2–4 sweep may be cheaper than assumed, but it is one
+data point on a 3pp notes file — **2.5's notes are 4pp and the rest of Unit 2 is unfixed.** Lessons
+2.0, 2.1, 2.2, 2.4 and 2.5 still carry the defect.
+
 ### Boxguard — the page-break rule (named 2026-07-28)
 
 **"Boxguard" names both the defect and the fix.** When a review turns up "lesson 2.3 has a
@@ -2378,7 +2434,36 @@ Unlike the vocab-box fix above, this one **is** a shared-package change — it i
 a lesson actually calls `\boxguard`. Per user decision there is **no bulk sweep**: fix boxguard
 problems lesson-by-lesson as they are found in review.
 
-**Applied so far:** Lesson 1.0 (reference), **Lessons 1.1 and 1.3 (2026-07-28)**.
+**Applied so far:** Lesson 1.0 (reference), **Lessons 1.1 and 1.3 (2026-07-28)**, **all of Unit 2
+— Lessons 2.0–2.5 (2026-07-29)**, 10 guard sites (each applied to a blank and its key, 20 lines).
+
+**What the Unit 2 sweep confirmed.** Every guard that landed was *free* — no packet grew. The
+useful new observation is that a guard can be needed on **only one side**: on 2.3 the first two
+guards fire in the key and are no-ops in the blank, and on 2.4 the
+guard exists purely because namestrip had let the key's Guided Practice box squeeze onto a page the
+blank still pushed, opening a 3/2 mismatch. **Boxguard is therefore the right last step** — it
+repairs pagination the three earlier conventions disturb. Both documented limits held up
+repeatedly: guards inside breakable `tcolorbox`es were correctly skipped as inert (2.0 homework,
+2.2 activity/homework, 2.4 homework), and several guards were declined because firing them cost a
+page and with it the blank/key match (2.1 activity Tier A — measured at 2 padding pages).
+
+**Re-run boxguard after any change that alters box heights — vocabpar in particular (2026-07-29).**
+2.3's notes were re-guarded after its vocabpar fix and the earlier conclusion **reversed**. The
+first pass had found that guarding notes box 1 "clears that stub only by stranding box 3's tail,
+and guarding box 3 in turn overflows to 4pp," so it left the stub. vocabpar changed the arithmetic:
+`\termblanklong`/`\vocabans` now break properly, making **both** vocab boxes taller, and with the
+new heights `\boxguard[18]` on box 1 **and** `\boxguard[20]` on box 3 both fit — 4 guard sites on
+2.3, still **3/3, packet still 14pp**. The blank went from one stub to **zero broken boxes**, and
+because the taller key vocab box now also pushes box 1 off page 1, **the key paginates identically
+to the blank**: p1 objective/vocab/hook, p2 boxes 1–2, p3 boxes 3–4 + Guided Practice.
+
+Two things to carry forward: a "guard costs a page" verdict is only valid for the box heights it
+was measured against, so **re-measure rather than trusting a prior refusal**; and vocabpar and
+boxguard interact, so **vocabpar belongs before boxguard** in the retrofit order, alongside
+namestrip.
+
+Unit 2 totals after the re-run: **12 guard sites, 24 lines** — 2.0 ×2, 2.1 ×2, 2.2 ×2, **2.3 ×4**,
+2.4 ×1, 2.5 ×1.
 
 **Two limits found on 1.1 / 1.3 (2026-07-28) — read these before guarding a lesson:**
 
@@ -2433,8 +2518,13 @@ sweep** of already-authored lessons: Units 2–8 still carry the row on ~508 com
 stripping them all at once would re-flow the pagination of every verified lesson. **Namestrip
 lesson-by-lesson as reported.** Lesson 1.0 is the reference implementation.
 
-**Applied so far:** Lessons 1.0, **1.1 and 1.3 (2026-07-28)** — 10 rows each, blanks and keys
-together, with no pagination shift in either lesson. Covers keep their row, as intended.
+**Applied so far:** Lessons 1.0, **1.1 and 1.3 (2026-07-28)**, **all of Unit 2 — Lessons 2.0–2.5
+(2026-07-29)**, 10 rows each (60 total), blanks and keys together, covers untouched. Units 3–8
+still carry the row.
+
+**Namestrip is not always free — sequence it before boxguard.** On 2.4 it reclaimed enough vertical
+space that the *key*'s Guided Practice box fit on a page the blank still pushed, opening a 3/2
+mismatch that a `\boxguard` then closed. Run it before the guard pass, never after.
 
 ### Packet pagination — one document, numbered as one document (2026-07-28)
 
@@ -2620,8 +2710,15 @@ python3 .claude/skills/lesson-planning/scripts/movenotes.py unit01/lesson02
 1pp components, which are structural. The lesson plan grew to 6pp, which costs nothing — `full` is
 not paginated and the plan never reaches students.
 
-**Still to do:** the other 43 lessons keep their notes in the keys. `movenotes.py` handles them one
-at a time; Lessons 1.2 and 1.0 are the reference implementations.
+**Still to do:** the other 37 lessons (Units 3–8) keep their notes in the keys. `movenotes.py`
+handles them one at a time; Lessons 1.2 and 1.0 are the reference implementations.
+
+**All of Unit 2 migrated 2026-07-29** — 5 notes per lesson, 30 total; no `teachernote` remains in
+any Unit 2 lesson key. Each plan grew 3pp → 4pp, which costs nothing. It was again the single
+highest-yield step: it closed the blank/key mismatch outright on **2.0** (activity 3→2) and **2.3**
+(activity 3→2), matching the 1.3 result. **But it cuts both ways** — on **2.2** it *opened* a
+mismatch (`notes_key` 3→2), because that key had been running long purely on its teacher note; the
+work-rule pass then put it back to 3/3. Expect either direction, and always re-measure after it.
 
 **Lessons 1.1 and 1.3 migrated 2026-07-28** (5 notes each). On **1.3 this was the whole fix for the
 notes**: 6/7 → **6/6**, and the packet dropped **22pp → 20pp** without touching a single item of
@@ -2689,6 +2786,33 @@ as `\blank{}`/`\ans{}` — they hold single final answers, and 1.3's are table c
 excludes. 1.3's exit ticket item 2(d) is a genuine multi-step solve left alone on purpose: it is
 already structured as equation-then-answer, it matches its key, and a `work` block risks the
 one-page constraint.
+
+**All of Unit 2 converted 2026-07-29 — 82 `work` blocks**, every one byte-identical between its
+blank and its key (verified by diffing the extracted blocks). Per lesson: 2.0 ×1, 2.1 ×10, 2.2 ×16,
+2.3 ×5, 2.4 ×2, 2.5 ×7. The spread is the point: **2.2 needed 16 and 2.0 needed 1**, because 2.0 is
+a read-features-off-a-graph lesson (structurally like 1.0) where nearly every answer is a single
+value, while 2.2 (absolute-value equations & inequalities) is almost entirely multi-step solving.
+Do not expect a uniform yield per lesson — count the multi-step items first.
+
+The two drift patterns the rule exists to catch both showed up repeatedly, and are worth naming so
+they are recognized on sight:
+
+1. **The blank reserved nothing.** 2.1's exit ticket item 2 had a bare `\vspace{1.4cm}` where the
+   key carried a full multi-step chain; 2.2's exit ticket item 2 had the chain **printed in the key
+   and entirely absent from the blank**. Students had no room for work the key showed.
+2. **The key crammed the chain onto one line** — `\ans{$C(3)=\$30$; $C(8)=30+10(3)=\$60$}` (2.4),
+   `\ans{$\dfrac{7-1}{3-1}=3$}` (2.1), `\ans{$d(0)=80(4)=320$ m; $d(7)=80(3)=240$ m.}` (2.3).
+
+**`\writelines{n}` consumes n+1 line slots** — it ends in `\\`, so `\writelines{3}` occupies four.
+Found on 2.3, where raising activity Tier E 3 from `{2}` to `{3}` overflowed the blank to 3pp; it
+was returned to `{2}`. Measure the key's true wrapped length, then set `n` to that, and re-measure
+the blank rather than assuming the raise is free. 23 `\writelines{n}` adjustments were made across
+Unit 2 (2.0 ×5, 2.1 ×4, 2.3 ×4, 2.4 ×6, plus 2.2 ×0 and 2.5's set) — on **2.2 the count was zero**,
+because both of its prose-drift spots turned out to be multi-step solves that a `work` block fixed
+instead. Reach for `work` first; `\writelines` is only for genuine prose.
+
+No `steptable` conversions were needed anywhere in Unit 2 — none of the six lessons has a "justify
+each line" printed-solution chain. That environment remains Unit-1-specific so far.
 
 ### The five work products — `full` removed, PPTX added (2026-07-28)
 

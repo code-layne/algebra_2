@@ -9,13 +9,14 @@
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
 \newcommand{\vocabans}[2]{%
-  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.3}{Guided Notes --- Answer Key}
-\namedateperiod
 
 \vspace{0.10in}
 
@@ -34,7 +35,7 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
 \vocabans{Absolute value parent function $f(x)=|x|$}{a V opening up, vertex at the origin; the rays $y=x$ ($x\ge 0$) and $y=-x$ ($x<0$)}
 \vocabans{Vertex (turning point)}{the V's lowest point (opens up) or highest point (opens down)}
 \vocabans{Axis of symmetry}{the vertical line $x=h$ through the vertex; the two rays mirror across it}
@@ -54,6 +55,7 @@ out at one turning point --- the \emph{vertex} --- and is symmetric about the li
 absolute value function is this same V, moved and stretched.
 \end{hookbox}
 
+\boxguard[18]
 \begin{notesbox}{1. The Parent Function $f(x)=|x|$}
 Complete the table, then read the graph.
 \begin{center}
@@ -87,6 +89,7 @@ symmetry $x={\color{keyred}\mathbf{0}}$; \; minimum value \ans{$0$}; \; domain \
 $y={\color{keyred}\mathbf{x}}$ when $x\ge 0$, and $y={\color{keyred}\mathbf{-x}}$ when $x<0$.
 \end{notesbox}
 
+\boxguard[26]
 \begin{notesbox}{2. Up / Down and Left / Right}
 \textbf{Outside} the bars acts \emph{vertically, as expected}; \textbf{inside} the bars acts
 \emph{horizontally and backwards}.
@@ -122,6 +125,7 @@ Left vertex: $({\color{keyred}\mathbf{3}},\,{\color{keyred}\mathbf{0}})$. \qquad
 Right vertex: $({\color{keyred}\mathbf{0}},\,{\color{keyred}\mathbf{-3}})$.
 \end{notesbox}
 
+\boxguard[20]
 \begin{notesbox}{3. Stretch, Compress, and Reflect: $y=a|x|$}
 The number $a$ multiplies the \emph{outputs}: it scales the V and, if negative, flips it.
 \begin{center}
@@ -156,6 +160,7 @@ The number $a$ multiplies the \emph{outputs}: it scales the V and, if negative, 
 \end{itemize}
 \end{notesbox}
 
+\boxguard[23]
 \begin{notesbox}{4. Vertex Form: $g(x)=a|x-h|+k$}
 All three moves at once. The vertex is $(h,k)$ and the axis of symmetry is $x=h$.
 \[ \text{opens \textbf{up} if } a>0 \ (k \text{ is a } \textbf{minimum}); \qquad
@@ -169,7 +174,12 @@ Vertex $({\color{keyred}\mathbf{1}},\,{\color{keyred}\mathbf{3}})$ & Axis $x={\c
 \end{center}
 Because $a=-2$, the V is \ans{narrower} (narrower / wider) than the parent and opens \ans{down}.
 Evaluate at $x=0$ straight from the rule:
-\[ g(0) = -2\,|\,0-1\,| + 3 = -2({\color{keyred}\mathbf{1}}) + 3 = {\color{keyred}\mathbf{1}}. \]
+\begin{work}
+  g(0) &= -2\,|\,0-1\,| + 3 \\
+       &= -2\,|{-1}| + 3     \\
+       &= -2(1) + 3          \\
+       &= 1
+\end{work}
 \end{notesbox}
 
 \begin{practicebox}
@@ -179,20 +189,14 @@ For $g(x) = \tfrac12\,|x+4| - 2$, fill in each feature.
   \item Opens \ans{up} (up / down), so $k$ is a \ans{min} (max / min) value of \ans{$-2$}.
   \item Compared to $y=|x|$, this graph is shifted \ans{left} $4$ and \ans{down} $2$, and is
         \ans{wider} (narrower / wider).
-  \item Evaluate: $g(0)=\tfrac12\,|0+4|-2 = {\color{keyred}\mathbf{0}}$.
+  \item Evaluate $g(0)$, one step per line.
+        \begin{work}
+          g(0) &= \tfrac12\,|0+4| - 2 \\
+               &= \tfrac12(4) - 2      \\
+               &= 2 - 2                \\
+               &= 0
+        \end{work}
 \end{enumerate}
 \end{practicebox}
-
-\begin{teachernote}
-The spine is the distance meaning: a distance can't go below the vertex, which creates the single
-turning point (min/max) and the mirror symmetry (axis). Two errors to pre-empt: (1) the horizontal
-\emph{sign flip} --- $|x-3|$ moves \emph{right}, because $x=3$ is where the inside equals zero; have
-students set ``inside $=0$'' to locate the vertex every time. (2) The $a<0$ case --- insist that
-opening \emph{down} turns $k$ into a \emph{maximum}, and that the range flips to $y\le k$. For width,
-tie ``narrower'' to $|a|>1$ (steeper rays) and ``wider'' to $0<|a|<1$. In Section~4, model reading
-$g(0)$ \emph{straight from the equation} so students see the function as a machine, not just a
-picture. Connect to Lesson~2.2: the solutions of $|x-1|=2$ are the two $x$'s where this V meets the
-line $y=2$.
-\end{teachernote}
 
 \end{document}

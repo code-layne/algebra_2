@@ -2,6 +2,7 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\setlength{\workrowsep}{8pt}   % handwriting room; moves blank and key together
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
@@ -16,7 +17,6 @@
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.5}{Guided Notes --- Answer Key}
-\namedateperiod
 
 \vspace{0.08in}
 
@@ -136,12 +136,22 @@ gives
 \begin{notesbox}{4. Predicting --- and Its Limits}
 To \textbf{predict}, substitute an $x$ into $\hat y=ax+b$.
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Predict for $x=6$ hours: $\hat y=1.5(6)+2={\color{keyred}\mathbf{11}}$ free throws. The data ran from
-        $x=1$ to $x=8$, so $x=6$ is \emph{inside} the data --- this is \ans{interpolation} (interpolation /
-        extrapolation).
-  \item Predict for $x=12$ hours: $\hat y=1.5(12)+2={\color{keyred}\mathbf{20}}$. But only $15$ shots were
-        attempted, so $20$ is \ans{unreasonable} (reasonable / unreasonable). Predicting \emph{outside} the
-        data is \ans{extrapolation}, and the trend may break down.
+  \item Predict for $x=6$ hours:
+        \begin{work}
+          \hat y &= 1.5(6) + 2 \\
+                 &= 9 + 2      \\
+                 &= 11
+        \end{work}
+        The data ran from $x=1$ to $x=8$, so $x=6$ is \emph{inside} the data --- this is
+        \ans{interpolation} (interpolation / extrapolation).
+  \item Predict for $x=12$ hours:
+        \begin{work}
+          \hat y &= 1.5(12) + 2 \\
+                 &= 18 + 2      \\
+                 &= 20
+        \end{work}
+        But only $15$ shots were attempted, so $20$ is \ans{unreasonable} (reasonable / unreasonable).
+        Predicting \emph{outside} the data is \ans{extrapolation}, and the trend may break down.
   \item \textbf{Correlation $\ne$ causation.} In summer, ice-cream sales and pool drownings both rise, so
         $r>0$ --- but ice cream does not \emph{cause} drownings. The real cause (\emph{hot weather}) is a
         \ans{lurking} variable. A strong $r$ shows the variables \ans{move} together, not that one
@@ -149,6 +159,7 @@ To \textbf{predict}, substitute an $x$ into $\hat y=ax+b$.
 \end{itemize}
 \end{notesbox}
 
+\boxguard[32]
 \begin{practicebox}
 A study relates \textbf{daily minutes of exercise} ($x$) to \textbf{resting heart rate in bpm} ($y$).
 Technology gives $\hat y = -0.4x + 78$ with $r=-0.88$.
@@ -156,25 +167,15 @@ Technology gives $\hat y = -0.4x + 78$ with $r=-0.88$.
   \item Is the association positive or negative, strong or weak? \ans{negative, strong ($|r|=0.88$)}
   \item Interpret the slope $-0.4$ in context.
         \ansline{each additional minute of daily exercise is associated with about $0.4$ bpm lower resting heart rate}
-  \item Predict the resting heart rate for $x=30$ minutes: $\hat y={\color{keyred}\mathbf{66}}$ bpm.
-        \quad {\footnotesize$(-0.4(30)+78=-12+78=66)$}
+  \item Predict the resting heart rate for $x=30$ minutes.
+        \begin{work}
+          \hat y &= -0.4(30) + 78 \\
+                 &= -12 + 78      \\
+                 &= 66
+        \end{work}
   \item The data ran from $x=0$ to $x=45$ minutes. Is the $x=30$ prediction interpolation or extrapolation?
         \ans{interpolation} \; Does a strong $r$ prove exercise \emph{causes} a lower heart rate? \ans{no}
 \end{enumerate}
 \end{practicebox}
-
-\begin{teachernote}
-The organizing arc is \emph{describe $\to$ measure $\to$ model $\to$ predict $\to$ judge}. Section~1 keeps
-description qualitative (direction/form/strength) \emph{before} any number appears. Section~2's number line
-is the key mental model: $r$ folds direction (sign) and strength ($|r|$) into one value --- the recurring
-error is calling $r=-0.9$ ``weak'' because it is negative; hammer $|r|$. Section~3 is the heart of A2.ST.2:
-students \emph{interpret} the slope as a per-unit rate and the intercept as a baseline \emph{in the story},
-not as bare numbers. Section~4 draws the interpolation/extrapolation line (the $x=12$ prediction of $20$
-made out of $15$ shots is the memorable ``extrapolation breaks'' moment) and separates correlation from
-causation with the ice-cream/drownings lurking-variable classic. Finding $r$ and the equation is a
-technology task (A2.ST.2c,e,f); here the values are \emph{given} so class time goes to reading and
-reasoning. The practice box rehearses the whole arc on a \emph{negative} association so students transfer
-the ideas past the free-throw example.
-\end{teachernote}
 
 \end{document}
