@@ -53,6 +53,14 @@
 > stubs were deliberately left rather than pay a page and a blank/key mismatch — see the boxguard
 > block in §7, which also records that **`\boxguard` is inert inside a breakable `tcolorbox`**.
 > Unit 1 is now retrofitted end to end (1.0 and 1.2 previously; 1.1 and 1.3 today).
+>
+> **Lessons 1.0 and 1.3 slides de-overflowed 2026-07-28** (user reported "The trap" printing off
+> 1.0 slide 3, then the same fault in 1.3). Seven frames across the two decks were spilling — 1.3
+> slides 3 and 6 were dropping whole bullets off the bottom. Both decks now compile with zero
+> overfull boxes. Details and the measuring method in the Unit 1 block in §4.
+> **Open item:** the remaining authored decks have never been checked — a `grep -n "Overfull"`
+> sweep over every `unit0{1..8}/lesson*/slides` log is the next action. Two decks checked, two
+> decks bad, so assume the rest are too; beamer spills silently and `make` still exits 0.
 
 ---
 
@@ -370,6 +378,46 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > from scratch. 6 step tables aligned on their relation, one `work` block in the exit ticket, five
 > teacher notes moved to the plan; all components match their keys, but the packet stays **20pp with
 > 6 pads**, all parity. Lessons 1.1 and 1.3 are **not** converted.
+>
+> **Lesson 1.0 slide overflow fixed 2026-07-28 (user report).** Reported on slide 3: the "The trap"
+> `block` rendered past the bottom edge of the frame. Root cause is generic to this deck — a
+> `[t, plain]` beamer frame has **no overflow protection**, so a `columns` block plus a trailing
+> `block` that together exceed the frame height simply spills off the slide; the only signal is an
+> `Overfull \vbox` in the `.log`, which is easy to miss because the compile still exits 0. Two
+> frames were overflowing (slide 3 by 21.4pt, slide 6 by 4.6pt) and slide 5's two tabulars ran
+> 20.2pt and 10.4pt past their columns. Fixes, all in `slides/main.tex`: slide 3 columns
+> rebalanced 0.56/0.42 → 0.44/0.54 (the set diagram is only ~5cm wide, the bullet list was the
+> tall side) with `\small` + tighter `itemsep` on the bullets and on the block, and the set-diagram
+> `tikzpicture` scaled 0.40 → 0.46 to use the freed space; slide 5 columns set to **0.47/0.49**,
+> the measured widths of the two tabulars at `\small` (`\hspace{7pt}` intercolumn instead of the
+> 12pt default); slide 6 number line scaled 0.42 → 0.38 with `\small` on both columns and the
+> block. Deck now compiles with **zero overfull boxes** — that is the check to run, since nothing
+> else reports it:
+> ```
+> grep -n "Overfull" <outdir>/main.log
+> ```
+> `make -C unit01/lesson00 all` → EXIT 0; slides still 7pp and all five components still match
+> their keys (1/5/3/1/3), so no packet pagination changed. Content is unedited — layout only.
+>
+> **Lesson 1.3 slide overflow fixed 2026-07-28 (user report) — same failure mode as 1.0.** Five
+> overflows across four frames, two of them losing content: slide 3 (`\vbox` 24.7pt) dropped the
+> whole "every equation you solved last lesson was finding a zero" bullet, and slide 6 (`\vbox`
+> 36.0pt) dropped its last two Unit 2/3/7 bullets. Slide 4 was over by 1.2pt and slides 5 and 6
+> also had `\hbox` overflows of 4.9pt and 4.5pt. Fixes: slide 3 `\small` on both columns +
+> `itemsep` 5→3pt; slide 4 `\vspace` 4→2pt in the right column; slide 5 left tabular given a 6pt
+> intercolumn gap (its **196.1pt** width did not fit the 191.2pt column); slide 6 columns
+> rebalanced 0.52/0.44 → **0.48/0.50** with `\small` + `itemsep` 5→3pt on the bullets, and the
+> three-graph `tikzpicture` scaled `x=0.26/y=0.19` → `x=0.23/y=0.18` so it fits its column
+> (was 195.7pt in 191.2pt). Deck compiles with **zero overfull boxes**; `make -C unit01/lesson03
+> all` → EXIT 0, slides still 9pp, all components still match their keys (1/6/4/1/4) and both
+> packets are still 20pp. Content unedited — layout only.
+>
+> **Method note for the next deck.** Guessing at column widths wastes passes — `\savebox` the
+> suspect tabular/tikz in a throwaway beamer file and `\typeout` its `\wd` against
+> `\textwidth` (**398.34pt** at `aspectratio=169, 11pt`), then set the column to the measured
+> fraction. Both 1.0 and 1.3 had a case where the overflow was *created* by narrowing a column on
+> a guess. Also: only the **taller** column drives a `\vbox` overflow, so trimming the short side
+> does nothing.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
