@@ -55,6 +55,11 @@ order (same skeleton for review and primary-content lessons):
     multiple-choice item, with a note on collecting and using results.
 12. **Reinforcement & Extension** — `skillbox{goldbox}`: homework overview, an extension, and a
     preview of the next lesson.
+13. **Teacher Notes** — one `teachernote` per component, in packet order, each titled for it:
+    `\begin{teachernote}[Warm-Up]`, `[Guided Notes]`, `[Group Activity]`, `[Exit Ticket]`,
+    `[Homework]`. Pacing, misconceptions to watch, how to sort collected work, what to re-run
+    tomorrow. **This is the only place teacher prose goes** — never append one to a `_key`, which
+    would make the key longer than its blank. See `references/conventions.md`.
 
 Record the lesson's **standards** (the codes the user supplied) in the plan for the audit trail.
 
@@ -180,9 +185,9 @@ test keys too):
   `itemize`.
 - `\ans` is text-mode: never put it inside `$...$` — wrap math fragments instead
   (`\ans{$\sqrt{n}$}`) — and never let it span a blank line.
-- Use the `teachernote` environment for teacher-only guidance (pacing, common errors). It is the
-  one block with no counterpart in the blank, so it is the likeliest reason a key runs a page
-  long — keep it tight, and check the component's page count after adding one.
+- **No `teachernote` in a key.** Teacher-only guidance goes in the lesson plan, one note per
+  component, titled `\begin{teachernote}[Exit Ticket]` and so on. A note in a key is the one block
+  with no counterpart in the blank, and it is what makes a key run a page long.
 - **Worked solutions are not `\ans{}` material.** An inline `$a=b \Rightarrow c=d \Rightarrow e=f$`
   crammed into one cell violates the work rule and gives the student no room; use a `work` block,
   identical in both files. See `references/conventions.md`.

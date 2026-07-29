@@ -355,9 +355,11 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **Lesson 1.2 is the work-rule pilot, 2026-07-28 (user request) — see §7.** Every worked solution
 > in 1.2 now lives in a `\begin{work}` block authored identically in the blank and the key. Notes
 > 5→6, activity 3→4, homework 3→4 (each matched on both sides); the packet is still **20pp** and its
-> blank pages went **6 → 3**. Remaining: the 1pp cover, the 1pp warm-up, and the exit ticket, whose
-> key runs 2pp because of its `teachernote`. The other three Unit 1 lessons are **not** converted —
-> 1.2 is the reference implementation to review before any sweep.
+> blank pages went **6 → 3**. Its five teacher notes also moved into the lesson plan as
+> `\begin{teachernote}[Warm-Up]` etc., so **every component now matches its key exactly** and none
+> of the three remaining pads is caused by a key — they are the 1pp cover, warm-up, and exit ticket.
+> The other three Unit 1 lessons are **not** converted; 1.2 is the reference implementation to
+> review before any sweep.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -2447,16 +2449,53 @@ The packet is **still 20pp** and its blank pages went **6 → 3**: the component
 the pages that used to be padding, and the room landed where students actually work. The three
 that remain are the 1pp cover, the 1pp warm-up (both structural parity), and the exit ticket.
 
-**Two things the pilot exposed.**
+**`\ansline` prose drifts the same way**, without a shared body to measure. Homework item 8 came
+out 3 / 4 until the blank's `\writelines{3}` was raised to `\writelines{5}` to match the key's
+wrapped answer. Applied by hand; noted in `references/conventions.md`.
 
-1. **`teachernote` is now the main source of mismatch.** It is the one block with no counterpart in
-   the blank. Lesson 1.2's exit ticket is 1pp blank / 2pp keyed purely because of it, even after the
-   note was cut roughly in half — the items now fill page 1 on their own. Open question for the
-   user: trim notes to fit, or move teacher prose to the lesson plan (which is teacher-facing
-   already and outside the page-matched packet)?
-2. **`\ansline` prose drifts the same way**, without a shared body to measure. Homework item 8 came
-   out 3 / 4 until the blank's `\writelines{3}` was raised to `\writelines{5}` to match the key's
-   wrapped answer. Applied by hand; noted in `references/conventions.md`.
+### Teacher notes move to the lesson plan (2026-07-28)
+
+Once the work rule was in, `teachernote` was the last thing making a key longer than its blank —
+the one block with no counterpart on the student side. Lesson 1.2's exit ticket was 1pp blank /
+2pp keyed purely because of it, even after the note was cut roughly in half.
+
+**Decision (user, 2026-07-28): teacher prose lives in the lesson plan, one note per component, in
+packet order, titled for it.**
+
+```latex
+\begin{teachernote}[Warm-Up]  ... \end{teachernote}   % → "Teacher Note: Warm-Up"
+% then [Guided Notes], [Group Activity], [Exit Ticket], [Homework]
+```
+
+The plan is teacher-facing already and sits outside the page-matched packet, so nothing is lost and
+the keys shed their one asymmetry. `teachernote` therefore **moved from `algebra2-key` to
+`algebra2-boxes`** (the lesson plan loads `-boxes`, not `-key`), and its title argument is
+**optional** — a bare `\begin{teachernote}` still renders plain "Teacher Note", so the 46
+un-migrated lessons keep compiling untouched. Verified against `unit01/lesson00/notes_key`.
+
+Migrate a lesson with `scripts/movenotes.py` (see §7 conventions in the skill):
+
+```bash
+python3 .claude/skills/lesson-planning/scripts/movenotes.py unit01/lesson02
+```
+
+**Result on Lesson 1.2 — every component now matches its key exactly:**
+
+| component | blank / key | pads |
+|---|---|---|
+| cover | 1 / 1 | 1 (parity) |
+| warm-up | 1 / 1 | 1 (parity) |
+| guided notes | 6 / 6 | 0 |
+| group activity | 4 / 4 | 0 |
+| exit ticket | 1 / 1 | 1 (parity) |
+| homework | 4 / 4 | 0 |
+
+20pp packet, **3 blank pages, zero of them caused by a key**. The three that remain are the three
+1pp components, which are structural. The lesson plan grew to 6pp, which costs nothing — `full` is
+not paginated and the plan never reaches students.
+
+**Still to do:** the other 46 lessons keep their notes in the keys. `movenotes.py` handles them one
+at a time; Lesson 1.2 is the reference implementation.
 
 Lesson 1.2 had no blank/key mismatch to begin with, so its gain came from the components growing
 into their padding. The lessons where the rule directly removes a mismatch are the ones already

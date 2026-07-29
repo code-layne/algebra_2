@@ -165,8 +165,12 @@ and a worked skeleton for every component and its key. Hold to these invariants:
   `\usepackage{algebra2-article}` + `\usepackage{algebra2-boxes}`.
 - **Answer keys** are *separate files* that swap `-boxes` for `\usepackage{algebra2-key}` and
   wrap every answer in `\ans{...}` (inline) or `\ansline{...}` (fills a write-line). Mirror the
-  blank document exactly, then fill the blanks. Use `teachernote` for teacher-only guidance.
-  There is **no** answer-key toggle — never try to build one.
+  blank document exactly, then fill the blanks. There is **no** answer-key toggle — never try to
+  build one.
+- **Teacher notes go in the lesson plan, not in a key** — one `teachernote` per component, in
+  packet order, titled for it: `\begin{teachernote}[Exit Ticket]` → "Teacher Note: Exit Ticket".
+  A note in a key is the one block with no counterpart in the blank, so it makes the key run
+  longer and costs the student packet a blank page.
 - **The work rule: a component must be the same number of pages blank and keyed.** Put every
   worked solution in a `work` block — one statement per line, `&` before the relation so the whole
   block aligns on it — authored **byte-identically in the blank and the key**. The blank reserves

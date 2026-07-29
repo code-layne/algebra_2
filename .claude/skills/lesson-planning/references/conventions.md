@@ -150,14 +150,44 @@ so raising it for handwriting room can never break the match.
 
 `unit01/lesson02` is the reference implementation.
 
+## Teacher notes — in the lesson plan, one per component
+
+**Teacher-only prose goes in the lesson plan, never in a `_key`.** A `teachernote` is the one block
+in a key with no counterpart in the blank, so it made the key run longer than its blank for no
+student-facing reason — the last thing costing a packet blank pages once the work rule is in.
+
+The lesson plan closes with one note per component, in packet order, each titled for it:
+
+```latex
+\begin{teachernote}[Warm-Up]        ... \end{teachernote}   % → "Teacher Note: Warm-Up"
+\begin{teachernote}[Guided Notes]   ... \end{teachernote}
+\begin{teachernote}[Group Activity] ... \end{teachernote}
+\begin{teachernote}[Exit Ticket]    ... \end{teachernote}
+\begin{teachernote}[Homework]       ... \end{teachernote}
+```
+
+The environment is defined in **`-boxes`** (the lesson plan does not load `-key`) and the argument
+is **optional** — a bare `\begin{teachernote}` still renders plain "Teacher Note", so lessons not
+yet migrated keep compiling. To migrate one:
+
+```bash
+python3 .claude/skills/lesson-planning/scripts/movenotes.py unit01/lesson02
+```
+
+It lifts the note out of each `_key`, appends it to the plan with the right title, and refuses to
+run twice on the same lesson. Add `--check` to report without changing anything. Rebuild
+afterward and confirm every component matches its key page for page.
+
 ## Answer-key macros (from `-key`)
 
 | Macro / env | Effect |
 | --- | --- |
 | `\ans{text}` | Inline answer in bold `keyred`; use in place of a blank |
 | `\ansline{text}` | Bold `keyred` answer that fills a write-line with a dotted trail |
-| `teachernote` (env) | Red "Teacher Note" callout for teacher-only guidance |
 | `work` (env) | Worked steps — **defined in `-boxes`**, authored identically in both files; see "The work rule" |
+
+**`teachernote` is no longer a key macro.** It lives in `-boxes` and belongs in the **lesson
+plan** — see "Teacher notes" below.
 
 **`\ansline` is the other place lengths drift.** A `\writeline` in the blank is exactly one line;
 an `\ansline` whose prose wraps to four is three lines longer. When a key's prose answer runs long,

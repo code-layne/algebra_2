@@ -242,6 +242,35 @@
     breakable
 }
 
+% ── Teacher notes ─────────────────────────────────────────────────────────────
+% TEACHER NOTES LIVE IN THE LESSON PLAN, one per component, titled for it:
+%
+%   \begin{teachernote}[Warm-Up] ... \end{teachernote}   → "Teacher Note: Warm-Up"
+%   \begin{teachernote}          ... \end{teachernote}   → "Teacher Note"
+%
+% They used to be appended to each _key, which made the key longer than its
+% blank for no student-facing reason — the one block with no counterpart in the
+% blank, and after the work rule the main thing still costing a packet blank
+% pages. The lesson plan is teacher-facing already and sits outside the
+% page-matched packet, so that is where the prose belongs.
+%
+% Defined here rather than in algebra2-key because the lesson plan loads -boxes
+% only. The optional argument keeps every pre-existing bare \begin{teachernote}
+% in an un-migrated key compiling unchanged.
+\tcbset{teachernotestyle/.style={
+    enhanced,
+    colback=redbg, colframe=redacc, boxrule=0.7pt, arc=1.5mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm,
+    fonttitle=\bfseries\scriptsize\color{white},
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=redacc, colframe=redacc, arc=1mm},
+    breakable
+}}
+\NewDocumentEnvironment{teachernote}{o}
+  {\begin{tcolorbox}[teachernotestyle,
+      title={Teacher Note\IfValueT{#1}{: #1}}]}
+  {\end{tcolorbox}}
+
 % ── Cover page boxes ──────────────────────────────────────────────────────────
 \newtcolorbox{tocbox}{
     enhanced,
