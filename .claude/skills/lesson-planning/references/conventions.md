@@ -223,6 +223,16 @@ an `\ansline` whose prose wraps to four is three lines longer. When a key's pros
 give the blank `\writelines{n}` for the same n — the same principle as the work rule, applied by
 hand because prose cannot be measured from a shared body.
 
+**`\writelines{n}` occupies n+1 line slots** — it ends in `\\`, so `\writelines{3}` takes four
+lines' worth of room. Raising one is *not* free: on Unit 2 Lesson 2.3 a `{2}` → `{3}` raise
+overflowed the blank to 3pp against a 2pp key and had to be reverted. Set n from the key's true
+wrapped length, then rebuild and re-measure the **blank** before moving on.
+
+**Reach for `work` before `\writelines`.** If the answer is a multi-step solve rather than prose, a
+`work` block fixes the drift correctly and cannot come apart; a lengthened write-line only papers
+over it. On Lesson 2.2 every apparent `\ansline` drift turned out to be a solve, so the lesson
+needed 16 `work` blocks and zero `\writelines` changes.
+
 **Key-authoring rule:** copy the blank component verbatim, then replace each blank/`\writeline`
 with `\ans{…}`/`\ansline{…}` and mark correct multiple-choice options, e.g.
 `\textcolor{keyred}{\textbf{$\leftarrow$ correct}}`. `\ans` is **text-mode** — never place it
