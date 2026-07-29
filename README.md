@@ -4,26 +4,45 @@ A LaTeX-based curriculum for Algebra 2, organized by unit and lesson. Includes s
 
 ## Structure
 
-Each lesson lives in `unitXX/lessonXX/` and compiles to a set of PDFs:
+Each lesson lives in `unitXX/lessonYY/`. Its lesson plan is the directory's own `main.tex`, and
+each component is a subdirectory with its own `main.tex`:
 
-- `notes` / `notes_key`
-- `warmup` / `warmup_key`
-- `activity` / `activity_key`
-- `exit` / `exit_key`
-- `homework` / `homework_key`
 - `cover` (lesson cover sheet)
+- `warmup` / `warmup_key`
+- `notes` / `notes_key`
+- `activity` / `activity_key`
+- `exit_ticket` / `exit_ticket_key`
+- `homework` / `homework_key`
+- `slides` (Beamer deck, no key)
+
+## Work products
+
+Every lesson builds **five files** into `target/compiled/unitXX/`:
+
+| File | What it is |
+| --- | --- |
+| `lessonYY_plan.pdf` | the teacher-facing lesson plan |
+| `lessonYY_slides.pdf` | the Beamer deck |
+| `lessonYY_slides.pptx` | the same deck for PowerPoint, one page image per slide |
+| `lessonYY_student.pdf` | cover + blank components, numbered packet-wide, components start recto |
+| `lessonYY_key.pdf` | that packet answered, page for page with the student copy |
+
+Units aggregate only the two packets, into `target/compiled/unitXX_{student,key}.pdf`.
 
 ## Building from Source
 
-Requires [XeLaTeX](https://tug.org/xetex/) and `latexmk`.
+Requires [XeLaTeX](https://tug.org/xetex/), `latexmk`, `poppler` (`pdfunite`, `pdftoppm`,
+`pdfinfo`), and `python3`.
 
 ```bash
-make all        # compile all units
-make unit01-pdf # compile + merge Unit 1 into a single PDF
-make unit02-pdf # compile + merge Unit 2 into a single PDF
+make -C unit01/lesson02 all   # all five work products for one lesson
+make -C unit01 student key    # merge a whole unit
+make all                      # build every unit
+make student key              # merge the whole curriculum
 ```
 
-Output lands in `target/`.
+Per-lesson targets `plan`, `slides`, `pptx`, `student`, and `key` build one product each. Output
+lands in `target/`.
 
 ## Downloading Prebuilt PDFs
 

@@ -140,7 +140,12 @@ warm-up and exit ticket are still one page each, blank and key.
 
 ## Slides
 
-`slides/` — optional teacher Beamer deck. No key. Requires `shared/algebra2-beamer.sty`.
+`slides/` — the teacher Beamer deck. No key. Requires `shared/algebra2-beamer.sty`.
+
+**Every lesson owes a deck.** It is not optional: it feeds two of the five work products —
+`lessonYY_slides.pdf` and `lessonYY_slides.pptx` (the same deck rasterized one page per slide by
+`shared/pdf2pptx.py`). Because the PPTX slides are page images, the `.tex` is the only source of
+truth; nothing is editable downstream.
 Preamble: `\documentclass[aspectratio=169,11pt]{beamer}` + `\usepackage{algebra2-beamer}`.
 The title slide is hand-built (forest background canvas + minipage); content slides use
 `\forestheader{Title}` and `\sectionlabel[color]{LABEL}`. Note `\CourseName` is **not** defined
@@ -166,7 +171,7 @@ lesson cover, so they keep their name row):
 - **`test_keys/practice_test_key/main.tex`**, **`test_keys/actual_test_key/main.tex`** — the
   keys, each mirroring its blank test exactly (preamble swaps `-boxes` for `-key`), answers in
   `\ans{...}`, correct MC options tagged, extended-response scoring in a `teachernote`. The
-  practice key is published as `sample_test_key` (full packet only).
+  practice key is published as `sample_test_key` (unit key packet only).
 
 Content is summative — draw across the whole unit's lessons and standards. Keep the practice and
 actual versions parallel so the practice test is honest preparation. Build/publish with

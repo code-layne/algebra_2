@@ -1,19 +1,36 @@
 # Build System
 
-The project compiles with **XeLaTeX** (via `latexmk`) and merges PDFs with **`pdfunite`**
-(poppler). The skill authors `.tex`; the project's own Makefiles do the building. **Never edit
-`shared/` or the Makefiles to make a lesson build — fix the lesson's `.tex` instead.**
+The project compiles with **XeLaTeX** (via `latexmk`), merges PDFs with **`pdfunite`** (poppler),
+and wraps slide decks into `.pptx` with **`shared/pdf2pptx.py`**. The skill authors `.tex`; the
+project's own Makefiles do the building. **Never edit `shared/` or the Makefiles to make a lesson
+build — fix the lesson's `.tex` instead.**
+
+## The five work products
+
+Every lesson builds exactly five files into `target/compiled/unitXX/`:
+
+| File | What it is | Built from |
+| --- | --- | --- |
+| `lessonYY_plan.pdf` | the teacher-facing lesson plan | the lesson-root `main.tex` |
+| `lessonYY_slides.pdf` | the Beamer deck | `slides/main.tex` |
+| `lessonYY_slides.pptx` | the same deck, one page image per slide | `lessonYY_slides.pdf` |
+| `lessonYY_student.pdf` | cover + blank components, paginated packet-wide | the student components |
+| `lessonYY_key.pdf` | that packet answered, page for page | the `_key` components |
+
+There is **no `full` packet** — it was removed. The plan and the deck are their own deliverables
+now, so nothing bundles them behind a cover with the answer keys.
 
 ## The three-level Make hierarchy
 
-Each level below the root is a thin `Makefile` that includes a `shared/*.mk`. The scaffolder
-creates them as needed (see "Scaffolding a lesson"), so you rarely write them by hand:
+Each level is a thin `Makefile` that includes a `shared/*.mk`. The scaffolder creates them as
+needed (see "Scaffolding a lesson"), so you rarely write them by hand:
 
-- **Root `Makefile`** — discovers `unit*/Makefile`, delegates, and merges unit PDFs into
-  `target/compiled/curriculum_{student,key,full}.pdf`. (Already present in this repo.)
+- **Root `Makefile`** (`include shared/root.mk`) — discovers `unit*/Makefile`, delegates, and
+  merges unit PDFs into `target/compiled/curriculum_{student,key}.pdf`.
 - **`unitXX/Makefile`** (`include ../shared/unit.mk`) — discovers `lesson*/Makefile`,
-  delegates, and merges lesson PDFs into `target/compiled/unitXX_{student,key,full}.pdf`. It also
+  delegates, and merges lesson PDFs into `target/compiled/unitXX_{student,key}.pdf`. It also
   merges the unit's `unit_cover`, `sample_test`, and `sample_test_key` (see "Unit assessments").
+  **Only the two packets aggregate to unit level** — plans and decks stay per-lesson.
 - **`lessonYY/Makefile`** (`include ../../shared/lesson.mk`) — the engine. It:
   - **Discovers a component if it has `main.tex` or `main.pdf`.** Authored components
     (`main.tex`) are compiled; prefab components (`main.pdf`) are used as-is from the source
@@ -21,46 +38,67 @@ creates them as needed (see "Scaffolding a lesson"), so you rarely write them by
   - Compiles each `<comp>/main.tex` with
     `latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error`,
     sending output to `target/UNIT/LESSON/<comp>/` and a stamp to `.stamps/`.
-  - Builds three merged packets:
+  - Copies the plan and the deck to their `_plan.pdf` / `_slides.pdf` names, converts the deck
+    to `.pptx`, and merges the two packets:
     - **student** = `cover warmup notes activity exit_ticket homework` (blank versions present),
       in that pedagogical order → `lessonYY_student.pdf`.
     - **key** = the *same* packet with every blank component swapped for its `_key` (cover has no
       key and appears unchanged) → `lessonYY_key.pdf`. It carries no lesson plan and no slides —
       it is the student packet, answered, **page for page** (see "Packet pagination").
-    - **full** = the lesson plan (`main.tex`) + `slides` + `cover` + the **`_key`** version of
-      each keyed component (falling back to the blank if no key) → `lessonYY_full.pdf`. The
-      `slides` component is built only when present and requires `shared/algebra2-beamer.sty`.
 
 ## Commands
 
 ```bash
+make -C unitXX/lessonYY all       # all five work products
+make -C unitXX/lessonYY plan      # lessonYY_plan.pdf
+make -C unitXX/lessonYY slides    # lessonYY_slides.pdf
+make -C unitXX/lessonYY pptx      # lessonYY_slides.pptx (builds the PDF first)
 make -C unitXX/lessonYY student   # student packet for one lesson
 make -C unitXX/lessonYY key       # answer-key packet, paginated to match the student packet
-make -C unitXX/lessonYY full      # teacher/full packet (plan + slides + cover + keys)
-make -C unitXX/lessonYY all       # all three (student, key, then full)
 make -C unitXX/lessonYY clean     # remove this lesson's target/ and stamps
 
-make -C unitXX student|key|full   # merge a whole unit
-make student|key|full             # merge the whole curriculum (from project root)
+make -C unitXX student|key        # merge a whole unit
+make student|key                  # merge the whole curriculum (from project root)
 make clean | distclean            # clean everything (distclean also removes target/ and .stamps)
 ```
 
-Outputs land in `target/`: per-component PDFs under `target/UNIT/LESSON/<comp>/main.pdf`,
-merged packets under `target/compiled/`.
+`plan`, `slides`, and `pptx` are incremental — they are real file targets and rebuild only when
+their source changes. `student` and `key` always re-merge, because the pagination pass measures
+both packets against each other every time.
 
-**Always build with `make all` (or `student` before `full`)** when the lesson plan embeds a
-warm-up thumbnail: the thumbnail uses the warm-up, and `full` alone (from a clean tree) builds
-only the `_key` versions. Authored warm-ups are text-only in the plan (no thumbnail); prefab
-warm-ups embed `warmup/main` (the PDF in the source tree), which resolves regardless of order.
+Outputs land in `target/`: per-component PDFs under `target/UNIT/LESSON/<comp>/main.pdf`, the
+five work products under `target/compiled/unitXX/`.
+
+**Build with `make all`** when the lesson plan embeds a warm-up thumbnail: the thumbnail uses the
+warm-up. Authored warm-ups are text-only in the plan (no thumbnail); prefab warm-ups embed
+`warmup/main` (the PDF in the source tree), which resolves regardless of order.
+
+## Slides → PPTX
+
+`shared/pdf2pptx.py` wraps `lessonYY_slides.pdf` into `lessonYY_slides.pptx`: `pdftoppm`
+rasterizes each page at 300 dpi and the script writes the OOXML package with `zipfile`, one
+full-bleed page image per slide. It is deliberately **dependency-free** — no LibreOffice, no
+`python-pptx`; it uses only the poppler tools the build already needs.
+
+- The canvas is scaled, aspect preserved, to PowerPoint's standard 7.5in height, so a 16:9 deck
+  lands on exactly 13.333 × 7.5in ("Widescreen").
+- **The slides are images, not editable text.** That is the point: TikZ figures and math render
+  exactly as they do in the PDF. The `.tex` is the source of truth — edit it and rebuild.
+  **Never edit the `.pptx`**; the next build overwrites it.
+- Override the resolution with `make -C unitXX/lessonYY pptx PPTX_DPI=200` to trade sharpness for
+  file size (a typical deck is ~1 MB at 300 dpi).
 
 ## Scaffolding a lesson
 
 ```bash
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
   --title "..." --unit-title "..." \
-  --components cover,warmup,notes,activity,exit_ticket,homework[,slides] \
+  --components cover,warmup,notes,activity,exit_ticket,homework,slides \
   [--prefab warmup,warmup_key] [--course "Algebra 2: Shepherd"] [--lesson-id 2.3]
 ```
+
+That component list is the default — `slides` included, since two of the five work products come
+from the deck.
 
 It detects the prefix (`algebra2`) from `shared/*-colors.sty`, and detects whether `\CourseName`
 is defined in `shared/` — it is **not** in this course, so the generated lesson plan inlines the
@@ -68,9 +106,9 @@ course macros (pass `--course`/`--year` to set them; they default to "Algebra 2:
 2026–2027 if detected). It writes the lesson `Makefile`, the lesson plan, and each authored
 component + key skeleton — **and creates the unit `Makefile` (and the root `Makefile` if it were
 missing)** so unit/curriculum builds work, never clobbering existing ones. Pass `--prefab <dirs>`
-to create empty drop-in directories instead (where you place each `main.pdf`). Add `slides` to
-build a Beamer deck; the scaffolder requires `shared/algebra2-beamer.sty` and errors if it is
-missing. Then author the skeletons (`references/components.md`).
+to create empty drop-in directories instead (where you place each `main.pdf`). The `slides`
+component requires `shared/algebra2-beamer.sty`; the scaffolder errors if it is missing. Then
+author the skeletons (`references/components.md`).
 
 ## Prefab PDFs
 
@@ -107,9 +145,8 @@ This is automatic for every lesson — **no `.tex` change and no per-lesson swee
 - It assumes letter-size pages and the `algebra2-article` bottom margin. A prefab drop-in of a
   different page size would get its number misplaced; re-measure and adjust `\PgBaseline` if the
   shared geometry ever changes.
-- **`full` packets are neither paginated nor imposed** — they mix letter pages with 16:9 Beamer
-  slides, so one letter-paper stamping pass cannot number both. Teacher packets keep
-  per-component numbering.
+- **The plan and the deck are never paginated or imposed** — they are standalone documents, and
+  the deck is 16:9 rather than letter, so the letter-paper stamping pass does not apply to them.
 - **Unit packets are deliberately out of scope**: they inherit even lesson packets, but `unit.mk`
   neither numbers them nor pads `unit_cover` (1pp), so the first lesson opens on a verso. The
   lesson packet is the artifact students are handed. The unit **key** packet still lines up with
@@ -132,13 +169,14 @@ unit is first created (skip with `--no-tests`, force a re-scaffold with `--tests
 
 `shared/tests.mk`/`shared/test_keys.mk` compile every `*/main.tex` subdir, then a `drop` target
 **publishes the practice test/key** to `sample_test/main.pdf` and `sample_test_key/main.pdf`.
-`shared/unit.mk` then merges `sample_test` into the unit **student and full** packets and
-`sample_test_key` into the **full** packet only. The **actual** test/key are never merged.
+`shared/unit.mk` then merges `sample_test` into the unit **student** packet and `sample_test_key`
+into the unit **key** packet (falling back to the blank sample test if no key was published). The
+**actual** test/key are never merged.
 
 ```bash
 make -C unitXX/tests all         # compile practice + actual tests, publish sample_test/main.pdf
 make -C unitXX/test_keys all     # compile both keys, publish sample_test_key/main.pdf
-make -C unitXX full              # merges the published sample test + key into the unit packet
+make -C unitXX student key       # merges the published sample test / key into the unit packets
 make -C unitXX/tests clean       # remove target/UNIT/tests
 ```
 

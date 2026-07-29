@@ -50,17 +50,31 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
 - **`main.tex`** — the teacher-facing **lesson plan** (the root document of the lesson dir).
 - A set of **student components**, each its own subdirectory containing **either** a
   `main.tex` (authored, compiled to a PDF) **or** a `main.pdf` (a prefab PDF, used as-is):
-  `cover`, `warmup`, `notes`, `activity`, `exit_ticket`, `homework`, and optional `slides`.
+  `cover`, `warmup`, `notes`, `activity`, `exit_ticket`, `homework`, and `slides`.
 - An **answer key** for each keyed component, as a *separate* sibling directory:
   `warmup_key`, `notes_key`, `activity_key`, `exit_ticket_key`, `homework_key`.
-  (`cover` has no key.)
+  (`cover` and `slides` have no key.)
 
-`shared/lesson.mk` discovers a component if it has a `main.tex` **or** a `main.pdf`, compiles
-the `main.tex` ones with `latexmk -xelatex`, and merges all of them with `pdfunite` in
-pedagogical order into `lessonYY_student.pdf` (cover + blank components), `lessonYY_key.pdf` (the
-same packet with each blank swapped for its key, **paginated to match page for page**), and
-`lessonYY_full.pdf` (cover + keyed versions, plus the lesson plan and slides). A prefab `main.pdf`
-is fed straight to `pdfunite` from the source tree with no compile step (Step 4).
+### The five work products
+
+Every lesson builds **exactly five files** into `target/compiled/unitXX/`:
+
+| File | What it is |
+| --- | --- |
+| `lessonYY_plan.pdf` | the lesson plan — the lesson-root `main.tex`, compiled |
+| `lessonYY_slides.pdf` | the Beamer deck from `slides/main.tex` |
+| `lessonYY_slides.pptx` | that deck wrapped for PowerPoint, one page image per slide |
+| `lessonYY_student.pdf` | cover + blank components, merged and paginated packet-wide |
+| `lessonYY_key.pdf` | the same packet answered, **page for page** with the student one |
+
+`shared/lesson.mk` discovers a component if it has a `main.tex` **or** a `main.pdf`, compiles the
+`main.tex` ones with `latexmk -xelatex`, merges the packets with `pdfunite` in pedagogical order,
+and converts the deck with `shared/pdf2pptx.py`. A prefab `main.pdf` is fed straight to `pdfunite`
+from the source tree with no compile step (Step 4).
+
+**There is no `full` packet.** It was removed — the plan and the deck are standalone deliverables
+now, so never build, reference, or expect `lessonYY_full.pdf`. Because `slides` feeds two of the
+five products, **every lesson owes a deck**; it is a default component, not an optional one.
 
 The characteristics lesson is **`lesson00`** (Lesson X.0); content lessons keep 1-based numbers.
 
@@ -76,10 +90,13 @@ automatically when the unit is first created (Step 2):
 - **`test_keys/`** — the matching answer keys: **`practice_test_key/`** and
   **`actual_test_key/`**; its `drop` publishes the *practice* key to `sample_test_key/main.pdf`.
 - **`sample_test/`** and **`sample_test_key/`** — prefab drop-in dirs that receive those
-  published PDFs. `shared/unit.mk` merges `sample_test` into **both** the unit student and full
-  packets, and `sample_test_key` into the **full** packet only. The **actual** test and its key
-  are never merged into any packet — they stay out of student hands.
+  published PDFs. `shared/unit.mk` merges `sample_test` into the unit **student** packet and
+  `sample_test_key` into the unit **key** packet. The **actual** test and its key are never
+  merged into any packet — they stay out of student hands.
 - Optionally **`unit_cover/`** — a unit title page merged at the front of the unit packet.
+
+A unit aggregates **only the student and key packets** (`unitXX_{student,key}.pdf`); the plan,
+the slide PDF, and the PPTX stay per-lesson.
 
 ## Workflow
 
@@ -137,15 +154,16 @@ works:
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
   --title "Absolute Value Functions" --unit-title "Linear Functions" \
   --course "Algebra 2: Shepherd" \
-  --components cover,warmup,notes,activity,exit_ticket,homework
+  --components cover,warmup,notes,activity,exit_ticket,homework,slides
 ```
 
-The script auto-detects the prefix and writes each authored component's `main.tex` as a
-correctly-preambled skeleton (and the matching `_key` skeleton for keyed components). Because
-this course inlines course macros, pass `--course` (and `--year` if it differs) so the generated
-lesson plan defines `\CourseName` correctly. Pass `--prefab warmup` to create that component as
-an empty drop-in directory instead (Step 4). Add `slides` to scaffold a Beamer deck (requires
-`shared/algebra2-beamer.sty`). Then fill in the skeletons.
+That component list is the default, so `--components` can be omitted entirely. The script
+auto-detects the prefix and writes each authored component's `main.tex` as a correctly-preambled
+skeleton (and the matching `_key` skeleton for keyed components). Because this course inlines
+course macros, pass `--course` (and `--year` if it differs) so the generated lesson plan defines
+`\CourseName` correctly. Pass `--prefab warmup` to create that component as an empty drop-in
+directory instead (Step 4). `slides` requires `shared/algebra2-beamer.sty`. Then fill in the
+skeletons — **including the deck**, which is no longer optional.
 
 **Unit assessments scaffold automatically.** When the run creates a *new* unit, the scaffolder
 also lays down that unit's `tests/`, `test_keys/`, `sample_test/`, and `sample_test_key/` dirs
@@ -208,16 +226,19 @@ directory.
 Build from the lesson directory (or the unit/root for wider packets):
 
 ```bash
-make -C unit02/lesson03 student   # cover + blank student components → lessonYY_student.pdf
-make -C unit02/lesson03 key       # same packet, answered, page-for-page → lessonYY_key.pdf
-make -C unit02/lesson03 full      # lesson plan + slides + keyed versions → lessonYY_full.pdf
-make -C unit02/lesson03 all       # all three
+make -C unit02/lesson03 all       # all five work products — the usual command
+make -C unit02/lesson03 plan      # the lesson plan            → lessonYY_plan.pdf
+make -C unit02/lesson03 slides    # the Beamer deck            → lessonYY_slides.pdf
+make -C unit02/lesson03 pptx      # the deck, PowerPoint-ready → lessonYY_slides.pptx
+make -C unit02/lesson03 student   # cover + blank components   → lessonYY_student.pdf
+make -C unit02/lesson03 key       # same packet, answered      → lessonYY_key.pdf
 ```
 
-`make -C unitXX student|key|full` merges a unit; `make student|key|full` at the root merges the whole
-curriculum. Output lands in `target/`. The build needs XeLaTeX, `latexmk`, and `pdfunite`; if a
-compile fails, surface the `.log` and fix the offending `.tex` rather than editing the build
-system. Details and troubleshooting in `references/build.md`.
+`make -C unitXX student|key` merges a unit; `make student|key` at the root merges the whole
+curriculum. **`full` no longer exists at any level** — `make full` errors out. Output lands in
+`target/`. The build needs XeLaTeX, `latexmk`, `pdfunite`, `pdftoppm`, and `python3`; if a compile
+fails, surface the `.log` and fix the offending `.tex` rather than editing the build system.
+Details and troubleshooting in `references/build.md`.
 
 ### Step 6 — Update the course plan (always do this last)
 

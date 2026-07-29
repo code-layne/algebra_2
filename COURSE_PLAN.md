@@ -412,6 +412,19 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > all` → EXIT 0, slides still 9pp, all components still match their keys (1/6/4/1/4) and both
 > packets are still 20pp. Content unedited — layout only.
 >
+> **Lesson 1.2 slide 4 — colliding fractions, fixed 2026-07-28 (user request). A *different*
+> failure mode from 1.0/1.3 above.** The literal-equations table stacked three `\dfrac`s under
+> `\renewcommand{\arraystretch}{1.6}`, and each denominator overlapped the next row's numerator.
+> `\arraystretch` scales a strut derived from `\baselineskip`, which a `\dfrac` overshoots — the
+> stretch was masking the collision, not preventing it. Fix at `unit01/lesson02/slides/main.tex:95`:
+> drop the `\arraystretch` line, space the rows explicitly with `\\[14pt]` so the spacing sizes to
+> the content. Deck still **8pp**.
+> **Note this one is invisible to the `grep Overfull` check below** — the rows collide *inside* a
+> box that still fits the frame, so nothing overflows and the log is clean. Catching it needs eyes
+> on the rendered page: `pdftoppm -png -r 110 -f N -l N <deck>.pdf /tmp/chk`.
+> **Still to check: `unit01/lesson01/slides/main.tex:95`** carries the same pattern (stretch 1.35,
+> 1 `\dfrac`) and has not been rendered. Three more suspects in Unit 5 — see that unit's status.
+>
 > **Method note for the next deck.** Guessing at column widths wastes passes — `\savebox` the
 > suspect tabular/tikz in a throwaway beamer file and `\typeout` its `\wd` against
 > `\textwidth` (**398.34pt** at `aspectratio=169, 11pt`), then set the column to the measured
@@ -927,6 +940,25 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > All 8 lesson dirs `unit05/lesson00`–`lesson07` scaffolded with skeleton `main.tex` for lesson
 > plan + cover, warmup, notes, activity, exit_ticket, homework, slides, and each `*_key`. Unit
 > assessments scaffolded: `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`.
+>
+> **TODO when reviewing this unit — three slide decks may have colliding fractions (found
+> 2026-07-28).** They use `\renewcommand{\arraystretch}{1.5}` on a `tabular` containing `\dfrac`
+> with no explicit row skip. That is the exact pattern that broke slide 4 of Lesson 1.2, where
+> each fraction's denominator overlapped the next row's numerator: `\arraystretch` scales a strut
+> derived from `\baselineskip`, which a `\dfrac` overshoots. **Not yet rendered — these three are
+> suspects, not confirmed breaks** (1.2 used a 1.6 stretch; 1.5 may or may not clear it).
+>
+> | Deck | Line | `\dfrac`s |
+> | --- | --- | --- |
+> | `unit05/lesson00/slides/main.tex` | 124 | 4 |
+> | `unit05/lesson05/slides/main.tex` | 153 | 3 |
+> | `unit05/lesson07/slides/main.tex` | 68 | 1 |
+>
+> Fix, if they do collide, is the one applied to 1.2: drop the `\arraystretch` line and space the
+> rows explicitly with `\\[14pt]`, which sizes to the actual content instead of to the font.
+> Check by rendering the affected page: `pdftoppm -png -r 110 -f N -l N <deck>.pdf /tmp/chk`.
+> One more site outside this unit carries the same pattern — `unit01/lesson01/slides/main.tex:95`
+> (stretch 1.35, 1 `\dfrac`); see the Unit 1 status.
 > **Lesson 5.0 authored & builds (2026-07-26):** all components + keys + 10-slide deck done; the lesson
 > where the course loses \emph{continuity}. Everything hangs on one sentence --- **the denominator runs
 > the show** --- introduced from the Warm-Up, whose three items seed the three new ideas numerically
@@ -2270,7 +2302,9 @@ Per Unit 1's pattern:
   plus each `*_key`). Unit-level: `unit_cover`, `sample_test`, `sample_test_key`.
 - **Lesson 0 numbering:** the characteristics lesson is `lesson00` in each unit
   (or `X.0` in titles) so content lessons keep 1-based numbers.
-- **Build:** `make -C unitXX all`; root `make all` / `make student` / `make full`.
+- **Build:** `make -C unitXX/lessonYY all` (five work products); `make -C unitXX student key`;
+  root `make all` / `make student` / `make key`. **`full` no longer exists** — see
+  "The five work products" below.
 - **Authoring:** use the `lesson-planning` skill.
 - **Retrofitting:** the conventions below land *after* lessons are written, so an existing lesson
   can be behind on one. Bring it forward by name — the skill has a Retrofit section listing every
@@ -2450,9 +2484,11 @@ pdftotext -f 3 -l 3 -bbox target/compiled/unit01/lesson00_student.pdf /tmp/p.htm
 
 ### The `key` packet — the student packet, answered, page for page (2026-07-28)
 
-`full` is the *teacher's* packet: lesson plan, slides, keys, unpaginated, mixed page sizes. What
-was missing was a packet to teach **from** — the thing the students are holding, with the answers
-filled in. That is **`key`**:
+> Superseded in part on 2026-07-28 by "The five work products" below: `full` is gone. Everything
+> here about how `key` is built and paginated still holds.
+
+What was missing was a packet to teach **from** — the thing the students are holding, with the
+answers filled in. That is **`key`**:
 
 ```bash
 make -C unitXX/lessonYY key    # → target/compiled/unitXX/lessonYY_key.pdf
@@ -2461,7 +2497,7 @@ make key                       # → target/compiled/curriculum_key.pdf
 ```
 
 It is `student` with each blank component swapped for its `_key` — same cover, same components,
-same order, no lesson plan, no slides. `full` is unchanged and still exists for planning.
+same order, no lesson plan, no slides.
 
 **The two packets are paginated in lockstep** (user requirement: "if I say page 7, their page 7
 needs to be my page 7"). The `paginate` define in `shared/lesson.mk` now takes the counterpart
@@ -2649,6 +2685,53 @@ as `\blank{}`/`\ans{}` — they hold single final answers, and 1.3's are table c
 excludes. 1.3's exit ticket item 2(d) is a genuine multi-step solve left alone on purpose: it is
 already structured as equation-then-answer, it matches its key, and a `work` block risks the
 one-page constraint.
+
+### The five work products — `full` removed, PPTX added (2026-07-28)
+
+A lesson now builds **exactly five files** into `target/compiled/unitXX/`, and nothing else:
+
+| File | What it is |
+| --- | --- |
+| `lessonYY_plan.pdf` | the lesson plan — the lesson-root `main.tex` |
+| `lessonYY_slides.pdf` | the Beamer deck from `slides/main.tex` |
+| `lessonYY_slides.pptx` | that deck for PowerPoint, one page image per slide |
+| `lessonYY_student.pdf` | cover + blank components, paginated packet-wide |
+| `lessonYY_key.pdf` | that packet answered, page for page |
+
+```bash
+make -C unitXX/lessonYY all                 # all five
+make -C unitXX/lessonYY plan|slides|pptx|student|key
+```
+
+**`full` is gone at every level** — lesson, unit, and root. `make full` now errors. The plan and
+the deck were the only reason it existed; they are standalone deliverables now, so nothing bundles
+a lesson plan behind a cover with the answer keys. `make clean` still sweeps stale `_full.pdf`
+files out of `target/`.
+
+**Units aggregate only the two packets** (`unitXX_{student,key}.pdf`, and the curriculum pair at
+the root). The plan, the slide PDF, and the PPTX stay per-lesson — they are teacher artifacts, not
+something to hand out as one bound document.
+
+**Every lesson owes a deck.** `slides` feeds two of the five products, so it is a default
+component in `new_lesson.py`, not an optional one. All 48 existing lessons already had one.
+
+**The PPTX is a wrapper, not a port.** `shared/pdf2pptx.py` rasterizes each page with `pdftoppm`
+at 300 dpi and writes the OOXML package by hand with `zipfile` — no LibreOffice, no `python-pptx`,
+nothing beyond the poppler tools the build already needs. The canvas is scaled aspect-preserving to
+PowerPoint's standard 7.5in height, so a 16:9 deck lands on exactly 13.333 × 7.5in ("Widescreen").
+Slides are page images, so TikZ figures and math render exactly as in the PDF but **nothing is
+editable in PowerPoint**. The `.tex` is the source of truth — edit it and rebuild; never edit the
+`.pptx`. Trade sharpness for size with `make ... pptx PPTX_DPI=200`.
+
+`plan`, `slides`, and `pptx` are real file targets and rebuild only when their source changes.
+`student` and `key` stay phony — the pagination pass has to measure both packets each time.
+
+The root `Makefile` is now a thin `include shared/root.mk`, matching the unit and lesson levels
+(and matching what `new_lesson.py` already assumed when creating a missing root Makefile).
+
+**Verified 2026-07-28:** `make all` from the root → EXIT 0 across all 8 units / 48 lessons; every
+lesson emits all five products. Generated `.pptx` packages check out structurally — well-formed
+XML throughout, no dangling relationships, every part content-typed, slide count matching the PDF.
 
 ---
 

@@ -16,7 +16,10 @@ UNIT_COVER_PDF      := $(if $(HAS_UNIT_COVER),$(COMPILED_DIR)/$(UNIT)/unit_cover
 SAMPLE_TEST_PDF     := $(if $(HAS_SAMPLE_TEST),$(COMPILED_DIR)/$(UNIT)/sample_test.pdf)
 SAMPLE_TEST_KEY_PDF := $(if $(HAS_SAMPLE_TEST_KEY),$(COMPILED_DIR)/$(UNIT)/sample_test_key.pdf)
 
-.PHONY: all student key full clean $(LESSONS) _unit_cover _sample_test _sample_test_key
+# A unit aggregates only the two packets that concatenate meaningfully. The
+# other three lesson products (plan, slides PDF, slides PPTX) stay per-lesson —
+# they are teacher artifacts, not something to hand out as one bound document.
+.PHONY: all student key clean $(LESSONS) _unit_cover _sample_test _sample_test_key
 
 all: $(LESSONS)
 
@@ -49,7 +52,7 @@ ifdef HAS_SAMPLE_TEST_KEY
 	@echo "✓  Sample test key   → target/compiled/$(UNIT)/sample_test_key.pdf"
 endif
 
-# ── student / key / full targets ──────────────────────────────────────────────
+# ── student / key targets ─────────────────────────────────────────────────────
 #
 # The unit key packet mirrors the unit student packet piece for piece: the same
 # unit cover, each lesson's key packet in place of its student packet (those are
@@ -82,19 +85,6 @@ key: _unit_cover $(LESSONS) _sample_test _sample_test_key
 	  echo "✓  Unit key packet     → target/compiled/$(UNIT)_key.pdf"; \
 	else \
 	  echo "  (no key PDFs found for $(UNIT))"; \
-	fi
-
-full: _unit_cover $(LESSONS) _sample_test _sample_test_key
-	@for l in $(LESSONS); do $(MAKE) -C $$l full || exit 1; done
-	@mkdir -p $(COMPILED_DIR)/$(UNIT) $(COMPILED_DIR)
-	@lesson_pdfs=$$(ls $(COMPILED_DIR)/$(UNIT)/lesson*_full.pdf 2>/dev/null | sort); \
-	all_pdfs="$(UNIT_COVER_PDF) $$lesson_pdfs $(SAMPLE_TEST_PDF) $(SAMPLE_TEST_KEY_PDF)"; \
-	all_pdfs=$$(echo $$all_pdfs | tr ' ' '\n' | grep -v '^$$'); \
-	if [ -n "$$all_pdfs" ]; then \
-	  pdfunite $$all_pdfs $(COMPILED_DIR)/$(UNIT)_full.pdf; \
-	  echo "✓  Unit full packet    → target/compiled/$(UNIT)_full.pdf"; \
-	else \
-	  echo "  (no full PDFs found for $(UNIT))"; \
 	fi
 
 clean:
