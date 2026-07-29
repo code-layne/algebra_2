@@ -11,6 +11,9 @@ description: >-
   ____ Functions," with a cumulative characteristics-of-functions spine. Decompose units into
   lessons from it. Trigger this even when the user just says "make lesson 2.3" or "I need a
   warm-up and key for tomorrow," and even if they don't say "skill" or "LaTeX."
+  Also use it to RETROFIT an already-authored lesson to a named convention — boxguard,
+  namestrip, vocabpar, the work rule, teachernotes — as in "apply boxguard namestrip retrofit
+  to 1.1 and 1.3." See the Retrofit section.
 ---
 
 # Lesson Planning — Algebra 2
@@ -165,8 +168,18 @@ and a worked skeleton for every component and its key. Hold to these invariants:
   `\usepackage{algebra2-article}` + `\usepackage{algebra2-boxes}`.
 - **Answer keys** are *separate files* that swap `-boxes` for `\usepackage{algebra2-key}` and
   wrap every answer in `\ans{...}` (inline) or `\ansline{...}` (fills a write-line). Mirror the
-  blank document exactly, then fill the blanks. Use `teachernote` for teacher-only guidance.
-  There is **no** answer-key toggle — never try to build one.
+  blank document exactly, then fill the blanks. There is **no** answer-key toggle — never try to
+  build one.
+- **Teacher notes go in the lesson plan, not in a key** — one `teachernote` per component, in
+  packet order, titled for it: `\begin{teachernote}[Exit Ticket]` → "Teacher Note: Exit Ticket".
+  A note in a key is the one block with no counterpart in the blank, so it makes the key run
+  longer and costs the student packet a blank page.
+- **The work rule: a component must be the same number of pages blank and keyed.** Put every
+  worked solution in a `work` block — one statement per line, `&` before the relation so the whole
+  block aligns on it — authored **byte-identically in the blank and the key**. The blank reserves
+  the block's exact height and prints nothing; the key prints it. Never cram steps into one line
+  as `$a=b \Rightarrow c=d$`. Full spec in `references/conventions.md`; `unit01/lesson02` is the
+  reference implementation.
 - Use the project's box vocabulary (`skillbox`, `objectivebox`, `learningtargetbox`, `vocabbox`,
   `hookbox`, `notesbox`, `practicebox`, `scenariobox`, `tocbox`, etc.) and fill-in helpers
   (`\blank`, `\writeline`, `\termblanklong`, `\namedateperiod`) rather than reinventing layout.
@@ -215,6 +228,30 @@ the end of **every** execution, even a partial one; keep it terse and current (o
 entries rather than appending a changelog). Since it lives in the repo, it travels with the
 branch, so the Step 0 sync always brings the latest state forward.
 
+## Retrofit — apply a named convention to a lesson already authored
+
+Conventions land after lessons are written, so an existing lesson can be behind on one. The user
+invokes this by name:
+
+> `/lesson-planning apply boxguard namestrip retrofit to 1.1 and 1.3`
+
+Apply **only the conventions named** (all of them if none are named), to the lessons named, then
+build and report. Each has a fix and, where it is mechanical, a script:
+
+| Name | The rule | How to apply |
+| --- | --- | --- |
+| **boxguard** | No box stranded as a ~1in sliver across a page break | `\boxguard` (or `\boxguard[n]`) on its own line before the `\begin{...}` — blank **and** key |
+| **namestrip** | Name/date/period row on the cover only | `python3 .claude/skills/lesson-planning/scripts/namestrip.py --project . --unit NN --lesson MM` (`--check` to preview) |
+| **vocabpar** | `\par` around `\termblanklong`/`\ansline` in a `vocabbox` | Hand fix per lesson; `unit05/lesson00` is the reference |
+| **work rule** | A component is the same length blank and keyed | `work` blocks authored identically in both files; `steptable`/`\step` for printed solutions; `\writelines{n}` to match a wrapped `\ansline`. References: `unit01/lesson02` (work), `unit01/lesson00` (steptable) |
+| **teachernotes** | Teacher prose in the lesson plan, one titled note per component | `python3 .claude/skills/lesson-planning/scripts/movenotes.py unitNN/lessonMM` (`--check` to preview) |
+
+Full spec for each: `references/conventions.md` and `COURSE_PLAN.md` §7.
+
+**Always finish a retrofit with the evidence**, per lesson: `make -C unitXX/lessonYY all` exits 0,
+and every component's page count equals its `_key`'s. Report any component that still differs and
+why. Then Step 6.
+
 ## Reference files
 
 - `references/conventions.md` — the style packages, every box environment, the fill-in and
@@ -235,7 +272,9 @@ branch, so the Step 0 sync always brings the latest state forward.
 - Structure comes from `COURSE_PLAN.md`; content is standards-based and **original** — the `spec/`
   All Things Algebra materials are copyrighted, used only as a topic/difficulty model.
 - Mirror a built Unit 1 lesson for tone and preamble; the live project overrides these docs.
-- Keep blank and key documents in lockstep — the key is the blank with answers filled in.
+- Keep blank and key documents in lockstep — the key is the blank with answers filled in, and it
+  must come out the **same number of pages**. Worked solutions live in shared `work` blocks (the
+  work rule); a key that runs long costs the student packet blank padding.
 - Function-family pedagogy: study a function type's behavior (Lesson 0) before manipulating it;
   build graph-reading fluency; no "sketch from scratch" questions.
 - Don't modify `shared/` or the Makefiles to make a lesson build; fix the lesson's `.tex`.

@@ -111,13 +111,117 @@ Titled student boxes (title is fixed by the environment unless it takes an argum
 | `tocbox` | "What's in This Packet" (cover) | — |
 | `remindbox` | "Keep in Mind" (cover / practice-test intro) | — |
 
+## The work rule — `\begin{work}` (from `-boxes`, visible under `-key`)
+
+**Any worked solution goes in a `work` block, and that block is byte-identical in the blank and
+the key.** The package swap decides only whether it is shipped: under `-boxes` the blank builds
+the box and emits a `\vphantom` of it (exact height, nothing on the page and nothing in the PDF's
+text layer); under `-key` the same box is printed in `keyred`. The two therefore *cannot* drift —
+which is what keeps a component the same length on both sides.
+
+```latex
+% notes/main.tex AND notes_key/main.tex — the same six lines in both files
+\begin{work}
+  3(x-2) &= 3x-5 \\
+    3x-6 &= 3x-5 \\
+      -6 &= -5
+\end{work}
+```
+
+Format, non-negotiable:
+
+- **One statement per line.** Never two steps on one row, and never an inline
+  `a=b \Rightarrow c=d` chain — that is the idiom this rule replaces.
+- **The `&` goes immediately before the relation**, so every relation in the block lands in one
+  column. This works for `=`, `<`, `>`, `\le`, `\ge` — including a line where the symbol reverses.
+- **Simplifying:** row 1 is the original expression, the relation, and the first simplification;
+  every later row starts at the `&=` and aligns to the one above.
+- **Solving:** one row per step, each aligned on its relation.
+
+Do not wrap a `work` block in `\[ \]`, `align`, or `equation` — it supplies its own display. It is
+set flush left (2em indent), not centered.
+
+**When it applies:** a task that asks for multi-step work. A table cell holding a single final
+answer is already the same size in both files — leave those as `\blank{}`/`\ans{}`. `work` blocks
+do not go inside table cells; if a table asks for real work, pull the items out of the table.
+
+`\workrowsep` (default `0pt`) adds leading between rows. It moves the blank and the key together,
+so raising it for handwriting room can never break the match.
+
+`unit01/lesson02` is the reference implementation.
+
+### `steptable` / `\step` — a *printed* solution, aligned on its relation
+
+`work` is for steps the **student** writes. Its counterpart is for steps that are **printed in
+both files** — the "justify every line" tables, where the algebra is given and the student names
+the property beside it. Same alignment requirement, different mechanism: a plain one-column table
+cannot align relations (`$3x-12=18$` above `$3x-12+12=18+12$` puts the two `=` in different
+places), so the step is split into a right-aligned left side and a left-aligned relation + right
+side.
+
+```latex
+\begin{steptable}                       % or [Property] to retitle column 3
+  \step{3(x-4)}{=18}{Given}
+  \step{3x-12}{=18}{\blank{6.0cm}}
+  \step{3x-12+12}{=18+12}{\blank{6.0cm}}
+\end{steptable}
+```
+
+Argument 2 begins with the relation. Use `\steprel{lhs}{cell}{prop}` when the *relation itself* is
+what the student supplies — the flip demonstration, where the symbol turning around is the point:
+`\steprel{\dfrac{-3x}{-3}}{\blank{0.9cm} $\dfrac{12}{-3}$}{\blank{6.0cm}}`.
+
+Only column 3 differs between the blank and the key, so the two cannot drift.
+
+**It is a chain rule.** A table of *independent* statements to classify — Lesson 1.0's exit ticket
+item 2, where one row is `$2x-9=5 \Rightarrow 2x-9+9=5+9$` — is a list, not a solution, and stays
+a plain table.
+
+`unit01/lesson00` is the reference implementation.
+
+## Teacher notes — in the lesson plan, one per component
+
+**Teacher-only prose goes in the lesson plan, never in a `_key`.** A `teachernote` is the one block
+in a key with no counterpart in the blank, so it made the key run longer than its blank for no
+student-facing reason — the last thing costing a packet blank pages once the work rule is in.
+
+The lesson plan closes with one note per component, in packet order, each titled for it:
+
+```latex
+\begin{teachernote}[Warm-Up]        ... \end{teachernote}   % → "Teacher Note: Warm-Up"
+\begin{teachernote}[Guided Notes]   ... \end{teachernote}
+\begin{teachernote}[Group Activity] ... \end{teachernote}
+\begin{teachernote}[Exit Ticket]    ... \end{teachernote}
+\begin{teachernote}[Homework]       ... \end{teachernote}
+```
+
+The environment is defined in **`-boxes`** (the lesson plan does not load `-key`) and the argument
+is **optional** — a bare `\begin{teachernote}` still renders plain "Teacher Note", so lessons not
+yet migrated keep compiling. To migrate one:
+
+```bash
+python3 .claude/skills/lesson-planning/scripts/movenotes.py unit01/lesson02
+```
+
+It lifts the note out of each `_key`, appends it to the plan with the right title, and refuses to
+run twice on the same lesson. Add `--check` to report without changing anything. Rebuild
+afterward and confirm every component matches its key page for page.
+
 ## Answer-key macros (from `-key`)
 
 | Macro / env | Effect |
 | --- | --- |
 | `\ans{text}` | Inline answer in bold `keyred`; use in place of a blank |
 | `\ansline{text}` | Bold `keyred` answer that fills a write-line with a dotted trail |
-| `teachernote` (env) | Red "Teacher Note" callout for teacher-only guidance |
+| `work` (env) | Worked steps — **defined in `-boxes`**, authored identically in both files; see "The work rule" |
+
+**`teachernote` is no longer a key macro.** It lives in `-boxes` and belongs in the **lesson
+plan** — see "Teacher notes" below.
+
+**`\ansline` is the other place lengths drift.** A `\writeline` in the blank is exactly one line;
+an `\ansline` whose prose wraps to four is three lines longer. When a key's prose answer runs long,
+give the blank `\writelines{n}` for the same n — the same principle as the work rule, applied by
+hand because prose cannot be measured from a shared body.
 
 **Key-authoring rule:** copy the blank component verbatim, then replace each blank/`\writeline`
 with `\ans{…}`/`\ansline{…}` and mark correct multiple-choice options, e.g.

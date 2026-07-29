@@ -351,6 +351,18 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > packets still come out **22pp** with components opening on **1, 3, 5, 13, 17, 19**; all four
 > lessons match (20 / 18 / 20 / 22pp each side) and unit student = unit key = **86pp**. Note the
 > tradeoff: a long key costs the *student* packet padding pages, so keep keys tight.
+>
+> **Lesson 1.2 is the work-rule pilot, 2026-07-28 (user request) — see §7.** Every worked solution
+> in 1.2 now lives in a `\begin{work}` block authored identically in the blank and the key. Notes
+> 5→6, activity 3→4, homework 3→4 (each matched on both sides); the packet is still **20pp** and its
+> blank pages went **6 → 3**. Its five teacher notes also moved into the lesson plan as
+> `\begin{teachernote}[Warm-Up]` etc., so **every component now matches its key exactly** and none
+> of the three remaining pads is caused by a key — they are the 1pp cover, warm-up, and exit ticket.
+> **Lesson 1.0 converted too, 2026-07-28 (user request).** It needed `steptable` rather than `work`
+> — see §7 — because every solution in 1.0 is printed for the student to justify rather than solved
+> from scratch. 6 step tables aligned on their relation, one `work` block in the exit ticket, five
+> teacher notes moved to the plan; all components match their keys, but the packet stays **20pp with
+> 6 pads**, all parity. Lessons 1.1 and 1.3 are **not** converted.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -2205,6 +2217,12 @@ Per Unit 1's pattern:
   (or `X.0` in titles) so content lessons keep 1-based numbers.
 - **Build:** `make -C unitXX all`; root `make all` / `make student` / `make full`.
 - **Authoring:** use the `lesson-planning` skill.
+- **Retrofitting:** the conventions below land *after* lessons are written, so an existing lesson
+  can be behind on one. Bring it forward by name — the skill has a Retrofit section listing every
+  convention with its fix and script:
+  `/lesson-planning apply boxguard namestrip retrofit to 1.1 and 1.3`
+  (naming none applies all). Retrofittable names: **boxguard**, **namestrip**, **vocabpar**,
+  **work rule**, **teachernotes**.
 
 ### Vocab-box paragraph breaks — required from Unit 5 onward
 
@@ -2391,6 +2409,144 @@ pdfinfo target/compiled/unit01/lesson03_student.pdf | grep Pages && pdfinfo targ
 Unit-level `key` mirrors unit-level `student` piece for piece (unit cover, the equal-length lesson
 packets, then `sample_test_key` in place of `sample_test`). Only that trailing pair can differ in
 length, and it sits at the end.
+
+### The work rule — a component is the same length blank and keyed (2026-07-28)
+
+The blank-slot problem, attacked at the source instead of the packet. Padding has two causes:
+**parity** (an odd-length component) and **blank/key mismatch** (the key needs room the blank did
+not give). The mismatch was self-inflicted: blanks left a one-line `\blank{8.0cm}` where a
+four-step solve belongs, and keys crammed the solve back in as
+`\ans{$3x-6=x-6 \Rightarrow 2x=0 \Rightarrow x=0$}`. Neither side was honest about the space.
+
+**The rule (user decision, 2026-07-28):** every worked solution lives in a `\begin{work}` block
+that is **byte-identical in the blank and the key**. Under `algebra2-boxes` the blank builds the
+box and ships a `\vphantom` of it — exact height, nothing on the page, nothing in the PDF text
+layer. Under `algebra2-key` the same box prints in `keyred`. Same code path, same metrics, so the
+two cannot drift.
+
+Format, as specified: **one statement per line**; the `&` immediately before the relation so the
+whole block aligns on it; when *simplifying*, row 1 is the original expression, the relation, and
+the first simplification, and each later row starts at the `&=`; when *solving*, one row per step,
+every row aligned on its relation (`=`, `<`, `>`, `\le`, `\ge`), reversals included.
+
+```latex
+\begin{work}
+  x &= \frac{4\pm\sqrt{(-4)^2-4(1)(-7)}}{2(1)} \\
+    &= \frac{4\pm\sqrt{16+28}}{2} \\
+    &= \frac{4\pm\sqrt{44}}{2}    \\
+    &= 2\pm\sqrt{11}
+\end{work}
+```
+
+Scope: multi-step work only. A table cell holding one final answer is already the same size on
+both sides — leave those as `\blank{}`/`\ans{}`. `work` does not go inside a table cell; if a table
+asks for real work, pull those items out of the table (that is what the Lesson 1.2 Hook needed).
+`\workrowsep` (default `0pt`, i.e. typeset spacing exactly as specified) adds leading between rows
+and moves both sides together, so raising it for handwriting room cannot break the match.
+
+**Pilot: Lesson 1.2**, converted end to end (Hook, quadratic-formula chain, guided practice,
+Tier A Part 1, homework items 6 and 8, the whole exit ticket).
+
+| component | before (blank/key) | after | pads before → after |
+|---|---|---|---|
+| notes | 5 / 5 | 6 / 6 | 1 → 0 |
+| activity | 3 / 3 | 4 / 4 | 1 → 0 |
+| homework | 3 / 3 | 4 / 4 | 1 → 0 |
+| exit ticket | 1 / 1 | 1 / 2 | 1 → 1 |
+
+The packet is **still 20pp** and its blank pages went **6 → 3**: the components absorbed exactly
+the pages that used to be padding, and the room landed where students actually work. The three
+that remain are the 1pp cover, the 1pp warm-up (both structural parity), and the exit ticket.
+
+**`\ansline` prose drifts the same way**, without a shared body to measure. Homework item 8 came
+out 3 / 4 until the blank's `\writelines{3}` was raised to `\writelines{5}` to match the key's
+wrapped answer. Applied by hand; noted in `references/conventions.md`.
+
+### Teacher notes move to the lesson plan (2026-07-28)
+
+Once the work rule was in, `teachernote` was the last thing making a key longer than its blank —
+the one block with no counterpart on the student side. Lesson 1.2's exit ticket was 1pp blank /
+2pp keyed purely because of it, even after the note was cut roughly in half.
+
+**Decision (user, 2026-07-28): teacher prose lives in the lesson plan, one note per component, in
+packet order, titled for it.**
+
+```latex
+\begin{teachernote}[Warm-Up]  ... \end{teachernote}   % → "Teacher Note: Warm-Up"
+% then [Guided Notes], [Group Activity], [Exit Ticket], [Homework]
+```
+
+The plan is teacher-facing already and sits outside the page-matched packet, so nothing is lost and
+the keys shed their one asymmetry. `teachernote` therefore **moved from `algebra2-key` to
+`algebra2-boxes`** (the lesson plan loads `-boxes`, not `-key`), and its title argument is
+**optional** — a bare `\begin{teachernote}` still renders plain "Teacher Note", so the 46
+un-migrated lessons keep compiling untouched. Verified against `unit01/lesson00/notes_key`.
+
+Migrate a lesson with `scripts/movenotes.py` (see §7 conventions in the skill):
+
+```bash
+python3 .claude/skills/lesson-planning/scripts/movenotes.py unit01/lesson02
+```
+
+**Result on Lesson 1.2 — every component now matches its key exactly:**
+
+| component | blank / key | pads |
+|---|---|---|
+| cover | 1 / 1 | 1 (parity) |
+| warm-up | 1 / 1 | 1 (parity) |
+| guided notes | 6 / 6 | 0 |
+| group activity | 4 / 4 | 0 |
+| exit ticket | 1 / 1 | 1 (parity) |
+| homework | 4 / 4 | 0 |
+
+20pp packet, **3 blank pages, zero of them caused by a key**. The three that remain are the three
+1pp components, which are structural. The lesson plan grew to 6pp, which costs nothing — `full` is
+not paginated and the plan never reaches students.
+
+**Still to do:** the other 45 lessons keep their notes in the keys. `movenotes.py` handles them one
+at a time; Lessons 1.2 and 1.0 are the reference implementations.
+
+### `steptable` — the alignment rule for *printed* solutions (2026-07-28)
+
+Lesson 1.0 was converted second and turned out to need the other half of the rule. It has **no
+solve-from-scratch tasks**: every chain is printed and the student names the property beside each
+line, so `work` (which hides its body in the blank) applies almost nowhere. What does apply is
+"one statement per line, all lines aligned on the sign" — and the existing one-column tables did
+not align, because `$3x-12=18$` above `$3x-12+12=18+12$` puts the two `=` in different places.
+
+`steptable` splits the step into a right-aligned left side and a left-aligned relation + right
+side, so every relation lands in one column:
+
+```latex
+\begin{steptable}
+  \step{3(x-4)}{=18}{Given}
+  \step{3x-12}{=18}{\blank{6.0cm}}
+  \step{3x-12+12}{=18+12}{\blank{6.0cm}}
+\end{steptable}
+```
+
+`\steprel` is the variant for the row where the *relation itself* is the blank — the flip
+demonstration, where the symbol turning around is the whole point. Only column 3 differs between
+blank and key, so nothing can drift.
+
+Two implementation notes worth keeping: the environment captures its body with `+b` rather than
+splitting `\begin{tabularx}`/`\end{tabularx}` across begin/end code (tabularx rescans its body to
+solve the X column, and the split form fails with "Missing } inserted"); and it is a **chain**
+rule — a table of independent statements to classify, like Lesson 1.0's exit ticket item 2 whose
+rows carry two relations each, stays a plain table.
+
+**Lesson 1.0 result:** 6 step tables converted (notes ×3, activity ×2, homework ×1), a `work`
+block added to the one item where students actually solve (exit ticket MC, $-5x\ge20$), and its
+five teacher notes moved to the plan. All five components match their keys — **but its packet is
+still 20pp with 6 pads, unchanged.** Blank and key already matched here, and nothing grew enough
+to flip a component from odd to even, so every pad is parity. That is the honest boundary of this
+work: the rule fixes *mismatch* and improves how a solution reads; it does not touch parity, and
+1.0 had no mismatch to fix. Lesson 1.2 gained because its new work blocks pushed three components
+from odd to even.
+
+Lesson 1.2 had no blank/key mismatch to begin with, so its gain came from the components growing
+into their padding. The lessons where the rule directly removes a mismatch are the ones already
+flagged — Unit 1 Lesson 1.3 (notes 6/7, activity 3/4), Unit 6 Lessons 6.3 and 6.4.
 
 ---
 
