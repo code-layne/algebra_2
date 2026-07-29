@@ -12,13 +12,20 @@ Every lesson builds exactly five files into `target/compiled/unitXX/`:
 | File | What it is | Built from |
 | --- | --- | --- |
 | `lessonYY_plan.pdf` | the teacher-facing lesson plan | the lesson-root `main.tex` |
-| `lessonYY_slides.pdf` | the Beamer deck | `slides/main.tex` |
-| `lessonYY_slides.pptx` | the same deck, one page image per slide | `lessonYY_slides.pdf` |
+| `lessonYY_slides.pdf` | the deck **printed**: 3 slides per page, notes column beside each | `slides/main.tex` |
+| `lessonYY_slides.pptx` | the deck **projected**: full page, one page image per slide | `slides/main.tex` |
 | `lessonYY_student.pdf` | cover + blank components, paginated packet-wide | the student components |
 | `lessonYY_key.pdf` | that packet answered, page for page | the `_key` components |
 
 There is **no `full` packet** — it was removed. The plan and the deck are their own deliverables
 now, so nothing bundles them behind a cover with the answer keys.
+
+**The two slide products are the same deck in its two forms** — the PDF is what you print, the
+PPTX is what you project. Both are generated from the one Beamer deck compiled at
+`target/unitXX/lessonYY/slides/main.pdf`, which is the source of truth. `shared/handout.tex`
+re-frames its pages 3-up with a ruled note area beside each slide (`shared/pdf2pptx.py` gets the
+raw full-page deck, since a PowerPoint of handout pages would be useless). Neither product is
+ever edited by hand: change `slides/main.tex` and rebuild.
 
 ## The three-level Make hierarchy
 
@@ -38,8 +45,8 @@ needed (see "Scaffolding a lesson"), so you rarely write them by hand:
   - Compiles each `<comp>/main.tex` with
     `latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error`,
     sending output to `target/UNIT/LESSON/<comp>/` and a stamp to `.stamps/`.
-  - Copies the plan and the deck to their `_plan.pdf` / `_slides.pdf` names, converts the deck
-    to `.pptx`, and merges the two packets:
+  - Copies the plan to its `_plan.pdf` name, renders the deck 3-up to `_slides.pdf` and
+    full-page to `_slides.pptx`, and merges the two packets:
     - **student** = `cover warmup notes activity exit_ticket homework` (blank versions present),
       in that pedagogical order → `lessonYY_student.pdf`.
     - **key** = the *same* packet with every blank component swapped for its `_key` (cover has no
@@ -51,8 +58,8 @@ needed (see "Scaffolding a lesson"), so you rarely write them by hand:
 ```bash
 make -C unitXX/lessonYY all       # all five work products
 make -C unitXX/lessonYY plan      # lessonYY_plan.pdf
-make -C unitXX/lessonYY slides    # lessonYY_slides.pdf
-make -C unitXX/lessonYY pptx      # lessonYY_slides.pptx (builds the PDF first)
+make -C unitXX/lessonYY slides    # lessonYY_slides.pdf  — 3-up printable
+make -C unitXX/lessonYY pptx      # lessonYY_slides.pptx — full-page projectable
 make -C unitXX/lessonYY student   # student packet for one lesson
 make -C unitXX/lessonYY key       # answer-key packet, paginated to match the student packet
 make -C unitXX/lessonYY clean     # remove this lesson's target/ and stamps
@@ -73,9 +80,26 @@ five work products under `target/compiled/unitXX/`.
 warm-up. Authored warm-ups are text-only in the plan (no thumbnail); prefab warm-ups embed
 `warmup/main` (the PDF in the source tree), which resolves regardless of order.
 
+## Slides → printed handout
+
+`shared/handout.tex` turns the compiled deck into `lessonYY_slides.pdf`: three slides per letter
+page, thumbnails down the left column, a labelled ruled note area beside each on the right. Every
+slide is placed with `\includegraphics[page=n]`, so figures and math render exactly as they do on
+the projector — the pass only re-frames.
+
+- The Makefile passes the deck's page count in as `\DeckPages` (LaTeX cannot count the pages of
+  an external PDF; `pdfinfo` already is a build dependency).
+- The note column's height is measured from the slide beside it, so both columns end on the same
+  line whatever the deck's aspect ratio.
+- Tuning lives at the top of `handout.tex`: `\slidewidth` (4.35in), `\colgap`, `\NoteLines` (6).
+  The note column resizes itself from `\slidewidth`.
+- A deck whose slide count is not a multiple of three leaves the last page short; rows stay
+  top-aligned rather than stretching to fill it.
+
 ## Slides → PPTX
 
-`shared/pdf2pptx.py` wraps `lessonYY_slides.pdf` into `lessonYY_slides.pptx`: `pdftoppm`
+`shared/pdf2pptx.py` wraps the **raw deck** (`target/unitXX/lessonYY/slides/main.pdf`, not the
+3-up handout) into `lessonYY_slides.pptx`: `pdftoppm`
 rasterizes each page at 300 dpi and the script writes the OOXML package with `zipfile`, one
 full-bleed page image per slide. It is deliberately **dependency-free** — no LibreOffice, no
 `python-pptx`; it uses only the poppler tools the build already needs.
