@@ -46,6 +46,13 @@
 > Lesson lists below are proposals to react to and edit — pacing (days per lesson) is intentionally
 > left open pending the school calendar. **Authoring note:** every unit from 5 on must apply the
 > vocab-box paragraph-break fix (§7); retrofitting Units 2–4 is deferred to §8, after Unit 8 and finals.
+> **Retrofit status (2026-07-28):** Lessons **1.1 and 1.3** were brought forward on **teachernotes,
+> the work rule, namestrip, and boxguard** — applied in that order, which is the order to use, since
+> each one re-flows the pagination the next is tuned against (boxguard last). Every component of both
+> lessons now matches its key; packets are 18pp (1.1) and 20pp (1.3, down from 22). Two boxguard
+> stubs were deliberately left rather than pay a page and a blank/key mismatch — see the boxguard
+> block in §7, which also records that **`\boxguard` is inert inside a breakable `tcolorbox`**.
+> Unit 1 is now retrofitted end to end (1.0 and 1.2 previously; 1.1 and 1.3 today).
 
 ---
 
@@ -2285,6 +2292,25 @@ Unlike the vocab-box fix above, this one **is** a shared-package change — it i
 a lesson actually calls `\boxguard`. Per user decision there is **no bulk sweep**: fix boxguard
 problems lesson-by-lesson as they are found in review.
 
+**Applied so far:** Lesson 1.0 (reference), **Lessons 1.1 and 1.3 (2026-07-28)**.
+
+**Two limits found on 1.1 / 1.3 (2026-07-28) — read these before guarding a lesson:**
+
+1. **`\boxguard` is inert inside a breakable `tcolorbox`.** On 1.3's notes, Section 3 ends with a
+   two-line tail stranded at the top of page 5. A guard placed *inside* the box (in vertical mode,
+   before the closing paragraph) does nothing — tested at `[11]` and `[30]`, neither fired, because
+   `\needspace` measures the outer page while tcolorbox splits its own assembled vbox afterwards.
+   The box is also ~8in tall, so it cannot be pushed whole (that would leave ~7.5in blank on page 4).
+   **1.3's Section 3 tail is therefore left as-is** — it needs a content fix (split the box in two,
+   or trim two lines), not a guard. Ignore the "inside a box" example in the skill's convention
+   table until that claim is re-verified.
+2. **A guard that costs a page also costs the blank/key match.** 1.1's notes Section 2 opens with a
+   title+one-line stub at the foot of page 2. Guarding it pushes the blank to 5pp while the key
+   stays at 4 — a mismatch plus 2 pages of packet padding. Guard values are binary here (any value
+   that fires causes the overflow), so **the stub is left and the match kept.** Where a guard is
+   free it is applied: 1.1's Hook (blank) and Section 4 (key) are both guarded and both packets
+   still come out 18pp.
+
 ### Namestrip — the name/date/period rule (named 2026-07-28)
 
 **"Namestrip" names both the defect and the fix.** When a review turns up "lesson 3.2 needs a
@@ -2320,6 +2346,9 @@ explaining why), so newly scaffolded lessons are born correct. Like boxguard, th
 sweep** of already-authored lessons: Units 2–8 still carry the row on ~508 component files, and
 stripping them all at once would re-flow the pagination of every verified lesson. **Namestrip
 lesson-by-lesson as reported.** Lesson 1.0 is the reference implementation.
+
+**Applied so far:** Lessons 1.0, **1.1 and 1.3 (2026-07-28)** — 10 rows each, blanks and keys
+together, with no pagination shift in either lesson. Covers keep their row, as intended.
 
 ### Packet pagination — one document, numbered as one document (2026-07-28)
 
@@ -2503,8 +2532,13 @@ python3 .claude/skills/lesson-planning/scripts/movenotes.py unit01/lesson02
 1pp components, which are structural. The lesson plan grew to 6pp, which costs nothing — `full` is
 not paginated and the plan never reaches students.
 
-**Still to do:** the other 45 lessons keep their notes in the keys. `movenotes.py` handles them one
+**Still to do:** the other 43 lessons keep their notes in the keys. `movenotes.py` handles them one
 at a time; Lessons 1.2 and 1.0 are the reference implementations.
+
+**Lessons 1.1 and 1.3 migrated 2026-07-28** (5 notes each). On **1.3 this was the whole fix for the
+notes**: 6/7 → **6/6**, and the packet dropped **22pp → 20pp** without touching a single item of
+content. Worth knowing before reaching for the work rule — on a lesson whose only asymmetry is the
+teacher note, `movenotes.py` alone closes it.
 
 ### `steptable` — the alignment rule for *printed* solutions (2026-07-28)
 
@@ -2547,6 +2581,26 @@ from odd to even.
 Lesson 1.2 had no blank/key mismatch to begin with, so its gain came from the components growing
 into their padding. The lessons where the rule directly removes a mismatch are the ones already
 flagged — Unit 1 Lesson 1.3 (notes 6/7, activity 3/4), Unit 6 Lessons 6.3 and 6.4.
+
+**Lesson 1.3 cleared 2026-07-28.** Both flagged mismatches are gone, but only one of them was the
+work rule's doing: the notes (6/7) were fixed by **teachernotes** alone, and the activity (3/4) by
+the **`\ansline` half** of the rule — seven prose answers whose blanks reserved one write-line for
+answers that wrap to three, four, even five. Raising each `\writelines{n}` to the key's true
+wrapped length took the blank to 4pp, matching the key. **Every component of 1.3 now matches**
+(1/1, 6/6, 4/4, 1/1, 4/4), packet 20pp.
+
+**Lesson 1.1 converted 2026-07-28**, blank and key byte-identical in both: the **exit ticket**'s
+evaluate item (the key had crammed `2(-3)^2-5(-3)+|{-3}-8| = 2(9)+15+|{-11}| = 18+15+11` onto one
+line, and blank/key were faking a match with mismatched `\vspace` values — 4pt/8pt against 2pt),
+and the **notes** guided-practice evaluate item. Both now reserve three aligned rows where the
+student actually works. Every component still matches (1/1, 4/4, 3/3, 1/1, 3/3), packet still 18pp,
+and the exit ticket held its one-page constraint.
+
+**Scope note:** 1.1's Tier A items and 1.3's "write the equation" tables were deliberately left
+as `\blank{}`/`\ans{}` — they hold single final answers, and 1.3's are table cells, which the rule
+excludes. 1.3's exit ticket item 2(d) is a genuine multi-step solve left alone on purpose: it is
+already structured as equation-then-answer, it matches its key, and a `work` block risks the
+one-page constraint.
 
 ---
 
