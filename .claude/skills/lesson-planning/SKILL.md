@@ -62,14 +62,16 @@ Every lesson builds **exactly five files** into `target/compiled/unitXX/`:
 | File | What it is |
 | --- | --- |
 | `lessonYY_plan.pdf` | the lesson plan — the lesson-root `main.tex`, compiled |
-| `lessonYY_slides.pdf` | the Beamer deck from `slides/main.tex` |
-| `lessonYY_slides.pptx` | that deck wrapped for PowerPoint, one page image per slide |
+| `lessonYY_slides.pdf` | the deck from `slides/main.tex`, **printed** — 3 slides per page with a ruled notes column beside each |
+| `lessonYY_slides.pptx` | that same deck wrapped for PowerPoint, **full-page**, one page image per slide |
 | `lessonYY_student.pdf` | cover + blank components, merged and paginated packet-wide |
 | `lessonYY_key.pdf` | the same packet answered, **page for page** with the student one |
 
 `shared/lesson.mk` discovers a component if it has a `main.tex` **or** a `main.pdf`, compiles the
 `main.tex` ones with `latexmk -xelatex`, merges the packets with `pdfunite` in pedagogical order,
-and converts the deck with `shared/pdf2pptx.py`. A prefab `main.pdf` is fed straight to `pdfunite`
+and renders the deck twice — 3-up for print via `shared/handout.tex`, full-page for PowerPoint via
+`shared/pdf2pptx.py`. Both come from the one compiled deck, which stays the source of truth; never
+edit a work product, edit `slides/main.tex` and rebuild. A prefab `main.pdf` is fed straight to `pdfunite`
 from the source tree with no compile step (Step 4).
 
 **There is no `full` packet.** It was removed — the plan and the deck are standalone deliverables

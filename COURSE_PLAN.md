@@ -422,8 +422,12 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **Note this one is invisible to the `grep Overfull` check below** — the rows collide *inside* a
 > box that still fits the frame, so nothing overflows and the log is clean. Catching it needs eyes
 > on the rendered page: `pdftoppm -png -r 110 -f N -l N <deck>.pdf /tmp/chk`.
-> **Still to check: `unit01/lesson01/slides/main.tex:95`** carries the same pattern (stretch 1.35,
-> 1 `\dfrac`) and has not been rendered. Three more suspects in Unit 5 — see that unit's status.
+> ~~**Still to check: `unit01/lesson01/slides/main.tex:95`**~~ — **checked and clear, 2026-07-29.**
+> That deck's worst bottom margin is 12.72pt (slide 3); the stretch-1.35 pattern does not overflow
+> there. The same sweep did catch a real clip on **lesson 1.3 slide 4**, which this sweep had
+> missed — see "The five work products" for the fix and for the `pdftotext -bbox` method that finds
+> these, which is what to use here rather than the log (beamer warned about neither frame). Three
+> more suspects in Unit 5 — see that unit's status; those decks are not built yet.
 >
 > **Method note for the next deck.** Guessing at column widths wastes passes — `\savebox` the
 > suspect tabular/tikz in a throwaway beamer file and `\typeout` its `\wd` against
@@ -2693,8 +2697,8 @@ A lesson now builds **exactly five files** into `target/compiled/unitXX/`, and n
 | File | What it is |
 | --- | --- |
 | `lessonYY_plan.pdf` | the lesson plan — the lesson-root `main.tex` |
-| `lessonYY_slides.pdf` | the Beamer deck from `slides/main.tex` |
-| `lessonYY_slides.pptx` | that deck for PowerPoint, one page image per slide |
+| `lessonYY_slides.pdf` | the deck from `slides/main.tex`, **printed** — 3 slides/page, notes column |
+| `lessonYY_slides.pptx` | that deck for PowerPoint, **full-page**, one page image per slide |
 | `lessonYY_student.pdf` | cover + blank components, paginated packet-wide |
 | `lessonYY_key.pdf` | that packet answered, page for page |
 
@@ -2714,6 +2718,49 @@ something to hand out as one bound document.
 
 **Every lesson owes a deck.** `slides` feeds two of the five products, so it is a default
 component in `new_lesson.py`, not an optional one. All 48 existing lessons already had one.
+
+> **The slides PDF became a 3-up printable on 2026-07-29** (user request, with a mockup). The two
+> slide products are now the deck's two forms — **the PDF is what you print, the PPTX is what you
+> project** — both generated from the one compiled deck at
+> `target/unitXX/lessonYY/slides/main.pdf`, which stays the source of truth. Nothing per-lesson
+> changed: no `.tex` edits, no rescaffolding, all 50 existing decks work untouched.
+>
+> `shared/handout.tex` (new) does the re-framing: three slides per letter page, thumbnails down
+> the left column at `\slidewidth` = 4.35in, and beside each a "Notes" label over 6 ruled lines.
+> Slides are placed with `\includegraphics[page=n]`, so TikZ and math render exactly as projected.
+> Two details worth keeping: the deck's page count is passed in as `\DeckPages` because LaTeX
+> cannot count the pages of an external PDF (`pdfinfo` already is a build dependency), and the note
+> column is a fixed-height `minipage` measured from the slide beside it with `s` inner alignment,
+> so `\vfill` distributes the rules and both columns end on the same line at any aspect ratio.
+> Tuning knobs are the three lengths at the top of the file. A deck whose slide count is not a
+> multiple of 3 leaves the last page short, top-aligned rather than stretched.
+>
+> In `shared/lesson.mk` the `_slides.pdf` rule calls the new `handout` define instead of `cp`, and
+> **the `_slides.pptx` rule was re-pointed at the raw deck** rather than at `_slides.pdf` — a
+> PowerPoint of 3-up handout pages would be useless to project. Verified on Unit 1: decks of 7, 7,
+> 8, and 9 slides → handouts of 3, 3, 3, 3 pages (9 gives exactly 3 with no trailing blank), PPTX
+> still 13.333 × 7.5in, `make all` exit 0 on all four.
+>
+> **The handout caught one real overflow the 2026-07-28 sweep missed.**
+> `unit01/lesson03/slides/main.tex` slide 4 ("Six questions, asked of one line") ran its last line
+> — "the situation wins." — to `yMax` 256.94pt on a 255.12pt page: **1.8pt off the bottom, genuinely
+> clipped**, and XeLaTeX reported no `Overfull \vbox` for it. Fixed in the right column with no loss
+> of content: `\arraystretch` 1.25 → 1.12 across the six characteristic rows, the `\vspace{2pt}`
+> after the tabular dropped, and the block's `\\[3pt]` → `\\[2pt]`. Now `yMax` 243.59 — an 11.5pt
+> bottom margin, in family with slides 3, 6, and 7 (11–13pt). `make -C unit01/lesson03 all` exit 0,
+> deck still 9 slides → handout 3 pages, student/key still 20/20.
+>
+> **Measure clipping this way, not by eye or by log** — beamer will happily ship an over-tall frame
+> without warning:
+> ```bash
+> pdftotext -f <p> -l <p> -bbox <deck>.pdf /tmp/p.html
+> grep -o 'yMax="[0-9.]*"' /tmp/p.html | sort -t'"' -k2 -g | tail -1   # vs page height 255.12pt
+> ```
+> Swept every built deck this way (Units 1, 2, 6, 8): **no other frame clips.** Tightest survivors
+> are `unit01/lesson00` slide 6 (2.29pt), `unit01/lesson02` slide 5 (2.33pt), `unit01/lesson03`
+> slide 9 (3.87pt) — on the page, but one added word would push any of them over. The
+> `unit01/lesson01/slides/main.tex:95` site this plan flagged as unchecked is **fine**: that deck's
+> worst margin is 12.72pt.
 
 **The PPTX is a wrapper, not a port.** `shared/pdf2pptx.py` rasterizes each page with `pdftoppm`
 at 300 dpi and writes the OOXML package by hand with `zipfile` — no LibreOffice, no `python-pptx`,

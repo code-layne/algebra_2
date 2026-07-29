@@ -3,8 +3,15 @@
 #
 # A lesson builds FIVE work products into target/compiled/$(UNIT)/:
 #   lessonYY_plan.pdf     the teacher-facing lesson plan (the lesson-root main.tex)
-#   lessonYY_slides.pdf   the Beamer deck
-#   lessonYY_slides.pptx  the same deck wrapped for PowerPoint (page image per slide)
+#   lessonYY_slides.pdf   the Beamer deck, PRINTED: 3 slides per page in a two-
+#                         column layout, each slide with a ruled note area beside it
+#   lessonYY_slides.pptx  the same deck wrapped for PowerPoint, full-page (page image
+#                         per slide) — the projected form
+#
+# The two slide products are the deck's two forms: the PDF is what you print and
+# hand out, the PPTX is what you project. Both come from the one Beamer deck
+# compiled at target/$(UNIT)/$(LESSON)/slides/main.pdf, which is the source of
+# truth — never edit either product, edit slides/main.tex and rebuild.
 #   lessonYY_student.pdf  cover + blank components, paginated packet-wide
 #   lessonYY_key.pdf      the same packet answered, page for page with the student one
 #
@@ -87,13 +94,41 @@ KEY_OUT      := $(COMPILED_DIR)/$(LESSON)_key.pdf
 
 # PDF → PPTX: one full-bleed page image per slide, no external dependencies
 # beyond the poppler tools the build already uses. Override PPTX_DPI to trade
-# file size against projected sharpness.
+# file size against projected sharpness. Fed the RAW deck, not the printed
+# handout — a PowerPoint of 3-up handout pages would be useless to project.
 PPTX_SCRIPT  := $(PROJECT_ROOT)/shared/pdf2pptx.py
 PPTX_DPI     ?= 300
+
+# Deck → printed handout: 3 slides per page, notes column beside each.
+HANDOUT_TEX  := $(PROJECT_ROOT)/shared/handout.tex
+HANDOUT_DIR  := $(PDF_DIR)/.handout
 
 # Both packets are laid out against each other, so either target needs every
 # component of both compiled before it can be paginated.
 ALIGN_STAMPS   := $(sort $(STUDENT_STAMPS) $(KEY_STAMPS))
+
+# ── Deck → printed handout ────────────────────────────────────────────────────
+# Re-frames the compiled deck as a printable: three slides per letter page in
+# the left column, a ruled note area beside each in the right. Only the framing
+# is new — every slide is placed with \includegraphics, so TikZ figures and math
+# render exactly as they do on the projector.
+#
+# The page count is passed in because LaTeX cannot count the pages of an
+# external PDF; pdfinfo is already a build dependency. See shared/handout.tex.
+#   $1 = the deck PDF (absolute path).
+#   $2 = the handout PDF to write.
+define handout
+	@mkdir -p $(HANDOUT_DIR) $(dir $2)
+	@set -e; \
+	n=$$(pdfinfo "$1" | awk '/^Pages/{print $$2}'); \
+	TEXINPUTS="$(TEXINPUTS)" xelatex -interaction=nonstopmode -halt-on-error \
+	    -output-directory="$(HANDOUT_DIR)" -jobname=handout \
+	    '\def\DeckSource{'"$1"'}\def\DeckPages{'"$$n"'}\input{handout}' \
+	    > $(HANDOUT_DIR)/handout.log 2>&1 \
+	  && mv $(HANDOUT_DIR)/handout.pdf $2 \
+	  || { echo "!  handout pass failed — see $(HANDOUT_DIR)/handout.log"; \
+	       grep -E "^(!|l\.)" $(HANDOUT_DIR)/handout.log | head -10; exit 1; }
+endef
 
 # ── Packet-wide pagination + recto starts + student/key alignment ─────────────
 # Each component is its own document, so each numbers its pages from 1. After
@@ -173,14 +208,16 @@ $(COMPILED_DIR)/$(LESSON)_plan.pdf: $(ROOT_DEP)
 	@cp $(ROOT_PDF) $@
 	@echo "✓  Lesson plan    → target/compiled/$(UNIT)/$(LESSON)_plan.pdf"
 
-$(COMPILED_DIR)/$(LESSON)_slides.pdf: $(SLIDES_DEP)
+$(COMPILED_DIR)/$(LESSON)_slides.pdf: $(SLIDES_DEP) $(HANDOUT_TEX)
 	@mkdir -p $(COMPILED_DIR)
-	@cp $(SLIDES_PDF) $@
-	@echo "✓  Slides (PDF)   → target/compiled/$(UNIT)/$(LESSON)_slides.pdf"
+	$(call handout,$(abspath $(SLIDES_PDF)),$@)
+	@echo "✓  Slides (PDF)   → target/compiled/$(UNIT)/$(LESSON)_slides.pdf (3 per page, notes column)"
 
-$(COMPILED_DIR)/$(LESSON)_slides.pptx: $(COMPILED_DIR)/$(LESSON)_slides.pdf $(PPTX_SCRIPT)
-	@python3 $(PPTX_SCRIPT) $< $@ --dpi $(PPTX_DPI) --title "$(UNIT) $(LESSON) slides"
-	@echo "✓  Slides (PPTX)  → target/compiled/$(UNIT)/$(LESSON)_slides.pptx"
+# Built from the raw deck, not from the handout above.
+$(COMPILED_DIR)/$(LESSON)_slides.pptx: $(SLIDES_DEP) $(PPTX_SCRIPT)
+	@mkdir -p $(COMPILED_DIR)
+	@python3 $(PPTX_SCRIPT) $(SLIDES_PDF) $@ --dpi $(PPTX_DPI) --title "$(UNIT) $(LESSON) slides"
+	@echo "✓  Slides (PPTX)  → target/compiled/$(UNIT)/$(LESSON)_slides.pptx (full page, projectable)"
 
 # ── student / key packets ─────────────────────────────────────────────────────
 

@@ -17,7 +17,7 @@ SAMPLE_TEST_PDF     := $(if $(HAS_SAMPLE_TEST),$(COMPILED_DIR)/$(UNIT)/sample_te
 SAMPLE_TEST_KEY_PDF := $(if $(HAS_SAMPLE_TEST_KEY),$(COMPILED_DIR)/$(UNIT)/sample_test_key.pdf)
 
 # A unit aggregates only the two packets that concatenate meaningfully. The
-# other three lesson products (plan, slides PDF, slides PPTX) stay per-lesson —
+# other three lesson products (plan, 3-up slides PDF, slides PPTX) stay per-lesson —
 # they are teacher artifacts, not something to hand out as one bound document.
 .PHONY: all student key clean $(LESSONS) _unit_cover _sample_test _sample_test_key
 

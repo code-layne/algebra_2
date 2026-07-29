@@ -2,7 +2,7 @@
 # Delegates to the unit sub-makes and stitches the whole-curriculum packets.
 #
 # Only the student and key packets aggregate to this level. Each lesson's other
-# three products (plan, slides PDF, slides PPTX) stay in
+# three products (plan, the 3-up slides PDF, the full-page slides PPTX) stay in
 # target/compiled/unitXX/ — they are per-lesson teacher artifacts.
 
 COMPILED_DIR := target/compiled
