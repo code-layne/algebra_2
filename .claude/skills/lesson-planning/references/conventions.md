@@ -150,6 +150,35 @@ so raising it for handwriting room can never break the match.
 
 `unit01/lesson02` is the reference implementation.
 
+### `steptable` / `\step` — a *printed* solution, aligned on its relation
+
+`work` is for steps the **student** writes. Its counterpart is for steps that are **printed in
+both files** — the "justify every line" tables, where the algebra is given and the student names
+the property beside it. Same alignment requirement, different mechanism: a plain one-column table
+cannot align relations (`$3x-12=18$` above `$3x-12+12=18+12$` puts the two `=` in different
+places), so the step is split into a right-aligned left side and a left-aligned relation + right
+side.
+
+```latex
+\begin{steptable}                       % or [Property] to retitle column 3
+  \step{3(x-4)}{=18}{Given}
+  \step{3x-12}{=18}{\blank{6.0cm}}
+  \step{3x-12+12}{=18+12}{\blank{6.0cm}}
+\end{steptable}
+```
+
+Argument 2 begins with the relation. Use `\steprel{lhs}{cell}{prop}` when the *relation itself* is
+what the student supplies — the flip demonstration, where the symbol turning around is the point:
+`\steprel{\dfrac{-3x}{-3}}{\blank{0.9cm} $\dfrac{12}{-3}$}{\blank{6.0cm}}`.
+
+Only column 3 differs between the blank and the key, so the two cannot drift.
+
+**It is a chain rule.** A table of *independent* statements to classify — Lesson 1.0's exit ticket
+item 2, where one row is `$2x-9=5 \Rightarrow 2x-9+9=5+9$` — is a list, not a solution, and stays
+a plain table.
+
+`unit01/lesson00` is the reference implementation.
+
 ## Teacher notes — in the lesson plan, one per component
 
 **Teacher-only prose goes in the lesson plan, never in a `_key`.** A `teachernote` is the one block

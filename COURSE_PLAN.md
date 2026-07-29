@@ -358,8 +358,11 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > blank pages went **6 → 3**. Its five teacher notes also moved into the lesson plan as
 > `\begin{teachernote}[Warm-Up]` etc., so **every component now matches its key exactly** and none
 > of the three remaining pads is caused by a key — they are the 1pp cover, warm-up, and exit ticket.
-> The other three Unit 1 lessons are **not** converted; 1.2 is the reference implementation to
-> review before any sweep.
+> **Lesson 1.0 converted too, 2026-07-28 (user request).** It needed `steptable` rather than `work`
+> — see §7 — because every solution in 1.0 is printed for the student to justify rather than solved
+> from scratch. 6 step tables aligned on their relation, one `work` block in the exit ticket, five
+> teacher notes moved to the plan; all components match their keys, but the packet stays **20pp with
+> 6 pads**, all parity. Lessons 1.1 and 1.3 are **not** converted.
 
 ### Unit 2 — Linear Functions
 > **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
@@ -2494,8 +2497,46 @@ python3 .claude/skills/lesson-planning/scripts/movenotes.py unit01/lesson02
 1pp components, which are structural. The lesson plan grew to 6pp, which costs nothing — `full` is
 not paginated and the plan never reaches students.
 
-**Still to do:** the other 46 lessons keep their notes in the keys. `movenotes.py` handles them one
-at a time; Lesson 1.2 is the reference implementation.
+**Still to do:** the other 45 lessons keep their notes in the keys. `movenotes.py` handles them one
+at a time; Lessons 1.2 and 1.0 are the reference implementations.
+
+### `steptable` — the alignment rule for *printed* solutions (2026-07-28)
+
+Lesson 1.0 was converted second and turned out to need the other half of the rule. It has **no
+solve-from-scratch tasks**: every chain is printed and the student names the property beside each
+line, so `work` (which hides its body in the blank) applies almost nowhere. What does apply is
+"one statement per line, all lines aligned on the sign" — and the existing one-column tables did
+not align, because `$3x-12=18$` above `$3x-12+12=18+12$` puts the two `=` in different places.
+
+`steptable` splits the step into a right-aligned left side and a left-aligned relation + right
+side, so every relation lands in one column:
+
+```latex
+\begin{steptable}
+  \step{3(x-4)}{=18}{Given}
+  \step{3x-12}{=18}{\blank{6.0cm}}
+  \step{3x-12+12}{=18+12}{\blank{6.0cm}}
+\end{steptable}
+```
+
+`\steprel` is the variant for the row where the *relation itself* is the blank — the flip
+demonstration, where the symbol turning around is the whole point. Only column 3 differs between
+blank and key, so nothing can drift.
+
+Two implementation notes worth keeping: the environment captures its body with `+b` rather than
+splitting `\begin{tabularx}`/`\end{tabularx}` across begin/end code (tabularx rescans its body to
+solve the X column, and the split form fails with "Missing } inserted"); and it is a **chain**
+rule — a table of independent statements to classify, like Lesson 1.0's exit ticket item 2 whose
+rows carry two relations each, stays a plain table.
+
+**Lesson 1.0 result:** 6 step tables converted (notes ×3, activity ×2, homework ×1), a `work`
+block added to the one item where students actually solve (exit ticket MC, $-5x\ge20$), and its
+five teacher notes moved to the plan. All five components match their keys — **but its packet is
+still 20pp with 6 pads, unchanged.** Blank and key already matched here, and nothing grew enough
+to flip a component from odd to even, so every pad is parity. That is the honest boundary of this
+work: the rule fixes *mismatch* and improves how a solution reads; it does not touch parity, and
+1.0 had no mismatch to fix. Lesson 1.2 gained because its new work blocks pushed three components
+from odd to even.
 
 Lesson 1.2 had no blank/key mismatch to begin with, so its gain came from the components growing
 into their padding. The lessons where the rule directly removes a mismatch are the ones already
