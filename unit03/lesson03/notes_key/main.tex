@@ -9,12 +9,11 @@
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
 \newcommand{\vocabans}[2]{%
-  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.3}{Guided Notes --- Answer Key}
-\namedateperiod
 
 \vspace{0.10in}
 
@@ -32,7 +31,7 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
+\par\vspace{2pt}
 \vocabans{Square Root Property}{if $x^2=k$ with $k\ge0$, then $x=\pm\sqrt{k}$ --- take the square root of both sides, keeping $\pm$}
 \vocabans{$\pm$ (plus or minus)}{records both square roots of a number; a squared equation has two solutions}
 \vocabans{Simplest radical form}{a radical with no perfect-square factor left inside, e.g. $\sqrt{12}=2\sqrt{3}$}
@@ -50,6 +49,7 @@ Two quadratics that \textbf{do not factor} over the integers:
 Today we solve them exactly --- with two tools that don't need factoring.
 \end{hookbox}
 
+\boxguard[22]
 \begin{notesbox}{1. The Square Root Property --- undo the square}
 ``What squares to $9$?'' Both $3$ \emph{and} $-3$. So a squared equation has \textbf{two} solutions:
 \[ \text{if } x^2=k \ (k\ge0), \text{ then } x=\textcolor{keyred}{\mathbf{\pm\sqrt{k}}}. \]
@@ -125,23 +125,31 @@ won't factor & completing the square \\ \hline
 \end{center}
 \end{notesbox}
 
+\boxguard[24]
 \begin{practicebox}
 \textbf{Solve. Show the isolated square (or completed square), then both roots in simplest form.}
 \begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
-  \item $x^2-20=0 \Rightarrow x=\textcolor{keyred}{\mathbf{\pm2\sqrt5}}$
-  \item $(x+1)^2=9 \Rightarrow x=\textcolor{keyred}{\mathbf{2,\,-4}}$
-  \item $x^2+4x-6=0$ (complete the square) $\Rightarrow x=\textcolor{keyred}{\mathbf{-2\pm\sqrt{10}}}$
+  \item $x^2-20=0$
+    \begin{work}
+      x^2 &= 20 \\
+      x &= \pm\sqrt{20} \\
+        &= \pm2\sqrt{5}
+    \end{work}
+  \item $(x+1)^2=9$
+    \begin{work}
+      x+1 &= \pm3 \\
+      x &= -1\pm3 \\
+        &= 2,\ -4
+    \end{work}
+  \item $x^2+4x-6=0$ (complete the square)
+    \begin{work}
+      x^2+4x &= 6 \\
+      x^2+4x+4 &= 10 \\
+      (x+2)^2 &= 10 \\
+      x+2 &= \pm\sqrt{10} \\
+      x &= -2\pm\sqrt{10}
+    \end{work}
 \end{enumerate}
 \end{practicebox}
-
-\begin{teachernote}
-The two engines: the Square Root Property (\S1--2, always with $\pm$ and simplest radical form) and
-completing the square (\S3, the $(b/2)^2$ recipe from the warm-up). \S4 is the payoff --- the \emph{same}
-move gives vertex form, so it ties back to the anchor $x^2-2x-3=(x-1)^2-4$, vertex $(1,-4)$, roots $-1,3$.
-Pre-empt the four recurring slips: dropping the $\pm$; rooting before isolating (\S1 ``isolate first'');
-using $b$ instead of $b/2$; and unsimplified radicals ($\sqrt{20}$ vs.\ $2\sqrt5$ in practice~1). The
-$x^2=-4$ ``wall'' is the deliberate bridge to Lesson~3.4 --- name it as ``no \emph{real} solution,'' not
-``no solution.''
-\end{teachernote}
 
 \end{document}
