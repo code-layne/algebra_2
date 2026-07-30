@@ -4,12 +4,11 @@
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 \newcommand{\vocabans}[2]{%
-  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.7}{Guided Notes --- Answer Key}
-\namedateperiod
 
 \vspace{0.06in}
 
@@ -27,7 +26,7 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
+\par\vspace{2pt}
 \vocabans{Quadratic model}{a quadratic function used to describe a real situation (height, area, revenue)}
 \vocabans{Projectile model $h(t)=-16t^2+v_0t+h_0$}{$h_0=$ launch height, $v_0=$ launch speed; feet and seconds}
 \vocabans{Maximum / minimum value (at the vertex)}{the output at the vertex --- the greatest/least the model reaches}
@@ -42,6 +41,7 @@ story --- a ball in the air, a pen you're fencing, a price you're setting --- an
 \textbf{``reaches $0$''} $\to$ a zero, \textbf{``the most / the best''} $\to$ the vertex.
 \end{hookbox}
 
+\boxguard[30]
 \begin{notesbox}{1. Projectile motion --- one model, three questions}
 An object thrown or dropped near the ground follows $\ h(t)=-16t^2+v_0t+h_0\ $ (height in feet, $t$ in seconds),
 where $h_0$ is the \textbf{launch height} and $v_0$ the \textbf{launch speed}. A ball is thrown \emph{up} at $32$ ft/s
@@ -121,21 +121,27 @@ impossible values.
 
 \begin{practicebox}
 \textbf{Build the model, then answer the question. Include units.}
-\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
-  \item A firework launches from the ground: $h(t)=-16t^2+64t+80$. Find its \emph{maximum height} and \emph{when it lands}. \\ Max: \ans{$144$ ft at $t=2$ s} \qquad Lands: \ans{$t=5$ s}
-  \item A dog run against a wall uses $60$ ft of fence on three sides. What width $x$ gives the \emph{maximum area}, and what is that area? \\ $x=\ans{$15$ ft}$ \qquad max area $=\ans{$450$ ft$^2$ ($15\times30$)}$
-  \item A shop's daily revenue is $R(x)=-10x^2+300x$ ($x$ in \$1 price cuts). What price change \emph{maximizes} revenue, and what is the maximum? \\ $x=\ans{$15$}$ \qquad max $R=\ans{$\$2250$}$
+\begin{enumerate}[leftmargin=1.9em, itemsep=4pt]
+  \item A firework launches from the ground: $h(t)=-16t^2+64t+80$. Find its \emph{maximum height} and \emph{when it lands}.
+    \begin{work}
+      t &= -\frac{64}{2(-16)} = 2\text{ s} \\
+      h(2) &= -16(4)+64(2)+80 = 144\text{ ft} \\
+      -16t^2+64t+80 &= 0 \\
+      -16(t-5)(t+1) &= 0 \\
+      t &= 5\text{ s} \quad\text{(reject } t=-1)
+    \end{work}
+  \item A dog run against a wall uses $60$ ft of fence on three sides. What width $x$ gives the \emph{maximum area}, and what is that area?
+    \begin{work}
+      A(x) &= x(60-2x) = -2x^2+60x \\
+      x &= -\frac{60}{2(-2)} = 15\text{ ft} \\
+      A(15) &= 15(30) = 450\text{ ft}^2
+    \end{work}
+  \item A shop's daily revenue is $R(x)=-10x^2+300x$ ($x$ in \$1 price cuts). What price change \emph{maximizes} revenue, and what is the maximum?
+    \begin{work}
+      x &= -\frac{300}{2(-10)} = 15 \\
+      R(15) &= -10(225)+300(15) = \$2250
+    \end{work}
 \end{enumerate}
 \end{practicebox}
-
-\begin{teachernote}
-The spine: \emph{every} question about a story is a question about a \emph{feature}, and students already know how to
-find all of them. In \S1 hammer the units and the ``reject $t=-1$'' habit --- and the distinction between the vertex's
-\emph{input} ($t=1$, \emph{when}) and \emph{output} ($64$ ft, \emph{how high}). \S2's classic error is length $=40-x$
-instead of $40-2x$; walk the fence-count on the diagram. \S3 sets revenue as price\,$\times$\,\emph{changing} demand,
-not fixed sales; the vertex is the ``best price.'' Practice \#1's firework lands at $t=5$ ($t^2-4t-5=0$); \#2 maximizes
-at the vertex $x=15$ ($15\times30=450$); \#3's $R$ peaks at $x=15$, $R=2250$. If time is short, \#1 and \#2 are the
-must-dos --- they carry ``vertex output $=$ max'' and the $40-2x$ setup.
-\end{teachernote}
 
 \end{document}

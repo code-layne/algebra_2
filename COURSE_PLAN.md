@@ -724,7 +724,48 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > model + discriminant-vs.-$x$-intercepts reasoning (3.7 / 3.5). Practice and actual are parallel forms (same
 > structure, different numbers). `make -C unit03/tests all` and `make -C unit03/test_keys all` → EXIT 0; practice
 > test/key published to `sample_test/` and `sample_test_key/` via the `drop` targets. **Unit 3 is complete (all
-> lessons + assessments). Next action: begin Unit 4 (Polynomial Functions).**
+> lessons + assessments).**
+> **All four conventions retrofitted to Unit 3 (3.0–3.7) + binder cover generated (2026-07-30).** Applied in the
+> documented order — teachernotes → namestrip → vocabpar → work rule → boxguard (boxguard last, since it repairs the
+> pagination the others disturb). Result: `make -C unit03/lessonNN all` exits 0 for all eight, **every one of the 40
+> components matches its key page for page**, all 32 warm-up/exit-ticket documents are still 1pp, and
+> `unit03_student.pdf` / `unit03_key.pdf` are **127pp each**.
+> * **teachernotes** — 40 notes migrated (5 per lesson) out of the `_key` files into the lesson plans via
+>   `movenotes.py`; no `teachernote` remains in any Unit 3 key. This alone closed the only pre-existing mismatch's
+>   sibling cases and left just one (3.7 notes 3/2).
+> * **namestrip** — 80 name-row lines removed (10 per lesson, blanks + keys); `--check` clean on all eight.
+> * **vocabpar** — **not requested but required**: all eight `notes_key` files defined `\vocabans` without the
+>   surrounding `\par`s, so every key's vocab box rendered as one run-on jumble with answers colliding into the next
+>   term. Fixed to match the `unit05/lesson00` reference (`\par\noindent…\ansline{#2}\par`). This also closed the 3.7
+>   notes mismatch outright (3/2 → 3/3) with **no packet growth**. Worth knowing: Unit 3's keys were shipping
+>   unreadable vocab boxes. The blank-side half (`\par\vspace{2pt}` before the first `\termblanklong`, so the intro
+>   sentence stops running into the first term) was applied too — free on seven of eight; **3.6 needed one more
+>   mirrored trim** (practicebox and protocol `itemsep`) to stay 3/3. **Unit 3 is now fully vocabpar-clean, both
+>   sides.** Units 2 and 4 still carry the defect.
+> * **work rule** — Unit 3 had **zero** `work` blocks before this pass. **73 sites converted → 146 blocks**, verified
+>   byte-identical blank↔key: 3.1 ×1, 3.2 ×11, 3.3 ×10, 3.4 ×17, 3.5 ×20, 3.6 ×9, 3.7 ×5. 3.0 got none — it is pure
+>   graph-reading with no solve tasks, so the rule does not apply. Components absorbed the space: 3.2 activity 2→3,
+>   3.3 homework 2→3, 3.5 activity 2→3 and homework 2→3. Two lessons needed the space bought back rather than the
+>   conversion declined — 3.6 notes took mirrored `arraystretch` 1.4/1.3→1.15 trims (the blank's `termblanklong`
+>   vocab box runs ~5 lines taller than the key's `vocabans`, and the new blocks consumed that slack), and 3.2's
+>   activity justification slot went `\blank{5.5cm}`→`\writelines{2}` to match its wrapped `\ansline`.
+> * **boxguard** — **12 guard sites, 24 lines** (each mirrored blank+key): 3.0 notes ×2, 3.1 notes ×2, 3.2 notes ×2 +
+>   activity ×1 (`\tcbbreak`), 3.3 notes ×2, 3.4 notes ×1, 3.5 activity ×1 (`\tcbbreak`), 3.7 notes ×1. **Every guard
+>   that landed was free** — no packet grew. 3.0/3.1/3.2/3.3/3.4/3.7 notes now have **zero broken boxes**. Confirms
+>   the documented limit again: `\boxguard` is inert inside a breakable `tcolorbox`, so the two activity fixes used
+>   `\tcbbreak` at a better split point instead. **One guard declined:** 3.6 notes box 1 leaves a ~3-line tail atop
+>   p2, but guarding it pushes the whole ~4.5in box and costs a page (3/3 → 4/4); recovering ~3.5in is far beyond what
+>   spacing trims give, so the stub stays — re-measure if that box's content changes.
+> * **binder cover** — `unit03/binder_cover/spec.py` authored (16 hand-placed elements, every one traceable to a Unit
+>   3 lesson) and `main.pdf` generated via `shared/cover.py`; `unit.mk` picks it up and it now leads both unit packets.
+>   Composition follows Unit 1's: the unit anchor $x^2-2x-3$ in all three costumes (parent+vertex-form graph, factoring
+>   and completing-the-square slabs, the linear–quadratic system), the quadratic formula and discriminant cases, the
+>   complex thread ($i$, the conjugate product, $x^2+2x+5=0$, the no-real-roots parabola), and the 3.7 models.
+> **Known defect, pre-existing and NOT from this pass — `unit03/lesson00/activity` p3 renders a broken TikZ graph:**
+> the Tier E "Back to the ball" projectile plot ($h(t)=-16t^2+32t+48$) draws as a single enormous vertical spike
+> filling the page, because its $y$-values reach 64 with no axis scaling. It is why that activity is 4pp with a nearly
+> empty p4. Needs a content fix (scale the $y$-axis as 3.7's projectile figure does), not a guard.
+> **Next action: begin Unit 4 (Polynomial Functions)** — or fix the 3.0 activity graph first if Unit 3 is going to print.
 - **3.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **3.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
@@ -2463,7 +2504,8 @@ a lesson actually calls `\boxguard`. Per user decision there is **no bulk sweep*
 problems lesson-by-lesson as they are found in review.
 
 **Applied so far:** Lesson 1.0 (reference), **Lessons 1.1 and 1.3 (2026-07-28)**, **all of Unit 2
-— Lessons 2.0–2.5 (2026-07-29)**, 10 guard sites (each applied to a blank and its key, 20 lines),
+— Lessons 2.0–2.5 (2026-07-29)**, **all of Unit 3 — Lessons 3.0–3.7 (2026-07-30, 12 sites / 24 lines,
+every one free; one declined on 3.6 notes — see the Unit 3 status)**, 10 guard sites (each applied to a blank and its key, 20 lines),
 plus **1.1 notes Section 2 (2026-07-29)** — the stub the earlier pass had declined; see limit 2.
 
 **Boxguard is opt-in and nothing detects a missed one.** `\boxguard` only acts where an author
@@ -2758,7 +2800,7 @@ python3 .claude/skills/lesson-planning/scripts/movenotes.py unit01/lesson02
 1pp components, which are structural. The lesson plan grew to 6pp, which costs nothing — `full` is
 not paginated and the plan never reaches students.
 
-**Still to do:** the other 37 lessons (Units 3–8) keep their notes in the keys. `movenotes.py`
+**Still to do:** the other 29 lessons (Units 4–8) keep their notes in the keys. `movenotes.py`
 handles them one at a time; Lessons 1.2 and 1.0 are the reference implementations.
 
 **All of Unit 2 migrated 2026-07-29** — 5 notes per lesson, 30 total; no `teachernote` remains in

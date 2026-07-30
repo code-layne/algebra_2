@@ -8,12 +8,11 @@
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 \newcommand{\vocabans}[2]{%
-  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.4}{Guided Notes --- Answer Key}
-\namedateperiod
 
 \vspace{0.10in}
 
@@ -31,7 +30,7 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
+\par\vspace{2pt}
 \vocabans{Imaginary unit $i$}{the number with $i=\sqrt{-1}$, so $i^2=-1$}
 \vocabans{Complex number ($a+bi$)}{a number with a real part $a$ and an imaginary part $b$ ($a,b$ real)}
 \vocabans{Real part / imaginary part}{in $a+bi$, $a$ is the real part and $b$ is the imaginary part}
@@ -108,6 +107,7 @@ The point above is \ans{$3+2i$} (real part \ans{$3$}, imaginary part \ans{$2$}).
 \[ (a+bi)(a-bi)=a^2-b^2i^2=\ans{$a^2+b^2$}. \qquad (5+2i)(5-2i)=\ans{$29$}. \]
 \end{notesbox}
 
+\boxguard[20]
 \begin{notesbox}{4. Powers of $i$, and where complex numbers come from}
 Powers of $i$ \textbf{cycle} with period $4$. Fill the cycle, then reduce by taking the exponent mod $4$:
 \[ i^1=i,\quad i^2=\ans{$-1$},\quad i^3=i^2\cdot i=\ans{$-i$},\quad i^4=\ans{$1$},\quad i^5=\ans{$i$}. \]
@@ -121,22 +121,28 @@ The two solutions $-1\pm2i$ are \textbf{complex conjugates} --- a preview of Les
 \begin{practicebox}
 \textbf{Simplify. Write every answer in $a+bi$ form.}
 \begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
-  \item $\sqrt{-45}=\ans{$3i\sqrt{5}$}$
-  \item $(6-i)+(-2+7i)=\ans{$4+6i$}$
-  \item $(3+i)(2-5i)=\ans{$11-13i$}$
-  \item $i^{31}=\ans{$-i$}$
+  \item $\sqrt{-45}$
+    \begin{work}
+      \sqrt{-45} &= i\sqrt{45} \\
+                 &= 3i\sqrt{5}
+    \end{work}
+  \item $(6-i)+(-2+7i)$
+    \begin{work}
+      (6-i)+(-2+7i) &= (6-2)+(-1+7)i \\
+                    &= 4+6i
+    \end{work}
+  \item $(3+i)(2-5i)$
+    \begin{work}
+      (3+i)(2-5i) &= 6-15i+2i-5i^2 \\
+                  &= 6-13i-5(-1) \\
+                  &= 11-13i
+    \end{work}
+  \item $i^{31}$
+    \begin{work}
+      31 &= 4(7)+3 \\
+      i^{31} &= i^3 = -i
+    \end{work}
 \end{enumerate}
 \end{practicebox}
-
-\begin{teachernote}
-Pace: box~1 (define $i$, $i^2=-1$) is the crux --- linger until every student can say ``$i$ squared is
-negative one.'' Common errors to pre-empt: (i) $\sqrt{-50}=5i\sqrt2$, not $\sqrt{-50}=\sqrt{50}\,i$ left
-unsimplified or $-\sqrt{50}$; (ii) the $\sqrt{-2}\cdot\sqrt{-2}=-2$ trap --- the rule
-$\sqrt a\sqrt b=\sqrt{ab}$ fails for negatives, so convert to $i$ \emph{first}; (iii) dropping $i^2=-1$
-during FOIL (so $(2+3i)(4-i)$ stops at $8+10i-3i^2$); (iv) sign slips subtracting, forgetting to
-distribute the minus over both terms. For powers of $i$, teach ``divide the exponent by $4$, keep the
-remainder'': $i^{23}\to 23\bmod4=3\to i^3=-i$. The completing-the-square capstone reconnects to 3.3 and
-sets up 3.5 --- if time is short, assign it as the first homework item instead.
-\end{teachernote}
 
 \end{document}
