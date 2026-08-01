@@ -590,6 +590,17 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > box stubs that a guard cannot fix because they sit inside breakable `tcolorbox`es (2.0 homework
 > Practice, 2.2 activity Tier A 3 / homework Practice 5, 2.4 homework Practice) — those need a box
 > split or two trimmed lines, not a guard.
+>
+> **`unit02/unit_cover/main.tex` authored (2026-07-31).** The unit title page — the LaTeX component
+> `unit.mk` merges behind the generated `binder_cover/`, not to be confused with it. Modeled on
+> `unit01/unit_cover/main.tex`: page-anchored TikZ banner (the fixed form — no negative `\vspace`),
+> forest overview box, a six-row *Lessons in This Unit* table (2.0–2.5, each row's focus tagged with
+> its standards), and a *Standards Addressed* box collapsing the unit to its five clusters — **A.F.1**
+> (Algebra 1 linear, reactivated), **A2.EI.1**, **A2.F.1**, **A2.F.2**, **A2.ST.2**. `ltablex` is not
+> loaded (the Unit 1 gotcha). Fits **exactly 1pp** at `\arraystretch` 1.5 / 1.25 with a 0.30\linewidth
+> title column; zero overfull boxes. `make -C unit02 student` → EXIT 0, **90pp**, with the cover as
+> **page 3** (the binder cover is 2pp). Units 3–8 still have no `unit_cover/`; this file is the
+> template for them.
 
 - **2.0** Characteristics of linear functions *(introduces: domain/range,
   intercepts, slope, increasing/decreasing, +/− intervals)*
