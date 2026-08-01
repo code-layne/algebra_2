@@ -249,9 +249,23 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > distractors break the sign of the slope, the sign of the intercept, and rise-vs-run respectively.
 > *(1.3's cover follows 1.2's fix — **`ltablex` is not loaded** — and comes out at one page.)*
 > **All four Unit 1 lessons (1.0–1.3) are now authored & building.**
-> **Unit 1 tests authored & build (2026-07-28):** `tests/practice_test` (5pp) + `tests/actual_test`
-> (5pp) and their keys `test_keys/practice_test_key` (5pp) + `test_keys/actual_test_key` (5pp) —
-> every key paginates to the same length as its blank. Four parts each — A Vocabulary (8-term
+> **Unit 1 tests REGENERATED under the work rule (2026-07-31):** all four documents rewritten from
+> scratch with fresh vocabulary sets, MC items, numbers and contexts — `tests/practice_test` (7pp) +
+> `tests/actual_test` (7pp) and their keys `test_keys/practice_test_key` (7pp) +
+> `test_keys/actual_test_key` (8pp). **Unit 1 is the reference implementation of the work rule for
+> unit tests** — no other unit's tests use it yet. Every multi-step solve now sits in a
+> `\begin{work}` block (21 per form) authored **byte-identically** in blank and key, with
+> `\workrowsep` at `10pt` for handwriting room; the blank reserves the exact height and ships no
+> ink, the key prints it in `keyred`. This replaced the old hand-tuned `\vspace{}`-vs-`\ans{}`
+> idiom and the `\newpage`-in-the-blank-only hack that used to force the 5pp match — page parity is
+> now structural and cannot drift. Prose answers use `\writelines{n}` against n `\ansline`s;
+> `\boxguard` precedes every part header and the `remindbox`.
+> **Teacher notes moved out of the packet-merged pair.** Per the convention that a `teachernote` is
+> the one block in a key with no counterpart in the blank, the **practice** pair (which *is* merged
+> into the unit packets) now carries none, and the full 72-point scoring guide lives in
+> `actual_test_key` behind a `\newpage` — the actual test and its key are never merged into any
+> packet, so that page costs nothing. Hence 7/7 on the practice pair and 7+1 on the actual.
+> Four parts each — A Vocabulary (8-term
 > matching, 8 pts), B Multiple Choice (6 items incl. an SOL-style equation-from-a-graph item,
 > 12 pts), C Short Answer & Computation (8 items, 40 pts), D Extended Response (2 justify items,
 > 12 pts) — drawing across all four lessons: rational vs. irrational and property-naming with a
@@ -267,16 +281,21 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > exponential from tables by constant difference, constant *second* difference, constant ratio,
 > then show the three trade places, so ``which is bigger'' needs a *where*) and a two-price
 > **modeling** item whose break-even is solved with each property of equality named, verified in
-> both functions, and pushed into an **identity** ($12v+40=12v+40$) to force the
-> one/none/infinitely-many distinction into context. Nothing is sketched from scratch — the line
-> and the number line are pre-drawn. Practice and actual are parallel forms (same structure,
-> different numbers, contexts, and vocabulary letters). Part D sits on its own page in the blanks
-> via a `\newpage`; the keys omit it so both documents come out at 5pp.
-> `make -C unit01/tests all` and `make -C unit01/test_keys all` → EXIT 0; practice test + key
-> published to `sample_test/` and `sample_test_key/` via the `drop` targets, replacing the ATA PDFs.
+> both functions, and pushed into an **identity** to force the one/none/infinitely-many distinction
+> into context (practice: phone plans, $15m+25=15m+25$; actual: shirt printing, $8s+30=8s+30$).
+> Part D is now broken out sub-question by sub-question — `work` blocks for the computational parts
+> (c)/(d), ruled `\writelines` for the prose — instead of one undifferentiated `\vspace`.
+> Nothing is sketched from scratch — the line and the number line are pre-drawn. Practice and
+> actual are parallel forms (same structure, different numbers, contexts, and vocabulary letters).
+> **Verified 2026-07-31:** `make -C unit01/tests all` and `make -C unit01/test_keys all` → EXIT 0;
+> the 21 `work` blocks hash byte-identical between each blank and its key; no `\ans` inside `$…$`
+> and none in a non-key file; practice test + key published to `sample_test/` (7pp) and
+> `sample_test_key/` (7pp) via the `drop` targets; `make -C unit01 student` and `make -C unit01 key`
+> → EXIT 0 at **88pp each**, so the unit packets stay page-for-page.
 > **Verified 2026-07-28:** full in-place `xelatex` scan of every `unit01/**/main.tex` → zero
-> failures; all four warm-ups and all four exit tickets are exactly one page in both blank and key;
-> `make -C unit01 student full` → EXIT 0 (unit student 63pp, unit full 119pp).
+> failures; all four warm-ups and all four exit tickets are exactly one page in both blank and key.
+> *(The unit packet counts from that date are superseded by the 88pp/88pp above — the regenerated
+> tests are 2pp longer than the originals, which is the ruled work space the work rule reserves.)*
 > **Unit 1 is complete (all lessons + assessments).**
 > *(Note: the in-place `xelatex` compile scan drops `main.pdf` into component **source** dirs, which
 > `lesson.mk` would then treat as prefab drop-ins — always `git clean -fdx unitXX` afterwards.)*
@@ -2758,6 +2777,28 @@ that remain are the 1pp cover, the 1pp warm-up (both structural parity), and the
 **`\ansline` prose drifts the same way**, without a shared body to measure. Homework item 8 came
 out 3 / 4 until the blank's `\writelines{3}` was raised to `\writelines{5}` to match the key's
 wrapped answer. Applied by hand; noted in `references/conventions.md`.
+
+#### Extended to the unit tests — Unit 1 only, so far (2026-07-31)
+
+The rule was written for lesson components, but unit tests have the same blank-against-key problem:
+`sample_test` merges into the unit **student** packet and `sample_test_key` into the unit **key**
+packet, so a key that runs long desyncs the two packets from that point on. **Unit 1's tests are
+now the reference implementation** — 21 `work` blocks per form, byte-identical in blank and key,
+`\workrowsep` at `10pt`. Practice pair 7pp/7pp; unit packets 88pp/88pp.
+
+Two test-specific wrinkles the lesson-component rule does not cover:
+
+- **A test has no lesson plan**, so there is nowhere outside the key to put teacher prose. Resolved
+  by which pair is packet-merged: the **practice** pair carries **no** `teachernote` at all, and
+  the whole scoring guide goes in `actual_test_key` behind a `\newpage`. The actual test and its
+  key are never merged into any packet, so those pages are free.
+- **Part D needs sub-question structure** — one `\vspace{5.6cm}` under six lettered prompts cannot
+  be matched to a key answer. Break it out per sub-question: `work` blocks for the computational
+  parts, `\writelines{n}` against n `\ansline`s for the prose.
+
+**Units 2–6 tests are still on the old `\vspace{}`-vs-`\ans{}` idiom** and have not been
+retrofitted. Unit 2's is the one with a live defect: `practice_test` 3pp against
+`practice_test_key` 4pp, which costs the Unit 2 student packet a blank page.
 
 ### Teacher notes move to the lesson plan (2026-07-28)
 
