@@ -15,13 +15,30 @@ truth — if the styles diverge from this, follow the styles.
 
 ## Per-document-type preambles
 
-**Student component** (warmup, notes, activity, exit_ticket, homework, cover):
+**Student component** (warmup, homework, cover — and the legacy notes/activity/exit_ticket):
 ```latex
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 % cover and some components also: \usepackage{ltablex}\keepXColumns
 ```
+
+**Experience component** (the EFFL activity + QuickNotes + practice document) uses **12pt**
+(Math Medic sizing) and defines the open-answer-space macro in its preamble, byte-identical in
+the blank and the key:
+```latex
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}   % key: algebra2-key instead
+\newcommand{\answerspace}[2]{\par\nopagebreak\noindent\begin{minipage}[t][#1][t]{\linewidth}%
+  \color{keyred}\bfseries #2\end{minipage}\par}
+```
+`\answerspace{2.0cm}{}` in the blank reserves exactly 2.0cm of open space glued to its prompt;
+the key passes the answer as the second argument, occupying the identical height — that is what
+keeps the two files page-for-page without write-lines. Sizing guide: 1.4cm ≈ 2 handwritten
+lines, 2.0cm ≈ 3, 2.6–2.8cm ≈ 4. Two 12pt cautions: **`\boxguard` counts are baseline-relative**
+(use ~14–16 where a 10pt component would use 24–30), and **a key `\ans{}` wider than the blank
+it replaces can wrap an extra line and shift a page break** — keep interval/short answers terse.
 
 **Answer key** (the matching `_key` directory):
 ```latex
@@ -249,12 +266,13 @@ Secondary accent — used by the **vocabulary** box and related callouts: `navy`
 `slate`, `linegray`, `keyred` (#CC0000). Lesson-plan background aliases: `goldbox`,
 `forestbox`, `greenbox`, `redbox`.
 
-## Lesson-plan section order (canonical)
+## Lesson-plan section order (canonical, EFFL)
 
-Primary Objective → Priority Ideas & Skills → Vocabulary, Concepts & Theorems → Activate
-Prior Knowledge & Spiral Review (embeds the warm-up thumbnail) → Hook → Lesson (and
-"Lesson (cont.)") → Explicit Instruction (one box per technique) → Active Monitoring →
-Group Work & Differentiation (Tiers R / A / E) → Individual Work & Assessment (Exit Ticket +
-SOL-style MC) → Reinforcement & Extension (Homework + Extension + Preview). See
-`references/components.md` for the full spec and `references/course-workflow.md` for where
-content comes from.
+Primary Objective / Standards / Lesson model → Learning Targets & Key Understandings →
+Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: 5/20/15/15/5) →
+Warm-Up (the seeds) → Experience: the Activity (what students do | what the teacher does —
+questions, cues, prompts) → Debrief: Formalize (the red-ink moves + QuickNotes walkthrough) →
+Practice: Check Your Understanding (+ the formative check) → Watch For → Homework & Preview →
+Teacher Notes ([Warm-Up], [Experience], [Homework]). See `references/components.md` for the
+full spec and `references/course-workflow.md` for where content comes from. *(Legacy plans from
+before 2026-08 use the old Hook / Explicit Instruction / Tiers order.)*

@@ -21,19 +21,24 @@ from pathlib import Path
 
 SKEL_DIR = Path(__file__).resolve().parent.parent / "assets" / "skeletons"
 
-KEYED = ["warmup", "notes", "activity", "exit_ticket", "homework"]
+# EFFL component set (Math Medic "experience first, formalize later", 2026-08 redesign):
+# a lesson is cover / warmup / experience / homework / slides. The legacy notes, activity,
+# and exit_ticket components remain scaffoldable for pre-EFFL lessons but are NOT defaults.
+KEYED = ["warmup", "experience", "homework", "notes", "activity", "exit_ticket"]
 NO_KEY = ["cover", "slides"]
 ALL_COMPONENTS = KEYED + NO_KEY
 # slides is a default: every lesson owes a deck, since lessonYY_slides.pdf and
 # lessonYY_slides.pptx are two of the five work products the build produces.
-DEFAULT_COMPONENTS = ["cover", "warmup", "notes", "activity", "exit_ticket", "homework", "slides"]
+DEFAULT_COMPONENTS = ["cover", "warmup", "experience", "homework", "slides"]
 
 DOC_TITLE = {
     "warmup": "Warm-Up",
+    "experience": "Experience",
+    "homework": "Homework",
+    # legacy (pre-EFFL) components:
     "notes": "Guided Notes",
     "activity": "Group Activity",
     "exit_ticket": "Exit Ticket",
-    "homework": "Homework",
 }
 # NAMESTRIP (COURSE_PLAN.md §7): worksheet components carry NO name/date/period row —
 # the student writes their name once, on the cover, and the components are stapled behind
@@ -168,7 +173,7 @@ def main() -> None:
                                                 "prefab PDF (placed as <dir>/main.pdf), e.g. warmup,warmup_key")
     p.add_argument("--course", help="course name for cover/slides (default: detected or 'TODO Course')")
     p.add_argument("--year", default="2026--2027", help="school year (used only if not defined in shared/)")
-    p.add_argument("--meeting-length", default="55 minutes", help="meeting length (used only if not in shared/)")
+    p.add_argument("--meeting-length", default="60 minutes", help="meeting length (used only if not in shared/)")
     p.add_argument("--no-plan", action="store_true", help="do not scaffold the lesson-plan main.tex")
     p.add_argument("--tests", action="store_true", help="also (re)scaffold the unit's test "
                                                         "dirs even if the unit already exists (idempotent)")
@@ -256,6 +261,10 @@ def main() -> None:
             write(dest / "cover" / "main.tex", render("cover.tex", base), args.force)
         elif comp == "slides":
             write(dest / "slides" / "main.tex", render("slides.tex", base), args.force)
+        elif comp == "experience":
+            # The EFFL centerpiece gets its own 12pt skeleton (activity + QuickNotes +
+            # practice, \answerspace macro) rather than the generic worksheet.
+            write(dest / "experience" / "main.tex", render("experience.tex", base), args.force)
         else:  # authored worksheet component
             subs = {**base, "DOCTITLE": DOC_TITLE[comp]}
             write(dest / comp / "main.tex", render("worksheet.tex", subs), args.force)
@@ -264,6 +273,8 @@ def main() -> None:
             key = f"{comp}_key"
             if key in prefab:
                 prefab_dir(dest / key)
+            elif comp == "experience":
+                write(dest / key / "main.tex", render("experience_key.tex", base), args.force)
             else:
                 subs = {**base, "DOCTITLE": DOC_TITLE[comp]}
                 write(dest / key / "main.tex", render("worksheet_key.tex", subs), args.force)

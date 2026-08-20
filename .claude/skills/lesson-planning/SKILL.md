@@ -5,8 +5,9 @@ description: >-
   shared/ style package — prefix algebra2 — and a Makefile hierarchy that compiles components
   with latexmk and merges them with pdfunite).
   Use this whenever the user wants to create, draft, or build a lesson, a lesson plan, a unit,
-  or any lesson component — warm-up, guided notes, activity, exit ticket, homework, cover
-  sheet, unit test, or their answer keys. The course is defined by COURSE_PLAN.md at the
+  or any lesson component — warm-up, experience (activity + QuickNotes + practice), homework,
+  cover sheet, unit test, or their answer keys. Lessons follow the Math Medic
+  "experience first, formalize later" (EFFL) model. The course is defined by COURSE_PLAN.md at the
   project root: eight function-family units, each opening with a Lesson 0 "Characteristics of
   ____ Functions," with a cumulative characteristics-of-functions spine. Decompose units into
   lessons from it. Trigger this even when the user just says "make lesson 2.3" or "I need a
@@ -21,10 +22,17 @@ description: >-
 This skill authors lessons for the **Algebra 2: Shepherd** course and produces print-ready PDFs
 through the project's own build system. **It builds around the project's conventions — it does
 not invent its own.** The course is a **function-family** course for a secondary-school
-audience: after a foundations unit, each unit is built around one function type, and **every
-unit opens with a Lesson 0, "Characteristics of ____ Functions."** Author every component to
-build graph-reading fluency — study how each new function type *behaves* before manipulating and
-solving it.
+audience: each unit is built around one function type, and **every unit opens with a Lesson 0,
+"Characteristics of ____ Functions."** Author every component to build graph-reading fluency —
+study how each new function type *behaves* before manipulating and solving it.
+
+**Every lesson follows the Math Medic "experience first, formalize later" (EFFL) model**
+(mathmedic.com/how-it-works): students work an activity in small groups using only prior
+knowledge; the teacher circulates with *questions, cues, and prompts — not answers*; a debrief
+attaches the formal vocabulary to what the groups already found (QuickNotes); then a practice
+set applies it to new contexts. There is **no separate direct-instruction block, no guided-notes
+component, no exit ticket, and no tiered instruction.** The 60-minute period runs
+5 warm-up / 20 activity / 15 debrief / 15 practice / 5 close.
 
 ## The course at a glance
 
@@ -50,10 +58,15 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
 - **`main.tex`** — the teacher-facing **lesson plan** (the root document of the lesson dir).
 - A set of **student components**, each its own subdirectory containing **either** a
   `main.tex` (authored, compiled to a PDF) **or** a `main.pdf` (a prefab PDF, used as-is):
-  `cover`, `warmup`, `notes`, `activity`, `exit_ticket`, `homework`, and `slides`.
+  `cover`, `warmup`, **`experience`**, `homework`, and `slides`.
 - An **answer key** for each keyed component, as a *separate* sibling directory:
-  `warmup_key`, `notes_key`, `activity_key`, `exit_ticket_key`, `homework_key`.
-  (`cover` and `slides` have no key.)
+  `warmup_key`, `experience_key`, `homework_key`. (`cover` and `slides` have no key.)
+- **`experience` is the heart of the lesson** — one document in three parts: the group
+  **Activity** (two scenarios worked from prior knowledge), a **QuickNotes** box the debrief
+  fills, and a **Practice: Check Your Understanding** set. See `references/components.md`.
+- *Legacy shape:* lessons authored before the 2026-08 EFFL redesign still carry `notes`,
+  `activity`, and `exit_ticket` dirs; the build accepts both. When touching a legacy lesson,
+  ask whether to regenerate it in the EFFL shape rather than patching the old components.
 
 ### The five work products
 
@@ -156,7 +169,7 @@ works:
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
   --title "Absolute Value Functions" --unit-title "Linear Functions" \
   --course "Algebra 2: Shepherd" \
-  --components cover,warmup,notes,activity,exit_ticket,homework,slides
+  --components cover,warmup,experience,homework,slides
 ```
 
 That component list is the default, so `--components` can be omitted entirely. The script
@@ -184,14 +197,30 @@ them. This is mandatory.
 Author each file following `references/components.md`, which gives the required section structure
 and a worked skeleton for every component and its key. Hold to these invariants:
 
-- **Student components** preamble with `\documentclass[10pt]{article}` +
-  `\usepackage{algebra2-article}` + `\usepackage{algebra2-boxes}`.
+- **Student components** preamble with `\usepackage{algebra2-article}` +
+  `\usepackage{algebra2-boxes}`. The **experience** uses `\documentclass[12pt]{article}` (Math
+  Medic sizing); warm-up, homework, and cover stay `[10pt]`.
+- **EFFL scope (the timebox rule).** The activity must fit the 20-minute block: **two
+  scenarios, ~10–13 sub-questions, ~2 pages at 12pt**, worked from prior knowledge with every
+  graph pre-drawn. Extra examples (the special case, the compare-two-graphs) belong to the
+  debrief, the practice set, or the homework — not the activity. Homework is 5–10 problems.
+- **The spoiler rule.** Nothing the student sees *before* the activity — the cover and the
+  deck's learning-targets frame — may pre-name the vocabulary the debrief will attach. Write
+  targets in plain language ("where it starts, where it hits zero, how fast it changes"), and
+  keep the cover's Keep-in-Mind box to describing the EFFL process itself. The teacher-facing
+  plan keeps the formal objective.
+- **Open answer space, not write-lines, in the experience.** The component preamble defines
+  `\answerspace{H}{answer}` (a fixed-height minipage, `\nopagebreak`-glued to its prompt):
+  the blank passes an empty second argument, the key passes the red answer, so the two files
+  paginate identically by construction. Size H for 2–4 handwritten lines (1.4–2.8cm). Short
+  inline `\blank{}`s are still fine for table cells and one-word fills; keep key `\ans{}`
+  texts short enough not to wrap wider than the blank they replace.
 - **Answer keys** are *separate files* that swap `-boxes` for `\usepackage{algebra2-key}` and
   wrap every answer in `\ans{...}` (inline) or `\ansline{...}` (fills a write-line). Mirror the
   blank document exactly, then fill the blanks. There is **no** answer-key toggle — never try to
   build one.
 - **Teacher notes go in the lesson plan, not in a key** — one `teachernote` per component, in
-  packet order, titled for it: `\begin{teachernote}[Exit Ticket]` → "Teacher Note: Exit Ticket".
+  packet order, titled for it: `\begin{teachernote}[Experience]` → "Teacher Note: Experience".
   A note in a key is the one block with no counterpart in the blank, so it makes the key run
   longer and costs the student packet a blank page.
 - **The work rule: a component must be the same number of pages blank and keyed.** Put every
@@ -203,7 +232,8 @@ and a worked skeleton for every component and its key. Hold to these invariants:
 - Use the project's box vocabulary (`skillbox`, `objectivebox`, `learningtargetbox`, `vocabbox`,
   `hookbox`, `notesbox`, `practicebox`, `scenariobox`, `tocbox`, etc.) and fill-in helpers
   (`\blank`, `\writeline`, `\termblanklong`, `\namedateperiod`) rather than reinventing layout.
-  The full catalog is in `references/conventions.md`.
+  The full catalog is in `references/conventions.md`. **`\boxguard` counts are baseline-relative:
+  values tuned at 10pt are ~40% oversized at 12pt** — in the experience use ~14–16, not 24–30.
 - **Match the course pedagogy.** Build graph-reading and interpretation fluency; keep answers
   traceable to the lesson's standards. Never ask students to "sketch/draw/construct" a graph from
   scratch — give a pre-drawn figure to read, a table to complete, or a computation task.
@@ -300,4 +330,7 @@ why. Then Step 6.
   work rule); a key that runs long costs the student packet blank padding.
 - Function-family pedagogy: study a function type's behavior (Lesson 0) before manipulating it;
   build graph-reading fluency; no "sketch from scratch" questions.
+- EFFL discipline: the activity fits 20 minutes (two scenarios, ~10–13 sub-questions, ~2pp at
+  12pt); vocabulary arrives in the debrief, never before it (spoiler rule); no tiers, no
+  guided-notes or exit-ticket components in new lessons.
 - Don't modify `shared/` or the Makefiles to make a lesson build; fix the lesson's `.tex`.

@@ -65,6 +65,28 @@
 > **Open item:** the remaining authored decks have never been checked — a `grep -n "Overfull"`
 > sweep over every `unit0{1..8}/lesson*/slides` log is the next action. Two decks checked, two
 > decks bad, so assume the rest are too; beamer spills silently and `make` still exits 0.
+>
+> **Course redesign started 2026-08-19 — "experience first, formalize later" (EFFL).** Direction
+> from the user: **Unit 1 (the Algebra 1 review) is being dropped**, so Unit 2 becomes the new
+> Unit 1, and every lesson moves to the Math Medic EFFL shape — **warm-up → experience (a
+> group activity applying prior knowledge and stretching into the new material, then a QuickNotes
+> box for the formal notes/examples, then a Check-Your-Understanding practice section) →
+> homework (5–10 problems)**. **No tiered instruction, no separate guided-notes or exit-ticket
+> components.** Teacher circulates with questions/cues/prompts, not answers; the debrief attaches
+> the vocabulary to what the groups found. **Lesson 2.0 is the pilot and is rebuilt in this shape
+> (2026-08-19)** — see the Unit 2 block in §4 for the component map, build evidence, and what the
+> build system needed. **The `lesson-planning` skill is updated to the EFFL schematic
+> (2026-08-20, PR #94):** SKILL.md (component set, EFFL invariants — timebox, spoiler rule,
+> `\answerspace`, 12pt-relative boxguards — and guardrails), references/components.md (the
+> experience spec replaces guided-notes/activity/exit-ticket; EFFL plan/cover/warm-up/homework/
+> slides specs), references/conventions.md (12pt experience preamble + macro; EFFL plan order),
+> build.md, course-workflow.md, and new_lesson.py (defaults to
+> cover,warmup,experience,homework,slides; dedicated experience skeletons; 60-min default; legacy
+> components still scaffoldable by name; all skeletons rewritten around the EFFL flow).
+> Smoke-tested: a fresh default scaffold builds all five work products, EXIT 0. **Next: roll the
+> shape across the remaining lessons — regenerate, don't patch — and handle the Unit 1 drop /
+> renumbering.** Directories and headers still say "Unit 2 / Lesson 2.0" — renumbering is
+> deferred until the user decides how to drop Unit 1.
 
 ---
 
@@ -80,8 +102,11 @@
   "read-a-graph" toolkit built so far, then **adds the new characteristics that
   this function type is the first to require** (e.g., asymptotes debut in Unit 5,
   origin symmetry in Unit 4). See §3 for the full progression.
-- **Consistent component set per lesson.** warm-up, notes/slides, activity,
-  exit ticket, homework, cover — each with an answer key (matches Unit 1).
+- **Consistent component set per lesson.** *Legacy shape (Units 1–8 as authored):* warm-up,
+  notes/slides, activity, exit ticket, homework, cover — each with an answer key.
+  ***EFFL shape (from 2026-08-19, piloted in 2.0):*** cover, warm-up, **experience** (activity +
+  QuickNotes + practice, one component), homework, slides — keys for warm-up, experience, and
+  homework. No notes / activity / exit-ticket components and no tiers.
 
 ---
 
@@ -484,7 +509,62 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > does nothing.
 
 ### Unit 2 — Linear Functions
-> **Status (scaffolded 2026-07-24):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
+> **Lesson 2.0 rebuilt in the EFFL shape (2026-08-19) — the course pilot.** Components now:
+> `cover`, `warmup`(+key), **`experience`**(+key), `homework`(+key), `slides`, plan; the old
+> `notes`, `activity`, `exit_ticket` dirs (and keys) were deleted. The experience component,
+> *Freezing Point*, is one 4-page document in three parts: **Activity** (four scenario boxes —
+> Saturday warming $T(h)=2h-6$, Sunday cooling $T(h)=6-2h$ with the same zero $h=3$, a
+> thermostat $T(h)=21$, and "the story vs.\ the math" for domain/range — all graphs pre-drawn,
+> students label/circle and answer with prior knowledge only), **QuickNotes** (a sky/navy box the
+> debrief fills: linear = constant rate, slope, intercepts, zero, positive/negative, increasing/
+> decreasing, domain/range, on $f(x)=2x-4$), and **Practice: Check Your Understanding** (5 items:
+> graphed line with slope $-\tfrac32$, a table, gift card $B(w)=40-8w$ with the one `work` block,
+> a horizontal line, an SOL-style MC on "decreasing with zero at 2"). Warm-up is 3 items (points on a
+> grid incl. points on an axis, evaluate $g(x)=3x-6$ incl. "for what $x$ is $g(x)=0$", continue a
+> constant-step table and write its rule). Homework is 8 problems. Plan is EFFL-shaped: objective +
+> standards + lesson model, learning targets/key understandings, vocabulary, a *Lesson at a Glance*
+> timeline (5/20/12/13/5 min), warm-up, experience (what students do / what the teacher does, with
+> the question-cue-prompt list per item), debrief (the six "red ink" moves, in order), practice,
+> watch-for, homework, and three teacher notes (Warm-Up / Experience / Homework). Deck is 10 frames
+> following the same flow (launch → warm-up → activity → four debrief frames → QuickNotes summary →
+> practice/homework), zero overfull boxes.
+> **Timebox trim (user feedback, 2026-08-19, third iteration) — "too much content for 60
+> minutes."** The activity went from four parts to **two**: Saturday and Sunday only, with the
+> meaningful-domain / story-vs-math questions folded into Sunday as 2e/2f, and Part 3 (the
+> constant thermostat) and Part 4 deleted — the flat line is now the one example the teacher
+> poses cold during the debrief (it stays in QuickNotes, practice, and homework), and the
+> same-zero comparison lives in the debrief + the practice MC. Practice dropped the table item
+> (homework #3 covers tables), leaving 4 items with the MC as the formative check. Experience is
+> now **5pp/5pp** (~13 activity questions, Math Medic scale); \MeetingLength set to **60 min**
+> (5 warm-up / 20 activity / 15 debrief / 15 practice / 5 close); plan, slides, and cover
+> re-referenced. **EFFL scope rule for the skill:** an activity is 2 scenarios / ~10-13
+> sub-questions / ~2pp at 12pt; extra examples belong to the debrief, practice, or homework.
+> **Math Medic sizing (user feedback, 2026-08-19, second iteration):** the experience component
+> was restyled to Math Medic's measured conventions — **12pt body** (was 10pt + `\small`) and
+> **open answer space instead of write-lines**: a new `\answerspace{H}{answer}` macro (defined in
+> the component preamble, identical in blank and key) reserves exactly H of open space via a
+> fixed-height minipage — empty second arg in the blank, the red answer in the key — so pagination
+> stays locked by construction; `\nopagebreak` keeps a prompt glued to its space. Experience is
+> now 6pp/6pp (was 4/4 at 10pt); packet 12pp. Gotchas found: **boxguard counts tuned for 10pt are
+> ~40% oversized at 12pt** (30 → 16, 26 → 14 here), and key `\ans{}` texts that run wider than the
+> blank's `\blank{}` can wrap an extra line and shift a guard — keep interval-answer `\ans`es
+> short. Warm-up, homework, and cover are still 10pt pending the user's verdict on the experience.
+> **Spoiler rule (user feedback, 2026-08-19):** anything the student sees *before* the activity —
+> the cover and the deck's learning-targets frame — must not pre-name the vocabulary the debrief
+> will attach. Targets are written in plain language ("where it starts, where it hits zero, how
+> fast it changes"), and the cover's Keep-in-Mind box stops after describing the EFFL process
+> itself. Bake this into the skill update.
+> **Build evidence:** `make -C unit02/lesson00 all` → EXIT 0; warm-up 1/1, experience 4/4,
+> homework 2/2 (every key matches its blank), cover 1, plan 4, slides 10; packets 10pp/10pp.
+> **Build system change (required):** `shared/lesson.mk` `STUDENT_ORDER`/`KEYED_PAIRS` now list
+> `experience` (between `warmup` and `notes`), and `shared/cover.py` globs `experience/main.tex`
+> for binder-cover art. Lessons without an `experience/` dir are unaffected. The scaffolder
+> (`new_lesson.py`) does **not** know `experience` yet — that is part of the skill update.
+> **Also note:** this was the first build on the user's Mac — TeX Live and poppler were installed
+> via Homebrew (`brew install texlive poppler`, user-space, no sudo) on 2026-08-19.
+>
+> **Legacy status (scaffolded 2026-07-24; lessons 2.1–2.5 still in the old notes/activity/exit-ticket
+> shape):** all 6 lesson dirs (`unit02/lesson00`–`lesson05`)
 > created with skeleton `main.tex` for lesson plan + cover, warmup, notes, activity,
 > exit_ticket, homework, slides, and each `*_key`. Unit assessments scaffolded:
 > `tests/{practice_test,actual_test}`, `test_keys/`, `sample_test{,_key}/`.
