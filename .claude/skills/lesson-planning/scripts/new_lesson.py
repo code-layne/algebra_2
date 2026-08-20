@@ -10,7 +10,7 @@ creates the root Makefile and the unit Makefile if they don't exist yet.
 Example:
     python new_lesson.py --project . --unit 01 --lesson 01 \
         --title "Vectors" --unit-title "Vectors as Data" \
-        --components cover,warmup,notes,activity,exit_ticket,homework
+        --components cover,warmup,experience,slides
 """
 from __future__ import annotations
 
@@ -22,20 +22,22 @@ from pathlib import Path
 SKEL_DIR = Path(__file__).resolve().parent.parent / "assets" / "skeletons"
 
 # EFFL component set (Math Medic "experience first, formalize later", 2026-08 redesign):
-# a lesson is cover / warmup / experience / homework / slides. The legacy notes, activity,
-# and exit_ticket components remain scaffoldable for pre-EFFL lessons but are NOT defaults.
+# a lesson is cover / warmup / experience / slides. There is NO homework: the experience's
+# unscored Check Your Understanding is a lesson's entire practice set (user direction,
+# 2026-08-20). The legacy homework, notes, activity, and exit_ticket components remain
+# scaffoldable by name so pre-EFFL lessons can still be regenerated, but are NOT defaults.
 KEYED = ["warmup", "experience", "homework", "notes", "activity", "exit_ticket"]
 NO_KEY = ["cover", "slides"]
 ALL_COMPONENTS = KEYED + NO_KEY
 # slides is a default: every lesson owes a deck, since lessonYY_slides.pdf and
 # lessonYY_slides.pptx are two of the five work products the build produces.
-DEFAULT_COMPONENTS = ["cover", "warmup", "experience", "homework", "slides"]
+DEFAULT_COMPONENTS = ["cover", "warmup", "experience", "slides"]
 
 DOC_TITLE = {
     "warmup": "Warm-Up",
     "experience": "Experience",
-    "homework": "Homework",
     # legacy (pre-EFFL) components:
+    "homework": "Homework",
     "notes": "Guided Notes",
     "activity": "Group Activity",
     "exit_ticket": "Exit Ticket",

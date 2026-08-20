@@ -7,14 +7,16 @@ the pattern, but the live project is authoritative. For macros and boxes see
 `references/conventions.md`; for where content comes from, `references/course-workflow.md`.
 
 Contents: [Lesson plan](#lesson-plan) · [Cover](#cover) · [Warm-up](#warm-up) ·
-[Experience](#experience) · [Homework](#homework) · [Slides](#slides) ·
+[Experience](#experience) · [Slides](#slides) ·
 [Unit tests](#unit-tests-summative-assessments) ·
 [Answer-key discipline](#answer-key-discipline)
 
 **The lesson model is Math Medic EFFL** — experience first, formalize later. The student packet
-is cover → warm-up → experience → homework; there are **no** guided-notes, activity, or
-exit-ticket components and **no tiers** (lessons authored before 2026-08 still have them; new
-and regenerated lessons must not).
+is cover → warm-up → experience. There are **no** guided-notes, activity, or exit-ticket
+components, **no tiers**, and — since 2026-08-20 — **no homework**: the experience's unscored
+Check Your Understanding is a lesson's entire practice set, done in class, packet kept by the
+student. (Lessons authored before those dates still carry the old components; new and regenerated
+lessons must not.)
 
 General rules:
 - Student components preamble with `algebra2-article` + `algebra2-boxes`; keys with
@@ -65,15 +67,18 @@ order (same skeleton for review and primary-content lessons):
 9. **Application** — `skillbox{forestbg}`: the worked-together problem, the questions the teacher
    asks while the students hold the pen, and the concept the "what if we change a number?" part is
    really testing.
-10. **Check Your Understanding — practice, *not scored*** — `skillbox{redbox}`: the 4–5 items,
-   pairing (pairs → solo), an explicit "these carry no point value — do not collect for a grade
-   (the cover's score column reads **NA**)", and **which item is the formative check** with the
-   sort categories.
+10. **Check Your Understanding — the lesson's practice, *not scored*** — `skillbox{redbox}`: the
+   ~6 items itemized, pairing (pairs → solo), an explicit "**there is no homework**, so this is the
+   whole practice set", an explicit "these carry no point value — do not collect for a grade (the
+   cover's score column reads **NA**)", **which item is the formative check** with the sort
+   categories, and — since 10 minutes rarely covers six items — **which items are the priority and
+   which are the early-finisher bank**.
 11. **Watch For** — `skillbox{redbox}`: misconceptions to catch while circulating, keyed to item
     numbers, plus cold-call prompts.
-12. **Homework & Preview** — `skillbox{goldbox}`: the 5–10 problems, and the next lesson.
+12. **Close & Preview** — `skillbox{goldbox}`: **nothing is assigned** — say so explicitly, name
+    what changed today, and preview the next lesson. Never write a homework paragraph here.
 13. **Teacher Notes** — one `teachernote` per component, in packet order:
-    `\begin{teachernote}[Warm-Up]`, `[Experience]`, `[Homework]`. Pacing splits, must-land
+    `\begin{teachernote}[Warm-Up]`, `[Experience]`. Pacing splits, must-land
     moments, the early-finisher move, how to sort the formative check. **This is the only place
     teacher prose goes** — never append one to a `_key`, which would make the key longer than
     its blank. See `references/conventions.md`.
@@ -89,9 +94,10 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
   to *do* in plain language, without pre-naming the vocabulary the debrief will attach
   ("read the story a straight-line graph tells — where it starts, where it hits zero, how fast
   it changes"), never the formal terms.
-- `tocbox` — a `tabularx` with four rows (Warm-Up, Experience, **Check Your Understanding**,
-  Homework) + a Total row. Score cells are `\blank{1.2cm}` **except Check Your Understanding, which
-  prints `\textbf{NA}`** — it is practice and is not scored. Keep descriptions spoiler-free too.
+- `tocbox` — a `tabularx` with three rows (Warm-Up, Experience, **Check Your Understanding**) +
+  a Total row. Score cells are `\blank{1.2cm}` **except Check Your Understanding, which prints
+  `\textbf{NA}`** — it is practice and is not scored. **No homework row.** Keep descriptions
+  spoiler-free too.
 - `remindbox` (Keep in Mind) — describes the **EFFL process only** ("you and your group will
   work out … using what you already know — and only afterward will we name what you found")
   and **stops there**: no content preview, no vocabulary.
@@ -143,7 +149,7 @@ breaks drift.
    contrast case) and carries the lesson's **crux question** — the one that surfaces the target
    misconception — plus a closing story-vs-math question. **The timebox rule:** the activity
    must fit the 20-minute block; the special case and the compare-two-graphs question belong to
-   the debrief, practice, or homework, not here. Never name the formal vocabulary in the
+   the debrief, the Application, or Check Your Understanding, not here. Never name the formal vocabulary in the
    activity — students answer in their own words.
 2. **QuickNotes** — one titled `tcolorbox` (sky/navy) the **debrief fills**: a small worked
    example figure beside fill-in bullets covering the lesson's formal terms. This is a summary
@@ -157,35 +163,51 @@ breaks drift.
    the questions, the students hold the pen.
 4. **Check Your Understanding** — a `notesbox` titled
    `Check Your Understanding \quad {\normalfont\itshape (practice --- not scored)}` with
-   **4–5 items in new contexts**, worked pairs → solo: typically a read-the-features item, the
-   lesson's core procedure, the special case the activity dropped, and an **SOL-style
-   multiple-choice item as the formative check** (the plan says how to sort responses). Use
-   `\answerspace` for explain items.
+   **~6 items in new contexts**, worked pairs → solo. **This is the lesson's entire practice set —
+   there is no homework** — so it must span the lesson's whole standard, not just sample it: the
+   core procedure, a *deliberate contrast pair* (same task, opposite condition — the pair that
+   surfaces the target misconception), the special case the activity dropped plus its boundary
+   ("for which $k$ does … fail?"), a **modeling item** in a fresh context with an
+   interpret-the-answer follow-up, and an **SOL-style multiple-choice item as the formative check**
+   (the plan says how to sort responses). Say "there is no homework" in the box's own intro line so
+   students know the practice is here. Use `\answerspace` for explain items. Close the document
+   with the `spiralbox` preview of the next lesson (it used to live at the end of the homework).
 
    **It carries no point value.** It is practice, so the cover's score column prints **`\textbf{NA}`**
    for it instead of a `\blank{}`, the plan tells the teacher to spot-check rather than collect for
-   a grade, and the deck says "practice, not a quiz." Prefer a *full* single page over a second page
-   that is 10% used — compress sub-items onto shared lines and trim `\answerspace` heights (then keep
-   the key's answers short enough for the reduced heights).
+   a grade, and the deck says "practice, not a quiz." Budget **1–2pp, and expect 2** now that it
+   carries the whole load — but 2pp is a **ceiling**: a seventh item gets cut, never spilled onto a
+   third page. Ten minutes will not cover six items for every student; the plan names which are the
+   priority and which are the early-finisher bank.
 
 Key mirrors exactly: same macro, answers in the second argument of each `\answerspace`,
 `\ans{}` in the blanks, MC option tagged `\textcolor{keyred}{\textbf{$\leftarrow$ correct}}`.
 `\boxguard` counts here are 12pt-relative: use ~14–16, not the 24–30 used in 10pt components.
-Reference implementation: `unit01/lesson02/experience` (the four-part shape).
-`unit01/lesson00` is still the older three-part cut and is due to be re-cut to this budget.
+Reference implementation: `unit01/lesson02/experience` (the four-part shape, with the six-item
+CYU that replaced homework). `unit01/lesson00` is still the older three-part cut, still has a
+`homework` dir, and is due to be re-cut to this budget.
 
-## Homework
+## Homework — removed (2026-08-20)
 
-`homework/` (+ `homework_key/`) — independent practice, **5–10 problems** exercising the new
-skills in fresh contexts (include at least one justify/explain item and one SOL-style MC with
-"explain why the others are false"). `\pageheader{...}{Homework}` (no name row); a numbered
-set in a `notesbox`, closing with a `spiralbox` preview of the next lesson. Worked solutions go
-in `work` blocks (the work rule). Key fills with `\ans`.
+**Do not create a `homework` component.** Homework was dropped from the course: Check Your
+Understanding is the practice, it is unscored, it is done in class, and the student keeps the
+packet. The scaffolder no longer includes `homework` in its defaults.
+
+Lessons authored before 2026-08-20 still have `homework/` + `homework_key/`, and
+`shared/lesson.mk` still merges them so those packets keep building. **Regenerating** such a
+lesson means: delete both dirs, expand CYU to ~6 items absorbing what the homework carried, move
+the closing `spiralbox` preview into the experience, drop the cover's homework row, retitle the
+plan's "Homework & Preview" box to "Close & Preview", and delete the `[Homework]` teacher note.
+`unit01/lesson02` is the worked example of exactly that conversion.
+
+**Build gotcha when deleting a component:** a stale stamp under `.stamps/unitXX/lessonYY/` makes
+`make` skip recompiling a *sibling* whose PDF was cleaned, and `pdfunite` then fails on a missing
+file. Remove `.stamps/<unit>/<lesson>` alongside `target/<unit>/<lesson>`.
 
 ## Namestrip — where the name/date/period row goes
 
 **The name row appears exactly once per lesson: on the cover.** Do not put `\namedateperiod`
-(or `\namepartnerperiod`) in `warmup`, `experience`, or `homework` (or the legacy `notes`/
+(or `\namepartnerperiod`) in `warmup` or `experience` (or the legacy `homework`/`notes`/
 `activity`/`exit_ticket`) — or in any `_key`. The components are stapled behind the cover, so a row on each one is redundant and
 costs vertical space at the top of every page. Exempt: `cover/` (it's the one place it belongs)
 and `unitXX/tests/` (taken in a testing setting, not behind a cover).
@@ -218,7 +240,7 @@ in beamer — write the course name literally.
 a "how today works" block) → warm-up → activity launch (the context, the scenarios, "your job")
 → 3–4 **debrief frames** that formalize in "red ink" (a `\redink{}` macro colors the formal
 terms `redacc`, mirroring the second marker color on the board) → a QuickNotes summary frame →
-practice/homework. The debrief frames are the deck's payload — everything before them stays
+practice. The debrief frames are the deck's payload — everything before them stays
 vocabulary-free. Reference implementation: `unit01/lesson00/slides`.
 
 ## Unit tests (summative assessments)
@@ -260,14 +282,14 @@ test keys too):
 - `\ans` is text-mode: never put it inside `$...$` — wrap math fragments instead
   (`\ans{$\sqrt{n}$}`) — and never let it span a blank line.
 - **No `teachernote` in a key.** Teacher-only guidance goes in the lesson plan, one note per
-  component, titled `\begin{teachernote}[Exit Ticket]` and so on. A note in a key is the one block
+  component, titled `\begin{teachernote}[Experience]` and so on. A note in a key is the one block
   with no counterpart in the blank, and it is what makes a key run a page long.
 - **Worked solutions are not `\ans{}` material.** An inline `$a=b \Rightarrow c=d \Rightarrow e=f$`
   crammed into one cell violates the work rule and gives the student no room; use a `work` block,
   identical in both files. See `references/conventions.md`.
 - Because the key matches the blank line-for-line, the two paginate identically — verify it:
   ```bash
-  for c in warmup notes activity exit_ticket homework; do
+  for c in warmup experience; do
     echo -n "$c: "; pdfinfo target/UNIT/LESSON/$c/main.pdf | grep -c . >/dev/null
     printf '%s vs %s\n' "$(pdfinfo target/UNIT/LESSON/$c/main.pdf | awk '/^Pages/{print $2}')" \
                         "$(pdfinfo target/UNIT/LESSON/${c}_key/main.pdf | awk '/^Pages/{print $2}')"

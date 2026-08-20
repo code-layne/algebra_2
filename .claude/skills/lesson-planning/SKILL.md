@@ -5,7 +5,7 @@ description: >-
   shared/ style package — prefix algebra2 — and a Makefile hierarchy that compiles components
   with latexmk and merges them with pdfunite).
   Use this whenever the user wants to create, draft, or build a lesson, a lesson plan, a unit,
-  or any lesson component — warm-up, experience (activity + QuickNotes + practice), homework,
+  or any lesson component — warm-up, experience (activity + QuickNotes + application + practice),
   cover sheet, unit test, or their answer keys. Lessons follow the Math Medic
   "experience first, formalize later" (EFFL) model. The course is defined by COURSE_PLAN.md at the
   project root: seven function-family units, each opening with a Lesson 0 "Characteristics of
@@ -58,17 +58,26 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
 - **`main.tex`** — the teacher-facing **lesson plan** (the root document of the lesson dir).
 - A set of **student components**, each its own subdirectory containing **either** a
   `main.tex` (authored, compiled to a PDF) **or** a `main.pdf` (a prefab PDF, used as-is):
-  `cover`, `warmup`, **`experience`**, `homework`, and `slides`.
+  `cover`, `warmup`, **`experience`**, and `slides`.
 - An **answer key** for each keyed component, as a *separate* sibling directory:
-  `warmup_key`, `experience_key`, `homework_key`. (`cover` and `slides` have no key.)
+  `warmup_key`, `experience_key`. (`cover` and `slides` have no key.)
+
+  **There is no `homework` component.** Homework was dropped from the course on 2026-08-20: the
+  experience's unscored **Check Your Understanding** is a lesson's entire practice set, done in
+  class, and the student keeps the packet. Never scaffold, author, or reference a `homework` dir in
+  a new lesson. (Legacy lessons still carry one — see the note below.)
 - **`experience` is the heart of the lesson** — one document in **four** parts on a page budget:
   the group **Activity** (two scenarios worked from prior knowledge, **≤2pp**), a **QuickNotes**
   box the debrief fills (**½pp**), an **Application** worked together (**½–1pp**), and
-  **Check Your Understanding** (**1–2pp**, practice — **not scored**). See
-  `references/components.md`.
+  **Check Your Understanding** (**1–2pp**, practice — **not scored**). With homework gone, CYU is
+  the lesson's *only* practice, so author toward the **full 2pp**: ~6 items spanning the lesson's
+  whole standard, with the last one as the formative check. See `references/components.md`.
 - *Legacy shape:* lessons authored before the 2026-08 EFFL redesign still carry `notes`,
-  `activity`, and `exit_ticket` dirs; the build accepts both. When touching a legacy lesson,
-  ask whether to regenerate it in the EFFL shape rather than patching the old components.
+  `activity`, and `exit_ticket` dirs, and lessons authored before 2026-08-20 also carry a
+  `homework` dir; the build accepts all of them. When touching a legacy lesson, ask whether to
+  regenerate it in the EFFL shape rather than patching the old components — regenerating means
+  deleting `homework`/`homework_key` and folding what they carried into Check Your Understanding.
+  `unit01/lesson02` is the reference for that conversion.
 
 ### The five work products
 
@@ -171,7 +180,7 @@ works:
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 01 --lesson 03 \
   --title "Absolute Value Functions" --unit-title "Linear Functions" \
   --course "Algebra 2: Shepherd" \
-  --components cover,warmup,experience,homework,slides
+  --components cover,warmup,experience,slides
 ```
 
 That component list is the default, so `--components` can be omitted entirely. The script
@@ -201,14 +210,17 @@ and a worked skeleton for every component and its key. Hold to these invariants:
 
 - **Student components** preamble with `\usepackage{algebra2-article}` +
   `\usepackage{algebra2-boxes}`. The **experience** uses `\documentclass[12pt]{article}` (Math
-  Medic sizing); warm-up, homework, and cover stay `[10pt]`.
+  Medic sizing); warm-up and cover stay `[10pt]`.
 - **EFFL scope (the timebox rule).** The activity must fit the 20-minute block: **two
   scenarios, ~10–13 sub-questions, ~2 pages at 12pt**, worked from prior knowledge with every
   graph pre-drawn. Extra examples (the special case, the compare-two-graphs) belong to the
-  debrief, the Application, or the homework — not the activity. Homework is 5–10 problems.
+  debrief, the Application, or Check Your Understanding — not the activity.
 - **The experience page budget (non-negotiable).** Activity **≤2pp** · QuickNotes **½pp** ·
   Application **½–1pp** · Check Your Understanding **1–2pp**. A part that runs over gets cut, not
-  carried. Prefer a *full* single CYU page over a second page that is 10% used.
+  carried. Prefer a *full* single CYU page over a second page that is 10% used. Because CYU is now
+  the lesson's whole practice set, the 2pp end of that range is the norm, not the exception — but
+  it is still a **ceiling**: extra practice gets cut, never spilled onto a third page or revived as
+  homework.
 - **Check Your Understanding is not scored.** It is practice: the cover's score column prints
   **`\textbf{NA}`** for it rather than a `\blank{}`, the plan tells the teacher to spot-check the
   formative item instead of collecting for a grade, and the deck says "practice, not a quiz."
