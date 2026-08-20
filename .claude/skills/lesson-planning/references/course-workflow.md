@@ -83,7 +83,7 @@ Do the same for the other units from `COURSE_PLAN.md`.
 | **Hook** | a scenario or graph that motivates the topic |
 | **Learning Targets** (cover, "I can…") | one target per priority skill (or per standard), reworded as "I can …" |
 | **Standards line** (lesson plan) | the SOL/other codes the user supplied for this lesson; record them for the audit trail |
-| Activity / homework contexts | original practice exercising each skill; scale the R/A/E activity tiers across the difficulty the standards imply |
+| Activity / practice / homework contexts | original scenarios and practice exercising each skill; the experience's two scenarios stretch prior knowledge into the new material, and practice + homework span the difficulty the standards imply (no tiers) |
 
 Keep wording in the course's teaching voice. The recurring move: read/interpret a graph or
 result, *then* justify — "what does this feature mean here, and how do you know?" Where a lesson
