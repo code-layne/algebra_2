@@ -59,9 +59,9 @@
 > from the user: the Algebra 1 review unit is dropped (done, see above), and every lesson moves
 > to the Math Medic EFFL shape — **warm-up → experience (a
 > group activity applying prior knowledge and stretching into the new material, then a QuickNotes
-> box for the formal notes/examples, then a Check-Your-Understanding practice section) →
-> homework (5–10 problems)**. **No tiered instruction, no separate guided-notes or exit-ticket
-> components.** Teacher circulates with questions/cues/prompts, not answers; the debrief attaches
+> box for the formal notes/examples, then an Application worked together, then a
+> Check-Your-Understanding practice section)**. **No tiered instruction, no separate guided-notes
+> or exit-ticket components — and, as of 2026-08-20, no homework component either.** Teacher circulates with questions/cues/prompts, not answers; the debrief attaches
 > the vocabulary to what the groups found. **Lesson 1.0 is the pilot and is rebuilt in this shape
 > (2026-08-19)** — see the Unit 1 block in §4 for the component map, build evidence, and what the
 > build system needed. **The `lesson-planning` skill is updated to the EFFL schematic
@@ -77,9 +77,25 @@
 > still legacy-shape.** **The experience is now FOUR parts on a page budget — Activity ≤2pp ·
 > QuickNotes ½pp · Application ½–1pp · Check Your Understanding 1–2pp, the CYU unscored (cover
 > score column reads NA)** — user feedback 2026-08-20; the skill is updated and 1.2 is the
-> reference implementation. **Lesson 1.0 still has the old three-part experience and needs
-> re-cutting to this budget.** **Next: re-cut 1.0, then continue the rollout at Lesson 1.1 —
-> regenerate, don't patch.**
+> reference implementation.
+>
+> **HOMEWORK IS DROPPED FROM THE COURSE — user feedback 2026-08-20, third iteration: "there is no
+> more homework, there is only the unscored check your understanding."** The `homework` component
+> and its key are gone; **Check Your Understanding is now a lesson's entire practice set**, still
+> unscored (cover score column reads **NA**), still done in class, and students keep the packet.
+> The EFFL component set is therefore `cover`, `warmup`(+key), `experience`(+key), `slides`, plan.
+> CYU keeps its **1–2pp** budget but should now be authored toward the **full 2pp** and carry the
+> lesson's whole standard spread, with the last item as the formative check; the lesson's forward
+> preview (the old homework `spiralbox`) moves to the end of the experience. **Lesson 1.2 is
+> regenerated against this (2026-08-20) and is the reference implementation.**
+>
+> **Not yet propagated:** the `lesson-planning` skill still lists `homework` in its default
+> component set (SKILL.md, references/components.md, references/build.md) and `new_lesson.py`
+> still scaffolds `homework`/`homework_key`; every other lesson directory in the tree still has a
+> `homework` dir. Both need a follow-up pass. **Lesson 1.0 still has the old three-part experience
+> plus a homework component and needs re-cutting to this budget.**
+> **Next: strip homework from the skill + scaffolder, re-cut 1.0, then continue the rollout at
+> Lesson 1.1 — regenerate, don't patch.**
 
 ---
 
@@ -244,10 +260,11 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > foundation). Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp,
 > homework 2pp; exit ticket includes an SOL-style MC item. `make -C unit01/lesson01 all` → EXIT 0
 > (student 10pp, full 20pp).
-> **Lesson 1.2 regenerated in the EFFL shape (2026-08-20) — the second lesson after the pilot, and
-> the lesson that set the *four-part* experience.** Components: `cover`, `warmup`(+key),
-> **`experience`**(+key), `homework`(+key), `slides`, plan; the old `notes`, `activity`,
-> `exit_ticket` dirs (and keys) were deleted.
+> **Lesson 1.2 regenerated in the EFFL shape (2026-08-20) — the second lesson after the pilot, the
+> lesson that set the *four-part* experience, and the first lesson with *no homework*.**
+> Components: `cover`, `warmup`(+key), **`experience`**(+key), `slides`, plan; the old `notes`,
+> `activity`, `exit_ticket` dirs (and keys) were deleted, and `homework`/`homework_key` were
+> deleted on 2026-08-20 when homework was dropped course-wide.
 >
 > **EXPERIENCE SHAPE CHANGED — user feedback 2026-08-20, second iteration: "the experience section
 > is still too long."** The experience is now **four** parts on an explicit page budget, not three:
@@ -272,19 +289,30 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > **Application** (½pp, *Roasting Tolerance* — 340 g bags rejected if more than 8 g off: write
 > $|w-340|\le8$, solve to $332\le w\le348$ in a `work` block, read a 331 g bag off the *solved*
 > range, then reason that tightening to 5 g gives a **narrower** interval around the same center),
-> and **Check Your Understanding** (1pp, unscored: isolate-split-verify $3|x+1|-2=10$, $|2x-1|\le5$
-> in all three notations, the two special cases the activity drops, and an SOL-style MC on
-> $|x+2|>3$ as the formative check). Warm-up is 3 items seeding the two-case rule, $|x-h|$, and
-> one-vs-two shaded pieces — the last deliberately left hanging until Part 2c. Homework is 8
-> problems. Plan is EFFL-shaped with the **six-phase** glance table (5 warm-up / 20 activity /
-> 13 debrief / 7 application / 10 CYU / 5 close) and separate Application and Check-Your-Understanding
-> boxes. Deck is **11 frames** (an Application frame added), zero overfull boxes. Standards
-> unchanged: **2023 VA SOL A2.EI.1a–e**.
+> and **Check Your Understanding** (2pp, unscored, **six** items — the lesson's whole practice set
+> now that homework is gone, absorbing what the old homework carried: (1) isolate-split-verify
+> $3|x+1|-2=10$, (2) $|2x-1|\le5$ and (3) $|3x-6|\ge9$ as a deliberate *and*/*or* pair, each in all
+> three notations, (4) the special cases the activity drops plus "for which $k$ does $|x-3|<k$ have
+> no solution?" ($k\le0$ — the boundary is the trap), (5) a thermostat tolerance model $|T-68|\le2$
+> with the "within includes the endpoints" follow-up, and (6) an SOL-style MC on $|x+2|>3$ as the
+> formative check). Lesson 1.3's preview `spiralbox` moved from the deleted homework to the end of
+> the experience. Warm-up is 3 items seeding the two-case rule, $|x-h|$, and one-vs-two shaded
+> pieces — the last deliberately left hanging until Part 2c. Plan is EFFL-shaped with the
+> **six-phase** glance table (5 warm-up / 20 activity / 13 debrief / 7 application / 10 CYU /
+> 5 close, close assigns *nothing*), separate Application and Check-Your-Understanding boxes, a
+> **Close & Preview** box in place of "Homework & Preview", and **two** teacher notes (Warm-Up,
+> Experience). Deck is 11 frames ending on "No homework — this is the practice", zero overfull
+> boxes. Standards unchanged: **2023 VA SOL A2.EI.1a–e**.
 >
-> **Build evidence (2026-08-20):** `make -C unit01/lesson02 all` → EXIT 0; warm-up 1/1, experience
-> 4/4, homework 2/2, cover 1, plan 5, slides 11 (handout 4pp + pptx); packets **10pp/10pp**.
-> Conventions verified: namestrip (cover only), no `teachernote` in any key, 7 `work` blocks
-> byte-identical blank↔key, zero Rule-1 `\ans`-inside-math violations.
+> **Build evidence (2026-08-20, homework-free rebuild):** `make -C unit01/lesson02 all` → EXIT 0;
+> warm-up 1/1, experience **5/5**, cover 1, plan 5, slides 11 (handout 4pp + pptx); packets
+> **10pp/10pp**. Conventions verified: namestrip (cover only), no `teachernote` in any key,
+> **5 `work` blocks byte-identical blank↔key** (checked programmatically), zero Rule-1
+> `\ans`-inside-math violations, only the two pre-existing `\pageheader`/`\namedateperiod`
+> overfull hboxes. **Build gotcha:** deleting a component leaves a stale stamp in
+> `.stamps/unitXX/lessonYY/` — `make` then skips recompiling a *sibling* component whose PDF was
+> cleaned, and `pdfunite` fails on the missing file. Clear `.stamps/<unit>/<lesson>` alongside
+> `target/<unit>/<lesson>` whenever a component directory is removed.
 >
 > **Three gotchas worth keeping.** (1) **Shading drawn *before* `\numline` is hidden under the
 > axis** — draw the number line first, then the shading. (2) A CYU that spills ~10% onto a second
