@@ -891,6 +891,7 @@ def _auto_range(fn, x0=-5.0, x1=5.0) -> tuple[int, int]:
 
 def discover(unit_dir: Path, want: int = 13) -> list[dict]:
     tex = sorted(unit_dir.glob("lesson*/notes/main.tex")) + \
+          sorted(unit_dir.glob("lesson*/experience/main.tex")) + \
           sorted(unit_dir.glob("lesson*/activity/main.tex")) + \
           sorted(unit_dir.glob("lesson*/homework/main.tex"))
     blobs = [p.read_text(errors="ignore") for p in tex]
