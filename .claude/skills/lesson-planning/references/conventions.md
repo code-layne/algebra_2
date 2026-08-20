@@ -33,12 +33,20 @@ the blank and the key:
 \newcommand{\answerspace}[2]{\par\nopagebreak\noindent\begin{minipage}[t][#1][t]{\linewidth}%
   \color{keyred}\bfseries #2\end{minipage}\par}
 ```
+The experience is **four parts on a page budget** — Activity ≤2pp · QuickNotes ½pp · Application
+½–1pp · Check Your Understanding 1–2pp (unscored) — see `references/components.md`.
+
 `\answerspace{2.0cm}{}` in the blank reserves exactly 2.0cm of open space glued to its prompt;
 the key passes the answer as the second argument, occupying the identical height — that is what
 keeps the two files page-for-page without write-lines. Sizing guide: 1.4cm ≈ 2 handwritten
 lines, 2.0cm ≈ 3, 2.6–2.8cm ≈ 4. Two 12pt cautions: **`\boxguard` counts are baseline-relative**
 (use ~14–16 where a 10pt component would use 24–30), and **a key `\ans{}` wider than the blank
 it replaces can wrap an extra line and shift a page break** — keep interval/short answers terse.
+
+**Draw-order caution (any document, any size).** In a number-line or grid figure, shading drawn
+*before* `\numline` (or the axis) is painted over by it and effectively disappears. **Draw the axis
+first, then the shading, then the endpoint dots** — open dots as `\draw[color, thick, fill=white]
+(x,0) circle (3pt)`, closed as `\fill[color] (x,0) circle (3pt)`.
 
 **Answer key** (the matching `_key` directory):
 ```latex
@@ -269,10 +277,11 @@ Secondary accent — used by the **vocabulary** box and related callouts: `navy`
 ## Lesson-plan section order (canonical, EFFL)
 
 Primary Objective / Standards / Lesson model → Learning Targets & Key Understandings →
-Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: 5/20/15/15/5) →
+Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: **5/20/13/7/10/5**) →
 Warm-Up (the seeds) → Experience: the Activity (what students do | what the teacher does —
 questions, cues, prompts) → Debrief: Formalize (the red-ink moves + QuickNotes walkthrough) →
-Practice: Check Your Understanding (+ the formative check) → Watch For → Homework & Preview →
+**Application** (the worked-together problem) → **Check Your Understanding — practice, *not
+scored*** (+ the formative check) → Watch For → Homework & Preview →
 Teacher Notes ([Warm-Up], [Experience], [Homework]). See `references/components.md` for the
 full spec and `references/course-workflow.md` for where content comes from. *(Legacy plans from
 before 2026-08 use the old Hook / Explicit Instruction / Tiers order.)*

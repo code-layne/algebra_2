@@ -72,8 +72,14 @@
 > build.md, course-workflow.md, and new_lesson.py (defaults to
 > cover,warmup,experience,homework,slides; dedicated experience skeletons; 60-min default; legacy
 > components still scaffoldable by name; all skeletons rewritten around the EFFL flow).
-> Smoke-tested: a fresh default scaffold builds all five work products, EXIT 0. **Next: roll the
-> EFFL shape across the remaining lessons — regenerate, don't patch.**
+> Smoke-tested: a fresh default scaffold builds all five work products, EXIT 0.
+> **EFFL rollout progress: 1.0 (pilot) and 1.2 are regenerated; 1.1, 1.3–1.5 and Units 2–7 are
+> still legacy-shape.** **The experience is now FOUR parts on a page budget — Activity ≤2pp ·
+> QuickNotes ½pp · Application ½–1pp · Check Your Understanding 1–2pp, the CYU unscored (cover
+> score column reads NA)** — user feedback 2026-08-20; the skill is updated and 1.2 is the
+> reference implementation. **Lesson 1.0 still has the old three-part experience and needs
+> re-cutting to this budget.** **Next: re-cut 1.0, then continue the rollout at Lesson 1.1 —
+> regenerate, don't patch.**
 
 ---
 
@@ -238,7 +244,56 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > foundation). Warm-up & exit ticket each fit one page (blank+key); notes 3pp, activity 2pp,
 > homework 2pp; exit ticket includes an SOL-style MC item. `make -C unit01/lesson01 all` → EXIT 0
 > (student 10pp, full 20pp).
-> **Lesson 1.2 authored & builds (2026-07-24):** all components + keys + 7-slide deck done;
+> **Lesson 1.2 regenerated in the EFFL shape (2026-08-20) — the second lesson after the pilot, and
+> the lesson that set the *four-part* experience.** Components: `cover`, `warmup`(+key),
+> **`experience`**(+key), `homework`(+key), `slides`, plan; the old `notes`, `activity`,
+> `exit_ticket` dirs (and keys) were deleted.
+>
+> **EXPERIENCE SHAPE CHANGED — user feedback 2026-08-20, second iteration: "the experience section
+> is still too long."** The experience is now **four** parts on an explicit page budget, not three:
+> **Activity ≤ 2pp · QuickNotes ½pp · Application ½–1pp · Check Your Understanding 1–2pp.** The new
+> **Application** part is a worked-together problem that sits between the notes and independent
+> practice — the first place the just-named vocabulary is *used*. **Check Your Understanding is
+> explicitly practice and carries no point value:** the cover's score column prints **NA** for it
+> instead of a blank, the plan tells the teacher not to collect it for a grade, and the deck says
+> "practice, not a quiz." This budget supersedes the earlier "activity + QuickNotes + practice"
+> three-part spec and is baked into the skill (SKILL.md + references/components.md +
+> references/conventions.md, 2026-08-20).
+>
+> **Content.** The experience, *In Range*, is 4pp: **Activity** (2pp — two scenario boxes on one
+> pre-drawn trail: a parkway with mile markers 0–20 and a radio tower at mile 12 that a handheld
+> radio reaches only from within 5 miles; Part 1 *Exactly Five Miles Out* gets markers 7 and 17 from
+> the picture, names the distance $|x-12|$, builds $|x-12|=5$ and verifies both; Part 2 *In Range,
+> Out of Range* shades can-reach ($7\le x\le17$, one piece) and cannot-reach ($x<7$ or $x>17$, two
+> pieces), with **2d as the crux** — why one connected stretch vs. two — plus a single-value check
+> and a story-vs-math trim at the ends of the parkway; **10 sub-questions**), **QuickNotes** (½pp:
+> distance meaning, two-case rule with its $c=0$/$c<0$ branches, isolate-first, ``less th**AND**'' /
+> ``great**OR**'', and the three notations, on the compact example $|x-3|$ with $c=2$),
+> **Application** (½pp, *Roasting Tolerance* — 340 g bags rejected if more than 8 g off: write
+> $|w-340|\le8$, solve to $332\le w\le348$ in a `work` block, read a 331 g bag off the *solved*
+> range, then reason that tightening to 5 g gives a **narrower** interval around the same center),
+> and **Check Your Understanding** (1pp, unscored: isolate-split-verify $3|x+1|-2=10$, $|2x-1|\le5$
+> in all three notations, the two special cases the activity drops, and an SOL-style MC on
+> $|x+2|>3$ as the formative check). Warm-up is 3 items seeding the two-case rule, $|x-h|$, and
+> one-vs-two shaded pieces — the last deliberately left hanging until Part 2c. Homework is 8
+> problems. Plan is EFFL-shaped with the **six-phase** glance table (5 warm-up / 20 activity /
+> 13 debrief / 7 application / 10 CYU / 5 close) and separate Application and Check-Your-Understanding
+> boxes. Deck is **11 frames** (an Application frame added), zero overfull boxes. Standards
+> unchanged: **2023 VA SOL A2.EI.1a–e**.
+>
+> **Build evidence (2026-08-20):** `make -C unit01/lesson02 all` → EXIT 0; warm-up 1/1, experience
+> 4/4, homework 2/2, cover 1, plan 5, slides 11 (handout 4pp + pptx); packets **10pp/10pp**.
+> Conventions verified: namestrip (cover only), no `teachernote` in any key, 7 `work` blocks
+> byte-identical blank↔key, zero Rule-1 `\ans`-inside-math violations.
+>
+> **Three gotchas worth keeping.** (1) **Shading drawn *before* `\numline` is hidden under the
+> axis** — draw the number line first, then the shading. (2) A CYU that spills ~10% onto a second
+> page is worse than a tight one — compressing sub-items onto shared lines and trimming
+> `\answerspace` heights pulled 4 exercises onto exactly 1pp (keep key answers short enough for the
+> reduced heights). (3) Homework 7(a)/(b) needed `\writelines{3}` for key answers that wrap to four
+> lines; parity was re-checked after the raise.
+>
+> *(Superseded legacy entry)* **Lesson 1.2 authored & builds (2026-07-24):** all components + keys + 7-slide deck done;
 > absolute value as *distance from zero* driving equations $|ax+b|=c$ (two-case rule, isolate-first,
 > no-solution/one-solution special cases) and inequalities ("less th**AND**" $<$ → one interval;
 > "great**OR**" $>$ → two rays), with solution sets written three ways (set / interval / number

@@ -7,13 +7,9 @@
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
-\newcommand{\MeetingLength}{55 minutes}
+\newcommand{\MeetingLength}{60 minutes}
 \newcommand{\UnitNumberName}{Unit 1: Linear Functions \quad}
 \newcommand{\LessonNumberName}{Lesson 1.2: Absolute Value Equations \& Inequalities}
-% Number line: {xmin}{xmax} then draw solutions on top.
-\newcommand{\numline}[2]{%
-  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
-  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 \begin{center}
@@ -23,16 +19,16 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can read absolute value as \emph{distance from zero} and use
-    that meaning to solve absolute value \emph{equations} and \emph{inequalities} in one variable.
-    They isolate the absolute value, split into the \emph{two cases} an equation
-    $|ax+b| = c$ requires, and recognize the special cases (no solution when $c<0$, one solution when
-    $c=0$). For inequalities they translate $|ax+b|<c$ into a ``between'' (\emph{and}) statement and
-    $|ax+b|>c$ into an ``outside'' (\emph{or}) statement, then represent the solution set three ways
-    --- \emph{set notation, interval notation, and a number line} --- and interpret a
-    \emph{tolerance} situation in context. Lesson~1.1 wrote and solved \emph{linear} expressions;
-    today those same expressions live \emph{inside} the absolute-value bars, and Lesson~1.3 turns this
-    algebra into the V-shaped graph.
+    \textbf{Primary Objective:} Students can read an absolute value as a \emph{distance} --- $|x|$ as
+    distance from zero and $|x-h|$ as the distance between $x$ and $h$ --- and use that meaning to
+    solve absolute value \emph{equations} and \emph{inequalities} in one variable. They isolate the
+    absolute value, split $|ax+b|=c$ into the \emph{two cases} it requires, verify each solution, and
+    recognize the special cases (no solution when $c<0$, one when $c=0$). For inequalities they read
+    $|ax+b|<c$ as a ``between'' (\emph{and}) statement and $|ax+b|>c$ as an ``outside'' (\emph{or})
+    statement, represent the solution set three ways --- \emph{set notation, interval notation, and a
+    number line} --- and model and interpret a \emph{tolerance} situation. Lesson~1.1 wrote and
+    solved \emph{linear} expressions; today those expressions live \emph{inside} the bars, and
+    Lesson~1.3 turns this algebra into the V-shaped graph.
     \\[2pt]
     \textbf{Standards (2023 VA SOL):} This lesson delivers the whole of \textbf{A2.EI.1} --- represent,
     solve, and interpret absolute value equations and inequalities in one variable:
@@ -42,31 +38,40 @@
     \textbf{A2.EI.1d} (solve an absolute value inequality and represent the solution set with set
     notation, interval notation, and a number line), and \textbf{A2.EI.1e} (verify solutions
     algebraically/graphically, and explain and interpret solutions in context).
+    \\[2pt]
+    \textbf{Lesson model:} \emph{Experience first, formalize later.} Students work the activity in
+    small groups using only prior knowledge; the teacher circulates with questions, cues, and prompts
+    (not answers); the debrief attaches the formal vocabulary to what the groups already found; the
+    practice set applies it to new contexts. No separate direct-instruction block.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
-\begin{skillbox}[Priority Ideas \& Skills]{goldbox}
+\begin{skillbox}[Learning Targets \& Key Understandings]{goldbox}
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
-\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\textbf{Learning targets (student language)} & \textbf{Key understandings (the ``why'')} \\[2pt]
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \textbf{Isolate} the absolute value, then split $|ax+b|=c$ into $ax+b=c$ \emph{or} $ax+b=-c$.
-  \item Recognize \textbf{no solution} ($c<0$) and \textbf{one solution} ($c=0$).
-  \item Solve $|ax+b|<c$ as the compound ``\textbf{and}'' $-c<ax+b<c$ (between).
-  \item Solve $|ax+b|>c$ as the compound ``\textbf{or}'' $ax+b<-c$ \emph{or} $ax+b>c$ (outside).
-  \item Write a solution set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
-  \item \textbf{Model} a tolerance situation and interpret the solution in context.
+  \item I can \textbf{isolate} an absolute value and solve $|ax+b|=c$ with the \textbf{two-case}
+        rule, then \textbf{verify} both answers.
+  \item I can say when such an equation has \textbf{no solution} or \textbf{exactly one}, and why.
+  \item I can solve $|ax+b|<c$ and $|ax+b|>c$ and write each solution set in \textbf{set},
+        \textbf{interval}, and \textbf{number-line} form.
+  \item I can \textbf{model} a ``within \dots{} of'' situation and interpret the endpoints in context.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item $|x|$ is a \emph{distance}, so it is never negative --- that single fact explains every case.
-  \item $|ax+b|=c$ asks ``what inputs sit \emph{distance} $c$ from zero?'' --- two answers, one on each side.
-  \item ``Less th\textbf{AND}, great\textbf{OR}'': $<$ traps the expression \emph{between} bounds; $>$ throws it \emph{outside} them.
+  \item $|x-h|$ is a \emph{distance}, so it is never negative --- that single fact explains every
+        case in the lesson.
+  \item $|ax+b|=c$ asks ``what inputs sit \emph{distance} $c$ away?'' --- two answers, one on each
+        side of the center.
+  \item \textbf{``Less th\emph{AND}, great\emph{OR}.''} $<$ traps the expression \emph{between} the
+        bounds (one interval); $>$ throws it \emph{outside} them (two rays). The target
+        misconception is defaulting every inequality to ``between.''
   \item You \emph{must} isolate the bars first --- $2|x|+1=9$ is not solved until it reads $|x|=4$.
-  \item Three notations describe the \emph{same} set; being fluent in all three is the A2.EI.1d skill.
-  \item A ``within-tolerance'' phrase (\emph{no more than $0.5$ off}) is exactly an absolute-value inequality.
+  \item Set, interval, and number line describe the \emph{same} set; fluency in all three is the
+        A2.EI.1d skill.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -74,10 +79,10 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Absolute value} & $|x|$ is the \emph{distance} of $x$ from $0$ on the number line; always $\ge 0$. \\
+\textbf{Absolute value} & $|x|$ is the \emph{distance} of $x$ from $0$; $|x-h|$ is the distance between $x$ and $h$. Always $\ge 0$. \\
 \textbf{Absolute value equation} & An equation with a variable inside absolute-value bars, e.g.\ $|ax+b|=c$. \\
-\textbf{Two-case rule} & If $|X|=c$ and $c\ge 0$, then $X=c$ \emph{or} $X=-c$; if $c<0$, no solution. \\
-\textbf{Compound inequality} & Two inequalities joined by \emph{and} (conjunction) or \emph{or} (disjunction). \\
+\textbf{Two-case rule} & If $|X|=c$ and $c>0$, then $X=c$ \emph{or} $X=-c$; if $c=0$, one solution; if $c<0$, none. \\
+\textbf{Compound inequality} & Two inequalities joined by \emph{and} (both must hold) or \emph{or} (either may hold). \\
 \textbf{``And'' ($<$) case} & $|X|<c \iff -c<X<c$: the expression is trapped \emph{between} $-c$ and $c$. \\
 \textbf{``Or'' ($>$) case} & $|X|>c \iff X<-c$ \emph{or} $X>c$: the expression falls \emph{outside} $[-c,c]$. \\
 \textbf{Set / interval notation} & $\{x \mid -3<x<5\}$ vs.\ $(-3,5)$; brackets $[\,]$ include endpoints, parentheses $(\,)$ exclude. \\
@@ -85,186 +90,193 @@
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three prerequisites today leans on: \textbf{(1)} evaluate absolute
-    values as distance from zero ($|-7|=7$); \textbf{(2)} solve a two-step \emph{linear} equation
-    (Lesson~1.1) --- the move students repeat \emph{twice} once the bars split; and \textbf{(3)} graph
-    a simple inequality on a number line and name it in interval notation, the representation
-    A2.EI.1d demands. Debrief item~1 aloud: because $|x|$ measures distance, \emph{two} different
-    numbers ($7$ and $-7$) share the same absolute value --- that is the seed of the two-case rule.
+\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
+\hline
+Warm-Up & 5 & Three familiar skills, alone then check with a neighbor & Circulate; debrief item~1's ``two numbers'' aloud \\
+Experience: Activity & 20 & \emph{In Range} parts 1--2 in groups of 3--4 & Circulate; questions, cues, prompts --- \emph{not answers}; choose work to display \\
+Debrief: Formalize & 13 & Share findings; record QuickNotes & Name each move on the groups' own number lines (second color); fill QuickNotes together \\
+Application & 7 & \emph{Roasting Tolerance}, worked together & Lead it; students hold the pen, you hold the questions \\
+Check Your Understanding & 10 & Four exercises, pairs $\to$ solo (\emph{not scored}) & Circulate; spot-check \#4, do not collect for a grade \\
+Close & 5 & Preview 1.3; homework assigned & Sort \#4 responses to decide tomorrow's opener \\
+\end{tabularx}
 \end{fixedskillbox}
 
-\begin{skillbox}[Hook]{forestbg}
-    A cereal box is labeled \textbf{500 g}. Quality control rejects any box that is \textbf{more than
-    $5$ g off} the label. Ask: \textbf{``What is the lightest box that still passes? The heaviest?''}
-    ($495$ g and $505$ g.) \textbf{``How could you write `off by at most $5$ g' with one symbol?''}
-    Guide students to $|w-500|\le 5$: the \emph{distance} between the actual weight $w$ and the target
-    $500$ is at most $5$. Land the point: an absolute value is a \emph{distance}, and today every
-    equation and inequality we solve is really a question about distance from a target --- ``exactly
-    this far'' (equation) or ``within / beyond this far'' (inequality).
-\end{skillbox}
+\begin{fixedskillbox}[Warm-Up --- Activate Prior Knowledge]{forestbg}
+    The Warm-Up rehearses exactly what the activity leans on, each item planting a \emph{seed}
+    without naming it: \textbf{(1)} evaluating absolute values, ending with ``how many numbers have
+    an absolute value of $7$?'' --- the seed of the \emph{two-case rule}; \textbf{(2)} the distance
+    between two numbers on a number line, ending at ``how far is $x$ from $6$?'' --- the seed of
+    $|x-h|$, which the activity needs in item~1c; and \textbf{(3)} shading a number line with filled
+    vs.\ open dots, closing with ``could a shaded picture ever come in \emph{two} separate pieces?''
+    --- the seed of the ``or'' case. Debrief item~1 aloud, briefly: because $|x|$ measures distance,
+    \emph{two} different numbers ($7$ and $-7$) share it. Do \emph{not} say ``two-case rule,''
+    ``compound,'' or ``interval notation'' --- those words arrive in the debrief.
+\end{fixedskillbox}
 
-\begin{skillbox}[Lesson]{forestbg}
+\boxguard
+\begin{skillbox}[Experience --- The Activity: \emph{In Range}]{forestbg}
+\textbf{Launch (2 min).} ``A straight stretch of parkway is marked in miles, $0$ to $20$. A ranger's
+radio tower stands at \textbf{mile 12}, and a handheld radio reaches it only from \textbf{within 5
+miles}.'' Groups of 3--4, one packet each but one shared conversation. Tell them: \emph{``Use what
+you already know --- number lines, distance, solving. For every answer, be ready to show me where you
+see it in the picture.''} All trail pictures are pre-drawn; students mark and shade them.
+
 \begin{multicols}{2}
-\textbf{1. Absolute value is distance.} $|x|$ is how far $x$ is from $0$, so it is never negative.
-\textbf{Ask: how many numbers are exactly $5$ from zero?} Two --- $5$ and $-5$. So $|x|=5$ has
-\emph{two} solutions. This is the whole lesson in one picture.
-
-\textbf{2. Solving $|ax+b|=c$.} First \textbf{isolate} the bars, then split into two cases:
-$ax+b=c$ \emph{or} $ax+b=-c$. Model $|2x-3|=7$: $2x-3=7 \Rightarrow x=5$, or $2x-3=-7 \Rightarrow
-x=-2$. \textbf{Verify} both in the original --- and note graphically they are where $y=|2x-3|$ meets
-$y=7$ (A2.EI.1b).
-
-\textbf{3. Isolate first --- always.} $3|x+1|-2=10$ is \emph{not} ready to split. Add $2$, divide by
-$3$: $|x+1|=4$, then two cases. \textbf{Stress:} students who split before isolating get the two-case
-step right but the arithmetic wrong.
-
-\textbf{4. Special cases.} $|x-4|=-3$ has \textbf{no solution} (a distance can't be negative);
-$|x-4|=0$ has \textbf{one solution} ($x=4$). Have students \emph{explain} each from the distance
-meaning, not a memorized rule.
+\textbf{What students do.} Part~1 builds the equation on one picture: mark the two hikers exactly
+$5$ miles out ($7$ and $17$), say \emph{why} there are two, write the distance from mile $x$ to the
+tower as $|x-12|$, turn ``exactly $5$ miles'' into $|x-12|=5$, and check both markers in it.
+Part~2 turns the same picture into inequalities: shade where the radio \emph{can} reach and write it
+as $7\le x\le 17$, restate it as $|x-12|\le 5$, then shade where it \emph{cannot} and get two
+pieces. Item~2d is the \textbf{crux}: \emph{why} does ``can reach'' come out as one connected stretch
+while ``cannot reach'' takes two? 2e verifies a single value ($|3-12|=9>5$), and 2f closes with
+story-vs-math --- the parkway ends, so both out-of-range pieces get trimmed.
 
 \columnbreak
-
-\textbf{5. Inequalities --- the ``and'' case.} $|x|<3$ asks ``which numbers are \emph{within} $3$ of
-zero?'' Everything \emph{between} $-3$ and $3$: $-3<x<3$. For $|2x-1|\le 5$: $-5\le 2x-1\le 5$, so
-$-2\le x\le 3$. \textbf{``Less th\emph{AND}''} --- one connected interval.
-
-\textbf{6. Inequalities --- the ``or'' case.} $|x|>3$ asks ``which numbers are \emph{more than} $3$
-from zero?'' Everything \emph{outside}: $x<-3$ \emph{or} $x>3$. For $|x+2|\ge 4$: $x+2\le -4$ or
-$x+2\ge 4$, so $x\le -6$ or $x\ge 2$. \textbf{``Great\emph{OR}''} --- two rays.
-
-\textbf{7. Three notations, one set.} Every solution set gets written three ways.
-$-2\le x\le 3$ is $\{x \mid -2\le x\le 3\}$ (set), $[-2,3]$ (interval), and a number line shaded
-between two \emph{closed} dots. Match strict $<$ to open dots / parentheses. This is the A2.EI.1d
-deliverable.
-\end{multicols}
-\end{skillbox}
-
-\begin{skillbox}[Explicit Instruction: Solving an Absolute Value Inequality]{forestbg}
-\begin{multicols}{2}
-\textbf{Steps.}
-\begin{enumerate}[leftmargin=1.4em, nosep]
-  \item \textbf{Isolate} the absolute value on one side.
-  \item If it equals a \emph{negative}: $<$/$\le$ gives \emph{no solution}; $>$/$\ge$ gives
-        \emph{all reals}. Otherwise:
-  \item \textbf{$<$ or $\le$} $\to$ ``and'': $-c\le ax+b\le c$ (one interval).\\
-        \textbf{$>$ or $\ge$} $\to$ ``or'': $ax+b\le -c$ or $ax+b\ge c$ (two rays).
-  \item Solve for $x$; keep the \emph{same} direction on both parts of an ``and''.
-  \item Write the set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
-\end{enumerate}
-
-\columnbreak
-\textbf{Worked: $|2x-1|\le 5$.}
-\[ -5 \le 2x-1 \le 5 \]
-Add $1$: \; $-4 \le 2x \le 6$. \\
-Divide by $2$: \; $-2 \le x \le 3$.\\[2pt]
-Set: $\{x \mid -2\le x\le 3\}$.\\
-Interval: $[-2,3]$.\\[2pt]
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \numline{-4}{5}
-  \draw[very thick, forest] (-2,0)--(3,0);
-  \fill[forest] (-2,0) circle (3.5pt); \fill[forest] (3,0) circle (3.5pt);
-\end{tikzpicture}
-\end{center}
-\end{multicols}
-\end{skillbox}
-
-\begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
-\begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{splitting before isolating}: attacking $3|x+1|-2=10$ as two cases without first getting $|x+1|=4$;
-  \item forgetting the \emph{negative} case, so $|2x-3|=7$ yields only $x=5$;
-  \item sign slips in the negative case: $2x-3=-7$ mis-solved as $x=2$;
-  \item calling $|x-4|=-3$ ``$x=1$ or $x=7$'' instead of \textbf{no solution} (distance can't be negative);
-  \item mixing up ``and''/``or'' --- writing $x<-3$ or $x>3$ for $|x|<3$;
-  \item flipping only \emph{one} side of an ``and'' when dividing, or forgetting to flip on a negative coefficient;
-  \item open vs.\ closed dots / parentheses vs.\ brackets not matching $<$ vs.\ $\le$.
+\textbf{What the teacher does.} Circulate. Listen before speaking. When a group stalls, give a
+\emph{question, cue, or prompt}, not an answer:
+\begin{itemize}[leftmargin=1.1em, nosep]
+  \item 1b: ``Put your finger on the tower. Which way can you walk from there? Does that give you
+        one answer or two?''
+  \item 1c: ``In the warm-up, how did you write the distance from $x$ to $6$? Same question, new
+        landmark.''
+  \item 2d: ``Point at the in-range stretch. Now point at everything else. Can you trace `everything
+        else' without lifting your finger?''
+  \item 2f: ``Where does the parkway stop? Is mile $-4$ a real answer to this question?''
 \end{itemize}
-Cold-call prompts: ``Distance from what, and how far?'' ``Is this an \emph{and} or an \emph{or} --- how do you know from the symbol?'' ``Would $0$ be a solution? Check it.''
-\end{skillbox}
-
-\begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Distance, Cases \& Sets} activity (tiered; mirrors the notes).
-\begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Evaluate absolute values and solve basic equations
-$|x|=a$ and $|x+b|=c$ (already isolated); match each solution set to a number line.
-
-\columnbreak
-\textbf{Tier A --- Approaching.} Isolate then solve equations; solve both types of inequalities and
-write each solution in set, interval, and number-line form; spot a no-solution case.
-
-\columnbreak
-\textbf{Tier E --- Extension.} Model a tolerance context with an absolute-value inequality, solve it,
-and interpret the endpoints; reason about when an absolute-value equation/inequality has no solution
-or all reals.
+While circulating, pick groups whose work goes on the board: a clean Part~1 marked picture, a group
+with a good 2d explanation, and one good 2f answer.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): solve an absolute value \emph{equation} that must be
-isolated first and verify both roots; solve an absolute value \emph{inequality} and represent the
-solution in \textbf{all three} forms (set, interval, number line); and a \textbf{modeling/justify}
-item --- translate a tolerance sentence into an inequality and interpret the answer. Also included:
-one \textbf{SOL-style multiple-choice} item (choose the correct solution set for a $>$ inequality).
-Collect and sort into ``got it / didn't isolate / lost the negative case / and-vs-or slip /
-notation slip'' to decide whether Lesson~1.3 opens with a quick re-teach.
+\boxguard
+\begin{skillbox}[Debrief --- Formalize (what goes on the board, in a second color)]{forestbg}
+Work through the displayed student work in order, and \textbf{attach each formal name to something a
+group already wrote}. Students record each line in their QuickNotes as you go.
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=1.3em, nosep, itemsep=3pt]
+  \item \textbf{Distance has a symbol.} On their picture: ``how far mile $x$ is from the tower''
+        $\to$ \emph{$|x-12|$}; $|x|$ is distance from $0$, $|x-h|$ is distance between $x$ and $h$,
+        and a distance is \emph{never negative}.
+  \item \textbf{Two markers $\Rightarrow$ two cases.} ``$5$ down and $5$ up'' $\to$ the
+        \emph{absolute value equation} $|x-12|=5$ and the \emph{two-case rule}: $X=c$ \emph{or}
+        $X=-c$. Their substitution check in 1d is what \emph{verifying} a solution means (A2.EI.1b/e).
+  \item \textbf{``Within'' is an inequality.} 2a--2b $\to$ $|x-12|\le 5$, and the shading $7\le
+        x\le17$ is two conditions that must \emph{both} hold: a \emph{compound ``and''}. Write
+        $-5\le x-12\le 5$ over their picture and solve it down to their own answer.
+  \item \textbf{``Too far'' is the other one.} 2c/2d $\to$ $|x-12|>5$ gives $x<7$ \emph{or} $x>17$:
+        a \emph{compound ``or''}, two \emph{rays}. Use the group's 2d wording verbatim --- you cannot
+        trace it without lifting your finger, because the in-range piece sits between. Land the
+        mnemonic: \textbf{less th\emph{AND}, great\emph{OR}}. Say it twice.
+  \item \textbf{Isolate first} --- pose this one cold: $3|x+1|-2=10$ is not ready to split; get
+        $|x+1|=4$ first. Then the two odd cases, also cold: $|x-4|=-3$ (none) and $|x-4|=0$ (one),
+        both argued from distance.
+  \item \textbf{Three notations, one set.} Their shading $\to$ $\{x\mid 7\le x\le 17\}$, $[7,17]$,
+        and the number line. Closed dots/brackets for $\le$; open dots/parentheses for $<$; $\pm\infty$
+        always a parenthesis. Their 2f trimming is the \emph{context} restricting the set.
+\end{enumerate}
+\columnbreak
+\textbf{QuickNotes.} Fill the packet's QuickNotes box together, using $|x-3|$ with $c=2$ as the
+compact picture: distance meaning, the two-case rule and its $c=0$/$c<0$ branches, isolate-first,
+the ``and'' and ``or'' forms, and the three notations on $1\le x\le 5$. It is a summary of what the
+groups discovered, not a new lecture.
+
+\textbf{Why this order.} Every formal term lands on a picture the students already marked, so the
+vocabulary is a \emph{label} rather than a definition to memorize. The special cases and
+isolate-first go late and come from the teacher: they are the two things the activity deliberately
+does \emph{not} carry (timebox), and both are easier to accept once ``a distance is never negative''
+has already been said out loud three times.
+\end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} evaluate and solve isolated equations; isolate-then-solve harder equations;
-identify no-solution / one-solution cases; solve both inequality types and record set, interval, and
-number-line forms; and translate a context into an absolute-value model. \textbf{Extension:} a
-tolerance/manufacturing problem and a ``when is there no solution / all reals?'' reasoning prompt.
+\boxguard
+\begin{skillbox}[Application --- \emph{Roasting Tolerance} (worked together, 7 min)]{forestbg}
+The one place the new vocabulary gets \emph{used} before students are on their own. A roaster fills
+bags labeled $340$ g and rejects any bag more than $8$ g off. Students write $|w-340|\le 8$
+(A2.EI.1c), solve it in the packet's \texttt{work} block to $332\le w\le 348$, then answer two
+interpretation questions: is a $331$ g bag accepted (read it off the \emph{solved} range, do not
+re-solve), and does tightening the rule to $5$ g make the acceptable range wider or narrower.
+\textbf{Run it with the students holding the pen and you holding the questions:} ``What is the
+target? What is the allowed distance from it? Which symbol says `no more than'?'' The last part is
+the conceptual one --- a smaller tolerance is a \emph{narrower} interval around the same center,
+which is the whole geometry of $|x-h|\le c$ in one sentence.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Check Your Understanding --- practice, \emph{not scored}]{redbox}
+Four exercises in the packet: an isolate-then-split equation ($3|x+1|-2=10$, in a \texttt{work}
+block) with a verification, an ``and'' inequality ($|2x-1|\le 5$, second \texttt{work} block)
+written in all three notations, the two special cases the activity dropped, and an SOL-style
+multiple-choice item on an ``or'' inequality. Pairs for 1--2, then solo for 3--4. \textbf{These are
+practice, not an assessment --- they carry no point value} (the cover's score column reads
+\textbf{NA}), so do not collect them for a grade. \textbf{Item~4 is still the formative check:}
+spot-check it on the way out and sort into ``got it / chose A (defaulted to `between') / chose C
+(kept only one ray) / chose D (ignored the bound)'' to decide whether Lesson~1.3 opens with a
+one-minute re-look at the out-of-range picture.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Watch For (while circulating)]{redbox}
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item giving only \emph{one} marker in 1a --- the seed of losing the negative case later;
+  \item writing the distance in 1c as $x-12$ without bars, so mile $3$ comes out ``$-9$ miles away'';
+  \item in 2c, shading only one side --- the target misconception, and exactly what 2d is for;
+  \item mixing up ``and''/``or'' in Check Your Understanding 2 and~4 (writing two rays for a $\le$);
+  \item splitting before isolating in Check Your Understanding 1 --- insist on $|x+1|=4$ before any cases;
+  \item calling $|x-4|=-3$ ``$x=1$ or $x=7$'' instead of \emph{no solution};
+  \item open vs.\ closed dots and parentheses vs.\ brackets not matching $<$ vs.\ $\le$.
+\end{itemize}
+Cold-call prompts: ``Distance from what, and how far?'' ``Is this a \emph{between} or an
+\emph{outside} --- how do you know from the symbol?'' ``Would $0$ be a solution? Check it.''
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Homework \& Preview]{goldbox}
+\textbf{Homework (8 problems):} two already-isolated equations; two isolate-then-solve equations;
+a none/one/two sort; an ``and'' inequality and an ``or'' inequality, each in set, interval, and
+number-line form; a thermostat tolerance model ($|T-68|\le2$) with an endpoint-interpretation
+follow-up; a two-part explain item (how the symbol decides, and for which $k$ does $|x-3|<k$ have no
+solution); and an SOL-style multiple-choice item with ``explain why the others are false.''
 \textbf{Preview:} Lesson~1.3, \emph{Absolute Value Functions \& Transformations} --- the same
-$|ax+b|$ expression becomes a \emph{graph}, and the two solutions we found today are exactly where the
-V-shape crosses a horizontal line (previewing vertex, axis of symmetry, and minimum).
+$|ax+b|$ expression becomes a \emph{graph}, and the two solutions found today are exactly where the
+V-shape crosses the horizontal line $y=c$ (previewing vertex, axis of symmetry, and minimum).
 \end{skillbox}
-% ── Teacher notes (migrated from the component keys) ──
-% One per component, titled for it. They live here rather than in the _key
-% files so that every component is the same length blank and keyed.
 
+% ── Teacher notes — one per component, in packet order ──
 \begin{teachernote}[Warm-Up]
-Item~1 plants the two-case idea: because $|x|$ is a \emph{distance}, two numbers ($7$ and $-7$) share
-an absolute value --- that is exactly why $|ax+b|=c$ splits into two equations. Item~2 is the linear
-solving from Lesson~1.1; today students do it once for the ``$+c$'' case and once for the ``$-c$''
-case. In item~3, tie the \emph{closed} dot at $-1$ to the bracket in $[-1,\infty)$; $\infty$ always
-takes a parenthesis.
+Item~1 plants the two-case idea: because $|x|$ is a \emph{distance}, two numbers share an absolute
+value. Item~2 is the one the activity cashes in immediately --- if students cannot write ``how far
+$x$ is from $6$'' as $|x-6|$, they will stall on 1c, so debrief that blank specifically. Item~3's
+closing question (``could a shaded picture come in two separate pieces?'') is deliberately left
+hanging; the answer is Part~2d. Five minutes; resist naming interval notation here even if a student
+uses it.
 \end{teachernote}
 
-\begin{teachernote}[Guided Notes]
-The spine of the lesson is the distance meaning: it explains the two cases (Section~1--2), why $c<0$
-gives no solution (Section~3), and the difference between ``between'' and ``outside'' (Sections~4--5).
-Two errors to pre-empt: (1) splitting \emph{before} isolating in Section~3 --- insist on
-$|x+1|=4$ before any cases; (2) the ``and/or'' mix-up --- anchor it to ``less th\emph{AND},
-great\emph{OR}'' and to the picture (within vs.\ beyond). For notation, tie ``$\le$/$\ge$''
-to closed dots and brackets, ``$<$/$>$'' to open dots and parentheses, and remind students that
-$\pm\infty$ always takes a parenthesis.
-\end{teachernote}
-
-\begin{teachernote}[Group Activity]
-Tier~A item~4 and Tier~E item~2 are the conceptual heart --- push students to justify from the
-\emph{distance} meaning, not a memorized rule. Common slips: in A2, flipping to ``or'' for a ``$<$'';
-in A3, forgetting to divide the isolated bounds by $2$; in E1, reading ``within $0.3$'' as ``$<$''
-rather than ``$\le$'' (``within/at most'' includes the endpoint). For E2b, note the boundary case
-$k=0$: $|x+5|>0$ is \emph{all reals except} $x=-5$, so it is \emph{not} every real --- that is why the
-answer is $k<0$, strictly.
-\end{teachernote}
-
-\begin{teachernote}[Exit Ticket]
-Item~1 checks the whole equation routine: isolate, split into \emph{both} cases, verify. Item~2
-checks all three notations plus the distance interpretation. Item~3 separates students who
-internalized ``great\emph{OR}'' from those who defaulted to ``between.'' Collect and sort into ``got
-it / didn't isolate / lost the negative case / and-vs-or slip / notation slip'' to decide whether
-Lesson~1.3 opens with a quick re-teach.
+\begin{teachernote}[Experience]
+\textbf{Activity (2pp).} Part~1 gets about 8 of the 20 minutes; Part~2 needs the other 12 because
+2d is where the thinking happens. If a group finishes early, ask them to write the in-range
+condition \emph{without} bars and \emph{with} bars and say which they would rather solve.
+\textbf{Debrief + QuickNotes (13 min).} Do not re-teach from scratch --- every term should be
+written \emph{on top of} a displayed student answer. The must-land moment is 2d: the out-of-range
+set cannot be traced without lifting your finger, which is precisely why it needs an ``or.'' The
+QuickNotes box is deliberately half a page; if time is short, fill the two-case rule and the and/or
+forms together and let students finish it from the slides. \textbf{Application (7 min).} Worked
+together --- see the Application box; it is where the coffee bag turns ``within $8$ g'' into
+$|w-340|\le8$. \textbf{Check Your Understanding (10 min).} Items 1 and 2 carry the lesson's two
+\texttt{work} blocks --- students solve in the reserved space and the key prints the same steps
+there. \textbf{Not scored} --- spot-check item~4 rather than collecting the page.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-Watch item~2: students must isolate ($|4x+2|=10$, $|x-4|=5$) before splitting --- a very common miss.
-Item~3 is a quick check that ``distance can't be negative'' (none), ``distance zero'' (one), and the
-generic case (two) are all understood conceptually. In item~6, ``within'' includes the endpoints, so
-it is ``$\le$''; students who write ``$<$'' exclude $66^\circ$ and $70^\circ$. Extension (b)'s boundary
-$k=0$ is worth a mention: $|x-3|>0$ excludes $x=3$, so ``all reals'' needs $k<0$ strictly.
+Watch item~2: students must isolate before splitting --- the most common miss on this lesson.
+Item~3 checks that ``distance can't be negative'' (none), ``distance zero'' (one), and the generic
+case (two) are understood conceptually rather than memorized. In item~6, ``within'' includes the
+endpoints, so it is ``$\le$'' --- part (c) makes that explicit, and students who wrote ``$<$'' will
+answer ``no'' and reveal themselves. Item~7(b)'s boundary is worth a mention: at $k=0$ the
+inequality is still impossible, so the answer is $k\le 0$. Item~8's distractor~B is the and/or slip;
+read those explanations.
 \end{teachernote}
 
 \end{document}

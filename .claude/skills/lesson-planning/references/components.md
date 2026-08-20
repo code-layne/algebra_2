@@ -49,8 +49,8 @@ order (same skeleton for review and primary-content lessons):
 4. **Vocabulary, Concepts & Theorems** — `skillbox{sky}`, a `tabularx` term/definition table
    (use `\TallMath{...}` for tall formulas).
 5. **Lesson at a Glance** — `fixedskillbox{forestbg}`: a Phase/Min/Students/Teacher table for
-   the 60-minute period — Warm-Up 5 / Experience: Activity 20 / Debrief: Formalize 15 /
-   Practice 15 / Close 5.
+   the 60-minute period — Warm-Up 5 / Experience: Activity 20 / Debrief: Formalize 13 /
+   Application 7 / Check Your Understanding 10 / Close 5.
 6. **Warm-Up — Activate Prior Knowledge** — `fixedskillbox{forestbg}`: the 3 warm-up items and
    the *seed* each plants (which formal idea it sets up **without naming it**), plus what to
    debrief aloud.
@@ -62,12 +62,17 @@ order (same skeleton for review and primary-content lessons):
    term written on top of a displayed student answer — plus the QuickNotes walkthrough and a
    "why this order" note. Any example the activity no longer carries (the special case) is
    posed cold by the teacher here.
-9. **Practice — Check Your Understanding** — `skillbox{redbox}`: the 4–5 practice items, pairing
-   (pairs → solo), and **which item is the formative check** with the sort categories.
-10. **Watch For** — `skillbox{redbox}`: misconceptions to catch while circulating, keyed to item
+9. **Application** — `skillbox{forestbg}`: the worked-together problem, the questions the teacher
+   asks while the students hold the pen, and the concept the "what if we change a number?" part is
+   really testing.
+10. **Check Your Understanding — practice, *not scored*** — `skillbox{redbox}`: the 4–5 items,
+   pairing (pairs → solo), an explicit "these carry no point value — do not collect for a grade
+   (the cover's score column reads **NA**)", and **which item is the formative check** with the
+   sort categories.
+11. **Watch For** — `skillbox{redbox}`: misconceptions to catch while circulating, keyed to item
     numbers, plus cold-call prompts.
-11. **Homework & Preview** — `skillbox{goldbox}`: the 5–10 problems, and the next lesson.
-12. **Teacher Notes** — one `teachernote` per component, in packet order:
+12. **Homework & Preview** — `skillbox{goldbox}`: the 5–10 problems, and the next lesson.
+13. **Teacher Notes** — one `teachernote` per component, in packet order:
     `\begin{teachernote}[Warm-Up]`, `[Experience]`, `[Homework]`. Pacing splits, must-land
     moments, the early-finisher move, how to sort the formative check. **This is the only place
     teacher prose goes** — never append one to a `_key`, which would make the key longer than
@@ -84,8 +89,9 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
   to *do* in plain language, without pre-naming the vocabulary the debrief will attach
   ("read the story a straight-line graph tells — where it starts, where it hits zero, how fast
   it changes"), never the formal terms.
-- `tocbox` — a `tabularx` with three rows (Warm-Up, Experience, Homework) + Score blanks and a
-  Total row. Keep descriptions spoiler-free too.
+- `tocbox` — a `tabularx` with four rows (Warm-Up, Experience, **Check Your Understanding**,
+  Homework) + a Total row. Score cells are `\blank{1.2cm}` **except Check Your Understanding, which
+  prints `\textbf{NA}`** — it is practice and is not scored. Keep descriptions spoiler-free too.
 - `remindbox` (Keep in Mind) — describes the **EFFL process only** ("you and your group will
   work out … using what you already know — and only afterward will we name what you found")
   and **stops there**: no content preview, no vocabulary.
@@ -101,8 +107,19 @@ debrief aloud. May also be a **prefab PDF** (`warmup/main.pdf` + `warmup_key/mai
 
 ## Experience
 
-`experience/` (+ `experience_key/`) — **the heart of the lesson**, one document, three parts,
-in this order. `\documentclass[12pt]{article}` (Math Medic sizing — the rest of the packet is
+`experience/` (+ `experience_key/`) — **the heart of the lesson**, one document, **four parts**,
+in this order, on an explicit **page budget** (user, 2026-08-20 — the experience kept coming out too
+long):
+
+| Part | Budget | What it is |
+| --- | --- | --- |
+| 1. Activity | **≤ 2 pages** | group work from prior knowledge only |
+| 2. QuickNotes | **½ page** | the debrief fills it |
+| 3. Application | **½–1 page** | one problem worked *together*, right after the notes |
+| 4. Check Your Understanding | **1–2 pages** | independent practice — **not scored** |
+
+Hold the budget: it is the whole point of the four-part split. A part that runs over gets cut, not
+carried. `\documentclass[12pt]{article}` (Math Medic sizing — the rest of the packet is
 10pt), `\pageheader{Unit X, Lesson Y.Z}{Experience: <Activity Title>}`, no name row.
 
 Preamble defines the open-answer-space macro, byte-identical in blank and key:
@@ -132,16 +149,30 @@ breaks drift.
    example figure beside fill-in bullets covering the lesson's formal terms. This is a summary
    of what the groups discovered, not a lecture; keep it to one box (~1 page). Blanks here are
    `\blank{}` fills (key: `\ans{}`).
-3. **Practice: Check Your Understanding** — a `notesbox` with **4–5 items in new contexts**,
-   worked pairs → solo: typically a read-the-features item, an applied model with the lesson's
-   one `work` block, the special case the activity dropped, and an **SOL-style multiple-choice
-   item as the formative check** (the plan says how to sort responses). Use `\answerspace` for
-   explain items.
+3. **Application** — a `notesbox` (`Application: <Title>`) with **one problem worked together**,
+   opening ``We will do this one together.'' This is the first place the just-named vocabulary is
+   *used*, so it is the natural home for the lesson's **modeling standard** (write the model →
+   solve it in a `work` block → interpret the answer → one "what if we change a number?" question
+   that tests the concept rather than the procedure). Half a page to one page; the teacher holds
+   the questions, the students hold the pen.
+4. **Check Your Understanding** — a `notesbox` titled
+   `Check Your Understanding \quad {\normalfont\itshape (practice --- not scored)}` with
+   **4–5 items in new contexts**, worked pairs → solo: typically a read-the-features item, the
+   lesson's core procedure, the special case the activity dropped, and an **SOL-style
+   multiple-choice item as the formative check** (the plan says how to sort responses). Use
+   `\answerspace` for explain items.
+
+   **It carries no point value.** It is practice, so the cover's score column prints **`\textbf{NA}`**
+   for it instead of a `\blank{}`, the plan tells the teacher to spot-check rather than collect for
+   a grade, and the deck says "practice, not a quiz." Prefer a *full* single page over a second page
+   that is 10% used — compress sub-items onto shared lines and trim `\answerspace` heights (then keep
+   the key's answers short enough for the reduced heights).
 
 Key mirrors exactly: same macro, answers in the second argument of each `\answerspace`,
 `\ans{}` in the blanks, MC option tagged `\textcolor{keyred}{\textbf{$\leftarrow$ correct}}`.
 `\boxguard` counts here are 12pt-relative: use ~14–16, not the 24–30 used in 10pt components.
-Reference implementation: `unit01/lesson00/experience`.
+Reference implementation: `unit01/lesson02/experience` (the four-part shape).
+`unit01/lesson00` is still the older three-part cut and is due to be re-cut to this budget.
 
 ## Homework
 
