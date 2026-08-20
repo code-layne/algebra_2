@@ -1,148 +1,310 @@
-%! Complex Numbers — Unit 3, Lesson 3.4 — Guided Notes (Answer Key)
+%! Zeros of Polynomials: the Rational Root Theorem — Unit 3, Lesson 3.4 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\mans}[1]{{\color{keyred}\boldsymbol{#1}}}   % math-mode answer (\ans is text-only)
+
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\vocabans}[2]{%
-  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.4}{Guided Notes --- Answer Key}
+\namedateperiod
 
-\vspace{0.10in}
+\vspace{0.08in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item explain the meaning of the \emph{imaginary unit} $i$ and write $\sqrt{-k}$ in terms of $i$;
-  \item write a number in \emph{standard} $a+bi$ form and name its real and imaginary parts;
-  \item \emph{add, subtract, and multiply} complex numbers, and simplify \emph{powers of $i$}.
+  \item use the \emph{Rational Root Theorem} to list every possible rational zero of a polynomial with integer coefficients;
+  \item test candidates efficiently with synthetic division, a graph, and the Remainder Theorem;
+  \item divide out each zero I find, factor the depressed polynomial, and write the polynomial \emph{completely} factored;
+  \item solve a polynomial equation of degree $3$ or higher and \emph{verify} my solutions algebraically and against a graph.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.06in}
+\vspace{0.05in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}
-\vocabans{Imaginary unit $i$}{the number with $i=\sqrt{-1}$, so $i^2=-1$}
-\vocabans{Complex number ($a+bi$)}{a number with a real part $a$ and an imaginary part $b$ ($a,b$ real)}
-\vocabans{Real part / imaginary part}{in $a+bi$, $a$ is the real part and $b$ is the imaginary part}
-\vocabans{Pure imaginary number}{a complex number $bi$ with $a=0$ and $b\ne0$ (e.g. $3i$)}
-\vocabans{Complex conjugate}{the pair $a+bi$ and $a-bi$; their product $a^2+b^2$ is real}
+\vspace{2pt}
+
+\termblanklong{Rational Root Theorem}
+\ansline{If $\frac{p}{q}$ (in lowest terms) is a zero of a polynomial with integer coefficients, then $p$ divides the constant term and $q$ divides the leading coefficient.}
+\termblanklong{Candidate (possible rational zero)}
+\ansline{One of the values $\pm\frac{p}{q}$ on the list --- a number worth testing, not a guaranteed zero.}
+\termblanklong{Depressed polynomial}
+\ansline{The quotient left after dividing out a factor $(x-r)$ --- one degree lower, with a shorter candidate list of its own.}
+\termblanklong{Solution / root of an equation}
+\ansline{A value of $x$ that makes $f(x)=0$ true --- the same thing as a zero of $f$ and an $x$-intercept of its graph.}
+\termblanklong{Verifying a solution}
+\ansline{Substituting it back to get $0$, and confirming it against the graph's $x$-intercepts.}
 \end{vocabbox}
 
 \begin{hookbox}
-Lesson 3.3 kept hitting a wall: $x^2=-4$ has \textbf{no real} solution, because no real number squares
-to a negative. On a graph, $y=x^2+4$ (below) \textbf{never crosses the $x$-axis} --- no real zeros.
+Yesterday you could finish any polynomial \emph{once somebody handed you a zero to test}. Here is
+the polynomial from the Warm-Up, $h(x) = 2x^3 - 3x^2 - 11x + 6$, with its graph. (The $y$-axis is
+compressed: each vertical gridline is $4$ units.)
 \begin{center}
-\begin{tikzpicture}[scale=0.40]
-  \lgrid{-3}{3}{-1}{7}
-  \begin{scope}\clip (-3,-1) rectangle (3,7);
-    \draw[very thick, forest, domain=-1.7:1.7, samples=70, smooth] plot (\x,{\x*\x+4});
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{4}{-4}{4}
+  \begin{scope}
+    \clip (-3,-4) rectangle (4,4);
+    \draw[very thick, forest, domain=-2.85:3.6, samples=150, smooth]
+      plot (\x,{(2*(\x)*(\x)*(\x) - 3*(\x)*(\x) - 11*(\x) + 6)/4});
   \end{scope}
-  \fill[charcoal] (0,4) circle (3pt) node[right, font=\scriptsize]{$(0,4)$};
+  \foreach \x in {-2,-1,1,2,3}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (-2,0)  circle (2.5pt);
+  \fill[charcoal] (0.5,0) circle (2.5pt);
+  \fill[charcoal] (3,0)   circle (2.5pt);
 \end{tikzpicture}
 \end{center}
-\vspace{-4pt}
-Instead of quitting, mathematicians \emph{invented} a number whose square \emph{is} negative. Today we
-meet it and learn to compute with it.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Read the three $x$-intercepts off the graph: \ans{$x = -2,\ \tfrac12,\ 3$}
+  \item Your group's candidate list yesterday was the divisors of $6$. Which zero did it miss?
+        \ans{$\tfrac12$}
+  \item That zero is a \emph{fraction}. So a candidate list made only of whole numbers is
+        \ans{incomplete}.
+\end{itemize}
+\textbf{Today's question: which numbers are worth testing?}
 \end{hookbox}
 
-\begin{notesbox}{1. The imaginary unit $i$ --- break the wall}
-Define a brand-new number, the \textbf{imaginary unit}:
-\[ i=\sqrt{-1}, \qquad\text{so}\qquad i^2=\ans{$-1$}. \]
-That single rule, $i^2=-1$, is the whole engine. Now negative square roots have meaning:
-\[ \sqrt{-4}=\sqrt{4}\cdot\sqrt{-1}=\ans{$2i$}, \qquad \sqrt{-25}=\ans{$5i$}. \]
-And the wall from 3.3 finally opens:
-\[ x^2=-4 \ \Rightarrow\ x=\pm\sqrt{-4}=\ans{$\pm2i$}. \]
+\begin{notesbox}{1. Why Guessing Cannot Work}
+Suppose nobody tells you anything about $f(x) = x^3 - 4x^2 + x + 6$ except that it has integer
+coefficients, and you want its zeros.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item How many numbers are there to try? \ans{infinitely many}
+  \item So testing candidates one at a time is only useful if the list of candidates is
+        \ans{finite (short)}.
+\end{itemize}
+\textbf{The Rational Root Theorem does exactly that:} it turns two coefficients --- the constant term
+and the leading coefficient --- into a \emph{short, finite} list that is guaranteed to contain every
+rational zero the polynomial has.
 \end{notesbox}
 
-\begin{notesbox}{2. Negative radicals and $a+bi$ form}
-\textbf{Factor out the $i$ first, then simplify the radical.} For $k>0$, \ $\sqrt{-k}=i\sqrt{k}$.
-\[
-  \sqrt{-9}=\ans{$3i$} \qquad \sqrt{-50}=\ans{$5i\sqrt{2}$} \qquad \sqrt{-12}=\ans{$2i\sqrt{3}$}
-\]
-\emph{Caution:} pull the $i$ out \textbf{before} multiplying radicals --- $\sqrt{-2}\cdot\sqrt{-2}=i\sqrt2\cdot i\sqrt2=2i^2=-2$, \emph{not} $\sqrt{4}=2$.
+\begin{notesbox}{2. The Rational Root Theorem}
+\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+\textbf{Rational Root (Zero) Theorem.} Let $f(x) = a_nx^n + \cdots + a_1x + a_0$ have
+\emph{integer} coefficients. If $\dfrac{p}{q}$ is a rational zero of $f$ written in lowest terms,
+then
+\begin{itemize}[leftmargin=1.5em, nosep]
+  \item $p$ (the numerator) is a divisor of the \ans{constant term} $a_0$, and
+  \item $q$ (the denominator) is a divisor of the \ans{leading coefficient} $a_n$.
+\end{itemize}
+\end{tcolorbox}
 
-\smallskip
-Every complex number can be written in \textbf{standard form} $a+bi$:
+\vspace{4pt}
+\textbf{Why it is true --- look at the Warm-Up.} You factored $h(x) = 2x^3-3x^2-11x+6$ into
+$(x-3)(2x-1)(x+2)$. Multiply the pieces back:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item The \emph{leading} coefficients of the three factors are $1$, $2$, $1$. Their product is
+        \ans{$2$}, which is the leading coefficient of $h$. So the $2$ in the denominator of the
+        zero $\tfrac12$ had to divide \ans{$2$}.
+  \item The \emph{constant} terms of the three factors are $-3$, $-1$, $2$. Their product is
+        \ans{$6$}, which is the constant term of $h$. So every numerator had to divide
+        \ans{$6$}.
+\end{itemize}
+That is the whole theorem: a zero $\frac{p}{q}$ comes from a factor $(qx - p)$, and those $q$'s and
+$p$'s have nowhere to hide --- they multiply together to make the two coefficients on the ends.
+
+\vspace{5pt}
+\textbf{The warnings.} \; (1) It only finds \ans{rational} zeros --- irrational and imaginary zeros
+never appear on the list. \; (2) The coefficients must be \ans{integers}. \; (3) The list is a list of
+\emph{possibilities}; a polynomial might have \ans{none} of them as an actual zero.
+\end{notesbox}
+
+\begin{notesbox}{3. Building the List}
+Write $\pm\dfrac{\text{divisors of the constant term}}{\text{divisors of the leading coefficient}}$,
+reduce, and cross out repeats.
+
+\vspace{5pt}
+\textbf{(a)} $f(x) = x^3 - 4x^2 + x + 6$
+
+\vspace{2pt}
+$p$ (divisors of \ans{$6$}): \ans{$\pm 1, \pm 2, \pm 3, \pm 6$} \qquad
+$q$ (divisors of \ans{$1$}): \ans{$\pm 1$}
+
+\vspace{2pt}
+Candidates $\dfrac{p}{q}$: \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6$ \; (8 of them)}
+
+\vspace{2pt}
+\textbf{Notice:} when the leading coefficient is $1$, every $q$ is $\pm 1$, so the candidates are
+just the \ans{divisors of the constant term}. That covers most problems you will see.
+
+\vspace{6pt}
+\textbf{(b)} $g(x) = 4x^3 - 4x^2 - x + 1$
+
+\vspace{2pt}
+$p$ (divisors of \ans{$1$}): \ans{$\pm 1$} \qquad
+$q$ (divisors of \ans{$4$}): \ans{$\pm 1, \pm 2, \pm 4$}
+
+\vspace{2pt}
+Candidates $\dfrac{p}{q}$: \ans{$\pm 1,\ \pm\tfrac12,\ \pm\tfrac14$} \qquad How many? \ans{$6$}
+
+\vspace{2pt}
+\textbf{The error to avoid:} the constant term goes on \ans{top} and the leading coefficient
+goes on \ans{the bottom}. Flipping them is the mistake of the day.
+\end{notesbox}
+
+\begin{notesbox}{4. The Workflow: List $\rightarrow$ Test $\rightarrow$ Divide $\rightarrow$ Finish}
+\textbf{Model.} Find all the zeros of $f(x) = x^3 - 4x^2 + x + 6$.
+
+\vspace{4pt}
+\textbf{Step 1 --- List.} From part (a): \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6$}
+
+\vspace{4pt}
+\textbf{Step 2 --- Test} (Remainder Theorem, or a synthetic division). \;
+$f(1) = $ \ans{$4$} \quad $f(-1) = $ \ans{$0$}
+
+\vspace{2pt}
+So the first zero is $r = $ \ans{$-1$}, and $($\ans{$x+1$}$)$ is a factor.
+
+\vspace{4pt}
+\textbf{Step 3 --- Divide it out.}
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-$a$ is the \textbf{real part}, & $b$ is the \textbf{imaginary part}. & If $b=0$ it's \emph{real}; if $a=0$ (and $b\ne0$) it's \emph{pure imaginary}. \\
-\end{tabularx}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
+\ans{$-1$} & $1$ & $-4$ & $1$ & $6$ \\
+    &     & \ans{$-1$} & \ans{$5$} & \ans{$-6$} \\ \cline{2-5}
+    & \ans{$1$} & \ans{$-5$} & \ans{$6$} & \ans{$0$} \\
+\end{tabular}
 \end{center}
-Write each in $a+bi$ form and name the parts:
-\[ 7-\sqrt{-16}=\ans{$7-4i$}, \quad a=\ans{$7$},\ b=\ans{$-4$}; \qquad \sqrt{-9}=\ans{$3i$},\ a=\ans{$0$},\ b=\ans{$3$}. \]
+Depressed polynomial: \ans{$x^2 - 5x + 6$} \quad Remainder: \ans{$0$}
 
-\textbf{Read the complex plane.} Real part $\to$ horizontal, imaginary part $\to$ vertical. Name the plotted point:
+\vspace{4pt}
+\textbf{Step 4 --- Finish.} The depressed polynomial is a quadratic, so no more guessing is needed
+--- factor it (or use the quadratic formula).
+
+\vspace{2pt}
+$f(x) = $ \ans{$(x+1)(x-2)(x-3)$} \qquad Zeros: \ans{$-1,\ 2,\ 3$}
+
+\vspace{4pt}
+\textbf{Step 5 --- Verify} (this is part of the standard, not an extra). Check one zero by
+substituting: $f(3) = $ \ans{$27-36+3+6 = 0$}, and check all three against the degree --- a cubic has at most
+\ans{$3$} zeros, and you found \ans{$3$}.
+\end{notesbox}
+
+\begin{notesbox}{5. Three Ways to Make the Search Shorter}
+Twelve candidates is a lot of synthetic divisions. You almost never need them all.
+
+\vspace{4pt}
+\textbf{(i) Use the graph.} Here is $f(x) = x^3 - 4x^2 + x + 6$ from Section 4. (Each vertical
+gridline is $2$ units.)
 \begin{center}
-\begin{tikzpicture}[scale=0.42]
-  \draw[step=1, linegray!40, very thin] (-1,-1) grid (4,3);
-  \draw[->, semithick, charcoal] (-1,0)--(4,0) node[below right, font=\scriptsize]{Re};
-  \draw[->, semithick, charcoal] (0,-1)--(0,3) node[left, font=\scriptsize]{Im};
-  \fill[forest] (3,2) circle (3.5pt);
-  \draw[forest, dashed] (3,0)--(3,2)--(0,2);
-  \node[charcoal, font=\scriptsize, below] at (3,0){$3$};
-  \node[charcoal, font=\scriptsize, left] at (0,2){$2$};
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-2}{4}{-3}{4}
+  \begin{scope}
+    \clip (-2,-3) rectangle (4,4);
+    \draw[very thick, forest, domain=-1.7:3.9, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x) - 4*(\x)*(\x) + (\x) + 6)/2});
+  \end{scope}
+  \foreach \x in {-1,1,2,3}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
 \end{tikzpicture}
 \end{center}
-\vspace{-4pt}
-The point above is \ans{$3+2i$} (real part \ans{$3$}, imaginary part \ans{$2$}).
+Which three candidates would you test \emph{first}, and why? \ansline{$-1$, $2$, and $3$ --- the graph crosses the $x$-axis at those three values, and all three are on the candidate list.}
+
+\vspace{4pt}
+\textbf{(ii) Shrink the problem.} Once one zero is found, work with the \ans{depressed} polynomial ---
+its degree is one lower, and its own candidate list is \ans{shorter}. When it becomes a quadratic,
+stop hunting and \ans{factor it or use the quadratic formula}.
+
+\vspace{4pt}
+\textbf{(iii) Test cheaply.} The Remainder Theorem evaluates a candidate in a few seconds. Rule out
+the losers by \ans{substituting $r$} and save synthetic division for the winners.
 \end{notesbox}
 
-\begin{notesbox}{3. Add, subtract, and multiply}
-\textbf{Add / subtract:} combine like terms --- reals with reals, $i$-terms with $i$-terms.
-\[ (3+2i)+(5-8i)=\ans{$8-6i$}, \qquad (4-i)-(6-3i)=\ans{$-2+2i$}. \]
-\textbf{Multiply:} distribute (FOIL), then replace $i^2=-1$ and re-collect into $a+bi$.
-\[ (2+3i)(4-i)=8-2i+12i-3i^2=8+10i-3(\ans{$-1$})=\ans{$11+10i$}. \]
-\textbf{Complex conjugate.} The conjugate of $a+bi$ is $a-bi$. Their product is \emph{always real}:
-\[ (a+bi)(a-bi)=a^2-b^2i^2=\ans{$a^2+b^2$}. \qquad (5+2i)(5-2i)=\ans{$29$}. \]
-\end{notesbox}
+\begin{notesbox}{6. Solving a Polynomial Equation}
+``Find the zeros of $f$'' and ``solve $f(x) = 0$'' are the \emph{same task} in different words. The
+solutions of the equation are the \ans{zeros} of the function, which are the
+\ans{$x$-intercepts} of its graph.
 
-\boxguard[20]
-\begin{notesbox}{4. Powers of $i$, and where complex numbers come from}
-Powers of $i$ \textbf{cycle} with period $4$. Fill the cycle, then reduce by taking the exponent mod $4$:
-\[ i^1=i,\quad i^2=\ans{$-1$},\quad i^3=i^2\cdot i=\ans{$-i$},\quad i^4=\ans{$1$},\quad i^5=\ans{$i$}. \]
-\[ i^{23}=\ans{$-i$} \qquad i^{40}=\ans{$1$} \]
-\smallskip
-\textbf{Why we needed them.} Complete the square on the 3.3 leftover $x^2+2x+5=0$:
-\[ (x+1)^2=-4 \ \Rightarrow\ x+1=\pm\ans{$2i$} \ \Rightarrow\ x=\ans{$-1\pm2i$}. \]
-The two solutions $-1\pm2i$ are \textbf{complex conjugates} --- a preview of Lesson 3.5.
+\vspace{5pt}
+\textbf{Together:} Solve $2x^3 + 3x^2 - 8x + 3 = 0$.
+
+\vspace{2pt}
+Candidates: $p$ divides \ans{$3$}, $q$ divides \ans{$2$}, so
+$\dfrac{p}{q} = $ \ans{$\pm 1,\ \pm 3,\ \pm\tfrac12,\ \pm\tfrac32$}
+
+\vspace{3pt}
+Test $x = 1$: \ans{$2+3-8+3 = 0$} \; so $(x-1)$ is a factor.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
+\ans{$1$} & $2$ & $3$ & $-8$ & $3$ \\
+    &     & \ans{$2$} & \ans{$5$} & \ans{$-3$} \\ \cline{2-5}
+    & \ans{$2$} & \ans{$5$} & \ans{$-3$} & \ans{$0$} \\
+\end{tabular}
+\end{center}
+Depressed polynomial: \ans{$2x^2 + 5x - 3$} \; which factors as \ans{$(2x-1)(x+3)$}
+
+\vspace{2pt}
+Completely factored: $2x^3+3x^2-8x+3 = $ \ans{$(x-1)(2x-1)(x+3)$}
+
+\vspace{2pt}
+Solution set: \ans{$\{\,-3,\ \tfrac12,\ 1\,\}$} \; --- and notice one solution is a fraction, which the divisors of
+$3$ alone would never have produced.
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{Simplify. Write every answer in $a+bi$ form.}
-\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
-  \item $\sqrt{-45}$
-    \begin{work}
-      \sqrt{-45} &= i\sqrt{45} \\
-                 &= 3i\sqrt{5}
-    \end{work}
-  \item $(6-i)+(-2+7i)$
-    \begin{work}
-      (6-i)+(-2+7i) &= (6-2)+(-1+7)i \\
-                    &= 4+6i
-    \end{work}
-  \item $(3+i)(2-5i)$
-    \begin{work}
-      (3+i)(2-5i) &= 6-15i+2i-5i^2 \\
-                  &= 6-13i-5(-1) \\
-                  &= 11-13i
-    \end{work}
-  \item $i^{31}$
-    \begin{work}
-      31 &= 4(7)+3 \\
-      i^{31} &= i^3 = -i
-    \end{work}
+\textbf{A. Run the whole workflow.} Solve $2x^3 - 9x^2 + 7x + 6 = 0$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Candidates: \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6,\ \pm\tfrac12,\ \pm\tfrac32$}
+  \item A zero that works: $r = $ \ans{$2$} \quad (show your test: \ans{$16-36+14+6=0$})
+  \item Depressed polynomial after dividing: \ans{$2x^2 - 5x - 3$}
+  \item Completely factored: \ans{$(x-2)(2x+1)(x-3)$}
+  \item Solutions: \ans{$x = -\tfrac12,\ 2,\ 3$}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{B. The word ``rational'' is doing real work.} Let $k(x) = x^3 - x^2 - 2x + 2$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt, start=6]
+  \item Candidates: \ans{$\pm 1,\ \pm 2$} \quad Which one is a zero? \ans{$1$}
+  \item Divide it out. Depressed polynomial: \ans{$x^2 - 2$}
+  \item Solve that quadratic: $x = $ \ans{$\pm\sqrt{2}$} \quad Are those on your candidate list?
+        \ans{No}
+  \item How many real zeros does $k$ have in all? \ans{$3$} \; Explain why the Rational Root
+        Theorem could never have listed two of them. \ansline{$\pm\sqrt2$ are irrational --- they cannot be written as a fraction $\frac{p}{q}$ of integers, and the theorem only ever produces rational candidates.}
+  \item \textbf{Looking ahead.} Suppose a different cubic's depressed polynomial had come out
+        $x^2 + 4$. How many \emph{real} zeros would that quadratic contribute? \ans{$0$} \;
+        What kind of numbers would its solutions be? \ans{imaginary ($\pm 2i$)} \; That is Lesson 3.5.
 \end{enumerate}
 \end{practicebox}
+
+\begin{teachernote}
+\textbf{Pacing.} Sections 1--3 are the theorem and the bookkeeping; budget about fifteen minutes and
+do not rush Section 3, because \emph{building the list correctly} is what most students get wrong on
+the test. Sections 4 and 6 are the same workflow twice --- once for ``find the zeros,'' once for
+``solve the equation'' --- and the point of doing both is that students recognize them as one task.
+If time runs short, cut Section 5(iii), never Section 5(i).
+
+\vspace{3pt}
+\textbf{The three errors to pre-empt.} (1) \emph{The fraction upside down} --- constant over leading
+coefficient, always. A student who lists $\pm1,\pm2,\pm4$ for $g(x)=4x^3-4x^2-x+1$ has flipped it;
+ask them to check whether $4$ could possibly be a zero (it is not remotely close). (2) \emph{Losing
+the $\pm$} --- half the list disappears, and in Section 4 the only zero found by testing is negative.
+(3) \emph{Duplicates and unreduced fractions} --- $\tfrac22$ and $\tfrac63$ are already on the list;
+this is why the Warm-Up made them reduce by hand.
+
+\vspace{3pt}
+\textbf{The moment that matters} is Section 2's ``why.'' Students accept the theorem as a rule, but
+the one-minute argument makes it inevitable: a zero $\frac{p}{q}$ means a factor $(qx-p)$, all the
+$q$'s multiply to the leading coefficient and all the $p$'s multiply to the constant term, so
+neither has anywhere to hide. Run it on the Warm-Up's $(x-3)(2x-1)(x+2)$ live, on the board.
+
+\vspace{3pt}
+\textbf{Practice B is the bridge to Lesson 3.5} and should not be cut. Item 8's $\pm\sqrt2$ makes
+``rational'' a real restriction rather than a word in the theorem's name, and item 10 puts $x^2+4$ on
+the table one day before the Fundamental Theorem of Algebra explains what to do with it. Leave item
+10 unresolved --- students only need to notice that the depressed quadratic can run out of real
+answers.
+\end{teachernote}
 
 \end{document}

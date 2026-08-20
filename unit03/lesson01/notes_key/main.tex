@@ -1,194 +1,217 @@
-%! Graphing Quadratic Functions & Transformations — Unit 3, Lesson 3.1 — Guided Notes (Answer Key)
+%! Operations with Polynomials — Unit 3, Lesson 3.1 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
-\newcommand{\vocabans}[2]{%
-  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.1}{Guided Notes --- Answer Key}
+\namedateperiod
 
-\vspace{0.10in}
+\vspace{0.08in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item read a parabola as \emph{transformations} of the parent $y=x^2$: $f(x)+k$, $f(x-h)$, and $a\,f(x)$;
-  \item find the \emph{vertex}, \emph{axis}, \emph{intercepts}, and \emph{max/min} from a quadratic in \emph{vertex}, \emph{standard}, or \emph{intercept} form;
-  \item use those features to \emph{graph} a quadratic or match it to its graph, and convert between forms.
+  \item write a polynomial in \emph{standard form} and name its \emph{degree}, \emph{leading coefficient}, and number of \emph{terms};
+  \item \emph{add} and \emph{subtract} polynomials by combining like terms, distributing a subtraction to \emph{every} term;
+  \item \emph{multiply} polynomials in one and two variables and apply the \emph{special products} $(a\pm b)^2$ and $(a+b)(a-b)$;
+  \item predict a product's \emph{degree} and \emph{leading coefficient} and state the \emph{end behavior} they force.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.06in}
+\vspace{0.05in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}
-\vocabans{Vertex form}{$f(x)=a(x-h)^2+k$; the vertex is $(h,k)$ and the axis of symmetry is $x=h$}
-\vocabans{Standard form}{$f(x)=ax^2+bx+c$; the $y$-intercept is $(0,c)$ and the axis is $x=-\frac{b}{2a}$}
-\vocabans{Intercept (factored) form}{$f(x)=a(x-p)(x-q)$; the zeros are $x=p$ and $x=q$, and the axis is halfway between them}
-\vocabans{Horizontal shift $f(x-h)$}{slides the graph right if $h>0$, left if $h<0$ --- opposite the sign inside the parentheses}
-\vocabans{Vertical stretch / reflection $a\,f(x)$}{narrower if $|a|>1$, wider if $0<|a|<1$; reflects over the $x$-axis if $a<0$}
+\vspace{2pt}
+\termblanklong{Standard form}
+\ansline{Terms written from the highest power down to the constant: $a_nx^n+\dots+a_1x+a_0$.}
+\termblanklong{Like terms}
+\ansline{Terms with identical variable parts --- same variables, same exponents. Only like terms combine.}
+\termblanklong{Monomial / binomial / trinomial}
+\ansline{A polynomial with one, two, or three terms.}
+\termblanklong{Degree of a product}
+\ansline{$\deg(fg) = \deg f + \deg g$ --- degrees add, and the leading coefficients multiply.}
+\termblanklong{Special products}
+\ansline{$(a+b)^2 = a^2+2ab+b^2$; \; $(a-b)^2 = a^2-2ab+b^2$; \; $(a+b)(a-b) = a^2-b^2$.}
 \end{vocabbox}
 
 \begin{hookbox}
-These three equations are all \textbf{the same parabola}:
-\[ f(x)=x^2-2x-3 \qquad f(x)=(x-1)^2-4 \qquad f(x)=(x+1)(x-3). \]
+Yesterday we used \emph{two} names for the same curve:
+\[
+  g(x) = (x-1)^2(x+2) \qquad\text{and}\qquad g(x) = x^3 - 3x + 2 .
+\]
+Check a few inputs in \emph{both} forms:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|}
+\hline
+$x$ & $(x-1)^2(x+2)$ & $x^3-3x+2$ \\ \hline
+$0$ & \ans{2} & \ans{2} \\ \hline
+$2$ & \ans{4} & \ans{4} \\ \hline
+$-2$ & \ans{0} & \ans{0} \\ \hline
+\end{tabular}
+\end{center}
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Which one shows the \textbf{vertex} at a glance? \ansline{$(x-1)^2-4$ --- vertex form, vertex $(1,-4)$.}
-  \item Which one shows the \textbf{zeros} at a glance? \ansline{$(x+1)(x-3)$ --- intercept form, zeros $x=-1$ and $x=3$.}
+  \item Agreeing at three points is good evidence. Is it \emph{proof} that the two forms are the same function? Why or why not?
+        \ansline{No --- many different curves can pass through the same three points. Matching at finitely many inputs never proves two expressions agree everywhere.}
+  \item What would actually prove it?
+        \ansline{Multiplying the factored form out and showing it becomes $x^3-3x+2$ term for term.}
 \end{itemize}
-Each form is cut to show off a different feature. Today we read all three --- and use them to graph.
+Each costume is useful: the \textbf{factored} form hands you the \emph{zeros}; the \textbf{standard}
+form hands you the \emph{degree} and \emph{leading coefficient}, hence the \emph{end behavior}. Today
+we learn to travel from the first to the second.
 \end{hookbox}
 
-\boxguard[22]
-\begin{notesbox}{1. The Parent $y=x^2$ and Its Transformations}
-Every parabola is the parent $y=x^2$ after some \textbf{shifts}, \textbf{stretches}, and
-\textbf{reflections}. Track the parent's anchor point $(2,4)$ and its vertex $(0,0)$ through each move.
+\begin{notesbox}{1. Naming a Polynomial}
+Always put the polynomial in \textbf{standard form} first --- powers from \ans{highest} to
+\ans{lowest} --- because every other name depends on it.
+
+\vspace{3pt}
+Rewrite $-5x^2 + 7x^4 - 3 + x$ in standard form: \ans{$7x^4 - 5x^2 + x - 3$}
+
+\vspace{3pt}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{Degree:} \ans{4} \qquad \textbf{Leading coefficient:} \ans{7} \qquad
+        \textbf{Constant term:} \ans{$-3$}
+  \item \textbf{Number of terms:} \ans{4}, so it is a (monomial / binomial / trinomial / none of
+        these): \ans{none of these}
+  \item In \emph{two} variables, the degree of a \emph{term} is the \textbf{sum} of its exponents. So
+        $-7x^2y^3$ has degree \ans{5}.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{2. Adding \& Subtracting: Collecting, Not Creating}
+\textbf{Like terms} have the \emph{same} variables raised to the \emph{same} exponents. So $3x^2$ and
+$3x^3$ \ans{do not} combine.
+
+\vspace{4pt}
+\textbf{Add.} $(3x^3 - 5x + 2) + (x^3 + 4x^2 - 7) = $ \ans{$4x^3 + 4x^2 - 5x - 5$}
+
+\vspace{5pt}
+\textbf{Subtract --- the whole lesson in one move.} A minus sign in front of a parenthesis is a
+factor of $-1$, so it changes the sign of \ans{every} term inside.
+
+\vspace{3pt}
+$(3x^3 - 5x + 2) - (x^3 + 4x^2 - 7)$
+
+\vspace{2pt}
+\emph{Step 1 --- rewrite with every sign changed:} \; $3x^3 - 5x + 2$ \ans{$-\,x^3 - 4x^2 + 7$}
+
+\vspace{2pt}
+\emph{Step 2 --- collect like terms:} \ans{$2x^3 - 4x^2 - 5x + 9$}
+
+\vspace{5pt}
+\textbf{A degree surprise.} $(x^4 + 2x) - (x^4 - 5) = $ \ans{$2x + 5$}, which has degree
+\ans{1} --- not $4$! The leading terms \ans{cancel}, so a sum or difference has degree
+\emph{at most} the larger of the two degrees.
+\end{notesbox}
+
+\begin{notesbox}{3. Multiplying: Every Term Times Every Term}
+One rule --- the \textbf{distributive property} --- in three sizes. Remember: coefficients
+\ans{multiply}, exponents \ans{add}.
+
+\vspace{4pt}
+\textbf{(a) Monomial $\times$ polynomial.} \; $-2x^2(3x^3 - 4x + 6) = $ \ans{$-6x^5 + 8x^3 - 12x^2$}
+
+\vspace{5pt}
+\textbf{(b) Binomial $\times$ binomial} (four products --- ``FOIL'' is just a name for the same
+distribution). \; $(2x - 5)(3x + 4)$
+
+\vspace{2pt}
+Four products: \ans{$6x^2$} $+$ \ans{$8x$} $+$ \ans{$(-15x)$} $+$ \ans{$(-20)$}
+
+\vspace{2pt}
+Collected: \ans{$6x^2 - 7x - 20$}
+
+\vspace{5pt}
+\textbf{(c) Binomial $\times$ trinomial} (six products --- use the box so nothing is dropped).
+\; $(x + 3)(x^2 - 2x + 4)$
 \begin{center}
-\begin{tikzpicture}[scale=0.42]
-  % Parent
-  \begin{scope}
-    \lgrid{-3}{3}{-1}{5}
-    \begin{scope}\clip (-3,-1) rectangle (3,5);
-      \draw[very thick, forest, domain=-2.2:2.2, samples=60, smooth] plot (\x,{(\x)*(\x)});
-    \end{scope}
-    \fill[charcoal] (0,0) circle (3pt) node[above left, font=\scriptsize]{$(0,0)$};
-    \node[charcoal, font=\scriptsize] at (0,-2){parent $y=x^2$};
-  \end{scope}
-  % Shifted g(x) = (x-1)^2 - 4
-  \begin{scope}[xshift=10cm]
-    \lgrid{-3}{5}{-5}{3}
-    \draw[navy, dashed, semithick] (1,-5)--(1,3);
-    \begin{scope}\clip (-3,-5) rectangle (5,3);
-      \draw[very thick, forest, domain=-1.2:3.2, samples=70, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
-    \end{scope}
-    \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{$(1,-4)$};
-    \node[charcoal, font=\scriptsize] at (1,-6.4){$g(x)=(x-1)^2-4$};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-Fill in the effect of each change and where the vertex $(0,0)$ lands:
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X l@{}}
-\textbf{Change to $y=x^2$} & \textbf{Effect on the graph} & \textbf{Vertex $\to$} \\
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|c|c|c|c|}
 \hline
-$f(x)+k$ & shifts \ans{up} ($k>0$) or down ($k<0$) & $(0,\ \textcolor{keyred}{\mathbf{k}})$ \\
-$f(x-h)$ & shifts \ans{right} $h$ units (careful: sign flips!) & $(\textcolor{keyred}{\mathbf{h}},\ 0)$ \\
-$a\,f(x)$, $a>0$ & \ans{narrower} if $a>1$, wider if $0<a<1$ & $(0,0)$ \\
-$-f(x)$ & reflects over the \ans{$x$}-axis (opens down) & $(0,0)$ \\
-\end{tabularx}
+$\times$ & $x^2$ & $-2x$ & $+4$ \\ \hline
+$x$   & \ans{$x^3$} & \ans{$-2x^2$} & \ans{$4x$} \\ \hline
+$+3$  & \ans{$3x^2$} & \ans{$-6x$} & \ans{$12$} \\ \hline
+\end{tabular}
 \end{center}
-Put them together: the graph of $\;a(x-h)^2+k\;$ is the parent moved so its vertex is at
-$(\textcolor{keyred}{\mathbf{h}},\ \textcolor{keyred}{\mathbf{k}})$.
+Collect like terms: \ans{$x^3 + x^2 - 2x + 12$}
+
+\vspace{5pt}
+\textbf{(d) Two variables.} \; $(3x + 2y)(x - 4y) = $ \ans{$3x^2 - 10xy - 8y^2$}
+
+\vspace{2pt}
+The two middle products, $-12xy$ and $+2xy$, are like terms because they have the
+\ans{same variable part, $xy$}.
+
+\vspace{5pt}
+\textbf{(e) The shape of a product --- before you expand.} In $(2x^3 - 1)(-3x^4 + x)$, only the two
+\emph{leading} terms can make the highest power: $2x^3 \cdot (-3x^4) = $ \ans{$-6x^7$}.
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item Degrees \ans{add}: \; $3 + 4 = $ \ans{7}. \quad Leading coefficients
+        \ans{multiply}: \; $2 \cdot (-3) = $ \ans{$-6$}.
+  \item So (Lesson 3.0) the degree is \emph{odd} and the leading coefficient is \emph{negative}:
+        the left arm goes \ans{up} and the right arm goes \ans{down}.
+\end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{2. Vertex Form: $f(x)=a(x-h)^2+k$}
-Vertex form \emph{is} the transformations written down. Read the vertex right off it. For
-$f(x) = (x-1)^2 - 4$:
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{5}{-5}{3}
-  \draw[navy, dashed, semithick] (1,-5)--(1,3);
-  \node[navy, font=\scriptsize, right] at (1.05,2.4){axis $x=1$};
-  \begin{scope}\clip (-3,-5) rectangle (5,3);
-    \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
-  \end{scope}
-  \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{vertex $(1,-4)$};
-  \fill[charcoal] (0,-3) circle (3pt) node[left, font=\scriptsize]{$(0,-3)$};
-  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$(-1,0)$};
-  \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$(3,0)$};
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
-  \item Match to $a(x-h)^2+k$: $a=\textcolor{keyred}{\mathbf{1}}$, $h=\textcolor{keyred}{\mathbf{1}}$, $k=\textcolor{keyred}{\mathbf{-4}}$.
-  \item \textbf{Vertex} $(h,k) = (\textcolor{keyred}{\mathbf{1}},\ \textcolor{keyred}{\mathbf{-4}})$; \textbf{axis of symmetry} $x=\textcolor{keyred}{\mathbf{1}}$.
-  \item Since $a=1>0$, it opens \ans{up}, so the vertex is a \textbf{minimum} with min value $\textcolor{keyred}{\mathbf{-4}}$.
-  \item \textbf{Check it is the same curve.} Expand: $(x-1)^2-4 = \ans{$x^2-2x-3$}$ --- standard form!
-\end{enumerate}
-\end{notesbox}
+\begin{notesbox}{4. Special Products --- Worth Knowing on Sight}
+Derive them once, then recognize them.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item \textbf{Square of a sum:} $(a+b)^2 = (a+b)(a+b) = $ \ans{$a^2 + 2ab + b^2$}
+  \item \textbf{Square of a difference:} $(a-b)^2 = $ \ans{$a^2 - 2ab + b^2$}
+  \item \textbf{Difference of squares:} $(a+b)(a-b) = $ \ans{$a^2 - b^2$} \; --- the two middle terms
+        \ans{cancel}.
+\end{itemize}
 
-\boxguard[22]
-\begin{notesbox}{3. Standard Form: $f(x)=ax^2+bx+c$}
-Here the vertex is hidden. Two facts unlock it: the $y$-intercept is $(0,c)$, and the axis of symmetry
-is $x=-\dfrac{b}{2a}$. For $f(x)=x^2-6x+5$ ($a=1,\ b=-6,\ c=5$):
-\begin{center}
-\begin{minipage}{0.52\linewidth}
-\begin{enumerate}[leftmargin=1.6em, itemsep=4pt]
-  \item \textbf{Axis:} $x=-\dfrac{b}{2a}=-\dfrac{-6}{2(1)}=\textcolor{keyred}{\mathbf{3}}$.
-  \item \textbf{Vertex:} substitute that $x$: $f(3)=(3)^2-6(3)+5=\textcolor{keyred}{\mathbf{-4}}$, so the vertex is $(\textcolor{keyred}{\mathbf{3}},\ \textcolor{keyred}{\mathbf{-4}})$.
-  \item \textbf{$y$-intercept:} $(0,\ \textcolor{keyred}{\mathbf{5}})$.
-  \item Opens \ans{up} ($a>0$); range \ans{$y\ge -4$}.
-\end{enumerate}
-\end{minipage}%
-\begin{minipage}{0.46\linewidth}\centering
-\begin{tikzpicture}[scale=0.45]
-  \lgrid{-1}{7}{-5}{6}
-  \draw[navy, dashed, semithick] (3,-5)--(3,6);
-  \begin{scope}\clip (-1,-5) rectangle (7,6);
-    \draw[very thick, forest, domain=-0.2:6.2, samples=80, smooth] plot (\x,{(\x)*(\x) - 6*(\x) + 5});
-  \end{scope}
-  \fill[charcoal] (3,-4) circle (3pt);
-  \fill[charcoal] (0,5) circle (3pt);
-  \fill[charcoal] (1,0) circle (3pt);
-  \fill[charcoal] (5,0) circle (3pt);
-\end{tikzpicture}
-\end{minipage}
-\end{center}
-\emph{Why $-\tfrac{b}{2a}$?} The axis sits \emph{halfway} between any two symmetric points --- including
-the two zeros --- so it is their average. That midpoint is exactly $-\tfrac{b}{2a}$.
+\vspace{4pt}
+\textbf{The trap.} $(x+4)^2$ is \emph{not} $x^2 + 16$. Test it at $x = 1$: \;
+$(1+4)^2 = $ \ans{25} \; but \; $1^2 + 16 = $ \ans{17}. \; The missing piece is the
+\textbf{middle term} \ans{$8x$}. Correct answer: \ans{$x^2 + 8x + 16$}
+
+\vspace{4pt}
+Now use the identities:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $(3x - 4)^2 = $ \ans{$9x^2 - 24x + 16$}
+  \item $(2x + 7)(2x - 7) = $ \ans{$4x^2 - 49$}
+  \item $(5x - 3y)^2 = $ \ans{$25x^2 - 30xy + 9y^2$}
+\end{itemize}
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{A. Match each vertex-form equation to its graph} by reading the vertex $(h,k)$ and the opening
-direction. Write A, B, or C.
-\begin{center}
-\begin{tikzpicture}[scale=0.38]
-  % A: (x-2)^2 - 1  vertex (2,-1) up
-  \begin{scope}
-    \lgrid{-1}{5}{-2}{4}
-    \begin{scope}\clip (-1,-2) rectangle (5,4);
-      \draw[very thick, forest, domain=0.3:3.7, samples=60, smooth] plot (\x,{(\x-2)*(\x-2) - 1});
-    \end{scope}
-    \fill[charcoal] (2,-1) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (2,-3.2){\textbf{A}};
-  \end{scope}
-  % B: -(x-1)^2 + 3  vertex (1,3) down
-  \begin{scope}[xshift=8cm]
-    \lgrid{-2}{4}{-2}{4}
-    \begin{scope}\clip (-2,-2) rectangle (4,4);
-      \draw[very thick, forest, domain=-1.2:3.2, samples=60, smooth] plot (\x,{-1*(\x-1)*(\x-1) + 3});
-    \end{scope}
-    \fill[charcoal] (1,3) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (1,-3.2){\textbf{B}};
-  \end{scope}
-  % C: (x+2)^2 + 1  vertex (-2,1) up
-  \begin{scope}[xshift=16cm]
-    \lgrid{-5}{1}{-1}{6}
-    \begin{scope}\clip (-5,-1) rectangle (1,6);
-      \draw[very thick, forest, domain=-4.2:-0.2, samples=60, smooth] plot (\x,{(\x+2)*(\x+2) + 1});
-    \end{scope}
-    \fill[charcoal] (-2,1) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (-2,-2.2){\textbf{C}};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.9em, itemsep=3pt]
-  \item $y=(x-2)^2-1 \Rightarrow$ vertex \ans{$(2,-1)$}, opens \ans{up}, graph \ans{A}
-  \item $y=-(x-1)^2+3 \Rightarrow$ vertex \ans{$(1,3)$}, opens \ans{down}, graph \ans{B}
-  \item $y=(x+2)^2+1 \Rightarrow$ vertex \ans{$(-2,1)$}, opens \ans{up}, graph \ans{C}
+\textbf{Back to the Hook.} Prove that $(x-1)^2(x+2)$ really is $x^3 - 3x + 2$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item First square the binomial: $(x-1)^2 = $ \ans{$x^2 - 2x + 1$} \; (special product --- don't forget the
+        middle term).
+  \item Now multiply that trinomial by $(x+2)$. Six products:
+        \begin{center}
+        \renewcommand{\arraystretch}{1.9}
+        \begin{tabular}{|c|c|c|c|}
+        \hline
+        $\times$ & $x^2$ & $-2x$ & $+1$ \\ \hline
+        $x$   & \ans{$x^3$} & \ans{$-2x^2$} & \ans{$x$} \\ \hline
+        $+2$  & \ans{$2x^2$} & \ans{$-4x$} & \ans{$2$} \\ \hline
+        \end{tabular}
+        \end{center}
+  \item Collect like terms and write the result in standard form: \ans{$x^3 - 3x + 2$}
+  \item Does it match $x^3 - 3x + 2$? \ans{Yes} \; Its degree is \ans{3} and its leading
+        coefficient is \ans{1}, so the arms go \ans{left down, right up} --- exactly the graph you read in
+        Lesson 3.0.
 \end{enumerate}
-\textbf{B. Intercept form.} For $q(x)=(x+1)(x-3)$: zeros $x=\ans{$-1$}$ and $x=\ans{$3$}$; axis
-$x=\ans{$1$}$; vertex $\ans{$(1,-4)$}$.
 \end{practicebox}
+
+\begin{teachernote}
+The $-2x^2$ and $+2x^2$ cells in the practice box are the payoff --- they cancel, which is precisely
+why the standard form has \emph{no} $x^2$ term. Point at that cancellation explicitly; students who
+expect every box cell to survive are the ones who later mis-collect. In section~2, the ``degree
+surprise'' is worth a full minute: it is the only place all year where a degree drops, and it makes
+the contrast with multiplication (where degrees always add) land. If time is short, section~4's
+two-variable item $(5x-3y)^2$ can move to homework, but do \emph{not} cut the $x=1$ numeric test of
+$(x+4)^2$ --- it is the cheapest permanent fix for that error.
+\end{teachernote}
 
 \end{document}

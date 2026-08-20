@@ -1,4 +1,4 @@
-%! Characteristics of Rational Functions — Unit 5, Lesson 5.0 — Homework (Answer Key)
+%! Characteristics of Radical Functions — Unit 5, Lesson 5.0 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -7,6 +7,10 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)+1});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)+1});}
 
 \begin{document}
 
@@ -16,129 +20,140 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show how you read each feature. Write every asymptote as an \textbf{equation}.
+Show how you read each feature. Write every domain and range in \textbf{interval notation}.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
-  \item \textbf{From the equation only.} Factor where you can, then fill in each row. Write ``none''
-        when there is nothing to report.
+  \item \textbf{From the equation only.} Use the index and the radicand --- no graphing.
     \begin{center}
     \renewcommand{\arraystretch}{1.6}
     \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
     \hline
-    \textbf{Function} & \textbf{Excluded value(s)} & \textbf{Vert.\ asymptote(s)} & \textbf{Hole} & \textbf{Horiz.\ asymptote} \\
+    \textbf{Function} & \textbf{Index: even/odd} & \textbf{Condition on the radicand} & \textbf{Domain} & \textbf{Opens left, right, or both ways?} \\
     \hline
-    \TallMath{\frac{5}{x+3}} & \ans{$x=-3$} & \ans{$x=-3$} & \ans{none} & \ans{$y=0$} \\
-    \TallMath{\frac{4x}{x-6}} & \ans{$x=6$} & \ans{$x=6$} & \ans{none} & \ans{$y=4$} \\
-    \TallMath{\frac{x^2-16}{x+4}} & \ans{$x=-4$} & \ans{none} & \ans{$(-4,-8)$} & \ans{none} \\
-    \TallMath{\frac{x-2}{x^2-x-2}} & \ans{$x=2,\,-1$} & \ans{$x=-1$} & \ans{$\left(2,\tfrac13\right)$} & \ans{$y=0$} \\
+    $\sqrt{x+6}$ & \ans{even} & \ans{$x+6\ge 0$} & \ans{$[-6,\infty)$} & \ans{right} \\
+    $\sqrt[3]{x-4}$ & \ans{odd} & \ans{none} & \ans{$(-\infty,\infty)$} & \ans{both} \\
+    $\sqrt{3x-9}$ & \ans{even} & \ans{$3x-9\ge 0$} & \ans{$[3,\infty)$} & \ans{right} \\
+    $\sqrt{8-4x}$ & \ans{even} & \ans{$8-4x\ge 0$} & \ans{$(-\infty,2]$} & \ans{left} \\
     \hline
     \end{tabularx}
     \end{center}
-    {\small \textbf{Work:} $\dfrac{x^2-16}{x+4}=\dfrac{(x-4)(x+4)}{x+4}=x-4$ ($x\neq-4$), so the hole
-    is at $(-4,-8)$ and the top-heavy degrees ($2>1$) leave no horizontal asymptote.
-    $\dfrac{x-2}{x^2-x-2}=\dfrac{x-2}{(x-2)(x+1)}=\dfrac{1}{x+1}$ ($x\neq2$): $(x-2)$ cancels
-    $\Rightarrow$ hole at $\left(2,\tfrac13\right)$; $(x+1)$ stays $\Rightarrow$ asymptote $x=-1$.}
 
-  \item \textbf{A graph with two asymptotes.} The graph is $m(x) = \dfrac{x-4}{x-2}$.
+  \item \textbf{A square root graph that falls.} The graph is $m(x) = -\sqrt{x}+3$.
     \begin{center}
     \begin{tikzpicture}[scale=0.44]
-      \lgrid{-4}{8}{-4}{6}
-      \draw[navy, dashed, semithick] (2,-4)--(2,6);
-      \draw[navy, dashed, semithick] (-4,1)--(8,1);
+      \lgrid{-2}{11}{-2}{4}
       \begin{scope}
-        \clip (-4,-4) rectangle (8,6);
-        \draw[very thick, forest, domain=-4:1.6, samples=90, smooth]
-          plot (\x,{((\x)-4)/((\x)-2)});
-        \draw[very thick, forest, domain=2.4:8, samples=90, smooth]
-          plot (\x,{((\x)-4)/((\x)-2)});
+        \clip (-2,-2) rectangle (11,4);
+        \draw[very thick, forest, domain=0:11, samples=100, smooth] plot (\x,{3-sqrt(\x)});
       \end{scope}
-      \fill[charcoal] (4,0) circle (3pt) node[below right, font=\scriptsize]{$(4,0)$};
-      \fill[charcoal] (0,2) circle (3pt) node[left, font=\scriptsize]{$(0,2)$};
+      \fill[forest] (0,3) circle (4pt) node[above left, font=\scriptsize]{$(0,3)$};
+      \fill[charcoal] (1,2) circle (3pt);
+      \fill[charcoal] (4,1) circle (3pt) node[above right, font=\scriptsize]{$(4,1)$};
+      \fill[charcoal] (9,0) circle (3pt) node[below right, font=\scriptsize]{$(9,0)$};
     \end{tikzpicture}
     \end{center}
-    Vertical asymptote: \ans{$x=2$} \quad Horizontal asymptote: \ans{$y=1$} \\[3pt]
-    Domain: \ans{$(-\infty,2)\cup(2,\infty)$} \quad Range: \ans{$(-\infty,1)\cup(1,\infty)$} \\[3pt]
-    $x$-intercept: \ans{$(4,0)$} \quad $y$-intercept: \ans{$(0,2)$} \\[3pt]
-    Increasing on: \ans{$(-\infty,2)$} \; and \; \ans{$(2,\infty)$} \\[3pt]
-    End behavior: as $x\to\pm\infty$, $m(x)\to$ \ans{1}
+    Domain: \ans{$[0,\infty)$} \quad Range: \ans{$(-\infty,3]$} \quad Endpoint: \ans{$(0,3)$} \\[3pt]
+    $x$-intercept: \ans{$(9,0)$} \quad $y$-intercept: \ans{$(0,3)$} \\[3pt]
+    Increasing or decreasing on its domain? \ans{decreasing} \\[3pt]
+    Absolute \ans{maximum} of \ans{3} at $x=$ \ans{0}; \; no absolute \ans{minimum} \\[3pt]
+    End behavior: as $x\to+\infty$, $m(x)\to$ \ans{$-\infty$}. \; As $x\to-\infty$:
+    \ans{the graph stops at $x=0$}
 
-  \item \textbf{A graph with a hole.} The graph is $n(x) = \dfrac{x^2-x-6}{x-3}$.
+  \item \textbf{A cube root graph.} The graph is $n(x) = \sqrt[3]{x}+1$.
     \begin{center}
-    \begin{tikzpicture}[scale=0.46]
-      \lgrid{-5}{5}{-3}{7}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-9}{9}{-2}{4}
       \begin{scope}
-        \clip (-5,-3) rectangle (5,7);
-        \draw[very thick, forest] (-5,-3)--(5,7);
+        \clip (-9,-2) rectangle (9,4);
+        \cbrtpos{0}{9}
+        \cbrtneg{-9}{0}
       \end{scope}
-      \draw[forest, very thick, fill=white] (3,5) circle (4.2pt);
+      \fill[charcoal] (-8,-1) circle (3pt) node[below right, font=\scriptsize]{$(-8,-1)$};
+      \fill[charcoal] (-1,0) circle (3pt);
+      \fill[charcoal] (0,1) circle (3pt) node[above left, font=\scriptsize]{$(0,1)$};
+      \fill[charcoal] (8,3) circle (3pt) node[below right, font=\scriptsize]{$(8,3)$};
     \end{tikzpicture}
     \end{center}
-    Factor and simplify: $n(x)=$ \ans{$\frac{(x-3)(x+2)}{x-3}=x+2$}, \; for $x\neq$ \ans{3} \\[3pt]
-    The hole is at \ans{$(3,5)$} \quad Vertical asymptote: \ans{none} \quad Horizontal asymptote:
+    Domain: \ans{$(-\infty,\infty)$} \quad Range: \ans{$(-\infty,\infty)$} \quad Endpoint:
     \ans{none} \\[3pt]
-    Domain: \ans{$(-\infty,3)\cup(3,\infty)$} \quad $x$-intercept: \ans{$(-2,0)$} \quad
-    $y$-intercept: \ans{$(0,2)$}
+    $x$-intercept: \ans{$(-1,0)$} \quad $y$-intercept: \ans{$(0,1)$} \\[3pt]
+    Increasing or decreasing? \ans{increasing} \quad Absolute extrema: \ans{none} \\[3pt]
+    End behavior: as $x\to+\infty$, $n(x)\to$ \ans{$+\infty$}; \; as $x\to-\infty$,
+    $n(x)\to$ \ans{$-\infty$} \\[3pt]
+    The \emph{parent} $y=\sqrt[3]{x}$ is symmetric about the origin. Is $n$? \ans{No} \;
+    Why or why not? \ans{The whole graph was shifted up $1$, so its center of symmetry moved from
+    $(0,0)$ to $(0,1)$. Check: $n(-8)=-1$, but $-n(8)=-3$.}
 
-  \item \textbf{Explain.} A graph may \emph{cross} its horizontal asymptote, but it can \emph{never}
-        cross a vertical asymptote. Explain the difference.
-        \ansline{A vertical asymptote sits at an \emph{excluded input}. There is no point on the graph at}
-        \ansline{that $x$-value at all, so there is nothing there to cross --- the graph can only run alongside it.}
-        \ansline{A horizontal asymptote restricts nothing. It only describes what the \emph{outputs} do at the far ends, so in the middle of the graph an output is free to equal that value, and the curve can pass through the line.}
+  \item \textbf{Explain.} A square root graph always has exactly one absolute extremum, but a cube
+        root graph has none at all. Explain why, using the word \textbf{endpoint}.
+        \ansline{A square root graph has an \textbf{endpoint} and leaves it in only one direction, so
+        that single point is either the highest or the lowest point on the entire graph --- an
+        absolute maximum if the arm falls away from it, an absolute minimum if the arm climbs.\\[3pt]
+        A cube root graph has no endpoint. It runs to $-\infty$ on the left and $+\infty$ on the
+        right, so no point on it is highest or lowest, and it has neither kind of extremum.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Reading a model in context.} After a patient takes one dose of a medication, the concentration
-in the bloodstream (in mg/L) $t$ hours later is modeled by
+\textbf{Reading a model in context.} Accident investigators estimate how fast a car was travelling
+from the length of its skid marks. On dry asphalt, a skid of $d$ feet means the car was going about
 \[
-  C(t) = \frac{5t}{t^2+1}, \qquad t \ge 0 .
+  s(d) = \sqrt{24d} \ \text{ miles per hour.}
 \]
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$t$ (hours) & $0$ & $0.5$ & $1$ & $2$ & $4$ & $8$ \\ \hline
-$C(t)$ (mg/L) & $0$ & $2$ & $2.5$ & $2$ & $\approx 1.18$ & $\approx 0.62$ \\ \hline
+$d$ (feet of skid) & $6$ & $24$ & $54$ & $96$ & $150$ \\ \hline
+$s(d)$ (mph) & $12$ & $24$ & $36$ & $48$ & $60$ \\ \hline
 \end{tabular}
 \end{center}
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Compare the degrees of the numerator and denominator to find the horizontal asymptote.
-        \ans{Numerator degree $1$, denominator degree $2$; bottom-heavy ($n<m$), so the HA is $y=0$.}
-  \item What does that horizontal asymptote \emph{mean} about the medication over a long time?
-        \ans{As hours pass the concentration drops toward $0$ --- the body clears the drug out. It gets arbitrarily small without ever becoming exactly $0$ in the model.}
-  \item From the table, when is the concentration highest, and what is that concentration?
-        \ans{At $t=1$ hour, the concentration peaks at $2.5$ mg/L (an absolute maximum on $t\ge0$).}
-  \item Notice that $C(0)=0$ --- the graph \emph{sits on} its horizontal asymptote at the start. Does
-        that contradict anything from today's lesson?
-        \ans{No. A horizontal asymptote governs only the \emph{far ends}; a graph may touch or cross it elsewhere. Only a \emph{vertical} asymptote can never be touched.}
-  \item The denominator $t^2+1$ is \emph{never} zero, so this rational function has \textbf{no}
-        vertical asymptote and no excluded values at all. Why, then, is the domain written $t\ge 0$?
-        \ansline{The restriction comes from the \emph{context}, not the algebra: $t$ is hours since the dose, and}
-        \ansline{negative time is meaningless here. A rational function is not required to have a vertical asymptote --- only a denominator that can equal zero produces one.}
+  \item Find the domain of $s$ from the radicand. Does the context restrict it any further?
+        \ans{Even index, so $24d\ge 0$, giving $d\ge 0$ --- the domain is $[0,\infty)$. The context agrees exactly: a skid mark cannot have negative length.}
+  \item The graph of $s$ has an endpoint at $(0,0)$. What does that point mean about a car that
+        leaves no skid marks at all?
+        \ans{The formula estimates $0$ mph --- no skid, no speed. That is also the model's honest limit: a car with anti-lock brakes can be moving fast and still leave no skid marks, so $s$ only applies when there \emph{are} marks to measure.}
+  \item A $24$-foot skid means about $24$ mph. To double that estimate to $48$ mph, the table says the
+        skid must be $96$ feet --- \emph{four} times as long, not twice. Explain why, using the shape
+        of a square root graph.
+        \ans{A square root graph flattens as it climbs, so each extra mph costs more and more skid. Since square-rooting undoes squaring, doubling the output requires multiplying the input by $2^2=4$.}
+  \item Solve $s=\sqrt{24d}$ for $d$. Which function family did you get, and what is its relationship
+        to $s(d)$?
+        \ans{Square both sides: $s^2=24d$, so $d=\frac{s^2}{24}$ --- a \textbf{quadratic}. It is the \textbf{inverse} of $s(d)$: one turns skid length into speed, the other turns speed into skid length. Their graphs are reflections over $y=x$, and their domains and ranges are swapped.}
+  \item Your answer to (d) also produces a value of $d$ for \emph{negative} speeds. Why is that half
+        thrown away --- and how is this the same idea as restricting $y=x^2$ to $x\ge 0$ in class
+        today?
+        \ansline{Negative speed is meaningless here, so only $s\ge 0$ is kept. It is the same restriction for the same reason: the full parabola $\frac{s^2}{24}$ sends both $s$ and $-s$ to the}
+        \ansline{same skid length, so it cannot be undone back into a single function. Discarding the $s<0$ half is exactly what makes $\frac{s^2}{24}$ and $\sqrt{24d}$ a genuine inverse pair.}
 \end{enumerate}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 5.1: Simplifying Rational Expressions \& Domain Restrictions.} Today
-you \emph{read} holes and asymptotes off a graph. Next you will do the algebra that produces them:
-factor a rational expression, cancel common factors, and list the restrictions --- always from the
-\textbf{original} denominator. That last habit is the one that will save you in Lesson~5.6, when a
-``solution'' turns out to be an excluded value in disguise.
+\textbf{Coming next --- Lesson 5.1: $n$th Roots \& Rational Exponents.} Today the index decided
+everything --- which inputs are allowed, whether the graph stops or runs forever. Next you will learn
+what an index really \emph{is}: $\sqrt[n]{a}$ written as the exponent $a^{1/n}$, so that
+$a^{m/n}=\sqrt[n]{a^m}$ and every exponent rule you already know suddenly applies to radicals. That
+is also where ``why does an even index refuse a negative?'' gets its full algebraic answer.
 \end{spiralbox}
 
 \begin{teachernote}
-\textbf{Item 1} is the lesson's transfer task: rows 3 and 4 cannot be answered without factoring
-first, and both are designed to catch the habit of announcing a vertical asymptote at every excluded
-value. Row 4 is the hardest --- two excluded values, only one asymptote --- and the hole's $y$-value
-$\tfrac13$ must come from the \emph{simplified} expression $\frac{1}{x+1}$, not the original.
-\textbf{Item 3} is the mirror of Activity Tier~A: the graph is a plain line, so students who wrote
-``vertical asymptote'' anywhere in it need the cancel test re-taught before 5.1. \textbf{Item 4} is
-the conceptual item worth the most discussion; accept any answer that distinguishes a restriction on
-\emph{inputs} from a description of \emph{outputs}.
+\textbf{Item 1} is the lesson's transfer task. Row~2 is the one to check first: students who write a
+restriction for $\sqrt[3]{x-4}$ have learned ``radical $\Rightarrow$ restricted domain'' instead of
+``\emph{even index} $\Rightarrow$ restricted domain.'' Row~4 is the sign-flip; $x\ge 2$ is the
+predictable wrong answer, and it is the same slip as Exit Ticket item~3 distractor~A.
 
-\textbf{Extension} part (e) is deliberately unsettling and worth two minutes of class time: a rational
-function with \emph{no} vertical asymptote at all. It blocks the overgeneralization ``every rational
-function has a vertical asymptote,'' which otherwise resurfaces in 5.5.
+\textbf{Items 2 and 3} are deliberately a matched pair --- same questions, opposite answers on almost
+every line. Item~2's absolute \emph{maximum} is the one students miss, because the parent trained them
+to expect a minimum; the fix is to ask which way the arm travels from the endpoint, not what the graph
+``usually'' does. Item~3's last part (symmetry) is the only question of the set that requires
+algebra rather than reading, and partial credit is fine for anyone who says ``it shifted up'' without
+testing a value.
+
+\textbf{Extension} (b) is worth class time: the honest answer includes the model's limitation, not
+just the arithmetic. Parts (d)--(e) are the Lesson~5.7 seed, and are the same reasoning the Activity's
+Tier~E built from a falling-object model --- students who did Tier~E should recognize the structure
+immediately, which is the point.
 \end{teachernote}
 
 \end{document}

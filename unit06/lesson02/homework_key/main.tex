@@ -1,10 +1,17 @@
-%! Simplifying Radicals; Adding \& Subtracting — Unit 6, Lesson 6.2 — Homework (Answer Key)
+%! Graphing Exponential Functions and Transformations — Unit 6, Lesson 6.2 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
-\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax
+% ln2 = 0.693147   ln(1/2) = -0.693147
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+\newcommand{\hasym}[3]{\draw[navy, dashed, semithick] (#1,#3)--(#2,#3);}
 
 \begin{document}
 
@@ -14,189 +21,210 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Assume all variables represent \textbf{positive} real numbers. No calculator except where a problem
-asks for a decimal.
+Find the asymptote before the range, every time. Give ranges in interval notation.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Simplify each numeric radical.} Watch the index --- it tells you the group size.
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{Straight from the equation.} Fill in every cell.
     \begin{center}
-    \renewcommand{\arraystretch}{1.9}
-    \begin{tabularx}{\linewidth}{@{}X X X X@{}}
-    (a) \; $\sqrt{28}=$ \ans{$2\sqrt7$} & (b) \; $\sqrt{96}=$ \ans{$4\sqrt6$} &
-    (c) \; $\sqrt{147}=$ \ans{$7\sqrt3$} & (d) \; $\sqrt{242}=$ \ans{$11\sqrt2$} \\
-    (e) \; $\sqrt[3]{40}=$ \ans{$2\sqrt[3]{5}$} & (f) \; $\sqrt[3]{-135}=$ \ans{$-3\sqrt[3]{5}$} &
-    (g) \; $\sqrt[4]{80}=$ \ans{$2\sqrt[4]{5}$} & (h) \; $\sqrt[5]{64}=$ \ans{$2\sqrt[5]{2}$} \\
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Asymptote} & \textbf{Range} & \textbf{$y$-intercept} & \textbf{Growth or decay?} \\
+    \hline
+    $y=2^{x}+4$ & \ans{$y=4$} & \ans{$(4,\infty)$} & \ans{$(0,5)$} & \ans{growth} \\
+    $y=5(3)^{x}$ & \ans{$y=0$} & \ans{$(0,\infty)$} & \ans{$(0,5)$} & \ans{growth} \\
+    $y=\left(\frac{1}{2}\right)^{x}-2$ & \ans{$y=-2$} & \ans{$(-2,\infty)$} & \ans{$(0,-1)$} & \ans{decay} \\
+    $y=-4^{x}$ & \ans{$y=0$} & \ans{$(-\infty,0)$} & \ans{$(0,-1)$} & \ans{growth ($b=4$); falls since $a<0$} \\
+    $y=2^{\,x-3}$ & \ans{$y=0$} & \ans{$(0,\infty)$} & \ans{$\left(0,\frac18\right)$} & \ans{growth} \\
+    \hline
     \end{tabularx}
     \end{center}
-    \emph{Work:} (a) $4\cdot7$. \; (b) $16\cdot6$. \; (c) $49\cdot3$. \; (d) $121\cdot2$. \;
-    (e) $8\cdot5$. \; (f) $-27\cdot5$ --- an odd index accepts a negative radicand (Lesson 6.1). \;
-    (g) $16\cdot5$. \; (h) $32\cdot2$.
+    Which rows in that table have an $x$-intercept? \ans{Only the third --- it is the only row where $a$ and $k$ have opposite signs.}
 
-  \item \textbf{Simplify each algebraic radical.} Divide the exponent by the index: quotient out,
-        remainder in.
+  \item \textbf{Say what moved.} Each function below is a transformation of the parent $y=3^{x}$.
     \begin{center}
-    \renewcommand{\arraystretch}{2.0}
-    \begin{tabularx}{\linewidth}{@{}X X X@{}}
-    (a) \; $\sqrt{x^{11}}=$ \ans{$x^{5}\sqrt{x}$} & (b) \; $\sqrt{20a^{3}}=$ \ans{$2a\sqrt{5a}$} &
-    (c) \; $\sqrt{72m^{4}n^{5}}=$ \ans{$6m^{2}n^{2}\sqrt{2n}$} \\
-    (d) \; $\sqrt[3]{24p^{7}}=$ \ans{$2p^{2}\sqrt[3]{3p}$} &
-    (e) \; $\sqrt[3]{-16c^{9}}=$ \ans{$-2c^{3}\sqrt[3]{2}$} &
-    (f) \; $\sqrt{\dfrac{18y^{6}}{25}}=$ \ans{$\dfrac{3y^{3}\sqrt2}{5}$} \\
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X l@{}}
+    \hline
+    \textbf{Function} & \textbf{The move(s), in words} & \textbf{New asymptote} \\
+    \hline
+    $y=3^{x}-7$ & \ans{down $7$} & \ans{$y=-7$} \\
+    $y=3^{\,x+4}$ & \ans{left $4$} & \ans{$y=0$} \\
+    $y=\frac{1}{2}\cdot 3^{x}$ & \ans{vertical compression by a factor of $\frac12$} & \ans{$y=0$} \\
+    $y=3^{-x}$ & \ans{reflect over the $y$-axis; same as $\left(\frac13\right)^{x}$, so decay} & \ans{$y=0$} \\
+    $y=-3^{x}+2$ & \ans{reflect over the $x$-axis, then up $2$} & \ans{$y=2$} \\
+    \hline
     \end{tabularx}
     \end{center}
-    \emph{Work:} (a) $11\div2$ is $5$ r$1$. \; (b) $20=4\cdot5$, $a^{3}=a^{2}\cdot a$. \;
-    (c) $72=36\cdot2$, $m^{4}$ comes out whole, $n^{5}=n^{4}\cdot n$. \;
-    (d) $24=8\cdot3$, $7\div3$ is $2$ r$1$. \; (e) $-16=-8\cdot2$, $9\div3$ is $3$ r$0$. \;
-    (f) $\sqrt{18}=3\sqrt2$ over $\sqrt{25}=5$, and $y^{6}$ comes out whole.
 
-  \item \textbf{Add or subtract.} Simplify every term first. If a sum cannot be combined, say so ---
-        but only after you have simplified.
+  \item \textbf{Match.} Each graph is a transformation of $y=2^{x}$; the dashed line is its asymptote.
     \begin{center}
-    \renewcommand{\arraystretch}{2.0}
-    \begin{tabularx}{\linewidth}{@{}X X@{}}
-    (a) \; $6\sqrt{11}-2\sqrt{11}=$ \ans{$4\sqrt{11}$} &
-    (b) \; $\sqrt{18}+\sqrt{32}=$ \ans{$7\sqrt2$} \\
-    (c) \; $\sqrt{50}-\sqrt{8}+\sqrt{2}=$ \ans{$4\sqrt2$} &
-    (d) \; $2\sqrt{63}+4\sqrt{28}=$ \ans{$14\sqrt7$} \\
-    (e) \; $\sqrt{20}+\sqrt{12}=$ \ans{$2\sqrt5+2\sqrt3$ --- cannot combine} &
-    (f) \; $\sqrt[3]{54}-\sqrt[3]{2}=$ \ans{$2\sqrt[3]{2}$} \\
-    (g) \; $\sqrt{45x}-\sqrt{20x}=$ \ans{$\sqrt{5x}$} &
-    (h) \; $\sqrt{8}+\sqrt[3]{8}=$ \ans{$2\sqrt2+2$ --- cannot combine} \\
-    \end{tabularx}
+    \begin{tikzpicture}[scale=0.27]
+      % W: y = 2^x + 1
+      \begin{scope}
+        \lgrid{-3}{4}{-6}{8}
+        \begin{scope}\clip (-3,-6) rectangle (4,8); \expgraph{1}{0.693147}{0}{1}{-3}{4} \end{scope}
+        \hasym{-3}{4}{1}
+        \node[charcoal, font=\small] at (0.5,-7.6) {\textbf{W}};
+      \end{scope}
+      % X: y = 2^x - 4
+      \begin{scope}[xshift=9.5cm]
+        \lgrid{-3}{4}{-6}{8}
+        \begin{scope}\clip (-3,-6) rectangle (4,8); \expgraph{1}{0.693147}{0}{-4}{-3}{4} \end{scope}
+        \hasym{-3}{4}{-4}
+        \node[charcoal, font=\small] at (0.5,-7.6) {\textbf{X}};
+      \end{scope}
+      % Y: y = 2^(-x)
+      \begin{scope}[xshift=19cm]
+        \lgrid{-3}{4}{-6}{8}
+        \begin{scope}\clip (-3,-6) rectangle (4,8); \expgraph{1}{-0.693147}{0}{0}{-3}{4} \end{scope}
+        \hasym{-3}{4}{0}
+        \node[charcoal, font=\small] at (0.5,-7.6) {\textbf{Y}};
+      \end{scope}
+      % Z: y = -2^x + 4
+      \begin{scope}[xshift=28.5cm]
+        \lgrid{-3}{4}{-6}{8}
+        \begin{scope}\clip (-3,-6) rectangle (4,8); \expgraph{-1}{0.693147}{0}{4}{-3}{4} \end{scope}
+        \hasym{-3}{4}{4}
+        \node[charcoal, font=\small] at (0.5,-7.6) {\textbf{Z}};
+      \end{scope}
+    \end{tikzpicture}
     \end{center}
-    \emph{Work:} (b) $3\sqrt2+4\sqrt2$. \; (c) $5\sqrt2-2\sqrt2+\sqrt2$. \;
-    (d) $2(3\sqrt7)+4(2\sqrt7)=6\sqrt7+8\sqrt7$. \; (e) both simplify, but to \emph{different}
-    radicands. \; (f) $3\sqrt[3]{2}-\sqrt[3]{2}$. \; (g) $3\sqrt{5x}-2\sqrt{5x}$. \;
-    (h) same radicand $8$, but the \emph{indices} differ --- and $\sqrt[3]{8}$ is just the number
-    $2$, so the answer is already as simple as it gets.
+    \vspace{2pt}
+    $y=2^{x}+1$ is \ans{W} \quad $y=2^{x}-4$ is \ans{X} \quad
+    $y=2^{-x}$ is \ans{Y} \quad $y=-2^{x}+4$ is \ans{Z}
 
-  \item \textbf{Use the quotient property.}
+    \vspace{3pt}
+    Two of those four graphs cross the $x$-axis. Name them, and give the $x$-intercept of each by
+    reading the graph. \ans{X and Z --- both cross at $(2,0)$. They are the two whose asymptote is on the opposite side of the $x$-axis from the graph.}
+
+  \item \textbf{Backwards.} Each curve has the form $y=a\,b^{x}+k$. Use the asymptote first.
     \begin{center}
-    \renewcommand{\arraystretch}{2.0}
-    \begin{tabularx}{\linewidth}{@{}X X X@{}}
-    (a) \; $\sqrt{\dfrac{121}{9}}=$ \ans{$\dfrac{11}{3}$} &
-    (b) \; $\dfrac{\sqrt{54}}{\sqrt{6}}=$ \ans{$3$} &
-    (c) \; $\sqrt{\dfrac{5}{9}}=$ \ans{$\dfrac{\sqrt5}{3}$} \\
-    \end{tabularx}
+    \begin{minipage}[c]{0.30\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-3}{4}{-5}{9}
+      \begin{scope}\clip (-3,-5) rectangle (4,9); \expgraph{2}{0.693147}{0}{-3}{-3}{4} \end{scope}
+      \hasym{-3}{4}{-3}
+      \fill[charcoal] (0,-1) circle (3.5pt) node[left, font=\scriptsize]{$(0,-1)$};
+      \fill[charcoal] (1,1) circle (3.5pt) node[right, font=\scriptsize]{$(1,1)$};
+      \node[navy, font=\scriptsize, left] at (-1.2,-3.7) {$y=-3$};
+    \end{tikzpicture}\\[2pt]{\small (a)}
+    \end{minipage}
+    \hspace{0.02\linewidth}
+    \begin{minipage}[c]{0.30\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-2}{5}{-1}{12}
+      \begin{scope}\clip (-2,-1) rectangle (5,12); \expgraph{6}{-0.693147}{0}{1}{-2}{5} \end{scope}
+      \hasym{-2}{5}{1}
+      \fill[charcoal] (0,7) circle (3.5pt) node[right, font=\scriptsize]{$(0,7)$};
+      \fill[charcoal] (1,4) circle (3.5pt) node[right, font=\scriptsize]{$(1,4)$};
+      \node[navy, font=\scriptsize, right] at (2.6,1.7) {$y=1$};
+    \end{tikzpicture}\\[2pt]{\small (b)}
+    \end{minipage}
+    \hspace{0.02\linewidth}
+    \begin{minipage}[c]{0.32\linewidth}
+    \small
+    (a) $k=$ \ans{$-3$} \; $a=$ \ans{2} \; $b=$ \ans{2} \\[4pt]
+    \hspace*{1.0em} $y=$ \ans{$2(2)^{x}-3$} \\[10pt]
+    (b) $k=$ \ans{1} \; $a=$ \ans{6} \; $b=$ \ans{$\frac12$} \\[4pt]
+    \hspace*{1.0em} $y=$ \ans{$6\left(\frac12\right)^{x}+1$}
+    \end{minipage}
     \end{center}
-    \emph{Note on (b):} run the property backwards --- $\sqrt{54/6}=\sqrt{9}=3$ is far easier than
-    simplifying each radical separately.
 
-  \item \textbf{Two questions about what ``simplest'' means.}
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-      \item A classmate claims $\sqrt{36+64}=\sqrt{36}+\sqrt{64}$. Evaluate \emph{both} sides to
-            show they are not equal, then write the rule that \emph{does} work and check it on the
-            same two numbers. \ansline{Left: $\sqrt{36+64}=\sqrt{100}=10$. Right:
-            $\sqrt{36}+\sqrt{64}=6+8=14$. Since $10\ne14$, $\sqrt{a+b}\ne\sqrt a+\sqrt b$.\\[3pt]
-            The rule that works is the \textbf{product} property, $\sqrt{ab}=\sqrt a\cdot\sqrt b$:
-            $\sqrt{36\cdot64}=\sqrt{2304}=48$, and $\sqrt{36}\cdot\sqrt{64}=6\cdot8=48$. A radical
-            splits over multiplication, never over addition.}
-      \item Explain why $\sqrt[3]{16}$ is \emph{not} in simplest form but $\sqrt[3]{9}$ \emph{is} ---
-            even though $9$ is a perfect square. \ansline{Under a \emph{cube} root the only powers
-            that come out are perfect \emph{cubes}. $16=8\cdot2$ contains the perfect cube $8$, so
-            $\sqrt[3]{16}=2\sqrt[3]{2}$ --- not finished. $9=3\cdot3$ contains no perfect cube (you
-            would need \emph{three} equal factors, and there are only two), so it is already in
-            simplest form. Being a perfect square is irrelevant here: the index decides what counts.}
-    \end{enumerate}
+  \item \textbf{Error analysis.} Name the error, then give the correct answer.
 
-  \item \textbf{Two roads, one answer (connecting to Lesson 6.1).} Simplify $\sqrt{x^{9}}$ twice.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item By splitting the radicand: $\sqrt{x^{9}}=\sqrt{x^{\mans{8}}\cdot x}=$ \ans{$x^{4}\sqrt{x}$}
-      \item With a rational exponent: $\sqrt{x^{9}}=x^{\mans{9/2}}=x^{\mans{4}}\cdot
-            x^{\mans{1/2}}=$ \ans{$x^{4}\sqrt{x}$}
-      \item Why do these two methods always agree? Use the words \emph{mixed number} in your
-            answer. \ansline{Because dividing the exponent by the index \emph{is} rewriting
-            $\frac{9}{2}$ as the \textbf{mixed number} $4\frac12$. The whole-number part, $4$,
-            becomes the power that comes outside; the leftover $\frac12$ is exactly one square
-            root's worth and stays inside. Splitting $x^{9}$ into $x^{8}\cdot x$ is the same
-            division written without fractions.}
-    \end{enumerate}
+    \textbf{(a)} Asked to describe $y=5^{\,x-2}$, Marcus wrote: ``The asymptote is $y=-2$ and the
+    range is $(-2,\infty)$.''
+    \ansline{Marcus treated an \emph{inside} number as a vertical shift. The $-2$ is in the exponent,
+    so it moves the graph \textbf{right $2$} and touches neither the asymptote nor the range.\\[3pt]
+    Correct: asymptote $y=0$, range $(0,\infty)$.}
+
+    \textbf{(b)} Tara says $y=-6^{x}$ and $y=6^{-x}$ are both decay functions ``because of the
+    negative.'' Fix both halves of that claim.
+    \ansline{$y=-6^{x}$: the negative is on the \emph{output}, so it reflects over the $x$-axis. The
+    base is still $6$, so it is still a \textbf{growth} function; range $(-\infty,0)$.\\[3pt]
+    $y=6^{-x}$: the negative is on the \emph{input}, so it reflects over the $y$-axis and equals
+    $\left(\frac16\right)^{x}$ --- this one \textbf{is} decay; range $(0,\infty)$.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{The pendulum: quadruple the length to double the swing.} A pendulum of length $L$ feet takes
-$T$ seconds to complete one full swing, where
+\textbf{A soda out of the refrigerator.} A can of soda at $38^{\circ}$F is set on a counter in a
+room held at $72^{\circ}$F. Its temperature after $t$ minutes is
 \[
-  T(L) = 2\pi\sqrt{\frac{L}{32}}\ \text{ seconds.}
+  T(t) = 72 - 34(0.9)^{t}.
 \]
-Every length below was chosen so that the fraction under the radical reduces to a perfect square.
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|c|c|c|c|c|}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-$L$ (feet)               & $2$ & $8$ & $18$ & $32$ \\ \hline
-$\sqrt{L/32}$ (reduced)  & $\frac14$ & \ans{$\frac12$} & \ans{$\frac34$} & \ans{$1$} \\ \hline
-$T(L)$ (exact)           & $\frac{\pi}{2}$ & \ans{$\pi$} & \ans{$\frac{3\pi}{2}$} & \ans{$2\pi$} \\ \hline
+$t$ (min) & $0$ & $5$ & $10$ & $15$ & $20$ & $30$ \\ \hline
+$T(t)$ ($^{\circ}$F) & $38$ & $51.9$ & $60.1$ & $65.0$ & $67.9$ & $70.6$ \\ \hline
 \end{tabular}
 \end{center}
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Complete the table \emph{exactly}, leaving $\pi$ in your answers. (Reduce the fraction
-        \emph{before} taking the root --- simplest-form condition 2 says no fractions under a
-        radical.) \ansline{$\frac{8}{32}=\frac14$ and $\sqrt{\frac14}=\frac12$;
-        $\frac{18}{32}=\frac{9}{16}$ and $\sqrt{\frac{9}{16}}=\frac34$; $\frac{32}{32}=1$. Multiply
-        each by $2\pi$.}
-  \item Give each period as a decimal, rounded to the nearest hundredth of a second.
-        \ansline{$1.57$ s, \; $3.14$ s, \; $4.71$ s, \; $6.28$ s.}
-  \item From $L=2$ to $L=8$ the length is multiplied by $4$. By what factor is the period
-        multiplied? Check the same thing from $L=8$ to $L=32$. What does the exponent $\frac12$
-        hidden in the square root do to the growth? \ansline{$\pi\div\frac{\pi}{2}=2$, so the period
-        only \emph{doubles}. From $L=8$ to $L=32$ the length again quadruples and
-        $2\pi\div\pi=2$ --- doubling again. An exponent of $\frac12$ damps the growth: the output
-        grows like the \emph{square root} of the input, so it takes a $4\times$ change in $L$ to buy
-        a $2\times$ change in $T$. (Same story as Lesson 6.1's $\frac34$ exponent, and the same
-        flattening shape read off the square root graph in 6.0.)}
-  \item A clockmaker wants a pendulum that swings exactly \emph{twice} as slowly as her current
-        one. She reasons, ``I will just double the length.'' Why is she wrong, and what should she
-        do instead? \ansline{Doubling $L$ multiplies $T$ by $\sqrt2\approx1.41$, not by $2$ --- only
-        about a $41\%$ slowdown. To double the period she must \textbf{quadruple} the length,
-        because $\sqrt4=2$.}
-  \item Show that $\sqrt{\dfrac{L}{32}}$ can also be written $\dfrac{\sqrt{2L}}{8}$, so that
-        $T(L)=\dfrac{\pi\sqrt{2L}}{4}$. \emph{Hint:} multiply the top and bottom \emph{inside} the
-        radical by $2$ and look at the new denominator. Verify your formula at $L=18$.
-        \ansline{$\sqrt{\dfrac{L}{32}}=\sqrt{\dfrac{2L}{64}}=\dfrac{\sqrt{2L}}{\sqrt{64}}
-        =\dfrac{\sqrt{2L}}{8}$ --- doubling top and bottom turned the denominator into a perfect
-        square. Then $T=2\pi\cdot\dfrac{\sqrt{2L}}{8}=\dfrac{\pi\sqrt{2L}}{4}$.\\[3pt]
-        Check at $L=18$: $\dfrac{\pi\sqrt{36}}{4}=\dfrac{6\pi}{4}=\dfrac{3\pi}{2}$, matching the
-        table.}
+  \item Identify $a$, $b$, and $k$. Why is $a$ \emph{negative} here, when the soda is warming up?
+  \item What is the horizontal asymptote, and what does it mean about this soda?
+  \item Give the range of $T$ as an algebraic function, then give the temperatures the soda actually
+        takes for $t\ge0$. Explain why the two differ, and why one endpoint is a bracket.
+  \item Because $a<0$ and $k>0$ have opposite signs, this function \emph{does} have an
+        $x$-intercept. Solving $34(0.9)^{t}=72$ would require $(0.9)^{t}=2.118\ldots$ --- explain why
+        that forces $t$ to be \emph{negative}, and say why the $x$-intercept is therefore irrelevant
+        to this story.
+  \item At what time is the soda exactly $72^{\circ}$F? Justify with the asymptote.
 \end{enumerate}
+\ansline{(a) $a=-34$, $b=0.9$, $k=72$. The sign of $a$ says which side of the asymptote the graph
+lives on, and this soda starts \emph{below} room temperature: $38-72=-34$.}
+\ansline{(b) $y=72$ --- room temperature. The soda warms toward $72^{\circ}$ and gets arbitrarily
+close, but never actually reaches it.}
+\ansline{(c) Algebraically the range is $(-\infty,72)$. For $t\ge0$ the soda only takes temperatures
+in $[38,72)$. The algebraic range allows negative $t$; the story starts the clock at $t=0$, where
+$T=38$ is actually attained --- hence the bracket. The $72$ stays excluded because it is the asymptote.}
+\ansline{(d) A base between $0$ and $1$ raised to a \emph{positive} power gives something less than
+$1$, so $(0.9)^{t}=2.118$ can only happen for $t<0$ --- roughly seven minutes before the can came out
+of the refrigerator. That is outside the story's domain, so the $x$-intercept never occurs here.}
+\ansline{(e) Never. $72$ is the horizontal asymptote, a boundary the range excludes.}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 6.3: Multiplying \& Dividing Radicals; Rationalizing.} Today you ran
-the product property in one direction, pulling perfect powers \emph{out}. Next you run it the other
-way --- multiplying radicals together and distributing across sums, including FOIL on things like
-$\left(3+\sqrt5\right)\left(2-\sqrt5\right)$. Then you finally clear simplest-form condition 3, the
-one we skipped: a radical stuck in a \emph{denominator}. The tool for a binomial denominator is the
-\textbf{conjugate} --- the same trick that turned $a+bi$ into a real number back in Lesson 3.4.
+\textbf{Coming next --- Lesson 6.3: Solving Exponential Equations with a Common Base.} In problem 3
+you found the $x$-intercept of $y=2^{x}-4$ by \emph{looking} at the graph. Next lesson you solve for
+it: $2^{x}-4=0$ becomes $2^{x}=4$, and since $4$ is already a power of $2$, the exponents can simply
+be matched. That one-to-one move runs entirely on Unit 5's exponent machinery --- $8^{x}=4$,
+$3^{x}=\frac{1}{27}$, $\sqrt[3]{2}=2^{1/3}$ --- and every answer can be checked as an intersection on
+a graph like the ones above. Notice, though, what it \emph{cannot} do: the coffee equation
+$132(0.85)^{t}=32$ from the Activity and the soda's $(0.9)^{t}=2.118$ above have no common base at
+all. Hold on to those two.
 \end{spiralbox}
 
 \begin{teachernote}
-Items 1--4 are the routine load, about twenty minutes. Spot-check 1(f) and 2(e): a \emph{negative}
-radicand under an odd index is legal, and students who internalized 6.0's ``even index refuses
-negatives'' sometimes over-apply it and mark these undefined. Item 3(e) and 3(h) are the two that
-require a student to \emph{finish simplifying and then still say ``cannot combine''} --- the point is
-that ``cannot combine'' has to be earned, not guessed; 3(h) also quietly rewards anyone who notices
-$\sqrt[3]{8}=2$ is not a radical at all.
+\textbf{Problem 1's fourth row is the one to grade carefully.} $y=-4^{x}$ has base $4$, so it is a
+\emph{growth} function whose graph falls --- $a<0$ only chooses the side of the asymptote. Anyone who
+wrote ``decay'' has drifted back to reading the family off the wrong number, and that misconception
+will cost them in 6.5 when a regression returns a negative coefficient.
 
-\textbf{Item 5(b) is the best diagnostic on the page.} A student who says $\sqrt[3]{9}$ is not
-simplified because ``$9$ is a perfect square'' has not internalized that the \emph{index} sets the
-group size --- the single most common structural misunderstanding of this lesson, and the one that
-breaks 6.3's multiplication work first.
+\textbf{Problem 1's closing question is the payoff of the whole lesson.} Only the third row has an
+$x$-intercept, and the reason is the rule from Section 2 of the notes: the graph crosses the $x$-axis
+exactly when $a$ and $k$ have opposite signs. Rows with $k=0$ can never cross --- that is Lesson 6.0's
+``no zeros, ever,'' now stated precisely.
 
-\textbf{Item 6 is the conceptual spine} and worth grading for the explanation, not the answer.
-``Divide the exponent by the index'' is a rule students will follow correctly and understand
-poorly; naming it as improper-fraction-to-mixed-number ties it to Lesson 6.1 and to Warm-Up item 3,
-and makes it reconstructible in April. Accept any wording that connects $\frac92=4\frac12$ to
-``$x^{4}$ out, one square root left in.''
+\textbf{Problem 3's two crossers both land at $x=2$.} That is not a coincidence worth hiding: X solves
+$2^{x}=4$ and Z solves $2^{x}=4$ as well. Point it out --- it is the exact equation Lesson 6.3 opens
+with, and students will have already found the answer by eye.
 
-The \textbf{Extension} is the pendulum, and its shape deliberately matches the Activity's Kepler
-problem in 6.1 and the free-fall model in 6.0: a radical model, a table of values chosen to come
-out exactly, a growth-rate interpretation, and a structural rewrite. Part (c)--(d) is the payoff ---
-the square root's $\frac12$ exponent is why $4\times$ the length buys only $2\times$ the period, and
-why the clockmaker's instinct fails. Part (e) is a legitimate preview of 6.3: making the
-denominator a perfect square by multiplying inside the radical is rationalizing in its simplest
-form, done before the word exists.
+\textbf{Problem 4(b) is the item most likely to be skipped.} $b=\frac12$ comes from
+$6b+1=4$, which many students will not set up because they expect $b$ to be a whole number. If several
+groups miss it, the re-teach is step 3 of the notes' method, not the arithmetic.
+
+\textbf{The Extension is a contextual-domain conversation, not a computation.} Part (c) is the one to
+discuss at the board: an algebraic range and a realistic range are different objects, and the bracket
+at $38$ is there because the situation actually attains its starting value. Part (d) is answerable
+\emph{without} logarithms --- a base under $1$ can only exceed $1$ at a negative exponent --- and it is
+worth insisting students argue it that way, because that reasoning is what Lesson 6.3 formalizes. If a
+student asks how to solve $(0.9)^{t}=2.118$ exactly, tell them the tool does not exist yet and that
+Unit 7 builds it. Do not name logarithms.
 \end{teachernote}
 
 \end{document}

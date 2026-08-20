@@ -1,9 +1,9 @@
-%! Absolute Value Functions \& Transformations — Unit 2, Lesson 2.3 — Slides (Beamer)
+%! Solving by Square Roots & Completing the Square — Unit 2, Lesson 2.3 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
@@ -16,143 +16,169 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.3}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Absolute Value Functions \& Transformations}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2: Linear Functions}
+    {\color{white}\bfseries\LARGE Solving by Square Roots \& Completing the Square}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% HOOK
+% HOOK — quadratics that don't factor
 \begin{frame}[t, plain]
-  \forestheader{A distance graph is a V}
+  \forestheader{What if it won't factor?}
   \sectionlabel{Hook}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      You drive toward a rest stop, reach it at $t=2$ h, and keep going. Distance from it (tens of
-      miles) is $d(t)=30\,|t-2|$.
+    \begin{column}{0.55\textwidth}
+      Neither of these factors over the integers:
+      \[ x^2-6=0 \qquad x^2+6x+1=0. \]
       \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $d(0)=60$, \; $d(2)=0$, \; $d(4)=60$
-        \item Closest at $t=2$: distance $0$ --- the \textbf{vertex}.
+        \item No integers with product $-6$, sum $0$.
+        \item But the parabolas \emph{do} cross the axis --- the roots are real, just irrational.
       \end{itemize}
+      \textbf{Two new tools:} undo a square, or \emph{build} one.
     \end{column}
-    \begin{column}{0.44\textwidth}
+    \begin{column}{0.45\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.42]
-        \lgrid{-1}{5}{-1}{7}
-        \draw[very thick, forest] (-0.2,6.6)--(2,0)--(4.2,6.6);
-        \fill[charcoal] (2,0) circle (3pt);
+        \lgrid{-4}{4}{-4}{4}
+        \begin{scope}\clip (-4,-4) rectangle (4,4);
+          \draw[very thick, forest, domain=-3:3, samples=70, smooth] plot (\x,{\x*\x-6});
+        \end{scope}
+        \fill[charcoal] (-2.449,0) circle (3pt);
+        \fill[charcoal] (2.449,0) circle (3pt);
+        \node[charcoal, font=\tiny, above right] at (2.449,0){$\sqrt6$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
-  \vspace{2pt}
-  \begin{block}{Today}
-    A distance is never negative, so its graph bottoms out at one turning point and is symmetric about
-    the line through it. Every absolute value function is this V, moved and stretched.
-  \end{block}
 \end{frame}
 
-% PARENT FUNCTION
+% SQUARE ROOT PROPERTY
 \begin{frame}[t, plain]
-  \forestheader{The parent $f(x)=|x|$}
-  \sectionlabel{Parent}
+  \forestheader{The Square Root Property}
+  \sectionlabel[goldacc]{Undo the square}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item Vertex $(0,0)$; \; axis $x=0$; \; minimum $0$.
-        \item Domain: all reals. \; Range: $y\ge 0$.
-        \item Decreases on $(-\infty,0]$, increases on $[0,\infty)$.
-        \item Really two lines: $y=x$ ($x\ge 0$), $y=-x$ ($x<0$).
+    \begin{column}{0.55\textwidth}
+      \begin{block}{Key idea}
+        If $x^2=k$ (with $k\ge0$), then $x=\pm\sqrt{k}$.
+      \end{block}
+      ``What squares to $9$?'' Both $3$ \textbf{and} $-3$.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Keep the $\pm$ --- two solutions.
+        \item $x^2=49 \Rightarrow x=\pm7$.
       \end{itemize}
     \end{column}
-    \begin{column}{0.44\textwidth}
+    \begin{column}{0.45\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.5]
-        \lgrid{-4}{4}{-1}{5}
-        \draw[very thick, forest] (-4,4)--(0,0)--(4,4);
-        \fill[charcoal] (0,0) circle (3pt);
-      \end{tikzpicture}
+      \textbf{Dropping the $\pm$}\\[2pt] loses a root.
+      \vspace{0.5cm}
+      \begin{block}{$x^2=-4$?}
+        No \emph{real} solution --- nothing real squares to a negative. (Fixed in 2.4.)
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-% SHIFTS
+% ISOLATE, SIMPLIFY, BINOMIAL SQUARES
 \begin{frame}[t, plain]
-  \forestheader{Up / down and left / right}
-  \sectionlabel[goldacc]{Shifts}
+  \forestheader{Isolate first, then root \& simplify}
+  \sectionlabel{Technique}
   \begin{columns}[T]
     \begin{column}{0.5\textwidth}
-      \textbf{Outside} the bars $\to$ vertical (as expected):
-      \[ y=|x|+k \ \text{shifts up/down.} \]
-      \textbf{Inside} the bars $\to$ horizontal and \emph{backwards}:
-      \[ y=|x-h| \ \text{moves the vertex to } x=h. \]
-      Tip: the vertex is where the inside $=0$.
+      The square must be \textbf{alone} before you root:
+      \[ 2x^2-50=0 \Rightarrow x^2=25 \Rightarrow x=\pm5. \]
+      \[ 3x^2=36 \Rightarrow x^2=12 \Rightarrow x=\pm2\sqrt3. \]
+      Simplest radical form: $\sqrt{12}=2\sqrt3$.
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.44]
-        \lgrid{-2}{6}{-1}{5}
-        \draw[very thick, forest!45, dashed] (-1,1)--(0,0)--(4,4);
-        \draw[very thick, forest] (-1,4)--(3,0)--(6,3);
-        \fill[charcoal] (3,0) circle (3pt);
-        \node[charcoal, font=\scriptsize] at (3.4,-0.7){$y=|x-3|$};
-      \end{tikzpicture}
+    \begin{column}{0.5\textwidth}
+      \textbf{When a binomial is squared}
+      \[ (x-3)^2=16 \Rightarrow x-3=\pm4 \]
+      \[ x=7 \ \text{ or } \ x=-1. \]
+      \[ (x+2)^2=12 \Rightarrow x=-2\pm2\sqrt3. \]
+      \footnotesize This $(x-h)^2=k$ shape is what we build next.
     \end{column}
   \end{columns}
 \end{frame}
 
-% STRETCH / REFLECT
+% COMPLETING THE SQUARE — recipe
 \begin{frame}[t, plain]
-  \forestheader{Stretch, compress, reflect: $y=a|x|$}
-  \sectionlabel[goldacc]{The number $a$}
+  \forestheader{Completing the square ($a=1$)}
+  \sectionlabel[goldacc]{Build a square}
   \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      Add $\left(\tfrac{b}{2}\right)^2$ to make a perfect square:
+      \[ x^2+bx+\left(\tfrac{b}{2}\right)^2=\left(x+\tfrac{b}{2}\right)^2. \]
+      \begin{block}{Steps}
+        \begin{enumerate}\setlength{\itemsep}{1pt}
+          \item Move the constant over.
+          \item Add $\left(\tfrac{b}{2}\right)^2$ to \emph{both} sides.
+          \item Factor; take $\pm\sqrt{\ }$.
+        \end{enumerate}
+      \end{block}
+    \end{column}
     \begin{column}{0.5\textwidth}
-      \begin{itemize}\setlength{\itemsep}{6pt}
-        \item $|a|>1$: \textbf{narrower}; \; $0<|a|<1$: \textbf{wider}.
-        \item $a<0$: \textbf{reflect} --- the V opens \emph{down}.
-        \item $a$ is the slope of the right-hand ray.
+      \textbf{Solve $x^2+6x+1=0$}
+      \begin{itemize}\setlength{\itemsep}{2pt}
+        \item $x^2+6x=-1$
+        \item half of $6$ is $3$, $3^2=9$: $\ x^2+6x+9=8$
+        \item $(x+3)^2=8$
+        \item $x+3=\pm2\sqrt2$
+        \item $x=-3\pm2\sqrt2$
       \end{itemize}
     \end{column}
-    \begin{column}{0.46\textwidth}
+  \end{columns}
+\end{frame}
+
+% COMPLETING THE SQUARE = VERTEX FORM
+\begin{frame}[t, plain]
+  \forestheader{Same move $=$ vertex form}
+  \sectionlabel{Connection}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      Completing the square also rewrites the anchor in vertex form:
+      \[ x^2-2x-3=(x-1)^2-4. \]
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Vertex $(1,-4)$ --- exactly 2.0--2.1.
+        \item Solve: $(x-1)^2=4 \Rightarrow x=3$ or $-1$.
+      \end{itemize}
+      So the method \textbf{solves} and \textbf{finds the vertex} at once.
+    \end{column}
+    \begin{column}{0.45\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.42]
-        \lgrid{-3}{3}{-4}{5}
-        \draw[very thick, forest] (-2.2,4.4)--(0,0)--(2.2,4.4);
-        \node[forest, font=\scriptsize] at (2.9,4.4){$2|x|$};
-        \draw[very thick, navy] (-3,-3)--(0,0)--(3,-3);
-        \node[navy, font=\scriptsize] at (3,-3.6){$-|x|$};
+        \lgrid{-3}{5}{-5}{3}
+        \begin{scope}\clip (-3,-5) rectangle (5,3);
+          \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x-1)*(\x-1)-4});
+        \end{scope}
+        \fill[charcoal] (-1,0) circle (3.5pt) node[above left, font=\tiny]{$-1$};
+        \fill[charcoal] (3,0) circle (3.5pt) node[above right, font=\tiny]{$3$};
+        \fill[charcoal] (1,-4) circle (3.5pt) node[below, font=\tiny]{$(1,-4)$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
 \end{frame}
 
-% VERTEX FORM
+% CHOOSE A METHOD + NEXT
 \begin{frame}[t, plain]
-  \forestheader{Vertex form: $g(x)=a|x-h|+k$}
-  \sectionlabel{Putting it together}
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item \textbf{Vertex} $(h,k)$; \; \textbf{axis} $x=h$.
-    \item Opens \textbf{up} if $a>0$ ($k$ is a \emph{min}); \; \textbf{down} if $a<0$ ($k$ is a \emph{max}).
-    \item $|a|$ sets the width.
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{Worked: $g(x)=-2|x-1|+3$}
-    Vertex $(1,3)$, axis $x=1$, opens \textbf{down} $\Rightarrow$ \textbf{maximum} $3$; narrow.
-    And $g(0)=-2|{-1}|+3=1$ straight from the rule.
-  \end{block}
-\end{frame}
-
-% ROADMAP
-\begin{frame}[t, plain]
-  \forestheader{Where Unit 2 goes next}
-  \sectionlabel{Connections}
-  \textbf{Today:} the parent V $y=|x|$; shifts, stretch, and reflection; vertex form
-  $a|x-h|+k$ with its vertex, axis, and min/max.\\[8pt]
-  \begin{itemize}\setlength{\itemsep}{4pt}
-    \item \textbf{2.4} Piecewise-defined functions --- the V is two lines pasted at the vertex.
-    \item \textbf{2.5} Linear regression.
-  \end{itemize}
-  \vspace{4pt}
-  {\footnotesize The solutions of $|x-1|=2$ from Lesson 2.2 are where this V meets the line $y=2$.}
+  \forestheader{Which method? \& what's next}
+  \sectionlabel{Summary}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \begin{block}{Choose the smartest tool}
+        \begin{itemize}\setlength{\itemsep}{3pt}
+          \item Factors nicely $\Rightarrow$ \textbf{factor} (2.2).
+          \item No $bx$ term $\Rightarrow$ \textbf{square roots}.
+          \item Won't factor $\Rightarrow$ \textbf{complete the square} (divide by $a$ first if $a\ne1$).
+        \end{itemize}
+      \end{block}
+      Always: keep the $\pm$, simplest radical form.
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{block}{Next}
+        \textbf{2.4 Complex Numbers} --- for when the square root hits a \emph{negative}:
+        \[ x^2=-9, \quad \sqrt{-9}=? \]
+        Meet $i=\sqrt{-1}$.
+      \end{block}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \end{document}

@@ -1,4 +1,4 @@
-%! Graphing Radical Functions \& Transformations — Unit 6, Lesson 6.4 — Lesson Plan
+%! Modeling with Exponential Functions: Interest, Half-Life, and e — Unit 6, Lesson 6.4 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 6: Radical Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 6.4: Graphing Radical Functions \& Transformations}
+\newcommand{\UnitNumberName}{Unit 6: Exponential Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 6.4: Modeling --- Compound Interest, Half-Life, and $e$}
 
 \begin{document}
 \begin{center}
@@ -19,29 +19,23 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can graph $y=a\sqrt{x-h}+k$ and $y=a\sqrt[3]{x-h}+k$ from
-    the equation by locating the \emph{anchor point} $(h,k)$ --- the \emph{endpoint} of a square root,
-    the \emph{inflection point} of a cube root --- and applying $a$; and they can run the process
-    \emph{backwards}, writing the equation of a radical function from its graph by reading the anchor
-    for $h$ and $k$ and one further point for $a$. They state the domain $[h,\infty)$ and range
-    $[k,\infty)$ directly from the anchor rather than by solving an inequality, explain why a
-    \emph{negative} $a$ converts the anchor's absolute minimum into an absolute \emph{maximum} and
-    flips the range to $(-\infty,k]$, factor a radicand such as $4x-8$ before reading $h$, and explain
-    why, for a radical function, compressing the \emph{input} and stretching the \emph{output} produce
-    the same graph.
+    \textbf{Primary Objective:} Students can build, evaluate, and interpret exponential models drawn
+    from money and medicine --- compound interest $A=P\left(1+\frac{r}{n}\right)^{nt}$, continuous
+    growth $A=Pe^{rt}$, half-life $A_{0}\left(\frac12\right)^{t/h}$, and doubling
+    $A_{0}2^{\,t/d}$ --- and can say, for any of them, what one period is and how many periods the
+    exponent is counting. Students use the \textbf{range} and \textbf{horizontal asymptote} to state
+    what a decay model never does, and they leave able to distinguish an equation with \emph{no}
+    solution from one whose solution exists but is out of the reach of a common base.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.1c} (governing --- graph a square root or cube root
-    function \emph{given the equation}, using transformations of the parent, including all four the
-    standard names: $f(x)+k$, $f(x+k)$, $kf(x)$, and $f(kx)$) and \textbf{A2.F.1b} (the reverse
-    direction --- \emph{write} the equation given a graph, assessed in the notes, Activity Tier~A,
-    the Exit Ticket, and Homework items 3--4). \textbf{A2.F.2a} (domain, range, zeros, and intercepts)
-    is used in every component, now read off the anchor rather than computed. \textbf{A2.F.1e}
-    (compare and contrast the graphs, tables, and equations of square root and cube root functions)
-    drives Section~3's reflection contrast --- $-\sqrt{x}$ vs.\ $\sqrt{-x}$ against
-    $-\sqrt[3]{x}$ vs.\ $\sqrt[3]{-x}$ --- and the Section~5 table. The lesson revisits
-    \textbf{A2.F.1a} (parent graphs, 6.0), \textbf{A2.EO.2a} (the product property from 6.2, which is
-    what makes $f(kx)$ collapse into $kf(x)$), and \textbf{A2.EO.2c} (rational exponents from 6.1, in
-    Tier~E's one-line proof).
+    \textbf{Standards (2023 VA SOL): A2.F.2f} (primary --- represent and interpret contextual
+    situations with exponential functions, including evaluating and explaining the meaning of the
+    result), with \textbf{A2.F.2a} (domain and range, including the range boundary a decay model never
+    crosses) and \textbf{A2.F.2h} (horizontal asymptotes --- the standard names exponential functions
+    explicitly). \textbf{A2.F.1e} is exercised throughout, since each model is written from a verbal
+    description and then read back from a table or a graph. \emph{Note:} as documented in 6.3, the
+    2023 standards contain no \texttt{A2.EI} strand for exponential equations, so the closing wall is
+    taught as \emph{modeling}, not as solving --- the equation is set up and located on a graph, and
+    left unsolved on purpose.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -51,25 +45,26 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Identify $a$, $h$, and $k$ in $y=a\sqrt{x-h}+k$ and $y=a\sqrt[3]{x-h}+k$, and locate the \textbf{anchor point} $(h,k)$.
-  \item State the \textbf{domain} and \textbf{range} straight from the anchor --- no inequality to solve.
-  \item Describe all four transformations by name: shift, vertical stretch/compression, reflection, and horizontal compression.
-  \item Explain why a \textbf{negative $a$} makes the anchor an absolute \emph{maximum} and flips the range.
-  \item Handle the \textbf{cube root} case: same anchor, but an \emph{inflection point}, and the domain is unaffected.
-  \item \textbf{Write the equation from a graph}: anchor $\rightarrow h,k$; one more point $\rightarrow a$; then check.
-  \item \textbf{Factor the radicand} ($\sqrt{4x-8}=2\sqrt{x-2}$) before reading $h$.
-  \item Explain why $f(kx)$ and $kf(x)$ are the \emph{same} transformation for a radical --- and where that stops being true.
+  \item Identify $P$, $r$, $n$, and $t$ from a verbal description and substitute into $A=P\left(1+\frac{r}{n}\right)^{nt}$.
+  \item Convert an annual rate into a rate per period ($\frac{r}{n}$) and a time in years into a count of periods ($nt$).
+  \item Read the table $\left(1+\frac1m\right)^{m}$ as closing in on $e\approx2.71828$, and use $A=Pe^{rt}$.
+  \item Compare compounding schedules and quantify how little the extra chopping is worth.
+  \item Build $A_{0}\left(\frac12\right)^{t/h}$ from a half-life and $A_{0}2^{\,t/d}$ from a doubling time.
+  \item Evaluate at a time that is \emph{not} a whole number of periods, and check the answer's size against the table.
+  \item State the range and horizontal asymptote of a decay model and interpret them in context.
+  \item Set up the doubling equation, bracket its answer on a graph, and say why a common base cannot finish it.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \emph{Find one point and the whole graph follows.} A radical graph carries all its information in a single location.
-  \item Solving \emph{radicand} $\ge0$ and shifting the graph right by $h$ are not two facts. Sliding the graph right \textbf{is} throwing away the inputs below $h$.
-  \item $a$ never moves the anchor, because at the anchor the radical is $0$ --- and $a\cdot 0=0$ no matter what $a$ is.
-  \item The sign of $a$ is visible in the picture before any algebra: if the arm falls, $a<0$. Students should predict it, then confirm it.
-  \item A cube root has an anchor but no \emph{endpoint}. An endpoint exists only where inputs are forbidden, and an odd index forbids nothing.
-  \item Going backwards has an order. The anchor is free information; taking $a$ first leaves two unknowns in one equation.
-  \item The product property (6.2) lets a constant walk out from under a radical. That single fact is why a radical has only \emph{one} size dial --- and why the trick dies the moment a term sits outside the radical.
+  \item \emph{The base is what happens in one period; the exponent counts the periods.} Every formula today is that sentence.
+  \item Nothing here is a new function family --- it is Lesson 6.1's $y=ab^{x}$ with a shorter ``one period.''
+  \item The rate is divided and the time is multiplied \textbf{together}. Doing one without the other is the whole error surface.
+  \item Compounding more often has a \textbf{ceiling}, and $e$ is that ceiling. This is why continuous models exist, not a way to earn more.
+  \item Half-life and interest are the same structure --- the clock changed, not the mathematics.
+  \item A fractional exponent means a time between two periods. It is normal, and Lesson 5.1 already licensed it.
+  \item ``It never reaches zero'' is a claim about the asymptote (6.0), and it is where the model stops describing reality.
+  \item Knowing exactly which questions this unit cannot answer is what makes Unit 7 necessary rather than arbitrary.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -77,170 +72,168 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Transformation form} & $y=a\sqrt{x-h}+k$ or $y=a\sqrt[3]{x-h}+k$ --- the form in which every transformation can be read straight off the equation. \\
-\textbf{Anchor point} & The one point a radical graph is built around, always $(h,k)$: the \emph{endpoint} of a square root, the \emph{inflection point} of a cube root. \\
-\textbf{$h$ (horizontal shift)} & Inside the radical, with the $x$. Moves the graph horizontally in the \emph{opposite} direction to its sign: $\sqrt{x-3}$ goes right $3$. \\
-\textbf{$k$ (vertical shift)} & Outside the radical. Moves the graph vertically in the \emph{same} direction as its sign. \\
-\textbf{Vertical stretch / compression} & Multiplying every output by $a$. $|a|>1$ steepens; $0<|a|<1$ flattens. The anchor never moves. \\
-\textbf{Reflection across the $x$-axis} & What $a<0$ does: the arm leaves the anchor downward, the anchor becomes an absolute \emph{maximum}, and the range becomes $(-\infty,k]$. \\
-\textbf{Inflection point} & The cube root's anchor --- where the curve flattens and switches the direction it bends. Not an extremum. \\
-\textbf{Horizontal compression, $f(kx)$} & Multiplying every \emph{input} by $k$. For a radical it is indistinguishable from a vertical stretch, since \TallMath{\sqrt[n]{kx}=\sqrt[n]{k}\cdot\sqrt[n]{x}} \\
-\textbf{Hidden $h$} & A radicand like $4x-8$ must be \emph{factored} first: $\sqrt{4(x-2)}=2\sqrt{x-2}$ starts at $x=2$, not $8$. \\
+\textbf{Principal, $P$} & The starting amount, before any interest. It is the $a$ of $y=ab^{x}$. \\
+\textbf{Compounding period} & The time between two moments when interest is added; $n$ of them fit in a year, so each earns $\frac{r}{n}$. \\
+\textbf{Compound interest} & \TallMath{A = P\left(1+\frac{r}{n}\right)^{nt}} \\
+\textbf{The number $e$} & $e\approx2.71828$, the value $\left(1+\frac1m\right)^{m}$ closes in on as $m$ grows. Irrational, like $\pi$. \\
+\textbf{Continuous compounding} & \TallMath{A = Pe^{\,rt}} --- the ceiling: no $n$ is left to increase. \\
+\textbf{Half-life $h$} & The time for half of a quantity to disappear: $A(t)=A_{0}\left(\frac12\right)^{t/h}$. \\
+\textbf{Doubling time $d$} & The time for a quantity to double: $A(t)=A_{0}\,2^{\,t/d}$. \\
+\textbf{Why $t/h$, not $t$} & The exponent must be counted in \emph{periods}. Dividing by $h$ converts hours (or years) into halvings. \\
+\textbf{Out of reach vs.\ nonexistent} & $(1.05)^{t}=2$ has an answer no common base can name; $2^{x}=-3$ has none at all. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three skills this lesson stands on, one per section of the notes:
-    \textbf{(1)} describing the shifts of $y=(x-4)^2+1$ and $y=|x+2|-3$ and naming the vertex --- the
-    inside/outside sign rule students have owned since Unit~2, which today gets a new anchor to move;
-    \textbf{(2)} finding the domains of $\sqrt{x-3}$ and $\sqrt{x+5}$ by solving \emph{radicand}
-    $\ge0$ \emph{and} writing each endpoint in the same row, so the follow-up question --- compare the
-    number inside the radical to the endpoint's $x$-coordinate --- makes students notice the identity
-    the Hook is built to produce; and \textbf{(3)} simplifying $\sqrt{9x}$, $\sqrt{25x}$, and
-    $\sqrt[3]{8x}$ from Lesson~6.2, which sets up the day's genuine surprise. Take the last blank of
-    item~3 as a class vote --- \emph{is $\sqrt{9x}$ the parent with its input multiplied by $9$, or
-    with its output multiplied by $3$?} --- record the split on the board and leave it unresolved
-    until Section~5.
+    The Warm-Up rehearses exactly what today needs, in the order the lesson uses it. \textbf{(1)} A
+    $6\%$ annual rate split across $n=1,4,12$: rate per period, factor per period, and the number of
+    periods in five years. This is Lesson 6.1's percent-to-factor translation (\texttt{A2.F.2f}) with
+    one new column, and \emph{both} of the day's signature errors are the quarterly row done half-way.
+    Debrief it at the board and leave $0.015$, $1.015$, $20$ written where they will stay all period.
+    \textbf{(2)} Powers of $\frac12$, including $\left(\frac12\right)^{1/2}$ and
+    $\left(\frac12\right)^{1.5}$ (Unit 5 rational exponents), then the question that matters: how many
+    \emph{halvings} happen in 18 hours, and in 9 hours? The answer $1.5$ is the half-life exponent
+    arriving before the formula does --- do not resolve it algebraically, just point at the decimal
+    they already computed. \textbf{(3)} Lesson 6.3, twice: solve $2^{t}=32$ by common base, then look
+    at $(1.05)^{t}=2$ and say why Step 1 is impossible. Accept a short answer; Section 4 finishes it.
+    If a student says ``no solution,'' correct it immediately --- that distinction is the spine of the
+    last ten minutes.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put three graphs on the board, unlabelled: $y=\sqrt{x}$, $y=\sqrt{x-3}$, and $y=\sqrt{x}-3$. List
-    the three equations beside them, out of order, and ask for the match. Most students will get it,
-    but the pair that matters is the middle two: \textbf{``Both of these equations contain a $3$, and
-    both graphs moved. Why did they move in different directions?''} (Inside vs.\ outside --- Warm-Up
-    item~1 already said it.) Then spring the real question, which reframes the entire unit:
-    \textbf{``In Lesson 6.0, finding the domain of $\sqrt{x-3}$ meant solving $x-3\ge0$. Look at the
-    middle graph. Where could you have just \emph{read} that answer?''} Let someone say \emph{the
-    endpoint}. Press it: \textbf{``So is that a coincidence?''} It is not, and this is the sentence to
-    get on the board --- \emph{sliding the graph right by $3$ and refusing every input below $3$ are
-    the same event.} Land it: for four lessons a radical function's domain has been something you
-    compute. From today it is something you \emph{look at}. \emph{Find one point, and the whole graph
-    follows.}
+    Four banks, printed on the page, all advertising $6\%$ on the same \$1000 for one year: Ashmore
+    compounds annually and pays \$1060.00; Bellhaven quarterly, \$1061.36; Corliss monthly, \$1061.68;
+    Dunmore daily, \$1061.83. \textbf{Do not compute these at the board} --- the surprise is not the
+    arithmetic, it is the differences. Ask: \textbf{``Dunmore stops and adds interest 365 times as often
+    as Ashmore. What does all that extra work earn you?''} The answer, \$1.83 over an entire year, lands
+    hard, because nearly every student predicts that daily compounding is dramatically better. Then make
+    them look at the pattern of gains: $+\$1.36$, then $+\$0.32$, then $+\$0.15$. \textbf{``Each extra
+    chop of the year buys less than the one before. Where does that stop?''} Close by taking a real
+    prediction and writing the guesses on the board: \textbf{is there a bank so aggressive --- compounding
+    every second, every instant --- that it doubles your money in a year, or is something stopping all of
+    them?} Section 2 settles it, and the answer has a name.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. The anchor point.} Introduce $y=\sqrt{x-h}+k$ and the claim: the graph is the parent moved
-so its endpoint sits at $(h,k)$. Run the sign rule against Warm-Up item~1 --- $k$ outside, vertical,
-same direction; $h$ inside, horizontal, opposite direction. Work $f(x)=\sqrt{x-3}+1$ (anchor $(3,1)$,
-domain $[3,\infty)$, range $[1,\infty)$) and then make the reconciliation explicit: solving $x-3\ge0$
-and reading the anchor give the same number because they are the same fact. Close with the boxed
-result --- \emph{domain starts at $h$, range starts at $k$, both at the anchor}.
+\textbf{1. Cutting the year into pieces.} Start from Lesson 6.1's $y=ab^{x}$ and change exactly one
+thing: ``one period'' no longer has to be a year. Build $\frac{r}{n}$ and $nt$ as a pair, never
+separately, then box $A=P\left(1+\frac{r}{n}\right)^{nt}$ and read it aloud as the sentence the whole
+lesson runs on: \emph{the base is what happens in one period, and the exponent counts the periods.}
+Work \$2500 at $4\%$ quarterly for 6 years line by line --- $P$, $r$, $n$, $t$, then $\frac{r}{n}=0.01$,
+then $nt=24$, then $A=\$3174.34$ --- and set it beside the annual answer, \$3163.30. The extra \$11.04
+is deliberately unimpressive; it is the Hook restated in a second context.
 
-\textbf{2. The coefficient $a$.} Put $2\sqrt{x}$, $\sqrt{x}$, and $\frac12\sqrt{x}$ on one grid: stretch,
-parent, compression --- all sharing an anchor, because at the anchor the radical is $0$ and $a\cdot0=0$.
-Then the reflection: $m(x)=-3\sqrt{x}+6$, anchor $(0,6)$, arm falling, $x$-intercept $(4,0)$. Force the
-consequence rather than stating it --- \textbf{``the anchor is still the extreme point. Which kind is
-it now?''} A maximum, and the range flips to $(-\infty,6]$. Students who find the anchor and stop
-reading will get the range wrong all week; this is the moment to prevent it.
+\textbf{2. Where the gains stop.} Strip the money out and ask the cleanest version: \$1 at $100\%$ for
+a year, in $m$ pieces, is $\left(1+\frac1m\right)^{m}$. Fill the last three cells together and say what
+students can see --- the digits are freezing from the left. Name $e\approx2.71828$ as \emph{the number
+the chopping runs into}, not as a formula, and put it next to $\pi$: irrational, endless, and on the
+calculator. Then $A=Pe^{rt}$, with the observation that the $n$ is gone because there is nothing left to
+increase. Return to the worked example: continuously, \$2500 becomes \$3178.12 --- \$3.78 more than
+quarterly. That is the answer to the Hook, and it should be said as a sentence: \textbf{compounding
+schedules are not where returns come from.}
 
 \columnbreak
 
-\textbf{3. Cube roots.} Same form, one change. Work $g(x)=\sqrt[3]{x+1}-2$: anchor $(-1,-2)$, but
-domain \emph{and} range all reals, intercepts $(7,0)$ and $(0,-1)$. Ask \textbf{``why isn't $(-1,-2)$
-an endpoint?''} --- because an endpoint exists only where inputs are forbidden, and an odd index
-forbids nothing. Name it the \textbf{inflection point}. Then the \textbf{A2.F.1e} contrast: draw
-$-\sqrt[3]{x}$ and $\sqrt[3]{-x}$ and get the observation that it is \emph{one} graph, traced to
-6.0's origin symmetry ($\sqrt[3]{-8}=-2=-\sqrt[3]{8}$), and set it beside $-\sqrt{x}$ and
-$\sqrt{-x}$, which do not even share a domain.
+\textbf{3. A different clock.} Half-life and doubling time are the same structure, so present them as
+a pair and let the sentence do the work again: the base says what one period does, and $t/h$ counts the
+periods. \textbf{Spend real time on why the exponent is $t/h$ and not $t$} --- it is a unit conversion,
+hours into halvings, and the Warm-Up already produced $1.5$. Fill the 80 mg tracer table across, saving
+$t=9$ for last: a fractional exponent, an answer of $28.28$ mg, and a size check against $40$ and $20$.
+Then the Lesson 6.0 question --- will it ever be gone? --- answered from the \textbf{asymptote} and the
+\textbf{range} $(0,80]$, never from arithmetic. Close the section with the green box: $10$ mg \emph{is}
+reachable by yesterday's method, because $10$ is $80$ halved three times.
 
-\textbf{4. Graph $\rightarrow$ equation.} The SOL's harder direction (\textbf{A2.F.1b}). Anchor
-$(-2,-1)$, second point $(2,5)$: substitute, evaluate the radical to a \emph{number}, solve
-$5=2a-1$, get $a=3$, write $y=3\sqrt{x+2}-1$, and check against $(7,8)$. Say the rule aloud:
-\emph{the anchor is free --- take it first.} Anyone who reaches for $a$ first has two unknowns.
-
-\textbf{5. The hidden $h$, and the collapse.} $\sqrt{4x-8}$ does \emph{not} start at $8$: factor to
-$\sqrt{4(x-2)}=2\sqrt{x-2}$, anchor $(2,0)$, confirmed by $4x-8\ge0$. Then collect on the Warm-Up
-vote. $f(9x)$ squeezes the input, $3f(x)$ stretches the output --- and $\sqrt{9x}=3\sqrt{x}$, so for a
-radical they are the \emph{same} transformation, because the product property lets the constant walk
-out. \textbf{Immediately} block the overgeneralization with the counterexample in the notes: on
-$y=x+1$, $f(9x)=9x+1$ but $9f(x)=9x+9$. Preview Lesson~6.5.
+\textbf{4. The wall.} Ask the question every investor asks: when does \$1000 at $5\%$ double? Set up
+$1000(1.05)^{t}=2000$, divide to $(1.05)^{t}=2$, and go to the graph. The gold line crosses, between
+$t=14$ (\$1979.93) and $t=15$ (\$2078.93), so \textbf{the answer exists}. Then run Step 1 of Lesson 6.3
+and watch it fail: $2$ is not a power of $1.05$. Put that beside $2^{x}=-3$, which has no solution at
+all, and insist on the difference in words. Post the running list --- now five equations long. Do not
+name logarithms.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{the signature error:} reading $h$ with the wrong sign --- $\sqrt{x+2}$ shifted \emph{right} $2$, or an anchor of $(2,4)$ for $-3\sqrt{x+2}+4$. Fix it mechanically: set the radicand to zero and solve; that \emph{is} $h$;
-  \item finding the anchor and stopping --- writing the range as $[k,\infty)$ when $a<0$. The arm's direction decides the range, and the sign of $a$ decides the arm;
-  \item calling the anchor a minimum out of reflex; on a falling graph it is a \emph{maximum}, and on a cube root it is neither;
-  \item reading $h$ off $\sqrt{4x-8}$ as $8$ --- the whole of Section~5 exists to stop this, and it is the exit ticket's MC distractor A;
-  \item solving for $a$ before reading the anchor, and stalling with two unknowns in one equation;
-  \item skipping the check with the second point --- ten seconds that catch every sign error;
-  \item writing a restricted domain for a \emph{cube} root because it has an $h$ (the 6.0 error, resurfacing in new clothes);
-  \item after Section~5, over-generalizing to ``horizontal and vertical stretches are always the same.'' They are not; a vertical shift breaks it.
+  \item the annual rate kept as the base while the exponent is converted --- $1000(1.08)^{20}$ for a quarterly account; the tell is an absurd balance;
+  \item the rate split but the time not --- $1000(1.02)^{5}$; the tell is a balance barely above the principal;
+  \item $t$ used where $t/h$ belongs in a half-life model --- $90\left(\frac12\right)^{18}$ instead of $90\left(\frac12\right)^{18/6}$;
+  \item $r$ entered as a percent rather than a decimal ($n=4$, $r=8$), which is Lesson 6.1's error one unit later;
+  \item rounding the base or an intermediate power before the final step --- money answers drift by dollars;
+  \item distrusting a fractional number of half-lives and ``fixing'' $t/h=3.4$ to $3$;
+  \item answering ``the drug is gone'' or ``the truck is worthless'' without the asymptote --- the Unit 5 endpoint habit that 6.0 was built to break;
+  \item \textbf{answering ``no solution'' for $(1.05)^{t}=2$}; the correct statement is that the solution exists and today's method cannot reach it;
+  \item in Tier E, treating the Rule of 72 as exact rather than as an estimate calibrated near $8\%$.
 \end{itemize}
-Cold-call prompts: ``What is the anchor point, and how do you know before you graph anything?''
-``Which way does the arm leave the anchor --- so is that a max or a min, and what is the range?''
-``Where does the domain start, and can you get that answer two different ways?'' ``You have the
-anchor. What is the \emph{next} thing you need, and where will you get it?'' ``Does this radicand
-need factoring first? How can you tell at a glance?''
+Cold-call prompts: ``What is one period here?'' ``How many of them fit in the time you were given?''
+``Did you divide the rate \emph{and} multiply the time, or only one?'' ``Is that answer a reasonable
+size --- would \$5000 really become \$82{,}000 in four years?'' ``Does that equation have no answer, or
+an answer we can't reach yet? Those are different sentences.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Follow the Anchor} activity (tiered; mirrors the notes).
+\textbf{The Base Is One Period. The Exponent Counts Periods.} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} One pre-drawn graph of $r(x)=\sqrt{x-2}+1$ with the parent dashed
-behind it, so the shift is visible rather than asserted. Identify $h$ and $k$, name the anchor, and
-check it against the picture; then give the domain \emph{twice} --- once by reading the anchor, once
-by solving $x-2\ge0$ --- and explain in one sentence why the two can never disagree. Closes on end
-behavior (with ``the graph stops'' required on the left) and on why there is no $y$-intercept.
+\textbf{Tier R --- Remediate.} A setup-before-you-solve table for \$2000 at $3\%$ over 10 years,
+annually versus quarterly (the gain is \$8.87 --- ask whether that matched the group's guess); a 600 mg
+medicine with a 12-hour half-life, filled across four halvings, closing on \emph{which feature of the
+graph says it never reaches zero}; and a three-row diagnostic in which students name \emph{what one
+period is} for a quarterly model, a half-life model, and a doubling model. \textbf{Check Part 3 first
+when you circulate} --- it predicts everything else on the page.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} A seven-row table over four functions chosen so no two share a
-profile: $\sqrt{x+3}-2$, $-\sqrt{x-1}+3$, $\sqrt[3]{x-2}+1$, and $\frac12\sqrt{x}-4$ --- one negative
-$a$, one fractional $a$, one cube root. The last row (max / min / neither) is the discriminating one:
-\emph{neither} is correct for the cube root and students want to write ``min.'' Then the reverse
-direction --- write the equation of a pre-drawn graph (anchor $(4,-3)$, point $(8,1)$, giving
-$y=2\sqrt{x-4}-3$) with a required check --- and two justifications: which symbol gives $q$ a maximum,
-and why $s$'s anchor is not an endpoint.
+\textbf{Tier A --- Approaching.} \$5000 at $3.6\%$ for eight years, monthly (\$6665.91) against
+continuously (\$6668.79), with a written response to the classmate who expects continuous compounding to
+win by a lot; a 120 mg dose with a 5-hour half-life evaluated at $t=10$ and at $t=17$, where $3.4$
+halvings must be justified and size-checked against $15$ and $7.5$ mg; and the \textbf{error analysis}
+--- Renata writes $1000(1.08)^{20}$, Miles writes $1000(1.02)^{5}$. They are opposite halves of one
+mistake and need different re-teaches, which is exactly what the closing question asks students to
+articulate.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Three parts. \emph{(1)} The hidden $h$: factor $\sqrt{4x}$,
-$\sqrt{9x-18}$, $\sqrt[3]{8x+8}$, then diagnose the classmate who says $\sqrt{9x-18}$ starts at
-$x=18$. \emph{(2)} Prove the collapse: why $\sqrt{kx}=\sqrt{k}\sqrt{x}$ makes $f(kx)$ and $kf(x)$ one
-transformation, rewritten in a single line with \textbf{rational exponents} (6.1),
-$(kx)^{1/n}=k^{1/n}x^{1/n}$, so the stretch factor is $\sqrt[n]{k}$. \emph{(3)} Where it breaks: a
-four-column table comparing $\sqrt{9x}+1$ with $3(\sqrt{x}+1)$, which differ by exactly $2$ at every
-$x$ --- then explain which part of $\sqrt{x}+1$ the product property cannot touch, and write a rule a
-classmate could trust.
+\textbf{Tier E --- Extension.} Three parts. \emph{The ceiling, at a real rate:}
+$\left(1+\frac{0.06}{n}\right)^{n}$ across $n=1,4,12,365$ and then $e^{0.06}=1.061837$, with ``how much
+more could compounding every \emph{second} pay?'' (about half a cent). \emph{The Rule of 72:} tested at
+$5\%$, $8\%$, and $12\%$ against the true doubling times --- it is excellent near $8\%$ and drifts on
+either side, which is calibration, not a formula. Students who ask \emph{why 72} are asking a logarithm
+question; say so and stop. \emph{Which can you finish?} Four modeling questions reduced to equations,
+two solvable by common base and two not --- including the same drug and half-life targeted at $75$ mg
+(works) and $200$ mg (does not).
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): from the equation $f(x)=-3\sqrt{x+2}+4$, give the
-anchor point, domain, and range, name the anchor's extremum \emph{and the symbol that caused it}, and
-describe all three transformations; then the reverse direction from a pre-drawn graph (anchor
-$(1,-2)$, point $(5,2)$, giving $y=2\sqrt{x-1}-2$); then an \textbf{SOL-style multiple-choice} item on
-the anchor point of $y=3\sqrt{2x-10}+1$ (answer $(5,1)$), whose distractors each break exactly one
-idea --- $(10,1)$ reads the constant without factoring out the $2$, $(-5,1)$ factors but keeps the
-constant's sign, and $(5,-1)$ reverses $k$ as though outside numbers flipped too. Collect and sort
-into ``got it / sign-of-$h$ slip / range dropper / did not factor.'' The last pile matters most: it is
-a procedural gap that resurfaces immediately in Lesson~6.5, where $\sqrt{2x-10}=4$ has to be handled
-correctly. Item 1(d) is the conceptual check --- a student who names the anchor but cannot say
-\emph{which symbol} made it a maximum has memorized a picture, not a mechanism.
+\textbf{Exit Ticket} (independent, no notes), four items on one page: \textbf{(1)} \$4000 at $3\%$
+compounded monthly for 5 years, with the base ($1.0025$) and exponent ($60$) written before the answer
+(\$4646.47); \textbf{(2)} a 50 mg dose with a 4-day half-life --- write the model, evaluate at 12 days
+($6.25$ mg), and say from the \emph{asymptote} whether it ever reaches $0$; \textbf{(3)} an
+\textbf{SOL-style multiple-choice item} --- \$1500 at $4.8\%$ compounded quarterly for 7 years, with
+distractors $1500(1.048)^{7}$ (neither converted), $1500(1.012)^{7}$ (Miles's error), and
+$1500(1.048)^{28}$ (Renata's error) against the correct $1500(1.012)^{28}$, so the wrong answer names
+the re-teach; and \textbf{(4)} the wall: $(1.012)^{4t}=2$ cannot be finished with a common base ---
+\emph{does it still have an answer?} ``No'' is wrong, and it is the single most informative response on
+the page. Sort the collected tickets into \emph{got it / setup / asymptote / the wall}. The
+\emph{setup} pile needs practice, not re-teaching. A large \emph{wall} pile changes how 6.5 opens and
+must be fixed before Unit 7: five minutes on the Section 4 graph with the gold line visibly crossing.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} a four-row equation-only table (parent / transformations / anchor / domain \& range)
-over $\sqrt{x-5}+2$, $\sqrt[3]{x+3}-1$, $-4\sqrt{x}+2$, and $\frac12\sqrt{x+6}-3$, where the third row
-catches anyone who forgets that a negative $a$ flips the range; a full feature read off a pre-drawn
-$m(x)=-\sqrt{x+4}+3$; \emph{two} graph-to-equation items, one square root
-($y=-\sqrt{x+3}+4$, set up so the falling graph predicts $a<0$ before any algebra) and one cube root
-($y=2\sqrt[3]{x-1}-1$, with a follow-up on why it has no endpoint); a three-row factor-first table
-($\sqrt{25x}$, $\sqrt{16x-32}$, $\sqrt[3]{27x-27}$); and a justification item asking why $-\sqrt{x}$
-and $\sqrt{-x}$ differ while $-\sqrt[3]{x}$ and $\sqrt[3]{-x}$ coincide, using the words \emph{index}
-and \emph{symmetry}. \textbf{Extension:} the horizon model $d(h)=\sqrt{1.5h}$ miles for an eye height
-of $h$ feet, on a table ($h=6,24,54,96,150$) chosen so every distance is a whole number of miles ---
-domain from the radicand and from context, the meaning of the anchor $(0,0)$ for a swimmer at water
-level, why quadrupling eye height only doubles the view, and then the payoff: rewriting
-$\sqrt{1.5h}=\sqrt{1.5}\sqrt{h}\approx1.22\sqrt{h}$ shows that a real navigation formula is nothing
-but the parent square root with a \emph{single vertical stretch}. It closes with a sailor climbing a
-mast on a deck $20$ feet above the water, $D(h)=\sqrt{1.5(h+20)}$ --- a shift left, anchor $(-20,0)$
---- and the sharp question: that anchor is not a place anyone can stand, so the context domain is
-$h\ge0$ and the usable graph begins at $D(0)=\sqrt{30}\approx5.5$ miles. \textbf{Preview:}
-Lesson~6.5, \emph{Solving Radical Equations \& Extraneous Solutions} --- isolate, raise to the $n$th
-power, and \emph{always check}, because squaring destroys sign information the same way Unit~5's
-excluded values appeared; graphically, finding where today's graphs cross a horizontal line.
+\textbf{Homework:} four accounts at four compounding frequencies, with the base and exponent written
+before the balance (the daily row's exponent of $1460$ is the one to check); \$6000 at $4\%$ for ten
+years quarterly against continuously, whose \$17.77 gap must be \emph{explained}; a caffeine model
+(200 mg, 5-hour half-life) evaluated at a non-half-life time and size-checked against the table, then
+asked whether the caffeine is ever gone; a \textbf{graph read} of $800(1.06)^{t}$ against $y=1600$,
+where students bracket the doubling between years 11 and 12, write the equation, and say what stops
+Step 1; and \textbf{error analysis} repeating the day's two errors in two different models --- Tobias
+keeps an annual base with a monthly count, Marisol counts hours instead of halvings, and both absurd
+answers (\$81{,}969.36 from \$5000; $0.00034$ mg from 90 mg) are reasonableness checks students should
+have run themselves. \textbf{Extension:} a \$32{,}000 truck losing $18\%$ a year, where depreciation and
+half-life are revealed to be the same object --- the base is $0.82$ and not $0.18$, the ``half-life of a
+truck'' is $(0.82)^{t}=0.5$ (between years 3 and 4, no common base, fifth entry on the running list),
+and the model's asymptote says the truck is never worthless, which is mathematically right and
+physically wrong. That last beat is deliberate set-up for 6.5's extrapolation discussion.
+\textbf{Preview:} Lesson~6.5, \emph{Exponential Regression \& Choosing a Model} --- where nobody hands
+you the rate, and Lesson 6.0's fingerprint test decides the family before technology fits anything.
 \end{skillbox}
 \end{document}

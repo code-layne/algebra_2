@@ -1,13 +1,16 @@
-%! Absolute Value Functions \& Transformations — Unit 2, Lesson 2.3 — Homework (Answer Key)
+%! Solving by Square Roots & Completing the Square — Unit 2, Lesson 2.3 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
+\newcommand{\MethodA}{\ans{factoring}\hspace{0pt}}
+\newcommand{\MethodB}{\ans{square roots}\hspace{0pt}}
+\newcommand{\MethodC}{\ans{completing the square}\hspace{0pt}}
 
 \begin{document}
 
@@ -16,119 +19,117 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show your work. For every function, remember: vertex form $a|x-h|+k$ has vertex $(h,k)$ and axis
-$x=h$; the sign of $a$ tells you up/down, and $|a|$ tells you narrow/wide.
+Show your work. Isolate the square before you root, keep the $\pm$, and write radicals in simplest form.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{The parent $y=|x|$.} Fill in each feature.
-        \\[2pt] Vertex \ans{$(0,0)$}; \quad axis $x={\color{keyred}\mathbf{0}}$; \quad minimum value
-        \ans{$0$}; \quad domain \ans{all real numbers}; \quad range \ans{$y\ge 0$}.
+  \item \textbf{Solve by the Square Root Property.} Both roots, simplest radical form.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}X X@{}}
+    $x^2=81 \Rightarrow x=$ \ans{$\pm9$} & $x^2-10=0 \Rightarrow x=$ \ans{$\pm\sqrt{10}$} \\
+    $4x^2-100=0 \Rightarrow x=$ \ans{$\pm5$} & $(x-1)^2=49 \Rightarrow x=$ \ans{$8,\ -6$} \\
+    \multicolumn{2}{@{}l}{$(x+3)^2=8 \Rightarrow x=$ \ans{$-3\pm2\sqrt2$}} \\
+    \end{tabularx}
+    \end{center}
 
-  \item \textbf{Match} each equation to its graph (write the letter).
-        \begin{center}
-        \begin{tikzpicture}[scale=0.4]
-          \begin{scope}
-            \lgrid{-1}{5}{-1}{4}
-            \draw[very thick, forest] (-1,3)--(2,0)--(5,3);
-            \node[charcoal, font=\scriptsize] at (2,-2.4){\textbf{W}};
-          \end{scope}
-          \begin{scope}[xshift=9cm]
-            \lgrid{-3}{3}{-3}{3}
-            \draw[very thick, forest] (-3,1)--(0,-2)--(3,1);
-            \node[charcoal, font=\scriptsize] at (0,-4.6){\textbf{X}};
-          \end{scope}
-        \end{tikzpicture}\\[4pt]
-        \begin{tikzpicture}[scale=0.4]
-          \begin{scope}
-            \lgrid{-3}{3}{-4}{2}
-            \draw[very thick, forest] (-3,-3)--(0,0)--(3,-3);
-            \node[charcoal, font=\scriptsize] at (0,-5.6){\textbf{Y}};
-          \end{scope}
-          \begin{scope}[xshift=9cm]
-            \lgrid{-4}{2}{-1}{5}
-            \draw[very thick, forest] (-4,4)--(-1,1)--(2,4);
-            \node[charcoal, font=\scriptsize] at (-1,-2.4){\textbf{Z}};
-          \end{scope}
-        \end{tikzpicture}
-        \end{center}
-        $y=|x-2|$ is \ans{W}. \quad $y=|x|-2$ is \ans{X}. \quad
-        $y=-|x|$ is \ans{Y}. \quad $y=|x+1|+1$ is \ans{Z}.
+  \item \textbf{Complete the square to solve.} Show the completed square, then both roots.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+      \item $x^2+6x+2=0$
+        \begin{work}
+          x^2+6x &= -2 \\
+          x^2+6x+9 &= 7 \\
+          (x+3)^2 &= 7 \\
+          x &= -3\pm\sqrt{7}
+        \end{work}
+      \item $x^2-8x+5=0$
+        \begin{work}
+          x^2-8x &= -5 \\
+          x^2-8x+16 &= 11 \\
+          (x-4)^2 &= 11 \\
+          x &= 4\pm\sqrt{11}
+        \end{work}
+      \item $x^2+2x-1=0$
+        \begin{work}
+          x^2+2x &= 1 \\
+          x^2+2x+1 &= 2 \\
+          (x+1)^2 &= 2 \\
+          x &= -1\pm\sqrt{2}
+        \end{work}
+    \end{enumerate}
 
-  \item \textbf{Name the features} of each function.
-        \begin{center}
-        \renewcommand{\arraystretch}{1.4}
-        \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
-        & \textbf{Vertex} & \textbf{Axis} & \textbf{Opens} & \textbf{Max/Min value} \\
-        (a) $y=|x-2|+1$      & \ans{$(2,1)$} & \ans{$x=2$} & \ans{up} & \ans{min $1$} \\
-        (b) $y=-|x+3|$        & \ans{$(-3,0)$} & \ans{$x=-3$} & \ans{down} & \ans{max $0$} \\
-        (c) $y=3|x|-4$        & \ans{$(0,-4)$} & \ans{$x=0$} & \ans{up} & \ans{min $-4$} \\
-        (d) $y=-\tfrac12|x-1|+2$ & \ans{$(1,2)$} & \ans{$x=1$} & \ans{down} & \ans{max $2$} \\
-        \end{tabularx}
-        \end{center}
+  \item \textbf{Rewrite in vertex form} $(x-h)^2+k$ by completing the square, and name the vertex.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X@{}}
+    \textbf{Standard} & \textbf{Vertex form} & \textbf{Vertex} \\
+    \hline
+    $x^2+6x+1$ & \ans{$(x+3)^2-8$} & \ans{$(-3,-8)$} \\
+    $x^2-4x-1$ & \ans{$(x-2)^2-5$} & \ans{$(2,-5)$} \\
+    \end{tabularx}
+    \end{center}
 
-  \item \textbf{Describe the transformations} from $y=|x|$.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-          \item $y=|x-5|+2$: \ans{right $5$, up $2$}
-          \item $y=-3|x+1|$: \ans{left $1$, reflect over the $x$-axis (open down), vertical stretch by $3$ (narrower)}
-        \end{enumerate}
+  \item \textbf{Choose a method, then solve.} Name it (\emph{factoring / square roots / completing the square}).
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+      \item $x^2-5x+6=0$ \hfill method: \MethodA
+        \begin{work}
+          (x-2)(x-3) &= 0 \\
+          x &= 2,\ 3
+        \end{work}
+      \item $x^2=48$ \hfill method: \MethodB
+        \begin{work}
+          x &= \pm\sqrt{48} \\
+            &= \pm4\sqrt{3}
+        \end{work}
+      \item $x^2+10x+18=0$ \hfill method: \MethodC
+        \begin{work}
+          x^2+10x &= -18 \\
+          x^2+10x+25 &= 7 \\
+          (x+5)^2 &= 7 \\
+          x &= -5\pm\sqrt{7}
+        \end{work}
+    \end{enumerate}
 
-  \item \textbf{Complete the table} for $y=|x-1|+2$, then give the vertex.
-        \begin{center}
-        \renewcommand{\arraystretch}{1.2}
-        \begin{tabular}{|c|c|c|c|c|c|}
-        \hline
-        $x$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\ \hline
-        $y$ & ${\color{keyred}\mathbf{4}}$ & ${\color{keyred}\mathbf{3}}$ & ${\color{keyred}\mathbf{2}}$ & ${\color{keyred}\mathbf{3}}$ & ${\color{keyred}\mathbf{4}}$ \\ \hline
-        \end{tabular}
-        \end{center}
-        Vertex: $({\color{keyred}\mathbf{1}},\,{\color{keyred}\mathbf{2}})$.
+  \item \textbf{Roots from a graph.} The graph of $f(x)=x^2-2x-4$ is shown; its roots are irrational.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-3}{5}{-6}{4}
+      \begin{scope}\clip (-3,-6) rectangle (5,4);
+        \draw[very thick, forest, domain=-2.0:4.0, samples=80, smooth] plot (\x,{\x*\x - 2*\x - 4});
+      \end{scope}
+      \fill[charcoal] (-1.236,0) circle (3pt);
+      \fill[charcoal] (3.236,0) circle (3pt);
+      \fill[charcoal] (1,-5) circle (3pt) node[below, font=\scriptsize]{$(1,-5)$};
+    \end{tikzpicture}
+    \end{center}
+    Complete the square to find the \emph{exact} roots: $x^2-2x-4=0 \Rightarrow (x-1)^2=$ \ans{$5$},
+    so $x=$ \ans{$1\pm\sqrt5$}. \; Do these match the two $x$-intercepts on the graph? \ans{yes}
 
-  \item \textbf{Model it.} A drone flies in a straight line past a tower; its distance from the tower
-        (in meters) is $D(t)=15\,|t-6|$, where $t$ is in seconds.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-          \item Find the vertex and say what it means in context.
-                \ansline{Vertex $(6,0)$: at $t=6$ s the drone is \emph{at} the tower (distance $0$, closest).}
-          \item What is the distance at $t=0$ and at $t=10$?
-                \begin{work}
-                   D(0) &= 15\,|0-6| \\
-                        &= 15(6)      \\
-                        &= 90 \text{ m} \\
-                  D(10) &= 15\,|10-6| \\
-                        &= 15(4)      \\
-                        &= 60 \text{ m}
-                \end{work}
-        \end{enumerate}
-
-  \item \textbf{Explain.} How does the sign of $a$ in $y=a|x-h|+k$ tell you whether the vertex is a
-        maximum or a minimum?
-        \ansline{If $a>0$ the V opens up, so the vertex is the \emph{lowest} point --- a minimum.}
-        \ansline{If $a<0$ the V opens down, so the vertex is the \emph{highest} point --- a maximum.}
+  \item \textbf{Explain.} A classmate solves $x^2=25$ and writes $x=5$. What did they miss, and what is the
+        complete answer? \ansline{They missed the negative root: $x=\pm5$. A number has two square roots, so $x=5$ \emph{or} $x=-5$.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Build and reason.}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item A V opens \emph{up}, has vertex $(-2,1)$, and passes through $(0,5)$. Find $a$ and write the
-        equation in vertex form.
-        \begin{work}
-          5 &= a\,|0-(-2)| + 1 \\
-          5 &= 2a + 1          \\
-          4 &= 2a              \\
-          2 &= a               \\
-          y &= 2|x+2| + 1
-        \end{work}
-  \item For $y=a|x-h|+k$ with $a<0$, what is the range in terms of $k$? Explain from the picture.
-        \ansline{Range $y\le k$: opening down, the vertex $(h,k)$ is the highest point,}
-        \ansline{so no output can exceed $k$.}
+\textbf{A matted photo.} A square photo of side $x$ inches gets a uniform $2$-inch mat all around, so the
+whole framed square has side $(x+4)$ inches. The framed square's area is $121$ in$^2$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Write an equation for the framed area using a square.
+  \item Solve it by the Square Root Property.
+  \item One root cannot be a side length. State the photo's side $x$ and explain why you rejected the other.
 \end{enumerate}
+\begin{work}
+  (x+4)^2 &= 121 \\
+  x+4 &= \pm11 \\
+  x &= 7 \quad\text{or}\quad x = -15 \\
+  x &= 7\text{ in} \quad\text{(reject } -15\text{: a side length can't be negative)}
+\end{work}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 2.4: Piecewise-Defined Functions.} Today's V is secretly \emph{two}
-lines pasted at the vertex: $y=-x$ on the left and $y=x$ on the right. Next you'll write functions
-built from different rules on different pieces of the domain --- and meet the greatest-integer (step)
-function as a second example.
+\textbf{Coming next --- Lesson 2.4: Complex Numbers.} Every method so far stops at the same wall: what is
+$\sqrt{-9}$? Solving $x^2=-9$ or $x^2+2x+5=0$ leads to a \emph{negative} under the square root, so there is
+\emph{no real} solution. Next you'll meet the imaginary unit $i=\sqrt{-1}$ and the \emph{complex numbers},
+which finally let every quadratic be solved.
 \end{spiralbox}
 
 \end{document}

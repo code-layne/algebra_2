@@ -1,11 +1,12 @@
-%! Absolute Value Equations \& Inequalities — Unit 2, Lesson 2.2 — Guided Notes
+%! Solving Quadratics by Factoring — Unit 2, Lesson 2.2 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\numline}[2]{%
-  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
-  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -16,10 +17,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item read \emph{absolute value} as distance from zero and solve $|ax+b|=c$ with the two-case rule;
-  \item recognize when an equation or inequality has \emph{no solution} or \emph{one solution};
-  \item solve absolute value \emph{inequalities} (``and'' for $<$, ``or'' for $>$);
-  \item write a solution set in \emph{set}, \emph{interval}, and \emph{number-line} form, and model a tolerance situation.
+  \item \emph{factor} a quadratic completely: GCF first, then $x^2+bx+c$ by product/sum, $ax^2+bx+c$ by grouping, and the special patterns;
+  \item \emph{solve} $ax^2+bx+c=0$ with the \emph{Zero Product Property} and verify the roots;
+  \item connect the \emph{roots} to the parabola's \emph{$x$-intercepts / zeros}.
 \end{itemize}
 \end{objectivebox}
 
@@ -28,136 +28,128 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-\termblanklong{Absolute value (distance from zero)}
-\termblanklong{Two-case rule for $|X|=c$}
-\termblanklong{``And'' case: $|X|<c$}
-\termblanklong{``Or'' case: $|X|>c$}
-\termblanklong{Set / interval notation}
+\par\vspace{2pt}
+\termblanklong{Factoring}
+\termblanklong{Zero Product Property}
+\termblanklong{Root / zero / solution}
+\termblanklong{Difference of squares}
+\termblanklong{Perfect-square trinomial (double root)}
 \end{vocabbox}
 
 \begin{hookbox}
-A cereal box is labeled $500$ g. Quality control rejects any box that is \emph{more than $5$ g off}
-the label.
+In Lesson~2.1 you were \textbf{handed} the factored form of the unit's anchor parabola:
+\[ f(x)=x^2-2x-3 \;=\; (x+1)(x-3). \]
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Lightest box that still passes? \blank{2.0cm} \qquad Heaviest? \blank{2.0cm}
-  \item Write ``the weight $w$ is off from $500$ by \emph{at most} $5$'' with one symbol:
-        $\big|\,\blank{1.4cm}\,\big| \le \blank{0.8cm}$
+  \item Where do you think the ``$+1$'' and ``$-3$'' came from? \writeline
+  \item If $(x+1)(x-3)=0$, what must be true about \emph{one} of the factors? \writeline
 \end{itemize}
-An absolute value is a \emph{distance}. Every problem today asks how far an expression is from a
-target: ``exactly this far'' (equation) or ``within / beyond this far'' (inequality).
+Today we \emph{produce} the factored form ourselves --- and use it to find where the graph meets the $x$-axis.
 \end{hookbox}
 
-\boxguard
-\begin{notesbox}{1. Absolute Value Is a Distance}
-$|x|$ is the distance of $x$ from $0$, so it is \textbf{never negative}. The question $|x|=5$ asks
-\emph{which numbers are exactly $5$ units from zero} --- and there are \blank{1.0cm} of them:
-\[ x = \blank{1.2cm} \quad\text{or}\quad x = \blank{1.2cm}. \]
+\boxguard[20]
+\begin{notesbox}{1. The Zero Product Property --- the engine}
+If a product of two numbers is \textbf{zero}, then at least one of them must \emph{be} zero:
+\[ \text{if } A\cdot B = 0, \text{ then } A=\blank{1.2cm} \ \text{ or } \ B=\blank{1.2cm}. \]
+That is the \emph{only} way a product hits zero. So a factored equation becomes two easy linear ones.
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \numline{-6}{6}
-  \fill[forest] (-5,0) circle (3.5pt); \fill[forest] (5,0) circle (3.5pt);
-  \draw[<->, forest!70, thick] (0,0.6) to[bend left=18] node[above, font=\scriptsize]{$5$} (5,0.6);
-  \draw[<->, forest!70, thick] (-5,0.6) to[bend left=18] node[above, font=\scriptsize]{$5$} (0,0.6);
+\begin{minipage}{0.54\linewidth}
+\textbf{Solve} $(x+1)(x-3)=0$:
+\begin{enumerate}[leftmargin=1.6em, itemsep=2pt]
+  \item Set each factor to $0$: \quad $x+1=0$ \ or \ $x-3=0$.
+  \item Solve each: \quad $x=\blank{1.0cm}$ \ or \ $x=\blank{1.0cm}$.
+\end{enumerate}
+These are the \textbf{roots} --- and the parabola's \blank{2.6cm}.
+
+\vspace{3pt}
+\textbf{Careful:} the property needs a \textbf{zero}. If $(x+1)(x-3)=\underline{\ 5\ }$, you may
+\emph{not} write $x+1=5$. First move everything to one side.
+\end{minipage}%
+\begin{minipage}{0.44\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{5}{-5}{3}
+  \begin{scope}\clip (-3,-5) rectangle (5,3);
+    \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x+1)*(\x-3)});
+  \end{scope}
+  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$-1$};
+  \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$3$};
+  \fill[charcoal] (1,-4) circle (3pt);
 \end{tikzpicture}
+\end{minipage}
 \end{center}
-\textbf{Big idea:} a single distance corresponds to \emph{two} inputs --- one on each side of zero.
-That is the whole engine of this lesson.
 \end{notesbox}
 
-\begin{notesbox}{2. Solving $|ax+b| = c$ --- The Two-Case Rule}
-\textbf{Step 1: isolate} the absolute value. \textbf{Step 2:} if $c \ge 0$, split into two cases:
-\[ ax+b = c \qquad\text{or}\qquad ax+b = -c. \]
-\textbf{Try it:} $|2x - 3| = 7$.
+\begin{notesbox}{2. Factor $x^2+bx+c$ --- un-FOIL}
+Since $(x+p)(x+q)=x^2+(p+q)x+pq$, factoring reverses the search: find two integers whose
+\textbf{product is $c$} and whose \textbf{sum is $b$}.
 \begin{center}
 \renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{0.92\linewidth}{@{}X | X@{}}
-\textbf{Case 1 (positive):} & \textbf{Case 2 (negative):} \\
-$2x - 3 = 7$ & $2x - 3 = -7$ \\
-$x = \blank{1.6cm}$ & $x = \blank{1.6cm}$ \\
-\end{tabularx}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{sign of $c$} & \textbf{what the two integers look like} \\ \hline
+$c>0$ & same sign (both match the sign of $b$) \\ \hline
+$c<0$ & opposite signs \\ \hline
+\end{tabular}
 \end{center}
-\textbf{Verify} both in the original: $|2(\blank{0.7cm})-3| = 7$ \checkmark \; and
-$|2(\blank{0.7cm})-3| = 7$ \checkmark. Graphically, these are the two $x$-values where $y=|2x-3|$
-meets the line $y=7$.
+\textbf{Example (the anchor).} Factor $x^2-2x-3$: need product $\blank{0.9cm}$, sum $\blank{0.9cm}$.
+The integers are $\blank{0.8cm}$ and $\blank{0.8cm}$, so
+\[ x^2-2x-3 = (\,x\ \blank{0.9cm}\,)(\,x\ \blank{0.9cm}\,). \]
+\textbf{You try.} Factor $x^2+7x+12$: product $12$, sum $7 \Rightarrow \blank{1.0cm},\ \blank{1.0cm}$;
+so $x^2+7x+12 = \blank{3.2cm}$.
 \end{notesbox}
 
-\begin{notesbox}{3. Isolate First --- and Two Special Cases}
-You \emph{cannot} split until the bars stand alone. Solve $3|x+1| - 2 = 10$:
-\begin{work}
-  3|x+1| - 2 &= 10 \\
-      3|x+1| &= 12 \\
-       |x+1| &= 4 \\
-         x+1 &= 4 \quad\text{or}\quad x+1 = -4 \\
-           x &= 3 \quad\text{or}\quad x = -5
-\end{work}
-\textbf{Special cases} (explain each from the distance meaning):
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item $|x - 4| = -3$ has \blank{3.2cm}, because a distance can never be \blank{2.0cm}.
-  \item $|x - 4| = 0$ has exactly \blank{2.0cm} solution: $x = \blank{1.0cm}$ (distance $0$ means the expression \emph{is} zero).
-\end{itemize}
+\begin{notesbox}{3. GCF first --- and the \#1 trap}
+\emph{Always} pull out the greatest common factor before anything else.
+\[ 2x^2-8x = \blank{1.2cm}\,(\,x-\blank{0.7cm}\,). \]
+\textbf{Solve} $2x^2-8x=0$: factor to $2x(x-4)=0$, so $x=\blank{1.0cm}$ or $x=\blank{1.0cm}$.
+
+\vspace{3pt}
+\fbox{\parbox{0.96\linewidth}{\small\textbf{Trap:} to solve $3x^2=12x$, do \emph{not} divide both sides
+by $x$ --- that deletes the root $x=0$. Instead move to one side: $3x^2-12x=0 \Rightarrow 3x(x-4)=0
+\Rightarrow x=\blank{0.9cm}$ or $x=\blank{0.9cm}$.}}
 \end{notesbox}
 
-\boxguard
-\begin{notesbox}{4. Inequalities --- The ``And'' Case ($<$, $\le$)}
-$|x| < 3$ asks \emph{which numbers are within $3$ of zero} --- everything \textbf{between} $-3$ and
-$3$. \textbf{``Less th\emph{AND}''}: $|X| < c \iff -c < X < c$ (one connected interval).
+\begin{notesbox}{4. Two special patterns + $a\ne1$ by grouping}
+\textbf{Difference of squares:} $\;x^2-k^2=(x-k)(x+k)$. \quad
+Factor $x^2-16 = (\,x-\blank{0.7cm}\,)(\,x+\blank{0.7cm}\,)$; roots $x=\blank{1.6cm}$.
 
-\textbf{Solve} $|2x - 1| \le 5$:
-\begin{work}
-        |2x - 1| &\le 5 \\
-  -5 \le 2x - 1 &\le 5 \\
-      -4 \le 2x &\le 6 \\
-       -2 \le x &\le 3
-\end{work}
-Write the solution three ways:
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{0.95\linewidth}{@{}l l X@{}}
-\textbf{Set notation:} & $\{\,x \mid \blank{3.0cm}\,\}$ &
-\textbf{Interval:} $\blank{2.4cm}$ \\
-\end{tabularx}
-\end{center}
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \numline{-4}{5}
-\end{tikzpicture}
-\end{center}
-{\footnotesize Shade \emph{between} the two bounds; use \textbf{closed} dots because of ``$\le$''.}
+\vspace{2pt}
+\textbf{Perfect-square trinomial:} $\;x^2-6x+9=(x-\blank{0.7cm})^2$; this gives one \textbf{double root}
+$x=\blank{0.9cm}$ (the parabola \emph{touches} the $x$-axis there).
+
+\vspace{2pt}
+\textbf{Leading coefficient $a\ne1$ --- grouping ($a\!\cdot\!c$ method).} Factor $2x^2+7x+3$:
+\begin{enumerate}[leftmargin=1.7em, itemsep=1pt]
+  \item $a\!\cdot\!c = 2\cdot3 = \blank{0.8cm}$; two integers with that product and sum $7$: $\blank{0.8cm},\ \blank{0.8cm}$.
+  \item Split the middle term: $2x^2+\blank{0.9cm}+\blank{0.9cm}+3$.
+  \item Group: $2x(x+3)+1(x+3) = (\,\blank{1.4cm}\,)(\,x+3\,)$; roots $x=\blank{1.0cm},\ \blank{1.0cm}$.
+\end{enumerate}
 \end{notesbox}
 
-\begin{notesbox}{5. Inequalities --- The ``Or'' Case ($>$, $\ge$)}
-$|x| > 3$ asks \emph{which numbers are more than $3$ from zero} --- everything \textbf{outside}
-$[-3,3]$. \textbf{``Great\emph{OR}''}: $|X| > c \iff X < -c$ \textbf{or} $X > c$ (two rays).
-
-\textbf{Solve} $|x + 2| \ge 4$:
-\begin{work}
-  |x + 2| &\ge 4 \\
-    x + 2 &\le -4 \quad\text{or}\quad x + 2 \ge 4 \\
-        x &\le -6 \quad\text{or}\quad x \ge 2
-\end{work}
-Write the solution three ways:
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{0.95\linewidth}{@{}l l X@{}}
-\textbf{Set notation:} & $\{\,x \mid \blank{3.4cm}\,\}$ &
-\textbf{Interval:} $\blank{3.2cm}$ \\
-\end{tabularx}
-\end{center}
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \numline{-8}{4}
-\end{tikzpicture}
-\end{center}
-{\footnotesize Shade the two \emph{outside} rays; the interval uses $\cup$ (``union'').}
-\end{notesbox}
-
+\boxguard[22]
 \begin{practicebox}
-Solve $|3x - 6| > 9$ and write the solution set in all three forms.
-\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
-  \item Split (``or''): $3x - 6 < \blank{1.0cm}$ or $3x - 6 > \blank{1.0cm}$.
-  \item Solve: $x < \blank{1.2cm}$ or $x > \blank{1.2cm}$.
-  \item Set: $\{\,x \mid \blank{3.2cm}\,\}$; \quad Interval: $\blank{3.4cm}$.
+\textbf{Solve each by factoring. Show the factored form, then the roots.}
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
+  \item $x^2-x-6=0$
+    \begin{work}
+      x^2-x-6 &= 0 \\
+      (x-3)(x+2) &= 0 \\
+      x-3 = 0 \quad&\text{or}\quad x+2 = 0 \\
+      x &= 3,\ -2
+    \end{work}
+  \item $x^2-5x=0$
+    \begin{work}
+      x^2-5x &= 0 \\
+      x(x-5) &= 0 \\
+      x = 0 \quad&\text{or}\quad x-5 = 0 \\
+      x &= 0,\ 5
+    \end{work}
+  \item $x^2-49=0$
+    \begin{work}
+      x^2-49 &= 0 \\
+      (x-7)(x+7) &= 0 \\
+      x-7 = 0 \quad&\text{or}\quad x+7 = 0 \\
+      x &= 7,\ -7
+    \end{work}
 \end{enumerate}
 \end{practicebox}
 

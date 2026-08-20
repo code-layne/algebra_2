@@ -1,11 +1,12 @@
-%! Absolute Value Equations \& Inequalities — Unit 2, Lesson 2.2 — Group Activity (Answer Key)
+%! Solving Quadratics by Factoring — Unit 2, Lesson 2.2 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\numline}[2]{%
-  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
-  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -14,109 +15,139 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Distance, Cases \& Sets.} An absolute value is a \emph{distance}, so it is never
-negative. Solve each problem with your partner, and for every inequality record the answer
-\emph{three ways}: set notation, interval notation, and a shaded number line. Isolate the bars
-\textbf{before} you split.
+\small\textbf{Zeros Factory.} Factoring turns a quadratic into a product, and the Zero Product Property
+turns that product into the \emph{roots} --- the parabola's $x$-intercepts. With your partner, run the
+factory: factor, solve, and check each answer against the graph. \emph{Justify} where each root lands.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
-  \item \textbf{Evaluate.} \quad $|-9| = {\color{keyred}\mathbf{9}}$ \qquad
-        $|12| - |-4| = {\color{keyred}\mathbf{8}}$ \qquad $-|{-5}| = {\color{keyred}\mathbf{-5}}$
-  \item \textbf{Solve (already isolated).} Each has \emph{two} answers.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-          \item $|x| = 8$: \quad $x = {\color{keyred}\mathbf{8}} \text{ or } {\color{keyred}\mathbf{-8}}$
-          \item $|x - 3| = 5$: \quad $x = {\color{keyred}\mathbf{8}} \text{ or } {\color{keyred}\mathbf{-2}}$
-          \item $|x + 2| = 6$: \quad $x = {\color{keyred}\mathbf{4}} \text{ or } {\color{keyred}\mathbf{-8}}$
-        \end{enumerate}
-  \item \textbf{Match.} Draw the two solutions of $|x| = 4$ on the number line below (two dots).
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \numline{-6}{6}
-          \fill[forest] (-4,0) circle (3.5pt); \fill[forest] (4,0) circle (3.5pt);
-        \end{tikzpicture}
-        \end{center}
-\end{enumerate}
+\textbf{1. Zero Product Property.} Each equation is \emph{already} factored. Solve for both roots.
+\[
+  (x-2)(x+5)=0:\ x=\textcolor{keyred}{\mathbf{2,\,-5}} \qquad x(x-4)=0:\ x=\textcolor{keyred}{\mathbf{0,\,4}}
+\]
+\[
+  (x+1)(x+6)=0:\ x=\textcolor{keyred}{\mathbf{-1,\,-6}} \qquad (x-7)(x-1)=0:\ x=\textcolor{keyred}{\mathbf{7,\,1}}
+\]
+
+\textbf{2. Factor, then match to a graph.} Factor each trinomial, list its roots, and write the letter of
+the parabola whose $x$-intercepts match.
+\begin{center}
+\begin{tikzpicture}[scale=0.36]
+  % A: zeros -2, 1
+  \begin{scope}
+    \lgrid{-4}{3}{-3}{3}
+    \begin{scope}\clip (-4,-3) rectangle (3,3);
+      \draw[very thick, forest, domain=-3:2, samples=60, smooth] plot (\x,{(\x+2)*(\x-1)});
+    \end{scope}
+    \fill[charcoal] (-2,0) circle (2.5pt); \fill[charcoal] (1,0) circle (2.5pt);
+    \node[charcoal, font=\scriptsize] at (-0.5,-4.2){\textbf{A}};
+  \end{scope}
+  % B: zeros 1, 4
+  \begin{scope}[xshift=9cm]
+    \lgrid{-1}{6}{-3}{5}
+    \begin{scope}\clip (-1,-3) rectangle (6,5);
+      \draw[very thick, forest, domain=0:5, samples=60, smooth] plot (\x,{(\x-1)*(\x-4)});
+    \end{scope}
+    \fill[charcoal] (1,0) circle (2.5pt); \fill[charcoal] (4,0) circle (2.5pt);
+    \node[charcoal, font=\scriptsize] at (2.5,-4.2){\textbf{B}};
+  \end{scope}
+  % C: zeros -3, -1
+  \begin{scope}[xshift=18cm]
+    \lgrid{-5}{1}{-2}{4}
+    \begin{scope}\clip (-5,-2) rectangle (1,4);
+      \draw[very thick, forest, domain=-4:0, samples=60, smooth] plot (\x,{(\x+3)*(\x+1)});
+    \end{scope}
+    \fill[charcoal] (-3,0) circle (2.5pt); \fill[charcoal] (-1,0) circle (2.5pt);
+    \node[charcoal, font=\scriptsize] at (-2,-3.2){\textbf{C}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l X X c@{}}
+\textbf{Trinomial} & \textbf{Factored form} & \textbf{Roots} & \textbf{Graph} \\
+\hline
+$x^2+x-2$   & \ans{$(x+2)(x-1)$} & \ans{$-2,\ 1$} & \ans{A} \\
+$x^2-5x+4$  & \ans{$(x-1)(x-4)$} & \ans{$1,\ 4$}  & \ans{B} \\
+$x^2+4x+3$  & \ans{$(x+3)(x+1)$} & \ans{$-3,\ -1$}& \ans{C} \\
+\end{tabularx}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\begin{enumerate}[leftmargin=1.7em, itemsep=11pt]
-  \item \textbf{Isolate, then solve.} $\;2|x - 1| + 3 = 11$.
-        \begin{work}
-          2|x - 1| + 3 &= 11 \\
-              2|x - 1| &= 8 \\
-               |x - 1| &= 4 \\
-                 x - 1 &= 4 \quad\text{or}\quad x - 1 = -4 \\
-                     x &= 5 \quad\text{or}\quad x = -3
-        \end{work}
-        Solutions: $x = $ \ans{$5$ or $-3$}
-  \item \textbf{``And'' inequality.} $\;|x + 1| < 4$.
-        \begin{work}
-              |x + 1| &< 4 \\
-          -4 < x + 1 &< 4 \\
-              -5 < x &< 3
-        \end{work}
-        Set: \ans{$\{x \mid -5 < x < 3\}$} \qquad Interval: \ans{$(-5,\,3)$}
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \numline{-6}{4}
-          \draw[very thick, forest] (-5,0)--(3,0);
-          \draw[very thick, forest, fill=white] (-5,0) circle (3.5pt);
-          \draw[very thick, forest, fill=white] (3,0) circle (3.5pt);
-        \end{tikzpicture}
-        \end{center}
-  \item \textbf{``Or'' inequality.} $\;|2x - 3| \ge 5$.
-        \begin{work}
-          |2x - 3| &\ge 5 \\
-            2x - 3 &\le -5 \quad\text{or}\quad 2x - 3 \ge 5 \\
-                2x &\le -2 \quad\text{or}\quad 2x \ge 8 \\
-                 x &\le -1 \quad\text{or}\quad x \ge 4
-        \end{work}
-        Set: \ans{$\{x \mid x \le -1 \text{ or } x \ge 4\}$} \qquad Interval: \ans{$(-\infty,-1]\cup[4,\infty)$}
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \numline{-3}{6}
-          \draw[very thick, forest, <-] (-3.4,0)--(-1,0);
-          \draw[very thick, forest, ->] (4,0)--(6.4,0);
-          \fill[forest] (-1,0) circle (3.5pt); \fill[forest] (4,0) circle (3.5pt);
-        \end{tikzpicture}
-        \end{center}
-  \item \textbf{Spot the special case.} One of these has \emph{no solution} and one has \emph{exactly
-        one}. Label each and explain in a few words.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=3pt]
-          \item $|x - 2| = -4$: \ans{no solution --- a distance can't be negative}
-          \item $|x - 2| = 0$: \ans{exactly one solution, $x=2$ --- distance $0$}
-        \end{enumerate}
-\end{enumerate}
+\textbf{1. Solve-by-factoring table.} Set $=0$ first, pull any GCF, factor completely, list the roots.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\textbf{Equation} & \textbf{Factored form} & \textbf{Roots} \\
+\hline
+$x^2+3x-10=0$ & \ans{$(x+5)(x-2)$} & \ans{$-5,\ 2$} \\
+$x^2-7x+10=0$ & \ans{$(x-2)(x-5)$} & \ans{$2,\ 5$} \\
+$2x^2-6x=0$   & \ans{$2x(x-3)$}    & \ans{$0,\ 3$} \\
+$x^2-9=0$     & \ans{$(x-3)(x+3)$} & \ans{$\pm3$} \\
+\end{tabularx}
+\end{center}
+\textbf{2. Match roots to a graph.} The parabola below crosses the $x$-axis at $-4$ and $2$.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-6}{4}{-10}{4}
+  \begin{scope}\clip (-6,-10) rectangle (4,4);
+    \draw[very thick, forest, domain=-5.2:3.2, samples=80, smooth] plot (\x,{(\x+4)*(\x-2)});
+  \end{scope}
+  \fill[charcoal] (-4,0) circle (3pt) node[above left, font=\scriptsize]{$-4$};
+  \fill[charcoal] (2,0) circle (3pt) node[above right, font=\scriptsize]{$2$};
+  \fill[charcoal] (-1,-9) circle (3pt);
+\end{tikzpicture}
+\end{center}
+Which equation has exactly these roots? Circle one, then \emph{factor it to justify}:
+\[ {\color{keyred}\mathbf{x^2+2x-8=0}} \qquad x^2-2x-8=0 \qquad x^2+2x+8=0 \]
+Justify: \ans{$x^2+2x-8=(x+4)(x-2)$, so roots $-4$ and $2$ --- matching the graph. ($x^2-2x-8$ gives $-2,4$; $x^2+2x+8$ does not factor over the integers.)}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\begin{enumerate}[leftmargin=1.7em, itemsep=11pt]
-  \item \textbf{Model a tolerance.} A machine cuts rods to a target length of $20$ cm and accepts any
-        rod whose length $L$ is within $0.3$ cm of target.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-          \item Write an absolute-value inequality for an acceptable rod. \ans{$|L - 20| \le 0.3$}
-          \item Solve it, and state the \emph{shortest} and \emph{longest} acceptable lengths.
-                \begin{work}
-                        |L - 20| &\le 0.3 \\
-                  -0.3 \le L - 20 &\le 0.3 \\
-                      19.7 \le L &\le 20.3
-                \end{work}
-                Shortest \ans{$19.7$ cm} \quad Longest \ans{$20.3$ cm}
-        \end{enumerate}
-  \item \textbf{Reason about the constant.} Consider $|x + 5| > k$ and $|x + 5| < k$.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-          \item For which values of $k$ does $|x + 5| < k$ have \emph{no solution}? Explain.
-                \ansline{$k \le 0$: a distance is never less than a number that is $0$ or negative.}
-          \item For which values of $k$ is \emph{every} real number a solution of $|x + 5| > k$?
-                Explain. \ansline{$k < 0$: a distance is always $\ge 0$, which exceeds any negative $k$.}
-        \end{enumerate}
+\textbf{1. Leading coefficient $a\ne1$ (grouping).} Factor and solve.
+
+\textbf{(a)} $3x^2+7x+2=0$
+\begin{work}
+  3x^2+6x+x+2 &= 0 \\
+  3x(x+2)+1(x+2) &= 0 \\
+  (3x+1)(x+2) &= 0 \\
+  x &= -\frac{1}{3},\ -2
+\end{work}
+\textbf{(b)} $2x^2-5x-3=0$
+\begin{work}
+  2x^2-6x+x-3 &= 0 \\
+  2x(x-3)+1(x-3) &= 0 \\
+  (2x+1)(x-3) &= 0 \\
+  x &= -\frac{1}{2},\ 3
+\end{work}
+
+\textbf{2. Special patterns.} Factor and give the roots. One has a \emph{double root} --- say which.
+
+\textbf{(a)} $4x^2-25=0$
+\begin{work}
+  (2x-5)(2x+5) &= 0 \\
+  x &= \frac{5}{2},\ -\frac{5}{2}
+\end{work}
+\textbf{(b)} $x^2+10x+25=0$
+\begin{work}
+  (x+5)^2 &= 0 \\
+  x &= -5 \quad\text{(double root)}
+\end{work}
+Which has a double root, and what does that mean for the graph?
+\ansline{The second: $(x+5)^2=0$ has the single (double) root $x=-5$, so the parabola \emph{touches} the $x$-axis at $(-5,0)$ instead of crossing.}
+
+\vspace{4pt}
+\tcbbreak
+\textbf{3. Model it.} A rectangular patio is $3$ ft longer than it is wide, and its area is $40$ ft$^2$.
+Let the width be $x$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=2pt]
+  \item Write an equation for the area in terms of $x$. \ans{$x(x+3)=40$}
+  \item Solve by factoring. \ansline{$x^2+3x-40=0 \Rightarrow (x+8)(x-5)=0 \Rightarrow x=-8$ or $x=5$.}
+  \item One root is impossible here. Which, and why? State the patio's dimensions. \ansline{Reject $x=-8$ (a width cannot be negative). Width $x=5$ ft, length $x+3=8$ ft.}
 \end{enumerate}
 \end{tcolorbox}
 

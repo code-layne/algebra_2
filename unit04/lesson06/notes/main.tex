@@ -1,9 +1,9 @@
-%! Graphing Polynomial Functions and Modeling — Unit 4, Lesson 4.6 — Guided Notes
+%! Solving Rational Equations — Unit 4, Lesson 4.6 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -19,336 +19,274 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item predict every feature of a polynomial's graph from its equation --- end behavior, $x$- and $y$-intercepts, the behavior at each zero, the number of turning points, and where the graph is above or below the $x$-axis --- and match that prediction to the correct graph;
-  \item read a polynomial graph the other direction: write a possible equation in factored form from its $x$-intercepts, its behavior at each one, and its $y$-intercept;
-  \item state a polynomial's domain, range, increasing/decreasing intervals, and relative vs.\ absolute extrema from its graph;
-  \item build a polynomial model, restrict it to the inputs that make sense, and answer a real question with the feature that matches it.
+  \item \textbf{solve} a rational equation by multiplying every term by the LCD and solving the linear or quadratic equation that is left (A2.EI.4b);
+  \item \textbf{check} every candidate against the restriction list and \textbf{verify} the survivors --- algebraically and on a graph (A2.EI.4b/c);
+  \item \textbf{explain why} a candidate can be extraneous, using the fact that multiplying by an expression that could be zero is not reversible (A2.EI.4d);
+  \item \textbf{write} a rational equation to model a situation, solve it, and say what the answer means --- including which answers to reject and why (A2.EI.4a/c).
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.04in}
+\vspace{0.05in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-\termblanklong{Sign chart}
-\termblanklong{Behavior at a zero (cross / touch / flatten)}
-\termblanklong{Turning point}
-\termblanklong{Relative extremum vs.\ absolute extremum}
-\termblanklong{Feasible domain (of a model)}
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Rational equation}
+\termblanklong{Clearing the denominators}
+\termblanklong{Candidate vs.\ solution}
+\termblanklong{Extraneous solution}
 \end{vocabbox}
 
 \begin{hookbox}
-Both graphs below have exactly the same $x$-intercepts: $x = -2$ and $x = 1$. Only one of them is
-$g(x) = (x-1)^2(x+2)$. (Each horizontal gridline is $2$ units.)
+Two equations. They are the same except for one number in the denominator.
+\[ \textbf{(I)}\quad \frac{x^2}{x-2}=\frac{4}{x-2} \qquad\qquad\qquad
+   \textbf{(II)}\quad \frac{x^2}{x-3}=\frac{4}{x-3} \]
+Multiply both sides of \emph{either} one by its denominator and the very same equation drops out:
+$x^2=4$, so the candidates are $x=\blank{0.8cm}$ and $x=\blank{0.8cm}$ --- for \textbf{both}
+equations. Now put those two numbers back into the originals and see what actually happens.
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-4}{3}{-4}{4}
-  \begin{scope}
-    \clip (-4,-4) rectangle (3,4);
-    \draw[very thick, forest, domain=-2.55:2.2, samples=150, smooth]
-      plot (\x,{((\x)*(\x)*(\x) - 3*(\x) + 2)/2});
-  \end{scope}
-  \foreach \x in {-2,-1,1,2}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-  \fill[charcoal] (-2,0) circle (2.5pt);
-  \fill[charcoal] (1,0)  circle (2.5pt);
-  \node[font=\scriptsize\bfseries, charcoal] at (-2.6,3.4) {Graph 1};
-\end{tikzpicture}
-\hspace{0.5cm}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-4}{3}{-4}{4}
-  \begin{scope}
-    \clip (-4,-4) rectangle (3,4);
-    \draw[very thick, forest, domain=-3.3:1.55, samples=150, smooth]
-      plot (\x,{((\x)*(\x)*(\x) + 3*(\x)*(\x) - 4)/2});
-  \end{scope}
-  \foreach \x in {-2,-1,1,2}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-  \fill[charcoal] (-2,0) circle (2.5pt);
-  \fill[charcoal] (1,0)  circle (2.5pt);
-  \node[font=\scriptsize\bfseries, charcoal] at (-3.4,3.4) {Graph 2};
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.96\linewidth}{|C{1.9cm}|C{1.5cm}|C{2.6cm}|C{2.6cm}|X|}
+\hline
+\rowcolor{forestbg}
+\textbf{Equation} & \textbf{Try $x=$} & \textbf{Left side} & \textbf{Right side} &
+\textbf{True? False? Neither?} \\ \hline
+(I)  & $2$  & & & \\ \hline
+(I)  & $-2$ & & & \\ \hline
+(II) & $2$  & & & \\ \hline
+(II) & $-2$ & & & \\ \hline
+\end{tabularx}
 \end{center}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Which graph is $g$? \blank{2.0cm} \; What did you use to decide? \blank{5.0cm}
-  \item The other graph is $(x-1)(x+2)^2$. Its zeros are the \emph{same} two numbers. What is
-        different about them? \blank{5.4cm}
-\end{itemize}
-\textbf{Today's question: how much of a polynomial's graph can you know before you ever plot a
-point --- and what can that picture tell you about a real situation?}
+\vspace{-2pt}
+Equation (I) has \blank{0.8cm} solution(s); equation (II) has \blank{0.8cm}. The algebra could not
+tell them apart --- \emph{only the check could.} That is today's whole lesson.
 \end{hookbox}
 
-\begin{notesbox}{1. The Five-Step Graph Plan}
-Nothing in this lesson is new. Every step is a tool from an earlier lesson; today they run in order.
+\begin{notesbox}{1. First: Expression or Equation?}
+These two lines look almost identical, and what you are allowed to do to them is completely different.
 
 \vspace{4pt}
-\renewcommand{\arraystretch}{1.45}
-\begin{tabularx}{\linewidth}{|C{0.7cm}|X|C{2.1cm}|X|}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} X X@{}}
+\hline
+ & \textbf{Lesson 4.3 --- an \emph{expression}} & \textbf{Lesson 4.6 --- an \emph{equation}} \\
+\hline
+What it looks like & $\dfrac{6}{x}-\dfrac{2}{x-1}$ & $\dfrac{6}{x}-\dfrac{2}{x-1}=1$ \\
+The job & \emph{Combine} it into one fraction & \emph{Solve} it for $x$ \\
+What you do with the LCD & Build it: rewrite each piece \emph{over} the LCD & Multiply \emph{every term} by it, so the denominators cancel away \\
+What is left at the end & A fraction, with restrictions & Numbers, which must then be \blank{2.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{You may clear denominators only when there is an equals sign.} An expression has no sides to
+multiply. Clearing the denominators of an expression changes its \emph{value}; clearing them in an
+equation keeps the equation balanced.\vspace{2pt}}}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{2. The Four Steps --- Always in This Order}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\hline
+\textbf{\#} & \textbf{Step} & \textbf{What you write down} \\
+\hline
+1 & \textbf{Factor \& restrict} & factor every denominator; list every \blank{2.4cm} value. \emph{Write the list at the top of your work.} \\
+2 & \textbf{Multiply by the LCD} & every term, including any term with no denominator; then cancel \\
+3 & \textbf{Solve} & whatever is left --- a \blank{1.6cm} or a \blank{2.0cm} equation \\
+4 & \textbf{Check} & compare each answer to the Step 1 list; discard any match; verify the survivors \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{Clearing the denominators solves a \emph{different} equation. The check is what brings you
+back.}\vspace{2pt}}}
+\end{center}
+
+\vspace{3pt}
+Until Step 4 is done, the numbers you have are only \textbf{candidates}. Step 1 is not optional
+bookkeeping --- it is the only thing that makes Step 4 possible, and it must happen \emph{before} you
+touch the equation.
+\end{notesbox}
+
+\begin{notesbox}{3. Why This Happens --- and Why It Is Not Your Fault}
+From the Warm-Up: multiplying both sides of an equation by a \emph{nonzero} number can always be undone
+by dividing, so it never changes the answers. Multiplying both sides by \blank{1.2cm} cannot be
+undone --- and it turns \emph{every} statement, true or false, into $0=0$.
+
+\vspace{4pt}
+When you multiply a rational equation by its LCD, you are not multiplying by a number. You are
+multiplying by an \emph{expression}, and at each excluded value that expression is exactly
+\blank{1.2cm}. So at those inputs --- and only at those inputs --- the multiplication is not
+reversible, and the cleared equation can pick up answers that the original never had.
+
+\vspace{4pt}
+\begin{center}
+\fbox{\parbox{0.94\linewidth}{\centering\vspace{2pt}
+An \textbf{extraneous solution} is a solution of the cleared equation that is \emph{not} a solution of
+the original one. \\[3pt]
+\textbf{It is never a random number. It is always a value from your Step 1
+list.}\vspace{2pt}}}
+\end{center}
+
+\vspace{4pt}
+That last sentence is worth its own line, because it makes Step 4 quick. You are not re-solving
+anything. You are reading two short lists --- \emph{candidates} and \emph{restrictions} --- and looking
+for overlap.
+
+\vspace{3pt}
+\textbf{And notice what a check on an excluded value actually looks like.} Substituting $x=2$ into
+equation (I) of the Hook does not produce a \emph{false} statement. It produces \blank{4.6cm}
+--- which is not a statement at all. You cannot check a number into an equation where the equation does
+not exist.
+\end{notesbox}
+
+\begin{notesbox}{4. Worked Example A --- Nothing Gets Thrown Away}
+\[ \frac{6}{x}-\frac{2}{x-1}=1 \]
+
+\textbf{Step 1 --- factor and restrict.} The denominators are $x$ and $x-1$, already factored, so
+$x\neq\blank{0.8cm}$ and $x\neq\blank{0.8cm}$. \; LCD $=\blank{2.6cm}$
+
+\vspace{4pt}
+\textbf{Step 2 --- multiply every term by the LCD.} Watch the term on the right: it has no denominator,
+and it still gets multiplied.
+\[ x(x-1)\cdot\frac{6}{x} \;-\; x(x-1)\cdot\frac{2}{x-1} \;=\; x(x-1)\cdot 1 \]
+Cancel: \quad $\rule{2.2cm}{0.4pt}-\rule{1.6cm}{0.4pt}=\rule{2.2cm}{0.4pt}$
+
+\vspace{4pt}
+\textbf{Step 3 --- solve what is left.} Distribute, collect everything on one side, and factor.
+\[ 6x-6-2x=x^2-x \qquad\Longrightarrow\qquad 0=x^2-\rule{0.7cm}{0.4pt}\,x+\rule{0.7cm}{0.4pt}
+   \qquad\Longrightarrow\qquad 0=(x-\rule{0.5cm}{0.4pt})(x-\rule{0.5cm}{0.4pt}) \]
+Candidates: $x=\blank{0.8cm}$ and $x=\blank{0.8cm}$.
+
+\vspace{4pt}
+\textbf{Step 4 --- check.} Restriction list: \blank{2.0cm}. \; Is either candidate on it?
+\blank{1.0cm} \; So \blank{1.0cm} candidates survive. Verify both in the \emph{original}:
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.90\linewidth}{|C{1.6cm}|C{3.4cm}|C{2.0cm}|X|}
 \hline
 \rowcolor{forestbg}
-\textbf{\#} & \textbf{What you do} & \textbf{From} & \textbf{What it decides about the picture} \\ \hline
-1 & Find the degree and the leading coefficient. & 4.0, 4.1 & \\ \hline
-2 & Factor completely; set each factor to $0$. & 4.2--4.4 & \\ \hline
-3 & Record the \textbf{multiplicity} of each zero. & 4.0 & \\ \hline
-4 & Evaluate $f(0)$. & --- & \\ \hline
-5 & Test one $x$ in each interval between zeros. & new today & \\ \hline
+\textbf{$x$} & \textbf{$\dfrac{6}{x}-\dfrac{2}{x-1}$} & \textbf{Equals $1$?} & \textbf{Verdict} \\ \hline
+$2$ & & & \\ \hline
+$3$ & & & \\ \hline
 \end{tabularx}
+\end{center}
+\vspace{-2pt}
+Solution set: \blank{3.0cm}
+\end{notesbox}
+
+\begin{notesbox}{5. Worked Example B --- One Survives, One Does Not}
+\[ \frac{x}{x+1}+\frac{2}{x-1}=\frac{2}{x^2-1} \]
+
+\textbf{Step 1.} Factor the last denominator first: $x^2-1=(\rule{1.3cm}{0.4pt})(\rule{1.3cm}{0.4pt})$.
+\; Restrictions: $x\neq\blank{0.8cm}$, $x\neq\blank{0.8cm}$. \; LCD $=\blank{3.0cm}$
+
+\vspace{4pt}
+\textbf{Step 2.} Multiply all three terms by the LCD and cancel:
+\[ x(\rule{1.1cm}{0.4pt})+2(\rule{1.1cm}{0.4pt})=\rule{1.1cm}{0.4pt} \]
+
+\vspace{2pt}
+\textbf{Step 3.} $x^2-x+2x+2=2 \;\Longrightarrow\; x^2+x=0 \;\Longrightarrow\;
+x(\rule{1.3cm}{0.4pt})=0$. \; Candidates: $x=\blank{0.8cm}$, $x=\blank{0.8cm}$.
+
+\vspace{4pt}
+\textbf{Step 4.} One candidate is sitting on the restriction list: $x=\blank{0.9cm}$ is
+\blank{2.6cm}. Throw it away --- and notice you did \emph{not} have to substitute anything to know
+that. The other candidate, $x=\blank{0.9cm}$, is checked in the original: left side
+$=\dfrac{0}{1}+\dfrac{2}{-1}=\blank{1.0cm}$, right side $=\dfrac{2}{-1}=\blank{1.0cm}$. \;
+Solution set: \blank{2.4cm}
 
 \vspace{5pt}
-\textbf{Two rules to have in front of you.}
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item \textbf{Behavior at a zero.} Odd multiplicity $\Rightarrow$ the graph \blank{2.0cm} the
-        axis. Even multiplicity $\Rightarrow$ the graph \blank{2.0cm} the axis and turns back.
-        Multiplicity $3$ or more $\Rightarrow$ it still crosses, but it \blank{2.4cm} out first.
-  \item \textbf{Turning points.} A polynomial of degree $n$ has \emph{at most} \blank{1.4cm}
-        turning points. Run that backward: a graph with $4$ turning points must have degree at
-        least \blank{1.2cm}.
-\end{itemize}
-
-\vspace{4pt}
-\textbf{What the plan cannot give you.} It locates every zero exactly and every arm exactly, but not
-the \emph{coordinates} of the turning points --- those need a table of values or technology. Knowing
-that a peak is somewhere between two zeros is enough for everything on this page.
-\end{notesbox}
-
-\begin{notesbox}{2. Worked Example A --- the Unit Anchor}
-Analyze $g(x) = x^3 - 3x + 2 = (x-1)^2(x+2)$ completely, then check it against Graph 1 above.
-
-\vspace{4pt}
-\textbf{Step 1 --- arms.} Degree \blank{0.8cm}, leading coefficient \blank{0.8cm}. Odd degree,
-positive lead: as $x \to -\infty$, $g(x) \to$ \blank{1.4cm}; as $x \to +\infty$, $g(x) \to$
-\blank{1.4cm}.
+\textbf{Now see it (A2.EI.4b, graphically).} Move everything to one side and combine with 4.3:
+\[ \frac{x}{x+1}+\frac{2}{x-1}-\frac{2}{x^2-1}
+   =\frac{x(x-1)+2(x+1)-2}{(x-1)(x+1)}=\frac{x^2+x}{(x-1)(x+1)}
+   =\frac{x(x+1)}{(x-1)(x+1)}=\frac{x}{x-1},\quad x\neq-1 \]
+Solving the equation is the same as asking where that combined function equals \blank{0.8cm}. Run
+Lesson 4.5 on it: the factor $x+1$ cancels, so $x=-1$ is a \blank{1.2cm}; the factor $x-1$ survives,
+so $x=1$ is a \blank{2.6cm}; and the simplified numerator is zero at $x=\blank{0.8cm}$.
 
 \vspace{3pt}
-\textbf{Steps 2--3 --- zeros and behavior.} $x = $ \blank{1.0cm} (multiplicity \blank{0.7cm}) $\Rightarrow$
-the graph \blank{1.8cm}; \quad $x = $ \blank{1.0cm} (multiplicity \blank{0.7cm}) $\Rightarrow$ the
-graph \blank{1.8cm}.
-
-\vspace{3pt}
-\textbf{Step 4 --- $y$-intercept.} $g(0) = $ \blank{1.0cm} \; $\Rightarrow$ \; the point
-\blank{1.6cm}.
-
-\vspace{3pt}
-\textbf{Step 5 --- sign chart.} The zeros $-2$ and $1$ split the axis into three intervals.
-
-\vspace{2pt}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{|C{2.6cm}|C{1.6cm}|C{3.4cm}|C{2.2cm}|X|}
-\hline
-\rowcolor{forestbg}
-\textbf{Interval} & \textbf{Test $x$} & \textbf{$(x-1)^2(x+2)$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
-$x<-2$     & $-3$ & & & \\ \hline
-$-2<x<1$   & $0$  & & & \\ \hline
-$x>1$      & $2$  & & & \\ \hline
-\end{tabularx}
-
-\vspace{4pt}
-\textbf{Assemble it.} The graph comes up from $-\infty$ on the left, crosses at \blank{1.2cm}, stays
-\blank{1.6cm} the axis all the way to $x=1$, \blank{1.6cm} the axis there without crossing, and
-leaves upward. Turning points visible: \blank{1.0cm} --- and the degree allows at most
-\blank{1.0cm}. \checkmark
-
-\vspace{3pt}
-\textbf{Notice the trap the sign chart catches.} Between $-2$ and $1$ the graph is above the axis,
-and \emph{after} $1$ it is above the axis again. The sign did \blank{2.4cm} change at $x=1$ --- which
-is exactly what an even multiplicity means.
-\end{notesbox}
-
-\begin{notesbox}{3. Worked Example B --- a Negative Lead and a Flattened Zero}
-Analyze $q(x) = -(x+2)(x-1)^3$ before you look at the graph.
-
-\vspace{4pt}
-\textbf{1. Arms.} Degree \blank{0.8cm} (degrees add: $1 + 3$), leading coefficient \blank{1.0cm}.
-So as $x \to -\infty$, $q(x) \to$ \blank{1.4cm}, and as $x \to +\infty$, $q(x) \to$ \blank{1.4cm}.
-
-\vspace{3pt}
-\textbf{2--3. Zeros.} $x = $ \blank{1.0cm} (multiplicity \blank{0.7cm}), behavior: \blank{1.8cm};
-\quad $x = $ \blank{1.0cm} (multiplicity \blank{0.7cm}), behavior: \blank{3.0cm}.
-
-\vspace{3pt}
-\textbf{4. $y$-intercept.} $q(0) = -(2)(-1)^3 = $ \blank{1.0cm}
-
-\vspace{3pt}
-\textbf{5. Sign chart.} \quad
-$x<-2$: test $-3$, sign \blank{1.2cm} \quad $-2<x<1$: test $0$, sign \blank{1.2cm} \quad
-$x>1$: test $2$, sign \blank{1.2cm}
-
-\vspace{4pt}
-Now check yourself against the real graph. (Each horizontal gridline is $4$ units.)
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{3}{-3}{3}
+\begin{minipage}{0.53\linewidth}\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-6}{7}{-4}{6}
+  \draw[navy, dashed, semithick] (1,-4)--(1,6);
+  \draw[navy, dashed, semithick] (-6,1)--(7,1);
+  \node[navy, font=\scriptsize, above right] at (1,5.2) {$x=1$};
+  \node[navy, font=\scriptsize, below right] at (5.0,1) {$y=1$};
   \begin{scope}
-    \clip (-3,-3) rectangle (3,3);
-    \draw[very thick, forest, domain=-2.4:2.0, samples=170, smooth]
-      plot (\x,{(0 - (\x)*(\x)*(\x)*(\x) + (\x)*(\x)*(\x) + 3*(\x)*(\x) - 5*(\x) + 2)/4});
+    \clip (-6,-4) rectangle (7,6);
+    \draw[very thick, forest, domain=-6:0.8, samples=140, smooth] plot (\x,{1+1/((\x)-1)});
+    \draw[very thick, forest, domain=1.25:7, samples=140, smooth] plot (\x,{1+1/((\x)-1)});
   \end{scope}
-  \foreach \x in {-2,-1,1,2}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-  \fill[charcoal] (-2,0) circle (2.5pt);
-  \fill[charcoal] (1,0)  circle (2.5pt);
+  \draw[forest, very thick, fill=white] (-1,0.5) circle (4.2pt);
+  \node[charcoal, font=\scriptsize, left] at (-1.4,0.9) {hole};
+  \fill[charcoal] (0,0) circle (3.4pt);
 \end{tikzpicture}
-\end{center}
-\begin{itemize}\setlength{\itemsep}{2pt}
-  \item Both arms point \blank{1.6cm}, as an even degree with a negative lead requires.
-  \item At $x=1$ the graph does something a simple crossing never does: it \blank{3.0cm} before
-        passing through. That is the fingerprint of multiplicity \blank{1.0cm}.
-  \item How many turning points does the graph have? \blank{1.0cm} \; The degree allows at most
-        \blank{1.0cm}, so this is legal.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{4. Running It Backward: From a Graph to an Equation}
-This is Lesson 4.5's build-from-zeros skill (A2.EI.6a) with the zeros read off a picture instead of
-handed to you. (Each horizontal gridline is $2$ units.)
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{3}{-3}{4}
-  \begin{scope}
-    \clip (-3,-3) rectangle (3,4);
-    \draw[very thick, forest, domain=-2.3:2.3, samples=150, smooth]
-      plot (\x,{(0 - (\x)*(\x)*(\x) + 3*(\x) + 2)/2});
-  \end{scope}
-  \foreach \x in {-2,-1,1,2}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-  \fill[charcoal] (-1,0) circle (2.5pt);
-  \fill[charcoal] (2,0)  circle (2.5pt);
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
-  \item $x$-intercepts: \blank{2.4cm}. \; At $x=-1$ the graph \blank{1.6cm} the axis, so that
-        factor is squared; at $x=2$ it \blank{1.6cm}, so that factor appears once.
-  \item Skeleton: $f(x) = a\,($\blank{1.8cm}$)^2\,($\blank{1.8cm}$)$. \; Its degree is
-        \blank{0.8cm}.
-  \item \textbf{Find $a$ with the $y$-intercept.} The graph passes through $(0,$\blank{0.8cm}$)$, so
-        $f(0) = a(1)^2(-2) = $ \blank{1.2cm} $\Rightarrow a = $ \blank{1.0cm}.
-  \item Final answer: $f(x) = $ \blank{4.6cm}
-  \item \textbf{Check the arms.} Degree \blank{0.8cm}, leading coefficient \blank{1.0cm}: up on the
-        left, down on the right. Does the graph agree? \blank{1.2cm}
-\end{enumerate}
-
-\vspace{3pt}
-\textbf{Why the answer is only ``a possible equation.''} A graph cannot show you an imaginary zero
-(Lesson 4.5), so $f(x)$ could also carry a factor like $x^2+1$ that no picture would reveal. Say
-\emph{least degree} when you want the one answer above.
-\end{notesbox}
-
-\begin{notesbox}{5. Reading the Finished Graph: All the Characteristics}
-Here is $p(x) = x^4 - 5x^2 + 4 = (x-1)(x+1)(x-2)(x+2)$ --- the quartic you factored in Lesson 4.2.
-(Each horizontal gridline is $2$ units.)
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{3}{-3}{4}
-  \begin{scope}
-    \clip (-3,-3) rectangle (3,4);
-    \draw[very thick, forest, domain=-2.35:2.35, samples=170, smooth]
-      plot (\x,{((\x)*(\x)*(\x)*(\x) - 5*(\x)*(\x) + 4)/2});
-  \end{scope}
-  \foreach \x in {-2,-1,1,2}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-  \foreach \p in {-2,-1,1,2} \fill[charcoal] (\p,0) circle (2.5pt);
-\end{tikzpicture}
-\end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item \textbf{Domain:} \blank{3.0cm} \quad (every polynomial has the same domain --- why?
-        \blank{3.4cm})
-  \item \textbf{Range:} \blank{3.4cm} \; The lowest the graph ever goes is about $y=-2.25$, and both
-        arms rise forever.
-  \item \textbf{Zeros / $x$-intercepts:} \blank{3.4cm} \qquad \textbf{$y$-intercept:} \blank{1.6cm}
-  \item \textbf{Turning points:} \blank{1.0cm}, which is the most a degree-\blank{0.8cm} polynomial
-        may have.
-  \item \textbf{Relative maximum} at about $($\blank{1.4cm}$)$. It is \emph{relative} --- not
-        absolute --- because \blank{4.4cm}.
-  \item \textbf{Absolute minimum} value about \blank{1.2cm}, reached at two different $x$-values,
-        about $x \approx \pm 1.6$. There is \blank{1.6cm} absolute maximum, because the arms
-        \blank{2.6cm}.
-  \item \textbf{Increasing:} about \blank{4.2cm} \quad \textbf{Decreasing:} about \blank{4.2cm}
-  \item \textbf{Positive} ($p(x)>0$) on \blank{5.0cm}; \textbf{negative} on \blank{4.0cm}.
-\end{itemize}
-
-\vspace{3pt}
-\textbf{Even-degree vs.\ odd-degree, one more time.} A polynomial of odd degree has \blank{1.6cm}
-absolute extrema at all, because its arms run in opposite directions. Only an \emph{even} degree can
-have one --- and then only one of the two.
-\end{notesbox}
-
-\begin{notesbox}{6. Modeling: Where a Polynomial Comes From}
-A $10$-inch by $8$-inch sheet of cardboard has a square of side $x$ cut from each corner; the flaps
-fold up to make an open box.
-
-\vspace{4pt}
-\begin{tabularx}{\linewidth}{@{}X c@{}}
-\begin{minipage}[t]{0.60\linewidth}\vspace{0pt}
-\textbf{Build the model.} After the cuts, the base measures
-\blank{1.8cm} by \blank{1.8cm}, and the height is \blank{1.0cm}.
-
-\vspace{3pt}
-$V(x) = $ \blank{5.0cm}
-
-\vspace{3pt}
-Expanded (Lesson 4.1): $V(x) = 4x^3 - 36x^2 + 80x$. Degree
-\blank{0.8cm}.
-
-\vspace{4pt}
-\textbf{Feasible domain.} The zeros of $V$ are $x = $ \blank{2.6cm}.
-Which of them could actually be a corner cut? \blank{2.0cm}
-
-\vspace{2pt}
-A cut must be positive, and it cannot take more than half of the
-\blank{1.8cm} side. So the model only makes sense for
-\blank{2.6cm} --- the \textbf{feasible domain}.
-\end{minipage}
-&
-\begin{minipage}[t]{0.36\linewidth}\vspace{0pt}\centering
-\renewcommand{\arraystretch}{1.35}
+\end{minipage}%
+\begin{minipage}{0.45\linewidth}
 \small
-\begin{tabular}{|C{1.1cm}|C{2.2cm}|}
-\hline
-\rowcolor{forestbg}
-$x$ & $V(x)$ \\ \hline
-$0.5$ & $31.5$ \\ \hline
-$1$   & \\ \hline
-$1.5$ & \\ \hline
-$2$   & $48$ \\ \hline
-$2.5$ & $37.5$ \\ \hline
-$3$   & $24$ \\ \hline
-\end{tabular}
-\end{minipage}
-\end{tabularx}
+The solid dot at \blank{1.4cm} is where the combined function is zero. That is the \emph{real}
+solution.
 
 \vspace{4pt}
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Fill in the two missing table values. The largest volume in the table is about \blank{1.6cm}
-        cubic inches, at $x \approx$ \blank{1.0cm} inches.
-  \item That point is a \textbf{relative maximum} of $V$. On the feasible domain it is also the
-        \blank{2.4cm} maximum --- which is why it answers the question ``what is the biggest box?''
-  \item \textbf{Interpret (A2.F.2f).} $V(2.5) = 37.5$ means: \blank{6.4cm}
-  \item Outside the feasible domain the polynomial keeps going --- $V(5) = 0$ and $V(6) = 48$ --- but
-        those outputs describe \blank{4.0cm}. The \emph{algebra} does not know about cardboard; you
-        do.
-\end{itemize}
+The open circle at $\left(-1,\frac12\right)$ is where the extraneous candidate went. The graph has no
+point there at all --- so the equation cannot be satisfied there.
+
+\vspace{4pt}
+\textbf{Fill in the rule:} a true solution shows up as an \blank{2.2cm}; an extraneous candidate
+shows up as a \blank{1.4cm} (or a wall).
+\end{minipage}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{6. Cross-Multiplying, and the Answer ``No Solution''}
+\textbf{The shortcut.} When the equation is a \textbf{proportion} --- one single fraction equal to one
+single fraction --- you may cross-multiply. It is not a new rule; it is Step 2 with the LCD
+$=$ (bottom left)(bottom right), already cancelled for you. \emph{It does not apply when there are
+three terms.}
+
+\vspace{3pt}
+\[ \frac{2}{x-1}=\frac{x}{x+2} \]
+Restrictions: $x\neq\blank{0.8cm}$, $x\neq\blank{0.8cm}$. \; Cross-multiply:
+$2(\rule{1.2cm}{0.4pt})=x(\rule{1.2cm}{0.4pt})$, so $2x+4=x^2-x$ and
+$0=(x-\rule{0.5cm}{0.4pt})(x+\rule{0.5cm}{0.4pt})$. \\[3pt]
+Candidates $x=\blank{0.9cm}$ and $x=\blank{0.9cm}$. On the restriction list? \blank{1.0cm} \;
+Solution set: \blank{2.6cm}
+
+\vspace{6pt}
+\textbf{And sometimes everything gets thrown away.}
+\[ \frac{1}{x-2}+\frac{1}{x+2}=\frac{4}{x^2-4} \]
+Restrictions: $x\neq\blank{2.0cm}$. \; LCD $=\blank{2.6cm}$. \; Clearing gives
+$(x+2)+(x-2)=4$, so $2x=4$ and the only candidate is $x=\blank{0.8cm}$.
+
+\vspace{2pt}
+That candidate \emph{is} on the restriction list. Every candidate is extraneous, so the equation has
+\blank{2.6cm}. Write that as your answer --- it is a complete answer, not a failure to finish.
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{A. Five steps, one function.} $f(x) = (x+3)(x-2)^2$
-\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
-  \item Degree \blank{0.8cm}; leading coefficient \blank{0.8cm}; end behavior: down-left and
-        \blank{1.6cm}.
-  \item Zeros and behavior: $x=$ \blank{1.0cm} (\blank{1.6cm}), \; $x=$ \blank{1.0cm}
-        (\blank{1.6cm}). \quad $y$-intercept: \blank{1.4cm}
-  \item Sign of $f$ on $x<-3$: \blank{1.2cm}; on $-3<x<2$: \blank{1.2cm}; on $x>2$: \blank{1.2cm}
-  \item So the graph is below the axis only when \blank{2.6cm}, and it \blank{1.8cm} the axis at
-        $x=2$ without ever going below it again.
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{B. Backward.} A cubic's graph crosses the $x$-axis at $x=-1$, touches it at $x=3$, and passes
-through $(0,-9)$.
-\begin{enumerate}[leftmargin=1.7em, itemsep=5pt, start=5]
-  \item Skeleton with $a$: \blank{4.4cm}
-  \item Solve for $a$: \blank{3.0cm} \quad Final equation: \blank{4.4cm}
+Solve, showing all four steps. \; $\dfrac{6}{x^2-9}+\dfrac{1}{x+3}=1$
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Factored denominators \blank{3.2cm}; \; restrictions $x\neq\blank{2.2cm}$; \;
+        LCD $=\blank{3.0cm}$
+  \item After multiplying every term by the LCD (do not forget the $1$):
+        \; $\rule{1.4cm}{0.4pt}+\rule{2.0cm}{0.4pt}=\rule{2.6cm}{0.4pt}$
+  \item Solve: \; $0=x^2-\rule{0.6cm}{0.4pt}\,x-\rule{0.8cm}{0.4pt}
+        =(x-\rule{0.5cm}{0.4pt})(x+\rule{0.5cm}{0.4pt})$. \; Candidates \blank{2.4cm}
+  \item Check. Extraneous: \blank{1.4cm} \; Solution set: \blank{2.0cm}
+  \item In one sentence, say how you knew the extraneous one was extraneous \emph{without} substituting
+        it. \writeline
 \end{enumerate}
 \end{practicebox}
 

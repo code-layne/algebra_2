@@ -1,4 +1,4 @@
-%! Characteristics of Exponential Functions — Unit 7, Lesson 7.0 — Exit Ticket
+%! Characteristics of Logarithmic Functions — Unit 7, Lesson 7.0 — Exit Ticket
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -7,8 +7,9 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
-  plot (\x,{#1*exp((#2)*(\x))});}
+% pgfmath has no log_b, so the curve is drawn by parameterizing on y: x = b^(y-k) + h.
+\newcommand{\logcurve}[5]{\draw[very thick, forest, domain=#4:#5, samples=120, smooth]
+  plot ({pow(#1,\x-(#3))+(#2)},{\x});}
 
 \begin{document}
 
@@ -17,50 +18,46 @@
 
 \vspace{0.08in}
 
-No notes. The graph below is $f(x) = 8\left(\frac12\right)^{x}$. Use it for questions 1 and 2.
+No notes. The graph below is $f(x) = \log_2(x+4)$. Use it for questions 1 and 2.
 \begin{center}
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-1}{7}{-1}{10}
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-6}{9}{-3}{4}
+  \draw[navy, dashed, semithick] (-4,-3)--(-4,4);
   \begin{scope}
-    \clip (-1,-1) rectangle (7,10);
-    \expcurve{8}{-0.693147}{-0.32}{7}
+    \clip (-6,-3) rectangle (9,4);
+    \logcurve{2}{-4}{0}{-3}{3.70}
   \end{scope}
-  \draw[navy, dashed, semithick] (-1,0)--(7,0);
-  \node[navy, font=\scriptsize, above right] at (4.6,0) {$y=0$};
-  \fill[charcoal] (0,8) circle (3pt) node[right, font=\scriptsize]{$(0,8)$};
-  \fill[charcoal] (1,4) circle (3pt) node[right, font=\scriptsize]{$(1,4)$};
-  \fill[charcoal] (2,2) circle (3pt) node[above right, font=\scriptsize]{$(2,2)$};
-  \fill[charcoal] (3,1) circle (3pt) node[above right, font=\scriptsize]{$(3,1)$};
+  \fill[charcoal] (-3,0) circle (3pt) node[below right, font=\scriptsize]{$(-3,0)$};
+  \fill[charcoal] (-2,1) circle (3pt) node[above left, font=\scriptsize]{$(-2,1)$};
+  \fill[charcoal] (0,2) circle (3pt) node[above left, font=\scriptsize]{$(0,2)$};
+  \fill[charcoal] (4,3) circle (3pt) node[above left, font=\scriptsize]{$(4,3)$};
 \end{tikzpicture}
 \end{center}
 
 \begin{enumerate}[leftmargin=1.8em, itemsep=8pt]
   \item \textbf{Read the features.} Write the domain and range in interval notation.
 
-        $a=$ \blank{1.2cm} \quad $b=$ \blank{1.2cm} \quad Growth or decay? \blank{2.2cm}
+        Domain: \blank{3.2cm} \quad Range: \blank{3.2cm} \quad Vertical asymptote: \blank{2.0cm}
 
         \vspace{3pt}
-        Domain: \blank{3.0cm} \quad Range: \blank{3.0cm} \quad
-        Horizontal asymptote: \blank{2.0cm}
+        $x$-intercept: \blank{1.8cm} \quad $y$-intercept: \blank{1.8cm} \quad
+        $f$ is increasing on \blank{2.6cm}
 
         \vspace{3pt}
-        $y$-intercept: \blank{1.8cm} \quad $x$-intercept: \blank{1.8cm} \quad
-        $f$ is \blank{2.4cm} on its whole domain.
+        Absolute extrema: \blank{2.0cm}. \quad End behavior: as $x\to+\infty$,
+        $f(x)\to\blank{1.2cm}$; \; as $x\to\blank{1.6cm}$, $f(x)\to\blank{1.2cm}$.
 
-        \vspace{3pt}
-        End behavior: as $x\to+\infty$, $f(x)\to$ \blank{1.4cm}; \; as $x\to-\infty$,
-        $f(x)\to$ \blank{1.4cm}.
-
-  \item \textbf{Explain.} Why does $f$ have no $x$-intercept? And why does the graph have no
-        absolute minimum, even though it clearly flattens out along the bottom?
+  \item \textbf{Explain.} Why does $f$ have a restricted domain, while $y=2^{x}$ does not?
+        And why is the boundary of that domain an \emph{asymptote} rather than an endpoint like the
+        radical graphs in Unit 5?
         \writelines{3}
 
-  \item \textbf{SOL-style multiple choice.} What is the range of $g(x) = 6\left(\frac13\right)^{x}$?
+  \item \textbf{SOL-style multiple choice.} What is the domain of $h(x) = \log_5(3-x)$?
         \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-          \item $(0,\infty)$
-          \item $[0,\infty)$
-          \item $(-\infty,\infty)$
-          \item $(-\infty,0)$
+          \item $x > 3$
+          \item $x < 3$
+          \item $x \le 3$
+          \item all real numbers
         \end{enumerate}
 \end{enumerate}
 

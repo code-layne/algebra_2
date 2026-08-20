@@ -1,4 +1,4 @@
-%! Functions — Unit 1, Lesson 1.3 — Lesson Plan
+%! Absolute Value Functions \& Transformations — Unit 1, Lesson 1.3 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,13 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 1: Foundations --- Algebra 1 Review \quad}
-\newcommand{\LessonNumberName}{Lesson 1.3: Functions}
+\newcommand{\UnitNumberName}{Unit 1: Linear Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 1.3: Absolute Value Functions \& Transformations}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 \begin{center}
@@ -19,44 +24,27 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can decide whether a relation --- given as ordered pairs, a
-    table, a mapping, or a graph --- is a \emph{function}, justify the decision with the vertical
-    line test, and state its domain and range; use function notation in \emph{both} directions,
-    finding $f(x)$ from $x$ and $x$ from $f(x)$, algebraically and graphically; determine a linear
-    function's domain, range, \emph{zeros}, slope, and intercepts and interpret each in context;
-    write the equation of a line in slope-intercept, point-slope, and standard form --- from a graph,
-    from two points, from a slope and a point, vertically, horizontally, and parallel or
-    perpendicular to a given line; explain how $k\,f(x)$ and $f(x)+k$ transform the parent $y=x$;
-    read the key characteristics of quadratic and exponential functions off their graphs; and
-    compare and contrast the three families using tables and graphs.
+    \textbf{Primary Objective:} Students can read the absolute value parent function $f(x)=|x|$ as the
+    graph of \emph{distance from zero} --- a \textbf{V-shape} --- and describe every other absolute
+    value function as a \textbf{transformation} of that parent. From the vertex form
+    $g(x)=a|x-h|+k$ they identify the \emph{vertex} $(h,k)$, the \emph{axis of symmetry} $x=h$, the
+    direction of opening (up if $a>0$, down if $a<0$), the \emph{minimum or maximum} value $k$, and
+    whether the graph is \emph{narrower/wider} than the parent ($|a|$). They translate fluently among
+    an equation, a table, and a pre-drawn graph, reading domain, range, intercepts, and
+    increasing/decreasing intervals off the V. Lesson~1.2 \emph{solved} $|ax+b|=c$; today that same
+    expression becomes a \emph{graph}, and the two solutions are exactly where the V meets the line
+    $y=c$. This gives an early, informal look at \textbf{vertex, axis of symmetry, and min/max} that
+    Unit~2 formalizes for parabolas.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL --- Algebra 1, reviewed):} this lesson reviews the
-    \textbf{Functions} domain, the third and last domain area of Unit 1. \textbf{A.F.1} --- domain,
-    range, zeros, slope, and intercepts of a linear function presented algebraically or graphically,
-    including interpretation in context (a); how transformations to the parent $y=x$ affect slope
-    and $y$-intercept (b); equivalent algebraic forms --- slope-intercept, standard, point-slope ---
-    and what each reveals (c); writing the equation of a line from a graph, from two points, from a
-    slope and a point, and as $x=a$ or $y=c$ (d); parallel and perpendicular lines through a given
-    point (e); graphing a linear function, including contextual ones (f); determining $f(x)$ from
-    $x$ and $x$ from $f(x)$ (g); and comparing linear functions across algebraic, graphical,
-    tabular, and contextual representations (h). \textbf{A.F.2} --- deciding whether a relation is a
-    function and giving its domain and range (a); key characteristics of a quadratic --- zeros,
-    $y$-intercept, vertex as maximum or minimum, domain and range including when restricted by
-    context (b); graphing a quadratic, including by $f(x)+k$ and $kf(x)$ (c); connecting standard
-    and factored forms to the graph (d); key characteristics of an exponential $y=ab^x$ (e);
-    graphing an exponential (f); evaluating and solving for quadratic and exponential functions and
-    explaining the meaning of $x$ and $f(x)$ in context (g); and comparing and contrasting the three
-    families using tables and graphs (h).
-    \\[2pt]
-    \textbf{Unit 1's ``characteristics'' row lands here.} Unit 1 is the only unit whose Lesson 0 is
-    not a characteristics lesson, so this lesson carries the course spine's opening row --- function
-    definition and notation, and domain and range read from a graph. Everything Unit 2 does to a
-    line, Unit 3 to a parabola, and Unit 7 to a growth curve starts from the vocabulary built today.
-    \\[2pt]
-    \textbf{Prerequisite:} Lessons 1.0--1.2. From 1.2 especially: solving $f(x)=0$ is how a zero
-    gets found, so the whole ``backward'' half of function notation is last lesson's work under a
-    new name. From 1.2's literal equations: the three \emph{forms} of a line are one equation solved
-    for different things. From 1.1: factoring is what makes a quadratic's zeros visible.
+    \textbf{Standards (2023 VA SOL):} This lesson applies the Algebra~2 \emph{transformation lens}
+    \textbf{A2.F.1} --- write and graph a function using transformations of a parent function
+    $f(x)+k$, $f(x+k)$, $f(kx)$, and $kf(x)$ (\textbf{A2.F.1b}, \textbf{A2.F.1c}) --- to the absolute
+    value parent as the entry example, and reads the resulting \emph{characteristics} with
+    \textbf{A2.F.2}: domain, range, zeros, and intercepts (\textbf{A2.F.2a}), increasing/decreasing
+    intervals (\textbf{A2.F.2c}), absolute (global) minimum/maximum (\textbf{A2.F.2d}), and evaluating
+    $f(x)$ from a graph or equation (\textbf{A2.F.2f}). Absolute value is itself a
+    \emph{piecewise-defined} function --- one of the families A2.F.2 names --- which motivates
+    Lesson~1.4.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -66,27 +54,22 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \textbf{Decide} whether a relation is a function from pairs, a table, a mapping, or a graph; apply the \textbf{vertical line test}.
-  \item \textbf{State} the domain and range of a relation, including when \emph{context} restricts them.
-  \item \textbf{Evaluate} $f(x)$ for a given $x$, and \textbf{solve} for $x$ given $f(x)$ --- from a rule and from a graph.
-  \item \textbf{Find} a linear function's zeros, intercepts, and slope, and \textbf{interpret} each in context with units.
-  \item \textbf{Write} a line's equation in all three forms, from a graph, two points, a slope and a point, and as $x=a$ or $y=c$.
-  \item \textbf{Write} equations of parallel and perpendicular lines.
-  \item \textbf{Explain} how $k\,f(x)$ and $f(x)+k$ change the parent $y=x$.
-  \item \textbf{Read} vertex, zeros, intercepts, domain, and range off a parabola; \textbf{read} starting value, growth or decay, and range off an exponential.
-  \item \textbf{Identify} a family from a bare table using differences and ratios.
+  \item Graph the parent $f(x)=|x|$ from a table and read its features (V, vertex, axis, min).
+  \item From $g(x)=a|x-h|+k$, name the \textbf{vertex} $(h,k)$ and \textbf{axis} $x=h$.
+  \item Decide \textbf{opens up/down} from the sign of $a$, and \textbf{min vs.\ max} value $k$.
+  \item Read the effect of $|a|$: \textbf{narrower} ($|a|>1$) or \textbf{wider} ($|a|<1$).
+  \item Describe a graph as \textbf{shifts, a stretch, and a reflection} of $y=|x|$.
+  \item Read domain, range, intercepts, and increasing/decreasing intervals off the V.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item An equation was a question about \emph{numbers}. A function is a \textbf{machine}, and its graph shows every answer at once.
-  \item The promise --- one input, exactly one output --- constrains \textbf{inputs only}. Repeated outputs are fine; that is why $y=-7$ is a function and $x=-7$ is not.
-  \item The vertical line test is not a trick. It is the definition, \emph{drawn}.
-  \item \emph{Zero}, \emph{solution of $f(x)=0$}, and \emph{$x$-intercept} are three names for one thing --- which is why Lesson 1.2 was really about functions all along.
-  \item The three forms are not three facts. They are one equation solved for different things, and each is honest about a different feature.
-  \item Slope is a \textbf{rate}, and in context it always has units: gallons per minute, dollars per shirt.
-  \item Context restricts a domain. The algebra permits every real number; the situation does not, and the situation wins.
-  \item Linear adds, quadratic turns around, exponential \emph{multiplies} --- which is why the exponential has no zero and why it eventually wins any race.
+  \item $|x|$ is a \emph{distance}, so its graph can't dip below its vertex --- that makes the V and its min/max.
+  \item Inside the bars acts \emph{horizontally} and \emph{backwards}: $|x-h|$ moves the vertex to $x=h$.
+  \item Outside the bars acts \emph{vertically} the way you'd expect: $+k$ up, $a$ scales, $a<0$ flips.
+  \item $a$ is the slope of the right-hand ray --- it controls steepness and which way the V opens.
+  \item Every absolute value graph is the \emph{one} parent V after moving, scaling, and possibly flipping.
+  \item The vertex is the graph's \emph{turning point}: where increasing meets decreasing (previewing Unit~2).
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -94,347 +77,167 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Relation} & Any pairing of inputs with outputs --- ordered pairs, a table, a mapping, or a graph. \\
-\textbf{Function} & A relation in which every input has \emph{exactly one} output. Two inputs may share an output; one input may not have two. \\
-\textbf{Vertical line test} & A graph is a function exactly when no vertical line crosses it more than once. It is the definition drawn: a vertical line is one input. \\
-\textbf{Domain / range} & The set of all inputs / the set of all outputs. Either may be restricted by context. \\
-\textbf{Function notation} & $f(x)$, read ``$f$ of $x$'': the output of $f$ at input $x$. Not multiplication. ``$f(3)=0$'' $=$ ``$(3,0)$ is on the graph.'' \\
-\textbf{Zero of a function} & An input making the output $0$ --- a solution of $f(x)=0$, and an $x$-intercept of the graph. \\
-\textbf{Slope / rate of change} & \TallMath{m=\frac{y_2-y_1}{x_2-x_1}} --- the change in output per unit change in input. Constant exactly for linear functions. \\
-\textbf{Slope-intercept form} & $y=mx+b$. Shows the slope and the $y$-intercept immediately. \\
-\textbf{Point-slope form} & $y-y_1=m(x-x_1)$. Shows a slope and one point on the line. \\
-\textbf{Standard form} & $Ax+By=C$. Gives both intercepts quickly; the only form that can also write $x=a$. \\
-\textbf{Parallel / perpendicular} & Equal slopes / opposite reciprocal slopes (their product is $-1$). \\
-\textbf{Parent function} & The simplest member of a family: $y=x$, $y=x^2$, $y=b^x$. \\
-\textbf{Transformation} & $k\,f(x)$ stretches or reflects (for a line, it changes the slope); $f(x)+k$ shifts vertically (it changes the $y$-intercept). \\
-\textbf{Vertex} & The turning point of a parabola --- the maximum or minimum. Its input answers ``where,'' its output answers ``how much.'' \\
-\textbf{Exponential function} & $y=ab^x$: $a$ is the starting value ($b^0=1$), $b$ is the constant multiplier. $b>1$ grows, $0<b<1$ decays. \\
-\textbf{Constant difference / ratio} & Linear data have a constant first difference; quadratic, a constant \emph{second} difference; exponential, a constant ratio. \\
+\textbf{Absolute value parent} & $f(x)=|x|$: a V opening up, vertex at the origin, made of the rays $y=x$ ($x\ge 0$) and $y=-x$ ($x<0$). \\
+\textbf{Vertex} & The turning point of the V --- its lowest point (opens up) or highest point (opens down). \\
+\textbf{Axis of symmetry} & The vertical line $x=h$ through the vertex; the two rays are mirror images across it. \\
+\textbf{Vertex form} & $g(x)=a|x-h|+k$, with vertex $(h,k)$ and axis $x=h$. \\
+\textbf{Reflection} & $a<0$ flips the V to open \emph{downward} (over a horizontal line). \\
+\textbf{Vertical stretch / compression} & $|a|>1$ makes the V \emph{narrower}; $0<|a|<1$ makes it \emph{wider}. \\
+\textbf{Minimum / maximum} & The $y$-value $k$ at the vertex: a \emph{minimum} if $a>0$, a \emph{maximum} if $a<0$. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up is the lesson in miniature: \textbf{one rule, $2x-6$, asked three ways.}
-    \textbf{(1)} Solve $2x-6=0$ and $x^2-2x-3=0$ --- pure Lesson 1.2, and the answers are about to
-    be renamed \emph{zeros}. \textbf{(2)} Evaluate $2x-6$, $x^2-2x-3$, and $2^x$ at $x=0$ and
-    $x=3$ --- pure Lesson 1.1 --- with two planted questions: which rules gave zero at $x=3$ (the
-    first two, matching item 1 exactly), and whether \emph{any} input makes $2^x$ zero (no, and
-    students should try negatives to convince themselves). \textbf{(3)} Read a pre-drawn line for
-    its intercepts, direction, and step size --- which is slope arrived at by counting boxes.
-    The closing question asks how students can tell that item 1(a), item 2's first row, and the
-    graph are the \emph{same rule}. Take that answer publicly: the representations agree because
-    they are one object seen three ways, which is \textbf{A.F.1h} stated by the class rather than by
-    the teacher. Debrief the $2^x$ row without naming the asymptote --- that word belongs to Unit 5.
+    The Warm-Up rehearses the three prerequisites today leans on: \textbf{(1)} evaluate absolute
+    values and build a table for $y=|x|$, so students \emph{see} why the graph turns at the origin
+    and never dips below it; \textbf{(2)} recall the transformation language from Lesson~1.1 ---
+    ``$+k$'' shifts up/down and a negative coefficient \emph{reflects} --- the exact moves we now
+    apply to a new parent; and \textbf{(3)} read the vertex and axis of symmetry off a pre-drawn V.
+    Debrief item~1 aloud: because $|x|$ is a \emph{distance}, the two sides of the table mirror each
+    other --- that symmetry \emph{is} the axis of symmetry.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    \textbf{Two beats, five minutes.} First, put three relations on the board and ask only whether
-    each one gives every input exactly one output: \emph{(a)} $\{(1,3),(2,5),(4,9)\}$;
-    \emph{(b)} $\{(1,3),(2,5),(1,7)\}$; \emph{(c)} $\{(1,6),(2,6),(4,6)\}$. Everyone rejects (b)
-    correctly. The item that does the work is \emph{(c)} --- expect several students to reject it
-    too, because ``the $6$ repeats.'' Do not correct it yet; collect a show of hands and write both
-    counts on the board. Then state the promise once, precisely: \textbf{every input gets exactly
-    one output}, and note what it does \emph{not} say --- nothing forbids two inputs from sharing an
-    output. (c) is a function. That misconception, left alive, makes every parabola a non-function
-    in Unit 3, so it is worth the ninety seconds now.
-    \\[3pt]
-    Second beat, and the reason this lesson has three families in it: put $f(x)=x$, $g(x)=x^2$, and
-    $h(x)=2^x$ in one table for $x=0,1,2,3,4,5$ and have the room fill it. Then ask who is biggest
-    at $x=2$ --- $g$ and $h$ tie at $4$. At $x=4$ --- they tie \emph{again}, at $16$. At $x=5$ ---
-    $32$ beats $25$, and the exponential is gone for good. \textbf{The answer changed, twice.} Land
-    the frame: \emph{today we ask one fixed set of questions --- domain, range, zeros, intercepts,
-    rate --- of three different families, and the interesting part is how differently each one
-    answers.} Leave the completed table on the board all period; Section 5 returns to it.
+    You drive a straight highway toward a rest stop, reach it after $2$ hours, and keep going past it.
+    Your \textbf{distance from the rest stop} (in tens of miles) is $d(t)=30\,|t-2|$. Ask:
+    \textbf{``How far are you at the start? At $t=2$? At $t=4$?''} ($60$, $0$, $60$.) \textbf{``When
+    are you closest, and what is that distance?''} (at $t=2$, distance $0$). Plot the three points and
+    the shape is a \textbf{V} with its lowest point at $(2,0)$. Land the idea: a distance is never
+    negative, so its graph \emph{bottoms out} at a single turning point --- the \textbf{vertex} --- and
+    is symmetric about the vertical line through it. Every absolute value function is this same V,
+    moved and stretched. Today we learn to read the move straight off the equation.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. What makes a rule a function.} Open by naming the contrast with 1.2: an equation asks
-about numbers, a function is a \emph{machine}. Give the definition, then show it surviving four
-different costumes --- ordered pairs, table, mapping, graph --- and make the point that the test is
-always the same test, just wearing different clothes (\textbf{A.F.2a}). Derive the \textbf{vertical
-line test} rather than announcing it: a vertical line is the set of points with one fixed $x$, so
-two hits means one input with two outputs. Use the three pre-drawn panels; the middle one is $x=2$,
-a perfectly good \emph{line} that is not a function, and it pairs with $y=-2$ later in the period.
-Then domain and range (a list for a set of pairs, ``all real numbers'' for an unbroken line), and
-\textbf{function notation}: $f$ is the name, $x$ the input, $f(x)$ the output --- and ``$f(3)=0$''
-is the same sentence as ``$(3,0)$ is on the graph.'' Close the section with the forward/backward
-table (\textbf{A.F.1g}) and the line that ties Unit 1 together: \emph{forward is arithmetic;
-backward is Lesson 1.2}. The $f(x)=0$ box has a name --- \textbf{zero} --- and it is the
-$x$-intercept.
+\textbf{1. The parent $f(x)=|x|$.} Build the table $x=-2,-1,0,1,2 \to y=2,1,0,1,2$. The graph is a
+\textbf{V} opening up with \textbf{vertex} $(0,0)$, \textbf{axis} $x=0$, \textbf{minimum} $0$. Domain
+all reals; range $y\ge 0$. It \emph{decreases} on $(-\infty,0]$ and \emph{increases} on $[0,\infty)$.
+Note it is the two lines $y=x$ and $y=-x$ pasted at the vertex --- a preview of piecewise (1.4).
 
-\textbf{2. Reading a line.} Take $f(x)=2x-6$, the Warm-Up's rule, and interrogate it: domain, range,
-zero, $x$-intercept, $y$-intercept, slope (\textbf{A.F.1a}). Ask which two rows are the same fact
-twice; that is the point of the table. Then slope as a \emph{rate}, computed from two points read
-off the graph, and said in words --- ``up $2$ every time $x$ goes up $1$.'' Finish in context with
-the draining pool $V(t)=800-25t$: the intercept is the starting volume, the slope is
-$-25$ gallons per minute, the zero is when it is empty, and the domain is $0\le t\le32$ because
-negative time means nothing and after $32$ minutes the model has stopped describing anything. Say
-that explicitly --- the algebra allows every real number; the situation does not, and the situation
-wins.
+\textbf{2. Up/down and left/right.} \textbf{Outside} the bars behaves normally: $y=|x|+k$ shifts the
+whole V up ($k>0$) or down. \textbf{Inside} the bars behaves \emph{horizontally and backwards}:
+$y=|x-h|$ moves the vertex to $x=h$ (\emph{right} for $-h$, left for $+h$). Anchor with $y=|x-3|$
+(vertex $(3,0)$) and $y=|x+2|$ (vertex $(-2,0)$).
+
+\textbf{3. Stretch, compress, reflect.} $y=a|x|$ scales the V: $|a|>1$ \textbf{narrower},
+$0<|a|<1$ \textbf{wider}. A \emph{negative} $a$ \textbf{reflects} it to open \emph{downward}. Compare
+$y=2|x|$, $y=\tfrac12|x|$, $y=-|x|$. Stress that $a$ is the slope of the right-hand ray.
 
 \columnbreak
 
-\textbf{3. Writing the line.} Three forms, each honest about something different
-(\textbf{A.F.1c}); rewrite $y-4=2(x-5)$ into the other two and ask what changed --- nothing, and the
-skill used was 1.2's literal equations. Then four writing situations under one strategy, \emph{get a
-slope and get a point}: slope-and-point, two points, vertical $x=a$, horizontal $y=c$
-(\textbf{A.F.1d}). Ask which of the last two is a function and why; that closes the loop with
-Section 1. Parallel and perpendicular next (\textbf{A.F.1e}), then the parent $y=x$ and its two
-transformations (\textbf{A.F.1b}): $k\,f(x)$ moves the slope, $f(x)+k$ moves the $y$-intercept, and
-each leaves the other alone. Match the three pre-drawn panels. Say out loud that this pair of moves
-returns in Unit 2 on a V, Unit 3 on a parabola, and Unit 7 on a growth curve --- it is the single
-most reused idea in the course.
+\textbf{4. Vertex form $g(x)=a|x-h|+k$.} All three moves at once. \textbf{Vertex} $(h,k)$;
+\textbf{axis} $x=h$; \textbf{opens up} if $a>0$ (so $k$ is a \emph{minimum}), \textbf{down} if $a<0$
+(so $k$ is a \emph{maximum}); $|a|$ sets the width. Model $g(x)=-2|x-1|+3$: vertex $(1,3)$, axis
+$x=1$, opens \emph{down}, \emph{maximum} $3$, narrow. Read $g(0)=-2|{-1}|+3=1$ straight from the rule.
 
-\textbf{4. The other two families.} Same six questions, different answers. For
-$g(x)=x^2-2x-3$ --- the curve students already met in 1.2 --- read zeros, $y$-intercept, vertex,
-max/min, domain, and range off the graph, then connect $(x-3)(x+1)$ to the two intercepts
-(\textbf{A.F.2b/d}). The new idea is that the \emph{range stops}, because the graph turns around.
-For $h(x)=2^x$: $y$-intercept $(0,1)$, no $x$-intercept at all, range $y>0$, always increasing
-(\textbf{A.F.2e}). Get the ``never reaches zero'' argument from the Hook's table and from negative
-inputs. Finish with the doubling colony $P(t)=50\cdot2^t$, where $a$ is the starting amount and $b$
-is the multiplier (\textbf{A.F.2g}).
-
-\textbf{5. Side by side.} Return to the Hook's table and look at \emph{how} each column grows: add
-the same amount, add a growing amount whose growth is constant, or multiply by the same amount
-(\textbf{A.F.2h}). Name the three signatures --- constant difference, constant second difference,
-constant ratio --- and immediately use them to identify three bare tables. Close on the overtake: the
-exponential tied twice and then left, so ``which is bigger'' is not a fair question without saying
-\emph{where}.
+\textbf{5. Equation $\leftrightarrow$ graph $\leftrightarrow$ table.} Practice all three directions,
+but \emph{never sketch from scratch}: match an equation to the correct pre-drawn V, read a vertex off
+a graph, or complete a table and name the vertex. Connect back to 1.2: the solutions of $|x-1|=2$ are
+the two $x$-values where $y=|x-1|$ crosses the line $y=2$.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item calling a relation a non-function because an \emph{output} repeats --- the single most damaging error of the day; it kills every parabola in Unit 3;
-  \item confusing $x=a$ with $y=c$: writing ``$y=5$'' for a vertical line through $(5,-8)$;
-  \item reading $f(x)$ as $f$ times $x$, or writing $f(x+2)$ when asked for $f(x)+2$;
-  \item stalling on the \emph{backward} column --- ``find $x$ when $f(x)=9$'' --- which is an equation-solving gap, not a functions gap; send those students to 1.2's notes, not today's;
-  \item giving the zero as a $y$-value, or giving the $y$-intercept when asked for the $x$-intercept;
-  \item computing slope as $\frac{\text{run}}{\text{rise}}$, or losing the sign on a falling line;
-  \item slope from two points with the subtraction order flipped in only one of the two differences;
-  \item taking the reciprocal but not the opposite sign for a perpendicular slope;
-  \item stating a context domain as ``all real numbers'' when negative time or negative width is meaningless --- and, the reverse, restricting a domain that has no reason to be restricted;
-  \item saying an exponential ``has an $x$-intercept because it keeps dropping'' --- approaching zero is not reaching it;
-  \item checking only first differences and calling a quadratic table ``not linear, so exponential.''
+  \item \textbf{horizontal-shift sign flip}: reading $|x-3|$ as a shift \emph{left} $3$ instead of right;
+  \item confusing inside vs.\ outside the bars: applying $+k$ horizontally or the shift vertically;
+  \item forgetting that $a<0$ opens the V \emph{down}, so $k$ becomes a \textbf{maximum}, not a minimum;
+  \item calling a wider graph ``$|a|>1$'': $|a|>1$ is \emph{narrower}, $0<|a|<1$ is wider;
+  \item naming the vertex as $(-h,k)$ or $(h,-k)$ --- mis-reading the signs in $a|x-h|+k$;
+  \item saying the range is ``all reals'' --- the V stops at $k$ (range $y\ge k$ up, $y\le k$ down);
+  \item swapping increasing/decreasing intervals, or splitting them at $0$ instead of at $x=h$.
 \end{itemize}
-Cold-call prompts: ``Is that a repeated input or a repeated output? Which one is illegal?'' ``Give me
-that zero as a \emph{point}.'' ``What are the units of your slope?'' ``Same question, other
-direction: what $x$ makes $f(x)=12$?'' ``Would a vertical line ever hit this twice?'' ``Differences
-or ratios --- which did you check, and what did the other one say?''
+Cold-call prompts: ``Where is the vertex, and how do you see it in the equation?'' ``Does it open up
+or down --- how do you know?'' ``Is $k$ a max or a min here?'' ``Narrower or wider than the parent?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{One In, One Out --- Three Families, One Set of Questions} activity (tiered; mirrors the notes).
+\textbf{Reading \& Building V's} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Four blocks, one per notes section. Function-or-not with domain and
-range, including a pre-drawn sideways parabola to fail the vertical line test on. A forward/backward
-notation table for $f(x)=3x-12$, with the zero named and rewritten as a point. A line to interrogate
-for intercepts, zero, slope, and equation. Then family identification from three bare tables. Send
-here any student who called a repeated output illegal.
+\textbf{Tier R --- Remediate.} Complete tables for $y=|x|$ and one shift; read the vertex, axis, and
+minimum off pre-drawn V-graphs; match two simple equations to their graphs.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Mixed and unlabelled. Four equation-writing items (two points, a
-slope and a point in two forms, parallel, perpendicular) closing with a deliberate trap --- which of
-them is \emph{not} a function, answer \emph{none}, because every line with a slope passes the
-vertical line test. Then a quadratic doing a job: a three-sided garden bed $A(x)=x(6-x)$, read for
-zeros, vertex, max, and a \emph{restricted} domain, with both zeros interpreted as bad designs
-rather than wrong answers. Then an exponential doing a job: a rumour tripling hourly, read for $a$,
-$b$, a backward lookup, and whether the model ever reaches zero.
+\textbf{Tier A --- Approaching.} From vertex-form equations, state vertex, axis, opens up/down, and
+min/max; match equations to graphs; describe each as transformations of $y=|x|$; evaluate $g(x)$ at a
+point.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Structure work. Build a function from conditions only --- linear,
-$f(2)=7$, $f(5)=16$ --- then argue why the word \emph{linear} was load-bearing by producing a second
-function through the same two points. A four-item ``spot the error'' set, one per misconception from
-Active Monitoring, where the error must be \textbf{named} and sorted into definition errors and
-procedure errors. The overtake table extended to $x=6$, with the two ties located and an argument
-for why doubling must eventually win. Closes with the sharpest question on the page: what does a
-\emph{horizontal} line test measure, given that $y=x^2$ fails it and is still a function, while
-$x=3$ passes it and is not? \emph{(Do not name ``one-to-one'' --- that is Unit 6.)}
+\textbf{Tier E --- Extension.} Model a distance/time context with an absolute value function, write
+its equation, and interpret the vertex; write the equation of a V from a described graph; reason about
+how the sign of $a$ forces a max vs.\ a min.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): three items. \textbf{(1)} Function or not, for a set of
-ordered pairs with a repeated \emph{input} and a table with repeated \emph{outputs}, plus the domain
-and range of the one that qualifies and the rule stated in the student's own words --- the diagnostic
-is whether ``repeated outputs'' is treated as a violation. \textbf{(2)} For $f(x)=-3x+12$: evaluate,
-give the $y$-intercept and slope, then \emph{find the zero} by writing and solving $-3x+12=0$, and
-say where that zero appears on the graph. A student who produces $x=4$ but cannot answer the second
-half has the procedure without the picture. \textbf{(3)} An \textbf{SOL-style multiple-choice} item:
-which equation represents a pre-drawn line (answer $y=-2x+4$), with distractors that each break
-exactly one thing --- the sign of the slope, the sign of the intercept, or rise and run swapped.
-Collect and sort into ``got it / definition / zero / slope.'' This is the last exit ticket before
-the unit test, so the piles should set the review day's emphasis rather than tomorrow's reteach.
+\textbf{Exit Ticket} (independent, no notes): read the vertex, axis, range, and an increasing interval
+off a pre-drawn V; from $g(x)=-2|x-3|+5$ name the vertex, axis, direction of opening, and the
+max/min value; and one \textbf{SOL-style multiple-choice} item (describe the transformation from
+$y=|x|$ to $y=|x+4|-2$). Collect and sort into ``got it / shift-sign slip / up-vs-down slip /
+vertex-read slip / range slip'' to decide whether Lesson~1.4 opens with a quick re-teach of vertex
+form.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} the whole domain area. Four function-or-not items including the $y=-7$ / $x=-7$
-pair; a forward/backward notation table with the zero written as a point; a pre-drawn line read for
-seven characteristics including a graphical $f(6)$ and a graphical backward lookup; one line written
-in all three forms with a note on what each reveals; six equation-writing items (slope and point,
-two points, horizontal, vertical, parallel, perpendicular) ending in ``which one is not a
-function''; three parent-transformation panels to name; a pre-drawn downward parabola read for six
-characteristics and confirmed by factoring; a depreciating-car exponential read for $a$, $b$, the
-percentage kept and lost, and whether the value ever reaches zero; four bare tables to classify by
-differences and ratios; and one written item resolving the repeated-input/repeated-output confusion
-directly. \textbf{Extension:} determined vs.\ undetermined --- build a linear function from two
-conditions, then show the rule collapses without the word ``linear''; write two different quadratics
-with the same zeros and explain why they share a vertex $x$-coordinate; and race $L(x)=100x$ against
-$E(x)=2^x$ to find where the exponential passes a hundred-fold head start, then diagnose the
-classmate who says ``$100$ is bigger than $2$.''
-\textbf{Preview:} \emph{the Unit 1 test}, and then \textbf{Unit 2 --- Linear Functions}, opening
-with Lesson 2.0, \emph{Characteristics of Linear Functions}. Say the structure out loud: from here
-on every unit opens by meeting a family and learning to read its graph before manipulating it, and
-today's six questions are the permanent question list --- one that only grows.
+\textbf{Homework:} recall the parent's characteristics; match equations to pre-drawn V-graphs; for a
+set of vertex-form equations state vertex, axis, opens up/down, and max/min; describe transformations
+from the parent; complete a table and name a vertex; and model a distance context. \textbf{Extension:}
+write the equation of a V from its graph, and reason about when the vertex is a maximum.
+\textbf{Preview:} Lesson~1.4, \emph{Piecewise-Defined Functions} --- today's V is really \emph{two}
+lines pasted at the vertex ($y=-x$ then $y=x$); next we write functions defined by different rules on
+different pieces of the domain, with the greatest-integer/step function as a second example.
 \end{skillbox}
 % ── Teacher notes (migrated from the component keys) ──
 % One per component, titled for it. They live here rather than in the _key
 % files so that every component is the same length blank and keyed.
 
 \begin{teachernote}[Warm-Up]
-\small
-\textbf{This warm-up is the lesson in miniature.} The same rule $2x-6$ appears three times --- solved
-algebraically, evaluated numerically, and read graphically --- and the answers agree every time. That
-agreement \emph{is} \textbf{A.F.1h}: the representations are not three topics, they are one object
-seen from three sides. Take the closing question out loud before starting the notes.
-
-\textbf{Item 1 is Lesson 1.2 being cashed in, and today it gets a name.} The values students just
-found are about to be called the \textbf{zeros} of a function. Say the definition once here so it
-lands as a renaming rather than a new procedure: a zero is a solution of $f(x)=0$, which is the
-same thing as an $x$-intercept of the graph.
-
-\textbf{The $2^x$ row is a deliberate plant.} Students will try $x=0$, then negatives, and find
-$2^{-1}=\frac12$, $2^{-3}=\frac18$ --- shrinking but never arriving. Do \emph{not} name the
-asymptote (that debuts in Unit 5); just get the observation on the board. Section 4 of the notes
-needs it, and it is the cleanest contrast between the exponential family and the other two, both of
-which hit zero somewhere.
-
-\textbf{Item 3 also pre-loads slope.} ``Every time $x$ increases by $1$, $y$ changes by $+2$'' is
-the rate of change, arrived at by counting boxes rather than by a formula --- which is where the
-notes pick it up.
+Item~1 is the seed of the whole lesson: the table is \emph{symmetric} because $|x|$ measures distance,
+so $x$ and $-x$ give the same $y$ --- that symmetry becomes the axis of symmetry, and the single
+smallest value ($0$ at $x=0$) becomes the vertex/minimum. Item~2 reactivates the Lesson~1.1 language
+($+k$ shifts, a negative reflects) that we now aim at the new parent $y=|x|$. In item~3, tie the
+dashed line $x=0$ to the fold line of the V --- the two rays are mirror images across it.
 \end{teachernote}
 
 \begin{teachernote}[Guided Notes]
-\small
-\textbf{The Hook's two beats do two different jobs.} Part 1 is the definition and takes three
-minutes. Part 2 is the whole reason this lesson has three families in it: the ``who is biggest''
-answer \emph{changes}, twice, and students who have only ever seen $x^2$ grow fast are surprised.
-Leave the completed table on the board all period --- Section 5 comes straight back to it.
-
-\textbf{Section 1: the misconception to kill on sight} is ``repeated $y$-values mean it isn't a
-function.'' Hook item (c) and the line $y=-2$ in Section 3 both exist to make the point. A student
-who carries this error into Unit 3 will call every parabola a non-function.
-
-\textbf{Section 1 is also where Unit 1 closes its loop.} Say the sentence out loud: \emph{Lesson 1.2
-was never really about equations.} Solving $2x-6=0$ was finding a zero; solving $x^2-2x-3=0$ was
-finding two. The backward column of the notation table is exactly A.EI.1b wearing new clothes, and
-naming that is what makes the review feel cumulative instead of repetitive.
-
-\textbf{No sketching anywhere in this lesson --- deliberately.} \textbf{A.F.1f} and
-\textbf{A.F.2c/f} ask students to graph, and here that is done by \emph{matching} an equation to a
-pre-drawn graph, completing a table of values, and reading features off a figure. If you want a
-board demonstration of graphing by transformation, do it yourself with the three panels in Section 3
-and let students name the move.
-
-\textbf{Section 3's transformation table is a deposit, not a withdrawal.} It looks like a small
-Algebra 1 item and it is the single most reused idea in the course: $k\,f(x)$ and $f(x)+k$ return in
-Unit 2 (the V), Unit 3 (the parabola), and Unit 7 (growth curves), and \textbf{A2.F.1} is that
-lens applied family by family. Name the units out loud.
-
-\textbf{Section 4: do not name the asymptote.} The exponential's ``never reaches zero'' is an
-observation students should own by the end of today, but the word \emph{asymptote} and the
-horizontal-line-it-approaches formalism belong to Unit 5, where the characteristics spine introduces
-them. Saying it early costs the Unit 5 lesson its punch and gains nothing here.
-
-\textbf{Section 5 is A.F.2h, the clause most often skipped.} Constant difference / constant second
-difference / constant ratio is the only tool that identifies a family from a bare table, and it is
-routinely assessed. If time is short, cut the parallel/perpendicular pair in Section 3 --- not this.
+The spine is the distance meaning: a distance can't go below the vertex, which creates the single
+turning point (min/max) and the mirror symmetry (axis). Two errors to pre-empt: (1) the horizontal
+\emph{sign flip} --- $|x-3|$ moves \emph{right}, because $x=3$ is where the inside equals zero; have
+students set ``inside $=0$'' to locate the vertex every time. (2) The $a<0$ case --- insist that
+opening \emph{down} turns $k$ into a \emph{maximum}, and that the range flips to $y\le k$. For width,
+tie ``narrower'' to $|a|>1$ (steeper rays) and ``wider'' to $0<|a|<1$. In Section~4, model reading
+$g(0)$ \emph{straight from the equation} so students see the function as a machine, not just a
+picture. Connect to Lesson~1.2: the solutions of $|x-1|=2$ are the two $x$'s where this V meets the
+line $y=2$.
 \end{teachernote}
 
 \begin{teachernote}[Group Activity]
-\small
-\textbf{Tier R Part 2 is the highest-leverage block on the page.} The forward column is arithmetic
-and the backward column is Lesson 1.2, and putting them in one table is what makes ``a zero is a
-solution of $f(x)=0$'' feel obvious rather than memorised. Anyone who can do the left column but
-freezes on the right does not have a function problem --- they have an equation-solving problem, and
-should be sent back to 1.2's notes rather than reread today's definition.
-
-\textbf{Tier A Part 1 item 5 is a deliberate trap and worth debriefing publicly.} The answer is
-\emph{none}: every line written as $y=mx+b$ passes the vertical line test. Only $x=a$ fails, and
-$x=a$ can never be written in slope-intercept form because it has no slope. Students who answer
-``item 3, because it's parallel to a steep line'' are guessing.
-
-\textbf{Tier A Part 2's two zeros are the interpretation beat.} $x=0$ and $x=6$ are correct
-solutions of $A(x)=0$ and useless as bed designs. Students trained to ``throw out the negative
-answer'' need the sharper rule: you discard a solution when the \emph{context} forbids it, and you
-must be able to say what the context objected to.
-
-\textbf{Tier E Part 4 is the best thing on the page.} It forces students to state what the vertical
-line test actually measures, and (b) is the item that separates memorised procedure from
-understanding. Do not name ``one-to-one'' or ``inverse'' --- those belong to Unit 6 --- but if a
-group gets there on their own, tell them they have found next year's question a year early.
-
-\textbf{Tier E Part 1(d) is deliberately open.} Any curved function through $(2,7)$ and $(5,16)$
-proves the point; accept a described curve, a sketchless argument, or a piecewise rule. The idea
-being paid for is that \emph{two points determine a line} --- and only a line.
+Tier~A item~2 and Tier~E items~2--3 are the conceptual core --- push students to locate the vertex by
+setting the inside of the bars to zero, and to read $a$ as ``sign $=$ direction, size $=$ width.''
+Common slips: in A1(b), forgetting that $a<0$ makes $0$ a \emph{maximum}; in A3, reading $|x-1|$ as a
+left shift; in E2, computing $a$ with the wrong run or dropping the negative (the graph opens down, so
+$a<0$). For E1, stress that the vertex $(4,0)$ is the \emph{closest} moment because a distance can't be
+negative --- the same distance idea that makes every V.
 \end{teachernote}
 
 \begin{teachernote}[Exit Ticket]
-\footnotesize
-\textbf{Answer 3: B.} The line falls $2$ for every $1$ right, so $m=-2$, and it crosses at $(0,4)$.
-Each distractor breaks exactly one thing: \textbf{A} loses the sign of the slope, \textbf{C} the sign
-of the intercept, \textbf{D} swaps rise and run. A student choosing D can read a graph but has the
-ratio upside down --- a two-minute fix; a student choosing A is not attending to direction at all.
-
-\textbf{Sort into four piles:} \emph{got it} / \emph{definition} (item 1 --- called (a) a function,
-or called (b) \emph{not} one because outputs repeat) / \emph{zero} (item 2d/2e) / \emph{slope}
-(item 3). The \emph{definition} pile costs the most later: a student who thinks repeated
-\emph{outputs} disqualify a relation will call every parabola a non-function in Unit 3, and one
-sentence fixes it --- the promise is about inputs only. The \emph{zero} pile is the Unit 1
-through-line: 2(d) is Lesson 1.2's equation solving renamed, and 2(e) is the whole point of the
-renaming --- the number you solved for is a \emph{place on the graph}.
-
-\textbf{Unit 1 ends here,} so let the piles set the review day's emphasis rather than tomorrow's
-reteach.
+Item~1 checks reading the vertex, axis, range, and an increasing interval off a V whose vertex is
+\emph{below} the $x$-axis --- a good test of ``range $=y\ge k$'' and ``increasing to the right of the
+vertex.'' Item~2 checks vertex form with $a<0$: students who say ``min'' missed that opening down makes
+$k=5$ a \emph{maximum}. Item~3 separates students who apply the horizontal sign flip correctly
+(inside, backwards) from those who read $+4$ as a right shift. Sort into ``got it / shift-sign slip /
+up-vs-down slip / vertex-read slip / range slip'' to decide whether Lesson~1.4 opens with a quick
+re-teach of vertex form.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-\small
-\textbf{Grade problem 1 first, then problem 10.} They are the same question asked twice, and
-together they diagnose the one misconception that does real damage: students who think a repeated
-\emph{output} disqualifies a relation. Anyone who marked (a) or (c) ``not a function'' will call
-every parabola a non-function in Unit 3 and every horizontal-line model a non-function in Unit 2.
-One sentence fixes it --- the promise constrains inputs only --- and it is cheaper to say now.
-
-\textbf{Problem 2 is the Unit 1 through-line, graded.} The left column is arithmetic; the right
-column is Lesson 1.2. If a student can do the left and not the right, the gap is equation solving,
-not function notation, and the Unit 1 test will expose it in three different places.
-
-\textbf{Problem 5(d) and problem 1(d) are the same fact} arriving from opposite directions --- write
-a vertical line, then be told it is not a function. If a student answers 5(d) as ``$y=5$'' they have
-the vertical/horizontal pair backwards, which is worth thirty seconds of correction and is a
-perennial SOL item.
-
-\textbf{Problem 7's factoring check is where A.F.2d gets earned.} Reading zeros off a picture is
-easy; producing $-(x-3)(x+1)$ and watching it agree is the connection the standard actually asks
-for. Watch for the dropped leading negative --- students who factor $x^2-2x-3$ and forget the sign
-get the right zeros for the wrong function and will not notice, because the zeros are unaffected.
-
-\textbf{Problem 8 is the honest-modelling beat.} ``The car is never worth \$0'' is mathematically
-correct and practically false, and saying so is not a digression --- \textbf{A.F.2e} asks students
-to interpret characteristics \emph{in context}, which includes noticing where the model stops
-describing reality. Accept any answer that separates what the function says from what a used car
-lot would say.
-
-\textbf{The Extension's item (3) is the best question on the page} and the one to put on the board
-if anyone gets it. It also plants Unit 7: exponential growth is not ``fast growth,'' it is growth
-whose \emph{rate} is proportional to what is already there, which is why no linear head start
-survives it.
-
-\textbf{Unit 1 ends here.} Use this set to build the review day: the four piles from the exit ticket
-plus problems 1, 2, and 7 cover most of what the unit test will ask.
+Watch item~4(b): $-3|x+1|$ bundles \emph{three} moves (left $1$, reflect, stretch $3$) --- students
+often report only the shift. Item~3(d) tests $a<0$ with a fraction: the graph is \emph{wider} and opens
+down, so $2$ is a \emph{maximum}. In item~6, tie the vertex $(6,0)$ to ``closest'' because a distance
+can't be negative. Extension~(a): $a$ is the slope of the right ray --- rise $4$ over run $2$ gives
+$a=2$; a common slip is to forget that a point $2$ units right of the vertex rose $4$, not $1$.
 \end{teachernote}
 
 \end{document}

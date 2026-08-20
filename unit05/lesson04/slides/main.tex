@@ -1,4 +1,4 @@
-%! The Rational Parent Function \& Transformations — Unit 5, Lesson 5.4 — Slides (Beamer)
+%! Graphing Radical Functions \& Transformations — Unit 5, Lesson 5.4 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -6,6 +6,13 @@
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
+% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
+\newcommand{\cbrtplot}[5]{%
+  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
+    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
+  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
+    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
 
 \begin{document}
 
@@ -16,340 +23,377 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.4}\\[0.5cm]
-    {\color{white}\bfseries\LARGE The Rational Parent Function}\\[0.35cm]
-    {\color{white}\bfseries\large and Transformations}\\[1.0cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
+    {\color{white}\bfseries\LARGE Graphing Radical Functions \& Transformations}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Radical Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{Same outputs. Three inputs later.}
+  \forestheader{Three graphs, three equations --- and one of them is a trap}
   \sectionlabel{Hook}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
+    \begin{column}{0.22\textwidth}
       \centering
-      \renewcommand{\arraystretch}{1.25}
-      \begin{tabular}{|c|c||c|c|}
-      \hline
-      $x$ & $y=\frac1x$ & $x$ & $y=\frac{1}{x-3}$ \\ \hline
-      $-2$ & $-\frac12$ & $1$ & $-\frac12$ \\ \hline
-      $-1$ & $-1$       & $2$ & $-1$ \\ \hline
-      $0$  & undef.     & $3$ & undef. \\ \hline
-      $1$  & $1$        & $4$ & $1$ \\ \hline
-      $2$  & $\frac12$  & $5$ & $\frac12$ \\ \hline
-      \end{tabular}
+      \begin{tikzpicture}[scale=0.24]
+        \lgrid{-2}{10}{-4}{4}
+        \begin{scope}
+          \clip (-2,-4) rectangle (10,4);
+          \draw[very thick, forest, domain=0:10, samples=90, smooth] plot (\x,{sqrt(\x)});
+        \end{scope}
+        \fill[forest] (0,0) circle (7pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize \textbf{I}}
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{The sentence for the whole period}
-        \textbf{Shifting a rational function carries its asymptotes with it.} \\[3pt]
-        The blow-up moved from $x=0$ to $x=3$. The settling-down value stayed at $y=0$. \\[3pt]
-        \textbf{The wall moved. The floor did not.}
+    \begin{column}{0.22\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.24]
+        \lgrid{-2}{10}{-4}{4}
+        \begin{scope}
+          \clip (-2,-4) rectangle (10,4);
+          \draw[very thick, forest, domain=3:10, samples=90, smooth] plot (\x,{sqrt((\x)-3)});
+        \end{scope}
+        \fill[forest] (3,0) circle (7pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize \textbf{II}}
+    \end{column}
+    \begin{column}{0.22\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.24]
+        \lgrid{-2}{10}{-4}{4}
+        \begin{scope}
+          \clip (-2,-4) rectangle (10,4);
+          \draw[very thick, forest, domain=0:10, samples=90, smooth] plot (\x,{sqrt(\x)-3});
+        \end{scope}
+        \fill[forest] (0,-3) circle (7pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize \textbf{III}}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \footnotesize
+      Match: \; $y=\sqrt{x}$, \; $y=\sqrt{x-3}$, \; $y=\sqrt{x}-3$.
+      \vspace{4pt}
+      \begin{block}{The real question}
+        In 5.0 you found the domain of $\sqrt{x-3}$ by \emph{solving} $x-3\ge0$. \\[3pt]
+        Look at graph II. Where could you have just \textbf{read} it?
       \end{block}
     \end{column}
   \end{columns}
+  \vspace{2pt}
+  \begin{center}
+    Sliding the graph right by $3$ and refusing every input below $3$ are the \textbf{same event}.
+  \end{center}
 \end{frame}
 
-% THE PARENT
+% THE ANCHOR POINT
 \begin{frame}[t, plain]
-  \forestheader{The parent: $f(x)=\dfrac{1}{x}$}
-  \sectionlabel{Definition}
+  \forestheader{Find one point, and the whole graph follows}
+  \sectionlabel[goldacc]{$y=a\sqrt{x-h}+k$}
   \begin{columns}[T]
-    \begin{column}{0.42\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.36]
-        \lgrid{-5}{5}{-5}{5}
-        \begin{scope} \clip (-5,-5) rectangle (5,5);
-          \draw[very thick, forest, domain=-5:-0.2, samples=100, smooth] plot (\x,{1/(\x)});
-          \draw[very thick, forest, domain=0.2:5,  samples=100, smooth] plot (\x,{1/(\x)});
-        \end{scope}
-      \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.55\textwidth}
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item A \textbf{hyperbola} --- two separate \textbf{branches}.
-        \item VA $x=0$; \; HA $y=0$.
-        \item Domain: all reals, $x\neq0$. \; Range: all reals, $y\neq0$.
-        \item Decreasing on $(-\infty,0)$ \emph{and} on $(0,\infty)$ --- two intervals, never one.
-        \item Origin symmetry: an \textbf{odd} function.
-      \end{itemize}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{The anchor point}
+        $y=\sqrt{x-h}+k$ has its \textbf{anchor} at $(h,k)$ --- the parent $y=\sqrt{x}$ moved there.
+        \\[4pt]
+        Domain $=[\,h,\infty)$ \quad Range $=[\,k,\infty)$ \\
+        \emph{Both start at the anchor.}
+      \end{block}
       \vspace{3pt}
-      {\footnotesize End behavior: $y\to0$ in both directions.}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $k$ is \textbf{outside}: vertical, \emph{same} direction as its sign.
+        \item $h$ is \textbf{inside}: horizontal, \emph{opposite} direction. $\sqrt{x-3}$ goes
+              \textbf{right} $3$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.32]
+        \lgrid{-1}{13}{-2}{6}
+        \begin{scope}
+          \clip (-1,-2) rectangle (13,6);
+          \draw[very thick, forest, domain=3:13, samples=100, smooth] plot (\x,{sqrt((\x)-3)+1});
+        \end{scope}
+        \fill[forest] (3,1) circle (7pt);
+        \fill[charcoal] (7,3) circle (4pt);
+        \fill[charcoal] (12,4) circle (4pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $f(x)=\sqrt{x-3}+1$ --- anchor $(3,1)$, domain $[3,\infty)$, range
+      $[1,\infty)$}
     \end{column}
   \end{columns}
 \end{frame}
 
-% NO INTERCEPTS
+% THE COEFFICIENT a
 \begin{frame}[t, plain]
-  \forestheader{The fact nobody believes: this parent has \emph{no} intercepts}
-  \sectionlabel[goldacc]{Hold the line}
+  \forestheader{The coefficient $a$: steeper, flatter, or upside down}
+  \sectionlabel[goldacc]{$kf(x)$}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{No $x$-intercept}
-        A fraction is zero only when its \textbf{numerator} is zero. \\[3pt]
-        The numerator is $1$. It is never zero.
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.28]
+        \lgrid{-1}{10}{-1}{7}
+        \begin{scope}
+          \clip (-1,-1) rectangle (10,7);
+          \draw[very thick, navy, domain=0:10, samples=100, smooth] plot (\x,{2*sqrt(\x)});
+          \draw[very thick, forest, domain=0:10, samples=100, smooth] plot (\x,{sqrt(\x)});
+          \draw[very thick, goldacc, domain=0:10, samples=100, smooth] plot (\x,{0.5*sqrt(\x)});
+        \end{scope}
+        \fill[charcoal] (0,0) circle (6pt);
+      \end{tikzpicture}\\[2pt]
+      {\scriptsize \textcolor{navy}{$2\sqrt{x}$} \; \textcolor{forest}{$\sqrt{x}$} \;
+      \textcolor{goldacc}{$\tfrac12\sqrt{x}$}}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.28]
+        \lgrid{-1}{10}{-4}{7}
+        \begin{scope}
+          \clip (-1,-4) rectangle (10,7);
+          \draw[very thick, forest, domain=0:10, samples=100, smooth] plot (\x,{6-3*sqrt(\x)});
+        \end{scope}
+        \fill[forest] (0,6) circle (6pt);
+        \fill[charcoal] (4,0) circle (4pt);
+      \end{tikzpicture}\\[2pt]
+      {\scriptsize $m(x)=-3\sqrt{x}+6$}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $|a|>1$ stretches; $0<|a|<1$ compresses.
+        \item $a$ \textbf{never} moves the anchor --- there the radical is $0$, and $a\cdot0=0$.
+        \item $a<0$ flips the arm \emph{down}.
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{The consequence students miss}
+        With $a<0$ the anchor is an absolute \textbf{maximum}, and the range becomes
+        $(-\infty,k]$.
       \end{block}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{No $y$-intercept}
-        A $y$-intercept is $f(0)$. \\[3pt]
-        But $0$ is not in the domain --- there is nothing to plot.
+  \end{columns}
+\end{frame}
+
+% CUBE ROOT
+\begin{frame}[t, plain]
+  \forestheader{Cube roots: same anchor, but no endpoint}
+  \sectionlabel[goldacc]{$y=a\sqrt[3]{x-h}+k$}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.28]
+        \lgrid{-10}{9}{-5}{2}
+        \begin{scope}
+          \clip (-10,-5) rectangle (9,2);
+          \cbrtplot{1}{-1}{-2}{-10}{9}
+        \end{scope}
+        \fill[forest] (-1,-2) circle (7pt);
+        \fill[charcoal] (7,0) circle (4pt);
+        \fill[charcoal] (0,-1) circle (4pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $g(x)=\sqrt[3]{x+1}-2$}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Anchor $(-1,-2)$ --- but it is an \textbf{inflection point}, not an endpoint.
+        \item Domain \emph{and} range: all reals. $h$ says \emph{where} the graph is, not where it
+              is \emph{allowed} to be.
+        \item Zero $(7,0)$; \; $y$-intercept $(0,-1)$.
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{Why no endpoint?}
+        An endpoint exists only where inputs are \emph{forbidden}. An \textbf{odd index} forbids
+        nothing --- so nothing stops the graph.
       \end{block}
     \end{column}
   \end{columns}
-  \vspace{8pt}
-  {\footnotesize Every parent before this one passed through the origin: $y=x$, $y=x^2$, $y=|x|$,
-  $y=x^3$. This one misses both axes entirely, and that is the first thing that makes it different.}
 \end{frame}
 
-% THE TWO SHIFTS
+% REFLECTIONS: the A2.F.1e contrast
 \begin{frame}[t, plain]
-  \forestheader{Each shift moves one asymptote}
-  \sectionlabel[goldacc]{The heart of the lesson}
+  \forestheader{One family gets a bonus the other does not}
+  \sectionlabel{Compare \& contrast}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.30]
-        \lgrid{-4}{7}{-4}{4}
-        \draw[navy, dashed, thick] (3,-4)--(3,4);
-        \node[navy, font=\tiny, above] at (3,4) {$x=3$};
-        \begin{scope} \clip (-4,-4) rectangle (7,4);
-          \draw[very thick, forest!35, dashed, domain=-4:-0.25, samples=90, smooth] plot (\x,{1/(\x)});
-          \draw[very thick, forest!35, dashed, domain=0.25:7, samples=90, smooth] plot (\x,{1/(\x)});
-          \draw[very thick, forest, domain=-4:2.75, samples=90, smooth] plot (\x,{1/((\x)-3)});
-          \draw[very thick, forest, domain=3.25:7, samples=90, smooth] plot (\x,{1/((\x)-3)});
-        \end{scope}
-      \end{tikzpicture} \\[2pt]
-      {\footnotesize $y=\dfrac{1}{x-3}$ --- right $3$, so the \textbf{VA} goes to $x=3$.}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.30]
-        \lgrid{-5}{5}{-3}{6}
-        \draw[navy, dashed, thick] (-5,2)--(5,2);
-        \node[navy, font=\tiny, below right] at (3.4,2) {$y=2$};
-        \begin{scope} \clip (-5,-3) rectangle (5,6);
-          \draw[very thick, forest!35, dashed, domain=-5:-0.33, samples=90, smooth] plot (\x,{1/(\x)});
-          \draw[very thick, forest!35, dashed, domain=0.33:5, samples=90, smooth] plot (\x,{1/(\x)});
-          \draw[very thick, forest, domain=-5:-0.2, samples=90, smooth] plot (\x,{1/(\x)+2});
-          \draw[very thick, forest, domain=0.25:5, samples=90, smooth] plot (\x,{1/(\x)+2});
-        \end{scope}
-      \end{tikzpicture} \\[2pt]
-      {\footnotesize $y=\dfrac{1}{x}+2$ --- up $2$, so the \textbf{HA} goes to $y=2$.}
-    \end{column}
-  \end{columns}
-  \vspace{4pt}
-  \begin{block}{}
-    \centering\textbf{The asymptotes are the parent's axes, and they travel with it.} Draw the two
-    dashed lines first and the branches have nowhere else to go.
-  \end{block}
-\end{frame}
-
-% STRETCH AND FLIP
-\begin{frame}[t, plain]
-  \forestheader{$a$ stretches and flips --- and moves no asymptote}
-  \sectionlabel{Scaling}
-  \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
+    \begin{column}{0.34\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.26]
+        \lgrid{-8}{8}{-3}{3}
         \begin{scope}
-          \lgrid{-5}{5}{-5}{5}
-          \begin{scope} \clip (-5,-5) rectangle (5,5);
-            \draw[very thick, forest!35, dashed, domain=-5:-0.2, samples=90, smooth] plot (\x,{1/(\x)});
-            \draw[very thick, forest!35, dashed, domain=0.2:5, samples=90, smooth] plot (\x,{1/(\x)});
-            \draw[very thick, forest, domain=-5:-0.6, samples=90, smooth] plot (\x,{3/(\x)});
-            \draw[very thick, forest, domain=0.6:5, samples=90, smooth] plot (\x,{3/(\x)});
-          \end{scope}
-          \node[charcoal, font=\tiny] at (0,-6.6){$y=\frac3x$};
+          \clip (-8,-3) rectangle (8,3);
+          \cbrtplot{-1}{0}{0}{-8}{8}
         \end{scope}
-        \begin{scope}[xshift=13cm]
-          \lgrid{-5}{5}{-5}{5}
-          \begin{scope} \clip (-5,-5) rectangle (5,5);
-            \draw[very thick, forest!35, dashed, domain=-5:-0.2, samples=90, smooth] plot (\x,{1/(\x)});
-            \draw[very thick, forest!35, dashed, domain=0.2:5, samples=90, smooth] plot (\x,{1/(\x)});
-            \draw[very thick, forest, domain=-5:-0.2, samples=90, smooth] plot (\x,{-1/(\x)});
-            \draw[very thick, forest, domain=0.2:5, samples=90, smooth] plot (\x,{-1/(\x)});
-          \end{scope}
-          \node[charcoal, font=\tiny] at (0,-6.6){$y=-\frac1x$};
-        \end{scope}
-      \end{tikzpicture}
+        \fill[charcoal] (0,0) circle (6pt);
+      \end{tikzpicture}\\[2pt]
+      {\scriptsize $y=-\sqrt[3]{x}$ \; \textbf{and} \; $y=\sqrt[3]{-x}$}
     \end{column}
-    \begin{column}{0.42\textwidth}
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item $|a|>1$: branches pushed \textbf{away} from the asymptotes.
-        \item $0<|a|<1$: branches pulled \textbf{in}.
-        \item $a<0$: branches jump to the \textbf{other pair} of regions.
-      \end{itemize}
-      \vspace{4pt}
-      \begin{block}{And the surprise}
-        $f(4x)=\dfrac{1}{4x}=\dfrac{1/4}{x}$ \\[3pt]
-        On \emph{this} parent, $f(kx)$ and $kf(x)$ give the same family. One letter is enough.
+    \begin{column}{0.62\textwidth}
+      \footnotesize
+      \begin{block}{Cube root: the two flips are the same}
+        $-\sqrt[3]{8}=-2$ \quad and \quad $\sqrt[3]{-8}=-2$. \\[3pt]
+        $\sqrt[3]{-x}=-\sqrt[3]{x}$ --- this \emph{is} the origin symmetry of Lesson 5.0,
+        $f(-x)=-f(x)$. Flipping vertically and flipping horizontally give \textbf{one} curve.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Square root: the two flips are not}
+        $-\sqrt{x}$ opens right and hangs \emph{below} the axis. \\
+        $\sqrt{-x}$ opens \emph{left} and rises above it. \\[3pt]
+        They do not even share a domain. A square root has \textbf{no} symmetry to trade on.
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-% GENERAL FORM
+% GRAPH -> EQUATION
 \begin{frame}[t, plain]
-  \forestheader{All together: $g(x)=\dfrac{a}{x-h}+k$}
-  \sectionlabel[goldacc]{General form}
+  \forestheader{Backwards: from a graph to an equation}
+  \sectionlabel[goldacc]{Anchor first, always}
   \begin{columns}[T]
-    \begin{column}{0.42\textwidth}
+    \begin{column}{0.38\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.30]
-        \lgrid{-3}{8}{-4}{6}
-        \draw[navy, dashed, thick] (3,-4)--(3,6);
-        \draw[navy, dashed, thick] (-3,1)--(8,1);
-        \node[navy, font=\tiny, above] at (3,6) {$x=3$};
-        \node[navy, font=\tiny, below left] at (-0.6,1) {$y=1$};
-        \begin{scope} \clip (-3,-4) rectangle (8,6);
-          \draw[very thick, forest, domain=-3:2.6, samples=100, smooth] plot (\x,{2/((\x)-3)+1});
-          \draw[very thick, forest, domain=3.4:8, samples=100, smooth] plot (\x,{2/((\x)-3)+1});
+        \lgrid{-4}{9}{-2}{9}
+        \begin{scope}
+          \clip (-4,-2) rectangle (9,9);
+          \draw[very thick, forest, domain=-2:9, samples=100, smooth] plot (\x,{3*sqrt((\x)+2)-1});
         \end{scope}
-        \fill[charcoal] (1,0) circle (3.4pt);
-      \end{tikzpicture} \\[2pt]
-      {\footnotesize $g(x)=\dfrac{2}{x-3}+1$}
+        \fill[forest] (-2,-1) circle (7pt);
+        \fill[charcoal] (2,5) circle (4pt);
+        \fill[charcoal] (7,8) circle (4pt);
+      \end{tikzpicture}\\[2pt]
+      {\scriptsize anchor $(-2,-1)$; \; points $(2,5)$ and $(7,8)$}
     \end{column}
-    \begin{column}{0.55\textwidth}
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item $x-3=0 \Rightarrow$ \textbf{VA} $x=3$.
-        \item The outside $+1$ \textbf{is} the \textbf{HA} $y=1$.
-        \item \textbf{Center} $(3,1)$ --- where they cross, and \emph{not on the graph}.
-        \item Domain $x\neq3$; \; Range $y\neq1$.
-        \item $y$-int: $g(0)=\frac{2}{-3}+1=\frac13$. \; $x$-int: $\frac{2}{x-3}=-1 \Rightarrow (1,0)$.
-      \end{itemize}
-      \vspace{3pt}
-      {\footnotesize Intercepts are \textbf{computed}, never read off the picture.}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      \textbf{Step 1.} Read the anchor: $h=-2$, $k=-1$. \; $y=a\sqrt{x+2}-1$ \\[4pt]
+      \textbf{Step 2.} Take one more lattice point: $(2,5)$. \\[4pt]
+      \textbf{Step 3.} Substitute and solve:
+      \[ 5=a\sqrt{4}-1 \;\Rightarrow\; 5=2a-1 \;\Rightarrow\; a=3 \]
+      \textbf{Equation:} $y=3\sqrt{x+2}-1$. \; Check $(7,8)$: $3\sqrt9-1=8$. \checkmark
+      \vspace{2pt}
+      \begin{block}{Why the order matters}
+        The anchor is \emph{free} information. Reach for $a$ first and you have two unknowns in one
+        equation.
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-% NEVER CROSSES
+% HIDDEN h
 \begin{frame}[t, plain]
-  \forestheader{Does it ever cross its horizontal asymptote?}
-  \sectionlabel[goldacc]{Stronger than 5.0}
+  \forestheader{When $h$ is hiding: factor the radicand first}
+  \sectionlabel[goldacc]{$\sqrt{4x-8}$}
   \begin{columns}[T]
-    \begin{column}{0.50\textwidth}
-      \[ g(x)=1 \quad\Longrightarrow\quad \frac{2}{x-3}=0 \]
-      \vspace{-6pt}
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item A fraction is zero only when its \textbf{numerator} is zero.
-        \item The numerator is $2$.
-        \item \textbf{Impossible.} No solution, ever.
-      \end{itemize}
-    \end{column}
     \begin{column}{0.46\textwidth}
-      \begin{block}{But be careful what you conclude}
-        A \emph{transformed parent} never crosses its HA --- its numerator is a nonzero constant.
-        \\[3pt]
-        Rational functions in general \textbf{may} cross: $\frac{2x}{x^2+1}$ crosses $y=0$ at the
-        origin (Lesson 5.0).
+      \[ \sqrt{4x-8}=\sqrt{4(x-2)}=\sqrt4\cdot\sqrt{x-2}=2\sqrt{x-2} \]
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Anchor $(2,0)$ --- \textbf{not} $x=8$.
+        \item Vertical stretch by $2$.
+        \item Domain $[2,\infty)$; check the old way: $4x-8\ge0 \Rightarrow x\ge2$. \checkmark
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{Every time}
+        A coefficient on $x$ means \textbf{factor before you read $h$}.
       \end{block}
     \end{column}
-  \end{columns}
-\end{frame}
-
-% GRAPH TO EQUATION
-\begin{frame}[t, plain]
-  \forestheader{Backwards: write the equation from the graph}
-  \sectionlabel[goldacc]{A2.F.1b}
-  \begin{columns}[T]
-    \begin{column}{0.40\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.30]
-        \lgrid{-6}{5}{-6}{3}
-        \draw[navy, dashed, thick] (-1,-6)--(-1,3);
-        \draw[navy, dashed, thick] (-6,-2)--(5,-2);
-        \node[navy, font=\tiny, above right] at (-1,2.2) {$x=-1$};
-        \node[navy, font=\tiny, above left] at (4.6,-2) {$y=-2$};
-        \begin{scope} \clip (-6,-6) rectangle (5,3);
-          \draw[very thick, forest, domain=-6:-1.35, samples=100, smooth] plot (\x,{2/((\x)+1)-2});
-          \draw[very thick, forest, domain=-0.6:5, samples=100, smooth] plot (\x,{2/((\x)+1)-2});
-        \end{scope}
-        \fill[charcoal] (0,0) circle (3.4pt);
-        \fill[charcoal] (1,-1) circle (3.4pt) node[above right, font=\tiny]{$(1,-1)$};
-      \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.57\textwidth}
-      \begin{enumerate}\setlength{\itemsep}{2pt}
-        \item VA $x=-1 \Rightarrow h=-1$.
-        \item HA $y=-2 \Rightarrow k=-2$.
-        \item $y=\dfrac{a}{x+1}-2$.
-        \item Substitute $(1,-1)$: \; $-1=\dfrac a2-2 \Rightarrow a=2$.
-        \item \textbf{Check on a second point}: at $(0,0)$, $\frac21-2=0$ \checkmark
-      \end{enumerate}
-      \vspace{3pt}
-      \begin{block}{Watch the sign}
-        The wall is at $x=-1$, and the equation shows $x+1$, because $x-(-1)=x+1$.
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% COMPARE + DISGUISE
-\begin{frame}[t, plain]
-  \forestheader{Compare, contrast --- and one disguise}
-  \sectionlabel{A2.F.1a/e}
-  \begin{columns}[T]
     \begin{column}{0.50\textwidth}
       \centering
-      \renewcommand{\arraystretch}{1.2}
-      {\footnotesize
-      \begin{tabular}{|l|c|c|}
+      \begin{tikzpicture}[scale=0.32]
+        \lgrid{-1}{12}{-1}{7}
+        \begin{scope}
+          \clip (-1,-1) rectangle (12,7);
+          \draw[very thick, forest, domain=2:12, samples=100, smooth] plot (\x,{2*sqrt((\x)-2)});
+        \end{scope}
+        \fill[forest] (2,0) circle (7pt);
+        \fill[charcoal] (6,4) circle (4pt);
+        \fill[charcoal] (11,6) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% f(kx) COLLAPSE
+\begin{frame}[t, plain]
+  \forestheader{A radical has only one size dial}
+  \sectionlabel[goldacc]{$f(kx)$ vs.\ $kf(x)$}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      The SOL lists four transformations: $f(x)+k$, $f(x+k)$, $kf(x)$, and $f(kx)$. \\
+      That last one squeezes the \emph{input}. Watch:
+      \vspace{3pt}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.25}
+      \begin{tabular}{|c|c|c|c|c|}
       \hline
-       & $y=x^2$ or $y=|x|$ & $y=\frac1x$ \\ \hline
-      Domain     & all reals & $x\neq0$ \\ \hline
-      Range      & $y\ge0$   & $y\neq0$ \\ \hline
-      Asymptotes & none      & $x=0$, $y=0$ \\ \hline
-      Intercepts & $(0,0)$   & none \\ \hline
-      Pieces     & one       & two branches \\ \hline
-      Symmetry   & $y$-axis  & origin \\ \hline
-      \end{tabular}}
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{The disguise}
-        \[ \frac{x-1}{x-3}=\frac{(x-3)+2}{x-3}=1+\frac{2}{x-3} \]
-        It was the anchor all along. VA $x=3$, HA $y=1$.
-      \end{block}
+      $x$ & $0$ & $1$ & $4$ & $9$ \\ \hline
+      $\sqrt{9x}$ & $0$ & $3$ & $6$ & $9$ \\ \hline
+      $3\sqrt{x}$ & $0$ & $3$ & $6$ & $9$ \\ \hline
+      \end{tabular}
+      \end{center}
       \vspace{3pt}
-      {\footnotesize Top and bottom both \textbf{linear} $\Rightarrow$ a shifted, stretched $\frac1x$.
-      And the leftover $k$ \emph{is} the ratio of the leading coefficients --- which is why Lesson
-      5.0's degree rule was true.}
+      \begin{block}{Why}
+        The product property lets the constant walk out: $\sqrt{kx}=\sqrt{k}\cdot\sqrt{x}$. \\[3pt]
+        With rational exponents (5.1) it is one line: $(kx)^{1/n}=k^{1/n}x^{1/n}$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \footnotesize
+      Squeezing the input horizontally and stretching the output vertically are the \textbf{same
+      transformation} for a radical. Two names, one graph.
+      \vspace{4pt}
+      \begin{block}{But do not over-generalize}
+        Try it on $y=x+1$: \\[3pt]
+        $f(9x)=9x+1$ \quad but \quad $9f(x)=9x+9$. \\[3pt]
+        \textbf{Not the same.} The term \emph{outside} the radical is what breaks it --- the product
+        property has nothing to say about it.
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-% CLOSE
+% SUMMARY
 \begin{frame}[t, plain]
-  \forestheader{Today in one line --- and where it goes next}
-  \sectionlabel[goldacc]{Close}
-  \begin{block}{}
-    \centering\textbf{The asymptotes are the parent's axes, and they travel with the graph.} \\[3pt]
-    $x=h$ from the denominator (which does the opposite of what it says); $y=k$ from the number
-    outside; $a$ moves neither.
-  \end{block}
-  \vspace{6pt}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Errors that cost the most}
-        \begin{itemize}\setlength{\itemsep}{2pt}
-          \item Flipping the sign of $h$.
-          \item Reading the HA off the numerator.
-          \item Forgetting the \emph{range} exclusion.
-          \item Plotting the center as a point of the graph.
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Next: Lesson 5.5}
-        The denominator factors into \emph{two} pieces. The asymptotes stop being visible in the
-        equation, and the graph gets assembled instead of read --- holes vs.\ walls, a degree
-        comparison, intercepts, and a sign chart.
-      \end{block}
-    \end{column}
-  \end{columns}
+  \forestheader{Everything from one point}
+  \sectionlabel{Summary}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{lll}
+  \hline
+   & \textbf{$y=a\sqrt{x-h}+k$} & \textbf{$y=a\sqrt[3]{x-h}+k$} \\
+  \hline
+  Anchor $(h,k)$ & endpoint & inflection point \\
+  Domain & $[h,\infty)$ & all reals \\
+  Range ($a>0$) & $[k,\infty)$ & all reals \\
+  Range ($a<0$) & $(-\infty,k]$ & all reals \\
+  Anchor is & an absolute max or min & neither \\
+  Arms & one & two \\
+  $-f(x)$ vs.\ $f(-x)$ & different graphs & \emph{the same graph} \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    \textbf{Anchor first} --- then $a$. And if $x$ has a coefficient, \textbf{factor} before you read
+    $h$.
+  \end{center}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 5 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} graph $y=a\sqrt[n]{x-h}+k$ from the equation, write the equation from the graph, and
+  read domain and range straight off the anchor instead of solving for them.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{5.0--5.3} Characteristics, rational exponents, and the algebra of radicals --- all of
+          which showed up today.
+    \item \textbf{5.5} Solving radical equations \& extraneous solutions --- isolate, raise to the
+          $n$th power, and \emph{always check}. Graphically: where today's graphs cross a horizontal
+          line.
+    \item \textbf{5.6} Composition of functions.
+    \item \textbf{5.7} Inverse functions --- the reflection over $y=x$ from 5.0, made into a method.
+  \end{itemize}
 \end{frame}
 
 \end{document}

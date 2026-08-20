@@ -1,4 +1,4 @@
-%! Complex Numbers — Unit 3, Lesson 3.4 — Exit Ticket (Answer Key)
+%! Zeros of Polynomials: the Rational Root Theorem — Unit 3, Lesson 3.4 — Exit Ticket (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -7,33 +7,85 @@
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.4}{Exit Ticket --- Answer Key}
+\namedateperiod
 
-\vspace{0.12in}
+\vspace{0.10in}
 
-No notes. Show your steps; write every answer in standard $a+bi$ form.
+No notes. Constant term on top, leading coefficient on the bottom --- and do not lose the $\pm$.
 
-\begin{enumerate}[leftmargin=1.8em, itemsep=14pt]
-  \item \textbf{Rewrite with $i$.} Simplify, and write the second one in $a+bi$ form.
-        \[ \sqrt{-72}=\ans{$6i\sqrt{2}$} \qquad\qquad 3-\sqrt{-16}=\ans{$3-4i$} \]
+\begin{enumerate}[leftmargin=1.8em, itemsep=11pt]
+  \item \textbf{The whole workflow.} Solve $3x^3 + 2x^2 - 7x + 2 = 0$.
 
-  \item \textbf{Multiply.} Use FOIL, then replace $i^2=-1$.
-        $(3+2i)(4-i)$
-        \begin{work}
-          (3+2i)(4-i) &= 12-3i+8i-2i^2 \\
-                      &= 12+5i-2(-1) \\
-                      &= 14+5i
-        \end{work}
+    \vspace{3pt}
+    $p$ divides \ans{$2$} \quad $q$ divides \ans{$3$} \quad
+    Candidates: \ans{$\pm 1,\ \pm 2,\ \pm\tfrac13,\ \pm\tfrac23$}
 
-  \item \textbf{SOL-style multiple choice.} Which is equal to $i^{38}$?
-        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-          \item $i$
-          \item $-1$ \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
-          \item $-i$
-          \item $1$
-        \end{enumerate}
-        \begin{itemize}[leftmargin=1.4em, nosep]
-          \item[] $38\div4$ leaves remainder $2$, so $i^{38}=i^2=-1$. \textbf{D} ($i^{40}=1$) forgets the remainder; \textbf{A}/\textbf{C} use remainder $1$/$3$.
-        \end{itemize}
+    \vspace{3pt}
+    A candidate that works: $r = $ \ans{$1$}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{r|C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}}
+    \ans{$1$} & \ans{$3$} & \ans{$2$} & \ans{$-7$} & \ans{$2$} \\
+        &     & \ans{$3$} & \ans{$5$} & \ans{$-2$} \\ \cline{2-5}
+        & \ans{$3$} & \ans{$5$} & \ans{$-2$} & \ans{$0$} \\
+    \end{tabular}
+    \end{center}
+
+    \vspace{2pt}
+    Depressed polynomial: \ans{$3x^2 + 5x - 2$} \quad Completely factored: \ans{$(x-1)(3x-1)(x+2)$}
+
+    \vspace{3pt}
+    Solutions: \ans{$x = -2,\ \tfrac13,\ 1$} \quad Verify one of them by substituting:
+    \ans{$3(\tfrac13)^3+2(\tfrac13)^2-7(\tfrac13)+2 = \tfrac19+\tfrac29-\tfrac73+2 = 0$}
+
+  \item \textbf{Error analysis.} For $f(x) = 2x^3 + 5x^2 - x - 6$, a classmate writes the candidate
+    list $\pm 1,\ \pm 2,\ \pm\tfrac12,\ \pm\tfrac13,\ \pm\tfrac16$.
+
+    \vspace{3pt}
+    What did they do wrong? \ans{They flipped the fraction --- they used divisors of the leading
+    coefficient $2$ on top and divisors of the constant $6$ on the bottom. It is
+    $\frac{\text{divisors of the constant}}{\text{divisors of the leading coefficient}}$.}
+
+    \vspace{3pt}
+    Write the correct list: \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6,\ \pm\tfrac12,\ \pm\tfrac32$}
+
+  \item \textbf{SOL-style multiple choice.} Which value is \emph{not} a possible rational zero of
+    $f(x) = 4x^3 - x^2 + 6x - 3$?
+    \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
+      \item $-3$
+      \item $\dfrac{3}{4}$
+      \item $\dfrac{2}{3}$ \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item $\dfrac{1}{2}$
+    \end{enumerate}
+    \begin{itemize}[leftmargin=1.5em, nosep]
+      \item The list is $\pm\frac{p}{q}$ with $p \mid 3$ and $q \mid 4$: \; $\pm 1, \pm 3, \pm\frac12, \pm\frac32, \pm\frac14, \pm\frac34$.
+      \item \textbf{C} fails twice: $2$ does not divide the constant $3$, and $3$ does not divide the leading coefficient $4$.
+      \item \textbf{A}, \textbf{B}, and \textbf{D} are all on the list. (Being on the list does not make them zeros --- only \emph{possible} zeros.)
+    \end{itemize}
 \end{enumerate}
+
+\begin{teachernote}
+Item~1 separates four different failures. A list built from divisors of $3$ over divisors of $2$ is
+the flipped fraction (same error as item~2, so a student who misses both has one problem, not two).
+A list with no negatives loses half the candidates --- survivable here, since $r=1$ works, but fatal
+on the homework. A correct division that stops at $3x^2+5x-2$ is the ``forgot to finish'' pile that
+has now followed us from Lesson~3.2 through 3.3. And zeros listed as $1$, $-\frac13$, $2$ is a sign
+error reading zeros off the factors $(3x-1)$ and $(x+2)$ --- the non-monic factor is the new hazard
+this lesson introduces, since $3x-1=0$ gives $x=\frac13$, not $x=3$ or $x=-\frac13$.
+
+\vspace{3pt}
+Item~3 checks the theorem as a \emph{filter} rather than a procedure --- students must read a
+candidate backward and ask whether its numerator and denominator qualify. Watch for students who try
+to evaluate $f$ at all four choices; that works but burns four minutes, and it means they are
+treating the list as arithmetic instead of structure.
+
+\vspace{3pt}
+Sort into four piles --- \emph{got it} / \emph{list built wrong (flipped or no $\pm$)} /
+\emph{division or arithmetic} / \emph{stopped before solving}. A large ``list built wrong'' pile is
+the one to fix at the top of Lesson~3.5, because 3.5 assumes students can produce a candidate list
+without help. If the sign-reading error on $(3x-1)$ shows up widely, spend two minutes on ``set each
+factor equal to zero and \emph{solve},'' which is the habit that transfers to every remaining lesson
+in the unit.
+\end{teachernote}
 
 \end{document}

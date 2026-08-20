@@ -1,4 +1,4 @@
-%! Characteristics of Exponential Functions — Unit 7, Lesson 7.0 — Group Activity (Answer Key)
+%! Characteristics of Logarithmic Functions — Unit 7, Lesson 7.0 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -7,9 +7,10 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612   ln4 = 1.386294
-\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
-  plot (\x,{#1*exp((#2)*(\x))});}
+% pgfmath has no log_b, so every logarithmic curve is drawn by parameterizing on y:
+%   y = log_b(x-h) + k   <=>   x = b^(y-k) + h.   Args: {b}{h}{k}{ymin}{ymax}
+\newcommand{\logcurve}[5]{\draw[very thick, forest, domain=#4:#5, samples=120, smooth]
+  plot ({pow(#1,\x-(#3))+(#2)},{\x});}
 
 \begin{document}
 
@@ -19,219 +20,205 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Reading Exponential Graphs.} An exponential graph never turns around, never breaks, and
-never crosses the $x$-axis --- so the questions worth asking are \emph{which way does it run} and
-\emph{which line is it sneaking up on}. With your partner, read each graph carefully and
-\emph{justify} your answers. Write every domain and range in \textbf{interval notation}, and check
-each one against the equation.
+\small\textbf{Reading Logarithmic Graphs.} A logarithmic function tells you \emph{where it is allowed
+to exist} before it tells you anything else --- and the \textbf{argument} is what decides. With your
+partner, read each graph carefully and \emph{justify} your answers. Write every domain and range in
+\textbf{interval notation}, and check each one against the argument. Watch your brackets: a
+logarithm's boundary is an \textbf{asymptote}, not an endpoint, so it is \emph{never} included.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-The graph shows $g(x) = 3^{x}$.
+The graph shows $g(x) = \log_3 x$.
 \begin{center}
-\begin{tikzpicture}[scale=0.44]
-  \lgrid{-3}{3}{-1}{10}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-3}{11}{-3}{3}
+  \draw[navy, dashed, semithick] (0,-3)--(0,3);
   \begin{scope}
-    \clip (-3,-1) rectangle (3,10);
-    \expcurve{1}{1.098612}{-3}{2.09}
+    \clip (-3,-3) rectangle (11,3);
+    \logcurve{3}{0}{0}{-3}{2.19}
   \end{scope}
-  \draw[navy, dashed, semithick] (-3,0)--(3,0);
-  \node[navy, font=\scriptsize, above left] at (-1.0,0) {$y=0$};
-  \fill[charcoal] (0,1) circle (3pt) node[left, font=\scriptsize]{$(0,1)$};
-  \fill[charcoal] (1,3) circle (3pt) node[right, font=\scriptsize]{$(1,3)$};
-  \fill[charcoal] (2,9) circle (3pt) node[left, font=\scriptsize]{$(2,9)$};
+  \fill[charcoal] (1,0) circle (2.6pt) node[below right, font=\scriptsize]{$(1,0)$};
+  \fill[charcoal] (3,1) circle (2.6pt) node[above left, font=\scriptsize]{$(3,1)$};
+  \fill[charcoal] (9,2) circle (2.6pt) node[above left, font=\scriptsize]{$(9,2)$};
 \end{tikzpicture}
 \end{center}
 \begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
-  \item Write $g$ in the form $ab^{x}$: \; $a=$ \ans{1} and $b=$ \ans{3}. \\
-        Since $b$ is \ans{greater} than $1$, this is exponential \ans{growth}.
-  \item \textbf{Domain:} \ans{$(-\infty,\infty)$} \quad \textbf{Range:} \ans{$(0,\infty)$}
-  \item \textbf{$y$-intercept:} \ans{$(0,1)$}. \; Check it against $a$: are they the same?
-        \ans{yes}
-  \item Try to find an \textbf{$x$-intercept} by asking when $3^{x}=0$. From the table you built in
-        the Warm-Up, $3^{-1}=$ \ans{$\frac13$} and $3^{-4}=$ \ans{$\frac{1}{81}$}. \\
-        Do these ever reach $0$? \ans{no} \; So this graph has \ans{no}
-        $x$-intercept.
-  \item $g$ is \textbf{increasing} on \ans{$(-\infty,\infty)$}. \quad Its absolute extrema:
-        \ans{none}
-  \item \textbf{Horizontal asymptote:} \ans{$y=0$}. \; The graph approaches it on the
-        \ans{left} side.
+  \item The \textbf{argument} is \ans{$x$}. Set it $>0$: \ans{$x>0$}, so the
+        \textbf{domain} is \ans{$(0,\infty)$}.
+  \item The graph leans on a vertical line it never touches. That line is the \textbf{vertical
+        asymptote}: \ans{$x=0$}. \\
+        Why can the graph never reach it? \ans{because $x=0$ is not in the domain --- no power of 3 equals 0}
+  \item \textbf{Range:} \ans{$(-\infty,\infty)$} \quad \textbf{$x$-intercept:} \ans{$(1,0)$}
+  \item Try to find the \textbf{$y$-intercept} by substituting $x=0$. You would need to answer
+        ``$3$ to what power gives \ans{0}?'', which is \ans{impossible}. \\
+        What does that tell you about whether this graph has a $y$-intercept? \ans{it has none --- and never will}
+  \item $g$ is \textbf{increasing} on \ans{$(0,\infty)$}. \quad Its absolute extrema:
+        \ans{none}, because the graph falls forever on one side and climbs forever on the other.
+  \item \textbf{Positive / negative:} $g(x)<0$ on \ans{$(0,1)$}; \quad $g(x)>0$ on
+        \ans{$(1,\infty)$}.
   \item \textbf{End behavior:} as $x\to+\infty$, $g(x)\to$ \ans{$+\infty$}. \\
-        As $x\to-\infty$, $g(x)\to$ \ans{$0$} --- careful, this is \emph{not} $-\infty$.
-        Explain in one sentence what the graph is actually doing on the left. \ans{It flattens out
-        and hugs the line $y=0$ from above, getting closer forever without ever touching it.}
+        On the left the input cannot run to $-\infty$ --- careful! Fill in the correct notation:
+        as $x\to$ \ans{$0^{+}$}, $g(x)\to$ \ans{$-\infty$}.
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-Two exponential functions. Fill in the whole table, then answer the two justification questions ---
-and pay attention to which rows come out \emph{identical}.
+Two logarithmic functions --- and \emph{only one of them has a $y$-intercept}. Fill in the whole
+table, then answer the two justification questions.
 \begin{center}
-\begin{tikzpicture}[scale=0.40]
-  % p(x) = 4^x
+\begin{tikzpicture}[scale=0.42]
+  % p(x) = log_2(x+2)
   \begin{scope}
-    \lgrid{-3}{3}{-1}{10}
+    \lgrid{-4}{8}{-4}{4}
+    \draw[navy, dashed, semithick] (-2,-4)--(-2,4);
     \begin{scope}
-      \clip (-3,-1) rectangle (3,10);
-      \expcurve{1}{1.386294}{-3}{1.66}
+      \clip (-4,-4) rectangle (8,4);
+      \logcurve{2}{-2}{0}{-4}{3.33}
     \end{scope}
-    \draw[navy, dashed, semithick] (-3,0)--(3,0);
+    \fill[charcoal] (-1,0) circle (3pt);
     \fill[charcoal] (0,1) circle (3pt);
-    \fill[charcoal] (1,4) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (0,-2.6) {$p(x)=4^{x}$};
+    \fill[charcoal] (2,2) circle (3pt);
+    \fill[charcoal] (6,3) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (2,-5.4) {$p(x)=\log_2(x+2)$};
   \end{scope}
-  % q(x) = 8(1/4)^x
-  \begin{scope}[xshift=10cm]
-    \lgrid{-1}{5}{-1}{10}
+  % q(x) = log_{1/2}(x)
+  \begin{scope}[xshift=16cm]
+    \lgrid{-2}{10}{-4}{4}
+    \draw[navy, dashed, semithick] (0,-4)--(0,4);
     \begin{scope}
-      \clip (-1,-1) rectangle (5,10);
-      \expcurve{8}{-1.386294}{-0.16}{5}
+      \clip (-2,-4) rectangle (10,4);
+      \logcurve{0.5}{0}{0}{-3.33}{4}
     \end{scope}
-    \draw[navy, dashed, semithick] (-1,0)--(5,0);
-    \fill[charcoal] (0,8) circle (3pt);
-    \fill[charcoal] (1,2) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (2,-2.6) {$q(x)=8\left(\tfrac14\right)^{x}$};
+    \fill[charcoal] (1,0) circle (3pt);
+    \fill[charcoal] (2,-1) circle (3pt);
+    \fill[charcoal] (4,-2) circle (3pt);
+    \fill[charcoal] (8,-3) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (4,-5.4) {$q(x)=\log_{1/2} x$};
   \end{scope}
 \end{tikzpicture}
 \end{center}
-\vspace{0.14in}
+\vspace{0.20in}
 \renewcommand{\arraystretch}{1.5}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
- & \textbf{$p(x)=4^{x}$} & \textbf{$q(x)=8\left(\frac14\right)^{x}$} \\
+ & \textbf{$p(x)=\log_2(x+2)$} & \textbf{$q(x)=\log_{1/2} x$} \\
 \hline
-Initial value $a$ & \ans{1} & \ans{8} \\
-Base $b$ & \ans{4} & \ans{$\frac14$} \\
-Growth or decay? & \ans{growth} & \ans{decay} \\
-Domain & \ans{$(-\infty,\infty)$} & \ans{$(-\infty,\infty)$} \\
-Range & \ans{$(0,\infty)$} & \ans{$(0,\infty)$} \\
-$y$-intercept & \ans{$(0,1)$} & \ans{$(0,8)$} \\
-$x$-intercept & \ans{none} & \ans{none} \\
+Base: $b>1$ or $0<b<1$? & \ans{$b>1$} & \ans{$0<b<1$} \\
+Argument & \ans{$x+2$} & \ans{$x$} \\
+Domain & \ans{$(-2,\infty)$} & \ans{$(0,\infty)$} \\
+Range & \ans{all reals} & \ans{all reals} \\
+Vertical asymptote & \ans{$x=-2$} & \ans{$x=0$} \\
+$x$-intercept & \ans{$(-1,0)$} & \ans{$(1,0)$} \\
+$y$-intercept & \ans{$(0,1)$} & \ans{none} \\
 Increasing or decreasing? & \ans{increasing} & \ans{decreasing} \\
-Horizontal asymptote & \ans{$y=0$} & \ans{$y=0$} \\
-Asymptote approached on the\dots & \ans{left} & \ans{right} \\
-Absolute max or min? & \ans{neither} & \ans{neither} \\
+As $x\to+\infty$ & \ans{$y\to+\infty$} & \ans{$y\to-\infty$} \\
 \end{tabularx}
 \vspace{4pt}
 
-\textbf{Justify 1.} One of these functions rises and the other falls. Point to the exact part of
-each \emph{equation} that decides it, and explain why that part has the effect it does. (Be careful:
-the initial values differ too --- is $a$ what decides it?) \ansline{The \textbf{base} decides it. For
-$p$, $b=4>1$: every time $x$ goes up by $1$ the output is multiplied by $4$, so it grows. For $q$,
-$b=\frac14$, which is between $0$ and $1$: every step multiplies by a proper fraction, so the output
-shrinks. $a$ is \emph{not} what decides it --- $a$ only sets the starting height ($y$-intercept), and
-both of these have $a>0$. If $a$ controlled direction, $q$ would rise, since its $a$ is the larger
-one.}
+\textbf{Justify 1.} $q$ has no $y$-intercept, but $p$ does. Point to the exact feature of each
+\emph{equation} that causes this --- and explain why that feature has the effect it does.
+\ansline{A $y$-intercept requires $x=0$ to be a legal input. In $q$ the argument is just $x$, so the
+domain is $x>0$ and $x=0$ sits exactly on the asymptote --- excluded, so there is no $y$-intercept.\\[3pt]
+In $p$ the argument is $x+2$, so the domain is $x>-2$, and $0$ is comfortably inside it:
+$p(0)=\log_2 2=1$, giving the $y$-intercept $(0,1)$. The ``$+2$'' pushed the asymptote off the
+$y$-axis, and that is what made room for the intercept.}
 
-\textbf{Justify 2.} Five rows of your table came out \emph{identical} for both functions. List them,
-and explain what those five rows tell you about \emph{every} function of the form $y=ab^{x}$ with
-$a>0$. \ansline{Domain, range, $x$-intercept, horizontal asymptote, and absolute max/min are the
-same for both. So for \emph{any} $y=ab^{x}$ with $a>0$: the domain is all reals (every real number is
-a legal exponent), the range is $(0,\infty)$, there is never an $x$-intercept, the horizontal
-asymptote is always $y=0$, and there are never any absolute extrema. Only three things change from
-one such function to the next --- the starting height $a$, whether it rises or falls, and which side
-of the graph hugs the asymptote.}
+\textbf{Justify 2.} Both graphs have a vertical asymptote, but they are different lines. Explain how
+you could find each one from the \emph{equation alone}, without looking at either picture.
+\ansline{Set the \emph{argument} equal to $0$ and solve --- that input is the one the domain stops
+at, so it is the asymptote. For $p$: $x+2=0 \Rightarrow x=-2$. For $q$: $x=0$. The domain is then
+everything on the side of that line where the argument is \emph{positive}: $(-2,\infty)$ and
+$(0,\infty)$.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- No graph allowed.} Fill in each row from the equation alone.
+\textbf{Part 1 --- No graph allowed.} Find each domain and vertical asymptote from the equation alone.
 \begin{center}
 \renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
 \hline
-\textbf{Function} & \textbf{Base $b$} & \textbf{Is $b>1$ or $0<b<1$?} & \textbf{$y$-intercept} & \textbf{Range} \\
+\textbf{Function} & \textbf{Condition on the argument} & \textbf{Domain (interval notation)} & \textbf{Vertical asymptote} \\
 \hline
-$y=7(1.5)^{x}$ & \ans{$1.5$} & \ans{$b>1$} & \ans{$(0,7)$} & \ans{$(0,\infty)$} \\
-$y=7(0.5)^{x}$ & \ans{$0.5$} & \ans{$0<b<1$} & \ans{$(0,7)$} & \ans{$(0,\infty)$} \\
-$y=-2\cdot 3^{x}$ & \ans{$3$} & \ans{$b>1$} & \ans{$(0,-2)$} & \ans{$(-\infty,0)$} \\
-$y=\left(\frac54\right)^{x}$ & \ans{$\frac54$} & \ans{$b>1$} & \ans{$(0,1)$} & \ans{$(0,\infty)$} \\
+$\log_2(x-5)$ & \ans{$x-5>0$} & \ans{$(5,\infty)$} & \ans{$x=5$} \\
+$\log_3(x+4)$ & \ans{$x+4>0$} & \ans{$(-4,\infty)$} & \ans{$x=-4$} \\
+$\log(2x-6)$ & \ans{$2x-6>0$} & \ans{$(3,\infty)$} & \ans{$x=3$} \\
+$\log_5(9-x)$ & \ans{$9-x>0$} & \ans{$(-\infty,9)$} & \ans{$x=9$} \\
 \hline
 \end{tabularx}
 \end{center}
-Exactly one of these four has a range that is \emph{not} $(0,\infty)$. Which one, and what in the
-equation tells you so \emph{before} you graph anything? \ansline{$y=-2\cdot 3^{x}$. The base is
-still positive, so $3^{x}$ is always positive --- but $a=-2$ is \emph{negative}, and a negative times
-a positive is negative for every $x$. So every output is below the axis and the range is
-$(-\infty,0)$. The horizontal asymptote is still $y=0$; the graph just approaches it from
-\emph{underneath}. The sign of $a$ decides which side of the asymptote the whole graph lives on.}
+Exactly one of these four graphs runs to the \textbf{left}. Which one, and what in the equation tells
+you so \emph{before} you graph anything? \ansline{$\log_5(9-x)$. Solving $9-x>0$ requires dividing by
+a negative, which flips the inequality to $x<9$ --- so the legal inputs sit to the \emph{left} of the
+asymptote. The tell is the $-x$: the variable is being subtracted, so the argument shrinks as $x$
+grows.}
 
 \vspace{5pt}
-\textbf{Part 2 --- A model, and the line it never crosses.} A patient takes a $200$-milligram dose of
-a medication. Each hour, the body clears some of it and about $70\%$ of the previous hour's amount
-remains, so the amount in the bloodstream after $t$ hours is
+\textbf{Part 2 --- A logarithmic model, and the family it came from.} A bacteria colony doubles every
+hour. If the colony is now $n$ times its original size, the number of hours that have passed is
 \[
-  A(t) = 200(0.7)^{t} \ \text{ milligrams.}
+  t(n) = \log_2 n \ \text{ hours.}
 \]
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$t$ (hours) & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-$A(t)$ (mg) & $200$ & $140$ & $98$ & $68.6$ & $48.0$ \\ \hline
+$n$ (times original size) & $1$ & $2$ & $4$ & $16$ & $256$ \\ \hline
+$t(n)$ (hours) & $0$ & $1$ & $2$ & $4$ & $8$ \\ \hline
 \end{tabular}
 \end{center}
 \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item Identify $a=$ \ans{200} and $b=$ \ans{$0.7$}. Is this growth or decay?
-        \ans{decay} \\
-        What does each of those two numbers \emph{mean} for this patient? \ansline{$a=200$ is the
-        dose at the moment it is taken --- the amount at $t=0$. $b=0.7$ means $70\%$ of whatever is
-        present survives each hour, so $30\%$ is cleared each hour.}
-  \item \textbf{Confirm the fingerprint.} $\dfrac{140}{200}=$ \ans{$0.7$} and
-        $\dfrac{98}{140}=$ \ans{$0.7$}. \; What is this constant called, and why does finding it
-        prove the model is exponential rather than linear? \ansline{It is the \textbf{constant
-        ratio}, and it equals $b$. A linear model would have a constant \emph{difference}; here the
-        differences are $60$, $42$, $29.4$ --- not constant --- while every ratio is $0.7$.}
-  \item Find $A(3)$ from the table and write one sentence explaining what it means in context.
-        \ansline{$A(3)=68.6$: three hours after the dose is taken, about $68.6$ mg of the
-        medication remain in the patient's bloodstream.}
-  \item What is the domain of $A$ \emph{algebraically} --- that is, which exponents are legal?
-        \ans{all real numbers} \\
-        Does the context agree, or does it restrict things further? Explain. \ansline{The context
-        restricts it. Negative $t$ would describe time before the dose was taken, when the model
-        does not apply, so the sensible domain is $t\ge0$, or $[0,\infty)$.}
-  \item The graph of $A$ has horizontal asymptote $y=0$, and the model has \textbf{no}
-        $t$-intercept. State what that means about the drug, then say whether you believe it.
-        \ansline{The model says the amount keeps shrinking toward $0$ but is never exactly $0$ ---
-        the drug is never \emph{completely} gone, no matter how long you wait.\\[3pt]
-        That is not literally true. A real dose is a finite number of molecules, so eventually the
-        last one is cleared and the amount really does reach $0$. The model is accurate for the
-        first several hours and stops being meaningful in the far tail, once the predicted amount is
-        smaller than a single molecule.}
-  \item A classmate says ``the patient loses $60$ mg every hour --- look, $200$ to $140$.'' Use the
-        table to show that this is wrong, and name what is actually constant instead.
-        \ansline{The next drops are $140-98=42$ and $98-68.6=29.4$, not $60$ --- the amount lost
-        shrinks every hour. What stays constant is the \emph{ratio}: the patient loses $30\%$ of
-        whatever is still there, and $30\%$ of a smaller amount is a smaller loss.}
+  \item What is the domain of $t$ \emph{algebraically} (from the argument)? \ans{$(0,\infty)$} \\
+        Does the context agree, or does it restrict things further? \ansline{The context agrees and
+        then narrows it: a colony that has been growing since time zero is at least its original
+        size, so realistically $n\ge 1$, giving $t\ge 0$. Sizes between $0$ and $1$ are legal for the
+        function but would describe a colony \emph{shrinking}, which this model does not do.}
+  \item The graph of $t$ has an $x$-intercept at $(1,0)$. What does that point \emph{mean} for the
+        colony? \ansline{$n=1$ means the colony is $1$ times its original size --- it has not grown
+        at all --- and $t=0$ says no time has passed. The intercept is the starting instant.}
+  \item From the table: going from $n=16$ to $n=256$ multiplies the colony size by \ans{16},
+        but adds only \ans{4} hours. Use the shape of a logarithmic graph to explain why the
+        time grows so much more slowly than the size. \ansline{A logarithmic graph flattens as it
+        moves right: equal \emph{additions} to the output require repeated \emph{multiplications} of
+        the input. Each extra hour only doubles the colony, so to add $4$ hours you must double four
+        times --- a factor of $16$. Multiplying the input by a huge number moves the output by a
+        small amount.}
+  \item Rewrite $t=\log_2 n$ as an exponential statement solved for $n$. \quad $n=$ \ans{$2^{t}$} \\
+        Which function family is that? \ans{exponential} \quad What does this tell you about the
+        relationship between $t(n)$ and the function you just wrote? \ansline{They are
+        \textbf{inverses}. One takes a size and returns the hours; the other takes the hours and
+        returns the size. Their tables are the same table with the rows traded, and their graphs are
+        reflections over $y=x$.}
+  \item The model has a vertical asymptote at $n=0$. In terms of the bacteria, explain what the
+        asymptote is saying --- and why the colony size can get as close to $0$ as you like without
+        the model ever accepting $n=0$ itself. \ansline{Running the doubling backwards halves the
+        colony each hour: $\tfrac12$, $\tfrac14$, $\tfrac18$, \dots\ The size gets arbitrarily close
+        to zero but never reaches it, so the ``hours ago'' answer runs to $-\infty$ without ever
+        stopping.\\[3pt]
+        A size of exactly $0$ would need a power of $2$ equal to $0$, and there is none --- so $n=0$
+        is outside the domain. That is precisely what a vertical asymptote records: the graph
+        approaches the line $n=0$ forever and never arrives.}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{teachernote}
-\textbf{Tier R, item 7} is the item to check first when you circulate. ``$g(x)\to-\infty$'' on the
-left is the reflex answer from Unit 4's odd-degree polynomials, and it is wrong for a reason worth
-saying out loud: an exponential graph's left arm does not run \emph{down}, it runs \emph{flat}. Pair
-it with the same student's item 6 --- if they wrote the asymptote correctly and then contradicted it
-one line later, the fix is one sentence, not a re-teach.
+\textbf{Tier placement.} Send students who wrote square brackets on the notes domains to Tier~R --- the
+whole tier is built to force the asymptote-vs-endpoint distinction (items~2 and~4). Students who
+answered the Section~3 ``which four rows are identical'' question well can start at Tier~E.
 
-\textbf{Tier A, Justify 2} is the real assessment of the day (\textbf{A2.F.2b}). Students who list
-the five shared rows have understood that domain, range, asymptote, ``no zeros,'' and ``no extrema''
-are \emph{family} properties, not facts about one graph. Groups that instead list rows that differ
-have read the table but not the point; send them back with ``which of these would still be true if I
-changed the base to $10$?''
+\textbf{Tier~A is the compare-and-contrast standard (A2.F.2b/A2.F.1e).} The table is designed so
+five rows differ and two agree; the payoff is Justify~1, where students discover that the
+$y$-intercept is not a property of ``being a log'' but of \emph{where the asymptote sits}. Expect
+some groups to claim a log graph can \emph{never} have a $y$-intercept --- $p$ is the counterexample,
+and it is worth pausing the room for.
 
-\textbf{Tier E, Part 1, row 3} is deliberately the only negative-$a$ function students meet today.
-Do \emph{not} let it become a lesson on reflections --- that is 7.2. The takeaway is narrower and
-worth exactly one sentence: the sign of $a$ says which side of the asymptote the graph lives on.
-Watch for ``$b=-2$'' here; the negative belongs to $a$, and the base is still $3$.
-
-\textbf{Tier E, Part 2(e)} rewards honesty about models, not a formula. Full credit needs both
-halves: what the mathematics claims, \emph{and} the observation that a finite pile of molecules must
-eventually run out. Part 2(f) is the constant-ratio idea in its most useful disguise and is worth
-sharing out to the whole class --- ``$30\%$ of what is left'' is how every decay context in Lessons
-7.1 and 7.4 will be worded.
+\textbf{Tier~E Part~2(d)} is the first time students convert a logarithmic statement to exponential
+form. Accept an informal answer read off the definition (``$2$ to the $t$ gives $n$''); the formal
+two-way conversion is Lesson~7.1's opening move. Part~(e) is the strongest item on the page --- it
+asks for an asymptote's \emph{meaning} in context, not its equation.
 \end{teachernote}
 
 \end{document}

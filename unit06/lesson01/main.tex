@@ -1,4 +1,4 @@
-%! $n$th Roots \& Rational Exponents — Unit 6, Lesson 6.1 — Lesson Plan
+%! Exponential Growth and Decay — Unit 6, Lesson 6.1 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 6: Radical Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 6.1: $n$th Roots \& Rational Exponents}
+\newcommand{\UnitNumberName}{Unit 6: Exponential Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 6.1: Exponential Growth and Decay}
 
 \begin{document}
 \begin{center}
@@ -19,27 +19,28 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can find \emph{$n$th roots} and name the \emph{principal}
-    root; explain --- algebraically, not just by rule --- why an \emph{even} root of a negative
-    number is not a real number while an \emph{odd} one is; convert fluently in both directions
-    between radical form and \emph{rational exponent} form using
-    $a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}$; evaluate such expressions without a
-    calculator by taking the \emph{root first}; and apply every exponent property they already own
-    to rational exponents --- including products and quotients of radicals with \emph{different
-    indices}, which no radical rule can handle. Students also restate Lesson 6.0's domain rule in the
-    new notation: an even \emph{denominator} restricts the domain exactly as an even \emph{index}
-    does, because the denominator \emph{is} the index.
+    \textbf{Primary Objective:} Students can \emph{build} an exponential model $y=ab^{x}$ from any of
+    the three sources it usually arrives in --- a \emph{table} (where $a$ is the $x=0$ output and $b$
+    is the constant ratio), \emph{two points} (where dividing the two equations cancels $a$ and
+    leaves $b$ raised to the gap between the inputs), and a \emph{written description} (where a
+    percent rate $r$ must be translated into a factor). The lesson turns on that translation:
+    $b=1+r$ for growth and $b=1-r$ for decay, so ``up $8\%$'' gives $b=1.08$ and ``down $15\%$''
+    gives $b=0.85$ --- the base is the fraction you \emph{end up with}, never the percent that
+    changed. Students then \emph{evaluate} the model they built and \emph{interpret} the result in
+    context, including judging how far out the model stays believable.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.2c} --- convert between radical expressions and
-    expressions containing rational exponents --- is the lesson's governing standard and is assessed
-    in every component. \textbf{A2.EO.2a} (simplify and determine equivalent radical expressions
-    with numeric and algebraic radicands) is served by the evaluation work and by the exponent-property
-    simplifications, and this lesson supplies the tool 6.2--6.3 will lean on. The domain strand
-    revisits \textbf{A2.F.2a} (domain and range) and \textbf{A2.F.1a} (parent graphs) by relabeling
-    Lesson 6.0's two parents as $y=x^{1/2}$ and $y=x^{1/3}$. The Activity's Kepler model and the
-    homework's metabolic-rate model reach \textbf{A2.F.2f} (evaluate a function and interpret it in
-    context) and preview \textbf{A2.F.2i/j} (inverses) by solving each model for its input --- the
-    algebraic version of Lesson 6.0's reflection over $y=x$.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2f} --- evaluate a function at a value in its
+    domain and \emph{interpret the result in context} --- is the assessed standard of the day; every
+    model students build is then used and read back into its story (the town, the car, the bacteria
+    culture, the phone, the two towns). \textbf{A2.F.2a} and \textbf{A2.F.2h} are carried forward
+    from Lesson~6.0 whenever a range or a horizontal asymptote is checked as part of validating a
+    model (Homework 3, Activity Tier~A and Tier~E). \textbf{A2.F.1e} (compare and contrast graphs,
+    tables, and equations) is the structural spine of the whole lesson --- the same function is
+    built three different ways on purpose. \textbf{A2.F.2b} drives the linear-versus-exponential
+    contrast in the Hook and in Activity Tier~E Part~3. This lesson is also the \emph{prerequisite}
+    for \textbf{A2.ST.2d/e} in Lesson~6.5: a regression is worthless if students cannot say what $a$
+    and $b$ mean once technology hands them over. \emph{Note:} Unit~6 has no \texttt{A2.EO} or
+    \texttt{A2.EI} standard --- the whole unit rests on \texttt{A2.F} and \texttt{A2.ST.2}.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -49,24 +50,25 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Find \textbf{$n$th roots}; identify the \textbf{principal} root and write $\pm$ when both are wanted.
-  \item State how many real $n$th roots a number has, from the \textbf{index} and the \textbf{sign of the radicand}.
-  \item Simplify $\sqrt[n]{a^{n}}$ correctly: $|a|$ for an even index, $a$ for an odd one.
-  \item Convert \textbf{radical $\leftrightarrow$ rational exponent} in both directions: $\sqrt[n]{a^{m}}=a^{m/n}$.
-  \item \textbf{Evaluate} $a^{m/n}$ and $a^{-m/n}$ without a calculator --- \emph{root first}, then power.
-  \item Apply the \textbf{product, quotient, power, and negative} exponent properties to rational exponents.
-  \item Combine radicals with \textbf{different indices} by converting to exponents first.
-  \item Use the \textbf{denominator} to decide whether a power function's domain is restricted.
+  \item Write $y=ab^{x}$ from a \textbf{table}: $a$ from the $x=0$ column, $b$ from the constant ratio.
+  \item Translate a percent into a factor: $b=1+r$ for \textbf{growth}, $b=1-r$ for \textbf{decay}.
+  \item Write $y=ab^{x}$ from a \textbf{story}, naming what $a$ and $b$ mean in that context.
+  \item Write $y=ab^{x}$ from \textbf{two points}, including when neither is the $y$-intercept.
+  \item \textbf{Evaluate} the model and \textbf{interpret} the output as a sentence about the situation.
+  \item Run the reverse translation: read a percent rate back off a finished model.
+  \item \textbf{Validate} a model --- does $x=0$ return the starting amount, and is $b$ on the correct side of $1$?
+  \item Diagnose a wrong model by saying what it \emph{actually} describes.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \emph{A radical is an exponent in disguise.} $\sqrt[n]{a}=a^{1/n}$ is not a definition to memorize --- ``power to a power'' \textbf{forces} it: $\left(a^{1/n}\right)^{n}=a^{1}=a$.
-  \item The \textbf{denominator is the index} because it came from $\frac{1}{n}$. That single sentence prevents the lesson's signature error (flipping the fraction).
-  \item Both orders of root and power are legal and equal --- but only one keeps the arithmetic small. Choosing the easy route \emph{is} the skill.
-  \item A negative exponent \textbf{moves} an expression; it never changes its sign.
-  \item An even power destroys sign information, so an even root cannot restore it --- hence $|a|$, and hence no even root of a negative number. This is Lesson 6.0's domain rule, finally proved.
-  \item The notation exists because it is \emph{stronger}: $\sqrt{x}\cdot\sqrt[3]{x}$ is a dead end as radicals and a one-line problem as exponents.
+  \item \emph{The base is the fraction you end up with, not the percent that changed.} One sentence; every error today violates it.
+  \item Up $8\%$ leaves you with $108\%$. Down $15\%$ leaves you with $85\%$. That is where $1+r$ and $1-r$ come from --- they are not rules to memorize.
+  \item Building is reading run backwards. Lesson 6.0 pulled $a$ and $b$ out of a graph; today the same two numbers get pushed in.
+  \item A percent applies to the \emph{current} amount, not the original one. That is the entire difference between exponential and linear growth.
+  \item Two points determine the curve because dividing kills $a$ --- and the leftover exponent is the \emph{gap} between the inputs, not one of them.
+  \item A model is a claim about the world, so it can be checked \emph{and} disbelieved. Both belong in the answer.
+  \item A wrong base is not just wrong --- it is right about a \emph{different} situation. Naming that situation is how you find the error.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -74,164 +76,163 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{$n$th root} & A number $b$ such that $b^{n}=a$; written $\sqrt[n]{a}$, where $n$ is the index. \\
-\textbf{Principal $n$th root} & The single value the radical symbol returns --- the non-negative one when the index is even. $\sqrt{16}=4$, not $\pm4$; write the $\pm$ yourself if you want both. \\
-\textbf{How many real roots} & Even index: two if $a>0$, one if $a=0$, \emph{none} if $a<0$. Odd index: exactly one, with the same sign as $a$. \\
-\textbf{$\sqrt[n]{a^{n}}$} & $|a|$ when $n$ is even (the even power destroyed the sign); $a$ when $n$ is odd. \\
-\textbf{Rational exponent} & A fractional exponent. \TallMath{a^{1/n}=\sqrt[n]{a}}, forced by $\left(a^{1/n}\right)^{n}=a^{n/n}=a$. \\
-\textbf{The $a^{m/n}$ rule} & \TallMath{a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}} --- \emph{denominator} $=$ index (root), \emph{numerator} $=$ power. \\
-\textbf{Negative rational exponent} & \TallMath{a^{-m/n}=\frac{1}{a^{m/n}}} --- reciprocal, never a negative answer. \\
-\textbf{Exponent properties} & $a^{r}a^{s}=a^{r+s}$, \; $a^{r}/a^{s}=a^{r-s}$, \; $\left(a^{r}\right)^{s}=a^{rs}$, \; $(ab)^{r}=a^{r}b^{r}$ --- all valid for rational $r,s$. \\
-\textbf{Domain of $x^{m/n}$} & In lowest terms: even denominator $\Rightarrow$ restricted to $x\ge0$; odd denominator $\Rightarrow$ all reals. The numerator never restricts. \\
+\textbf{Initial value $a$} & The amount the model starts with: the output at $x=0$, and the $y$-intercept of the graph. \\
+\textbf{Growth / decay factor $b$} & What you multiply by for each one-unit step. $b>1$ grows; $0<b<1$ decays. \\
+\textbf{Growth / decay rate $r$} & The percent change per period, written as a decimal: $8\%$ becomes $r=0.08$. \\
+\textbf{Exponential growth model} & $y=a(1+r)^{t}$ --- increasing by the same \emph{percent} each period, so $b=1+r$. \\
+\textbf{Exponential decay model} & $y=a(1-r)^{t}$ --- decreasing by the same \emph{percent} each period, so $b=1-r$ is the fraction that \emph{remains}. \\
+\textbf{Percent-to-factor rule} & Add or subtract $r$ from $1$; never use $r$ itself as the base. $r=0.15$ decay gives $b=0.85$, not $0.15$ and not $1.15$. \\
+\textbf{Constant ratio (from 6.0)} & Dividing consecutive outputs gives the same number every time --- and that number \emph{is} $b$. \\
+\textbf{Building from two points} & Substituting both points and dividing cancels $a$, leaving $b$ raised to the difference of the inputs. \\
+\textbf{Contextual domain} & The inputs the story actually allows, which is usually narrower than the algebraic domain of all reals. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses three prerequisites, and each one is a piece of today's lesson in
-    disguise. \textbf{(1)} Evaluating $2^{5}$, $3^{4}$, $(-3)^{3}$, $(-2)^{4}$ --- the perfect-power
-    vocabulary students will read \emph{backwards} all period ($32=2^{5}$ becomes $\sqrt[5]{32}=2$),
-    with a follow-up question that extracts the fact underneath the whole lesson: an odd power keeps
-    a negative sign, an even power destroys it. \textbf{(2)} The four exponent properties with
-    whole-number exponents --- today's claim is that they keep working when the exponents become
-    fractions, and $\left(x^{4}\right)^{3}=x^{12}$ is literally the derivation of $a^{1/n}$ run
-    forwards. \textbf{(3)} Fraction arithmetic ($\frac12+\frac13$, $\frac34-\frac12$,
-    $\frac23\cdot3$) --- not filler: once exponents are fractions, ``add the exponents'' means adding
-    fractions, and $\sqrt{x}\cdot\sqrt[3]{x}=x^{5/6}$ \emph{is} item 3(a). Note who is slow here;
-    they will stall in Tier E on the arithmetic, not the radicals.
+    The Warm-Up rehearses exactly what today needs, in the order the lesson uses it. \textbf{(1)}
+    A \$$50$ jacket goes up $8\%$ and then (starting over) down $15\%$, worked \emph{twice} --- once
+    by finding the change and adding or subtracting it, once as a single multiplication --- and
+    finished with ``the new price is \rule{0.7cm}{0.4pt}\% of the old price.'' That last line is the
+    whole lesson: students who can say ``$108\%$'' will write $b=1.08$, and students who only see
+    ``$8\%$'' will write $b=0.08$. \textbf{(2)} A two-row recall check from Lesson~6.0 --- pull $a$,
+    $b$, growth/decay, and the $y$-intercept off $y=5(1.2)^{x}$ and $y=80(0.6)^{x}$ --- because
+    today is that skill run backwards, and anyone who cannot read a model cannot write one.
+    \textbf{(3)} A table with constant ratio $3$ and initial value $7$, which \emph{is} the
+    build-from-a-table method before it has a name. Debrief item 1 at the board and put both
+    $1.08$ and $0.85$ up where they will stay all period.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put one impossible-looking product on the board and let it sit: \textbf{``Simplify
-    $\sqrt{x}\cdot\sqrt[3]{x}$.''} Give them a minute to fail honestly --- every radical rule they
-    have ever seen requires the indices to \emph{match}, and these do not. Then pivot instead of
-    rescuing: \textbf{``Forget radicals. What number, squared, gives $a$?''} ($\sqrt{a}$.)
-    \textbf{``Now suppose there were such a thing as $a^{1/2}$. Using nothing but power-to-a-power,
-    what is $\left(a^{1/2}\right)^{2}$?''} Walk it out on the board:
-    $a^{\frac12\cdot2}=a^{1}=a$. Land it hard: \emph{nobody chose this.} If $a^{1/2}$ is going to
-    exist at all and the exponent rules are going to keep working, then $a^{1/2}$ has no choice but
-    to be $\sqrt{a}$ --- the rules \textbf{force} the meaning. That is worth naming out loud as a
-    piece of mathematical reasoning students will see again: extend a definition by insisting the
-    old rules survive. Close by pointing back at the board: \textbf{``So what is $\sqrt{x}\cdot
-    \sqrt[3]{x}$ now?''} --- and promise that by the end of the period it is one line. Yesterday the
-    index told them \emph{where a graph is allowed to exist}; today they learn what the index
-    actually \emph{is}.
+    Two towns, same population today. Put them on the board side by side: \textbf{Riverton --- $8{,}000$
+    people, ``we expect to gain $300$ people every year.''} \textbf{Kellsboro --- $8{,}000$ people,
+    ``we expect to grow by $4\%$ every year.''} Ask which is linear and which is exponential, and
+    refuse arithmetic as an answer: the giveaway is \emph{add} versus \emph{multiply}, which is
+    Lesson~6.0's fingerprint test in words. Then ask the question the whole lesson hangs on:
+    \textbf{``Kellsboro grows $4\%$ this year. Next year it grows $4\%$ again --- of \emph{what}?''}
+    Take answers until someone says \emph{of the new, bigger number}. That is why the model
+    multiplies. Now write the trap on the board deliberately: \emph{Kellsboro:} $P(t)=8000(0.04)^{t}$
+    --- and ask the class to check it at $t=1$. It gives $320$ people. Let the absurdity land, then
+    reuse the Warm-Up's phrasing --- growing $4\%$ leaves you with $104\%$ of the town --- and
+    rewrite it as $8000(1.04)^{t}$. Do \emph{not}
+    generalize to $1+r$ yet --- Section 2 of the notes earns that.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. $n$th roots and the principal root.} Define $\sqrt[n]{a}=b$ to mean $b^{n}=a$, then
-immediately complicate it: $4^{2}=16$ \emph{and} $(-4)^{2}=16$, so $16$ has two real square roots.
-The symbol returns only the \textbf{principal} (non-negative) one --- $\sqrt{16}=4$, and if you want
-both you must write $\pm$ yourself. Build the four-row table (even/$a>0$, even/$a=0$, even/$a<0$,
-odd/any) and make students supply the \emph{why} from Warm-Up item~1 rather than accepting it:
-an even power of a real number is never negative, so nothing real can be an even root of a negative.
-\emph{Say explicitly that this is the algebraic proof of yesterday's domain rule} --- 6.0 observed
-that a square root graph stops; 6.1 explains why it must. Drill the perfect-power lists
-($32,\ 81,\ 243,\ 125,\ 256$) as recognition, not computation.
+\textbf{1. Two numbers, and a table that hands you both.} Open by naming the job: building a model
+means finding $a$ and $b$, nothing else. Work the table $3,12,48,192,768$ --- $a$ is the $x=0$
+output, $b$ is the constant ratio $4$ --- write $y=3\cdot4^{x}$, and then \emph{check it} against
+the $x=4$ row students did not use. Make the check a habit today; it is what makes the rest of the
+lesson self-correcting. The ``your turn'' table ($800,200,50,12.5$) is where the upside-down
+division error appears; catch it now, because a student who divides earlier-by-later turns every
+decay model into growth.
 
-\textbf{2. The $\sqrt[n]{a^{n}}$ trap.} Work $\sqrt{5^{2}}$, $\sqrt{(-5)^{2}}$, and
-$\sqrt[3]{(-5)^{3}}$ side by side and let the second one surprise them: the answer comes back
-$+5$. The square destroyed the sign and the principal root refuses to restore it. Land the rule
---- even index $\Rightarrow |a|$, odd index $\Rightarrow a$ --- and be honest that the rest of the
-period assumes positive variables so the bars can be dropped, but that the homework does not.
+\textbf{2. Percent $\to$ factor.} This is the section the lesson is named for. Derive $b=1+r$ and
+$b=1-r$ from the Warm-Up rather than announcing them: after an $8\%$ raise you have $108\%$ of what
+you had, and $108\%$ \emph{is} $1.08$. Fill the six-row translation table together. Row 5 (``$100\%$
+of it remains'') is the illegal base $b=1$ and pays off Lesson~6.0's restriction with a reason
+students can feel --- nothing changes, so it is a horizontal line. Row 6 (``doubles'') is $r=100\%$,
+which surprises people. Then spend real time on the red error box: $b=0.08$ for ``up $8\%$'' is a
+$92\%$ \emph{loss}, and $b=1.15$ for ``down $15\%$'' is a $15\%$ \emph{gain}. Install the two-second
+check out loud --- \emph{is $b$ on the correct side of $1$?}
 
 \columnbreak
 
-\textbf{3. A radical \emph{is} an exponent.} Re-run the Hook derivation formally for general $n$:
-$\left(a^{1/n}\right)^{n}=a^{n/n}=a$, therefore $a^{1/n}=\sqrt[n]{a}$. Box it. Convert a handful
-both ways ($\sqrt{7}=7^{1/2}$, $\sqrt[3]{x}=x^{1/3}$, $m^{1/4}=\sqrt[4]{m}$), and flag the
-parenthesis distinction: $2y^{1/5}$ vs.\ $(2y)^{1/5}$.
+\textbf{3. Story to model, and back.} Three moves, every time: pull $a$, translate to $b$, write
+$y=ab^{x}$. Work the growth case (town of $12{,}000$ at $3\%$, predict $P(10)\approx16{,}127$) and
+the decay case (car at \$$24{,}000$ losing $12\%$, $V(5)\approx\$12{,}666$) in full, and require a
+\emph{sentence} after each evaluation --- that sentence is the \textbf{A2.F.2f} evidence, and it is
+the part students skip. The decay example's last question --- \emph{why $0.88$ and not $0.12$?} ---
+is the cold-call of the day. Close with the three-step check-your-model routine.
 
-\textbf{4. The full rule $a^{m/n}$.} Split $\frac{m}{n}=\frac{1}{n}\cdot m$ to get
-$a^{m/n}=\left(\sqrt[n]{a}\right)^{m}=\sqrt[n]{a^{m}}$. State the mantra twice --- \textbf{denominator
-$=$ index, numerator $=$ power} --- because flipping the fraction is this lesson's signature error.
-Run the two-column ``power first / root first'' comparison on $8^{2/3}$ and $16^{3/4}$ so students
-\emph{see} $\sqrt[4]{4096}$ appear in the hard column. Then negative exponents: $16^{-1/2}=\frac14$,
-and repeat the line ``the minus sign moves it downstairs; it does not change its sign.''
-
-\textbf{5. The payoff.} Re-list the four properties, note that none of them ever cared whether the
-exponent was a whole number, and finally kill the Hook: $x^{1/2}\cdot x^{1/3}=x^{5/6}=\sqrt[6]{x^{5}}$.
-Practice a quotient, a power-of-a-power, and $\left(8x^{6}\right)^{1/3}$.
-
-\textbf{6. Back to 6.0.} Show yesterday's two parent graphs relabeled $y=x^{1/2}$ and $y=x^{1/3}$ ---
-same graphs, new notation --- and restate the domain rule: an even \emph{denominator} restricts to
-$x\ge0$; an odd one does not; the numerator never restricts. Preview Lesson 6.2.
+\textbf{4. Two points.} The hardest page. Case 1 has the $y$-intercept given, so $a$ is free and
+$40=5b^{3}$ leaves a cube root --- Unit 5 machinery, and say so. Case 2 uses the graph through
+$(-1,1)$ and $(2,8)$: write both points into $y=ab^{x}$, divide, and watch $a$ cancel. Two things
+get dropped here and both need saying out loud: the leftover exponent is the \emph{gap} between the
+$x$-values ($2-(-1)=3$), and $b$ still has to go back into one of the points to recover $a$. Finish
+by checking the model against the graph's $y$-intercept --- the same validation habit from
+Section 1. Preview Lesson~6.2.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-Circulate during Guided Practice and the tiers. Watch for and correct:
+Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{flipping the fraction} --- $\sqrt[4]{x^{3}}$ written as $x^{4/3}$; this is the signature error of the lesson, and the fix is not ``index on the bottom'' but re-running $\left(a^{1/n}\right)^{n}=a$ until the student can rebuild it;
-  \item answering $16^{-1/2}=-4$ --- treating a negative exponent as a negative sign;
-  \item \emph{power first} on every evaluation, then stalling on $\sqrt[4]{4096}$; not wrong, but redirect to root-first before frustration sets in;
-  \item writing $\sqrt{x^{2}}=x$ when $x$ has not been declared positive (and, conversely, sticking bars on an \emph{odd} root: $\sqrt[3]{x^{3}}=|x|$);
-  \item claiming $(-16)^{3/4}$ is real by cubing first --- the even denominator is what decides, and $\sqrt[4]{\text{negative}}$ does not exist either way;
-  \item multiplying instead of adding exponents on a product (or vice versa) --- usually a fraction-arithmetic problem in disguise, not a radical problem;
-  \item dropping parentheses: $(2y)^{1/5}$ becoming $2y^{1/5}$.
+  \item using the \textbf{percent as the base} --- $b=0.08$ for ``up $8\%$,'' $b=0.12$ for ``loses $12\%$''; this is \emph{the} signature error of the lesson;
+  \item the \textbf{sign} error --- $b=1.15$ for a $15\%$ \emph{decrease}, or $b=0.85$ for an increase; adding when the story subtracts;
+  \item dividing the table \textbf{upside down} (earlier output over later), which flips decay into growth;
+  \item forgetting that $a$ is the output at $x=0$ specifically --- grabbing the first number in a table whose $x$-values do not start at $0$;
+  \item in two-point problems, using one of the $x$-values as the exponent instead of the \emph{gap} between them, or finding $b$ and never going back for $a$;
+  \item taking a square root when the gap was $3$ (Homework 3: $b^{3}=\frac18$ gives $\frac12$, not $\frac13$);
+  \item reporting a bare number with no sentence --- ``$2940.10$'' is not an interpretation;
+  \item modeling a constant \emph{amount} of change with an exponential, or a constant \emph{percent} with a linear model (Activity Tier E).
 \end{itemize}
-Cold-call prompts: ``Which number is the index --- and where does it go?'' ``Root first or power
-first, and why did you choose that one?'' ``Does that negative exponent make the answer negative?
-Show me.'' ``Is $x$ positive? How do you know?'' ``What is the denominator, and what does that tell
-you about the domain?''
+Cold-call prompts: ``After the change, what percent of the original do you have?'' ``Is your $b$ bigger
+or smaller than $1$ --- and should it be?'' ``What does your model give at $x=0$? Is that the number
+in the story?'' ``Your classmate's model is wrong --- but what situation would it be \emph{right}
+for?'' ``The exponent came out $3$. Where did the $3$ come from?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{One Expression, Two Costumes} activity (tiered; mirrors the notes).
+\textbf{Building the Model} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} A seven-row translation table (radical form $\leftrightarrow$ rational
-exponent $\leftrightarrow$ numeric value) covering $\sqrt{x}$, $\sqrt[3]{x^{2}}$, $x^{5/2}$,
-$t^{1/6}$, $\sqrt[4]{16}$, $8^{1/3}$, $\left(\sqrt[3]{27}\right)^{2}$; a ``where does each number
-go'' check; six root-first evaluations; and one concept question forcing the words \emph{odd
-denominator} for $(-27)^{1/3}$.
+\textbf{Tier R --- Remediate.} A four-row percent-to-factor table whose first two rows are the
+\emph{same} percent in opposite directions ($6\%$ up, $6\%$ down) with a required explanation of why
+the bases differ. Then one model built end to end --- $60$ ants growing $25\%$ a week --- with the
+validation steps written in as their own lettered parts: what does the model give at $w=0$, is
+$N(1)$ really $25\%$ more than $60$, and what would $60(0.25)^{w}$ describe instead.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Six no-calculator evaluations including negative exponents,
-a negative base, and a fraction base ($27^{4/3}$, $16^{3/4}$, $(-8)^{2/3}$, $81^{-1/2}$,
-$32^{-3/5}$, $\left(\frac{8}{27}\right)^{2/3}$); two \emph{justifications} --- carry out
-$\sqrt[4]{16^{3}}$ far enough to meet $4096$, and rebut ``$81^{-1/2}$ must be negative''; then a
-real-or-not sort over $(-64)^{1/3}$, $(-64)^{1/2}$, $(-32)^{1/5}$, $(-16)^{3/4}$ with reasons.
+\textbf{Tier A --- Approaching.} The same function built from three different sources: a table
+($9,27,81,243$), a pre-drawn graph of $9\left(\frac13\right)^{x}$ with three labeled points, and a
+savings-account story at $4\%$. Then the \textbf{Justify}: a deer herd declining $20\%$ modeled three
+ways by three students ($1.2$, $0.2$, $0.8$), where identifying Rosa is the easy half and diagnosing
+Maya's \emph{sign} error against Devon's \emph{percent-as-base} error is the real assessment ---
+two different misconceptions needing two different re-teaches.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Four problems no radical rule can do (mismatched indices):
-$\sqrt{x}\cdot\sqrt[4]{x}$, $\sqrt[3]{x^{2}}/\sqrt{x}$, $\left(\sqrt[3]{x^{2}}\right)^{3/2}$, and the
-nested $\sqrt{\sqrt[3]{x}}$ (indices multiply). Then \textbf{Kepler's third law} $T(a)=a^{3/2}$: a
-perfect-power table ($a=1,4,9,25$), the easier radical form, the domain from the denominator
-\emph{and} from context, an estimate for Jupiter at $5.2$~AU, and solving for $a=T^{2/3}$ by raising
-both sides to the \textbf{reciprocal} --- the algebraic form of 6.0's reflection over $y=x$.
+\textbf{Tier E --- Extension.} Three parts. \emph{Two points, neither at $x=0$:} $(2,45)$ with
+$(5,1215)$, then $(1,60)$ with $(4,7.5)$ where $b$ comes out a fraction. \emph{Reverse translation:}
+read the initial value and percent rate back off four finished models, including $75(2)^{t}$ as
+$100\%$. \emph{The two leaks:} a $240$-gallon tank losing $60$ gallons a day versus $25\%$ a day ---
+both lose exactly $60$ gallons on day 1, which kills ``exponential just means faster,'' and the
+linear model goes \emph{negative} by day 14 while the exponential one never reaches zero. That last
+contrast is Lesson~6.0's asymptote, in context.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): five quick translations and evaluations
-($\sqrt[5]{x^{3}}$ to exponent form, $y^{3/4}$ to radical form, $27^{2/3}$, $16^{-1/2}$, and
-$x^{1/2}\cdot x^{1/6}$ --- the last requiring fraction addition); an \textbf{explanation} item
-requiring the word \emph{denominator}: why $\sqrt[3]{-64}$ is real and $\sqrt{-64}$ is not; and an
-\textbf{SOL-style multiple-choice} item asking which expression equals $\sqrt[4]{x^{3}}$ (answer
-$x^{3/4}$) whose distractors each break exactly one idea --- $x^{4/3}$ (fraction flipped, the
-signature error), $x^{12}$ (multiplied index by power), $x^{-3/4}$ (root read as a negative
-exponent). Collect and sort into ``got it / flippers / sign slips / even-vs-odd confusion.'' The
-last pile is the one that governs pacing: Lesson 6.2's product and quotient properties are stated
-only for radicands that legally have roots, so a student who cannot tell when a root exists will
-cheerfully simplify $\sqrt{-8}$ into existence.
+\textbf{Exit Ticket} (independent, no notes), four items on one page: \textbf{(1)} the bare
+translation --- write $b$ for ``grows $7\%$'' and for ``loses $30\%$''; \textbf{(2)} build and use a
+model --- a \$$2400$ book collection gaining $7\%$ a year, giving $a$, $b$, $V(t)$, $V(3)\approx
+\$2940.10$, \emph{and} a sentence interpreting it (this is the \textbf{A2.F.2f} evidence; a bare
+number does not count); \textbf{(3)} build from a table ($5,20,80,320$), the item with no translation
+at all; and \textbf{(4)} an \textbf{SOL-style multiple-choice} item --- a town of $4000$ decreasing
+$6\%$ a year --- whose distractors are the three errors of the day: $4000(1.06)^{t}$ is the sign
+error, $4000(0.06)^{t}$ is percent-as-base, and $4000-0.06t$ is the linear reflex. Sort the collected
+tickets into \emph{got it / sign error / percent as base / linear reflex}. The two middle piles are
+the same misconception at different strengths and are worth a three-minute re-teach off the Warm-Up
+jacket. Anyone who misses item 3 needs the constant-ratio idea itself retaught, not the percent rule.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} a six-cell two-way conversion table; eight no-calculator evaluations spanning
-negative exponents, a negative base, and a fraction base; six exponent-property simplifications,
-two of which start in radical form with mismatched indices; the \textbf{absolute-value rule}
-($\sqrt{x^{2}}$, $\sqrt[3]{x^{3}}$, $\sqrt[4]{x^{4}}$) --- the only place all week where $x$ is
-\emph{not} assumed positive, and the item most worth grading closely; a four-row domain table
-($x^{1/2}$, $x^{1/3}$, $x^{2/5}$, $(x-3)^{1/4}$) run entirely off the denominator; and a
-justification item asking students to say why ``even index restricts the domain'' and ``even
-denominator restricts the domain'' are one rule in two notations. \textbf{Extension:} Kleiber's law,
-$M(w)=70w^{3/4}$ kcal/day --- deliberately the same shape as the Activity's Kepler problem: a
-perfect-fourth-power table ($w=1,16,81,256$), the easier radical form, the discovery that a
-$16\times$ heavier mammal burns only $8\times$ the calories (what an exponent \emph{below} $1$ does
-to growth --- the flattening students read off the square root graph in 6.0), and the inverse
-$w=\left(\frac{M}{70}\right)^{4/3}$ obtained by raising both sides to the reciprocal power.
-\textbf{Preview:} Lesson 6.2, \emph{Simplifying Radicals; Adding \& Subtracting} --- the product and
-quotient properties used to pull perfect $n$th powers out from under a radical ($\sqrt{72}=6\sqrt2$),
-then like-radical collection, which behaves exactly like $3x+5x$ versus $3x+5y$.
+\textbf{Homework:} the translation in \emph{both} directions --- five sentences to convert into
+factors, then three finished models to describe in words (the $0.85 \Rightarrow 15\%$
+\emph{decrease} row is where the sign error surfaces, and $1.5 \Rightarrow 50\%$ catches
+percent-as-base); three tables where one (constant difference $+3$) is deliberately \emph{not}
+exponential and must be caught with Lesson~6.0's fingerprint test; a pre-drawn decay graph with
+$(0,8)$ and $(3,1)$, where $b^{3}=\frac18$ tempts students to answer $\frac13$; two stories built,
+evaluated, and interpreted (bacteria at $+40\%$ an hour, a phone at $-22\%$ a year); and an
+\textbf{error-analysis} item carrying the lesson --- Jonah's $18{,}000(1.15)^{t}$ for a $15\%$
+\emph{loss} and Priya's $250(0.07)^{w}$ for $7\%$ \emph{growth}, each to be named, described, and
+corrected. \textbf{Extension:} two towns over ten years --- Ashford at $20{,}000$ losing $2\%$ a
+year, Brookvale at $12{,}000$ gaining $5\%$ --- build both, verify the given table, locate the
+crossing between years $6$ and $8$, and then \emph{fail} to solve
+$20{,}000(0.98)^{t}=12{,}000(1.05)^{t}$ for lack of a common base. That failure is deliberate: it is
+the wall Lesson~6.4 ends on, arriving a few days early, and it should be left standing. The last
+part reruns Lesson~6.0's believability question on Ashford's asymptote. \textbf{Preview:}
+Lesson~6.2, \emph{Graphing Exponential Functions \& Transformations} --- where $f(x)+k$ turns out to
+be the one transformation that \emph{moves the asymptote}, and where today's
+$8\left(\frac12\right)^{x}=8\cdot2^{-x}$ becomes the reflection rule.
 \end{skillbox}
 \end{document}

@@ -73,7 +73,7 @@ make -C unitXX clean_unit_cover  # throw the cover away and draw a new one
 
 With no further work the art is auto-discovered from the unit's lesson sources. To compose it by
 hand instead, add a `unitXX/binder_cover/spec.py` listing the elements and where they sit — see
-[`unit01/binder_cover/spec.py`](unit01/binder_cover/spec.py) for a worked example.
+[`unit02/binder_cover/spec.py`](unit02/binder_cover/spec.py) for a worked example.
 
 ### Extra requirements
 

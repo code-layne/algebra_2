@@ -1,7 +1,7 @@
 # Course Workflow — from `COURSE_PLAN.md` to lessons
 
 The course structure comes from **`COURSE_PLAN.md`** at the project root — the scope &
-sequence: the eight units, each unit's lesson list, and the cumulative
+sequence: the seven units, each unit's lesson list, and the cumulative
 **characteristics-of-functions spine**. The mathematical **content** of a lesson is
 **standards-based**, drawn from that plan plus any standards the user supplies and the
 publisher reference in `spec/` (used as a topic/sequencing model, never copied verbatim —
@@ -29,8 +29,8 @@ type is the first to require**. When authoring any Lesson 0:
 - Look up the unit's column in the §3 spine table. The rows marked **● introduced** are the
   teaching focus; the **○ revisited / · applied** rows are quick review applied to the new graph.
 - New characteristics debut where the plan says they do — e.g. **vertex / axis of symmetry /
-  end behavior** in Unit 3 (quadratics), **origin symmetry / turning points / multiplicity**
-  in Unit 4 (polynomials), **asymptotes + holes + domain restrictions** in Unit 5 (rationals).
+  end behavior** in Unit 2 (quadratics), **origin symmetry / turning points / multiplicity**
+  in Unit 3 (polynomials), **asymptotes + holes + domain restrictions** in Unit 4 (rationals).
   Don't teach a characteristic before its debut unit.
 
 ## Where the content lives
@@ -55,20 +55,20 @@ scope-and-sequence are facts, not protected expression; the specific problems an
 
 **Convention: one lesson per bullet in that unit's `COURSE_PLAN.md` list, in listed order**,
 with the characteristics lesson as **Lesson 0** (`lesson00`). Lesson id is `<unit>.<n>` where
-`n = 0` is Characteristics and content lessons count up from 1 (Lesson 2.0, 2.1, 2.2, …).
+`n = 0` is Characteristics and content lessons count up from 1 (Lesson 1.0, 1.1, 1.2, …).
 Always **present the proposed lesson map for the unit and confirm it with the user before
 authoring** — lessons occasionally merge or split.
 
-Worked example — **Unit 2 (Linear Functions)** from `COURSE_PLAN.md`:
+Worked example — **Unit 1 (Linear Functions)** from `COURSE_PLAN.md`:
 
 | Lesson | Topic | Notes |
 | --- | --- | --- |
-| 2.0 | Characteristics of linear functions | domain/range, intercepts, slope, incr/decr, +/− intervals |
-| 2.1 | Linear functions | slope, forms of a line, writing equations, graphing & transformations |
-| 2.2 | Absolute value equations & inequalities | solving algebraically |
-| 2.3 | Absolute value functions & transformations | previews vertex / axis of symmetry / min-max |
-| 2.4 | Piecewise-defined functions | absolute value entry → greatest-integer / step functions |
-| 2.5 | Linear regression | scatter plots, correlation, lines of best fit |
+| 1.0 | Characteristics of linear functions | domain/range, intercepts, slope, incr/decr, +/− intervals |
+| 1.1 | Linear functions | slope, forms of a line, writing equations, graphing & transformations |
+| 1.2 | Absolute value equations & inequalities | solving algebraically |
+| 1.3 | Absolute value functions & transformations | previews vertex / axis of symmetry / min-max |
+| 1.4 | Piecewise-defined functions | absolute value entry → greatest-integer / step functions |
+| 1.5 | Linear regression | scatter plots, correlation, lines of best fit |
 
 Do the same for the other units from `COURSE_PLAN.md`.
 
@@ -92,5 +92,5 @@ construct one — and never ask students to *sketch/draw/construct* a graph from
 
 ## Review lessons
 
-A review lesson (e.g. Unit 1's foundations lessons) uses the same skeleton; its "standards" are
+A review lesson (none currently exist — the Algebra 1 review unit was dropped 2026-08-20) would use the same skeleton; its "standards" are
 the prerequisite skills being re-activated, and it carries no new function-family framework.

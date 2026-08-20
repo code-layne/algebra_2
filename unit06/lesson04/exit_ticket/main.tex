@@ -1,12 +1,8 @@
-%! Graphing Radical Functions \& Transformations — Unit 6, Lesson 6.4 — Exit Ticket
+%! Modeling with Exponential Functions: Interest, Half-Life, and e — Unit 6, Lesson 6.4 — Exit Ticket
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -15,51 +11,42 @@
 
 \vspace{0.08in}
 
-No notes. Write every domain and range in \textbf{interval notation}.
+No notes. On items 1 and 2, write the substitution before you write the answer --- the model \emph{is}
+part of the answer. Round money to the nearest cent.
 
-\begin{enumerate}[leftmargin=1.8em, itemsep=9pt]
-  \item \textbf{From the equation.} \; $f(x)=-3\sqrt{x+2}+4$
-
-        \vspace{3pt}
-        (a) Anchor point: \blank{2.0cm} \hspace{0.3in}
-        (b) Domain: \blank{2.6cm} \hspace{0.3in}
-        (c) Range: \blank{2.6cm}
-
-        \vspace{5pt}
-        (d) The anchor is an absolute \blank{1.8cm}, and I knew that from \blank{3.6cm}.
-
-        \vspace{5pt}
-        (e) Describe all three transformations from the parent $y=\sqrt{x}$. \writeline
-
-  \item \textbf{From the graph.} Write the equation of the function below in the form
-        $y=a\sqrt{x-h}+k$.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.42]
-          \lgrid{-2}{13}{-4}{6}
-          \begin{scope}
-            \clip (-2,-4) rectangle (13,6);
-            \draw[very thick, forest, domain=1:13, samples=100, smooth] plot (\x,{2*sqrt((\x)-1)-2});
-          \end{scope}
-          \fill[forest] (1,-2) circle (4pt) node[below left, font=\scriptsize]{$(1,-2)$};
-          \fill[charcoal] (5,2) circle (2.6pt) node[above left, font=\scriptsize]{$(5,2)$};
-          \fill[charcoal] (10,4) circle (2.6pt);
-        \end{tikzpicture}
-        \end{center}
-        \vspace{-6pt}
-        Anchor: \blank{1.8cm} \; $\Rightarrow$ \; $h=\blank{0.9cm}$, $k=\blank{0.9cm}$. \quad
-        Then substitute $(5,2)$ to find $a=\blank{1.0cm}$.
+\begin{enumerate}[leftmargin=1.8em, itemsep=11pt]
+  \item \textbf{Compound interest.} \$4000 is invested at $3\%$ compounded \textbf{monthly} for
+        $5$ years.
 
         \vspace{4pt}
-        \textbf{Equation:} $y=\blank{4.4cm}$
+        Base $1+\frac{r}{n}=$ \blank{2.6cm} \qquad Exponent $nt=$ \blank{1.8cm}
 
-  \item \textbf{SOL-style multiple choice.} What is the anchor point (endpoint) of the graph of
-        $y=3\sqrt{2x-10}+1$?
+        \vspace{5pt}
+        $A=$ \blank{5.0cm} $=$ \blank{2.4cm}
+
+  \item \textbf{Half-life.} A $50$ mg dose of a drug has a half-life of $4$ days.
+
+        \vspace{4pt}
+        $A(t)=$ \blank{4.2cm} \hfill Amount left after $12$ days: \blank{2.2cm}
+
+        \vspace{5pt}
+        Will the amount in the patient's body ever reach exactly $0$ mg according to this model?
+        Circle one --- \textbf{yes} \; / \; \textbf{no} --- and name the feature of the graph that
+        settles it. \writeline
+
+  \item \textbf{Multiple choice.} An investment of \$1500 earns $4.8\%$ annual interest compounded
+        \textbf{quarterly}. Which expression gives its value after $7$ years?
         \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-          \item $(10,1)$
-          \item $(5,1)$
-          \item $(-5,1)$
-          \item $(5,-1)$
+          \item $1500(1.048)^{7}$
+          \item $1500(1.012)^{7}$
+          \item $1500(1.048)^{28}$
+          \item $1500(1.012)^{28}$
         \end{enumerate}
+
+  \item \textbf{The wall.} To find when that \$1500 doubles, you would solve
+        $1500(1.012)^{4t}=3000$, which becomes $(1.012)^{4t}=2$. Yesterday's common-base method cannot
+        finish this. Does the equation still \emph{have} an answer? Circle one --- \textbf{yes} \; /
+        \; \textbf{no} --- and say how you know. \writeline
 \end{enumerate}
 
 \end{document}

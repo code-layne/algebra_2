@@ -1,8 +1,9 @@
-%! Solving Quadratics by Factoring — Unit 3, Lesson 3.2 — Guided Notes
+%! Advanced Factoring — Unit 3, Lesson 3.2 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -11,145 +12,192 @@
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.2}{Guided Notes}
+\namedateperiod
 
-\vspace{0.10in}
+\vspace{0.08in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item \emph{factor} a quadratic completely: GCF first, then $x^2+bx+c$ by product/sum, $ax^2+bx+c$ by grouping, and the special patterns;
-  \item \emph{solve} $ax^2+bx+c=0$ with the \emph{Zero Product Property} and verify the roots;
-  \item connect the \emph{roots} to the parabola's \emph{$x$-intercepts / zeros}.
+  \item factor out the \emph{GCF} first, in one and two variables, including a negative leading coefficient;
+  \item choose a method by the \emph{number of terms}, and apply the \emph{difference of squares}, \emph{perfect-square trinomial}, and \emph{sum and difference of cubes} identities;
+  \item factor a four-term polynomial by \emph{grouping} and recognize \emph{quadratic form};
+  \item factor \emph{completely}, recognize a \emph{prime} polynomial, and read a function's \emph{zeros} off its factored form.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.06in}
+\vspace{0.05in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}
-\termblanklong{Factoring}
-\termblanklong{Zero Product Property}
-\termblanklong{Root / zero / solution}
-\termblanklong{Difference of squares}
-\termblanklong{Perfect-square trinomial (double root)}
+\vspace{2pt}
+\termblanklong{Prime (irreducible) polynomial}
+\termblanklong{Factored completely}
+\termblanklong{Sum \& difference of cubes}
+\termblanklong{Factoring by grouping}
+\termblanklong{Quadratic form}
 \end{vocabbox}
 
 \begin{hookbox}
-In Lesson~3.1 you were \textbf{handed} the factored form of the unit's anchor parabola:
-\[ f(x)=x^2-2x-3 \;=\; (x+1)(x-3). \]
+In Lesson 3.0 you read this graph of $q(x) = x^4 - 5x^2 + 4$.
+\begin{center}
+\begin{tikzpicture}[scale=0.45]
+  \lgrid{-3}{3}{-3}{6}
+  \begin{scope}
+    \clip (-3,-3) rectangle (3,6);
+    \draw[very thick, forest, domain=-2.45:2.45, samples=120, smooth]
+      plot (\x,{(\x)*(\x)*(\x)*(\x) - 5*(\x)*(\x) + 4});
+  \end{scope}
+  \fill[charcoal] (-2,0) circle (3pt);
+  \fill[charcoal] (-1,0) circle (3pt);
+  \fill[charcoal] (1,0)  circle (3pt);
+  \fill[charcoal] (2,0)  circle (3pt);
+  \fill[charcoal] (0,4)  circle (3pt) node[right, font=\scriptsize]{$(0,4)$};
+\end{tikzpicture}
+\end{center}
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Where do you think the ``$+1$'' and ``$-3$'' came from? \writeline
-  \item If $(x+1)(x-3)=0$, what must be true about \emph{one} of the factors? \writeline
+  \item Read the four $x$-intercepts off the graph: \blank{4.2cm}
+  \item Now look at $x^4 - 5x^2 + 4$. Can you \emph{see} those four numbers anywhere in it? \blank{1.6cm}
+  \item What form of the equation \emph{would} show them? \writeline
 \end{itemize}
-Today we \emph{produce} the factored form ourselves --- and use it to find where the graph meets the $x$-axis.
+Yesterday you turned a \textbf{factored} form into a \textbf{standard} form by multiplying. Today you
+run the machine backward --- and the prize is the \emph{zeros}. One warning before we start: write
+$x^4-16=(x^2-4)(x^2+4)$. Is that factored? \blank{1.4cm} \; Is it factored \emph{completely}?
+\blank{1.4cm} \; Why not? \writeline
 \end{hookbox}
 
-\boxguard[20]
-\begin{notesbox}{1. The Zero Product Property --- the engine}
-If a product of two numbers is \textbf{zero}, then at least one of them must \emph{be} zero:
-\[ \text{if } A\cdot B = 0, \text{ then } A=\blank{1.2cm} \ \text{ or } \ B=\blank{1.2cm}. \]
-That is the \emph{only} way a product hits zero. So a factored equation becomes two easy linear ones.
-\begin{center}
-\begin{minipage}{0.54\linewidth}
-\textbf{Solve} $(x+1)(x-3)=0$:
-\begin{enumerate}[leftmargin=1.6em, itemsep=2pt]
-  \item Set each factor to $0$: \quad $x+1=0$ \ or \ $x-3=0$.
-  \item Solve each: \quad $x=\blank{1.0cm}$ \ or \ $x=\blank{1.0cm}$.
-\end{enumerate}
-These are the \textbf{roots} --- and the parabola's \blank{2.6cm}.
+\begin{notesbox}{1. Always Start with the GCF}
+The \textbf{GCF} of a polynomial uses the largest common coefficient and the \blank{2.0cm} power of
+every variable the terms \emph{share}.
 
-\vspace{3pt}
-\textbf{Careful:} the property needs a \textbf{zero}. If $(x+1)(x-3)=\underline{\ 5\ }$, you may
-\emph{not} write $x+1=5$. First move everything to one side.
-\end{minipage}%
-\begin{minipage}{0.44\linewidth}\centering
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-3}{5}{-5}{3}
-  \begin{scope}\clip (-3,-5) rectangle (5,3);
-    \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x+1)*(\x-3)});
-  \end{scope}
-  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$-1$};
-  \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$3$};
-  \fill[charcoal] (1,-4) circle (3pt);
-\end{tikzpicture}
-\end{minipage}
-\end{center}
+\vspace{4pt}
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item $12x^5 - 18x^4 + 30x^3 = $ \blank{5.5cm}
+  \item Two variables: \; $15x^3y^2 - 25x^2y^3 = $ \blank{5.0cm}
+  \item Negative lead --- factor out $-4x$: \; $-4x^3 + 8x^2 - 12x = $ \blank{5.0cm}
+
+        Pulling out a \emph{negative} changes the sign of \blank{3.6cm} inside the parentheses.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Why first?} Because the GCF can \emph{uncover} a pattern that was hidden. On its own,
+$2x^3 - 50x$ matches nothing. Take out $2x$: \; $2x^3 - 50x = $ \blank{3.2cm} \; --- and now the
+inside is a \blank{4.4cm}, so the complete answer is \blank{4.4cm}
 \end{notesbox}
 
-\begin{notesbox}{2. Factor $x^2+bx+c$ --- un-FOIL}
-Since $(x+p)(x+q)=x^2+(p+q)x+pq$, factoring reverses the search: find two integers whose
-\textbf{product is $c$} and whose \textbf{sum is $b$}.
+\begin{notesbox}{2. Count the Terms --- That Tells You Which Tool}
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{|c|c|}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{|c|p{10.6cm}|}
 \hline
-\textbf{sign of $c$} & \textbf{what the two integers look like} \\ \hline
-$c>0$ & same sign (both match the sign of $b$) \\ \hline
-$c<0$ & opposite signs \\ \hline
+\textbf{Terms} & \textbf{Try this} \\ \hline
+$2$ & difference of squares $a^2-b^2$ \; \emph{or} \; sum/difference of \textbf{cubes} $a^3\pm b^3$ \\ \hline
+$3$ & perfect-square trinomial, ordinary trinomial factoring, or \textbf{quadratic form} \\ \hline
+$4$ & factoring by \textbf{grouping} \\ \hline
 \end{tabular}
 \end{center}
-\textbf{Example (the anchor).} Factor $x^2-2x-3$: need product $\blank{0.9cm}$, sum $\blank{0.9cm}$.
-The integers are $\blank{0.8cm}$ and $\blank{0.8cm}$, so
-\[ x^2-2x-3 = (\,x\ \blank{0.9cm}\,)(\,x\ \blank{0.9cm}\,). \]
-\textbf{You try.} Factor $x^2+7x+12$: product $12$, sum $7 \Rightarrow \blank{1.0cm},\ \blank{1.0cm}$;
-so $x^2+7x+12 = \blank{3.2cm}$.
+And the rule that beats all of them: after every step, \blank{5.6cm}
 \end{notesbox}
 
-\begin{notesbox}{3. GCF first --- and the \#1 trap}
-\emph{Always} pull out the greatest common factor before anything else.
-\[ 2x^2-8x = \blank{1.2cm}\,(\,x-\blank{0.7cm}\,). \]
-\textbf{Solve} $2x^2-8x=0$: factor to $2x(x-4)=0$, so $x=\blank{1.0cm}$ or $x=\blank{1.0cm}$.
+\begin{notesbox}{3. Two Terms: Squares}
+\textbf{Difference of squares:} \; $a^2 - b^2 = $ \blank{3.4cm}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $49x^2 - 64 = $ \blank{4.2cm} \qquad ($a = $ \blank{1.0cm}, $b = $ \blank{1.0cm})
+  \item Two variables: \; $9x^2 - 25y^2 = $ \blank{4.6cm}
+  \item Go twice: \; $x^4 - 16 = ($\blank{1.6cm}$)($\blank{1.6cm}$) = $ \blank{4.4cm}
+\end{itemize}
 
-\vspace{3pt}
-\fbox{\parbox{0.96\linewidth}{\small\textbf{Trap:} to solve $3x^2=12x$, do \emph{not} divide both sides
-by $x$ --- that deletes the root $x=0$. Instead move to one side: $3x^2-12x=0 \Rightarrow 3x(x-4)=0
-\Rightarrow x=\blank{0.9cm}$ or $x=\blank{0.9cm}$.}}
+\vspace{4pt}
+\textbf{The one that will not factor.} A \emph{sum} of squares, $a^2 + b^2$, is
+\blank{1.8cm} over the integers. For $x^2 + 4$ we would need two integers whose product is $4$ and
+whose sum is \blank{1.0cm} --- and there are none. So we stop.
+
+\vspace{5pt}
+\textbf{Perfect-square trinomials} (three terms, but they belong with the squares):
+$a^2 \pm 2ab + b^2 = $ \blank{2.6cm}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $x^2 - 14x + 49 = $ \blank{3.4cm} \quad Check the middle: $2(x)(7) = $ \blank{1.4cm} \checkmark
+  \item $4x^2 + 20xy + 25y^2 = $ \blank{3.8cm}
+\end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{4. Two special patterns + $a\ne1$ by grouping}
-\textbf{Difference of squares:} $\;x^2-k^2=(x-k)(x+k)$. \quad
-Factor $x^2-16 = (\,x-\blank{0.7cm}\,)(\,x+\blank{0.7cm}\,)$; roots $x=\blank{1.6cm}$.
+\begin{notesbox}{4. Four Terms: Grouping}
+Split into two pairs, take the GCF out of \emph{each} pair, then factor out the shared
+\textbf{binomial}.
+
+\vspace{4pt}
+\textbf{Example.} $x^3 + 5x^2 - 4x - 20$
 
 \vspace{2pt}
-\textbf{Perfect-square trinomial:} $\;x^2-6x+9=(x-\blank{0.7cm})^2$; this gives one \textbf{double root}
-$x=\blank{0.9cm}$ (the parabola \emph{touches} the $x$-axis there).
+\emph{Step 1 --- group in pairs:} \; $(x^3 + 5x^2) + (-4x - 20)$
 
 \vspace{2pt}
-\textbf{Leading coefficient $a\ne1$ --- grouping ($a\!\cdot\!c$ method).} Factor $2x^2+7x+3$:
-\begin{enumerate}[leftmargin=1.7em, itemsep=1pt]
-  \item $a\!\cdot\!c = 2\cdot3 = \blank{0.8cm}$; two integers with that product and sum $7$: $\blank{0.8cm},\ \blank{0.8cm}$.
-  \item Split the middle term: $2x^2+\blank{0.9cm}+\blank{0.9cm}+3$.
-  \item Group: $2x(x+3)+1(x+3) = (\,\blank{1.4cm}\,)(\,x+3\,)$; roots $x=\blank{1.0cm},\ \blank{1.0cm}$.
-\end{enumerate}
+\emph{Step 2 --- GCF each pair:} \; \blank{2.4cm}$(x+5)$ \; \blank{2.0cm}$(x+5)$
+
+\vspace{2pt}
+\emph{Step 3 --- factor out the common binomial:} \blank{4.4cm}
+
+\vspace{2pt}
+\emph{Step 4 --- keep going!} \; $x^2 - 4$ is a \blank{3.6cm}, so the complete answer is
+\blank{4.6cm}
+
+\vspace{5pt}
+\textbf{The sign move.} When the third term is negative, factor a \textbf{negative} out of the second
+pair so the two binomials \emph{match}. If your two binomials come out different, the reason is
+almost always \blank{2.6cm}.
+
+\vspace{4pt}
+\textbf{Sometimes ``completely'' means stopping.} \; $2x^3 - 6x^2 - 9x + 27 = $ \blank{4.6cm}
+
+\vspace{2pt}
+Can $2x^2 - 9$ be factored over the integers? \blank{1.4cm} \; Why not? \writeline
 \end{notesbox}
 
-\boxguard[22]
+\begin{notesbox}{5. Two Terms: Cubes --- Today's New Identity}
+Look back at Warm-Up item 3. You multiplied $(x+2)(x^2-2x+4)$ and got \blank{1.6cm}. You proved
+today's formula before you knew it had a name.
+\[
+  a^3 + b^3 = (a+b)(a^2 - ab + b^2) \qquad\qquad a^3 - b^3 = (a-b)(a^2 + ab + b^2)
+\]
+\textbf{SOAP} --- the sign pattern shared by both identities:
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{S}ame --- the binomial factor takes the \blank{2.4cm} sign as the original.
+  \item \textbf{O}pposite --- the trinomial's middle term takes the \blank{2.4cm} sign.
+  \item \textbf{A}lways \textbf{P}ositive --- the trinomial's last term is \blank{2.4cm}.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Two traps.} The middle term is $ab$, \emph{not} $2ab$ --- this is \blank{3.0cm} a
+perfect-square trinomial. And the trinomial factor $a^2 \mp ab + b^2$ is always \blank{1.6cm}, so
+never try to break it apart.
+
+\vspace{5pt}
+Identify $a$ and $b$ \emph{first}, every time.
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item $x^3 + 8$: \quad $a = $ \blank{0.9cm}, $b = $ \blank{0.9cm} \quad $\Rightarrow$ \blank{4.4cm}
+  \item $27x^3 - 64$: \quad $a = $ \blank{0.9cm}, $b = $ \blank{0.9cm} \quad $\Rightarrow$ \blank{5.0cm}
+  \item $8x^3 + 125y^3 = $ \blank{6.0cm}
+  \item GCF first! \; $5x^3 - 40 = 5($\blank{1.6cm}$) = $ \blank{5.0cm}
+\end{itemize}
+\end{notesbox}
+
 \begin{practicebox}
-\textbf{Solve each by factoring. Show the factored form, then the roots.}
-\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
-  \item $x^2-x-6=0$
-    \begin{work}
-      x^2-x-6 &= 0 \\
-      (x-3)(x+2) &= 0 \\
-      x-3 = 0 \quad&\text{or}\quad x+2 = 0 \\
-      x &= 3,\ -2
-    \end{work}
-  \item $x^2-5x=0$
-    \begin{work}
-      x^2-5x &= 0 \\
-      x(x-5) &= 0 \\
-      x = 0 \quad&\text{or}\quad x-5 = 0 \\
-      x &= 0,\ 5
-    \end{work}
-  \item $x^2-49=0$
-    \begin{work}
-      x^2-49 &= 0 \\
-      (x-7)(x+7) &= 0 \\
-      x-7 = 0 \quad&\text{or}\quad x+7 = 0 \\
-      x &= 7,\ -7
-    \end{work}
+\textbf{Back to the Hook.} $q(x) = x^4 - 5x^2 + 4$ has three terms --- and the powers $4$ and $2$ are
+in \textbf{quadratic form}: it factors as though $x^2$ were the variable.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Find two numbers whose product is $4$ and whose sum is $-5$: \blank{1.4cm} and \blank{1.4cm}
+  \item So $x^4 - 5x^2 + 4 = ($\blank{1.8cm}$)($\blank{1.8cm}$)$.
+  \item Are you done? Each factor is a \blank{4.0cm}, so keep going:
+        $q(x) = $ \blank{6.0cm}
+  \item A product is zero exactly when one of its factors is zero, so the zeros of $q$ are
+        \blank{4.0cm}
+  \item Compare with the $x$-intercepts you read off the graph at the top of these notes. Do they
+        match? \blank{1.4cm}
+  \item \textbf{The wall.} Try today's tools on the unit's anchor, $x^3 - 3x + 2$. GCF?
+        \blank{1.2cm} \; Three terms, but quadratic form? \blank{1.2cm} \; Four terms to group?
+        \blank{1.2cm} \; And yet it \emph{does} factor --- you saw it as $(x-1)^2(x+2)$ in Lesson 3.0.
+        What that means: \writeline
 \end{enumerate}
 \end{practicebox}
 

@@ -1,6 +1,11 @@
-%! Expressions and Operations — Unit 1, Lesson 1.1 — Slides (Beamer)
+%! Linear Functions: Slope, Forms \& Graphing — Unit 1, Lesson 1.1 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -11,213 +16,130 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 1.1}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Expressions and Operations}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 1: Foundations --- Algebra 1 Review}
+    {\color{white}\bfseries\LARGE Linear Functions: Slope, Forms \& Graphing}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 1: Linear Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{Equivalent, or not? Ninety seconds. No rules.}
+  \forestheader{A rate plus a starting value}
   \sectionlabel{Hook}
   \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      A streaming service: \textbf{\$5 signup} $+$ \textbf{\$2 per month}.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Same change each month? $\to$ \textbf{slope} $=2$
+        \item Cost before any months? $\to$ \textbf{$y$-intercept} $=5$
+        \item One rule? $\to$ $C(m) = 2m + 5$
+      \end{itemize}
+    \end{column}
     \begin{column}{0.44\textwidth}
       \centering
-      \renewcommand{\arraystretch}{1.6}
-      \begin{tabular}{c l c l}
-        (a) & $2^3\cdot2^4$ & vs. & $2^{12}$ \\
-        (b) & $(x+3)(x-3)$ & vs. & $x^2-9$ \\
-        (c) & $(x+5)^2$ & vs. & $x^2+25$ \\
-        (d) & $\sqrt{9+16}$ & vs. & $\sqrt9+\sqrt{16}$ \\
+      \renewcommand{\arraystretch}{1.2}
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $m$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+        \$ & $5$ & $7$ & $9$ & $11$ \\ \hline
       \end{tabular}
-    \end{column}
-    \begin{column}{0.52\textwidth}
-      \begin{itemize}\setlength{\itemsep}{6pt}
-        \item Three of these die to a \textbf{single number}.
-        \item (a): $2^3\cdot2^4=128$, not $4096$.
-        \item (c): at $x=1$, \; $36 \ne 26$.
-        \item (d): $\sqrt{25}=5$, but $3+4=7$.
-        \item (b) survives \emph{every} value you try.
-      \end{itemize}
-    \end{column}
-  \end{columns}
-  \begin{block}{The asymmetry --- keep it all year}
-    One bad value \textbf{disproves} equivalence forever. No number of good values ever
-    \textbf{proves} it. For proof you need algebra: multiply $(x+3)(x-3)$ out and you have settled
-    every value at once.
-  \end{block}
-\end{frame}
-
-% SECTION 1 — translating and evaluating
-\begin{frame}[t, plain]
-  \forestheader{An expression is a recipe, not a question}
-  \sectionlabel{1. Translate \& evaluate}
-  \begin{columns}[T]
-    \begin{column}{0.50\textwidth}
-      \renewcommand{\arraystretch}{1.35}
-      \begin{tabular}{@{}l l@{}}
-        Seven less than twice a number & $2n-7$ \\
-        Quotient of a number and 4, & \\
-        \quad increased by 9 & $\tfrac n4+9$ \\
-        Five times the quantity & \\
-        \quad of a number decreased by 2 & $5(n-2)$ \\
-      \end{tabular}
-      \vspace{8pt}
-
-      \textbf{Two traps:} ``less than'' \textbf{reverses} the order; ``the quantity'' means
-      \textbf{parentheses}.
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item An expression is never \emph{solved} --- it is \textbf{evaluated}, once you supply
-          values.
-        \item $|\,\cdot\,|$ and $\sqrt{\phantom{x}}$ are \textbf{grouping symbols}: finish the
-          inside first.
-        \item At $x=-3$: \quad
-          $(-x)^2 = {\color{forest}\mathbf{9}}$ \quad but \quad $-x^2 = {\color{goldacc}\mathbf{-9}}$
-      \end{itemize}
-    \end{column}
-  \end{columns}
-  \begin{block}{The most common evaluation error in the course}
-    An exponent binds \textbf{only to what it touches}. Parentheses are what change that --- and
-    this one error comes back in the quadratic formula, in end behavior, and in every graphing
-    lesson.
-  \end{block}
-\end{frame}
-
-% SECTION 2 — laws of exponents
-\begin{frame}[t, plain]
-  \forestheader{The exponent laws are counting, not memorizing}
-  \sectionlabel{2. Derived, not memorized}
-  \begin{columns}[T]
-    \begin{column}{0.50\textwidth}
-      \renewcommand{\arraystretch}{1.35}
-      \begin{tabular}{@{}l l@{}}
-        $a^3a^2$ & five $a$'s \; $\Rightarrow$ \; exponents \textbf{add} \\
-        $\dfrac{a^5}{a^2}$ & two cancel \; $\Rightarrow$ \; exponents \textbf{subtract} \\
-        $(a^3)^2$ & a pile, twice \; $\Rightarrow$ \; exponents \textbf{multiply} \\
-        $(ab)^n$ & every factor inside gets it \\
-      \end{tabular}
-      \vspace{8pt}
-
-      Write the factors out. Count them. That is the whole derivation.
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{Forced, not invented}
-        $\dfrac{a^3}{a^3}$ is both $a^0$ and $1$ \; $\Rightarrow$ \; $a^0=1$ \\[4pt]
-        $\dfrac{a^2}{a^5}$ is both $a^{-3}$ and $\dfrac{1}{a^3}$ \; $\Rightarrow$ \;
-        $a^{-n}=\dfrac{1}{a^n}$
-      \end{block}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $a^{-2}$ is a \textbf{reciprocal}, not a negative number.
-        \item Final answers carry \textbf{positive} exponents only.
-      \end{itemize}
     \end{column}
   \end{columns}
   \vspace{2pt}
-  \centering
-  $3x^2\cdot4x^3=12x^5$ --- coefficients \textbf{multiply}, exponents \textbf{add}. \quad
-  $\dfrac{12x^5y^{-2}}{3x^2y^4}=\dfrac{4x^3}{y^6}$
-\end{frame}
-
-% SECTION 3 — polynomials and factoring
-\begin{frame}[t, plain]
-  \forestheader{Factoring is multiplying, walked backwards}
-  \sectionlabel{3. Polynomials \& factoring}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item Subtracting? Distribute the minus to \textbf{every} term --- not just the first.
-        \item $a^2-b^2=(a+b)(a-b)$
-        \item $(a+b)^2=a^2+2ab+b^2$ \\
-          {\small Hook (c) settled: the missing $10x$ was the whole point.}
-        \item Every factorization is \textbf{checkable by expanding}. So check it.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{The order, every single time}
-        \textbf{(1)} GCF \emph{first}, always. \\
-        \textbf{(2)} Then the pattern or the trinomial method. \\
-        \textbf{(3)} Then ask: does any factor \emph{still} factor?
-      \end{block}
-      \centering
-      $2x^2-18 \;\to\; 2(x^2-9) \;\to\; {\color{forest}\mathbf{2(x+3)(x-3)}}$
-
-      \vspace{4pt}
-      {\small Stopping at $2(x^2-9)$ is factored --- but not \textbf{completely}.}
-    \end{column}
-  \end{columns}
-  \begin{block}{Why ``completely'' is not fussiness}
-    In Lesson 1.2 you will factor in order to \textbf{solve}. Stop early there and you do not lose a
-    step --- you lose a \textbf{solution}.
+  \begin{block}{Today}
+    A rate of change plus a starting value \emph{is} slope-intercept form --- and three ways to
+    write any line.
   \end{block}
 \end{frame}
 
-% SECTION 4 — radicals and rational exponents
+% SLOPE
 \begin{frame}[t, plain]
-  \forestheader{A radical and a fractional exponent are one idea, spelled twice}
-  \sectionlabel{4. Radicals \& rational exponents}
+  \forestheader{Slope is the rate of change}
+  \sectionlabel{Definition}
   \begin{columns}[T]
-    \begin{column}{0.50\textwidth}
-      \renewcommand{\arraystretch}{1.4}
-      \begin{tabular}{@{}l l l@{}}
-        $\sqrt{72}$ & $=\sqrt{36\cdot2}$ & $=6\sqrt2$ \\
-        $\sqrt[3]{54}$ & $=\sqrt[3]{27\cdot2}$ & $=3\sqrt[3]{2}$ \\
-      \end{tabular}
-      \vspace{6pt}
-
-      Same method. Only the \textbf{index} changed.
-      \vspace{8pt}
-
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $3\sqrt5+2\sqrt5=5\sqrt5$ \quad --- like radicals.
-        \item $3\sqrt5+2\sqrt3$ \quad --- will not combine. Ever.
-        \item $\sqrt{12}+\sqrt{27}=2\sqrt3+3\sqrt3=5\sqrt3$
-      \end{itemize}
+    \begin{column}{0.54\textwidth}
+      For any two points on a line,
+      \[ m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{rise}}{\text{run}}. \]
+      Constant rate $\Rightarrow$ \emph{any} two points give the same $m$.
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{Two spellings}
-        $a^{1/2}=\sqrt{a}$ \qquad $a^{1/3}=\sqrt[3]{a}$
-      \end{block}
-      \centering
-      $\sqrt[3]{8}=8^{1/3}=(2^3)^{1/3}=2^{3\cdot\frac13}=2$
-
-      \vspace{8pt}
-      \raggedright
-      The \textbf{power-of-a-power law} did that. The exponent spelling is what lets the exponent
-      laws reach radicals at all --- and it is the notation all of \textbf{Unit 6} is built on.
+    \begin{column}{0.44\textwidth}
+      Using $(1,4)$ and $(3,0)$:
+      \[ m = \frac{0 - 4}{3 - 1} = \frac{-4}{2} = -2. \]
+      {\footnotesize Subtract $y$'s and $x$'s in the \textbf{same order}.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% CLOSE
+% THREE FORMS
 \begin{frame}[t, plain]
-  \forestheader{What today actually was}
-  \sectionlabel{Closing}
+  \forestheader{Three forms, one line}
+  \sectionlabel[goldacc]{$y = 2x - 4$}
+  \begin{itemize}\setlength{\itemsep}{7pt}
+    \item \textbf{Slope-intercept:} $y = mx + b$ \; --- reads off slope $2$ and $y$-intercept $(0,-4)$.
+    \item \textbf{Point-slope:} $y - y_1 = m(x - x_1)$ \; --- from $(2,0)$: $y - 0 = 2(x-2)$.
+    \item \textbf{Standard:} $Ax + By = C$ \; --- $2x - y = 4$ (integers, $A \ge 0$).
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{Same line, different outfits}
+    Distribute the point-slope form: $y = 2(x-2) = 2x - 4$. All three are equal.
+  \end{block}
+\end{frame}
+
+% WRITING EQUATIONS
+\begin{frame}[t, plain]
+  \forestheader{Writing a line: match the givens}
+  \sectionlabel{The main event}
+  \begin{itemize}\setlength{\itemsep}{7pt}
+    \item \textbf{Slope $+$ $y$-intercept} $\to$ drop into $y = mx + b$.
+    \item \textbf{Slope $+$ any point} $\to$ point-slope, then simplify.
+    \item \textbf{Two points} $\to$ find $m$ first, then point-slope.
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{Worked: through $(1,4)$ and $(3,0)$}
+    $m = -2$; \; $y - 0 = -2(x - 3)$; \; so $y = -2x + 6$, or $2x + y = 6$.
+  \end{block}
+\end{frame}
+
+% TRANSFORMATIONS
+\begin{frame}[t, plain]
+  \forestheader{Graphing by transforming $y = x$}
+  \sectionlabel[goldacc]{The course-wide lens}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Errors that cost the most this year}
-        $(x+5)^2 = x^2+25$ \\
-        $\sqrt{a+b} = \sqrt a + \sqrt b$ \\[4pt]
-        {\small Same mistake, two costumes: assuming an operation distributes when it does not.}
-      \end{block}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-2}{6}{-6}{6}
+        \draw[very thick, forest!55, dashed] (-2,-2)--(6,6);
+        \draw[very thick, forest] (-1,-6)--(5,6);
+        \fill[charcoal] (0,-4) circle (3pt) node[left, font=\tiny]{$(0,-4)$};
+      \end{tikzpicture}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Habits to leave with}
-        Check a factorization by \textbf{expanding} it. \\
-        Kill a false claim with \textbf{one value}. \\
-        Prove a true one with \textbf{algebra}.
-      \end{block}
+    \begin{column}{0.58\textwidth}
+      From $y=x$ to $y = 2x - 4$:
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item vertical \textbf{stretch} by $2$ \; ($kf(x)$): slope $1 \to 2$;
+        \item \textbf{shift down} $4$ \; ($f(x)+k$): intercept $0 \to -4$.
+      \end{itemize}
+      {\footnotesize A negative slope also \textbf{reflects} over the $x$-axis.}
     \end{column}
   \end{columns}
-  \vspace{6pt}
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item \textbf{Exit ticket:} one evaluation, one factor-completely with a check, one SOL-style
-      exponent item.
-    \item \textbf{Next --- Lesson 1.2, Equations and Inequalities:} every rewriting rule from today
-      goes to work. Distributing clears parentheses, factoring plus the zero product property
-      \emph{solves} quadratics, and the quadratic formula hands you a radical you can now simplify.
+  \vspace{2pt}
+  \begin{block}{Big idea}
+    $kf(x)$ and $f(x)+k$ will graph \emph{every} function family this year.
+  \end{block}
+\end{frame}
+
+% ROADMAP
+\begin{frame}[t, plain]
+  \forestheader{Where Unit 1 goes next}
+  \sectionlabel{Connections}
+  \textbf{Today:} slope as a rate; slope-intercept, point-slope, and standard form; writing
+  equations; graphing by transforming $y=x$.\\[8pt]
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item \textbf{1.2} Absolute value equations \& inequalities.
+    \item \textbf{1.3} Absolute value functions \& transformations (the V-shape).
+    \item \textbf{1.4} Piecewise-defined functions.
+    \item \textbf{1.5} Linear regression.
   \end{itemize}
 \end{frame}
 

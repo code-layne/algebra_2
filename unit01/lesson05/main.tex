@@ -1,0 +1,251 @@
+%! Linear Regression — Unit 1, Lesson 1.5 — Lesson Plan
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\usepackage{graphicx}   % -article does NOT load graphicx; needed for thumbnails/screenshots
+\graphicspath{{images/}}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\CourseName}{Algebra 2: Shepherd}
+\newcommand{\SchoolYear}{2026--2027}
+\newcommand{\MeetingLength}{55 minutes}
+\newcommand{\UnitNumberName}{Unit 1: Linear Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 1.5: Linear Regression}
+
+\begin{document}
+\begin{center}
+    {\Large\bfseries \CourseName: \SchoolYear \\
+    {\small\bfseries \UnitNumberName \LessonNumberName}}
+\end{center}
+
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+    \textbf{Primary Objective:} Students move from \emph{exact} rules to \emph{real, scattered data}. Given
+    a \textbf{scatterplot} of bivariate data, they describe the \textbf{association} by its \emph{direction}
+    (positive / negative / none), \emph{form} (linear / not), and \emph{strength}, and they interpret the
+    \textbf{correlation coefficient} $r$ (between $-1$ and $1$: sign $=$ direction, size $=$ strength, and
+    $|r|$ near $1$ means a strong \emph{linear} fit). They read a \textbf{line of best fit (regression line)}
+    $\hat y = ax+b$ produced \emph{with technology}, \textbf{interpret its slope and $y$-intercept in
+    context}, and use it to \textbf{make predictions} --- distinguishing \emph{interpolation} (inside the
+    data) from \emph{extrapolation} (outside it). They judge a model's \textbf{reasonableness} and explain
+    why \emph{correlation does not prove causation}. All scatterplots and lines are pre-drawn --- students
+    read, classify, predict, and justify (never sketch from scratch).
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.ST.2} --- apply the data cycle with a focus on
+    \emph{bivariate data} in scatterplots and determining the curve of best fit: represent bivariate data
+    with a scatterplot using technology (\textbf{A2.ST.2c}); decide whether a linear model is appropriate
+    (\textbf{A2.ST.2d}); determine the equation of the line of best fit using technology
+    (\textbf{A2.ST.2e}); use the \textbf{correlation coefficient} to designate goodness of fit of a linear
+    function (\textbf{A2.ST.2f}); make predictions and critical judgments from the model
+    (\textbf{A2.ST.2g}); and evaluate the reasonableness of the model in context (\textbf{A2.ST.2h}). This
+    lesson fits a \emph{linear} function to data, closing Unit~1's linear strand.
+\end{tcolorbox}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{skillbox}[Priority Ideas \& Skills]{goldbox}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item Read a \textbf{scatterplot} of bivariate data (explanatory $x$, response $y$).
+  \item Describe an association by \textbf{direction}, \textbf{form}, and \textbf{strength}.
+  \item Interpret the \textbf{correlation coefficient} $r$; match $r$ to a scatterplot's fit.
+  \item Read a \textbf{line of best fit} $\hat y = ax+b$ and interpret its \textbf{slope} and \textbf{$y$-intercept} in context.
+  \item \textbf{Predict} with the model; separate \textbf{interpolation} from \textbf{extrapolation}.
+  \item Judge \textbf{reasonableness}; explain \textbf{correlation $\ne$ causation}.
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item Real data rarely lands on one line --- we summarize the \emph{trend} instead of an exact rule.
+  \item Direction (up/down), form (does a \emph{line} fit?), and strength (how tightly?) are three separate questions.
+  \item $r$ packs direction ($\pm$) and strength ($|r|$) into one number in $[-1,1]$; $|r|\approx 1$ is a tight linear fit, $r\approx 0$ is no linear trend.
+  \item The regression line is the ``best'' summary line; its slope is a \emph{per-unit rate} and its intercept a \emph{baseline} --- both carry real meaning.
+  \item Predicting \emph{inside} the data is safer than \emph{outside} it, where the trend may not hold.
+  \item A strong $r$ shows two variables move together --- it does \emph{not} prove one \emph{causes} the other.
+\end{itemize}
+\end{tabularx}
+\end{skillbox}
+
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Bivariate data} & Paired measurements $(x,y)$ on the same individuals (two variables at once). \\
+\textbf{Scatterplot} & A plot of the pairs $(x,y)$ as points; used to see the relationship between the variables. \\
+\textbf{Association / correlation} & The pattern in a scatterplot: its \emph{direction}, \emph{form}, and \emph{strength}. \\
+\textbf{Positive / negative} & As $x$ increases, $y$ tends to increase (positive) or decrease (negative). \\
+\textbf{Correlation coefficient $r$} & A number in $[-1,1]$: its \emph{sign} is the direction, its \emph{size} $|r|$ the strength of the \emph{linear} relationship. \\
+\textbf{Line of best fit (regression line)} & The line $\hat y=ax+b$ that best summarizes the trend; found with technology. $\hat y$ is a \emph{predicted} value. \\
+\textbf{Interpolation / extrapolation} & Predicting \emph{inside} the range of the data (interpolation) vs.\ \emph{outside} it (extrapolation --- riskier). \\
+\textbf{Causation} & One variable actually \emph{produces} a change in another --- stronger than, and not proved by, correlation. \\
+\end{tabularx}
+\end{skillbox}
+
+\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
+    The Warm-Up rehearses the three prerequisites today rests on: \textbf{(1)} \emph{read ordered pairs off
+    a coordinate grid} --- a scatterplot is just many plotted points, so students must read $(x,y)$
+    fluently; \textbf{(2)} \emph{evaluate a linear equation} $y=ax+b$ at a given $x$ (Lesson~1.1) --- exactly
+    the arithmetic of ``predict with the model''; and \textbf{(3)} read \emph{slope and intercept} from
+    $y=ax+b$ and tell whether a line rises or falls --- the seed of positive vs.\ negative association and of
+    interpreting a regression slope. Debrief item~3 aloud: a \emph{positive} slope means $y$ rises as $x$
+    rises (a positive association); a \emph{negative} slope means it falls --- the same language we will put
+    on scatterplots.
+\end{fixedskillbox}
+
+\begin{skillbox}[Hook]{forestbg}
+    Project a scatterplot of \textbf{hours practiced} vs.\ \textbf{free throws made} for a team: the points
+    \emph{don't} lie on one line, but they \emph{trend} upward. Ask: \textbf{``Is there a relationship? Could
+    you draw one line that summarizes it? What would you predict for a player who practices 8 hours?''}
+    Students see that \emph{no exact rule} fits every point --- yet a clear \emph{trend} does. That trend is
+    what a \textbf{line of best fit} captures, and the \textbf{correlation coefficient} $r$ measures how
+    tightly the points hug it. Today we read that trend, interpret the line, and predict with it --- the
+    first time in Unit~1 the data is \emph{messy}.
+\end{skillbox}
+
+\begin{skillbox}[Lesson]{forestbg}
+\begin{multicols}{2}
+\textbf{1. Scatterplots \& association.} A \textbf{scatterplot} plots paired data $(x,y)$. Describe it three
+ways: \textbf{direction} (as $x$ rises does $y$ rise \emph{(positive)}, fall \emph{(negative)}, or neither?),
+\textbf{form} (do the points follow a \emph{line}?), and \textbf{strength} (how tightly?). Read three
+pre-drawn plots and classify each --- \emph{don't} compute anything yet.
+
+\textbf{2. The correlation coefficient $r$.} Technology reports one number, $r$, in $[-1,1]$. Its
+\emph{sign} is the direction; its \emph{size} $|r|$ is the strength: $r\approx +1$ tight rising line,
+$r\approx -1$ tight falling line, $r\approx 0$ no linear trend. \textbf{Match $r$-values to plots}; stress
+$r$ measures \emph{linear} fit only.
+
+\textbf{3. The line of best fit.} Technology also returns the \textbf{regression line} $\hat y=ax+b$ --- the
+single line that best summarizes the trend ($\hat y$ is a \emph{predicted} $y$). \textbf{Interpret in
+context}: the slope $a$ is a \emph{per-unit rate} (``each extra hour $\Rightarrow$ about $a$ more''); the
+intercept $b$ is the \emph{baseline} at $x=0$.
+
+\columnbreak
+
+\textbf{4. Predicting.} Substitute an $x$ into $\hat y=ax+b$. \textbf{Interpolation} predicts \emph{inside}
+the data's $x$-range (safer); \textbf{extrapolation} predicts \emph{outside} it, where the trend may break
+down (a line predicting a $110\%$ test score signals extrapolation gone wrong). Always ask: \textbf{``Is
+this prediction reasonable?''}
+
+\textbf{5. Correlation $\ne$ causation.} A strong $r$ means the two variables \emph{move together} --- not
+that one \emph{causes} the other (ice-cream sales and drownings both rise in summer; heat is the lurking
+cause). Judge \textbf{reasonableness} (A2.ST.2h) and never claim cause from correlation alone.
+
+\textbf{Technology note:} finding $r$ and the equation is a calculator/Desmos task (A2.ST.2c,e,f). In this
+packet the values are \emph{given} so students focus on \emph{reading, interpreting, and predicting}.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Active Monitoring]{redbox}
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item confusing \textbf{direction} with \textbf{strength}: ``$r=-0.9$ is weak because it's negative'' --- no, $|{-}0.9|$ is \emph{strong};
+  \item reading $r$ backwards: a \emph{falling} cloud must have $r<0$;
+  \item calling a tight \emph{curved} pattern ``$r\approx 1$'' --- $r$ measures \emph{linear} fit only;
+  \item interpreting slope without units/context (``slope is $1.5$'' vs.\ ``about $1.5$ more baskets per practice session'');
+  \item \textbf{extrapolating} without flagging it --- predicting far outside the data and trusting it blindly;
+  \item claiming \textbf{causation} from a strong $r$ (``more firefighters \emph{cause} more damage'');
+  \item arithmetic slips substituting into $\hat y=ax+b$ (order of operations).
+\end{itemize}
+Cold-call prompts: ``Direction, form, strength --- which is which here?'' ``Is this $r$ closer to $-1$, $0$,
+or $1$, and how do you know?'' ``What does this slope mean in the story?'' ``Is that prediction
+interpolation or extrapolation --- and is it reasonable?'' ``Does this prove one thing \emph{causes} the
+other?''
+\end{skillbox}
+
+\begin{skillbox}[Group Work \& Differentiation]{redbox}
+\textbf{Reading the Trend} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Classify direction (positive / negative / none) from pre-drawn scatterplots;
+read a data point's coordinates; use a \emph{given} line of best fit to predict by substitution.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} Match $r$-values to scatterplots and justify by direction \& strength;
+interpret the slope and $y$-intercept of a regression line in context; predict and label a prediction as
+interpolation or extrapolation.
+
+\columnbreak
+\textbf{Tier E --- Extension.} Work a full data context: interpret the model, predict, judge whether an
+extrapolation is reasonable, and critique a ``correlation proves causation'' claim, naming a possible
+lurking variable.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Individual Work \& Assessment]{redbox}
+\textbf{Exit Ticket} (independent, no notes): classify the association of a pre-drawn scatterplot and say
+whether $r$ is closer to $-1$, $0$, or $1$; given a regression line $\hat y=ax+b$, interpret the slope in
+context and make one prediction (labeling it interpolation or extrapolation); and one \textbf{SOL-style
+multiple-choice} item reading the meaning of a correlation coefficient. Collect and sort into ``got it /
+direction-vs-strength slip / $r$-reading slip / interpolation-extrapolation slip / causation slip'' to
+decide whether the unit review needs a two-minute re-teach before the test.
+\end{skillbox}
+
+\begin{skillbox}[Reinforcement \& Extension]{goldbox}
+\textbf{Homework:} classify associations and match $r$-values to plots; interpret the slope and intercept of
+a regression line and predict (interpolation vs.\ extrapolation); judge a model's reasonableness; and
+critique a correlation-vs-causation claim. \textbf{Extension:} compare two candidate lines for the same data
+using how closely the points sit to each (an informal look at ``least squares''), and reason about a lurking
+variable. \textbf{Preview:} this closes Unit~1 (linear functions). Next is the \textbf{Unit~1 Test}; then
+\textbf{Unit~2, Quadratic Functions}, where the data may curve and a \emph{parabola} --- not a line --- best
+fits.
+\end{skillbox}
+% ── Teacher notes (migrated from the component keys) ──
+% One per component, titled for it. They live here rather than in the _key
+% files so that every component is the same length blank and keyed.
+
+\begin{teachernote}[Warm-Up]
+Item~1 is the reading skill a scatterplot demands --- every scatterplot is just many points like $A$--$D$.
+Item~2 \emph{is} prediction: substituting $x$ into a line $\hat y=ax+b$ is exactly how we predict from a
+regression model later today; keep students fluent with order of operations. Item~3 seeds the day's
+language: a \emph{positive} slope means $y$ rises as $x$ rises --- a \emph{positive association} on a
+scatterplot --- and a \emph{negative} slope a negative association. Debrief item~3 aloud before the notes.
+\end{teachernote}
+
+\begin{teachernote}[Guided Notes]
+The organizing arc is \emph{describe $\to$ measure $\to$ model $\to$ predict $\to$ judge}. Section~1 keeps
+description qualitative (direction/form/strength) \emph{before} any number appears. Section~2's number line
+is the key mental model: $r$ folds direction (sign) and strength ($|r|$) into one value --- the recurring
+error is calling $r=-0.9$ ``weak'' because it is negative; hammer $|r|$. Section~3 is the heart of A2.ST.2:
+students \emph{interpret} the slope as a per-unit rate and the intercept as a baseline \emph{in the story},
+not as bare numbers. Section~4 draws the interpolation/extrapolation line (the $x=12$ prediction of $20$
+made out of $15$ shots is the memorable ``extrapolation breaks'' moment) and separates correlation from
+causation with the ice-cream/drownings lurking-variable classic. Finding $r$ and the equation is a
+technology task (A2.ST.2c,e,f); here the values are \emph{given} so class time goes to reading and
+reasoning. The practice box rehearses the whole arc on a \emph{negative} association so students transfer
+the ideas past the free-throw example.
+\end{teachernote}
+
+\begin{teachernote}[Group Activity]
+Tier~R keeps it to direction and substitution --- the two survival skills. Tier~A is the conceptual core:
+item~1 forces students to read \emph{both} direction and strength ($Q$ is the ``no trend'' distractor,
+$\approx 0.10$; $R$ falls but loosely, $\approx -0.70$; $P$ is the tight riser, $0.95$). Item~2 is the
+A2.ST.2 interpretation target --- insist on \emph{units and context} (\$2{,}500 per year, not ``2.5''), and
+note the salary is in \$1000s so $\hat y=63$ means \$63{,}000. Item~3 draws the interpolation/extrapolation
+line at the data's edge ($0$--$15$ years). Tier~E item~1c is the payoff: extrapolating to $90^\circ$ gives
+$-10$ cups, which is impossible --- a concrete ``the model breaks outside its data'' moment (A2.ST.2h). Item~2
+is the causation classic: the lurking variable (fire size) drives both, so the correlation is real but the
+causal claim is false. Common slips: calling $r=-0.70$ ``weak'' for being negative; giving a slope with no
+units; trusting the $90^\circ$ extrapolation.
+\end{teachernote}
+
+\begin{teachernote}[Exit Ticket]
+Item~1 checks the two-part read: direction from the sign of the trend (falling $\Rightarrow$ negative) and
+strength from how tightly the points cluster ($r$ near $-1$). Item~2 is the interpret-and-predict target:
+part (a) must carry \emph{units and context} (\$1{,}500 less \emph{per year of age}); part (b) tests
+substitution and the interpolation call ($x=6$ is inside $1$--$10$). Item~3 is the classic
+direction-vs-strength trap --- students who pick (A) read ``negative'' as ``weak.'' Sort exit tickets into
+``got it / direction-vs-strength slip / $r$-reading slip / interpolation-extrapolation slip / causation
+slip'' to decide whether the unit review needs a two-minute re-teach before the Unit~1 test.
+\end{teachernote}
+
+\begin{teachernote}[Homework]
+Item~2 checks the whole ``read $r$'' idea: (P) tight riser $\to 0.98$, (Q) loose faller $\to -0.60$, (R)
+shapeless cloud $\to 0.05$; the common error is calling $-0.60$ ``weakest'' because it is negative. Item~3 is
+the interpretation/prediction core (A2.ST.2g,h): parts (a)--(b) demand \emph{units and context}, part (c) is
+a safe interpolation, and part (d) is the extrapolation that breaks ($85$ cm from a linear rule far past the
+data). Item~4 is the causation classic --- age is the lurking variable behind shoe size and reading. The
+extension makes ``best fit'' concrete: $y_1$ has total error $1.0$ vs.\ $y_2$'s $3.0$, so $y_1$ is the better
+fit --- an informal preview of least-squares (technology minimizes exactly this kind of total error). Note
+$y_1=1.5x+0.5$ is essentially the regression line for these points.
+\end{teachernote}
+
+\end{document}

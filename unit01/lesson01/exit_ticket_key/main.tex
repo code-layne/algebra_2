@@ -1,8 +1,12 @@
-%! Expressions and Operations — Unit 1, Lesson 1.1 — Exit Ticket (Answer Key)
+%! Linear Functions: Slope, Forms \& Graphing — Unit 1, Lesson 1.1 — Exit Ticket (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -10,46 +14,44 @@
 
 \vspace{0.10in}
 
-No notes. Show enough work that a wrong answer can still earn a right idea.
+No notes. Show your work in the space provided.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Evaluate} $2x^2-5x+|x-8|$ at $x=-3$. Substitute first, then work outward from the
-        grouping symbols.
+\begin{enumerate}[leftmargin=1.8em, itemsep=10pt]
+  \item \textbf{Write from a graph.} The line below passes through $(0,3)$ and $(2,-1)$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-2}{4}{-3}{5}
+      \draw[very thick, forest] (-1,5)--(3,-3);
+      \fill[charcoal] (0,3) circle (3pt) node[above right, font=\scriptsize]{$(0,3)$};
+      \fill[charcoal] (2,-1) circle (3pt) node[above right, font=\scriptsize]{$(2,-1)$};
+    \end{tikzpicture}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+      \item Write its equation in slope-intercept form: \ans{$y = -2x + 3$}
+            \; {\footnotesize(slope $\frac{-1-3}{2-0}=-2$, $y$-intercept $3$)}
+      \item Rewrite it in standard form $Ax+By=C$ (integers, $A\ge 0$): \ans{$2x + y = 3$}
+    \end{enumerate}
 
-        \vspace{2pt}
-        Substitute, then simplify one line at a time:
-\begin{work}
-  2x^2-5x+|x-8| &= 2(-3)^2-5(-3)+|{-3}-8| \\
-                &= 2(9)+15+|{-11}|        \\
-                &= 18+15+11
-\end{work}
-        Value: \ans{$44$}
+  \item \textbf{Write from two points.} Find the equation of the line through $(-1,-4)$ and $(2,5)$
+        in slope-intercept form. Show the slope step, then use point-slope with $(2,5)$.
+        \begin{work}
+              m &= \frac{5 - (-4)}{2 - (-1)} \\
+                &= \frac{9}{3}               \\
+                &= 3                         \\
+          y - 5 &= 3(x - 2)  \\
+          y - 5 &= 3x - 6    \\
+              y &= 3x - 1
+        \end{work}
 
-  \item \textbf{Factor completely:} $3x^2-27$.
-
-        \vspace{2pt}
-        Step 1 --- pull out the GCF: \ans{$3(x^2-9)$}
-
-        \vspace{6pt}
-        Step 2 --- keep going: \ans{$3(x+3)(x-3)$}
-
-        \vspace{6pt}
-        \textbf{Check by expanding.} Multiply your factors back out and show you land on $3x^2-27$.
-        \ansline{$(x+3)(x-3)=x^2-9$, and $3(x^2-9)=3x^2-27$.}
-
-  \item \textbf{SOL-style multiple choice.} Which expression is equivalent to
-        \TallMath{\frac{15x^4y^{-1}}{5x^2y^3}} \; ?
-        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=2pt]
-          \item $3x^2y^4$
-          \item \TallMath{\frac{3x^2}{y^4}} \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
-          \item \TallMath{\frac{3x^2}{y^2}}
-          \item \TallMath{\frac{3x^6}{y^4}}
+  \item \textbf{Multiple choice (SOL-style).} Which equation is the \emph{standard form} of
+        $y = \tfrac{1}{2}x - 3$?
+        \begin{enumerate}[label=(\Alph*), leftmargin=1.8em, itemsep=2pt]
+          \item $x - 2y = 6$ \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+          \item $x - 2y = -3$
+          \item $-x + 2y = 6$
+          \item $2x - y = 3$
         \end{enumerate}
-
-        \vspace{2pt}
-        In one sentence, what did the \emph{wrong} answer you were most tempted by get wrong?
-        \ansline{Answers vary --- A subtracts the $y$ exponents backwards, C loses the negative sign
-        on $y^{-1}$, D adds the $x$ exponents instead of subtracting.}
+        {\footnotesize Multiply $y=\tfrac12 x-3$ by $2$: $2y = x - 6 \Rightarrow x - 2y = 6$ (integers, $A=1\ge 0$).}
 \end{enumerate}
 
 \end{document}

@@ -1,6 +1,11 @@
-%! Zeros of Polynomials: the Rational Root Theorem — Unit 4, Lesson 4.4 — Slides (Beamer)
+%! The Rational Parent Function \& Transformations — Unit 4, Lesson 4.4 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -11,209 +16,338 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.4}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Zeros of Polynomials}\\[0.25cm]
-    {\color{white}\bfseries\large The Rational Root Theorem}\\[1.0cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
+    {\color{white}\bfseries\LARGE The Rational Parent Function}\\[0.35cm]
+    {\color{white}\bfseries\large and Transformations}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{The zero that was never on the list}
+  \forestheader{Same outputs. Three inputs later.}
   \sectionlabel{Hook}
   \begin{columns}[T]
     \begin{column}{0.52\textwidth}
-      \[ h(x) = 2x^3 - 3x^2 - 11x + 6 \]
-      \vspace{2pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Yesterday you tested the divisors of $6$ and found $r = -2$ and $r = 3$.
-        \item Dividing finishes the job: $h(x) = (x+2)(2x-1)(x-3)$.
-        \item So the third zero is $\mathbf{\tfrac12}$ --- and $\tfrac12$ was never on the list.
+      \centering
+      \renewcommand{\arraystretch}{1.25}
+      \begin{tabular}{|c|c||c|c|}
+      \hline
+      $x$ & $y=\frac1x$ & $x$ & $y=\frac{1}{x-3}$ \\ \hline
+      $-2$ & $-\frac12$ & $1$ & $-\frac12$ \\ \hline
+      $-1$ & $-1$       & $2$ & $-1$ \\ \hline
+      $0$  & undef.     & $3$ & undef. \\ \hline
+      $1$  & $1$        & $4$ & $1$ \\ \hline
+      $2$  & $\frac12$  & $5$ & $\frac12$ \\ \hline
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{The sentence for the whole period}
+        \textbf{Shifting a rational function carries its asymptotes with it.} \\[3pt]
+        The blow-up moved from $x=0$ to $x=3$. The settling-down value stayed at $y=0$. \\[3pt]
+        \textbf{The wall moved. The floor did not.}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE PARENT
+\begin{frame}[t, plain]
+  \forestheader{The parent: $f(x)=\dfrac{1}{x}$}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-5}{5}{-5}{5}
+        \begin{scope} \clip (-5,-5) rectangle (5,5);
+          \draw[very thick, forest, domain=-5:-0.2, samples=100, smooth] plot (\x,{1/(\x)});
+          \draw[very thick, forest, domain=0.2:5,  samples=100, smooth] plot (\x,{1/(\x)});
+        \end{scope}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item A \textbf{hyperbola} --- two separate \textbf{branches}.
+        \item VA $x=0$; \; HA $y=0$.
+        \item Domain: all reals, $x\neq0$. \; Range: all reals, $y\neq0$.
+        \item Decreasing on $(-\infty,0)$ \emph{and} on $(0,\infty)$ --- two intervals, never one.
+        \item Origin symmetry: an \textbf{odd} function.
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize End behavior: $y\to0$ in both directions.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% NO INTERCEPTS
+\begin{frame}[t, plain]
+  \forestheader{The fact nobody believes: this parent has \emph{no} intercepts}
+  \sectionlabel[goldacc]{Hold the line}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{No $x$-intercept}
+        A fraction is zero only when its \textbf{numerator} is zero. \\[3pt]
+        The numerator is $1$. It is never zero.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{No $y$-intercept}
+        A $y$-intercept is $f(0)$. \\[3pt]
+        But $0$ is not in the domain --- there is nothing to plot.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  {\footnotesize Every parent before this one passed through the origin: $y=x$, $y=x^2$, $y=|x|$,
+  $y=x^3$. This one misses both axes entirely, and that is the first thing that makes it different.}
+\end{frame}
+
+% THE TWO SHIFTS
+\begin{frame}[t, plain]
+  \forestheader{Each shift moves one asymptote}
+  \sectionlabel[goldacc]{The heart of the lesson}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-4}{7}{-4}{4}
+        \draw[navy, dashed, thick] (3,-4)--(3,4);
+        \node[navy, font=\tiny, above] at (3,4) {$x=3$};
+        \begin{scope} \clip (-4,-4) rectangle (7,4);
+          \draw[very thick, forest!35, dashed, domain=-4:-0.25, samples=90, smooth] plot (\x,{1/(\x)});
+          \draw[very thick, forest!35, dashed, domain=0.25:7, samples=90, smooth] plot (\x,{1/(\x)});
+          \draw[very thick, forest, domain=-4:2.75, samples=90, smooth] plot (\x,{1/((\x)-3)});
+          \draw[very thick, forest, domain=3.25:7, samples=90, smooth] plot (\x,{1/((\x)-3)});
+        \end{scope}
+      \end{tikzpicture} \\[2pt]
+      {\footnotesize $y=\dfrac{1}{x-3}$ --- right $3$, so the \textbf{VA} goes to $x=3$.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-5}{5}{-3}{6}
+        \draw[navy, dashed, thick] (-5,2)--(5,2);
+        \node[navy, font=\tiny, below right] at (3.4,2) {$y=2$};
+        \begin{scope} \clip (-5,-3) rectangle (5,6);
+          \draw[very thick, forest!35, dashed, domain=-5:-0.33, samples=90, smooth] plot (\x,{1/(\x)});
+          \draw[very thick, forest!35, dashed, domain=0.33:5, samples=90, smooth] plot (\x,{1/(\x)});
+          \draw[very thick, forest, domain=-5:-0.2, samples=90, smooth] plot (\x,{1/(\x)+2});
+          \draw[very thick, forest, domain=0.25:5, samples=90, smooth] plot (\x,{1/(\x)+2});
+        \end{scope}
+      \end{tikzpicture} \\[2pt]
+      {\footnotesize $y=\dfrac{1}{x}+2$ --- up $2$, so the \textbf{HA} goes to $y=2$.}
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  \begin{block}{}
+    \centering\textbf{The asymptotes are the parent's axes, and they travel with it.} Draw the two
+    dashed lines first and the branches have nowhere else to go.
+  \end{block}
+\end{frame}
+
+% STRETCH AND FLIP
+\begin{frame}[t, plain]
+  \forestheader{$a$ stretches and flips --- and moves no asymptote}
+  \sectionlabel{Scaling}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \begin{scope}
+          \lgrid{-5}{5}{-5}{5}
+          \begin{scope} \clip (-5,-5) rectangle (5,5);
+            \draw[very thick, forest!35, dashed, domain=-5:-0.2, samples=90, smooth] plot (\x,{1/(\x)});
+            \draw[very thick, forest!35, dashed, domain=0.2:5, samples=90, smooth] plot (\x,{1/(\x)});
+            \draw[very thick, forest, domain=-5:-0.6, samples=90, smooth] plot (\x,{3/(\x)});
+            \draw[very thick, forest, domain=0.6:5, samples=90, smooth] plot (\x,{3/(\x)});
+          \end{scope}
+          \node[charcoal, font=\tiny] at (0,-6.6){$y=\frac3x$};
+        \end{scope}
+        \begin{scope}[xshift=13cm]
+          \lgrid{-5}{5}{-5}{5}
+          \begin{scope} \clip (-5,-5) rectangle (5,5);
+            \draw[very thick, forest!35, dashed, domain=-5:-0.2, samples=90, smooth] plot (\x,{1/(\x)});
+            \draw[very thick, forest!35, dashed, domain=0.2:5, samples=90, smooth] plot (\x,{1/(\x)});
+            \draw[very thick, forest, domain=-5:-0.2, samples=90, smooth] plot (\x,{-1/(\x)});
+            \draw[very thick, forest, domain=0.2:5, samples=90, smooth] plot (\x,{-1/(\x)});
+          \end{scope}
+          \node[charcoal, font=\tiny] at (0,-6.6){$y=-\frac1x$};
+        \end{scope}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $|a|>1$: branches pushed \textbf{away} from the asymptotes.
+        \item $0<|a|<1$: branches pulled \textbf{in}.
+        \item $a<0$: branches jump to the \textbf{other pair} of regions.
+      \end{itemize}
+      \vspace{4pt}
+      \begin{block}{And the surprise}
+        $f(4x)=\dfrac{1}{4x}=\dfrac{1/4}{x}$ \\[3pt]
+        On \emph{this} parent, $f(kx)$ and $kf(x)$ give the same family. One letter is enough.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% GENERAL FORM
+\begin{frame}[t, plain]
+  \forestheader{All together: $g(x)=\dfrac{a}{x-h}+k$}
+  \sectionlabel[goldacc]{General form}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-3}{8}{-4}{6}
+        \draw[navy, dashed, thick] (3,-4)--(3,6);
+        \draw[navy, dashed, thick] (-3,1)--(8,1);
+        \node[navy, font=\tiny, above] at (3,6) {$x=3$};
+        \node[navy, font=\tiny, below left] at (-0.6,1) {$y=1$};
+        \begin{scope} \clip (-3,-4) rectangle (8,6);
+          \draw[very thick, forest, domain=-3:2.6, samples=100, smooth] plot (\x,{2/((\x)-3)+1});
+          \draw[very thick, forest, domain=3.4:8, samples=100, smooth] plot (\x,{2/((\x)-3)+1});
+        \end{scope}
+        \fill[charcoal] (1,0) circle (3.4pt);
+      \end{tikzpicture} \\[2pt]
+      {\footnotesize $g(x)=\dfrac{2}{x-3}+1$}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $x-3=0 \Rightarrow$ \textbf{VA} $x=3$.
+        \item The outside $+1$ \textbf{is} the \textbf{HA} $y=1$.
+        \item \textbf{Center} $(3,1)$ --- where they cross, and \emph{not on the graph}.
+        \item Domain $x\neq3$; \; Range $y\neq1$.
+        \item $y$-int: $g(0)=\frac{2}{-3}+1=\frac13$. \; $x$-int: $\frac{2}{x-3}=-1 \Rightarrow (1,0)$.
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize Intercepts are \textbf{computed}, never read off the picture.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% NEVER CROSSES
+\begin{frame}[t, plain]
+  \forestheader{Does it ever cross its horizontal asymptote?}
+  \sectionlabel[goldacc]{Stronger than 4.0}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \[ g(x)=1 \quad\Longrightarrow\quad \frac{2}{x-3}=0 \]
+      \vspace{-6pt}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item A fraction is zero only when its \textbf{numerator} is zero.
+        \item The numerator is $2$.
+        \item \textbf{Impossible.} No solution, ever.
       \end{itemize}
     \end{column}
     \begin{column}{0.46\textwidth}
-      \begin{block}{Two questions}
-        Where did that $2$ in the denominator come from? \\[4pt]
-        And which numbers \emph{are} worth testing?
+      \begin{block}{But be careful what you conclude}
+        A \emph{transformed parent} never crosses its HA --- its numerator is a nonzero constant.
+        \\[3pt]
+        Rational functions in general \textbf{may} cross: $\frac{2x}{x^2+1}$ crosses $y=0$ at the
+        origin (Lesson 4.0).
       \end{block}
-      \vspace{3pt}
-      {\footnotesize Guessing is hopeless --- there are infinitely many numbers. A test is only
-       useful if the list of suspects is \textbf{finite}.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% THE THEOREM
+% GRAPH TO EQUATION
 \begin{frame}[t, plain]
-  \forestheader{The Rational Root Theorem}
-  \sectionlabel[goldacc]{Foundation}
-  \begin{block}{For $f(x) = a_nx^n + \cdots + a_1x + a_0$ with \emph{integer} coefficients}
-    If $\dfrac{p}{q}$ is a rational zero of $f$ in lowest terms, then \\[4pt]
-    \hspace{1em} $p$ divides the \textbf{constant term} $a_0$, \quad and \quad
-    $q$ divides the \textbf{leading coefficient} $a_n$.
+  \forestheader{Backwards: write the equation from the graph}
+  \sectionlabel[goldacc]{A2.F.1b}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-6}{5}{-6}{3}
+        \draw[navy, dashed, thick] (-1,-6)--(-1,3);
+        \draw[navy, dashed, thick] (-6,-2)--(5,-2);
+        \node[navy, font=\tiny, above right] at (-1,2.2) {$x=-1$};
+        \node[navy, font=\tiny, above left] at (4.6,-2) {$y=-2$};
+        \begin{scope} \clip (-6,-6) rectangle (5,3);
+          \draw[very thick, forest, domain=-6:-1.35, samples=100, smooth] plot (\x,{2/((\x)+1)-2});
+          \draw[very thick, forest, domain=-0.6:5, samples=100, smooth] plot (\x,{2/((\x)+1)-2});
+        \end{scope}
+        \fill[charcoal] (0,0) circle (3.4pt);
+        \fill[charcoal] (1,-1) circle (3.4pt) node[above right, font=\tiny]{$(1,-1)$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.57\textwidth}
+      \begin{enumerate}\setlength{\itemsep}{2pt}
+        \item VA $x=-1 \Rightarrow h=-1$.
+        \item HA $y=-2 \Rightarrow k=-2$.
+        \item $y=\dfrac{a}{x+1}-2$.
+        \item Substitute $(1,-1)$: \; $-1=\dfrac a2-2 \Rightarrow a=2$.
+        \item \textbf{Check on a second point}: at $(0,0)$, $\frac21-2=0$ \checkmark
+      \end{enumerate}
+      \vspace{3pt}
+      \begin{block}{Watch the sign}
+        The wall is at $x=-1$, and the equation shows $x+1$, because $x-(-1)=x+1$.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% COMPARE + DISGUISE
+\begin{frame}[t, plain]
+  \forestheader{Compare, contrast --- and one disguise}
+  \sectionlabel{A2.F.1a/e}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.2}
+      {\footnotesize
+      \begin{tabular}{|l|c|c|}
+      \hline
+       & $y=x^2$ or $y=|x|$ & $y=\frac1x$ \\ \hline
+      Domain     & all reals & $x\neq0$ \\ \hline
+      Range      & $y\ge0$   & $y\neq0$ \\ \hline
+      Asymptotes & none      & $x=0$, $y=0$ \\ \hline
+      Intercepts & $(0,0)$   & none \\ \hline
+      Pieces     & one       & two branches \\ \hline
+      Symmetry   & $y$-axis  & origin \\ \hline
+      \end{tabular}}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{The disguise}
+        \[ \frac{x-1}{x-3}=\frac{(x-3)+2}{x-3}=1+\frac{2}{x-3} \]
+        It was the anchor all along. VA $x=3$, HA $y=1$.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Top and bottom both \textbf{linear} $\Rightarrow$ a shifted, stretched $\frac1x$.
+      And the leftover $k$ \emph{is} the ratio of the leading coefficients --- which is why Lesson
+      4.0's degree rule was true.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Today in one line --- and where it goes next}
+  \sectionlabel[goldacc]{Close}
+  \begin{block}{}
+    \centering\textbf{The asymptotes are the parent's axes, and they travel with the graph.} \\[3pt]
+    $x=h$ from the denominator (which does the opposite of what it says); $y=k$ from the number
+    outside; $a$ moves neither.
   \end{block}
-  \vspace{4pt}
-  \[ \text{candidates} \;=\; \pm\,\frac{\text{divisors of the constant term}}{\text{divisors of the leading coefficient}} \]
-  \vspace{-4pt}
-  \begin{itemize}\setlength{\itemsep}{3pt}
-    \item Constant on \textbf{top}. Leading coefficient on the \textbf{bottom}. Reduce, drop repeats, keep every $\pm$.
-  \end{itemize}
-\end{frame}
-
-% WHY IT IS TRUE
-\begin{frame}[t, plain]
-  \forestheader{Why it has to be true}
-  \sectionlabel{Reasoning}
+  \vspace{6pt}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      From the Warm-Up:
-      \[ h(x) = (x-3)(2x-1)(x+2) \]
-      \vspace{-6pt}
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item Leading coefficients of the factors: $1\cdot 2\cdot 1 = \mathbf{2}$ --- that \emph{is} $a_n$.
-        \item Constant terms of the factors: $(-3)(-1)(2) = \mathbf{6}$ --- that \emph{is} $a_0$.
-      \end{itemize}
-    \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{The idea in one line}
-        A zero $\frac{p}{q}$ comes from a factor $(qx - p)$. \\[4pt]
-        All the $q$'s multiply to the leading coefficient; all the $p$'s multiply to the constant
-        term. \\[4pt]
-        Neither has anywhere to hide.
+      \begin{block}{Errors that cost the most}
+        \begin{itemize}\setlength{\itemsep}{2pt}
+          \item Flipping the sign of $h$.
+          \item Reading the HA off the numerator.
+          \item Forgetting the \emph{range} exclusion.
+          \item Plotting the center as a point of the graph.
+        \end{itemize}
       \end{block}
     \end{column}
-  \end{columns}
-\end{frame}
-
-% BUILDING THE LIST
-\begin{frame}[t, plain]
-  \forestheader{Building the list}
-  \sectionlabel{Method}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{(a)} $f(x) = x^3 - 4x^2 + x + 6$ \\[3pt]
-      $p \mid 6$: \; $\pm1, \pm2, \pm3, \pm6$ \qquad $q \mid 1$: \; $\pm1$ \\[3pt]
-      Candidates: $\pm1, \pm2, \pm3, \pm6$ \\[8pt]
-      \textbf{(b)} $g(x) = 4x^3 - 4x^2 - x + 1$ \\[3pt]
-      $p \mid 1$: \; $\pm1$ \qquad $q \mid 4$: \; $\pm1, \pm2, \pm4$ \\[3pt]
-      Candidates: $\pm1, \pm\tfrac12, \pm\tfrac14$
-    \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{Leading coefficient $= 1$?}
-        Then every $q$ is $\pm1$, so the candidates are just the \textbf{divisors of the constant
-        term}. That is most of the problems you will see.
+      \begin{block}{Next: Lesson 4.5}
+        The denominator factors into \emph{two} pieces. The asymptotes stop being visible in the
+        equation, and the graph gets assembled instead of read --- holes vs.\ walls, a degree
+        comparison, intercepts, and a sign chart.
       \end{block}
-      \vspace{3pt}
-      {\footnotesize \textbf{The error of the day:} flipping the fraction. Ask yourself whether $4$
-       could plausibly be a zero of $g$ --- it is not close.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% THE WORKFLOW
-\begin{frame}[t, plain]
-  \forestheader{List $\rightarrow$ Test $\rightarrow$ Divide $\rightarrow$ Finish}
-  \sectionlabel[goldacc]{Workflow}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      $f(x) = x^3 - 4x^2 + x + 6$ \\[4pt]
-      \textbf{1. List:} $\pm1, \pm2, \pm3, \pm6$ \\[3pt]
-      \textbf{2. Test:} $f(1) = 4$, \; $f(-1) = 0$ \\[3pt]
-      \textbf{3. Divide} by $x+1$:
-      \begin{center}
-      \renewcommand{\arraystretch}{1.3}
-      \begin{tabular}{r|rrrr}
-      $-1$ & $1$ & $-4$ & $1$ & $6$ \\
-           &     & $-1$ & $5$ & $-6$ \\ \cline{2-5}
-           & $1$ & $-5$ & $6$ & $0$ \\
-      \end{tabular}
-      \end{center}
-      \textbf{4. Finish:} $x^2-5x+6 = (x-2)(x-3)$
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Answer}
-        \[ f(x) = (x+1)(x-2)(x-3) \]
-        Zeros: $-1$, $2$, $3$.
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize \textbf{5. Verify} --- it is part of the standard. $f(3) = 27-36+3+6 = 0$, and a
-       cubic has at most $3$ zeros, so the list is complete.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% SHORTENING THE SEARCH
-\begin{frame}[t, plain]
-  \forestheader{You almost never test the whole list}
-  \sectionlabel{Strategy}
-  \begin{itemize}\setlength{\itemsep}{7pt}
-    \item \textbf{Read the graph.} The $x$-intercepts tell you which candidates to try --- and a
-      crossing between $-1$ and $0$ tells you to look at the \emph{fractions}.
-    \item \textbf{Shrink the problem.} Once one zero is found, work with the depressed polynomial:
-      lower degree, shorter list. When it reaches a quadratic, stop hunting --- factor it or use the
-      quadratic formula.
-    \item \textbf{Test cheaply.} The Remainder Theorem evaluates a candidate in seconds. Save
-      synthetic division for the winners.
-  \end{itemize}
-  \vspace{3pt}
-  \begin{block}{Same task, different words}
-    ``Find the zeros of $f$'' \; $=$ \; ``solve $f(x)=0$'' \; $=$ \; ``find the $x$-intercepts of the
-    graph of $f$.''
-  \end{block}
-\end{frame}
-
-% THE TWO WARNINGS
-\begin{frame}[t, plain]
-  \forestheader{What the theorem does \emph{not} promise}
-  \sectionlabel[goldacc]{Limits}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{1. The list is suspects, not convictions.}
-      \[ k(x) = x^3 - 3x - 1 \]
-      Candidates: $\pm 1$. \; $k(1) = -3$, \; $k(-1) = 1$. \\[4pt]
-      \textbf{No rational zeros at all} --- yet the graph crosses the $x$-axis three times. All three
-      zeros are irrational.
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \footnotesize
-      \textbf{2. ``Rational'' is a real restriction.}
-      \[ x^3 - x^2 - 2x + 2 = (x-1)(x^2-2) \]
-      The list finds $x=1$. The other two zeros, $\pm\sqrt2$, arrive from the \emph{depressed}
-      polynomial --- they were never candidates.
-      \vspace{4pt}
-      \begin{block}{So}
-        An empty candidate list is information, not a mistake.
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% WHERE THIS GOES
-\begin{frame}[t, plain]
-  \forestheader{And when the depressed polynomial runs out of real answers?}
-  \sectionlabel{Connections}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \[ x^3 - x^2 + 4x - 4 = 0 \]
-      Candidates $\pm1, \pm2, \pm4$; \; $x=1$ works. \\[4pt]
-      Depressed polynomial: $x^2 + 4$. \\[4pt]
-      $x^2 = -4$ has \textbf{no real solutions}. \\[6pt]
-      A cubic ``wants'' three solutions. We found one. \textbf{Where did the other two go?}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \textbf{Today:} build the candidate list, test it, divide, and finish --- every \emph{rational}
-      zero, plus whatever the depressed polynomial gives up.\\[8pt]
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item \textbf{4.5} Fundamental Theorem of Algebra \& complex zeros --- exactly $n$ solutions,
-          in conjugate pairs.
-        \item \textbf{4.6} Graphing polynomial functions \& modeling.
-      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}

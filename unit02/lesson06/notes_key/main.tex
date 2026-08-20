@@ -1,0 +1,186 @@
+%! Systems Involving Quadratics — Unit 2, Lesson 2.6 — Guided Notes (Answer Key)
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+
+\begin{document}
+
+\pageheader{Unit 2, Lesson 2.6}{Guided Notes --- Answer Key}
+
+\vspace{0.10in}
+
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item read the \emph{solution} of a system as the \emph{point(s) of intersection} of the two graphs;
+  \item solve linear--quadratic systems by \emph{substitution} and quadratic--quadratic systems by setting expressions equal;
+  \item tell how many solutions a system has (0 / 1 / 2), verify a solution in \emph{both} equations, and model a situation.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.02in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}
+\vocabans{System of equations}{two or more equations in the same variables, taken together}
+\vocabans{Solution of a system (ordered pair)}{an $(x,y)$ making \emph{every} equation true at once}
+\vocabans{Point of intersection}{where the two graphs cross --- the picture of a solution}
+\vocabans{Substitution}{replace $y$ from one equation into the other to get one equation in $x$}
+\vocabans{Linear--quadratic / quadratic--quadratic system}{a line \& a parabola / two parabolas}
+\end{vocabbox}
+
+\begin{hookbox}
+You can now solve \emph{any} single quadratic. But what if two graphs are in play at once --- a line and a
+parabola, or two parabolas --- and you need the point(s) they \emph{share}? Those shared points are the
+\textbf{solutions of a system}. The trick: a little algebra turns the two-equation system back into \emph{one}
+quadratic equation --- the kind you already solve.
+\end{hookbox}
+
+\begin{notesbox}{1. What is a solution of a system?}
+A \textbf{system} is two equations considered together. A \textbf{solution} is an ordered pair $(x,y)$ that makes
+\emph{both} true at once --- on the graph, a \textbf{point of intersection}. Below, the anchor parabola
+$y=x^2-2x-3$ meets the line $y=x-3$. Read the two crossing points off the graph, then check one with algebra.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-2}{4}{-5}{4}
+  \begin{scope}\clip (-2,-5) rectangle (4,4);
+    \draw[very thick, forest, domain=-1.6:3.4, samples=60, smooth] plot (\x,{(\x-1)*(\x-1)-4});
+    \draw[very thick, navy, domain=-2:4] plot (\x,{\x-3});
+  \end{scope}
+  \fill[charcoal] (0,-3) circle (3pt); \fill[charcoal] (3,0) circle (3pt);
+  \node[font=\scriptsize, navy] at (3.5,1.4){$y=x-3$};
+  \node[font=\scriptsize, forest] at (-1.5,2.6){$y=x^2\!-\!2x\!-\!3$};
+\end{tikzpicture}
+\end{center}
+Intersection points (read from the graph): \ans{$(0,-3)$} and \ans{$(3,0)$}. \\[3pt]
+\textbf{Check $(3,0)$ in both:} parabola $\ (3)^2-2(3)-3=\ans{$0$}$; \ line $\ (3)-3=\ans{$0$}$. \
+Both give $y=0$, so $(3,0)$ \emph{is} a solution. A point on only \emph{one} graph does not count.
+\end{notesbox}
+
+\begin{notesbox}{2. Solve a linear--quadratic system by substitution}
+Both equations are solved for $y$, so the two $y$'s must be \emph{equal} at any shared point. Set them equal ---
+this \textbf{substitution} removes $y$ and leaves \emph{one} quadratic equation.
+\vspace{2pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} X@{}}
+\textbf{Protocol} &
+\textbf{Anchor system:}\ $\ y=x^2-2x-3,\quad y=x-3$ \\
+\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=0pt]
+  \item Set the $y$'s equal.
+  \item Standard form $=0$.
+  \item Solve (factor / formula).
+  \item Back-substitute for $y$.
+  \item Write ordered pairs.
+  \item Check both.
+\end{enumerate}
+&
+Set equal: $x^2-2x-3=x-3$. \\
+Standard form: $x^2-\ans{$3$}\,x=0$. \\
+Factor: $x(x-\ans{$3$})=0\Rightarrow x=\ans{$0$},\ \ans{$3$}$. \\
+Back-substitute into $y=x-3$: \ $x=0\!\to\!y=\ans{$-3$}$, \ $x=3\!\to\!y=\ans{$0$}$. \\
+Solutions: \ \ans{$(0,-3)$} and \ans{$(3,0)$}. \\
+\end{tabularx}
+\end{center}
+\emph{The system never became anything new} --- substitution turned it into the quadratic $x^2-3x=0$ from your Warm-Up.
+\end{notesbox}
+
+\begin{notesbox}{3. How many solutions? --- the discriminant counts intersections}
+A line can \textbf{cross} a parabola twice, \textbf{touch} it once (tangent), or \textbf{miss} it. After
+substitution you get a quadratic; its \textbf{discriminant} $b^2-4ac$ (Lesson 2.5) tells you which --- \emph{before}
+you finish. Watch the anchor parabola $y=x^2-2x-3$ meet three horizontal lines.
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{5}{-7}{6}
+  \begin{scope}\clip (-3,-7) rectangle (5,6);
+    \draw[very thick, forest, domain=-2.7:4.7, samples=80, smooth] plot (\x,{(\x-1)*(\x-1)-4});
+    \draw[very thick, navy] (-3,5)--(5,5);
+    \draw[very thick, redacc] (-3,-4)--(5,-4);
+    \draw[very thick, goldacc] (-3,-6)--(5,-6);
+  \end{scope}
+  \fill[charcoal] (-2,5) circle (3pt); \fill[charcoal] (4,5) circle (3pt);
+  \fill[charcoal] (1,-4) circle (3pt);
+  \node[font=\scriptsize, navy]   at (4.0,5.7){$y=5$};
+  \node[font=\scriptsize, redacc] at (4.2,-3.3){$y=-4$};
+  \node[font=\scriptsize, goldacc] at (4.2,-6.7){$y=-6$};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+Substitute each line, reach standard form, and read the discriminant:
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{@{}l l c X@{}}
+\textbf{Line} & \textbf{Collapsed quadratic} & \textbf{$b^2-4ac$} & \textbf{\# intersection points} \\
+\hline
+$y=5$  & $x^2-2x-8=0$ & \ans{$36$} & \ans{2 (crosses twice)} \\
+$y=-4$ & $x^2-2x+1=0$ & \ans{$0$}  & \ans{1 (tangent at the vertex)} \\
+$y=-6$ & $x^2-2x+3=0$ & \ans{$-8$} & \ans{0 (line misses the parabola)} \\
+\end{tabularx}
+\end{center}
+\emph{Same rule as Lesson 2.5:} $b^2-4ac>0\Rightarrow 2$ points, $=0\Rightarrow 1$ (tangent), $<0\Rightarrow 0$.
+\end{notesbox}
+
+\begin{notesbox}{4. Quadratic--quadratic systems}
+Two parabolas can also meet in $0$, $1$, or $2$ points. Both are solved for $y$, so again \textbf{set the
+expressions equal}. Solve $\ y=x^2,\ \ y=-x^2+8$:
+\[ x^2=-x^2+8\ \Rightarrow\ \ans{$2$}\,x^2=8\ \Rightarrow\ x^2=\ans{$4$}\ \Rightarrow\ x=\ans{$\pm2$}. \]
+Back-substitute into $y=x^2$: both give $y=\ans{$4$}$, so the solutions are \ans{$(-2,4)$} and \ans{$(2,4)$}.
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{3}{-1}{9}
+  \begin{scope}\clip (-3,-1) rectangle (3,9);
+    \draw[very thick, forest, domain=-3:3, samples=60, smooth] plot (\x,{\x*\x});
+    \draw[very thick, navy, domain=-3:3, samples=60, smooth] plot (\x,{-\x*\x+8});
+  \end{scope}
+  \fill[charcoal] (-2,4) circle (3pt); \fill[charcoal] (2,4) circle (3pt);
+  \node[font=\scriptsize, forest] at (2.4,7.6){$y=x^2$};
+  \node[font=\scriptsize, navy]   at (-2.0,8.4){$y=-x^2\!+\!8$};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\textbf{Watch out:} if the two $x^2$ terms are \emph{identical}, they cancel and you are left with a \emph{linear}
+equation --- at most one solution. Example: $y=x^2+1,\ y=x^2-2x+5\Rightarrow 1=-2x+5\Rightarrow x=\ans{$2$}$.
+\end{notesbox}
+
+\begin{notesbox}{5. Model --- break-even}
+A company's monthly \textbf{revenue} is $y=-x^2+24x$ and its \textbf{cost} is $y=8x+48$ (both in hundreds of
+dollars, $x$ in hundreds of units). \emph{Break-even} is where revenue $=$ cost.
+\[ -x^2+24x=8x+48\ \Rightarrow\ x^2-16x+48=0\ \Rightarrow\ (x-4)(x-\ans{$12$})=0\ \Rightarrow\ x=\ans{$4$},\ \ans{$12$}. \]
+So the company breaks even at $x=\ans{$4$}$ and $x=\ans{$12$}$ (hundred units); between them revenue
+\emph{exceeds} cost (profit). Points: \ans{$(4,80)$} and \ans{$(12,144)$}.
+\end{notesbox}
+
+\begin{practicebox}
+\textbf{Solve each system. Write solutions as ordered pairs; check that the coordinates match.}
+\begin{enumerate}[leftmargin=1.9em, nosep, itemsep=1pt]
+  \item $y=x^2-4x+5,\ \ y=x+1$
+    \begin{work}
+      x^2-4x+5 &= x+1 \\
+      x^2-5x+4 &= 0 \\
+      (x-1)(x-4) &= 0 \\
+      x &= 1,\ 4 \ \Rightarrow\ (1,2) \text{ and } (4,5)
+    \end{work}
+  \item $y=x^2-3,\ \ y=-x^2+5$
+    \begin{work}
+      x^2-3 &= -x^2+5 \\
+      2x^2 &= 8 \\
+      x &= \pm2 \ \Rightarrow\ (-2,1) \text{ and } (2,1)
+    \end{work}
+  \item Without solving: how many solutions does $\ y=x^2,\ \ y=2x-1$ have?
+    \begin{work}
+      x^2-2x+1 &= 0 \\
+      b^2-4ac &= 0 \ \Rightarrow\ \text{one solution, tangent at } (1,1)
+    \end{work}
+\end{enumerate}
+\end{practicebox}
+
+\end{document}

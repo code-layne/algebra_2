@@ -1,10 +1,20 @@
-%! Simplifying Radicals; Adding \& Subtracting — Unit 6, Lesson 6.2 — Guided Notes (Answer Key)
+%! Graphing Exponential Functions and Transformations — Unit 6, Lesson 6.2 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
-\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% g(x) = a*b^(x-h) + k, plotted as a*exp((ln b)(x-h))+k: pgfmath's pow() is unreliable for
+% negative and fractional exponents, but exp() is not.
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax
+% ln2 = 0.693147   ln3 = 1.098612   ln(1/2) = -0.693147   ln(1/3) = -1.098612
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+% Horizontal asymptote line: {xmin}{xmax}{k}
+\newcommand{\hasym}[3]{\draw[navy, dashed, semithick] (#1,#3)--(#2,#3);}
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
 % The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
 % paragraph, so without them each term label gets pulled onto the previous answer's line.
@@ -21,9 +31,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item use the \emph{product} and \emph{quotient} properties of radicals --- and explain why they follow from yesterday's exponent rules rather than being new rules;
-  \item write a radical in \emph{simplest form}, with numeric and algebraic radicands and with indices above $2$;
-  \item \emph{add and subtract} radicals by collecting \emph{like radicals}, simplifying first so that I can tell which ones are like.
+  \item graph $g(x)=a\,b^{\,x-h}+k$ by moving the parent $y=b^{x}$, and read off its horizontal asymptote, range, and $y$-intercept without plotting a single point;
+  \item explain why $f(x)+k$ is the \emph{only} transformation that moves the asymptote --- and therefore the only one that changes the range;
+  \item tell the two minus signs apart: $-b^{x}$ flips the graph over the $x$-axis, while $b^{-x}$ flips it over the $y$-axis and turns growth into decay.
 \end{itemize}
 \end{objectivebox}
 
@@ -33,308 +43,308 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
-\vocabans{Product Property of Radicals}{$\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$ --- a radical splits over multiplication (for an even index, $a$ and $b$ must be non-negative)}
-\vocabans{Quotient Property of Radicals}{$\sqrt[n]{a/b}=\sqrt[n]{a}\big/\sqrt[n]{b}$, $b\ne 0$ --- take the root of the top and of the bottom}
-\vocabans{Simplest radical form}{no factor of the radicand is a perfect $n$th power, no fractions under the radical, and no radical in a denominator}
-\vocabans{Like radicals}{radicals with the \emph{same index} and the \emph{same radicand}; only like radicals can be added or subtracted, and only the numbers in front change}
+\vocabans{Transformation form $g(x)=a\,b^{\,x-h}+k$}{the parent $y=b^{x}$ with all four moves attached: $a$ stretches or flips it, $h$ slides it sideways, $k$ slides it up or down}
+\vocabans{Vertical shift $k$ --- the asymptote mover}{adding $k$ moves the whole graph \emph{and} its horizontal asymptote to $y=k$, so the range shifts with it}
+\vocabans{Horizontal shift $h$}{$b^{\,x-h}$ slides the graph $h$ units right ($h$ left if $h$ is negative); the asymptote and the range are unchanged}
+\vocabans{Vertical stretch / compression / reflection ($a$)}{$|a|>1$ stretches, $0<|a|<1$ compresses, and $a<0$ reflects across the $x$-axis; $a$ sets the $y$-intercept but never moves the asymptote}
+\vocabans{Reflection across the $y$-axis, $f(-x)$}{replacing $x$ with $-x$; for an exponential this turns growth into decay, since $b^{-x}=\left(\frac1b\right)^{x}$}
 \end{vocabbox}
 
 \begin{hookbox}
-Two of the three statements below are \textbf{true}. One is a lie. Test each one with a decimal
-approximation and mark it T or F.
+Three graphs. Two of the equations contain a $3$, and both graphs moved --- but only \emph{one} of
+them moved the dashed line.
 \begin{center}
-\renewcommand{\arraystretch}{1.8}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
-(a) \; $\sqrt{8}\cdot\sqrt{2} = 4$ & (b) \; $\sqrt{9}+\sqrt{16} = \sqrt{25}$ &
-(c) \; $\sqrt{8}+\sqrt{18} = 5\sqrt{2}$ \\
-\ans{T} \; {\small($\sqrt{16}=4$)} & \ans{F} \; {\small($7\ne 5$)} &
-\ans{T} \; {\small($2.828+4.243=7.071$)} \\
-\end{tabularx}
+\begin{tikzpicture}[scale=0.30]
+  % I: y = 2^x
+  \begin{scope}
+    \lgrid{-3}{6}{-5}{8}
+    \begin{scope}
+      \clip (-3,-5) rectangle (6,8);
+      \expgraph{1}{0.693147}{0}{0}{-3}{6}
+    \end{scope}
+    \hasym{-3}{6}{0}
+    \node[charcoal, font=\small] at (1.5,-6.6) {\textbf{I}};
+  \end{scope}
+  % II: y = 2^x - 3
+  \begin{scope}[xshift=11.5cm]
+    \lgrid{-3}{6}{-5}{8}
+    \begin{scope}
+      \clip (-3,-5) rectangle (6,8);
+      \expgraph{1}{0.693147}{0}{-3}{-3}{6}
+    \end{scope}
+    \hasym{-3}{6}{-3}
+    \node[charcoal, font=\small] at (1.5,-6.6) {\textbf{II}};
+  \end{scope}
+  % III: y = 2^(x-3)
+  \begin{scope}[xshift=23cm]
+    \lgrid{-3}{6}{-5}{8}
+    \begin{scope}
+      \clip (-3,-5) rectangle (6,8);
+      \expgraph{1}{0.693147}{3}{0}{-3}{6}
+    \end{scope}
+    \hasym{-3}{6}{0}
+    \node[charcoal, font=\small] at (1.5,-6.6) {\textbf{III}};
+  \end{scope}
+\end{tikzpicture}
 \end{center}
-The lie is \ans{(b)}. Look at what the two true ones have in common and what the false one does
-differently: \ansline{(a) and (c) both involve \emph{multiplication} inside the radical --- $8\cdot2$
-in one, and $8=4\cdot2$, $18=9\cdot2$ in the other. (b) tries to split a radical over
-\emph{addition}, and that is the one that fails.}
 \vspace{2pt}
-That is today's whole lesson in one line. A radical \textbf{splits over multiplication} --- always.
-It \textbf{never} splits over addition. And (c) shows the strange consequence: two radicals that
-look completely unrelated can turn out to be the same thing in disguise, but you cannot tell until
-you \emph{simplify} them.
+Match each equation to its graph: \quad $y=2^{x}-3$ \; is \ans{II} \quad
+$y=2^{x-3}$ \; is \ans{III} \quad $y=2^{x}$ \; is \ans{I}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Which graph's dashed asymptote is in a \emph{new} place? What is it now?
+        \ansline{Graph II --- the asymptote is now $y=-3$. Graphs I and III both still have $y=0$.}
+  \item In Lesson 6.0 you learned that an exponential function \textbf{never} crosses the $x$-axis. Graph II crosses it. What changed?
+        \ansline{The $-3$ dragged the \emph{asymptote} down to $y=-3$, so part of the curve now sits below the $x$-axis.}
+\end{itemize}
+Today the whole lesson hangs on one sentence: \textbf{the asymptote moves for exactly one reason, and
+everything that depends on the asymptote moves with it.}
 \end{hookbox}
 
-\begin{notesbox}{1. Where the Properties Come From (they are yesterday's rules)}
-Yesterday: $\sqrt[n]{a}=a^{1/n}$. So watch what happens to a \emph{product} under a radical --- all
-we use is the power-of-a-product rule from the Warm-Up:
-\[
-  \sqrt[n]{ab} \;=\; (ab)^{1/n} \;=\; a^{\,\mans{1/n}}\cdot b^{\,\mans{1/n}}
-  \;=\; \sqrt[n]{a}\cdot\sqrt[n]{b}.
-\]
+\begin{notesbox}{1. One Form, Four Jobs}
+Every exponential graph in this unit can be written in \textbf{transformation form}:
 \begin{center}
-\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
-    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.90\linewidth]
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.86\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
 \centering
-\textbf{Product Property} \quad $\displaystyle \sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$
-\qquad\qquad
-\textbf{Quotient Property} \quad $\displaystyle \sqrt[n]{\frac{a}{b}}=\frac{\sqrt[n]{a}}{\sqrt[n]{b}}$
-\;\; $(b\ne 0)$
+$g(x) = a\,b^{\,x-h} + k$ \qquad starting from the parent \qquad $y=b^{x}$
 \end{tcolorbox}
 \end{center}
-\emph{The fine print (and it matters).} When the index is \textbf{even}, $a$ and $b$ must be
-\ans{non-negative}, or the pieces do not exist as real numbers in the first place. That is Lesson
-6.1's rule doing real work: you may not ``simplify'' $\sqrt{-8}$ into $\sqrt{-4}\cdot\sqrt{2}$,
-because \ans{$\sqrt{-4}$} is not a real number.
-
-\vspace{4pt}
-\textbf{And there is no third property.} From the Hook:
+Each letter does one job. Fill in the last column --- it is the one that matters today.
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{@{}l l@{}}
-$\sqrt{9\cdot 16}=\sqrt{144}=\mans{12}$ \quad and \quad $\sqrt{9}\cdot\sqrt{16}=\mans{12}$ &
-\quad $\Rightarrow$ \; multiplication: \ans{it splits} \\
-$\sqrt{9+16}=\sqrt{25}=\mans{5}$ \quad but \quad $\sqrt{9}+\sqrt{16}=\mans{7}$ &
-\quad $\Rightarrow$ \; addition: \ans{it does not} \\
-\end{tabular}
-\end{center}
-\textbf{Write it down and never unlearn it:} \; $\sqrt{a+b}\ne\sqrt{a}+\sqrt{b}$.
-\end{notesbox}
-
-\begin{notesbox}{2. Simplest Radical Form, and How to Get There}
-A radical is in \textbf{simplest form} when all three of these are true:
-\begin{enumerate}[leftmargin=1.7em, itemsep=2pt]
-  \item no factor of the radicand is a perfect \ans{$n$th} power (other than $1$);
-  \item there is no \ans{fraction} under the radical sign;
-  \item there is no radical in a \ans{denominator}. \; \emph{(Condition 3 is Lesson 6.3's job.)}
-\end{enumerate}
-
-\vspace{3pt}
-\textbf{The method: pull out the largest perfect $n$th power.}
-\[
-  \sqrt{72} \;=\; \sqrt{\mans{36}\cdot\mans{2}}
-  \;=\; \sqrt{\mans{36}}\cdot\sqrt{\mans{2}} \;=\; \mans{6\sqrt{2}}
-\]
-\emph{Why ``largest''?} Suppose you spot only $72=4\cdot 18$ instead. You get
-$\sqrt{72}=2\sqrt{18}$ --- which is \textbf{true but not finished}, because $18$ still contains the
-perfect square \ans{$9$}. Keep going: $2\sqrt{18}=2\cdot$ \ans{$3\sqrt2$} $=$ \ans{$6\sqrt2$}. Same
-answer, more steps. \emph{So the last thing you do on every problem is ask: is there still a
-perfect square hiding in there?}
-
-\vspace{3pt}
-\textbf{Backup method (when you cannot spot it): prime factorization.} Break the radicand all the
-way down, then take out one factor for every \textbf{pair} (for a square root):
-\[
-  \sqrt{72}=\sqrt{2\cdot 2\cdot 2\cdot 3\cdot 3}
-  \;\Rightarrow\; \text{a pair of } 2\text{s and a pair of } 3\text{s escape as }
-  \mans{2}\cdot\mans{3}; \quad \text{one } 2 \text{ is stranded inside.}
-\]
-
-\vspace{3pt}
-\textbf{Your turn.} Simplify. One of these is already in simplest form --- say which.
-\begin{center}
-\renewcommand{\arraystretch}{1.8}
-\begin{tabularx}{\linewidth}{@{}X X X X@{}}
-(a) \; $\sqrt{50}=$ \ans{$5\sqrt2$} & (b) \; $\sqrt{48}=$ \ans{$4\sqrt3$} &
-(c) \; $\sqrt{45}=$ \ans{$3\sqrt5$} & (d) \; $\sqrt{30}=$ \ans{simplest} \\
-(e) \; $\sqrt{200}=$ \ans{$10\sqrt2$} & (f) \; $3\sqrt{20}=$ \ans{$6\sqrt5$} &
-(g) \; $\sqrt{98}=$ \ans{$7\sqrt2$} & (h) \; $-5\sqrt{8}=$ \ans{$-10\sqrt2$} \\
-\end{tabularx}
-\end{center}
-In (f) and (h), the number already outside just \ans{multiplies} whatever comes out.
-\end{notesbox}
-
-\begin{notesbox}{3. Higher Indices: Group in $n$'s, Not in Pairs}
-Under a square root you hunt for perfect \emph{squares} and factors escape in \emph{pairs}. Under a
-cube root you hunt for perfect \emph{cubes} and factors escape in \ans{threes}. \textbf{The index
-tells you the group size.}
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-Perfect squares & $4,\ 9,\ 16,\ 25,\ 36,\ 49,\ 64,\ 81,\ 100,\ 121,\ 144$ \\
-Perfect cubes   & $8,\ 27,\ 64,\ 125,\ 216$ \quad (and $-8,\ -27,\ -64,\dots$) \\
-Perfect 4th powers & $16,\ 81,\ 256$ \qquad Perfect 5th powers: $32,\ 243$ \\
-\end{tabularx}
-\end{center}
-\[
-  \sqrt[3]{54}=\sqrt[3]{\mans{27}\cdot\mans{2}}=\mans{3\sqrt[3]{2}}
-  \qquad
-  \sqrt[3]{16}=\sqrt[3]{\mans{8}\cdot\mans{2}}=\mans{2\sqrt[3]{2}}
-  \qquad
-  \sqrt[4]{48}=\mans{2\sqrt[4]{3}}
-\]
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $\sqrt[3]{-24}=$ \ans{$-2\sqrt[3]{3}$} \quad --- a negative radicand is fine here because the
-        index is \ans{odd} (Lesson 6.1).
-  \item \textbf{Trap:} under a cube root, a \emph{pair} of equal factors is worth nothing.
-        $\sqrt[3]{4}=\sqrt[3]{2\cdot 2}$ is already in simplest form, because you need
-        \ans{three} twos to get one out.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{4. Algebraic Radicands: Divide the Exponent by the Index}
-Start with the easy case. $\sqrt{x^{6}}=$ \ans{$x^{3}$}, because $\left(\mans{x^{3}}\right)^2=x^6$.
-When the exponent divides evenly by the index, the whole thing comes out.
-
-\vspace{3pt}
-When it does not, split off as much as you can:
-\[
-  \sqrt{x^{7}}=\sqrt{x^{\mans{6}}\cdot x}=\mans{x^{3}\sqrt{x}}
-\]
-\begin{center}
-\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
-    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.90\linewidth]
-\centering \textbf{Divide the exponent by the index.} The \textbf{quotient} is the exponent that
-goes \emph{outside}; the \textbf{remainder} is the exponent that stays \emph{inside}.
-\end{tcolorbox}
-\end{center}
-
-\vspace{2pt}
-\textbf{Why that works --- and why it should feel familiar.} Write the radical as a rational
-exponent (Lesson 6.1) and turn the improper fraction into a mixed number, exactly as in Warm-Up
-item~3:
-\[
-  \sqrt{x^{7}} \;=\; x^{7/2} \;=\; x^{\,\mans{3\frac{1}{2}}} \;=\;
-  x^{3}\cdot x^{\,\mans{1/2}} \;=\; \mans{x^{3}\sqrt{x}}
-\]
-\emph{Simplifying a radical and rewriting an improper fraction as a mixed number are the same
-move.} The whole-number part comes out front; the leftover fraction stays under the radical.
-
-\vspace{3pt}
-\textbf{Practice the split.}
-\begin{center}
-\renewcommand{\arraystretch}{1.8}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
-(a) \; $\sqrt{y^{9}}=$ \ans{$y^{4}\sqrt{y}$} & (b) \; $\sqrt[3]{x^{11}}=$ \ans{$x^{3}\sqrt[3]{x^{2}}$} &
-(c) \; $\sqrt[4]{m^{7}}=$ \ans{$m\sqrt[4]{m^{3}}$} \\
-\end{tabularx}
-\end{center}
-
-\vspace{2pt}
-\textbf{Now all of it at once.} Handle the number and each variable separately, then collect.
-\[
-  \sqrt{50x^{5}y^{8}} \;=\; \sqrt{\mans{25}\cdot 2}\;\cdot\;\sqrt{x^{4}\cdot x}\;\cdot\;
-  \sqrt{y^{8}} \;=\; \mans{5x^{2}y^{4}\sqrt{2x}}
-\]
-\[
-  \sqrt[3]{40a^{7}b^{3}} \;=\; \mans{2a^{2}b\sqrt[3]{5a}}
-\]
-\emph{A note we are setting aside:} everything here assumes the variables are \textbf{positive}. If
-we did not know that, $\sqrt{x^{2}}$ would have to be written \ans{$|x|$} --- Lesson 6.1's
-absolute-value rule.
-\end{notesbox}
-
-\begin{notesbox}{5. The Quotient Property}
-Same idea, one floor down. Take the root of the top \emph{and} the root of the bottom.
-\begin{center}
-\renewcommand{\arraystretch}{2.0}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
-(a) \; $\sqrt{\dfrac{25}{36}}=$ \ans{$\dfrac{5}{6}$} &
-(b) \; $\sqrt{\dfrac{x^{4}}{9}}=$ \ans{$\dfrac{x^{2}}{3}$} &
-(c) \; $\sqrt[3]{\dfrac{8}{27}}=$ \ans{$\dfrac{2}{3}$} \\
-(d) \; $\sqrt{\dfrac{7}{16}}=$ \ans{$\dfrac{\sqrt{7}}{4}$} &
-(e) \; $\dfrac{\sqrt{50}}{\sqrt{2}}=$ \ans{$5$} &
-(f) \; $\dfrac{\sqrt{27}}{\sqrt{3}}=$ \ans{$3$} \\
-\end{tabularx}
-\end{center}
-Items (e) and (f) run the property \textbf{backwards} --- two radicals with the same index can be
-pulled together under one radical, and often the quotient is much friendlier than either piece.
-
-\vspace{2pt}
-\emph{What we cannot finish yet:} $\sqrt{\dfrac{3}{5}}=\dfrac{\sqrt3}{\sqrt5}$ violates simplest-form
-condition~3 --- there is a radical in the \ans{denominator}. Getting rid of it is called
-\textbf{rationalizing}, and it is the first thing we do in Lesson 6.3.
-\end{notesbox}
-
-\begin{notesbox}{6. Adding \& Subtracting: Like Radicals}
-Look back at Warm-Up item~2. You combined $3x+7x$ into $10x$, but $3x+7y$ went nowhere. Radicals
-behave \emph{identically} --- the radical part plays the role of the variable.
-\begin{center}
+\small
 \renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l@{}}
-$3x+7x=10x$ & $\qquad 3\sqrt5+7\sqrt5=$ \ans{$10\sqrt5$} \\
-$3x+7y$ \; cannot combine & $\qquad 3\sqrt5+7\sqrt2$ \; \ans{cannot combine} \\
-\end{tabular}
-\end{center}
-\textbf{Like radicals} have the same \ans{index} \emph{and} the same \ans{radicand}. Add or
-subtract the numbers \emph{in front}; the radical itself never changes:
-\; $3\sqrt5+7\sqrt5$ is $10\sqrt5$, \textbf{not} $10\sqrt{10}$.
-
-\vspace{4pt}
-\textbf{The catch --- and it is the point of putting these two skills in one lesson.} Two radicals
-can be like radicals \emph{in disguise}. From the Hook:
-\[
-  \sqrt{8}+\sqrt{18} \;=\; \mans{2\sqrt2} + \mans{3\sqrt2} \;=\; \mans{5\sqrt2}
-\]
-Neither term \emph{looked} like the other. \textbf{Simplify first; decide second.} Never answer
-``cannot combine'' until both radicals are in simplest form.
-
-\vspace{3pt}
-\textbf{Your turn.}
-\begin{center}
-\renewcommand{\arraystretch}{2.0}
-\begin{tabularx}{\linewidth}{@{}X X@{}}
-(a) \; $\sqrt{45}-\sqrt{20}=$ \ans{$\sqrt5$} &
-(b) \; $5\sqrt{12}+2\sqrt{75}-\sqrt{3}=$ \ans{$19\sqrt3$} \\
-(c) \; $\sqrt{8x}+\sqrt{50x}=$ \ans{$7\sqrt{2x}$} &
-(d) \; $\sqrt[3]{16}+\sqrt[3]{54}=$ \ans{$5\sqrt[3]{2}$} \\
-(e) \; $\sqrt{7}+\sqrt{28}-\sqrt{2}=$ \ans{$3\sqrt7-\sqrt2$} &
-(f) \; $\sqrt[3]{2}+\sqrt{2}=$ \ans{cannot combine} \\
+\begin{tabularx}{\linewidth}{@{}l l X c@{}}
+\hline
+ & \textbf{Where it sits} & \textbf{What it does to the graph} & \textbf{Asymptote moves?} \\
+\hline
+$k$ & outside & shifts the graph \ans{up or down} by $k$ & \ans{YES} \\
+$h$ & inside, with the $x$ & shifts the graph \ans{right or left} by $h$ & \ans{no} \\
+$a$ & multiplied out front & stretches ($|a|>1$) or compresses ($|a|<1$); if $a<0$ it flips over the \ans{$x$}-axis & \ans{no} \\
+$-x$ & inside, on the $x$ & flips the graph over the \ans{$y$}-axis & \ans{no} \\
+\hline
 \end{tabularx}
 \end{center}
-{\small\emph{Work:} (a) $3\sqrt5-2\sqrt5$. \; (b) $5(2\sqrt3)+2(5\sqrt3)-\sqrt3=10\sqrt3+10\sqrt3-\sqrt3$. \;
-(c) $2\sqrt{2x}+5\sqrt{2x}$. \; (d) $2\sqrt[3]2+3\sqrt[3]2$. \;
-(e) $\sqrt7+2\sqrt7=3\sqrt7$, and $\sqrt2$ has no partner.}
 
 \vspace{2pt}
-Item (f) is a warning: even with the same radicand, the \ans{index} must match too.
+The signs behave exactly as they did for the parabola and the square root in the Warm-Up: $h$ is
+subtracted, so $b^{\,x-3}$ moves \ans{right} $3$ and $b^{\,x+3}$ moves \ans{left} $3$.
+
+\vspace{4pt}
+\textbf{Worked example: $g(x)=2^{\,x-1}+3$.} Read all four features off the equation alone.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Parent: $y=$ \ans{$2^{x}$}, so the graph is \ans{growth} (growth or decay).
+  \item Transformations: right \ans{1}, up \ans{3}.
+  \item Horizontal asymptote: $y=$ \ans{3} \quad Range: \ans{$(3,\infty)$}
+  \item $y$-intercept: $g(0)=2^{\,-1}+3=$ \ans{3.5}, so the point is \ans{$(0,3.5)$}.
+\end{enumerate}
+\emph{Notice:} the shift right did nothing to the asymptote or the range. Only the $+3$ did.
+\end{notesbox}
+
+\begin{notesbox}{2. Why $k$ Is Different: It Takes the Range With It}
+Lesson 6.0's headline was \emph{an asymptote is a boundary the range excludes.} So if the boundary
+moves, the range moves. Nothing else in the form can do that.
+\begin{center}
+\begin{minipage}[c]{0.44\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-3}{4}{-6}{6}
+  \begin{scope}
+    \clip (-3,-6) rectangle (4,6);
+    \expgraph{1}{0.693147}{0}{-4}{-3}{4}
+  \end{scope}
+  \hasym{-3}{4}{-4}
+  \node[navy, font=\scriptsize, right] at (1.7,-4.6) {$y=-4$};
+  \fill[charcoal] (0,-3) circle (3pt) node[left, font=\scriptsize]{$(0,-3)$};
+  \fill[charcoal] (2,0) circle (3pt) node[above left, font=\scriptsize]{$(2,0)$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.52\linewidth}
+\small
+\textbf{$y=2^{x}-4$.} The whole parent graph slid down $4$ --- \emph{including} its asymptote.
+\begin{itemize}[leftmargin=1.3em, itemsep=3pt]
+  \item Asymptote: was $y=0$, now $y=$ \ans{$-4$}
+  \item Range: was $(0,\infty)$, now \ans{$(-4,\infty)$}
+  \item $y$-intercept: $2^{0}-4=$ \ans{$-3$}
+  \item $x$-intercept: read it off the graph. \ans{$(2,0)$}
+\end{itemize}
+Check it: $2^{\,\square}-4=0$ when $\square=$ \ans{2}. \checkmark
+\end{minipage}
+\end{center}
+
+\vspace{3pt}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{Two things to fix in your head right now.}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt]
+  \item \textbf{The range starts at the asymptote and never includes it.} For $a>0$ the range of
+        $a\,b^{\,x-h}+k$ is \ans{$(k,\infty)$}; for $a<0$ it is \ans{$(-\infty,k)$}. Always a
+        \emph{parenthesis} at $k$, never a bracket.
+  \item \textbf{``Exponentials have no $x$-intercept'' was a statement about $y=ab^{x}$.} Shifting
+        vertically is exactly what can create one --- the graph gets an $x$-intercept whenever $k$
+        pushes it across the $x$-axis, that is, whenever $a$ and $k$ have \ans{opposite} signs.
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{2pt}
+\textbf{Your turn.} For $y=\left(\frac{1}{2}\right)^{x}+5$: \; asymptote $y=$ \ans{5},
+\; range \ans{$(5,\infty)$}, \; $y$-intercept \ans{$(0,6)$}, \; growth or decay? \ans{decay}
+\end{notesbox}
+
+\begin{notesbox}{3. Two Minus Signs, Two Completely Different Flips}
+A minus sign in front of the base and a minus sign in the exponent are \emph{not} the same move.
+\begin{center}
+\begin{minipage}[c]{0.31\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{3}{-8}{3}
+  \begin{scope}
+    \clip (-3,-8) rectangle (3,3);
+    \expgraph{-1}{0.693147}{0}{0}{-3}{3}
+  \end{scope}
+  \hasym{-3}{3}{0}
+  \fill[charcoal] (0,-1) circle (3pt) node[left, font=\scriptsize]{$(0,-1)$};
+\end{tikzpicture}\\[2pt]
+{\small $y=-2^{x}$}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.31\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{3}{-2}{9}
+  \begin{scope}
+    \clip (-3,-2) rectangle (3,9);
+    \expgraph{1}{-0.693147}{0}{0}{-3}{3}
+  \end{scope}
+  \hasym{-3}{3}{0}
+  \fill[charcoal] (0,1) circle (3pt) node[above right, font=\scriptsize]{$(0,1)$};
+\end{tikzpicture}\\[2pt]
+{\small $y=2^{-x}$}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.33\linewidth}
+\small
+Both started from the same parent $y=2^{x}$, whose graph rises through $(0,1)$ with range
+$(0,\infty)$. One of them is still \emph{growth}; one of them is not.
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l l X X@{}}
+\hline
+\textbf{Function} & \textbf{Flips over the\dots} & \textbf{Range} & \textbf{Growth or decay?} \\
+\hline
+$y=2^{x}$ (parent) & --- & $(0,\infty)$ & growth \\
+$y=-2^{x}$ & \ans{$x$}-axis & \ans{$(-\infty,0)$} & \ans{still growth ($b=2$); the graph falls because $a<0$} \\
+$y=2^{-x}$ & \ans{$y$}-axis & \ans{$(0,\infty)$} & \ans{decay} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{Why the $y$-axis flip changes the family.} This is not a new rule --- it is the
+negative-exponent property from Unit 5, and you already checked it in the Warm-Up:
+\[
+  2^{-x} \;=\; \frac{1}{2^{x}} \;=\; \left(\frac{1}{2}\right)^{x}
+\]
+So reflecting a growth curve across the $y$-axis \emph{is} the decay curve, with base
+\ans{$\frac12$}. And neither flip touched the asymptote --- both are still \ans{$y=0$}, because
+neither one is a \ans{vertical} shift.
+\end{notesbox}
+
+\begin{notesbox}{4. Reading Backwards: From a Graph to an Equation}
+Three steps, in this order. The asymptote goes first, because it is the only feature you can read
+without doing any arithmetic.
+\begin{center}
+\begin{minipage}[c]{0.44\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{4}{-1}{12}
+  \begin{scope}
+    \clip (-3,-1) rectangle (4,12);
+    \expgraph{3}{0.693147}{0}{2}{-3}{4}
+  \end{scope}
+  \hasym{-3}{4}{2}
+  \node[navy, font=\scriptsize, left] at (-1.2,2.7) {$y=2$};
+  \fill[charcoal] (0,5) circle (3pt) node[left, font=\scriptsize]{$(0,5)$};
+  \fill[charcoal] (1,8) circle (3pt) node[right, font=\scriptsize]{$(1,8)$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.52\linewidth}
+\small
+The curve has the form $y=a\,b^{x}+k$.
+\begin{enumerate}[leftmargin=1.6em, itemsep=4pt]
+  \item \textbf{The dashed line gives $k$:} \; $k=$ \ans{2}
+  \item \textbf{The $y$-intercept gives $a$.} At $x=0$ the model reads $a\cdot b^{0}+k = a+k$, so
+        $a+$ \ans{2} $=5$ and $a=$ \ans{3}.
+  \item \textbf{One more point gives $b$.} Using $(1,8)$: \; $8=$ \ans{3}$\cdot b+$
+        \ans{2}, so $b=$ \ans{2}.
+\end{enumerate}
+Equation: $y=$ \ans{$3(2)^{x}+2$}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+\textbf{Check it} the way you checked models in Lesson 6.1: does your equation give the right output
+at a point you did \emph{not} use? At $x=2$ the equation gives \ans{$3(4)+2=14$}, and the curve is
+climbing steeply past the top of the grid --- consistent.
+
+\vspace{3pt}
+\emph{A warning about step 1.} If you skip the asymptote and grab $a$ straight off the $y$-intercept,
+you will write $a=5$ here. That is the most common wrong answer on this page: the $y$-intercept is
+$a+k$, not $a$, and the two agree only when $k=$ \ans{0}.
 \end{notesbox}
 
 \begin{practicebox}
-Work these with your class. Assume all variables represent positive real numbers.
-\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
-  \item Simplify: \; $\sqrt{108}=$ \ans{$6\sqrt3$} \quad $\sqrt[3]{250}=$ \ans{$5\sqrt[3]{2}$} \quad
-        $\sqrt[4]{162}=$ \ans{$3\sqrt[4]{2}$}
-  \item Simplify: \; $\sqrt{75x^{3}}=$ \ans{$5x\sqrt{3x}$} \quad
-        $\sqrt{12a^{4}b^{7}}=$ \ans{$2a^{2}b^{3}\sqrt{3b}$} \quad
-        $\sqrt[3]{54n^{10}}=$ \ans{$3n^{3}\sqrt[3]{2n}$}
-  \item Combine: \; $4\sqrt6+9\sqrt6=$ \ans{$13\sqrt6$} \quad $\sqrt{27}+\sqrt{48}=$ \ans{$7\sqrt3$} \quad
-        $3\sqrt{32}-2\sqrt{18}=$ \ans{$6\sqrt2$}
-  \item Use the quotient property: \; $\sqrt{\dfrac{49}{100}}=$ \ans{$\dfrac{7}{10}$} \quad
-        $\dfrac{\sqrt{72}}{\sqrt{2}}=$ \ans{$6$}
-  \item \textbf{Explain.} A classmate simplifies $\sqrt{80}$ as $2\sqrt{20}$ and stops. Are they
-        wrong? What would you tell them to check, and what is the finished answer? \ansline{They are
-        not \emph{wrong} --- $\sqrt{80}=\sqrt{4\cdot20}=2\sqrt{20}$ is a true statement. They are
-        just not \emph{done}: $4$ was not the largest perfect square factor, and $20$ still contains
-        one. Tell them to check the leftover radicand for another perfect square. Finishing:
-        $2\sqrt{20}=2\cdot 2\sqrt5=4\sqrt5$, which is what $\sqrt{16\cdot 5}$ gives in one step.}
+Answer from the equation alone --- no tables, no plotting.
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item $y=5^{x}+2$: \quad asymptote $y=$ \ans{2} \quad range \ans{$(2,\infty)$} \quad
+        $y$-intercept \ans{$(0,3)$} \quad growth or decay? \ans{growth}
+
+  \item $y=\left(\frac{1}{3}\right)^{x}-4$: \quad asymptote $y=$ \ans{$-4$} \quad range
+        \ans{$(-4,\infty)$} \quad $y$-intercept \ans{$(0,-3)$} \quad growth or decay? \ans{decay}
+
+  \item Describe $y=-3^{\,x-2}$ as a sequence of moves applied to the parent $y=3^{x}$, then give its
+        asymptote and range.
+        \ansline{Shift right $2$, then reflect across the $x$-axis. Asymptote still $y=0$; range $(-\infty,0)$.}
+
+  \item One of $y=4^{x}+1$ and $y=4^{x+1}$ has range $(1,\infty)$; the other has range $(0,\infty)$.
+        Say which is which, and explain how you know without graphing either one.
+        \ansline{$y=4^{x}+1$ has range $(1,\infty)$: the $+1$ is \emph{outside}, so it lifts the
+        asymptote to $y=1$.\\[3pt]
+        $y=4^{x+1}$ has range $(0,\infty)$: the $+1$ is \emph{inside}, so it only slides the graph
+        left $1$ --- the asymptote stays at $y=0$.}
 \end{enumerate}
 \end{practicebox}
 
 \begin{teachernote}
-\textbf{Pacing.} Sections 1--3 are the mechanical core and move fast (about 15 minutes together).
-Section 4 deserves its own 8 minutes --- not the procedure, which students pick up quickly, but the
-\emph{mixed-number} explanation of it. Say it out loud: $\sqrt{x^7}=x^{7/2}=x^{3\frac12}
-=x^3\cdot x^{1/2}$, so ``divide the exponent by the index, quotient out, remainder in'' is not a
-new rule at all --- it is long division of the exponent, which is what a mixed number always was.
-Students who see this stop guessing at which power comes out. Section 6 needs 12 minutes and is
-where the lesson is actually assessed.
+\textbf{The Hook is the lesson.} Do not resolve it in thirty seconds. Graphs II and III both contain a
+$3$ and both moved, but only II's dashed line is somewhere new --- and that is exactly why only II has
+an $x$-intercept. If students leave today able to say \emph{outside moves the asymptote, inside does
+not}, everything else on this page is bookkeeping.
 
-\textbf{The four errors to expect.} (1) \emph{Stopping early} --- $\sqrt{72}=2\sqrt{18}$, or
-$\sqrt{80}=2\sqrt{20}$ in the Guided Practice. Not wrong, just unfinished; the fix is a habit
-(``check the leftover''), not a re-teach. (2) \emph{Splitting over addition} ---
-$\sqrt{9+16}=3+4$. Kill it numerically every single time it appears; the arithmetic is the
-argument, and no amount of ``you can't do that'' substitutes for $7\ne5$. (3) \emph{Pairs under a
-cube root} --- $\sqrt[3]{4}$ ``simplified'' to $2$. The index is the group size; say it that way.
-(4) \emph{Deciding too early} --- writing ``cannot combine'' for $\sqrt8+\sqrt{18}$. This is the
-error the whole lesson structure exists to prevent, which is why simplifying and combining are
-taught in the same period rather than on consecutive days.
+\textbf{Section 2's second bullet retires a rule students just learned.} Lesson 6.0 said an exponential
+never crosses the $x$-axis, and that was true --- of $y=ab^{x}$. Say out loud that the claim is being
+\emph{refined}, not contradicted: the graph has no $x$-intercept exactly when the curve stays on one
+side of its asymptote, and a vertical shift is the only thing that can move that asymptote across the
+$x$-axis. The $x$-intercept of $y=2^{x}-4$ is deliberately a whole number; $y=2^{x}-3$ from the Hook is
+\emph{not} solvable yet, and if a student asks, that is Lesson 6.3's question (and, for a base that does
+not cooperate, Unit 7's).
 
-\textbf{The Hook is worth its four minutes.} Let students use calculators on it --- this is the one
-place all unit where decimal approximation is the right tool, because the point is that a numeric
-check settles the question instantly. Students who \emph{test} $\sqrt9+\sqrt{16}$ and find $7$ tend
-not to write $\sqrt{a+b}=\sqrt a+\sqrt b$ again.
+\textbf{Section 3's table is where the assessment lives.} The row for $y=-2^{x}$ is the one to slow down
+on: the base is still $2$, so by Lesson 6.0's rule --- \emph{growth versus decay is read off $b$ against
+$1$, never off $a$} --- this is still a growth function, even though the graph falls. What $a<0$ changed
+is the \emph{side of the asymptote} the graph lives on, which is exactly the point Lesson 6.0's Tier E
+made with $y=-2\cdot3^{x}$. Accept ``growth, but reflected/falling''; do not accept ``decay.''
 
-\textbf{Section 5 is deliberately short.} The quotient property is easy, and the interesting half of
-it --- what to do when the denominator will not come out evenly --- is Lesson 6.3. Flag
-$\sqrt{3/5}$ as unfinished business and move on; do not teach rationalizing today.
+\textbf{Section 4, step 1 is the whole method.} Students who go straight for the $y$-intercept will write
+$a=5$ instead of $3$ every time. Force the order: dashed line first, then $y$-intercept minus $k$, then
+one more point. This is also the skill Lesson 6.5 leans on, where a regression is judged against a graph.
+
+\textbf{If you are short on time,} cut Section 1's worked example and assign it as Homework 2 --- but do
+not cut Section 3, which carries the reflection standard, or Section 4, which carries A2.F.1e.
 \end{teachernote}
 
 \end{document}

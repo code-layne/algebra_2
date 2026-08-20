@@ -1,4 +1,4 @@
-%! Characteristics of Quadratic Functions — Unit 3, Lesson 3.0 — Group Activity (Answer Key)
+%! Characteristics of Polynomial Functions — Unit 3, Lesson 3.0 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -11,132 +11,143 @@
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.0}{Group Activity --- Answer Key}
+\namepartnerperiod
 
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Reading Parabolas.} Every characteristic of a quadratic function is something you can
+\small\textbf{Reading Polynomial Graphs.} Every characteristic of a polynomial is something you can
 \emph{point to} on its graph. With your partner, read each graph carefully and \emph{justify} your
-answers --- especially the max/min and the intervals.
+answers --- especially the end behavior, the multiplicity (cross vs.\ touch), and relative vs.\
+absolute extrema.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-The graph shows $r(x) = x^2 - 4x + 3$.
+The graph shows $p(x) = x^3 - 2x^2 - 5x + 6 = (x+2)(x-1)(x-3)$.
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-1}{5}{-2}{5}
-  \draw[navy, dashed, semithick] (2,-2)--(2,5);
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-3}{4}{-6}{10}
   \begin{scope}
-    \clip (-1,-2) rectangle (5,5);
-    \draw[very thick, forest, domain=-0.4:4.4, samples=70, smooth]
-      plot (\x,{(\x)*(\x) - 4*(\x) + 3});
+    \clip (-3,-6) rectangle (4,10);
+    \draw[very thick, forest, domain=-2.6:3.6, samples=100, smooth]
+      plot (\x,{(\x)*(\x)*(\x) - 2*(\x)*(\x) - 5*(\x) + 6});
   \end{scope}
-  \fill[charcoal] (2,-1) circle (3pt);
-  \fill[charcoal] (0,3) circle (3pt);
-  \fill[charcoal] (1,0) circle (3pt);
-  \fill[charcoal] (3,0) circle (3pt);
+  \fill[charcoal] (-2,0) circle (3pt) node[below left, font=\scriptsize]{$(-2,0)$};
+  \fill[charcoal] (1,0) circle (3pt) node[below right, font=\scriptsize]{$(1,0)$};
+  \fill[charcoal] (3,0) circle (3pt) node[below right, font=\scriptsize]{$(3,0)$};
+  \fill[charcoal] (0,6) circle (3pt) node[right, font=\scriptsize]{$(0,6)$};
 \end{tikzpicture}
 \end{center}
 \begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
-  \item The parabola opens (circle one): \textcolor{keyred}{\textbf{up}} \; / \; \textbf{down}. \quad So its vertex is a
-        (circle one): \textcolor{keyred}{\textbf{minimum}} \; / \; \textbf{maximum}.
-  \item Vertex $=(\textcolor{keyred}{\mathbf{2}},\ \textcolor{keyred}{\mathbf{-1}})$. \quad Axis of symmetry: $x=\textcolor{keyred}{\mathbf{2}}$.
-  \item The curve crosses the $x$-axis (the \textbf{zeros}) at $x=\textcolor{keyred}{\mathbf{1}}$ and $x=\textcolor{keyred}{\mathbf{3}}$,
-        and the $y$-axis at $(0,\ \textcolor{keyred}{\mathbf{3}})$.
-  \item The \emph{minimum value} (the lowest output) is $y=\textcolor{keyred}{\mathbf{-1}}$.
+  \item The degree is (circle one): \textbf{even} \; / \; \ans{\textbf{odd}}. \quad Its arms: the left arm
+        points \ans{down} and the right arm points \ans{up}.
+  \item The graph turns \ans{2} times (its turning points).
+  \item The \textbf{zeros} are $x=\ans{-2}$, \; $x=\ans{1}$, \; $x=\ans{3}$, and each
+        one \textbf{crosses} the axis. The \textbf{$y$-intercept} is $(0,\ \ans{6})$.
+  \item Between the zeros the curve makes one hill and one valley. The hill is a
+        \textbf{relative \ans{maximum}} and the valley is a \textbf{relative \ans{minimum}}.
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-For \emph{each} parabola, give the full feature list, then answer the justification below.
+For \emph{each} graph, give the full feature list, then answer the justification below.
 \begin{center}
-\begin{tikzpicture}[scale=0.4]
-  % f(x) = x^2 - 6x + 5  (opens up)
+\begin{tikzpicture}[scale=0.42]
+  % p(x) = x^3 - 4x  (odd)
   \begin{scope}
-    \lgrid{-1}{7}{-5}{6}
-    \draw[navy, dashed, semithick] (3,-5)--(3,6);
+    \lgrid{-3}{3}{-4}{4}
     \begin{scope}
-      \clip (-1,-5) rectangle (7,6);
-      \draw[very thick, forest, domain=-0.2:6.2, samples=80, smooth]
-        plot (\x,{(\x)*(\x) - 6*(\x) + 5});
+      \clip (-3,-4) rectangle (3,4);
+      \draw[very thick, forest, domain=-2.4:2.4, samples=90, smooth]
+        plot (\x,{(\x)*(\x)*(\x) - 4*(\x)});
     \end{scope}
-    \fill[charcoal] (3,-4) circle (3pt);
-    \fill[charcoal] (1,0) circle (3pt);
-    \fill[charcoal] (5,0) circle (3pt);
-    \fill[charcoal] (0,5) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (3,-6.4){$f(x)=x^2-6x+5$};
+    \fill[charcoal] (-2,0) circle (3pt); \fill[charcoal] (0,0) circle (3pt);
+    \fill[charcoal] (2,0) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (0,-5.2){$p(x)=x^3-4x$};
   \end{scope}
-  % g(x) = -x^2 - 2x + 3  (opens down)
-  \begin{scope}[xshift=11cm]
-    \lgrid{-5}{3}{-3}{5}
-    \draw[navy, dashed, semithick] (-1,-3)--(-1,5);
+  % r(x) = -x^4 + 4x^2  (even)
+  \begin{scope}[xshift=9cm]
+    \lgrid{-3}{3}{-3}{5}
     \begin{scope}
-      \clip (-5,-3) rectangle (3,5);
-      \draw[very thick, forest, domain=-3.6:1.6, samples=80, smooth]
-        plot (\x,{-1*(\x)*(\x) - 2*(\x) + 3});
+      \clip (-3,-3) rectangle (3,5);
+      \draw[very thick, forest, domain=-2.3:2.3, samples=100, smooth]
+        plot (\x,{-1*(\x)^4 + 4*(\x)*(\x)});
     \end{scope}
-    \fill[charcoal] (-1,4) circle (3pt);
-    \fill[charcoal] (-3,0) circle (3pt);
-    \fill[charcoal] (1,0) circle (3pt);
-    \fill[charcoal] (0,3) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (-1,-4.4){$g(x)=-x^2-2x+3$};
+    \fill[charcoal] (0,0) circle (3pt); \fill[charcoal] (-2,0) circle (3pt);
+    \fill[charcoal] (2,0) circle (3pt);
+    \fill[charcoal] (1.414,4) circle (3pt); \fill[charcoal] (-1.414,4) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (0,-4.2){$r(x)=-x^4+4x^2$};
   \end{scope}
 \end{tikzpicture}
 \end{center}
 \renewcommand{\arraystretch}{1.5}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
- & \textbf{$f(x)=x^2-6x+5$} & \textbf{$g(x)=-x^2-2x+3$} \\
+ & \textbf{$p(x)=x^3-4x$} & \textbf{$r(x)=-x^4+4x^2$} \\
 \hline
-Opens up / down & \ans{up ($a>0$)} & \ans{down ($a<0$)} \\
-Vertex & \ans{$(3,-4)$} & \ans{$(-1,4)$} \\
-Max or min? Value? & \ans{min, $-4$} & \ans{max, $4$} \\
-Axis of symmetry & \ans{$x=3$} & \ans{$x=-1$} \\
-Zeros & \ans{$x=1,\ 5$} & \ans{$x=-3,\ 1$} \\
-Range & \ans{$y\ge -4$} & \ans{$y\le 4$} \\
-Increasing on & \ans{$(3,\infty)$} & \ans{$(-\infty,-1)$} \\
-End behavior & \ans{both arms $\to+\infty$} & \ans{both arms $\to-\infty$} \\
+Degree even / odd & \ans{odd} & \ans{even} \\
+End behavior (both arms) & \ans{left down, right up} & \ans{both arms down} \\
+Number of turning points & \ans{2} & \ans{3} \\
+Zeros (cross / touch) & \ans{$-2,0,2$ (all cross)} & \ans{$\pm2$ cross; $0$ touches} \\
+Absolute max / min? & \ans{neither} & \ans{abs.\ max $4$; no abs.\ min} \\
+Symmetry & \ans{odd} & \ans{even} \\
 \end{tabularx}
 \vspace{2pt}
 
-\textbf{Justify:} For $f$, the outputs at $x=1$ and $x=5$ are \emph{equal}. Using the axis of symmetry,
-explain \emph{why} those two inputs must give the same output.
-\ansline{The axis of symmetry is $x=3$, and $1$ and $5$ are each $2$ units from $3$ ($3-2=1$, $3+2=5$). A parabola is a mirror image across its axis, so two inputs the same distance from the axis land at the same height --- here both give $f=0$. (In general $f(3-d)=f(3+d)$ for any $d$.)}
+\textbf{Justify:} Show algebraically that $p(x)=x^3-4x$ is \emph{odd} by computing $p(-x)$ and
+comparing it to $p(x)$. What does that tell you about the graph's symmetry?
+\ansline{$p(-x)=(-x)^3-4(-x)=-x^3+4x=-(x^3-4x)=-p(x)$. Since $p(-x)=-p(x)$, $p$ is odd, so its graph has $180^\circ$ rotational symmetry about the origin.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Back to the ball.} A ball's height after $t$ seconds is $h(t) = -16t^2 + 32t + 48$ feet.
+\textbf{Part 1 --- Degree detective.} A polynomial's \emph{left} arm points \emph{up} and its
+\emph{right} arm points \emph{down}, and the graph has exactly \textbf{3} turning points.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+  \item Is the degree even or odd? \ans{odd} \quad How do the arms tell you? \ans{they point in \emph{opposite} directions, which only happens for odd degree}
+  \item Is the leading coefficient positive or negative? \ans{negative} Why? \ans{the right arm points down, so $a<0$}
+  \item A degree-$n$ graph has at most $n-1$ turning points. What is the \emph{smallest} degree this
+        polynomial could have? \ans{5}
+\end{enumerate}
+\begin{itemize}[leftmargin=1.4em, nosep]
+  \item[] \footnotesize $3$ turning points need degree $\ge 4$; but the degree must be \emph{odd} (opposite arms), so the smallest is $5$.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Part 2 --- Open-box model.} A rectangular sheet $10\text{ in}\times 8\text{ in}$ has a square
+of side $x$ cut from each corner; the flaps fold up into an open box of volume
+\[
+  V(x) = x(10-2x)(8-2x).
+\]
 \begin{center}
-\begin{tikzpicture}[scale=0.42]
-  \draw[xstep=1, ystep=8, linegray!40, very thin] (0,0) grid (3,72);
-  \draw[->, semithick, charcoal] (0,0)--(3.2,0) node[below right, font=\scriptsize]{$t$ (s)};
-  \draw[->, semithick, charcoal] (0,0)--(0,74) node[left, font=\scriptsize]{$h$ (ft)};
-  \foreach \y in {16,32,48,64} \node[charcoal, font=\scriptsize, left] at (0,\y){\y};
-  \foreach \x in {1,2,3} \node[charcoal, font=\scriptsize, below] at (\x,0){\x};
-  \draw[navy, dashed, semithick] (1,0)--(1,64);
-  \draw[very thick, forest, domain=0:3, samples=80, smooth]
-    plot (\x,{-16*(\x)*(\x) + 32*(\x) + 48});
-  \fill[charcoal] (1,64) circle (3pt);
-  \fill[charcoal] (0,48) circle (3pt);
-  \fill[charcoal] (3,0) circle (3pt);
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $1.5$ & $2$ & $3$ & $4$ \\ \hline
+$V(x)$ & $0$ & $48$ & $52.5$ & $48$ & $24$ & $0$ \\ \hline
+\end{tabular}
 \end{center}
-\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
-  \item Interpret each feature \emph{in context}: the $y$-intercept means \ans{the ball started at $48$ ft (released height)};
-        the vertex means \ans{the ball reached a maximum height of $64$ ft at $t=1$ s};
-        the positive zero means \ans{the ball hit the ground at $t=3$ s}.
-  \item What is the \emph{meaningful domain} of $h$ in this situation, and why is it \emph{not} all
-        real numbers?
-        \ansline{$0\le t\le 3$. Time before release ($t<0$) isn't part of the flight, and after it lands ($t>3$) the formula gives a negative height, which is impossible --- so only $t=0$ to $3$ s make sense.}
-  \item \textbf{Use symmetry.} The ball is $60$ ft high on the way \emph{up} at $t=0.5$ s. Without any
-        algebra, at what later time is it again $60$ ft high on the way \emph{down}? Explain how the
-        axis of symmetry $t=1$ tells you.
-        \ansline{At $t=1.5$ s. The axis is $t=1$, and $t=0.5$ is $0.5$ s before it, so its mirror is $0.5$ s after: $t=1.5$ s. Equal distances from the axis have equal heights.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item The \emph{feasible domain} is $0<x<4$, not all real numbers. Explain why, using the fact that
+        $x$ is a length and the flap $8-2x$ must be positive.
+        \ansline{$x$ is a cut length, so $x>0$; and $8-2x>0$ forces $x<4$. Outside $0<x<4$ a side would be zero or negative, so no real box exists.}
+  \item From the table, which $x$ gives the greatest volume, and what is that greatest volume?
+        \ans{$x=1.5$ in gives the greatest volume, $V=52.5$ in$^3$.}
+  \item Fully expanded, $V$ has zeros at $x=0,\ 4,\ 5$. Which of these are \emph{meaningful} for the
+        box, and what does each meaningful zero represent?
+        \ansline{$x=0$ and $x=4$ are meaningful --- they bound the feasible domain and each gives $V=0$ (no box): $x=0$ means no corner is cut, $x=4$ cuts the $8$-in side away entirely. $x=5$ is outside $0<x<4$, so it is not meaningful.}
 \end{enumerate}
 \end{tcolorbox}
+
+\begin{teachernote}
+Tier A's key idea is that ``relative'' and ``absolute'' can differ: the odd-degree $p$ has two
+turning points but \emph{no} absolute extrema (arms run to $\pm\infty$), while the even-degree $r$'s
+two peaks \emph{are} its absolute maximum. In Tier E Part 1(c), the common error is answering ``4''
+--- remind students the degree must stay odd, so it jumps to 5. Accept $x\approx1.5$ in Part 2(b);
+the true maximizing cut is near $1.47$ in.
+\end{teachernote}
 
 \end{document}

@@ -1,0 +1,272 @@
+%! Direct, Inverse \& Joint Variation — Unit 4, Lesson 4.7 — Homework (Answer Key)
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
+\begin{document}
+
+\pageheader{Unit 4, Lesson 4.7}{Homework --- Answer Key}
+\namedateperiod
+
+\vspace{0.10in}
+
+\begin{notesbox}{Practice}
+Every table gets \emph{both} tests: the quotients $y\div x$ and the products $x\cdot y$. Whichever row
+is constant names the variation --- and if neither is, the answer is ``neither.''
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Name the variation} and give $k$ when there is one.
+    \begin{center}
+    \begin{minipage}{0.47\linewidth}\centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \rowcolor{forestbg}
+    $x$ & $4$ & $6$ & $9$ & $12$ \\ \hline
+    $y$ & $10$ & $15$ & $22.5$ & $30$ \\ \hline
+    \end{tabular}\\[2pt]
+    {\small (a) \ans{direct} \; $k=$ \ans{$2.5$}}
+    \end{minipage}\hfill
+    \begin{minipage}{0.47\linewidth}\centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \rowcolor{forestbg}
+    $x$ & $3$ & $4$ & $6$ & $12$ \\ \hline
+    $y$ & $8$ & $6$ & $4$ & $2$ \\ \hline
+    \end{tabular}\\[2pt]
+    {\small (b) \ans{inverse} \; $k=$ \ans{$24$}}
+    \end{minipage}
+    \end{center}
+    \vspace{3pt}
+    \begin{center}
+    \begin{minipage}{0.47\linewidth}\centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \rowcolor{forestbg}
+    $x$ & $1$ & $3$ & $5$ & $7$ \\ \hline
+    $y$ & $4$ & $10$ & $16$ & $22$ \\ \hline
+    \end{tabular}\\[2pt]
+    {\small (c) \ans{neither} \; $k=$ \ans{none}}
+    \end{minipage}\hfill
+    \begin{minipage}{0.47\linewidth}\centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \rowcolor{forestbg}
+    $x$ & $3$ & $6$ & $7$ & $10$ \\ \hline
+    $y$ & $21$ & $42$ & $49$ & $70$ \\ \hline
+    \end{tabular}\\[2pt]
+    {\small (d) \ans{direct} \; $k=$ \ans{$7$}}
+    \end{minipage}
+    \end{center}
+    \vspace{2pt}
+    {\small (c) is $y=3x+1$: the quotients are $4,\,3.\overline{3},\,3.2,\,3.\overline{142857}$ and the
+    products are $4,\,30,\,80,\,154$ --- neither settles down.}
+
+  \item \textbf{Find $k$, write the equation, answer the question.}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $y$ varies \emph{directly} as $x$; $y=24$ when $x=8$. \hfill $k=$ \ans{$3$} \;
+            $y=$ \ans{$3x$} \; Find $y$ when $x=15$: \ans{$45$}
+      \item $y$ varies \emph{inversely} as $x$; $y=7$ when $x=6$. \hfill $k=$ \ans{$42$} \;
+            $y=$ \ans{$\frac{42}{x}$} \; Find $y$ when $x=14$: \ans{$3$}
+      \item $y$ varies \emph{directly} as $x$; $y=4.5$ when $x=6$. \hfill $k=$ \ans{$0.75$} \;
+            $y=$ \ans{$0.75x$} \; Find $x$ when $y=12$: \ans{$16$}
+      \item $y$ varies \emph{inversely} as $x$; $y=2.5$ when $x=16$. \hfill $k=$ \ans{$40$} \;
+            $y=$ \ans{$\frac{40}{x}$} \; Find $x$ when $y=8$: \ans{$5$}
+      \item $y$ varies \emph{inversely} as $x$; $y=20$ when $x=3$. \hfill $k=$ \ans{$60$} \;
+            $y=$ \ans{$\frac{60}{x}$} \; Find $y$ when $x=5$: \ans{$12$}
+      \item $y$ varies \emph{directly} as $x$; $y=-14$ when $x=4$. \hfill $k=$ \ans{$-3.5$} \;
+            $y=$ \ans{$-3.5x$} \; Find $y$ when $x=10$: \ans{$-35$}
+    \end{enumerate}
+    \vspace{2pt}
+    {\small Part (f) has a negative $k$. Nothing breaks --- but say what it does to the graph:
+    \ans{the line still passes through the origin, but it slopes downward, so $y$ decreases as $x$
+    increases}}
+
+  \item \textbf{No table given. Decide from the situation, and say why.}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item The perimeter $P$ of a square and its side length $s$. \; \ans{direct}, because
+            $P=$ \ans{$4s$}, so $k=$ \ans{$4$}.
+      \item One pizza cut into $8$ slices is shared equally among $n$ people. The number of slices
+            each person gets and $n$: \; \ans{inverse}, $k=$ \ans{$8$}.
+      \item A taxi charges $\$3.00$ just to start the meter, plus $\$2.00$ per mile. Is the fare
+            directly proportional to the miles driven? \ans{no} \\
+            Why not? \ans{the fare is $2m+3$: zero miles still costs $\$3$, so the graph misses the
+            origin and fare$\,\div\,$miles is not constant}
+    \end{enumerate}
+
+  \item \textbf{Read the graphs.} One of these is a direct variation and one is an inverse variation.
+    \begin{center}
+    \begin{minipage}{0.46\linewidth}\centering
+    \begin{tikzpicture}[scale=0.30]
+      \lgrid{-7}{7}{-9}{9}
+      \begin{scope}
+        \clip (-7,-9) rectangle (7,9);
+        \draw[very thick, forest] (-6,-9)--(6,9);
+      \end{scope}
+      \fill[charcoal] (4,6) circle (3.6pt) node[above left, font=\scriptsize]{$(4,6)$};
+    \end{tikzpicture}\\[2pt]
+    {\small \textbf{Graph I}}
+    \end{minipage}\hfill
+    \begin{minipage}{0.46\linewidth}\centering
+    \begin{tikzpicture}[scale=0.30]
+      \lgrid{-9}{9}{-9}{9}
+      \begin{scope}
+        \clip (-9,-9) rectangle (9,9);
+        \draw[very thick, forest, domain=1.34:9, samples=150, smooth] plot (\x,{12/(\x)});
+        \draw[very thick, forest, domain=-9:-1.34, samples=150, smooth] plot (\x,{12/(\x)});
+      \end{scope}
+      \fill[charcoal] (2,6) circle (3.6pt) node[above right, font=\scriptsize]{$(2,6)$};
+      \fill[charcoal] (6,2) circle (3.6pt);
+    \end{tikzpicture}\\[2pt]
+    {\small \textbf{Graph II}}
+    \end{minipage}
+    \end{center}
+    \vspace{-2pt}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item Graph I is a \ans{direct} variation; the giveaway is that it is a line through the
+            \ans{origin}. Using the marked point, $k=$ \ans{$1.5$} and $y=$ \ans{$1.5x$}.
+      \item Graph II is an \ans{inverse} variation. Using the marked point, $k=$ \ans{$12$} and
+            $y=$ \ans{$\frac{12}{x}$}.
+      \item Use your equation from (b) to find $y$ when $x=8$: \ans{$1.5$}. \; Would that point be
+            on the drawn curve? \ans{yes}
+      \item Graph II has asymptotes $x=$ \ans{$0$} and $y=$ \ans{$0$}. Graph I has none.
+            Explain why a direct variation can \emph{never} have an asymptote. \ansline{$y=kx$ is a
+            line: every real number is in its domain, so there is no input to build a wall at, and its
+            outputs keep growing rather than settling toward a value}
+    \end{enumerate}
+
+  \item \textbf{Error analysis.} The problem: \emph{$y$ varies inversely as $x$, and $y=8$ when $x=3$.
+        Find $y$ when $x=12$.} A student wrote:
+    \begin{center}
+    \fbox{\parbox{0.80\linewidth}{\centering \vspace{2pt}
+    ``Inverse, so $k=xy=(3)(8)=24$. \\
+    The equation is $y=24x$. \\
+    When $x=12$, \; $y=24(12)=288$.''\vspace{2pt}}}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item Is the student's $k$ correct? \ans{yes} \; So the mistake is not in finding $k$ ---
+            it is in \ans{writing the equation}.
+      \item Test their equation on the pair they were \emph{given}: $y=24x$ at $x=3$ gives
+            \ans{$72$}, but it should give \ans{$8$}.
+      \item Write the correct equation \ans{$y=\frac{24}{x}$} and the correct answer \ans{$y=2$}.
+      \item There was a one-second sanity check available before any arithmetic. What is it?
+            \ansline{in an inverse variation, when $x$ goes up ($3\to12$) $y$ must go \emph{down} ---
+            an answer of $288$ instead of $8$ is moving the wrong way}
+    \end{enumerate}
+
+  \item \textbf{The seesaw.} To balance a seesaw, the distance $d$ a child sits from the pivot varies
+        inversely as their weight $w$. A $60$-pound child balances at $5$ feet from the pivot.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $k=$ \ans{$300$}, measured in \ans{pound-feet}. \; Equation: $d=$ \ans{$\frac{300}{w}$}
+      \item A $75$-pound child balances at \ans{$4$} feet. A $50$-pound child balances at
+            \ans{$6$} feet.
+      \item As $w$ gets very large, $d$ approaches \ans{$0$}. Say what that horizontal asymptote
+            means for a very heavy rider. \ans{a very heavy rider must sit almost on top of the pivot
+            --- but never exactly at it}
+      \item The vertical asymptote is at $w=$ \ans{$0$}. What does \emph{it} say?
+            \ans{the lighter the rider, the further out they must sit, without bound --- a weightless
+            rider could never balance the seesaw at all}
+      \item The seesaw beam is only $8$ feet long on each side of the pivot. So the equation is only
+            useful for weights of at least \ans{$37.5$} pounds. Show the inequality you solved.
+            \ans{$\frac{300}{w}\le 8 \Rightarrow 300\le 8w \Rightarrow w\ge 37.5$}
+      \item The equation cheerfully accepts $w=-60$ and returns $d=-5$. You reject it. Is that the same
+            kind of rejection as an \emph{extraneous} solution from Lesson 4.6? Explain.
+            \ansline{No. $w=-60$ genuinely satisfies $d=\frac{300}{w}$ --- the algebra has no complaint
+            with it at all.}
+            \ansline{It is rejected because weights and distances cannot be negative, which is the
+            \emph{situation} talking. An extraneous solution never satisfied the original equation in
+            the first place; it made a denominator zero.}
+    \end{enumerate}
+\end{enumerate}
+\end{notesbox}
+
+\begin{extensionbox}
+\textbf{Part 1 --- Two variables at once.}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
+  \item $y$ varies jointly as $x$ and $z$; $y=90$ when $x=5$ and $z=3$. \; $k=$ \ans{$6$}, \;
+        $y=$ \ans{$6xz$}, \; and $y=$ \ans{$84$} when $x=2$ and $z=7$.
+  \item $y$ varies directly as $x$ and inversely as $z$; $y=9$ when $x=6$ and $z=4$. \;
+        $k=$ \ans{$6$}, \; $y=$ \ans{$\frac{6x}{z}$}, \; and $y=$ \ans{$12$} when $x=10$ and $z=5$.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 2 --- Prove it, do not just say it.}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
+  \item $y$ varies inversely as $x$. If $x$ is multiplied by $5$, then $y$ is multiplied by
+        \ans{$\frac15$}. Show it by replacing $x$ with $5x$ in $y=\frac kx$.
+        \ansline{new $y=\frac{k}{5x}=\frac15\cdot\frac kx=\frac15\cdot(\text{old }y)$}
+  \item $y$ varies jointly as $x$ and $z$. If $x$ is doubled and $z$ is halved, $y$ \ans{is unchanged}.
+        Show it. \ansline{new $y=k(2x)\left(\frac z2\right)=kxz=\text{old }y$ --- the $2$ and the
+        $\frac12$ cancel}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 3 --- Can it be both?} Ana claims a table could be a direct variation \emph{and} an
+inverse variation at the same time.
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
+  \item If both were true, then $y=kx$ and $y=\frac mx$ at every row, so $kx=\frac mx$ and therefore
+        $x^2=$ \ans{$\frac mk$}.
+  \item How many different values of $x$ can satisfy that? \ans{two} \; So Ana's table could
+        have at most \ans{two} distinct $x$-values, and no real table of four inputs can do it.
+  \item A direct variation and an inverse variation both pass through $(2,6)$. Their equations are
+        $y=$ \ans{$3x$} and $y=$ \ans{$\frac{12}{x}$}. Where else do the two graphs cross?
+        \ans{$(-2,-6)$}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- the Unit 4 Test.} That is the whole unit: what a rational function \emph{is}
+and how its graph behaves (4.0), simplifying and the restrictions that come off the \emph{original}
+denominator (4.1), multiplying and dividing (4.2), adding and subtracting with an LCD (4.3), the parent
+$\frac1x$ and its transformations (4.4), graphing from the equation --- holes, walls, and the
+horizontal asymptote by degree comparison (4.5), solving equations and throwing out the extraneous
+answers (4.6), and today, the same function doing an honest day's work. The practice test in your
+packet mirrors the real one in format and ideas with different numbers. One habit is worth more than
+any formula on it: \textbf{factor first, restrict early, and check what the answer is supposed to
+mean.}
+\end{spiralbox}
+
+\begin{teachernote}
+\textbf{Problem 1(c) and problem 3(c) are the same idea twice} --- a relationship that is perfectly
+regular and still not a variation, once from a table and once from a sentence. If a student misses both,
+the fix is the Hook, not more practice: $y=3x+1$ and ``$\$3.00$ to start'' are the same $+b$.
+
+\vspace{3pt}
+\textbf{Problem 2(f) is there so ``$k$ is negative'' never becomes ``I did it wrong.''} The line still
+runs through the origin; it just falls instead of rises.
+
+\vspace{3pt}
+\textbf{Problem 4(d) is the unit's structural question} and the best short-answer item on the page. A
+direct variation is a \emph{polynomial} --- domain all reals, no excluded input to build a wall at, and
+end behavior that runs off to infinity rather than settling. That is exactly the 4.0 compare-and-contrast
+table, so it is fair game on the unit test.
+
+\vspace{3pt}
+\textbf{Problem 5 catches the lesson's other big error} --- computing $k$ correctly and then writing the
+wrong \emph{form}. Part (d) is the habit worth the most: in an inverse variation, $x$ up means $y$ down,
+so a bigger answer is wrong before you check the arithmetic.
+
+\vspace{3pt}
+\textbf{Problem 6 is the capstone.} Parts (c) and (d) are the A2.F.2f interpretation items and should be
+graded on the English, not the number. Part (e) is the one students skip: the \emph{physical} beam adds
+a restriction the equation knows nothing about, and $\frac{300}{w}\le8$ is a rational inequality they can
+handle because $w>0$ already. Part (f) is the whole point of following 4.6 with this lesson --- $w=-60$
+solves the equation and is still rejected. Do not accept ``it's extraneous.''
+
+\vspace{3pt}
+\textbf{Extension Part 3} is the sharpest item in the packet. Once $x^2=\frac mk$ is on the page, the
+argument is finished: two $x$-values at most, so a four-row table cannot be both. Part (c) is a pleasant
+landing --- the second intersection is $(-2,-6)$, the reflection through the origin, which both an odd
+line and an odd hyperbola share.
+\end{teachernote}
+
+\end{document}

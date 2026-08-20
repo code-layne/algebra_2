@@ -1,9 +1,8 @@
-%! Direct, Inverse \& Joint Variation — Unit 5, Lesson 5.7 — Homework
+%! Inverse Functions — Unit 5, Lesson 5.7 — Homework
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -17,206 +16,201 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Every table gets \emph{both} tests: the quotients $y\div x$ and the products $x\cdot y$. Whichever row
-is constant names the variation --- and if neither is, the answer is ``neither.''
+Reverse the operations \emph{and} the order. Then test what you built --- both ways.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Name the variation} and give $k$ when there is one.
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{Are they inverses?} Compose both ways before you answer. One of these four pairs is
+        an impostor.
     \begin{center}
-    \begin{minipage}{0.47\linewidth}\centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{|l|c|c|c|c|}
+    \renewcommand{\arraystretch}{1.9}
+    \begin{tabularx}{\linewidth}{@{}l X X c@{}}
     \hline
-    \rowcolor{forestbg}
-    $x$ & $4$ & $6$ & $9$ & $12$ \\ \hline
-    $y$ & $10$ & $15$ & $22.5$ & $30$ \\ \hline
-    \end{tabular}\\[2pt]
-    {\small (a) \blank{2.2cm} \; $k=\blank{1.2cm}$}
-    \end{minipage}\hfill
-    \begin{minipage}{0.47\linewidth}\centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{|l|c|c|c|c|}
+    \textbf{$f$ and $g$} & \textbf{$f\big(g(x)\big)$} & \textbf{$g\big(f(x)\big)$} & \textbf{Inverses?} \\
     \hline
-    \rowcolor{forestbg}
-    $x$ & $3$ & $4$ & $6$ & $12$ \\ \hline
-    $y$ & $8$ & $6$ & $4$ & $2$ \\ \hline
-    \end{tabular}\\[2pt]
-    {\small (b) \blank{2.2cm} \; $k=\blank{1.2cm}$}
-    \end{minipage}
+    (a) $f(x)=x-9$, \; $g(x)=x+9$ & \blank{2.6cm} & \blank{2.6cm} & \blank{1.2cm} \\
+    (b) $f(x)=\dfrac{x}{2}$, \; $g(x)=2x$ & \blank{2.6cm} & \blank{2.6cm} & \blank{1.2cm} \\
+    (c) $f(x)=5x-2$, \; $g(x)=\dfrac{x}{5}+2$ & \blank{2.6cm} & \blank{2.6cm} & \blank{1.2cm} \\
+    (d) $f(x)=x^{3}+2$, \; $g(x)=\sqrt[3]{x-2}$ & \blank{2.6cm} & \blank{2.6cm} & \blank{1.2cm} \\
+    \hline
+    \end{tabularx}
     \end{center}
-    \vspace{3pt}
+    \vspace{0.75in}
+    (e) Repair the impostor: the true inverse is \blank{3.0cm} \\[2pt]
+    \hspace*{0.3in}\emph{What exactly did that row get wrong --- the operations, or the order?}
+    \blank{3.6cm}
+
+  \item \textbf{Swap and solve.} Two of these six need a restriction. Write it if it is needed.
     \begin{center}
-    \begin{minipage}{0.47\linewidth}\centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{|l|c|c|c|c|}
+    \renewcommand{\arraystretch}{1.9}
+    \begin{tabularx}{\linewidth}{@{}l X l X@{}}
     \hline
-    \rowcolor{forestbg}
-    $x$ & $1$ & $3$ & $5$ & $7$ \\ \hline
-    $y$ & $4$ & $10$ & $16$ & $22$ \\ \hline
-    \end{tabular}\\[2pt]
-    {\small (c) \blank{2.2cm} \; $k=\blank{1.2cm}$}
-    \end{minipage}\hfill
-    \begin{minipage}{0.47\linewidth}\centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{|l|c|c|c|c|}
+    \textbf{$f(x)$} & \textbf{$f^{-1}(x)$} & \textbf{$f(x)$} & \textbf{$f^{-1}(x)$} \\
     \hline
-    \rowcolor{forestbg}
-    $x$ & $3$ & $6$ & $7$ & $10$ \\ \hline
-    $y$ & $21$ & $42$ & $49$ & $70$ \\ \hline
-    \end{tabular}\\[2pt]
-    {\small (d) \blank{2.2cm} \; $k=\blank{1.2cm}$}
-    \end{minipage}
+    (a) $x-11$ & \blank{3.2cm} & (d) $x^{3}-8$ & \blank{3.2cm} \\
+    (b) $\dfrac{x}{3}+6$ & \blank{3.2cm} & (e) $\sqrt[3]{x+1}$ & \blank{3.2cm} \\
+    (c) $7-2x$ & \blank{3.2cm} & (f) $\sqrt{x}+4$ & \blank{3.2cm} \\
+    \hline
+    \end{tabularx}
     \end{center}
+    \vspace{0.85in}
+    Rows (d) and (e) both involve cubes, and neither needed a restriction. Row (f) did. What is it
+    about an \emph{even} index that makes the difference? \blank{6.0cm}
 
-  \item \textbf{Find $k$, write the equation, answer the question.}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $y$ varies \emph{directly} as $x$; $y=24$ when $x=8$. \hfill $k=\blank{1.2cm}$ \;
-            $y=\blank{1.6cm}$ \; Find $y$ when $x=15$: \blank{1.4cm}
-      \item $y$ varies \emph{inversely} as $x$; $y=7$ when $x=6$. \hfill $k=\blank{1.2cm}$ \;
-            $y=\blank{1.6cm}$ \; Find $y$ when $x=14$: \blank{1.4cm}
-      \item $y$ varies \emph{directly} as $x$; $y=4.5$ when $x=6$. \hfill $k=\blank{1.2cm}$ \;
-            $y=\blank{1.6cm}$ \; Find $x$ when $y=12$: \blank{1.4cm}
-      \item $y$ varies \emph{inversely} as $x$; $y=2.5$ when $x=16$. \hfill $k=\blank{1.2cm}$ \;
-            $y=\blank{1.6cm}$ \; Find $x$ when $y=8$: \blank{1.4cm}
-      \item $y$ varies \emph{inversely} as $x$; $y=20$ when $x=3$. \hfill $k=\blank{1.2cm}$ \;
-            $y=\blank{1.6cm}$ \; Find $y$ when $x=5$: \blank{1.4cm}
-      \item $y$ varies \emph{directly} as $x$; $y=-14$ when $x=4$. \hfill $k=\blank{1.2cm}$ \;
-            $y=\blank{1.6cm}$ \; Find $y$ when $x=10$: \blank{1.4cm}
-    \end{enumerate}
-    \vspace{2pt}
-    {\small Part (f) has a negative $k$. Nothing breaks --- but say what it does to the graph:
-    \blank{5.0cm}}
-
-  \item \textbf{No table given. Decide from the situation, and say why.}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item The perimeter $P$ of a square and its side length $s$. \; \blank{2.0cm}, because
-            $P=\blank{1.4cm}$, so $k=\blank{1.0cm}$.
-      \item One pizza cut into $8$ slices is shared equally among $n$ people. The number of slices
-            each person gets and $n$: \; \blank{2.0cm}, $k=\blank{1.0cm}$.
-      \item A taxi charges $\$3.00$ just to start the meter, plus $\$2.00$ per mile. Is the fare
-            directly proportional to the miles driven? \blank{1.2cm} \\
-            Why not? \blank{6.0cm}
-    \end{enumerate}
-
-  \item \textbf{Read the graphs.} One of these is a direct variation and one is an inverse variation.
+  \item \textbf{From a table.} Here are some values of $g$.
     \begin{center}
-    \begin{minipage}{0.46\linewidth}\centering
-    \begin{tikzpicture}[scale=0.30]
-      \lgrid{-7}{7}{-9}{9}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}|c|c|c|c|c|c|@{}}
+    \hline
+    $x$ & $-2$ & $0$ & $1$ & $3$ & $4$ \\
+    \hline
+    $g(x)$ & $-3$ & $1$ & $3$ & $7$ & $9$ \\
+    \hline
+    \end{tabular}
+    \hspace{0.25in}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}|c|c|c|c|c|c|@{}}
+    \hline
+    $x$ & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} \\
+    \hline
+    $g^{-1}(x)$ & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} & \blank{0.7cm} \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{-2pt}
+    (a) $g^{-1}(7)=\blank{1.2cm}$ \hspace{0.25in}
+    (b) $g^{-1}(1)=\blank{1.2cm}$ \hspace{0.25in}
+    (c) $g\big(g^{-1}(9)\big)=\blank{1.2cm}$ \\[3pt]
+    (d) The graph of $g$ also passes through $(5,11)$. Name a point that must be on the graph of
+    $g^{-1}$: \blank{2.0cm} \\[3pt]
+    (e) These values follow the rule $g(x)=2x+1$. Find $g^{-1}(x)$ and check it against your table.
+    \; $g^{-1}(x)=\blank{2.6cm}$
+
+  \item \textbf{From two graphs.} Below are $y=h(x)$ and $y=k(x)$. The dashed line is $y=x$.
+    \begin{center}
+    \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-5}{6}{-5}{5}
+      \draw[dashed, semithick, charcoal] (-4.6,-4.6)--(4.6,4.6);
+      \draw[very thick, forest] (-4,-3)--(-1,0)--(5,3);
+      \fill[forest] (-4,-3) circle (3.4pt);
+      \fill[forest] (-1,0) circle (3.4pt);
+      \fill[forest] (1,1) circle (3.4pt);
+      \fill[forest] (5,3) circle (3.4pt);
+      \node[forest, font=\scriptsize] at (-3.0,2.4) {$y=h(x)$};
+    \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-5}{5}{-5}{5}
       \begin{scope}
-        \clip (-7,-9) rectangle (7,9);
-        \draw[very thick, forest] (-6,-9)--(6,9);
+        \clip (-5,-5) rectangle (5,5);
+        \draw[very thick, navy, domain=-2.9:2.9, samples=120, smooth] plot (\x,{(\x)*(\x)-3});
       \end{scope}
-      \fill[charcoal] (4,6) circle (3.6pt) node[above left, font=\scriptsize]{$(4,6)$};
-    \end{tikzpicture}\\[2pt]
-    {\small \textbf{Graph I}}
-    \end{minipage}\hfill
-    \begin{minipage}{0.46\linewidth}\centering
-    \begin{tikzpicture}[scale=0.30]
-      \lgrid{-9}{9}{-9}{9}
-      \begin{scope}
-        \clip (-9,-9) rectangle (9,9);
-        \draw[very thick, forest, domain=1.34:9, samples=150, smooth] plot (\x,{12/(\x)});
-        \draw[very thick, forest, domain=-9:-1.34, samples=150, smooth] plot (\x,{12/(\x)});
-      \end{scope}
-      \fill[charcoal] (2,6) circle (3.6pt) node[above right, font=\scriptsize]{$(2,6)$};
-      \fill[charcoal] (6,2) circle (3.6pt);
-    \end{tikzpicture}\\[2pt]
-    {\small \textbf{Graph II}}
+      \node[navy, font=\scriptsize] at (-3.2,-4.2) {$y=k(x)$};
+    \end{tikzpicture}
     \end{minipage}
     \end{center}
     \vspace{-2pt}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item Graph I is a \blank{2.0cm} variation; the giveaway is that it is a line through the
-            \blank{1.8cm}. Using the marked point, $k=\blank{1.0cm}$ and $y=\blank{1.4cm}$.
-      \item Graph II is a \blank{2.0cm} variation. Using the marked point, $k=\blank{1.0cm}$ and
-            $y=\blank{1.6cm}$.
-      \item Use your equation from (b) to find $y$ when $x=8$: \blank{1.4cm}. \; Would that point be
-            on the drawn curve? \blank{1.0cm}
-      \item Graph II has asymptotes $x=\blank{0.8cm}$ and $y=\blank{0.8cm}$. Graph I has none.
-            Explain why a direct variation can \emph{never} have an asymptote. \writeline
-    \end{enumerate}
+    (a) Four points are marked on $h$. List the four matching points on $h^{-1}$: \\[3pt]
+    \hspace*{0.3in} \blank{2.2cm} \hspace{0.15in} \blank{2.2cm} \hspace{0.15in} \blank{2.2cm}
+    \hspace{0.15in} \blank{2.2cm} \\[3pt]
+    (b) $h(-1)=\blank{1.0cm}$, \; so $h^{-1}(0)=\blank{1.0cm}$. \hspace{0.25in}
+    (c) One marked point is its own reflection. Which? \blank{1.6cm} \\[3pt]
+    (d) Does $k$ pass the horizontal line test? \blank{1.4cm} \; Give a horizontal line that proves
+    your answer: \blank{2.0cm} \\[3pt]
+    (e) Name a restricted domain that would give $k$ an inverse function, and write that inverse.
+    \blank{5.4cm}
 
-  \item \textbf{Error analysis.} The problem: \emph{$y$ varies inversely as $x$, and $y=8$ when $x=3$.
-        Find $y$ when $x=12$.} A student wrote:
+  \item \textbf{Error analysis.} Two classmates, two different misunderstandings.
     \begin{center}
-    \fbox{\parbox{0.80\linewidth}{\centering \vspace{2pt}
-    ``Inverse, so $k=xy=(3)(8)=24$. \\
-    The equation is $y=24x$. \\
-    When $x=12$, \; $y=24(12)=288$.''\vspace{2pt}}}
+    \begin{tcolorbox}[colback=white, colframe=charcoal!45, boxrule=0.7pt, arc=1.5mm,
+        width=0.80\linewidth, left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+    \centering\small
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{}l l@{}}
+    \textbf{Priya writes:} & $f(x)=5x$, \; so \; $f^{-1}(x)=\dfrac{1}{5x}$ \\
+    \textbf{Devon writes:} & $f(x)=\dfrac{x}{4}-9$, \; so \; $f^{-1}(x)=4x+9$ \\
+    \end{tabular}
+    \end{tcolorbox}
     \end{center}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item Is the student's $k$ correct? \blank{1.0cm} \; So the mistake is not in finding $k$ ---
-            it is in \blank{4.0cm}.
-      \item Test their equation on the pair they were \emph{given}: $y=24x$ at $x=3$ gives
-            \blank{1.4cm}, but it should give \blank{1.0cm}.
-      \item Write the correct equation \blank{2.0cm} and the correct answer \blank{1.4cm}.
-      \item There was a one-second sanity check available before any arithmetic. What is it?
-            \writeline
-    \end{enumerate}
+    \vspace{-4pt}
+    (a) Give the correct inverse in each case. \; Priya's: \blank{2.4cm} \; Devon's:
+    \blank{2.6cm} \\[3pt]
+    (b) Catch each error with one number. For Priya, $f(3)=\blank{1.0cm}$, so $f^{-1}$ must send
+    that back to \blank{1.0cm}; hers sends it to \blank{1.4cm}. \\[3pt]
+    \hspace*{0.3in} For Devon, $f(4)=\blank{1.0cm}$, so $f^{-1}$ must send that back to
+    \blank{1.0cm}; his sends it to \blank{1.4cm}. \\[3pt]
+    (c) Name each mistake in a few words --- they are two \emph{different} misunderstandings. \\[2pt]
+    Priya: \blank{5.4cm} \\[3pt]
+    Devon: \blank{5.4cm}
 
-  \item \textbf{The seesaw.} To balance a seesaw, the distance $d$ a child sits from the pivot varies
-        inversely as their weight $w$. A $60$-pound child balances at $5$ feet from the pivot.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $k=\blank{1.4cm}$, measured in \blank{2.6cm}. \; Equation: $d=\blank{1.8cm}$
-      \item A $75$-pound child balances at \blank{1.4cm} feet. A $50$-pound child balances at
-            \blank{1.4cm} feet.
-      \item As $w$ gets very large, $d$ approaches \blank{1.0cm}. Say what that horizontal asymptote
-            means for a very heavy rider. \blank{5.4cm}
-      \item The vertical asymptote is at $w=\blank{0.8cm}$. What does \emph{it} say?
-            \blank{5.4cm}
-      \item The seesaw beam is only $8$ feet long on each side of the pivot. So the equation is only
-            useful for weights of at least \blank{1.6cm} pounds. Show the inequality you solved.
-            \blank{4.6cm}
-      \item The equation cheerfully accepts $w=-60$ and returns $d=-5$. You reject it. Is that the same
-            kind of rejection as an \emph{extraneous} solution from Lesson 5.6? Explain.
-            \writelines{2}
+  \item \textbf{Justify.} Answer both in complete sentences.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $y=x^{2}$ must have its domain restricted before it can have an inverse function, but
+            $y=x^{3}$ does not. Explain the difference, using the horizontal line test. Then say
+            what this has to do with the fact that $\sqrt{x}$ accepts only half the number line
+            while $\sqrt[3]{x}$ accepts all of it.
+      \item Let $f(x)=\sqrt{x+3}$. State the domain and range of $f$, then the domain and range of
+            $f^{-1}$ --- and explain how you got the second pair from the first \emph{without}
+            finding $f^{-1}$ at all.
     \end{enumerate}
+    \writelines{6}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Part 1 --- Two variables at once.}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
-  \item $y$ varies jointly as $x$ and $z$; $y=90$ when $x=5$ and $z=3$. \; $k=\blank{1.0cm}$, \;
-        $y=\blank{1.6cm}$, \; and $y=\blank{1.2cm}$ when $x=2$ and $z=7$.
-  \item $y$ varies directly as $x$ and inversely as $z$; $y=9$ when $x=6$ and $z=4$. \;
-        $k=\blank{1.0cm}$, \; $y=\blank{1.6cm}$, \; and $y=\blank{1.2cm}$ when $x=10$ and $z=5$.
+\textbf{Building a clock.} A pendulum of length $L$ feet takes
+\[
+  T(L)=2\pi\sqrt{\frac{L}{32}} \ \text{ seconds}
+\]
+to complete one full swing. A clockmaker has the opposite problem: they know the swing time they
+\emph{want}, and need the length that produces it.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Complete the table. Round to two decimal places.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{}|c|c|c|c|@{}}
+    \hline
+    $L$ (feet) & $2$ & $8$ & $32$ \\
+    \hline
+    $T(L)$ (seconds) & \blank{1.6cm} & \blank{1.6cm} & \blank{1.6cm} \\
+    \hline
+    \end{tabular}
+    \end{center}
+  \item Each length in that table is $4$ times the one before it. What happened to the swing times,
+        and which feature of a square root graph made that inevitable?
+  \item Build the clockmaker's function by swapping and solving. Show that
+        $L(T)=\dfrac{8T^{2}}{\pi^{2}}$.
+  \item A grandfather clock is built so that one swing takes exactly $2$ seconds. How long is its
+        pendulum, in feet and in inches? (Look up a real grandfather clock afterwards.)
+  \item Verify that $T$ and $L$ are inverses by composing them \emph{both} ways.
+  \item State the domain and range of $T$ \emph{in context}, then the domain and range of $L$. Why
+        does this situation hand you the restriction for free, without you having to decide
+        anything?
 \end{enumerate}
-
-\vspace{4pt}
-\textbf{Part 2 --- Prove it, do not just say it.}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
-  \item $y$ varies inversely as $x$. If $x$ is multiplied by $5$, then $y$ is multiplied by
-        \blank{1.2cm}. Show it by replacing $x$ with $5x$ in $y=\frac kx$. \writeline
-  \item $y$ varies jointly as $x$ and $z$. If $x$ is doubled and $z$ is halved, $y$ \blank{3.0cm}.
-        Show it. \writeline
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{Part 3 --- Can it be both?} Ana claims a table could be a direct variation \emph{and} an
-inverse variation at the same time.
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
-  \item If both were true, then $y=kx$ and $y=\frac mx$ at every row, so $kx=\frac mx$ and therefore
-        $x^2=\blank{1.4cm}$.
-  \item How many different values of $x$ can satisfy that? \blank{1.2cm} \; So Ana's table could
-        have at most \blank{1.2cm} distinct $x$-values, and no real table of four inputs can do it.
-  \item A direct variation and an inverse variation both pass through $(2,6)$. Their equations are
-        $y=\blank{1.2cm}$ and $y=\blank{1.4cm}$. Where else do the two graphs cross?
-        \blank{2.4cm}
-\end{enumerate}
+\writelines{5}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- the Unit 5 Test.} That is the whole unit: what a rational function \emph{is}
-and how its graph behaves (5.0), simplifying and the restrictions that come off the \emph{original}
-denominator (5.1), multiplying and dividing (5.2), adding and subtracting with an LCD (5.3), the parent
-$\frac1x$ and its transformations (5.4), graphing from the equation --- holes, walls, and the
-horizontal asymptote by degree comparison (5.5), solving equations and throwing out the extraneous
-answers (5.6), and today, the same function doing an honest day's work. The practice test in your
-packet mirrors the real one in format and ideas with different numbers. One habit is worth more than
-any formula on it: \textbf{factor first, restrict early, and check what the answer is supposed to
-mean.}
+\textbf{That is Unit 5 --- and the loop is closed.} Look back at Lesson 5.0. You noticed then that
+$y=\sqrt{x}$ gets only half the number line while $y=\sqrt[3]{x}$ gets all of it, that one has an
+endpoint and the other does not, that one has an absolute minimum and the other has no extrema at
+all. Today you found the single sentence underneath every one of those differences: $x^{2}$ has two
+arms and $x^{3}$ has one, so the square must be cut down before it is allowed a partner and the cube
+never has to be. Everything in between was the machinery --- rational exponents (5.1) for
+\emph{writing} the two families in one notation, simplifying and operating (5.2--5.3), graphing and
+transformations (5.4), solving equations and the extraneous roots that squaring creates (5.5), and
+composition (5.6), which turned out to be the tool that \emph{proves} an inverse rather than just
+suggesting one.
+\\[4pt]
+\textbf{Next: the Unit 5 test.} Bring back every part of it --- convert between radicals and rational
+exponents, simplify and combine radical expressions, rationalize a denominator, read the
+characteristics of a radical graph, transform one, solve a radical equation and check for
+extraneous solutions, compose two functions and find the domain, and build and justify an inverse.
+The practice test is in your packet.
 \end{spiralbox}
 
 \end{document}

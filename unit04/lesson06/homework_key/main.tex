@@ -1,9 +1,9 @@
-%! Graphing Polynomial Functions and Modeling — Unit 4, Lesson 4.6 — Homework (Answer Key)
+%! Solving Rational Equations — Unit 4, Lesson 4.6 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -14,237 +14,201 @@
 \pageheader{Unit 4, Lesson 4.6}{Homework --- Answer Key}
 \namedateperiod
 
-\vspace{0.08in}
+\vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Arms from the degree and leading coefficient. Intercepts from the factors. Cross, touch, or flatten
-from the multiplicities. One test value per interval for above or below. Every problem below is those
-four moves in some order.
+Every problem starts the same way: \textbf{factor the denominators and write the restriction list.}
+A number is not an answer until you have checked it against that list.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=8pt]
-  \item \textbf{Predict from the equation.} Fill in the table without expanding anything.
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{The list first.} Do not solve --- just give the restrictions and the LCD.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
+      \item $\dfrac{7}{x}-\dfrac{2}{x+5}=1$ \hfill restrictions \ans{$0,\,-5$} \; LCD \ans{$x(x+5)$}
+      \item $\dfrac{x}{x-7}=\dfrac{3}{x+1}$ \hfill restrictions \ans{$7,\,-1$} \;
+            LCD \ans{$(x-7)(x+1)$}
+      \item $\dfrac{4}{x^2-25}=\dfrac{1}{x-5}$ \hfill restrictions \ans{$5,\,-5$} \;
+            LCD \ans{$(x-5)(x+5)$}
+      \item $\dfrac{2}{x^2+2x}+\dfrac{1}{x+2}=\dfrac{3}{x}$ \hfill restrictions \ans{$0,\,-2$} \;
+            LCD \ans{$x(x+2)$}
+    \end{enumerate}
 
+  \item \textbf{Solve.} Show the cleared equation, the candidates, and the check. If an equation has no
+        solution, say so.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=7pt]
+      \item $\dfrac{5}{x}+\dfrac{3}{2}=\dfrac{11}{x}$ \hfill candidates \ans{$4$} \;
+            extraneous \ans{none} \; solution \ans{$\{4\}$}
+      \item $\dfrac{x}{x+3}=\dfrac{4}{x}$ \hfill candidates \ans{$6,\,-2$} \;
+            extraneous \ans{none} \; solution \ans{$\{6,-2\}$}
+      \item $\dfrac{x}{4}+\dfrac{1}{x}=\dfrac{5}{4}$ \hfill candidates \ans{$1,\,4$} \;
+            extraneous \ans{none} \; solution \ans{$\{1,4\}$}
+      \item $\dfrac{x}{x-6}=\dfrac{6}{x-6}+2$ \hfill candidates \ans{$6$} \;
+            extraneous \ans{$6$} \; solution \ans{none}
+      \item $\dfrac{x}{x-1}+\dfrac{1}{x+1}=\dfrac{2}{x^2-1}$ \hfill candidates \ans{$-3,\,1$} \;
+            extraneous \ans{$1$} \; solution \ans{$\{-3\}$}
+      \item $\dfrac{4}{x^2-16}+\dfrac{1}{x+4}=\dfrac{1}{x-4}$ \hfill candidates \ans{none} \;
+            extraneous \ans{---} \; solution \ans{none}
+    \end{enumerate}
     \vspace{3pt}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{|X|C{1.2cm}|C{1.4cm}|C{2.4cm}|X|C{1.4cm}|}
-    \hline
-    \rowcolor{forestbg}
-    \textbf{Function} & \textbf{Deg.} & \textbf{Lead} & \textbf{Left / right arm} & \textbf{Zeros, and cross / touch / flatten at each} & \textbf{$y$-int} \\ \hline
-    (a) $f(x)=(x-1)(x+4)^2$    & \ans{$3$} & \ans{$1$}  & \ans{down / up}   & \ans{$1$ cross; $-4$ touch} & \ans{$-16$} \\ \hline
-    (b) $g(x)=-2(x+2)^3(x-1)$  & \ans{$4$} & \ans{$-2$} & \ans{down / down} & \ans{$-2$ flattens \& crosses; $1$ cross} & \ans{$16$} \\ \hline
-    (c) $h(x)=x^2(x-5)$        & \ans{$3$} & \ans{$1$}  & \ans{down / up}   & \ans{$0$ touch; $5$ cross} & \ans{$0$} \\ \hline
-    \end{tabularx}
+    Parts (d) and (f) both come out to ``no solution,'' but for two different reasons. Explain the
+    difference. \ansline{In (d) the cleared equation had a perfectly good candidate, $x=6$, and it was
+    thrown out only because $6$ is an excluded value --- an extraneous solution.}
+    \ansline{In (f) the cleared equation reduces to $0=4$, which is never true, so there was no
+    candidate to throw out in the first place. No extraneous solution is involved.}
 
-  \item \textbf{Same zeros, different pictures.} One graph below is $y=x^2(x-3)$ and the other is
-    $y=x(x-3)^2$. (Each horizontal gridline is $4$ units.)
-    \begin{center}
-    \begin{tikzpicture}[scale=0.46]
-      \lgrid{-2}{4}{-2}{3}
-      \begin{scope}
-        \clip (-2,-2) rectangle (4,3);
-        \draw[very thick, forest, domain=-1.2:3.6, samples=160, smooth]
-          plot (\x,{((\x)*(\x)*(\x) - 3*(\x)*(\x))/4});
-      \end{scope}
-      \foreach \x in {-1,1,2,3}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[above=1pt, font=\tiny]{$\x$};
-      \node[font=\scriptsize\bfseries, charcoal] at (-1.4,2.5) {I};
-    \end{tikzpicture}
-    \hspace{0.4cm}
-    \begin{tikzpicture}[scale=0.46]
-      \lgrid{-2}{4}{-3}{2}
-      \begin{scope}
-        \clip (-2,-3) rectangle (4,2);
-        \draw[very thick, forest, domain=-0.7:3.8, samples=160, smooth]
-          plot (\x,{((\x)*(\x)*(\x) - 6*(\x)*(\x) + 9*(\x))/4});
-      \end{scope}
-      \foreach \x in {-1,1,2,3}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[above=1pt, font=\tiny]{$\x$};
-      \node[font=\scriptsize\bfseries, charcoal] at (-1.4,1.5) {II};
-    \end{tikzpicture}
-    \end{center}
-
-    \vspace{2pt}
-    Graph I is \ans{$y=x^2(x-3)$} \qquad Graph II is \ans{$y=x(x-3)^2$}
-
-    \vspace{2pt}
-    What single feature did you use? \ans{which zero is the double one --- I touches at $0$ and
-    crosses at $3$; II crosses at $0$ and touches at $3$}
-
-  \item \textbf{The full five steps.} $f(x) = (x+2)(x-1)(x-4)$
-
-    \vspace{2pt}
-    (a) Degree \ans{$3$}, leading coefficient \ans{$1$}, end behavior \ans{down-left, up-right}
-
-    \vspace{2pt}
-    (b) Zeros: \ans{$-2,\,1,\,4$} \; Behavior at each: \ans{all crossings} \; $y$-intercept: \ans{$(0,8)$}
-
-    \vspace{2pt}
-    (c) Sign chart:
-
-    \vspace{2pt}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{|C{2.4cm}|C{1.4cm}|C{2.4cm}|C{1.6cm}|X|}
-    \hline
-    \rowcolor{forestbg}
-    \textbf{Interval} & \textbf{Test $x$} & \textbf{$f(\text{test }x)$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
-    $x<-2$   & $-3$ & \ans{$-28$} & \ans{$-$} & \ans{below} \\ \hline
-    $-2<x<1$ & $0$  & \ans{$8$}   & \ans{$+$} & \ans{above} \\ \hline
-    $1<x<4$  & $2$  & \ans{$-8$}  & \ans{$-$} & \ans{below} \\ \hline
-    $x>4$    & $5$  & \ans{$28$}  & \ans{$+$} & \ans{above} \\ \hline
-    \end{tabularx}
-
-    \vspace{2pt}
-    (d) On which intervals is $f(x)>0$? \ans{$(-2,1) \cup (4,\infty)$}
-
-  \item \textbf{Factor first.} $f(x) = x^3 + 2x^2 - 8x$
-
-    \vspace{2pt}
-    (a) Factored completely: \ans{$x(x+4)(x-2)$} \quad (b) Zeros: \ans{$-4,\,0,\,2$}
-
-    \vspace{2pt}
-    (c) $y$-intercept: \ans{$(0,0)$} \quad (d) At most how many turning points? \ans{$2$}
-
-    \vspace{2pt}
-    (e) The graph is below the $x$-axis on $0<x<2$. Test $x=1$ to confirm: $f(1) = $ \ans{$-5$}
-
-  \item \textbf{Read the equation off the graph.} (Each horizontal gridline is $4$ units.)
-    \begin{center}
-    \begin{tikzpicture}[scale=0.46]
-      \lgrid{-3}{4}{-4}{3}
-      \begin{scope}
-        \clip (-3,-4) rectangle (4,3);
-        \draw[very thick, forest, domain=-1.5:2.9, samples=170, smooth]
-          plot (\x,{(2*(\x)*(\x)*(\x) - 6*(\x)*(\x) + 8)/4});
-      \end{scope}
-      \foreach \x in {-2,-1,1,2,3}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-      \fill[charcoal] (-1,0) circle (2.5pt);
-      \fill[charcoal] (2,0)  circle (2.5pt);
-    \end{tikzpicture}
-    \end{center}
-
-    \vspace{2pt}
-    (a) $x$-intercepts \ans{$-1$ and $2$}; the touch is at $x=$ \ans{$2$}; $y$-intercept
-    \ans{$(0,8)$}
-
-    \vspace{2pt}
-    (b) Skeleton: $f(x)=a\,($\ans{$x+1$}$)($\ans{$x-2$}$)^2$ \quad Solve: $a=$ \ans{$2$}
-
-    \vspace{2pt}
-    (c) Equation: \ans{$f(x)=2(x+1)(x-2)^2$} \quad (d) Why can $a$ \emph{not} be found from an $x$-intercept?
-    \ans{it gives $0 = 0$, true for every $a$}
-
-  \item \textbf{All the characteristics.} Here is $p(x) = x^4 - 4x^2 = x^2(x-2)(x+2)$.
-    (Each horizontal gridline is $2$ units.)
-    \begin{center}
-    \begin{tikzpicture}[scale=0.46]
-      \lgrid{-3}{3}{-3}{4}
-      \begin{scope}
-        \clip (-3,-3) rectangle (3,4);
-        \draw[very thick, forest, domain=-2.3:2.3, samples=170, smooth]
-          plot (\x,{((\x)*(\x)*(\x)*(\x) - 4*(\x)*(\x))/2});
-      \end{scope}
-      \foreach \x in {-2,-1,1,2}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[above=1pt, font=\tiny]{$\x$};
-      \foreach \q in {-2,0,2} \fill[charcoal] (\q,0) circle (2.5pt);
-    \end{tikzpicture}
-    \end{center}
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item Domain: \ans{all reals} \quad Range: \ans{$[-4,\infty)$}
-      \item Zeros: \ans{$-2,\,0,\,2$} \; At $x=0$ the graph \ans{touches} the axis, because that zero has
-        multiplicity \ans{$2$}.
-      \item Relative maximum at \ans{$(0,0)$}; absolute minimum value about \ans{$-4$}, at
-        $x\approx$ \ans{$\pm 1.4$}.
-      \item Is the relative maximum also an absolute maximum? \ans{no} \; Why?
-        \ans{both arms rise forever, so the graph goes far above $y=0$}
-      \item $p(x)<0$ on \ans{$(-2,0) \cup (0,2)$} \quad (careful at $x=0$)
+  \item \textbf{Check, do not solve.} A candidate is given. Decide, and give the reason.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $\dfrac{x+2}{x-4}=\dfrac{6}{x-4}$, \; candidate $x=4$: \ans{no}, because
+            \ans{$x-4=0$ there; both sides are undefined --- extraneous}
+      \item $\dfrac{3}{x}-\dfrac{1}{x-2}=\dfrac{1}{x}$, \; candidate $x=4$: \ans{yes}, because
+            \ans{$\frac34-\frac12=\frac14$, and $4$ is not excluded}
+      \item $\dfrac{5}{x+1}=\dfrac{x+3}{x+1}$, \; candidate $x=2$: \ans{yes}, because
+            \ans{both sides equal $\frac53$, and $2$ is not excluded}
     \end{enumerate}
 
-  \item \textbf{Modeling.} A $12$-inch by $12$-inch square of sheet metal has a square of side $x$
-    cut from each corner; the sides fold up into an open box.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item $V(x) = $ \ans{$x(12-2x)^2$} \quad Expanded: $V(x)=4x^3-48x^2+144x$. Degree \ans{$3$}
-      \item Feasible domain: \ans{$0<x<6$} \; Why is $x=7$ impossible? \ans{$12-2(7)=-2$ --- a
-        negative side length}
-      \item Complete the table.
-
-        \vspace{2pt}
-        \renewcommand{\arraystretch}{1.4}
-        \begin{tabular}{|C{1.4cm}|C{1.4cm}|C{1.4cm}|C{1.4cm}|C{1.4cm}|C{1.4cm}|}
-        \hline
-        \rowcolor{forestbg}
-        $x$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \hline
-        $V(x)$ & $100$ & \ans{$128$} & $108$ & \ans{$64$} & $20$ \\ \hline
-        \end{tabular}
-      \item The largest volume is \ans{$128$} cubic inches, from a cut of \ans{$2$} inches.
-        Is that a relative maximum, an absolute maximum on the feasible domain, or both?
-        \ans{both}
-      \item Interpret $V(4)$ in a sentence about boxes. \ans{cutting $4$-inch corners gives a box
-        holding $64$ cubic inches}
+  \item \textbf{See it on a graph.} Below is the graph of the single fraction you get by moving
+        everything in problem \textbf{2(e)} to one side and combining it.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-8}{7}{-5}{7}
+      \draw[navy, dashed, semithick] (-1,-5)--(-1,7);
+      \draw[navy, dashed, semithick] (-8,1)--(7,1);
+      \node[navy, font=\scriptsize, above left] at (-1,6.2) {$x=-1$};
+      \node[navy, font=\scriptsize, below right] at (4.6,1) {$y=1$};
+      \begin{scope}
+        \clip (-8,-5) rectangle (7,7);
+        \draw[very thick, forest, domain=-8:-1.35, samples=140, smooth] plot (\x,{1+2/((\x)+1)});
+        \draw[very thick, forest, domain=-0.6:7, samples=140, smooth] plot (\x,{1+2/((\x)+1)});
+      \end{scope}
+      \draw[forest, very thick, fill=white] (1,2) circle (4.2pt);
+      \fill[charcoal] (-3,0) circle (3.2pt) node[below left, font=\scriptsize]{$(-3,0)$};
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-4pt}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item Combine and simplify: \;
+            $\dfrac{x}{x-1}+\dfrac{1}{x+1}-\dfrac{2}{x^2-1}
+            =\dfrac{{\color{keyred}\mathbf{(x+3)(x-1)}}}{{\color{keyred}\mathbf{(x-1)(x+1)}}}
+            ={\color{keyred}\mathbf{\dfrac{x+3}{x+1}}}$, \;
+            $x\neq{\color{keyred}\mathbf{1}}$
+      \item The solution of the equation is at the graph's \ans{$x$-intercept}, namely $x=$ \ans{$-3$}.
+      \item The extraneous candidate is at the graph's \ans{hole}, namely $x=$ \ans{$1$}.
+      \item There is a third interesting $x$-value here: $x=-1$, where the graph has a
+            \ans{vertical asymptote}. Was $-1$ ever a candidate? \ans{no} \; So: is every excluded value
+            an extraneous solution? \ans{no}
     \end{enumerate}
 
-  \item \textbf{Explain.} One or two sentences each.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item A classmate graphs $y=(x-5)^2(x+2)$ and reports that the graph is above the $x$-axis for
-        $x>-2$ except at $x=5$, where it touches. Then they say ``so the graph changes from positive
-        to negative at $x=5$.'' Fix the sentence and explain the rule they missed.
-        \ansline{It stays positive on both sides of $5$ --- it touches and turns back. A sign change
-        happens only at a zero of \emph{odd} multiplicity, and $(x-5)^2$ is even.}
-      \item Why can a graph never tell you the exact degree of a polynomial --- only a minimum?
-        Give both reasons you met this unit.
-        \ansline{Imaginary zeros never appear on a graph (4.5), and a factor of even multiplicity can
-        raise the degree without adding an intercept. Both add degree invisibly.}
+  \item \textbf{Error analysis.} A student solved $\dfrac{10}{x}-\dfrac{4}{x-1}=1$ and wrote:
+    \begin{center}
+    \fbox{\parbox{0.82\linewidth}{\centering \vspace{2pt}
+    ``LCD is $x(x-1)$. Multiply the fractions by it: \\
+    $10(x-1)-4x=1$, \; so $6x-10=1$, \; so $x=\frac{11}{6}$. \\
+    It's not $0$ or $1$, so it checks out.''\vspace{2pt}}}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item The LCD is correct and the check at the end is correct. The mistake is in the
+            \ans{multiply-by-the-LCD} step. Describe it in a few words. \ans{they multiplied only the
+            two fractions, not both entire sides}
+      \item Which term did the student fail to multiply? \ans{the $1$} \; What should the right side
+            have become? \ans{$x(x-1)$}
+      \item Redo it correctly. Cleared equation: \ans{$6x-10=x^2-x$}. \; Candidates \ans{$2,\;5$}.
+      \item Extraneous \ans{none}. \; Solution set \ans{$\{2,\,5\}$}.
+    \end{enumerate}
+
+  \item \textbf{Paddling against the current.} A kayaker paddles at a steady $4$ miles per hour in
+        still water. On a river with a current of $c$ miles per hour, she goes $6$ miles
+        \emph{upstream} and then the same $6$ miles back \emph{downstream}. The whole trip takes
+        $4$ hours.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item Going upstream her speed over the ground is \ans{$4-c$} mph, so that leg takes
+            \ans{$\frac{6}{4-c}$} hours. Going downstream her speed is \ans{$4+c$} mph, so that leg takes
+            \ans{$\frac{6}{4+c}$} hours.
+      \item Write the equation for the whole trip: \; \ans{$\dfrac{6}{4-c}+\dfrac{6}{4+c}=4$}
+      \item Restrictions: $c\neq$ \ans{$4,\;-4$}. \; In plain words, what would a current of exactly
+            $4$ mph do to the upstream leg, and how does the graph of the upstream time show it?
+            \ansline{the current would exactly cancel her paddling, so she never moves upstream and the
+            time is undefined --- the graph of $\frac{6}{4-c}$ has a vertical asymptote at $c=4$}
+      \item Solve. Candidates \ans{$2,\;-2$}. Are either of them extraneous? \ans{no}
+      \item You must still reject one of them. Which, and \textbf{why}? Is your reason the same kind of
+            reason as ``extraneous''? \ansline{Reject $c=-2$: a current speed cannot be negative. This
+            is a \emph{context} rejection, not an algebraic one.}
+            \ansline{$c=-2$ really does satisfy the equation, unlike an extraneous root, which
+            satisfies only the cleared equation and makes the original undefined.}
+      \item The current is \ans{$2$} mph. Check it: upstream takes \ans{$3$} hours,
+            downstream takes \ans{$1$} hours, total \ans{$4$} hours.
     \end{enumerate}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item \textbf{Build to order.} \ans{$f(x)=-x(x+2)(x-3)^2$ --- degree $4$, $y$-intercept $(0,0)$.
-        The touch needs an exponent of $2$, so the three zeros already force degree $4$; and both
-        arms down requires an even degree with a negative lead, which degree $3$ could never give.}
-  \item \textbf{Impossible?} \ans{No. Four $x$-intercepts force at least three turning points --- the
-        graph must turn around between consecutive intercepts (and a touch is itself a turn). Two
-        turns can produce at most three intercepts.}
-  \item \textbf{Minimum degree, then count.} \ans{Multiplicities $1$, $1$, and $2$ add to $4$, and
-        three turning points also need degree $\ge 4$, so the least degree is $4$ --- for example
-        $(x+1)(x-4)(x-2)^2$. With degree exactly $4$ the real zeros already fill all four slots, so
-        there are \emph{no} imaginary zeros.}
-  \item \textbf{Two boxes, one volume.} \ans{$4x^3-48x^2+144x=108 \Rightarrow x^3-12x^2+36x-27=0$.
-        The candidate $x=3$ works; dividing leaves $x^2-9x+9$, whose roots are
-        $\frac{9\pm\sqrt{45}}{2} \approx 7.85$ and $1.15$. Reject $7.85$ (outside $0<x<6$), so the
-        other feasible cut is $x \approx 1.15$ inches.}
+\textbf{Part 1 --- Does every excluded value get a turn?} Problem 4(d) suggests an answer. Write a
+rational equation whose restriction list includes $x=2$, but for which $x=2$ never appears as a
+candidate at all.
+\begin{center}
+\ans{e.g.\ $\dfrac{1}{x-2}=1$, whose only candidate is $x=3$ \; (answers vary)}
+\end{center}
+\vspace{-2pt}
+Then finish the sentence: every extraneous solution is an excluded value, but \ans{not every excluded
+value turns up as a candidate --- most of them never appear in the cleared equation at all}
+
+\vspace{5pt}
+\textbf{Part 2 --- One number decides everything.} Consider the family
+\[ \frac{x}{x-2}=\frac{k}{x-2}, \]
+where $k$ is a number you get to choose.
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Clear the denominator. The cleared equation is \ans{$x=k$}, so the only candidate is
+        $x=$ \ans{$k$}.
+  \item For exactly one value of $k$, the equation has \emph{no} solution. That value is
+        $k=$ \ans{$2$}. Why that one? \ans{then the only candidate is $2$, the excluded value}
+  \item For every other $k$, the solution is $x=$ \ans{$k$}. Test your rule on $k=7$ and on
+        $k=-5$. \ansline{$k=7$ gives $x=7$, and both sides equal $\frac75$; $k=-5$ gives $x=-5$, and
+        both sides equal $\frac57$ --- neither is the excluded value $2$, so both are genuine}
 \end{enumerate}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Where the unit ends.} You started Unit 4 by reading polynomial graphs you were handed
-(Lesson 4.0). You then learned to multiply and factor them (4.1--4.2), divide them (4.3), find every
-rational zero (4.4), and count the zeros a graph can never show you (4.5). Today all of it collapsed
-into one procedure that runs both directions: equation $\rightarrow$ graph, and graph $\rightarrow$
-equation. \textbf{Next: the Unit 4 test}, and after it, \textbf{Unit 5: Rational Functions}, where a
-polynomial appears in a denominator for the first time --- and where dividing by zero puts brand-new
-lines on the graph called \emph{asymptotes}.
+\textbf{Coming next --- Lesson 4.7: Direct, Inverse \& Joint Variation.} The unit closes where it
+started: with $y=\frac{k}{x}$, the rational parent, wearing its working clothes. You will read a table
+and decide whether two quantities are \emph{directly} proportional (one doubles, so does the other) or
+\emph{inversely} proportional (one doubles, the other halves), find the constant $k$, write the
+equation, and say what it means. Today's habit carries straight over: when the answer has to describe
+something real, some solutions get rejected --- and you now know the difference between rejecting one
+because the algebra forbids it and rejecting one because the situation does.
 \end{spiralbox}
 
 \begin{teachernote}
-\textbf{Grading priorities.} Problems 1, 3, and 5 are the assessable core --- predict from an
-equation, run a sign chart, and read an equation off a graph. Problem 6 is the A2.F.2a/c/d/e language
-practice; part (e) is the item most often missed, because $x=0$ must be \emph{excluded} from the
-negative interval (the function is zero there, not negative). Problem 7(d) is worth a comment on
-every paper: on the feasible domain the relative maximum \emph{is} the absolute maximum, which is why
-it answers the question at all.
+\textbf{Problem 2 is the spine, and 2(d) versus 2(f) is the part worth grading closely.} Both answers
+are ``no solution,'' and students will treat them as the same event. They are not. In (d) the cleared
+equation produced $x=6$ and the check removed it --- an extraneous solution. In (f) the cleared
+equation collapses to $0=4$; there was never a candidate, so nothing was extraneous. If a student
+writes ``$x=6$ is extraneous'' for (f), they have pattern-matched rather than solved.
 
 \vspace{3pt}
-\textbf{Common errors.} Row (b) of problem 1 read as degree $3$ (the exponent $3$ mistaken for the
-degree) or as leading coefficient $-2x$; ``crosses'' written at $x=-4$ in row (a); problem 5 solved
-with $a=1$ because the $y$-intercept was never used; and problem 7(b) answered $0 \le x \le 6$ ---
-the endpoints give a zero volume, so the strict inequality is the honest answer.
+\textbf{Problem 4 is the graphical-verification item} (A2.EI.4b/c), and 4(d) is the conceptual payoff of
+the whole assignment. The restriction list for 2(e) is $\{1,-1\}$; the candidates were $\{-3,1\}$. So
+$-1$ is excluded and yet never extraneous --- it is the \emph{wall}, and the equation simply never
+proposed it. The implication is one direction only: \textbf{every extraneous solution is an excluded
+value, but not every excluded value is extraneous.} Students who believe the converse will start
+throwing away good answers.
 
 \vspace{3pt}
-\textbf{Extension (d)} is the one to look at if a student wants more: it is a modeling question that
-becomes a cubic equation, is cracked with the Rational Root Theorem from Lesson 4.4, and ends with a
-feasibility judgement --- the whole unit in one problem. Accept $1.15$ or $\frac{9-\sqrt{45}}{2}$.
+\textbf{Problem 5 targets the other big error of the day} --- not the missing check, but the incomplete
+multiplication. The student's LCD is right, their restriction list is right, and their final check is
+right; they multiplied the \emph{fractions} instead of both \emph{sides}. Correct work:
+$10(x-1)-4x=x(x-1)$, so $x^2-7x+10=0$ and $x=2$ or $x=5$, both valid. It is worth writing the
+$\cdot\,x(x-1)$ under every single term when demonstrating.
+
+\vspace{3pt}
+\textbf{Problem 6 is the modeling item} (A2.EI.4a/c). Students should build $\frac{6}{4-c}+\frac{6}{4+c}
+=4$ themselves from $\text{time}=\frac{\text{distance}}{\text{rate}}$; do not hand them the equation.
+Clearing gives $48=64-4c^2$, so $c=\pm2$ and \emph{neither is extraneous}. The rejection of $c=-2$ is a
+context rejection --- part (e) is asking for exactly that distinction, and it is the part to look at
+first when grading. Part (c) is a deliberate callback to 4.5: $c=4$ is a vertical asymptote of the
+upstream-time function, and it means the kayaker is paddling exactly as fast as the river pushes back.
+
+\vspace{3pt}
+\textbf{Extension Part 2} generalizes the Hook. The candidate is always $x=k$, so the equation fails
+exactly when $k$ lands on the excluded value $2$. Students who see this have understood that an
+extraneous solution is a coincidence of position, not a property of the algebra.
 \end{teachernote}
 
 \end{document}

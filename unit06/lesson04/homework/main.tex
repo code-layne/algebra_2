@@ -1,19 +1,9 @@
-%! Graphing Radical Functions \& Transformations — Unit 6, Lesson 6.4 — Homework
+%! Modeling with Exponential Functions: Interest, Half-Life, and e — Unit 6, Lesson 6.4 — Homework
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
-% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
-\newcommand{\cbrtplot}[5]{%
-  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
-    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
-  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
-    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
+% ln(1.06) = 0.0582689
 
 \begin{document}
 
@@ -23,146 +13,137 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Write every domain and range in \textbf{interval notation}. Show how you found each answer.
+Every answer needs a visible substitution. Round money to the nearest cent and milligrams to two
+decimal places.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
-  \item \textbf{From the equation only.} No graphing --- read each row off the transformation form.
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{Four accounts.} Write the base and the exponent first, then evaluate.
     \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \small
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}l X c c c@{}}
     \hline
-    \textbf{Function} & \textbf{Parent} & \textbf{Transformations, in order} & \textbf{Anchor point} & \textbf{Domain \& range} \\
+    & \textbf{Deposit, rate, compounding, time} & \textbf{base} & \textbf{exponent} & \textbf{$A$} \\
     \hline
-    $\sqrt{x-5}+2$ & \blank{1.4cm} & \blank{2.4cm} & \blank{1.6cm} & \blank{2.0cm} \\
-    $\sqrt[3]{x+3}-1$ & \blank{1.4cm} & \blank{2.4cm} & \blank{1.6cm} & \blank{2.0cm} \\
-    $-4\sqrt{x}+2$ & \blank{1.4cm} & \blank{2.4cm} & \blank{1.6cm} & \blank{2.0cm} \\
-    $\tfrac12\sqrt{x+6}-3$ & \blank{1.4cm} & \blank{2.4cm} & \blank{1.6cm} & \blank{2.0cm} \\
+    \textbf{(a)} & \$1200 at $4.5\%$, quarterly, $6$ years & \blank{1.9cm} & \blank{1.3cm} & \blank{2.2cm} \\
+    \textbf{(b)} & \$7500 at $2.4\%$, monthly, $3$ years & \blank{1.9cm} & \blank{1.3cm} & \blank{2.2cm} \\
+    \textbf{(c)} & \$2500 at $5\%$, annually, $12$ years & \blank{1.9cm} & \blank{1.3cm} & \blank{2.2cm} \\
+    \textbf{(d)} & \$900 at $6\%$, daily ($n=365$), $4$ years & \blank{1.9cm} & \blank{1.3cm} & \blank{2.2cm} \\
     \hline
     \end{tabularx}
     \end{center}
+    \emph{Work space --- show the substitution for at least two of the four.}
+    \vspace{1.05in}
 
-  \item \textbf{Read the graph.} The graph is $m(x)=-\sqrt{x+4}+3$.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.44]
-      \lgrid{-6}{13}{-3}{5}
-      \begin{scope}
-        \clip (-6,-3) rectangle (13,5);
-        \draw[very thick, forest, domain=-4:13, samples=110, smooth] plot (\x,{3-sqrt((\x)+4)});
-      \end{scope}
-      \fill[forest] (-4,3) circle (4pt) node[above right, font=\scriptsize]{$(-4,3)$};
-      \fill[charcoal] (0,1) circle (2.6pt) node[above right, font=\scriptsize]{$(0,1)$};
-      \fill[charcoal] (5,0) circle (2.6pt) node[above right, font=\scriptsize]{$(5,0)$};
-      \fill[charcoal] (12,-1) circle (2.6pt);
-    \end{tikzpicture}
-    \end{center}
-    $a=\blank{1.0cm}$, \; $h=\blank{1.0cm}$, \; $k=\blank{1.0cm}$ \quad Anchor: \blank{1.8cm} \\[3pt]
-    Domain: \blank{2.6cm} \quad Range: \blank{2.6cm} \\[3pt]
-    $x$-intercept: \blank{1.8cm} \quad $y$-intercept: \blank{1.8cm} \\[3pt]
-    Increasing or decreasing on its domain? \blank{2.4cm} \\[3pt]
-    Absolute \blank{1.6cm} of \blank{1.0cm} at $x=\blank{1.0cm}$; \; no absolute \blank{1.6cm} \\[3pt]
-    End behavior: as $x\to+\infty$, $m(x)\to\blank{1.4cm}$. \; As $x\to-\infty$: \blank{4.0cm}
+  \item \textbf{Quarterly against continuous.} \$6000 is invested at $4\%$ for $10$ years.
 
-  \item \textbf{Write the equation --- square root.} The graph below has the form
-        $y=a\sqrt{x-h}+k$.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.44]
-      \lgrid{-5}{11}{-2}{6}
-      \begin{scope}
-        \clip (-5,-2) rectangle (11,6);
-        \draw[very thick, forest, domain=-3:11, samples=110, smooth] plot (\x,{4-sqrt((\x)+3)});
-      \end{scope}
-      \fill[forest] (-3,4) circle (4pt) node[above right, font=\scriptsize]{$(-3,4)$};
-      \fill[charcoal] (1,2) circle (2.6pt) node[above right, font=\scriptsize]{$(1,2)$};
-      \fill[charcoal] (6,1) circle (2.6pt) node[above right, font=\scriptsize]{$(6,1)$};
-    \end{tikzpicture}
-    \end{center}
-    Anchor \blank{1.8cm} $\Rightarrow$ $h=\blank{0.9cm}$, $k=\blank{0.9cm}$. \; Substitute $(1,2)$:
-    $a=\blank{1.0cm}$. \\[3pt]
-    \textbf{Equation:} $y=\blank{4.4cm}$ \quad Check it against $(6,1)$: \blank{4.0cm}
+    \vspace{3pt}
+    \hspace*{1.0em} Compounded quarterly: $A=$ \blank{3.6cm} $=$ \blank{2.2cm}
 
-  \item \textbf{Write the equation --- cube root.} The graph below has the form
-        $y=a\sqrt[3]{x-h}+k$.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.40]
-      \lgrid{-8}{10}{-6}{4}
-      \begin{scope}
-        \clip (-8,-6) rectangle (10,4);
-        \cbrtplot{2}{1}{-1}{-8}{10}
-      \end{scope}
-      \fill[forest] (1,-1) circle (5pt) node[right, font=\scriptsize]{$(1,-1)$};
-      \fill[charcoal] (9,3) circle (3pt) node[below right, font=\scriptsize]{$(9,3)$};
-      \fill[charcoal] (-7,-5) circle (3pt) node[above right, font=\scriptsize]{$(-7,-5)$};
-    \end{tikzpicture}
-    \end{center}
-    Inflection point \blank{1.8cm} $\Rightarrow$ $h=\blank{0.9cm}$, $k=\blank{0.9cm}$. \;
-    Substitute $(9,3)$: $a=\blank{1.0cm}$. \\[3pt]
-    \textbf{Equation:} $y=\blank{4.4cm}$ \\[3pt]
-    Why does this function have \emph{no} endpoint, even though it has an $h$ and a $k$?
-    \blank{5.4cm}
+    \vspace{3pt}
+    \hspace*{1.0em} Compounded continuously: $A=$ \blank{3.0cm} $=$ \blank{2.2cm}
 
-  \item \textbf{Factor first.} Rewrite each in the form $a\sqrt[n]{x-h}+k$, then give the anchor
-        point and the domain.
+    \vspace{3pt}
+    Over ten years, continuous compounding is worth \blank{2.0cm} more. Explain why that is so small
+    when the compounding went from $40$ times to infinitely many. \writeline
+
+  \item \textbf{Caffeine.} A $200$ mg coffee has a half-life of about $5$ hours in the body.
+
+    \vspace{3pt}
+    \hspace*{1.0em} $A(t)=$ \blank{4.0cm} \; where $t$ is in \blank{1.6cm}.
+
+    \vspace{3pt}
     \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabularx}{\linewidth}{@{}l X X X@{}}
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|}
     \hline
-    \textbf{Function} & \textbf{Rewritten} & \textbf{Anchor} & \textbf{Domain} \\
-    \hline
-    $y=\sqrt{25x}$ & \blank{2.2cm} & \blank{1.8cm} & \blank{2.2cm} \\
-    $y=\sqrt{16x-32}$ & \blank{2.2cm} & \blank{1.8cm} & \blank{2.2cm} \\
-    $y=\sqrt[3]{27x-27}$ & \blank{2.2cm} & \blank{1.8cm} & \blank{2.2cm} \\
-    \hline
-    \end{tabularx}
+    $t$ (hours) & $0$ & $5$ & $10$ & $15$ & $20$ \\ \hline
+    $A(t)$ (mg) & $200$ & \blank{1.3cm} & \blank{1.3cm} & \blank{1.3cm} & \blank{1.3cm} \\ \hline
+    \end{tabular}
     \end{center}
 
-  \item \textbf{Explain.} The graphs of $y=-\sqrt{x}$ and $y=\sqrt{-x}$ are \emph{different}. The
-        graphs of $y=-\sqrt[3]{x}$ and $y=\sqrt[3]{-x}$ are \emph{the same}. Explain both facts at
-        once, using the words \textbf{index} and \textbf{symmetry}.
-        \writelines{4}
+    \vspace{2pt}
+    \textbf{(a)} How much is left $8$ hours after the coffee? \blank{2.2cm} \; Check it against the
+    table: it must land between \blank{1.4cm} and \blank{1.4cm}.
+
+    \vspace{3pt}
+    \textbf{(b)} According to this model, is the caffeine ever completely gone? \blank{1.4cm} \;
+    Name the graph feature that decides it. \blank{4.6cm}
+
+  \item \textbf{Read the doubling off the graph.} \$800 is invested at $6\%$ compounded annually, so
+    $A(t)=800(1.06)^{t}$.
+    \begin{center}
+    \begin{minipage}[c]{0.44\linewidth}
+    \centering
+    \begin{tikzpicture}[x=0.25cm, y=0.0019cm]
+      \draw[linegray!40, very thin, xstep=2, ystep=400] (0,0) grid (20,2400);
+      \draw[->, semithick, charcoal] (0,0)--(21.5,0) node[above right, font=\scriptsize]{$t$ (yr)};
+      \draw[->, semithick, charcoal] (0,0)--(0,2600) node[left, font=\scriptsize]{$A$};
+      \foreach \t in {5,10,15,20} \node[below, font=\tiny] at (\t,0) {$\t$};
+      \foreach \a in {800,1600,2400} \node[left, font=\tiny] at (0,\a) {$\a$};
+      \draw[very thick, forest, domain=0:20, samples=120, smooth]
+        plot (\x,{800*exp(0.0582689*(\x))});
+      \draw[goldacc, very thick] (0,1600)--(20,1600);
+      \node[goldacc, font=\scriptsize, above] at (4,1620) {$A=1600$};
+    \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[c]{0.52\linewidth}
+    \small
+    \textbf{(a)} $A(11)=$ \blank{2.0cm} \quad $A(12)=$ \blank{2.0cm}
+
+    \vspace{3pt}
+    \textbf{(b)} The money doubles between year \blank{1.0cm} and year \blank{1.0cm}.
+
+    \vspace{3pt}
+    \textbf{(c)} Write the equation you would have to solve to find the exact doubling time, then
+    divide to simplify it. \blank{4.0cm}
+
+    \vspace{3pt}
+    \textbf{(d)} Try Step 1 of Lesson 6.3 on it. What stops you? \blank{4.0cm}
+    \end{minipage}
+    \end{center}
+
+  \item \textbf{Error analysis.} Name the error, then give the correct model and value.
+
+    \vspace{2pt}
+    \textbf{(a)} Tobias models \$5000 at $6\%$ compounded monthly for $4$ years as
+    $A=5000(1.06)^{48}$, and reports \$81{,}969.36. \writelines{2}
+
+    \vspace{2pt}
+    \textbf{(b)} Marisol models a $90$ mg dose with a $6$-hour half-life as
+    $A(t)=90\left(\frac12\right)^{t}$, and reports that $0.00034$ mg is left after $18$ hours.
+    \writelines{2}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{How far can you see?} On a clear day, from an eye height of $h$ feet above the water, the
-distance to the horizon is about
-\[
-  d(h) = \sqrt{1.5h} \ \text{ miles.}
-\]
-\begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-$h$ (feet of eye height) & $6$ & $24$ & $54$ & $96$ & $150$ \\ \hline
-$d(h)$ (miles) & $3$ & $6$ & $9$ & $12$ & $15$ \\ \hline
-\end{tabular}
-\end{center}
+\textbf{A truck that loses value the way a drug leaves the body.} A delivery truck costs \$32{,}000 new
+and loses $18\%$ of its value every year.
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Give the domain of $d$ from the radicand. Does the context restrict it any further?
-  \item The graph of $d$ has its anchor point at $(0,0)$. What does that point mean for a swimmer
-        with their eyes right at water level?
-  \item From the table: going from $h=6$ to $h=24$ multiplies the eye height by $4$ but multiplies
-        the viewing distance by only $2$. Use the shape of a square root graph to explain why.
-  \item Use the product property to rewrite $d(h)=\sqrt{1.5h}$ in the form $a\sqrt{h}$, giving $a$ to
-        two decimal places. Then finish this sentence: \emph{the horizon formula is just the parent
-        $y=\sqrt{h}$ with a single \underline{\hspace{2.4cm}} applied to it.}
-  \item A sailor climbs $h$ feet up the mast of a ship whose deck already sits $20$ feet above the
-        water, so their eye height above the water is $h+20$ and the formula becomes
-        $D(h)=\sqrt{1.5(h+20)}$. Describe how the graph of $D$ differs from the graph of $d$, and
-        give the anchor point of $D$.
-  \item Part (e)'s anchor point is not a place any sailor can stand. Explain why, and state the
-        domain that the \emph{context} actually allows --- then give $D(0)$ and say what it means.
+  \item Write the model $V(t)$, then find the truck's value after $4$ years. Say which number in your
+        model is the $18\%$, and why it is not $0.18$.
+  \item A ``half-life'' for a truck would be the time until it is worth half what it cost. Write the
+        equation for that, then divide to get it into the form $(0.82)^{t}=\text{something}$.
+  \item You know $(0.82)^{3}\approx0.551$ and $(0.82)^{4}\approx0.452$. Between which two whole years
+        does the truck lose half its value? Does your answer to (b) have a common base?
+  \item According to this model, does the truck ever become worthless? Answer with the range and the
+        asymptote --- then say in one sentence why that is a limitation of the \emph{model} rather
+        than a fact about trucks.
 \end{enumerate}
-\writelines{5}
+\writelines{6}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 6.5: Solving Radical Equations \& Extraneous Solutions.} Today you
-turned an equation into a graph and a graph back into an equation. Next you will \emph{solve}: given
-$\sqrt{x+4}-1=3$, find the $x$ that makes it true --- by isolating the radical and raising both sides
-to the $n$th power. There is a catch, and it is the same catch that produced excluded values in Unit
-5: squaring destroys sign information, so the answer you get out may be one the original equation
-never accepted. Every solution has to be checked, every time. Graphically, you will be finding where
-today's graphs cross a horizontal line.
+\textbf{Coming next --- Lesson 6.5: Exponential Regression \& Choosing a Model.} Today every model was
+handed to you: a rate, a half-life, a doubling time. Real data arrives as a pile of points with nobody
+to tell you which family it belongs to. Next lesson you bring back Lesson 6.0's fingerprint test ---
+constant difference, constant second difference, constant \emph{ratio} --- and use it to decide whether
+a data set is linear, quadratic, or exponential before letting technology fit a curve. Then you
+interpret the $a$ and the $b$ the calculator hands you, exactly as you did today with $P$ and
+$1+\frac{r}{n}$. \textbf{And the list is still standing:} $2^{x}=5$, $132(0.85)^{t}=32$,
+$(0.9)^{t}=2.118$, $(1.05)^{t}=2$, and now $(0.82)^{t}=0.5$. Every one has an answer; not one has a
+common base. Unit 7 is where you finally write those answers down.
 \end{spiralbox}
 
 \end{document}

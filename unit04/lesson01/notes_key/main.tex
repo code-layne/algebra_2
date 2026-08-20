@@ -1,8 +1,17 @@
-%! Operations with Polynomials — Unit 4, Lesson 4.1 — Guided Notes (Answer Key)
+%! Simplifying Rational Expressions — Unit 4, Lesson 4.1 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
@@ -14,10 +23,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item write a polynomial in \emph{standard form} and name its \emph{degree}, \emph{leading coefficient}, and number of \emph{terms};
-  \item \emph{add} and \emph{subtract} polynomials by combining like terms, distributing a subtraction to \emph{every} term;
-  \item \emph{multiply} polynomials in one and two variables and apply the \emph{special products} $(a\pm b)^2$ and $(a+b)(a-b)$;
-  \item predict a product's \emph{degree} and \emph{leading coefficient} and state the \emph{end behavior} they force.
+  \item factor a rational expression completely and write it in \emph{simplest form} by dividing out common \emph{factors} --- never terms;
+  \item list every \emph{domain restriction} from the \emph{original} denominator, including the ones that cancel;
+  \item \emph{justify} that two rational expressions are equivalent, and say exactly which inputs they disagree on.
 \end{itemize}
 \end{objectivebox}
 
@@ -26,192 +34,226 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-\termblanklong{Standard form}
-\ansline{Terms written from the highest power down to the constant: $a_nx^n+\dots+a_1x+a_0$.}
-\termblanklong{Like terms}
-\ansline{Terms with identical variable parts --- same variables, same exponents. Only like terms combine.}
-\termblanklong{Monomial / binomial / trinomial}
-\ansline{A polynomial with one, two, or three terms.}
-\termblanklong{Degree of a product}
-\ansline{$\deg(fg) = \deg f + \deg g$ --- degrees add, and the leading coefficients multiply.}
-\termblanklong{Special products}
-\ansline{$(a+b)^2 = a^2+2ab+b^2$; \; $(a-b)^2 = a^2-2ab+b^2$; \; $(a+b)(a-b) = a^2-b^2$.}
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Rational expression}{a quotient of two polynomials, $\frac{P(x)}{Q(x)}$, where $Q(x)\neq0$}
+\vocabans{Simplest form (lowest terms)}{the form in which the numerator and denominator share no common factor except $1$ --- with the original restrictions still attached}
+\vocabans{Factor vs.\ term}{factors are \emph{multiplied}; terms are \emph{added or subtracted}. Only common \emph{factors} may be divided out}
+\vocabans{Equivalent rational expressions}{expressions that give the same value at every input for which \emph{both} are defined}
+\vocabans{Opposite binomials}{two binomials with every sign flipped, such as $x-5$ and $5-x$; one is $-1$ times the other, so their quotient is $-1$}
 \end{vocabbox}
 
 \begin{hookbox}
-Yesterday we used \emph{two} names for the same curve:
-\[
-  g(x) = (x-1)^2(x+2) \qquad\text{and}\qquad g(x) = x^3 - 3x + 2 .
-\]
-Check a few inputs in \emph{both} forms:
+Two expressions, one table. Let $A(x)=\dfrac{x^2-x-6}{x^2-9}$ and $B(x)=\dfrac{x+2}{x+3}$.
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|c|c|c|}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|l|c|c|c|c|}
 \hline
-$x$ & $(x-1)^2(x+2)$ & $x^3-3x+2$ \\ \hline
-$0$ & \ans{2} & \ans{2} \\ \hline
-$2$ & \ans{4} & \ans{4} \\ \hline
-$-2$ & \ans{0} & \ans{0} \\ \hline
+$x$ & $0$ & $1$ & $4$ & $3$ \\ \hline
+$A(x)$ & \ans{$\frac23$} & \ans{$\frac34$} & \ans{$\frac67$} & \ans{undef.} \\ \hline
+$B(x)$ & \ans{$\frac23$} & \ans{$\frac34$} & \ans{$\frac67$} & \ans{$\frac56$} \\ \hline
 \end{tabular}
 \end{center}
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Agreeing at three points is good evidence. Is it \emph{proof} that the two forms are the same function? Why or why not?
-        \ansline{No --- many different curves can pass through the same three points. Matching at finitely many inputs never proves two expressions agree everywhere.}
-  \item What would actually prove it?
-        \ansline{Multiplying the factored form out and showing it becomes $x^3-3x+2$ term for term.}
+  \item Where do $A$ and $B$ agree? \ansline{everywhere they are both defined --- at $x=0,1,4$ and at every other allowed input}
+  \item There is exactly one column where they do \emph{not} agree. Which one, and what goes wrong there? \ansline{at $x=3$: $A(3)=\frac{0}{0}$ is undefined (the denominator $x^2-9$ is zero), while $B(3)=\frac56$}
 \end{itemize}
-Each costume is useful: the \textbf{factored} form hands you the \emph{zeros}; the \textbf{standard}
-form hands you the \emph{degree} and \emph{leading coefficient}, hence the \emph{end behavior}. Today
-we learn to travel from the first to the second.
+$B$ is what you get when you factor $A$ and cancel. It is \emph{almost} the same expression --- and the
+whole lesson lives in that word \emph{almost}: \textbf{cancelling changes how an expression looks, but
+it never gives back an input that was already thrown away.}
 \end{hookbox}
 
-\begin{notesbox}{1. Naming a Polynomial}
-Always put the polynomial in \textbf{standard form} first --- powers from \ans{highest} to
-\ans{lowest} --- because every other name depends on it.
+\begin{notesbox}{1. Rational Expressions and Their Restrictions}
+A \textbf{rational expression} is a \emph{quotient of two polynomials} --- the same object as a
+rational function, just written without the ``$f(x)=$.'' Because division by zero is undefined, every
+input making the denominator zero is a \textbf{domain restriction} (an \textbf{excluded value}).
 
 \vspace{3pt}
-Rewrite $-5x^2 + 7x^4 - 3 + x$ in standard form: \ans{$7x^4 - 5x^2 + x - 3$}
-
-\vspace{3pt}
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item \textbf{Degree:} \ans{4} \qquad \textbf{Leading coefficient:} \ans{7} \qquad
-        \textbf{Constant term:} \ans{$-3$}
-  \item \textbf{Number of terms:} \ans{4}, so it is a (monomial / binomial / trinomial / none of
-        these): \ans{none of these}
-  \item In \emph{two} variables, the degree of a \emph{term} is the \textbf{sum} of its exponents. So
-        $-7x^2y^3$ has degree \ans{5}.
+\textbf{The procedure from Lesson 4.0, unchanged:} set the \ans{denominator} equal to \ans{0},
+solve, and exclude every answer.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item For the anchor $A(x)=\dfrac{x^2-x-6}{x^2-9}$: solve $x^2-9=0$. \; Factored: \ans{$(x-3)(x+3)$},
+        \; so the excluded values are $x=$ \ans{$3,\ -3$}.
+  \item \textbf{Careful:} the \emph{numerator} is allowed to be zero --- that gives a \textbf{zero} of
+        the expression, not a restriction.
 \end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{2. Adding \& Subtracting: Collecting, Not Creating}
-\textbf{Like terms} have the \emph{same} variables raised to the \emph{same} exponents. So $3x^2$ and
-$3x^3$ \ans{do not} combine.
-
-\vspace{4pt}
-\textbf{Add.} $(3x^3 - 5x + 2) + (x^3 + 4x^2 - 7) = $ \ans{$4x^3 + 4x^2 - 5x - 5$}
-
-\vspace{5pt}
-\textbf{Subtract --- the whole lesson in one move.} A minus sign in front of a parenthesis is a
-factor of $-1$, so it changes the sign of \ans{every} term inside.
 
 \vspace{3pt}
-$(3x^3 - 5x + 2) - (x^3 + 4x^2 - 7)$
-
-\vspace{2pt}
-\emph{Step 1 --- rewrite with every sign changed:} \; $3x^3 - 5x + 2$ \ans{$-\,x^3 - 4x^2 + 7$}
-
-\vspace{2pt}
-\emph{Step 2 --- collect like terms:} \ans{$2x^3 - 4x^2 - 5x + 9$}
-
-\vspace{5pt}
-\textbf{A degree surprise.} $(x^4 + 2x) - (x^4 - 5) = $ \ans{$2x + 5$}, which has degree
-\ans{1} --- not $4$! The leading terms \ans{cancel}, so a sum or difference has degree
-\emph{at most} the larger of the two degrees.
+\textbf{Find the restrictions \emph{before} you simplify.} That is not advice about tidiness --- it is
+the only way to get them all, as the next two pages show.
 \end{notesbox}
 
-\begin{notesbox}{3. Multiplying: Every Term Times Every Term}
-One rule --- the \textbf{distributive property} --- in three sizes. Remember: coefficients
-\ans{multiply}, exponents \ans{add}.
+\begin{notesbox}{2. Why Cancelling Works --- and What It Is Not}
+Cancelling is not crossing out matching symbols. It is one rule:
+\[
+  \frac{a\cdot c}{b\cdot c} \;=\; \frac{a}{b}\cdot\frac{c}{c} \;=\; \frac{a}{b}\cdot 1
+  \;=\; \frac{a}{b}, \qquad b\neq0,\ c\neq0 .
+\]
+You are dividing out a factor equal to \ans{1}. This works \emph{only} when $c$ is a
+\textbf{factor} --- something multiplied by everything else --- and only when $c\neq0$, which is
+exactly why the restrictions matter.
 
 \vspace{4pt}
-\textbf{(a) Monomial $\times$ polynomial.} \; $-2x^2(3x^3 - 4x + 6) = $ \ans{$-6x^5 + 8x^3 - 12x^2$}
-
-\vspace{5pt}
-\textbf{(b) Binomial $\times$ binomial} (four products --- ``FOIL'' is just a name for the same
-distribution). \; $(2x - 5)(3x + 4)$
-
-\vspace{2pt}
-Four products: \ans{$6x^2$} $+$ \ans{$8x$} $+$ \ans{$(-15x)$} $+$ \ans{$(-20)$}
-
-\vspace{2pt}
-Collected: \ans{$6x^2 - 7x - 20$}
-
-\vspace{5pt}
-\textbf{(c) Binomial $\times$ trinomial} (six products --- use the box so nothing is dropped).
-\; $(x + 3)(x^2 - 2x + 4)$
+\textbf{Factors are multiplied. Terms are added or subtracted.}
 \begin{center}
-\renewcommand{\arraystretch}{1.9}
-\begin{tabular}{|c|c|c|c|}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
 \hline
-$\times$ & $x^2$ & $-2x$ & $+4$ \\ \hline
-$x$   & \ans{$x^3$} & \ans{$-2x^2$} & \ans{$4x$} \\ \hline
-$+3$  & \ans{$3x^2$} & \ans{$-6x$} & \ans{$12$} \\ \hline
-\end{tabular}
+ & \textbf{You may divide out} & \textbf{You may never divide out} \\
+\hline
+Name & a common \ans{factor} & a common \ans{term} \\
+Example & $\dfrac{6(x+1)}{6(x-4)}=\dfrac{x+1}{x-4}$ & $\dfrac{6+x}{6-4}$ \; --- nothing cancels \\
+\hline
+\end{tabularx}
 \end{center}
-Collect like terms: \ans{$x^3 + x^2 - 2x + 12$}
-
-\vspace{5pt}
-\textbf{(d) Two variables.} \; $(3x + 2y)(x - 4y) = $ \ans{$3x^2 - 10xy - 8y^2$}
 
 \vspace{2pt}
-The two middle products, $-12xy$ and $+2xy$, are like terms because they have the
-\ans{same variable part, $xy$}.
+\textbf{Kill the error with a number.} A classmate claims $\dfrac{x+3}{3}=x$. Test it at $x=6$: the
+left side $\dfrac{6+3}{3}$ equals \ans{3}, and the right side equals \ans{6}. They
+disagree, so the ``rule'' is \ans{false}. In $\dfrac{x+3}{3}$ the $3$ on top is a \ans{term}
+of the numerator, not a factor of it.
+\end{notesbox}
+
+\begin{notesbox}{3. The Four Steps}
+\begin{enumerate}[leftmargin=1.9em, itemsep=2pt]
+  \item \textbf{Factor} the numerator and the denominator \emph{completely} (GCF first --- the Unit 3 toolkit).
+  \item \textbf{List the restrictions} from the \textbf{original} denominator's factors. \emph{Every} one.
+  \item \textbf{Divide out} the factors the top and bottom share.
+  \item \textbf{Write the simplest form}, and carry the restrictions along with it.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{The anchor, worked.} $A(x)=\dfrac{x^2-x-6}{x^2-9}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Numerator factors as \ans{$(x-3)(x+2)$}; \; denominator factors as \ans{$(x-3)(x+3)$}.
+  \item Restrictions, from the \emph{original} bottom: $x\neq$ \ans{$3,\ -3$}.
+  \item The shared factor is \ans{$(x-3)$}. Divide it out: simplest form \ans{$\frac{x+2}{x+3}$}.
+\end{itemize}
+
+\vspace{3pt}
+Now notice what just happened: the factor $(x-3)$ cancelled, but $x=3$ \textbf{is still excluded}. The
+simplified expression looks perfectly happy at $x=3$; the \emph{original} is not, and the original is
+what the question was about. In Lesson~4.0 you read that single missing point off a graph and called
+it a \ans{hole}.
 
 \vspace{5pt}
-\textbf{(e) The shape of a product --- before you expand.} In $(2x^3 - 1)(-3x^4 + x)$, only the two
-\emph{leading} terms can make the highest power: $2x^3 \cdot (-3x^4) = $ \ans{$-6x^7$}.
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item Degrees \ans{add}: \; $3 + 4 = $ \ans{7}. \quad Leading coefficients
-        \ans{multiply}: \; $2 \cdot (-3) = $ \ans{$-6$}.
-  \item So (Lesson 4.0) the degree is \emph{odd} and the leading coefficient is \emph{negative}:
-        the left arm goes \ans{up} and the right arm goes \ans{down}.
+\textbf{Monomial factors work the same way.} Simplify $\dfrac{12x^3y}{18x^5y^2}$.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Restrictions: the denominator is zero when $x=0$ or $y=0$, so $x\neq$ \ans{0} and
+        $y\neq$ \ans{0}.
+  \item Divide out the common numerical factor \ans{6} and the shared powers of $x$ and $y$:
+        the answer is \ans{$\frac{2}{3x^2y}$}.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{One more, with a GCF.} Simplify $\dfrac{3x^2-12}{x^2+x-6}$.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Factored numerator: \ans{$3(x-2)(x+2)$} \quad Factored denominator: \ans{$(x+3)(x-2)$}
+  \item Restrictions: $x\neq$ \ans{$2,\ -3$}. \quad Simplest form: \ans{$\frac{3(x+2)}{x+3}$}.
 \end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{4. Special Products --- Worth Knowing on Sight}
-Derive them once, then recognize them.
+\begin{notesbox}{4. Opposite Binomials: the Hidden Factor of $-1$}
+$x-5$ and $5-x$ are not the same, so they do not cancel --- but they are \textbf{opposites}, and
+opposites divide to give $-1$:
+\[
+  \frac{5-x}{x-5} \;=\; \frac{-1(x-5)}{x-5} .
+\]
+So $\dfrac{5-x}{x-5}$ simplifies to \ans{$-1$}, and in general $\dfrac{a-b}{b-a}$ equals
+\ans{$-1$}.
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item \textbf{Square of a sum:} $(a+b)^2 = (a+b)(a+b) = $ \ans{$a^2 + 2ab + b^2$}
-  \item \textbf{Square of a difference:} $(a-b)^2 = $ \ans{$a^2 - 2ab + b^2$}
-  \item \textbf{Difference of squares:} $(a+b)(a-b) = $ \ans{$a^2 - b^2$} \; --- the two middle terms
-        \ans{cancel}.
+  \item \textbf{How to spot it:} two binomials with the same terms and \emph{every} sign flipped.
+        Factor $-1$ out of one of them and they match.
+  \item \textbf{Not the same situation:} $x+3$ and $3+x$ \emph{are} equal (addition can be reordered),
+        so they cancel to \ans{1}. Only \emph{subtraction} order matters.
+  \item \textbf{Worked:} $\dfrac{x^2-16}{4-x}=\dfrac{(x-4)(x+4)}{-(x-4)}$, which simplifies to
+        \ans{$-(x+4)$}, \; for $x\neq$ \ans{4}.
 \end{itemize}
+\end{notesbox}
 
-\vspace{4pt}
-\textbf{The trap.} $(x+4)^2$ is \emph{not} $x^2 + 16$. Test it at $x = 1$: \;
-$(1+4)^2 = $ \ans{25} \; but \; $1^2 + 16 = $ \ans{17}. \; The missing piece is the
-\textbf{middle term} \ans{$8x$}. Correct answer: \ans{$x^2 + 8x + 16$}
+\begin{notesbox}{5. Equivalence --- and the Graph It Describes}
+Two rational expressions are \textbf{equivalent} when they produce the same value at every input
+\emph{both} are defined for. Simplifying always produces an equivalent expression --- but the two forms
+can have different \emph{domains}, and \textbf{the restriction list belongs to the original}.
 
-\vspace{4pt}
-Now use the identities:
+\vspace{3pt}
+Here is the graph of the anchor $A(x)=\dfrac{x^2-x-6}{x^2-9}$, whose simplified form is
+$\dfrac{x+2}{x+3}$ with $x\neq3$.
+\begin{center}
+\begin{tikzpicture}[scale=0.48]
+  \lgrid{-8}{6}{-4}{5}
+  \draw[navy, dashed, semithick] (-3,-4)--(-3,5);
+  \draw[navy, dashed, semithick] (-8,1)--(6,1);
+  \node[navy, font=\scriptsize, above left] at (-3,5) {$x=-3$};
+  \node[navy, font=\scriptsize, below] at (-6.4,1) {$y=1$};
+  \begin{scope}
+    \clip (-8,-4) rectangle (6,5);
+    \draw[very thick, forest, domain=-8:-3.25, samples=100, smooth]
+      plot (\x,{((\x)+2)/((\x)+3)});
+    \draw[very thick, forest, domain=-2.8:6, samples=100, smooth]
+      plot (\x,{((\x)+2)/((\x)+3)});
+  \end{scope}
+  \draw[forest, very thick, fill=white] (3,0.833) circle (4.2pt);
+  \fill[charcoal] (-2,0) circle (2.6pt);
+  \node[charcoal, font=\scriptsize, below] at (-1.2,-0.35) {$(-2,0)$};
+  \node[charcoal, font=\scriptsize] at (4.0,3.4) {the hole};
+  \draw[charcoal, thin, ->] (3.7,3.0) -- (3.15,1.1);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item The two excluded values do \emph{different} jobs. At $x=-3$ the factor \emph{stays}, giving a
+        \ans{vertical asymptote}; at $x=3$ the factor \emph{cancels}, giving a \ans{hole}.
+  \item The hole's height comes from the \emph{simplified} form: substituting $x=3$ into
+        $\dfrac{x+2}{x+3}$ gives \ans{$\frac56$}, so the hole sits at \ans{$\left(3,\frac56\right)$}.
+  \item \textbf{Which form should you write?} The simplified one --- \emph{with} the restrictions
+        attached. The simplified form tells you the shape of the graph; the restrictions tell you which
+        points were punched out of it.
+\end{enumerate}
+
+\vspace{3pt}
+\textbf{Checking equivalence two ways.} Are $\dfrac{x^2-4x}{x^2-16}$ and $\dfrac{x}{x+4}$ equivalent?
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $(3x - 4)^2 = $ \ans{$9x^2 - 24x + 16$}
-  \item $(2x + 7)(2x - 7) = $ \ans{$4x^2 - 49$}
-  \item $(5x - 3y)^2 = $ \ans{$25x^2 - 30xy + 9y^2$}
+  \item \emph{By factoring:} $\dfrac{x(x-4)}{(x-4)(x+4)}$ simplifies to \ans{$\frac{x}{x+4}$} --- yes.
+  \item \emph{By testing an input:} at $x=1$, the first gives $\dfrac{-3}{-15}=$ \ans{$\frac15$} and the
+        second gives \ans{$\frac15$}. One matching test cannot \emph{prove} equivalence, but one failed
+        test \emph{disproves} it --- which is exactly how the $x=6$ test settled the argument in
+        Section~2.
+  \item \emph{The catch:} the two still disagree at $x=$ \ans{4}, where the first expression is
+        \ans{undefined ($\frac00$)} and the second equals $\tfrac14$.
 \end{itemize}
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{Back to the Hook.} Prove that $(x-1)^2(x+2)$ really is $x^3 - 3x + 2$.
-\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
-  \item First square the binomial: $(x-1)^2 = $ \ans{$x^2 - 2x + 1$} \; (special product --- don't forget the
-        middle term).
-  \item Now multiply that trinomial by $(x+2)$. Six products:
-        \begin{center}
-        \renewcommand{\arraystretch}{1.9}
-        \begin{tabular}{|c|c|c|c|}
-        \hline
-        $\times$ & $x^2$ & $-2x$ & $+1$ \\ \hline
-        $x$   & \ans{$x^3$} & \ans{$-2x^2$} & \ans{$x$} \\ \hline
-        $+2$  & \ans{$2x^2$} & \ans{$-4x$} & \ans{$2$} \\ \hline
-        \end{tabular}
-        \end{center}
-  \item Collect like terms and write the result in standard form: \ans{$x^3 - 3x + 2$}
-  \item Does it match $x^3 - 3x + 2$? \ans{Yes} \; Its degree is \ans{3} and its leading
-        coefficient is \ans{1}, so the arms go \ans{left down, right up} --- exactly the graph you read in
-        Lesson 4.0.
+Simplify completely and state \emph{all} restrictions. Show the factored line.
+
+\vspace{3pt}
+\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
+  \item $\dfrac{x^2+5x+6}{x^2-4}$ \hfill Factored: \ans{$\frac{(x+2)(x+3)}{(x-2)(x+2)}$} \\[4pt]
+        Simplest form: \ans{$\frac{x+3}{x-2}$} \quad Restrictions: $x\neq$ \ans{$2,\ -2$}
+  \item $\dfrac{9-x^2}{x^2-2x-3}$ \hfill Factored: \ans{$\frac{-(x-3)(x+3)}{(x-3)(x+1)}$} \\[4pt]
+        Simplest form: \ans{$-\frac{x+3}{x+1}$} \quad Restrictions: $x\neq$ \ans{$3,\ -1$}
+  \item In problem 2, which restriction produces a \emph{hole} and which produces a \emph{vertical
+        asymptote}? \ans{$x=3$ cancels $\Rightarrow$ hole; $x=-1$ stays $\Rightarrow$ asymptote}
 \end{enumerate}
 \end{practicebox}
 
 \begin{teachernote}
-The $-2x^2$ and $+2x^2$ cells in the practice box are the payoff --- they cancel, which is precisely
-why the standard form has \emph{no} $x^2$ term. Point at that cancellation explicitly; students who
-expect every box cell to survive are the ones who later mis-collect. In section~2, the ``degree
-surprise'' is worth a full minute: it is the only place all year where a degree drops, and it makes
-the contrast with multiplication (where degrees always add) land. If time is short, section~4's
-two-variable item $(5x-3y)^2$ can move to homework, but do \emph{not} cut the $x=1$ numeric test of
-$(x+4)^2$ --- it is the cheapest permanent fix for that error.
+\textbf{Pacing.} Sections 1--3 are the lesson; Sections 4--5 are what separates a B from an A. If time
+is short, move the monomial example to homework rather than cutting Section~5 --- the equivalence idea
+is the A2.EO.1d half of the standard.
+
+\vspace{3pt}
+\textbf{The one sentence to repeat.} \emph{Cancelling never restores an input.} Students accept this in
+the hook table (they can see $A(3)$ fail) and then forget it two problems later. When they do, send
+them back to the $x=3$ column, not to a rule.
+
+\vspace{3pt}
+\textbf{Errors to expect.} (1) Cancelling \emph{terms}: $\frac{x^2+9}{x+3}=x+3$, or $\frac{x+3}{3}=x$
+--- always disprove numerically, never by assertion. (2) Restrictions read off the \emph{simplified}
+denominator, which silently deletes the hole; this is the same mistake that manufactures extraneous
+solutions in 4.6, so name the connection now. (3) Cancelling $x-5$ against $5-x$ as if they matched,
+losing the $-1$. (4) Writing the simplest form with no restrictions at all --- the answer is the
+expression \emph{and} its restriction list. (5) In Section~5, claiming the two expressions are
+``different functions'' --- they are equivalent wherever both are defined; they differ only in domain.
 \end{teachernote}
 
 \end{document}

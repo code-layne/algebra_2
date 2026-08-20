@@ -1,14 +1,18 @@
-%! Zeros of Polynomials: the Rational Root Theorem — Unit 4, Lesson 4.4 — Guided Notes (Answer Key)
+%! The Rational Parent Function \& Transformations — Unit 4, Lesson 4.4 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\mans}[1]{{\color{keyred}\boldsymbol{#1}}}   % math-mode answer (\ans is text-only)
-
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
@@ -20,10 +24,10 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item use the \emph{Rational Root Theorem} to list every possible rational zero of a polynomial with integer coefficients;
-  \item test candidates efficiently with synthetic division, a graph, and the Remainder Theorem;
-  \item divide out each zero I find, factor the depressed polynomial, and write the polynomial \emph{completely} factored;
-  \item solve a polynomial equation of degree $3$ or higher and \emph{verify} my solutions algebraically and against a graph.
+  \item recognize the \textbf{rational parent function} $f(x)=\dfrac{1}{x}$ and read its asymptotes, domain, range, and end behavior off its graph;
+  \item graph $g(x)=\dfrac{a}{x-h}+k$ from its equation by moving the parent's \emph{asymptotes} first (A2.F.1c);
+  \item \textbf{write the equation} of a rational function from its graph, reading $h$ and $k$ off the asymptotes and $a$ off one point (A2.F.1b);
+  \item compare the rational parent with the parents I already know, and recognize a linear-over-linear function as a \emph{disguised} $\dfrac1x$ (A2.F.1a/e).
 \end{itemize}
 \end{objectivebox}
 
@@ -32,279 +36,404 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-
-\termblanklong{Rational Root Theorem}
-\ansline{If $\frac{p}{q}$ (in lowest terms) is a zero of a polynomial with integer coefficients, then $p$ divides the constant term and $q$ divides the leading coefficient.}
-\termblanklong{Candidate (possible rational zero)}
-\ansline{One of the values $\pm\frac{p}{q}$ on the list --- a number worth testing, not a guaranteed zero.}
-\termblanklong{Depressed polynomial}
-\ansline{The quotient left after dividing out a factor $(x-r)$ --- one degree lower, with a shorter candidate list of its own.}
-\termblanklong{Solution / root of an equation}
-\ansline{A value of $x$ that makes $f(x)=0$ true --- the same thing as a zero of $f$ and an $x$-intercept of its graph.}
-\termblanklong{Verifying a solution}
-\ansline{Substituting it back to get $0$, and confirming it against the graph's $x$-intercepts.}
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Rational parent function $f(x)=\frac1x$}{the simplest rational function --- the reciprocal. Its graph is a hyperbola with a vertical asymptote $x=0$, a horizontal asymptote $y=0$, and no intercepts at all}
+\vocabans{Hyperbola / branch}{the two-piece curve that is the graph of $\frac1x$; each separate piece is a \emph{branch}, and the two branches sit in opposite regions around the center}
+\vocabans{General form $g(x)=\frac{a}{x-h}+k$}{every transformation of the rational parent at once: $h$ shifts it horizontally, $k$ shifts it vertically, and $a$ stretches or reflects it}
+\vocabans{Center of the hyperbola $(h,k)$}{the point where the two asymptotes cross --- the parent's origin, moved. It is not on the graph}
 \end{vocabbox}
 
 \begin{hookbox}
-Yesterday you could finish any polynomial \emph{once somebody handed you a zero to test}. Here is
-the polynomial from the Warm-Up, $h(x) = 2x^3 - 3x^2 - 11x + 6$, with its graph. (The $y$-axis is
-compressed: each vertical gridline is $4$ units.)
+Below are two tables. The left one is the parent $y=\dfrac1x$. The right one is $y=\dfrac{1}{x-3}$.
+Fill in the missing outputs.
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{4}{-4}{4}
-  \begin{scope}
-    \clip (-3,-4) rectangle (4,4);
-    \draw[very thick, forest, domain=-2.85:3.6, samples=150, smooth]
-      plot (\x,{(2*(\x)*(\x)*(\x) - 3*(\x)*(\x) - 11*(\x) + 6)/4});
-  \end{scope}
-  \foreach \x in {-2,-1,1,2,3}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-  \fill[charcoal] (-2,0)  circle (2.5pt);
-  \fill[charcoal] (0.5,0) circle (2.5pt);
-  \fill[charcoal] (3,0)   circle (2.5pt);
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.3}
+\begin{minipage}{0.46\linewidth}\centering
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\frac1x$ \\ \hline
+$-2$   & $-\frac12$ \\ \hline
+$-1$   & \ans{$-1$} \\ \hline
+$0$    & \ans{undef.} \\ \hline
+$1$    & \ans{$1$} \\ \hline
+$2$    & $\frac12$ \\ \hline
+\end{tabular}
+\end{minipage}%
+\begin{minipage}{0.46\linewidth}\centering
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\frac{1}{x-3}$ \\ \hline
+$1$ & $-\frac12$ \\ \hline
+$2$ & \ans{$-1$} \\ \hline
+$3$ & \ans{undef.} \\ \hline
+$4$ & \ans{$1$} \\ \hline
+$5$ & $\frac12$ \\ \hline
+\end{tabular}
+\end{minipage}
 \end{center}
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Read the three $x$-intercepts off the graph: \ans{$x = -2,\ \tfrac12,\ 3$}
-  \item Your group's candidate list yesterday was the divisors of $6$. Which zero did it miss?
-        \ans{$\tfrac12$}
-  \item That zero is a \emph{fraction}. So a candidate list made only of whole numbers is
-        \ans{incomplete}.
+  \item Compare the two \emph{output} columns. What do you notice? \ansline{They are identical. Every output the parent produced at $x$, the new function produces at $x+3$ --- the whole table slid three to the right.}
+  \item The parent blows up at $x=$ \ans{$0$}. The new function blows up at $x=$ \ans{$3$}.
+        Both tables settle toward $y=$ \ans{$0$} far from the blow-up.
 \end{itemize}
-\textbf{Today's question: which numbers are worth testing?}
+The outputs never changed --- they just arrived \emph{three inputs later}. That is the sentence for the
+whole period: \textbf{shifting a rational function carries its asymptotes with it.} The wall moved. The
+floor did not.
 \end{hookbox}
 
-\begin{notesbox}{1. Why Guessing Cannot Work}
-Suppose nobody tells you anything about $f(x) = x^3 - 4x^2 + x + 6$ except that it has integer
-coefficients, and you want its zeros.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item How many numbers are there to try? \ans{infinitely many}
-  \item So testing candidates one at a time is only useful if the list of candidates is
-        \ans{finite (short)}.
-\end{itemize}
-\textbf{The Rational Root Theorem does exactly that:} it turns two coefficients --- the constant term
-and the leading coefficient --- into a \emph{short, finite} list that is guaranteed to contain every
-rational zero the polynomial has.
-\end{notesbox}
-
-\begin{notesbox}{2. The Rational Root Theorem}
-\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
-    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-\textbf{Rational Root (Zero) Theorem.} Let $f(x) = a_nx^n + \cdots + a_1x + a_0$ have
-\emph{integer} coefficients. If $\dfrac{p}{q}$ is a rational zero of $f$ written in lowest terms,
-then
-\begin{itemize}[leftmargin=1.5em, nosep]
-  \item $p$ (the numerator) is a divisor of the \ans{constant term} $a_0$, and
-  \item $q$ (the denominator) is a divisor of the \ans{leading coefficient} $a_n$.
-\end{itemize}
-\end{tcolorbox}
-
-\vspace{4pt}
-\textbf{Why it is true --- look at the Warm-Up.} You factored $h(x) = 2x^3-3x^2-11x+6$ into
-$(x-3)(2x-1)(x+2)$. Multiply the pieces back:
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item The \emph{leading} coefficients of the three factors are $1$, $2$, $1$. Their product is
-        \ans{$2$}, which is the leading coefficient of $h$. So the $2$ in the denominator of the
-        zero $\tfrac12$ had to divide \ans{$2$}.
-  \item The \emph{constant} terms of the three factors are $-3$, $-1$, $2$. Their product is
-        \ans{$6$}, which is the constant term of $h$. So every numerator had to divide
-        \ans{$6$}.
-\end{itemize}
-That is the whole theorem: a zero $\frac{p}{q}$ comes from a factor $(qx - p)$, and those $q$'s and
-$p$'s have nowhere to hide --- they multiply together to make the two coefficients on the ends.
-
-\vspace{5pt}
-\textbf{The warnings.} \; (1) It only finds \ans{rational} zeros --- irrational and imaginary zeros
-never appear on the list. \; (2) The coefficients must be \ans{integers}. \; (3) The list is a list of
-\emph{possibilities}; a polynomial might have \ans{none} of them as an actual zero.
-\end{notesbox}
-
-\begin{notesbox}{3. Building the List}
-Write $\pm\dfrac{\text{divisors of the constant term}}{\text{divisors of the leading coefficient}}$,
-reduce, and cross out repeats.
-
-\vspace{5pt}
-\textbf{(a)} $f(x) = x^3 - 4x^2 + x + 6$
-
-\vspace{2pt}
-$p$ (divisors of \ans{$6$}): \ans{$\pm 1, \pm 2, \pm 3, \pm 6$} \qquad
-$q$ (divisors of \ans{$1$}): \ans{$\pm 1$}
-
-\vspace{2pt}
-Candidates $\dfrac{p}{q}$: \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6$ \; (8 of them)}
-
-\vspace{2pt}
-\textbf{Notice:} when the leading coefficient is $1$, every $q$ is $\pm 1$, so the candidates are
-just the \ans{divisors of the constant term}. That covers most problems you will see.
-
-\vspace{6pt}
-\textbf{(b)} $g(x) = 4x^3 - 4x^2 - x + 1$
-
-\vspace{2pt}
-$p$ (divisors of \ans{$1$}): \ans{$\pm 1$} \qquad
-$q$ (divisors of \ans{$4$}): \ans{$\pm 1, \pm 2, \pm 4$}
-
-\vspace{2pt}
-Candidates $\dfrac{p}{q}$: \ans{$\pm 1,\ \pm\tfrac12,\ \pm\tfrac14$} \qquad How many? \ans{$6$}
-
-\vspace{2pt}
-\textbf{The error to avoid:} the constant term goes on \ans{top} and the leading coefficient
-goes on \ans{the bottom}. Flipping them is the mistake of the day.
-\end{notesbox}
-
-\begin{notesbox}{4. The Workflow: List $\rightarrow$ Test $\rightarrow$ Divide $\rightarrow$ Finish}
-\textbf{Model.} Find all the zeros of $f(x) = x^3 - 4x^2 + x + 6$.
-
-\vspace{4pt}
-\textbf{Step 1 --- List.} From part (a): \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6$}
-
-\vspace{4pt}
-\textbf{Step 2 --- Test} (Remainder Theorem, or a synthetic division). \;
-$f(1) = $ \ans{$4$} \quad $f(-1) = $ \ans{$0$}
-
-\vspace{2pt}
-So the first zero is $r = $ \ans{$-1$}, and $($\ans{$x+1$}$)$ is a factor.
-
-\vspace{4pt}
-\textbf{Step 3 --- Divide it out.}
+\begin{notesbox}{1. The Parent Function $f(x)=\dfrac{1}{x}$}
+This is the fifth parent function of the course, and the first one that is not in one piece. Its graph is
+called a \textbf{hyperbola}, and each of its two halves is a \textbf{branch}.
 \begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
-\ans{$-1$} & $1$ & $-4$ & $1$ & $6$ \\
-    &     & \ans{$-1$} & \ans{$5$} & \ans{$-6$} \\ \cline{2-5}
-    & \ans{$1$} & \ans{$-5$} & \ans{$6$} & \ans{$0$} \\
-\end{tabular}
-\end{center}
-Depressed polynomial: \ans{$x^2 - 5x + 6$} \quad Remainder: \ans{$0$}
-
-\vspace{4pt}
-\textbf{Step 4 --- Finish.} The depressed polynomial is a quadratic, so no more guessing is needed
---- factor it (or use the quadratic formula).
-
-\vspace{2pt}
-$f(x) = $ \ans{$(x+1)(x-2)(x-3)$} \qquad Zeros: \ans{$-1,\ 2,\ 3$}
-
-\vspace{4pt}
-\textbf{Step 5 --- Verify} (this is part of the standard, not an extra). Check one zero by
-substituting: $f(3) = $ \ans{$27-36+3+6 = 0$}, and check all three against the degree --- a cubic has at most
-\ans{$3$} zeros, and you found \ans{$3$}.
-\end{notesbox}
-
-\begin{notesbox}{5. Three Ways to Make the Search Shorter}
-Twelve candidates is a lot of synthetic divisions. You almost never need them all.
-
-\vspace{4pt}
-\textbf{(i) Use the graph.} Here is $f(x) = x^3 - 4x^2 + x + 6$ from Section 4. (Each vertical
-gridline is $2$ units.)
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-2}{4}{-3}{4}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-5}{5}{-5}{5}
   \begin{scope}
-    \clip (-2,-3) rectangle (4,4);
-    \draw[very thick, forest, domain=-1.7:3.9, samples=150, smooth]
-      plot (\x,{((\x)*(\x)*(\x) - 4*(\x)*(\x) + (\x) + 6)/2});
+    \clip (-5,-5) rectangle (5,5);
+    \draw[very thick, forest, domain=-5:-0.2, samples=120, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest, domain=0.2:5,  samples=120, smooth] plot (\x,{1/(\x)});
   \end{scope}
-  \foreach \x in {-1,1,2,3}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (1,1) circle (3pt) node[above right, font=\scriptsize]{$(1,1)$};
+  \fill[charcoal] (-1,-1) circle (3pt) node[below left, font=\scriptsize]{$(-1,-1)$};
 \end{tikzpicture}
 \end{center}
-Which three candidates would you test \emph{first}, and why? \ansline{$-1$, $2$, and $3$ --- the graph crosses the $x$-axis at those three values, and all three are on the candidate list.}
-
-\vspace{4pt}
-\textbf{(ii) Shrink the problem.} Once one zero is found, work with the \ans{depressed} polynomial ---
-its degree is one lower, and its own candidate list is \ans{shorter}. When it becomes a quadratic,
-stop hunting and \ans{factor it or use the quadratic formula}.
-
-\vspace{4pt}
-\textbf{(iii) Test cheaply.} The Remainder Theorem evaluates a candidate in a few seconds. Rule out
-the losers by \ans{substituting $r$} and save synthetic division for the winners.
-\end{notesbox}
-
-\begin{notesbox}{6. Solving a Polynomial Equation}
-``Find the zeros of $f$'' and ``solve $f(x) = 0$'' are the \emph{same task} in different words. The
-solutions of the equation are the \ans{zeros} of the function, which are the
-\ans{$x$-intercepts} of its graph.
-
-\vspace{5pt}
-\textbf{Together:} Solve $2x^3 + 3x^2 - 8x + 3 = 0$.
-
-\vspace{2pt}
-Candidates: $p$ divides \ans{$3$}, $q$ divides \ans{$2$}, so
-$\dfrac{p}{q} = $ \ans{$\pm 1,\ \pm 3,\ \pm\tfrac12,\ \pm\tfrac32$}
+\textbf{Read the hyperbola.}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Domain: \ans{all reals, $x\neq0$} \quad Range: \ans{all reals, $y\neq0$}
+  \item Vertical asymptote: \ans{$x=0$} \quad Horizontal asymptote: \ans{$y=0$}
+  \item $x$-intercept: \ans{none} \quad $y$-intercept: \ans{none}
+  \item End behavior: as $x\to\infty$, $y\to$ \ans{$0$}; \; as $x\to-\infty$, $y\to$ \ans{$0$}.
+\end{itemize}
 
 \vspace{3pt}
-Test $x = 1$: \ans{$2+3-8+3 = 0$} \; so $(x-1)$ is a factor.
+Two of those answers are new, and both are worth a box:
+
 \begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
-\ans{$1$} & $2$ & $3$ & $-8$ & $3$ \\
-    &     & \ans{$2$} & \ans{$5$} & \ans{$-3$} \\ \cline{2-5}
-    & \ans{$2$} & \ans{$5$} & \ans{$-3$} & \ans{$0$} \\
-\end{tabular}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{This parent has no intercepts at all.} A fraction is zero only when its \emph{numerator} is
+zero, and $1$ is never zero --- so the graph never touches the $x$-axis. And $x=0$ is not in the
+domain, so it never touches the $y$-axis either.\vspace{2pt}}}
 \end{center}
-Depressed polynomial: \ans{$2x^2 + 5x - 3$} \; which factors as \ans{$(2x-1)(x+3)$}
+
+\vspace{3pt}
+The graph falls from left to right on \emph{each} branch, so $\frac1x$ is decreasing on
+\ans{$(-\infty,0)$} and on \ans{$(0,\infty)$} --- written as two intervals, never as one, because
+\ans{$x=0$ is not in the domain} . (Lesson 4.0: an interval may never span a wall.)
+
+\vspace{3pt}
+Finally, note the symmetry you named in Unit 3: rotating this graph $180^\circ$ about the origin lands
+it back on itself, so $\frac1x$ has \ans{origin} symmetry and is an \ans{odd} function.
+\end{notesbox}
+
+\begin{notesbox}{2. The Two Shifts: Each One Moves an Asymptote}
+The same rule you have used since Unit 1 still holds --- \emph{outside is vertical and honest, inside is
+horizontal and backwards.} What is new is \emph{what} gets moved.
+
+\vspace{4pt}
+\textbf{(a) Horizontal shift: $f(x+k)$ moves the vertical asymptote.} \; $y=\dfrac{1}{x-3}$
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-4}{7}{-4}{4}
+  \draw[navy, dashed, semithick] (3,-4)--(3,4);
+  \node[navy, font=\scriptsize, above] at (3,4) {$x=3$};
+  \begin{scope}
+    \clip (-4,-4) rectangle (7,4);
+    \draw[very thick, forest!35, dashed, domain=-4:-0.25, samples=100, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest!35, dashed, domain=0.25:7,   samples=100, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest, domain=-4:2.75, samples=110, smooth] plot (\x,{1/((\x)-3)});
+    \draw[very thick, forest, domain=3.25:7,  samples=110, smooth] plot (\x,{1/((\x)-3)});
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+The dashed curve is the parent. The solid curve is the parent moved \ans{right} $3$ units. Its
+vertical asymptote is now \ans{$x=3$}; its horizontal asymptote is still \ans{$y=0$}.
+Domain: \ans{$x\neq3$} \; Range: \ans{$y\neq0$}
+
+\vspace{5pt}
+\textbf{(b) Vertical shift: $f(x)+k$ moves the horizontal asymptote.} \; $y=\dfrac{1}{x}+2$
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-5}{5}{-3}{6}
+  \draw[navy, dashed, semithick] (-5,2)--(5,2);
+  \node[navy, font=\scriptsize, below right] at (3.4,2) {$y=2$};
+  \begin{scope}
+    \clip (-5,-3) rectangle (5,6);
+    \draw[very thick, forest!35, dashed, domain=-5:-0.33, samples=100, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest!35, dashed, domain=0.33:5,   samples=100, smooth] plot (\x,{1/(\x)});
+    \draw[very thick, forest, domain=-5:-0.2, samples=110, smooth] plot (\x,{1/(\x)+2});
+    \draw[very thick, forest, domain=0.25:5,  samples=110, smooth] plot (\x,{1/(\x)+2});
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+The solid curve is the parent moved \ans{up} $2$ units. Its horizontal asymptote is now
+\ans{$y=2$}; its vertical asymptote is still \ans{$x=0$}.
+Domain: \ans{$x\neq0$} \; Range: \ans{$y\neq2$}
+
+\vspace{4pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{The asymptotes are the parent's axes, and they travel with it.} Move the graph right $3$ and up
+$2$, and the wall goes to $x=3$ and the floor goes to $y=2$. Find those two lines first and the rest of
+the graph has nowhere else to be.\vspace{2pt}}}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{3. The Stretch and the Flip: $kf(x)$ --- and a Surprise About $f(kx)$}
+Multiplying the \emph{outputs} by $a$ pulls the branches away from the asymptotes (or pushes them in),
+and a negative $a$ flips the graph across the horizontal asymptote. \textbf{Neither asymptote moves.}
+\begin{center}
+\begin{tikzpicture}[scale=0.34]
+  \begin{scope}
+    \lgrid{-5}{5}{-5}{5}
+    \begin{scope} \clip (-5,-5) rectangle (5,5);
+      \draw[very thick, forest, domain=-5:-0.2, samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest, domain=0.2:5,  samples=100, smooth] plot (\x,{1/(\x)});
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-6.6){$y=\frac1x$ \; (parent)};
+  \end{scope}
+  \begin{scope}[xshift=13cm]
+    \lgrid{-5}{5}{-5}{5}
+    \begin{scope} \clip (-5,-5) rectangle (5,5);
+      \draw[very thick, forest!35, dashed, domain=-5:-0.2, samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest!35, dashed, domain=0.2:5,  samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest, domain=-5:-0.6, samples=100, smooth] plot (\x,{3/(\x)});
+      \draw[very thick, forest, domain=0.6:5,  samples=100, smooth] plot (\x,{3/(\x)});
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-6.6){$y=\frac3x$};
+  \end{scope}
+  \begin{scope}[xshift=26cm]
+    \lgrid{-5}{5}{-5}{5}
+    \begin{scope} \clip (-5,-5) rectangle (5,5);
+      \draw[very thick, forest!35, dashed, domain=-5:-0.2, samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest!35, dashed, domain=0.2:5,  samples=100, smooth] plot (\x,{1/(\x)});
+      \draw[very thick, forest, domain=-5:-0.2, samples=100, smooth] plot (\x,{-1/(\x)});
+      \draw[very thick, forest, domain=0.2:5,  samples=100, smooth] plot (\x,{-1/(\x)});
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-6.6){$y=-\frac1x$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $|a|>1$ pushes the branches \ans{farther from} the asymptotes; \; $0<|a|<1$ pulls them
+        \ans{closer to} .
+  \item $a>0$ puts the branches in the \ans{upper-right} and \ans{lower-left} regions (upper right, lower
+        left of the center); $a<0$ puts them in the other two.
+  \item Both asymptotes of $y=\frac ax$ are still \ans{$x=0$} and \ans{$y=0$}, no matter what
+        $a$ is.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Now the surprise.} The fourth transformation, $f(kx)$, multiplies the \emph{inputs}. On every
+parent so far it did something a vertical stretch could not. Watch what it does here:
+\[
+  f(x)=\frac1x \quad\Longrightarrow\quad f(4x)=\frac{1}{4x}
+  =\frac{{\color{keyred}\mathbf{1/4}}}{x} \;.
+\]
+So a horizontal compression of $\frac1x$ by a factor of $4$ is the \emph{same graph} as a vertical
+\ans{compression} by a factor of \ans{$\frac14$}. For this parent --- and only for this parent ---
+$f(kx)$ and $kf(x)$ produce the \ans{same} family of curves. That is why one letter, $a$, is
+enough to describe every stretch of a hyperbola.
+\end{notesbox}
+
+\begin{notesbox}{4. All Together: $g(x)=\dfrac{a}{x-h}+k$}
+Every transformation of the parent can be written in this \textbf{general form}. Read it in this order,
+and the graph builds itself:
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Piece} & \textbf{What it controls} & \textbf{Why} \\
+\hline
+$h$ & vertical asymptote $x=$ \ans{$h$} & the denominator is zero there \\
+$k$ & horizontal asymptote $y=$ \ans{$k$} & far out, $\frac{a}{x-h}$ dies to $0$ and only $k$ is left \\
+$(h,k)$ & the \textbf{center} of the hyperbola & where the two asymptotes cross \\
+$a$ & how far the branches sit from the center, and which pair of regions they occupy & it multiplies every output \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\textbf{The anchor.} \; $g(x)=\dfrac{2}{x-3}+1$
+\begin{center}
+\begin{minipage}{0.50\linewidth}\centering
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-3}{8}{-4}{6}
+  \draw[navy, dashed, semithick] (3,-4)--(3,6);
+  \draw[navy, dashed, semithick] (-3,1)--(8,1);
+  \node[navy, font=\scriptsize, above] at (3,6) {$x=3$};
+  \node[navy, font=\scriptsize, below left] at (-0.6,1) {$y=1$};
+  \begin{scope}
+    \clip (-3,-4) rectangle (8,6);
+    \draw[very thick, forest, domain=-3:2.6, samples=110, smooth] plot (\x,{2/((\x)-3)+1});
+    \draw[very thick, forest, domain=3.4:8, samples=110, smooth] plot (\x,{2/((\x)-3)+1});
+  \end{scope}
+  \fill[charcoal] (1,0) circle (3pt) node[below left, font=\scriptsize]{$(1,0)$};
+  \fill[charcoal] (5,2) circle (3pt) node[above right, font=\scriptsize]{$(5,2)$};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.48\linewidth}
+\small
+$a=$ \ans{$2$}, \quad $h=$ \ans{$3$}, \quad $k=$ \ans{$1$}
+
+\vspace{3pt}
+Vertical asymptote: \ans{$x=3$}
+
+Horizontal asymptote: \ans{$y=1$}
+
+Center: $($\ans{$3$}$,\,$\ans{$1$}$)$
+
+\vspace{3pt}
+Domain: \ans{all reals, $x\neq3$}
+
+Range: \ans{all reals, $y\neq1$}
+
+\vspace{3pt}
+In words: the parent moved \ans{right} $3$, \ans{up} $1$, and was stretched by
+\ans{$2$}.
+\end{minipage}
+\end{center}
 
 \vspace{2pt}
-Completely factored: $2x^3+3x^2-8x+3 = $ \ans{$(x-1)(2x-1)(x+3)$}
+\textbf{The intercepts are computed, not guessed.}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $y$-intercept: set $x=0$. \; $g(0)=\dfrac{2}{0-3}+1=$ \ans{$\frac13$}
+  \item $x$-intercept: set $g(x)=0$ and solve. \; $\dfrac{2}{x-3}=$ \ans{$-1$}, \; so
+        $x-3=$ \ans{$-2$} and $x=$ \ans{$1$}.
+\end{itemize}
 
+\vspace{3pt}
+\textbf{One question worth asking now:} does this graph ever cross its horizontal asymptote? Set
+$g(x)=1$: that would need $\dfrac{2}{x-3}=$ \ans{$0$}, which is impossible because
+\ans{a fraction is zero only when its numerator is, and $2\neq0$}. So a \emph{transformed parent} never crosses its horizontal asymptote --- even though
+Lesson 4.0 showed that other rational functions sometimes do.
+\end{notesbox}
+
+\begin{notesbox}{5. Writing the Equation from a Graph (A2.F.1b)}
+Run Section 4 backwards. \textbf{Asymptotes give you $h$ and $k$ for free; then one point gives you $a$.}
+\begin{center}
+\begin{minipage}{0.50\linewidth}\centering
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-6}{5}{-6}{3}
+  \draw[navy, dashed, semithick] (-1,-6)--(-1,3);
+  \draw[navy, dashed, semithick] (-6,-2)--(5,-2);
+  \node[navy, font=\scriptsize, above right] at (-1,2.2) {$x=-1$};
+  \node[navy, font=\scriptsize, above left] at (4.6,-2) {$y=-2$};
+  \begin{scope}
+    \clip (-6,-6) rectangle (5,3);
+    \draw[very thick, forest, domain=-6:-1.35, samples=110, smooth] plot (\x,{2/((\x)+1)-2});
+    \draw[very thick, forest, domain=-0.6:5,  samples=110, smooth] plot (\x,{2/((\x)+1)-2});
+  \end{scope}
+  \fill[charcoal] (0,0) circle (3pt) node[above right, font=\scriptsize]{$(0,0)$};
+  \fill[charcoal] (1,-1) circle (3pt) node[above right, font=\scriptsize]{$(1,-1)$};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.48\linewidth}
+\small
+\textbf{Step 1.} Vertical asymptote $x=$ \ans{$-1$}, so $h=$ \ans{$-1$}.
+
+\vspace{3pt}
+\textbf{Step 2.} Horizontal asymptote $y=$ \ans{$-2$}, so $k=$ \ans{$-2$}.
+
+\vspace{3pt}
+\textbf{Step 3.} So far: $y=\dfrac{a}{x-({\color{keyred}\mathbf{-1}})}+({\color{keyred}\mathbf{-2}})$.
+
+\vspace{3pt}
+\textbf{Step 4.} Pick a point the curve clearly passes through --- say $(1,-1)$ --- and substitute:
+\[ -1=\frac{a}{1+1}-2 \]
+Solve: $a=$ \ans{$2$}.
+
+\vspace{3pt}
+\textbf{Step 5.} Equation: \ans{$y=\frac{2}{x+1}-2$}
+\end{minipage}
+\end{center}
 \vspace{2pt}
-Solution set: \ans{$\{\,-3,\ \tfrac12,\ 1\,\}$} \; --- and notice one solution is a fraction, which the divisors of
-$3$ alone would never have produced.
+Check your equation on the \emph{other} marked point, $(0,0)$: \; $\dfrac{a}{0+1}-2=$ \ans{$0$}.
+\; Does it match the graph? \ans{yes}
+
+\vspace{3pt}
+\textbf{Watch the sign of $h$.} The asymptote is at $x=-1$, and the equation says $x-(-1)=x+1$. The
+number you \emph{see} in the denominator is the \ans{opposite} of the asymptote's location --- the same
+``inside is backwards'' rule from the Warm-Up.
+\end{notesbox}
+
+\begin{notesbox}{6. Compare, Contrast, and One Disguise (A2.F.1a/e)}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+ & $y=x^2$ & $y=|x|$ & $y=\frac1x$ \\
+\hline
+Domain & all reals & all reals & \ans{$x\neq0$} \\
+Range & $y\ge0$ & $y\ge0$ & \ans{$y\neq0$} \\
+Asymptotes & none & none & \ans{$x=0$, $y=0$} \\
+Intercepts & $(0,0)$ & $(0,0)$ & \ans{none} \\
+In how many pieces? & one & one & \ans{two branches} \\
+Symmetry & $y$-axis & $y$-axis & \ans{origin} \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{The disguise.} Not every rational function \emph{looks} like $\frac{a}{x-h}+k$. Here is one
+that is one anyway:
+\[
+  y=\frac{x-1}{x-3}
+  =\frac{(x-3)+{\color{keyred}\mathbf{2}}}{x-3}
+  =\frac{x-3}{x-3}+\frac{{\color{keyred}\mathbf{2}}}{x-3}
+  = {\color{keyred}1+\frac{2}{x-3}}
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Which function from Section 4 is this? \ans{the anchor, $g(x)=\frac{2}{x-3}+1$}
+  \item Its vertical asymptote is \ans{$x=3$} and its horizontal asymptote is \ans{$y=1$} ---
+        and you can now get the second one two different ways: the degree comparison from Lesson 4.0,
+        or the \ans{$k$} in the general form. They agree, because the leftover $k$ \emph{is} what
+        the function settles down to.
+\end{itemize}
+\vspace{2pt}
+Whenever the top and the bottom are both \ans{linear} (degree $1$), the function is a shifted,
+stretched $\frac1x$ --- and the trick to see it is to rewrite the numerator using the denominator.
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{A. Run the whole workflow.} Solve $2x^3 - 9x^2 + 7x + 6 = 0$.
+For $g(x)=\dfrac{-4}{x+2}+3$, fill in each feature without graphing.
 \begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
-  \item Candidates: \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6,\ \pm\tfrac12,\ \pm\tfrac32$}
-  \item A zero that works: $r = $ \ans{$2$} \quad (show your test: \ans{$16-36+14+6=0$})
-  \item Depressed polynomial after dividing: \ans{$2x^2 - 5x - 3$}
-  \item Completely factored: \ans{$(x-2)(2x+1)(x-3)$}
-  \item Solutions: \ans{$x = -\tfrac12,\ 2,\ 3$}
-\end{enumerate}
-
-\vspace{5pt}
-\textbf{B. The word ``rational'' is doing real work.} Let $k(x) = x^3 - x^2 - 2x + 2$.
-\begin{enumerate}[leftmargin=1.7em, itemsep=6pt, start=6]
-  \item Candidates: \ans{$\pm 1,\ \pm 2$} \quad Which one is a zero? \ans{$1$}
-  \item Divide it out. Depressed polynomial: \ans{$x^2 - 2$}
-  \item Solve that quadratic: $x = $ \ans{$\pm\sqrt{2}$} \quad Are those on your candidate list?
-        \ans{No}
-  \item How many real zeros does $k$ have in all? \ans{$3$} \; Explain why the Rational Root
-        Theorem could never have listed two of them. \ansline{$\pm\sqrt2$ are irrational --- they cannot be written as a fraction $\frac{p}{q}$ of integers, and the theorem only ever produces rational candidates.}
-  \item \textbf{Looking ahead.} Suppose a different cubic's depressed polynomial had come out
-        $x^2 + 4$. How many \emph{real} zeros would that quadratic contribute? \ans{$0$} \;
-        What kind of numbers would its solutions be? \ans{imaginary ($\pm 2i$)} \; That is Lesson 4.5.
+  \item $a=$ \ans{$-4$}, \; $h=$ \ans{$-2$}, \; $k=$ \ans{$3$}; \quad center
+        $($\ans{$-2$}$,\,$\ans{$3$}$)$.
+  \item Vertical asymptote \ans{$x=-2$}; \quad horizontal asymptote \ans{$y=3$}.
+  \item Domain \ans{all reals, $x\neq-2$}; \quad range \ans{all reals, $y\neq3$}.
+  \item $y$-intercept: $g(0)=$ \ans{$1$}. \quad $x$-intercept: solve $\dfrac{-4}{x+2}=-3$ to get
+        $x=$ \ans{$-\frac23$}.
+  \item In words, describe how the parent moved and changed. \ansline{left $2$, up $3$, stretched by a factor of $4$ and reflected across the horizontal asymptote (because $a=-4$ is negative).}
 \end{enumerate}
 \end{practicebox}
 
 \begin{teachernote}
-\textbf{Pacing.} Sections 1--3 are the theorem and the bookkeeping; budget about fifteen minutes and
-do not rush Section 3, because \emph{building the list correctly} is what most students get wrong on
-the test. Sections 4 and 6 are the same workflow twice --- once for ``find the zeros,'' once for
-``solve the equation'' --- and the point of doing both is that students recognize them as one task.
-If time runs short, cut Section 5(iii), never Section 5(i).
+\textbf{Pacing.} Sections 1--2 are the lesson, 3--5 the skill, 6 the payoff (movable to tomorrow's
+opener). Do \emph{not} cut Section 5: writing the equation from a graph is A2.F.1b and the likeliest
+SOL item on this standard.
 
 \vspace{3pt}
-\textbf{The three errors to pre-empt.} (1) \emph{The fraction upside down} --- constant over leading
-coefficient, always. A student who lists $\pm1,\pm2,\pm4$ for $g(x)=4x^3-4x^2-x+1$ has flipped it;
-ask them to check whether $4$ could possibly be a zero (it is not remotely close). (2) \emph{Losing
-the $\pm$} --- half the list disappears, and in Section 4 the only zero found by testing is negative.
-(3) \emph{Duplicates and unreduced fractions} --- $\tfrac22$ and $\tfrac63$ are already on the list;
-this is why the Warm-Up made them reduce by hand.
+\textbf{The one sentence.} \emph{The asymptotes are the parent's axes, and they travel with it.} Draw
+the two dashed lines first; students who begin by plotting points will fight the wall all period.
 
 \vspace{3pt}
-\textbf{The moment that matters} is Section 2's ``why.'' Students accept the theorem as a rule, but
-the one-minute argument makes it inevitable: a zero $\frac{p}{q}$ means a factor $(qx-p)$, all the
-$q$'s multiply to the leading coefficient and all the $p$'s multiply to the constant term, so
-neither has anywhere to hide. Run it on the Warm-Up's $(x-3)(2x-1)(x+2)$ live, on the board.
+\textbf{Errors to expect.} (1) \textbf{Sign of $h$} --- $\frac{1}{x-3}$ shifts \emph{right}; the same
+Unit 1 rule, costlier here. (2) \textbf{Reading $k$ off the numerator}. (3) \textbf{``The parent goes
+through $(0,0)$''} --- every previous parent did; hold the line in Section 1. (4) \textbf{Range} given
+as ``all reals'' --- the HA is a \emph{range} exclusion. (5) \textbf{Decreasing on $(-\infty,\infty)$}
+--- 4.0's union rule, still in force.
 
 \vspace{3pt}
-\textbf{Practice B is the bridge to Lesson 4.5} and should not be cut. Item 8's $\pm\sqrt2$ makes
-``rational'' a real restriction rather than a word in the theorem's name, and item 10 puts $x^2+4$ on
-the table one day before the Fundamental Theorem of Algebra explains what to do with it. Leave item
-10 unresolved --- students only need to notice that the depressed quadratic can run out of real
-answers.
+\textbf{Section 3's surprise is worth two minutes.} A2.F.1c names all four transformations, so students
+must meet $f(kx)$ --- and on a hyperbola it is not a new picture, since $\frac{1}{kx}=\frac{1/k}{x}$.
+
+\vspace{3pt}
+\textbf{Section 6 closes the Warm-Up loop.} Item 3 combined $2+\frac{3}{x-1}$ into $\frac{2x+1}{x-1}$
+and found asymptotes $x=1$, $y=2$ --- the two numbers it started with. Ask who noticed. The rewrite
+$\frac{x-1}{x-3}=1+\frac{2}{x-3}$ runs that in reverse, and it is \emph{why} 4.0's degree rule holds
+here: the ratio of leading coefficients is the constant left over.
 \end{teachernote}
 
 \end{document}

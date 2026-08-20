@@ -1,10 +1,9 @@
-%! Functions — Unit 1, Lesson 1.3 — Student Packet Cover Sheet
+%! Absolute Value Functions \& Transformations — Unit 1, Lesson 1.3 — Student Packet Cover Sheet
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-% NOTE: ltablex is deliberately NOT loaded here. It turns the tocbox's tabularx into a
-% longtable, which forces a page break right after the box and pushes remindbox onto a
-% second page. The table never spans pages, so \rowcolor renders identically without it.
+\usepackage{ltablex}
+\keepXColumns
 
 \begin{document}
 
@@ -17,8 +16,8 @@
 
 \begin{center}
   {\color{white}\textbf{\LARGE Algebra 2: Shepherd}}\\[4pt]
-  {\color{forestmid}\large\textbf{Unit 1 \quad Foundations: Algebra 1 Review}}\\[6pt]
-  {\color{white}\textbf{\large Lesson 1.3 \quad Functions}}
+  {\color{forestmid}\large\textbf{Unit 1 \quad Linear Functions}}\\[6pt]
+  {\color{white}\textbf{\large Lesson 1.3 \quad Absolute Value Functions \& Transformations}}
 \end{center}
 
 \vspace{0.22in}
@@ -28,13 +27,10 @@
 \begin{learningtargetbox}
 \small
 \begin{enumerate}[leftmargin=1.5em, itemsep=5pt]
-  \item \ldots{} decide whether a relation --- given as ordered pairs, a table, a mapping, or a graph --- is a \textbf{function}, explain my decision with the \textbf{vertical line test}, and state its \textbf{domain} and \textbf{range}.
-  \item \ldots{} use \textbf{function notation} in both directions: find $f(x)$ from a given $x$, and find $x$ from a given $f(x)$ --- from a rule or from a graph.
-  \item \ldots{} find a linear function's \textbf{zeros}, \textbf{intercepts}, and \textbf{slope}, say what each one means \emph{in context} with units, and explain why a zero and an $x$-intercept are the same fact.
-  \item \ldots{} write the equation of a line in \textbf{slope-intercept}, \textbf{point-slope}, and \textbf{standard} form --- from a graph, from two points, from a slope and a point, and \textbf{parallel} or \textbf{perpendicular} to a given line.
-  \item \ldots{} explain how $k\,f(x)$ and $f(x)+k$ transform the parent $y=x$: one changes the \textbf{slope}, the other changes the \textbf{$y$-intercept}.
-  \item \ldots{} read the key characteristics of a \textbf{quadratic} (zeros, $y$-intercept, vertex, max or min, domain, range) and an \textbf{exponential} $y=ab^x$ (starting value, growth or decay, domain, range, no zeros) off their graphs.
-  \item \ldots{} \textbf{compare and contrast} linear, quadratic, and exponential functions from tables and graphs --- constant difference, constant second difference, constant ratio.
+  \item \ldots{} graph the \textbf{absolute value parent} $f(x)=|x|$ from a table and read its \textbf{vertex}, \textbf{axis of symmetry}, minimum, domain, and range.
+  \item \ldots{} use \textbf{vertex form} $g(x)=a|x-h|+k$ to name the \textbf{vertex} $(h,k)$ and \textbf{axis} $x=h$.
+  \item \ldots{} decide from $a$ whether a V \textbf{opens up or down} (min vs.\ max) and is \textbf{narrower or wider} than the parent.
+  \item \ldots{} describe any absolute value graph as \textbf{shifts, a stretch, and a reflection} of $y=|x|$, and match equations to graphs.
 \end{enumerate}
 \end{learningtargetbox}
 
@@ -47,11 +43,11 @@
 \rowcolor{forestbg}
 \textbf{\#} & \textbf{Component} & \textbf{Description} & \textbf{Score} \\
 \midrule
-1 & Warm-Up        & One rule asked three ways --- solved, evaluated, and read off a graph & \blank{1.2cm} \\
-2 & Guided Notes   & Functions and notation, a line's characteristics, the three forms and transformations, quadratic and exponential graphs, and the three families side by side & \blank{1.2cm} \\
-3 & Group Activity & \emph{One In, One Out} --- the same six questions asked of every family, by tier & \blank{1.2cm} \\
-4 & Exit Ticket    & Quick check: one function-or-not, one zero, and an SOL-style equation-from-a-graph item & \blank{1.2cm} \\
-5 & Homework       & The whole Functions domain --- plus the overtake & \blank{1.2cm} \\
+1 & Warm-Up        & Spiral review: build the $y=|x|$ table, recall transformations, read a V & \blank{1.2cm} \\
+2 & Guided Notes   & The V parent, up/down \& left/right shifts, stretch/reflect, vertex form & \blank{1.2cm} \\
+3 & Group Activity & \emph{Reading \& Building V's} --- read graphs, name features, model, by tier & \blank{1.2cm} \\
+4 & Exit Ticket    & Quick check: read a V, use vertex form, describe a transformation & \blank{1.2cm} \\
+5 & Homework       & Mixed practice: match, name features, describe transformations, model & \blank{1.2cm} \\
 \midrule
   & \multicolumn{2}{r}{\textbf{Total}} & \blank{1.2cm} \\
 \end{tabularx}
@@ -60,23 +56,14 @@
 \vspace{0.10in}
 
 \begin{remindbox}
-\small In Lesson 1.1 an \textbf{expression} was a recipe. In Lesson 1.2 an \textbf{equation} was a
-\emph{question} with one, no, or infinitely many answers. A \textbf{function} is neither: it is a
-\emph{machine} that takes an input and returns an output --- and its promise is that every input
-gets \textbf{exactly one} output. Two inputs may share an output; one input may never have two. That
-single sentence is the whole definition, and the \textbf{vertical line test} is that sentence drawn.
-\\[3pt]
-Function notation is how you speak to the machine. ``$f(3)=0$'' and ``the point $(3,0)$ is on the
-graph'' say the same thing. Going \emph{forward} --- given $x$, find $f(x)$ --- is arithmetic. Going
-\emph{backward} --- given $f(x)$, find $x$ --- is solving an equation, which is all of Lesson 1.2.
-So the \textbf{zero} of a function, the solution of $f(x)=0$, and the \textbf{$x$-intercept} of its
-graph are three names for one thing.
-\\[3pt]
-Today you meet three families and ask each the same six questions: domain, range, zeros,
-intercepts, rate of change, increasing or decreasing. \textbf{Linear} functions add the same amount
-every step. \textbf{Quadratic} functions turn around at a vertex, so their range stops somewhere.
-\textbf{Exponential} functions multiply by the same amount every step --- which is why they have no
-zeros at all, and why they eventually beat everything else no matter how far behind they start.
+\small The \textbf{absolute value parent} $f(x)=|x|$ graphs as a \textbf{V} opening up, with its
+\emph{vertex} (turning point) at the origin and \emph{axis of symmetry} $x=0$. Every other absolute
+value function is that same V after a move: in \textbf{vertex form} $g(x)=a|x-h|+k$ the \textbf{vertex}
+is $(h,k)$ and the \textbf{axis} is $x=h$. \emph{Inside} the bars acts horizontally and
+\emph{backwards} ($|x-h|$ moves the vertex to $x=h$); \emph{outside} the bars acts vertically as
+expected ($+k$ up/down). The number $a$ opens the V \textbf{up} when $a>0$ (so $k$ is a
+\textbf{minimum}) or \textbf{down} when $a<0$ (so $k$ is a \textbf{maximum}), and $|a|$ makes it
+\textbf{narrower} ($|a|>1$) or \textbf{wider} ($|a|<1$).
 \end{remindbox}
 
 \end{document}

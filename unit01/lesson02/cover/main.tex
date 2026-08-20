@@ -1,10 +1,9 @@
-%! Equations and Inequalities — Unit 1, Lesson 1.2 — Student Packet Cover Sheet
+%! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Student Packet Cover Sheet
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-% NOTE: ltablex is deliberately NOT loaded here. It turns the tocbox's tabularx into a
-% longtable, which forces a page break right after the box and pushes remindbox onto a
-% second page. The table never spans pages, so \rowcolor renders identically without it.
+\usepackage{ltablex}
+\keepXColumns
 
 \begin{document}
 
@@ -17,8 +16,8 @@
 
 \begin{center}
   {\color{white}\textbf{\LARGE Algebra 2: Shepherd}}\\[4pt]
-  {\color{forestmid}\large\textbf{Unit 1 \quad Foundations: Algebra 1 Review}}\\[6pt]
-  {\color{white}\textbf{\large Lesson 1.2 \quad Equations and Inequalities}}
+  {\color{forestmid}\large\textbf{Unit 1 \quad Linear Functions}}\\[6pt]
+  {\color{white}\textbf{\large Lesson 1.2 \quad Absolute Value Equations \& Inequalities}}
 \end{center}
 
 \vspace{0.22in}
@@ -28,12 +27,10 @@
 \begin{learningtargetbox}
 \small
 \begin{enumerate}[leftmargin=1.5em, itemsep=5pt]
-  \item \ldots{} \textbf{solve} a multistep linear equation and \textbf{name the property of equality} behind each step --- not just ``move it over'' --- then \textbf{verify} the answer in the original.
-  \item \ldots{} decide whether a linear equation has \textbf{one solution, no solution, or infinitely many}, and explain how the last line of my work told me which.
-  \item \ldots{} solve a multistep \textbf{inequality}, \textbf{reverse} the symbol when I multiply or divide by a negative --- and say why --- then \textbf{graph} the solution set on a number line with the right circle at the endpoint.
-  \item \ldots{} rearrange a \textbf{literal equation} or formula to solve for a specified variable.
-  \item \ldots{} \textbf{write} an equation or inequality from a described situation and interpret my answer as a sentence about that situation, with units.
-  \item \ldots{} solve a \textbf{quadratic} three ways --- square roots, factoring with the zero product property, and the quadratic formula --- and use the \textbf{discriminant} to say how many real solutions exist \emph{before} solving, matching that count to the graph's $x$-intercepts.
+  \item \ldots{} read \textbf{absolute value} as distance from zero and use it to solve absolute value \textbf{equations} $|ax+b|=c$ with the \textbf{two-case} rule.
+  \item \ldots{} recognize when an absolute value equation or inequality has \textbf{no solution} or \textbf{one solution}.
+  \item \ldots{} solve absolute value \textbf{inequalities} --- ``\textbf{and}'' for $<$, ``\textbf{or}'' for $>$ --- and write the solution set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
+  \item \ldots{} \textbf{model} a real ``tolerance'' situation with an absolute value inequality and interpret the answer.
 \end{enumerate}
 \end{learningtargetbox}
 
@@ -46,11 +43,11 @@
 \rowcolor{forestbg}
 \textbf{\#} & \textbf{Component} & \textbf{Description} & \textbf{Score} \\
 \midrule
-1 & Warm-Up        & Naming the properties behind a solve, factoring completely, and reading a solution set off a number line & \blank{1.2cm} \\
-2 & Guided Notes   & Linear equations and how many answers they have, literal equations, inequalities and the flip, quadratics three ways, the discriminant & \blank{1.2cm} \\
-3 & Group Activity & \emph{How Many Answers Does This Question Have?} --- practice, mixed sets, error hunting, and parameters, by tier & \blank{1.2cm} \\
-4 & Exit Ticket    & Quick check: one classification, one factor-and-verify, and an SOL-style inequality item & \blank{1.2cm} \\
-5 & Homework       & The full domain area --- plus the solution-count audit & \blank{1.2cm} \\
+1 & Warm-Up        & Spiral review: evaluate $|x|$, solve a two-step equation, graph an inequality & \blank{1.2cm} \\
+2 & Guided Notes   & Distance meaning, the two-case rule, ``and/or'' inequalities, three notations & \blank{1.2cm} \\
+3 & Group Activity & \emph{Distance, Cases \& Sets} --- solve, represent, and model, by tier & \blank{1.2cm} \\
+4 & Exit Ticket    & Quick check: solve an equation, solve an inequality (3 forms), model a tolerance & \blank{1.2cm} \\
+5 & Homework       & Mixed practice across equations \& inequalities, plus a modeling extension & \blank{1.2cm} \\
 \midrule
   & \multicolumn{2}{r}{\textbf{Total}} & \blank{1.2cm} \\
 \end{tabularx}
@@ -59,24 +56,13 @@
 \vspace{0.10in}
 
 \begin{remindbox}
-\small In Lesson 1.1 an \textbf{expression} was a recipe for a number. An \textbf{equation} is a
-\textbf{question}: \emph{which values make this true?} The answer is a \textbf{solution set}, and it
-need not hold exactly one number. A linear equation has \textbf{one} solution, \textbf{no} solution,
-or \textbf{infinitely many}, and the last line tells you which: if the variable vanishes leaving
-something \emph{true}, everything works; if it leaves something \emph{false}, nothing does. The
-variable disappearing is information, not a mistake.
-\\[3pt]
-Every step must produce an \textbf{equivalent} equation --- same question, easier wording. That is
-what the \textbf{properties of equality} are for, and why every line of your work should have a
-name. Inequalities obey the same properties with \textbf{one} exception: multiplying or dividing by
-a negative \textbf{reverses} the symbol. That is not a convention --- multiplying by a negative
-reflects the number line across zero, and reflection reverses order: $2<6$, but $-2>-6$.
-\\[3pt]
-A quadratic has \textbf{two, one, or no} real solutions, and the \textbf{discriminant} $b^2-4ac$
-tells you which before you solve --- the same fact the graph tells you by how often it crosses the
-$x$-axis. To factor, first make one side \textbf{zero}: $mn=0$ forces $m=0$ or $n=0$, while $mn=8$
-forces nothing at all. And in 1.1 stopping short of \emph{completely} cost you a step; here it costs
-you a \textbf{solution}.
+\small An \textbf{absolute value} $|x|$ is a \emph{distance} from zero, so it is never negative --- and
+that one fact drives everything here. \textbf{Equations:} isolate the bars, then $|ax+b|=c$ splits
+into $ax+b=c$ \emph{or} $ax+b=-c$ (and if $c<0$, there is \emph{no solution}). \textbf{Inequalities:}
+``less th\textbf{AND}'' --- $|ax+b|<c$ traps the expression \emph{between} $-c$ and $c$ (one
+interval); ``great\textbf{OR}'' --- $|ax+b|>c$ throws it \emph{outside} (two rays). Write every
+solution set three ways: \textbf{set} $\{x \mid \dots\}$, \textbf{interval} (brackets include,
+parentheses exclude), and a shaded \textbf{number line}.
 \end{remindbox}
 
 \end{document}

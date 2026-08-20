@@ -1,4 +1,4 @@
-%! Absolute Value Equations \& Inequalities — Unit 2, Lesson 2.2 — Lesson Plan
+%! Solving Quadratics by Factoring — Unit 2, Lesson 2.2 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,12 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 2: Linear Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 2.2: Absolute Value Equations \& Inequalities}
-% Number line: {xmin}{xmax} then draw solutions on top.
-\newcommand{\numline}[2]{%
-  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
-  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
+\newcommand{\UnitNumberName}{Unit 2: Quadratic Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 2.2: Solving Quadratics by Factoring}
 
 \begin{document}
 \begin{center}
@@ -23,25 +19,22 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can read absolute value as \emph{distance from zero} and use
-    that meaning to solve absolute value \emph{equations} and \emph{inequalities} in one variable.
-    They isolate the absolute value, split into the \emph{two cases} an equation
-    $|ax+b| = c$ requires, and recognize the special cases (no solution when $c<0$, one solution when
-    $c=0$). For inequalities they translate $|ax+b|<c$ into a ``between'' (\emph{and}) statement and
-    $|ax+b|>c$ into an ``outside'' (\emph{or}) statement, then represent the solution set three ways
-    --- \emph{set notation, interval notation, and a number line} --- and interpret a
-    \emph{tolerance} situation in context. Lesson~2.1 wrote and solved \emph{linear} expressions;
-    today those same expressions live \emph{inside} the absolute-value bars, and Lesson~2.3 turns this
-    algebra into the V-shaped graph.
+    \textbf{Primary Objective:} Students can \emph{produce} the factored form of a quadratic and use it to
+    solve. They factor a quadratic completely --- pulling out a \emph{GCF}, factoring $x^2+bx+c$ by finding
+    two integers with the right product and sum, factoring $ax^2+bx+c$ by grouping, and recognizing the
+    \emph{difference of squares} and \emph{perfect-square trinomial} patterns --- then apply the
+    \emph{Zero Product Property} to solve $ax^2+bx+c=0$. They connect the solutions (the \emph{roots}) to
+    the parabola's \emph{$x$-intercepts / zeros}: where Lesson~2.1 \emph{read} the zeros off a given
+    factored form, Lesson~2.2 lets them \emph{find} that form by hand and read the zeros from any
+    factorable standard-form quadratic.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} This lesson delivers the whole of \textbf{A2.EI.1} --- represent,
-    solve, and interpret absolute value equations and inequalities in one variable:
-    \textbf{A2.EI.1a} (create an absolute value \emph{equation} to model a context),
-    \textbf{A2.EI.1b} (solve an absolute value equation algebraically and verify graphically),
-    \textbf{A2.EI.1c} (create an absolute value \emph{inequality} to model a context),
-    \textbf{A2.EI.1d} (solve an absolute value inequality and represent the solution set with set
-    notation, interval notation, and a number line), and \textbf{A2.EI.1e} (verify solutions
-    algebraically/graphically, and explain and interpret solutions in context).
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3b} (factor polynomials completely in one and two
+    variables over the integers) and \textbf{A2.EO.3d} (recognize and use the difference-of-squares and
+    perfect-square-trinomial identities); \textbf{A2.EI.2b} (solve a quadratic equation in one variable
+    algebraically --- here, the factoring method, restricted to real, factor-over-integers cases;
+    square-root/completing-the-square follow in 2.3 and complex roots in 2.4--2.5), \textbf{A2.EI.2a}
+    (create a quadratic equation to model a context), and \textbf{A2.EI.2d} (verify solutions graphically
+    and interpret them --- the roots are the parabola's $x$-intercepts).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -51,22 +44,21 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \textbf{Isolate} the absolute value, then split $|ax+b|=c$ into $ax+b=c$ \emph{or} $ax+b=-c$.
-  \item Recognize \textbf{no solution} ($c<0$) and \textbf{one solution} ($c=0$).
-  \item Solve $|ax+b|<c$ as the compound ``\textbf{and}'' $-c<ax+b<c$ (between).
-  \item Solve $|ax+b|>c$ as the compound ``\textbf{or}'' $ax+b<-c$ \emph{or} $ax+b>c$ (outside).
-  \item Write a solution set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
-  \item \textbf{Model} a tolerance situation and interpret the solution in context.
+  \item Always factor out the \textbf{GCF} first, then factor what remains completely.
+  \item Factor $x^2+bx+c$: find two integers whose \textbf{product is $c$} and \textbf{sum is $b$}.
+  \item Factor $ax^2+bx+c$ ($a\ne1$) by \textbf{grouping} (the $a\!\cdot\!c$ method).
+  \item Recognize \textbf{difference of squares} $x^2-k^2$ and \textbf{perfect-square trinomials}.
+  \item Solve by the \textbf{Zero Product Property}: set $=0$, factor, set each factor to $0$.
+  \item Connect the \textbf{roots} to the parabola's \textbf{$x$-intercepts / zeros}.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item $|x|$ is a \emph{distance}, so it is never negative --- that single fact explains every case.
-  \item $|ax+b|=c$ asks ``what inputs sit \emph{distance} $c$ from zero?'' --- two answers, one on each side.
-  \item ``Less th\textbf{AND}, great\textbf{OR}'': $<$ traps the expression \emph{between} bounds; $>$ throws it \emph{outside} them.
-  \item You \emph{must} isolate the bars first --- $2|x|+1=9$ is not solved until it reads $|x|=4$.
-  \item Three notations describe the \emph{same} set; being fluent in all three is the A2.EI.1d skill.
-  \item A ``within-tolerance'' phrase (\emph{no more than $0.5$ off}) is exactly an absolute-value inequality.
+  \item Factoring is \emph{un-multiplying}: it reverses the FOIL that built the trinomial.
+  \item The product/sum search works because $(x+p)(x+q)=x^2+(p+q)x+pq$.
+  \item A product equals zero \emph{only} when a factor is zero --- that is what turns a factored equation into simple linear ones.
+  \item You must move everything to one side (\,$=0$) \emph{before} the Zero Product Property applies --- it is a fact about zero, not any number.
+  \item The roots are exactly where the graph crosses the $x$-axis, tying algebra back to the picture from 2.0--2.1.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -74,197 +66,181 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Absolute value} & $|x|$ is the \emph{distance} of $x$ from $0$ on the number line; always $\ge 0$. \\
-\textbf{Absolute value equation} & An equation with a variable inside absolute-value bars, e.g.\ $|ax+b|=c$. \\
-\textbf{Two-case rule} & If $|X|=c$ and $c\ge 0$, then $X=c$ \emph{or} $X=-c$; if $c<0$, no solution. \\
-\textbf{Compound inequality} & Two inequalities joined by \emph{and} (conjunction) or \emph{or} (disjunction). \\
-\textbf{``And'' ($<$) case} & $|X|<c \iff -c<X<c$: the expression is trapped \emph{between} $-c$ and $c$. \\
-\textbf{``Or'' ($>$) case} & $|X|>c \iff X<-c$ \emph{or} $X>c$: the expression falls \emph{outside} $[-c,c]$. \\
-\textbf{Set / interval notation} & $\{x \mid -3<x<5\}$ vs.\ $(-3,5)$; brackets $[\,]$ include endpoints, parentheses $(\,)$ exclude. \\
-\textbf{Tolerance} & An allowed distance from a target value, modeled by $|\text{measured}-\text{target}|\le \text{tol}$. \\
+\textbf{Factoring} & Writing a polynomial as a product of factors --- the reverse of multiplying/expanding. \\
+\textbf{GCF} & Greatest common factor; the largest monomial dividing every term, factored out first. \\
+\textbf{Zero Product Property} & If $AB=0$, then $A=0$ or $B=0$ (or both). The engine of solving by factoring. \\
+\textbf{Roots / zeros / solutions} & Three names for the $x$-values that make $f(x)=0$ --- the parabola's $x$-intercepts. \\
+\textbf{Difference of squares} & $x^2-k^2=(x-k)(x+k)$. \\
+\textbf{Perfect-square trinomial} & $x^2\pm2kx+k^2=(x\pm k)^2$; factoring it gives one repeated (double) root. \\
+\textbf{Double root} & A root that occurs twice; the parabola \emph{touches} the $x$-axis there (vertex on the axis). \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three prerequisites today leans on: \textbf{(1)} evaluate absolute
-    values as distance from zero ($|-7|=7$); \textbf{(2)} solve a two-step \emph{linear} equation
-    (Lesson~2.1) --- the move students repeat \emph{twice} once the bars split; and \textbf{(3)} graph
-    a simple inequality on a number line and name it in interval notation, the representation
-    A2.EI.1d demands. Debrief item~1 aloud: because $|x|$ measures distance, \emph{two} different
-    numbers ($7$ and $-7$) share the same absolute value --- that is the seed of the two-case rule.
+    The Warm-Up rehearses exactly what factoring needs: \textbf{(1)} \emph{multiplying} binomials with FOIL
+    (the operation factoring will reverse); \textbf{(2)} the number game at the heart of it --- finding two
+    integers with a given \emph{product} and \emph{sum}, including the sign cases; and \textbf{(3)} reading
+    a parabola's \emph{$x$-intercepts} off a pre-drawn graph and solving the trivial linear equations
+    $x+p=0$, so the Zero Product Property lands as ``two easy equations.'' Debrief item~1 next to item~2:
+    factoring is item~1 run backward.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    A cereal box is labeled \textbf{500 g}. Quality control rejects any box that is \textbf{more than
-    $5$ g off} the label. Ask: \textbf{``What is the lightest box that still passes? The heaviest?''}
-    ($495$ g and $505$ g.) \textbf{``How could you write `off by at most $5$ g' with one symbol?''}
-    Guide students to $|w-500|\le 5$: the \emph{distance} between the actual weight $w$ and the target
-    $500$ is at most $5$. Land the point: an absolute value is a \emph{distance}, and today every
-    equation and inequality we solve is really a question about distance from a target --- ``exactly
-    this far'' (equation) or ``within / beyond this far'' (inequality).
+    Put the unit's anchor parabola back on the board:
+    \[ f(x)=x^2-2x-3. \]
+    In Lesson~2.1 you were \emph{handed} its factored form $f(x)=(x+1)(x-3)$ and read the zeros $-1$ and
+    $3$ for free. Ask: \textbf{where did that factored form come from?} Today we manufacture it. Once we
+    have $(x+1)(x-3)$, finding where the graph crosses the $x$-axis is a two-line problem: a product is
+    zero only when one of its pieces is zero, so $x+1=0$ or $x-3=0$. Land the theme: \emph{factoring turns
+    one hard quadratic equation into two easy linear ones --- and hands us the $x$-intercepts by hand.}
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Absolute value is distance.} $|x|$ is how far $x$ is from $0$, so it is never negative.
-\textbf{Ask: how many numbers are exactly $5$ from zero?} Two --- $5$ and $-5$. So $|x|=5$ has
-\emph{two} solutions. This is the whole lesson in one picture.
+\textbf{1. The Zero Product Property.} Start with the idea, not the algebra: if two numbers multiply to
+$0$, at least one \emph{is} $0$ --- nothing else works. So $(x+1)(x-3)=0$ splits into $x+1=0$ or
+$x-3=0$, giving $x=-1$ or $x=3$. Show those are the $x$-intercepts of the anchor parabola. Stress the
+precondition: the product must equal \emph{zero}, so everything moves to one side first.
 
-\textbf{2. Solving $|ax+b|=c$.} First \textbf{isolate} the bars, then split into two cases:
-$ax+b=c$ \emph{or} $ax+b=-c$. Model $|2x-3|=7$: $2x-3=7 \Rightarrow x=5$, or $2x-3=-7 \Rightarrow
-x=-2$. \textbf{Verify} both in the original --- and note graphically they are where $y=|2x-3|$ meets
-$y=7$ (A2.EI.1b).
+\textbf{2. Factor $x^2+bx+c$.} Un-FOIL: since $(x+p)(x+q)=x^2+(p+q)x+pq$, we need two integers whose
+\emph{product} is $c$ and \emph{sum} is $b$. Work $x^2-2x-3$: product $-3$, sum $-2$ $\Rightarrow$ $+1$
+and $-3$, so $(x+1)(x-3)$ --- the anchor, produced by hand. Drill the sign logic: product negative
+$\Rightarrow$ opposite signs; product positive $\Rightarrow$ same sign as $b$.
 
-\textbf{3. Isolate first --- always.} $3|x+1|-2=10$ is \emph{not} ready to split. Add $2$, divide by
-$3$: $|x+1|=4$, then two cases. \textbf{Stress:} students who split before isolating get the two-case
-step right but the arithmetic wrong.
-
-\textbf{4. Special cases.} $|x-4|=-3$ has \textbf{no solution} (a distance can't be negative);
-$|x-4|=0$ has \textbf{one solution} ($x=4$). Have students \emph{explain} each from the distance
-meaning, not a memorized rule.
+\textbf{3. GCF first.} Before anything, pull out the greatest common factor: $2x^2-8x=2x(x-4)$, and
+solving $2x^2-8x=0$ gives $x=0$ or $x=4$. Use this to flag the \#1 error --- \emph{never divide both
+sides by $x$}; that silently deletes the root $x=0$.
 
 \columnbreak
 
-\textbf{5. Inequalities --- the ``and'' case.} $|x|<3$ asks ``which numbers are \emph{within} $3$ of
-zero?'' Everything \emph{between} $-3$ and $3$: $-3<x<3$. For $|2x-1|\le 5$: $-5\le 2x-1\le 5$, so
-$-2\le x\le 3$. \textbf{``Less th\emph{AND}''} --- one connected interval.
+\textbf{4. Factor $ax^2+bx+c$ ($a\ne1$) by grouping.} The $a\!\cdot\!c$ method: for $2x^2+7x+3$,
+$a\!\cdot\!c=6$; find two numbers with product $6$, sum $7$ ($6$ and $1$); split the middle term
+$2x^2+6x+x+3$; group $2x(x+3)+1(x+3)=(2x+1)(x+3)$. Roots $x=-\tfrac12,\,-3$.
 
-\textbf{6. Inequalities --- the ``or'' case.} $|x|>3$ asks ``which numbers are \emph{more than} $3$
-from zero?'' Everything \emph{outside}: $x<-3$ \emph{or} $x>3$. For $|x+2|\ge 4$: $x+2\le -4$ or
-$x+2\ge 4$, so $x\le -6$ or $x\ge 2$. \textbf{``Great\emph{OR}''} --- two rays.
+\textbf{5. Special patterns.} \emph{Difference of squares} $x^2-16=(x-4)(x+4)$ (roots $\pm4$);
+\emph{perfect-square trinomial} $x^2-6x+9=(x-3)^2$ (one \textbf{double root} $x=3$). Tie the double root
+to the graph: the parabola's vertex sits \emph{on} the $x$-axis, so it touches rather than crosses.
 
-\textbf{7. Three notations, one set.} Every solution set gets written three ways.
-$-2\le x\le 3$ is $\{x \mid -2\le x\le 3\}$ (set), $[-2,3]$ (interval), and a number line shaded
-between two \emph{closed} dots. Match strict $<$ to open dots / parentheses. This is the A2.EI.1d
-deliverable.
+\textbf{6. Solve and verify.} The full routine: (i) set $=0$, (ii) factor completely, (iii) apply the
+Zero Product Property, (iv) solve each linear piece, (v) check the roots are the graph's $x$-intercepts.
+Preview: Lesson~2.3 handles the quadratics that \emph{won't} factor over the integers --- square roots
+and completing the square.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Explicit Instruction: Solving an Absolute Value Inequality]{forestbg}
-\begin{multicols}{2}
-\textbf{Steps.}
-\begin{enumerate}[leftmargin=1.4em, nosep]
-  \item \textbf{Isolate} the absolute value on one side.
-  \item If it equals a \emph{negative}: $<$/$\le$ gives \emph{no solution}; $>$/$\ge$ gives
-        \emph{all reals}. Otherwise:
-  \item \textbf{$<$ or $\le$} $\to$ ``and'': $-c\le ax+b\le c$ (one interval).\\
-        \textbf{$>$ or $\ge$} $\to$ ``or'': $ax+b\le -c$ or $ax+b\ge c$ (two rays).
-  \item Solve for $x$; keep the \emph{same} direction on both parts of an ``and''.
-  \item Write the set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
+\begin{skillbox}[Explicit Instruction: The Factor-and-Solve Routine]{forestbg}
+\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
+\textbf{Steps (post and refer back):}
+\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
+  \item Write the equation with $0$ on one side.
+  \item Factor out the GCF.
+  \item Factor what remains completely (product/sum, grouping, or a special pattern).
+  \item Set \emph{each} factor equal to $0$.
+  \item Solve the linear equations; list all roots.
+  \item Verify: substitute back, or check the roots are the $x$-intercepts.
 \end{enumerate}
-
-\columnbreak
-\textbf{Worked: $|2x-1|\le 5$.}
-\[ -5 \le 2x-1 \le 5 \]
-Add $1$: \; $-4 \le 2x \le 6$. \\
-Divide by $2$: \; $-2 \le x \le 3$.\\[2pt]
-Set: $\{x \mid -2\le x\le 3\}$.\\
-Interval: $[-2,3]$.\\[2pt]
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \numline{-4}{5}
-  \draw[very thick, forest] (-2,0)--(3,0);
-  \fill[forest] (-2,0) circle (3.5pt); \fill[forest] (3,0) circle (3.5pt);
-\end{tikzpicture}
-\end{center}
-\end{multicols}
+&
+\textbf{Worked example.} Solve $x^2-x-6=0$.
+\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
+  \item Already $=0$; no GCF.
+  \item Product $-6$, sum $-1$ $\Rightarrow$ $-3,\,+2$: $(x-3)(x+2)=0$.
+  \item $x-3=0$ or $x+2=0$.
+  \item $x=3$ or $x=-2$.
+  \item Check: $3^2-3-6=0$ \checkmark; $(-2)^2-(-2)-6=0$ \checkmark. These are the $x$-intercepts.
+\end{itemize}
+\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{splitting before isolating}: attacking $3|x+1|-2=10$ as two cases without first getting $|x+1|=4$;
-  \item forgetting the \emph{negative} case, so $|2x-3|=7$ yields only $x=5$;
-  \item sign slips in the negative case: $2x-3=-7$ mis-solved as $x=2$;
-  \item calling $|x-4|=-3$ ``$x=1$ or $x=7$'' instead of \textbf{no solution} (distance can't be negative);
-  \item mixing up ``and''/``or'' --- writing $x<-3$ or $x>3$ for $|x|<3$;
-  \item flipping only \emph{one} side of an ``and'' when dividing, or forgetting to flip on a negative coefficient;
-  \item open vs.\ closed dots / parentheses vs.\ brackets not matching $<$ vs.\ $\le$.
+  \item \textbf{dividing by $x$}: solving $3x^2=12x$ by cancelling an $x$ and losing the root $x=0$ --- always move to one side and factor;
+  \item applying the Zero Product Property when the equation is \emph{not} set to zero (e.g.\ $(x-2)(x-5)=4$ does \emph{not} give $x-2=4$);
+  \item \textbf{sign errors} in the product/sum search --- forgetting that a negative $c$ forces opposite signs;
+  \item skipping the \textbf{GCF}, then being unable to factor what remains;
+  \item forgetting the \textbf{double root} counts once as a value but touches the axis (perfect-square case).
 \end{itemize}
-Cold-call prompts: ``Distance from what, and how far?'' ``Is this an \emph{and} or an \emph{or} --- how do you know from the symbol?'' ``Would $0$ be a solution? Check it.''
+Cold-call prompts: ``Why can we split $(x+1)(x-3)=0$ into two equations --- but not $(x+1)(x-3)=5$?''
+``Two integers multiply to $-12$ and add to $1$; what are they?'' ``Where are the roots on the graph?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Distance, Cases \& Sets} activity (tiered; mirrors the notes).
+\textbf{Zeros Factory} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Evaluate absolute values and solve basic equations
-$|x|=a$ and $|x+b|=c$ (already isolated); match each solution set to a number line.
+\textbf{Tier R --- Remediate.} Solve \emph{already-factored} equations with the Zero Product Property,
+factor simple $x^2+bx+c$, and match each to the pre-drawn parabola whose $x$-intercepts it names.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Isolate then solve equations; solve both types of inequalities and
-write each solution in set, interval, and number-line form; spot a no-solution case.
+\textbf{Tier A --- Approaching.} Factor and solve a mix ($x^2+bx+c$ and GCF cases), complete a
+\emph{equation $\to$ factored $\to$ roots} table, and confirm the roots against a labeled graph.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Model a tolerance context with an absolute-value inequality, solve it,
-and interpret the endpoints; reason about when an absolute-value equation/inequality has no solution
-or all reals.
+\textbf{Tier E --- Extension.} Factor $ax^2+bx+c$ by grouping, use the difference-of-squares and
+perfect-square patterns (spotting a double root), and \emph{model}: write and solve a quadratic for a
+projectile/area context.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): solve an absolute value \emph{equation} that must be
-isolated first and verify both roots; solve an absolute value \emph{inequality} and represent the
-solution in \textbf{all three} forms (set, interval, number line); and a \textbf{modeling/justify}
-item --- translate a tolerance sentence into an inequality and interpret the answer. Also included:
-one \textbf{SOL-style multiple-choice} item (choose the correct solution set for a $>$ inequality).
-Collect and sort into ``got it / didn't isolate / lost the negative case / and-vs-or slip /
-notation slip'' to decide whether Lesson~2.3 opens with a quick re-teach.
+\textbf{Exit Ticket} (independent, no notes): solve $x^2+2x-8=0$ by factoring and state the two zeros;
+solve $3x^2-12x=0$ (GCF --- watch the $x=0$ root) and say which points are the graph's $x$-intercepts;
+and an \textbf{SOL-style multiple-choice} item that turns on the sign flip between roots and factors
+(zeros $-3,4 \Rightarrow (x+3)(x-4)$). Collect and sort into ``got it / GCF slip (lost $x=0$) /
+sign-flip slip / Zero-Product-without-zero slip'' to decide whether Lesson~2.3 opens with a re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} evaluate and solve isolated equations; isolate-then-solve harder equations;
-identify no-solution / one-solution cases; solve both inequality types and record set, interval, and
-number-line forms; and translate a context into an absolute-value model. \textbf{Extension:} a
-tolerance/manufacturing problem and a ``when is there no solution / all reals?'' reasoning prompt.
-\textbf{Preview:} Lesson~2.3, \emph{Absolute Value Functions \& Transformations} --- the same
-$|ax+b|$ expression becomes a \emph{graph}, and the two solutions we found today are exactly where the
-V-shape crosses a horizontal line (previewing vertex, axis of symmetry, and minimum).
+\textbf{Homework:} multiply then factor (see the reverse), factor across all cases (GCF, $x^2+bx+c$,
+$a\ne1$, difference of squares, perfect square), solve by factoring, and match roots to a pre-drawn
+graph. \textbf{Extension:} a garden-border \emph{area} model --- write a quadratic, solve by factoring,
+and reject the impossible (negative) root in context. \textbf{Preview:} Lesson~2.3, \emph{Solving by
+Square Roots \& Completing the Square} --- what to do when a quadratic will not factor over the integers.
 \end{skillbox}
 % ── Teacher notes (migrated from the component keys) ──
 % One per component, titled for it. They live here rather than in the _key
 % files so that every component is the same length blank and keyed.
 
 \begin{teachernote}[Warm-Up]
-Item~1 plants the two-case idea: because $|x|$ is a \emph{distance}, two numbers ($7$ and $-7$) share
-an absolute value --- that is exactly why $|ax+b|=c$ splits into two equations. Item~2 is the linear
-solving from Lesson~2.1; today students do it once for the ``$+c$'' case and once for the ``$-c$''
-case. In item~3, tie the \emph{closed} dot at $-1$ to the bracket in $[-1,\infty)$; $\infty$ always
-takes a parenthesis.
+Item~1 is FOIL --- the operation today's factoring reverses; keep $(2x-1)(x+3)=2x^2+5x-3$ visible for the
+$a\ne1$ grouping section. Item~2 is the product/sum search that drives factoring $x^2+bx+c$; the third
+column ($-4,3$) is the sign-trap case (negative product $\Rightarrow$ opposite signs, and the larger
+magnitude carries the sum's sign). Item~3 is the whole lesson in miniature: the $x$-intercepts of
+$(x+3)(x-1)$ are exactly the solutions of $x+3=0$ and $x-1=0$ --- the Zero Product Property, previewed
+graphically.
 \end{teachernote}
 
 \begin{teachernote}[Guided Notes]
-The spine of the lesson is the distance meaning: it explains the two cases (Section~1--2), why $c<0$
-gives no solution (Section~3), and the difference between ``between'' and ``outside'' (Sections~4--5).
-Two errors to pre-empt: (1) splitting \emph{before} isolating in Section~3 --- insist on
-$|x+1|=4$ before any cases; (2) the ``and/or'' mix-up --- anchor it to ``less th\emph{AND},
-great\emph{OR}'' and to the picture (within vs.\ beyond). For notation, tie ``$\le$/$\ge$''
-to closed dots and brackets, ``$<$/$>$'' to open dots and parentheses, and remind students that
-$\pm\infty$ always takes a parenthesis.
+The spine is the anchor $x^2-2x-3=(x+1)(x-3)$, now \emph{produced} rather than given, with its roots
+$-1,3$ shown as the graph's $x$-intercepts (\S1). Three recurring errors to pre-empt: (1) dividing by $x$
+and losing $x=0$ (\S3 trap); (2) applying the Zero Product Property to a non-zero right side (the ``$=5$''
+warning in \S1); (3) sign slips in the product/sum search --- reinforce the $c<0\Rightarrow$ opposite
+signs table. In \S4 make the \emph{double root} concrete: $(x-3)^2=0$ has the single value $x=3$, and the
+vertex sits \emph{on} the axis. Grouping (\S4) is the bridge to next unit's polynomial factoring.
 \end{teachernote}
 
 \begin{teachernote}[Group Activity]
-Tier~A item~4 and Tier~E item~2 are the conceptual heart --- push students to justify from the
-\emph{distance} meaning, not a memorized rule. Common slips: in A2, flipping to ``or'' for a ``$<$'';
-in A3, forgetting to divide the isolated bounds by $2$; in E1, reading ``within $0.3$'' as ``$<$''
-rather than ``$\le$'' (``within/at most'' includes the endpoint). For E2b, note the boundary case
-$k=0$: $|x+5|>0$ is \emph{all reals except} $x=-5$, so it is \emph{not} every real --- that is why the
-answer is $k<0$, strictly.
+Tier~R isolates the two halves of the method --- the Zero Product Property on pre-factored equations
+(item~1) and the factor-then-read-the-graph link (item~2). Tier~A item~2 rewards \emph{using} the graph:
+the roots $-4,2$ come from $(x+4)(x-2)=x^2+2x-8$; the distractor $x^2-2x-8$ flips both signs. In Tier~E,
+watch grouping sign work; the double-root item ($ (x+5)^2$) is the conceptual target --- one value, graph
+tangent to the axis. In the patio model, insist students \emph{reject} the negative root with a reason,
+not just cross it out.
 \end{teachernote}
 
 \begin{teachernote}[Exit Ticket]
-Item~1 checks the whole equation routine: isolate, split into \emph{both} cases, verify. Item~2
-checks all three notations plus the distance interpretation. Item~3 separates students who
-internalized ``great\emph{OR}'' from those who defaulted to ``between.'' Collect and sort into ``got
-it / didn't isolate / lost the negative case / and-vs-or slip / notation slip'' to decide whether
-Lesson~2.3 opens with a quick re-teach.
+Sort responses into ``got it / GCF slip / sign-flip slip / Zero-Product-without-zero slip.'' The telltale
+errors: item~2 answered $x=4$ only (divided by $x$, lost $x=0$), and item~3 choosing \textbf{B}'s mirror
+image. If the sign flip is widespread, reopen Lesson~2.3 by re-reading zeros off $(x+3)(x-4)$ before the
+square-root method.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-Watch item~2: students must isolate ($|4x+2|=10$, $|x-4|=5$) before splitting --- a very common miss.
-Item~3 is a quick check that ``distance can't be negative'' (none), ``distance zero'' (one), and the
-generic case (two) are all understood conceptually. In item~6, ``within'' includes the endpoints, so
-it is ``$\le$''; students who write ``$<$'' exclude $66^\circ$ and $70^\circ$. Extension (b)'s boundary
-$k=0$ is worth a mention: $|x-3|>0$ excludes $x=3$, so ``all reals'' needs $k<0$ strictly.
+Item~1 makes the multiply/factor inverse explicit --- the conceptual anchor. In item~2 the traps are the
+GCF ($5x^2-20x=5x(x-4)$), the difference of squares ($x^2-36$), the perfect square ($x^2+8x+16=(x+4)^2$),
+and the $a\ne1$ grouping case ($2x^2+5x-3$). Item~3c must be set to $0$ first ($x^2-9x+20=0$). Item~4 is
+the graph$\leftrightarrow$algebra check that returns on the test. Item~5 is the year's most common slip
+(dividing by $x$). In the Extension, the negative root is rejected \emph{with a reason}; verify the
+$(7)(10)=70$ check.
 \end{teachernote}
 
 \end{document}

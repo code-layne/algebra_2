@@ -1,294 +1,156 @@
-%! Expressions and Operations — Unit 1, Lesson 1.1 — Guided Notes (Answer Key)
+%! Linear Functions: Slope, Forms \& Graphing — Unit 1, Lesson 1.1 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Vocab answer: \par on BOTH ends (see COURSE_PLAN.md §7)
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
 \newcommand{\vocabans}[2]{%
-  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.1}{Guided Notes --- Answer Key}
 
-\vspace{0.08in}
+\vspace{0.10in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item \emph{translate} a verbal situation into an algebraic expression and \emph{evaluate} it at given values --- including absolute values, square roots, and cube roots;
-  \item apply the \emph{laws of exponents} to simplify multivariable expressions and monomial ratios, and explain where each law comes from;
-  \item add, subtract, multiply, \emph{factor completely}, and divide polynomials in one variable;
-  \item simplify \emph{radicals} and convert between radical and rational-exponent notation;
-  \item \emph{justify} that two expressions are equivalent --- or disprove it with a single value.
+  \item compute \emph{slope} from two points and read it as a constant rate of change;
+  \item write a line in \emph{slope-intercept}, \emph{point-slope}, and \emph{standard} form, and convert among them;
+  \item write the equation of a line from a graph, from two points, or from a slope and a point;
+  \item graph a line by transforming the parent $y=x$.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.05in}
+\vspace{0.08in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}
-\vocabans{Expression (vs.\ equation)}{An expression combines numbers, variables, and operations to name a number --- it has no equals sign and is never solved. An equation sets two expressions equal and \emph{is} solved.}
-\vocabans{Evaluate}{Replace every variable with a given value, then follow the order of operations until one number is left.}
-\vocabans{Polynomial / degree}{A sum of terms $ax^n$ with every $n$ a whole number; the degree is the largest exponent on the variable.}
-\vocabans{Factor completely}{Pull out the GCF first, then keep factoring until no factor can be factored further over the integers.}
-\vocabans{Simplest radical form}{No perfect-power factor is left under the radical (and no radical is left in a denominator).}
-\vocabans{Rational exponent}{A fractional exponent that means a root: $a^{1/2}=\sqrt{a}$ and $a^{1/3}=\sqrt[3]{a}$.}
-\vocabans{Equivalent expressions}{Two expressions that give the same value for \emph{every} legal replacement value --- not just for the ones you happened to test.}
+\vspace{2pt}
+\vocabans{Slope (rate of change)}{$m=\frac{y_2-y_1}{x_2-x_1}=\frac{\text{rise}}{\text{run}}$; the constant change in output per unit change in input}
+\vocabans{Slope-intercept form}{$y=mx+b$, where $m$ is the slope and $(0,b)$ is the $y$-intercept}
+\vocabans{Point-slope form}{$y-y_1=m(x-x_1)$; built from a slope $m$ and a known point $(x_1,y_1)$}
+\vocabans{Standard form}{$Ax+By=C$ with $A,B,C$ integers and $A\ge 0$; convenient for finding intercepts}
+\vocabans{Parent function \& transformation}{the parent line is $y=x$; $kf(x)$ stretches/reflects (sets the slope) and $f(x)+k$ shifts vertically (sets the $y$-intercept)}
 \end{vocabbox}
 
-\boxguard
 \begin{hookbox}
-\textbf{Equivalent, or not?} No rules yet --- just decide, and be ready to defend it.
+A streaming service charges a \$5 signup fee plus \$2 each month. Complete the cost table, then
+answer.
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}c l l X@{}}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
- & \textbf{First} & \textbf{Second} & \textbf{Equivalent? How do you know?} \\
-\hline
-(a) & $2^3\cdot 2^4$ & $2^{12}$ & \ans{No --- $2^3\cdot2^4=2^7=128$, not $4096$.} \\
-(b) & $(x+3)(x-3)$ & $x^2-9$ & \ans{Yes --- multiplying out gives $x^2-9$.} \\
-(c) & $(x+5)^2$ & $x^2+25$ & \ans{No --- at $x=1$, $36\ne 26$.} \\
-(d) & $\sqrt{9+16}$ & $\sqrt9+\sqrt{16}$ & \ans{No --- $\sqrt{25}=5$, but $3+4=7$.} \\
-\hline
-\end{tabularx}
+months $m$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+cost \$ & \ans{$5$} & \ans{$7$} & \ans{$9$} & \ans{$11$} \\ \hline
+\end{tabular}
 \end{center}
-Three of those four die to a \emph{single} number. One survives every value you try.
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Which one survived? \ans{(b)}
-  \item You tested it at several values and it worked every time. Does that \textbf{prove} the two
-        are equivalent? \ans{No.} \; Why or why not?
-        \ansline{There are infinitely many values left untested, so passing a few proves nothing.
-        Only algebra --- multiplying $(x+3)(x-3)$ out --- settles \emph{every} value at once.}
+  \item What is the \emph{same} change every month (the rate)? \ansline{$+\$2$ per month --- this is the slope.}
+  \item Write one rule for the cost after $m$ months: $C(m) = $ \ans{$2m + 5$}
 \end{itemize}
-\textbf{The asymmetry to remember all year:} one bad value \emph{disproves} equivalence forever, but
-no number of good values ever \emph{proves} it. For proof you need algebra --- and every rule in
-today's lesson is a rewriting move that was proved once, so you never have to test again.
+A \emph{rate of change} plus a \emph{starting value} is exactly slope-intercept form. Let's make that
+precise --- and learn three ways to write it.
 \end{hookbox}
 
-\begin{notesbox}{1. Translating and Evaluating}
-An \textbf{expression} is a recipe for a number. It has no equals sign, so it is never
-\emph{solved} --- it is \ans{evaluated} once you supply values.
-
-\vspace{3pt}
-\textbf{Translate.} Watch the two traps: ``less than'' \ans{reverses} the order, and ``the quantity''
-signals \ans{parentheses}.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}X l@{}}
-\hline
-\textbf{Words} & \textbf{Expression} \\
-\hline
-Seven less than twice a number & \ans{$2n-7$} \\
-The quotient of a number and 4, increased by 9 & \ans{$\frac{n}{4}+9$} \\
-Five times the quantity of a number decreased by 2 & \ans{$5(n-2)$} \\
-\hline
-\end{tabularx}
-\end{center}
-Now read this one \emph{back} into words: \; $3n+8$ \; is
-\ans{eight more than three times a number}
-
-\vspace{4pt}
-\textbf{Evaluate.} Replace, then follow the order of operations. Remember: absolute value bars and
-radical signs are \textbf{grouping symbols} --- finish the inside first.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X l@{}}
-\hline
-\textbf{Expression} & \textbf{Substitute and simplify} & \textbf{Value} \\
-\hline
-$3x^2-4x+1$ at $x=-2$ & \ans{$3(-2)^2-4(-2)+1=12+8+1$} & \ans{$21$} \\
-$|2x-7|$ at $x=1.5$ & \ans{$|3-7|=|{-4}|$} & \ans{$4$} \\
-$\sqrt{x+9}$ at $x=-\tfrac{11}{4}$ & \ans{$\sqrt{-\frac{11}{4}+9}=\sqrt{\frac{25}{4}}$} & \ans{$\frac52$} \\
-$\sqrt[3]{x}+x$ at $x=-8$ & \ans{$\sqrt[3]{-8}+(-8)=-2-8$} & \ans{$-10$} \\
-\hline
-\end{tabularx}
-\end{center}
-\textbf{The sign trap from the Warm-Up.} At $x=-3$: \quad $(-x)^2=$ \ans{$9$} \quad but
-$-x^2=$ \ans{$-9$}. \\
-An exponent binds only to \ans{the base it touches}, and \ans{parentheses} are what change that.
-\end{notesbox}
-
-\boxguard[30]
-\begin{notesbox}{2. The Laws of Exponents --- Derived, Not Memorized}
-Every law below is just \textbf{counting factors}. Fill in the reason, not only the rule.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-\hline
-\textbf{Law} & \textbf{Rule} & \textbf{Why (count the factors)} \\
-\hline
-Product & $a^m\cdot a^n=$ \ans{$a^{m+n}$} & the two piles of factors are put together, so the counts \ans{add} \\
-Quotient & $\dfrac{a^m}{a^n}=$ \ans{$a^{m-n}$} & factors cancel in pairs, so the counts \ans{subtract} \\
-Power of a power & $(a^m)^n=$ \ans{$a^{mn}$} & a pile of $m$ factors, repeated $n$ times \\
-Power of a product & $(ab)^n=$ \ans{$a^nb^n$} & every factor inside gets the exponent \\
-Zero & $a^0=$ \ans{$1$} & because $\dfrac{a^3}{a^3}$ is both $a^0$ and \ans{$1$} \\
-Negative & $a^{-n}=$ \ans{$\dfrac{1}{a^n}$} & because $\dfrac{a^2}{a^5}$ is both $a^{-3}$ and \ans{$\dfrac{1}{a^3}$} \\
-\hline
-\end{tabularx}
-\end{center}
-\emph{Notice:} the last two are not conventions somebody invented. They are what the quotient law
-\textbf{forces} if we want it to keep working past where it ``should'' stop.
-
-\vspace{3pt}
-\textbf{Apply them.} Write every answer with \textbf{positive} exponents only.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l@{}}
-(a) \; $3x^2\cdot 4x^3=$ \ans{$12x^5$} &
-(b) \; $(2x^3y)^4=$ \ans{$16x^{12}y^4$} &
-(c) \; $\dfrac{12x^5y^{-2}}{3x^2y^4}=$ \ans{$\dfrac{4x^3}{y^6}$} \\[8pt]
-(d) \; $\left(\dfrac{x^4}{x^{-1}}\right)^2=$ \ans{$x^{10}$} &
-(e) \; $(5a^0b^3)(2b^{-5})=$ \ans{$\dfrac{10}{b^2}$} &
-(f) \; $\dfrac{(2m^2)^3}{4m^5}=$ \ans{$2m$} \\
-\end{tabular}
-\end{center}
-\emph{Careful on (a):} the coefficients are \ans{multiplied}, but the exponents are \ans{added}.
-\end{notesbox}
-
-\begin{notesbox}{3. Polynomial Operations --- and Factoring, Which Is the Same Trip Backwards}
-A \textbf{polynomial} is a sum of terms $ax^n$ where every $n$ is a \ans{whole} number. Its
-\textbf{degree} is the \ans{largest} exponent.
-
-\vspace{3pt}
-\textbf{Add and subtract} by combining like terms. All the difficulty is in one place.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-(a) \; $(3x^2-5x+2)+(x^2+4x-9)=$ & \ans{$4x^2-x-7$} \\
-(b) \; $(3x^2-5x+2)-(x^2+4x-9)=$ & \ans{$2x^2-9x+11$} \\
-\hline
-\end{tabularx}
-\end{center}
-In (b), the minus sign must be distributed to \ans{every term} of the second polynomial --- not just
-the first one. That single slip is the most common polynomial error there is.
-
-\vspace{3pt}
-\textbf{Multiply} with the distributive property. Two patterns are worth recognizing on sight.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{@{}l l@{}}
-(c) \; $(x+3)(x-3)=$ \ans{$x^2-9$} &
-(d) \; $(x+5)^2=$ \ans{$x^2+10x+25$} \\[6pt]
-\multicolumn{2}{@{}l@{}}{(e) \; $(2x-1)(3x^2+x-4)=$ \ans{$6x^3-x^2-9x+4$}} \\
-\end{tabular}
-\end{center}
-\textbf{Difference of squares:} $a^2-b^2=$ \ans{$(a+b)(a-b)$} \qquad
-\textbf{Perfect square trinomial:} $(a+b)^2=$ \ans{$a^2+2ab+b^2$} \\
-Hook item (c) is now settled: $(x+5)^2$ is \emph{not} $x^2+25$, because the middle term
-\ans{$10x$} is missing.
-
-\vspace{4pt}
-\textbf{Factor completely.} Factoring is multiplying \emph{backwards}, so you can always check by
-\ans{expanding}. Follow the order every time:
-\begin{center}
-\fbox{\parbox{0.94\linewidth}{\centering \textbf{(1)} Pull out the \ans{GCF} first, always.
-\quad \textbf{(2)} Then use a pattern or the trinomial method. \\
-\textbf{(3)} Then check whether any factor \emph{still} factors. That is what
-``\ans{completely}'' means.}}
-\end{center}
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\setlength{\tabcolsep}{2pt}
-\begin{tabular}{@{}l l l@{}}
-(f) \; $x^2+7x+12=$ \ans{$(x+3)(x+4)$} &
-(g) \; $x^2-64=$ \ans{$(x+8)(x-8)$} &
-(h) \; $6x^2-15x=$ \ans{$3x(2x-5)$} \\[6pt]
-(i) \; $2x^2-18=$ \ans{$2(x+3)(x-3)$} &
-(j) \; $3x^2+15x+18=$ \ans{$3(x+2)(x+3)$} &
-(k) \; $x^2-5x-14=$ \ans{$(x-7)(x+2)$} \\
-\end{tabular}
-\end{center}
-\emph{Watch (i).} If you stop at $2(x^2-9)$ you have factored --- but not \ans{completely}, because
-$x^2-9$ is still a \ans{difference of squares}.
-
-\vspace{3pt}
-\textbf{Divide} by splitting the fraction (monomial divisor) or cancelling common factors.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l@{}}
-(l) \; $\dfrac{12x^4-8x^3+4x^2}{4x^2}=$ \ans{$3x^2-2x+1$} &
-(m) \; $\dfrac{x^2+7x+12}{x+3}=$ \ans{$x+4$} \\
-\end{tabular}
-\end{center}
-In (m), cancelling assumes $x+3\ne 0$, so $x\ne$ \ans{$-3$}.
-\end{notesbox}
-
 \boxguard[12]
-\begin{notesbox}{4. Radicals and Rational Exponents}
-\textbf{Simplify} by pulling out the largest perfect power. The method is identical for square and
-cube roots --- only the \ans{index} changes.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X l@{}}
-\hline
-\textbf{Radical} & \textbf{Largest perfect square / cube factor} & \textbf{Simplest form} \\
-\hline
-$\sqrt{72}$ & \ans{$72=36\cdot 2$} & \ans{$6\sqrt2$} \\
-$\sqrt{50}$ & \ans{$50=25\cdot 2$} & \ans{$5\sqrt2$} \\
-$\sqrt[3]{54}$ & \ans{$54=27\cdot 2$} & \ans{$3\sqrt[3]{2}$} \\
-$\sqrt[3]{-24}$ & \ans{$-24=-8\cdot 3$} & \ans{$-2\sqrt[3]{3}$} \\
-\hline
-\end{tabularx}
-\end{center}
+\begin{notesbox}{1. Slope Is the Rate of Change}
+For \emph{any} two points $(x_1,y_1)$ and $(x_2,y_2)$ on a line,
+\[
+  m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{rise}}{\text{run}}.
+\]
+Because a line's rate of change is \emph{constant}, it does not matter which two points you pick.
+\textbf{Try it} with $(1,4)$ and $(3,0)$:
+\[
+  m = \frac{\textcolor{keyred}{\mathbf{0}} - \textcolor{keyred}{\mathbf{4}}}%
+           {\textcolor{keyred}{\mathbf{3}} - \textcolor{keyred}{\mathbf{1}}}
+    = \frac{\textcolor{keyred}{\mathbf{-4}}}{\textcolor{keyred}{\mathbf{2}}}
+    = \textcolor{keyred}{\mathbf{-2}}.
+\]
+Warning: subtract the $y$'s and the $x$'s in the \emph{same order}, or the sign flips.
+\end{notesbox}
+
+\begin{notesbox}{2. Three Forms, One Line}
+Here is the single line $y = 2x - 4$ written three different ways --- same line, different
+``outfits.'' Fill in what each form makes easy to read.
 
 \vspace{2pt}
-\textbf{Add and subtract} only \emph{like} radicals --- same index, same radicand. This is exactly
-the like-terms rule wearing a different costume.
-\begin{center}
 \renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l@{}}
-(a) \; $3\sqrt5+2\sqrt5=$ \ans{$5\sqrt5$} &
-(b) \; $3\sqrt5+2\sqrt3=$ \ans{cannot combine} &
-(c) \; $\sqrt{12}+\sqrt{27}=$ \ans{$5\sqrt3$} \\
-\end{tabular}
-\end{center}
-\emph{Why does (c) work when the radicands started different?} Because after simplifying, they
-became \ans{like radicals} \ans{($2\sqrt3+3\sqrt3$)}.
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} l X@{}}
+\textbf{Slope-intercept} & $y = mx + b$ & Reads off the slope $m=\ans{$2$}$ and $y$-intercept $(0,\ans{$-4$})$. \\
+\textbf{Point-slope} & $y - y_1 = m(x - x_1)$ & Built from a slope and a point; e.g.\ $(2,0)$: $\;y - 0 = \ans{$2$}(x - \ans{$2$})$. \\
+\textbf{Standard} & $Ax + By = C$ & Integers, $A\ge 0$; tidy for intercepts. Here: $\ans{$2$}\,x - y = \ans{$4$}$. \\
+\end{tabularx}
 
 \vspace{3pt}
-\textbf{Multiply} with $\sqrt a\cdot\sqrt b=\sqrt{ab}$:
-\quad (d) \; $\sqrt6\cdot\sqrt{10}=$ \ans{$2\sqrt{15}$} \quad
-(e) \; $\sqrt3(\sqrt3+\sqrt5)=$ \ans{$3+\sqrt{15}$}
+\textbf{They are equal.} Simplify the point-slope $y - 0 = 2(x-2)$ by distributing:
+\begin{work}
+  y - 0 &= 2(x - 2) \\
+      y &= 2x - 4
+\end{work}
+That is exactly the slope-intercept form above --- each form is the \emph{same} line.
+\end{notesbox}
 
-\vspace{4pt}
-\textbf{Two spellings of one idea.} A radical \emph{is} a fractional exponent:
+\begin{notesbox}{3. Writing the Equation of a Line}
+You can always write a line once you have a \textbf{slope} and \textbf{one point}. Match the given
+information to a starting form:
+\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
+  \item \textbf{Slope $+$ $y$-intercept} $\to$ drop straight into $y = mx + b$.\\
+        Slope $3$, $y$-intercept $(0,-2)$: $\;y = \ans{$3x - 2$}$.
+  \item \textbf{Slope $+$ any point} $\to$ point-slope, then simplify.\\
+        Slope $-\tfrac12$ through $(4,1)$: $\;y - 1 = \ans{$-\tfrac12$}(x - \ans{$4$})$,
+        so $y = \ans{$-\tfrac12 x + 3$}$.
+  \item \textbf{Two points} $\to$ find $m$ first, then use point-slope.\\
+        Through $(1,4)$ and $(3,0)$: $\;m = \ans{$-2$}$; using $(3,0)$,
+        $y - 0 = \ans{$-2$}(x - \ans{$3$})$, so $y = \ans{$-2x + 6$}$.
+\end{enumerate}
+\end{notesbox}
+
+\boxguard[20]
+\begin{notesbox}{4. Graphing by Transforming the Parent $y = x$}
+Every non-vertical line is the parent $y = x$ after two moves: a vertical
+\textbf{stretch/reflection} (which sets the \emph{slope}) and a vertical \textbf{shift} (which sets
+the \emph{$y$-intercept}). Below, the dashed line is the parent $y=x$ and the solid line is
+$y = 2x - 4$.
 \begin{center}
-\fbox{\parbox{0.90\linewidth}{\centering
-$a^{1/2}=$ \ans{$\sqrt{a}$} \qquad and \qquad $a^{1/3}=$ \ans{$\sqrt[3]{a}$}}}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-2}{6}{-6}{6}
+  \draw[very thick, forest!55, dashed] (-2,-2)--(6,6) node[right, font=\scriptsize, forest!70]{$y=x$};
+  \draw[very thick, forest] (-1,-6)--(5,6) node[right, font=\scriptsize]{$y=2x-4$};
+  \fill[charcoal] (0,0) circle (2.5pt);
+  \fill[charcoal] (0,-4) circle (3pt) node[left, font=\scriptsize]{$(0,-4)$};
+\end{tikzpicture}
 \end{center}
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l@{}}
-(f) \; $\sqrt{7}=$ \ans{$7^{1/2}$} &
-(g) \; $25^{1/2}=$ \ans{$5$} &
-(h) \; $\sqrt[3]{8}=8^{1/3}=(2^3)^{1/3}=$ \ans{$2$} \\
-\end{tabular}
-\end{center}
-Look at (h): the \ans{power of a power} law from Section~2 did the work. \emph{That} is why this
-notation matters --- the exponent spelling is what lets the exponent laws reach radicals at all, and
-it is the notation all of Unit 6 is built on.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item The slope changed from $1$ to $2$: a vertical \textbf{stretch} by a factor of \ans{$2$}
+        \; (this is $k\,f(x)$ with $k=\ans{$2$}$).
+  \item The $y$-intercept moved from $(0,0)$ to $(0,-4)$: a \textbf{shift down} \ans{$4$} units
+        \; (this is $f(x)+k$ with $k=\ans{$-4$}$).
+  \item If the slope were \emph{negative}, the parent would also be \textbf{reflected} over the
+        $x$-axis. \textbf{Big idea:} this $k\,f(x)$ and $f(x)+k$ language will graph \emph{every}
+        function family this year.
+\end{itemize}
 \end{notesbox}
 
 \begin{practicebox}
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item Evaluate $x^2-3x+|x+2|$ at $x=-4$.
-\begin{work}
-  x^2-3x+|x+2| &= (-4)^2-3(-4)+|{-4}+2| \\
-               &= 16+12+2               \\
-               &= 30
-\end{work}
-  \item Simplify $\dfrac{20a^6b^{-3}}{5a^2b}$ with positive exponents. \ans{$\dfrac{4a^4}{b^4}$}
-  \item Factor completely: $5x^2-45$. \ans{$5(x+3)(x-3)$} \; Check by expanding:
-        \ans{$5(x^2-9)=5x^2-45$ \checkmark}
-  \item Simplify $\sqrt{98}$. \ans{$7\sqrt2$} \quad Write $\sqrt[3]{11}$ with a rational exponent.
-        \ans{$11^{1/3}$}
-  \item Are $(x-4)^2$ and $x^2-16$ equivalent? Answer with \emph{one} value of $x$ if they are not.
-        \ansline{No. $(x-4)^2=x^2-8x+16$, and the $-8x$ never disappears. At $x=1$:
-        $(1-4)^2=9$ but $1-16=-15$.}
+Write the equation of the line through $(-2,3)$ and $(2,-5)$ in \emph{all three forms}.
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item Slope: $m = \dfrac{\textcolor{keyred}{\mathbf{-5}}-\textcolor{keyred}{\mathbf{3}}}%
+        {\textcolor{keyred}{\mathbf{2}}-(\textcolor{keyred}{\mathbf{-2}})} = \textcolor{keyred}{\mathbf{-2}}$.
+  \item Point-slope (using $(2,-5)$): $\;y - (\ans{$-5$}) = \ans{$-2$}\,(x - \ans{$2$})$.
+  \item Simplify that point-slope form into slope-intercept form:
+    \begin{work}
+      y + 5 &= -2(x - 2) \\
+      y + 5 &= -2x + 4   \\
+          y &= -2x - 1
+    \end{work}
+  \item Standard form (integers, $A \ge 0$): $\;\ans{$2x + y = -1$}$.
 \end{enumerate}
 \end{practicebox}
 

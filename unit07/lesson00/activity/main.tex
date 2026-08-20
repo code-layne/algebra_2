@@ -1,4 +1,4 @@
-%! Characteristics of Exponential Functions — Unit 7, Lesson 7.0 — Group Activity
+%! Characteristics of Logarithmic Functions — Unit 7, Lesson 7.0 — Group Activity
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -7,9 +7,10 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612   ln4 = 1.386294
-\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
-  plot (\x,{#1*exp((#2)*(\x))});}
+% pgfmath has no log_b, so every logarithmic curve is drawn by parameterizing on y:
+%   y = log_b(x-h) + k   <=>   x = b^(y-k) + h.   Args: {b}{h}{k}{ymin}{ymax}
+\newcommand{\logcurve}[5]{\draw[very thick, forest, domain=#4:#5, samples=120, smooth]
+  plot ({pow(#1,\x-(#3))+(#2)},{\x});}
 
 \begin{document}
 
@@ -19,164 +20,160 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Reading Exponential Graphs.} An exponential graph never turns around, never breaks, and
-never crosses the $x$-axis --- so the questions worth asking are \emph{which way does it run} and
-\emph{which line is it sneaking up on}. With your partner, read each graph carefully and
-\emph{justify} your answers. Write every domain and range in \textbf{interval notation}, and check
-each one against the equation.
+\small\textbf{Reading Logarithmic Graphs.} A logarithmic function tells you \emph{where it is allowed
+to exist} before it tells you anything else --- and the \textbf{argument} is what decides. With your
+partner, read each graph carefully and \emph{justify} your answers. Write every domain and range in
+\textbf{interval notation}, and check each one against the argument. Watch your brackets: a
+logarithm's boundary is an \textbf{asymptote}, not an endpoint, so it is \emph{never} included.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-The graph shows $g(x) = 3^{x}$.
+The graph shows $g(x) = \log_3 x$.
 \begin{center}
-\begin{tikzpicture}[scale=0.44]
-  \lgrid{-3}{3}{-1}{10}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-3}{11}{-3}{3}
+  \draw[navy, dashed, semithick] (0,-3)--(0,3);
   \begin{scope}
-    \clip (-3,-1) rectangle (3,10);
-    \expcurve{1}{1.098612}{-3}{2.09}
+    \clip (-3,-3) rectangle (11,3);
+    \logcurve{3}{0}{0}{-3}{2.19}
   \end{scope}
-  \draw[navy, dashed, semithick] (-3,0)--(3,0);
-  \node[navy, font=\scriptsize, above left] at (-1.0,0) {$y=0$};
-  \fill[charcoal] (0,1) circle (3pt) node[left, font=\scriptsize]{$(0,1)$};
-  \fill[charcoal] (1,3) circle (3pt) node[right, font=\scriptsize]{$(1,3)$};
-  \fill[charcoal] (2,9) circle (3pt) node[left, font=\scriptsize]{$(2,9)$};
+  \fill[charcoal] (1,0) circle (2.6pt) node[below right, font=\scriptsize]{$(1,0)$};
+  \fill[charcoal] (3,1) circle (2.6pt) node[above left, font=\scriptsize]{$(3,1)$};
+  \fill[charcoal] (9,2) circle (2.6pt) node[above left, font=\scriptsize]{$(9,2)$};
 \end{tikzpicture}
 \end{center}
 \begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
-  \item Write $g$ in the form $ab^{x}$: \; $a=$ \blank{1.4cm} and $b=$ \blank{1.4cm}. \\
-        Since $b$ is \blank{1.8cm} than $1$, this is exponential \blank{2.0cm}.
-  \item \textbf{Domain:} \blank{3.0cm} \quad \textbf{Range:} \blank{3.0cm}
-  \item \textbf{$y$-intercept:} \blank{1.8cm}. \; Check it against $a$: are they the same?
-        \blank{1.4cm}
-  \item Try to find an \textbf{$x$-intercept} by asking when $3^{x}=0$. From the table you built in
-        the Warm-Up, $3^{-1}=$ \blank{1.2cm} and $3^{-4}=$ \blank{1.6cm}. \\
-        Do these ever reach $0$? \blank{1.4cm} \; So this graph has \blank{2.4cm}
-        $x$-intercept.
-  \item $g$ is \textbf{increasing} on \blank{3.0cm}. \quad Its absolute extrema:
-        \blank{2.4cm}
-  \item \textbf{Horizontal asymptote:} \blank{1.8cm}. \; The graph approaches it on the
-        \blank{1.6cm} side.
-  \item \textbf{End behavior:} as $x\to+\infty$, $g(x)\to$ \blank{1.4cm}. \\
-        As $x\to-\infty$, $g(x)\to$ \blank{1.4cm} --- careful, this is \emph{not} $-\infty$.
-        Explain in one sentence what the graph is actually doing on the left. \blank{5.4cm}
+  \item The \textbf{argument} is \blank{2.0cm}. Set it $>0$: \blank{2.4cm}, so the
+        \textbf{domain} is \blank{3.0cm}.
+  \item The graph leans on a vertical line it never touches. That line is the \textbf{vertical
+        asymptote}: \blank{1.8cm}. \\
+        Why can the graph never reach it? \blank{5.4cm}
+  \item \textbf{Range:} \blank{3.0cm} \quad \textbf{$x$-intercept:} \blank{1.8cm}
+  \item Try to find the \textbf{$y$-intercept} by substituting $x=0$. You would need to answer
+        ``$3$ to what power gives \blank{1.0cm}?'', which is \blank{2.6cm}. \\
+        What does that tell you about whether this graph has a $y$-intercept? \blank{5.4cm}
+  \item $g$ is \textbf{increasing} on \blank{2.6cm}. \quad Its absolute extrema:
+        \blank{2.0cm}, because the graph falls forever on one side and climbs forever on the other.
+  \item \textbf{Positive / negative:} $g(x)<0$ on \blank{2.4cm}; \quad $g(x)>0$ on
+        \blank{2.4cm}.
+  \item \textbf{End behavior:} as $x\to+\infty$, $g(x)\to\blank{1.2cm}$. \\
+        On the left the input cannot run to $-\infty$ --- careful! Fill in the correct notation:
+        as $x\to\blank{1.4cm}$, $g(x)\to\blank{1.2cm}$.
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-Two exponential functions. Fill in the whole table, then answer the two justification questions ---
-and pay attention to which rows come out \emph{identical}.
+Two logarithmic functions --- and \emph{only one of them has a $y$-intercept}. Fill in the whole
+table, then answer the two justification questions.
 \begin{center}
-\begin{tikzpicture}[scale=0.40]
-  % p(x) = 4^x
+\begin{tikzpicture}[scale=0.42]
+  % p(x) = log_2(x+2)
   \begin{scope}
-    \lgrid{-3}{3}{-1}{10}
+    \lgrid{-4}{8}{-4}{4}
+    \draw[navy, dashed, semithick] (-2,-4)--(-2,4);
     \begin{scope}
-      \clip (-3,-1) rectangle (3,10);
-      \expcurve{1}{1.386294}{-3}{1.66}
+      \clip (-4,-4) rectangle (8,4);
+      \logcurve{2}{-2}{0}{-4}{3.33}
     \end{scope}
-    \draw[navy, dashed, semithick] (-3,0)--(3,0);
+    \fill[charcoal] (-1,0) circle (3pt);
     \fill[charcoal] (0,1) circle (3pt);
-    \fill[charcoal] (1,4) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (0,-2.6) {$p(x)=4^{x}$};
+    \fill[charcoal] (2,2) circle (3pt);
+    \fill[charcoal] (6,3) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (2,-5.4) {$p(x)=\log_2(x+2)$};
   \end{scope}
-  % q(x) = 8(1/4)^x
-  \begin{scope}[xshift=10cm]
-    \lgrid{-1}{5}{-1}{10}
+  % q(x) = log_{1/2}(x)
+  \begin{scope}[xshift=16cm]
+    \lgrid{-2}{10}{-4}{4}
+    \draw[navy, dashed, semithick] (0,-4)--(0,4);
     \begin{scope}
-      \clip (-1,-1) rectangle (5,10);
-      \expcurve{8}{-1.386294}{-0.16}{5}
+      \clip (-2,-4) rectangle (10,4);
+      \logcurve{0.5}{0}{0}{-3.33}{4}
     \end{scope}
-    \draw[navy, dashed, semithick] (-1,0)--(5,0);
-    \fill[charcoal] (0,8) circle (3pt);
-    \fill[charcoal] (1,2) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (2,-2.6) {$q(x)=8\left(\tfrac14\right)^{x}$};
+    \fill[charcoal] (1,0) circle (3pt);
+    \fill[charcoal] (2,-1) circle (3pt);
+    \fill[charcoal] (4,-2) circle (3pt);
+    \fill[charcoal] (8,-3) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (4,-5.4) {$q(x)=\log_{1/2} x$};
   \end{scope}
 \end{tikzpicture}
 \end{center}
-\vspace{0.14in}
+\vspace{0.20in}
 \renewcommand{\arraystretch}{1.5}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
- & \textbf{$p(x)=4^{x}$} & \textbf{$q(x)=8\left(\frac14\right)^{x}$} \\
+ & \textbf{$p(x)=\log_2(x+2)$} & \textbf{$q(x)=\log_{1/2} x$} \\
 \hline
-Initial value $a$ & \blank{2.4cm} & \blank{2.4cm} \\
-Base $b$ & \blank{2.4cm} & \blank{2.4cm} \\
-Growth or decay? & \blank{2.4cm} & \blank{2.4cm} \\
+Base: $b>1$ or $0<b<1$? & \blank{2.4cm} & \blank{2.4cm} \\
+Argument & \blank{2.4cm} & \blank{2.4cm} \\
 Domain & \blank{2.4cm} & \blank{2.4cm} \\
 Range & \blank{2.4cm} & \blank{2.4cm} \\
-$y$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
+Vertical asymptote & \blank{2.4cm} & \blank{2.4cm} \\
 $x$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
+$y$-intercept & \blank{2.4cm} & \blank{2.4cm} \\
 Increasing or decreasing? & \blank{2.4cm} & \blank{2.4cm} \\
-Horizontal asymptote & \blank{2.4cm} & \blank{2.4cm} \\
-Asymptote approached on the\dots & \blank{2.4cm} & \blank{2.4cm} \\
-Absolute max or min? & \blank{2.4cm} & \blank{2.4cm} \\
+As $x\to+\infty$ & \blank{2.4cm} & \blank{2.4cm} \\
 \end{tabularx}
 \vspace{4pt}
 
-\textbf{Justify 1.} One of these functions rises and the other falls. Point to the exact part of
-each \emph{equation} that decides it, and explain why that part has the effect it does. (Be careful:
-the initial values differ too --- is $a$ what decides it?) \writelines{3}
+\textbf{Justify 1.} $q$ has no $y$-intercept, but $p$ does. Point to the exact feature of each
+\emph{equation} that causes this --- and explain why that feature has the effect it does.
+\writelines{3}
 
-\textbf{Justify 2.} Five rows of your table came out \emph{identical} for both functions. List them,
-and explain what those five rows tell you about \emph{every} function of the form $y=ab^{x}$ with
-$a>0$. \writelines{3}
+\textbf{Justify 2.} Both graphs have a vertical asymptote, but they are different lines. Explain how
+you could find each one from the \emph{equation alone}, without looking at either picture.
+\writelines{3}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- No graph allowed.} Fill in each row from the equation alone.
+\textbf{Part 1 --- No graph allowed.} Find each domain and vertical asymptote from the equation alone.
 \begin{center}
 \renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
 \hline
-\textbf{Function} & \textbf{Base $b$} & \textbf{Is $b>1$ or $0<b<1$?} & \textbf{$y$-intercept} & \textbf{Range} \\
+\textbf{Function} & \textbf{Condition on the argument} & \textbf{Domain (interval notation)} & \textbf{Vertical asymptote} \\
 \hline
-$y=7(1.5)^{x}$ & \blank{1.5cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{2.0cm} \\
-$y=7(0.5)^{x}$ & \blank{1.5cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{2.0cm} \\
-$y=-2\cdot 3^{x}$ & \blank{1.5cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{2.0cm} \\
-$y=\left(\frac54\right)^{x}$ & \blank{1.5cm} & \blank{1.8cm} & \blank{1.8cm} & \blank{2.0cm} \\
+$\log_2(x-5)$ & \blank{2.4cm} & \blank{2.6cm} & \blank{1.8cm} \\
+$\log_3(x+4)$ & \blank{2.4cm} & \blank{2.6cm} & \blank{1.8cm} \\
+$\log(2x-6)$ & \blank{2.4cm} & \blank{2.6cm} & \blank{1.8cm} \\
+$\log_5(9-x)$ & \blank{2.4cm} & \blank{2.6cm} & \blank{1.8cm} \\
 \hline
 \end{tabularx}
 \end{center}
-Exactly one of these four has a range that is \emph{not} $(0,\infty)$. Which one, and what in the
-equation tells you so \emph{before} you graph anything? \writelines{2}
+Exactly one of these four graphs runs to the \textbf{left}. Which one, and what in the equation tells
+you so \emph{before} you graph anything? \writelines{2}
 
 \vspace{5pt}
-\textbf{Part 2 --- A model, and the line it never crosses.} A patient takes a $200$-milligram dose of
-a medication. Each hour, the body clears some of it and about $70\%$ of the previous hour's amount
-remains, so the amount in the bloodstream after $t$ hours is
+\textbf{Part 2 --- A logarithmic model, and the family it came from.} A bacteria colony doubles every
+hour. If the colony is now $n$ times its original size, the number of hours that have passed is
 \[
-  A(t) = 200(0.7)^{t} \ \text{ milligrams.}
+  t(n) = \log_2 n \ \text{ hours.}
 \]
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$t$ (hours) & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-$A(t)$ (mg) & $200$ & $140$ & $98$ & $68.6$ & $48.0$ \\ \hline
+$n$ (times original size) & $1$ & $2$ & $4$ & $16$ & $256$ \\ \hline
+$t(n)$ (hours) & $0$ & $1$ & $2$ & $4$ & $8$ \\ \hline
 \end{tabular}
 \end{center}
 \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item Identify $a=$ \blank{1.6cm} and $b=$ \blank{1.6cm}. Is this growth or decay?
-        \blank{2.0cm} \\
-        What does each of those two numbers \emph{mean} for this patient? \writelines{2}
-  \item \textbf{Confirm the fingerprint.} $\dfrac{140}{200}=$ \blank{1.4cm} and
-        $\dfrac{98}{140}=$ \blank{1.4cm}. \; What is this constant called, and why does finding it
-        prove the model is exponential rather than linear? \writelines{2}
-  \item Find $A(3)$ from the table and write one sentence explaining what it means in context.
-        \writelines{2}
-  \item What is the domain of $A$ \emph{algebraically} --- that is, which exponents are legal?
-        \blank{3.0cm} \\
+  \item What is the domain of $t$ \emph{algebraically} (from the argument)? \blank{3.0cm} \\
         Does the context agree, or does it restrict things further? Explain. \writelines{2}
-  \item The graph of $A$ has horizontal asymptote $y=0$, and the model has \textbf{no}
-        $t$-intercept. State what that means about the drug, then say whether you believe it.
-        \writelines{3}
-  \item A classmate says ``the patient loses $60$ mg every hour --- look, $200$ to $140$.'' Use the
-        table to show that this is wrong, and name what is actually constant instead.
-        \writelines{2}
+  \item The graph of $t$ has an $x$-intercept at $(1,0)$. What does that point \emph{mean} for the
+        colony? \writelines{2}
+  \item From the table: going from $n=16$ to $n=256$ multiplies the colony size by \blank{1.2cm},
+        but adds only \blank{1.2cm} hours. Use the shape of a logarithmic graph to explain why the
+        time grows so much more slowly than the size. \writelines{2}
+  \item Rewrite $t=\log_2 n$ as an exponential statement solved for $n$. \quad $n=\blank{3.0cm}$ \\
+        Which function family is that? \blank{2.6cm} \quad What does this tell you about the
+        relationship between $t(n)$ and the function you just wrote? \writelines{2}
+  \item The model has a vertical asymptote at $n=0$. In terms of the bacteria, explain what the
+        asymptote is saying --- and why the colony size can get as close to $0$ as you like without
+        the model ever accepting $n=0$ itself. \writelines{3}
 \end{enumerate}
 \end{tcolorbox}
 

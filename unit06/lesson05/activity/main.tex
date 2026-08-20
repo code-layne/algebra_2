@@ -1,185 +1,19 @@
-%! Solving Radical Equations \& Extraneous Solutions — Unit 6, Lesson 6.5 — Group Activity
+%! Exponential Regression and Choosing a Model — Unit 6, Lesson 6.5 — Group Activity
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.5}{Group Activity}
 \namepartnerperiod
 
-\vspace{0.08in}
+\vspace{0.15in}
 
-\begin{headlinebox}{forestbg}
-\small\textbf{Candidate or Solution?} Every answer you produce today starts life as a
-\emph{candidate}. Only the check promotes it. With your partner, solve each equation, check
-\emph{every} candidate in the original, and say out loud which ones survived --- and why the others
-did not.
-\end{headlinebox}
-
-\vspace{0.06in}
-
-\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
-    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- The four steps, one at a time.} \; Solve $\sqrt{x-1}+2=5$.
-\begin{center}
-\renewcommand{\arraystretch}{1.8}
-\begin{tabularx}{0.94\linewidth}{@{}l X@{}}
-\textbf{Step 1.} Isolate the radical. & $\sqrt{x-1}=\blank{2.0cm}$ \\
-\textbf{Step 2.} Square both sides. & $x-1=\blank{2.0cm}$ \\
-\textbf{Step 3.} Solve. & $x=\blank{2.0cm}$ \\
-\textbf{Step 4.} Check in the \emph{original}. & $\sqrt{\blank{1.2cm}-1}+2=\blank{1.0cm}+2=\blank{1.0cm}$ \\
-\end{tabularx}
-\end{center}
-Solution set: \blank{2.4cm}
-
-\vspace{5pt}
-\textbf{Part 2 --- Now you run the steps.} Solve and check each one.
-\begin{enumerate}[leftmargin=1.8em, itemsep=6pt]
-  \item $\sqrt{4x+1}=5$ \hfill $x=\blank{1.6cm}$ \quad Check: \blank{3.0cm}
-        \vspace{0.30in}
-  \item $\sqrt[3]{x+3}=-1$ \hfill $x=\blank{1.6cm}$ \quad Check: \blank{3.0cm}
-        \vspace{0.30in}
-
-        A cube root came out \emph{negative} and the answer was still fine. Why is that allowed
-        here, when it would not be allowed for a square root? \blank{6.0cm}
-  \item $\sqrt{x+2}+7=3$
-        \vspace{0.10in}
-
-        Isolate first: $\sqrt{x+2}=\blank{1.4cm}$. \; Stop and look at that line.
-        \textbf{Answer:} \blank{3.4cm}
-
-        Explain in one sentence how you knew without doing any more work. \blank{6.0cm}
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{Part 3 --- Confirm it on the graph.} Below is $y=\sqrt{x-1}+2$ with two horizontal lines.
-\begin{center}
-\begin{tikzpicture}[scale=0.44]
-  \lgrid{-1}{14}{-1}{7}
-  \begin{scope}
-    \clip (-1,-1) rectangle (14,7);
-    \draw[very thick, forest, domain=1:14, samples=110, smooth] plot (\x,{sqrt((\x)-1)+2});
-    \draw[very thick, navy] (-1,5)--(14,5);
-    \draw[very thick, goldacc] (-1,1)--(14,1);
-  \end{scope}
-  \fill[forest] (1,2) circle (4pt);
-  \fill[charcoal] (10,5) circle (3pt);
-  \node[navy, font=\scriptsize, right] at (11.4,5.5) {$y=5$};
-  \node[goldacc, font=\scriptsize, right] at (11.4,1.5) {$y=1$};
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt, start=4]
-  \item The curve meets $y=5$ at $x=\blank{1.4cm}$. Does that match your Part 1 answer?
-        \blank{1.4cm}
-  \item How many times does the curve meet $y=1$? \blank{1.4cm} \; So how many solutions does
-        $\sqrt{x-1}+2=1$ have? \blank{1.4cm}
-\end{enumerate}
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
-    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Sort the candidates.} Solve each equation. Write \emph{every} candidate the
-algebra gives you, check each one, and then state the solution set. Show your squaring work in the
-space below the table.
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}l X X X@{}}
-\hline
-\textbf{Equation} & \textbf{Candidates} & \textbf{Which ones check?} & \textbf{Solution set} \\
-\hline
-(a) \; $\sqrt{x+9}=x+3$ & \blank{2.2cm} & \blank{2.2cm} & \blank{1.8cm} \\
-(b) \; $\sqrt{2x+5}=x+1$ & \blank{2.2cm} & \blank{2.2cm} & \blank{1.8cm} \\
-(c) \; $\sqrt{x-3}=x-5$ & \blank{2.2cm} & \blank{2.2cm} & \blank{1.8cm} \\
-(d) \; $\sqrt[3]{2x-1}=3$ & \blank{2.2cm} & \blank{2.2cm} & \blank{1.8cm} \\
-(e) \; $\sqrt{x+6}+4=1$ & \blank{2.2cm} & \blank{2.2cm} & \blank{1.8cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\vspace{1.9in}
-
-\textbf{Part 2 --- Find the pattern.} Look back at the candidates you \emph{rejected} in (a), (b),
-and (c).
-\begin{enumerate}[label=\textbf{J\arabic*.}, leftmargin=2.4em, itemsep=6pt]
-  \item For each rejected candidate, work out the value of the \emph{right-hand side} of the
-        original equation.
-        \begin{center}
-        \renewcommand{\arraystretch}{1.5}
-        \begin{tabularx}{0.9\linewidth}{@{}X X X@{}}
-        \hline
-        \textbf{Rejected candidate} & \textbf{Right side equals} & \textbf{Its sign} \\
-        \hline
-        (a) $x=\blank{1.4cm}$ & \blank{1.6cm} & \blank{1.6cm} \\
-        (b) $x=\blank{1.4cm}$ & \blank{1.6cm} & \blank{1.6cm} \\
-        (c) $x=\blank{1.4cm}$ & \blank{1.6cm} & \blank{1.6cm} \\
-        \hline
-        \end{tabularx}
-        \end{center}
-        Write the pattern as a rule someone could use: \emph{a candidate is extraneous exactly
-        when} \dots \writelines{2}
-  \item Equation (d) was a cube root, and it produced no extraneous candidate. Explain why it
-        \emph{could not have}, using the words \textbf{index} and \textbf{sign}. \writelines{3}
-  \item In (e) you never had to square anything. What did you see, and why is spotting it worth
-        more than the two minutes it saves? \writelines{2}
-\end{enumerate}
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
-    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Two radicals.} The SOL only asks you to handle one radical. Here is what happens
-with two.
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item $\sqrt{3x+1}=\sqrt{x+9}$ \; --- both sides are already isolated radicals, so square once.
-        \vspace{0.45in}
-
-        $x=\blank{1.6cm}$ \quad Check: \blank{4.0cm}
-  \item $\sqrt{x+5}-\sqrt{x}=1$ \; --- you cannot isolate \emph{both}. Isolate one, square,
-        simplify, and you will find a single radical left. Then square again.
-        \vspace{1.10in}
-
-        $x=\blank{1.6cm}$ \quad Check: \blank{4.0cm}
-  \item Why does squaring \emph{twice} make checking even more important than usual?
-        \writelines{2}
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{Part 2 --- Prove the rules you have been using.} Assume $A$ and $B$ are real expressions.
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=4]
-  \item Suppose $\sqrt{A}=B$ has a solution. Explain why $B$ can never be negative there --- and
-        then explain why the squared equation $A=B^{2}$ has no way of knowing that. \writelines{3}
-  \item Now the odd case. Every real number has exactly \emph{one} real cube root. Use that single
-        fact to explain why $A^{3}=B^{3}$ forces $A=B$, and why cubing therefore cannot produce an
-        extraneous solution. \writelines{3}
-  \item Complete the summary: \emph{raising both sides to an \underline{\hspace{1.6cm}} power can
-        add solutions; raising both sides to an \underline{\hspace{1.6cm}} power cannot.}
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{Part 3 --- Solving backwards, in context.} From Lesson 6.2, a pendulum of length $L$ feet
-has period
-\[ T(L)=2\pi\sqrt{\tfrac{L}{32}} \ \text{ seconds.} \]
-In 6.2 you were given $L$ and found $T$. Now do it the other way --- which means solving a radical
-equation.
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=7]
-  \item A clockmaker wants a pendulum with a period of exactly $2\pi$ seconds. Solve
-        $2\pi=2\pi\sqrt{L/32}$ for $L$, and check your answer against 6.2's table.
-        \vspace{0.55in}
-
-        $L=\blank{2.0cm}$ feet
-  \item Now find the length that gives a period of $\pi$ seconds. \; $L=\blank{2.0cm}$ feet
-        \vspace{0.45in}
-
-        The period was cut in half. What happened to the length, and which feature of a square root
-        graph explains it? \writelines{2}
-  \item An apprentice is asked for a pendulum with period $-\pi$ seconds. There are \emph{two}
-        separate reasons to reject that request --- one algebraic, one about the situation. Give
-        both, and say why keeping them apart matters. \writelines{3}
-\end{enumerate}
-\end{tcolorbox}
+% TODO: author the Group Activity. See references/components.md for the expected structure.
+\begin{notesbox}{Group Activity}
+\writelines{4}
+\end{notesbox}
 
 \end{document}

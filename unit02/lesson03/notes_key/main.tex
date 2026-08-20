@@ -1,16 +1,13 @@
-%! Absolute Value Functions \& Transformations — Unit 2, Lesson 2.3 — Guided Notes (Answer Key)
+%! Solving by Square Roots & Completing the Square — Unit 2, Lesson 2.3 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
-% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
-% paragraph, so without them each term label gets pulled onto the previous answer's line.
 \newcommand{\vocabans}[2]{%
   \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
@@ -23,179 +20,135 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item graph the \emph{absolute value parent} $f(x)=|x|$ and read its vertex, axis, and minimum;
-  \item use \emph{vertex form} $g(x)=a|x-h|+k$ to find the vertex $(h,k)$ and axis $x=h$;
-  \item decide from $a$ whether a V \emph{opens up or down} (min vs.\ max) and is narrower or wider;
-  \item describe any absolute value graph as \emph{shifts, a stretch, and a reflection} of $y=|x|$.
+  \item solve $x^2=k$ and $(x-h)^2=k$ with the \emph{Square Root Property}, keeping the $\pm$ and simplifying radicals;
+  \item \emph{complete the square} to solve any quadratic with $a=1$, even when it will not factor;
+  \item rewrite $x^2+bx+c$ in \emph{vertex form} $(x-h)^2+k$ and choose the smartest solving method.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.05in}
+\vspace{0.06in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
-\vocabans{Absolute value parent function $f(x)=|x|$}{a V opening up, vertex at the origin; the rays $y=x$ ($x\ge 0$) and $y=-x$ ($x<0$)}
-\vocabans{Vertex (turning point)}{the V's lowest point (opens up) or highest point (opens down)}
-\vocabans{Axis of symmetry}{the vertical line $x=h$ through the vertex; the two rays mirror across it}
-\vocabans{Vertex form $a|x-h|+k$}{vertex $(h,k)$, axis $x=h$; $a$ sets opening direction and width}
-\vocabans{Reflection / stretch / compression}{$a<0$ flips it to open down; $|a|>1$ narrower, $0<|a|<1$ wider}
+\par\vspace{2pt}
+\vocabans{Square Root Property}{if $x^2=k$ with $k\ge0$, then $x=\pm\sqrt{k}$ --- take the square root of both sides, keeping $\pm$}
+\vocabans{$\pm$ (plus or minus)}{records both square roots of a number; a squared equation has two solutions}
+\vocabans{Simplest radical form}{a radical with no perfect-square factor left inside, e.g. $\sqrt{12}=2\sqrt{3}$}
+\vocabans{Completing the square}{adding $(b/2)^2$ to $x^2+bx$ to build the perfect-square trinomial $(x+\tfrac{b}{2})^2$}
+\vocabans{Vertex form}{$a(x-h)^2+k$, vertex $(h,k)$; completing the square converts standard form into it}
 \end{vocabbox}
 
 \begin{hookbox}
-You drive toward a rest stop, reach it after $2$ hours, and keep going. Your \emph{distance from the
-rest stop} (in tens of miles) is $d(t)=30\,|t-2|$.
+Two quadratics that \textbf{do not factor} over the integers:
+\[ x^2-6=0 \qquad\text{and}\qquad x^2+6x+1=0. \]
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Distance at $t=0$? \ans{$60$} \quad At $t=2$? \ans{$0$} \quad At $t=4$? \ans{$60$}
-  \item You are \emph{closest} at $t=\ans{$2$}$, where the distance is \ans{$0$}.
+  \item Try to factor $x^2-6$: two integers with product $-6$ and sum $0$? \ansline{None exist --- $\sqrt6$ is irrational, so it won't factor over the integers.}
+  \item Does that mean these have no solutions? (Their parabolas cross the $x$-axis!) \ansline{No --- the roots are real but irrational; we just need a non-factoring method to find them.}
 \end{itemize}
-Plot those points and the shape is a \textbf{V}. A distance is never negative, so the graph bottoms
-out at one turning point --- the \emph{vertex} --- and is symmetric about the line through it. Every
-absolute value function is this same V, moved and stretched.
+Today we solve them exactly --- with two tools that don't need factoring.
 \end{hookbox}
 
-\boxguard[18]
-\begin{notesbox}{1. The Parent Function $f(x)=|x|$}
-Complete the table, then read the graph.
+\boxguard[22]
+\begin{notesbox}{1. The Square Root Property --- undo the square}
+``What squares to $9$?'' Both $3$ \emph{and} $-3$. So a squared equation has \textbf{two} solutions:
+\[ \text{if } x^2=k \ (k\ge0), \text{ then } x=\textcolor{keyred}{\mathbf{\pm\sqrt{k}}}. \]
+The $\pm$ is not optional --- forgetting it loses a root.
 \begin{center}
-\renewcommand{\arraystretch}{1.15}
-\begin{minipage}{0.40\linewidth}
-\centering
-\begin{tabular}{|c|c|}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+\textbf{Isolate the square first, then root.} & \textbf{Simplify the radical.} \\
+$2x^2-50=0 \Rightarrow x^2=\textcolor{keyred}{\mathbf{25}} \Rightarrow x=\textcolor{keyred}{\mathbf{\pm5}}$ &
+$3x^2=36 \Rightarrow x^2=\textcolor{keyred}{\mathbf{12}} \Rightarrow x=\textcolor{keyred}{\mathbf{\pm2\sqrt3}}$ \\
+\end{tabularx}
+\end{center}
+Irrational is fine: $x^2-6=0 \Rightarrow x=\textcolor{keyred}{\mathbf{\pm\sqrt6}}$.
+
+\vspace{3pt}
+\fbox{\parbox{0.96\linewidth}{\small\textbf{The wall (preview):} $x^2=-4$ has \textbf{no real} solution ---
+no real number squares to a negative. Lesson~2.4 builds the numbers that fix this. Today every radicand
+stays $\ge0$.}}
+\end{notesbox}
+
+\begin{notesbox}{2. When the square is a binomial}
+The rule is the same when a whole \emph{binomial} is squared --- root both sides, then undo the shift.
+\[ (x-3)^2=16 \Rightarrow x-3=\textcolor{keyred}{\mathbf{\pm4}} \Rightarrow x=\textcolor{keyred}{\mathbf{7}} \ \text{or} \ x=\textcolor{keyred}{\mathbf{-1}}. \]
+\[ (x+2)^2=12 \Rightarrow x+2=\textcolor{keyred}{\mathbf{\pm2\sqrt3}} \Rightarrow x=\textcolor{keyred}{\mathbf{-2\pm2\sqrt3}}. \]
+This $(x-h)^2=k$ shape is exactly what the next method \emph{manufactures}.
+\end{notesbox}
+
+\begin{notesbox}{3. Completing the square ($a=1$)}
+When a $bx$ term blocks the square-root move, \emph{build} a perfect square. From the warm-up,
+$x^2+bx+\left(\tfrac{b}{2}\right)^2=\left(x+\tfrac{b}{2}\right)^2$, so add $\left(\tfrac{b}{2}\right)^2$ to
+\textbf{both} sides.
+\smallskip
+
+\textbf{Solve} $x^2+6x+1=0$:
+\begin{enumerate}[leftmargin=1.7em, itemsep=2pt]
+  \item Move the constant: $x^2+6x=\textcolor{keyred}{\mathbf{-1}}$.
+  \item Half of $6$ is $\textcolor{keyred}{\mathbf{3}}$; square it: $\textcolor{keyred}{\mathbf{9}}$. Add to both sides: $x^2+6x+9=\textcolor{keyred}{\mathbf{8}}$.
+  \item Factor the perfect square: $(x+\textcolor{keyred}{\mathbf{3}})^2=8$.
+  \item Root and solve: $x+3=\textcolor{keyred}{\mathbf{\pm2\sqrt2}} \Rightarrow x=\textcolor{keyred}{\mathbf{-3\pm2\sqrt2}}$.
+\end{enumerate}
+So $x=-3\pm2\sqrt2$ --- the two irrational $x$-intercepts of the parabola.
+\end{notesbox}
+
+\begin{notesbox}{4. Completing the square $=$ vertex form; choosing a method}
+The \emph{same} move rewrites a quadratic in vertex form (Lesson~2.1) --- so it also finds the vertex.
+\begin{center}
+\begin{minipage}{0.56\linewidth}
+\textbf{Rewrite the anchor} $x^2-2x-3$ in vertex form:
+\[ x^2-2x-3=(x-\textcolor{keyred}{\mathbf{1}})^2-\textcolor{keyred}{\mathbf{4}}. \]
+(Half of $-2$ is $-1$; add and subtract $1$.) Vertex $(\,\textcolor{keyred}{\mathbf{1}},\,\textcolor{keyred}{\mathbf{-4}}\,)$ --- matching 2.0--2.1.
+
+\vspace{4pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|}
 \hline
-$x$ & $y=|x|$ \\ \hline
-$-2$ & ${\color{keyred}\mathbf{2}}$ \\ \hline
-$-1$ & ${\color{keyred}\mathbf{1}}$ \\ \hline
-$0$ & ${\color{keyred}\mathbf{0}}$ \\ \hline
-$1$ & ${\color{keyred}\mathbf{1}}$ \\ \hline
-$2$ & ${\color{keyred}\mathbf{2}}$ \\ \hline
+\textbf{If the quadratic\dots} & \textbf{use\dots} \\ \hline
+factors nicely & factoring (2.2) \\ \hline
+has no $bx$ term & square roots \\ \hline
+won't factor & completing the square \\ \hline
 \end{tabular}
 \end{minipage}%
-\begin{minipage}{0.55\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-4}{4}{-1}{5}
-  \draw[navy, dashed, semithick] (0,-1)--(0,5);
-  \draw[very thick, forest] (-4,4)--(0,0)--(4,4);
-  \fill[charcoal] (0,0) circle (3.5pt);
+\begin{minipage}{0.42\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{5}{-5}{3}
+  \begin{scope}\clip (-3,-5) rectangle (5,3);
+    \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x-1)*(\x-1)-4});
+  \end{scope}
+  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$-1$};
+  \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$3$};
+  \fill[charcoal] (1,-4) circle (3pt) node[below, font=\scriptsize]{$(1,-4)$};
 \end{tikzpicture}
 \end{minipage}
 \end{center}
-\textbf{Read the V:} vertex $({\color{keyred}\mathbf{0}},\,{\color{keyred}\mathbf{0}})$; \; axis of
-symmetry $x={\color{keyred}\mathbf{0}}$; \; minimum value \ans{$0$}; \; domain \ans{all real numbers};
-\; range \ans{$y\ge 0$}. It \emph{decreases} on \ans{$(-\infty,0]$} and \emph{increases} on
-\ans{$[0,\infty)$}. The V is really two lines pasted at the vertex:
-$y={\color{keyred}\mathbf{x}}$ when $x\ge 0$, and $y={\color{keyred}\mathbf{-x}}$ when $x<0$.
 \end{notesbox}
 
-\boxguard[26]
-\begin{notesbox}{2. Up / Down and Left / Right}
-\textbf{Outside} the bars acts \emph{vertically, as expected}; \textbf{inside} the bars acts
-\emph{horizontally and backwards}.
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-$y=|x|+k$ & shifts the V \ans{up / down} & $y=|x|-3$: vertex $({\color{keyred}\mathbf{0}},\,{\color{keyred}\mathbf{-3}})$ \\
-$y=|x-h|$ & shifts the V \ans{left / right} & $y=|x-3|$: vertex $({\color{keyred}\mathbf{3}},\,{\color{keyred}\mathbf{0}})$; \quad $y=|x+2|$: vertex $({\color{keyred}\mathbf{-2}},\,{\color{keyred}\mathbf{0}})$ \\
-\end{tabularx}
-\end{center}
-Each solid V below is the parent (dashed) after \emph{one} shift. Name each vertex on the line.
-\begin{center}
-\begin{tikzpicture}[scale=0.44]
-  % left: y = |x - 3|  (right 3)
-  \begin{scope}
-    \lgrid{-2}{6}{-1}{5}
-    \draw[very thick, forest!40, dashed] (-1,1)--(0,0)--(4,4);
-    \draw[very thick, forest] (-1,4)--(3,0)--(6,3);
-    \fill[charcoal] (3,0) circle (3.5pt);
-    \node[charcoal, font=\scriptsize] at (2,-2.4){$y=|x-3|$};
-  \end{scope}
-  % right: y = |x| - 3  (down 3)
-  \begin{scope}[xshift=11cm]
-    \lgrid{-4}{4}{-4}{3}
-    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
-    \draw[very thick, forest] (-3,0)--(0,-3)--(3,0);
-    \fill[charcoal] (0,-3) circle (3.5pt);
-    \node[charcoal, font=\scriptsize] at (0,-5.2){$y=|x|-3$};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-Left vertex: $({\color{keyred}\mathbf{3}},\,{\color{keyred}\mathbf{0}})$. \qquad
-Right vertex: $({\color{keyred}\mathbf{0}},\,{\color{keyred}\mathbf{-3}})$.
-\end{notesbox}
-
-\boxguard[20]
-\begin{notesbox}{3. Stretch, Compress, and Reflect: $y=a|x|$}
-The number $a$ multiplies the \emph{outputs}: it scales the V and, if negative, flips it.
-\begin{center}
-\begin{tikzpicture}[scale=0.42]
-  % y = 2|x|  (narrow)
-  \begin{scope}
-    \lgrid{-3}{3}{-1}{5}
-    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
-    \draw[very thick, forest] (-2.2,4.4)--(0,0)--(2.2,4.4);
-    \node[charcoal, font=\scriptsize] at (0,-2.4){$y=2|x|$};
-  \end{scope}
-  % y = 1/2 |x|  (wide)
-  \begin{scope}[xshift=9cm]
-    \lgrid{-4}{4}{-1}{5}
-    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
-    \draw[very thick, forest] (-4,2)--(0,0)--(4,2);
-    \node[charcoal, font=\scriptsize] at (0,-2.4){$y=\tfrac12|x|$};
-  \end{scope}
-  % y = -|x|  (down)
-  \begin{scope}[xshift=19cm]
-    \lgrid{-3}{3}{-4}{2}
-    \draw[very thick, forest!40, dashed] (-2,2)--(0,0)--(2,2);
-    \draw[very thick, forest] (-3,-3)--(0,0)--(3,-3);
-    \node[charcoal, font=\scriptsize] at (0,-5.4){$y=-|x|$};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-  \item $|a|>1$ makes the V \ans{narrower}; \quad $0<|a|<1$ makes it \ans{wider}.
-  \item $a<0$ \ans{reflects} the V, so it opens \ans{down} instead of up.
-  \item The value of $a$ is the \emph{slope} of the \ans{right-hand} ray of the V.
-\end{itemize}
-\end{notesbox}
-
-\boxguard[23]
-\begin{notesbox}{4. Vertex Form: $g(x)=a|x-h|+k$}
-All three moves at once. The vertex is $(h,k)$ and the axis of symmetry is $x=h$.
-\[ \text{opens \textbf{up} if } a>0 \ (k \text{ is a } \textbf{minimum}); \qquad
-   \text{opens \textbf{down} if } a<0 \ (k \text{ is a } \textbf{maximum}). \]
-\textbf{Worked:} $g(x)=-2|x-1|+3$.
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}X X X X@{}}
-Vertex $({\color{keyred}\mathbf{1}},\,{\color{keyred}\mathbf{3}})$ & Axis $x={\color{keyred}\mathbf{1}}$ & Opens \ans{down} & \ans{maximum} value $={\color{keyred}\mathbf{3}}$ \\
-\end{tabularx}
-\end{center}
-Because $a=-2$, the V is \ans{narrower} (narrower / wider) than the parent and opens \ans{down}.
-Evaluate at $x=0$ straight from the rule:
-\begin{work}
-  g(0) &= -2\,|\,0-1\,| + 3 \\
-       &= -2\,|{-1}| + 3     \\
-       &= -2(1) + 3          \\
-       &= 1
-\end{work}
-\end{notesbox}
-
+\boxguard[24]
 \begin{practicebox}
-For $g(x) = \tfrac12\,|x+4| - 2$, fill in each feature.
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item Vertex $({\color{keyred}\mathbf{-4}},\,{\color{keyred}\mathbf{-2}})$; \quad axis of symmetry $x={\color{keyred}\mathbf{-4}}$.
-  \item Opens \ans{up} (up / down), so $k$ is a \ans{min} (max / min) value of \ans{$-2$}.
-  \item Compared to $y=|x|$, this graph is shifted \ans{left} $4$ and \ans{down} $2$, and is
-        \ans{wider} (narrower / wider).
-  \item Evaluate $g(0)$, one step per line.
-        \begin{work}
-          g(0) &= \tfrac12\,|0+4| - 2 \\
-               &= \tfrac12(4) - 2      \\
-               &= 2 - 2                \\
-               &= 0
-        \end{work}
+\textbf{Solve. Show the isolated square (or completed square), then both roots in simplest form.}
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
+  \item $x^2-20=0$
+    \begin{work}
+      x^2 &= 20 \\
+      x &= \pm\sqrt{20} \\
+        &= \pm2\sqrt{5}
+    \end{work}
+  \item $(x+1)^2=9$
+    \begin{work}
+      x+1 &= \pm3 \\
+      x &= -1\pm3 \\
+        &= 2,\ -4
+    \end{work}
+  \item $x^2+4x-6=0$ (complete the square)
+    \begin{work}
+      x^2+4x &= 6 \\
+      x^2+4x+4 &= 10 \\
+      (x+2)^2 &= 10 \\
+      x+2 &= \pm\sqrt{10} \\
+      x &= -2\pm\sqrt{10}
+    \end{work}
 \end{enumerate}
 \end{practicebox}
 

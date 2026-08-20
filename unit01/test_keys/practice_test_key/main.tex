@@ -1,29 +1,16 @@
-%! Unit 1: Foundations --- Algebra 1 Review — Summative Assessment — Practice Test --- Study Copy (KEY)
+%! Unit 1: Linear Functions — Summative Assessment — Practice Test --- Study Copy (KEY)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\setlength{\workrowsep}{10pt}   % handwriting room; moves blank and key together
-
-% Pre-drawn coordinate grid; #1 receives the plotted line and any overlay.
-\newcommand{\gridplot}[1]{%
-  \begin{tikzpicture}[x=0.30cm, y=0.19cm]
-    \draw[step=1, linegray!45, very thin] (-5,-7) grid (5,7);
-    \draw[->, charcoal, thick] (-5.4,0) -- (5.4,0) node[right, font=\scriptsize] {$x$};
-    \draw[->, charcoal, thick] (0,-7.4) -- (0,7.4) node[above, font=\scriptsize] {$y$};
-    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
-    \foreach \t in {-6,-4,-2,2,4,6} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
-    #1
-  \end{tikzpicture}}
-
-% Pre-drawn number line from -6 to 6; #1 receives the graphed solution.
-\newcommand{\numline}[1]{%
-  \begin{tikzpicture}[x=0.55cm, y=0.55cm]
-    \draw[<->, charcoal, thick] (-6.7,0) -- (6.7,0);
-    \foreach \t in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
-      \draw[charcoal] (\t,-0.16) -- (\t,0.16);
-      \node[below=1pt, font=\tiny] at (\t,-0.16) {$\t$};}
-    #1
-  \end{tikzpicture}}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
+\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
+\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -33,377 +20,198 @@
 
 \begin{document}
 
-\pageheader{Unit 1: Foundations --- Algebra 1 Review}{Practice Test --- Study Copy --- Answer Key}
+\pageheader{Unit 1: Linear Functions}{Practice Test --- Study Copy --- Answer Key}
 \namedateperiod
 
 \vspace{0.10in}
-\boxguard[6]
 \begin{remindbox}
 \small
-\textbf{This is a practice test.} It mirrors the real Unit 1 test in length, format, and the ideas
-it covers, but the numbers and contexts differ. Work every problem with no notes, then check your
-answers against the key. Every solve has a box of ruled space sized to the work it takes --- if
-your work does not fill it, you probably skipped a step.
+\textbf{This is a practice test.} It mirrors the real Unit 1 test in length, format,
+and the ideas it covers, but the numbers and contexts differ. Work every problem
+with no notes, then check your answers against the key.
 \end{remindbox}
 
 % ======================================================================
-\boxguard[8]
 \parthead{Part A --- Vocabulary (8 pts)}
 Write the letter of the best description next to each term.
 
 \vspace{4pt}
 \noindent
-\begin{minipage}[t]{0.34\textwidth}
+\begin{minipage}[t]{0.42\textwidth}
 \begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
-  \item Irrational number \ans{C}
-  \item Distributive property \ans{F}
-  \item Greatest common factor \ans{A}
-  \item Literal equation \ans{G}
-  \item Contradiction \ans{D}
-  \item Discriminant \ans{B}
-  \item $x$-intercept \ans{H}
-  \item Perpendicular lines \ans{E}
+  \item Slope \ans{G}
+  \item Zero of a function \ans{C}
+  \item Rate of change \ans{D}
+  \item Vertex \ans{A}
+  \item Axis of symmetry \ans{H}
+  \item Piecewise function \ans{F}
+  \item Correlation coefficient \ans{B}
+  \item Extrapolation \ans{E}
 \end{enumerate}
 \end{minipage}%
 \hfill
-\begin{minipage}[t]{0.63\textwidth}
+\begin{minipage}[t]{0.55\textwidth}
 \small
 \begin{description}[leftmargin=1.4em, itemsep=3pt]
-  \item[(A)] The largest factor shared by every term, pulled out before any other factoring is attempted.
-  \item[(B)] The number $b^2-4ac$, read \emph{before} solving to predict how many real solutions a quadratic has.
-  \item[(C)] A real number that cannot be written as a ratio of two integers; its decimal never terminates and never repeats.
-  \item[(D)] An equation true for no value at all, so its solution set is empty.
-  \item[(E)] Two lines whose slopes are negative reciprocals, so they meet at a right angle.
-  \item[(F)] The rule $a(b+c)=ab+ac$ --- the only property in this unit that changes the number of terms.
-  \item[(G)] An equation with several letters, solved for one letter in terms of the others.
-  \item[(H)] A point $(a,0)$ where a graph crosses the horizontal axis; its $x$-value is a zero of the function.
+  \item[(A)] The turning point of a V-shaped (absolute value) graph, where it changes direction.
+  \item[(B)] A number $r$ between $-1$ and $1$ measuring the direction and strength of a linear association.
+  \item[(C)] An $x$-value where $f(x)=0$; the graph's $x$-intercept.
+  \item[(D)] The constant ratio $\dfrac{\Delta y}{\Delta x}$ --- how fast $y$ changes per unit of $x$.
+  \item[(E)] Predicting \emph{outside} the range of the data used to build the model.
+  \item[(F)] A function defined by different rules on different intervals of its domain.
+  \item[(G)] The steepness of a line, $\dfrac{\text{rise}}{\text{run}}$.
+  \item[(H)] The vertical line $x=h$ that splits an absolute value graph into mirror halves.
 \end{description}
 \end{minipage}
 
+\begin{teachernote}
+Slope (G) and rate of change (D) are close cousins --- accept a brief note that both name
+$\Delta y/\Delta x$; the distinction here is ``steepness of a line'' (G, geometric) vs.\ ``how fast
+$y$ changes per unit $x$'' (D, contextual). Grade on the intended pairing.
+\end{teachernote}
+
 % ======================================================================
-\boxguard[8]
 \parthead{Part B --- Multiple Choice (12 pts)}
 Circle the best answer.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
-  \item Which property justifies the step $(4+x)+7=4+(x+7)$?
-    \\[3pt]\hspace*{1.2em} (A) Commutative property of addition
-    \hspace{0.9cm} \textbf{(B) Associative property of addition} \ans{$\leftarrow$}
-    \\[2pt]\hspace*{1.2em} (C) Distributive property
-    \hspace{2.35cm} (D) Additive identity
-  \item Simplified with no negative exponents, $\dfrac{24m^7n^{-2}}{8m^3n^2}$ is
-    \hfill \textbf{(A) $\dfrac{3m^4}{n^4}$} \ans{$\leftarrow$} \quad (B) $\dfrac{3m^4}{n^2}$ \quad (C) $3m^4n^4$ \quad (D) $\dfrac{16m^4}{n^4}$
-  \item The solution of $-3x-5>7$ is
-    \hfill (A) $x>-4$ \quad \textbf{(B) $x<-4$} \ans{$\leftarrow$} \quad (C) $x<4$ \quad (D) $x>4$
-  \item How many \emph{real} solutions does $x^2-6x+10=0$ have?
-    \hfill (A) two \quad (B) one \quad \textbf{(C) none} \ans{$\leftarrow$} \quad (D) infinitely many
-  \item Which relation is \emph{not} a function?
-    \\[3pt]\hspace*{1.2em} (A) $\{(-5,3),(-2,3),(1,3),(4,3)\}$
-    \hspace{0.9cm} \textbf{(B) $\{(3,-5),(3,2),(6,1)\}$} \ans{$\leftarrow$}
-    \\[2pt]\hspace*{1.2em} (C) $\{(-2,4),(-1,1),(0,0),(1,1)\}$
-    \hspace{0.9cm} (D) $y=4x-1$
-  \item \textbf{SOL-style.} Which equation represents the line shown?
-    \begin{center}
-    \begin{tabular}{@{}c l@{}}
-    \gridplot{\draw[forest, very thick, domain=-5:5, smooth, variable=\x] plot ({\x},{-0.75*\x+3});}
-    &
-    \begin{minipage}[c]{0.46\linewidth}
-    \begin{enumerate}[label=(\Alph*), leftmargin=1.7em, itemsep=3pt]
-      \item $y=-\tfrac43 x+3$
-      \item $y=-\tfrac34 x+3$ \ans{$\leftarrow$}
-      \item $y=\tfrac34 x+3$
-      \item $y=-\tfrac34 x-3$
-    \end{enumerate}
-    \end{minipage}
-    \\
-    \end{tabular}
-    \end{center}
+  \item The slope of the line through $(-2,\,1)$ and $(4,\,-2)$ is
+    \hfill (A) $2$ \quad \textbf{(B) $-\tfrac12$} \ans{$\leftarrow$} \quad (C) $-2$ \quad (D) $\tfrac12$
+  \item The graph of $y=|x-3|+1$ is the parent $y=|x|$ shifted
+    \hfill (A) left 3, up 1 \quad \textbf{(B) right 3, up 1} \ans{$\leftarrow$} \quad (C) right 3, down 1 \quad (D) left 3, down 1
+  \item $\lfloor -2.4 \rfloor =$
+    \hfill (A) $-2$ \quad (B) $2$ \quad \textbf{(C) $-3$} \ans{$\leftarrow$} \quad (D) $3$
+  \item A data set has correlation coefficient $r=0.12$. The linear association is best described as
+    \hfill (A) strong positive \quad (B) strong negative \quad \textbf{(C) weak/none} \ans{$\leftarrow$} \quad (D) perfect
+  \item Which equation is written in \textbf{standard form}?
+    \hfill (A) $y=3x-5$ \quad (B) $y-2=3(x-1)$ \quad \textbf{(C) $3x-y=5$} \ans{$\leftarrow$} \quad (D) $y=|x|+3$
+  \item The solution of $|x|<4$ is
+    \hfill (A) $x<4$ \quad \textbf{(B) $-4<x<4$} \ans{$\leftarrow$} \quad (C) $x<-4$ or $x>4$ \quad (D) $x>4$
 \end{enumerate}
 
+\begin{teachernote}
+Item 1: $m=\dfrac{-2-1}{4-(-2)}=\dfrac{-3}{6}=-\tfrac12$. Item 3: $\lfloor -2.4\rfloor$ rounds
+\emph{down} to $-3$ (not toward zero). Item 6: ``less th\textbf{AND}'' --- $<$ gives a single
+interval between $-4$ and $4$; $>$ would give two rays.
+\end{teachernote}
+
 % ======================================================================
-\boxguard[8]
 \parthead{Part C --- Short Answer \& Computation (40 pts)}
-Show your work. A wrong answer with a right idea can still earn credit; a right answer with no work
-may not.
+Show your work.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Numbers and justification.}
-        \\[4pt]
-        (a) Label each number \textbf{R} (rational) or \textbf{I} (irrational).
-        \\[3pt]
-        \hspace*{1.2em}$\sqrt{64}$ \ans{R} \quad $\sqrt{10}$ \ans{I} \quad
-        $-\tfrac73$ \ans{R} \quad $0.\overline{18}$ \ans{R} \quad $\sqrt[3]{5}$ \ans{I}
-        \\[4pt]
-        (b) Name the property that justifies each step.
-        \\[3pt]
-        \hspace*{1.2em}$6(x-4)=6x-24$ \ans{distributive property}
-        \\[3pt]
-        \hspace*{1.2em}$9+(x+1)=(9+x)+1$ \ans{associative property of addition}
-        \\[3pt]
-        \hspace*{1.2em}$5x+0=5x$ \ans{additive identity}
-        \\[4pt]
-        (c) ``The set of whole numbers is closed under subtraction.'' Disprove it.
-        \\[2pt]
-        \ansline{One counterexample is enough: $3-8=-5$, and $-5$ is not a whole number.}
-        \ansline{Cases that \emph{do} work ($8-3=5$) prove nothing --- that is the asymmetry.}
-
-  \item \textbf{Translate and evaluate.}
-        \\[4pt]
-        (a) Write an expression for ``five more than the cube of a number $n$.'' \ans{$n^3+5$}
-        \\[4pt]
-        (b) Evaluate $\dfrac{|a-b|}{3}+\sqrt{c}$ \; for $a=4$, $b=-8$, $c=25$.
-        \begin{work}
-          \frac{|a-b|}{3}+\sqrt{c} &= \frac{|4-(-8)|}{3}+\sqrt{25} \\
-                                   &= \frac{|12|}{3}+5 \\
-                                   &= 4+5 \\
-                                   &= 9
-        \end{work}
-        (c) Evaluate $\sqrt[3]{x}+4y$ \; for $x=-64$, $y=\tfrac34$.
-        \begin{work}
-          \sqrt[3]{x}+4y &= \sqrt[3]{-64}+4\left(\tfrac34\right) \\
-                         &= -4+3 \\
-                         &= -1
-        \end{work}
-
-  \item \textbf{Exponents and polynomial operations.}
-        \\[4pt]
-        (a) $(4a^3b^2)(-3a^4b^5)$
-        \begin{work}
-          (4a^3b^2)(-3a^4b^5) &= (4)(-3)\,a^{3+4}b^{2+5} \\
-                              &= -12a^{7}b^{7}
-        \end{work}
-        (b) $\dfrac{30r^5s^3}{6r^5s^7}$ \; (no negative exponents)
-        \begin{work}
-          \frac{30r^5s^3}{6r^5s^7} &= 5r^{5-5}s^{3-7} \\
-                                   &= 5r^{0}s^{-4} \\
-                                   &= \frac{5}{s^{4}}
-        \end{work}
-        (c) $(3x-4)(2x+7)$
-        \begin{work}
-          (3x-4)(2x+7) &= 6x^2+21x-8x-28 \\
-                       &= 6x^2+13x-28
-        \end{work}
-        (d) $(5x^2-3x+1)-(2x^2+x-6)$
-        \begin{work}
-          (5x^2-3x+1)-(2x^2+x-6) &= 5x^2-3x+1-2x^2-x+6 \\
-                                 &= 3x^2-4x+7
-        \end{work}
-
-  \item \textbf{Factor completely.} GCF first, every time.
-        \\[4pt]
-        (a) $5x^2-45$
-        \begin{work}
-          5x^2-45 &= 5(x^2-9) \\
-                  &= 5(x-3)(x+3)
-        \end{work}
-        (b) $x^2+3x-10$
-        \begin{work}
-          x^2+3x-10 &= (x+5)(x-2)
-        \end{work}
-        (c) $3x^2+14x+8$
-        \begin{work}
-          3x^2+14x+8 &= 3x^2+12x+2x+8 \\
-                     &= 3x(x+4)+2(x+4) \\
-                     &= (3x+2)(x+4)
-        \end{work}
-        (d) $2x^3-14x^2+24x$
-        \begin{work}
-          2x^3-14x^2+24x &= 2x(x^2-7x+12) \\
-                         &= 2x(x-3)(x-4)
-        \end{work}
-
-  \item \textbf{Radicals and rational exponents.}
-        \\[4pt]
-        (a) $\sqrt{72}=$ \ans{$6\sqrt{2}$} \hspace{1.2cm}
-        (b) $\sqrt[3]{54}=$ \ans{$3\sqrt[3]{2}$}
-        \\[4pt]
-        (c) Write $\sqrt[3]{x^5}$ with a rational exponent. \ans{$x^{5/3}$}
-        \\[4pt]
-        (d) Write $16^{3/4}$ as a radical, then evaluate it. \ans{$\left(\sqrt[4]{16}\right)^3=2^3=8$}
-        \\[4pt]
-        (e) $\sqrt{18}+\sqrt{50}=$
-        \begin{work}
-          \sqrt{18}+\sqrt{50} &= 3\sqrt{2}+5\sqrt{2} \\
-                              &= 8\sqrt{2}
-        \end{work}
-
-  \item \textbf{Linear equations and inequalities.}
-        \\[4pt]
-        (a) Solve $4(3x-2)=10x+6$.
-        \begin{work}
-          4(3x-2) &= 10x+6 \\
-            12x-8 &= 10x+6 \\
-             2x-8 &= 6 \\
-               2x &= 14 \\
-                x &= 7
-        \end{work}
-        (b) Classify each solution set as \textbf{one solution}, \textbf{no solution}, or
-        \textbf{infinitely many}. You should not need to finish solving.
-        \\[3pt]
-        \hspace*{1.2em}$3x+7=3x-2$ \ans{no solution} \hspace{0.8cm}
-        $4(x-3)=4x-12$ \ans{infinitely many}
-        \\[4pt]
-        (c) Solve $P=2\ell+2w$ for $w$.
-        \begin{work}
-              P &= 2\ell+2w \\
-          P-2\ell &= 2w \\
-          \frac{P-2\ell}{2} &= w
-        \end{work}
-        (d) Solve $-3x+2\le 14$, then graph the solution on the number line.
-        \begin{work}
-          -3x+2 &\le 14 \\
-            -3x &\le 12 \\
-              x &\ge -4
-        \end{work}
-        \begin{center}\numline{%
-          \draw[keyred, very thick] (-4,0) -- (6.4,0);
-          \fill[keyred] (-4,0) circle (0.22);}
-        \end{center}
-
-  \item \textbf{Quadratic equations.}
-        \\[4pt]
-        (a) Solve by factoring: $x^2-x-12=0$
-        \begin{work}
-             x^2-x-12 &= 0 \\
-           (x-4)(x+3) &= 0 \\
-              x=4 \quad&\text{or}\quad x=-3
-        \end{work}
-        (b) Solve by square roots: $(x-3)^2=25$
-        \begin{work}
-          (x-3)^2 &= 25 \\
-              x-3 &= \pm 5 \\
-              x=8 \quad&\text{or}\quad x=-2
-        \end{work}
-        (c) Solve with the quadratic formula: $x^2-6x+2=0$ \; (exact answer)
-        \begin{work}
-          x &= \frac{6\pm\sqrt{(-6)^2-4(1)(2)}}{2(1)} \\
-            &= \frac{6\pm\sqrt{36-8}}{2} \\
-            &= \frac{6\pm\sqrt{28}}{2} \\
-            &= \frac{6\pm 2\sqrt{7}}{2} \\
-            &= 3\pm\sqrt{7}
-        \end{work}
-        (d) \emph{Without solving}, use the discriminant to say how many real solutions
-        $4x^2-20x+25=0$ has.
-        \\[2pt] \hspace*{1.2em}Discriminant: \ans{$400-400=0$} \quad
-        Number of real solutions: \ans{one (repeated)}
-
-  \item \textbf{Read the graph.} The linear function $g$ is graphed below; each gridline is one unit.
+  \item \textbf{Read the graph.} The line $f$ is shown below.
         \begin{center}
-        \gridplot{\draw[forest, very thick, domain=-1.4:5.4, smooth, variable=\x] plot ({\x},{2*\x-4});}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{5}{-4}{4}
+          \draw[very thick, forest] (-2,3.5)--(4.5,-3);
+          \fill[charcoal] (0,2) circle (3pt);
+          \fill[charcoal] (2,0) circle (3pt);
+        \end{tikzpicture}
         \end{center}
-        (a) $g(-1)=$ \ans{$-6$} \hspace{1.2cm}
-        (b) Solve $g(x)=0$: \; $x=$ \ans{$2$}
+        Give the $y$-intercept: \ans{$(0,2)$}; \quad the zero ($x$-intercept): \ans{$(2,0)$}; \quad
+        the slope: \ans{$-1$}. \quad Is $f$ increasing or decreasing? \ans{decreasing}
+
+  \item \textbf{Write the equation.} Find the equation of the line through $(-1,\,4)$ and $(2,\,-2)$.
+        Write it in slope-intercept form $y=mx+b$.
+        \ans{$m=\dfrac{-2-4}{2-(-1)}=\dfrac{-6}{3}=-2$. Using $(2,-2)$: $-2=-2(2)+b\Rightarrow b=2$. So $y=-2x+2$. Check with $(-1,4)$: $-2(-1)+2=4$ \checkmark.}
+
+  \item \textbf{Absolute value transformations.} For $g(x)=-\,|x-2|+5$, state the vertex, the axis of
+        symmetry, whether the graph opens up or down, and the maximum or minimum value.
+        \ans{Vertex $(2,5)$; axis of symmetry $x=2$; since $a=-1<0$ it opens \emph{down}; so it has a \emph{maximum} value of $5$.}
+
+  \item \textbf{Solve.} Solve the absolute value equation. Show both cases.
+        \[ |2x-5| = 9 \]
+        \ans{Case 1: $2x-5=9\Rightarrow 2x=14\Rightarrow x=7$. Case 2: $2x-5=-9\Rightarrow 2x=-4\Rightarrow x=-2$. Solutions: $x=7$ and $x=-2$. Check: $|2(7)-5|=9$ \checkmark, $|2(-2)-5|=9$ \checkmark.}
+
+  \item \textbf{Solve and express three ways.} Solve $|x+1|\le 4$. Write the solution as an inequality
+        and in interval notation, then graph it on the number line.
+        \ans{$-4\le x+1\le 4\Rightarrow -5\le x\le 3$. Interval: $[-5,\,3]$.}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \draw[->,semithick,charcoal] (-8,0)--(8,0);
+          \foreach \x in {-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7}
+            \draw[charcoal] (\x,0.15)--(\x,-0.15) node[below, font=\scriptsize]{$\x$};
+          \draw[very thick, keyred] (-5,0)--(3,0);
+          \fill[keyred] (-5,0) circle (4pt);
+          \fill[keyred] (3,0) circle (4pt);
+        \end{tikzpicture}
+        \end{center}
+        \vspace{0.1cm}
+
+  \item \textbf{Evaluate a piecewise function.} Let
+        $f(x)=\begin{cases} 2x+1, & x<2 \\ 5-x, & x\ge 2 \end{cases}$
         \\[4pt]
-        (c) That number in (b) is called the \ans{zero} of $g$, and on the graph it is the
-        point \ans{$(2,0)$}.
+        $f(-1)=\ans{$-1$}$ \qquad $f(2)=\ans{$3$}$ \qquad $f(4)=\ans{$1$}$
         \\[4pt]
-        (d) Slope: \ans{$2$}; \quad $y$-intercept: \ans{$(0,-4)$}; \quad
-        equation of $g$: \ans{$y=2x-4$}
-        \\[4pt]
-        (e) Is $g$ increasing or decreasing? \ans{increasing} \quad Domain: \ans{all reals}
-        \\[4pt]
-        (f) Write the equation of the line through $(0,5)$ \textbf{parallel} to $g$
-        \ans{$y=2x+5$}, and the line through $(0,-1)$ \textbf{perpendicular} to $g$
-        \ans{$y=-\tfrac12 x-1$}.
+        Which piece did you use for $f(2)$, and how do you know? \ans{The bottom piece $5-x$, because the condition is $x\ge 2$ and $2$ satisfies $x\ge 2$ (the boundary is included).}
+
+  \item \textbf{Read a piecewise graph.} The function $h$ is shown below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{4}{-3}{4}
+          \draw[very thick, forest] (-3,-2)--(1,-2);
+          \opendot{1}{-2}
+          \draw[very thick, forest] (1,2)--(3.5,3);
+          \closeddot{1}{2}
+        \end{tikzpicture}
+        \end{center}
+        $h(-1)=\ans{$-2$}$; \quad $h(1)=\ans{$2$}$. \quad Is $h$ continuous at $x=1$? Explain.
+        \ans{No --- there is a jump. The left piece approaches $-2$ (open dot) while the value at $x=1$ is $2$ (closed dot), so the graph breaks at $x=1$.}
+
+  \item \textbf{Linear regression.} A study of $x=$ hours studied and $y=$ test score (for $x$ between
+        $1$ and $8$ hours) gives the line of best fit
+        \[ \hat y = 6.5x + 52. \]
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+          \item Interpret the slope $6.5$ in context. \ans{Each additional hour of studying is associated with about $6.5$ more points on the test.}
+          \item Predict the score for a student who studies $4$ hours: $\hat y=\ans{$6.5(4)+52=78$}$.
+          \item Is predicting the score at $x=20$ hours interpolation or extrapolation? Why might that
+                prediction be unreliable? \ans{Extrapolation --- $20$ is outside the data range ($1$--$8$ hours). The linear pattern may not hold that far out (a score can't exceed $100$), so the prediction is unreliable.}
+        \end{enumerate}
 \end{enumerate}
 
+\begin{teachernote}
+Item 5: accept ``$-5\le x\le 3$'' or ``$[-5,3]$'' with closed dots on the number line (the
+$\le$ makes both endpoints included). Item 8b: full credit for $78$ with the substitution shown.
+Common error on item 6: using the top piece for $f(2)$ because $2x+1$ ``looks'' first --- reinforce
+that $x=2$ fails $x<2$.
+\end{teachernote}
+
 % ======================================================================
-\boxguard[8]
 \parthead{Part D --- Extended Response (12 pts)}
 Explain your reasoning in full sentences.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=14pt]
-  \item \textbf{Three families, five questions.} Each table below is generated by a linear, a
-        quadratic, or an exponential rule.
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item The absolute value function $g(x)=|x-1|-2$ is graphed below.
         \begin{center}
-        \renewcommand{\arraystretch}{1.25}
-        \begin{tabular}{@{}c@{\hspace{1.1cm}}c@{\hspace{1.1cm}}c@{}}
-        \begin{tabular}{@{}c|c@{}}
-          $x$ & $A(x)$ \\ \hline
-          $0$ & $7$ \\ $1$ & $11$ \\ $2$ & $15$ \\ $3$ & $19$ \\
-        \end{tabular}
-        &
-        \begin{tabular}{@{}c|c@{}}
-          $x$ & $B(x)$ \\ \hline
-          $0$ & $2$ \\ $1$ & $6$ \\ $2$ & $18$ \\ $3$ & $54$ \\
-        \end{tabular}
-        &
-        \begin{tabular}{@{}c|c@{}}
-          $x$ & $C(x)$ \\ \hline
-          $0$ & $3$ \\ $1$ & $4$ \\ $2$ & $7$ \\ $3$ & $12$ \\
-        \end{tabular}
-        \\
-        \end{tabular}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{5}{-3}{4}
+          \draw[very thick, forest] (-2,1)--(1,-2)--(4,1);
+          \fill[charcoal] (1,-2) circle (3.5pt);
+          \fill[charcoal] (-1,0) circle (3pt);
+          \fill[charcoal] (3,0) circle (3pt);
+        \end{tikzpicture}
         \end{center}
-        \textbf{(a)} Name the family of each table and give the numerical evidence --- constant
-        difference, constant \emph{second} difference, or constant ratio.
-        \\[2pt]
-        \ansline{$A$ is \textbf{linear} --- first differences $4,4,4$, a constant difference.}
-        \ansline{$B$ is \textbf{exponential} --- ratios $6/2=18/6=54/18=3$, a constant ratio.}
-        \ansline{$C$ is \textbf{quadratic} --- differences $1,3,5$ are not constant, but \emph{their} differences are $2,2$.}
-        \textbf{(b)} Write a rule for each function.
-        \\[4pt]
-        \hspace*{1.2em}$A(x)=$ \ans{$4x+7$} \quad $B(x)=$ \ans{$2\cdot 3^{x}$} \quad $C(x)=$ \ans{$x^{2}+3$}
-        \\[6pt]
-        \textbf{(c)} Which function is largest at $x=1$? At $x=4$? Show the values.
-        \begin{work}
-          A(1)=11, \quad B(1)&=6, \quad C(1)=4 \\
-          A(4)=23, \quad B(4)&=162, \quad C(4)=19
-        \end{work}
-        \textbf{(d)} A classmate says ``$B$ is just the biggest one.'' Use your answers to (c) to
-        explain why ``which is bigger'' is not a fair question until someone says \emph{where}.
-        \\[2pt]
-        \ansline{At $x=1$ the \emph{linear} function is on top ($11$) and $B$ is in the middle ($6$).}
-        \ansline{By $x=4$ the exponential has passed both ($162$) and is still pulling away.}
-        \ansline{A constant ratio wins \emph{eventually} --- so the question needs a \emph{where}.}
-        \textbf{(e)} If $B$ modeled a population of bacteria in hours, what domain would make sense,
-        and why is that narrower than the domain of the rule by itself?
-        \\[2pt]
-        \ansline{Hours cannot be negative, so the context domain is $x\ge 0$ --- and if the count is}
-        \ansline{taken on the hour, the whole numbers $0,1,2,3,\dots$ The rule $2\cdot 3^{x}$ by itself}
-        \ansline{accepts every real number. The context, not the algebra, is what shrinks the domain.}
+        \textbf{(a)} State the two zeros of $g$.
+        \textbf{(b)} On what interval is $g(x)<0$ (the function negative)? On what set is $g(x)>0$?
+        \textbf{(c)} Using the zeros, explain \emph{why} the sign of $g$ switches where it does.
+        \ans{(a) The zeros are $x=-1$ and $x=3$ (where the V crosses the $x$-axis). (b) $g(x)<0$ on the interval $(-1,3)$, where the graph dips below the axis; $g(x)>0$ on $x<-1$ or $x>3$ (i.e.\ outside $[-1,3]$). (c) A zero is exactly where the graph touches the $x$-axis, so it is the boundary between output being below the axis (negative) and above it (positive). Because the graph is continuous, the sign can only change by passing \emph{through} a zero --- so it flips at $x=-1$ and again at $x=3$.}
 
-  \item \textbf{Modeling and solution sets.} Two phone companies price a plan differently.
-        \\[3pt]
-        \hspace*{1.2em}\textbf{Northline:} a one-time \$25 activation fee, then \$15 per month.
-        \\[2pt]
-        \hspace*{1.2em}\textbf{Cascade:} no activation fee, \$20 per month.
-        \\[4pt]
-        \textbf{(a)} Write a function for the total cost at each company after $m$ months.
-        \\[4pt]
-        \hspace*{1.2em}$N(m)=$ \ans{$15m+25$} \hspace{1.4cm} $C(m)=$ \ans{$20m$}
-        \\[6pt]
-        \textbf{(b)} Find the number of months at which the two costs are equal. Show every step.
-        \begin{work}
-          15m+25 &= 20m \\
-              25 &= 5m \\
-               5 &= m
-        \end{work}
-        Name the property of equality that justifies each step above.
-        \\[3pt]
-        \hspace*{1.2em}Step 1: \ans{subtraction property of equality} \quad Step 2: \ans{division property of equality}
-        \\[6pt]
-        \textbf{(c)} Verify your answer by substituting it into \emph{both} functions.
-        \begin{work}
-          N(5) &= 15(5)+25 = 100 \\
-          C(5) &= 20(5) = 100
-        \end{work}
-        \textbf{(d)} Which company is cheaper for $3$ months? For $12$ months? Give the costs.
-        \begin{work}
-          N(3)=70, \quad C(3)&=60 \\
-          N(12)=205, \quad C(12)&=240
-        \end{work}
-        \textbf{(e)} Suppose Cascade changed its pricing to a \$25 activation fee plus \$15 per
-        month. Setting the two costs equal would give $15m+25=15m+25$. What is the solution set,
-        what is that kind of equation called, and what does it mean about the two companies?
-        \\[2pt]
-        \ansline{Every $m$ makes it true, so the solution set is \textbf{all real numbers}.}
-        \ansline{That kind of equation is an \textbf{identity} --- one expression written twice.}
-        \ansline{In context: the plans would cost the same forever, so price could not decide.}
-        \textbf{(f)} What domain makes sense for $m$ in this situation, and why?
-        \\[2pt]
-        \ansline{$m$ counts months, so the whole numbers $0,1,2,3,\dots$ --- no $-3$ or $2.7$ months.}
-        \ansline{The functions accept any real number; the situation is what restricts the domain.}
+  \item A newspaper reports that in towns with more coffee shops, residents live longer, and the
+        correlation coefficient is $r=0.86$.
+        \textbf{(a)} Describe the direction and strength of this association.
+        \textbf{(b)} Does this prove that drinking coffee makes people live longer? Explain the
+        difference between correlation and causation, and give one lurking variable that could explain
+        the pattern.
+        \ans{(a) Positive (both increase together) and fairly strong, since $r=0.86$ is close to $1$. (b) No. Correlation means two variables move together; causation means one \emph{makes} the other change. A strong $r$ only shows association, not cause. A lurking variable such as town wealth (wealthier towns have more coffee shops \emph{and} better healthcare) could drive both, so we can't conclude coffee causes longer life.}
 \end{enumerate}
+
+\begin{teachernote}
+\textbf{Scoring Part D (6 pts each).} D1: 2 pts (a) both zeros $x=-1,3$; 2 pts (b) negative on
+$(-1,3)$, positive outside; 2 pts (c) the ``sign changes only by crossing a zero'' reasoning.
+D2: 2 pts (a) positive \emph{and} strong (tie strength to $|r|$ near 1); 4 pts (b) states
+correlation $\ne$ causation \emph{and} names a plausible lurking variable. Do not give full credit
+for ``no'' without a reason.
+\end{teachernote}
 
 \end{document}

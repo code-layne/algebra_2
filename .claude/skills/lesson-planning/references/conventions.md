@@ -80,7 +80,7 @@ divider. The scaffolder writes these; see `assets/skeletons/test.tex`.
 | `\namepartnerperiod` | Name / Partner / Period row — **not used**; superseded by Namestrip |
 | `\pageheader{Unit X, Lesson Y.Z}{Document Type}` | Full-width forest banner header |
 
-**`\noindent` trap — required fix in every `vocabbox` from Unit 5 on.** `\termblanklong` opens with
+**`\noindent` trap — required fix in every `vocabbox` from Unit 4 on.** `\termblanklong` opens with
 `\noindent`, which is a **no-op mid-paragraph**, and `\ansline` ends with `\dotfill` without ending the
 paragraph. Unfixed, the intro sentence and the first term collide in the blank, and in the key every
 term label after the first is dragged onto the previous answer's dotted line. So:
@@ -96,7 +96,7 @@ Fill in each term as we build it together.
   \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 ```
 
-`unit05/lesson00` is the reference implementation. Fix it per-lesson, **not** in `shared/` — a
+`unit04/lesson00` is the reference implementation. Fix it per-lesson, **not** in `shared/` — a
 shared-package change re-flows every already-verified unit at once. See `COURSE_PLAN.md` §7 and the
 deferred Units 2–4 retrofit in §8.
 
@@ -194,7 +194,7 @@ Only column 3 differs between the blank and the key, so the two cannot drift.
 item 2, where one row is `$2x-9=5 \Rightarrow 2x-9+9=5+9$` — is a list, not a solution, and stays
 a plain table.
 
-`unit01/lesson00` is the reference implementation.
+The reference implementation was the old review unit’s Lesson 0, deleted in the 2026-08-20 renumber — no in-tree example remains; follow the spec above.
 
 ## Teacher notes — in the lesson plan, one per component
 
@@ -241,13 +241,13 @@ give the blank `\writelines{n}` for the same n — the same principle as the wor
 hand because prose cannot be measured from a shared body.
 
 **`\writelines{n}` occupies n+1 line slots** — it ends in `\\`, so `\writelines{3}` takes four
-lines' worth of room. Raising one is *not* free: on Unit 2 Lesson 2.3 a `{2}` → `{3}` raise
+lines' worth of room. Raising one is *not* free: on Unit 1 Lesson 1.3 a `{2}` → `{3}` raise
 overflowed the blank to 3pp against a 2pp key and had to be reverted. Set n from the key's true
 wrapped length, then rebuild and re-measure the **blank** before moving on.
 
 **Reach for `work` before `\writelines`.** If the answer is a multi-step solve rather than prose, a
 `work` block fixes the drift correctly and cannot come apart; a lengthened write-line only papers
-over it. On Lesson 2.2 every apparent `\ansline` drift turned out to be a solve, so the lesson
+over it. On Lesson 1.2 every apparent `\ansline` drift turned out to be a solve, so the lesson
 needed 16 `work` blocks and zero `\writelines` changes.
 
 **Key-authoring rule:** copy the blank component verbatim, then replace each blank/`\writeline`

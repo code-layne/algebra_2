@@ -1,4 +1,4 @@
-%! Linear Regression — Unit 2, Lesson 2.5 — Lesson Plan
+%! The Quadratic Formula & the Discriminant — Unit 2, Lesson 2.5 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 2: Linear Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 2.5: Linear Regression}
+\newcommand{\UnitNumberName}{Unit 2: Quadratic Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 2.5: The Quadratic Formula \& the Discriminant}
 
 \begin{document}
 \begin{center}
@@ -19,25 +19,22 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students move from \emph{exact} rules to \emph{real, scattered data}. Given
-    a \textbf{scatterplot} of bivariate data, they describe the \textbf{association} by its \emph{direction}
-    (positive / negative / none), \emph{form} (linear / not), and \emph{strength}, and they interpret the
-    \textbf{correlation coefficient} $r$ (between $-1$ and $1$: sign $=$ direction, size $=$ strength, and
-    $|r|$ near $1$ means a strong \emph{linear} fit). They read a \textbf{line of best fit (regression line)}
-    $\hat y = ax+b$ produced \emph{with technology}, \textbf{interpret its slope and $y$-intercept in
-    context}, and use it to \textbf{make predictions} --- distinguishing \emph{interpolation} (inside the
-    data) from \emph{extrapolation} (outside it). They judge a model's \textbf{reasonableness} and explain
-    why \emph{correlation does not prove causation}. All scatterplots and lines are pre-drawn --- students
-    read, classify, predict, and justify (never sketch from scratch).
+    \textbf{Primary Objective:} Students learn the \emph{one method that solves every quadratic}. They
+    derive the \textbf{quadratic formula} $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$ by completing the square on
+    the general equation $ax^2+bx+c=0$ (the Lesson~2.3 move, done once in general), then use it fluently:
+    write the equation in standard form, read off $a,b,c$ (with signs), and simplify --- including
+    \emph{complex} answers when the radicand is negative (Lesson~2.4). They isolate the \textbf{discriminant}
+    $b^2-4ac$ as a \emph{predictor}: its sign tells them, \emph{before} solving, whether a quadratic has two
+    real roots ($>0$), one repeated real root ($=0$), or two complex-conjugate roots ($<0$) --- and they
+    connect each case to the parabola's $x$-intercepts (two / one / none). They choose a solving method
+    strategically, verify solutions by substitution, and apply the formula to model a contextual situation.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.ST.2} --- apply the data cycle with a focus on
-    \emph{bivariate data} in scatterplots and determining the curve of best fit: represent bivariate data
-    with a scatterplot using technology (\textbf{A2.ST.2c}); decide whether a linear model is appropriate
-    (\textbf{A2.ST.2d}); determine the equation of the line of best fit using technology
-    (\textbf{A2.ST.2e}); use the \textbf{correlation coefficient} to designate goodness of fit of a linear
-    function (\textbf{A2.ST.2f}); make predictions and critical judgments from the model
-    (\textbf{A2.ST.2g}); and evaluate the reasonableness of the model in context (\textbf{A2.ST.2h}). This
-    lesson fits a \emph{linear} function to data, closing Unit~2's linear strand.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.2b} (solve a quadratic equation in one variable over the
+    set of complex numbers algebraically --- the quadratic formula), \textbf{A2.EI.2a} (create a quadratic
+    equation to model a contextual situation), and \textbf{A2.EI.2d} (verify solutions algebraically and
+    interpret them in context). The discriminant's link to the number and type of $x$-intercepts revisits
+    \textbf{A2.F.2d}. Builds directly on completing the square (\textbf{A2.EI.2b}, Lesson~2.3) and the
+    imaginary unit $i$ (\textbf{A2.EO.4}, Lesson~2.4).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -47,22 +44,22 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Read a \textbf{scatterplot} of bivariate data (explanatory $x$, response $y$).
-  \item Describe an association by \textbf{direction}, \textbf{form}, and \textbf{strength}.
-  \item Interpret the \textbf{correlation coefficient} $r$; match $r$ to a scatterplot's fit.
-  \item Read a \textbf{line of best fit} $\hat y = ax+b$ and interpret its \textbf{slope} and \textbf{$y$-intercept} in context.
-  \item \textbf{Predict} with the model; separate \textbf{interpolation} from \textbf{extrapolation}.
-  \item Judge \textbf{reasonableness}; explain \textbf{correlation $\ne$ causation}.
+  \item Write $ax^2+bx+c=0$ in standard form and identify $a,b,c$ with correct signs.
+  \item Apply $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$ and simplify to simplest radical or $a+bi$ form.
+  \item Compute the \textbf{discriminant} $b^2-4ac$ and classify the roots \emph{before} solving.
+  \item Match each discriminant case to the parabola's number of $x$-intercepts (2 / 1 / 0).
+  \item Choose a solving method strategically; verify a solution by substitution.
+  \item Model a contextual situation with a quadratic and solve it with the formula.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Real data rarely lands on one line --- we summarize the \emph{trend} instead of an exact rule.
-  \item Direction (up/down), form (does a \emph{line} fit?), and strength (how tightly?) are three separate questions.
-  \item $r$ packs direction ($\pm$) and strength ($|r|$) into one number in $[-1,1]$; $|r|\approx 1$ is a tight linear fit, $r\approx 0$ is no linear trend.
-  \item The regression line is the ``best'' summary line; its slope is a \emph{per-unit rate} and its intercept a \emph{baseline} --- both carry real meaning.
-  \item Predicting \emph{inside} the data is safer than \emph{outside} it, where the trend may not hold.
-  \item A strong $r$ shows two variables move together --- it does \emph{not} prove one \emph{causes} the other.
+  \item The formula is completing the square done \emph{once, in general} --- so it works for \emph{every} quadratic.
+  \item A negative radicand is no longer a dead end: Lesson~2.4's $i$ turns it into a complex-conjugate pair.
+  \item One number, $b^2-4ac$, encodes the entire ``how many / what kind'' of the roots.
+  \item Roots \emph{are} $x$-intercepts, so ``two complex roots'' means the parabola misses the $x$-axis.
+  \item Factoring is fastest \emph{when it works}; the formula is the universal fallback.
+  \item Not every algebraic solution is physically meaningful --- interpret and reject impossible answers.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -70,182 +67,189 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Bivariate data} & Paired measurements $(x,y)$ on the same individuals (two variables at once). \\
-\textbf{Scatterplot} & A plot of the pairs $(x,y)$ as points; used to see the relationship between the variables. \\
-\textbf{Association / correlation} & The pattern in a scatterplot: its \emph{direction}, \emph{form}, and \emph{strength}. \\
-\textbf{Positive / negative} & As $x$ increases, $y$ tends to increase (positive) or decrease (negative). \\
-\textbf{Correlation coefficient $r$} & A number in $[-1,1]$: its \emph{sign} is the direction, its \emph{size} $|r|$ the strength of the \emph{linear} relationship. \\
-\textbf{Line of best fit (regression line)} & The line $\hat y=ax+b$ that best summarizes the trend; found with technology. $\hat y$ is a \emph{predicted} value. \\
-\textbf{Interpolation / extrapolation} & Predicting \emph{inside} the range of the data (interpolation) vs.\ \emph{outside} it (extrapolation --- riskier). \\
-\textbf{Causation} & One variable actually \emph{produces} a change in another --- stronger than, and not proved by, correlation. \\
+\textbf{Quadratic formula} & $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$; solves \emph{any} $ax^2+bx+c=0$ ($a\ne0$) over the complex numbers. \\
+\textbf{Standard form} & $ax^2+bx+c=0$ --- everything on one side, $=0$ --- required before reading $a,b,c$. \\
+\textbf{Discriminant} & $b^2-4ac$, the expression under the radical; its sign predicts the nature of the roots. \\
+\textbf{Two real roots} & $b^2-4ac>0$: two distinct real solutions; parabola crosses the $x$-axis twice. \\
+\textbf{Double (repeated) root} & $b^2-4ac=0$: one real solution counted twice; vertex sits \emph{on} the $x$-axis. \\
+\textbf{Complex-conjugate roots} & $b^2-4ac<0$: two solutions $a\pm bi$; parabola never touches the $x$-axis. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three prerequisites today rests on: \textbf{(1)} \emph{read ordered pairs off
-    a coordinate grid} --- a scatterplot is just many plotted points, so students must read $(x,y)$
-    fluently; \textbf{(2)} \emph{evaluate a linear equation} $y=ax+b$ at a given $x$ (Lesson~2.1) --- exactly
-    the arithmetic of ``predict with the model''; and \textbf{(3)} read \emph{slope and intercept} from
-    $y=ax+b$ and tell whether a line rises or falls --- the seed of positive vs.\ negative association and of
-    interpreting a regression slope. Debrief item~3 aloud: a \emph{positive} slope means $y$ rises as $x$
-    rises (a positive association); a \emph{negative} slope means it falls --- the same language we will put
-    on scatterplots.
+    The Warm-Up rehearses the three moves today's formula requires: \textbf{(1)} \emph{evaluating}
+    $b^2-4ac$ for given $a,b,c$ (signed arithmetic --- the single most error-prone step, and today it
+    \emph{is} the discriminant); \textbf{(2)} \emph{simplifying radicals}, including negative ones from
+    Lesson~2.4 ($\sqrt{-16}=4i$, $\sqrt{20}=2\sqrt5$), so formula outputs land in simplest radical or
+    $a+bi$ form; and \textbf{(3)} \emph{rewriting an equation in standard form} $ax^2+bx+c=0$ and reading
+    off $a,b,c$ with signs. Debrief item~1 last and connect it forward: ``the number you just computed has
+    a name, and it predicts the answer before you solve.''
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Project a scatterplot of \textbf{hours practiced} vs.\ \textbf{free throws made} for a team: the points
-    \emph{don't} lie on one line, but they \emph{trend} upward. Ask: \textbf{``Is there a relationship? Could
-    you draw one line that summarizes it? What would you predict for a player who practices 8 hours?''}
-    Students see that \emph{no exact rule} fits every point --- yet a clear \emph{trend} does. That trend is
-    what a \textbf{line of best fit} captures, and the \textbf{correlation coefficient} $r$ measures how
-    tightly the points hug it. Today we read that trend, interpret the line, and predict with it --- the
-    first time in Unit~2 the data is \emph{messy}.
+    Put four quadratics on the board and challenge students to solve them: $x^2-2x-3=0$ (factors),
+    $x^2-6x+7=0$ (won't factor --- needs completing the square), $x^2+2x+5=0$ (complex roots, from 2.4),
+    and $2x^2-7x+3=0$. Ask: ``Which \emph{method} for each?'' Let the friction build --- factor, square
+    roots, complete the square, each with its own conditions. Then reframe: ``What if \emph{one} formula
+    solved all four, every time, no guessing?'' Reveal that completing the square on the \emph{general}
+    equation $ax^2+bx+c=0$ produces exactly that formula --- and, as a bonus, one piece of it,
+    $b^2-4ac$, tells you what kind of answer you'll get \emph{before} you turn the crank.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Scatterplots \& association.} A \textbf{scatterplot} plots paired data $(x,y)$. Describe it three
-ways: \textbf{direction} (as $x$ rises does $y$ rise \emph{(positive)}, fall \emph{(negative)}, or neither?),
-\textbf{form} (do the points follow a \emph{line}?), and \textbf{strength} (how tightly?). Read three
-pre-drawn plots and classify each --- \emph{don't} compute anything yet.
+\textbf{1. Derive the formula (once, in general).} Complete the square on $ax^2+bx+c=0$ --- exactly the
+Lesson~2.3 move, but with letters. Land the result and box it:
+\[ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}. \]
+Emphasize: because it came from completing the square, and \emph{that} works on any quadratic, this
+formula works on \emph{every} quadratic. No more choosing whether a method applies.
 
-\textbf{2. The correlation coefficient $r$.} Technology reports one number, $r$, in $[-1,1]$. Its
-\emph{sign} is the direction; its \emph{size} $|r|$ is the strength: $r\approx +1$ tight rising line,
-$r\approx -1$ tight falling line, $r\approx 0$ no linear trend. \textbf{Match $r$-values to plots}; stress
-$r$ measures \emph{linear} fit only.
-
-\textbf{3. The line of best fit.} Technology also returns the \textbf{regression line} $\hat y=ax+b$ --- the
-single line that best summarizes the trend ($\hat y$ is a \emph{predicted} $y$). \textbf{Interpret in
-context}: the slope $a$ is a \emph{per-unit rate} (``each extra hour $\Rightarrow$ about $a$ more''); the
-intercept $b$ is the \emph{baseline} at $x=0$.
+\textbf{2. Use it.} The protocol: (i) write $ax^2+bx+c=0$ in \emph{standard form}; (ii) identify $a,b,c$
+\emph{with signs}; (iii) substitute and simplify. Work the unit anchor $x^2-2x-3=0$: $a=1,b=-2,c=-3$,
+so $x=\dfrac{2\pm\sqrt{16}}{2}=\dfrac{2\pm4}{2}=3,-1$ --- the same zeros as factoring $(x+1)(x-3)$ in 2.2
+and reading the graph in 2.0. \emph{Same curve, same roots, universal method.}
 
 \columnbreak
 
-\textbf{4. Predicting.} Substitute an $x$ into $\hat y=ax+b$. \textbf{Interpolation} predicts \emph{inside}
-the data's $x$-range (safer); \textbf{extrapolation} predicts \emph{outside} it, where the trend may break
-down (a line predicting a $110\%$ test score signals extrapolation gone wrong). Always ask: \textbf{``Is
-this prediction reasonable?''}
+\textbf{3. The discriminant.} Isolate $D=b^2-4ac$ and make it a \emph{predictor}. Build the three-case
+table with a pre-drawn parabola for each: $D>0\Rightarrow$ two real roots (two $x$-intercepts);
+$D=0\Rightarrow$ one repeated real root (vertex on the axis, one $x$-intercept); $D<0\Rightarrow$ two
+complex-conjugate roots (no $x$-intercepts). Stress: you can answer ``how many / what kind'' \emph{without}
+finishing the solve.
 
-\textbf{5. Correlation $\ne$ causation.} A strong $r$ means the two variables \emph{move together} --- not
-that one \emph{causes} the other (ice-cream sales and drownings both rise in summer; heat is the lurking
-cause). Judge \textbf{reasonableness} (A2.ST.2h) and never claim cause from correlation alone.
+\textbf{4. Complex solutions.} Run $x^2+2x+5=0$: $D=4-20=-16<0$, so
+$x=\dfrac{-2\pm\sqrt{-16}}{2}=\dfrac{-2\pm4i}{2}=-1\pm2i$ --- the \emph{same} conjugate pair the
+completing-the-square capstone produced in 2.4, now from the formula. Reinforce: a negative discriminant
+is not ``no solution,'' it is a \emph{complex} solution.
 
-\textbf{Technology note:} finding $r$ and the equation is a calculator/Desmos task (A2.ST.2c,e,f). In this
-packet the values are \emph{given} so students focus on \emph{reading, interpreting, and predicting}.
+\textbf{5. Choose a method \& model.} Factoring is fastest when it works; square roots for $x^2=k$; the
+formula is the universal fallback. Close with a projectile/area model (A2.EI.2a/d): create the equation,
+solve with the formula, reject the impossible root, interpret in context.
 \end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Explicit Instruction: Solving with the Quadratic Formula]{forestbg}
+\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
+\textbf{Steps (post and refer back):}
+\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
+  \item Write it in standard form $ax^2+bx+c=0$ (everything on one side).
+  \item Identify $a,b,c$ \emph{with signs}.
+  \item Compute the discriminant $b^2-4ac$ first --- it previews the answer.
+  \item Substitute into $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$ and simplify (radical or $a+bi$).
+\end{enumerate}
+&
+\textbf{Worked example.} Solve $3x^2=2x+4$.
+\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
+  \item Standard form: $3x^2-2x-4=0$, so $a=3,\ b=-2,\ c=-4$.
+  \item Discriminant: $(-2)^2-4(3)(-4)=4+48=52>0$ (two real).
+  \item $x=\dfrac{2\pm\sqrt{52}}{6}=\dfrac{2\pm2\sqrt{13}}{6}$.
+  \item Simplify: $x=\dfrac{1\pm\sqrt{13}}{3}$.
+\end{itemize}
+\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item confusing \textbf{direction} with \textbf{strength}: ``$r=-0.9$ is weak because it's negative'' --- no, $|{-}0.9|$ is \emph{strong};
-  \item reading $r$ backwards: a \emph{falling} cloud must have $r<0$;
-  \item calling a tight \emph{curved} pattern ``$r\approx 1$'' --- $r$ measures \emph{linear} fit only;
-  \item interpreting slope without units/context (``slope is $1.5$'' vs.\ ``about $1.5$ more baskets per practice session'');
-  \item \textbf{extrapolating} without flagging it --- predicting far outside the data and trusting it blindly;
-  \item claiming \textbf{causation} from a strong $r$ (``more firefighters \emph{cause} more damage'');
-  \item arithmetic slips substituting into $\hat y=ax+b$ (order of operations).
+  \item skipping standard form --- reading $a,b,c$ before the equation is set $=0$;
+  \item sign errors in $b^2-4ac$, especially $-4ac$ when $c<0$ (the ``$+$'' the double negative creates);
+  \item forgetting $-b$ means the \emph{opposite} of $b$ (so $b=-2$ gives $-b=+2$);
+  \item dividing only \emph{part} of the numerator by $2a$ (must divide \emph{both} terms / simplify the whole fraction);
+  \item stopping at a negative radicand instead of converting with $i$ (Lesson~2.4);
+  \item leaving radicals or fractions unsimplified ($\sqrt{52}=2\sqrt{13}$; reduce common factors).
 \end{itemize}
-Cold-call prompts: ``Direction, form, strength --- which is which here?'' ``Is this $r$ closer to $-1$, $0$,
-or $1$, and how do you know?'' ``What does this slope mean in the story?'' ``Is that prediction
-interpolation or extrapolation --- and is it reasonable?'' ``Does this prove one thing \emph{causes} the
-other?''
+Cold-call prompts: ``What must be true before you read $a,b,c$?'' ``$b=-5$ --- what is $-b$?''
+``The discriminant is $-16$; how many real roots, and what kind are they?'' ``Where did this formula
+\emph{come from}?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Reading the Trend} activity (tiered; mirrors the notes).
+\textbf{One Formula, Every Quadratic} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Classify direction (positive / negative / none) from pre-drawn scatterplots;
-read a data point's coordinates; use a \emph{given} line of best fit to predict by substitution.
+\textbf{Tier R --- Remediate.} Put equations in standard form, identify $a,b,c$, compute the discriminant,
+and classify the roots (two real / one repeated / two complex) --- \emph{without} finishing the solve ---
+matching each to a pre-drawn parabola.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Match $r$-values to scatterplots and justify by direction \& strength;
-interpret the slope and $y$-intercept of a regression line in context; predict and label a prediction as
-interpolation or extrapolation.
+\textbf{Tier A --- Approaching.} Solve with the formula: real rational, real irrational (simplest radical
+form), and complex-conjugate cases; verify one root by substitution.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Work a full data context: interpret the model, predict, judge whether an
-extrapolation is reasonable, and critique a ``correlation proves causation'' claim, naming a possible
-lurking variable.
+\textbf{Tier E --- Extension.} Model a contextual situation (projectile/area), reject the impossible root
+and interpret; and a discriminant \emph{parameter} problem --- find the $k$ that makes an equation have
+exactly one real root.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): classify the association of a pre-drawn scatterplot and say
-whether $r$ is closer to $-1$, $0$, or $1$; given a regression line $\hat y=ax+b$, interpret the slope in
-context and make one prediction (labeling it interpolation or extrapolation); and one \textbf{SOL-style
-multiple-choice} item reading the meaning of a correlation coefficient. Collect and sort into ``got it /
-direction-vs-strength slip / $r$-reading slip / interpolation-extrapolation slip / causation slip'' to
-decide whether the unit review needs a two-minute re-teach before the test.
+\textbf{Exit Ticket} (independent, no notes): solve $x^2-4x+13=0$ with the formula (complex answer
+$2\pm3i$); use the discriminant to state the nature of the roots of a second equation \emph{without}
+solving; and an \textbf{SOL-style multiple-choice} item reading the root type from a given discriminant.
+Collect and sort into ``got it / sign slip in $b^2-4ac$ / dropped the $\pm$ or the $i$ / didn't simplify''
+to decide whether Lesson~2.6 opens with a re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} classify associations and match $r$-values to plots; interpret the slope and intercept of
-a regression line and predict (interpolation vs.\ extrapolation); judge a model's reasonableness; and
-critique a correlation-vs-causation claim. \textbf{Extension:} compare two candidate lines for the same data
-using how closely the points sit to each (an informal look at ``least squares''), and reason about a lurking
-variable. \textbf{Preview:} this closes Unit~2 (linear functions). Next is the \textbf{Unit~2 Test}; then
-\textbf{Unit~3, Quadratic Functions}, where the data may curve and a \emph{parabola} --- not a line --- best
-fits.
+\textbf{Homework:} identify $a,b,c$; compute discriminants and classify roots; solve with the formula
+(real rational, real irrational, and complex cases); match discriminant sign to a graph's $x$-intercepts;
+choose an efficient method; and verify a solution by substitution. \textbf{Extension:} a projectile model
+solved with the formula and a find-the-parameter discriminant problem. \textbf{Preview:} Lesson~2.6,
+\emph{Systems Involving Quadratics} --- solving linear--quadratic and quadratic--quadratic systems, where
+substitution lands you back on a single quadratic to solve (often with today's formula).
 \end{skillbox}
 % ── Teacher notes (migrated from the component keys) ──
 % One per component, titled for it. They live here rather than in the _key
 % files so that every component is the same length blank and keyed.
 
 \begin{teachernote}[Warm-Up]
-Item~1 is the reading skill a scatterplot demands --- every scatterplot is just many points like $A$--$D$.
-Item~2 \emph{is} prediction: substituting $x$ into a line $\hat y=ax+b$ is exactly how we predict from a
-regression model later today; keep students fluent with order of operations. Item~3 seeds the day's
-language: a \emph{positive} slope means $y$ rises as $x$ rises --- a \emph{positive association} on a
-scatterplot --- and a \emph{negative} slope a negative association. Debrief item~3 aloud before the notes.
+Every item is a direct prerequisite. Item~1 \emph{is} the discriminant --- the most common failure point is
+sign handling: $-4ac$ with $c=-3$ becomes $+12$, giving $4+12=16$; with $c=9$ it is $36-36=0$; the last is
+$9-40=-31<0$ (a preview of complex roots). Item~2 keeps radicals in simplest form, including the negative
+radicals from 2.4 that a negative discriminant will produce. Item~3 rehearses standard form and reading
+$a,b,c$ with signs --- the step students skip. Debrief item~1 \emph{last} and name the quantity ``the
+discriminant''; it predicts today's answers before any solving happens.
 \end{teachernote}
 
 \begin{teachernote}[Guided Notes]
-The organizing arc is \emph{describe $\to$ measure $\to$ model $\to$ predict $\to$ judge}. Section~1 keeps
-description qualitative (direction/form/strength) \emph{before} any number appears. Section~2's number line
-is the key mental model: $r$ folds direction (sign) and strength ($|r|$) into one value --- the recurring
-error is calling $r=-0.9$ ``weak'' because it is negative; hammer $|r|$. Section~3 is the heart of A2.ST.2:
-students \emph{interpret} the slope as a per-unit rate and the intercept as a baseline \emph{in the story},
-not as bare numbers. Section~4 draws the interpolation/extrapolation line (the $x=12$ prediction of $20$
-made out of $15$ shots is the memorable ``extrapolation breaks'' moment) and separates correlation from
-causation with the ice-cream/drownings lurking-variable classic. Finding $r$ and the equation is a
-technology task (A2.ST.2c,e,f); here the values are \emph{given} so class time goes to reading and
-reasoning. The practice box rehearses the whole arc on a \emph{negative} association so students transfer
-the ideas past the free-throw example.
+Pace: box~1 (derive + protocol) is the anchor --- do the general completing-the-square derivation on the
+board so students see the formula is not magic. The reject-negative-radicand-here habit from 2.3 flips today:
+a negative discriminant now \emph{gives} an answer. Most-missed steps: (i) forgetting standard form before
+reading $a,b,c$; (ii) sign of $-b$ when $b<0$; (iii) the $-4ac$ sign when $c<0$; (iv) dividing only one
+numerator term by $2a$ instead of reducing the whole fraction; (v) leaving $\sqrt{24}$ or $\frac{2\pm2\sqrt6}{2}$
+unsimplified. For the model, either apply the formula to $-16t^2+24t+6=0$ directly or clear signs first
+($8t^2-12t-3=0$) --- both give $t=\frac{3\pm\sqrt{15}}{4}$; only $t\approx1.72$ s is physical. Practice \#2's
+answer $1\pm\frac{\sqrt2}{2}i$ can also be written $\frac{2\pm\sqrt2\,i}{2}$; accept either.
 \end{teachernote}
 
 \begin{teachernote}[Group Activity]
-Tier~R keeps it to direction and substitution --- the two survival skills. Tier~A is the conceptual core:
-item~1 forces students to read \emph{both} direction and strength ($Q$ is the ``no trend'' distractor,
-$\approx 0.10$; $R$ falls but loosely, $\approx -0.70$; $P$ is the tight riser, $0.95$). Item~2 is the
-A2.ST.2 interpretation target --- insist on \emph{units and context} (\$2{,}500 per year, not ``2.5''), and
-note the salary is in \$1000s so $\hat y=63$ means \$63{,}000. Item~3 draws the interpolation/extrapolation
-line at the data's edge ($0$--$15$ years). Tier~E item~1c is the payoff: extrapolating to $90^\circ$ gives
-$-10$ cups, which is impossible --- a concrete ``the model breaks outside its data'' moment (A2.ST.2h). Item~2
-is the causation classic: the lurking variable (fire size) drives both, so the correlation is real but the
-causal claim is false. Common slips: calling $r=-0.70$ ``weak'' for being negative; giving a slope with no
-units; trusting the $90^\circ$ extrapolation.
+Tier R keeps students off the formula so they master the \emph{setup}: standard form, signed $a,b,c$, and
+reading the discriminant's sign. Watch \#1 for sign flips moving terms across, and \#4 --- A has two
+$x$-intercepts ($D>0$), C is tangent at the vertex ($D=0$), B floats above the axis ($D<0$). Tier A is the
+solving core; insist on writing the discriminant before substituting, and on simplifying
+($\frac{4\pm2\sqrt3}{2}=2\pm\sqrt3$, not left over $2$). In \#2, $2x^2+3x+2=0$ has $2a=4$ in the
+denominator --- a common divide-only-part slip. Tier E \#1: applying the formula to
+$-16t^2+32t+20=0$ directly gives $t=\frac{-32\pm48}{-32}$; students often prefer clearing signs to
+$4t^2-8t-5=0$ first --- both give $t=2.5$ s. Tier E \#2 is the payoff: the discriminant is a \emph{dial}
+that sets the root type. Tier E \#3 closes the loop back to Lesson 2.4 --- a complex root really does
+satisfy the equation.
 \end{teachernote}
 
 \begin{teachernote}[Exit Ticket]
-Item~1 checks the two-part read: direction from the sign of the trend (falling $\Rightarrow$ negative) and
-strength from how tightly the points cluster ($r$ near $-1$). Item~2 is the interpret-and-predict target:
-part (a) must carry \emph{units and context} (\$1{,}500 less \emph{per year of age}); part (b) tests
-substitution and the interpolation call ($x=6$ is inside $1$--$10$). Item~3 is the classic
-direction-vs-strength trap --- students who pick (A) read ``negative'' as ``weak.'' Sort exit tickets into
-``got it / direction-vs-strength slip / $r$-reading slip / interpolation-extrapolation slip / causation
-slip'' to decide whether the unit review needs a two-minute re-teach before the Unit~2 test.
+Sort into ``got it / sign slip in $b^2-4ac$ / dropped the $\pm$ or the $i$ / didn't simplify.'' Telltales:
+item~1 stopping at $\dfrac{4\pm\sqrt{-36}}{2}$ without converting to $6i$, or writing $\dfrac{4\pm6i}{2}$
+without reducing to $2\pm3i$; item~2 a sign error making $b^2-4ac$ come out $\le0$; item~3 choosing
+\textbf{D} (the ``no real solution'' habit from 2.3 that 2.4 replaced). If item~3 or the $i$-conversion is
+widely missed, reopen Lesson~2.6 with a 60-second discriminant-and-$i$ recap before starting systems.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-Item~2 checks the whole ``read $r$'' idea: (P) tight riser $\to 0.98$, (Q) loose faller $\to -0.60$, (R)
-shapeless cloud $\to 0.05$; the common error is calling $-0.60$ ``weakest'' because it is negative. Item~3 is
-the interpretation/prediction core (A2.ST.2g,h): parts (a)--(b) demand \emph{units and context}, part (c) is
-a safe interpolation, and part (d) is the extrapolation that breaks ($85$ cm from a linear rule far past the
-data). Item~4 is the causation classic --- age is the lurking variable behind shoe size and reading. The
-extension makes ``best fit'' concrete: $y_1$ has total error $1.0$ vs.\ $y_2$'s $3.0$, so $y_1$ is the better
-fit --- an informal preview of least-squares (technology minimizes exactly this kind of total error). Note
-$y_1=1.5x+0.5$ is essentially the regression line for these points.
+Answer traps to flag while grading: \#1 sign flips moving terms across ($5x-3=2x^2\to2x^2-5x+3=0$); \#2/\#6
+the $-4ac$ sign when $c<0$; \#3b/\#5c forgetting $2a$ in the denominator or not reducing; \#4 leaving
+$\frac{6\pm2\sqrt2}{2}$ unsimplified instead of $3\pm\sqrt2$; \#5 stopping at $\sqrt{-36}$ without the $i$;
+\#8 the ``no solutions'' misconception (it's no \emph{real} solutions). The extension \#1 is a clean $t=3$~s
+(the same firework from Lesson~2.0); if a student applies the formula to $-16t^2+32t+48=0$ directly they get
+$t=\frac{-32\pm64}{-32}$, and clearing to $t^2-2t-3=0$ factors to $(t-3)(t+1)$ --- a nice
+formula-vs-factoring check. \#2 makes the discriminant a dial; \#3 closes back to Lesson~2.4.
 \end{teachernote}
 
 \end{document}

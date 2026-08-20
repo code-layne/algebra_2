@@ -1,26 +1,16 @@
-%! Graphing Radical Functions \& Transformations — Unit 6, Lesson 6.4 — Guided Notes (Answer Key)
+%! Modeling with Exponential Functions: Interest, Half-Life, and e — Unit 6, Lesson 6.4 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
-\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+% Growth curve on a money-sized grid. pgfmath's pow() is unreliable for fractional
+% exponents, so every exponential is plotted as a*exp((ln b)t).
+% ln(1.05) = 0.0487902   ln(1.06) = 0.0582689   ln(0.5) = -0.693147   ln(2) = 0.693147
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
 % The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
 % paragraph, so without them each term label gets pulled onto the previous answer's line.
 \newcommand{\vocabans}[2]{%
   \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
-% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
-\newcommand{\cbrtplot}[5]{%
-  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
-    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
-  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
-    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
 
 \begin{document}
 
@@ -32,9 +22,10 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item graph $y=a\sqrt{x-h}+k$ and $y=a\sqrt[3]{x-h}+k$ from the equation by moving the parent's \emph{anchor point} to $(h,k)$ and applying $a$, and read off the domain and range without solving anything;
-  \item write the \emph{equation} of a square root or cube root function from its graph, using the anchor point for $h$ and $k$ and one more point for $a$;
-  \item explain why, for a radical function, changing the \emph{input} by a factor and changing the \emph{output} by a factor produce the same graph.
+  \item build and evaluate an exponential model for compound interest, continuous growth, half-life, and doubling --- and say what the answer \emph{means} in the situation;
+  \item explain why the base is always the factor for \emph{one period} and the exponent always \emph{counts periods}, so the rate is divided and the time is multiplied;
+  \item describe where the number $e$ comes from and use $A=Pe^{rt}$;
+  \item recognize an exponential equation that no common base will ever solve, and locate its answer on a graph anyway.
 \end{itemize}
 \end{objectivebox}
 
@@ -44,445 +35,331 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
-\vocabans{Transformation form of a radical function}{$y=a\sqrt{x-h}+k$ or $y=a\sqrt[3]{x-h}+k$ --- the form in which every transformation from the parent can be read straight off the equation}
-\vocabans{Anchor point}{the one point a radical graph is built around, always $(h,k)$: the \emph{endpoint} for a square root, the \emph{inflection point} for a cube root. Find it and the rest of the graph follows}
-\vocabans{Vertical stretch / vertical compression ($a$)}{multiplying every output by $a$. $|a|>1$ stretches the graph away from the $x$-axis (steeper); $0<|a|<1$ compresses it toward the $x$-axis (flatter). The anchor never moves}
-\vocabans{Reflection across the $x$-axis}{what a \emph{negative} $a$ does --- every output changes sign, so the arm leaves the anchor going down and the anchor becomes an absolute \emph{maximum} instead of a minimum}
-\vocabans{Inflection point (the cube root's anchor)}{the point $(h,k)$ where a cube root graph flattens out and switches the direction it bends. It is \emph{not} an extremum --- the graph keeps going in both directions}
-\vocabans{Horizontal compression, $f(kx)$}{multiplying every \emph{input} by $k$, sliding each point toward the $y$-axis. For a radical it cannot be told apart from a vertical stretch, because $\sqrt[n]{kx}=\sqrt[n]{k}\cdot\sqrt[n]{x}$}
+\vocabans{Principal, $P$}{the starting amount --- the money deposited or borrowed before any interest; it is the $a$ of Lesson 6.1's $y=ab^{x}$}
+\vocabans{Compounding period}{the stretch of time between two moments when interest is added; $n$ of them fit in a year, so each one uses the rate $\frac{r}{n}$}
+\vocabans{Compound interest formula, $A=P\left(1+\frac{r}{n}\right)^{nt}$}{the base is the factor for one period and the exponent counts the periods in $t$ years}
+\vocabans{The number $e$, and continuous compounding $A=Pe^{rt}$}{$e\approx2.71828$ is the value $\left(1+\frac1m\right)^{m}$ closes in on as $m$ grows; $Pe^{rt}$ is the ceiling --- compounding chopped infinitely fine}
+\vocabans{Half-life}{the time it takes for half of a quantity to be gone; if it is $h$, the model is $A_{0}\left(\frac12\right)^{t/h}$}
+\vocabans{Doubling time}{the time it takes for a quantity to double; if it is $d$, the model is $A_{0}\,2^{\,t/d}$}
 \end{vocabbox}
 
 \begin{hookbox}
-Three graphs. Three equations. They do \emph{not} appear in the same order.
+Four banks, one deposit of \$1000, one year, and the same advertised rate of $6\%$. The only difference
+is how often each bank stops and adds the interest in.
+
+\vspace{4pt}
 \begin{center}
-\begin{tikzpicture}[scale=0.30]
-  % I: y = sqrt(x)
-  \begin{scope}
-    \lgrid{-2}{10}{-4}{4}
-    \begin{scope}
-      \clip (-2,-4) rectangle (10,4);
-      \draw[very thick, forest, domain=0:10, samples=90, smooth] plot (\x,{sqrt(\x)});
-    \end{scope}
-    \fill[forest] (0,0) circle (6pt);
-    \node[charcoal, font=\small] at (4,-5.6) {\textbf{I}};
-  \end{scope}
-  % II: y = sqrt(x-3)
-  \begin{scope}[xshift=15cm]
-    \lgrid{-2}{10}{-4}{4}
-    \begin{scope}
-      \clip (-2,-4) rectangle (10,4);
-      \draw[very thick, forest, domain=3:10, samples=90, smooth] plot (\x,{sqrt((\x)-3)});
-    \end{scope}
-    \fill[forest] (3,0) circle (6pt);
-    \node[charcoal, font=\small] at (4,-5.6) {\textbf{II}};
-  \end{scope}
-  % III: y = sqrt(x) - 3
-  \begin{scope}[xshift=30cm]
-    \lgrid{-2}{10}{-4}{4}
-    \begin{scope}
-      \clip (-2,-4) rectangle (10,4);
-      \draw[very thick, forest, domain=0:10, samples=90, smooth] plot (\x,{sqrt(\x)-3});
-    \end{scope}
-    \fill[forest] (0,-3) circle (6pt);
-    \node[charcoal, font=\small] at (4,-5.6) {\textbf{III}};
-  \end{scope}
-\end{tikzpicture}
+\small
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Bank} & \textbf{Interest added} & \textbf{Balance after 1 year} \\
+\hline
+Ashmore     & once a year (annually) & \$1060.00 \\
+Bellhaven   & 4 times a year (quarterly) & \$1061.36 \\
+Corliss     & 12 times a year (monthly) & \$1061.68 \\
+Dunmore     & 365 times a year (daily) & \$1061.83 \\
+\hline
+\end{tabular}
 \end{center}
-\vspace{2pt}
-Match each equation to its graph: \quad $y=\sqrt{x}-3$ \; is \ans{III} \quad
-$y=\sqrt{x-3}$ \; is \ans{II} \quad $y=\sqrt{x}$ \; is \ans{I}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Two of these equations contain a $3$ and both graphs moved --- but in different directions. What decides? \ansline{Whether the $3$ is \emph{inside} the radical or \emph{outside} it. Inside, it moves the graph horizontally and in the opposite direction to its sign; outside, it moves the graph vertically and in the same direction.}
-  \item In Lesson~6.0 you found the domain of $\sqrt{x-3}$ by \emph{solving} $x-3\ge0$. Look at graph~II. Where could you have simply \emph{read} that answer? \ansline{At the endpoint. Graph II starts at $(3,0)$, so the domain is $[3,\infty)$ --- the inequality's answer is just the first coordinate of the point where the graph begins.}
+
+\vspace{4pt}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item Dunmore adds interest \textbf{365 times} as often as Ashmore. How much more does that earn you over the year? \ans{\$1.83}
+  \item Going from once a year to four times a year gained \ans{\$1.36}. Going from 12 times to 365 times gained \ans{\$0.15}. What is happening to the size of the gains? \ansline{They are shrinking fast --- each extra chop of the year buys less than the one before it.}
+  \item Predict: is there a bank so aggressive --- compounding every second, every instant --- that it doubles your money in a year? Or is something stopping it? \ansline{Something is stopping it: the balances are closing in on a ceiling near \$1061.84, not running away. (Answers will vary; the point is the prediction.)}
 \end{itemize}
-Today the domain stops being a calculation. \textbf{Find one point, and the whole graph follows.}
 \end{hookbox}
 
-\begin{notesbox}{1. The Anchor Point: $y=\sqrt{x-h}+k$}
-Every radical graph is built around a single point. For a square root that point is the
-\textbf{endpoint} --- where the graph begins. We call it the \textbf{anchor point}, and here is the
-entire rule:
+\boxguard
+\begin{notesbox}{1. Cutting the Year Into Pieces}
+Lesson 6.1 built $y=ab^{x}$, where $b$ was the growth factor for \emph{one} year and $x$ counted
+\emph{years}. Nothing about that changes today --- except that the ``one period'' does not have to be a
+year.
+
+\vspace{4pt}
+If an account pays an annual rate $r$ but adds the interest $n$ times per year, then each period uses
+only a fraction of the rate, and there are more periods to count:
+
+\vspace{2pt}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt]
+  \item the rate for one period is \ans{$\frac{r}{n}$}, so the \textbf{factor} for one period is $1+$ \ans{$\frac{r}{n}$};
+  \item in $t$ years the number of periods is \ans{$nt$}.
+\end{itemize}
+
+\vspace{4pt}
 \begin{center}
 \begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.92\linewidth,
     left=3mm, right=3mm, top=2mm, bottom=2mm]
 \centering
-$y=\sqrt{x-h}+k$ \quad has its anchor point at \quad $(\ \mans{h}\,,\ \mans{k}\ )$,
-\quad and the graph is the parent $y=\sqrt{x}$ moved there.
+\textbf{Compound Interest} \\[3pt]
+\TallMath{A = P\left(1+\frac{r}{n}\right)^{nt}}
+\\[1pt]
+{\small $P$ = principal (starting amount) \quad $r$ = annual rate as a \emph{decimal} \quad
+$n$ = compoundings per year \quad $t$ = years}
 \end{tcolorbox}
-\end{center}
-The signs behave exactly as they did for the parabola and the absolute value in Warm-Up item~1:
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $k$ is \emph{outside} the radical. It moves the graph \ans{vertically}, in the
-        \ans{same} direction as its sign.
-  \item $h$ is \emph{inside}, with the $x$. It moves the graph \ans{horizontally}, in the
-        \ans{opposite} direction. So $\sqrt{x-3}$ moves \ans{right} $3$, and $\sqrt{x+5}$
-        moves \ans{left} $5$.
-\end{itemize}
-
-\vspace{3pt}
-\textbf{Worked example: $f(x)=\sqrt{x-3}+1$.}
-\begin{center}
-\begin{minipage}[c]{0.52\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.46]
-  \lgrid{-1}{13}{-2}{6}
-  \begin{scope}
-    \clip (-1,-2) rectangle (13,6);
-    \draw[very thick, forest, domain=3:13, samples=100, smooth] plot (\x,{sqrt((\x)-3)+1});
-  \end{scope}
-  \fill[forest] (3,1) circle (4pt) node[left, font=\scriptsize]{$(3,1)$};
-  \fill[charcoal] (4,2) circle (2.6pt);
-  \fill[charcoal] (7,3) circle (2.6pt) node[above left, font=\scriptsize]{$(7,3)$};
-  \fill[charcoal] (12,4) circle (2.6pt);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}[c]{0.44\linewidth}
-\small
-$h=\mans{3}$, \quad $k=\mans{1}$ \\[4pt]
-Anchor point: \ans{$(3,1)$} \\[4pt]
-Domain: \ans{$[3,\infty)$} \\[4pt]
-Range: \ans{$[1,\infty)$} \\[4pt]
-The graph is the parent moved \\ right \ans{3} and up \ans{1}.
-\end{minipage}
 \end{center}
 
 \vspace{2pt}
-\textbf{Why this replaces the inequality.} Solving $x-3\ge0$ gives $x\ge 3$. Reading the anchor
-point gives $x$ starting at $3$. Those are not two facts --- they are \ans{the same fact}. Sliding the
-graph right by $h$ \emph{is} the act of throwing away every input below $h$.
-\begin{center}
-\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.7pt, arc=1.5mm, width=0.92\linewidth,
-    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
-\centering\small
-For $y=\sqrt{x-h}+k$: \quad Domain $=[\,h,\infty)$ \quad and \quad Range $=[\,k,\infty)$.
-\emph{Both start at the anchor.}
-\end{tcolorbox}
-\end{center}
-\end{notesbox}
-
-\begin{notesbox}{2. The Coefficient $a$: Steeper, Flatter, or Upside Down}
-Now put a number in front: $y=a\sqrt{x-h}+k$. The coefficient $a$ multiplies every \emph{output},
-so it changes the graph vertically --- and it never moves the anchor point, because at the anchor the
-radical equals \ans{0}, and $a\cdot 0 = \mans{0}$.
-\begin{center}
-\begin{minipage}[c]{0.46\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.46]
-  \lgrid{-1}{10}{-1}{7}
-  \begin{scope}
-    \clip (-1,-1) rectangle (10,7);
-    \draw[very thick, navy, domain=0:10, samples=100, smooth] plot (\x,{2*sqrt(\x)});
-    \draw[very thick, forest, domain=0:10, samples=100, smooth] plot (\x,{sqrt(\x)});
-    \draw[very thick, goldacc, domain=0:10, samples=100, smooth] plot (\x,{0.5*sqrt(\x)});
-  \end{scope}
-  \fill[charcoal] (0,0) circle (4pt);
-  \node[navy, font=\scriptsize, right] at (6.2,5.4) {$y=2\sqrt{x}$};
-  \node[forest, font=\scriptsize, right] at (7.0,2.9) {$y=\sqrt{x}$};
-  \node[goldacc, font=\scriptsize, right] at (6.8,1.1) {$y=\tfrac12\sqrt{x}$};
-\end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.50\linewidth}
-\small
-\begin{itemize}[leftmargin=1.3em, itemsep=4pt]
-  \item $|a|>1$: every output is multiplied by more than one, so the graph is a \textbf{vertical
-        \ans{stretch}} --- it climbs \ans{faster}.
-  \item $0<|a|<1$: a \textbf{vertical \ans{compression}} --- it climbs \ans{slower}.
-  \item All three graphs share the same \ans{anchor point} at $(0,0)$, and all three have domain
-        \ans{$[0,\infty)$}.
-\end{itemize}
-\end{minipage}
-\end{center}
-
-\vspace{4pt}
-\textbf{A negative $a$ turns the arm over.} If $a<0$, every output changes sign: the graph is
-\textbf{reflected across the $x$-axis} --- or, more usefully, reflected across the horizontal line
-through its own anchor. The arm now leaves the anchor going \emph{down}.
-\begin{center}
-\begin{minipage}[c]{0.46\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.46]
-  \lgrid{-1}{10}{-4}{7}
-  \begin{scope}
-    \clip (-1,-4) rectangle (10,7);
-    \draw[very thick, forest, domain=0:10, samples=100, smooth] plot (\x,{6-3*sqrt(\x)});
-  \end{scope}
-  \fill[forest] (0,6) circle (4pt) node[right, font=\scriptsize]{$(0,6)$};
-  \fill[charcoal] (1,3) circle (2.6pt);
-  \fill[charcoal] (4,0) circle (2.6pt) node[above right, font=\scriptsize]{$(4,0)$};
-  \fill[charcoal] (9,-3) circle (2.6pt);
-\end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.50\linewidth}
-\small
-$m(x)=-3\sqrt{x}+6$ \\[4pt]
-$a=\mans{-3}$, \; $h=\mans{0}$, \; $k=\mans{6}$ \\[4pt]
-Anchor point: \ans{$(0,6)$} \\[4pt]
-Domain: \ans{$[0,\infty)$} \quad Range: \ans{$(-\infty,6]$} \\[4pt]
-The anchor is an absolute \ans{maximum}, not a minimum. \\[4pt]
-$x$-intercept: \ans{$(4,0)$}
-\end{minipage}
-\end{center}
-\emph{Careful:} the range flips too. When $a>0$ the range is $[k,\infty)$; when $a<0$ it is
-\ans{$(-\infty,k]$}.
-\end{notesbox}
-
-\begin{notesbox}{3. The Cube Root Version: $y=a\sqrt[3]{x-h}+k$}
-Everything above transfers, with \emph{one} change: a cube root has no endpoint, because nothing
-stops it. The point at $(h,k)$ is still the anchor --- it is where the graph flattens out and changes
-the way it bends --- but it is called the \textbf{inflection point}, and it is not an extremum.
-\begin{center}
-\begin{minipage}[c]{0.54\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.38]
-  \lgrid{-10}{9}{-5}{2}
-  \begin{scope}
-    \clip (-10,-5) rectangle (9,2);
-    \cbrtplot{1}{-1}{-2}{-10}{9}
-  \end{scope}
-  \fill[forest] (-1,-2) circle (5pt) node[right, font=\scriptsize]{$(-1,-2)$};
-  \fill[charcoal] (-9,-4) circle (3pt);
-  \fill[charcoal] (0,-1) circle (3pt);
-  \fill[charcoal] (7,0) circle (3pt) node[below right, font=\scriptsize]{$(7,0)$};
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}[c]{0.42\linewidth}
-\small
-$g(x)=\sqrt[3]{x+1}-2$ \\[4pt]
-$h=\mans{-1}$, \; $k=\mans{-2}$ \\[4pt]
-Inflection point: \ans{$(-1,-2)$} \\[4pt]
-Domain: \ans{$(-\infty,\infty)$} \\[4pt]
-Range: \ans{$(-\infty,\infty)$} \\[4pt]
-$x$-intercept: \ans{$(7,0)$} \\[4pt]
-$y$-intercept: \ans{$(0,-1)$}
-\end{minipage}
-\end{center}
-\vspace{2pt}
-The anchor still tells you where the graph \emph{is}, but it no longer tells you the domain --- the
-domain is \ans{all reals} no matter what $h$ is, because an \ans{odd} index refuses nothing.
+\textbf{Read the formula as one sentence:} the base $\left(1+\frac{r}{n}\right)$ is what happens in
+\ans{one period}, and the exponent $nt$ \ans{counts the periods}. Every error today is a place where those two stop
+agreeing with each other.
 
 \vspace{5pt}
-\textbf{A bonus only the cube root gets.} Reflect $y=\sqrt[3]{x}$ across the $x$-axis and you get
-$y=-\sqrt[3]{x}$. Reflect it across the $y$-axis instead --- replacing $x$ with $-x$ --- and you get
-$y=\sqrt[3]{-x}$. Look at what happens:
-\begin{center}
-\begin{minipage}[c]{0.40\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.34]
-  \lgrid{-8}{8}{-3}{3}
-  \begin{scope}
-    \clip (-8,-3) rectangle (8,3);
-    \cbrtplot{-1}{0}{0}{-8}{8}
-  \end{scope}
-  \fill[charcoal] (0,0) circle (4pt);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}[c]{0.56\linewidth}
-\small
-This is \textbf{one} graph, not two. Check a point: \\[4pt]
-$-\sqrt[3]{8}=\mans{-2}$ \quad and \quad $\sqrt[3]{-8}=\mans{-2}$. \\[4pt]
-So $-\sqrt[3]{x}$ and $\sqrt[3]{-x}$ are \ans{equal} for every $x$. \\[4pt]
-This is the \textbf{odd symmetry} from Lesson~6.0 doing work: flipping a cube root vertically and
-flipping it horizontally are the \emph{same} transformation.
-\end{minipage}
-\end{center}
-\emph{Contrast:} $-\sqrt{x}$ (opens right, going down) and $\sqrt{-x}$ (opens left, going up) are
-\ans{completely different} graphs. The square root has \ans{no} symmetry to trade on.
-\end{notesbox}
+\textbf{Worked example.} \$2500 is invested at $4\%$ compounded quarterly for $6$ years.
 
-\begin{notesbox}{4. Backwards: From a Graph to an Equation}
-This is the harder direction, and it is on the SOL. Only three numbers are unknown, and the graph
-hands them to you in a fixed order.
-\begin{center}
-\begin{minipage}[c]{0.48\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.44]
-  \lgrid{-4}{9}{-2}{9}
-  \begin{scope}
-    \clip (-4,-2) rectangle (9,9);
-    \draw[very thick, forest, domain=-2:9, samples=100, smooth] plot (\x,{3*sqrt((\x)+2)-1});
-  \end{scope}
-  \fill[forest] (-2,-1) circle (4pt) node[below right, font=\scriptsize]{$(-2,-1)$};
-  \fill[charcoal] (2,5) circle (2.6pt) node[right, font=\scriptsize]{$(2,5)$};
-  \fill[charcoal] (7,8) circle (2.6pt) node[right, font=\scriptsize]{$(7,8)$};
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}[c]{0.48\linewidth}
-\small
-\textbf{Step 1 --- read the anchor.} It is at \ans{$(-2,-1)$}, so \\[2pt]
-$h=\mans{-2}$ and $k=\mans{-1}$. Write down what you know:
-\[ y=a\sqrt{x-(\mans{-2})}+(\mans{-1}) \]
-\textbf{Step 2 --- pick one more lattice point.} Use $(2,5)$. \\[2pt]
-\textbf{Step 3 --- substitute and solve for $a$.}
-\end{minipage}
-\end{center}
-\vspace{-4pt}
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabular}{@{}l l@{}}
-$5=a\sqrt{2+2}-1$ & substitute the point \\
-$5=a\cdot\mans{2}-1$ & the radical is a \emph{number} --- evaluate it first \\
-$\mans{6}=2a$ & add $1$ to both sides \\
-$a=\mans{3}$ & \\
-\end{tabular}
-\end{center}
-\textbf{Equation:} $y=$ \ans{$3\sqrt{x+2}-1$} \quad \textbf{Check} with the other point $(7,8)$:
-$3\sqrt{7+2}-1=3\cdot\mans{3}-1=\mans{8}$. \; \checkmark
 \vspace{3pt}
-
-\emph{The order matters.} If you try to find $a$ first you have two unknowns in one equation. The
-anchor is free information --- take it first, every time.
-\end{notesbox}
-
-\begin{notesbox}{5. When $h$ Is Hiding --- and the Surprise from Warm-Up Item 3}
-Sometimes the radicand is not in the form $x-h$. \textbf{Factor out the coefficient of $x$ first.}
-\[
-  y=\sqrt{4x-8} \;=\; \sqrt{4(x-\mans{2})} \;=\; \sqrt{4}\cdot\sqrt{x-2}
-    \;=\; \mans{2}\sqrt{x-2}
-\]
-Read the last form: anchor at \ans{$(2,0)$}, and a vertical stretch by \ans{2}.
 \begin{center}
-\begin{minipage}[c]{0.46\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.44]
-  \lgrid{-1}{12}{-1}{7}
-  \begin{scope}
-    \clip (-1,-1) rectangle (12,7);
-    \draw[very thick, forest, domain=2:12, samples=100, smooth] plot (\x,{2*sqrt((\x)-2)});
-  \end{scope}
-  \fill[forest] (2,0) circle (4pt) node[below right, font=\scriptsize]{$(2,0)$};
-  \fill[charcoal] (3,2) circle (2.6pt);
-  \fill[charcoal] (6,4) circle (2.6pt) node[above left, font=\scriptsize]{$(6,4)$};
-  \fill[charcoal] (11,6) circle (2.6pt);
-\end{tikzpicture}
-\end{minipage}
-\begin{minipage}[c]{0.50\linewidth}
 \small
-Domain: \ans{$[2,\infty)$} \quad Range: \ans{$[0,\infty)$} \\[5pt]
-\emph{Never} read $h$ off $\sqrt{4x-8}$ directly. The graph does \textbf{not} start at $x=8$.
-Factor, and the truth appears: it starts at $x=\mans{2}$. \\[5pt]
-(Or check it the old way: $4x-8\ge0$ gives $x\ge\mans{2}$. The two methods must agree ---
-they always do.)
-\end{minipage}
-\end{center}
-
-\vspace{4pt}
-\textbf{Now the strange part.} The SOL lists four transformations: $f(x)+k$, $f(x+k)$, $kf(x)$, and
-$f(kx)$. That last one, $f(kx)$, multiplies the \emph{input} --- it squeezes the graph
-\emph{horizontally}. Watch what it does to a square root:
-\begin{center}
 \renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{0.94\linewidth}{@{}X X@{}}
+\begin{tabularx}{0.95\linewidth}{@{}l X@{}}
 \hline
-\textbf{Squeeze the input: $f(9x)$} & \textbf{Stretch the output: $3f(x)$} \\
-\hline
-$y=\sqrt{9x}$ --- a \emph{horizontal} compression: each point slides in toward the $y$-axis, to
-one \ans{ninth} of its old $x$-value. &
-$y=$ \ans{$3\sqrt{x}$} --- a \emph{vertical} stretch: each output is multiplied by
-\ans{3}. \\
+$P=$ \ans{2500} \quad $r=$ \ans{0.04} \quad $n=$ \ans{4} \quad $t=$ \ans{6}
+  & \emph{$4\%$ becomes $0.04$ --- Lesson 6.1's translation, unchanged.} \\
+Rate per quarter: $\frac{r}{n}=$ \ans{0.01} \quad Base: \ans{1.01}
+  & \emph{One quarter's worth of interest, not one year's.} \\
+Number of quarters: $nt=$ \ans{24}
+  & \emph{Six years of quarters --- the exponent counts periods.} \\
+$A=$ \ans{$2500(1.01)^{24}$} $=$ \ans{\$3174.34}
+  & \emph{Round money to the nearest cent, only at the end.} \\
 \hline
 \end{tabularx}
 \end{center}
-These are the \emph{same expression} (Warm-Up item~3), so they are the same graph. Fill in the table
-to see it:
+
+\vspace{2pt}
+The same \$2500 at $4\%$ compounded \emph{annually} for 6 years would be
+$2500(1.04)^{6}=\$3163.30$. Compounding quarterly is worth an extra \ans{\$11.04} --- real, but small.
+\end{notesbox}
+
+\boxguard
+\begin{notesbox}{2. Where the Gains Stop: the Number $e$}
+The Hook found gains that shrink fast. To see what they shrink \emph{toward}, strip the money away and
+ask the cleanest version of the question: start with \$1 at $100\%$ for one year, and chop the year into
+$m$ equal pieces. The balance is $\left(1+\frac1m\right)^{m}$.
+
+\vspace{3pt}
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|c|c|c|c|c|}
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
-$x$ & $0$ & $1$ & $4$ & $9$ \\ \hline
-$\sqrt{9x}$ & \ans{$0$} & \ans{$3$} & \ans{$6$} & \ans{$9$} \\ \hline
-$3\sqrt{x}$ & \ans{$0$} & \ans{$3$} & \ans{$6$} & \ans{$9$} \\ \hline
+\textbf{pieces $m$} & $1$ & $10$ & $100$ & $1000$ & $10{,}000$ & $100{,}000$ \\
+\hline
+$\left(1+\frac1m\right)^{m}$ & $2$ & $2.59374$ & $2.70481$ & \ans{2.71692} & \ans{2.71815} & \ans{2.71827} \\
+\hline
 \end{tabular}
 \end{center}
-\textbf{Why does this happen?} Because the product property lets a constant walk straight out from
-under the radical: $\sqrt{kx}=\sqrt{k}\cdot\sqrt{x}$. So for a radical function --- and only because
-of that property --- a horizontal size change \emph{is} a vertical size change wearing a different
-coat. There is really only \ans{one} size dial, and you may describe it either way.
+
+\vspace{3pt}
+The values climb, but they are not climbing \emph{toward infinity} --- they are closing in on one
+number. That number is called \ans{$e$}, and to five decimal places it is \ans{2.71828}. Like
+$\pi$, it never terminates and never repeats, and like $\pi$, it has a button on your calculator.
+
+\vspace{4pt}
 \begin{center}
-\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.7pt, arc=1.5mm, width=0.94\linewidth,
-    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
-\small For a cube root the same thing happens with the cube root of $k$:
-$\sqrt[3]{8x}=\mans{2}\sqrt[3]{x}$. \\
-\emph{This is not true of every family.} Try it on $y=x+1$: compressing the input gives
-$\,9x+1$, but stretching the output gives $\,9x+\mans{9}$. Not the same. The
-\ans{$+1$} is what breaks it.
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.92\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering
+\textbf{Continuous Compounding} \\[3pt]
+\TallMath{A = Pe^{\,rt}}
+\\[1pt]
+{\small No $n$ appears --- the compounding has been chopped so fine that counting periods is over.}
 \end{tcolorbox}
 \end{center}
+
+\vspace{2pt}
+\textbf{Same investment, no more chopping.} \$2500 at $4\%$ compounded \emph{continuously} for 6 years:
+$A=2500e^{\,0.04\cdot6}=2500e^{\,0.24}=$ \ans{\$3178.12}.
+
+\vspace{3pt}
+Compare the three answers for the identical deal: annually \$3163.30, quarterly \$3174.34, continuously
+\ans{\$3178.12}. Continuous compounding is the \textbf{ceiling} --- the most that rate can possibly
+produce --- and it beats quarterly by only \ans{\$3.78}. This answers the Hook: no bank can double
+your money by compounding more often, because $e^{\,r}$ is where the chopping runs out.
+
+\vspace{2pt}
+\emph{Why anyone cares:} populations, cooling, and radioactive decay do not wait for the end of a
+quarter. They change continuously, so $e$ is their natural base --- which is why it comes back in Unit 7.
+\end{notesbox}
+
+\boxguard
+\begin{notesbox}{3. Half-Life and Doubling Time: the Same Idea on a Different Clock}
+A \textbf{half-life} is the time it takes for half of a quantity to disappear. A \textbf{doubling time}
+is the time it takes for a quantity to double. Both name \emph{how long one period lasts}, and both
+models are built exactly the way the interest formula was.
+
+\vspace{4pt}
+\begin{center}
+\begin{tcolorbox}[colback=sky, colframe=navy, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering
+\textbf{Half-life $h$:} \; \TallMath{A(t) = A_{0}\left(\tfrac12\right)^{t/h}}
+\qquad
+\textbf{Doubling time $d$:} \; \TallMath{A(t) = A_{0}\,2^{\,t/d}}
+\\[1pt]
+{\small The base says what one period does. The exponent $t/h$ (or $t/d$) counts how many periods have
+gone by.}
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{Why $t/h$ and not $t$?} Because $t$ is measured in hours or years, and the exponent must be
+measured in \emph{periods}. If the half-life is 6 hours, then in 18 hours there have been
+\ans{3} halvings, and in 9 hours there have been \ans{1.5} --- the Warm-Up answer. Dividing
+by $h$ is the unit conversion.
+
+\vspace{5pt}
+\textbf{Worked example.} A hospital gives a patient 80 mg of a tracer whose half-life is 6 hours.
+
+\vspace{3pt}
+\hspace*{1.0em} Model: $A(t)=$ \ans{$80\left(\frac12\right)^{t/6}$} \quad where $t$ is in \ans{hours}.
+
+\vspace{4pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+$t$ (hours) & $0$ & $6$ & $12$ & $18$ & $9$ \\ \hline
+halvings $t/6$ & $0$ & \ans{1} & \ans{2} & \ans{3} & \ans{1.5} \\ \hline
+$A(t)$ (mg) & $80$ & \ans{40} & \ans{20} & \ans{10} & \ans{28.28} \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{2pt}
+The last column is the one worth arguing about: $t=9$ is \emph{between} two halvings, the exponent is
+$1.5$, and the answer lands sensibly between 40 and 20.
+
+\vspace{3pt}
+\textbf{Will the tracer ever be completely gone?} \ans{No} --- and the reason is Lesson 6.0's, not
+a new one: the range of this model is \ans{$(0,80]$} and the graph has a horizontal asymptote at
+\ans{$A=0$}. Half of something is never nothing. \emph{(In context, of course, the amount eventually
+falls below anything a machine can detect --- but the model never reaches zero.)}
+
+\vspace{4pt}
+\begin{tcolorbox}[colback=greenbg, colframe=greenacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{Yesterday's method still works here.} When does the tracer drop to 10 mg? Divide first, then
+use a common base (Lesson 6.3).
+
+\vspace{3pt}
+\hspace*{1.0em} From $80\left(\frac12\right)^{t/6}=10$: \quad
+$\left(\frac12\right)^{t/6}=$ \ans{$\frac18$} $=\left(\frac12\right)^{\blacksquare}$ with
+$\blacksquare=$ \ans{3}, \quad so $\frac{t}{6}=$ \ans{3} \; and \; $t=$ \ans{18} hours.
+
+\vspace{3pt}
+That worked because $10$ is $80$ cut in half three times. Ask for 25 mg instead and the method dies.
+\end{tcolorbox}
+\end{notesbox}
+
+\boxguard[30]
+\begin{notesbox}{4. The Wall}
+Here is the question every investor actually asks: \textbf{when does my money double?} Put \$1000 into
+an account paying $5\%$ compounded annually. The model is $A(t)=1000(1.05)^{t}$, and doubling means
+solving $1000(1.05)^{t}=2000$. Divide both sides by $1000$: \; $(1.05)^{t}=$ \ans{2}.
+
+\vspace{3pt}
+
+\begin{center}
+\begin{minipage}[c]{0.46\linewidth}
+\centering
+\begin{tikzpicture}[x=0.26cm, y=0.00155cm]
+  \draw[linegray!40, very thin, xstep=2, ystep=500] (0,0) grid (20,3000);
+  \draw[->, semithick, charcoal] (0,0)--(21.5,0) node[above right, font=\scriptsize]{$t$ (yr)};
+  \draw[->, semithick, charcoal] (0,0)--(0,3250) node[left, font=\scriptsize]{$A$};
+  \foreach \t in {5,10,15,20} \node[below, font=\tiny] at (\t,0) {$\t$};
+  \foreach \a in {1000,2000,3000} \node[left, font=\tiny] at (0,\a) {$\a$};
+  \draw[very thick, forest, domain=0:20, samples=120, smooth]
+    plot (\x,{1000*exp(0.0487902*(\x))});
+  \draw[goldacc, very thick] (0,2000)--(20,2000);
+  \node[goldacc, font=\scriptsize, above] at (5,2020) {$A=2000$};
+  \fill[charcoal] (14,1979.9) circle (2.2pt);
+  \fill[charcoal] (15,2078.9) circle (2.2pt);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.50\linewidth}
+\small
+\begin{itemize}[leftmargin=1.3em, itemsep=2pt]
+  \item The gold line \emph{does} cross the curve, so the answer \textbf{exists}.
+  \item $1000(1.05)^{14}=\$1979.93$ and $1000(1.05)^{15}=\$2078.93$, so the money doubles between year
+        \ans{14} and year \ans{15}.
+  \item Now try Step 1 of Lesson 6.3 on $(1.05)^{t}=2$: rewrite both sides over one base.
+        \ans{$2$ is not a power of $1.05$, so there is no common base --- Step 1 is impossible.}
+  \item So this is \emph{not} a ``no solution'' equation. Compare $2^{x}=-3$: that one has no solution
+        at all, because $-3$ is not in the \ans{range}.
+\end{itemize}
+\end{minipage}
+\end{center}
+
+\vspace{3pt}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{The running list.} Every equation below has an answer. Not one of them has a common base.
+\[
+  2^{x}=5 \qquad 132(0.85)^{t}=32 \qquad (0.9)^{t}=2.118 \qquad (1.05)^{t}=2
+\]
+Half-life questions often \emph{do} land on a common base --- halving to $\frac18$ is what the base
+does. Interest questions almost never do. The tool that finishes all four is a \textbf{logarithm}, and
+it is the whole of Unit 7.
+\end{tcolorbox}
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{1.} The graph below is $p(x)=-2\sqrt{x+1}+4$.
-\begin{center}
-\begin{tikzpicture}[scale=0.46]
-  \lgrid{-3}{11}{-4}{6}
-  \begin{scope}
-    \clip (-3,-4) rectangle (11,6);
-    \draw[very thick, forest, domain=-1:11, samples=100, smooth] plot (\x,{4-2*sqrt((\x)+1)});
-  \end{scope}
-  \fill[forest] (-1,4) circle (4pt) node[above right, font=\scriptsize]{$(-1,4)$};
-  \fill[charcoal] (0,2) circle (2.6pt);
-  \fill[charcoal] (3,0) circle (2.6pt) node[above right, font=\scriptsize]{$(3,0)$};
-  \fill[charcoal] (8,-2) circle (2.6pt);
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item $a=\mans{-2}$, \; $h=\mans{-1}$, \; $k=\mans{4}$ \quad Anchor point:
-        \ans{$(-1,4)$}
-  \item \textbf{Domain:} \ans{$[-1,\infty)$} \quad \textbf{Range:} \ans{$(-\infty,4]$}
-  \item \textbf{$x$-intercept:} \ans{$(3,0)$} \quad \textbf{$y$-intercept:} \ans{$(0,2)$}
-  \item Describe the three transformations from $y=\sqrt{x}$, in words. \ansline{Left $1$ (from
-        $x+1$); a vertical stretch by a factor of $2$ together with a reflection across the
-        $x$-axis (from $a=-2$); then up $4$.}
-  \item The anchor is an absolute \ans{maximum}. Which part of the equation told you that, before
-        you looked at the graph? \ans{the negative sign on $a=-2$}
-\end{enumerate}
+Show the substitution before you reach for the calculator. Round money to the nearest cent.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item \$3000 is invested at $5\%$ compounded monthly for 4 years. \\[2pt]
+        $\dfrac{r}{n}=$ \ans{$\frac{0.05}{12}$} \quad $nt=$ \ans{48} \quad
+        $A=$ \ans{$3000\left(1+\frac{0.05}{12}\right)^{48}$} $=$ \ans{\$3662.69}
 
-\vspace{4pt}
-\textbf{2.} Write the equation of the cube root function graphed below, in the form
-$y=a\sqrt[3]{x-h}+k$.
-\begin{center}
-\begin{tikzpicture}[scale=0.40]
-  \lgrid{-8}{10}{-6}{4}
-  \begin{scope}
-    \clip (-8,-6) rectangle (10,4);
-    \cbrtplot{2}{1}{-1}{-8}{10}
-  \end{scope}
-  \fill[forest] (1,-1) circle (5pt) node[right, font=\scriptsize]{$(1,-1)$};
-  \fill[charcoal] (9,3) circle (3pt) node[below right, font=\scriptsize]{$(9,3)$};
-  \fill[charcoal] (-7,-5) circle (3pt);
-\end{tikzpicture}
-\end{center}
-Inflection point \ans{$(1,-1)$} $\Rightarrow$ $h=\mans{1}$, $k=\mans{-1}$. \quad
-Substitute $(9,3)$: \; $3=a\sqrt[3]{\mans{8}}-1$, so $a=\mans{2}$. \\[3pt]
-\textbf{Equation:} $y=$ \ans{$2\sqrt[3]{x-1}-1$}
+  \item The same \$3000 at $5\%$ compounded \emph{continuously} for 4 years. \\[2pt]
+        $A=$ \ans{$3000e^{\,0.20}$} $=$ \ans{\$3664.21} \quad Extra earned by compounding continuously:
+        \ans{\$1.52}
+
+  \item A 240 mg dose of a drug has a half-life of 8 hours. Write the model, then find how much
+        remains after 24 hours. \\[2pt]
+        $A(t)=$ \ans{$240\left(\frac12\right)^{t/8}$} \hfill $A(24)=$ \ans{30 mg}
+
+  \item Which of these can be solved with Lesson 6.3's common-base method, and which cannot? Circle
+        one on each line and say how you can tell at a glance.
+        \\[2pt]
+        \hspace*{1.0em} $240\left(\frac12\right)^{t/8}=30$ \quad \textcolor{keyred}{\textbf{yes}} / \textbf{no}
+        \hfill
+        $5000(1.03)^{t}=10{,}000$ \quad \textbf{yes} / \textcolor{keyred}{\textbf{no}}
+        \\[2pt]
+        \ansline{Divide first: $\left(\frac12\right)^{t/8}=\frac18$ is a power of $\frac12$, but $(1.03)^{t}=2$ asks for $2$ as a power of $1.03$, and it is not one.}
+\end{enumerate}
 \end{practicebox}
 
 \begin{teachernote}
-\small
-\textbf{Pacing.} Sections 1--3 are one continuous idea and should move fast --- students have been
-doing $h$ and $k$ since Unit~2, and the only genuinely new word is \emph{anchor point}. Budget the
-saved time for Sections 4 and 5, which are where the lesson is won or lost.
+\textbf{The Hook's numbers are the argument; do not compute them at the board.} They are printed
+because the surprise lives in the \emph{differences}, not the arithmetic: \$1.36, then \$0.32, then
+\$0.15. Students almost universally predict that daily compounding is dramatically better, and the
+\$1.83 total gain over an entire year is what makes Section 2 feel necessary rather than decorative.
+Ask the third bullet as a real prediction and write the guesses down --- Section 2 settles it.
 
-\textbf{Section 1 is the argument of the day.} Do not let ``domain $=[h,\infty)$'' land as a new rule
-to memorize. It is the \emph{old} rule, seen from the other side: the inequality
-$x-h\ge0$ and the horizontal shift by $h$ are one event. If a student is shaky, have them do both and
-compare --- they will never disagree.
+\textbf{One sentence carries the whole lesson:} \emph{the base is what happens in one period, and the
+exponent counts the periods.} Say it at the compound-interest box, again at the half-life box, and a
+third time in Section 4. Both signature errors are that sentence broken in half --- using $r$ where
+$\frac{r}{n}$ belongs (base kept annual, exponent made quarterly) or $t$ where $nt$ belongs (the
+reverse). They come back as the two named students in the Activity, so name them here.
 
-\textbf{Section 3's reflection pair} is the compare-and-contrast item the SOL asks for
-(\textbf{A2.F.1e}), and it lands only if you draw the square-root contrast beside it. $-\sqrt x$ and
-$\sqrt{-x}$ occupy different quadrants; $-\sqrt[3]{x}$ and $\sqrt[3]{-x}$ are the same curve. The
-reason is Lesson 6.0's odd symmetry, so name it.
+\textbf{Section 2's table is where $e$ has to be earned, not announced.} Let students see $2.71692$,
+$2.71815$, $2.71827$ and say out loud that the digits are freezing from the left. Resist defining $e$
+by a formula --- ``the number the chopping runs into'' is the honest description at this level, and it
+is exactly what makes $A=Pe^{rt}$ read as a \emph{ceiling}. The $\$3.78$ gap between quarterly and
+continuous is the punchline: infinitely fine compounding is worth less than four dollars.
 
-\textbf{Section 4 must be practiced in order.} The single most common failure is students trying to
-solve for $a$ and $h$ at once. Say it as a rule: \emph{the anchor is free; take it first.} Also
-insist on the check with the second point --- it costs ten seconds and catches every sign error.
+\textbf{Section 3's $t=9$ column is the one to slow down on.} A fractional number of half-lives reads
+as an error to most students --- the same instinct that made them distrust $x=\frac23$ in Lesson 6.3.
+Point at the Warm-Up: they already computed $\left(\frac12\right)^{1.5}\approx0.354$, and
+$28.28$ sits exactly where it should, between $40$ and $20$. The ``will it ever be gone?'' question is
+pure Lesson 6.0 and should be answered from the asymptote, not from arithmetic.
 
-\textbf{Section 5 is the hard one, and it has two halves.} The first (factor before reading $h$) is
-mechanical and will be on every assessment: $\sqrt{4x-8}$ does \emph{not} start at $8$. The second
-(the $f(kx)$ collapse) is conceptual and is the answer to the vote you took in the Warm-Up. Do not
-let it become ``horizontal and vertical stretches are always the same'' --- the $y=x+1$
-counterexample in the green box exists to stop exactly that, and it should be worked aloud.
+\textbf{Section 4 must end unresolved, and students must not leave calling it ``no solution.''} The
+graph does the work: the gold line crosses, so an answer exists; $2$ is simply not a power of $1.05$.
+The contrast with $2^{x}=-3$ is the distinction Lesson 6.3's exit ticket was built to test, and it is
+the one Unit 7 depends on. Do not name logarithms. Leave the four-equation list posted --- Lesson 7.4
+takes it down.
 \end{teachernote}
 
 \end{document}

@@ -1,4 +1,4 @@
-%! Zeros of Polynomials: the Rational Root Theorem — Unit 4, Lesson 4.4 — Lesson Plan
+%! The Rational Parent Function \& Transformations — Unit 4, Lesson 4.4 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 4: Polynomial Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 4.4: Zeros of Polynomials: the Rational Root Theorem}
+\newcommand{\UnitNumberName}{Unit 4: Rational Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 4.4: The Rational Parent Function \& Transformations}
 
 \begin{document}
 \begin{center}
@@ -19,23 +19,30 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can generate the \emph{candidate list} for a polynomial
-    with integer coefficients --- $\pm\frac{p}{q}$ with $p$ a divisor of the constant term and $q$ a
-    divisor of the leading coefficient --- and then run the workflow the rest of this unit depends
-    on: \textbf{list $\rightarrow$ test $\rightarrow$ divide $\rightarrow$ finish}. They test
-    candidates efficiently (Remainder Theorem, synthetic division, and the $x$-intercepts of a
-    graph), divide out each zero they find, factor the depressed polynomial completely, solve the
-    equation, and \emph{verify} their solutions by substitution and against the graph. They also
-    learn what the theorem does not promise: the list holds \emph{possible} zeros, and it finds
-    \emph{rational} ones only.
+    \textbf{Primary Objective:} Students can graph and describe the \textbf{rational parent function}
+    $f(x)=\frac1x$ --- the two-branch \textbf{hyperbola} with a vertical asymptote $x=0$, a horizontal
+    asymptote $y=0$, origin symmetry, and \emph{no intercepts at all} --- and can then move it. Given
+    $g(x)=\frac{a}{x-h}+k$ they place the \textbf{asymptotes first} ($x=h$ from the denominator, which
+    does the opposite of what it says; $y=k$ from the number added outside), locate the \textbf{center}
+    $(h,k)$ where the two cross, and read off domain, range, and both intercepts --- knowing $a$ moves
+    neither asymptote but decides how far the branches sit from the center and which pair of regions
+    they occupy. Running it backwards, they \textbf{write the equation from a graph}: the asymptotes
+    give $h$ and $k$, one marked point gives $a$, and a second point checks it. Finally they recognize
+    a linear-over-linear function as a \emph{disguised} $\frac1x$ by rewriting its numerator in terms
+    of its denominator.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.6c} --- solve a polynomial equation of degree
-    three or higher (today over the reals; the complex case is Lesson~4.5) --- and
-    \textbf{A2.EI.6d} --- verify possible solutions algebraically and graphically and explain the
-    solution method. \textbf{A2.EO.3c} (synthetic division) and \textbf{A2.EO.3b} (factor the
-    depressed polynomial completely) are used on every problem, and \textbf{A2.F.2c} whenever zeros
-    are read as $x$-intercepts. The lesson is the direct prerequisite for \textbf{A2.EI.6a/b} in
-    Lesson~4.5.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.1a} --- distinguish the graphs of the parent
+    functions (today: the rational parent among the parents already met). \textbf{A2.F.1b} --- write
+    the equation of a rational function given a graph, using transformations of the parent.
+    \textbf{A2.F.1c} --- graph a rational function given the equation, using $f(x)+k$, $f(kx)$,
+    $f(x+k)$, and $kf(x)$. \textbf{A2.F.1e} --- compare and contrast the graphs, tables, and equations
+    of the function families. Applied throughout: \textbf{A2.F.2h} (equations of vertical and
+    horizontal asymptotes, from Lesson 4.0), \textbf{A2.F.2a} (domain, range, intercepts, including
+    graphs with discontinuities), \textbf{A2.F.2c} (increasing/decreasing intervals), \textbf{A2.F.2g}
+    (end behavior), and \textbf{A2.F.2f} (interpreting $f(x)$ in context --- the dilution and
+    free-throw models). Builds on Units 1--2 transformations and Lesson 4.3's combining; it is the
+    prerequisite for \textbf{4.5} (where the asymptotes stop being visible in the equation) and quietly
+    seeds \textbf{4.7} (Homework 5's constant product is an inverse variation).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -45,23 +52,24 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item State the \textbf{Rational Root Theorem} and build the candidate list $\pm\frac{p}{q}$.
-  \item Keep the bookkeeping clean: constant on \emph{top}, leading coefficient on the \emph{bottom}, reduce, drop repeats, keep every $\pm$.
-  \item \textbf{Test} candidates with the Remainder Theorem or synthetic division; use a graph's $x$-intercepts to choose which to try.
-  \item \textbf{Divide} out a confirmed zero and factor the \textbf{depressed polynomial} completely.
-  \item Solve $f(x)=0$ for degree $3$ and $4$, including \emph{fractional} solutions from non-monic factors.
-  \item \textbf{Verify} solutions by substitution and against the graph (A2.EI.6d).
-  \item Recognize the limits: the list may contain \emph{no} zeros, and irrational zeros never appear on it.
+  \item Graph and describe the parent $f(x)=\frac1x$: two branches, both asymptotes, domain, range, symmetry, end behavior.
+  \item Read $a$, $h$, $k$ out of $g(x)=\frac{a}{x-h}+k$ and place the two asymptotes \emph{before} anything else.
+  \item Give domain ($x\neq h$), range ($y\neq k$), and both intercepts \emph{by computing}, not by reading.
+  \item Describe the effect of $a$: stretch, compression, reflection --- and no asymptote movement.
+  \item Meet $f(kx)$ honestly: on this parent it collapses into $kf(x)$, because $\frac{1}{kx}=\frac{1/k}{x}$.
+  \item \textbf{Write the equation from a graph} (A2.F.1b): asymptotes $\rightarrow h,k$; one point $\rightarrow a$; second point $\rightarrow$ check.
+  \item Rewrite a linear-over-linear function as $\frac{a}{x-h}+k$ to expose the hidden parent.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Testing candidates is useless unless the list is \emph{finite} --- the theorem's whole job is turning infinity into a dozen numbers.
-  \item A zero $\frac{p}{q}$ comes from a factor $(qx-p)$; the $q$'s multiply to the leading coefficient and the $p$'s to the constant term, so neither can hide.
-  \item A leading coefficient of $1$ forces $q=\pm1$ --- which is why almost every candidate list students have seen so far was made of integers.
-  \item Each zero found \emph{shrinks} the problem: lower degree, shorter list, and at a quadratic the guessing stops entirely.
-  \item ``Find the zeros,'' ``solve $f(x)=0$,'' and ``find the $x$-intercepts'' are one task in three vocabularies.
-  \item The list is \emph{suspects, not convictions}. An empty result is information, not an arithmetic error.
+  \item \textbf{The asymptotes are the parent's axes, and they travel with it.} Draw the two dashed lines and the branches have nowhere else to go.
+  \item An \emph{input} shift moves a wall; an \emph{output} shift moves a floor. That is the whole lesson in one sentence.
+  \item The parent has \emph{no} intercepts --- the first parent of the course for which that is true, and the fact students refuse to believe.
+  \item ``Inside is backwards'' is not a new rule; it is Unit 1's rule, and it costs more here because it puts the wall on the wrong side of the axis.
+  \item The horizontal asymptote is a \textbf{range} exclusion. Students restrict domains by habit and forget ranges entirely.
+  \item A transformed parent \emph{never} crosses its horizontal asymptote --- stronger than 4.0's ``may cross,'' and for a reason worth stating: the numerator is a nonzero constant.
+  \item $k$ \emph{is} the ratio of the leading coefficients. The degree rule from 4.0 and the general form are the same fact.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -69,158 +77,216 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Rational Root Theorem} & \TallMath{\text{If } \tfrac{p}{q} \text{ (lowest terms) is a zero of } a_nx^n+\cdots+a_0, \text{ then } p \mid a_0 \text{ and } q \mid a_n .} \\
-\textbf{Candidate} & One value on the list $\pm\frac{p}{q}$ --- a number worth testing, not a guaranteed zero. \\
-\textbf{Lowest terms} & Why $\tfrac{2}{2}$ and $\tfrac{6}{3}$ never get their own entries; reduce before listing. \\
-\textbf{Depressed polynomial} & The quotient after dividing out $(x-r)$: one degree lower, with a shorter list of its own. \\
-\textbf{Solution / root} & A value making $f(x)=0$ --- the same object as a zero of $f$ and an $x$-intercept of its graph. \\
-\textbf{Verifying a solution} & Substituting to get $0$, and confirming against the graph's $x$-intercepts (A2.EI.6d). \\
-\textbf{Rational vs.\ irrational zero} & The theorem reaches only the first kind; $\pm\sqrt{3}$ arrives from the depressed polynomial. \\
-\textbf{Monic polynomial} & Leading coefficient $1$ $\Rightarrow$ every $q=\pm 1$ $\Rightarrow$ the candidates are the divisors of the constant term. \\
+\textbf{Rational parent function} & \TallMath{f(x)=\frac1x} --- the reciprocal. Vertical asymptote $x=0$, horizontal asymptote $y=0$, domain and range both ``all reals except $0$,'' \emph{no} intercepts. \\
+\textbf{Hyperbola / branch} & The two-piece curve that is the graph of $\frac1x$; each separate piece is a \emph{branch}. \\
+\textbf{General form} & \TallMath{g(x)=\frac{a}{x-h}+k} --- every transformation of the parent at once. \\
+\textbf{Center} & $(h,k)$, the point where the two asymptotes cross. The parent's origin, relocated --- and \emph{not} a point of the graph. \\
+\textbf{The four transformations} & $f(x)+k$ (moves the HA), $f(x+k)$ (moves the VA), $kf(x)$ (stretch/reflect), $f(kx)$ (which here equals a $kf(x)$). \\
+\textbf{Origin symmetry (3.0)} & $f(-x)=-f(x)$: rotating $180^\circ$ about the origin returns the graph. $\frac1x$ is an \emph{odd} function. \\
+\textbf{Degree comparison (4.0)} & Equal degrees $\Rightarrow$ HA is the ratio of the leading coefficients --- which is exactly the $k$ left over after the rewrite. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up assembles today's theorem out of parts students already own, without naming it.
-    \textbf{(1)} \emph{Divisors} of $6$ and of $2$, positives \emph{and} negatives --- the two lists
-    the theorem asks for. \textbf{(2)} \emph{Building fractions} $\frac{p}{q}$ from those lists,
-    reducing, and crossing out duplicates ($\tfrac22$, $\tfrac62$) --- twelve candidates, and the
-    bookkeeping that most students lose points on. \textbf{(3)} \emph{Finishing Lesson~4.3's Tier E
-    preview}: synthetic division of $h(x)=2x^3-3x^2-11x+6$ by $(x-3)$, then factoring
-    $2x^2+3x-2=(2x-1)(x+2)$ to get all three zeros $3$, $\tfrac12$, $-2$. \textbf{(4)} The question
-    the lesson answers: yesterday's candidate list was the divisors of $6$, and $\tfrac12$ was not on
-    it --- \textbf{``where did that denominator come from?''} Debrief items 2 and 4 together, take
-    answers about the leading coefficient $2$, and \emph{do not} state the theorem yet.
+    The Warm-Up rehearses three skills, one per leg of the lesson. \textbf{(1)} \emph{The reciprocal
+    table}: $y=\frac1x$ evaluated at $-4,-1,-\frac12,\frac12,1,4$ plus the undefined column at $0$,
+    then domain, range, and both asymptote equations --- the parent met numerically before it is met as
+    a picture. Debrief this one slowly: the answers ``no $x$-intercept'' and ``no $y$-intercept'' are
+    permanent, and true of no other parent students have graphed. \textbf{(2)} \emph{The shift rules
+    from Units 1--2}: the vertices of $|x-3|+1$ and $(x+2)^2-5$, then the general statement in words
+    --- outside is vertical and honest, inside is horizontal and backwards. Insist on the words; today
+    that rule moves a \emph{wall}. \textbf{(3)} \emph{One function, two costumes}: combine
+    $2+\frac{3}{x-1}$ into $\frac{2x+1}{x-1}$ (Lesson 4.3), then find its asymptotes the Lesson 4.0 way
+    --- $x=1$ and $y=2$, which are exactly the two numbers it started with. \textbf{Say nothing about
+    that coincidence.} It is Section 6 of the notes, and the recognition is worth more than the hint.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put the graph of $h(x) = 2x^3-3x^2-11x+6$ on the board (it is in the notes, pre-drawn) with its
-    three $x$-intercepts at $-2$, $\tfrac12$, and $3$. Then say the honest thing about yesterday:
-    \textbf{``Lesson 4.3 could crack any polynomial --- as long as somebody told you which number to
-    test. Nobody is going to tell you on the test.''} Ask the class how many numbers there are to
-    try. (Infinitely many.) So testing is worthless unless the list of suspects is finite. Point at
-    the intercept at $\tfrac12$: \textbf{``And notice a whole-number list would have walked right
-    past this one.''} Frame the period as a single question --- \emph{which numbers are worth
-    testing?} --- and promise that by the end of class they will be able to write down, for any
-    polynomial with integer coefficients, a short list guaranteed to contain every rational zero it
-    has.
+    Put two tables side by side --- $y=\frac1x$ at $x=-2,-1,0,1,2$ and $y=\frac{1}{x-3}$ at
+    $x=1,2,3,4,5$ --- and have the class fill both. The output columns come out \emph{identical}:
+    $-\frac12,-1,\text{undef.},1,\frac12$ down each one. \textbf{``Compare the two output columns. What
+    do you notice?''} Nothing about the outputs changed; they simply arrived three inputs later. So the
+    blow-up moved from $x=0$ to $x=3$, and the settling-down value stayed at $y=0$. Land the sentence
+    that runs the period before you draw anything: \textbf{shifting a rational function carries its
+    asymptotes with it --- the wall moved, the floor did not.} The point of doing this numerically is
+    that the shift becomes a fact about the table rather than a rule to be trusted, and the ``inside is
+    backwards'' direction is something students \emph{observe} ($x-3$ moved things right) instead of
+    something they try to remember.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Why guessing fails.} One minute, and it earns the rest. Infinitely many numbers, no way to
-test them all; the theorem's entire job is to produce a \emph{finite} list.
+\textbf{1. The parent.} Graph $y=\frac1x$ from the Warm-Up table and read it completely: domain and
+range both ``all reals except $0$,'' VA $x=0$, HA $y=0$, end behavior $y\to0$ both ways. Then spend real
+time on the intercepts, because the answer is \emph{none} and no previous parent behaved that way. Ask
+it as two separate questions: \textbf{``when is a fraction equal to zero?''} (only when its numerator
+is --- and this numerator is $1$) and \textbf{``what is $f(0)$?''} (nothing; $0$ is not in the domain).
+Close with two callbacks: the graph decreases on $(-\infty,0)$ \emph{and} on $(0,\infty)$ --- two
+intervals, never one, because an interval may not span a wall (4.0) --- and it has origin symmetry, so
+it is odd (3.0).
 
-\textbf{2. State the theorem, then earn it.} For $f(x)=a_nx^n+\cdots+a_0$ with \emph{integer}
-coefficients, a rational zero $\frac{p}{q}$ in lowest terms has $p \mid a_0$ and $q \mid a_n$. Then
-do the ``why'' live on the Warm-Up's factorization $h(x)=(x-3)(2x-1)(x+2)$: the leading coefficients
-of the factors multiply to $2$, the constants multiply to $6$. A zero $\frac{p}{q}$ comes from a
-factor $(qx-p)$, and those numbers have nowhere to hide. Students accept the rule either way, but
-this makes it inevitable rather than arbitrary --- and it explains the $\tfrac12$ they just found.
+\textbf{2. The two shifts.} This is the heart. $y=\frac{1}{x-3}$ moves the parent right $3$, and its
+\emph{vertical} asymptote goes with it to $x=3$; $y=\frac1x+2$ moves the parent up $2$, and its
+\emph{horizontal} asymptote goes to $y=2$. Draw both with the parent dashed behind. Then state the box:
+\textbf{the asymptotes are the parent's axes, and they travel with it.} Every graphing question today
+is answered by drawing those two dashed lines first, and students who begin by plotting points instead
+will fight the vertical asymptote all period.
 
-\textbf{3. Build two lists.} $f(x)=x^3-4x^2+x+6$ (monic --- candidates are just the divisors of $6$;
-say out loud that this is why every list they have seen so far was integers) and
-$g(x)=4x^3-4x^2-x+1$ (candidates $\pm1,\pm\tfrac12,\pm\tfrac14$). Name the error of the day
-\emph{before} it happens: flipping the fraction. Ask whether $4$ could plausibly be a zero of $g$.
+\textbf{3. The stretch, the flip, and the surprise.} Show $y=\frac1x$, $y=\frac3x$, and $y=-\frac1x$ on
+three grids. $|a|>1$ pushes the branches away from the asymptotes, $|a|<1$ pulls them in, $a<0$ sends
+them to the opposite pair of regions --- and \emph{no asymptote moves}. Then take two minutes on the
+fourth transformation, which A2.F.1c names and which behaves strangely here:
+$f(4x)=\frac{1}{4x}=\frac{1/4}{x}$, so a horizontal compression by $4$ \emph{is} a vertical compression
+by $\frac14$. On this parent --- and only on this parent --- $f(kx)$ and $kf(x)$ give the same family
+of curves. That is the honest answer to ``why is there only one letter for stretching?''
 
 \columnbreak
 
-\textbf{4. Run the workflow end to end.} On $f(x)=x^3-4x^2+x+6$: list, test ($f(1)=4$, $f(-1)=0$),
-divide by $x+1$ synthetically, factor the depressed $x^2-5x+6$, answer $(x+1)(x-2)(x-3)$. Then
-\textbf{Step 5, verify} --- substitute, and count against the degree. Verification is in the
-standard (A2.EI.6d); treat it as part of the answer, not as a nicety.
+\textbf{4. The general form.} Assemble $g(x)=\frac{a}{x-h}+k$ and read it in a fixed order: $h$ gives
+the VA, $k$ gives the HA, $(h,k)$ is the \textbf{center} where they cross (and is not on the graph),
+$a$ does the rest. Work the anchor $g(x)=\frac{2}{x-3}+1$ completely: VA $x=3$, HA $y=1$, center
+$(3,1)$, domain $x\neq3$, range $y\neq1$, $y$-intercept $\frac13$, $x$-intercept $(1,0)$ --- and insist
+the intercepts are \emph{computed}. Then the question that separates today from 4.0: \textbf{``does
+this graph ever cross its horizontal asymptote?''} Setting $g(x)=1$ requires $\frac{2}{x-3}=0$, which is
+impossible. A transformed parent \emph{never} crosses its HA --- stronger than 4.0's ``may cross,'' and
+for a nameable reason.
 
-\textbf{5. Make the search shorter.} Three moves, in order of value: \emph{read the graph} (the
-pre-drawn graph in the notes has intercepts at $-1$, $2$, $3$ --- all on the list); \emph{shrink the
-problem} (each zero found lowers the degree and shortens the list; at a quadratic, stop hunting);
-\emph{test cheaply} with the Remainder Theorem. Then say the equivalence plainly: find the zeros
-$=$ solve $f(x)=0$ $=$ find the $x$-intercepts.
+\textbf{5. Backwards: the equation from a graph (A2.F.1b).} Read the asymptotes to get $h$ and $k$ for
+free, substitute one clearly marked point to solve for $a$, then \emph{check on a second point}. Work
+the graph with VA $x=-1$, HA $y=-2$, through $(1,-1)$: $-1=\frac a2-2$ gives $a=2$, so
+$y=\frac{2}{x+1}-2$, and $(0,0)$ confirms it. Flag the sign trap out loud: the asymptote is at $x=-1$
+and the equation shows $x+1$, because $x-(-1)=x+1$. This is the likeliest SOL item on the standard; do
+not let it get cut for time.
 
-\textbf{6. Solve one together.} $2x^3+3x^2-8x+3=0$ gives $(x-1)(2x-1)(x+3)$ and the solution set
-$\{-3,\tfrac12,1\}$ --- a second fractional solution, from a second non-monic factor. Watch the
-board for students reading $2x-1=0$ as $x=2$ or $x=-\tfrac12$.
-
-\textbf{7. Close on the limits.} The practice section supplies both: $k(x)=x^3-x^2-2x+2$ has one
-rational zero and two irrational ones ($\pm\sqrt2$, from the depressed polynomial), and a depressed
-$x^2+4$ has no real zeros at all. \textbf{Leave the second one unresolved} --- it is the door into
-Lesson~4.5.
+\textbf{6. Compare, contrast, and the disguise (A2.F.1a/e).} Fill the table against $y=x^2$ and
+$y=|x|$ --- restricted domain, restricted range, asymptotes, no intercepts, two pieces, origin
+symmetry. Then the payoff: $\frac{x-1}{x-3}=\frac{(x-3)+2}{x-3}=1+\frac{2}{x-3}$, which is the Section
+4 anchor. Ask who recognizes the Warm-Up. Whenever top and bottom are both linear, the function is a
+shifted, stretched $\frac1x$ --- and this is \emph{why} 4.0's degree rule is true in that case: the
+leftover constant \emph{is} the ratio of the leading coefficients.
 \end{multicols}
 \end{skillbox}
 
+\begin{skillbox}[Explicit Instruction: Graph It, Then Un-Graph It]{forestbg}
+\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
+\vspace{0pt}
+\textbf{Equation $\rightarrow$ graph (A2.F.1c). Post these.}
+\begin{enumerate}[leftmargin=1.3em, nosep, after=\vspace{2pt}]
+  \item Set the denominator to zero: \textbf{VA} $x=h$.
+  \item The number added outside is the \textbf{HA} $y=k$.
+  \item Draw both as dashed lines. They cross at the \textbf{center} $(h,k)$.
+  \item \textbf{Domain} $x\neq h$; \textbf{range} $y\neq k$.
+  \item \textbf{Intercepts:} $y$-int is $g(0)$; $x$-int solves $\frac{a}{x-h}=-k$.
+  \item Use $a$ to decide which pair of regions the branches occupy and how far out they sit.
+\end{enumerate}
+
+\vspace{3pt}
+\textbf{Graph $\rightarrow$ equation (A2.F.1b).}
+\begin{enumerate}[leftmargin=1.3em, nosep, after=\vspace{2pt}]
+  \item Read the VA: $h$. \quad 2. Read the HA: $k$.
+  \item[3.] Write $y=\frac{a}{x-h}+k$ with $h,k$ filled in.
+  \item[4.] Substitute one marked point; solve for $a$.
+  \item[5.] \textbf{Check on a second point.}
+\end{enumerate}
+&
+\vspace{0pt}
+\textbf{Worked, on the anchor.} \; $g(x)=\dfrac{2}{x-3}+1$
+\[ x-3=0 \Rightarrow \text{VA } x=3; \qquad \text{HA } y=1; \qquad \text{center } (3,1) \]
+\[ g(0)=\frac{2}{-3}+1=\frac13; \qquad \frac{2}{x-3}=-1 \Rightarrow x=1 \]
+\centerline{Domain $x\neq3$ \quad Range $y\neq1$ \quad $a=2>1$: branches pushed out}
+
+\vspace{4pt}
+\textbf{And the same function, in disguise:}
+\[ \frac{x-1}{x-3}=\frac{(x-3)+2}{x-3}=1+\frac{2}{x-3} \]
+\vspace{-6pt}
+\textbf{The two questions students must answer aloud:} \emph{which number moved which asymptote?} and
+\emph{is $(h,k)$ on the graph?} (No --- it is the one point the graph is guaranteed to miss.)
+\end{tabularx}
+\end{skillbox}
+
 \begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
+Circulate during the guided practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item the \textbf{flipped fraction} --- divisors of the leading coefficient on top; ask whether that number could plausibly be a zero;
-  \item a \textbf{missing $\pm$} --- half the list gone, and in more than one problem today the only zero found by testing is negative;
-  \item \textbf{unreduced duplicates} --- $\tfrac22$, $\tfrac63$, $\tfrac{2}{6}$ written as new candidates;
-  \item \textbf{reading zeros off non-monic factors} --- $(2x-1)$ gives $x=\tfrac12$, not $2$ and not $-\tfrac12$. This is the new error this lesson introduces;
-  \item \textbf{grinding the whole list} when a graph is on the page --- correct answer, missed point;
-  \item stopping at the \textbf{depressed polynomial} instead of factoring completely (still Lesson 4.2's standard);
-  \item treating an \textbf{empty list} as an arithmetic failure;
-  \item forgetting that the theorem needs \textbf{integer coefficients} to say anything at all.
+  \item \textbf{the sign of $h$} --- $\frac{1}{x-3}$ read as a shift \emph{left}; the signature error, and worse here than in Units 1--2 because it puts the wall on the wrong side of the $y$-axis;
+  \item \textbf{the horizontal asymptote read off the numerator} --- $a$ and $k$ are different letters doing different jobs, and $a$ moves nothing;
+  \item \textbf{the two roles crossed} --- ``the $+3$ inside moves it up'' --- which ruins every problem after it;
+  \item \textbf{``the parent goes through the origin''} --- it does not, and this is the fact students most resist;
+  \item \textbf{range given as ``all reals''} --- domains get restricted by habit, ranges get forgotten; the HA is a \emph{range} exclusion;
+  \item \textbf{decreasing on $(-\infty,\infty)$} --- 4.0's union rule, still in force, still costing points;
+  \item \textbf{intercepts guessed off the picture} instead of computed from the equation;
+  \item \textbf{$(h,k)$ plotted as a point of the graph} --- it is precisely the point the graph never reaches;
+  \item \textbf{stalling on $a$} in a graph-to-equation item --- that student has the concept and is missing a substitution; one minute fixes it.
 \end{itemize}
-Cold-call prompts: ``What is the constant term, and what goes on top?'' ``How many candidates are on
-your list --- did you count the negatives?'' ``You found $2x-1$; what value of $x$ makes that zero?''
-``The graph crosses between $-1$ and $0$: which candidates live there?'' ``Your list came up empty
---- is that a mistake?''
+Cold-call prompts: ``Which asymptote did that number move, and how do you know?'' ``What is the domain,
+and now what is the \emph{range}?'' ``Is the center on the graph?'' ``Your equation fits one point ---
+now try the other one.'' ``$x-3$: left or right? Prove it with a number.'' ``Can this graph ever
+\emph{touch} $y=1$?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Suspect List} activity (tiered; mirrors the notes).
+\textbf{Move the Walls} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Two \emph{monic} cubics so the candidate list is simply the divisors
-of the constant term and the workflow can be practiced without fraction bookkeeping ---
-$x^3-2x^2-5x+6$ walked through step by step with the synthetic grid pre-drawn, then
-$x^3+2x^2-x-2$ solved independently (and re-derived by grouping, a Lesson~4.2 callback). The third
-problem is list-building only, on the non-monic $2x^3+x^2-5x+2$.
+\textbf{Tier R --- Remediate.} One transformation at a time. Four asymptote-naming items
+($\frac{1}{x-5}$, $\frac1x-4$, $\frac{1}{x+6}$, then the full $\frac{2}{x-1}+3$ with center, domain,
+and range), a \textbf{graph-matching} set of three pre-drawn hyperbolas against
+$\frac1x+3$, $\frac{1}{x+2}-3$, $\frac{1}{x-2}$, and a from-memory recall of the parent's features. The
+match is the item to watch: choosing the horizontally-shifted graph for $\frac1x+3$ means the two roles
+are crossed, and that must be fixed before the student goes further.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} A non-monic solve with a fractional zero, $2x^3-x^2-8x+4$ (checked
-a second way by grouping); a \textbf{graph-driven} problem on $2x^3+3x^2-11x-6$ where the pre-drawn
-graph names two integer zeros and locates the third between $-1$ and $0$, so students choose
-$-\tfrac12$ off the list instead of grinding through twelve candidates; the quartic
-$x^4-x^3-7x^2+x+6$, requiring the workflow \emph{twice}; and error analysis on the two signature
-mistakes --- a list with no negatives, and the belief that a candidate list must contain a zero.
+\textbf{Tier A --- Approaching.} A four-row table ($a,h,k$ / VA \& HA / domain \& range / $y$-intercept)
+over $\frac{4}{x-1}$, $\frac1x-5$, $\frac{-2}{x+3}+1$, $\frac{6}{x+2}-2$ --- the second row is the
+point, since $\frac1x-5$ has \emph{no} $y$-intercept because its VA is the $y$-axis. Then a
+\textbf{graph-to-equation} item (VA $x=1$, HA $y=3$, through $(3,2)$, so $a=-2$) with a mandatory check
+on the second point. Then an \textbf{error analysis}: a student reads $\frac{1}{x+4}-1$ as ``VA $x=4$,
+HA $y=1$'' --- disprove the wall by evaluating at $x=4$ and getting $-\frac78$.
 
 \columnbreak
-\textbf{Tier E --- Extension.} A guided \emph{proof} of the monic case ($d=-r(r^2+br+c)$, so
-$r \mid d$), plus why that argument breaks when $a_n \ne 1$; running the theorem \emph{backward} to
-build $6x^3+x^2-4x+1$ from the zeros $\tfrac12$, $\tfrac13$, $-1$ (the A2.EI.6a skill Lesson~4.5
-opens with); $k(x)=x^3-3x-1$, which has \emph{no} rational zeros yet three real ones, established
-from a table of values with three sign changes; and a preview task on $x^3-x^2+4x-4$, whose depressed
-polynomial $x^2+4$ has no real zeros --- groups conjecture where the missing two solutions went.
+\textbf{Tier E --- Extension.} \emph{Part 1:} unmask $\frac{3x+5}{x+1}=3+\frac{2}{x+1}$ and
+$\frac{2x-7}{x-4}=2+\frac{1}{x-4}$, then confirm both horizontal asymptotes against 4.0's degree rule.
+\emph{Part 2:} build one backwards --- VA $x=-3$, HA $y=4$, through $(-2,1)$ gives
+$\frac{-3}{x+3}+4=\frac{4x+9}{x+3}$ --- plus the question of whether a graph with those asymptotes could
+pass through $(-3,1)$ (it could not; $-3$ is not in the domain). \emph{Part 3:} \textbf{diluting the
+brine} --- $20$ g of salt in $5$ L, add $x$ L of pure water, $C(x)=\frac{20}{5+x}$. The HA $y=0$ means
+the salt never leaves; the VA $x=-5$ is real algebra and meaningless chemistry; and halving the
+concentration costs $5$, then $10$, then $20$ more liters, which is diminishing returns made visible.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} the full workflow on
-$3x^3+2x^2-7x+2=0$ --- build the list ($\pm1,\pm2,\pm\tfrac13,\pm\tfrac23$), test, divide, factor to
-$(x-1)(3x-1)(x+2)$, give the solutions $-2$, $\tfrac13$, $1$, and \emph{verify} one by substitution;
-\textbf{(2)} error analysis on a flipped candidate list for $2x^3+5x^2-x-6$, which forces students to
-say \emph{which} coefficient goes where; and \textbf{(3)} an \textbf{SOL-style multiple-choice} item
-asking which value is \emph{not} a possible rational zero of $4x^3-x^2+6x-3$, with $\tfrac23$ as the
-answer (its numerator does not divide $3$ and its denominator does not divide $4$) and three valid
-candidates as distractors. Sort into ``got it / list built wrong / division or arithmetic / stopped
-before solving.'' A large ``list built wrong'' pile is the one to fix immediately, because
-Lesson~4.5 assumes students can produce a candidate list unaided. Watch specifically for zeros
-listed as $-\tfrac13$ from the factor $(3x-1)$ --- that is the non-monic sign error, and two minutes
-of ``set each factor equal to zero and \emph{solve}'' fixes it.
+\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} read $g(x)=\frac{-3}{x+2}-1$ completely ---
+$a,h,k$, center $(-2,-1)$, VA $x=-2$, HA $y=-1$, $y$-intercept $(0,-\frac52)$, domain $x\neq-2$, range
+$y\neq-1$ --- and then answer whether the graph ever \emph{crosses} its horizontal asymptote (it does
+not: that would need $\frac{-3}{x+2}=0$). \textbf{(2)} the \textbf{A2.F.1b item}: write the equation
+from a graph with VA $x=2$, HA $y=-1$, through $(3,2)$ and $(5,0)$ --- answer $y=\frac{3}{x-2}-1$, with
+the second point used as the check. \textbf{(3)} an \textbf{SOL-style multiple-choice} item: which
+function has VA $x=-4$ and HA $y=3$? Each distractor breaks exactly one idea --- $\frac{2}{x-4}+3$
+flips the sign of $h$, $\frac{2}{x+3}+4$ swaps the two jobs, and $\frac{3}{x+4}+2$ reads the horizontal
+asymptote off the numerator. Collect and sort into ``got it / sign of $h$ / the two jobs crossed /
+equation-from-a-graph.'' The sign pile is the fastest fix. The \emph{crossed-jobs} pile is the one to
+re-teach before tomorrow, because 4.5 takes the asymptotes off the face of the equation entirely --- a
+student who cannot say which letter moves which asymptote has nothing left to hold onto there.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} three list-only items of increasing nastiness (ending with $6x^3+x^2-5x-2$ and its
-twelve candidates); two monic solves; a non-monic solve, $2x^3-5x^2-4x+3$, whose fractional solution
-$\tfrac12$ an integers-only list would have missed; a quartic, $x^4-4x^3-x^2+16x-12$, needing the
-workflow twice; a ``no hints this time'' item on $x^3+2x^2-5x-6$ --- Lesson~4.3's exit ticket, where
-the divisor was handed over and now must be generated --- with an explicit A2.EI.6d verification
-step; a solve whose depressed polynomial is $x^2-3$, so two of the three solutions are irrational and
-were never on the list; and two written items, including the one most students miss: a candidate list
-with no winners is not an arithmetic error. \textbf{Extension:} a planter box of volume
-$2x^3+3x^2-3x-2$ whose dimensions come out $(x-1)(2x+1)(x+2)$ with the domain restriction $x>1$,
-checked numerically at $x=3$; building $3x^3-13x^2+2x+8$ from the zeros $-\tfrac23$, $1$, $4$; and
-the sharpest one-question check of the theorem --- if $\tfrac35$ is a zero, what is the smallest the
-leading coefficient could be? \textbf{Preview:} Lesson~4.5, the \emph{Fundamental Theorem of
-Algebra} --- today a cubic twice refused to give up three real solutions; tomorrow you find out that
-nothing was missing.
+\textbf{Homework:} six quick asymptote-and-move items covering each transformation singly and in
+combination; three \textbf{full reads} ($\frac{4}{x-1}-2$, $\frac{-6}{x+3}+3$, $\frac{1}{x+5}$) with
+center, asymptotes, domain, range, and both intercepts, closing on \emph{which one has no $x$-intercept
+and why} (the third: $k=0$, so its HA is the $x$-axis); two \textbf{graph-to-equation} items, the
+second of which deliberately omits the horizontal asymptote from the figure so students must read
+$y=0$ off the flattening branches; four \textbf{disguises} ($\frac{x+5}{x+2}$, $\frac{4x-3}{x-1}$,
+$\frac{2x}{x+4}$ --- the last has no visible constant to split off, and needs $2x=2(x+4)-8$) checked
+against the degree rule; an \textbf{A2.F.1e table comparison} pairing $y=3x$ (constant differences)
+against $y=\frac{12}{x}$ (constant \emph{products}) --- which is quietly an inverse variation and a seed
+for 4.7; and a \textbf{free-throw model}, $P(x)=\frac{12+x}{20+x}=1-\frac{8}{x+20}$, where reaching
+$90\%$ takes $60$ makes in a row, $95\%$ takes $140$, and $100\%$ takes forever --- a horizontal
+asymptote priced in a currency students care about. \textbf{Extension:} three students describe
+$\frac{-2}{x-5}+4$ --- one flips $h$, one reads the HA off the numerator, and the third gets both
+asymptotes right and still misses the \emph{reflection}, which is the instructive case --- plus a
+\emph{design} task (VA $x=4$, HA $y=-3$, $y$-intercept $(0,-2)$) and the question of why a point on the
+horizontal asymptote could never have pinned down $a$. \textbf{Preview:} Lesson 4.5, \emph{Graphing
+Rational Functions} --- the denominator factors into two pieces, the asymptotes stop being visible in
+the equation, and the graph has to be assembled from a factored form, a degree comparison, the
+intercepts, and a sign chart.
 \end{skillbox}
 \end{document}

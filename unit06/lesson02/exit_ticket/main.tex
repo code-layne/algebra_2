@@ -1,41 +1,69 @@
-%! Simplifying Radicals; Adding \& Subtracting — Unit 6, Lesson 6.2 — Exit Ticket
+%! Graphing Exponential Functions and Transformations — Unit 6, Lesson 6.2 — Exit Ticket
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax   (ln2 = 0.693147)
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+\newcommand{\hasym}[3]{\draw[navy, dashed, semithick] (#1,#3)--(#2,#3);}
 
 \begin{document}
 
 \pageheader{Unit 6, Lesson 6.2}{Exit Ticket}
 \namedateperiod
 
-\vspace{0.10in}
+\vspace{0.08in}
 
-No notes, no calculator. Assume all variables represent positive real numbers.
+No notes. For every function, find the asymptote \emph{before} you write the range.
 
-\begin{enumerate}[leftmargin=1.8em, itemsep=10pt]
-  \item \textbf{Simplify completely.}
+\begin{enumerate}[leftmargin=1.8em, itemsep=9pt]
+  \item \textbf{Read it off the equation.} \; $y=4^{x}-5$
 
-        \vspace{4pt}
-        (a) $\sqrt{75} = \blank{2.2cm}$ \hspace{0.5in}
-        (b) $\sqrt[3]{54} = \blank{2.2cm}$
+        \vspace{3pt}
+        Asymptote: $y=$ \blank{1.6cm} \quad Range: \blank{2.4cm} \quad
+        $y$-intercept: \blank{2.0cm} \quad Growth or decay? \blank{2.0cm}
 
-        \vspace{4pt}
-        (c) $\sqrt{18x^{5}} = \blank{2.6cm}$ \hspace{0.4in}
-        (d) $2\sqrt{12}+\sqrt{27} = \blank{2.6cm}$
+  \item \textbf{Inside or outside.} Only one of these has range $(3,\infty)$.
 
-  \item \textbf{Explain.} A classmate writes $\sqrt{9}+\sqrt{16}=\sqrt{25}=5$. Show with numbers
-        that this is wrong, then state the rule that \emph{does} hold and say what operation it
-        requires.
-        \writelines{3}
+        \vspace{3pt}
+        \hspace*{1.2em} $y=2^{\,x+3}$ \qquad\qquad $y=2^{x}+3$
 
-  \item \textbf{SOL-style multiple choice.} Which expression is equivalent to
-        $\sqrt{50}+\sqrt{32}$?
+        \vspace{3pt}
+        Which one? \blank{3.0cm} \; Explain in one sentence what the \emph{other} one does instead.
+
+        \vspace{2pt}
+        \writeline
+
+  \item \textbf{Write the equation} of the curve below. It has the form $y=a\,b^{x}+k$.
+    \begin{center}
+    \begin{minipage}[c]{0.44\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-3}{4}{-1}{10}
+      \begin{scope}\clip (-3,-1) rectangle (4,10); \expgraph{2}{0.693147}{0}{1}{-3}{4} \end{scope}
+      \hasym{-3}{4}{1}
+      \node[navy, font=\scriptsize] at (3,1.8) {$y=1$};
+      \fill[charcoal] (0,3) circle (3pt) node[below left, font=\scriptsize]{$(0,3)$};
+      \fill[charcoal] (1,5) circle (3pt) node[right, font=\scriptsize]{$(1,5)$};
+    \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[c]{0.52\linewidth}
+    $k=$ \blank{1.4cm} \quad $a=$ \blank{1.4cm} \quad $b=$ \blank{1.4cm} \\[8pt]
+    $y=$ \blank{3.4cm}
+    \end{minipage}
+    \end{center}
+
+  \item \textbf{SOL-style multiple choice.} What is the range of $g(x)=3(2)^{x}-6$?
         \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-          \item $\sqrt{82}$
-          \item $9\sqrt{2}$
-          \item $9\sqrt{4}$
-          \item $20\sqrt{2}$
+          \item $(-6,\infty)$
+          \item $[-6,\infty)$
+          \item $(0,\infty)$
+          \item $(6,\infty)$
         \end{enumerate}
 \end{enumerate}
 

@@ -1,4 +1,4 @@
-%! Solving by Square Roots & Completing the Square — Unit 3, Lesson 3.3 — Lesson Plan
+%! Dividing Polynomials; Remainder and Factor Theorems — Unit 3, Lesson 3.3 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 3: Quadratic Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.3: Solving by Square Roots \& Completing the Square}
+\newcommand{\UnitNumberName}{Unit 3: Polynomial Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 3.3: Dividing Polynomials; Remainder and Factor Theorems}
 
 \begin{document}
 \begin{center}
@@ -19,22 +19,23 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can solve a quadratic equation \emph{even when it will not factor
-    over the integers}, using two new tools. They apply the \emph{Square Root Property} --- if $x^2=k$ (with
-    $k\ge0$) then $x=\pm\sqrt{k}$ --- to any equation they can write as ``(a square) $=$ (a number),''
-    remembering the $\pm$ and writing radicals in simplest form. When a linear term is in the way, they
-    \emph{complete the square}: add $(b/2)^2$ to manufacture a perfect-square trinomial, rewrite as
-    $(x-h)^2=k$, and take square roots. They connect completing the square back to Lesson~3.1's
-    \emph{vertex form} $(x-h)^2+k$ (the same move reveals the vertex) and choose sensibly among factoring,
-    square roots, and completing the square. Real solutions only here; the negative-radicand case
-    ($x^2=-4$) is previewed and deferred to Lesson~3.4 (complex numbers).
+    \textbf{Primary Objective:} Students can \emph{divide} one polynomial by another --- by a
+    monomial (splitting the fraction), and by a binomial or factorable trinomial using \emph{long
+    division} --- and can use \emph{synthetic division} whenever the divisor has the form $x-r$.
+    They write every result as \emph{quotient} plus \emph{remainder over divisor} and check it
+    against the division statement $P = D\cdot Q + R$. They can then read the remainder as
+    information: the \textbf{Remainder Theorem} says it equals $f(r)$, and the \textbf{Factor
+    Theorem} says a remainder of $0$ means $(x-r)$ is a factor. That is the tool that gets past the
+    wall Lesson~3.2 ended on --- students divide a known factor out of $x^3-3x+2$ and finish a
+    factorization their identities could not reach.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.2b} (solve a quadratic equation in one variable
-    algebraically --- here the square-root and completing-the-square methods, restricted to real
-    solutions), \textbf{A2.EI.2a} (create a quadratic equation to model a context), and \textbf{A2.EI.2d}
-    (verify solutions and interpret them --- the roots are the parabola's $x$-intercepts). Builds on
-    \textbf{A2.EO.3d} (the perfect-square-trinomial identity $x^2\pm2kx+k^2=(x\pm k)^2$, run \emph{forward}
-    to complete the square) and \textbf{A2.F.2} vertex-form characteristics from Lesson~3.1.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3c} --- determine the quotient of polynomials in
+    one and two variables, using monomial, binomial, and factorable trinomial divisors.
+    \textbf{A2.EO.3b} is revisited every time a depressed polynomial is factored completely, and
+    \textbf{A2.EO.3a} every time a division is checked by multiplying back. \textbf{A2.F.2a} and
+    \textbf{A2.F.2f} are in play whenever the Factor Theorem is read as a statement about zeros and
+    $x$-intercepts, or the Remainder Theorem is used to evaluate $f(r)$. The lesson is the direct
+    prerequisite for \textbf{A2.EI.6c/d} in Lessons~3.4--3.5.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -44,22 +45,23 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Solve $x^2=k$ with the \textbf{Square Root Property}: $x=\pm\sqrt{k}$ (never drop the $\pm$).
-  \item Isolate the square first, then root; write answers in \textbf{simplest radical form}.
-  \item Solve $(x-h)^2=k$ by taking square roots and undoing the shift.
-  \item \textbf{Complete the square}: add $\left(\tfrac{b}{2}\right)^2$ to build a perfect-square trinomial.
-  \item Rewrite $x^2+bx+c$ as \textbf{vertex form} $(x-h)^2+k$ --- the same move that finds the vertex.
-  \item \textbf{Choose a method}: factor if it factors; square roots if there's no $bx$ term; otherwise complete the square.
+  \item Divide by a \textbf{monomial} by splitting the fraction term by term (one and two variables).
+  \item \textbf{Long division}: standard form, \emph{placeholder $0$} for missing powers, divide--multiply--subtract--bring down.
+  \item \textbf{Synthetic division} when --- and only when --- the divisor is $x-r$; flip the sign of the constant.
+  \item Write the answer as $Q(x) + \dfrac{R}{D(x)}$, and \textbf{check} with $P = D\cdot Q + R$.
+  \item \textbf{Remainder Theorem}: the remainder on division by $x-r$ is $f(r)$.
+  \item \textbf{Factor Theorem}: $(x-r)$ is a factor $\iff f(r)=0 \iff r$ is a zero $\iff (r,0)$ is an $x$-intercept.
+  \item Divide a known factor out, then \textbf{factor the depressed polynomial completely}.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item A number has \emph{two} square roots, so a squared equation has two solutions --- the $\pm$ keeps both.
-  \item ``Taking the square root'' is the inverse of squaring, so isolate the square before undoing it.
-  \item Completing the square forces the perfect-square pattern from 3.2 to appear \emph{on purpose}.
-  \item Half-the-$b$-squared works because $(x+\tfrac{b}{2})^2=x^2+bx+\tfrac{b^2}{4}$.
-  \item Every quadratic can be put in vertex form, so \emph{every} quadratic can be solved this way --- factoring is just the lucky shortcut.
-  \item The roots are still the parabola's $x$-intercepts, even when they're irrational.
+  \item Polynomial division is the \emph{same} statement as $247 = 5\cdot 49 + 2$ --- nothing new is being asserted, only a new object.
+  \item A missing power is not nothing: the placeholder $0$ holds the column that keeps the algorithm honest.
+  \item Synthetic division is not a different method --- it is long division with the variables erased, which is why it needs $x-r$.
+  \item The remainder is \emph{information}, not leftovers: it is exactly the output $f(r)$.
+  \item ``Factor,'' ``zero,'' ``$x$-intercept,'' and ``remainder $0$'' are four names for one fact --- the bridge from algebra to the graph.
+  \item Dividing a factor out \emph{lowers the degree}, which is how a hard polynomial becomes an easy one.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -67,190 +69,172 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Square Root Property} & If $x^2=k$ and $k\ge0$, then $x=\pm\sqrt{k}$. The engine of the square-root method. \\
-\textbf{$\pm$ (plus or minus)} & Records \emph{both} square roots of a number; forgetting it loses a root. \\
-\textbf{Simplest radical form} & A radical with no perfect-square factor left inside, e.g. $\sqrt{12}=2\sqrt{3}$. \\
-\textbf{Completing the square} & Adding $\left(\tfrac{b}{2}\right)^2$ to $x^2+bx$ to make the perfect-square trinomial $(x+\tfrac{b}{2})^2$. \\
-\textbf{Perfect-square trinomial} & $x^2\pm2kx+k^2=(x\pm k)^2$; the pattern completing the square manufactures. \\
-\textbf{Vertex form} & $a(x-h)^2+k$ with vertex $(h,k)$; completing the square converts standard form into it. \\
+\textbf{Dividend / divisor} & The polynomial being divided ($P$) and the polynomial you divide by ($D$). \\
+\textbf{Quotient / remainder} & The result ($Q$) and what is left over ($R$), with $\deg R < \deg D$. \\
+\textbf{Division statement} & \TallMath{P(x)=D(x)\,Q(x)+R(x) \;\Longleftrightarrow\; \tfrac{P(x)}{D(x)}=Q(x)+\tfrac{R(x)}{D(x)}} \\
+\textbf{Placeholder} & A $0$ written in for a missing power, e.g.\ $x^3-3x+2 = x^3+0x^2-3x+2$. \\
+\textbf{Long division} & Works for \emph{any} divisor: divide, multiply, subtract, bring down, repeat. \\
+\textbf{Synthetic division} & Coefficient-only shortcut, valid \emph{only} for divisors $x-r$: bring down, multiply by $r$, add. \\
+\textbf{Remainder Theorem} & \TallMath{f(x)\div(x-r) \text{ leaves remainder } f(r)} \\
+\textbf{Factor Theorem} & \TallMath{(x-r)\text{ is a factor of } f(x) \iff f(r)=0} \\
+\textbf{Depressed polynomial} & The quotient after dividing out a known factor --- one degree lower, and easier to factor. \\
+\textbf{Synthetic substitution} & Using synthetic division to \emph{evaluate} $f(r)$ instead of substituting. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses exactly what today needs: \textbf{(1)} \emph{simplifying radicals}
-    ($\sqrt{12}=2\sqrt{3}$) so square-root answers land in simplest form; \textbf{(2)} \emph{squaring a
-    binomial} $(x+5)^2=x^2+10x+25$, noticing the constant is (half the middle coefficient) squared --- the
-    pattern we will run forward; and \textbf{(3)} \emph{completing the square} numerically: ``what constant
-    makes $x^2+8x+\underline{\ \ }$ a perfect square?'' plus solving $x^2=16$ with \emph{both} roots.
-    Debrief item~2 next to item~3: completing the square is item~2 read as a recipe.
+    The Warm-Up rehearses the four prerequisites this lesson stacks on, and two of them \emph{are}
+    today's theorems in disguise. \textbf{(1)} \emph{Whole-number long division}: $247\div 5$, written
+    both as $247=5\cdot 49+2$ and as $\frac{247}{5}=49+\frac{2}{5}$ --- this is the division statement
+    that governs every problem today, so put it on the board and leave it there. \textbf{(2)}
+    \emph{Monomial quotients} (Algebra~1 exponent rules), including $\frac{6x^2}{6x^2}=1$ --- the
+    ``cancels to $1$, not $0$'' error. \textbf{(3)} \emph{Evaluating} $f(x)=x^3-3x+2$ at $1$, $-2$,
+    $0$, $3$, which quietly produces two zeros. \textbf{(4)} \emph{Multiplying} $(x-1)(x^2+x-2)$,
+    which returns exactly that $f$. Debrief 3 and 4 together: \textbf{``$f(1)=0$, and $(x-1)$ is a
+    factor. Coincidence?''} Leave the question open --- it is answered by name in the Factor Theorem
+    section of the notes.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put two quadratics side by side:
-    \[ x^2-6=0 \qquad\text{and}\qquad x^2+6x+1=0. \]
-    In Lesson~3.2 the tool was factoring --- but neither of these factors over the integers (there are no
-    two integers with product $-6$ and sum $0$, nor product $1$ and sum $6$). \textbf{Are they unsolvable?}
-    No: the parabolas clearly cross the $x$-axis, so the roots exist --- they're just irrational. Today we
-    get them exactly. The first only needs ``undo the square'': $x=\pm\sqrt{6}$. The second has a pesky
-    $6x$ in the way, so we \emph{complete the square} to force a perfect square, then undo it. Land the
-    theme: \emph{factoring is the lucky shortcut; square roots and completing the square solve the rest.}
+    Put Lesson~3.2's unfinished business back on the board:
+    \[
+      p(x) = x^3 - 3x + 2 .
+    \]
+    Run the checklist aloud with the class --- GCF? no. Two terms? no. Quadratic form? no. Four terms
+    to group? no. \textbf{``Every tool we own fails. Is it prime?''} No --- and students already know
+    it is not, because in Lesson~3.0 they read this graph and saw a \emph{touch} at $x=1$ and a
+    \emph{crossing} at $x=-2$. Then the Warm-Up: $p(1)=0$, and $(x-1)(x^2+x-2)$ multiplies back to
+    exactly $p(x)$. So $(x-1)$ \emph{is} a factor. \textbf{``But nobody handed you $x^2+x-2$ today.
+    If you know one factor, how do you find the other?''} Take answers, then name it: you
+    \emph{divide}. Division is how you undo a multiplication you cannot see. Promise the payoff
+    explicitly --- by the end of the period the class will have factored $p$ completely --- and
+    deliver it in Section~3 of the notes.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. The Square Root Property.} Anchor the idea: $x^2=9$ asks ``what squares to $9$?'' --- both $3$
-\emph{and} $-3$, so $x=\pm3$. In general, if $x^2=k$ ($k\ge0$) then $x=\pm\sqrt{k}$. Stress the $\pm$: a
-squared equation has \emph{two} solutions and dropping the sign throws one away.
+\textbf{1. One statement runs the whole lesson.} Start from the Warm-Up's $247 = 5\cdot 49 + 2$ and
+generalize on the board:
+\[
+  P(x) = D(x)\,Q(x) + R(x), \quad \deg R < \deg D .
+\]
+\textbf{Ask:} \textbf{``When do you stop dividing?''} (When the remainder's degree drops below the
+divisor's.) \textbf{``How do you check any division you ever do?''} (Multiply $D\cdot Q$, add $R$.)
+And the line the rest of the unit hangs on: \textbf{if $R=0$, then $P = D\cdot Q$, so $D$ is a
+factor.}
 
-\textbf{2. Isolate, then root; simplify.} The square must be alone first. $2x^2-50=0\Rightarrow x^2=25
-\Rightarrow x=\pm5$. Irrational case: $x^2-6=0\Rightarrow x=\pm\sqrt6$. And $3x^2=36\Rightarrow x^2=12
-\Rightarrow x=\pm2\sqrt3$. Reinforce simplest radical form from the warm-up.
+\textbf{2. Monomial divisors --- fast, but one trap.} A sum over one term splits:
+$\frac{12x^4-8x^3+6x^2}{2x^2}=6x^2-4x+3$. Do the two-variable case
+$\frac{15x^3y^2-10x^2y^3+5x^2y^2}{5x^2y^2}=3x-2y+1$ and stop hard on the last term: it divides out
+to $1$, \emph{not} $0$. Have students say why --- a quantity divided by itself is $1$.
 
-\textbf{3. Squares of binomials.} If the square is a \emph{binomial}, the same rule applies:
-$(x-3)^2=16\Rightarrow x-3=\pm4\Rightarrow x=7$ or $-1$; $(x+2)^2=12\Rightarrow x+2=\pm2\sqrt3\Rightarrow
-x=-2\pm2\sqrt3$. This is the form completing the square will create.
-
-\textbf{4. Preview the wall.} $x^2=-4$ has \emph{no real} solution --- nothing real squares to a negative.
-Flag it and defer: Lesson~3.4 builds the numbers that fix this. Today everything stays real.
+\textbf{3. Long division --- and the wall comes down.} Set the two rules before the first problem:
+\emph{standard form}, and a \emph{placeholder $0$} for every missing power. Then work
+$(x^3+0x^2-3x+2)\div(x-1)$ line by line, writing the subtraction as $-(\;\cdots)$ every time so the
+sign change is visible. Quotient $x^2+x-2$, remainder $0$. \textbf{Now cash it in:}
+\[
+  x^3-3x+2 = (x-1)(x^2+x-2) = (x-1)^2(x+2).
+\]
+Point at the Lesson~3.0 graph: multiplicity $2$ at $x=1$ \emph{touches}, multiplicity $1$ at $x=-2$
+\emph{crosses}. Say it plainly --- \textbf{the wall from Lesson~3.2 is down.} Then a second division
+that does \emph{not} come out even, $(2x^3+3x^2+0x-5)\div(x+2) = 2x^2-x+2-\frac{9}{x+2}$; students do
+this one while you circulate.
 
 \columnbreak
 
-\textbf{5. Completing the square (why).} When a $bx$ term blocks the square-root move, manufacture a
-perfect square. From the warm-up, $x^2+bx+\left(\tfrac{b}{2}\right)^2=\left(x+\tfrac{b}{2}\right)^2$. So
-add $\left(\tfrac{b}{2}\right)^2$ to \emph{both} sides.
+\textbf{4. Synthetic division --- same thing, variables erased.} Motivate it honestly: in the long
+division above, the letters never did any work; only the coefficients did. Show the shortcut on the
+\emph{same} problem so the answer is already known, then on $(2x^3+3x^2-5)\div(x+2)$.
+\textbf{The restriction:} divisors of the form $x-r$ only --- that is why Section 3's tool never
+retires. \textbf{The error:} $x+2$ means $r=-2$. Make students rewrite it as $x-(-2)$ out loud, and
+require the placeholder $0$ in the coefficient row.
 
-\textbf{6. The routine ($a=1$).} Solve $x^2+6x+1=0$: (i) move the constant, $x^2+6x=-1$; (ii) half of $6$
-is $3$, $3^2=9$, add to both sides: $x^2+6x+9=8$; (iii) factor the perfect square: $(x+3)^2=8$; (iv) root:
-$x+3=\pm2\sqrt2$, so $x=-3\pm2\sqrt2$. Verify against the graph's two $x$-intercepts.
+\textbf{5. The Remainder Theorem --- discovered, not announced.} The second division left
+remainder $-9$. Now evaluate: $f(-2)=2(-8)+3(4)-5=-9$. \textbf{``Same number. Why?''} Derive it in
+two lines from Section 1: $f(x)=(x-r)q(x)+R$, so $f(r)=0\cdot q(r)+R=R$. Note it runs both
+directions --- a remainder without dividing, \emph{and} a fast evaluation of $f$.
 
-\textbf{7. Completing the square $=$ vertex form.} The same move rewrites the unit anchor:
-$x^2-2x-3=(x-1)^2-4$, vertex $(1,-4)$ --- exactly the vertex form from 3.0--3.1. So completing the square
-both \emph{solves} and \emph{reveals the vertex}.
-
-\textbf{8. Choose a method \& handle $a\ne1$.} Decide: factors $\Rightarrow$ factor; no $bx$ $\Rightarrow$
-square roots; otherwise complete the square (dividing through by $a$ first when $a\ne1$). Preview: 3.5
-packages completing the square into the quadratic formula.
+\textbf{6. The Factor Theorem --- four names for one fact.} State it, then build the equivalence
+table: $f(r)=0$ $\iff$ remainder is $0$ $\iff$ $(x-r)$ is a factor $\iff$ $r$ is a zero $\iff$
+$(r,0)$ is an $x$-intercept. Return to the Warm-Up: $p(1)=0$ and $p(-2)=0$ told students both
+factors of the anchor \emph{before any dividing happened}. Name the workflow that carries the rest of
+the unit: \textbf{test a candidate $\rightarrow$ divide it out $\rightarrow$ factor the depressed
+polynomial.} Close on the honest gap: we only knew to try $r=1$ because the problem said so. Where
+does the candidate list come from? \textbf{Lesson~3.4.}
 \end{multicols}
-\end{skillbox}
-
-\begin{skillbox}[Explicit Instruction: The Completing-the-Square Routine ($a=1$)]{forestbg}
-\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
-\textbf{Steps (post and refer back):}
-\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
-  \item Get $x^2+bx$ alone: move the constant to the right side.
-  \item Compute $\left(\tfrac{b}{2}\right)^2$ and add it to \emph{both} sides.
-  \item Factor the left side as $\left(x+\tfrac{b}{2}\right)^2$.
-  \item Take $\pm\sqrt{\ }$ of both sides (simplify the radical).
-  \item Solve for $x$; write both roots.
-  \item Verify: the roots are the parabola's $x$-intercepts.
-\end{enumerate}
-&
-\textbf{Worked example.} Solve $x^2+4x-6=0$.
-\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
-  \item Move the constant: $x^2+4x=6$.
-  \item Half of $4$ is $2$; $2^2=4$. Add $4$: $x^2+4x+4=10$.
-  \item Factor: $(x+2)^2=10$.
-  \item Root: $x+2=\pm\sqrt{10}$.
-  \item $x=-2\pm\sqrt{10}$ ($\approx1.16$ and $-5.16$).
-  \item Check: those are the two $x$-intercepts of $y=x^2+4x-6$.
-\end{itemize}
-\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{dropping the $\pm$}: writing $x=\sqrt{k}$ only and losing the negative root;
-  \item taking the square root \emph{before} isolating the square (e.g.\ rooting $2x^2=50$ without dividing by $2$ first);
-  \item leaving radicals unsimplified ($\sqrt{12}$ instead of $2\sqrt3$) or mis-simplifying;
-  \item in completing the square, adding $\left(\tfrac{b}{2}\right)^2$ to \emph{one} side only, or forgetting to move the constant first;
-  \item using $b$ instead of $\tfrac{b}{2}$, or squaring the sign wrong when $b$ is negative;
-  \item declaring ``no solution'' for an \emph{irrational} root (that's fine --- ``no \emph{real} solution'' is only for a negative under the root, coming in 3.4).
+  \item missing \textbf{placeholders} --- both worked problems have a gap on purpose; a quotient of the wrong degree is the tell;
+  \item \textbf{not subtracting} --- students who write $+$ instead of $-(\;\cdots)$ get the first term right and everything after it wrong;
+  \item the \textbf{synthetic sign flip} --- $5$ in the corner for a divisor of $x+5$; require the rewrite $x-(-5)$;
+  \item using synthetic division on a \textbf{quadratic divisor} --- it is only valid for $x-r$;
+  \item reading the bottom row as the quotient \emph{including} the last entry --- the last number is the remainder, and the quotient's degree is one less than the dividend's;
+  \item stopping at the depressed polynomial --- the answer is not finished until every factor is prime (Lesson~3.2's standard, still in force);
+  \item sign errors when listing zeros from factors --- $(x+3)$ gives the zero $-3$;
+  \item dividing when the Remainder Theorem would have answered the question in ten seconds.
 \end{itemize}
-Cold-call prompts: ``Why does $x^2=9$ have \emph{two} answers?'' ``What number completes the square for
-$x^2-10x$?'' ``$2x^2=50$: what do you do \emph{before} taking a square root?''
+Cold-call prompts: ``What is the divisor, and does it have a missing power?'' ``What goes in the
+corner box, and why is it not $+2$?'' ``The remainder is $0$ --- so what do you know?'' ``Multiply
+your divisor by your quotient and add the remainder: do you get back what you started with?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Undo the Square} activity (tiered; mirrors the notes).
+\textbf{Divide and Conquer} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Apply the Square Root Property: solve $x^2=k$ and $(x-h)^2=k$ (perfect-square
-$k$), keeping both roots, and match the roots to a pre-drawn parabola.
+\textbf{Tier R --- Remediate.} One monomial division (with the ``cancels to $1$'' line), one long
+division walked through step by step with the multiply-and-subtract written out, one synthetic
+division with the grid pre-drawn and the sign flip asked for explicitly, and a Remainder Theorem
+check that confirms the remainder they just computed.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Isolate-then-root with irrational answers, complete the square on $a=1$
-quadratics, and convert a standard-form quadratic to \emph{vertex form} to name the vertex.
+\textbf{Tier A --- Approaching.} A long division with a missing power \emph{and} a nonzero
+remainder; a synthetic division that must be carried on to a complete factorization (its third zero,
+$-\tfrac32$, is deliberately not an integer); a ``no dividing allowed'' Remainder Theorem pair; a
+Factor Theorem sweep over four candidates on $x^3-x^2-9x+9$, which also factors by grouping; and
+error analysis on the two signature mistakes --- a dropped placeholder and $r=+5$ for the divisor
+$x+5$.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Complete the square when $a\ne1$ (divide first), \emph{choose} the efficient
-method with justification, and \emph{model}: a dropped-object height solved by the square-root method.
+\textbf{Tier E --- Extension.} A \emph{factorable trinomial divisor}, $x^2+x-6$, that synthetic
+division cannot touch (the A2.EO.3c clause the other tiers do not reach), carried to four linear
+factors; a ``find $k$ so that $(x-3)$ is a factor'' problem that inverts the Factor Theorem; a
+two-line proof of the Remainder Theorem plus synthetic \emph{substitution} to evaluate $f(4)$; and a
+preview task in which groups test the integer divisors of the constant term on
+$2x^3-3x^2-11x+6$, find two zeros, and discover that the third, $\tfrac12$, was never on their
+list --- conjecturing the Rational Root Theorem a day early.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): solve $(x-2)^2=18$ by square roots (simplest radical form,
-both roots); complete the square to solve $x^2+4x-6=0$ and say what the roots mean on the graph; and an
-\textbf{SOL-style multiple-choice} item asking which constant completes the square for $x^2-12x$
-(answer $36$). Collect and sort into ``got it / dropped-$\pm$ slip / didn't-isolate slip / used-$b$-not-$b/2$
-slip'' to decide whether Lesson~3.4 opens with a re-teach.
+\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} a synthetic division of
+$x^3+2x^2-5x-6$ by $x+1$ that is only right if students flip the sign for $r$, run the grid
+correctly, \emph{and} carry the quotient on to a complete factorization plus the three zeros;
+\textbf{(2)} a Remainder Theorem item on $g(x)=x^3-4x^2+2x+5$ divided by $(x-2)$ that is
+deliberately \emph{not} a factor --- students who divide it out have the procedure but not the
+theorem; and \textbf{(3)} an \textbf{SOL-style multiple-choice} item asking which binomial is a
+factor of $x^3-6x^2+11x-6$, with the sign-flip error ($x+1$) and two ``grab the constant''
+distractors ($x-6$, $x+6$). Sort the tickets into ``got it / sign flip on $r$ / placeholder or
+arithmetic / stopped before factoring'' to decide what the first five minutes of Lesson~3.4 look
+like --- a large ``stopped early'' pile matters most, because 3.4's entire method is test
+$\rightarrow$ divide $\rightarrow$ \emph{finish}.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} solve by square roots (isolate, simplify radicals, both roots), complete the square on
-$a=1$ quadratics, convert to vertex form and name the vertex, choose the smartest method for a mixed set,
-and match irrational roots to a pre-drawn graph. \textbf{Extension:} a dropped-object / falling-height
-\emph{model} solved by the square-root method (reject the negative time). \textbf{Preview:} Lesson~3.4,
-\emph{Complex Numbers} --- what to do when the square-root step hits a \emph{negative} radicand
-($x^2=-4$) and there is no real solution.
+\textbf{Homework:} three monomial divisions (one two-variable); three long divisions --- an even one,
+one needing a placeholder and leaving remainder $8$, and one with the \emph{trinomial} divisor
+$x^2-x-6$ plus the question of why synthetic division cannot do it; three synthetic divisions, ending
+with $(x^4-16)\div(x-2)$, whose quotient $x^3+2x^2+4x+8$ regroups to $(x+2)(x^2+4)$ --- the same
+factorization students produced in Lesson~3.2 by a different road; a Remainder Theorem set with
+\emph{no} factors among the candidates; a full test-divide-finish problem on $x^3+2x^2-11x-12$; a
+return to Lesson~3.0's exit-ticket graph of $h(x)=x^3-3x-2$, recovered as $(x+1)^2(x-2)$ by division;
+and a written item on what a remainder of $0$ tells you. \textbf{Extension:} solve for $k$ so that
+$(x-2)$ is a factor of $x^3+kx^2-4x+4$; a prism of volume $x^3+6x^2+11x+6$ and height $(x+1)$ whose
+base dimensions come out $(x+2)$ by $(x+3)$, checked numerically at $x=2$; and synthetic substitution
+to evaluate $f(3)$. \textbf{Preview:} Lesson~3.4, \emph{the Rational Root Theorem} --- today you
+could crack anything once someone told you which $r$ to test; tomorrow you build that list yourself,
+fractions included.
 \end{skillbox}
-% ── Teacher notes (migrated from the component keys) ──
-% One per component, titled for it. They live here rather than in the _key
-% files so that every component is the same length blank and keyed.
-
-\begin{teachernote}[Warm-Up]
-Every item is a direct prerequisite. Item~1 keeps square-root answers in simplest form ($\sqrt{72}=6\sqrt2$
-is the sign-trap). Item~2 is the perfect-square pattern read \emph{forward}; the ``half the middle, then
-square'' observation \emph{is} the completing-the-square recipe. Item~3 runs that recipe numerically
-(constant $=(b/2)^2$: $16$ and $25$). Item~4 drills the $\pm$ --- the single most common lost point today.
-Keep $(x+4)^2$ and $(x-5)^2$ on the board for the notes.
-\end{teachernote}
-
-\begin{teachernote}[Guided Notes]
-The two engines: the Square Root Property (\S1--2, always with $\pm$ and simplest radical form) and
-completing the square (\S3, the $(b/2)^2$ recipe from the warm-up). \S4 is the payoff --- the \emph{same}
-move gives vertex form, so it ties back to the anchor $x^2-2x-3=(x-1)^2-4$, vertex $(1,-4)$, roots $-1,3$.
-Pre-empt the four recurring slips: dropping the $\pm$; rooting before isolating (\S1 ``isolate first'');
-using $b$ instead of $b/2$; and unsimplified radicals ($\sqrt{20}$ vs.\ $2\sqrt5$ in practice~1). The
-$x^2=-4$ ``wall'' is the deliberate bridge to Lesson~3.4 --- name it as ``no \emph{real} solution,'' not
-``no solution.''
-\end{teachernote}
-
-\begin{teachernote}[Group Activity]
-Tier~R keeps radicands to perfect squares so the focus is the $\pm$ and undoing a shift (item~2), plus the
-graph link (item~3: $x^2=9\to$B, $(x+2)^2=9\to$C with roots $1,-5$, $x^2=4\to$A). Tier~A item~1 is
-``isolate first, then simplify'' ($3x^2-24=0\Rightarrow x^2=8\Rightarrow\pm2\sqrt2$); watch students who
-root before dividing. Item~3 is the vertex-form payoff --- verify by expanding. In Tier~E, the $a\ne1$ case
-must \emph{divide by $a$ first}; the choose-a-method table rewards recognizing structure (no $bx\Rightarrow$
-roots; nice factors $\Rightarrow$ factor; otherwise complete the square). In the model, insist on rejecting
-$t=-2.5$ \emph{with a reason}.
-\end{teachernote}
-
-\begin{teachernote}[Exit Ticket]
-Sort responses into ``got it / dropped-$\pm$ slip / didn't-isolate slip / used-$b$-not-$b/2$ slip.'' The
-telltales: item~1 answered $x=2+3\sqrt2$ only (lost the $\pm$) or left $\sqrt{18}$ unsimplified; item~2
-adding $4$ to one side only; item~3 choosing \textbf{D} ($144=b^2$, forgot to halve) or \textbf{A}
-($6=b/2$, forgot to square). If the $b/2$-vs-$b$ error is widespread, reopen Lesson~3.4 with a $30$-second
-completing-the-square recap before introducing $i$.
-\end{teachernote}
-
-\begin{teachernote}[Homework]
-Item~1 mixes ``isolate first'' ($4x^2-100=0\Rightarrow x^2=25$) with simplest-radical answers
-($(x+3)^2=8\Rightarrow-3\pm2\sqrt2$). Item~2 is pure completing-the-square; the bracketed completed squares
-show the checkpoint. Item~3 is the vertex-form tie-back --- verify by expanding. Item~4 rewards method
-choice: (a) factors, (b) has no $bx$, (c) needs completing the square. Item~5 is the graph$\leftrightarrow$
-algebra check with \emph{irrational} intercepts ($1\pm\sqrt5$). Item~6 is the year's most common slip
-(dropping the $\pm$). In the Extension, insist the negative root is rejected \emph{with a reason} and the
-$121$ check is shown. The spiral box deliberately sets up Lesson~3.4's $\sqrt{-9}$.
-\end{teachernote}
-
 \end{document}

@@ -1,11 +1,12 @@
-%! Absolute Value Equations \& Inequalities — Unit 2, Lesson 2.2 — Warm-Up
+%! Solving Quadratics by Factoring — Unit 2, Lesson 2.2 — Warm-Up
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\numline}[2]{%
-  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
-  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -13,35 +14,54 @@
 
 \vspace{0.10in}
 
-\begin{notesbox}{Getting Ready: Distance, Solving, and Number Lines}
-\small Today an absolute value asks a \emph{distance} question, and you'll solve the linear equation
-inside the bars \emph{twice}. These three skills are the tools you'll need.
+\begin{notesbox}{Getting Ready: Skills We'll Use Today}
+\small These skills power today's lesson on factoring and solving. Work quickly.
 
 \vspace{4pt}
-\textbf{1. Absolute value is distance from zero.} Evaluate each.
+\textbf{1. Multiply it out (FOIL).} Today we will run this \emph{backward}, so warm up the forward move.
 \[
-  |-7| = \blank{1.2cm} \qquad |4| = \blank{1.2cm} \qquad
-  |{-3}| + |5| = \blank{1.2cm} \qquad -|{-6}| = \blank{1.2cm}
+  (x+2)(x+5)=\blank{3.2cm} \qquad (x-4)(x+3)=\blank{3.2cm}
 \]
-How many different numbers have an absolute value of $7$? \blank{2.2cm}\; Name them: \blank{2.4cm}
+\[
+  (2x-1)(x+3)=\blank{4.0cm}
+\]
 
-\vspace{6pt}
-\textbf{2. Solve the two-step equation.} (You'll repeat this move once the bars split into two cases.)
-\[ 2x - 3 = 7 \hspace{2.0cm} 2x - 3 = -7 \]
-\begin{work}
-  2x - 3 &= 7 \quad\text{or}\quad 2x - 3 = -7 \\
-      2x &= 10 \quad\text{or}\quad 2x = -4 \\
-       x &= 5 \quad\text{or}\quad x = -2
-\end{work}
-
-\vspace{6pt}
-\textbf{3. Graph on a number line, then name it in interval notation.} Shade $x \ge -1$.
+\vspace{4pt}
+\textbf{2. The number game.} Find \emph{two integers} with the given product \textbf{and} sum. (Same
+signs when the product is positive; opposite signs when it is negative.)
 \begin{center}
-\begin{tikzpicture}[scale=0.55]
-  \numline{-5}{5}
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|}
+\hline
+ & product $12$, sum $7$ & product $-10$, sum $3$ & product $-12$, sum $-1$ \\ \hline
+two integers & \blank{2.2cm} & \blank{2.2cm} & \blank{2.2cm} \\ \hline
+\end{tabular}
 \end{center}
-Interval notation: \blank{3.0cm} \qquad {\footnotesize (Use $[\,$ or $]$ for ``or equal to,'' $($ or $)$ otherwise.)}
+
+\vspace{4pt}
+\textbf{3. Read the $x$-intercepts, then solve.} The parabola $y=(x+3)(x-1)$ is graphed below.
+\begin{center}
+\begin{minipage}{0.42\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-4}{2}{-5}{3}
+  \begin{scope}\clip (-4,-5) rectangle (2,3);
+    \draw[very thick, forest, domain=-3.6:1.6, samples=75, smooth] plot (\x,{(\x+3)*(\x-1)});
+  \end{scope}
+  \fill[charcoal] (-3,0) circle (2.5pt);
+  \fill[charcoal] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.55\linewidth}
+The graph crosses the $x$-axis at $x=\blank{1.4cm}$ and $x=\blank{1.4cm}$.
+
+\vspace{4pt}
+Solve each tiny equation: \quad $x+3=0 \Rightarrow x=\blank{1.2cm}$ \quad
+$x-1=0 \Rightarrow x=\blank{1.2cm}$.
+
+\vspace{2pt}
+{\small What do you notice about your two answers?} \blank{4.2cm}
+\end{minipage}
+\end{center}
 \end{notesbox}
 
 \end{document}

@@ -1,9 +1,9 @@
-%! Zeros of Polynomials: the Rational Root Theorem — Unit 4, Lesson 4.4 — Group Activity (Answer Key)
+%! The Rational Parent Function \& Transformations — Unit 4, Lesson 4.4 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -17,260 +17,222 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Suspect List.} Every problem today runs on the same four moves: \textbf{list} the
-candidates $\pm\frac{p}{q}$, \textbf{test} them, \textbf{divide} out the winner, and \textbf{finish}
-with the depressed polynomial. Two habits keep you honest: the constant term goes on \emph{top} and
-the leading coefficient on the \emph{bottom}, and every candidate comes with a $\pm$. Remember what
-the list is --- a list of \emph{suspects}, not convictions. Some of them will not be zeros at all.
+\small\textbf{Move the Walls.} One habit carries everything today: \emph{find the two asymptotes
+first.} They are the parent's axes, relocated --- $x=h$ from the denominator and $y=k$ from the number
+tacked on outside. Once those two dashed lines are down, the branches have nowhere else to go. And keep
+Unit 1's warning in front of you: the number \emph{inside} does the opposite of what it says.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\begin{enumerate}[leftmargin=1.7em, itemsep=9pt]
-  \item \textbf{Build one list, step by step.} $f(x) = x^3 - 2x^2 - 5x + 6$
-
-    \vspace{2pt}
-    The constant term is \ans{$6$}, so the numerators $p$ are \ans{$\pm 1, \pm 2, \pm 3, \pm 6$}
-
-    \vspace{2pt}
-    The leading coefficient is \ans{$1$}, so the denominators $q$ are \ans{$\pm 1$}
-
-    \vspace{2pt}
-    Candidate list $\dfrac{p}{q}$: \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6$}
-
-    \vspace{3pt}
-    Now test two of them: \; $f(1) = $ \ans{$0$} \qquad $f(2) = $ \ans{$-4$}
-
-    \vspace{2pt}
-    Which one is a zero? \ans{$1$} \; So \ans{$(x-1)$} is a factor of $f$.
-
-    \vspace{3pt}
-    Divide it out:
-    \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
-    \ans{$1$} & $1$ & $-2$ & $-5$ & $6$ \\
-        &     & \ans{$1$} & \ans{$-1$} & \ans{$-6$} \\ \cline{2-5}
-        & \ans{$1$} & \ans{$-1$} & \ans{$-6$} & \ans{$0$} \\
-    \end{tabular}
-    \end{center}
-
-    \vspace{2pt}
-    Depressed polynomial: \ans{$x^2 - x - 6$} \; Factor it: \ans{$(x-3)(x+2)$}
-
-    \vspace{2pt}
-    $f(x) = $ \ans{$(x-1)(x-3)(x+2)$} \qquad The three zeros are \ans{$1,\ 3,\ -2$}
-
-  \item \textbf{Same four moves, on your own.} $g(x) = x^3 + 2x^2 - x - 2$
-
-    \vspace{2pt}
-    Candidates: \ans{$\pm 1,\ \pm 2$} \qquad A zero that works: $r = $ \ans{$1$}
-
-    \vspace{2pt}
-    Depressed polynomial: \ans{$x^2 + 3x + 2$} \qquad $g(x) = $ \ans{$(x-1)(x+1)(x+2)$}
-
-    \vspace{2pt}
-    Zeros: \ans{$1,\ -1,\ -2$}
-
-    \vspace{2pt}
-    In Lesson 4.2 you could have factored this one by \emph{grouping}. Show that route in one line:
-    \ans{$x^2(x+2) - 1(x+2) = (x+2)(x^2-1) = (x+2)(x-1)(x+1)$}
-
-  \item \textbf{When the leading coefficient is not 1.} $h(x) = 2x^3 + x^2 - 5x + 2$
-
-    \vspace{2pt}
-    Numerators $p$ (divisors of \ans{$2$}): \ans{$\pm 1, \pm 2$} \qquad
-    Denominators $q$ (divisors of \ans{$2$}): \ans{$\pm 1, \pm 2$}
-
-    \vspace{2pt}
-    Candidate list: \ans{$\pm 1,\ \pm 2,\ \pm\tfrac12$} \; How many candidates are there? \ans{$6$}
-
-    \vspace{2pt}
-    Test $r = 1$: $h(1) = $ \ans{$0$} \; Is $(x-1)$ a factor? \ans{Yes}
+\textbf{Part 1 --- One move at a time.} For each function, name both asymptotes and say what the parent
+$y=\frac1x$ did.
+\begin{enumerate}[leftmargin=1.9em, itemsep=8pt]
+  \item $y=\dfrac{1}{x-5}$ \\[3pt]
+        VA: \ans{$x=5$} \quad HA: \ans{$y=0$} \quad The parent moved \ans{right $5$}
+  \item $y=\dfrac{1}{x}-4$ \\[3pt]
+        VA: \ans{$x=0$} \quad HA: \ans{$y=-4$} \quad The parent moved \ans{down $4$}
+  \item $y=\dfrac{1}{x+6}$ \\[3pt]
+        VA: \ans{$x=-6$} \quad HA: \ans{$y=0$} \quad The parent moved \ans{left $6$}
+  \item $y=\dfrac{2}{x-1}+3$ \\[3pt]
+        $a=$ \ans{$2$} \quad $h=$ \ans{$1$} \quad $k=$ \ans{$3$} \quad
+        Center: $($\ans{$1$}$,\,$\ans{$3$}$)$ \\[3pt]
+        VA: \ans{$x=1$} \quad HA: \ans{$y=3$} \quad Domain: \ans{$x\neq1$} \quad
+        Range: \ans{$y\neq3$}
 \end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 2 --- Match the graph to the equation.} Write \textbf{A}, \textbf{B}, or \textbf{C} in each
+blank. The dashed navy lines are the asymptotes.
+\begin{center}
+\begin{tikzpicture}[scale=0.30]
+  % All three windows share y from -5 to 5 so the graphs sit on a common baseline.
+  \begin{scope}
+    \lgrid{-3}{6}{-5}{5}
+    \draw[navy, dashed, semithick] (2,-5)--(2,5);
+    \begin{scope} \clip (-3,-5) rectangle (6,5);
+      \draw[very thick, forest, domain=-3:1.8, samples=100, smooth] plot (\x,{1/((\x)-2)});
+      \draw[very thick, forest, domain=2.2:6, samples=100, smooth] plot (\x,{1/((\x)-2)});
+    \end{scope}
+    \node[charcoal, font=\small\bfseries] at (1.5,-6.8){A};
+  \end{scope}
+  \begin{scope}[xshift=12cm]
+    \lgrid{-5}{5}{-5}{5}
+    \draw[navy, dashed, semithick] (-5,3)--(5,3);
+    \begin{scope} \clip (-5,-5) rectangle (5,5);
+      \draw[very thick, forest, domain=-5:-0.125, samples=110, smooth] plot (\x,{1/(\x)+3});
+      \draw[very thick, forest, domain=0.5:5, samples=110, smooth] plot (\x,{1/(\x)+3});
+    \end{scope}
+    \node[charcoal, font=\small\bfseries] at (0,-6.8){B};
+  \end{scope}
+  \begin{scope}[xshift=24cm]
+    \lgrid{-6}{4}{-5}{5}
+    \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
+    \draw[navy, dashed, semithick] (-6,-3)--(4,-3);
+    \begin{scope} \clip (-6,-5) rectangle (4,5);
+      \draw[very thick, forest, domain=-6:-2.5, samples=110, smooth] plot (\x,{1/((\x)+2)-3});
+      \draw[very thick, forest, domain=-1.125:4, samples=110, smooth] plot (\x,{1/((\x)+2)-3});
+    \end{scope}
+    \node[charcoal, font=\small\bfseries] at (-1,-6.8){C};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+\ans{B} \; $y=\dfrac{1}{x}+3$ \hfill
+\ans{C} \; $y=\dfrac{1}{x+2}-3$ \hfill
+\ans{A} \; $y=\dfrac{1}{x-2}$ \hfill\hfill
+
+\vspace{5pt}
+\textbf{Part 3 --- The parent, from memory.} No graph, no calculator.
+\begin{center}
+$y=\dfrac1x$: \quad VA \ans{$x=0$} \quad HA \ans{$y=0$} \quad $x$-int \ans{none} \quad
+$y$-int \ans{none} \quad symmetry \ans{origin}
+\end{center}
+Why does this parent have no intercepts, when every other parent you have graphed passes through the
+origin? \ansline{A fraction equals $0$ only when its numerator does, and the numerator is $1$; and $x=0$ is excluded from the domain, so there is no output to plot on the $y$-axis.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\begin{enumerate}[leftmargin=1.7em, itemsep=10pt]
-  \item \textbf{A fractional zero.} Solve $2x^3 - x^2 - 8x + 4 = 0$.
+\textbf{Part 1 --- The full table.} Fill in every cell. Watch the signs.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+\hline
+\textbf{Function} & \textbf{$a$, $h$, $k$} & \textbf{VA \& HA} & \textbf{Domain \& range} & \textbf{$y$-intercept} \\
+\hline
+\TallMath{y=\frac{4}{x-1}}      & \ans{$4,\,1,\,0$}   & \ans{$x=1$, $y=0$}   & \ans{$x\neq1$, $y\neq0$}  & \ans{$(0,-4)$} \\
+\TallMath{y=\frac{1}{x}-5}      & \ans{$1,\,0,\,-5$}  & \ans{$x=0$, $y=-5$}  & \ans{$x\neq0$, $y\neq-5$} & \ans{none} \\
+\TallMath{y=\frac{-2}{x+3}+1}   & \ans{$-2,\,-3,\,1$} & \ans{$x=-3$, $y=1$}  & \ans{$x\neq-3$, $y\neq1$} & \ans{$(0,\frac13)$} \\
+\TallMath{y=\frac{6}{x+2}-2}    & \ans{$6,\,-2,\,-2$} & \ans{$x=-2$, $y=-2$} & \ans{$x\neq-2$, $y\neq-2$}& \ans{$(0,1)$} \\
+\hline
+\end{tabularx}
+\end{center}
+One of those four functions has \emph{no} $y$-intercept. Which one, and why not? \ans{$y=\frac1x-5$ --- its vertical asymptote \emph{is} the $y$-axis, so $x=0$ is not in the domain}
 
-    \vspace{2pt}
-    Candidates: \ans{$\pm 1,\ \pm 2,\ \pm 4,\ \pm\tfrac12$}
+\vspace{5pt}
+\textbf{Part 2 --- Write the equation from the graph.} The dashed navy lines are the asymptotes, and two
+points are marked.
+\begin{center}
+\begin{minipage}{0.48\linewidth}\centering
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-4}{7}{-1}{7}
+  \draw[navy, dashed, semithick] (1,-1)--(1,7);
+  \draw[navy, dashed, semithick] (-4,3)--(7,3);
+  \node[navy, font=\scriptsize, above right] at (1,6.2) {$x=1$};
+  \node[navy, font=\scriptsize, below right] at (5.4,3) {$y=3$};
+  \begin{scope}
+    \clip (-4,-1) rectangle (7,7);
+    \draw[very thick, forest, domain=-4:0.6, samples=110, smooth] plot (\x,{-2/((\x)-1)+3});
+    \draw[very thick, forest, domain=1.4:7, samples=110, smooth] plot (\x,{-2/((\x)-1)+3});
+  \end{scope}
+  \fill[charcoal] (0,5) circle (3pt) node[above left, font=\scriptsize]{$(0,5)$};
+  \fill[charcoal] (3,2) circle (3pt) node[below right, font=\scriptsize]{$(3,2)$};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.48\linewidth}
+\small
+(a) $h=$ \ans{$1$} \quad $k=$ \ans{$3$}
 
-    \vspace{2pt}
-    A zero that works: $r = $ \ans{$2$} \quad Depressed polynomial: \ans{$2x^2 + 3x - 2$}
+\vspace{4pt}
+(b) Substitute the point $(3,2)$ into $y=\dfrac{a}{x-h}+k$ and solve for $a$:
 
-    \vspace{2pt}
-    Completely factored: \ans{$(x-2)(2x-1)(x+2)$} \quad Solutions: \ans{$x = -2,\ \tfrac12,\ 2$}
+\ans{$2=\dfrac{a}{3-1}+3 \;\Rightarrow\; \dfrac{a}{2}=-1 \;\Rightarrow\; a=-2$}
 
-    \vspace{2pt}
-    This one also factors by grouping. Do it as a check:
-    \ans{$x^2(2x-1) - 4(2x-1) = (2x-1)(x^2-4) = (2x-1)(x-2)(x+2)$}
+$a=$ \ans{$-2$}
 
-  \item \textbf{Let the graph do the work.} Below is $f(x) = 2x^3 + 3x^2 - 11x - 6$.
-    (Each vertical gridline is $4$ units.)
-    \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-4}{3}{-4}{4}
-      \begin{scope}
-        \clip (-4,-4) rectangle (3,4);
-        \draw[very thick, forest, domain=-3.4:2.4, samples=150, smooth]
-          plot (\x,{(2*(\x)*(\x)*(\x) + 3*(\x)*(\x) - 11*(\x) - 6)/4});
-      \end{scope}
-      \foreach \x in {-3,-2,-1,1,2}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-    \end{tikzpicture}
-    \end{center}
+\vspace{4pt}
+(c) Equation: \ans{$y=\frac{-2}{x-1}+3$}
 
-    \vspace{2pt}
-    (a) Write the full candidate list: \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6,\ \pm\tfrac12,\ \pm\tfrac32$}
+\vspace{4pt}
+(d) Verify with the \emph{other} point, $(0,5)$: \ans{$\frac{-2}{-1}+3=5$ \checkmark}
+\end{minipage}
+\end{center}
 
-    \vspace{2pt}
-    (b) The graph crosses the $x$-axis three times. Two of the crossings are at integers ---
-    read them: \ans{$-3$ and $2$}
-
-    \vspace{2pt}
-    (c) The third crossing is between $x = -1$ and $x = 0$. Which candidates from your list live in
-    that interval? \ans{only $-\tfrac12$}
-
-    \vspace{2pt}
-    (d) Test the one you think it is, then write $f$ completely factored:
-    \ans{$f(-\tfrac12)=0$; \; $f(x) = (x+3)(2x+1)(x-2)$}
-
-    \vspace{2pt}
-    (e) All three solutions: \ans{$x = -3,\ -\tfrac12,\ 2$} \; How many synthetic divisions did the graph save you?
-    \ans{The list holds $12$ candidates; the graph pointed straight at the three that matter, so
-    nothing had to be tested blindly.}
-
-  \item \textbf{Degree 4 --- two trips through the workflow.} Solve $x^4 - x^3 - 7x^2 + x + 6 = 0$.
-
-    \vspace{2pt}
-    Candidates: \ans{$\pm 1,\ \pm 2,\ \pm 3,\ \pm 6$}
-
-    \vspace{2pt}
-    First zero $r_1 = $ \ans{$1$} \; Depressed polynomial: \ans{$x^3 - 7x - 6$}
-
-    \vspace{2pt}
-    Now start over on \emph{that} polynomial. Second zero $r_2 = $ \ans{$-1$} \;
-    Next depressed polynomial: \ans{$x^2 - x - 6$}
-
-    \vspace{2pt}
-    Factor what is left: \ans{$(x-3)(x+2)$} \quad Completely factored: \ans{$(x-1)(x+1)(x-3)(x+2)$}
-
-    \vspace{2pt}
-    Solutions: \ans{$x = -2,\ -1,\ 1,\ 3$} \; A degree-$4$ polynomial has at most \ans{$4$} zeros --- did you
-    find them all? \ans{Yes}
-
-  \item \textbf{Error analysis.} Two students, two different misunderstandings.
-
-    \vspace{2pt}
-    (a) For $3x^3 - 2x^2 + x - 4$, a student writes the candidate list $1, 2, 4, \tfrac13, \tfrac23,
-    \tfrac43$. What is missing, and how many candidates should there be?
-    \ans{The negatives --- every candidate needs a $\pm$. There should be $12$, not $6$.}
-
-    \vspace{2pt}
-    (b) A student says: ``The candidates for $k(x) = x^3 - 3x - 1$ are $\pm 1$, so one of them has
-    to be a zero.'' Test both: $k(1) = $ \ans{$-3$} \quad $k(-1) = $ \ans{$1$}
-
-    \vspace{2pt}
-    What is wrong with the student's reasoning? \ans{The theorem lists \emph{possible} rational
-    zeros. It promises that any rational zero is on the list --- not that the list contains one.
-    This $k$ has no rational zeros at all.}
+\vspace{4pt}
+\textbf{Part 3 --- Error analysis.} A student writes:
+\begin{center}
+\fbox{\parbox{0.74\linewidth}{\centering \vspace{2pt}
+For $y=\dfrac{1}{x+4}-1$: \; ``VA is $x=4$ and HA is $y=1$.'' \\[3pt]
+{\small ``I just read the two numbers off the equation.''}\vspace{2pt}}}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Both are wrong. Give the correct asymptotes: VA \ans{$x=-4$} \quad HA \ans{$y=-1$}
+  \item Disprove the vertical asymptote with a number: evaluate the function at $x=4$.
+        $y=$ \ans{$-\frac78$} \; --- a value exists there, so $x=4$ cannot be a wall.
+  \item Now evaluate at $x=-4$: \ans{undefined ($\frac10$)}
+  \item In one sentence, state the rule the student broke.
+        \ansline{The number inside the denominator does the opposite of what it says --- $x+4$ shifts left, so the wall is at $x=-4$ --- and the number outside is the horizontal asymptote exactly as written, $y=-1$.}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Prove the easy half.} Show that if an \emph{integer} $r$ is a zero of
-$f(x) = x^3 + bx^2 + cx + d$ (with $b$, $c$, $d$ integers), then $r$ must divide $d$.
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-  \item Because $r$ is a zero, $f(r) = 0$, so \; $r^3 + br^2 + cr + d = $ \ans{$0$}
-  \item Move $d$ to the other side and factor $r$ out of the three remaining terms:
-        $d = -r\big($ \ans{$r^2 + br + c$} $\big)$
-  \item The quantity in parentheses is an \ans{integer}, so $d$ is $r$ times an integer, which is
-        exactly what ``\,$r$ divides $d$\,'' means. \; $\blacksquare$
-  \item In one sentence, why does this argument \emph{not} work when the leading coefficient is
-        something other than $1$? \ansline{With a leading coefficient $a_n \ne 1$ the zero need not be an integer at all --- it can be a fraction $\frac{p}{q}$, and clearing that denominator is what brings the leading coefficient into the statement.}
+\textbf{Part 1 --- Unmask the disguise.} Each function below \emph{is} a transformed $\frac1x$, but it is
+not written that way. Rewrite the numerator using the denominator, then read off the asymptotes.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=8pt]
+  \item $y=\dfrac{3x+5}{x+1}=\dfrac{3({\color{keyred}\mathbf{x+1}})+{\color{keyred}\mathbf{2}}}{x+1}=$ \ans{$3+\frac{2}{x+1}$}
+        \\[3pt]
+        $a=$ \ans{$2$} \quad $h=$ \ans{$-1$} \quad $k=$ \ans{$3$} \quad
+        VA \ans{$x=-1$} \quad HA \ans{$y=3$}
+  \item $y=\dfrac{2x-7}{x-4}=$ \ans{$2+\frac{1}{x-4}$} \\[3pt]
+        VA \ans{$x=4$} \quad HA \ans{$y=2$}
+  \item Check (b) against Lesson 4.0's degree comparison: the degrees of top and bottom are
+        \ans{equal (both $1$)}, so the HA is the ratio of the \ans{leading coefficients}, which is \ans{$\frac21=2$}. Same
+        answer? \ans{yes}
 \end{enumerate}
 
 \vspace{5pt}
-\textbf{Part 2 --- Run the theorem backward.} Build a polynomial to order.
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-  \item You want a cubic with integer coefficients whose candidate list is exactly
-        $\pm 1, \pm\tfrac12, \pm\tfrac13, \pm\tfrac16$. What must its constant term be?
-        \ans{$\pm 1$} \; Its leading coefficient? \ans{$\pm 6$}
-  \item Now build one with zeros $\tfrac12$, $\tfrac13$, and $-1$. Start from the factors
-        $(2x-1)$, $(3x-1)$, $($\ans{$x+1$}$)$ and multiply them out:
-        $f(x) = $ \ans{$6x^3 + x^2 - 4x + 1$}
-  \item Check your answer against (a): does its constant term and leading coefficient give the list
-        you wanted? \ans{Yes --- constant $1$, leading coefficient $6$}
+\textbf{Part 2 --- Build one backwards.} Write the equation of a rational function whose vertical
+asymptote is $x=-3$, whose horizontal asymptote is $y=4$, and whose graph passes through $(-2,1)$.
+\begin{center}
+$y=$ \ans{$\frac{-3}{x+3}+4$}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
+  \item Now write your answer as a \emph{single} fraction (Lesson 4.3, run forwards): \ans{$\frac{4x+9}{x+3}$}
+  \item Confirm the horizontal asymptote from that single fraction using the degree comparison.
+        \ans{equal degrees $\Rightarrow y=\frac41=4$ \checkmark}
+  \item Could a function have those two asymptotes and pass through $(-3,1)$? Explain.
+        \ansline{No. $x=-3$ is the vertical asymptote, so $-3$ is excluded from the domain --- there is no point on the graph with that $x$-value at all.}
 \end{enumerate}
 
 \vspace{5pt}
-\textbf{Part 3 --- A polynomial the theorem cannot crack.} Let $k(x) = x^3 - 3x - 1$.
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-  \item Candidate list: \ans{$\pm 1$} \; Test every candidate. Any zeros? \ans{No}
-  \item So $k$ has \emph{no rational zeros}. But complete this table of values:
-    \begin{center}
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabular}{|c|C{1.3cm}|C{1.3cm}|C{1.3cm}|C{1.3cm}|C{1.3cm}|}
-    \hline
-    $x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ \\ \hline
-    $k(x)$ & \ans{$-3$} & \ans{$1$} & \ans{$-1$} & \ans{$-3$} & \ans{$1$} \\ \hline
-    \end{tabular}
-    \end{center}
-  \item The outputs change sign three times, so the graph must cross the $x$-axis
-        \ans{$3$} times. Between which pairs of consecutive $x$-values?
-        \ans{$(-2,-1)$, $(-1,0)$, and $(1,2)$}
-  \item So $k$ has three \emph{real} zeros and \emph{no} rational ones. What kind of numbers must
-        all three be? \ans{irrational} \; What does that tell you about what the Rational Root
-        Theorem is --- and is not --- for? \ansline{It is a search tool for \emph{rational} zeros only. When a polynomial has none, the theorem returns nothing --- and that is not a contradiction, because irrational zeros were never in its reach.}
-\end{enumerate}
-
-\vspace{5pt}
-\textbf{Part 4 --- Tomorrow's problem, today.} Solve $x^3 - x^2 + 4x - 4 = 0$.
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-  \item Candidates: \ans{$\pm 1,\ \pm 2,\ \pm 4$} \; A zero that works: $r = $ \ans{$1$}
-  \item Depressed polynomial: \ans{$x^2 + 4$} \; Try to solve it: $x^2 = $ \ans{$-4$}, so
-        $x = $ \ans{$\pm\sqrt{-4}$ --- not a real number}
-  \item How many \emph{real} solutions does the original equation have? \ans{$1$} \;
-        How many solutions does a cubic ``want'' to have? \ans{$3$}
-  \item Where did the other two go? Write your group's best guess --- Lesson 4.5 will tell you
-        whether you were right. \ansline{They are imaginary: $\sqrt{-4} = 2i$, so the missing solutions are $x = \pm 2i$ --- a complex-conjugate pair, exactly as in Unit 3.}
+\textbf{Part 3 --- Diluting the brine.} A tank holds $20$ grams of salt dissolved in $5$ liters of
+water. You pour in $x$ more liters of \emph{pure} water. The concentration is
+\[ C(x)=\frac{20}{5+x} \quad \text{grams per liter.} \]
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Fill in: $C(0)=$ \ans{$4$}, \; $C(5)=$ \ans{$2$}, \; $C(15)=$ \ans{$1$}, \;
+        $C(35)=$ \ans{$0.5$} g/L.
+  \item Written as $\dfrac{a}{x-h}+k$: \; $a=$ \ans{$20$}, \; $h=$ \ans{$-5$}, \;
+        $k=$ \ans{$0$}. So the horizontal asymptote is \ans{$y=0$}.
+  \item What does that horizontal asymptote mean about the salt? \ansline{The concentration drops toward $0$ but never reaches it: the $20$ g of salt never leaves the tank, so no amount of added water makes the brine truly pure.}
+  \item The algebra puts a vertical asymptote at $x=$ \ans{$-5$}. Does that number mean anything
+        for this tank? \ans{no} \; What values of $x$ actually make sense? \ans{$x\ge0$}
+  \item How much water gets the concentration to $2$ g/L? \ans{$5$} L. \; To $1$ g/L?
+        \ans{$15$} L. \; To $0.5$ g/L? \ans{$35$} L. \\[3pt]
+        So each \emph{halving} of the concentration costs \ans{twice as much} water than the halving before
+        it. Explain what the graph is doing near its horizontal asymptote. \ansline{The curve flattens as it approaches $y=0$, so it takes a bigger and bigger run of added water to buy the same drop in concentration --- the graph gets closer to the asymptote but never arrives.}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{teachernote}
-\textbf{Tier placement.} Assign from the exit ticket of Lesson~4.3: the ``sign flip on $r$'' and
-``arithmetic'' piles go to Tier~R, the ``stopped before factoring'' pile to Tier~A, and everyone else
-to Tier~E. Tier~R problems 1--2 are monic on purpose, so the candidate list is just the divisors of
-the constant term and students can practice the \emph{workflow} before the fraction bookkeeping
-arrives in problem 3.
+\textbf{Tier R} is one transformation at a time until item 4. Part 2's matching is the item to watch: a
+student who picks \textbf{A} for $y=\frac1x+3$ has the two roles crossed. Part 3 is not a throwaway ---
+``no intercepts'' is the fact students most refuse to believe.
 
 \vspace{3pt}
-\textbf{Tier A problem 2 is the one to debrief with the whole class.} It is the lesson's pedagogical
-core: the graph names all three zeros, the candidate list confirms them, and the fractional zero
-$-\tfrac12$ is \emph{visible} as the crossing between $-1$ and $0$ before anybody divides anything.
-Students who work top-to-bottom through twelve candidates get the right answer and miss the point;
-ask them out loud how many divisions the graph saved. Problem 4(b) is the conceptual check --- a
-candidate list with no winners is not a mistake, it is information.
+\textbf{Tier A Part 1} row 2 is the point of the table: $y=\frac1x-5$ has \emph{no} $y$-intercept,
+because its vertical asymptote is the $y$-axis. Part 2 is A2.F.1b, and step (d) --- verify on a second
+point --- is the required habit. In Part 3, beat the student's rule with arithmetic, not a correction
+($x=4$ gives an ordinary value, so it cannot be a wall).
 
 \vspace{3pt}
-\textbf{Tier E Part 1} is a genuine proof and worth the time; the argument is three lines and makes
-the theorem stop feeling arbitrary. Part 2 inverts it, which is the skill Lesson~4.5 opens with
-(building a polynomial from its zeros, A2.EI.6a). Part 3 is the honest limit of the tool, and Part 4
-is the setup for the Fundamental Theorem of Algebra --- leave (d) as a conjecture rather than
-telling them; groups that recall complex numbers from Unit~3 will get there themselves, and the ones
-that do not will have a question waiting for tomorrow.
-
-\vspace{3pt}
-\textbf{If a group finishes early}, hand them the unit anchor $x^3-3x+2$ and ask them to confirm
-that the Rational Root Theorem would have found both of its zeros with no hints at all --- the
-candidate list is $\pm1,\pm2$, and $x=1$ and $x=-2$ are both on it. That closes the loop the class
-has been walking since Lesson~4.0.
+\textbf{Tier E Part 1} is 4.5's algebra a day early and the proof of 4.0's degree rule here: the
+leftover constant \emph{is} the ratio of the leading coefficients. Early finishers: $y=\frac{x}{x-2}$.
+\textbf{Part 3(d)} is the modeling beat (A2.F.2f) --- $x=-5$ is real mathematics and meaningless
+chemistry.
 \end{teachernote}
 
 \end{document}

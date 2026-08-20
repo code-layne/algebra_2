@@ -1,10 +1,15 @@
-%! $n$th Roots \& Rational Exponents — Unit 6, Lesson 6.1 — Group Activity (Answer Key)
+%! Exponential Growth and Decay — Unit 6, Lesson 6.1 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
-\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
@@ -14,201 +19,231 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{One Expression, Two Costumes.} Every radical can be written as an exponent, and every
-rational exponent can be written as a radical --- and \emph{which costume you choose decides how
-hard the problem is}. With your partner, translate carefully and say out loud which form you picked
-and why. Unless a problem says otherwise, assume all variables represent \textbf{positive} real
-numbers.
+\small\textbf{Building the Model.} Yesterday the equation was handed to you. Today you write it. Every
+problem below gives you a \emph{source} --- a table, a graph, or a sentence --- and asks for the same
+two numbers: the initial value $a$ and the factor $b$. With your partner, build each model, then
+\textbf{check it}: does $x=0$ give back the starting amount, and is $b$ on the correct side of $1$?
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. Translate.} Fill in every empty cell. The \textbf{index} always becomes the
-\textbf{denominator}.
+\textbf{Part 1 --- Percent to factor.} Fill in each row. Remember: $b=1+r$ when it grows,
+$b=1-r$ when it shrinks.
 \begin{center}
-\renewcommand{\arraystretch}{1.9}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\linewidth}{@{}X l l X@{}}
 \hline
-\textbf{Radical form} & \textbf{Rational exponent form} & \textbf{Value (numbers only)} \\
+\textbf{The sentence says\dots} & \textbf{Rate $r$} & \textbf{Grows or shrinks?} & \textbf{Factor $b$} \\
 \hline
-$\sqrt{x}$            & \ans{$x^{1/2}$} & --- \\
-$\sqrt[3]{x^{2}}$     & \ans{$x^{2/3}$} & --- \\
-\ans{$\sqrt{x^{5}}$}  & $x^{5/2}$     & --- \\
-\ans{$\sqrt[6]{t}$}   & $t^{1/6}$     & --- \\
-$\sqrt[4]{16}$        & \ans{$16^{1/4}$} & \ans{$2$} \\
-\ans{$\sqrt[3]{8}$}   & $8^{1/3}$     & \ans{$2$} \\
-$\left(\sqrt[3]{27}\right)^{2}$ & \ans{$27^{2/3}$} & \ans{$9$} \\
+increases by $6\%$ each year & \ans{0.06} & \ans{grows} & \ans{$1.06$} \\
+decreases by $6\%$ each year & \ans{0.06} & \ans{shrinks} & \ans{$0.94$} \\
+grows by $25\%$ each week & \ans{0.25} & \ans{grows} & \ans{$1.25$} \\
+loses $40\%$ of it each hour & \ans{0.40} & \ans{shrinks} & \ans{$0.60$} \\
+\hline
+\end{tabularx}
+\end{center}
+The first two rows describe the same percent. Why do they give \emph{different} bases?
+\ans{One \emph{adds} the $6\%$ to what you already have ($1+0.06$); the other \emph{takes it away} ($1-0.06$).}
+
+\vspace{6pt}
+\textbf{Part 2 --- One full model.} An ant colony has $60$ ants and grows by $25\%$ each week.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item $a=$ \ans{60} \quad $r=$ \ans{0.25} \quad $b=$ \ans{1.25}
+  \item Write the model: $N(w)=$ \ans{$60(1.25)^{w}$} \quad (where $w$ is weeks)
+  \item \textbf{Check it.} What does your model give at $w=0$? \ans{60} \;
+        Does that match the story? \ans{yes}
+  \item After $1$ week: $N(1)=$ \ans{75}. \; Is that $25\%$ more than $60$?
+        \ans{yes ($60+15$)}
+  \item After $4$ weeks: $N(4)=$ \ans{$60(1.25)^{4}=146.48\ldots$} $\approx$ \ans{146} ants. \\
+        (Ants come in whole numbers --- round down.)
+  \item A classmate wrote $N(w)=60(0.25)^{w}$. What does \emph{that} model describe?
+        \ans{A colony where only $25\%$ survives each week --- a $75\%$ \emph{loss}, not a $25\%$ gain.}
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Three sources, one form.} Build $y=ab^{x}$ from each.
+
+\vspace{5pt}
+\textbf{(a) From a table.}
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+$y$ & $9$ & $27$ & $81$ & $243$ \\ \hline
+\end{tabular}
+\end{center}
+Ratios: $\frac{27}{9}=$ \ans{3}, \; $\frac{81}{27}=$ \ans{3}. \quad
+$a=$ \ans{9} \quad $b=$ \ans{3} \quad $y=$ \ans{$9\cdot 3^{x}$}
+
+\vspace{6pt}
+\textbf{(b) From a graph.} Use the three labeled points.
+\begin{center}
+\begin{minipage}[c]{0.44\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-1}{5}{-1}{10}
+  \begin{scope}
+    \clip (-1,-1) rectangle (5,10);
+    \expcurve{9}{-1.098612}{-0.09}{5}
+  \end{scope}
+  \draw[navy, dashed, semithick] (-1,0)--(5,0);
+  \fill[charcoal] (0,9) circle (3pt) node[right, font=\scriptsize]{$(0,9)$};
+  \fill[charcoal] (1,3) circle (3pt) node[right, font=\scriptsize]{$(1,3)$};
+  \fill[charcoal] (2,1) circle (3pt) node[above right, font=\scriptsize]{$(2,1)$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.52\linewidth}
+$a=$ \ans{9} \; (read it off the $y$-axis) \\[6pt]
+$b=\dfrac{3}{9}=$ \ans{$\frac13$} \\[6pt]
+Growth or decay? \ans{decay} \\[6pt]
+$y=$ \ans{$9\left(\frac13\right)^{x}$} \\[6pt]
+Horizontal asymptote: \ans{$y=0$}
+\end{minipage}
+\end{center}
+
+\vspace{4pt}
+\textbf{(c) From a story.} A savings account holds \$$800$ and earns $4\%$ interest each year.
+\\[3pt]
+$a=$ \ans{800} \quad $r=$ \ans{0.04} \quad $b=$ \ans{1.04} \quad
+$S(t)=$ \ans{$800(1.04)^{t}$} \\[3pt]
+$S(6)=$ \ans{$800(1.2653)$} $\approx$ \ans{\$$1012.26$}. \; What does that number mean?
+\ans{After $6$ years the account holds about \$$1012.26$ --- about \$$212$ of interest.}
+
+\vspace{6pt}
+\textbf{Justify.} A deer population starts at $500$ and \textbf{declines $20\%$ each year}. Three
+students hand in three different models:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.94\linewidth}{@{}l l X@{}}
+\hline
+Maya & $P(t)=500(1.2)^{t}$ & \ans{models a $20\%$ \emph{increase}} \\
+Devon & $P(t)=500(0.2)^{t}$ & \ans{models an $80\%$ \emph{decrease}} \\
+Rosa & $P(t)=500(0.8)^{t}$ & \ans{correct} \\
+\hline
+\end{tabularx}
+\end{center}
+Who is right? Then --- and this is the real question --- say what each \emph{wrong} model actually
+describes. Be specific: give the percent and the direction.
+\ansline{\textbf{Rosa} is right: a $20\%$ decline leaves $80\%$, so $b=1-0.20=0.8$.\\[3pt]
+\textbf{Maya} used $b=1.2$. That base is greater than $1$, so her herd \emph{grows} by $20\%$ a
+year --- she added the rate instead of subtracting it.\\[3pt]
+\textbf{Devon} used $b=0.2$, the percent itself. That says only $20\%$ of the deer are left each
+year, which is an $80\%$ decline --- far steeper than the story. After $3$ years Devon predicts
+$4$ deer; Rosa predicts $256$.}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Part 1 --- Two points, neither of them the $y$-intercept.} Divide to cancel $a$, then solve
+for $b$, then go back for $a$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=7pt]
+  \item The curve $y=ab^{x}$ passes through $(2,45)$ and $(5,1215)$. \\[3pt]
+        $\dfrac{1215}{45}=$ \ans{27} $=b^{\,\square}$ where $\square=$ \ans{3}, so
+        $b=$ \ans{3}. \\[3pt]
+        Now use $(2,45)$: \; $45=a\cdot$ \ans{9}, so $a=$ \ans{5}. \quad
+        $y=$ \ans{$5\cdot 3^{x}$}
+  \item The curve $y=ab^{x}$ passes through $(1,60)$ and $(4,7.5)$. \\[3pt]
+        $b=$ \ans{$\frac12$} \quad $a=$ \ans{120} \quad $y=$ \ans{$120\left(\frac12\right)^{x}$} \\[3pt]
+        How could you tell this one would be \emph{decay} before doing any arithmetic?
+        \ans{The output got \emph{smaller} as $x$ got larger, so $b$ has to be between $0$ and $1$.}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 2 --- Run the translation backwards.} Each model is already built. Report the starting
+amount and the percent change \emph{per period}, and say which direction.
+\begin{center}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{Model} & \textbf{Initial value} & \textbf{Percent rate $r$} & \textbf{Increase or decrease?} \\
+\hline
+$y=500(1.045)^{t}$ & \ans{500} & \ans{$4.5\%$} & \ans{increase} \\
+$y=2200(0.91)^{t}$ & \ans{2200} & \ans{$9\%$} & \ans{decrease} \\
+$y=75(2)^{t}$ & \ans{75} & \ans{$100\%$} & \ans{increase (it doubles)} \\
+$y=1000(1.005)^{t}$ & \ans{1000} & \ans{$0.5\%$} & \ans{increase} \\
 \hline
 \end{tabularx}
 \end{center}
 
 \vspace{4pt}
-\textbf{2. Where does each number go?} In the expression $a^{m/n}$:
-\begin{itemize}[leftmargin=1.6em, itemsep=4pt]
-  \item the number $n$ (the \emph{bottom}) is the \ans{index --- the root you take};
-  \item the number $m$ (the \emph{top}) is the \ans{power you raise it to}.
-\end{itemize}
-
-\vspace{2pt}
-\textbf{3. Evaluate.} Take the \emph{root} first, then the power --- the numbers stay small.
+\textbf{Part 3 --- The same first step, two different futures.} A tank holds $240$ gallons. Compare
+two leaks:
 \begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabular}{@{}l l l@{}}
-(a) \; $9^{1/2}=$ \ans{$3$} & (b) \; $64^{1/3}=$ \ans{$4$} &
-(c) \; $4^{3/2}=$ \ans{$8$} \\
-(d) \; $25^{3/2}=$ \ans{$125$} & (e) \; $8^{4/3}=$ \ans{$16$} &
-(f) \; $(-27)^{1/3}=$ \ans{$-3$} \\
-\end{tabular}
-\end{center}
-
-\vspace{2pt}
-\textbf{4.} One of the six above had a \emph{negative} base and still worked. Which one, and what is
-it about its \textbf{denominator} that allowed it? \ansline{(f). The denominator is $3$, which is
-\emph{odd}, so it asks for a cube root --- and cubing keeps the sign, so $(-3)^3=-27$. An even
-denominator (a square or fourth root) would have failed on a negative base.}
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
-    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. No calculator.} Evaluate each. Show the root you took and the power you applied.
-\begin{center}
-\renewcommand{\arraystretch}{2.0}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
-(a) \; $27^{4/3}=$ \ans{$81$} &
-(b) \; $16^{3/4}=$ \ans{$8$} &
-(c) \; $(-8)^{2/3}=$ \ans{$4$} \\
-(d) \; $81^{-1/2}=$ \ans{$\dfrac{1}{9}$} &
-(e) \; $32^{-3/5}=$ \ans{$\dfrac{1}{8}$} &
-(f) \; $\left(\dfrac{8}{27}\right)^{2/3}=$ \ans{$\dfrac{4}{9}$} \\
-\end{tabularx}
-\end{center}
-\emph{Work:} (a) $\left(\sqrt[3]{27}\right)^4=3^4$. \; (b) $\left(\sqrt[4]{16}\right)^3=2^3$. \;
-(c) $\left(\sqrt[3]{-8}\right)^2=(-2)^2$. \; (d) $\dfrac{1}{\sqrt{81}}$. \;
-(e) $\dfrac{1}{\left(\sqrt[5]{32}\right)^3}=\dfrac{1}{2^3}$. \;
-(f) $\left(\sqrt[3]{8/27}\right)^2=\left(\tfrac{2}{3}\right)^2$.
-
-\vspace{3pt}
-\textbf{2. Justify --- why root first?} Your partner insists on doing (b) as $\sqrt[4]{16^{3}}$.
-That is not \emph{wrong}. Carry it out far enough to see what happens, then explain why taking the
-root first is the better habit. \ansline{$16^3 = 4096$, so they now need $\sqrt[4]{4096}$ --- a
-fourth root of a four-digit number, which almost nobody can do mentally. Root first keeps every
-number small: $\sqrt[4]{16}=2$, then $2^3=8$. Both routes give $8$, because
-$\sqrt[n]{a^m}=\left(\sqrt[n]{a}\right)^m$ --- but only one of them is arithmetic you can do in your
-head.}
-
-\vspace{2pt}
-\textbf{3. Justify --- the sign trap.} A classmate says ``$81^{-1/2}$ must be negative, because the
-exponent is negative.'' They are wrong. Explain what the negative exponent actually does, and give
-the correct value. \ansline{A negative exponent means \emph{reciprocal}, not ``negative answer'':
-$81^{-1/2}=\dfrac{1}{81^{1/2}}=\dfrac{1}{9}$. The minus sign moves the expression to the
-denominator; it never changes the sign of the result. (A positive base raised to \emph{any} real
-power stays positive.)}
-
-\vspace{2pt}
-\textbf{4. Sort them.} Without evaluating, decide whether each expression is a \emph{real number},
-and give your reason (look at the denominator of the exponent and the sign of the base).
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\small
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.94\linewidth}{@{}l X@{}}
 \hline
-\textbf{Expression} & \textbf{Real number? (yes/no)} & \textbf{Reason} \\
-\hline
-$(-64)^{1/3}$ & \ans{yes} & \ans{odd denominator: a cube root keeps the sign ($=-4$)} \\
-$(-64)^{1/2}$ & \ans{no} & \ans{even denominator, negative base: nothing real squares to $-64$} \\
-$(-32)^{1/5}$ & \ans{yes} & \ans{odd denominator: fifth root of a negative is negative ($=-2$)} \\
-$(-16)^{3/4}$ & \ans{no} & \ans{even denominator, so the fourth root comes first --- and $\sqrt[4]{-16}$ is not real} \\
+\textbf{Leak A} & The tank loses $60$ gallons every day. \\
+\textbf{Leak B} & The tank loses $25\%$ of whatever is in it every day. \\
 \hline
 \end{tabularx}
-\end{center}
-\end{tcolorbox}
-
-\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
-    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Problems radicals cannot do.} Each product or quotient below has \emph{mismatched
-indices}, so no radical rule applies. Rewrite with rational exponents, simplify, and convert back to
-a single radical.
-\begin{center}
-\renewcommand{\arraystretch}{2.1}
-\begin{tabularx}{\linewidth}{@{}X X@{}}
-(a) \; $\sqrt{x}\cdot\sqrt[4]{x} = $ \ans{$x^{3/4}=\sqrt[4]{x^{3}}$} &
-(b) \; $\dfrac{\sqrt[3]{x^{2}}}{\sqrt{x}} = $ \ans{$x^{1/6}=\sqrt[6]{x}$} \\
-(c) \; $\left(\sqrt[3]{x^{2}}\right)^{3/2} = $ \ans{$x^{1}=x$} &
-(d) \; $\sqrt{\sqrt[3]{x}} = $ \ans{$x^{1/6}=\sqrt[6]{x}$} \\
-\end{tabularx}
-\end{center}
-\emph{Work:} (a) $x^{1/2+1/4}=x^{3/4}$. \; (b) $x^{2/3-1/2}=x^{4/6-3/6}=x^{1/6}$. \;
-(c) $x^{\frac{2}{3}\cdot\frac{3}{2}}=x^{1}$. \; (d) $\left(x^{1/3}\right)^{1/2}=x^{1/6}$.
-
-\vspace{2pt}
-For (d), explain what happened to the two indices and why that makes sense. \ansline{They
-\emph{multiplied}: a cube root inside a square root is a sixth root, because
-$\frac{1}{3}\cdot\frac{1}{2}=\frac{1}{6}$. That is just ``power to a power'' --- and it makes sense
-because you are cutting $x$ into three equal factors and then cutting each of those in half.}
-
-\vspace{5pt}
-\textbf{Part 2 --- A rational exponent in the wild.} Kepler's third law says that a planet's
-\textbf{orbital period} $T$ (in Earth years) depends on its \textbf{average distance} $a$ from the
-Sun (in astronomical units, where $1$~AU is Earth's distance):
-\[
-  T(a) = a^{3/2}.
-\]
-\begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-$a$ (AU)        & $1$ & $4$ & $9$ & $25$ \\ \hline
-$T(a)$ (years)  & $1$ & \ans{$8$} & \ans{$27$} & \ans{$125$} \\ \hline
-\end{tabular}
 \end{center}
 \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item Complete the table \emph{without a calculator}. Which root did you take, and which power did
-        you apply? \ansline{Square root first (denominator $2$), then cube it (numerator $3$):
-        $4^{3/2}=\left(\sqrt{4}\right)^3=2^3=8$, and likewise $3^3=27$, $5^3=125$.}
-  \item Write $T(a)=a^{3/2}$ in radical form: $T(a)=$ \ans{$\left(\sqrt{a}\right)^{3}$, or
-        equivalently $\sqrt{a^{3}}$}. \; Which of the two
-        equivalent radical forms did you use, and why is it the easier one to compute with?
-        \ansline{$\left(\sqrt{a}\right)^3$ --- rooting first keeps the numbers small. The other form
-        would ask for $\sqrt{15625}$ at $a=25$.}
-  \item What is the domain of $T$ \emph{algebraically} (look at the denominator of the exponent)?
-        \ans{$a\ge 0$, or $[0,\infty)$} \\
-        Does the context of the problem restrict it any further? Explain. \ansline{Yes --- $a>0$.
-        A distance of $0$~AU would put the planet inside the Sun, so the endpoint that algebra
-        allows is not physically possible; the context throws it away.}
-  \item Jupiter sits about $5.2$~AU from the Sun. Between which two \emph{table entries} must its
-        orbital period fall, and roughly how many Earth years is that? \ansline{Between $a=4$ and
-        $a=9$, so between $8$ and $27$ years --- and since $5.2$ is much closer to $4$, an estimate
-        near $12$ years is reasonable. (Jupiter's actual period is about $11.9$ years.)}
-  \item Solve $T=a^{3/2}$ for $a$ in terms of $T$. \quad $a = $ \ans{$T^{2/3}$} \\
-        \emph{Hint:} raise both sides to the power that undoes $\frac{3}{2}$. Which power is that,
-        and why does it work? \ansline{The reciprocal, $\frac{2}{3}$: $\left(a^{3/2}\right)^{2/3}
-        =a^{\frac{3}{2}\cdot\frac{2}{3}}=a^{1}=a$. Multiplying by the reciprocal is what makes the
-        exponent $1$.}
-  \item Your answer to (e) undoes $T(a)$ --- it is the \textbf{inverse} relationship from Lesson 6.0,
-        now written with exponents instead of graphs. Use it to check one entry from the table, and
-        state what the exponent $\frac{2}{3}$ is doing in words. \ansline{Check: $27^{2/3}
-        =\left(\sqrt[3]{27}\right)^2=3^2=9$~AU, which is the table's $a=9$ row. In words: take the
-        \emph{cube root} of the period, then \emph{square} it --- distance from period, instead of
-        period from distance.}
+  \item Write both models. \quad $A(d)=$ \ans{$240-60d$} \quad $B(d)=$ \ans{$240(0.75)^{d}$}
+  \item Fill in the table (round to the nearest hundredth).
+    \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    Day $d$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \hline
+    $A(d)$ & $240$ & \ans{180} & \ans{120} & \ans{60} & \ans{0} & \ans{$-60$} \\ \hline
+    $B(d)$ & $240$ & \ans{180} & \ans{135} & \ans{101.25} & \ans{75.94} & \ans{56.95} \\ \hline
+    \end{tabular}
+    \end{center}
+  \item On day $1$ the two leaks lose the \emph{same} amount. Show that, then explain why they come
+        apart after that.
+        \ansline{$25\%$ of $240$ is $60$, so both tanks drop to $180$ on day $1$. After that Leak A
+        keeps subtracting the \emph{same} $60$ gallons, while Leak B takes $25\%$ of a
+        \emph{smaller} amount each time --- $45$, then $33.75$, then $25.31$. Constant difference
+        versus constant ratio.}
+  \item Leak A empties the tank. On what day? \ans{day 4} \; Leak B never does.
+        Use Lesson 6.0's language --- \textbf{asymptote} --- to explain why not.
+        \ansline{$B(d)=240(0.75)^{d}$ has the horizontal asymptote $B=0$. Multiplying a positive
+        number by $0.75$ always leaves a positive number, so the amount gets arbitrarily close to
+        $0$ but never reaches it --- $0$ is a boundary of the range, not a value the model attains.}
+  \item After two weeks ($d=14$), Leak A's formula gives \ans{$-600$} gallons and Leak B's
+        gives about \ans{$4.28$} gallons. One of those answers is \emph{impossible} and the
+        other is merely \emph{unrealistic}. Explain both.
+        \ansline{Leak A's $-600$ is \emph{impossible}: a tank cannot hold a negative amount of
+        water. The linear model is only valid until day $4$, when the tank runs dry --- past that
+        its contextual domain has ended.\\[3pt]
+        Leak B's $4.28$ gallons is a real, possible number, but the model claims the tank still has
+        \emph{something} in it forever, no matter how many days pass. That is the asymptote talking.
+        In reality the last few drops evaporate or drain, so the model is useful early and
+        meaningless in the far tail.}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{teachernote}
-\textbf{Tier R} is pure translation and should be finished in under ten minutes; the only concept
-question is item 4, which forces students to say ``odd \emph{denominator}'' rather than ``odd
-index'' --- the vocabulary swap is the point.
-\textbf{Tier A} item 2 is worth a whole-class share: let a group actually compute $16^3=4096$ on the
-board before anyone rescues them. Item 3 kills the year's most durable exponent error. In item 4,
-watch for students marking $(-16)^{3/4}$ real by cubing first ($(-16)^3$ is negative, and its fourth
-root is still not real) --- the answer is the same either way, but the clean argument is that the
-even denominator demands a fourth root of a negative number.
-\textbf{Tier E} Part 1 is the lesson's thesis in four problems: none of (a)--(d) is doable with
-radical rules alone. Part 2 is the inverse thread from Lesson 6.0 continued in exponent language,
-and (e) is a genuine preview of Lesson 6.7 --- raising both sides to the reciprocal power is the
-algebraic version of reflecting over $y=x$. Groups that finish early can be asked why the table's
-first row reads $1\mapsto 1$: the units were \emph{defined} from Earth's own orbit, so $1^{3/2}=1$
-is a statement about the choice of units, not about physics.
+\textbf{Tier R Part 1's follow-up question} (``same percent, different bases'') is the whole point of
+the tier --- do not let students skip it to get to Part 2. If a group writes $b=0.06$ anywhere, send
+them back to Warm-Up item 1 rather than correcting it for them.
+
+\textbf{Tier A's Justify is the assessment item of the activity.} Identifying Rosa is easy; the
+work is diagnosing Maya and Devon. Maya's error is a \emph{sign} error ($1+r$ instead of $1-r$) and
+Devon's is the \emph{percent-as-base} error --- two different misconceptions that need two different
+re-teaches, which is exactly why the question asks students to describe each wrong model rather than
+just cross it out. The numbers at $t=3$ ($4$ deer versus $256$) are worth putting on the board.
+
+\textbf{Tier E Part 1} is the only place two-point building gets real practice, and (b) is harder than
+(a) because $b$ comes out a fraction. Groups that stall usually forget that $\frac{7.5}{60}=b^{3}$
+requires a \emph{cube} root, not a square root --- the exponent is the \emph{gap} between the
+$x$-values, $4-1=3$.
+
+\textbf{Tier E Part 3} is the linear-versus-exponential contrast from Lesson 6.0's fingerprint test,
+now in context, and it sets up two later lessons at once: the contextual-domain question returns in
+6.4's modeling, and part (e) is a rehearsal for 6.5's ``extrapolation breaks'' beat. Both tanks
+losing exactly $60$ gallons on day $1$ is deliberate --- it kills the idea that ``exponential just
+means faster.''
+
+\textbf{Pacing:} Tier R is one page of work and should take about ten minutes; Tier A about fifteen.
+Tier E is genuinely long --- assign Part 1 and \emph{either} Part 2 or Part 3 if the period is tight.
 \end{teachernote}
 
 \end{document}

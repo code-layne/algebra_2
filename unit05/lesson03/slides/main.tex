@@ -1,11 +1,6 @@
-%! Adding \& Subtracting Rational Expressions — Unit 5, Lesson 5.3 — Slides (Beamer)
+%! Multiplying \& Dividing Radicals; Rationalizing — Unit 5, Lesson 5.3 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
-  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
-  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -16,273 +11,307 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.3}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Adding \& Subtracting Rational Expressions}\\[0.35cm]
-    {\color{white}\bfseries\large and Complex Fractions}\\[1.0cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
+    {\color{white}\bfseries\LARGE Multiplying \& Dividing Radicals; Rationalizing}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Radical Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{One subtraction. Two answers.}
+  \forestheader{Both students are right. So why does one form win?}
   \sectionlabel{Hook}
   \begin{columns}[T]
-    \begin{column}{0.40\textwidth}
-      \[ D(x)=\frac{4x-1}{x+3}-\frac{2x-7}{x+3} \]
+    \begin{column}{0.48\textwidth}
+      \[ \frac{1}{\sqrt2} \qquad\text{vs.}\qquad \frac{\sqrt2}{2} \]
       \vspace{-8pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Dev: $\dfrac{2x-8}{x+3}$
-        \item Elin: $2$
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item $1 \div 1.414214 = 0.7071\dots$
+        \item $1.414214 \div 2 = 0.7071\dots$
       \end{itemize}
-    \end{column}
-    \begin{column}{0.58\textwidth}
-      \centering
-      \renewcommand{\arraystretch}{1.4}
-      \begin{tabular}{|l|c|c|c|}
-      \hline
-       & $x=0$ & $x=1$ & $x=-3$ \\ \hline
-      $D(x)$ & $2$ & $2$ & \textbf{undef.} \\ \hline
-      Dev    & $-\frac83$ & $-\frac32$ & \textbf{undef.} \\ \hline
-      Elin   & $2$ & $2$ & $2$ \\ \hline
-      \end{tabular}
-    \end{column}
-  \end{columns}
-  \vspace{6pt}
-  \begin{block}{Two sentences for the whole period}
-    \textbf{The minus sign owns the whole numerator.} And even an answer as plain as ``$2$'' still
-    carries the restrictions of the problem it came from --- Elin's answer needs $x\neq-3$.
-  \end{block}
-\end{frame}
-
-% LIKE DENOMINATORS
-\begin{frame}[t, plain]
-  \forestheader{Like denominators: combine the tops, keep the bottom}
-  \sectionlabel{Basics}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \[ \frac{a}{c}\pm\frac{b}{c}=\frac{a\pm b}{c}, \qquad c\neq0 \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $\dfrac{7}{x^2-4}+\dfrac{x}{x^2-4}=\dfrac{x+7}{(x-2)(x+2)}$, \; $x\neq2,-2$.
-        \item Factor the denominator \emph{first} --- that is where the restrictions live.
-      \end{itemize}
+      \vspace{5pt}
+      {\footnotesize Same number. Every textbook still insists on the second.}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{You never add the denominators}
-        $\dfrac12+\dfrac12=1$, not $\dfrac{2}{4}$. \\[3pt]
-        Two halves do not make a half.
+      \begin{block}{It is 1850 and you have no calculator}
+        Which long division would you rather do? \\[4pt]
+        $1 \div 1.414214$ \quad or \quad $1.414214 \div 2$
       \end{block}
-      \vspace{3pt}
-      {\footnotesize Last step, always: \textbf{factor the new numerator} and see whether anything
-      divides out.}
+      \vspace{4pt}
+      {\footnotesize A radical on \textbf{top} is harmless. A radical on the \textbf{bottom} is a
+      nuisance. \\[4pt]
+      \textcolor{goldacc}{\textbf{How did they get from one to the other?}} Multiply top and bottom
+      by $\sqrt2$ --- and $\sqrt2\cdot\sqrt2=2$.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% THE PARENTHESIS
+% MULTIPLYING
 \begin{frame}[t, plain]
-  \forestheader{The parenthesis rule}
-  \sectionlabel[goldacc]{Signature error}
+  \forestheader{The product property, run \emph{forwards}}
+  \sectionlabel[goldacc]{Multiplying}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
-      \[ \frac{6x+5}{x^2-4}-\frac{2x+13}{x^2-4}
-         =\frac{(6x+5)-(2x+13)}{(x-2)(x+2)} \]
-      \[ =\frac{4x-8}{(x-2)(x+2)}=\frac{4(x-2)}{(x-2)(x+2)}=\frac{4}{x+2} \]
-      \centering $x\neq2,\;-2$ \quad (check at $x=0$: both give $2$)
+      \[ \sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab} \]
+      \vspace{-8pt}
+      \begin{block}{The move}
+        \centering Outsides times outsides. \\ Insides times insides. \\
+        \textbf{Then} simplify.
+      \end{block}
+      \vspace{4pt}
+      \footnotesize
+      $2\sqrt5\cdot3\sqrt{10}=6\sqrt{50}=30\sqrt2$ \\[3pt]
+      $\sqrt[3]4\cdot\sqrt[3]6=\sqrt[3]{24}=2\sqrt[3]3$
     \end{column}
     \begin{column}{0.46\textwidth}
-      \begin{block}{Write the parentheses \emph{before} you distribute}
-        $-(2x+13)=-2x-13$. Drop them and every term after the first flips the wrong way.
+      \begin{block}{Never skip the last step}
+        $\sqrt6\cdot\sqrt{10}=\sqrt{60}=2\sqrt{15}$ \\[4pt]
+        {\footnotesize Neither factor simplified on its own. The \emph{product} created a perfect
+        square out of nothing.}
       \end{block}
-      \vspace{3pt}
-      {\footnotesize $(x-2)$ divided out $\Rightarrow$ $x=2$ is a \textbf{hole}. $(x+2)$ stayed
-      $\Rightarrow$ $x=-2$ is a \textbf{wall}.}
+      \vspace{5pt}
+      {\footnotesize \textcolor{goldacc}{\textbf{$\sqrt a\cdot\sqrt a=a$}} --- a square root times
+      itself erases the radical. \\[4pt]
+      $\left(\sqrt7\right)^{2}=7$, \; $\left(3\sqrt5\right)^{2}=45$. \\[4pt]
+      A cube root needs \textbf{three} copies. The index still sets the group size.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% BUILDING THE LCD
+% DISTRIBUTING AND FOIL
 \begin{frame}[t, plain]
-  \forestheader{Unlike denominators: build the LCD out of \emph{factors}}
-  \sectionlabel[goldacc]{Procedure}
+  \forestheader{Radicals distribute and FOIL exactly like binomials}
+  \sectionlabel{Expanding}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
-      \begin{enumerate}\setlength{\itemsep}{3pt}
-        \item \textbf{Factor} every denominator.
-        \item \textbf{Build the LCD:} each distinct factor, to the highest power it reaches anywhere.
-        \item \textbf{List the restrictions} from the LCD's factors.
-        \item \textbf{Rewrite} with building factors $\frac kk$.
-        \item \textbf{Combine} (parentheses!) and simplify.
-        \item \textbf{Factor the numerator}; divide out.
-      \end{enumerate}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{6pt}
+        \item $\sqrt5\left(\sqrt3+\sqrt{10}\right)=\sqrt{15}+\sqrt{50}=\sqrt{15}+5\sqrt2$
+        \item $\sqrt2\left(4-\sqrt2\right)=4\sqrt2-2$
+        \item $\left(2+\sqrt3\right)\left(5-\sqrt3\right)$ \\[3pt]
+              \qquad $=10-2\sqrt3+5\sqrt3-3=7+3\sqrt3$
+      \end{itemize}
+      \vspace{6pt}
+      {\footnotesize Simplify each product \emph{separately} after distributing.}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Why not just multiply the denominators?}
-        You may --- $\frac{5}{12}+\frac{7}{18}$ over $216$ gives $\frac{174}{216}$, which is the same
-        number. It just hands you a reduction at the end, and with polynomials that means
-        re-factoring.
+    \begin{column}{0.46\textwidth}
+      \begin{block}{The error of the day}
+        $\left(\sqrt7+\sqrt2\right)^{2} \ne 9$ \\[4pt]
+        $=7+\sqrt{14}+\sqrt{14}+2 = 9+2\sqrt{14}$
       \end{block}
-      \vspace{3pt}
-      {\footnotesize $\dfrac{5}{6x^2}+\dfrac{7}{4x}=\dfrac{21x+10}{12x^2}$, \; $x\neq0$.}
+      \vspace{4pt}
+      {\footnotesize There is a \textbf{middle term}, for the same reason
+      \textcolor{keyred}{$(x+4)^{2}\ne x^{2}+16$} --- which you rejected in the Warm-Up. \\[5pt]
+      Your turn: $\left(3-\sqrt5\right)^{2}=14-6\sqrt5$.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% THE ANCHOR
+% CONJUGATES
 \begin{frame}[t, plain]
-  \forestheader{The anchor --- and an answer you have already met}
-  \sectionlabel{Worked}
-  \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
-      \[ \frac{3}{x-3}-\frac{18}{x^2-9}
-         =\frac{3}{x-3}\cdot\frac{x+3}{x+3}-\frac{18}{(x-3)(x+3)} \]
-      \[ =\frac{(3x+9)-18}{(x-3)(x+3)}=\frac{3(x-3)}{(x-3)(x+3)}=\frac{3}{x+3} \]
-      \centering $x\neq3,\;-3$
-    \end{column}
-    \begin{column}{0.42\textwidth}
-      \begin{block}{Where have you seen this?}
-        The Warm-Up simplified $\dfrac{3x-9}{x^2-9}$ to the same thing, restrictions and all.
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize Two very different starting points, one function. Also:
-      $\dfrac{2}{x^2+5x+6}+\dfrac{3}{x^2-9}=\dfrac{5x}{(x+2)(x+3)(x-3)}$ --- the shared $(x+3)$ appears
-      in the LCD \textbf{once}.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% THE BIG IDEA
-\begin{frame}[t, plain]
-  \forestheader{The LCD \emph{is} the restriction list}
-  \sectionlabel{The big idea}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Why it works}
-        The LCD contains every factor of every original denominator --- that is what makes it common.
-        So setting its factors to zero produces every excluded value, for free.
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{The one warning}
-        Build it from the \emph{original} factored denominators. Reading anything off your final answer
-        is Lesson 5.1's error, and it is still wrong.
-      \end{block}
-    \end{column}
-  \end{columns}
-  \vspace{8pt}
-  \begin{center}
-    \textbf{Opposite binomials:} $\dfrac{4}{x-5}+\dfrac{2}{5-x}=\dfrac{4}{x-5}+\dfrac{-2}{x-5}
-    =\dfrac{2}{x-5}$, \; $x\neq5$. \\[3pt]
-    {\footnotesize The LCD was never $(x-5)(5-x)$ --- those denominators were never different.}
-  \end{center}
-\end{frame}
-
-% COMPLEX FRACTIONS
-\begin{frame}[t, plain]
-  \forestheader{A complex fraction is a division in disguise}
-  \sectionlabel[goldacc]{A2.EO.1c}
-  \begin{columns}[T]
-    \begin{column}{0.34\textwidth}
-      \[ \frac{\;\dfrac{1}{x}+\dfrac{1}{2}\;}{\;\dfrac{1}{x}-\dfrac{1}{4}\;} \]
-      \centering {\footnotesize The main bar is a $\div$ sign.}
-    \end{column}
-    \begin{column}{0.32\textwidth}
-      \begin{block}{Method 1 --- then divide}
-        $\dfrac{x+2}{2x}\div\dfrac{4-x}{4x}
-         =\dfrac{x+2}{2x}\cdot\dfrac{4x}{4-x}=\dfrac{2(x+2)}{4-x}$
-      \end{block}
-    \end{column}
-    \begin{column}{0.32\textwidth}
-      \begin{block}{Method 2 --- clear by $4x$}
-        $\dfrac{4x\left(\frac1x+\frac12\right)}{4x\left(\frac1x-\frac14\right)}
-         =\dfrac{4+2x}{4-x}$
-      \end{block}
-    \end{column}
-  \end{columns}
-  \vspace{6pt}
-  \begin{center}
-    \textbf{Restrictions come from two levels:} every \emph{inner} denominator ($x\neq0$), and the
-    \emph{whole bottom} ($4-x\neq0$, so $x\neq4$) --- Lesson 5.2's source 3 in a new coat.
-  \end{center}
-\end{frame}
-
-% THE PICTURE
-\begin{frame}[t, plain]
-  \forestheader{One subtraction, one hole and one wall}
-  \sectionlabel{The picture}
+  \forestheader{One special pair comes out \emph{rational}}
+  \sectionlabel[goldacc]{Conjugates}
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.30]
-        \lgrid{-8}{5}{-5}{5}
-        \draw[dashed, redacc, thick] (-3,-5)--(-3,5);
-        \begin{scope}
-          \clip (-8,-5) rectangle (5,5);
-          \draw[very thick, forest, domain=-8:-3.62, samples=100, smooth]
-            plot (\x,{3/((\x)+3)});
-          \draw[very thick, forest, domain=-2.38:5, samples=100, smooth]
-            plot (\x,{3/((\x)+3)});
-        \end{scope}
-        \draw[forest, very thick, fill=white] (3,0.5) circle (5pt);
-      \end{tikzpicture}
+      \[ \left(4+\sqrt3\right)\left(4-\sqrt3\right) \]
+      \vspace{-14pt}
+      \[ = 16 \underbrace{- 4\sqrt3 + 4\sqrt3}_{\text{cancel}} - 3 = 13 \]
+      \vspace{-4pt}
+      \footnotesize
+      Two things happen at once: the middle terms \textbf{cancel}, and each square \textbf{erases
+      its radical}. What is left has no radical anywhere.
+      \vspace{6pt}
+
+      {\footnotesize Contrast: $\left(4+\sqrt3\right)^{2}=19+8\sqrt3$. \; Same numbers --- and the
+      radical survives.}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \[ g(x)=\frac{3}{x-3}-\frac{18}{x^2-9}=\frac{3}{x+3} \]
-      \begin{block}{Both came from the original denominators}
-        $(x-3)$ divided out $\Rightarrow$ hole at $\left(3,\frac12\right)$ \\[3pt]
-        $(x+3)$ stayed $\Rightarrow$ wall at $x=-3$
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Conjugates}
+        \centering
+        Same terms, \textbf{opposite} middle sign. \\[5pt]
+        $\left(a+\sqrt b\right)\left(a-\sqrt b\right)=a^{2}-b$ \\[4pt]
+        $\left(\sqrt a+\sqrt b\right)\left(\sqrt a-\sqrt b\right)=a-b$
       \end{block}
-      \vspace{3pt}
-      {\footnotesize The answer displays one of the two restrictions and stays silent about the other.
-      Both still belong to it.}
+      \vspace{4pt}
+      {\footnotesize \textbf{You have met this before.} Lesson 2.4:
+      $(a+bi)(a-bi)=a^{2}+b^{2}$ --- the same move made an \emph{imaginary} number real. \\[4pt]
+      Why one plus and one minus? \; $i^{2}=-1$, but $\left(\sqrt b\right)^{2}=+b$.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% ERROR GALLERY
+% DIVIDING
 \begin{frame}[t, plain]
-  \forestheader{The four ways to lose a point today}
-  \sectionlabel{Watch out}
+  \forestheader{Dividing --- and the condition we skipped yesterday}
+  \sectionlabel{Quotients}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{7pt}
+        \item $\dfrac{\sqrt{48}}{\sqrt3}=\sqrt{16}=4$
+        \item $\dfrac{6\sqrt{20}}{2\sqrt5}=3\sqrt4=6$
+        \item $\dfrac{\sqrt{40x^{3}}}{\sqrt{5x}}=\sqrt{8x^{2}}=2x\sqrt2$
+      \end{itemize}
+      \vspace{6pt}
+      {\footnotesize Two radicals with the same index pull together under one radical --- and the
+      quotient is usually friendlier than either piece.}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{But this one does not come out}
+        \centering $\dfrac{\sqrt3}{\sqrt5}=\sqrt{\dfrac{3}{5}}$
+      \end{block}
+      \vspace{4pt}
+      {\footnotesize A radical is stuck in the \textbf{denominator} --- simplest-form condition
+      \textbf{3}, the one Lesson 5.2 deliberately left open. \\[5pt]
+      \textcolor{goldacc}{\textbf{Time to finish it.}}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% RATIONALIZING: MONOMIAL
+\begin{frame}[t, plain]
+  \forestheader{Rationalizing: multiply by a form of $1$}
+  \sectionlabel[goldacc]{One radical}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \[ \frac{1}{\sqrt2}\cdot\frac{\sqrt2}{\sqrt2}=\frac{\sqrt2}{2}
+         \qquad
+         \frac{3}{\sqrt5}\cdot\frac{\sqrt5}{\sqrt5}=\frac{3\sqrt5}{5} \]
+      \vspace{-6pt}
+      \begin{block}{Why it is legal}
+        \centering $\dfrac{\sqrt b}{\sqrt b}=1$, and multiplying by $1$ changes the
+        \textbf{form}, never the \textbf{value}. \\[3pt]
+        {\footnotesize Exactly like $\frac34=\frac{15}{20}$.}
+      \end{block}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      $\dfrac{5}{\sqrt3}=\dfrac{5\sqrt3}{3}$ \qquad
+      $\sqrt{\dfrac{3}{5}}=\dfrac{\sqrt{15}}{5}$ \\[5pt]
+      $\dfrac{\sqrt7}{\sqrt{12}}=\dfrac{\sqrt7}{2\sqrt3}=\dfrac{\sqrt{21}}{6}$
+      \; {\scriptsize (simplify the bottom \emph{first})}
+      \vspace{8pt}
+
+      \begin{block}{A higher index changes the multiplier}
+        $\dfrac{1}{\sqrt[3]2}\cdot\dfrac{\sqrt[3]4}{\sqrt[3]4}=\dfrac{\sqrt[3]4}{2}$ \\[4pt]
+        {\footnotesize $\sqrt[3]2$ alone is not enough --- you need \textbf{three} copies.
+        Multiply by whatever \emph{completes the group}.}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% RATIONALIZING: BINOMIAL
+\begin{frame}[t, plain]
+  \forestheader{A binomial on the bottom? Use its conjugate}
+  \sectionlabel{Two terms}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \[ \frac{6}{3-\sqrt5}\cdot\frac{3+\sqrt5}{3+\sqrt5}
+         = \frac{6\left(3+\sqrt5\right)}{9-5}
+         = \frac{9+3\sqrt5}{2} \]
+      \vspace{-6pt}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Multiplying by $\sqrt5$ would leave a radical down there. The conjugate is
+              \emph{guaranteed} to clear it.
+        \item Check for a common factor at the end --- this one reduced.
+      \end{itemize}
+      \vspace{5pt}
+      {\footnotesize $\dfrac{4}{\sqrt5-1}=\sqrt5+1$ \qquad
+      $\dfrac{\sqrt2}{\sqrt7+\sqrt3}=\dfrac{\sqrt{14}-\sqrt6}{4}$}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Three ways this goes wrong}
+        \footnotesize
+        1. Multiplying only the \emph{denominator} --- that is not multiplying by $1$. \\[4pt]
+        2. Using the \emph{same} binomial: $\left(3-\sqrt5\right)^{2}=14-6\sqrt5$, still
+        irrational. \\[4pt]
+        3. Forgetting to FOIL a binomial \emph{numerator} --- four products, not two.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ERROR SLIDE
+\begin{frame}[t, plain]
+  \forestheader{The four ways today goes wrong}
+  \sectionlabel[goldacc]{Watch out}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \begin{block}{The lost parenthesis}
-        And the wrong answer often simplifies \emph{more prettily} than the right one --- which is why
-        nobody catches it.
+      \footnotesize
+      \begin{block}{1. Not finishing}
+        $\sqrt6\cdot\sqrt{10}=\sqrt{60}$ --- true, unfinished. \; $60=4\cdot15$, so $2\sqrt{15}$.
       \end{block}
-      \vspace{3pt}
-      \begin{block}{Adding the denominators}
-        $\dfrac1x+\dfrac13\neq\dfrac{2}{x+3}$. Test it at $x=1$: $\frac43$ against $\frac12$.
+      \vspace{4pt}
+      \begin{block}{2. Dropping the middle term}
+        $\left(\sqrt5+\sqrt2\right)^{2}\ne7$. \; It is $7+2\sqrt{10}$.
       \end{block}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{The LCD as a product}
-        Not wrong, just expensive --- and you usually lose the cancellation at the end.
+      \footnotesize
+      \begin{block}{3. Wrong multiplier}
+        $\dfrac{5}{2+\sqrt3}\cdot\dfrac{2+\sqrt3}{2+\sqrt3}$ accomplishes nothing. Flip the sign:
+        $2-\sqrt3$.
       \end{block}
-      \vspace{3pt}
-      \begin{block}{Restrictions off the answer}
-        Third appearance this unit. The LCD would have handed them to you for free.
+      \vspace{4pt}
+      \begin{block}{4. Only the bottom}
+        Multiplying just the denominator by the conjugate \textbf{changes the number}. Top and
+        bottom, always.
       \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% GOLDEN RATIO
+\begin{frame}[t, plain]
+  \forestheader{Rationalizing makes an equality \emph{visible}}
+  \sectionlabel{Extension}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \[ \varphi=\frac{1+\sqrt5}{2}\approx 1.6180 \]
+      \vspace{-10pt}
+      \footnotesize
+      \begin{tabular}{lll}
+      \hline
+      $\varphi$ & $1/\varphi$ & $\varphi^{2}$ \\
+      $1.6180$ & $0.6180$ & $2.6180$ \\
+      \hline
+      \end{tabular}
+      \vspace{6pt}
+
+      {\footnotesize The same decimal three times. The reciprocal is one \emph{less}; the square is
+      one \emph{more}.}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Why? Rationalize.}
+        $\dfrac{1}{\varphi}=\dfrac{2}{1+\sqrt5}\cdot\dfrac{1-\sqrt5}{1-\sqrt5}
+        =\dfrac{\sqrt5-1}{2}=\varphi-1$
+      \end{block}
+      \vspace{4pt}
+      {\footnotesize Cut a $1\times1$ square off a $\varphi\times1$ rectangle. The leftover has
+      ratio $\dfrac{1}{\varphi-1}=\dfrac{2}{\sqrt5-1}=\varphi$ --- \textbf{another golden
+      rectangle}, forever. \\[5pt]
+      \textcolor{goldacc}{\textbf{You cannot see that until the radical leaves the denominator.}}}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ROADMAP
 \begin{frame}[t, plain]
-  \forestheader{Where this goes}
+  \forestheader{Where Unit 5 goes next}
   \sectionlabel{Connections}
-  \textbf{Today:} factor the denominators once --- the LCD and the restriction list both come out of
-  that one step.\\[8pt]
+  \textbf{Today:} the product property forwards --- multiply, distribute, FOIL, then simplify; and
+  \textbf{conjugates}, the one pair whose product is always rational, which is what finally clears
+  a radical out of a denominator. Simplest form now has all three conditions.\\[8pt]
   \begin{itemize}\setlength{\itemsep}{3pt}
-    \item \textbf{5.4} The parent $y=\frac1x$: these expressions go back on the grid, and shifting one
-          \emph{moves its asymptotes}.
-    \item \textbf{5.5} Graphing from the equation: every restriction you list becomes a hole or a wall.
-    \item \textbf{5.6} Solving rational equations --- you will multiply through by an LCD, and any
-          solution landing on one of today's excluded values is \emph{extraneous}.
+    \item \textbf{5.4} Graphing $y=a\sqrt{x-h}+k$ and $y=a\sqrt[3]{x-h}+k$ --- back to the pictures
+          from 5.0, with the endpoint as the anchor.
+    \item \textbf{5.5} Solving radical equations. Squaring is the ``eraser'' from today's
+          $\sqrt a\cdot\sqrt a=a$ --- and it is also where \emph{extraneous} solutions come from.
+    \item \textbf{5.6--5.7} Composition and inverses --- the unit capstone.
   \end{itemize}
-  \vspace{6pt}
-  \begin{center}
-    \textbf{The minus sign owns the whole numerator.} Say it once more on the way out.
-  \end{center}
 \end{frame}
 
 \end{document}

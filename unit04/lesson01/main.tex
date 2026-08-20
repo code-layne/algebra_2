@@ -1,4 +1,4 @@
-%! Operations with Polynomials — Unit 4, Lesson 4.1 — Lesson Plan
+%! Simplifying Rational Expressions — Unit 4, Lesson 4.1 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 4: Polynomial Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 4.1: Operations with Polynomials}
+\newcommand{\UnitNumberName}{Unit 4: Rational Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 4.1: Simplifying Rational Expressions \& Domain Restrictions}
 
 \begin{document}
 \begin{center}
@@ -19,22 +19,23 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can \emph{add}, \emph{subtract}, and \emph{multiply}
-    polynomial expressions in one and two variables and write the result in \emph{standard form} ---
-    combining like terms, distributing a subtraction sign to \emph{every} term, multiplying term by
-    term (monomial $\times$ polynomial, binomial $\times$ binomial, binomial $\times$ trinomial), and
-    applying the \emph{special-product} identities $(a\pm b)^2$ and $(a+b)(a-b)$. They can then read
-    the \emph{degree} and \emph{leading coefficient} of the answer --- degrees \emph{add} under
-    multiplication, leading coefficients \emph{multiply} --- and use them to state the end behavior of
-    the polynomial they just built. This turns Lesson~4.0's factored forms into standard forms and
-    back.
+    \textbf{Primary Objective:} Students can write a rational expression in \emph{simplest form} ---
+    factor the numerator and denominator completely, then divide out common \emph{factors} --- and can
+    state \emph{every} domain restriction, taken from the \textbf{original} denominator, including the
+    restrictions whose factor cancels. Students explain \emph{why} cancelling is legal
+    ($\frac{c}{c}=1$), why it applies only to factors and never to terms, and why it never restores an
+    input that was already excluded; they recognize \emph{opposite binomials} ($\frac{a-b}{b-a}=-1$),
+    and they \emph{justify} that two rational expressions are \textbf{equivalent} by naming the inputs
+    where the two forms disagree. Throughout, the algebra is tied back to Lesson~4.0's pictures: a
+    restriction that cancels is a \emph{hole}, one that stays is a \emph{vertical asymptote}.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3a} --- determine sums, differences, and products
-    of polynomials in one \emph{and two} variables. \textbf{A2.EO.3d} appears in its \emph{forward}
-    direction (demonstrating equality of polynomial expressions written in different forms, and the
-    difference-of-squares and perfect-square-trinomial identities); the reverse direction ---
-    factoring --- is Lesson~4.2. \textbf{A2.F.2g} is revisited whenever an expanded product's degree
-    and leading coefficient are used to state end behavior.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.1b} --- justify and determine equivalent rational
+    algebraic expressions with monomial and binomial factors (expressions limited to linear and
+    quadratic) --- and \textbf{A2.EO.1d} --- represent and demonstrate equivalence of rational
+    expressions written in different forms. Builds directly on \textbf{A2.EO.3b} (factor completely,
+    Lesson~3.2) and on \textbf{A2.F.2h}/holes/domain restrictions from Lesson~4.0; it is the
+    prerequisite for \textbf{A2.EO.1a} (4.2--4.3), \textbf{A2.F.2h} from the equation (4.5), and
+    \textbf{A2.EI.4c} extraneous solutions (4.6).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -44,20 +45,22 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Write a polynomial in \textbf{standard form} and name its \textbf{degree}, \textbf{leading coefficient}, and \textbf{number of terms}.
-  \item \textbf{Add} and \textbf{subtract} polynomials by combining like terms --- distributing the subtraction to \emph{every} term.
-  \item \textbf{Multiply} monomial $\times$ polynomial, binomial $\times$ binomial, and binomial $\times$ trinomial, in one and two variables.
-  \item Apply the \textbf{special products} $(a+b)^2$, $(a-b)^2$, and $(a+b)(a-b)$.
-  \item Predict a product's \textbf{degree} and \textbf{leading coefficient}, and state the resulting \textbf{end behavior}.
+  \item \textbf{Factor completely} first --- GCF, difference of squares, trinomials (the Unit~3 toolkit, reused).
+  \item \textbf{List every restriction} from the \textbf{original} denominator, \emph{before} cancelling.
+  \item \textbf{Divide out common factors} --- monomial and binomial --- and write the \textbf{simplest form with its restrictions attached}.
+  \item Handle \textbf{opposite binomials}: $\dfrac{a-b}{b-a}=-1$.
+  \item \textbf{Justify equivalence} of two forms, and name the inputs where they disagree.
+  \item Connect back to 4.0: a restriction that \textbf{cancels} $\Rightarrow$ \textbf{hole}; one that \textbf{stays} $\Rightarrow$ \textbf{vertical asymptote}.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Adding and subtracting only ever \emph{collects} terms; multiplying \emph{creates} new, higher-degree terms.
-  \item A minus sign in front of a parenthesis is a factor of $-1$: it flips \emph{every} sign inside, not just the first.
-  \item Multiplying is one rule --- \emph{every term times every term} --- whether it is called distributing, FOIL, or the box.
-  \item Under multiplication degrees \textbf{add} and leading coefficients \textbf{multiply}, so the end behavior of a product is known before it is expanded.
-  \item Factored form and standard form are the \emph{same function} in two costumes: one shows the zeros, the other shows the end behavior.
+  \item Cancelling is not crossing out symbols --- it is dividing out a factor equal to \textbf{one}, which is why it needs \emph{factors} and needs them nonzero.
+  \item \emph{Factors are multiplied; terms are added.} Every ``illegal cancel'' of the year is this one confusion.
+  \item \textbf{Cancelling never restores an input.} The restriction list belongs to the original expression, permanently.
+  \item Two forms can be equivalent and still have different \emph{domains} --- equivalence is about values where \emph{both} are defined.
+  \item An answer here has two parts. An expression with no restrictions is half an answer.
+  \item Today's excluded values are 4.0's holes, and they will come back in 4.6 as extraneous solutions.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -65,140 +68,180 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Standard form} & Terms written from the highest power down to the constant: $a_nx^n+\dots+a_1x+a_0$. \\
-\textbf{Degree of a term} & The sum of the exponents on its variables --- so $-7x^2y^3$ has degree $5$. \\
-\textbf{Degree / leading coefficient} & The largest term degree, and the coefficient of that term once in standard form. \\
-\textbf{Monomial / binomial / trinomial} & A polynomial with one, two, or three terms. \\
-\textbf{Like terms} & Terms with \emph{identical} variable parts (same variables, same exponents); only like terms combine. \\
-\textbf{Distributive property} & $a(b+c)=ab+ac$ --- the single rule behind every polynomial product. \\
-\textbf{Special products} & \TallMath{(a+b)^2=a^2+2ab+b^2,\quad (a-b)^2=a^2-2ab+b^2,\quad (a+b)(a-b)=a^2-b^2} \\
-\textbf{Degree of a product} & $\deg(fg)=\deg f+\deg g$, and the leading coefficients multiply. \\
-\textbf{Closure} & A sum, difference, or product of polynomials is always another polynomial. \\
+\textbf{Rational expression} & \TallMath{\frac{P(x)}{Q(x)}} with $P,Q$ polynomials and $Q(x)\neq0$ --- a rational function written without the ``$f(x)=$.'' \\
+\textbf{Domain restriction} & An excluded value: any input making the \emph{original} denominator zero. \\
+\textbf{Simplest form} & Numerator and denominator share no common factor except $1$ --- \emph{with} the original restrictions still stated. \\
+\textbf{Fundamental principle} & \TallMath{\frac{ac}{bc}=\frac{a}{b}\cdot\frac{c}{c}=\frac{a}{b}} for $b\neq0$, $c\neq0$. The whole justification for cancelling. \\
+\textbf{Factor vs.\ term} & Factors are multiplied; terms are added or subtracted. Only common \emph{factors} may be divided out. \\
+\textbf{Equivalent expressions} & Same value at every input for which \emph{both} are defined --- so the two forms may have different domains. \\
+\textbf{Opposite binomials} & Same terms, every sign flipped ($x-5$ and $5-x$); one is $-1$ times the other, so their quotient is $-1$. \\
+\textbf{Hole vs.\ wall (4.0)} & Factor cancels $\Rightarrow$ removable discontinuity; factor stays $\Rightarrow$ vertical asymptote. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses exactly the four moves this lesson is built from: \textbf{(1)} the
-    \emph{product of powers} rule $x^m\!\cdot\!x^n=x^{m+n}$ (multiply the coefficients, \emph{add} the
-    exponents) --- the engine of every polynomial product; \textbf{(2)} \emph{combining like terms},
-    which is all that addition and subtraction ever do; \textbf{(3)} \emph{distributing}, including
-    the bare negative $-(4x^2-7x+3)$ that is this lesson's most common error; and \textbf{(4)} FOIL
-    from Algebra~1, plus a one-line recall of \emph{degree} and \emph{leading coefficient} from
-    Lesson~4.0. Debrief item~3 aloud --- ask what happened to the sign of \emph{each} of the three
-    terms, not just the first.
+    The Warm-Up rehearses exactly three skills, one per leg of the lesson: \textbf{(1)} \emph{factoring
+    completely} --- $x^2-9$, $x^2-x-6$, and $3x^2-12$ (GCF first) --- the Lesson~3.2 toolkit, which is
+    the engine of everything today; \textbf{(2)} \emph{what may be cancelled}, established
+    numerically before any variable appears: reducing $\frac{18}{24}$ by writing both parts as
+    $6\cdot(\ )$, and then refuting ``$\frac{3+6}{3}=6$'' by computing the true value $3$ --- so
+    \emph{factors, not terms} is a fact students proved, not a rule they were handed; and \textbf{(3)}
+    \emph{finding excluded values} for $\frac{x+1}{x^2-4}$ with the domain written as a union, straight
+    from Lesson~4.0, including the reminder that a zero \emph{numerator} is harmless. Debrief all
+    three, but do \emph{not} yet say that restrictions survive cancelling --- that is the hook's job.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put both of Lesson~4.0's names for the anchor curve on the board:
-    \[
-      g(x) = (x-1)^2(x+2) \qquad\text{and}\qquad g(x)=x^3-3x+2 .
-    \]
-    \textbf{``We used both of these labels for the same graph yesterday. Are they really the same
-    function --- or did we just take that on faith?''} Test it cheaply first: at $x=0$ both give $2$;
-    at $x=2$ both give $4$; at $x=-2$ both give $0$. \textbf{``Agreeing at three points is good
-    evidence --- but is it proof?''} (No: many different curves pass through three shared points.)
-    Land the day's purpose: \emph{the only way to know two forms are the same function is to multiply
-    the factored one out and see the standard one appear.} Note what each costume is good for --- the
-    factored form hands you the \textbf{zeros and their multiplicities}, the standard form hands you
-    the \textbf{degree and leading coefficient}, hence the \textbf{end behavior}. Today we learn to
-    move from the first to the second.
+    Put two expressions on the board --- $A(x)=\dfrac{x^2-x-6}{x^2-9}$ and $B(x)=\dfrac{x+2}{x+3}$ ---
+    and have students fill a four-column table of values at $x=0,1,4$, and $3$. The first three columns
+    agree exactly ($\tfrac23$, $\tfrac34$, $\tfrac67$); the last does not: $A(3)=\tfrac00$ is undefined
+    while $B(3)=\tfrac56$. Ask \textbf{``$B$ is just $A$ factored and cancelled --- so are they the same
+    expression or not?''} and let the disagreement stand for a moment; both answers are defensible
+    until the word \emph{equivalent} is defined. Then the question that runs the lesson:
+    \textbf{``Cancelling is supposed to be legal. So what exactly did it change, and what did it
+    not?''} Land the sentence students will hear all unit: \emph{cancelling changes how an expression
+    looks, but it never gives back an input that was already thrown away.} Close the loop to yesterday
+    by pointing at the missing point: that is the \emph{hole} they read off a graph in Lesson~4.0 ---
+    today they are producing it with algebra.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Naming a polynomial.} Put it in \textbf{standard form} (powers high to low) first ---
-every other name depends on it. Then read the \textbf{degree}, the \textbf{leading coefficient}, and
-the \textbf{number of terms} (monomial / binomial / trinomial), and classify by degree (linear,
-quadratic, cubic, quartic). For two-variable terms, the degree of a term is the \emph{sum} of its
-exponents: $-7x^2y^3$ has degree $5$. Model on $-5x^2+7x^4-3+x \Rightarrow 7x^4-5x^2+x-3$.
+\textbf{1. Rational expressions and their restrictions.} A \textbf{rational expression} is a quotient
+of polynomials. The restriction procedure is Lesson~4.0's, unchanged: set the \emph{denominator} equal
+to zero and solve. Do the anchor ($x^2-9=0\Rightarrow x\neq3,-3$) and re-flag that a zero
+\emph{numerator} is a zero of the expression, not a restriction. State the order rule explicitly:
+\textbf{restrictions come before cancelling}, because after cancelling one of them is invisible.
 
-\textbf{2. Adding \& subtracting: collecting, not creating.} \textbf{Like terms} must match in
-\emph{both} variable and exponent; $3x^2$ and $3x^3$ never combine. Addition is pure collection. For
-subtraction, rewrite the minus sign as a factor of $-1$ \emph{before} anything else --- \textbf{``the
-minus sign belongs to every term in the parentheses.''} Show the same problem worked both ways
-(distribute-then-collect vs.\ stacked in columns) and let students choose.
+\textbf{2. Why cancelling works.} Write the fundamental principle
+$\frac{ac}{bc}=\frac ab\cdot\frac cc=\frac ab$ ($b,c\neq0$). Name what students are actually doing:
+dividing out a factor equal to \textbf{one}. That single line explains both restrictions on the move
+--- $c$ must be a \emph{factor}, and $c$ must be nonzero. Then kill the year's most durable error the
+only way that works: \textbf{numerically}. A classmate claims $\frac{x+3}{3}=x$; test $x=6$ and get
+$3\neq6$. \emph{Factors are multiplied; terms are added.}
 
-\textbf{Ask:} \textbf{``Can a sum of two degree-4 polynomials have degree less than 4?''} Yes ---
-$(x^4+2x)-(x^4-5)$ leaves $2x+5$. The leading terms can cancel, so a sum or difference has degree
-\emph{at most} the larger degree.
+\textbf{3. The four steps.} Factor completely $\rightarrow$ list restrictions from the \emph{original}
+denominator $\rightarrow$ divide out shared factors $\rightarrow$ write the simplest form \emph{with}
+its restrictions. Work the anchor to $\frac{x+2}{x+3}$, $x\neq3,-3$, and stop on the punch line: the
+$(x-3)$ cancelled, \textbf{and $x=3$ is still excluded}. Then a monomial case
+($\frac{12x^3y}{18x^5y^2}=\frac{2}{3x^2y}$, $x,y\neq0$ --- the A2.EO.1b ``monomial factors'' clause)
+and a GCF case ($\frac{3x^2-12}{x^2+x-6}=\frac{3(x+2)}{x+3}$, $x\neq2,-3$).
 
 \columnbreak
 
-\textbf{3. Multiplying: every term times every term.} One rule, three costumes. Monomial $\times$
-polynomial is straight distribution ($-2x^2(3x^3-4x+6)$). Binomial $\times$ binomial is the same rule
-with four products (FOIL is just a bookkeeping name). Binomial $\times$ trinomial has six products
---- draw the \textbf{box/area model} so nothing is dropped, then collect like terms down the
-diagonals. Do at least one two-variable product, $(3x+2y)(x-4y)$, so the middle term $-10xy$ is seen
-as a like-term collection.
+\textbf{4. Opposite binomials.} $x-5$ and $5-x$ do not cancel --- but $5-x=-1(x-5)$, so their quotient
+is $-1$. Show the general form $\frac{a-b}{b-a}=-1$, and immediately contrast it with $x+3$ and $3+x$,
+which \emph{are} equal: only \emph{subtraction} cares about order. Work
+$\frac{x^2-16}{4-x}=-(x+4)$, $x\neq4$. Warn that the lost $-1$ is the most common single-point loss on
+this topic.
 
-\textbf{4. Degree \& leading coefficient of a product.} Before expanding $(2x^3-1)(-3x^4+x)$, ask
-\textbf{``what will the highest-power term be?''} Only the two leading terms can produce it:
-$2x^3\cdot(-3x^4)=-6x^7$. So \emph{degrees add, leading coefficients multiply} --- and the end
-behavior from Lesson~4.0 (odd degree, negative lead $\Rightarrow$ left up, right down) is known
-without doing the rest of the work.
-
-\textbf{5. Special products.} Derive, don't memorize: $(a+b)^2=(a+b)(a+b)=a^2+2ab+b^2$. Flag the
-year's most persistent error --- $(x+4)^2\ne x^2+16$ --- and kill it numerically at $x=1$
-($25\ne17$). Then $(a-b)^2$ and the difference of squares $(a+b)(a-b)=a^2-b^2$, whose middle terms
-cancel. Close by expanding the Hook's $(x-1)^2(x+2)$ to $x^3-3x+2$, and preview Lesson~4.2, where
-these identities run \emph{backward}.
+\textbf{5. Equivalence --- and the graph it describes (A2.EO.1d).} Define \textbf{equivalent}: same
+value at every input \emph{both} are defined for. This resolves the hook honestly --- $A$ and $B$
+\emph{are} equivalent, and they still have different domains. Show the anchor's graph: a curve with a
+vertical asymptote at $x=-3$ (factor stays) and a hole at $\left(3,\tfrac56\right)$ (factor cancels),
+with the hole's height read off the \emph{simplified} form because the original has no value there at
+all. Give both equivalence checks --- factor, or test an input --- and be precise about what a test
+can do: one match proves nothing, one mismatch disproves everything (which is exactly why the $x=6$
+test settled Section~2). Finish by naming where this returns: \textbf{4.2--4.3} (every operation opens
+by factoring), \textbf{4.5} (the cancel test builds the graph), and \textbf{4.6} (an extraneous
+solution is one of today's excluded values sneaking back in).
 \end{multicols}
 \end{skillbox}
 
+\begin{skillbox}[Explicit Instruction: The Four-Step Simplification]{forestbg}
+\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
+\vspace{0pt}
+\textbf{Steps (post these).}
+\begin{enumerate}[leftmargin=1.3em, nosep, after=\vspace{2pt}]
+  \item Factor the numerator completely.
+  \item Factor the denominator completely.
+  \item \textbf{Write the restrictions now} --- one for every denominator factor, from the
+        \emph{original}.
+  \item Divide out the factors that appear on both levels (watch for opposite binomials --- factor
+        $-1$ out first).
+  \item Write the simplest form, restrictions attached.
+\end{enumerate}
+&
+\vspace{0pt}
+\textbf{Worked, on the anchor.}
+\[ \frac{x^2-x-6}{x^2-9}=\frac{(x-3)(x+2)}{(x-3)(x+3)} \]
+Restrictions from the original bottom: $x\neq3$ and $x\neq-3$.
+\[ =\frac{x+2}{x+3}, \qquad x\neq3,\;-3 \]
+\textbf{Check the two questions students must answer aloud:} \emph{which factor did you divide out?}
+and \emph{which restriction just went invisible?} A student who cannot answer the second has not
+finished the problem.
+\end{tabularx}
+\end{skillbox}
+
 \begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
+Circulate during the guided practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item distributing a subtraction to only the \emph{first} term --- $(7x^2-4x+1)-(3x^2+6x-5)$ ending in $-5$ instead of $+6$;
-  \item combining unlike terms ($3x^2+3x^3=6x^5$) --- the single most common ``simplification'' error;
-  \item adding exponents when \emph{adding} terms, or multiplying them when \emph{multiplying} terms (the rule is: coefficients multiply, exponents add);
-  \item $(a+b)^2$ written as $a^2+b^2$ --- send students to the $x=1$ numeric check rather than restating the rule;
-  \item dropping a product in a binomial $\times$ trinomial --- require the box until all six cells appear;
-  \item leaving the answer unordered --- standard form is part of the answer.
+  \item \textbf{cancelling terms} --- $\frac{x^2+9}{x+3}=x+3$, $\frac{x+3}{3}=x$, or crossing out matching symbols across a $+$ sign. Do not argue; hand the student a test value;
+  \item \textbf{restrictions read off the simplified denominator}, which silently deletes the cancelled one --- the signature error of the lesson, and the direct ancestor of extraneous solutions in 4.6;
+  \item \textbf{no restrictions at all} --- a simplified expression alone is half an answer;
+  \item \textbf{opposite binomials treated as identical} ($\frac{3-x}{x^2-9}$ answered $\frac{1}{x+3}$ instead of $-\frac{1}{x+3}$);
+  \item \textbf{incomplete factoring} --- skipping the GCF, or stopping before the difference of squares (the Unit 3 ``factor \emph{completely}'' habit);
+  \item \textbf{cancelling a squared factor entirely} --- $\frac{(x+2)}{(x+2)^2}$ leaves one $(x+2)$ downstairs, so the restriction is a wall, not a hole.
 \end{itemize}
-Cold-call prompts: ``What is the very first thing you do to a subtraction problem?'' ``What degree
-will this product have --- before you expand it?'' ``Which two terms in the box are like terms, and
-why?''
+Cold-call prompts: ``Which \emph{factor} did you divide out?'' ``Is that a factor or a term --- what is
+it multiplied by?'' ``Where did the restrictions come from --- the original or the simplified
+denominator?'' ``Does that restriction give a hole or a wall, and how do you know?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Building Polynomials} activity (tiered; mirrors the notes).
+\textbf{Factor, Restrict, Divide Out} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} One add, one subtract (with a ``rewrite with the signs changed'' line
-built in), one monomial distribution, and one binomial product with the $2\times2$ box already
-drawn. All answers in standard form.
+\textbf{Tier R --- Remediate.} Five scaffolded items building from monomial factors ($\frac{10x^4}{15x^2}$)
+through one-binomial cases ($\frac{x^2-25}{x+5}$, $\frac{4x+8}{x^2-4}$) to a both-sides factoring
+($\frac{x^2-x-12}{x^2-16}$), each with the factored line, the simplest form, and the restrictions asked
+for separately. Closes with the lesson's core question in plain words: the factor $(x-4)$ cancelled ---
+is $x=4$ still excluded, and why?
 
 \columnbreak
-\textbf{Tier A --- Approaching.} A difference whose leading terms cancel (\emph{why} did the degree
-drop?), a binomial $\times$ trinomial by box, two special products in \emph{two} variables, a
-degree/leading-coefficient prediction with the end behavior it forces, and an error-analysis item on
-$(x+4)^2=x^2+16$ requiring a numeric counterexample.
+\textbf{Tier A --- Approaching.} A four-row table (factored form / restrictions / simplest form) over
+$\frac{6x^3y^2}{9xy^5}$, $\frac{2x^2-18}{x^2+6x+9}$ (GCF + perfect-square trinomial),
+$\frac{25-x^2}{x^2-3x-10}$ (\emph{opposite binomials}), and $\frac{x^2+2x}{x^2+4x+4}$ (a squared factor
+that only partly cancels). Then an \textbf{error analysis}: a student ``simplifies''
+$\frac{x^2+9}{x+3}$ to $x+3$; groups disprove it at $x=1$ ($2.5$ vs.\ $4$), name the error using
+\emph{factor} and \emph{term}, and recall from Unit~3 that $x^2+9$ is prime.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Expand Lesson~4.0's open-box model $V(x)=x(10-2x)(8-2x)$ to
-$4x^3-36x^2+80x$ and check it against that lesson's table; build a profit polynomial $P=R-C$ and
-evaluate it in context; then justify why a \emph{product} of degree-3 and degree-4 polynomials always
-has degree~7 while a \emph{sum} of two degree-4 polynomials need not have degree~4.
+\textbf{Tier E --- Extension.} \emph{Part 1:} three candidates for ``the same as'' $\frac{x-4}{x+1}$ ---
+$\frac{x^2-16}{x^2+5x+4}$ (equivalent, extra restriction $x\neq-4$), $\frac{4-x}{x+1}$ (the trap: it is
+the \emph{opposite}), $\frac{x^2-4x}{x^2+x}$ (equivalent, extra restriction $x\neq0$) --- with a written
+justification of why differing domains do not break equivalence. \emph{Part 2:} build an expression
+that simplifies to $\frac{x}{x-1}$ with restrictions $x\neq1,-5$. \emph{Part 3:} match a pre-drawn
+line-with-a-hole to $\frac{x^2-2x-3}{x-3}$, give the hole $(3,4)$, and explain why its height cannot
+come from the original.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} a subtraction whose constant terms cancel
---- it is only correct if every sign was distributed; \textbf{(2)} a binomial $\times$ trinomial
-product, followed by naming the result's degree and leading coefficient and \emph{stating the end
-behavior} they force (the 4.0 link); and \textbf{(3)} an \textbf{SOL-style multiple-choice} item on
-$(3x-4)^2$ whose distractors are exactly the three classic errors (dropped middle term, difference of
-squares, and $2ab$ computed as $ab$). Collect and sort into ``got it / sign-distribution slip /
-missing-middle-term slip / like-terms slip'' to decide whether Lesson~4.2 opens with a re-teach.
+\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} simplify $\frac{x^2-2x-15}{x^2-9}$ showing
+the factored line, give the simplest form $\frac{x-5}{x-3}$ and \emph{both} restrictions, then sort
+them --- hole at $x=-3$ (cancels), vertical asymptote at $x=3$; \textbf{(2)} \textbf{explain}, against a
+classmate's claim that ``once the $(x+3)$ cancels, $x=-3$ is fine now'' --- full credit requires both
+halves: no value exists at $x=-3$ in the \emph{original}, and the two forms agree everywhere else;
+\textbf{(3)} an \textbf{SOL-style multiple-choice} item on $\frac{4-x^2}{x^2-x-2}$ whose distractors
+each break exactly one idea (drop the $-1$ from the opposite binomials / read restrictions off the
+simplified denominator / cancel the $x^2$ \emph{terms}). Collect and sort into ``got it / restriction
+slip / sign slip / term-cancelling.'' The restriction pile decides whether 4.2 opens with a re-teach ---
+it is the same error that manufactures extraneous solutions in 4.6.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} name a polynomial from standard form; add and subtract; multiply at all three
-sizes (monomial, binomial $\times$ binomial, binomial $\times$ trinomial); apply the three special
-products including a two-variable difference of squares; expand Lesson~4.0's exit-ticket function
-$(x+1)^2(x-2)$ and confirm the end behavior matches the graph students already read; and one
-justification item on why subtraction changes every sign. \textbf{Extension:} an area model --- a
-$(2x+3)$ by $(x+5)$ garden with an $x$-by-$x$ pond removed --- requiring a product \emph{and} a
-difference, then a numeric check. \textbf{Preview:} Lesson~4.2, \emph{Advanced Factoring} --- running
-today's products backward, including the sum and difference of cubes.
+\textbf{Homework:} three monomial-factor simplifications (including two-variable cases with their
+$a\neq0$, $b\neq0$ restrictions); six binomial/quadratic simplifications spanning difference of
+squares, GCF-then-factor, a trinomial-over-trinomial, a perfect-square trinomial (only \emph{one}
+factor cancels), and one \emph{opposite-binomial} case, $\frac{3-x}{x^2-9}=-\frac{1}{x+3}$; a
+graph-matching item where $g(x)=\frac{x^2+2x-8}{x-2}$ turns out to be the \textbf{line} $y=x+4$ with a
+hole at $(2,6)$ and \emph{no} vertical asymptote; and a justification item on whether
+$\frac{x^2-1}{x-1}$ and $x+1$ are ``the same.'' \textbf{Extension:} an error gallery --- three students,
+three answers to $\frac{x^2-4}{x^2+4x+4}$ (correct / cancelled the $x^2$ terms / correct form but no
+restrictions) --- and a \emph{design} task that previews 4.5: build an expression whose graph has a hole
+at $x=2$ and a vertical asymptote at $x=-1$, then say which factor had to appear on both levels and
+why. \textbf{Preview:} Lesson~4.2, \emph{Multiplying \& Dividing Rational Expressions} --- the same four
+steps, now applied across a product, with the warning that flipping a divisor sends its \emph{numerator}
+to the bottom, where it starts generating restrictions of its own.
 \end{skillbox}
 \end{document}

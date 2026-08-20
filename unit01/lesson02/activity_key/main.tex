@@ -1,263 +1,123 @@
-%! Equations and Inequalities — Unit 1, Lesson 1.2 — Group Activity (Answer Key)
+%! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
-% Pre-drawn number line; #1 receives any shading/endpoint overlay (empty = blank axis).
-\newcommand{\numline}[1]{%
-  \begin{tikzpicture}[baseline=-3pt, x=0.52cm, y=0.52cm]
-    \draw[<->, thick, charcoal] (-5.6,0) -- (5.6,0);
-    \foreach \t in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {\draw[charcoal] (\t,0.13) -- (\t,-0.13);}
-    \foreach \t in {-4,-2,0,2,4} {\node[below=0pt, font=\scriptsize] at (\t,-0.10) {$\t$};}
-    #1
-  \end{tikzpicture}}
-\newcommand{\closedleft}[1]{\draw[ultra thick, keyred] (#1,0) -- (-5.55,0);
-  \fill[keyred] (#1,0) circle (2.6pt);}
-\newcommand{\openleft}[1]{\draw[ultra thick, keyred] (#1,0) -- (-5.55,0);
-  \draw[thick, keyred, fill=white] (#1,0) circle (2.6pt);}
-\newcommand{\closedright}[1]{\draw[ultra thick, keyred] (#1,0) -- (5.55,0);
-  \fill[keyred] (#1,0) circle (2.6pt);}
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.2}{Group Activity --- Answer Key}
-\namepartnerperiod
 
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{How Many Answers Does This Question Have?} An equation is a question, and the honest
-answer is sometimes ``every number'' and sometimes ``none.'' With your partner, decide \emph{what
-kind of question} each item is before you touch it --- then answer it, and check. Argue about the
-ones you disagree on before writing anything down.
+\small\textbf{Distance, Cases \& Sets.} An absolute value is a \emph{distance}, so it is never
+negative. Solve each problem with your partner, and for every inequality record the answer
+\emph{three ways}: set notation, interval notation, and a shaded number line. Isolate the bars
+\textbf{before} you split.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Solve, and name one move.} Solve each equation. In the last column, name
-\emph{one} property of equality you used.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-\hline
-\textbf{Equation} & \textbf{Solution} & \textbf{One property you used} \\
-\hline
-(a) \; $3x+7=22$ & $x=$ \ans{$5$} & \ans{subtraction, then division property of equality} \\
-(b) \; $2(x-4)=10$ & $x=$ \ans{$9$} & \ans{distributive property, then addition and division} \\
-(c) \; $5x-3=2x+12$ & $x=$ \ans{$5$} & \ans{subtraction property of equality (subtract $2x$)} \\
-(d) \; $\dfrac{x}{4}+2=7$ & $x=$ \ans{$20$} & \ans{multiplication property of equality (times $4$)} \\
-\hline
-\end{tabularx}
-\end{center}
-Pick any one and check it by substituting into the original. Which one, and does it check?
-\ans{e.g.\ (c): $5(5)-3=22$ and $2(5)+12=22$ --- yes}
-
-\vspace{4pt}
-\textbf{Part 2 --- Read the last line only.} Four students finished four different equations. You
-are given only their \emph{final} line. Say how many solutions each equation has. Do not solve
-anything.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-\hline
-\textbf{Final line} & \textbf{How many solutions?} & \textbf{How you knew} \\
-\hline
-(a) \; $x=3$ & \ans{one} & \ans{the variable survived} \\
-(b) \; $5=5$ & \ans{infinitely many} & \ans{variable gone, statement true} \\
-(c) \; $0=7$ & \ans{none} & \ans{variable gone, statement false} \\
-(d) \; $-2=-2$ & \ans{infinitely many} & \ans{variable gone, statement true} \\
-\hline
-\end{tabularx}
-\end{center}
-In (b), (c), and (d) the variable disappeared. Is that a mistake? \ans{No} \; What decides
-which answer you give? \ans{whether the leftover statement is true or false}
-
-\vspace{4pt}
-\textbf{Part 3 --- Solve and shade.} Solve, then shade the solution set. Watch your circle: open
-$\circ$ for $<$ and $>$, closed $\bullet$ for $\le$ and $\ge$.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}X c@{}}
-\hline
-(a) \; $2x+1<7$ \qquad $x$ \ans{$<3$} & \numline{\openleft{3}} \\
-(b) \; $-4x\ge 8$ \qquad $x$ \ans{$\le -2$} & \numline{\closedleft{-2}} \\
-\hline
-\end{tabularx}
-\end{center}
-One of those two required you to reverse the symbol. Which, and why?
-\ans{(b) --- both sides were divided by $-4$, a negative}
-
-% \boxguard is inert inside a breakable tcolorbox (COURSE_PLAN §7) — force the split here so
-% Part 4 starts the next page whole instead of stranding its last line. Mirrored in the blank.
-\tcbbreak
-\textbf{Part 4 --- Quadratics that factor.} Every one of these factors cleanly. Set one side to
-\textbf{zero} first if it is not already.
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabular}{@{}l l@{}}
-(a) \; $x^2-9=0$, \quad $x=$ \ans{$\pm 3$} &
-(b) \; $x^2+6x+8=0$, \quad $x=$ \ans{$-2,\ -4$} \\
-(c) \; $x^2-7x+12=0$, \quad $x=$ \ans{$3,\ 4$} &
-(d) \; $x^2+5x=0$, \quad $x=$ \ans{$0,\ -5$} \\
-\end{tabular}
-\end{center}
-\textbf{Check yourself.} Substitute \emph{one} of your answers to (b) into $x^2+6x+8$. Do you get
-zero? \ans{At $x=-2$: $4-12+8=0$ --- yes} \\
-Every quadratic here had \emph{two} answers. Item (a) is the one people get half right --- why?
-\ans{$x^2=9$ has two roots, $3$ and $-3$; only the positive one gets written}
+\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
+  \item \textbf{Evaluate.} \quad $|-9| = {\color{keyred}\mathbf{9}}$ \qquad
+        $|12| - |-4| = {\color{keyred}\mathbf{8}}$ \qquad $-|{-5}| = {\color{keyred}\mathbf{-5}}$
+  \item \textbf{Solve (already isolated).} Each has \emph{two} answers.
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+          \item $|x| = 8$: \quad $x = {\color{keyred}\mathbf{8}} \text{ or } {\color{keyred}\mathbf{-8}}$
+          \item $|x - 3| = 5$: \quad $x = {\color{keyred}\mathbf{8}} \text{ or } {\color{keyred}\mathbf{-2}}$
+          \item $|x + 2| = 6$: \quad $x = {\color{keyred}\mathbf{4}} \text{ or } {\color{keyred}\mathbf{-8}}$
+        \end{enumerate}
+  \item \textbf{Match.} Draw the two solutions of $|x| = 4$ on the number line below (two dots).
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \numline{-6}{6}
+          \fill[forest] (-4,0) circle (3.5pt); \fill[forest] (4,0) circle (3.5pt);
+        \end{tikzpicture}
+        \end{center}
+\end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Mixed, and nobody is telling you which kind it is.} Decide first, then work.
-\begin{enumerate}[leftmargin=1.9em, itemsep=7pt]
-  \item \TallMath{\frac{2x}{3}-1=\frac{x}{2}+2}
+\begin{enumerate}[leftmargin=1.7em, itemsep=11pt]
+  \item \textbf{Isolate, then solve.} $\;2|x - 1| + 3 = 11$.
         \begin{work}
-          \frac{2x}{3}-1 &= \frac{x}{2}+2 \\
-                    4x-6 &= 3x+12 \\
-                     x-6 &= 12    \\
-                       x &= 18
+          2|x - 1| + 3 &= 11 \\
+              2|x - 1| &= 8 \\
+               |x - 1| &= 4 \\
+                 x - 1 &= 4 \quad\text{or}\quad x - 1 = -4 \\
+                     x &= 5 \quad\text{or}\quad x = -3
         \end{work}
-        \emph{(Multiply every term by $6$ first.)}
-  \item Solve for $x$: \; $ax+3x=b$.
+        Solutions: $x = $ \ans{$5$ or $-3$}
+  \item \textbf{``And'' inequality.} $\;|x + 1| < 4$.
         \begin{work}
-           ax+3x &= b \\
-          x(a+3) &= b \\
-               x &= \frac{b}{a+3}
+              |x + 1| &< 4 \\
+          -4 < x + 1 &< 4 \\
+              -5 < x &< 3
         \end{work}
-        The variable appears \emph{twice}. What did you have to do before you could divide?
-        \ans{factor $x$ out --- and note $a\ne-3$}
-  \item $8-2x\le 14$
+        Set: \ans{$\{x \mid -5 < x < 3\}$} \qquad Interval: \ans{$(-5,\,3)$}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \numline{-6}{4}
+          \draw[very thick, forest] (-5,0)--(3,0);
+          \draw[very thick, forest, fill=white] (-5,0) circle (3.5pt);
+          \draw[very thick, forest, fill=white] (3,0) circle (3.5pt);
+        \end{tikzpicture}
+        \end{center}
+  \item \textbf{``Or'' inequality.} $\;|2x - 3| \ge 5$.
         \begin{work}
-          8-2x &\le 14 \\
-           -2x &\le 6  \\
-             x &\ge -3
+          |2x - 3| &\ge 5 \\
+            2x - 3 &\le -5 \quad\text{or}\quad 2x - 3 \ge 5 \\
+                2x &\le -2 \quad\text{or}\quad 2x \ge 8 \\
+                 x &\le -1 \quad\text{or}\quad x \ge 4
         \end{work}
-        \numline{\closedright{-3}}
-  \item $x^2=4x+21$
-        \begin{work}
-                 x^2 &= 4x+21 \\
-           x^2-4x-21 &= 0      \\
-          (x-7)(x+3) &= 0      \\
-                   x &= 7 \quad\text{or}\quad x = -3
-        \end{work}
-  \item $x^2+6x+4=0$ \; --- nothing factors. Use the formula and \textbf{simplify the radical}.
-        \begin{work}
-          x &= \frac{-6\pm\sqrt{6^2-4(1)(4)}}{2(1)} \\
-            &= \frac{-6\pm\sqrt{20}}{2} \\
-            &= \frac{-6\pm 2\sqrt5}{2}  \\
-            &= -3\pm\sqrt5
-        \end{work}
-        Is your answer rational or irrational? \ans{irrational}
+        Set: \ans{$\{x \mid x \le -1 \text{ or } x \ge 4\}$} \qquad Interval: \ans{$(-\infty,-1]\cup[4,\infty)$}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \numline{-3}{6}
+          \draw[very thick, forest, <-] (-3.4,0)--(-1,0);
+          \draw[very thick, forest, ->] (4,0)--(6.4,0);
+          \fill[forest] (-1,0) circle (3.5pt); \fill[forest] (4,0) circle (3.5pt);
+        \end{tikzpicture}
+        \end{center}
+  \item \textbf{Spot the special case.} One of these has \emph{no solution} and one has \emph{exactly
+        one}. Label each and explain in a few words.
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=3pt]
+          \item $|x - 2| = -4$: \ans{no solution --- a distance can't be negative}
+          \item $|x - 2| = 0$: \ans{exactly one solution, $x=2$ --- distance $0$}
+        \end{enumerate}
 \end{enumerate}
-
-\vspace{3pt}
-\textbf{Part 2 --- Two situations, answered in sentences.}
-\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, start=6]
-  \item A parking garage charges \$4 to enter plus \$2.50 per hour. You have \$20.
-        \\[2pt]
-        Inequality: \ans{$4+2.5h\le 20$} \qquad Solve: $h$ \ans{$\le 6.4$}
-        \\[2pt]
-        Answer the question that was asked, in a sentence:
-        \ansline{You can park for at most $6.4$ hours --- $6$ hours and $24$ minutes --- before the
-        charge passes \$20. (Also: $h\ge0$, since negative hours mean nothing here.)}
-  \item A ball is thrown upward. Its height in feet after $t$ seconds is $-16t^2+64t$. When is the
-        ball $48$ feet high?
-        \\[2pt]
-        Equation: \ans{$-16t^2+64t=48$} \qquad $t=$ \ans{$1$ and $3$ seconds}
-        \\[2pt]
-        You got \emph{two} answers, and both are real times. Explain what is physically happening at
-        each one.
-        \ansline{The ball passes $48$ feet twice: at $t=1$ s on the way up and again at $t=3$ s on
-        the way back down. Two solutions is the honest answer, not a redundancy to discard.}
-\end{enumerate}
-
-\vspace{3pt}
-\textbf{Part 3 --- Predict, then solve.} For $2x^2-4x-3=0$:
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-\hline
-$b^2-4ac=$ \ans{$40$} & Prediction: \ans{two} real solutions & Now solve: $x=$ \ans{$\dfrac{2\pm\sqrt{10}}{2}$} \\
-\hline
-\end{tabularx}
-\end{center}
-Did the count match your prediction? \ans{yes} \; Why is predicting first worth anything at all?
-\ansline{Because it is a check you can run before you have anything to check --- if the formula
-hands back one answer when the discriminant said two, you know a sign got lost. It also tells you
-immediately when to stop: a negative discriminant means there is nothing to find over the reals.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Put the parameter inside the equation.} Until now the number of solutions was
-something you discovered \emph{after} solving. Make it a condition instead.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
-\hline
-\textbf{Number of solutions} & \textbf{For which $k$ does} $kx+6=3x+6$ ? & \textbf{For which $k$ does} $kx+6=3x+9$ ? \\
-\hline
-exactly one & \ans{every $k\ne3$ \; (then $x=0$)} & \ans{every $k\ne3$} \\
-no solution & \ans{no such $k$} & \ans{$k=3$ \; (gives $0=3$)} \\
-infinitely many & \ans{$k=3$} & \ans{no such $k$} \\
-\hline
-\end{tabularx}
-\end{center}
-One box in each column has \emph{no} possible $k$. Say which, and why that case simply cannot happen
-for that equation.
-\ansline{Both equations reduce to $(k-3)x=$ constant --- to $0$ on the left, to $3$ on the right.
-The first can never be a contradiction: the only way the $x$ terms cancel is $k=3$, and then the two
-sides are \emph{identical} ($3x+6$ and $3x+6$), so the leftover statement $0=0$ is automatically
-true. The second can never be an identity: when $k=3$ the $x$ terms cancel but the constants still
-disagree, leaving $0=3$. Which case is unreachable is decided entirely by whether the constants
-match once the variable is gone.}
-
-\vspace{4pt}
-\textbf{Part 2 --- Spot the error.} Each student made \textbf{exactly one} mistake. \textbf{Name}
-what went wrong --- naming it is the part that counts --- and give the correct answer.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}c l X l@{}}
-\hline
- & \textbf{Student's work} & \textbf{What went wrong (name it)} & \textbf{Correct} \\
-\hline
-(a) & $-2x>10 \Rightarrow x>-5$ & \ans{divided by a negative without reversing the symbol} & \ans{$x<-5$} \\
-(b) & $(x-3)(x+2)=6$, so & \ans{zero product property used when the product is not zero} & \ans{$x=4,\ -3$} \\
-    & $\quad x-3=6$ or $x+2=6$ & & \\
-(c) & $x^2=25 \Rightarrow x=5$ & \ans{dropped the negative root --- half the solution set} & \ans{$x=\pm5$} \\
-(d) & $3(x-4)=3x-12$: ``the $x$'s & \ans{read an identity as a contradiction} & \ans{all reals} \\
-    & $\quad$ cancel, so no solution'' & & \\
-\hline
-\end{tabularx}
-\end{center}
-Two of these four are failures to \emph{interpret} rather than failures to compute. Which two?
-\ans{(b) and (d)}
-
-\vspace{4pt}
-\textbf{Part 3 --- The discriminant as a condition.} Consider $x^2-6x+c=0$, where $c$ can be any
-real number.
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
-  \item Write the discriminant in terms of $c$: \ans{$36-4c$}
-  \item Two real solutions when $c$ \ans{$<9$}; one real solution when $c$ \ans{$=9$};
-        no real solutions when $c$ \ans{$>9$}
-  \item You just answered a question about \emph{equations} by solving an \emph{inequality}. Say in
-        one sentence why that was the right tool.
-        \ansline{``Two real solutions'' is the condition $36-4c>0$ --- a statement about a whole
-        \emph{range} of $c$ values, and describing a range is exactly what an inequality is for.}
+\begin{enumerate}[leftmargin=1.7em, itemsep=11pt]
+  \item \textbf{Model a tolerance.} A machine cuts rods to a target length of $20$ cm and accepts any
+        rod whose length $L$ is within $0.3$ cm of target.
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+          \item Write an absolute-value inequality for an acceptable rod. \ans{$|L - 20| \le 0.3$}
+          \item Solve it, and state the \emph{shortest} and \emph{longest} acceptable lengths.
+                \begin{work}
+                        |L - 20| &\le 0.3 \\
+                  -0.3 \le L - 20 &\le 0.3 \\
+                      19.7 \le L &\le 20.3
+                \end{work}
+                Shortest \ans{$19.7$ cm} \quad Longest \ans{$20.3$ cm}
+        \end{enumerate}
+  \item \textbf{Reason about the constant.} Consider $|x + 5| > k$ and $|x + 5| < k$.
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+          \item For which values of $k$ does $|x + 5| < k$ have \emph{no solution}? Explain.
+                \ansline{$k \le 0$: a distance is never less than a number that is $0$ or negative.}
+          \item For which values of $k$ is \emph{every} real number a solution of $|x + 5| > k$?
+                Explain. \ansline{$k < 0$: a distance is always $\ge 0$, which exceeds any negative $k$.}
+        \end{enumerate}
 \end{enumerate}
-
-\vspace{4pt}
-\textbf{Part 4 --- Why zero and nothing else.} The zero product property says $mn=0$ forces $m=0$ or
-$n=0$. There is no version of it for $mn=8$. Explain why not --- and use the word \textbf{factors}.
-\ansline{Eight can be split into two nonzero \textbf{factors} in infinitely many ways --- $8\cdot1$,
-$4\cdot2$, $16\cdot\frac12$, $-2\cdot-4$ --- so knowing the product is $8$ tells you nothing about
-either factor on its own. Zero is the only real number that cannot be built from two nonzero
-factors, so if a product is zero at least one factor is forced to be zero. That uniqueness is the
-whole property, and it is why Step 0 of factoring is always ``make one side zero.''}
 \end{tcolorbox}
 
 \end{document}

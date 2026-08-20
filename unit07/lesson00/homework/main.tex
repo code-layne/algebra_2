@@ -1,4 +1,4 @@
-%! Characteristics of Exponential Functions — Unit 7, Lesson 7.0 — Homework
+%! Characteristics of Logarithmic Functions — Unit 7, Lesson 7.0 — Homework
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -7,9 +7,10 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612
-\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
-  plot (\x,{#1*exp((#2)*(\x))});}
+% pgfmath has no log_b, so every logarithmic curve is drawn by parameterizing on y:
+%   y = log_b(x-h) + k   <=>   x = b^(y-k) + h.   Args: {b}{h}{k}{ymin}{ymax}
+\newcommand{\logcurve}[5]{\draw[very thick, forest, domain=#4:#5, samples=120, smooth]
+  plot ({pow(#1,\x-(#3))+(#2)},{\x});}
 
 \begin{document}
 
@@ -19,131 +20,111 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show how you read each feature. Write every domain and range in \textbf{interval notation}.
+Show how you read each feature. Write every domain and range in \textbf{interval notation}, and
+remember that a logarithm's boundary is never included.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
-  \item \textbf{From the equation only.} Use $a$ and $b$ --- no graphing.
+  \item \textbf{From the equation only.} Use the argument --- no graphing.
     \begin{center}
     \renewcommand{\arraystretch}{1.6}
     \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
     \hline
-    \textbf{Function} & \textbf{Base $b$} & \textbf{Growth or decay?} & \textbf{$y$-intercept} & \textbf{Asymptote approached on the left or right?} \\
+    \textbf{Function} & \textbf{Condition on the argument} & \textbf{Domain} & \textbf{Vertical asymptote} & \textbf{Runs left or right?} \\
     \hline
-    $y=6\cdot 2^{x}$ & \blank{1.4cm} & \blank{1.8cm} & \blank{1.7cm} & \blank{1.7cm} \\
-    $y=6\left(\frac12\right)^{x}$ & \blank{1.4cm} & \blank{1.8cm} & \blank{1.7cm} & \blank{1.7cm} \\
-    $y=\left(\frac45\right)^{x}$ & \blank{1.4cm} & \blank{1.8cm} & \blank{1.7cm} & \blank{1.7cm} \\
-    $y=0.4(3)^{x}$ & \blank{1.4cm} & \blank{1.8cm} & \blank{1.7cm} & \blank{1.7cm} \\
+    $\log_3(x-2)$ & \blank{1.8cm} & \blank{2.0cm} & \blank{1.5cm} & \blank{1.5cm} \\
+    $\log(x+7)$ & \blank{1.8cm} & \blank{2.0cm} & \blank{1.5cm} & \blank{1.5cm} \\
+    $\log_2(4x)$ & \blank{1.8cm} & \blank{2.0cm} & \blank{1.5cm} & \blank{1.5cm} \\
+    $\log_5(10-2x)$ & \blank{1.8cm} & \blank{2.0cm} & \blank{1.5cm} & \blank{1.5cm} \\
     \hline
     \end{tabularx}
     \end{center}
-    All four have the same domain, the same range, and the same horizontal asymptote. Write them
-    once: domain \blank{2.6cm}, range \blank{2.6cm}, asymptote \blank{2.0cm}.
 
-  \item \textbf{A growth graph.} The graph is $m(x) = 4\cdot 2^{x}$.
+  \item \textbf{A shift that moves the intercept but not the asymptote.} The graph is
+        $m(x) = \log_2 x - 3$.
     \begin{center}
-    \begin{tikzpicture}[scale=0.42]
-      \lgrid{-4}{3}{-1}{10}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-2}{13}{-6}{2}
+      \draw[navy, dashed, semithick] (0,-6)--(0,2);
       \begin{scope}
-        \clip (-4,-1) rectangle (3,10);
-        \expcurve{4}{0.693147}{-4}{1.32}
+        \clip (-2,-6) rectangle (13,2);
+        \logcurve{2}{0}{-3}{-6}{0.70}
       \end{scope}
-      \draw[navy, dashed, semithick] (-4,0)--(3,0);
-      \fill[charcoal] (-2,1) circle (3pt) node[below right, font=\scriptsize]{$(-2,1)$};
-      \fill[charcoal] (0,4) circle (3pt) node[left, font=\scriptsize]{$(0,4)$};
-      \fill[charcoal] (1,8) circle (3pt) node[left, font=\scriptsize]{$(1,8)$};
+      \fill[charcoal] (1,-3) circle (3pt) node[below right, font=\scriptsize]{$(1,-3)$};
+      \fill[charcoal] (2,-2) circle (3pt);
+      \fill[charcoal] (4,-1) circle (3pt) node[above left, font=\scriptsize]{$(4,-1)$};
+      \fill[charcoal] (8,0) circle (3pt) node[above left, font=\scriptsize]{$(8,0)$};
     \end{tikzpicture}
     \end{center}
-    $a=$ \blank{1.2cm} \quad $b=$ \blank{1.2cm} \quad Growth or decay? \blank{2.0cm} \\[3pt]
-    Domain: \blank{2.8cm} \quad Range: \blank{2.8cm} \quad Horizontal asymptote: \blank{1.8cm} \\[3pt]
-    $y$-intercept: \blank{1.8cm} \quad $x$-intercept: \blank{1.8cm} \quad
-    Increasing or decreasing? \blank{2.2cm} \\[3pt]
-    Absolute extrema: \blank{2.4cm} \\[3pt]
-    End behavior: as $x\to+\infty$, $m(x)\to$ \blank{1.4cm}; \; as $x\to-\infty$,
-    $m(x)\to$ \blank{1.4cm}
+    Domain: \blank{3.0cm} \quad Range: \blank{3.0cm} \quad Vertical asymptote: \blank{2.0cm} \\[3pt]
+    $x$-intercept: \blank{1.8cm} \quad $y$-intercept: \blank{1.8cm} \\[3pt]
+    Increasing or decreasing on its domain? \blank{2.4cm} \quad Absolute extrema: \blank{2.0cm} \\[3pt]
+    $m(x)<0$ on \blank{2.6cm}; \quad $m(x)>0$ on \blank{2.6cm} \\[3pt]
+    End behavior: as $x\to+\infty$, $m(x)\to\blank{1.4cm}$. \; As $x\to\blank{1.4cm}$,
+    $m(x)\to\blank{1.4cm}$ \\[3pt]
+    The parent $y=\log_2 x$ has $x$-intercept $(1,0)$ and asymptote $x=0$. Subtracting $3$ moved
+    \emph{one} of those two. Which one, and why not the other? \blank{5.0cm}
 
-  \item \textbf{A decay graph.} The graph is $n(x) = 9\left(\frac13\right)^{x}$.
+  \item \textbf{A base between 0 and 1.} The graph is $n(x) = \log_{1/3} x$.
     \begin{center}
-    \begin{tikzpicture}[scale=0.42]
-      \lgrid{-1}{6}{-1}{10}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-2}{11}{-3}{3}
+      \draw[navy, dashed, semithick] (0,-3)--(0,3);
       \begin{scope}
-        \clip (-1,-1) rectangle (6,10);
-        \expcurve{9}{-1.098612}{-0.09}{6}
+        \clip (-2,-3) rectangle (11,3);
+        \logcurve{0.333333}{0}{0}{-2.19}{3}
       \end{scope}
-      \draw[navy, dashed, semithick] (-1,0)--(6,0);
-      \fill[charcoal] (0,9) circle (3pt) node[right, font=\scriptsize]{$(0,9)$};
-      \fill[charcoal] (1,3) circle (3pt) node[right, font=\scriptsize]{$(1,3)$};
-      \fill[charcoal] (2,1) circle (3pt) node[above right, font=\scriptsize]{$(2,1)$};
+      \fill[charcoal] (1,0) circle (3pt) node[above right, font=\scriptsize]{$(1,0)$};
+      \fill[charcoal] (3,-1) circle (3pt) node[below right, font=\scriptsize]{$(3,-1)$};
+      \fill[charcoal] (9,-2) circle (3pt) node[below right, font=\scriptsize]{$(9,-2)$};
     \end{tikzpicture}
     \end{center}
-    $a=$ \blank{1.2cm} \quad $b=$ \blank{1.2cm} \quad Growth or decay? \blank{2.0cm} \\[3pt]
-    Domain: \blank{2.8cm} \quad Range: \blank{2.8cm} \quad Horizontal asymptote: \blank{1.8cm} \\[3pt]
-    $y$-intercept: \blank{1.8cm} \quad $x$-intercept: \blank{1.8cm} \quad
-    Increasing or decreasing? \blank{2.2cm} \\[3pt]
-    End behavior: as $x\to+\infty$, $n(x)\to$ \blank{1.4cm}; \; as $x\to-\infty$,
-    $n(x)\to$ \blank{1.4cm} \\[3pt]
-    Confirm $b$ from the labeled points: $\frac{n(1)}{n(0)}=\frac{3}{9}=$ \blank{1.2cm} \\[3pt]
-    Problems 2 and 3 have the \emph{same} horizontal asymptote. Which side does each graph approach
-    it on, and what in the equation decides that? \blank{6.0cm}
+    Domain: \blank{3.0cm} \quad Range: \blank{3.0cm} \quad Vertical asymptote: \blank{2.0cm} \\[3pt]
+    $x$-intercept: \blank{1.8cm} \quad $y$-intercept: \blank{1.8cm} \\[3pt]
+    Increasing or decreasing? \blank{2.4cm} \quad Absolute extrema: \blank{2.4cm} \\[3pt]
+    End behavior: as $x\to+\infty$, $n(x)\to\blank{1.2cm}$; \; as $x\to\blank{1.4cm}$,
+    $n(x)\to\blank{1.2cm}$ \\[3pt]
+    Compared with $y=\log_3 x$ from class, list every feature that is the \textbf{same}:
+    \blank{5.0cm}
 
-  \item \textbf{Name the family from the table.} Each table has evenly spaced $x$-values. Label each
-    one \emph{linear}, \emph{quadratic}, or \emph{exponential}, and give the constant that proves it.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.25}
-    \begin{tabular}{|c|c|c|c|c|c|}
-    \hline
-    $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-    A: $y$ & $5$ & $8$ & $11$ & $14$ & $17$ \\ \hline
-    B: $y$ & $5$ & $10$ & $20$ & $40$ & $80$ \\ \hline
-    C: $y$ & $3$ & $4$ & $7$ & $12$ & $19$ \\ \hline
-    \end{tabular}
-    \end{center}
-    A is \blank{2.6cm} because \blank{5.0cm} \\[3pt]
-    B is \blank{2.6cm} because \blank{5.0cm} \\[3pt]
-    C is \blank{2.6cm} because \blank{5.0cm}
-
-  \item \textbf{Explain.} In Unit 6, the endpoint of $y=\sqrt{x}$ gave the function an absolute
-        minimum of $0$. An exponential graph like $y=2^{x}$ also has a lowest edge at $y=0$ --- but
-        it has \emph{no} absolute minimum. Explain the difference, using the words
-        \textbf{endpoint}, \textbf{asymptote}, and \textbf{reaches}.
+  \item \textbf{Explain.} Every parent logarithmic graph $y=\log_b x$ passes through $(1,0)$ and
+        never crosses the $y$-axis --- no matter what the base is. Explain both facts, using the
+        words \textbf{exponent} and \textbf{asymptote}.
         \writelines{3}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Reading a model in context.} A new laptop costs \$$1200$. Like most electronics, it loses
-about $25\%$ of its value every year, so its value after $t$ years is
-\[
-  V(t) = 1200(0.75)^{t} \ \text{ dollars.}
-\]
+\textbf{Building a log graph from an exponential table.} Below is a table for $y=3^x$. You will not
+need a calculator.
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$t$ (years) & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-$V(t)$ (dollars) & $1200$ & $900$ & $675$ & $506.25$ & $379.69$ \\ \hline
+$x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ \\ \hline
+$y=3^x$ & $\tfrac19$ & $\tfrac13$ & $1$ & $3$ & $9$ \\ \hline
 \end{tabular}
 \end{center}
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Identify $a$ and $b$, say whether this is growth or decay, and explain what each number means
-        about the laptop. Why is $b=0.75$ rather than $0.25$?
-  \item Confirm the constant ratio using two consecutive values from the table.
-  \item Find $V(2)$ and write one sentence interpreting it in context.
-  \item A friend says ``it loses \$$300$ a year.'' Use the table to show why that is wrong, and name
-        what is actually constant.
-  \item The model's horizontal asymptote is $V=0$, and there is no $t$-intercept. State what that
-        claims about the laptop, and say whether you believe it.
-  \item What is the domain of $V$ algebraically? What is a sensible domain \emph{in context}?
+  \item Trade the rows to build a table for $y=\log_3 x$. Which row becomes the inputs?
+  \item Using only your new table, state the domain and range of $y=\log_3 x$. Explain how each one
+        came from a feature of $y=3^x$.
+  \item The graph of $y=3^x$ has a horizontal asymptote at $y=0$. Reflect that line over $y=x$: what
+        line do you get, and what is it called on the logarithmic graph?
+  \item $y=3^x$ has a $y$-intercept at $(0,1)$ and no $x$-intercept at all. Use the coordinate swap
+        to predict both intercept facts for $y=\log_3 x$ --- then check them against your table.
+  \item In Unit~5, $y=x^2$ had to be cut down to $x\ge 0$ before $\sqrt{x}$ could undo it, but
+        $y=3^x$ needs no such cut. What is true about an exponential graph that makes the difference?
 \end{enumerate}
 \writelines{5}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 7.1: Exponential Growth \& Decay.} Today you read $a$ and $b$ off a
-graph that was handed to you. Next you will \emph{build} $y=ab^{x}$ yourself --- from a table, from
-two points, and from a sentence like ``the population grows $8\%$ a year'' or ``the car loses $15\%$
-of its value.'' The whole lesson turns on one translation: a percent is not a base. ``Up $8\%$''
-means $b=1.08$, not $b=0.08$ --- and ``down $15\%$'' means $b=0.85$, not $b=1.15$. You already met
-the idea today: the medication kept $70\%$ each hour, so $b$ was $0.7$.
+\textbf{Coming next --- Lesson 7.1: Introduction to Logarithms.} Today $\log_b x$ was the
+\emph{name of a curve}: you read it off a graph and used it to decide which inputs were legal. Next
+you will learn to \emph{compute} with it --- writing $\log_b x = y$ and $b^y = x$ as one statement
+read two ways, evaluating logs by asking ``$b$ to what power?'', meeting the common log, and using
+change of base so a calculator can handle any base at all. That is also where today's domain rule
+gets its full algebraic argument.
 \end{spiralbox}
 
 \end{document}

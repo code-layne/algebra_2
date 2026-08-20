@@ -1,4 +1,4 @@
-%! Expressions and Operations — Unit 1, Lesson 1.1 — Lesson Plan
+%! Linear Functions: Slope, Forms \& Graphing — Unit 1, Lesson 1.1 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,13 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 1: Foundations --- Algebra 1 Review \quad}
-\newcommand{\LessonNumberName}{Lesson 1.1: Expressions and Operations}
+\newcommand{\UnitNumberName}{Unit 1: Linear Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 1.1: Linear Functions: Slope, Forms \& Graphing}
+% Standard coordinate grid + axes for read-a-graph figures: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 \begin{center}
@@ -19,31 +24,24 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can \emph{translate} a verbal situation into an algebraic
-    expression and \emph{evaluate} it --- including absolute values, square roots, and cube roots ---
-    for given replacement values; apply the \emph{laws of exponents} to simplify multivariable
-    expressions and monomial ratios with integer exponents; add, subtract, multiply, \emph{factor},
-    and divide polynomial expressions in one variable; and simplify \emph{radical} expressions,
-    converting freely between radicals and rational exponents. Throughout, students justify that two
-    differently written expressions are \textbf{equivalent} --- and know that a single replacement
-    value can prove they are not.
+    \textbf{Primary Objective:} Students can move fluently among the three algebraic forms of a
+    linear function --- \emph{slope-intercept} $y = mx + b$, \emph{point-slope}
+    $y - y_1 = m(x - x_1)$, and \emph{standard} $Ax + By = C$ --- computing \emph{slope} as a rate
+    of change and \emph{writing the equation of a line} from a graph, from two points, or from a
+    slope and a point. They also graph a line by \emph{transforming the parent function} $y = x$,
+    reading a vertical stretch/reflection as a change in slope and a vertical shift as a change in
+    the $y$-intercept. Lesson~1.0 \emph{read} these features off a graph; today students
+    \emph{produce} the equation and the graph.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL --- Algebra 1, reviewed):} this lesson reviews the entire
-    \textbf{Expressions and Operations} domain. \textbf{A.EO.1} --- translate between verbal
-    situations and algebraic expressions (a), and evaluate expressions containing absolute value,
-    square roots, and cube roots at rational replacement values (b). \textbf{A.EO.2} --- sums and
-    differences (a) and products (b) of polynomials in one variable, complete factoring of first-
-    and second-degree polynomials with integral coefficients, GCF first (c), quotients using
-    monomial, binomial, or completely factored divisors (d), and demonstrating equality of quadratic
-    expressions written in different forms (e). \textbf{A.EO.3} --- deriving and applying the laws of
-    exponents (a) and simplifying multivariable expressions and monomial ratios with integer
-    exponents (b). \textbf{A.EO.4} --- simplifying square roots of whole numbers (a) and cube roots
-    of integers (b), adding, subtracting, and multiplying numeric radicals (c), and rational
-    exponents of $\tfrac12$ and $\tfrac13$ (d).
-    \\[2pt]
-    \textbf{Prerequisite:} Lesson 1.0. The distributive property is the engine of every product in
-    Section~3, and the inverse properties are what the laws of exponents in Section~2 actually
-    \emph{are}. Students should still be naming their justifications.
+    \textbf{Standards (2023 VA SOL):} This lesson reactivates and consolidates the Algebra~1
+    linear-function cluster \textbf{A.F.1} as the foundation of Unit~1:
+    \textbf{A.F.1a} (slope and intercepts as rate of change), \textbf{A.F.1b} (transformations of
+    the parent $y=x$ affect slope and $y$-intercept), \textbf{A.F.1c} (write and interpret the
+    slope-intercept, point-slope, and standard forms), \textbf{A.F.1d} (write the equation of a
+    line from a graph, from two points, or from a slope and a point), and \textbf{A.F.1e}
+    (parallel and perpendicular lines). It launches the \emph{transformational} lens
+    ($f(x)+k,\ kf(x),\ f(x+k)$) that Algebra~2 \textbf{A2.F.1} extends to every later function
+    family.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -53,25 +51,20 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \textbf{Translate} a verbal quantitative situation into an algebraic expression, and read one back into words.
-  \item \textbf{Evaluate} an expression at given replacement values --- including $|\,\cdot\,|$, $\sqrt{\ }$, and $\sqrt[3]{\ }$, with rational inputs.
-  \item Apply the \textbf{laws of exponents} (product, quotient, power, zero, negative) to multivariable expressions and monomial ratios.
-  \item \textbf{Add, subtract, and multiply} polynomials in one variable; recognize the difference of squares and perfect-square patterns.
-  \item \textbf{Factor completely} --- GCF \emph{first}, then trinomial or difference-of-squares.
-  \item \textbf{Divide} polynomials by a monomial or a factored divisor.
-  \item \textbf{Simplify radicals} and convert between $\sqrt[n]{a}$ and $a^{1/n}$.
-  \item \textbf{Justify equivalence} --- and disprove it with one replacement value.
+  \item Compute \textbf{slope} from two points: $m=\dfrac{y_2-y_1}{x_2-x_1}$.
+  \item Write a line in \textbf{slope-intercept} form $y=mx+b$ from a slope and $y$-intercept.
+  \item Write a line in \textbf{point-slope} form $y-y_1=m(x-x_1)$ from a slope and \emph{any} point.
+  \item Rewrite a line in \textbf{standard} form $Ax+By=C$ and convert among all three forms.
+  \item \textbf{Graph} a line by transforming the parent $y=x$ (stretch/reflect $\to$ slope; shift $\to$ intercept).
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \emph{An expression is a recipe, not a question.} It has no solution --- it has a \emph{value}, and only once you supply the inputs.
-  \item Order of operations is not etiquette; it is what makes an expression name \emph{one} number instead of several.
-  \item The exponent laws are not memorized facts. Every one of them is what happens when you \emph{write out the factors and count}.
-  \item Factoring and multiplying are the same trip in opposite directions --- which is why you can always check a factorization by expanding it.
-  \item ``Completely'' is the whole content of the factoring standard: GCF first, then keep going until nothing factors further.
-  \item A radical and a fractional exponent are two spellings of one idea, and the exponent spelling is the one that makes the laws apply.
-  \item Equivalence is a claim about \emph{every} input. Testing one value can \emph{disprove} it outright, but confirming one value proves nothing.
+  \item The three forms are the \emph{same line in different outfits} --- each makes different information easy to read.
+  \item \textbf{Slope-intercept} shows the rate and starting value; \textbf{point-slope} is built for ``a slope and a point''; \textbf{standard} is tidy for intercepts and integer coefficients.
+  \item Every non-vertical line is the parent $y=x$ after a vertical \emph{stretch/reflection} (new slope) and a vertical \emph{shift} (new $y$-intercept).
+  \item \textbf{Parallel} lines share a slope; \textbf{perpendicular} slopes are opposite reciprocals ($m_1 m_2 = -1$).
+  \item Vertical lines $x=a$ (undefined slope) and horizontal lines $y=c$ (slope $0$) are the special cases.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -79,283 +72,182 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Expression} & A combination of numbers, variables, and operations that names a number once values are supplied. It has no equals sign and is never ``solved.'' \\
-\textbf{Term / coefficient} & A term is a piece separated by $+$ or $-$; its coefficient is the numerical factor. \\
-\textbf{Evaluate} & Replace each variable with a given value and simplify to a single number. \\
-\textbf{Polynomial} & A sum of terms of the form $ax^n$ with $n$ a whole number. Named by degree (linear, quadratic, cubic) and by term count (monomial, binomial, trinomial). \\
-\textbf{Degree} & The largest exponent on the variable. It determines the shape of everything in Units 2--4. \\
-\textbf{Laws of exponents} & \TallMath{a^m a^n=a^{m+n};\quad \frac{a^m}{a^n}=a^{m-n};\quad (a^m)^n=a^{mn};\quad a^0=1;\quad a^{-n}=\frac{1}{a^n}} \\
-\textbf{Difference of squares} & $a^2-b^2=(a+b)(a-b)$ --- the single most useful factoring pattern in the course. \\
-\textbf{Perfect square trinomial} & $a^2\pm 2ab+b^2=(a\pm b)^2$. Recognizing it is what makes completing the square possible in Unit 3. \\
-\textbf{GCF} & The greatest common factor of every term; the \emph{first} thing to remove when factoring. \\
-\textbf{Factor completely} & Keep factoring until no factor can be factored further over the integers. \\
-\textbf{Radical / radicand} & In $\sqrt[n]{a}$, the index is $n$ and the radicand is $a$. \\
-\textbf{Simplest radical form} & No perfect-power factor remains under the radical (and, later, no radical in a denominator). \\
-\textbf{Rational exponent} & $a^{1/2}=\sqrt{a}$ and $a^{1/3}=\sqrt[3]{a}$ --- the same number, spelled so the exponent laws apply. \\
-\textbf{Equivalent expressions} & Two expressions that produce the same value for \emph{every} legal replacement value. \\
+\textbf{Slope / rate of change} & $m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{\Delta y}{\Delta x}$: the constant change in output per unit change in input. \\
+\textbf{Slope-intercept form} & $y=mx+b$, where $m$ is the slope and $(0,b)$ is the $y$-intercept. \\
+\textbf{Point-slope form} & $y-y_1=m(x-x_1)$: built directly from a slope $m$ and a known point $(x_1,y_1)$. \\
+\textbf{Standard form} & $Ax+By=C$ with $A,B,C$ integers and $A\ge 0$; convenient for intercepts. \\
+\textbf{Parent function} & The simplest line $y=x$ (slope $1$, through the origin); all lines are transformations of it. \\
+\textbf{Transformation} & $kf(x)$ stretches/reflects (changes the slope); $f(x)+k$ shifts vertically (changes the $y$-intercept). \\
+\textbf{Parallel / perpendicular} & Same slope / opposite-reciprocal slopes: $m_2=m_1$ vs.\ $m_2=-\dfrac{1}{m_1}$. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three things this lesson is built on. \textbf{(1)} Two order-of-
-    operations evaluations, one containing $|{-}6|$ and one containing $\sqrt{16}$ and $\sqrt[3]{27}$,
-    with a negative substituted into $x^2$ so the room can argue about $-3^2$ versus $(-3)^2$ ---
-    that argument is the debrief. \textbf{(2)} An exponent pattern table ($2^5\cdot2^3$ written out
-    as factors and counted) that has students \emph{re-derive} the product law rather than recall it,
-    exactly as \textbf{A.EO.3a} asks. \textbf{(3)} One distribution, $4(2x-5)$, and one area model
-    for $(x+3)(x+2)$ --- the same property doing the work in both, which is the bridge from Lesson
-    1.0 to today's polynomial products. Debrief item~2 by asking ``where did the $+$ in the exponent
-    come from?'' and do not accept ``that's the rule.''
+    The Warm-Up rehearses exactly what Lesson~1.0 built and what today extends: \textbf{(1)} read the
+    \emph{slope} and \emph{$y$-intercept} straight off a graphed line; \textbf{(2)} compute a slope
+    from two points with $m=\frac{y_2-y_1}{x_2-x_1}$ (Algebra~1 prerequisite); and \textbf{(3)}
+    identify $m$ and $b$ in a function already written as $y=mx+b$. Debrief item~2 aloud: the slope
+    formula is just ``rise over run'' done with subtraction --- and it is the engine for every
+    equation we write today.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Write four pairs on the board and ask a single question: \textbf{``Equivalent, or not?''}
-    \emph{(a)} $2^3\cdot 2^4$ and $2^{12}$; \emph{(b)} $(x+3)(x-3)$ and $x^2-9$; \emph{(c)}
-    $(x+5)^2$ and $x^2+25$; \emph{(d)} $\sqrt{9+16}$ and $\sqrt9+\sqrt{16}$. Give the room ninety
-    seconds and no instructions. Students will reach for \emph{testing a value}, which is the habit
-    from 1.0 --- so let them, then use what they find. Pairs (a), (c), and (d) each die to a single
-    number ($2^3\cdot2^4=128\ne 4096$; at $x=1$, $36\ne 26$; $\sqrt{25}=5\ne 3+4$). Pair (b)
-    survives every test they try. Now land the asymmetry, which is the intellectual content of the
-    day: \textbf{``One bad value \emph{disproves} equivalence forever. But no number of good values
-    ever \emph{proves} it --- for that you need algebra.''} Multiply $(x+3)(x-3)$ out on the spot to
-    show what proof looks like. Then frame the lesson: \emph{everything today is a rule for
-    rewriting an expression into an equivalent one --- and the reason we can trust those rules is
-    that each was proved once, so we never have to test again.} Note that (c) and (d) are the two
-    most common errors of the entire year, and both are the same mistake: assuming an operation
-    distributes when it does not.
+    A streaming service charges a \textbf{\$5 signup fee} plus \textbf{\$2 each month}. Ask students
+    to fill a quick cost table ($m=0,1,2,3$ months $\to \$5,\$7,\$9,\$11$) and pose:
+    \textbf{``What stays the same every month?''} (the $+\$2$ rate $=$ \emph{slope}),
+    \textbf{``What is the cost before any months pass?''} (the $\$5$ start $=$ \emph{$y$-intercept}),
+    and \textbf{``Can you write one rule for the cost after $m$ months?''} Students should assemble
+    $C(m) = 2m + 5$ on their own. Land the point: \emph{a rate of change plus a starting value is
+    exactly slope-intercept form} --- today we learn three ways to write and rewrite that rule, and
+    how to build it when the ``starting value'' isn't handed to us.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Translating and evaluating.} Start with translation, because it is the standard students
-have practiced least: build a small two-way table (\emph{seven less than twice a number} $\to 2n-7$;
-\emph{the quotient of a number and 4, increased by 9} $\to \frac n4+9$), and insist on reading the
-finished expression back into words. Flag the two order traps --- ``less than'' reverses the
-subtraction, and ``the quantity'' signals parentheses. Then evaluate. Do $3x^2-4x+1$ at $x=-2$
-slowly, and stop the room on the difference between $-3^2=-9$ and $(-3)^2=9$: the exponent binds
-only to what it touches, and the parentheses are what change that. Then evaluate an expression with
-$|2x-7|$, one with $\sqrt{x+9}$, and one with $\sqrt[3]{x}$, at rational values, since
-\textbf{A.EO.1b} names all three. Emphasize: absolute value and radicals are \emph{grouping
-symbols} --- finish the inside first.
+\textbf{1. Slope as a rate of change.} From any two points on a line,
+$m=\dfrac{y_2-y_1}{x_2-x_1}$. Model it on $(1,4)$ and $(3,0)$: $m=\dfrac{0-4}{3-1}=-2$.
+\textbf{Why can we use \emph{any} two points?} Because a line's rate of change is constant --- the
+defining property from Lesson~1.0.
 
-\textbf{2. The laws of exponents --- derived, not memorized.} Return to Warm-Up item~2 and derive
-each law by writing out factors and counting. $a^3a^2$ has five $a$'s, so exponents \emph{add};
-$\frac{a^5}{a^2}$ cancels two, so exponents \emph{subtract}; $(a^3)^2$ is three $a$'s twice, so
-exponents \emph{multiply}. Then get $a^0=1$ and $a^{-n}=\frac1{a^n}$ the honest way --- by
-continuing the quotient law past where it ``should'' stop: $\frac{a^3}{a^3}=a^0$ and also $=1$;
-$\frac{a^2}{a^5}=a^{-3}$ and also $=\frac{1}{a^3}$. Never present these as arbitrary conventions.
-Then apply to multivariable expressions and monomial ratios, e.g. $\frac{12x^5y^{-2}}{3x^2y^4}$,
-per \textbf{A.EO.3b}, and require positive exponents in the final answer.
+\textbf{2. Slope-intercept form $y=mx+b$.} Read $m$ (rate) and $b$ ($y$-intercept) directly. For
+$y=2x-4$: slope $2$, $y$-intercept $(0,-4)$. This is the form the Hook produced, $C(m)=2m+5$.
+
+\textbf{3. Point-slope form $y-y_1=m(x-x_1)$.} When you know a slope and \emph{a point that isn't
+the $y$-intercept}, this form writes the line \emph{immediately}. Using $(2,0)$ with slope $2$:
+$y-0=2(x-2)$, which simplifies to $y=2x-4$ --- the same line as step~2.
 
 \columnbreak
 
-\textbf{3. Polynomial operations and factoring.} Add and subtract by combining like terms, with the
-whole difficulty concentrated in \emph{one} place: distributing the minus sign across every term of
-the second polynomial. Multiply with the distributive property (area model on the board for
-$(x+3)(x+2)$), then do $(2x-1)(3x^2+x-4)$ so students see the method scale past two terms.
-Highlight the two patterns worth recognizing on sight --- difference of squares and perfect-square
-trinomial --- and connect them back to Hook items (b) and (c). Then reverse the arrow: factoring is
-multiplying backwards, so \emph{every factorization is checkable by expanding}. Insist on the order:
-\textbf{GCF first, always}, then the pattern or trinomial method, then check whether any factor can
-still be factored --- that is what ``completely'' means in \textbf{A.EO.2c}. Finish with division by
-a monomial (split the fraction, one term at a time) and by a factored divisor (cancel common
-factors), and note the restriction that cancelling assumes the divisor is nonzero.
+\textbf{4. Standard form $Ax+By=C$.} Rearrange $y=2x-4$ to $2x-y=4$. Stress the conventions:
+integer $A,B,C$ and $A\ge 0$. \textbf{Which form makes each intercept easiest?} Standard form ---
+set $x=0$ then $y=0$.
 
-\textbf{4. Radicals and rational exponents.} Simplify $\sqrt{72}$ by pulling out the largest perfect
-square, and $\sqrt[3]{54}$ by pulling out the largest perfect cube --- the method is identical, only
-the index changes. Add and subtract only \emph{like} radicals ($3\sqrt5+2\sqrt5$ works;
-$3\sqrt5+2\sqrt3$ does not, and this is the same idea as combining like terms). Multiply with
-$\sqrt a\cdot\sqrt b=\sqrt{ab}$. Close by connecting the two notations: $a^{1/2}=\sqrt a$ and
-$a^{1/3}=\sqrt[3]{a}$, so $\sqrt[3]{8}=8^{1/3}=(2^3)^{1/3}=2$ --- the exponent law from Section~2
-doing the work. State plainly why this matters: the rational-exponent spelling is what lets the
-exponent laws reach radicals at all, and it is the notation Unit 6 is built on.
+\textbf{5. Writing equations (the main event).} Three givens, one strategy each: \emph{(a)} slope
+$+$ $y$-intercept $\to$ plug into $y=mx+b$; \emph{(b)} slope $+$ any point $\to$ point-slope, then
+simplify; \emph{(c)} two points $\to$ compute $m$ first, then use point-slope. Work $(1,4),(3,0)$:
+$m=-2$, $y-0=-2(x-3)$, so $y=-2x+6$.
+
+\textbf{6. Graphing by transforming $y=x$.} Every line is the parent $y=x$ after a vertical
+\emph{stretch/reflection} (the $kf(x)$ that sets the slope) and a vertical \emph{shift} (the
+$f(x)+k$ that sets the $y$-intercept). For $y=2x-4$: stretch by $2$ (slope $1\to2$), then shift
+down $4$. Preview: this $f(x)+k,\ kf(x)$ language is how we will graph \emph{every} function family
+in this course.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Explicit Instruction: Writing a Line from Two Points]{forestbg}
+\begin{multicols}{2}
+\textbf{Steps.}
+\begin{enumerate}[leftmargin=1.4em, nosep]
+  \item Label the points $(x_1,y_1)$ and $(x_2,y_2)$.
+  \item Slope $m=\dfrac{y_2-y_1}{x_2-x_1}$ --- subtract in the \emph{same order} top and bottom.
+  \item Substitute $m$ and \emph{either} point into $y-y_1=m(x-x_1)$.
+  \item Simplify to $y=mx+b$; if standard form is asked, clear to $Ax+By=C$ with $A\ge 0$.
+\end{enumerate}
+
+\columnbreak
+\textbf{Worked: $(1,4)$ and $(3,0)$.}
+\[ m=\frac{0-4}{3-1}=\frac{-4}{2}=-2 \]
+Point-slope with $(3,0)$:
+\[ y-0=-2(x-3) \]
+Slope-intercept: $y=-2x+6$.\\
+Standard: $2x+y=6$.\\
+{\footnotesize Check with $(1,4)$: $-2(1)+6=4$~\checkmark}
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item evaluating $-x^2$ at $x=-3$ as $9$ --- the exponent binds only to $x$, so the answer is $-9$; this is the most common evaluation error in the course and it recurs in every unit;
-  \item translating ``seven less than twice a number'' as $7-2n$ --- ``less than'' reverses the order;
-  \item subtracting polynomials without distributing the minus past the \emph{first} term of the second polynomial;
-  \item adding exponents when multiplying \emph{coefficients} too ($3x^2\cdot 4x^3 = 12x^5$, not $7x^5$ or $12x^6$);
-  \item writing $(x+5)^2=x^2+25$ --- Hook item (c); squaring does not distribute over addition, and the missing $10x$ is the whole point;
-  \item writing $\sqrt{a+b}=\sqrt a+\sqrt b$ --- Hook item (d), the same error in a different costume;
-  \item factoring but skipping the GCF, so $2x^2-18$ becomes $(\sqrt2 x-\ldots)$ nonsense instead of $2(x+3)(x-3)$ --- and stopping at $2(x^2-9)$, which is factored but not \emph{completely};
-  \item leaving a negative exponent in a final answer, or treating $a^{-2}$ as a negative number;
-  \item adding unlike radicals, $3\sqrt5+2\sqrt3=5\sqrt8$.
+  \item slope computed with mismatched order --- $\dfrac{y_2-y_1}{x_1-x_2}$ --- flipping the sign;
+  \item ``upside-down'' slope, $\dfrac{\Delta x}{\Delta y}$ (run over rise);
+  \item point-slope sign slips with negatives: $y-(-1)=m(x-(-3))$ becoming $y-1=m(x-3)$;
+  \item standard form left with fractions or a negative leading coefficient (enforce integers, $A\ge 0$);
+  \item confusing the \emph{stretch} ($kf(x)$, changes slope) with the \emph{shift} ($f(x)+k$, changes intercept).
 \end{itemize}
-Cold-call prompts: ``Read that expression back to me in words.'' ``Where did the exponents' $+$
-come from --- show me the factors.'' ``Is it factored, or factored \emph{completely}? How do you
-know?'' ``Check it: multiply your factors back out.'' ``Give me one value of $x$ that proves those
-two are not equivalent.''
+Cold-call prompts: ``Which form should you \emph{start} from with these givens, and why?''
+``What does $b$ mean in the streaming context?'' ``Same line or different --- how do you know?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Rewriting Without Changing the Value} activity (tiered; mirrors the notes).
+\textbf{Building Lines} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Four straightforward blocks, one per notes section: translate four
-phrases; evaluate four expressions at given values (one with $|\,\cdot\,|$, one with $\sqrt{\ }$,
-one with a negative substituted into a squared term); apply one exponent law per item; and one
-short factoring set in which every problem has a GCF to remove first. Closes with an
-expand-to-check step, so students verify their own factoring instead of asking. Send here any
-student who wrote $(x+5)^2=x^2+25$.
+\textbf{Tier R --- Remediate.} Identify $m$ and $b$ from lines already in $y=mx+b$, then match each
+to a pre-drawn graph by its slope and $y$-intercept.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Mixed and unlabelled, which is the real difficulty: a set where
-students must decide \emph{which} tool applies before using it. Includes a polynomial subtraction
-with a leading minus, a monomial ratio with negative exponents, a trinomial and a
-difference-of-squares to factor completely (one of each requiring a GCF first), a division by a
-factored divisor, and $\sqrt{72}$ and $\sqrt[3]{54}$ side by side so the identical method is
-visible. Ends with two justification items: show two given expressions \emph{are} equivalent by
-algebra, and show two others are \emph{not} with one value.
+\textbf{Tier A --- Approaching.} Write equations from a slope and a point and from two points; use
+point-slope, then convert to slope-intercept and standard form.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Structure work. A rectangle of area $x^2+7x+12$ and one dimension
-$x+3$: find the other by dividing, then state what $x$ cannot be and why. A ``spot the error'' set
-of four student solutions --- one per classic misconception from Active Monitoring --- where the
-error must be named, not just fixed. Then the strongest item on the page: given
-$\frac{4^{x+1}}{2^{2x}}$, simplify to a single power of $2$, which forces students to notice
-$4=2^2$ before any law applies. Closes by asking why one confirming value never proves equivalence
-while one contradicting value always disproves it.
+\textbf{Tier E --- Extension.} Transform the parent $y=x$ to a target line and describe the
+stretch/shift; write parallel and perpendicular lines through a given point; interpret slope and
+intercept in a context.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): three items. \textbf{(1)} Evaluate $2x^2-5x+|x-8|$ at
-$x=-3$ --- one item that catches the $-x^2$ sign error, the order-of-operations habit, and absolute
-value as a grouping symbol all at once. \textbf{(2)} Factor $3x^2-27$ completely and check by
-expanding; the GCF is required, and stopping at $3(x^2-9)$ is the diagnostic. \textbf{(3)} An
-\textbf{SOL-style multiple-choice} item: simplify $\frac{15x^4y^{-1}}{5x^2y^3}$ (answer
-$\frac{3x^2}{y^4}$), with distractors that each break exactly one law --- subtract exponents the
-wrong way / divide the exponents / leave the negative exponent in the numerator. Collect and sort
-into ``got it / sign-and-order slips / factoring not complete / exponent laws.'' The last two piles
-matter most: Lesson 1.2 solves quadratics by factoring, so incomplete factoring becomes a wrong
-\emph{answer} there rather than a lost point, and Units 3--6 lean on the exponent laws continuously.
+\textbf{Exit Ticket} (independent, no notes): from a graphed line, write the equation in
+slope-intercept form and convert it to standard form; write the equation of a line through two given
+points; and a \textbf{justification check} --- decide whether a second equation names the
+\emph{same} line and explain how the forms show it. Also included: one \textbf{SOL-style
+multiple-choice} item (identify the standard-form equation of a given line). Collect and sort into
+``got it / slope-formula slip / point-slope sign slip / form-conversion slip'' to decide whether
+Lesson~1.2 opens with a quick re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} four translation items and four evaluations (covering absolute value, square
-root, and cube root at rational replacement values); an exponent-law set including two monomial
-ratios with negative exponents; a polynomial set with one addition, one subtraction with a leading
-minus, and two products (one a difference-of-squares pattern, one a binomial times a trinomial); a
-factor-completely set of six in which four require a GCF first; two divisions; a radical set
-including $\sqrt{50}$, $\sqrt[3]{24}$, a sum of like radicals, and two rational-exponent
-conversions; and one written item asking students to explain why testing $x=0$ cannot prove two
-expressions equivalent. \textbf{Extension:} the equivalence audit --- five pairs of expressions
-where students must either prove equivalence algebraically or produce a single disproving value,
-including $(x-4)^2$ vs.\ $x^2-16$ and $\sqrt{x^2}$ vs.\ $x$ (which fails for every negative $x$ and
-previews the Unit 6 absolute-value subtlety). \textbf{Preview:} Lesson 1.2, \emph{Equations and
-Inequalities} --- the second Algebra 1 domain area, where every rewriting rule from today gets put
-to work: distributing to clear parentheses, factoring to solve quadratics via the zero product
-property from 1.0, and the quadratic formula, whose radical you will now be able to simplify.
+\textbf{Homework:} compute slopes from two points; write equations from all three types of givens;
+convert a line among slope-intercept, point-slope, and standard form; and describe the
+transformations of $y=x$ that produce a given line. \textbf{Extension:} write parallel and
+perpendicular lines through a point, and interpret the slope and intercept of the streaming-cost
+model $C(m)=2m+5$ in context. \textbf{Preview:} Lesson~1.2, \emph{Absolute Value Equations \&
+Inequalities} --- solving $|ax+b|=c$ and related inequalities, the algebra that Lesson~1.3 will
+turn into the V-shaped graph.
 \end{skillbox}
 % ── Teacher notes (migrated from the component keys) ──
 % One per component, titled for it. They live here rather than in the _key
 % files so that every component is the same length blank and keyed.
 
 \begin{teachernote}[Warm-Up]
-\textbf{Item 1(d)--(e) is the debrief worth having.} The $-x^2$ versus $(-x)^2$ distinction is the
-most persistent evaluation error in the entire course --- it resurfaces in the quadratic formula
-(Unit 3), in end behavior (Unit 4), and in every graphing lesson. Take the argument publicly and
-resolve it with the phrase ``the exponent binds only to what it touches.''
-
-\textbf{Item 2 is A.EO.3a in miniature} --- the standard says students \emph{derive} the laws
-through exploring patterns, not recite them. Do not let anyone skip the middle column; the whole
-value of the item is that the three laws come out of counting. Ask ``where did the $+$ come from?''
-and refuse ``that's the rule.''
-
-\textbf{Item 3} is the bridge from Lesson 1.0: the same distributive property that was a name to
-recite yesterday is today's engine for every polynomial product. Say that out loud.
+Item~2 is the engine for the whole lesson --- keep an eye on subtraction order: top and bottom must
+run in the \emph{same} direction. Item~3 previews the payoff of slope-intercept form: once a line is
+written $y=mx+b$, $m$ and $b$ are simply \emph{read off}, no work required. That contrast (compute
+vs.\ read) motivates why we learn to convert among forms.
 \end{teachernote}
 
 \begin{teachernote}[Guided Notes]
-\textbf{Section 1, the evaluation row with $x=-\tfrac{11}{4}$.} The point of a negative rational
-input under a radical is that students must finish the \emph{inside} before they touch the radical
-sign: $-2.75+9=6.25$, and only then $\sqrt{6.25}=2.5$. Students who reach for $\sqrt{x}+\sqrt{9}$
-are making Hook error (d) --- send them back to it by name.
-
-\textbf{Section 2 is the section to protect if you run short.} A.EO.3a asks students to
-\emph{derive} the laws, and the middle ``why'' column is the standard. If time collapses, cut
-practice items (d)--(f), never the derivation column. The zero and negative rows are the ones worth
-the extra minute: they are forced by the quotient law, not invented.
-
-\textbf{Section 3, item (i) is the diagnostic for the whole lesson.} A student who writes
-$2(x^2-9)$ has done everything right except the last check. Mark it in the moment --- ``factored,
-but not \emph{completely}'' --- because in Lesson 1.2 that same habit turns a lost point into a
-missing \emph{solution} when factoring is used to solve.
-
-\textbf{If Section 4 gets squeezed}, items (a)--(c) and (f)--(h) are the non-negotiables: like
-radicals, and the two-spellings box. The multiplication pair (d)--(e) can move to homework, where it
-already appears in a parallel form.
+The through-line is ``a slope and a point.'' Point-slope is the workhorse: emphasize that students
+can use \emph{either} given point and still land on the same simplified equation --- have a fast
+group check with $(1,4)$ in Section~3. Two errors to pre-empt: (1) subtraction-order sign flips in
+the slope formula; (2) double-negative slips in point-slope, e.g.\ $y-(-5)$ becoming $y-5$. In
+Section~4, keep ``stretch/reflect $\to$ slope'' and ``shift $\to$ intercept'' as two separate moves
+--- this is the exact language Units 2--7 reuse.
 \end{teachernote}
 
 \begin{teachernote}[Group Activity]
-\textbf{Placement.} Send to \textbf{Tier R} anyone who wrote $(x+5)^2=x^2+25$ in the Hook and did
-not repair it during the notes. Tier R is deliberately labelled --- each part names its tool --- so
-the only decision left is execution. \textbf{Tier A}'s difficulty is entirely that the labels are
-gone; do not let a group ask ``which one is this?'' Answer with ``what does the expression
-\emph{look} like?'' \textbf{Tier E} assumes fluency and spends its time on structure and error
-analysis.
-
-\textbf{Tier A item 8 is worth stopping the room for.} $\sqrt{x^2+9}$ vs.\ $x+3$ fails at every
-$x\ne0$, and it is the same error as Hook item (d) wearing a variable. Students who pick $x=0$ (both
-give $3$) have found the one value that does \emph{not} disprove it --- an excellent accident, and a
-free illustration of why one confirming value proves nothing. Have that group keep testing.
-
-\textbf{Tier E Part 3 is the hardest item on the page and the most valuable.} The move is noticing
-$4=2^2$ \emph{before} reaching for any law. Do not give the hint aloud until a group has been stuck
-for two full minutes --- the stuck time is the lesson. That the $x$ vanishes surprises everyone;
-push them to say why (the numerator and denominator grow at exactly the same rate).
-
-\textbf{Timing.} Tier R runs about 18 minutes, Tier A about 20, Tier E about 22. If you are short,
-cut Tier R Part 3 (it duplicates notes Section 2) and Tier E Part 4 (it is re-asked on the
-homework), but keep the expand-to-check step in Tier R Part 4 --- self-checking is the habit this
-activity exists to build.
+Tier~A item~3 is the conceptual crux: ``same line, different form'' is verified by \emph{algebra},
+not appearance. In Tier~E, watch the perpendicular slope --- students often negate \emph{or}
+reciprocate but not both; $m=2 \Rightarrow m_\perp = -\tfrac12$. Item~3's break-even ties slope
+(rate) and intercept (fixed cost) back to the streaming Hook; accept a clear table or an equation
+for full credit.
 \end{teachernote}
 
 \begin{teachernote}[Exit Ticket]
-\textbf{Answer 3: B.} $\frac{15}{5}=3$; $x^{4-2}=x^2$; $y^{-1-3}=y^{-4}=\frac{1}{y^4}$. Each
-distractor breaks exactly one law. \textbf{A} subtracts in the wrong order ($3-(-1)=4$) and so gets
-a positive $y$ exponent. \textbf{C} treats $y^{-1}$ as $y^{1}$ ($1-3=-2$) --- the negative sign is
-simply dropped. \textbf{D} adds the $x$ exponents ($4+2$) instead of subtracting.
-
-\textbf{Sort the collected tickets into four piles:} \emph{got it} / \emph{sign-and-order slips}
-(item 1: $2(-3)^2$ evaluated as $-18$, or the absolute value dropped) / \emph{factoring not
-complete} (item 2 stopped at $3(x^2-9)$) / \emph{exponent laws} (item 3 wrong).
-
-\textbf{Act on the last two piles.} Incomplete factoring is the one that costs the most soonest:
-Lesson 1.2 uses factoring to \emph{solve} quadratics, so a student who stops at $3(x^2-9)$ there
-loses two solutions rather than a step. If that pile is large, open 1.2 by re-running item 2 with
-new numbers before starting anything new. The exponent pile is slower-burning but wider --- Units 3
-through 6 lean on those laws continuously --- so plan a five-minute derivation warm-up rather than a
-reteach.
-
-\textbf{Item 1 is the sign diagnostic.} A student who writes $-18$ for $2(-3)^2$ has the $-x^2$
-error from the Warm-Up still intact; name it that way when you hand the ticket back, because they
-have now seen it three times and the name is what makes it stick.
+Sort responses into ``got it / slope-formula slip / point-slope sign slip / form-conversion slip.''
+Item~1b and item~3 both test clearing fractions and keeping $A\ge 0$ --- the most common miss is
+leaving a negative leading coefficient (choice C) or a sign error (choice B). Item~2's telling error
+is subtraction order in the slope; a student who gets $-3$ likely subtracted the coordinates in
+opposite orders. If several miss item~3, reteach ``multiply through to clear the fraction, then move
+$x$ to the left'' before Lesson~1.2.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-\textbf{Grade items 5 and 8 first.} They are the two that predict Lesson 1.2. In item 5, watch for
-answers that are factored but not \emph{completely} --- $4(x^2-25)$, $2x(x^2-4)$ --- and mark them
-partially correct with that phrase written out, because in 1.2 the same stop costs two solutions
-rather than one step. In item 8, a student who can articulate ``one value cannot establish every
-value'' has the intellectual content of the lesson even if the computation is shaky.
-
-\textbf{Item 4(b) is the leading-minus item.} The wrong answer to look for is $-4x^2-5x+6$ or
-$-4x^2-3x+6$ --- a minus distributed to some but not all of the second polynomial. Do not accept
-``I forgot''; have them rewrite it as $+(-1)(5x^2-x-3)$ once, out loud.
-
-\textbf{Item 3(e)--(f) are the two negative-exponent monomial ratios (A.EO.3b).} Both require
-subtracting a negative, which is where the errors live: in (e), $3-(-1)=4$ and $-4-2=-6$; in (f),
-$-2-3=-5$ and $5-(-1)=6$. Have students who miss these write the factor-counting expansion out once.
-
-\textbf{The Extension is where the real Algebra 2 lives.} Rows (c) and (e) are both previews. Row
-(c), $\sqrt{x^2}=|x|$, is the Unit 6 radical subtlety in embryo --- do not let a strong class talk
-you out of the absolute value. Row (e) introduces \emph{domain} as part of what ``equivalent''
-means, which is the idea Unit 5 (rational functions) is built on; it is genuinely hard, and a
-student who only notices that something goes wrong at $x=3$ has done well.
+Items 3 and 4 are the conversion core --- watch for a lost negative when clearing $-2y$ in item~4
+($4x-2y=10 \Rightarrow y=2x-5$, \emph{not} $y=2x+5$). Item~7 is the conceptual target: parallel
+means equal $m$, different $b$; a full-credit answer names both. In the Extension, the common slip is
+using $\tfrac13$ (not $-3$) for the perpendicular slope --- reinforce ``opposite \emph{and}
+reciprocal.''
 \end{teachernote}
 
 \end{document}

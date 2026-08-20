@@ -1,4 +1,4 @@
-%! Simplifying Radicals; Adding \& Subtracting — Unit 6, Lesson 6.2 — Lesson Plan
+%! Graphing Exponential Functions and Transformations — Unit 6, Lesson 6.2 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 6: Radical Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 6.2: Simplifying Radicals; Adding \& Subtracting}
+\newcommand{\UnitNumberName}{Unit 6: Exponential Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 6.2: Graphing Exponential Functions and Transformations}
 
 \begin{document}
 \begin{center}
@@ -19,26 +19,27 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can state the \emph{product} and \emph{quotient} properties
-    of radicals and derive both from the exponent rules of Lesson 6.1, rather than memorizing them;
-    can explain --- and prove --- why there is \emph{no} corresponding rule for addition; can write
-    any radical in \emph{simplest form}, with numeric radicands, algebraic radicands, and indices
-    above $2$, by pulling out the \emph{largest} perfect $n$th power; can simplify a variable
-    radicand by dividing the exponent by the index, and explain that move as rewriting an improper
-    fraction as a \emph{mixed number}; and can \emph{add and subtract} radicals by collecting
-    \emph{like radicals} --- simplifying every term \emph{before} deciding whether any two of them
-    are alike.
+    \textbf{Primary Objective:} Students can graph $g(x)=a\,b^{\,x-h}+k$ by \emph{moving the parent}
+    $y=b^{x}$, and can read the horizontal asymptote, the range, and the $y$-intercept straight off
+    the equation without plotting a point. The lesson turns on a single asymmetry: of the four
+    transformations, \emph{only} the vertical shift $f(x)+k$ moves the asymptote --- so it is the only
+    one that changes the range, and the only one that can give the graph an $x$-intercept at all.
+    Students also separate the two minus signs that look alike and are not: $-b^{x}$ reflects across
+    the $x$-axis (moving the graph to the other side of the asymptote), while $b^{-x}$ reflects
+    across the $y$-axis and turns growth into decay, because $b^{-x}=\left(\frac1b\right)^{x}$.
+    Finally, students run the reading backwards --- given a graph, recover $k$ from the asymptote, $a$
+    from the $y$-intercept \emph{minus $k$}, and $b$ from one more point.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.2a} --- simplify and determine equivalent
-    radical expressions that include numeric and algebraic radicands --- is the governing standard
-    and is assessed in every component. \textbf{A2.EO.2b} is served in its \emph{additive} half
-    (add and subtract radical expressions, simplifying the result); multiplication, division, and
-    rationalizing are deliberately held for Lesson 6.3, which is why this pair of lessons splits
-    A2.EO.2b down the middle. \textbf{A2.EO.2c} (radical $\leftrightarrow$ rational exponent) is
-    revisited as the \emph{source} of both properties and again in the mixed-number explanation of
-    the exponent-division rule. The Activity's Part 3 and the homework's pendulum model reach
-    \textbf{A2.F.2f} (evaluate a function and interpret it in context) and preview
-    \textbf{A2.F.1b/c} (vertical stretch of a radical parent) ahead of Lesson 6.4.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.1b} and \textbf{A2.F.1c} are the assessed standards
+    of the day --- the transformation lens ($a$, $h$, $k$, and reflections) applied to the exponential
+    parent, and the effect of each parameter on the graph. \textbf{A2.F.1e} (compare and contrast
+    graphs, tables, and equations of a function family) is the structural spine: every section moves
+    between an equation, a pre-drawn graph, and a table of values, and Section 4 reverses the
+    direction entirely. \textbf{A2.F.2h} (horizontal asymptotes; the standard names exponential
+    explicitly) and \textbf{A2.F.2a} (domain and range) are what the whole lesson is measured
+    against --- ``did the asymptote move, and what is the range now?'' is the question asked on every
+    item. \emph{Note:} Unit 6 has no \texttt{A2.EO} or \texttt{A2.EI} standard --- the unit rests
+    entirely on \texttt{A2.F} and \texttt{A2.ST.2}.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -48,23 +49,25 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Apply the \textbf{product} and \textbf{quotient} properties of radicals in both directions.
-  \item Write a numeric radical in \textbf{simplest form} by extracting the \textbf{largest} perfect $n$th power.
-  \item Simplify with \textbf{indices above $2$}, grouping factors in $n$'s rather than pairs.
-  \item Simplify \textbf{algebraic} radicands by dividing the exponent by the index (quotient out, remainder in).
-  \item Recognize \textbf{like radicals} --- same index \emph{and} same radicand --- and collect them.
-  \item \textbf{Simplify first, decide second}: never declare ``cannot combine'' before simplifying.
-  \item Reject $\sqrt{a+b}=\sqrt a+\sqrt b$, and \emph{prove} it fails for all positive $a,b$.
+  \item Read $a$, $h$, and $k$ out of $g(x)=a\,b^{\,x-h}+k$ and name the move each one makes.
+  \item Give the \textbf{horizontal asymptote} of any transformed exponential: $y=k$, and nothing else can change it.
+  \item Give the \textbf{range}: $(k,\infty)$ when $a>0$, $(-\infty,k)$ when $a<0$ --- always a parenthesis at $k$.
+  \item Find the $y$-intercept as $a+k$, not $a$.
+  \item Distinguish $-b^{x}$ (flip over the $x$-axis) from $b^{-x}$ (flip over the $y$-axis, growth $\to$ decay).
+  \item Decide whether a graph has an \textbf{$x$-intercept} from the signs of $a$ and $k$ alone.
+  \item Match a pre-drawn graph to its equation using the dashed asymptote first.
+  \item \textbf{Write the equation} of a transformed exponential from its graph: $k$, then $a$, then $b$.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item These are not new rules. $\sqrt[n]{ab}=(ab)^{1/n}=a^{1/n}b^{1/n}$ --- the product property \emph{is} yesterday's power-of-a-product rule.
-  \item A radical splits over \textbf{multiplication} and never over \textbf{addition}, and the arithmetic settles it in five seconds: $\sqrt9+\sqrt{16}=7$ while $\sqrt{9+16}=5$.
-  \item The \textbf{index sets the group size}. $\sqrt[3]{9}$ is finished; a perfect square is worth nothing under a cube root.
-  \item Dividing the exponent by the index \emph{is} converting $\frac{7}{2}$ to $3\frac12$ --- so ``quotient out, remainder in'' is a fact about mixed numbers, not a rule to memorize.
-  \item Radicals combine exactly like terms: the radical plays the role of the variable, and only the coefficients move.
-  \item Two radicals can be like radicals \textbf{in disguise} --- which is precisely why simplifying and combining belong in one lesson.
+  \item \emph{Only $f(x)+k$ moves the asymptote --- and everything that depends on the asymptote moves with it.} One sentence; it decides every item today.
+  \item The asymptote is the \emph{boundary of the range} (Lesson 6.0). Move the boundary and the range moves; leave it and the range cannot change no matter how far sideways the graph slides.
+  \item A horizontal shift is invisible to the range. That is genuinely surprising, and it is why the inside/outside distinction finally has consequences.
+  \item Growth versus decay is read off $b$ against $1$ --- never off $a$. A negative $a$ chooses the \emph{side} of the asymptote, not the family.
+  \item ``Exponentials never cross the $x$-axis'' was a claim about $y=ab^{x}$. It is now refined, not contradicted: crossing happens exactly when $a$ and $k$ have opposite signs.
+  \item Reading a graph backwards is the same three facts in reverse order --- and the order matters, because the $y$-intercept is $a+k$.
+  \item In a real model the asymptote is a physical thing (room temperature), which is why $k$ is worth this much attention.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -72,174 +75,160 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Product Property} & \TallMath{\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}} --- follows from $(ab)^{1/n}=a^{1/n}b^{1/n}$. For an \emph{even} index, $a,b\ge0$ (Lesson 6.1). \\
-\textbf{Quotient Property} & \TallMath{\sqrt[n]{\tfrac{a}{b}}=\tfrac{\sqrt[n]{a}}{\sqrt[n]{b}}}, $b\ne0$ --- take the root of the top and of the bottom. \\
-\textbf{No sum property} & $\sqrt{a+b}\ne\sqrt{a}+\sqrt{b}$. Squaring the false equation leaves $2\sqrt{ab}=0$, so it holds \emph{only} if $a=0$ or $b=0$. \\
-\textbf{Simplest radical form} & (1) no factor of the radicand is a perfect $n$th power; (2) no fraction under the radical; (3) no radical in a denominator. Condition 3 is Lesson 6.3's job. \\
-\textbf{Index sets the group size} & Factors escape a square root in pairs, a cube root in threes, a fourth root in fours. So $\sqrt[3]{9}$ is already simplest. \\
-\textbf{Exponent-division rule} & $\sqrt[n]{x^{m}}$: divide $m$ by $n$ --- the quotient is the exponent outside, the remainder the exponent inside. Equivalently, $x^{m/n}$ as a \emph{mixed number}. \\
-\textbf{Like radicals} & Same \emph{index} and same \emph{radicand}. Only like radicals combine, and only the coefficients change: $3\sqrt5+7\sqrt5=10\sqrt5$, never $10\sqrt{10}$. \\
-\textbf{Rationalizing} & Clearing a radical out of a denominator --- named today, taught in Lesson 6.3. \\
+\textbf{Transformation form} & $g(x)=a\,b^{\,x-h}+k$ --- the parent $y=b^{x}$ with all four moves attached. \\
+\textbf{Vertical shift $k$} & Slides the graph up or down \emph{together with} its asymptote, which becomes $y=k$. The only asymptote-mover in the form. \\
+\textbf{Horizontal shift $h$} & $b^{\,x-h}$ slides the graph $h$ right ($h$ left if negative). Asymptote and range unchanged. \\
+\textbf{Vertical stretch / compression $a$} & $|a|>1$ stretches, $0<|a|<1$ compresses. Sets the $y$-intercept; never moves the asymptote. \\
+\textbf{Reflection across the $x$-axis} & $a<0$. Puts the graph on the other side of the asymptote, so the range becomes $(-\infty,k)$. The family is unchanged. \\
+\textbf{Reflection across the $y$-axis} & $f(-x)$. For an exponential this \emph{changes the base}: $b^{-x}=\left(\frac1b\right)^{x}$, so growth becomes decay. \\
+\textbf{Horizontal asymptote $y=k$} & The boundary the range excludes (Lesson 6.0), now movable. \\
+\textbf{Range from the asymptote} & $(k,\infty)$ if $a>0$; $(-\infty,k)$ if $a<0$. Parenthesis at $k$, always. \\
+\textbf{$x$-intercept condition} & The graph crosses the $x$-axis exactly when $a$ and $k$ have opposite signs (and never when $k=0$). \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses three prerequisites, and each is a piece of today's lesson in disguise.
-    \textbf{(1)} Perfect powers read backwards, then the \emph{largest perfect-square factor} of
-    $72$, $50$, $48$ --- literally step one of the simplifying algorithm, extracted so that the
-    algorithm itself has nothing new in it. Push on \emph{largest}: a student who writes
-    $72=4\cdot18$ is not wrong but will finish at $2\sqrt{18}$ and believe they are done.
-    \textbf{(2)} Combining like terms ($3x+7x$, $3x+7y$) with the follow-up question ``what exactly
-    had to match?'' --- get the words \emph{the variable part} said aloud now, because
-    \emph{the radical part} is then a two-word edit. \textbf{(3)} The exponent rules: verifying
-    $(4\cdot9)^{1/2}=4^{1/2}\cdot9^{1/2}$ numerically \emph{before} the product property is stated,
-    plus writing $\frac72$ as a mixed number and simplifying $x^{3}\cdot x^{1/2}$ --- which is the
-    surprise ending of Section 4 pre-assembled. Note who is slow on the mixed number; they will
-    struggle with algebraic radicands, not with the arithmetic ones.
+    The Warm-Up rehearses exactly what today needs, in the order the lesson uses it. \textbf{(1)}
+    Shift directions on two \emph{familiar} parents --- $y=(x-3)^{2}+1$ and $y=\sqrt{x+2}-5$ ---
+    finishing with the general statement that outside moves it vertically and inside moves it
+    horizontally. This is the only part of today that is not new, and it is the part students must
+    bring intact, because the whole lesson is about which of those two moves the asymptote.
+    \textbf{(2)} A recall check on $y=3(2)^{x}$ --- $a$, $b$, growth/decay, $y$-intercept, asymptote,
+    range --- because every answer today is measured against ``$y=0$ and $(0,\infty)$,'' and a student
+    who cannot produce the parent's pair cannot say what changed. \textbf{(3)} $2^{-2}$ against
+    $\left(\frac12\right)^{2}$ and $2^{-3}$ against $\left(\frac12\right)^{3}$, which earns
+    $2^{-x}=\left(\frac12\right)^{x}$ \emph{numerically} before Section 3 states it as the reflection
+    rule. Debrief item 1 at the board and leave ``outside $=$ vertical, inside $=$ horizontal'' written
+    where it will stay all period.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put three statements on the board and hand out calculators --- this is the one day in the unit
-    when decimal approximation is the right tool, because the whole point is that a numeric check
-    settles the question instantly. \textbf{``Two of these are true. One is a lie. Find it.''}
-    \begin{center}
-    (a) \; $\sqrt{8}\cdot\sqrt{2}=4$ \qquad (b) \; $\sqrt{9}+\sqrt{16}=\sqrt{25}$ \qquad
-    (c) \; $\sqrt{8}+\sqrt{18}=5\sqrt{2}$
-    \end{center}
-    Give them three minutes. Most will convict (c) on sight --- it looks like nonsense --- and will
-    be startled when $2.828+4.243=7.071$ and $5\sqrt2=7.071$ agree to three decimals. Meanwhile (b)
-    looks reasonable and is the lie: $3+4=7$, not $5$. Then ask the question the whole lesson hangs
-    on: \textbf{``What do the two \emph{true} ones have in common that the false one doesn't?''}
-    Land it: the true ones involve \textbf{multiplication} inside the radical --- $8\cdot2$
-    directly, and $8=4\cdot2$, $18=9\cdot2$ underneath. \emph{A radical splits over multiplication
-    and never over addition.} Then flag the strange consequence in (c), which is why today's two
-    skills are taught in one period: $\sqrt8$ and $\sqrt{18}$ share nothing visible, and they are
-    the same radical in disguise. You cannot tell until you simplify. Yesterday the index told them
-    what a radical \emph{is}; today it tells them how far a radical can be taken apart.
+    Three graphs on the board, all built from $y=2^{x}$: \textbf{I} is the parent, \textbf{II} is
+    $y=2^{x}-3$, and \textbf{III} is $y=2^{\,x-3}$ --- each drawn with its horizontal asymptote as a
+    dashed line. Do not label them. Ask the class to match the three equations to the three graphs,
+    and then ask the question the whole lesson hangs on: \textbf{``Two of these equations contain a
+    $3$, and both of those graphs moved. Why is only \emph{one} of the dashed lines somewhere new?''}
+    Take answers until someone connects it to the Warm-Up: the $3$ that is \emph{outside} carries the
+    whole picture --- asymptote included --- down with it, and the $3$ that is \emph{inside} only
+    slides the picture sideways past an asymptote that never budged. Then close the trap: point at
+    graph II crossing the $x$-axis and ask, \textbf{``In Lesson 6.0 you proved an exponential can
+    never cross the $x$-axis. Explain that graph.''} Let the class resolve it --- 6.0's claim was
+    about $y=ab^{x}$, and the vertical shift is exactly what changes it. Do \emph{not} generalize to
+    $a\,b^{\,x-h}+k$ yet; Section 1 earns the form.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Where the properties come from.} Do not present them as new. Write
-$\sqrt[n]{ab}=(ab)^{1/n}=a^{1/n}b^{1/n}=\sqrt[n]{a}\sqrt[n]{b}$ and let students see that the only
-tool used is Warm-Up item 3. State the even-index fine print explicitly --- $a,b\ge0$, or the
-pieces are not real --- and connect it to the 6.1 exit ticket: this is where a student who cannot
-tell when a root exists will cheerfully turn $\sqrt{-8}$ into $\sqrt{-4}\cdot\sqrt2$. Then close
-the Hook loop with the two-line table: $\sqrt{9\cdot16}=12=\sqrt9\cdot\sqrt{16}$, but
-$\sqrt{9+16}=5\ne7=\sqrt9+\sqrt{16}$.
+\textbf{1. One form, four jobs.} Write $g(x)=a\,b^{\,x-h}+k$ and fill the four-row table together.
+Three of the four columns are review from Units 2 and 5; the fourth --- \emph{does the asymptote
+move?} --- is the new content, and it reads YES, no, no, no. Say the asymmetry out loud rather than
+letting students infer it. Then work $g(x)=2^{\,x-1}+3$ end to end: parent, moves, asymptote $y=3$,
+range $(3,\infty)$, and the $y$-intercept $g(0)=2^{-1}+3=3.5$ --- which is already the lesson's
+sneakiest fact, since the intercept is neither $a$ nor $k$. Close the section by naming what the
+shift right did to the range: nothing.
 
-\textbf{2. Simplest form.} Give the three conditions, and say out loud that condition 3 is
-tomorrow's job --- students should know something is being deferred rather than discover a rule
-they were never taught. Work $\sqrt{72}=6\sqrt2$ two ways: largest factor ($36\cdot2$) and the
-``I only saw $4\cdot18$'' route, which lands on the same answer through $2\sqrt{18}$. Name the
-habit: \emph{the last step of every problem is checking the leftover radicand for another perfect
-power}. Offer prime factorization as the safety net.
+\textbf{2. Why $k$ takes the range with it.} Anchor on $y=2^{x}-4$ with its graph. The whole picture,
+asymptote included, slid down $4$: asymptote $y=-4$, range $(-4,\infty)$, $y$-intercept $(0,-3)$, and
+--- the payoff --- an \textbf{$x$-intercept at $(2,0)$}, verified by $2^{2}-4=0$. Spend real time on
+the red box. The bracket error ($[k,\infty)$) is Lesson 6.0's error wearing new clothes and will
+reappear on the exit ticket. The second bullet is the one to say slowly: 6.0's ``no zeros, ever'' is
+being \emph{refined}, and the refined rule is that the graph crosses exactly when $a$ and $k$ have
+opposite signs.
 
 \columnbreak
 
-\textbf{3. Higher indices.} One sentence carries this: \textbf{the index sets the group size}.
-Pairs escape a square root, triples escape a cube root. Do $\sqrt[3]{54}$, $\sqrt[3]{16}$,
-$\sqrt[4]{48}$, and $\sqrt[3]{-24}$ (odd index, negative radicand --- a 6.1 callback worth naming).
-Then the trap: $\sqrt[3]{9}$ is \emph{already} simplified, even though $9$ is a perfect square.
-Expect the majority to get this wrong on first contact.
+\textbf{3. Two minus signs.} Put $y=-2^{x}$ and $y=2^{-x}$ side by side and fill the comparison table.
+The $x$-axis flip moves the graph to the other side of an unmoved asymptote --- range $(-\infty,0)$,
+but the base is still $2$, so it is \emph{still growth}, just falling. The $y$-axis flip leaves the
+range alone and changes the family, because $2^{-x}=\frac{1}{2^{x}}=\left(\frac12\right)^{x}$ --- the
+Warm-Up's arithmetic, now a rule. Neither one touched the asymptote, because neither one is a vertical
+shift. Expect ``$-2^{x}$ is decay''; refuse it and point back at 6.0.
 
-\textbf{4. Algebraic radicands.} Teach the procedure (divide the exponent by the index; quotient
-out, remainder in), then spend the real time on \emph{why}: $\sqrt{x^7}=x^{7/2}=x^{3\frac12}
-=x^{3}\cdot x^{1/2}=x^{3}\sqrt x$. \emph{Simplifying a radical and rewriting an improper fraction
-as a mixed number are the same move.} This is the lesson's intellectual center; students who see it
-stop guessing at which power comes out. Finish with $\sqrt{50x^5y^8}$ and $\sqrt[3]{40a^7b^3}$,
-handling the number and each variable separately. Note once that positive variables are assumed
-(6.1's $|a|$ rule is set aside, not repealed).
-
-\textbf{5. Quotient property --- keep it short.} Six quick items, two of them run
-\emph{backwards} ($\sqrt{50}/\sqrt2=5$). Flag $\sqrt{3/5}$ as unfinished business and move on.
-
-\textbf{6. Like radicals.} Return to Warm-Up item 2 and build the parallel column by column:
-$3x+7x=10x$ beside $3\sqrt5+7\sqrt5=10\sqrt5$; $3x+7y$ beside $3\sqrt5+7\sqrt2$. Insist that only
-the coefficients move --- $10\sqrt5$, never $10\sqrt{10}$. Then the Hook's payoff:
-$\sqrt8+\sqrt{18}=2\sqrt2+3\sqrt2=5\sqrt2$, and the rule that governs the rest of the unit ---
-\textbf{simplify first, decide second}.
+\textbf{4. Reading backwards.} Three steps, \emph{in order}: the dashed line gives $k$; the
+$y$-intercept is $a+k$, so subtract before claiming $a$; one more point gives $b$. Work the graph with
+asymptote $y=2$ through $(0,5)$ and $(1,8)$ to $y=3(2)^{x}+2$, then check it at $x=2$. Finish with the
+warning: a student who skips step 1 writes $a=5$ here, every time. This is the skill Lesson 6.5 leans
+on. Preview Lesson~6.3.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-Circulate during Guided Practice and the tiers. Watch for and correct:
+Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{stopping early} --- $\sqrt{72}=2\sqrt{18}$, $\sqrt{80}=2\sqrt{20}$; not wrong, just unfinished, and the fix is a habit (``check the leftover''), not a re-teach;
-  \item \textbf{splitting over addition} --- $\sqrt{20}+\sqrt5=\sqrt{25}$; refute it with the student's own calculator every single time, because $6.71\ne5$ is a better argument than any sentence;
-  \item \textbf{pairs under a cube root} --- $\sqrt[3]{54}=\sqrt[3]{9\cdot6}=3\sqrt[3]{6}$, which \emph{looks} right because a $3$ appears outside; ask where that $3$ came from;
-  \item \textbf{adding the radicands too} --- $3\sqrt7+2\sqrt7=5\sqrt{14}$;
-  \item \textbf{deciding too early} --- writing ``cannot combine'' for $\sqrt8+\sqrt{18}$ or $\sqrt{18}+\sqrt{32}$;
-  \item \textbf{over-applying 6.0} --- marking $\sqrt[3]{-135}$ undefined because ``negatives are not allowed'' (odd index; they are);
-  \item on algebraic radicands, \textbf{taking the whole exponent out} --- $\sqrt{x^{7}}=x^{7}$ or $x^{3.5}$ instead of $x^{3}\sqrt x$.
+  \item treating an \textbf{inside} number as a vertical shift --- ``$y=5^{\,x-2}$ has asymptote $y=-2$''; this is \emph{the} signature error of the lesson;
+  \item claiming the range changed after a \textbf{horizontal} shift, or after a stretch;
+  \item the \textbf{bracket} error --- writing the range as $[k,\infty)$; the asymptote is excluded, always;
+  \item reading the $y$-intercept as $a$ instead of $a+k$ (and the reverse: writing $a$ for the intercept when going backwards);
+  \item calling $-b^{x}$ \textbf{decay}; the base decides the family, the sign of $a$ decides the side of the asymptote;
+  \item confusing $-b^{x}$ with $b^{-x}$ --- ask which axis, not which sign;
+  \item the horizontal-shift direction ($b^{\,x-3}$ moves \emph{right}), the Unit 2 / Unit 5 sign flip;
+  \item hunting for an $x$-intercept on a graph that has none, or missing one on a graph that does --- send them to the signs of $a$ and $k$;
+  \item in Tier E, concluding that $2^{\,x-3}=\frac18\cdot2^{x}$ means shifts and stretches are interchangeable \emph{in general} --- part (d) exists to kill that.
 \end{itemize}
-Cold-call prompts: ``Is there still a perfect square in there?'' ``What is the index, and how many
-equal factors do you need to get one out?'' ``Check that on your calculator --- do both sides
-agree?'' ``Are these like radicals? How do you know \emph{yet}?'' ``What is $7$ divided by $2$ as a
-mixed number, and where do those two pieces go?''
+Cold-call prompts: ``Did the asymptote move? Say why or why not.'' ``What is the range now --- and is
+that a bracket or a parenthesis?'' ``Your $a$ and the $y$-intercept are different numbers. Which is
+which?'' ``Is that a negative on the input or on the output?'' ``Does this graph cross the $x$-axis?
+Answer from the signs, not the picture.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Hiding in Plain Sight} activity (tiered; mirrors the notes).
+\textbf{Move It --- and Say What Moved} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} A six-row scaffold (radical $\to$ largest perfect-square factor $\to$
-rewrite $\to$ simplified) over $\sqrt{32},\sqrt{44},\sqrt{75},\sqrt{90},\sqrt{128}$; a
-\emph{finished-or-not} sort whose key item is $\sqrt[3]{9}$ (done --- a perfect square buys nothing
-under a cube root); a ``find the families'' task where six radicals must be simplified before they
-can be sorted into a $\sqrt3$ group and a $\sqrt2$ group and summed; and one concept question on
-why $10\sqrt3+11\sqrt2$ stops there.
+\textbf{Tier R --- Remediate.} A four-row ``what moved?'' table off the parent $y=3^{x}$ (up $4$,
+right $2$, down $5$, flip over the $x$-axis) closing with the question that \emph{is} the lesson:
+which two rows kept the parent's asymptote, and what do they have in common? Then one function taken
+all the way through --- $g(x)=2^{x}+3$: parent, move, asymptote, a table of five values, the
+$y$-intercept, the range, why no input ever gives exactly $3$, and why there is no $x$-intercept.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Six full simplifications including $\sqrt[3]{81y^{8}}$ and two
-quotient-property items; four sums requiring simplification first; a three-row \textbf{error
-analysis} (split over addition, added radicands, perfect square under a cube root) --- the highest
-value items on the page, worth a whole-class share; and an exact-versus-approximate perimeter
-problem ($\sqrt{75}$ by $\sqrt{12}$ meters $\Rightarrow 14\sqrt3\approx24.2$ m) that ends by asking
-why a builder wants the exact form.
+\textbf{Tier A --- Approaching.} Four pre-drawn graphs of transformations of $y=2^{x}$ matched to
+their equations, each with asymptote and range read from the \emph{equation}, and then the diagnostic
+question: exactly one of the four has an $x$-intercept --- which, and why is it the only one? Next,
+graph $\to$ equation with a \emph{negative} $k$ (asymptote $y=-1$, intercept $(0,2)$), where $a=3$
+comes out \emph{larger} than the intercept. Then the \textbf{Justify}: Nadia's claim that $-5^{x}$ and
+$5^{-x}$ are ``the same thing, both have a negative'' --- axis, range, and family required for each.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Three parts. \textbf{(1)} A genuine proof that
-$\sqrt a+\sqrt b=\sqrt{a+b}$ forces $ab=0$ --- square, cancel, and the surviving $2\sqrt{ab}$ is
-exactly what the classic error deletes. \textbf{(2)} The staircase
-$\sqrt2+\sqrt8+\sqrt{18}+\sqrt{32}+\sqrt{50}=15\sqrt2$, generalized to
-$\frac{n(n+1)}{2}\sqrt2$ after noticing $2k^{2}$, then rebuilt over $3$. \textbf{(3)} A bridge to
-6.4: a table showing $f(x)=\sqrt{8x}$ is always twice $g(x)=\sqrt{2x}$, proved by
-$\sqrt{8x}=2\sqrt{2x}$ --- simplifying a radical reveals a \textbf{vertical stretch}, with the
-domain and the endpoint unchanged.
+\textbf{Tier E --- Extension.} Three parts. \emph{A shift in disguise:} $2^{\,x-3}=\frac18\cdot2^{x}$
+proved by exponent rules and checked in a table --- a horizontal shift and a vertical compression are
+the \emph{same} move for this family --- with part (d) testing the same trick on $(x-3)^{2}$, where it
+fails. \emph{All four moves at once:} $g(x)=-2(3)^{\,x-1}+5$, including an exact $y$-intercept of
+$\frac{13}{3}$ and an $x$-intercept decided from signs. \emph{Coffee:} $T(t)=68+132(0.85)^{t}$, where
+the asymptote is \textbf{room temperature} --- with an algebraic-versus-contextual range beat and a
+closing $132(0.85)^{t}=32$ that has no common base.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes, no calculator): four simplifications spanning a
-numeric radical, a cube root, an algebraic radicand, and a sum that only combines after both terms
-are simplified ($2\sqrt{12}+\sqrt{27}=7\sqrt3$); an \textbf{explanation} item requiring the student
-to refute $\sqrt9+\sqrt{16}=\sqrt{25}$ \emph{numerically} and then state the property that does
-hold; and an \textbf{SOL-style multiple-choice} item on $\sqrt{50}+\sqrt{32}$ (answer $9\sqrt2$)
-whose distractors each break exactly one idea --- $\sqrt{82}$ (added the radicands), $9\sqrt4$
-(simplified correctly, then added the radicands anyway), $20\sqrt2$ (multiplied the coefficients).
-Collect and sort into ``got it / stopped early / adders / did not simplify first.'' The last two
-piles govern how 6.3 opens: distributing over radicals magnifies both errors immediately, since
-$\sqrt2\left(\sqrt6+\sqrt{10}\right)$ requires simplifying \emph{after} multiplying, not before.
+\textbf{Exit Ticket} (independent, no notes), four items on one page: \textbf{(1)} read $y=4^{x}-5$
+for asymptote, range, $y$-intercept, and family --- the family answer is \emph{growth}, a deliberate
+check that students are still reading $b$ and not the negative intercept; \textbf{(2)} the
+inside/outside discrimination --- which of $y=2^{\,x+3}$ and $y=2^{x}+3$ has range $(3,\infty)$, plus
+one sentence on what the other does instead; \textbf{(3)} write the equation from a pre-drawn graph
+(asymptote $y=1$, $y$-intercept $(0,3)$, through $(1,5)$), the hardest and most informative item, where
+$a=3$ is the error to look for; and \textbf{(4)} an \textbf{SOL-style multiple-choice} item --- the
+range of $g(x)=3(2)^{x}-6$ --- whose distractors are the three errors of the day: $[-6,\infty)$ is the
+bracket error, $(0,\infty)$ ignored the shift, and $(6,\infty)$ lost the sign of $k$. Sort the collected
+tickets into \emph{got it / inside-outside / bracket / grabbed the intercept}. Only the inside-outside
+pile needs a full re-teach, and it should be run off the Hook's graphs II and III, where the same $3$
+does two different things.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} eight numeric simplifications spanning indices $2$ through $5$ and including a
-negative radicand under an odd index; six algebraic radicands, one with a fraction; eight
-add-or-subtract items, two of which are answered ``cannot combine'' \emph{only after} being
-simplified (and one, $\sqrt8+\sqrt[3]8$, which quietly rewards noticing that $\sqrt[3]8$ is just
-$2$); three quotient-property items; a two-part conceptual item --- refute
-$\sqrt{36+64}=\sqrt{36}+\sqrt{64}$ numerically, and explain why $\sqrt[3]{16}$ is unfinished while
-$\sqrt[3]{9}$ is done; and a closing item that simplifies $\sqrt{x^{9}}$ \emph{twice}, once by
-splitting the radicand and once via $x^{9/2}=x^{4\frac12}$, asking why the two roads always agree.
-\textbf{Extension:} the pendulum, $T(L)=2\pi\sqrt{L/32}$, with lengths $2,8,18,32$ ft chosen so the
-fraction reduces to a perfect square and the periods come out exactly $\frac\pi2,\pi,\frac{3\pi}2,
-2\pi$. Its shape deliberately matches 6.1's Kepler model: a table of exact values, a growth-rate
-reading (quadruple the length to double the period --- what a $\frac12$ exponent does), a
-clockmaker who wrongly plans to double the length, and a structural rewrite
-$\sqrt{L/32}=\sqrt{2L}/8$ obtained by making the denominator a perfect square --- rationalizing,
-performed before the word exists. \textbf{Preview:} Lesson 6.3, \emph{Multiplying \& Dividing
-Radicals; Rationalizing} --- the product property run \emph{forwards}, distributing and FOIL over
-radicals, and finally simplest-form condition 3, cleared with \textbf{conjugates} (the same move
-that made $a+bi$ real back in Lesson 3.4).
+\textbf{Homework:} a five-row feature table (asymptote / range / $y$-intercept / family) whose fourth
+row, $y=-4^{x}$, is the ``still growth, but falling'' trap, closing with \emph{which rows have an
+$x$-intercept?} --- answer: only the one where $a$ and $k$ have opposite signs; five transformations
+described in words with their new asymptotes; a four-graph matching set where \emph{two} graphs cross
+the $x$-axis and both cross at $x=2$ (deliberately, since both reduce to $2^{x}=4$); two graph-to-equation
+problems, the second with $b=\frac12$ coming out of $6b+1=4$, which students will not expect; and an
+\textbf{error-analysis} pair carrying the lesson --- Marcus reading $y=5^{\,x-2}$ as a vertical shift,
+and Tara calling both $-6^{x}$ and $6^{-x}$ decay. \textbf{Extension:} a soda at $38^{\circ}$F warming
+in a $72^{\circ}$ room, $T(t)=72-34(0.9)^{t}$ --- $a$ is \emph{negative} because the soda starts below
+the asymptote, the asymptote is room temperature, the algebraic range $(-\infty,72)$ differs from the
+contextual $[38,72)$, and the $x$-intercept genuinely exists but sits at negative $t$, which students
+argue \emph{without} logarithms (a base under $1$ exceeds $1$ only at a negative exponent). Do not name
+logarithms; that is Unit 7. \textbf{Preview:} Lesson~6.3, \emph{Solving Exponential Equations with a
+Common Base} --- where the $x$-intercept students found by \emph{looking} at $y=2^{x}-4$ gets solved,
+because $2^{x}=4$ has a common base. The coffee and soda equations do not, and both are left standing.
 \end{skillbox}
 \end{document}

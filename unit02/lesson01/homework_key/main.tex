@@ -1,4 +1,4 @@
-%! Linear Functions: Slope, Forms \& Graphing — Unit 2, Lesson 2.1 — Homework (Answer Key)
+%! Graphing Quadratic Functions & Transformations — Unit 2, Lesson 2.1 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -15,95 +15,101 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show your work. Keep standard form in integers with $A \ge 0$.
+Show your reasoning. Read the feature straight from the form that advertises it.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Slope from two points.} Compute each slope.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item $(2,3)$ and $(5,9)$:
-        \begin{work}
-          m &= \frac{9 - 3}{5 - 2} \\
-            &= \frac{6}{3}         \\
-            &= 2
-        \end{work}
-      \item $(-1,4)$ and $(3,-4)$:
-        \begin{work}
-          m &= \frac{-4 - 4}{3 - (-1)} \\
-            &= \frac{-8}{4}            \\
-            &= -2
-        \end{work}
-    \end{enumerate}
+  \item \textbf{Transformations of $y=x^2$.} For each, describe the move(s) and give the new vertex.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{@{}l X l@{}}
+    \textbf{Equation} & \textbf{Transformation of $y=x^2$} & \textbf{Vertex} \\
+    \hline
+    $y=x^2-5$      & \ans{down $5$} & \ans{$(0,-5)$} \\
+    $y=(x+4)^2$    & \ans{left $4$} & \ans{$(-4,0)$} \\
+    $y=-3x^2$      & \ans{reflect over $x$-axis, stretch by $3$ (narrower)} & \ans{$(0,0)$} \\
+    $y=(x-2)^2+1$  & \ans{right $2$, up $1$} & \ans{$(2,1)$} \\
+    \end{tabularx}
+    \end{center}
 
-  \item \textbf{Write in slope-intercept form.}
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item Slope $4$, $y$-intercept $(0,-3)$: \quad $y = \ans{$4x - 3$}$
-      \item Slope $-3$, through $(2,1)$ --- use point-slope first, then simplify:
-        \begin{work}
-          y - 1 &= -3(x - 2) \\
-          y - 1 &= -3x + 6   \\
-              y &= -3x + 7
-        \end{work}
-    \end{enumerate}
+  \item \textbf{Vertex form.} For $y=(x-3)^2-4$: vertex \ans{$(3,-4)$}, axis $x=$ \ans{$3$}, opens
+        \ans{up}, min/max value \ans{min, $-4$}. Then expand to standard form: \ans{$x^2-6x+5$}.
 
-  \item \textbf{Two points, all three forms.} Write the line through $(1,-1)$ and $(3,5)$.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item Slope: $m = \ans{$3$}$ \qquad Point-slope: \ans{$y + 1 = 3(x - 1)$}
-      \item Slope-intercept: \ans{$y = 3x - 4$} \qquad Standard: \ans{$3x - y = 4$}
-    \end{enumerate}
-
-  \item \textbf{Convert.} A line is given in standard form as $4x - 2y = 10$.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item Rewrite it in slope-intercept form by solving for $y$:
-        \begin{work}
-          4x - 2y &= 10       \\
-             - 2y &= -4x + 10 \\
-                y &= 2x - 5
-        \end{work}
-      \item Its slope is \ans{$2$} and its $y$-intercept is $(0,\ans{$-5$})$.
-    \end{enumerate}
-
-  \item \textbf{Transform the parent $y = x$.} Describe the stretch/reflection and the shift that
-        produce each line.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item $y = 3x$: \ans{vertical stretch by a factor of $3$ (slope $1\to 3$); no shift}
-      \item $y = -x + 4$: \ans{reflect over the $x$-axis (slope $1\to -1$), then shift up $4$}
-    \end{enumerate}
-
-  \item \textbf{Write from a graph.} Read two lattice points off the line, then write its equation
-        in slope-intercept form.
+  \item \textbf{Standard form + graph.} The graph is $f(x)=x^2+2x-3$.
     \begin{center}
     \begin{tikzpicture}[scale=0.5]
-      \lgrid{-2}{4}{-4}{4}
-      \draw[very thick, forest] (-1.5,4)--(2.5,-4);
-      \fill[charcoal] (0,1) circle (3pt);
-      \fill[charcoal] (1,-1) circle (3pt);
+      \lgrid{-4}{2}{-5}{3}
+      \draw[navy, dashed, semithick] (-1,-5)--(-1,3);
+      \begin{scope}\clip (-4,-5) rectangle (2,3);
+        \draw[very thick, forest, domain=-3.6:1.6, samples=75, smooth] plot (\x,{(\x)*(\x) + 2*(\x) - 3});
+      \end{scope}
+      \fill[charcoal] (-1,-4) circle (3pt);
+      \fill[charcoal] (0,-3) circle (3pt);
+      \fill[charcoal] (-3,0) circle (3pt);
+      \fill[charcoal] (1,0) circle (3pt);
     \end{tikzpicture}
     \end{center}
-    Slope $= \ans{$-2$}$; \quad $y$-intercept $= \ans{$(0,1)$}$; \quad equation
-    $y = \ans{$-2x + 1$}$.
+    Axis $x=-\dfrac{b}{2a}=$ \ans{$-1$} \quad Vertex: \ans{$(-1,-4)$} \quad $y$-intercept: \ans{$(0,-3)$}
+    \quad Range: \ans{$y\ge -4$}.
 
-  \item \textbf{Explain.} Two \emph{different} lines are parallel. What must be true about their
-        slopes, and what must be different about their equations in slope-intercept form?
-        \ansline{Their slopes $m$ must be equal (same steepness and direction). Their $y$-intercepts $b$ must be different --- if $m$ and $b$ both matched, they would be the same line, not two parallel lines.}
+  \item \textbf{Intercept form.} For $g(x)=(x-2)(x-6)$: zeros $x=$ \ans{$2$} and $x=$ \ans{$6$};
+        axis $x=$ \ans{$4$}; vertex \ans{$(4,-4)$}; $y$-intercept \ans{$(0,12)$}.
+
+  \item \textbf{Matching.} Write the letter of the graph that matches each equation.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.36]
+      % P: (x-1)^2 - 4  vertex (1,-4) up
+      \begin{scope}
+        \lgrid{-2}{4}{-5}{3}
+        \begin{scope}\clip (-2,-5) rectangle (4,3);
+          \draw[very thick, forest, domain=-1.4:3.4, samples=60, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
+        \end{scope}
+        \fill[charcoal] (1,-4) circle (2.5pt);
+        \node[charcoal, font=\scriptsize] at (1,-6.6){\textbf{P}};
+      \end{scope}
+      % Q: -(x+2)^2 + 1  vertex (-2,1) down
+      \begin{scope}[xshift=8cm]
+        \lgrid{-5}{1}{-4}{2}
+        \begin{scope}\clip (-5,-4) rectangle (1,2);
+          \draw[very thick, forest, domain=-4.2:0.2, samples=60, smooth] plot (\x,{-1*(\x+2)*(\x+2) + 1});
+        \end{scope}
+        \fill[charcoal] (-2,1) circle (2.5pt);
+        \node[charcoal, font=\scriptsize] at (-2,-5.6){\textbf{Q}};
+      \end{scope}
+      % R: x^2 + 2  vertex (0,2) up
+      \begin{scope}[xshift=16cm]
+        \lgrid{-3}{3}{0}{6}
+        \begin{scope}\clip (-3,0) rectangle (3,6);
+          \draw[very thick, forest, domain=-2:2, samples=60, smooth] plot (\x,{(\x)*(\x) + 2});
+        \end{scope}
+        \fill[charcoal] (0,2) circle (2.5pt);
+        \node[charcoal, font=\scriptsize] at (0,-1.4){\textbf{R}};
+      \end{scope}
+    \end{tikzpicture}
+    \end{center}
+    $y=(x-1)^2-4:$ \ans{P} \qquad $y=-(x+2)^2+1:$ \ans{Q} \qquad $y=x^2+2:$ \ans{R}
+
+  \item \textbf{Explain.} Which form would you choose to read each feature the fastest, and why?
+        Zeros: \ans{intercept form} \; Vertex: \ans{vertex form} \; $y$-intercept: \ans{standard form}.
+        \ansline{Each form displays one feature directly: intercept form sets each factor to zero for the zeros, vertex form shows $(h,k)$, and standard form gives $(0,c)$ by reading $c$.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Parallel, perpendicular, and a model.}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item A line is $y = \tfrac{1}{3}x - 2$. Write the line \emph{parallel} to it through $(0,4)$, and
-        the line \emph{perpendicular} to it through $(0,4)$.
-  \item A gym charges a \$20 joining fee plus \$15 per month: $C(m) = 15m + 20$. Interpret the slope
-        and the $y$-intercept in context, and find the total cost after $6$ months.
+\textbf{A fountain arc.} A garden fountain's water arcs so its height (in feet) at horizontal distance
+$x$ feet from the nozzle is $h(x) = -x(x-6)$ (given in intercept form).
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Where does the water leave the ground and where does it land? (the zeros)
+  \item What is the maximum height, and how far out does it occur? (the vertex)
+  \item At $x=1$ ft the water is $5$ ft high. Use \emph{symmetry} --- no algebra --- to name another
+        distance where it is again $5$ ft high.
 \end{enumerate}
-\ansline{(a) Parallel (same slope $\tfrac13$): $y=\tfrac13 x + 4$. Perpendicular (slope $-3$, the opposite reciprocal): $y=-3x+4$. \;\; (b) Slope $15$ = \$15 per month; $y$-intercept $20$ = \$20 joining fee. After $6$ months: $C(6)=15(6)+20=\$110$.}
+\ansline{(a) Zeros $x=0$ and $x=6$: it leaves the ground at the nozzle ($x=0$) and lands $6$ ft away. \;\; (b) Axis $x=3$ (halfway between $0$ and $6$); $h(3)=-3(-3)=9$, so the maximum height is $9$ ft, $3$ ft out. \;\; (c) $x=1$ is $2$ ft left of the axis $x=3$, so its mirror is $2$ ft right: $x=5$ ft (check $h(5)=-5(-1)=5$).}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 2.2: Absolute Value Equations \& Inequalities.} You can now write and
-rewrite \emph{linear} equations. Next we solve equations and inequalities that hide a linear
-expression \emph{inside} absolute-value bars, such as $|2x - 3| = 7$ --- the algebra that Lesson~2.3
-turns into the V-shaped graph.
+\textbf{Coming next --- Lesson 2.2: Solving Quadratics by Factoring.} Today you \emph{read} zeros from
+intercept form. Next you will learn to \emph{produce} that factored form --- turning $x^2+2x-3$ into
+$(x+3)(x-1)$ --- so you can find the zeros of a quadratic given in standard form by hand.
 \end{spiralbox}
 
 \end{document}

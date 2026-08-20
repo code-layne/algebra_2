@@ -1,124 +1,139 @@
-%! Graphing Quadratic Functions & Transformations — Unit 3, Lesson 3.1 — Group Activity
+%! Operations with Polynomials — Unit 3, Lesson 3.1 — Group Activity
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.1}{Group Activity}
+\namepartnerperiod
 
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Three Costumes, One Curve.} A quadratic can be written in vertex, standard, or intercept
-form --- each one showing off a different feature. With your partner, pull the features out of each
-form, then use them to place or graph the parabola. \emph{Justify} each vertex and axis.
+\small\textbf{Building Polynomials.} Yesterday you \emph{read} polynomials off their graphs; today you
+\emph{build} them. Two rules carry everything: \emph{like terms combine, unlike terms do not}, and
+\emph{every term times every term}. Write every answer in \textbf{standard form}, and be ready to
+justify a sign to your partner.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-Each equation is in \textbf{vertex form} $a(x-h)^2+k$. Read the vertex $(h,k)$ and the opening direction,
-then match it to graph A, B, or C.
-\begin{center}
-\begin{tikzpicture}[scale=0.38]
-  % A: (x-3)^2 - 2  vertex (3,-2) up
-  \begin{scope}
-    \lgrid{0}{6}{-3}{3}
-    \begin{scope}\clip (0,-3) rectangle (6,3);
-      \draw[very thick, forest, domain=1.3:4.7, samples=60, smooth] plot (\x,{(\x-3)*(\x-3) - 2});
-    \end{scope}
-    \fill[charcoal] (3,-2) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (3,-4.2){\textbf{A}};
-  \end{scope}
-  % B: -(x+1)^2 + 2  vertex (-1,2) down
-  \begin{scope}[xshift=8cm]
-    \lgrid{-4}{2}{-3}{3}
-    \begin{scope}\clip (-4,-3) rectangle (2,3);
-      \draw[very thick, forest, domain=-3.2:1.2, samples=60, smooth] plot (\x,{-1*(\x+1)*(\x+1) + 2});
-    \end{scope}
-    \fill[charcoal] (-1,2) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (-1,-4.2){\textbf{B}};
-  \end{scope}
-  % C: (x+2)^2 - 1  vertex (-2,-1) up
-  \begin{scope}[xshift=16cm]
-    \lgrid{-5}{1}{-2}{4}
-    \begin{scope}\clip (-5,-2) rectangle (1,4);
-      \draw[very thick, forest, domain=-4.2:-0.3, samples=60, smooth] plot (\x,{(\x+2)*(\x+2) - 1});
-    \end{scope}
-    \fill[charcoal] (-2,-1) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (-2,-3.2){\textbf{C}};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X X X c@{}}
-\textbf{Equation} & \textbf{Vertex} & \textbf{Axis} & \textbf{Opens} & \textbf{Graph} \\
-\hline
-$y=(x-3)^2-2$   & \blank{1.8cm} & $x=\blank{0.9cm}$ & \blank{1.2cm} & \blank{0.7cm} \\
-$y=-(x+1)^2+2$  & \blank{1.8cm} & $x=\blank{0.9cm}$ & \blank{1.2cm} & \blank{0.7cm} \\
-$y=(x+2)^2-1$   & \blank{1.8cm} & $x=\blank{0.9cm}$ & \blank{1.2cm} & \blank{0.7cm} \\
-\end{tabularx}
+\begin{enumerate}[leftmargin=1.7em, itemsep=9pt]
+  \item \textbf{Add.} $(2x^2 + 5x - 3) + (4x^2 - x + 8) = $ \blank{5.5cm}
+
+  \item \textbf{Subtract.} $(7x^2 - 4x + 1) - (3x^2 + 6x - 5)$
+
+    \emph{Step 1 --- rewrite the second polynomial with every sign changed:}
+
+    \vspace{2pt}
+    $7x^2 - 4x + 1$ \; \blank{5.5cm}
+
+    \vspace{3pt}
+    \emph{Step 2 --- combine like terms:} \blank{5.5cm}
+
+  \item \textbf{Distribute.} $4x(x^2 - 3x + 2) = $ \blank{5.5cm}
+
+  \item \textbf{Multiply two binomials.} $(x + 6)(x - 2)$. Fill in the box, then collect.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.9}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    $\times$ & $x$ & $-2$ \\ \hline
+    $x$  & \blank{1.7cm} & \blank{1.7cm} \\ \hline
+    $+6$ & \blank{1.7cm} & \blank{1.7cm} \\ \hline
+    \end{tabular}
+    \end{center}
+    Answer in standard form: \blank{5.0cm}
+\end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. Standard form.} For $f(x)=x^2-2x-3$ ($a=1,\ b=-2,\ c=-3$):
-\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
-  \item Axis of symmetry $x=-\dfrac{b}{2a}=\blank{1.2cm}$; \; vertex $\blank{1.8cm}$; \; $y$-intercept $\blank{1.6cm}$.
-  \item Complete the table (notice it is symmetric about the axis).
-  \begin{center}
-  \renewcommand{\arraystretch}{1.3}
-  \begin{tabular}{|c|c|c|c|c|c|}
-  \hline
-  $x$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\ \hline
-  $f(x)$ & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} \\ \hline
-  \end{tabular}
-  \end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=10pt]
+  \item \textbf{A vanishing degree.} $(5x^3 - 2x + 9) - (5x^3 + x^2 - 4x + 9) = $ \blank{5.0cm}
+
+    \vspace{2pt}
+    Both polynomials have degree $3$, but the answer does not. What is its degree? \blank{1.2cm}
+    \; Explain what happened. \writeline
+
+  \item \textbf{Binomial $\times$ trinomial.} $(3x - 2)(2x^2 - 5x + 4)$
+    \begin{center}
+    \renewcommand{\arraystretch}{1.9}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    $\times$ & $2x^2$ & $-5x$ & $+4$ \\ \hline
+    $3x$ & \blank{1.7cm} & \blank{1.7cm} & \blank{1.7cm} \\ \hline
+    $-2$ & \blank{1.7cm} & \blank{1.7cm} & \blank{1.7cm} \\ \hline
+    \end{tabular}
+    \end{center}
+    Answer in standard form: \blank{6.0cm}
+
+  \item \textbf{Special products, two variables.}
+
+    \vspace{2pt}
+    (a) $(4x + 3y)(4x - 3y) = $ \blank{4.5cm} \qquad (b) $(2x - 5y)^2 = $ \blank{5.0cm}
+
+  \item \textbf{Predict, don't expand.} For the product $(2x^3 - 1)(-3x^4 + x)$:
+
+    \vspace{2pt}
+    Degree of the product: \blank{1.2cm} \quad Leading coefficient: \blank{1.4cm}
+
+    \vspace{2pt}
+    So its left arm points \blank{1.4cm} and its right arm points \blank{1.4cm}. How did you know
+    without multiplying everything out? \writeline
+
+  \item \textbf{Error analysis.} A classmate writes $(x + 4)^2 = x^2 + 16$.
+
+    \vspace{2pt}
+    (a) Test both sides at $x = 1$: \; left side $=$ \blank{1.4cm}, \; right side $=$ \blank{1.4cm}.
+
+    \vspace{2pt}
+    (b) Write the correct expansion: \blank{4.5cm}
+
+    \vspace{2pt}
+    (c) In one sentence, tell your classmate exactly what they left out and why. \writeline
 \end{enumerate}
-\textbf{2. Convert vertex $\to$ standard.} Expand $y=(x-2)^2-5$ into the form $x^2+bx+c$:
-\;\blank{4.5cm}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. Intercept form.} For $h(x)=(x-1)(x-5)$: zeros $x=\blank{0.9cm}$ and $x=\blank{0.9cm}$; axis
-$x=\blank{0.9cm}$; vertex $\blank{1.8cm}$; $y$-intercept $\blank{1.6cm}$.
+\textbf{Part 1 --- The open box, expanded.} In Lesson 3.0 you read a table for the open-box volume
+$V(x) = x(10-2x)(8-2x)$ but never saw its standard form. Build it now.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item Multiply the two binomials first: $(10-2x)(8-2x) = $ \blank{5.0cm}
+  \item Now multiply by $x$: \; $V(x) = $ \blank{5.5cm}
+  \item Check against Lesson 3.0's table, which gave $V(1) = 48$. Substitute $x=1$ into your standard
+        form: \blank{4.5cm} \; Does it match? \blank{1.4cm}
+  \item Degree \blank{1.0cm}, leading coefficient \blank{1.0cm}. The polynomial itself is defined for
+        \emph{every} real $x$, but the \emph{box} only exists for $0 < x < 4$. Why? \writeline
+\end{enumerate}
 
-\vspace{4pt}
-\textbf{2. Write the equation from the graph.} The parabola below has vertex $(-2,-4)$ and passes
-through the origin.
-\begin{center}
-\begin{tikzpicture}[scale=0.45]
-  \lgrid{-6}{2}{-5}{3}
-  \draw[navy, dashed, semithick] (-2,-5)--(-2,3);
-  \begin{scope}\clip (-6,-5) rectangle (2,3);
-    \draw[very thick, forest, domain=-4.4:0.4, samples=70, smooth] plot (\x,{(\x+2)*(\x+2) - 4});
-  \end{scope}
-  \fill[charcoal] (-2,-4) circle (3pt) node[below right, font=\scriptsize]{$(-2,-4)$};
-  \fill[charcoal] (-4,0) circle (3pt);
-  \fill[charcoal] (0,0) circle (3pt);
-\end{tikzpicture}
-\end{center}
-Using vertex form $y=a(x-h)^2+k$ with vertex $(-2,-4)$ and the point $(0,0)$, solve for $a$ and write the
-equation.
-\begin{work}
-  y &= a(x+2)^2-4 \\
-  0 &= a(0+2)^2-4 \\
-  0 &= 4a-4 \\
-  a &= 1 \\
-  y &= (x+2)^2-4
-\end{work}
+\vspace{5pt}
+\textbf{Part 2 --- Profit is a subtraction.} A small print shop sells $x$ hundred posters. Its revenue
+and cost, in dollars, are
+\[
+  R(x) = 20x^2 + 150x \qquad\text{and}\qquad C(x) = 12x^2 + 90x + 400 .
+\]
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item Profit is $P(x) = R(x) - C(x)$. Find $P(x)$ in standard form --- watch every sign.
+        \blank{5.5cm}
+  \item Evaluate $P(10)$: \blank{3.0cm} \; What does that number mean in context? \writeline
+  \item The $-400$ in $P(x)$ came from the cost polynomial. What does it represent for the shop?
+        \writeline
+\end{enumerate}
 
-\vspace{2pt}
-\textbf{3. Describe the moves.} List the transformations, \emph{in order}, that carry $y=x^2$ onto
-$y=-2(x-1)^2+3$. \writelines{2}
+\vspace{5pt}
+\textbf{Part 3 --- Justify.} Two claims about degree. Decide whether each is \emph{always} true, and
+support your decision with an example.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item The \emph{product} of a degree-3 polynomial and a degree-4 polynomial always has degree 7.
+        \writelines{2}
+  \item The \emph{sum} of two degree-4 polynomials always has degree 4. \writelines{2}
+\end{enumerate}
 \end{tcolorbox}
 
 \end{document}

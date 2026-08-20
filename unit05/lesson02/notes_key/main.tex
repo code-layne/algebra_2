@@ -1,12 +1,10 @@
-%! Multiplying \& Dividing Rational Expressions — Unit 5, Lesson 5.2 — Guided Notes (Answer Key)
+%! Simplifying Radicals; Adding \& Subtracting — Unit 5, Lesson 5.2 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
 % The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
 % paragraph, so without them each term label gets pulled onto the previous answer's line.
@@ -23,9 +21,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item multiply rational expressions by \emph{factoring first} and dividing out common factors across the whole product --- never by multiplying out;
-  \item divide rational expressions by multiplying by the \emph{reciprocal} of the divisor (keep--change--flip), flipping \emph{before} cancelling anything;
-  \item list \emph{every} restriction from all \textbf{three} sources --- each original denominator \emph{and} the numerator of the divisor.
+  \item use the \emph{product} and \emph{quotient} properties of radicals --- and explain why they follow from yesterday's exponent rules rather than being new rules;
+  \item write a radical in \emph{simplest form}, with numeric and algebraic radicands and with indices above $2$;
+  \item \emph{add and subtract} radicals by collecting \emph{like radicals}, simplifying first so that I can tell which ones are like.
 \end{itemize}
 \end{objectivebox}
 
@@ -35,250 +33,308 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
-\vocabans{Reciprocal (multiplicative inverse)}{the fraction turned upside down: $\frac{c}{d}$ and $\frac{d}{c}$, whose product is $1$ --- and it exists only when $c\neq0$}
-\vocabans{Divisor}{the expression you are dividing \emph{by} --- the fraction after the $\div$ sign}
-\vocabans{Keep--change--flip}{keep the first fraction, change $\div$ to $\times$, flip the divisor: $\frac ab\div\frac cd=\frac ab\cdot\frac dc$}
-\vocabans{Hidden restriction}{an excluded value that appears in neither the simplified answer nor (for a divisor's numerator) the original denominators --- but is excluded all the same}
+\vocabans{Product Property of Radicals}{$\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$ --- a radical splits over multiplication (for an even index, $a$ and $b$ must be non-negative)}
+\vocabans{Quotient Property of Radicals}{$\sqrt[n]{a/b}=\sqrt[n]{a}\big/\sqrt[n]{b}$, $b\ne 0$ --- take the root of the top and of the bottom}
+\vocabans{Simplest radical form}{no factor of the radicand is a perfect $n$th power, no fractions under the radical, and no radical in a denominator}
+\vocabans{Like radicals}{radicals with the \emph{same index} and the \emph{same radicand}; only like radicals can be added or subtracted, and only the numbers in front change}
 \end{vocabbox}
 
 \begin{hookbox}
-Two expressions, one table --- again. Let
-\[
-  Q(x)=\frac{x+1}{x-5}\div\frac{x-2}{x+3}
-  \qquad\text{and}\qquad
-  R(x)=\frac{(x+1)(x+3)}{(x-5)(x-2)} .
-\]
-$R$ is what you get when you keep--change--flip $Q$ and multiply across.
+Two of the three statements below are \textbf{true}. One is a lie. Test each one with a decimal
+approximation and mark it T or F.
 \begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-$x$ & $0$ & $1$ & $2$ & $-3$ \\ \hline
-$Q(x)$ & \ans{$\frac{3}{10}$} & \ans{$2$} & \ans{undef.} & \ans{undef.} \\ \hline
-$R(x)$ & \ans{$\frac{3}{10}$} & \ans{$2$} & \ans{undef.} & \ans{$0$} \\ \hline
-\end{tabular}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $\sqrt{8}\cdot\sqrt{2} = 4$ & (b) \; $\sqrt{9}+\sqrt{16} = \sqrt{25}$ &
+(c) \; $\sqrt{8}+\sqrt{18} = 5\sqrt{2}$ \\
+\ans{T} \; {\small($\sqrt{16}=4$)} & \ans{F} \; {\small($7\ne 5$)} &
+\ans{T} \; {\small($2.828+4.243=7.071$)} \\
+\end{tabularx}
 \end{center}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Both are undefined at $x=2$ --- but for the \emph{same} reason? \ansline{No. In $R$ the factor $(x-2)$ is a denominator; in $Q$ it is on \emph{top} of the divisor, and it makes the whole divisor $0$ --- so $Q$ is dividing by zero.}
-  \item There is exactly one column where they disagree. Which one, and what breaks in $Q$ that does
-        not break in $R$? \ansline{At $x=-3$: the divisor $\frac{x-2}{x+3}$ is undefined, so $Q(-3)$ does not exist --- but flipping moved $(x+3)$ upstairs, so $R(-3)=0$.}
-\end{itemize}
-Yesterday the danger was that cancelling hides a restriction. Today there is a second danger:
-\textbf{flipping hides a different one.} The safe habit is to read the restrictions off the problem
-\emph{as it was written} --- and then add one more.
+The lie is \ans{(b)}. Look at what the two true ones have in common and what the false one does
+differently: \ansline{(a) and (c) both involve \emph{multiplication} inside the radical --- $8\cdot2$
+in one, and $8=4\cdot2$, $18=9\cdot2$ in the other. (b) tries to split a radical over
+\emph{addition}, and that is the one that fails.}
+\vspace{2pt}
+That is today's whole lesson in one line. A radical \textbf{splits over multiplication} --- always.
+It \textbf{never} splits over addition. And (c) shows the strange consequence: two radicals that
+look completely unrelated can turn out to be the same thing in disguise, but you cannot tell until
+you \emph{simplify} them.
 \end{hookbox}
 
-\begin{notesbox}{1. Multiplying: the Rule Is Easy, the Discipline Is Factoring}
-For numbers and for polynomials, the rule is the same --- multiply straight across:
+\begin{notesbox}{1. Where the Properties Come From (they are yesterday's rules)}
+Yesterday: $\sqrt[n]{a}=a^{1/n}$. So watch what happens to a \emph{product} under a radical --- all
+we use is the power-of-a-product rule from the Warm-Up:
 \[
-  \frac{a}{b}\cdot\frac{c}{d}=\frac{a\,c}{b\,d}, \qquad b\neq0,\ d\neq0 .
+  \sqrt[n]{ab} \;=\; (ab)^{1/n} \;=\; a^{\,\mans{1/n}}\cdot b^{\,\mans{1/n}}
+  \;=\; \sqrt[n]{a}\cdot\sqrt[n]{b}.
 \]
-
-\vspace{3pt}
-\textbf{But you should almost never actually multiply across first.} In the Warm-Up,
-$\dfrac{6}{35}\cdot\dfrac{25}{9}$ took one line by factoring and dividing out; multiplying first gives
-$\dfrac{150}{315}$, which you then have to reduce anyway. With polynomials it is worse than tedious:
-an expanded product \emph{hides its own factors}, and Unit~4 showed you exactly how much work getting
-them back costs.
-
-\vspace{3pt}
 \begin{center}
-\fbox{\parbox{0.88\linewidth}{\centering\vspace{2pt}
-\textbf{Factor everything first. Divide out. Multiply last --- and often not at all.}\vspace{2pt}}}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.90\linewidth]
+\centering
+\textbf{Product Property} \quad $\displaystyle \sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$
+\qquad\qquad
+\textbf{Quotient Property} \quad $\displaystyle \sqrt[n]{\frac{a}{b}}=\frac{\sqrt[n]{a}}{\sqrt[n]{b}}$
+\;\; $(b\ne 0)$
+\end{tcolorbox}
 \end{center}
+\emph{The fine print (and it matters).} When the index is \textbf{even}, $a$ and $b$ must be
+\ans{non-negative}, or the pieces do not exist as real numbers in the first place. That is Lesson
+5.1's rule doing real work: you may not ``simplify'' $\sqrt{-8}$ into $\sqrt{-4}\cdot\sqrt{2}$,
+because \ans{$\sqrt{-4}$} is not a real number.
 
 \vspace{4pt}
-\textbf{Monomial factors first.} Simplify $\dfrac{6x^2}{5y}\cdot\dfrac{15y^3}{8x^5}$.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Restrictions come from \emph{both} denominators: $5y\neq0$ gives $y\neq$ \ans{0}, and
-        $8x^5\neq0$ gives $x\neq$ \ans{0}.
-  \item Divide out the numbers ($6$ and $8$ share \ans{2}; $5$ and $15$ share \ans{5})
-        and the shared powers. Answer: \ans{$\frac{9y^2}{4x^3}$}.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{2. The Four Steps for a Product}
-\begin{enumerate}[leftmargin=1.9em, itemsep=2pt]
-  \item \textbf{Factor} every numerator and every denominator completely.
-  \item \textbf{List the restrictions} from \emph{every} original denominator --- there are two of them now.
-  \item \textbf{Divide out} any numerator factor against any denominator factor --- across the \emph{whole} product, not just within one fraction.
-  \item \textbf{Write} the result as a single fraction, restrictions attached. Leave it \emph{factored}.
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{The anchor, worked.} \; $\dfrac{x^2-9}{x^2+2x-8}\cdot\dfrac{x+4}{x^2+3x}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Factor all four parts. \; $x^2-9=$ \ans{$(x-3)(x+3)$}; \quad $x^2+2x-8=$ \ans{$(x+4)(x-2)$};
-        \quad $x^2+3x=$ \ans{$x(x+3)$}.
-  \item Restrictions from the \emph{first} denominator: $x\neq$ \ans{$-4,\ 2$}; \; from the
-        \emph{second}: $x\neq$ \ans{$0,\ -3$}.
-  \item Divide out \ans{$(x+4)$} and \ans{$(x+3)$}. \; Result: \ans{$\frac{x-3}{x(x-2)}$}, \;
-        $x\neq$ \ans{$0,\ 2,\ -3,\ -4$}.
-\end{itemize}
-
-\vspace{3pt}
-Notice what carried over from Lesson~5.1 and what is new. Same as yesterday: two of those four
-restrictions are now \textbf{invisible} in the answer. New today: a cancelled factor can come from
-\emph{either} fraction, so you have two denominators to read before you touch anything.
-
-\vspace{5pt}
-\textbf{Opposite binomials still count} (Lesson 5.1). Simplify
-$\dfrac{x^2-25}{x+2}\cdot\dfrac{2x+4}{5-x}$.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $5-x=$ \ans{$-1$} $\cdot\,(x-5)$, so the $(x-5)$'s divide out and leave a factor of
-        \ans{$-1$}.
-  \item Answer: \ans{$-2(x+5)$}, \; $x\neq$ \ans{$-2,\ 5$}.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{3. Dividing: Keep, Change, Flip --- and Why}
-The \textbf{reciprocal} of $\dfrac{c}{d}$ is $\dfrac{d}{c}$, and the two multiply to
-\ans{1}. Dividing by an expression means multiplying by whatever \emph{undoes} it, so:
-\[
-  \frac{a}{b}\div\frac{c}{d} \;=\; \frac{a}{b}\cdot\frac{d}{c} .
-\]
-\textbf{Keep} the first fraction, \textbf{change} $\div$ to $\times$, \textbf{flip} the second.
-
-\vspace{4pt}
-\textbf{One warning worth a whole page: flip \emph{first}, then cancel.} Watch what happens if you
-cancel across the $\div$ sign:
+\textbf{And there is no third property.} From the Hook:
 \begin{center}
 \renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}X|X@{}}
-\hline
-\textbf{Cancelled first (wrong)} & \textbf{Flipped first (right)} \\
-\hline
-$\dfrac{4}{3}\div\dfrac{5}{4}\;\to\;\dfrac{1}{3}\div\dfrac{5}{1}=$ \ans{$\frac{1}{15}$} &
-$\dfrac{4}{3}\div\dfrac{5}{4}=\dfrac{4}{3}\cdot\dfrac{4}{5}=$ \ans{$\frac{16}{15}$} \\
-\hline
-\end{tabularx}
+\begin{tabular}{@{}l l@{}}
+$\sqrt{9\cdot 16}=\sqrt{144}=\mans{12}$ \quad and \quad $\sqrt{9}\cdot\sqrt{16}=\mans{12}$ &
+\quad $\Rightarrow$ \; multiplication: \ans{it splits} \\
+$\sqrt{9+16}=\sqrt{25}=\mans{5}$ \quad but \quad $\sqrt{9}+\sqrt{16}=\mans{7}$ &
+\quad $\Rightarrow$ \; addition: \ans{it does not} \\
+\end{tabular}
 \end{center}
-The two answers are not equal, so cancelling across a $\div$ is \ans{illegal}. The $\div$ symbol is
-not a fraction bar --- until you flip, nothing is lined up yet.
-
-\vspace{3pt}
-\textbf{Also worth naming:} $\dfrac{c}{d}$ has a reciprocal only when $c\neq0$. That one sentence is
-the whole new idea of Section~4.
+\textbf{Write it down and never unlearn it:} \; $\sqrt{a+b}\ne\sqrt{a}+\sqrt{b}$.
 \end{notesbox}
 
-\begin{notesbox}{4. The Three Sources of a Restriction}
-Take any quotient $\;\dfrac{A}{B}\div\dfrac{C}{D}$. Three separate things must be true:
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}c l X@{}}
-\hline
-\textbf{\#} & \textbf{Condition} & \textbf{Why --- and where it hides} \\
-\hline
-1 & $B\neq0$ & the first fraction has to exist. \emph{Visible} in the problem and (usually) in the answer. \\
-2 & $D\neq0$ & the divisor has to exist before you can divide by it. Goes \textbf{invisible after the flip} --- $D$ moves upstairs. \\
-3 & $C\neq0$ & you cannot divide by \ans{0}, and the divisor equals zero exactly when its \emph{numerator} does. \textbf{Invisible before the flip} --- $C$ is upstairs in the problem as written. \\
-\hline
-\end{tabularx}
-\end{center}
+\begin{notesbox}{2. Simplest Radical Form, and How to Get There}
+A radical is in \textbf{simplest form} when all three of these are true:
+\begin{enumerate}[leftmargin=1.7em, itemsep=2pt]
+  \item no factor of the radicand is a perfect \ans{$n$th} power (other than $1$);
+  \item there is no \ans{fraction} under the radical sign;
+  \item there is no radical in a \ans{denominator}. \; \emph{(Condition 3 is Lesson 5.3's job.)}
+\end{enumerate}
 
 \vspace{3pt}
-\begin{center}
-\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
-\textbf{Flipping trades one blind spot for another.} Write the restrictions from the problem
-\emph{as written}, then add the \textbf{divisor's numerator}.\vspace{2pt}}}
-\end{center}
-
-\vspace{4pt}
-\textbf{Back to the Hook.} \; $Q(x)=\dfrac{x+1}{x-5}\div\dfrac{x-2}{x+3}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Source 1 (first denominator): $x\neq$ \ans{5}. \quad Source 2 (divisor's denominator):
-        $x\neq$ \ans{$-3$}.
-  \item Source 3 (divisor's \emph{numerator}): $x\neq$ \ans{2}.
-  \item Simplified: \ans{$\frac{(x+1)(x+3)}{(x-5)(x-2)}$}, \; $x\neq$ \ans{$5,\ 2,\ -3$}.
-\end{itemize}
-That is why the table disagreed at $x=-3$: there $Q$ is being asked to divide by
-$\dfrac{-5}{0}$, which is not a number at all --- while $R$, where the $(x+3)$ has quietly moved to the
-top, is perfectly happy.
-
-\vspace{5pt}
-\textbf{The division anchor, worked.} \; $\dfrac{x^2-4}{x^2+7x+12}\div\dfrac{x^2+2x}{x+3}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Factor first. \; $x^2-4=$ \ans{$(x-2)(x+2)$}; \quad $x^2+7x+12=$ \ans{$(x+3)(x+4)$}; \quad
-        $x^2+2x=$ \ans{$x(x+2)$}.
-  \item Restrictions, all three sources: $x\neq$ \ans{$-3,\ -4$ (source 1), $-3$ (source 2), $0,\ -2$ (source 3)}
-  \item Keep--change--flip, divide out, and write the answer: \ans{$\frac{x-2}{x(x+4)}$}
-\end{itemize}
-Two of those four restrictions do not appear anywhere in your final answer. They still belong to it.
-\end{notesbox}
-
-\begin{notesbox}{5. The Picture: a Product With Two Holes}
-Every restriction you list is a point the graph does not get to keep. Consider
+\textbf{The method: pull out the largest perfect $n$th power.}
 \[
-  P(x)=\frac{x^2-1}{x}\cdot\frac{x}{x+1} .
+  \sqrt{72} \;=\; \sqrt{\mans{36}\cdot\mans{2}}
+  \;=\; \sqrt{\mans{36}}\cdot\sqrt{\mans{2}} \;=\; \mans{6\sqrt{2}}
+\]
+\emph{Why ``largest''?} Suppose you spot only $72=4\cdot 18$ instead. You get
+$\sqrt{72}=2\sqrt{18}$ --- which is \textbf{true but not finished}, because $18$ still contains the
+perfect square \ans{$9$}. Keep going: $2\sqrt{18}=2\cdot$ \ans{$3\sqrt2$} $=$ \ans{$6\sqrt2$}. Same
+answer, more steps. \emph{So the last thing you do on every problem is ask: is there still a
+perfect square hiding in there?}
+
+\vspace{3pt}
+\textbf{Backup method (when you cannot spot it): prime factorization.} Break the radicand all the
+way down, then take out one factor for every \textbf{pair} (for a square root):
+\[
+  \sqrt{72}=\sqrt{2\cdot 2\cdot 2\cdot 3\cdot 3}
+  \;\Rightarrow\; \text{a pair of } 2\text{s and a pair of } 3\text{s escape as }
+  \mans{2}\cdot\mans{3}; \quad \text{one } 2 \text{ is stranded inside.}
+\]
+
+\vspace{3pt}
+\textbf{Your turn.} Simplify. One of these is already in simplest form --- say which.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}X X X X@{}}
+(a) \; $\sqrt{50}=$ \ans{$5\sqrt2$} & (b) \; $\sqrt{48}=$ \ans{$4\sqrt3$} &
+(c) \; $\sqrt{45}=$ \ans{$3\sqrt5$} & (d) \; $\sqrt{30}=$ \ans{simplest} \\
+(e) \; $\sqrt{200}=$ \ans{$10\sqrt2$} & (f) \; $3\sqrt{20}=$ \ans{$6\sqrt5$} &
+(g) \; $\sqrt{98}=$ \ans{$7\sqrt2$} & (h) \; $-5\sqrt{8}=$ \ans{$-10\sqrt2$} \\
+\end{tabularx}
+\end{center}
+In (f) and (h), the number already outside just \ans{multiplies} whatever comes out.
+\end{notesbox}
+
+\begin{notesbox}{3. Higher Indices: Group in $n$'s, Not in Pairs}
+Under a square root you hunt for perfect \emph{squares} and factors escape in \emph{pairs}. Under a
+cube root you hunt for perfect \emph{cubes} and factors escape in \ans{threes}. \textbf{The index
+tells you the group size.}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Perfect squares & $4,\ 9,\ 16,\ 25,\ 36,\ 49,\ 64,\ 81,\ 100,\ 121,\ 144$ \\
+Perfect cubes   & $8,\ 27,\ 64,\ 125,\ 216$ \quad (and $-8,\ -27,\ -64,\dots$) \\
+Perfect 4th powers & $16,\ 81,\ 256$ \qquad Perfect 5th powers: $32,\ 243$ \\
+\end{tabularx}
+\end{center}
+\[
+  \sqrt[3]{54}=\sqrt[3]{\mans{27}\cdot\mans{2}}=\mans{3\sqrt[3]{2}}
+  \qquad
+  \sqrt[3]{16}=\sqrt[3]{\mans{8}\cdot\mans{2}}=\mans{2\sqrt[3]{2}}
+  \qquad
+  \sqrt[4]{48}=\mans{2\sqrt[4]{3}}
 \]
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Factored: $\dfrac{(x-1)(x+1)}{x}\cdot\dfrac{x}{x+1}$. \; Restrictions: $x\neq$ \ans{$0,\ -1$}.
-  \item Everything divides out except \ans{$x-1$} --- so away from those two inputs, $P$ \emph{is}
-        a straight line.
+  \item $\sqrt[3]{-24}=$ \ans{$-2\sqrt[3]{3}$} \quad --- a negative radicand is fine here because the
+        index is \ans{odd} (Lesson 5.1).
+  \item \textbf{Trap:} under a cube root, a \emph{pair} of equal factors is worth nothing.
+        $\sqrt[3]{4}=\sqrt[3]{2\cdot 2}$ is already in simplest form, because you need
+        \ans{three} twos to get one out.
 \end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Algebraic Radicands: Divide the Exponent by the Index}
+Start with the easy case. $\sqrt{x^{6}}=$ \ans{$x^{3}$}, because $\left(\mans{x^{3}}\right)^2=x^6$.
+When the exponent divides evenly by the index, the whole thing comes out.
+
+\vspace{3pt}
+When it does not, split off as much as you can:
+\[
+  \sqrt{x^{7}}=\sqrt{x^{\mans{6}}\cdot x}=\mans{x^{3}\sqrt{x}}
+\]
 \begin{center}
-\begin{tikzpicture}[scale=0.46]
-  \lgrid{-4}{5}{-5}{4}
-  \begin{scope}
-    \clip (-4,-5) rectangle (5,4);
-    \draw[very thick, forest] (-4,-5)--(5,4);
-  \end{scope}
-  \draw[forest, very thick, fill=white] (0,-1) circle (4.2pt);
-  \draw[forest, very thick, fill=white] (-1,-2) circle (4.2pt);
-  \node[charcoal, font=\scriptsize] at (-2.3,2.6) {two holes};
-  \draw[charcoal, thin, ->] (-2.0,2.2) -- (-0.2,-0.75);
-  \draw[charcoal, thin, ->] (-2.0,2.2) -- (-1.1,-1.7);
-\end{tikzpicture}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.90\linewidth]
+\centering \textbf{Divide the exponent by the index.} The \textbf{quotient} is the exponent that
+goes \emph{outside}; the \textbf{remainder} is the exponent that stays \emph{inside}.
+\end{tcolorbox}
 \end{center}
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item The hole at $x=0$ came from the denominator of the \ans{first} fraction; the hole at
-        $x=-1$ came from the denominator of the \ans{second} fraction.
-  \item Read the holes' heights off the \emph{simplified} form $y=x-1$: they sit at \ans{$(0,-1)$}
-        and \ans{$(-1,-2)$}.
-  \item Neither excluded value shows up in the simplified expression $x-1$ --- there is no denominator
-        left to show them. Explain why they are still part of the answer. \ansline{because the restrictions belong to the \emph{original} product: at $x=0$ and $x=-1$ one of the two fractions has no value, so $P$ has none either --- the line $y=x-1$ only tells you where the graph was headed}
-\end{enumerate}
+
+\vspace{2pt}
+\textbf{Why that works --- and why it should feel familiar.} Write the radical as a rational
+exponent (Lesson 5.1) and turn the improper fraction into a mixed number, exactly as in Warm-Up
+item~3:
+\[
+  \sqrt{x^{7}} \;=\; x^{7/2} \;=\; x^{\,\mans{3\frac{1}{2}}} \;=\;
+  x^{3}\cdot x^{\,\mans{1/2}} \;=\; \mans{x^{3}\sqrt{x}}
+\]
+\emph{Simplifying a radical and rewriting an improper fraction as a mixed number are the same
+move.} The whole-number part comes out front; the leftover fraction stays under the radical.
+
+\vspace{3pt}
+\textbf{Practice the split.}
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $\sqrt{y^{9}}=$ \ans{$y^{4}\sqrt{y}$} & (b) \; $\sqrt[3]{x^{11}}=$ \ans{$x^{3}\sqrt[3]{x^{2}}$} &
+(c) \; $\sqrt[4]{m^{7}}=$ \ans{$m\sqrt[4]{m^{3}}$} \\
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{Now all of it at once.} Handle the number and each variable separately, then collect.
+\[
+  \sqrt{50x^{5}y^{8}} \;=\; \sqrt{\mans{25}\cdot 2}\;\cdot\;\sqrt{x^{4}\cdot x}\;\cdot\;
+  \sqrt{y^{8}} \;=\; \mans{5x^{2}y^{4}\sqrt{2x}}
+\]
+\[
+  \sqrt[3]{40a^{7}b^{3}} \;=\; \mans{2a^{2}b\sqrt[3]{5a}}
+\]
+\emph{A note we are setting aside:} everything here assumes the variables are \textbf{positive}. If
+we did not know that, $\sqrt{x^{2}}$ would have to be written \ans{$|x|$} --- Lesson 5.1's
+absolute-value rule.
+\end{notesbox}
+
+\begin{notesbox}{5. The Quotient Property}
+Same idea, one floor down. Take the root of the top \emph{and} the root of the bottom.
+\begin{center}
+\renewcommand{\arraystretch}{2.0}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $\sqrt{\dfrac{25}{36}}=$ \ans{$\dfrac{5}{6}$} &
+(b) \; $\sqrt{\dfrac{x^{4}}{9}}=$ \ans{$\dfrac{x^{2}}{3}$} &
+(c) \; $\sqrt[3]{\dfrac{8}{27}}=$ \ans{$\dfrac{2}{3}$} \\
+(d) \; $\sqrt{\dfrac{7}{16}}=$ \ans{$\dfrac{\sqrt{7}}{4}$} &
+(e) \; $\dfrac{\sqrt{50}}{\sqrt{2}}=$ \ans{$5$} &
+(f) \; $\dfrac{\sqrt{27}}{\sqrt{3}}=$ \ans{$3$} \\
+\end{tabularx}
+\end{center}
+Items (e) and (f) run the property \textbf{backwards} --- two radicals with the same index can be
+pulled together under one radical, and often the quotient is much friendlier than either piece.
+
+\vspace{2pt}
+\emph{What we cannot finish yet:} $\sqrt{\dfrac{3}{5}}=\dfrac{\sqrt3}{\sqrt5}$ violates simplest-form
+condition~3 --- there is a radical in the \ans{denominator}. Getting rid of it is called
+\textbf{rationalizing}, and it is the first thing we do in Lesson 5.3.
+\end{notesbox}
+
+\begin{notesbox}{6. Adding \& Subtracting: Like Radicals}
+Look back at Warm-Up item~2. You combined $3x+7x$ into $10x$, but $3x+7y$ went nowhere. Radicals
+behave \emph{identically} --- the radical part plays the role of the variable.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}l l@{}}
+$3x+7x=10x$ & $\qquad 3\sqrt5+7\sqrt5=$ \ans{$10\sqrt5$} \\
+$3x+7y$ \; cannot combine & $\qquad 3\sqrt5+7\sqrt2$ \; \ans{cannot combine} \\
+\end{tabular}
+\end{center}
+\textbf{Like radicals} have the same \ans{index} \emph{and} the same \ans{radicand}. Add or
+subtract the numbers \emph{in front}; the radical itself never changes:
+\; $3\sqrt5+7\sqrt5$ is $10\sqrt5$, \textbf{not} $10\sqrt{10}$.
+
+\vspace{4pt}
+\textbf{The catch --- and it is the point of putting these two skills in one lesson.} Two radicals
+can be like radicals \emph{in disguise}. From the Hook:
+\[
+  \sqrt{8}+\sqrt{18} \;=\; \mans{2\sqrt2} + \mans{3\sqrt2} \;=\; \mans{5\sqrt2}
+\]
+Neither term \emph{looked} like the other. \textbf{Simplify first; decide second.} Never answer
+``cannot combine'' until both radicals are in simplest form.
+
+\vspace{3pt}
+\textbf{Your turn.}
+\begin{center}
+\renewcommand{\arraystretch}{2.0}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+(a) \; $\sqrt{45}-\sqrt{20}=$ \ans{$\sqrt5$} &
+(b) \; $5\sqrt{12}+2\sqrt{75}-\sqrt{3}=$ \ans{$19\sqrt3$} \\
+(c) \; $\sqrt{8x}+\sqrt{50x}=$ \ans{$7\sqrt{2x}$} &
+(d) \; $\sqrt[3]{16}+\sqrt[3]{54}=$ \ans{$5\sqrt[3]{2}$} \\
+(e) \; $\sqrt{7}+\sqrt{28}-\sqrt{2}=$ \ans{$3\sqrt7-\sqrt2$} &
+(f) \; $\sqrt[3]{2}+\sqrt{2}=$ \ans{cannot combine} \\
+\end{tabularx}
+\end{center}
+{\small\emph{Work:} (a) $3\sqrt5-2\sqrt5$. \; (b) $5(2\sqrt3)+2(5\sqrt3)-\sqrt3=10\sqrt3+10\sqrt3-\sqrt3$. \;
+(c) $2\sqrt{2x}+5\sqrt{2x}$. \; (d) $2\sqrt[3]2+3\sqrt[3]2$. \;
+(e) $\sqrt7+2\sqrt7=3\sqrt7$, and $\sqrt2$ has no partner.}
+
+\vspace{2pt}
+Item (f) is a warning: even with the same radicand, the \ans{index} must match too.
 \end{notesbox}
 
 \begin{practicebox}
-Simplify completely and state \emph{all} restrictions. Show the factored line.
-
-\vspace{3pt}
-\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
-  \item $\dfrac{x^2-x-6}{x^2-1}\cdot\dfrac{x+1}{x-3}$ \hfill Factored: \ans{$\frac{(x-3)(x+2)}{(x-1)(x+1)}\cdot\frac{x+1}{x-3}$} \\[4pt]
-        Simplest form: \ans{$\frac{x+2}{x-1}$} \quad Restrictions: $x\neq$ \ans{$1,\ -1,\ 3$}
-  \item $\dfrac{x^2-16}{3x}\div\dfrac{x+4}{6x^2}$ \hfill Factored (after the flip): \ans{$\frac{(x-4)(x+4)}{3x}\cdot\frac{6x^2}{x+4}$} \\[4pt]
-        Simplest form: \ans{$2x(x-4)$} \quad Restrictions: $x\neq$ \ans{$0,\ -4$}
-  \item Your answer to problem 2 has no denominator at all. Explain why it still carries restrictions,
-        and name which source each one came from.
-        \ansline{$x\neq0$ comes from the original denominators $3x$ and $6x^2$ (sources 1 and 2); $x\neq-4$ comes from}
-        \ansline{the divisor's \emph{numerator} $x+4$ (source 3) --- at $x=-4$ the problem asks you to divide by zero.}
+Work these with your class. Assume all variables represent positive real numbers.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item Simplify: \; $\sqrt{108}=$ \ans{$6\sqrt3$} \quad $\sqrt[3]{250}=$ \ans{$5\sqrt[3]{2}$} \quad
+        $\sqrt[4]{162}=$ \ans{$3\sqrt[4]{2}$}
+  \item Simplify: \; $\sqrt{75x^{3}}=$ \ans{$5x\sqrt{3x}$} \quad
+        $\sqrt{12a^{4}b^{7}}=$ \ans{$2a^{2}b^{3}\sqrt{3b}$} \quad
+        $\sqrt[3]{54n^{10}}=$ \ans{$3n^{3}\sqrt[3]{2n}$}
+  \item Combine: \; $4\sqrt6+9\sqrt6=$ \ans{$13\sqrt6$} \quad $\sqrt{27}+\sqrt{48}=$ \ans{$7\sqrt3$} \quad
+        $3\sqrt{32}-2\sqrt{18}=$ \ans{$6\sqrt2$}
+  \item Use the quotient property: \; $\sqrt{\dfrac{49}{100}}=$ \ans{$\dfrac{7}{10}$} \quad
+        $\dfrac{\sqrt{72}}{\sqrt{2}}=$ \ans{$6$}
+  \item \textbf{Explain.} A classmate simplifies $\sqrt{80}$ as $2\sqrt{20}$ and stops. Are they
+        wrong? What would you tell them to check, and what is the finished answer? \ansline{They are
+        not \emph{wrong} --- $\sqrt{80}=\sqrt{4\cdot20}=2\sqrt{20}$ is a true statement. They are
+        just not \emph{done}: $4$ was not the largest perfect square factor, and $20$ still contains
+        one. Tell them to check the leftover radicand for another perfect square. Finishing:
+        $2\sqrt{20}=2\cdot 2\sqrt5=4\sqrt5$, which is what $\sqrt{16\cdot 5}$ gives in one step.}
 \end{enumerate}
 \end{practicebox}
 
 \begin{teachernote}
-\textbf{Pacing.} Sections 1--3 are the mechanics and go quickly if yesterday landed; \textbf{Section 4
-is the lesson}. If time runs short, move the opposite-binomial example in Section~2 to homework rather
-than cutting Section~4 or 5 --- the three-source rule is what makes today more than ``5.1 with two
-fractions.''
+\textbf{Pacing.} Sections 1--3 are the mechanical core and move fast (about 15 minutes together).
+Section 4 deserves its own 8 minutes --- not the procedure, which students pick up quickly, but the
+\emph{mixed-number} explanation of it. Say it out loud: $\sqrt{x^7}=x^{7/2}=x^{3\frac12}
+=x^3\cdot x^{1/2}$, so ``divide the exponent by the index, quotient out, remainder in'' is not a
+new rule at all --- it is long division of the exponent, which is what a mixed number always was.
+Students who see this stop guessing at which power comes out. Section 6 needs 12 minutes and is
+where the lesson is actually assessed.
 
-\vspace{3pt}
-\textbf{The one sentence to repeat.} \emph{Flipping trades one blind spot for another.} Students accept
-the divisor-numerator restriction in the Warm-Up (item 1c, with numbers) and forget it the moment
-letters appear. When they do, send them back to $\frac49\div\frac{n}{15}$, not to a rule.
+\textbf{The four errors to expect.} (1) \emph{Stopping early} --- $\sqrt{72}=2\sqrt{18}$, or
+$\sqrt{80}=2\sqrt{20}$ in the Guided Practice. Not wrong, just unfinished; the fix is a habit
+(``check the leftover''), not a re-teach. (2) \emph{Splitting over addition} ---
+$\sqrt{9+16}=3+4$. Kill it numerically every single time it appears; the arithmetic is the
+argument, and no amount of ``you can't do that'' substitutes for $7\ne5$. (3) \emph{Pairs under a
+cube root} --- $\sqrt[3]{4}$ ``simplified'' to $2$. The index is the group size; say it that way.
+(4) \emph{Deciding too early} --- writing ``cannot combine'' for $\sqrt8+\sqrt{18}$. This is the
+error the whole lesson structure exists to prevent, which is why simplifying and combining are
+taught in the same period rather than on consecutive days.
 
-\vspace{3pt}
-\textbf{Errors to expect.} (1) Multiplying out first, producing a quartic nobody wants to re-factor ---
-this is a habit, so name it early and often. (2) Cancelling \emph{across} the $\div$ before flipping;
-the Section~3 table is the disproof, so make students compute both cells. (3) Flipping the
-\emph{first} fraction instead of the divisor. (4) Missing the divisor's-numerator restriction --- the
-signature error of the day, and the one the exit ticket's MC item is built to catch. (5) Reading the
-restrictions off the final answer, which is yesterday's signature error and still costs a point today.
+\textbf{The Hook is worth its four minutes.} Let students use calculators on it --- this is the one
+place all unit where decimal approximation is the right tool, because the point is that a numeric
+check settles the question instantly. Students who \emph{test} $\sqrt9+\sqrt{16}$ and find $7$ tend
+not to write $\sqrt{a+b}=\sqrt a+\sqrt b$ again.
 
-\vspace{3pt}
-\textbf{Section 5} is worth protecting. A product of two rational expressions whose graph is a plain
-line with two holes punched in it is the clearest possible picture of why restrictions survive
-cancelling --- and it is the same picture 5.5 will build from an equation.
+\textbf{Section 5 is deliberately short.} The quotient property is easy, and the interesting half of
+it --- what to do when the denominator will not come out evenly --- is Lesson 5.3. Flag
+$\sqrt{3/5}$ as unfinished business and move on; do not teach rationalizing today.
 \end{teachernote}
 
 \end{document}
