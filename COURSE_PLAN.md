@@ -75,11 +75,18 @@
 > components.** Teacher circulates with questions/cues/prompts, not answers; the debrief attaches
 > the vocabulary to what the groups found. **Lesson 2.0 is the pilot and is rebuilt in this shape
 > (2026-08-19)** — see the Unit 2 block in §4 for the component map, build evidence, and what the
-> build system needed. Next, after the user reviews 2.0: update the `lesson-planning` skill
-> (SKILL.md, references, scaffolder) so every future lesson follows this schematic, then roll the
-> shape across the remaining lessons and handle the Unit 1 drop / renumbering. Directories and
-> headers still say "Unit 2 / Lesson 2.0" — renumbering is deferred until the user decides how to
-> drop Unit 1.
+> build system needed. **The `lesson-planning` skill is updated to the EFFL schematic
+> (2026-08-20, PR #94):** SKILL.md (component set, EFFL invariants — timebox, spoiler rule,
+> `\answerspace`, 12pt-relative boxguards — and guardrails), references/components.md (the
+> experience spec replaces guided-notes/activity/exit-ticket; EFFL plan/cover/warm-up/homework/
+> slides specs), references/conventions.md (12pt experience preamble + macro; EFFL plan order),
+> build.md, course-workflow.md, and new_lesson.py (defaults to
+> cover,warmup,experience,homework,slides; dedicated experience skeletons; 60-min default; legacy
+> components still scaffoldable by name; all skeletons rewritten around the EFFL flow).
+> Smoke-tested: a fresh default scaffold builds all five work products, EXIT 0. **Next: roll the
+> shape across the remaining lessons — regenerate, don't patch — and handle the Unit 1 drop /
+> renumbering.** Directories and headers still say "Unit 2 / Lesson 2.0" — renumbering is
+> deferred until the user decides how to drop Unit 1.
 
 ---
 
