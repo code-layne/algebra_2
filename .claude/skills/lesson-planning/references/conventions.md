@@ -23,7 +23,8 @@ truth — if the styles diverge from this, follow the styles.
 % cover and some components also: \usepackage{ltablex}\keepXColumns
 ```
 
-**Experience component** (the EFFL activity + QuickNotes + practice document) uses **12pt**
+**Experience & Formalize component** (directory `experience/` — the EFFL activity + QuickNotes +
+Application + Check Your Understanding document) uses **12pt**
 (Math Medic sizing) and defines the open-answer-space macro in its preamble, byte-identical in
 the blank and the key:
 ```latex
@@ -33,7 +34,7 @@ the blank and the key:
 \newcommand{\answerspace}[2]{\par\nopagebreak\noindent\begin{minipage}[t][#1][t]{\linewidth}%
   \color{keyred}\bfseries #2\end{minipage}\par}
 ```
-The experience is **four parts on a page budget** — Activity ≤2pp · QuickNotes ½pp · Application
+It is **four parts on a page budget** — Activity ≤2pp · QuickNotes ½pp · Application
 ½–1pp · Check Your Understanding 1–2pp (unscored) — see `references/components.md`.
 
 `\answerspace{2.0cm}{}` in the blank reserves exactly 2.0cm of open space glued to its prompt;
@@ -217,7 +218,7 @@ The lesson plan closes with one note per component, in packet order, each titled
 \begin{teachernote}[Guided Notes]   ... \end{teachernote}
 \begin{teachernote}[Group Activity] ... \end{teachernote}
 \begin{teachernote}[Exit Ticket]    ... \end{teachernote}
-\begin{teachernote}[Experience]     ... \end{teachernote}
+\begin{teachernote}[Experience \& Formalize] ... \end{teachernote}
 ```
 
 The environment is defined in **`-boxes`** (the lesson plan does not load `-key`) and the argument
@@ -278,10 +279,10 @@ Secondary accent — used by the **vocabulary** box and related callouts: `navy`
 
 Primary Objective / Standards / Lesson model → Learning Targets & Key Understandings →
 Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: **5/20/13/7/10/5**) →
-Warm-Up (the seeds) → Experience: the Activity (what students do | what the teacher does —
+Warm-Up (the seeds) → Experience & Formalize: the Activity (what students do | what the teacher does —
 questions, cues, prompts) → Debrief: Formalize (the red-ink moves + QuickNotes walkthrough) →
 **Application** (the worked-together problem) → **Check Your Understanding — practice, *not
 scored*** (the lesson's whole practice set — there is no homework) → Watch For → Close & Preview
-(nothing is assigned) → Teacher Notes ([Warm-Up], [Experience]). See `references/components.md` for the
+(nothing is assigned) → Teacher Notes ([Warm-Up], [Experience & Formalize]). See `references/components.md` for the
 full spec and `references/course-workflow.md` for where content comes from. *(Legacy plans from
 before 2026-08 use the old Hook / Explicit Instruction / Tiers order.)*

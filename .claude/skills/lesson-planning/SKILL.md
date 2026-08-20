@@ -5,7 +5,8 @@ description: >-
   shared/ style package — prefix algebra2 — and a Makefile hierarchy that compiles components
   with latexmk and merges them with pdfunite).
   Use this whenever the user wants to create, draft, or build a lesson, a lesson plan, a unit,
-  or any lesson component — warm-up, experience (activity + QuickNotes + application + practice),
+  or any lesson component — warm-up, Experience & Formalize (the experience component: activity +
+  QuickNotes + application + practice),
   cover sheet, unit test, or their answer keys. Lessons follow the Math Medic
   "experience first, formalize later" (EFFL) model. The course is defined by COURSE_PLAN.md at the
   project root: seven function-family units, each opening with a Lesson 0 "Characteristics of
@@ -34,6 +35,16 @@ set applies it to new contexts. There is **no separate direct-instruction block,
 component, no exit ticket, and no tiered instruction.** The 60-minute period runs
 5 warm-up / 20 activity / 13 debrief / 7 application / 10 check-your-understanding / 5 close.
 
+**Naming rule — the component is called "Experience & Formalize"** (user direction, 2026-08-20).
+That is the label on the cover's packet table, the component's `\pageheader`, the deck's activity
+frame, the lesson plan's activity box, and its teacher note — in LaTeX, `Experience \& Formalize`.
+The **directory keeps the short name `experience/`** (with `experience_key/`): it is a build
+identifier hard-coded in `shared/lesson.mk`'s `STUDENT_ORDER`/`KEYED_PAIRS`, and renaming it would
+mean editing the build system, which this skill never does. **Directory `experience`, label
+*Experience & Formalize*.** The model itself is still "experience first, formalize later" — the
+new label just says both halves out loud, because the component carries the formalizing too
+(QuickNotes and the Application), not only the experience.
+
 ## The course at a glance
 
 - **Structure** comes from **`COURSE_PLAN.md`** (project root) — the scope & sequence: the seven
@@ -58,15 +69,17 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
 - **`main.tex`** — the teacher-facing **lesson plan** (the root document of the lesson dir).
 - A set of **student components**, each its own subdirectory containing **either** a
   `main.tex` (authored, compiled to a PDF) **or** a `main.pdf` (a prefab PDF, used as-is):
-  `cover`, `warmup`, **`experience`**, and `slides`.
+  `cover`, `warmup`, **`experience`** (displayed to students and teachers as
+  **Experience & Formalize**), and `slides`.
 - An **answer key** for each keyed component, as a *separate* sibling directory:
   `warmup_key`, `experience_key`. (`cover` and `slides` have no key.)
 
   **There is no `homework` component.** Homework was dropped from the course on 2026-08-20: the
-  experience's unscored **Check Your Understanding** is a lesson's entire practice set, done in
+  Experience & Formalize component's unscored **Check Your Understanding** is a lesson's entire practice set, done in
   class, and the student keeps the packet. Never scaffold, author, or reference a `homework` dir in
   a new lesson. (Legacy lessons still carry one — see the note below.)
-- **`experience` is the heart of the lesson** — one document in **four** parts on a page budget:
+- **`experience` — *Experience & Formalize* — is the heart of the lesson.** One document in
+  **four** parts on a page budget:
   the group **Activity** (two scenarios worked from prior knowledge, **≤2pp**), a **QuickNotes**
   box the debrief fills (**½pp**), an **Application** worked together (**½–1pp**), and
   **Check Your Understanding** (**1–2pp**, practice — **not scored**). With homework gone, CYU is
@@ -209,13 +222,14 @@ Author each file following `references/components.md`, which gives the required 
 and a worked skeleton for every component and its key. Hold to these invariants:
 
 - **Student components** preamble with `\usepackage{algebra2-article}` +
-  `\usepackage{algebra2-boxes}`. The **experience** uses `\documentclass[12pt]{article}` (Math
+  `\usepackage{algebra2-boxes}`. The **Experience & Formalize** component uses
+  `\documentclass[12pt]{article}` (Math
   Medic sizing); warm-up and cover stay `[10pt]`.
 - **EFFL scope (the timebox rule).** The activity must fit the 20-minute block: **two
   scenarios, ~10–13 sub-questions, ~2 pages at 12pt**, worked from prior knowledge with every
   graph pre-drawn. Extra examples (the special case, the compare-two-graphs) belong to the
   debrief, the Application, or Check Your Understanding — not the activity.
-- **The experience page budget (non-negotiable).** Activity **≤2pp** · QuickNotes **½pp** ·
+- **The Experience & Formalize page budget (non-negotiable).** Activity **≤2pp** · QuickNotes **½pp** ·
   Application **½–1pp** · Check Your Understanding **1–2pp**. A part that runs over gets cut, not
   carried. Prefer a *full* single CYU page over a second page that is 10% used. Because CYU is now
   the lesson's whole practice set, the 2pp end of that range is the norm, not the exception — but
@@ -229,7 +243,7 @@ and a worked skeleton for every component and its key. Hold to these invariants:
   targets in plain language ("where it starts, where it hits zero, how fast it changes"), and
   keep the cover's Keep-in-Mind box to describing the EFFL process itself. The teacher-facing
   plan keeps the formal objective.
-- **Open answer space, not write-lines, in the experience.** The component preamble defines
+- **Open answer space, not write-lines, in Experience & Formalize.** The component preamble defines
   `\answerspace{H}{answer}` (a fixed-height minipage, `\nopagebreak`-glued to its prompt):
   the blank passes an empty second argument, the key passes the red answer, so the two files
   paginate identically by construction. Size H for 2–4 handwritten lines (1.4–2.8cm). Short
@@ -240,7 +254,8 @@ and a worked skeleton for every component and its key. Hold to these invariants:
   blank document exactly, then fill the blanks. There is **no** answer-key toggle — never try to
   build one.
 - **Teacher notes go in the lesson plan, not in a key** — one `teachernote` per component, in
-  packet order, titled for it: `\begin{teachernote}[Experience]` → "Teacher Note: Experience".
+  packet order, titled for it: `\begin{teachernote}[Experience \& Formalize]` →
+  "Teacher Note: Experience & Formalize".
   A note in a key is the one block with no counterpart in the blank, so it makes the key run
   longer and costs the student packet a blank page.
 - **The work rule: a component must be the same number of pages blank and keyed.** Put every
@@ -253,7 +268,7 @@ and a worked skeleton for every component and its key. Hold to these invariants:
   `hookbox`, `notesbox`, `practicebox`, `scenariobox`, `tocbox`, etc.) and fill-in helpers
   (`\blank`, `\writeline`, `\termblanklong`, `\namedateperiod`) rather than reinventing layout.
   The full catalog is in `references/conventions.md`. **`\boxguard` counts are baseline-relative:
-  values tuned at 10pt are ~40% oversized at 12pt** — in the experience use ~14–16, not 24–30.
+  values tuned at 10pt are ~40% oversized at 12pt** — in Experience & Formalize use ~14–16, not 24–30.
 - **Match the course pedagogy.** Build graph-reading and interpretation fluency; keep answers
   traceable to the lesson's standards. Never ask students to "sketch/draw/construct" a graph from
   scratch — give a pre-drawn figure to read, a table to complete, or a computation task.

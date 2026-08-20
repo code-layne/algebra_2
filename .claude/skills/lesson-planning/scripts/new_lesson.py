@@ -22,9 +22,11 @@ from pathlib import Path
 SKEL_DIR = Path(__file__).resolve().parent.parent / "assets" / "skeletons"
 
 # EFFL component set (Math Medic "experience first, formalize later", 2026-08 redesign):
-# a lesson is cover / warmup / experience / slides. There is NO homework: the experience's
-# unscored Check Your Understanding is a lesson's entire practice set (user direction,
-# 2026-08-20). The legacy homework, notes, activity, and exit_ticket components remain
+# a lesson is cover / warmup / experience / slides. The `experience` directory name is a build
+# identifier (shared/lesson.mk STUDENT_ORDER/KEYED_PAIRS); the component is *labelled*
+# "Experience & Formalize" everywhere a student or teacher reads it (user direction,
+# 2026-08-20). There is NO homework: its unscored Check Your Understanding is a lesson's
+# entire practice set (user direction, 2026-08-20). The legacy homework, notes, activity, and exit_ticket components remain
 # scaffoldable by name so pre-EFFL lessons can still be regenerated, but are NOT defaults.
 KEYED = ["warmup", "experience", "homework", "notes", "activity", "exit_ticket"]
 NO_KEY = ["cover", "slides"]
@@ -35,7 +37,7 @@ DEFAULT_COMPONENTS = ["cover", "warmup", "experience", "slides"]
 
 DOC_TITLE = {
     "warmup": "Warm-Up",
-    "experience": "Experience",
+    "experience": "Experience \\& Formalize",
     # legacy (pre-EFFL) components:
     "homework": "Homework",
     "notes": "Guided Notes",
@@ -264,8 +266,9 @@ def main() -> None:
         elif comp == "slides":
             write(dest / "slides" / "main.tex", render("slides.tex", base), args.force)
         elif comp == "experience":
-            # The EFFL centerpiece gets its own 12pt skeleton (activity + QuickNotes +
-            # practice, \answerspace macro) rather than the generic worksheet.
+            # The EFFL centerpiece — labelled "Experience & Formalize" — gets its own 12pt
+            # skeleton (activity + QuickNotes + application + CYU, \answerspace macro)
+            # rather than the generic worksheet.
             write(dest / "experience" / "main.tex", render("experience.tex", base), args.force)
         else:  # authored worksheet component
             subs = {**base, "DOCTITLE": DOC_TITLE[comp]}
