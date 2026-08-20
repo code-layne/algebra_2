@@ -47,7 +47,7 @@ needed (see "Scaffolding a lesson"), so you rarely write them by hand:
     sending output to `target/UNIT/LESSON/<comp>/` and a stamp to `.stamps/`.
   - Copies the plan to its `_plan.pdf` name, renders the deck 3-up to `_slides.pdf` and
     full-page to `_slides.pptx`, and merges the two packets:
-    - **student** = `cover warmup experience` + the legacy `notes activity exit_ticket homework`
+    - **student** = `cover warmup experience` (the last displayed as *Experience & Formalize*) + the legacy `notes activity exit_ticket homework`
       still merged for pre-EFFL lessons (blank versions
       present — EFFL lessons have `experience` and no `notes`/`activity`/`exit_ticket`; legacy
       lessons the reverse),

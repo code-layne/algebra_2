@@ -7,13 +7,13 @@ the pattern, but the live project is authoritative. For macros and boxes see
 `references/conventions.md`; for where content comes from, `references/course-workflow.md`.
 
 Contents: [Lesson plan](#lesson-plan) · [Cover](#cover) · [Warm-up](#warm-up) ·
-[Experience](#experience) · [Slides](#slides) ·
+[Experience & Formalize](#experience--formalize) · [Slides](#slides) ·
 [Unit tests](#unit-tests-summative-assessments) ·
 [Answer-key discipline](#answer-key-discipline)
 
 **The lesson model is Math Medic EFFL** — experience first, formalize later. The student packet
-is cover → warm-up → experience. There are **no** guided-notes, activity, or exit-ticket
-components, **no tiers**, and — since 2026-08-20 — **no homework**: the experience's unscored
+is cover → warm-up → Experience & Formalize. There are **no** guided-notes, activity, or exit-ticket
+components, **no tiers**, and — since 2026-08-20 — **no homework**: that component's unscored
 Check Your Understanding is a lesson's entire practice set, done in class, packet kept by the
 student. (Lessons authored before those dates still carry the old components; new and regenerated
 lessons must not.)
@@ -51,12 +51,12 @@ order (same skeleton for review and primary-content lessons):
 4. **Vocabulary, Concepts & Theorems** — `skillbox{sky}`, a `tabularx` term/definition table
    (use `\TallMath{...}` for tall formulas).
 5. **Lesson at a Glance** — `fixedskillbox{forestbg}`: a Phase/Min/Students/Teacher table for
-   the 60-minute period — Warm-Up 5 / Experience: Activity 20 / Debrief: Formalize 13 /
+   the 60-minute period — Warm-Up 5 / Experience & Formalize: Activity 20 / Debrief: Formalize 13 /
    Application 7 / Check Your Understanding 10 / Close 5.
 6. **Warm-Up — Activate Prior Knowledge** — `fixedskillbox{forestbg}`: the 3 warm-up items and
    the *seed* each plants (which formal idea it sets up **without naming it**), plus what to
    debrief aloud.
-7. **Experience — The Activity** — `skillbox{forestbg}`: the launch script (2 min), then
+7. **Experience & Formalize — The Activity** — `skillbox{forestbg}`: the launch script (2 min), then
    `multicols{2}`: **What students do** (the arc of the two scenarios, naming the crux
    question) | **What the teacher does** (circulate; a bullet list of *questions, cues, and
    prompts — not answers* keyed to item numbers; which group work to pick for the board).
@@ -78,7 +78,7 @@ order (same skeleton for review and primary-content lessons):
 12. **Close & Preview** — `skillbox{goldbox}`: **nothing is assigned** — say so explicitly, name
     what changed today, and preview the next lesson. Never write a homework paragraph here.
 13. **Teacher Notes** — one `teachernote` per component, in packet order:
-    `\begin{teachernote}[Warm-Up]`, `[Experience]`. Pacing splits, must-land
+    `\begin{teachernote}[Warm-Up]`, `[Experience \& Formalize]`. Pacing splits, must-land
     moments, the early-finisher move, how to sort the formative check. **This is the only place
     teacher prose goes** — never append one to a `_key`, which would make the key longer than
     its blank. See `references/conventions.md`.
@@ -94,7 +94,8 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
   to *do* in plain language, without pre-naming the vocabulary the debrief will attach
   ("read the story a straight-line graph tells — where it starts, where it hits zero, how fast
   it changes"), never the formal terms.
-- `tocbox` — a `tabularx` with three rows (Warm-Up, Experience, **Check Your Understanding**) +
+- `tocbox` — a `tabularx` with three rows (Warm-Up, Experience & Formalize,
+  **Check Your Understanding**) +
   a Total row. Score cells are `\blank{1.2cm}` **except Check Your Understanding, which prints
   `\textbf{NA}`** — it is practice and is not scored. **No homework row.** Keep descriptions
   spoiler-free too.
@@ -111,10 +112,15 @@ table seeds "slope"). 10pt, no name row. The plan's Warm-Up box names each seed 
 debrief aloud. May also be a **prefab PDF** (`warmup/main.pdf` + `warmup_key/main.pdf`) —
 `lesson.mk` merges it directly. Key mirrors with `\ans`.
 
-## Experience
+## Experience & Formalize
+
+**The component's name is "Experience & Formalize"** — that is what the cover, the packet header,
+the deck, and the lesson plan call it. **The directory stays `experience/`**: it is a build
+identifier listed in `shared/lesson.mk`'s `STUDENT_ORDER`/`KEYED_PAIRS`, and renaming it would
+mean editing the build system. Directory `experience`, label *Experience & Formalize*.
 
 `experience/` (+ `experience_key/`) — **the heart of the lesson**, one document, **four parts**,
-in this order, on an explicit **page budget** (user, 2026-08-20 — the experience kept coming out too
+in this order, on an explicit **page budget** (user, 2026-08-20 — the component kept coming out too
 long):
 
 | Part | Budget | What it is |
@@ -126,7 +132,7 @@ long):
 
 Hold the budget: it is the whole point of the four-part split. A part that runs over gets cut, not
 carried. `\documentclass[12pt]{article}` (Math Medic sizing — the rest of the packet is
-10pt), `\pageheader{Unit X, Lesson Y.Z}{Experience: <Activity Title>}`, no name row.
+10pt), `\pageheader{Unit X, Lesson Y.Z}{Experience \& Formalize: <Activity Title>}`, no name row.
 
 Preamble defines the open-answer-space macro, byte-identical in blank and key:
 
@@ -137,7 +143,7 @@ Preamble defines the open-answer-space macro, byte-identical in blank and key:
 
 The blank passes `{}` as the second argument (reserves exactly `#1` of open space); the key
 passes the answer — so the two files paginate identically by construction. Size `#1` for 2–4
-handwritten lines (1.4–2.8cm). **No `\writelines` in the experience** — Math Medic answers go
+handwritten lines (1.4–2.8cm). **No `\writelines` in Experience & Formalize** — Math Medic answers go
 in open space. Short inline `\blank{}`s remain for table cells and one-word/rule fills; keep
 key `\ans{}` texts short enough not to wrap wider than the blank they replace, or the page
 breaks drift.
@@ -196,7 +202,7 @@ packet. The scaffolder no longer includes `homework` in its defaults.
 Lessons authored before 2026-08-20 still have `homework/` + `homework_key/`, and
 `shared/lesson.mk` still merges them so those packets keep building. **Regenerating** such a
 lesson means: delete both dirs, expand CYU to ~6 items absorbing what the homework carried, move
-the closing `spiralbox` preview into the experience, drop the cover's homework row, retitle the
+the closing `spiralbox` preview into Experience & Formalize, drop the cover's homework row, retitle the
 plan's "Homework & Preview" box to "Close & Preview", and delete the `[Homework]` teacher note.
 `unit01/lesson02` is the worked example of exactly that conversion.
 
@@ -282,7 +288,7 @@ test keys too):
 - `\ans` is text-mode: never put it inside `$...$` — wrap math fragments instead
   (`\ans{$\sqrt{n}$}`) — and never let it span a blank line.
 - **No `teachernote` in a key.** Teacher-only guidance goes in the lesson plan, one note per
-  component, titled `\begin{teachernote}[Experience]` and so on. A note in a key is the one block
+  component, titled `\begin{teachernote}[Experience \& Formalize]` and so on. A note in a key is the one block
   with no counterpart in the blank, and it is what makes a key run a page long.
 - **Worked solutions are not `\ans{}` material.** An inline `$a=b \Rightarrow c=d \Rightarrow e=f$`
   crammed into one cell violates the work rule and gives the student no room; use a `work` block,

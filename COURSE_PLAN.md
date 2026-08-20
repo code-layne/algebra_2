@@ -120,8 +120,34 @@
 > retained *only* to keep not-yet-regenerated lessons building; when none remain, homework leaves
 > the build system too and the word is gone from the project.
 >
-> **Next: re-cut 1.0 (old three-part experience + homework), then 1.1, then straight through the
-> rollout — regenerate, don't patch.**
+> **THE COMPONENT IS NOW CALLED "EXPERIENCE & FORMALIZE" — user direction, 2026-08-20.** The
+> `experience` component is labelled **Experience & Formalize** everywhere a student or a teacher
+> reads it: the cover's packet table, the component's `\pageheader`, the deck's activity frame, the
+> lesson plan's activity box, and its teacher note (`\begin{teachernote}[Experience \& Formalize]`).
+> In LaTeX it is written `Experience \& Formalize`. **The directory keeps the short name
+> `experience/`** (with `experience_key/`), because it is a build identifier hard-coded in
+> `shared/lesson.mk`'s `STUDENT_ORDER`/`KEYED_PAIRS`; renaming the directory would mean editing the
+> build system, which the skill never does. **Directory `experience`, label *Experience &
+> Formalize*.** The pedagogical model is still "experience first, formalize later" — the new label
+> just says both halves out loud, since the component carries the formalizing too (QuickNotes and
+> the Application), not only the experience.
+>
+> **Baked into the `lesson-planning` skill (2026-08-20):** `SKILL.md` (a dedicated *Naming rule*
+> block plus every component reference), `references/components.md` (the `## Experience &
+> Formalize` section, plan section order, cover TOC row, teacher-note titles),
+> `references/conventions.md` (component preamble, plan order, teacher-note list),
+> `references/build.md`, `references/course-workflow.md`, all five skeletons
+> (`cover.tex`, `experience.tex`, `experience_key.tex`, `lesson_plan.tex`, `slides.tex`), and
+> `scripts/new_lesson.py` (`DOC_TITLE`, comments). **Smoke-tested:** a fresh default scaffold
+> carries the new label in all eight places and builds all five work products, EXIT 0.
+>
+> **EFFL rollout: Unit 1 Lessons 1.0, 1.1, and 1.2 are regenerated in the four-part
+> Experience & Formalize shape (2026-08-20).** See the Unit 1 block in §4 for each lesson's
+> content and build evidence. All three are homework-free; `unit01/lesson0{0,1}/homework{,_key}`
+> were deleted with the regeneration, leaving **38** legacy homework dirs in Units 2--7.
+>
+> **Next: continue the rollout at Lesson 1.3, then 1.4 and 1.5 — regenerate, don't patch.** After
+> Unit 1 is fully EFFL, resume Unit 6 at 6.4 and Unit 7 at 7.1.
 
 ---
 
@@ -213,6 +239,87 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 ## 4. Unit-by-unit lesson breakdown
 
 ### Unit 1 — Linear Functions
+> **Lessons 1.0, 1.1, and 1.2 regenerated in the four-part *Experience & Formalize* shape
+> (2026-08-20).** Component set for all three: `cover`, `warmup`(+key), **`experience`**(+key),
+> `slides`, plan. No `homework` anywhere in Unit 1's first three lessons.
+>
+> **Lesson 1.0 re-cut from three parts to four (2026-08-20).** The old three-part experience
+> (Activity / QuickNotes / Practice) plus an 8-problem homework became: **Activity** (unchanged
+> *Freezing Point* Saturday/Sunday pair, trimmed to 11 sub-questions — 1f folded into 1e, and the
+> story-domain and math-domain questions merged into a single 2e — so it holds **2pp**),
+> **QuickNotes** (compressed to ~½pp), a **new Application** (*The Car-Wash Card*,
+> $B(w)=40-8w$: interpret slope and intercept, solve the zero in a `work` block, meaningful
+> domain, then the concept check — at \$10 a wash the intercept does **not** move, only the
+> steepness), and a **six-item unscored Check Your Understanding** absorbing the deleted homework:
+> (1) features read off the *rule* $f(x)=2x+2$, (2) the contrast pair sharing a zero at $x=1$ with
+> "why can the sign change only at the zero?", (3) a table whose $x$-step is 2, (4) the constant
+> function with its boundary ($c(x)=b$ has a zero only when $b=0$, and then every input is one),
+> (5) the pool model $W(t)=600+150t$ whose zero $t=-4$ is meaningless in the story, and (6) an
+> SOL-style MC on $y=-3x+6$. CYU spans **rule / graph / table** across items 1--3. The homework's
+> closing `spiralbox` moved to the end of the experience. Plan rebuilt with the six-phase glance
+> table (5/20/13/7/10/5), separate Application and CYU boxes, **Close & Preview** in place of
+> "Homework & Preview", and **two** teacher notes. Deck is 11 frames with a new Application frame,
+> ending on "No homework". Standards unchanged: **A2.F.2a/c/f**.
+> **Build evidence:** `make -C unit01/lesson00 all` → EXIT 0; warm-up 1/1, experience **4/4**,
+> cover 1, plan 6, slides 11 (handout 4pp + pptx); packets **8pp/8pp**.
+>
+> **Lesson 1.1 regenerated from the legacy shape (2026-08-20)** — the first full legacy→EFFL
+> conversion in the course. `notes`, `activity`, `exit_ticket`, `homework` and their keys were
+> deleted; every remaining file was rewritten. The experience, ***Two Receipts***, is 5pp:
+> **Activity** (2pp, 10 sub-questions — *Summit Gym* shows a pre-drawn cost graph, so groups read
+> the \$6 walk-in fee and \$3/climb straight off it and assemble $C(n)=3n+6$; *Basecamp Gym* gives
+> only two receipts, 3 climbs \$24 and 7 climbs \$32, forcing the rate from a difference and the
+> \$18 fee by working **backwards**, in a `work` block. **2d is the crux:** Priya writes
+> $D-24=2(n-3)$ off the receipt she had — *is that the same rule?* Groups test $n=7$ and expand it
+> to $D=2n+18$. 2e's cheaper-gym comparison has to switch somewhere ($n=12$); 2f asks for
+> Basecamp's two numbers relative to Summit, no drawing), **QuickNotes** (~½pp: slope from any two
+> points, the three forms and what each makes easy, the parent $y=x$ under stretch and shift,
+> parallel/perpendicular, and the horizontal/vertical special cases), **Application**
+> (*The Drone Descent* — $46$ m at $t=2$, $30$ m at $t=6$: rate in a `work` block, point-slope from
+> $(2,46)$ expanded to $h=-4t+54$, the same line in standard form, then "start from 60 m instead —
+> which number moves?"), and a **six-item unscored CYU** (slope from two points including the
+> horizontal and vertical cases; one graphed line written both ways with a `work` block proving
+> them equal; $y+2=-\tfrac34(x-4)$ through slope-intercept to standard; the parent
+> $y=x \to y=-3x+2$ plus "which of $y=4$ and $x=4$ has no $y=mx+b$, and why"; a candle model,
+> 17 cm at 1 h and 11 cm at 4 h; and an SOL-style MC on perpendicular slopes). Warm-up is 3 new
+> items seeding exactly the activity's needs: counting steps between two marked points (with the
+> deliberately ugly $y$-intercept $-\tfrac73$ that the picture will not give — the argument for
+> point-slope), solving $2x+3y=12$ for $y$, and distributing $y-5=3(x-2)$. Plan is EFFL-shaped with
+> the six-phase glance table, the target misconception named explicitly (*two equations that look
+> different must be different lines*), and two teacher notes. Deck is 11 frames. Standards
+> unchanged: **A.F.1a--e**.
+> **Build evidence:** `make -C unit01/lesson01 all` → EXIT 0; warm-up 1/1, experience **5/5**,
+> cover 1, plan 5, slides 11 (handout 4pp + pptx); packets **10pp/10pp**.
+>
+> **Lesson 1.2 relabelled only (2026-08-20).** It was regenerated into the four-part shape earlier
+> the same day and is the reference implementation, so regenerating it meant applying the new
+> *Experience & Formalize* label to its five files. `make -C unit01/lesson02 all` → EXIT 0;
+> experience **5/5**, packets **10pp/10pp** — unchanged.
+>
+> **Conventions verified across 1.0--1.2 (2026-08-20):** namestrip (cover only), no `teachernote`
+> in any key, **13 `work` blocks byte-identical blank↔key** (2 + 6 + 5, checked programmatically),
+> zero Rule-1 `\ans`-inside-math violations (one was found in 1.1's key and fixed by closing the
+> math first), zero overfull boxes in all three decks, and only the two pre-existing shared-style
+> overfulls per lesson (the 6.0pt `\pageheader` and the 10.77pt `\namedateperiod`).
+>
+> **Unit-level build (2026-08-20):** `make -C unit01 student key` → EXIT 0; unit packets
+> **76pp / 77pp** (down from 88/89 as 1.0 and 1.1 shed their legacy components). The 1-page
+> difference is the **pre-existing** practice-test-vs-key idiom defect recorded in the §7
+> work-rule/tests block — not introduced by this pass.
+>
+> **Page-budget lesson learned (2026-08-20).** Both regenerations first came out a page over, and
+> micro-tightening (`itemsep`, `\answerspace` heights) recovered far less than expected. What
+> actually worked: **a tall figure in a `minipage` beside too little text wastes its unmatched
+> height** — pulling a second question into the left column, or the shared answer space up into it,
+> reclaimed ~120pt in 1.0 alone. Second: **`\boxguard` is a page-break decision, not decoration** —
+> a guard that is too high strands a whole box and leaves ~100pt dead at the foot of the previous
+> page. Third: **the key is the binding constraint** — an `\ans{}` wider than the `\blank{}` it
+> replaces wraps a line, so the key can run long on a page where the blank has room, and lowering a
+> guard then splits the two files to different page counts. Check both sides after every guard
+> change.
+>
+> *(Superseded)* The 1.0 entry below describes the pilot's original three-part cut and its
+> homework; it is kept for the build-system history it records.
 > **Lesson 1.0 rebuilt in the EFFL shape (2026-08-19) — the course pilot.** Components now:
 > `cover`, `warmup`(+key), **`experience`**(+key), `homework`(+key), `slides`, plan; the old
 > `notes`, `activity`, `exit_ticket` dirs (and keys) were deleted. The experience component,
@@ -2278,6 +2385,13 @@ Per Unit 1's pattern:
 - **Build:** `make -C unitXX/lessonYY all` (five work products); `make -C unitXX student key`;
   root `make all` / `make student` / `make key`. **`full` no longer exists** — see
   "The five work products" below.
+- **Component naming (2026-08-20):** the EFFL centrepiece is **labelled *Experience & Formalize***
+  everywhere a student or teacher reads it — the cover's packet table, the component's
+  `\pageheader`, the deck's activity frame, the lesson plan's activity box, and its teacher note.
+  In LaTeX: `Experience \& Formalize`. **Its directory stays `experience/`** (with
+  `experience_key/`) — that name is a build identifier in `shared/lesson.mk`'s
+  `STUDENT_ORDER`/`KEYED_PAIRS`, so renaming the directory would mean editing the build system.
+  **Directory `experience`, label *Experience & Formalize*.**
 - **Authoring:** use the `lesson-planning` skill.
 - **Retrofitting:** the conventions below land *after* lessons are written, so an existing lesson
   can be behind on one. Bring it forward by name — the skill has a Retrofit section listing every

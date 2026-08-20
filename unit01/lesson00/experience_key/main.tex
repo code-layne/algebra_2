@@ -1,12 +1,15 @@
-%! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Experience (Activity · QuickNotes · Practice) (Answer Key)
-% Math Medic sizing conventions (measured from their Lesson 1.5 PDF): ~11-12pt body on
-% ~15pt leading, and OPEN white space after every question (no writing lines) sized so a
-% student can answer in 2-4 handwritten lines. \answerspace{H}{} reserves exactly H of
-% space in the blank; the key passes the answer as the second argument, so the two files
-% paginate identically by construction.
+%! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Experience & Formalize
+%! (Activity · QuickNotes · Application · Check Your Understanding) (Answer Key)
+% Directory stays `experience/` (build identifier in shared/lesson.mk); the label the student
+% and the teacher read is "Experience & Formalize".
+% Math Medic sizing: 12pt body, OPEN white space after every question (no writing lines).
+% \answerspace{H}{} reserves exactly H in the blank; the key passes the answer as the second
+% argument, so the two files paginate identically by construction.
+% Page budget (user, 2026-08-20): Activity 2pp max · QuickNotes 1/2pp · Application 1/2-1pp ·
+% Check Your Understanding 1-2pp (practice, NOT scored — there is no homework).
 \documentclass[12pt]{article}
 \usepackage{algebra2-article}
-\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\usepackage{algebra2-key}
 \newcommand{\answerspace}[2]{\par\nopagebreak\noindent\begin{minipage}[t][#1][t]{\linewidth}%
   \color{keyred}\bfseries #2\end{minipage}\par}
 \newcommand{\lgrid}[4]{%
@@ -24,25 +27,26 @@
 
 \begin{document}
 
-\pageheader{Unit 1, Lesson 1.0}{Experience: Freezing Point --- Answer Key}
+\pageheader{Unit 1, Lesson 1.0}{Experience \& Formalize: Freezing Point --- Answer Key}
 
 \vspace{0.06in}
 
 \begin{headlinebox}{forestbg}
-\textbf{Freezing Point.} On a cold weekend the number that matters most is \emph{zero}: above it
-the roads are wet, below it they are ice. With your group, work through the two temperature
-stories below using what you already know --- tables, rules, and points on a graph --- and be
-ready to explain \emph{how you know} each answer from the \textbf{graph}.
+\textbf{Freezing Point.} On a cold weekend the number that matters most is \emph{zero}: above it the
+roads are wet, below it they are ice. Work the two temperature stories below with your group using
+what you already know --- tables, rules, points --- and be ready to explain \emph{how you know} each
+answer \textbf{from the graph}.
 \end{headlinebox}
 
 \vspace{0.04in}
 
+% ══ Part 1 of 4 — ACTIVITY (20 min, groups of 3–4, prior knowledge only) ══════
 \begin{scenariobox}[1. Saturday Morning]{forest}
 At 6:00 a.m. on Saturday the temperature in Blacksburg was $-6\,^\circ$C. It rose steadily,
 $2\,^\circ$C every hour, all morning (until noon). Let $h$ be the number of hours after 6:00 a.m.
 and $T$ the temperature in $^\circ$C.
 
-\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=8pt]
+\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=5pt]
   \item Complete the table.
     \begin{center}
     \renewcommand{\arraystretch}{1.5}
@@ -56,201 +60,219 @@ and $T$ the temperature in $^\circ$C.
         $T(h) = $ \ans{$2h - 6$}
 \end{enumerate}
 
-\begin{minipage}[t]{0.52\linewidth}
+\begin{minipage}[t]{0.54\linewidth}
 \vspace{0pt}
-\begin{enumerate}[label=\textbf{\alph*.}, start=3, leftmargin=1.8em, itemsep=8pt]
-  \item Circle the point where the line crosses the \emph{vertical} ($T$) axis. Its coordinates
-        are $({\color{keyred}\mathbf{0}},\ {\color{keyred}\mathbf{-6}})$. \\[4pt]
-        In the story, this point tells you:
-        \answerspace{2.0cm}{At 6:00 a.m. ($h=0$), when the story starts, the temperature was $-6\,^\circ$C --- the starting value.}
-\end{enumerate}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.44\linewidth}
-\vspace{0pt}\centering
-\begin{tikzpicture}[x=0.62cm, y=0.31cm]
-  \tempgrid
-  \draw[very thick, forest] (0,-6)--(7,8);
-  \fill[charcoal] (0,-6) circle (2.8pt);
-  \fill[charcoal] (3,0) circle (2.8pt);
-\end{tikzpicture}
-\end{minipage}
-
-\begin{enumerate}[label=\textbf{\alph*.}, start=4, leftmargin=1.8em, itemsep=8pt]
-  \item Circle the point where the line crosses the \emph{horizontal} ($h$) axis. Its coordinates
-        are $({\color{keyred}\mathbf{3}},\ {\color{keyred}\mathbf{0}})$. What time of day is that, and why is that moment
-        special for the temperature?
-        \answerspace{2.0cm}{$h=3$ is 9:00 a.m. The temperature is exactly $0\,^\circ$C --- the freezing point: the output of the rule is zero, neither above nor below freezing.}
-  \item Every hour, the temperature changes by \ans{$+2$} $^\circ$C. Circle where this number
-        shows up in your rule. Then explain how you can \emph{see} it on the graph when you move
-        from one hour to the next.
-        \answerspace{2.0cm}{It is the $2$ multiplying $h$ in $T(h)=2h-6$. On the graph, every step of $1$ to the right goes up $2$ --- the same steepness everywhere, which is why the graph is a straight line.}
-  \item As the morning goes on, is the temperature going \textbf{up} or \textbf{down}? How does
-        the \emph{graph} show this (not the story)?
-        \answerspace{2.0cm}{Going up. Reading the graph left to right, the line rises --- each point is higher than the one before it.}
-  \item During which hours was it \emph{below} freezing ($T<0$)? \emph{Above} freezing ($T>0$)?
-        Write each answer as an inequality in $h$.
-        \\[6pt]
-        Below: $T<0$ when \ans{$0\le h<3$} \qquad Above: $T>0$ when \ans{$3<h\le 6$}
-\end{enumerate}
-\end{scenariobox}
-
-\boxguard[16]
-\begin{scenariobox}[2. Sunday Evening]{forest}
-At 4:00 p.m. on Sunday it was $6\,^\circ$C, and the temperature \emph{fell} steadily, $2\,^\circ$C
-every hour, through the evening. Now $h$ is the number of hours after 4:00 p.m.
-
-\begin{minipage}[t]{0.52\linewidth}
-\vspace{0pt}
-\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=8pt]
+\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=5pt]
   \item Write a rule: \; $T(h) = $ \ans{$6 - 2h$}
-  \item The line crosses the $T$-axis at $({\color{keyred}\mathbf{0}},\ {\color{keyred}\mathbf{6}})$ and the $h$-axis at
-        $({\color{keyred}\mathbf{3}},\ {\color{keyred}\mathbf{0}})$. \\[4pt]
-        What does each crossing tell you about Sunday evening?
+  \item The line crosses the $T$-axis at $({\color{keyred}\mathbf{0}},\ {\color{keyred}\mathbf{6}})$ and the $h$-axis
+        at $({\color{keyred}\mathbf{3}},\ {\color{keyred}\mathbf{0}})$. What does each crossing tell you about Sunday
+        evening?
+        \answerspace{2.4cm}{$(0,6)$: at 4:00 p.m.\ it was $6\,^\circ$C --- the starting temperature. $(3,0)$: three hours later, at 7:00 p.m., it reached $0\,^\circ$C --- freezing.}
 \end{enumerate}
 \end{minipage}\hfill
-\begin{minipage}[t]{0.44\linewidth}
+\begin{minipage}[t]{0.42\linewidth}
 \vspace{0pt}\centering
-\begin{tikzpicture}[x=0.62cm, y=0.31cm]
+\begin{tikzpicture}[x=0.58cm, y=0.26cm]
   \tempgrid
   \draw[very thick, forest] (0,6)--(7,-8);
   \fill[charcoal] (0,6) circle (2.8pt);
   \fill[charcoal] (3,0) circle (2.8pt);
 \end{tikzpicture}
 \end{minipage}
-\answerspace{2.4cm}{$(0,6)$: at 4:00 p.m.\ it was $6\,^\circ$C (the starting temperature). $(3,0)$: three hours later, at 7:00 p.m., the temperature reached $0\,^\circ$C --- freezing.}
 
-\begin{enumerate}[label=\textbf{\alph*.}, start=3, leftmargin=1.8em, itemsep=8pt]
+\begin{enumerate}[label=\textbf{\alph*.}, start=3, leftmargin=1.8em, itemsep=5pt]
   \item At 5:00 p.m. ($h=1$) the temperature is \ans{$4$} $^\circ$C. Is that number
         \textbf{positive} or \textbf{negative}? At that moment, is the temperature \textbf{rising}
         or \textbf{falling}? \\[4pt]
         So: can a temperature be \emph{positive} and \emph{falling} at the same time? Explain
         what each word is describing.
-        \answerspace{2.6cm}{$4$ is positive, and the temperature is falling. Yes --- both at once. ``Positive'' describes the \emph{value} (above zero, graph above the $h$-axis); ``falling'' describes the \emph{direction} the values are moving (the line goes down left to right).}
-  \item Above freezing: $T>0$ when \ans{$0\le h<3$} \\[6pt]
+        \answerspace{2.2cm}{$4$ is positive, and the temperature is falling. Yes --- both at once. ``Positive'' describes the \emph{value} (above zero, graph above the $h$-axis); ``falling'' describes the \emph{direction} the values are moving (the line goes down left to right).}
+  \item Above freezing: $T>0$ when \ans{$0\le h<3$} \qquad
         Below freezing: $T<0$ when \ans{$h>3$}
-  \item In the story, which hours actually make sense as inputs? Explain.
-        \answerspace{1.8cm}{Only hours from 4:00 p.m.\ on: $h \ge 0$ (through the evening). Negative $h$ is before the story starts, so those inputs mean nothing here.}
-  \item Now forget the story. The rule $T(h) = 6 - 2h$ accepts \emph{any} number $h$, and its
-        line runs forever in both directions. \\[6pt]
-        All the possible inputs: \ans{all real numbers} \\[6pt]
-        All the possible outputs: \ans{all real numbers}
+  \item \textbf{The story, then the math.} In the story, which hours actually make sense as
+        inputs? \ans{$h\ge0$, the evening hours} \\[2pt]
+        Now \emph{forget the story}: the rule $T(h) = 6 - 2h$ accepts \emph{any} number $h$ and its
+        line runs forever both ways, so all the possible inputs are \ans{all reals} and all
+        the possible outputs are \ans{all reals}. Why are those two answers different?
+        \answerspace{1.5cm}{The rule allows every real number, but the \emph{story} only starts at 4:00 p.m., so negative $h$ describes nothing --- a story keeps only the inputs that make sense.}
 \end{enumerate}
 \end{scenariobox}
 
-
-% ── QuickNotes ────────────────────────────────────────────────────────────────
-\boxguard[16]
+% ══ Part 2 of 4 — QUICKNOTES (13 min debrief fills this; target half a page) ══
+\boxguard[14]
 \begin{tcolorbox}[enhanced, colback=sky, colframe=navy, boxrule=0.8pt, arc=2mm,
-    left=3mm, right=3mm, top=2mm, bottom=2mm, breakable,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, breakable,
     fonttitle=\bfseries\small\color{white}, title={QuickNotes: Characteristics of a Linear Function},
     attach boxed title to top left={yshift=-2mm, xshift=4mm},
     boxed title style={colback=navy, colframe=navy, arc=1.5mm}]
-\begin{minipage}[t]{0.34\linewidth}
-\vspace{0pt}\centering
-\begin{tikzpicture}[scale=0.44]
+\small
+\begin{minipage}[t]{0.31\linewidth}
+\vspace{2pt}\centering
+\begin{tikzpicture}[scale=0.26]
   \lgrid{-2}{6}{-6}{6}
   \draw[very thick, forest] (-1,-6)--(5,6);
   \draw[semithick, navy, dashed] (2,0)--(3,0)--(3,2);
-  \node[navy, font=\tiny] at (2.5,-0.6){run $1$};
+  \node[navy, font=\tiny] at (2.5,-0.7){run $1$};
   \node[navy, font=\tiny, right] at (3.05,1){rise $2$};
-  \fill[charcoal] (0,-4) circle (3pt) node[left, font=\tiny]{$(0,-4)$};
-  \fill[charcoal] (2,0) circle (3pt)  node[above left, font=\tiny]{$(2,0)$};
-\end{tikzpicture}\\[2pt]
+  \fill[charcoal] (0,-4) circle (3.4pt);
+  \fill[charcoal] (2,0) circle (3.4pt);
+\end{tikzpicture}\\[1pt]
 {\footnotesize Example: $f(x) = 2x - 4$}
 \end{minipage}\hfill
-\begin{minipage}[t]{0.62\linewidth}
+\begin{minipage}[t]{0.65\linewidth}
 \vspace{0pt}
-\begin{itemize}[leftmargin=1.1em, itemsep=8pt]
+\begin{itemize}[leftmargin=1.1em, itemsep=3pt, topsep=0pt]
   \item A \textbf{linear function} has a \ans{constant} rate of change, so its graph is a
         \ans{straight line}. Form: $f(x) = mx + b$.
-  \item \textbf{Slope} $m = \dfrac{\Delta y}{\Delta x} = \dfrac{\text{rise}}{\text{run}}$.
+  \item \textbf{Slope} $m = \dfrac{\Delta y}{\Delta x} = \dfrac{\text{rise}}{\text{run}}$. \;
         For $f$: $m = {\color{keyred}\mathbf{2}}$.
-  \item \textbf{$y$-intercept} $(0,b)$: where the graph crosses the $y$-axis (set $x=0$).
-        For $f$: $(0,{\color{keyred}\mathbf{-4}})$.
-  \item \textbf{$x$-intercept / zero} $(a,0)$: where it crosses the $x$-axis; the input with
-        $f(a)=0$ (solve $f(x)=0$). For $f$: $({\color{keyred}\mathbf{2}},0)$.
+  \item \textbf{$y$-intercept} $(0,b)$: set $x=0$. For $f$: $(0,{\color{keyred}\mathbf{-4}})$. \quad
+        \textbf{$x$-intercept / zero} $(a,0)$: solve $f(x)=0$. For $f$: $({\color{keyred}\mathbf{2}},0)$.
 \end{itemize}
 \end{minipage}
 
-\vspace{8pt}
-\begin{itemize}[leftmargin=1.1em, itemsep=8pt]
-  \item \textbf{Increasing / decreasing:} read left to right. \\[4pt]
+\vspace{4pt}
+\begin{itemize}[leftmargin=1.1em, itemsep=3pt, topsep=0pt]
+  \item \textbf{Increasing / decreasing} --- read left to right: \;
         \mbox{$m>0$: \ans{increasing}} \quad \mbox{$m<0$: \ans{decreasing}} \quad
         \mbox{$m=0$: \ans{constant}}
   \item \textbf{Positive / negative:} $f(x)>0$ where the graph is \ans{above} the $x$-axis;
-        $f(x)<0$ where it is \ans{below}. The sign can only switch at a \ans{zero}. \\[4pt]
-        For $f$: positive when $x {\color{keyred}\mathbf{>2}}$, negative when $x {\color{keyred}\mathbf{<2}}$. \\[4pt]
-        \emph{``Positive'' (where it sits) and ``increasing'' (which way it moves) are different
-        questions} --- Sunday's line was positive \emph{and} falling.
+        $f(x)<0$ where it is \ans{below}. The sign can only switch at a \ans{zero}.
+        For $f$: positive when $x {\color{keyred}\mathbf{>2}}$, negative when $x {\color{keyred}\mathbf{<2}}$.
+        \emph{Where it sits $\ne$ which way it moves} --- Sunday's line was positive \emph{and} falling.
   \item \textbf{Domain / range} of a line that is not horizontal: \ans{all reals} /
-        \ans{all reals}. A horizontal line $f(x)=b$ has range \ans{$\{b\}$} and no zero (unless
-        $b=0$). In a \emph{story}, the domain is only the inputs that make sense.
+        \ans{all reals}. A horizontal line $f(x)=b$ has range \ans{$\{b\}$} and no
+        zero (unless $b=0$). In a \emph{story}, the domain is only the inputs that make sense.
 \end{itemize}
 \end{tcolorbox}
 
-% ── Practice ──────────────────────────────────────────────────────────────────
-\boxguard[16]
-\begin{notesbox}{Practice: Check Your Understanding}
-Work with your partner, then finish on your own. Read every feature \emph{from the graph, table,
-or rule} and be ready to say how you know.
+% ══ Part 3 of 4 — APPLICATION (7 min, worked together; the modeling standard) ══
+\boxguard[14]
+\begin{notesbox}{Application: The Car-Wash Card}
+We will do this one together. A car-wash gift card starts with \$40, and each wash costs \$8, so
+the balance after $w$ washes is $B(w) = 40 - 8w$.
 
-\begin{enumerate}[leftmargin=1.7em, itemsep=10pt]
-  \item The graph shows $p(x) = -\tfrac{3}{2}x + 3$. Complete the feature list.
-    \begin{center}
-    \begin{minipage}[c]{0.40\linewidth}\centering
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-3}{5}{-4}{6}
-      \draw[very thick, forest] (-2,6)--(4.67,-4);
-      \fill[charcoal] (0,3) circle (3pt);
-      \fill[charcoal] (2,0) circle (3pt);
-    \end{tikzpicture}
-    \end{minipage}\hfill
-    \begin{minipage}[c]{0.57\linewidth}
-    \renewcommand{\arraystretch}{1.8}
-    \begin{tabular}{@{}l l@{}}
-      Domain: \ans{all reals} & Range: \ans{all reals} \\
-      $y$-intercept: \ans{$(0,3)$} & Zero: \ans{$(2,0)$} \\
-      Slope: \ans{$-\tfrac{3}{2}$} & Incr.\ or decr.? \ans{decreasing} \\
-      Positive when $x$ \ans{$<2$} & Negative when $x$ \ans{$>2$}
-    \end{tabular}
-    \end{minipage}
-    \end{center}
-
-
-  \item A car-wash gift card starts with \$40, and each wash costs \$8. The balance after $w$
-        washes is $B(w) = 40 - 8w$.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=8pt]
-      \item The slope $-8$ means:
-        \answerspace{1.4cm}{each wash lowers the balance by \$8.}
-      \item The $y$-intercept $(0,40)$ means:
-        \answerspace{1.4cm}{before any washes ($w=0$), the card holds \$40.}
-      \item Find the zero of $B$ by solving $B(w)=0$, then say what it means in the story.
-        \begin{work}
-          40 - 8w &= 0 \\
-             -8w &= -40 \\
-               w &= 5
-        \end{work}
-        Meaning:
-        \answerspace{1.4cm}{after $5$ washes the balance is \$0 --- the card is used up.}
-      \item Which inputs $w$ make sense in this story? \ans{whole numbers $0,1,2,3,4,5$ ($0\le w\le 5$)}
-    \end{enumerate}
-
-  \item The constant function $c(x) = 5$ has a horizontal graph. \\[8pt]
-        Slope: \ans{$0$} \qquad Increasing, decreasing, or constant? \ans{constant} \\[8pt]
-        Range: \ans{$\{5\}$} \qquad Does it have a zero? \ans{no} \\[8pt]
-        Is $c(x)$ positive or negative? \ans{positive everywhere}
-
-  \item \textbf{Multiple choice.} A linear function $g$ is \emph{decreasing} and has its zero at
-        $x=2$. Which statement \emph{must} be true?
-    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=3pt]
-      \item $g(x)>0$ for all $x>2$
-      \item $g(x)>0$ for all $x<2$ \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
-      \item $g(x)>0$ for every $x$
-      \item $g$ has no $y$-intercept
-    \end{enumerate}
-    Justify your choice in one sentence.
-    \answerspace{1.6cm}{A decreasing line is above the $x$-axis to the \emph{left} of its zero and below it to the right, so $g(x)>0$ exactly when $x<2$.}
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item What does the slope $-8$ tell you about the card? And the $y$-intercept $(0,40)$?
+    \answerspace{1.4cm}{Slope $-8$: every wash takes \$8 off the balance (the balance drops \$8 per wash). $(0,40)$: before any washes, the card holds \$40 --- the starting balance.}
+  \item Find the zero of $B$ by solving $B(w) = 0$.
+    \begin{work}
+      40 - 8w &= 0 \\
+          -8w &= -40 \\
+            w &= 5
+    \end{work}
+    In the story, that zero means:
+    \answerspace{1.4cm}{After 5 washes the card is empty --- the balance hits \$0 exactly at the 5th wash.}
+  \item Which inputs $w$ make sense? \ans{whole $w$, $0$ to $5$} \;
+        Is $B$ increasing or decreasing there? \ans{decreasing}
+  \item Suppose each wash cost \$10 instead of \$8. Would the card run out \emph{sooner} or
+        \emph{later}? \ans{sooner ($w=4$)} \; And on the graph, what changes --- where the
+        line \emph{starts}, how \emph{steep} it is, or both? Say why.
+    \answerspace{1.4cm}{Only the steepness. The card still starts at \$40, so the $y$-intercept is unchanged; the slope goes from $-8$ to $-10$, a steeper drop, so the line reaches zero sooner.}
 \end{enumerate}
 \end{notesbox}
+
+% ══ Part 4 of 4 — CHECK YOUR UNDERSTANDING (10 min, practice, NOT scored) ═════
+% This is the lesson's only practice set: there is no homework, so the six items
+% below carry the whole A2.F.2 spread — graph, contrast pair, table, the constant
+% special case with its boundary, a model in a fresh context, and the formative MC.
+\boxguard[14]
+\begin{notesbox}{Check Your Understanding \quad {\normalfont\itshape (practice --- not scored)}}
+Six exercises --- the lesson's practice, and there is \textbf{no homework}. Work 1--3 with a partner,
+then 4--6 on your own. For every answer, be ready to say \emph{how you know} it.
+
+\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
+  \item \textbf{Read the rule.} Complete the feature list for $f(x) = 2x + 2$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l l l@{}}
+      Slope: \ans{$2$} & $y$-intercept: \ans{$(0,2)$} & Zero: \ans{$x=-1$} \\
+      Domain: \ans{all reals} & Range: \ans{all reals} & Incr.\ or decr.? \ans{increasing} \\
+      Positive when $x$ \ans{$>-1$} & Negative when $x$ \ans{$<-1$} & Sign flips at: \ans{the zero}
+    \end{tabular}
+    \end{center}
+
+  \boxguard[12]
+  \item \textbf{Same zero, opposite behavior.} Both lines have their zero at $x = 1$.
+    \begin{center}
+    \begin{minipage}[c]{0.34\linewidth}\centering
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-3}{5}{-4}{4}
+      \draw[very thick, forest] (-2.5,-3.5)--(4.5,3.5) node[above left, font=\scriptsize, forest]{$f$};
+      \draw[very thick, navy] (-2.5,3.5)--(4.5,-3.5) node[below left, font=\scriptsize, navy]{$g$};
+      \fill[charcoal] (1,0) circle (3.4pt);
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.62\linewidth}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Increasing: \ans{$f$} \; Decreasing: \ans{$g$}
+      \item $f(x)>0$ when $x$ \ans{$>1$} \quad $g(x)>0$ when $x$ \ans{$<1$}
+      \item At $x=3$: $f$ is \ans{positive} \; $g$ is \ans{negative}
+    \end{enumerate}
+    \end{minipage}
+    \end{center}
+    (d) Why can a line's sign change at its \emph{zero} and nowhere else?
+    \answerspace{1.4cm}{The zero is the only place the line touches the $x$-axis. To get from below the axis to above it, the graph has to cross --- and a non-horizontal line crosses exactly once.}
+
+  \item \textbf{From a table.} A linear function is given below. \emph{Watch the step in $x$.}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $2$ & $4$ & $6$ \\ \hline
+    $f(x)$ & $-6$ & $-3$ & $0$ & $3$ \\ \hline
+    \end{tabular}
+    \end{center}
+    Slope $m = \dfrac{\Delta y}{\Delta x} = {\color{keyred}\mathbf{\tfrac{3}{2}}}$ \quad
+    $y$-intercept: \ans{$(0,-6)$} \quad Zero: \ans{$x=4$} \\[4pt]
+    Increasing or decreasing? \ans{increasing} \quad $f(x)<0$ when $x$ \ans{$<4$}
+
+  \boxguard[12]
+  \item \textbf{The flat one.} The graph of $c(x) = -2$ is a horizontal line through $(0,-2)$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Slope: \ans{$0$} \; Incr., decr., or constant? \ans{constant} \;
+            Range: \ans{$\{-2\}$} \; A zero? \ans{no}
+      \item Is $c(x)$ positive or negative? \ans{negative everywhere}
+      \item For which value of $b$ does $c(x) = b$ \emph{have} a zero? \ans{$b=0$} \;
+            And then how many zeros does it have? \ans{every input is one}
+    \end{enumerate}
+
+  \boxguard[12]
+  \item \textbf{Model it.} A pool already holds $600$ gallons when a hose is turned on; the hose
+        adds $150$ gallons a minute, so $W(t) = 600 + 150t$ after $t$ minutes.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Slope $150$ means \ans{$+150$ gal each minute} \;
+            $(0,600)$ means \ans{600 gal at $t=0$}
+      \item Find the zero of $W$ by solving $W(t) = 0$.
+        \begin{work}
+          600 + 150t &= 0 \\
+                150t &= -600 \\
+                   t &= -4
+        \end{work}
+        Does that zero mean anything in this story? Explain.
+        \answerspace{1.2cm}{No. $t=-4$ is four minutes \emph{before} the hose was turned on, and the story only starts at $t=0$ --- the model does not describe negative time.}
+      \item Which inputs $t$ make sense? \ans{$t\ge 0$} \; Is $W$ increasing or
+            decreasing on them? \ans{increasing}
+    \end{enumerate}
+
+  \item \textbf{Multiple choice.} For the linear function $y = -3x + 6$, which statement is
+        \emph{true}?
+    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=1pt]
+      \item[\textbf{A.}] The function is increasing. \hfill
+            \textbf{B.} It is positive for all $x > 2$.
+      \item[\textbf{C.}] The zero is at $x = 2$. \textcolor{keyred}{\textbf{$\leftarrow$ correct}} \hfill
+            \textbf{D.} The $y$-intercept is $(0,-3)$.
+    \end{enumerate}
+    Name one of the other three and say why it is false.
+    \answerspace{1.4cm}{C is true: $-3x+6=0$ gives $x=2$. (A: the slope $-3$ is negative, so it decreases. B: it is positive for $x<2$, negative for $x>2$. D: the $y$-intercept is $(0,6)$; $-3$ is the slope.)}
+\end{enumerate}
+\end{notesbox}
+
+\boxguard[6]
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 1.1: Linear Functions.} Today you \emph{read} a line's characteristics
+off its graph, table, and rule. Next you run it backwards: slope and a point \emph{write} the
+equation three ways, and shifting the parent line $y=x$ graphs it.
+\end{spiralbox}
 
 \end{document}
