@@ -1,0 +1,229 @@
+%! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Experience (Activity · QuickNotes · Application · Check Your Understanding) (Answer Key)
+% Math Medic sizing: 12pt body, OPEN white space after every question (no writing lines).
+% \answerspace{H}{} reserves exactly H in the blank; the key passes the answer as the second
+% argument, so the two files paginate identically by construction.
+% Page budget (user, 2026-08-20): activity 2pp max · QuickNotes 1/2pp · Application 1/2-1pp ·
+% Check Your Understanding 1-2pp (practice, NOT scored).
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\newcommand{\answerspace}[2]{\par\nopagebreak\noindent\begin{minipage}[t][#1][t]{\linewidth}%
+  \color{keyred}\bfseries #2\end{minipage}\par}
+% Plain number line: {xmin}{xmax}, ticks labeled every unit.
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.5,0)--(#2+0.5,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\x$};}}
+% The trail: mile markers 0..20, ticks every mile, labels every two, tower at mile 12.
+\newcommand{\trail}{%
+  \draw[->, semithick, charcoal] (-0.7,0)--(21.2,0) node[right, font=\scriptsize]{mile};
+  \foreach \x in {0,...,20}{\draw[charcoal] (\x,0.26)--(\x,-0.26);}
+  \foreach \x in {0,2,...,20}{\node[below, font=\scriptsize, charcoal] at (\x,-0.30){$\x$};}
+  \fill[forest] (12,0) circle (3pt);
+  \node[forest, font=\scriptsize, above] at (12,0.34){tower};}
+
+\begin{document}
+
+\pageheader{Unit 1, Lesson 1.2}{Experience: In Range --- Answer Key}
+
+\vspace{0.06in}
+
+\begin{headlinebox}{forestbg}
+\textbf{In Range.} A straight stretch of parkway is marked off in miles, $0$ through $20$. A ranger's
+radio tower stands at \textbf{mile 12}, and a handheld radio can reach it only from
+\textbf{within 5 miles}. With your group, work through the two problems below using what you already
+know --- number lines, distance, and solving --- and be ready to explain \emph{how you know} each
+answer from the \textbf{picture}.
+\end{headlinebox}
+
+\vspace{0.04in}
+
+\begin{scenariobox}[1. Exactly Five Miles Out]{forest}
+\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=8pt]
+  \item Two hikers are standing \emph{exactly} $5$ miles from the tower. Mark both of them on the
+        trail, then give their mile markers.
+    \begin{center}
+    \begin{tikzpicture}[x=0.62cm, y=0.5cm]
+      \trail
+      \fill[keyred] (7,0) circle (3pt);
+      \fill[keyred] (17,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Mile markers: \ans{$7$} and \ans{$17$}
+  \item Why are there \emph{two} answers here and not one? Answer from the picture.
+    \answerspace{1.8cm}{The trail runs both ways from the tower --- a hiker can be $5$ miles before mile $12$ or $5$ miles after it, so two markers sit exactly that far out.}
+  \item A hiker stands at mile $x$. Write an expression, using absolute-value bars, for how far that
+        hiker is from the tower. \quad Distance $=$ \ans{$|x-12|$}
+  \item So ``exactly $5$ miles from the tower'' is the equation \ans{$|x-12|$} $= 5$. \\[4pt]
+        Substitute each of your two markers from part (a) into it and show that both really work.
+    \answerspace{2.0cm}{$|7-12| = |{-5}| = 5$ and $|17-12| = |5| = 5$ --- both markers really are $5$ miles from mile $12$.}
+\end{enumerate}
+\end{scenariobox}
+
+\boxguard[15]
+\begin{scenariobox}[2. In Range, Out of Range]{forest}
+Remember: the radio reaches the tower only from within $5$ miles of mile $12$.
+
+\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=8pt]
+  \item \textbf{Shade} every spot on the trail where a hiker's radio \emph{can} reach the tower.
+    \begin{center}
+    \begin{tikzpicture}[x=0.62cm, y=0.5cm]
+      \trail
+      \draw[very thick, greenacc] (7,0)--(17,0);
+      \fill[greenacc] (7,0) circle (3pt);
+      \fill[greenacc] (17,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    The shading runs from mile \ans{$7$} to mile \ans{$17$}, which as an inequality in $x$
+    --- no bars --- is \ans{$7 \le x \le 17$}
+  \item Now write ``within $5$ miles of the tower'' \emph{with} the bars, using your expression from
+        1c. \quad \ans{$|x-12|$} $\le 5$
+  \item \textbf{Shade} every spot where the radio \emph{cannot} reach the tower, then write those
+        markers as an inequality (or inequalities) in $x$.
+    \begin{center}
+    \begin{tikzpicture}[x=0.62cm, y=0.5cm]
+      \trail
+      \draw[very thick, redacc] (0,0)--(7,0);
+      \draw[very thick, redacc] (17,0)--(20,0);
+      \draw[redacc, thick, fill=white] (7,0) circle (3pt);
+      \draw[redacc, thick, fill=white] (17,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Out of reach when \ans{$x < 7$ or $x > 17$}
+  \item Compare your two answers. The ``can reach'' markers are \emph{one} connected stretch of
+        trail, but the ``cannot reach'' markers took \emph{two} separate pieces. Explain why, using
+        the picture.
+    \answerspace{2.4cm}{Everything within $5$ miles of the tower is one unbroken stretch of trail wrapped around mile $12$. The out-of-range markers are what is left over on \emph{both} sides of that stretch, and the in-range piece sits between them --- so they can never be written as one connected piece.}
+  \item A hiker at mile $3$ tries to radio in. Use your expression from 1c to decide whether the
+        call gets through, and say how the number you computed tells you.
+    \answerspace{2.0cm}{$|3-12| = |{-9}| = 9$ miles. That is more than $5$, so mile $3$ is out of range and the call does not get through.}
+  \item The parkway only exists between mile $0$ and mile $20$. Does that change your answer in
+        part (c)? Say exactly what has to be trimmed, and why.
+    \answerspace{1.8cm}{Yes --- both pieces: $0 \le x < 7$ and $17 < x \le 20$. Markers below $0$ or above $20$ are not on the parkway at all.}
+\end{enumerate}
+\end{scenariobox}
+
+
+% ── QuickNotes — target: half a page ─────────────────────────────────────────
+\boxguard[14]
+\begin{tcolorbox}[enhanced, colback=sky, colframe=navy, boxrule=0.8pt, arc=2mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, breakable,
+    fonttitle=\bfseries\small\color{white}, title={QuickNotes: Absolute Value Equations \& Inequalities},
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={colback=navy, colframe=navy, arc=1.5mm}]
+\small
+\begin{minipage}[t]{0.31\linewidth}
+\vspace{2pt}\centering
+\begin{tikzpicture}[x=0.40cm, y=0.42cm]
+  \numline{-2}{8}
+  \draw[very thick, greenacc] (1,0)--(5,0);
+  \draw[very thick, redacc] (-2.5,0)--(1,0);
+  \draw[very thick, redacc] (5,0)--(8.5,0);
+  \fill[charcoal] (1,0) circle (2.6pt);
+  \fill[charcoal] (5,0) circle (2.6pt);
+  \node[greenacc, font=\tiny, above] at (3,0.5){$|x-3|<2$};
+  \node[redacc, font=\tiny, above] at (-0.7,0.2){$>2$};
+  \node[redacc, font=\tiny, above] at (6.7,0.2){$>2$};
+\end{tikzpicture}\\[1pt]
+{\footnotesize Distance from $3$, with $c=2$}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.65\linewidth}
+\vspace{0pt}
+\begin{itemize}[leftmargin=1.1em, itemsep=4pt, topsep=0pt]
+  \item $|x-h|$ is the \textbf{distance} between $x$ and \ans{$h$}; a distance is never
+        \ans{negative}.
+  \item \textbf{Two-case rule.} $|X| = c$ with $c>0$: \; $X = $ \ans{$c$} or $X = $
+        \ans{$-c$}. \\
+        $c=0$: \ans{one} solution. \quad $c<0$: \ans{no} solution.
+  \item \textbf{Isolate first.} $3|x+1|-2=10$ splits only after $|x+1| = $ \ans{$4$}.
+\end{itemize}
+\end{minipage}
+
+\vspace{4pt}
+\begin{itemize}[leftmargin=1.1em, itemsep=4pt, topsep=0pt]
+  \item \textbf{``Less th\emph{AND}''} $(<,\le)$: $|X|<c$ says $X$ is \emph{closer} than $c$ to
+        zero, so \; ${\color{keyred}\mathbf{-c}} < X < {\color{keyred}\mathbf{c}}$ --- one interval (\emph{between}).
+  \item \textbf{``Great\emph{OR}''} $(>,\ge)$: $|X|>c$ says $X$ is \emph{farther} than $c$, so \;
+        $X < {\color{keyred}\mathbf{-c}}$ \, or \, $X > {\color{keyred}\mathbf{c}}$ --- two rays (\emph{outside}).
+  \item \textbf{Three notations, one set.} For $1 \le x \le 5$: \; set $\{x \mid {\color{keyred}\mathbf{1 \le x \le 5}}\}$,
+        \; interval \ans{$[1,5]$}, \; and a shaded number line. Brackets and \ans{closed} dots
+        include an endpoint; parentheses and \ans{open} dots exclude it ($\pm\infty$: always a
+        parenthesis).
+\end{itemize}
+\end{tcolorbox}
+
+% ── Application — worked together, target: half to one page ──────────────────
+\boxguard[14]
+\begin{notesbox}{Application: Roasting Tolerance}
+We will do this one together. A roaster fills bags labeled \textbf{340 grams}. Quality control
+\textbf{rejects} any bag whose weight is \textbf{more than 8 grams off} the label.
+
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item Let $w$ be a bag's weight in grams. Write an absolute value inequality that says the bag is
+        \emph{acceptable}. \quad \ans{$|w - 340| \le 8$}
+  \item Solve it.
+    \begin{work}
+             |w - 340| &\le 8 \\
+        -8 \le w - 340 &\le 8 \\
+             332 \le w &\le 348
+    \end{work}
+    Lightest acceptable bag: \ans{$332$} g \qquad Heaviest: \ans{$348$} g
+  \item A bag comes off the line at $331$ g. Accepted or rejected --- and how does your answer to
+        item~2 tell you, without re-solving anything?
+    \answerspace{1.6cm}{Rejected. The acceptable weights are $332$ to $348$ g, and $331$ falls below $332$ --- it is $9$ g off the label, more than the allowed $8$.}
+  \item The roaster tightens the rule to ``more than $5$ grams off.'' Does the acceptable range get
+        \emph{wider} or \emph{narrower}? \ans{narrower} \; What are the new endpoints?
+        \ans{$335$ and $345$ g}
+\end{enumerate}
+\end{notesbox}
+
+% ── Check Your Understanding — practice, NOT scored ──────────────────────────
+\boxguard[14]
+\begin{notesbox}{Check Your Understanding \quad {\normalfont\itshape (practice --- not scored)}}
+Pairs on 1--2, then finish 3--4 on your own. Isolate the bars \emph{before} you split.
+
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item \textbf{Isolate, split, verify.} Solve $3|x+1| - 2 = 10$, then check one solution in the
+        original equation.
+    \begin{work}
+      3|x+1| - 2 &= 10 \\
+          3|x+1| &= 12 \\
+           |x+1| &= 4 \\
+             x+1 &= 4 \quad\text{or}\quad x+1 = -4 \\
+               x &= 3 \quad\text{or}\quad x = -5
+    \end{work}
+    Solutions: $x = $ \ans{$3$ or $-5$} \qquad Check:
+    \answerspace{1.0cm}{$3|3+1| - 2 = 3(4) - 2 = 10$ --- it checks.}
+
+  \item \textbf{Three ways to say it.} Solve $|2x - 1| \le 5$, then write the set three ways.
+    \begin{work}
+              |2x-1| &\le 5 \\
+        -5 \le 2x-1 &\le 5 \\
+           -4 \le 2x &\le 6 \\
+            -2 \le x &\le 3
+    \end{work}
+    Set: \ans{$\{x \mid -2\le x\le 3\}$} \quad Interval: \ans{$[-2,3]$} \quad
+    \begin{tikzpicture}[x=0.44cm, y=0.44cm, baseline=-2pt]
+      \numline{-5}{5}
+      \draw[very thick, keyred] (-2,0)--(3,0);
+      \fill[keyred] (-2,0) circle (2.6pt);
+      \fill[keyred] (3,0) circle (2.6pt);
+    \end{tikzpicture}
+
+  \item \textbf{The odd ones out.} How many solutions, and what are they? Explain both from the
+        \emph{distance} meaning --- not a memorized rule. \\[3pt]
+        (a) $|x - 4| = -3$: \ans{none} \qquad (b) $|x - 4| = 0$: \ans{one: $x = 4$}
+    \answerspace{1.2cm}{$|x-4|$ is the distance from $x$ to $4$. Nothing sits $-3$ away, so (a) is impossible; exactly one point sits $0$ away --- $4$ itself.}
+
+  \item \textbf{Multiple choice.} Which is the solution set of $|x + 2| > 3$? Justify in one
+        sentence.
+    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=1pt]
+      \item $-5 < x < 1$
+      \item $x < -5$ \; or \; $x > 1$ \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item $x > 1$
+      \item all real numbers
+    \end{enumerate}
+    \answerspace{1.2cm}{$|x+2|>3$ says $x+2$ is \emph{more} than $3$ from zero, so it falls outside: $x+2<-3$ or $x+2>3$, i.e.\ $x<-5$ or $x>1$.}
+\end{enumerate}
+\end{notesbox}
+
+\end{document}

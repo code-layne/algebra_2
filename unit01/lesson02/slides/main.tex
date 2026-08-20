@@ -1,10 +1,20 @@
 %! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Slides (Beamer)
+% Deck follows the lesson's EFFL flow: launch → warm-up → activity → debrief (formalize) → practice → homework.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
-% Number line: {xmin}{xmax} then draw solutions on top.
+% Plain number line: {xmin}{xmax}
 \newcommand{\numline}[2]{%
-  \draw[->, thick, charcoal] (#1-0.4,0)--(#2+0.4,0);
-  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.09)--(\x,-0.09) node[below, font=\tiny]{$\x$};}}
+  \draw[->, thick, charcoal] (#1-0.5,0)--(#2+0.5,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.14)--(\x,-0.14) node[below, font=\tiny]{$\x$};}}
+% The parkway: mile markers 0..20, tower at mile 12.
+\newcommand{\trail}{%
+  \draw[->, thick, charcoal] (-0.7,0)--(21.2,0) node[right, font=\tiny]{mile};
+  \foreach \x in {0,...,20}{\draw[charcoal] (\x,0.26)--(\x,-0.26);}
+  \foreach \x in {0,4,...,20}{\node[below, font=\tiny, charcoal] at (\x,-0.30){$\x$};}
+  \fill[forest] (12,0) circle (3pt);
+  \node[forest, font=\tiny, above] at (12,0.34){tower};}
+% "Red ink" — the formal label the teacher adds on top of student work during the debrief.
+\newcommand{\redink}[1]{{\color{redacc}\bfseries #1}}
 
 \begin{document}
 
@@ -21,123 +31,310 @@
 \end{frame}
 }
 
-% HOOK
+% LEARNING TARGETS
 \begin{frame}[t, plain]
-  \forestheader{Absolute value is a distance}
-  \sectionlabel{Hook}
+  \forestheader{Today: experience first, formalize later}
+  \sectionlabel{Learning targets}
+  % Spoiler-free (EFFL): plain-language targets — the debrief attaches the vocabulary later.
+  By the end of today, I can\ldots
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item find every place that sits a \textbf{given distance} from a landmark --- and explain why
+          there is usually more than one;
+    \item describe every spot that is \textbf{close enough} to a target, and every spot that is
+          \textbf{too far}, on a number line and in symbols;
+    \item turn a ``\textbf{within} so much of'' statement into math, and say what the answer means
+          back in the situation.
+  \end{itemize}
+  \vspace{4pt}
+  \begin{block}{How today works}
+    Warm-up $\to$ \textbf{In Range} with your group $\to$ we name what you found $\to$
+    Check Your Understanding $\to$ homework.
+  \end{block}
+\end{frame}
+
+% WARM-UP
+\begin{frame}[t, plain]
+  \forestheader{Warm-Up: three things you already know}
+  \sectionlabel{5 minutes --- alone, then check with a neighbor}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{enumerate}\setlength{\itemsep}{6pt}
+        \item Evaluate $|-7|$, $|4|$, $|{-3}|+|5|$, $-|{-6}|$. How many numbers have an absolute
+              value of $7$?
+        \item How far apart are $3$ and $11$? Write that distance with bars. How far is $x$
+              from $6$?
+        \item Shade $x \ge -1$; shade all numbers between $-3$ and $2$. Filled dot or open dot?
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.28cm, y=0.5cm]
+        \numline{-6}{12}
+        \fill[forest] (3,0) circle (3pt);
+        \fill[forest] (11,0) circle (3pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ACTIVITY LAUNCH
+\begin{frame}[t, plain]
+  \forestheader{Experience: In Range}
+  \sectionlabel[goldacc]{Groups of 3--4 $\cdot$ 20 minutes}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      A straight stretch of parkway is marked off in miles, $0$ through $20$.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item A ranger's \textbf{radio tower} stands at \textbf{mile 12}.
+        \item A handheld radio reaches it only from \textbf{within 5 miles}.
+      \end{itemize}
+      \vspace{4pt}
+      \begin{block}{Your job}
+        Use what you already know --- number lines, distance, solving. For \emph{every} answer, be
+        ready to show me \textbf{where you see it in the picture}.
+      \end{block}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.23cm, y=0.5cm]
+        \trail
+      \end{tikzpicture}
+      \vspace{6pt}
+      {\footnotesize Part 1: exactly $5$ miles out. \\ Part 2: in range vs.\ out of range.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DEBRIEF 1 — distance and the two cases
+\begin{frame}[t, plain]
+  \forestheader{Debrief: naming what you found (1)}
+  \sectionlabel[redacc]{Part 1 --- exactly five miles out}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      \small
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item ``How far is mile $x$ from the tower?'' $\to$ \redink{$|x-12|$}: the
+              \redink{distance} between $x$ and $12$. A distance is \redink{never negative}.
+        \item ``Exactly $5$ miles out'' $\to$ the \redink{absolute value equation}
+              $|x-12| = 5$.
+        \item Your two markers $7$ and $17$ came from going $5$ \emph{down} and $5$ \emph{up}
+              $\to$ the \redink{two-case rule}: if $|X| = c$ and $c>0$, then $X = c$ \emph{or}
+              $X = -c$.
+        \item You checked both by substituting --- that is how you \redink{verify} a solution.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.22cm, y=0.5cm]
+        \trail
+        \fill[redacc] (7,0) circle (3pt);
+        \fill[redacc] (17,0) circle (3pt);
+        \draw[redacc, <->, semithick] (7,1.1)--(12,1.1) node[midway, above, font=\tiny]{$5$};
+        \draw[redacc, <->, semithick] (12,1.1)--(17,1.1) node[midway, above, font=\tiny]{$5$};
+      \end{tikzpicture}
+      \vspace{4pt}
+      {\footnotesize $|x-12| = 5 \;\Rightarrow\; x = 7$ or $x = 17$}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DEBRIEF 2 — in range: "and"
+\begin{frame}[t, plain]
+  \forestheader{Debrief: in range --- ``less th\emph{AND}''}
+  \sectionlabel[redacc]{Part 2a--b --- one connected piece}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      \small
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item ``Within $5$ miles'' $\to$ the \redink{absolute value inequality}
+              $|x-12| \le 5$.
+        \item Your shading ran from $7$ to $17$: the distance is \emph{less} than $5$, so the
+              expression is \redink{trapped between} $-5$ and $5$:
+              \[ -5 \le x-12 \le 5 \;\Longrightarrow\; 7 \le x \le 17 \]
+        \item Two inequalities that must \emph{both} hold: a \redink{compound ``and''}. One
+              connected \redink{interval}, $[7,17]$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.22cm, y=0.5cm]
+        \trail
+        \draw[very thick, greenacc] (7,0)--(17,0);
+        \fill[greenacc] (7,0) circle (3pt);
+        \fill[greenacc] (17,0) circle (3pt);
+        \node[greenacc, font=\tiny, above] at (12,0.9){in range};
+      \end{tikzpicture}
+      \vspace{4pt}
+      {\footnotesize $\{x \mid 7 \le x \le 17\} = [7,17]$}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DEBRIEF 3 — out of range: "or"
+\begin{frame}[t, plain]
+  \forestheader{Debrief: out of range --- ``great\emph{OR}''}
+  \sectionlabel[redacc]{Part 2c--d --- why it takes two pieces}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      \small
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item ``More than $5$ miles out'' $\to$ $|x-12| > 5$: the expression is thrown
+              \redink{outside} $[-5,5]$.
+              \[ x-12 < -5 \;\text{ or }\; x-12 > 5 \;\Longrightarrow\; x<7 \;\text{ or }\; x>17 \]
+        \item Only \emph{one} of the two has to hold: a \redink{compound ``or''} --- \redink{two
+              rays}, and the in-range stretch sits between them. That is your answer to 2d.
+        \item \textbf{Less th\emph{AND}, great\emph{OR}.} The symbol decides, every time.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.22cm, y=0.5cm]
+        \trail
+        \draw[very thick, redacc] (0,0)--(7,0);
+        \draw[very thick, redacc] (17,0)--(20,0);
+        \draw[redacc, thick, fill=white] (7,0) circle (3pt);
+        \draw[redacc, thick, fill=white] (17,0) circle (3pt);
+        \node[redacc, font=\tiny, above] at (3.5,0.9){out};
+        \node[redacc, font=\tiny, above] at (18.5,0.9){out};
+      \end{tikzpicture}
+      \vspace{4pt}
+      {\footnotesize On the parkway itself: $0 \le x < 7$ or $17 < x \le 20$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% DEBRIEF 4 — isolate first, special cases, three notations
+\begin{frame}[t, plain]
+  \forestheader{Debrief: isolate first, and the odd cases}
+  \sectionlabel[goldacc]{Two examples from me, one rule from you}
   \begin{columns}[T]
     \begin{column}{0.54\textwidth}
-      A cereal box is labeled \textbf{500 g}. Q.C.\ rejects a box \textbf{more than 5 g off}.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Lightest that passes? $\to$ \textbf{495 g}
-        \item Heaviest that passes? $\to$ \textbf{505 g}
-        \item One symbol for it? $\to$ $|w - 500| \le 5$
+      \small
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item \redink{Isolate the bars first.} $3|x+1|-2 = 10$ is not ready to split ---
+              get $|x+1| = 4$, \emph{then} use the two cases.
+        \item $|x-4| = -3$: \redink{no solution} --- nothing sits a negative distance away.
+              $|x-4| = 0$: \redink{exactly one} --- only $4$ sits $0$ away.
+        \item Same set, \redink{three notations}: \\
+              $\{x \mid 7 \le x \le 17\}$ \quad $[7,17]$ \quad and a shaded number line.
       \end{itemize}
     \end{column}
     \begin{column}{0.44\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.5]
-        \numline{-6}{6}
-        \fill[forest] (-5,0) circle (3pt); \fill[forest] (5,0) circle (3pt);
-        \node[forest, font=\scriptsize] at (0,0.7){distance $5$ each way};
+      \begin{tikzpicture}[x=0.42cm, y=0.5cm]
+        \numline{-2}{8}
+        \draw[very thick, greenacc] (1,0)--(5,0);
+        \fill[greenacc] (1,0) circle (3pt);
+        \fill[greenacc] (5,0) circle (3pt);
+        \node[greenacc, font=\tiny, above] at (3,0.7){$|x-3| \le 2$};
       \end{tikzpicture}
+      \vspace{6pt}
+      {\footnotesize Brackets $[\;]$ and \textbf{closed} dots include an endpoint; parentheses
+      $(\;)$ and \textbf{open} dots exclude it. $\pm\infty$ always takes a parenthesis.}
     \end{column}
   \end{columns}
-  \vspace{2pt}
-  \begin{block}{Today}
-    Every equation and inequality is a \emph{distance} question: exactly this far, or within/beyond
-    this far.
-  \end{block}
 \end{frame}
 
-% EQUATIONS
+% QUICKNOTES SUMMARY
 \begin{frame}[t, plain]
-  \forestheader{Solving $|ax+b| = c$: two cases}
-  \sectionlabel{Equations}
-  \begin{itemize}\setlength{\itemsep}{6pt}
-    \item \textbf{Isolate} the bars first, then split (if $c \ge 0$): \; $ax+b = c$ \; \textbf{or} \; $ax+b = -c$.
-    \item \textbf{Worked:} $|2x - 3| = 7 \Rightarrow 2x-3 = 7$ (so $x=5$) or $2x-3=-7$ (so $x=-2$).
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{Special cases (explain from distance)}
-    $|x-4| = -3$ $\to$ \textbf{no solution} (distance can't be negative); \quad
-    $|x-4| = 0$ $\to$ \textbf{one solution}, $x=4$.
-  \end{block}
-\end{frame}
-
-% AND CASE
-\begin{frame}[t, plain]
-  \forestheader{Inequalities: the ``and'' case ($<$, $\le$)}
-  \sectionlabel[goldacc]{Less thAND}
+  \forestheader{QuickNotes: the whole lesson on one card}
+  \sectionlabel{Fill the box in your packet}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      $|X| < c$ means \emph{within} $c$ of zero $\Rightarrow -c < X < c$ (one interval).\\[4pt]
-      \textbf{Solve} $|2x-1| \le 5$:
-      \[ -5 \le 2x-1 \le 5 \;\Rightarrow\; -2 \le x \le 3. \]
-      Set $\{x \mid -2 \le x \le 3\}$; \; interval $[-2,3]$.
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      \begin{enumerate}\setlength{\itemsep}{3pt}
+        \item $|x-h|$ is the \textbf{distance} between $x$ and $h$ --- never negative.
+        \item \textbf{Isolate} the bars before you split.
+        \item $|X| = c$, $c>0$: \; $X=c$ \textbf{or} $X=-c$ (two solutions). \\
+              $c=0$: one. \quad $c<0$: none.
+        \item $|X| < c$: \; $-c < X < c$ --- one interval (\textbf{and}).
+        \item $|X| > c$: \; $X<-c$ \textbf{or} $X>c$ --- two rays (\textbf{or}).
+        \item Write every set three ways: set, interval, number line.
+      \end{enumerate}
     \end{column}
-    \begin{column}{0.44\textwidth}
+    \begin{column}{0.46\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.5]
-        \numline{-4}{5}
-        \draw[very thick, forest] (-2,0)--(3,0);
-        \fill[forest] (-2,0) circle (3pt); \fill[forest] (3,0) circle (3pt);
+      \begin{tikzpicture}[x=0.42cm, y=0.5cm]
+        \numline{-2}{8}
+        \draw[very thick, greenacc] (1,0)--(5,0);
+        \draw[very thick, redacc] (-2.5,0)--(1,0);
+        \draw[very thick, redacc] (5,0)--(8.5,0);
+        \fill[charcoal] (1,0) circle (3pt);
+        \fill[charcoal] (5,0) circle (3pt);
+        \fill[navy] (3,0) circle (2.5pt);
+        \node[greenacc, font=\tiny, above] at (3,0.7){$|x-3|<2$};
+        \node[redacc, font=\tiny, above] at (-0.7,0.4){$>2$};
+        \node[redacc, font=\tiny, above] at (6.7,0.4){$>2$};
       \end{tikzpicture}
+      \vspace{4pt}
+      {\footnotesize One picture, both cases: \emph{between} vs.\ \emph{outside}.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% OR CASE
+% APPLICATION — worked together
 \begin{frame}[t, plain]
-  \forestheader{Inequalities: the ``or'' case ($>$, $\ge$)}
-  \sectionlabel[goldacc]{GreatOR}
+  \forestheader{Application: Roasting Tolerance}
+  \sectionlabel[goldacc]{We do this one together $\cdot$ 7 minutes}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      $|X| > c$ means \emph{beyond} $c$ from zero $\Rightarrow X < -c$ \textbf{or} $X > c$ (two rays).\\[4pt]
-      \textbf{Solve} $|x+2| \ge 4$:
-      \[ x+2 \le -4 \;\text{or}\; x+2 \ge 4 \;\Rightarrow\; x \le -6 \;\text{or}\; x \ge 2. \]
-      Interval $(-\infty,-6] \cup [2,\infty)$.
+    \begin{column}{0.56\textwidth}
+      \small
+      A roaster fills bags labeled \textbf{340 grams}, and rejects any bag whose weight is
+      \textbf{more than 8 grams off} the label.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Target $340$, allowed distance $8$, ``no more than'' $\Rightarrow$ \;
+              $|w - 340| \le 8$.
+        \item Solve: \; $-8 \le w-340 \le 8 \;\Longrightarrow\; 332 \le w \le 348$.
+        \item A $331$ g bag? \emph{Read it off the solved range} --- below $332$, so rejected
+              (it is $9$ g off).
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{Tighten the rule to 5 grams}
+        Same center, smaller allowed distance $\Rightarrow$ a \textbf{narrower} interval:
+        $335 \le w \le 345$.
+      \end{block}
     \end{column}
-    \begin{column}{0.44\textwidth}
+    \begin{column}{0.42\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.42]
-        \numline{-8}{4}
-        \draw[very thick, forest, <-] (-8.4,0)--(-6,0);
-        \draw[very thick, forest, ->] (2,0)--(4.4,0);
-        \fill[forest] (-6,0) circle (3pt); \fill[forest] (2,0) circle (3pt);
+      \begin{tikzpicture}[x=0.26cm, y=0.42cm]
+        \draw[->, thick, charcoal] (329.4,0)--(350.6,0);
+        \foreach \x in {330,...,350}{\draw[charcoal] (\x,0.14)--(\x,-0.14);}
+        \foreach \x in {330,335,340,345,350}{\node[below, font=\tiny, charcoal] at (\x,-0.16){$\x$};}
+        \draw[dashed, thin, charcoal] (340,-0.2)--(340,2.9);
+        \draw[very thick, greenacc] (332,2.3)--(348,2.3)
+          node[midway, above=0pt, font=\tiny, greenacc]{tolerance $8$};
+        \draw[very thick, goldacc] (335,1.1)--(345,1.1)
+          node[midway, above=0pt, font=\tiny, goldacc]{tolerance $5$};
+        \fill[greenacc] (332,2.3) circle (2.2pt); \fill[greenacc] (348,2.3) circle (2.2pt);
+        \fill[goldacc] (335,1.1) circle (2.2pt);  \fill[goldacc] (345,1.1) circle (2.2pt);
+        \fill[charcoal] (340,0) circle (2.6pt);
       \end{tikzpicture}
+      \vspace{4pt}
+      {\footnotesize Both ranges are centered on the label, $340$.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% THREE NOTATIONS
+% PRACTICE + HOMEWORK
 \begin{frame}[t, plain]
-  \forestheader{One set, three notations}
-  \sectionlabel{Representing solutions}
-  \begin{itemize}\setlength{\itemsep}{7pt}
-    \item \textbf{Set:} $\{x \mid -2 \le x \le 3\}$ --- describes the members.
-    \item \textbf{Interval:} $[-2,3]$ --- brackets \emph{include} an endpoint, parentheses \emph{exclude}; $\pm\infty$ always a parenthesis.
-    \item \textbf{Number line:} shade the set; \textbf{closed} dot for $\le/\ge$, \textbf{open} dot for $</>$.
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{Tolerance in context}
-    ``Within $0.3$ of $20$'' is $|L - 20| \le 0.3$, i.e.\ $19.7 \le L \le 20.3$.
-  \end{block}
-\end{frame}
-
-% ROADMAP
-\begin{frame}[t, plain]
-  \forestheader{Where Unit 1 goes next}
-  \sectionlabel{Connections}
-  \textbf{Today:} absolute value as distance; the two-case rule; ``and''/``or'' inequalities; set,
-  interval, and number-line notation.\\[8pt]
-  \begin{itemize}\setlength{\itemsep}{4pt}
-    \item \textbf{1.3} Absolute value \emph{functions} \& transformations --- the V-shape.
-    \item \textbf{1.4} Piecewise-defined functions.
-    \item \textbf{1.5} Linear regression.
+  \forestheader{Check Your Understanding, then homework}
+  \sectionlabel{Practice --- \emph{not scored} $\cdot$ pairs for 1--2, on your own for 3--4}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item Solve $3|x+1|-2 = 10$ (isolate, split, \emph{verify}); solve $|2x-1| \le 5$ and write it
+          three ways; the two odd cases; then one multiple-choice item.
+    \item For every answer: \emph{how far, from what} --- and does the symbol say \textbf{between}
+          or \textbf{outside}?
+    \item These are \textbf{practice, not a quiz} --- no points. I will still look at \#4 on your
+          way out.
   \end{itemize}
   \vspace{4pt}
-  {\footnotesize The two solutions of $|ax+b|=c$ are where the V-graph $y=|ax+b|$ meets $y=c$.}
+  \begin{block}{Homework --- 8 problems}
+    Isolated and isolate-first equations, none/one/two solutions, an ``and'' and an ``or''
+    inequality in all three notations, a thermostat tolerance model, and one ``explain why the
+    others are false.''
+  \end{block}
+  \vspace{4pt}
+  \textbf{Next:} Lesson 1.3 --- the same expression $|ax+b|$ becomes a \emph{graph}: the V-shape.
 \end{frame}
 
 \end{document}

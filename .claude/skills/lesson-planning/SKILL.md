@@ -32,7 +32,7 @@ knowledge; the teacher circulates with *questions, cues, and prompts — not ans
 attaches the formal vocabulary to what the groups already found (QuickNotes); then a practice
 set applies it to new contexts. There is **no separate direct-instruction block, no guided-notes
 component, no exit ticket, and no tiered instruction.** The 60-minute period runs
-5 warm-up / 20 activity / 15 debrief / 15 practice / 5 close.
+5 warm-up / 20 activity / 13 debrief / 7 application / 10 check-your-understanding / 5 close.
 
 ## The course at a glance
 
@@ -61,9 +61,11 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
   `cover`, `warmup`, **`experience`**, `homework`, and `slides`.
 - An **answer key** for each keyed component, as a *separate* sibling directory:
   `warmup_key`, `experience_key`, `homework_key`. (`cover` and `slides` have no key.)
-- **`experience` is the heart of the lesson** — one document in three parts: the group
-  **Activity** (two scenarios worked from prior knowledge), a **QuickNotes** box the debrief
-  fills, and a **Practice: Check Your Understanding** set. See `references/components.md`.
+- **`experience` is the heart of the lesson** — one document in **four** parts on a page budget:
+  the group **Activity** (two scenarios worked from prior knowledge, **≤2pp**), a **QuickNotes**
+  box the debrief fills (**½pp**), an **Application** worked together (**½–1pp**), and
+  **Check Your Understanding** (**1–2pp**, practice — **not scored**). See
+  `references/components.md`.
 - *Legacy shape:* lessons authored before the 2026-08 EFFL redesign still carry `notes`,
   `activity`, and `exit_ticket` dirs; the build accepts both. When touching a legacy lesson,
   ask whether to regenerate it in the EFFL shape rather than patching the old components.
@@ -203,7 +205,13 @@ and a worked skeleton for every component and its key. Hold to these invariants:
 - **EFFL scope (the timebox rule).** The activity must fit the 20-minute block: **two
   scenarios, ~10–13 sub-questions, ~2 pages at 12pt**, worked from prior knowledge with every
   graph pre-drawn. Extra examples (the special case, the compare-two-graphs) belong to the
-  debrief, the practice set, or the homework — not the activity. Homework is 5–10 problems.
+  debrief, the Application, or the homework — not the activity. Homework is 5–10 problems.
+- **The experience page budget (non-negotiable).** Activity **≤2pp** · QuickNotes **½pp** ·
+  Application **½–1pp** · Check Your Understanding **1–2pp**. A part that runs over gets cut, not
+  carried. Prefer a *full* single CYU page over a second page that is 10% used.
+- **Check Your Understanding is not scored.** It is practice: the cover's score column prints
+  **`\textbf{NA}`** for it rather than a `\blank{}`, the plan tells the teacher to spot-check the
+  formative item instead of collecting for a grade, and the deck says "practice, not a quiz."
 - **The spoiler rule.** Nothing the student sees *before* the activity — the cover and the
   deck's learning-targets frame — may pre-name the vocabulary the debrief will attach. Write
   targets in plain language ("where it starts, where it hits zero, how fast it changes"), and
