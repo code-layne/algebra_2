@@ -1,9 +1,8 @@
-%! Direct, Inverse \& Joint Variation — Unit 5, Lesson 5.7 — Guided Notes
+%! Inverse Functions — Unit 5, Lesson 5.7 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -19,14 +18,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item \textbf{decide}, from a table of values, whether two variables are \textbf{directly
-        proportional}, \textbf{inversely proportional}, or \textbf{neither} (A2.F.1d);
-  \item \textbf{find} the constant of variation $k$ and \textbf{write} the equation --- $y=kx$ or
-        $y=\frac{k}{x}$ --- then use it to answer a question (A2.F.1d);
-  \item \textbf{recognize} the graph of each: a direct variation is a line \emph{through the origin};
-        an inverse variation is the rational parent, asymptotes and all (A2.F.1d, A2.F.1a);
-  \item \textbf{interpret} $k$, a point on the graph, and the asymptotes in the words of the
-        situation --- and say which answers the situation will not accept (A2.F.2f).
+  \item \textbf{justify} that two functions are inverses by composing them \emph{both} ways and getting $f\big(g(x)\big)=g\big(f(x)\big)=x$;
+  \item \textbf{build} the inverse of a linear, cubic, quadratic, or square root function by \emph{swapping and solving}, and find points of $f^{-1}$ from a table or a graph of $f$;
+  \item explain why the graph of $f^{-1}$ is the reflection of $f$ over the line $y=x$, why domain and range trade places, and why $y=x^{2}$ must have its domain \textbf{restricted} before it is allowed a square root inverse.
 \end{itemize}
 \end{objectivebox}
 
@@ -36,334 +30,403 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{Direct variation (directly proportional)}
-\termblanklong{Inverse variation (inversely proportional)}
-\termblanklong{Constant of variation, $k$}
-\termblanklong{Joint variation \emph{(enrichment)}}
+\termblanklong{Inverse function}
+\termblanklong{The notation $f^{-1}(x)$}
+\termblanklong{The inverse test}
+\termblanklong{Swap and solve}
+\termblanklong{Reflection over $y=x$}
+\termblanklong{Horizontal line test}
+\termblanklong{Restricted domain}
 \end{vocabbox}
 
 \begin{hookbox}
-Two tables. In both of them $y$ goes up by the same amount every single step, so both are
-\textbf{lines}. Exactly one of them is a \emph{direct variation}.
+Your weather app shows the temperature in $^\circ$F; your cousin's shows $^\circ$C. The rule that
+turns Celsius into Fahrenheit is
+\[
+  F(c)=\tfrac{9}{5}c+32 \qquad\text{---\; \emph{multiply by $\tfrac95$, then add $32$.}}
+\]
 \begin{center}
-\begin{minipage}{0.46\linewidth}\centering
-\textbf{Table A}\\[2pt]
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|c|c|}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|l|c|c|c|@{}}
 \hline
-\rowcolor{forestbg}
-$x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-$y$ & $6$ & $12$ & $18$ & $24$ \\ \hline
-$y\div x$ & & & & \\ \hline
-\end{tabular}
-\end{minipage}\hfill
-\begin{minipage}{0.46\linewidth}\centering
-\textbf{Table B}\\[2pt]
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|c|c|}
+$c$ ($^\circ$C) & $0$ & $100$ & $20$ \\
 \hline
-\rowcolor{forestbg}
-$x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-$y$ & $9$ & $12$ & $15$ & $18$ \\ \hline
-$y\div x$ & & & & \\ \hline
+$F(c)$ ($^\circ$F) & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} \\
+\hline
 \end{tabular}
-\end{minipage}
+\end{center}
+Now you need the rule that goes the \emph{other} way. Two students try it:
+\begin{center}
+\small
+\begin{tcolorbox}[colback=white, colframe=charcoal!45, boxrule=0.7pt, arc=1.5mm,
+    width=0.86\linewidth, left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}l l@{}}
+\textbf{Rosa writes:} & $C(f)=\tfrac{5}{9}f-32$ \\
+\textbf{Malik writes:} & $C(f)=\tfrac{5}{9}(f-32)$ \\
+\end{tabular}
+\end{tcolorbox}
 \end{center}
 \vspace{-2pt}
-\textbf{The doubling test.} Take $x$ from $2$ to $4$ --- that is doubling the input.
-In Table A, $y$ goes from $12$ to \blank{1.0cm}: it \blank{2.4cm}.
-In Table B, $y$ goes from $12$ to \blank{1.0cm}: it \blank{2.4cm}.
-
-\vspace{3pt}
-So ``$y$ climbs steadily'' is \emph{not} the test. Table B's equation is $y=3x+6$, and that
-$+6$ is the whole difference: at $x=0$, Table A gives $y=\blank{0.8cm}$ but Table B gives
-$y=\blank{0.8cm}$. \textbf{A direct variation is a line through the \blank{1.8cm}} --- and the
-quotient row is how you see it without a graph.
+Test both at $f=212$, where you already know the answer must be $100$.
+\; Rosa: \blank{2.0cm} \; Malik: \blank{2.0cm}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Rosa reversed both operations correctly. What did she \emph{not} reverse? \blank{4.6cm}
+  \item Where have you seen that mistake already this week? \writeline
+\end{itemize}
+Today: how to build the ``other way'' rule for \emph{any} function --- and how to prove you got it
+right.
 \end{hookbox}
 
-\begin{notesbox}{1. Two Tests, Two Shapes}
-Everything today comes from one question: \textbf{which row of arithmetic settles down to a single
-number?}
-
-\vspace{4pt}
+\begin{notesbox}{1. A Function That Undoes Another}
+Two functions are \textbf{inverses} when each one \blank{2.6cm} the other: whatever $f$ does to a
+number, its partner takes it straight back.
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}p{0.20\linewidth} X X@{}}
-\hline
- & \textbf{Direct variation} & \textbf{Inverse variation} \\
-\hline
-Said out loud & ``$y$ varies directly as $x$'' / ``$y$ is directly proportional to $x$'' & ``$y$ varies inversely as $x$'' / ``$y$ is inversely proportional to $x$'' \\
-The test on a table & the \blank{2.0cm} $\dfrac{y}{x}$ is the same for every row & the \blank{2.0cm} $xy$ is the same for every row \\
-The equation & $y=\blank{1.2cm}$ & $y=\blank{1.2cm}$ \\
-In words & double $x$ and $y$ \blank{2.0cm} & double $x$ and $y$ \blank{2.0cm} \\
-The graph & a \blank{2.6cm} through the origin & the \blank{2.6cm} from Lesson 5.4 \\
-\hline
-\end{tabularx}
-\end{center}
-
-\vspace{4pt}
-\begin{center}
-\begin{minipage}{0.46\linewidth}\centering
-\begin{tikzpicture}[scale=0.34]
-  \lgrid{-6}{6}{-7}{7}
-  \draw[very thick, forest] (-3.5,-7)--(3.5,7);
-  \fill[charcoal] (0,0) circle (4.2pt);
-  \fill[charcoal] (1,2) circle (3.2pt);
-  \fill[charcoal] (2,4) circle (3.2pt);
-  \node[charcoal, font=\scriptsize, right] at (2.3,4.6) {$(2,4)$};
-\end{tikzpicture}\\[2pt]
-{\small $y=2x$ \quad (direct, $k=2$)}
-\end{minipage}\hfill
-\begin{minipage}{0.46\linewidth}\centering
-\begin{tikzpicture}[scale=0.34]
-  \lgrid{-7}{7}{-7}{7}
-  \begin{scope}
-    \clip (-7,-7) rectangle (7,7);
-    \draw[very thick, forest, domain=0.86:7, samples=140, smooth] plot (\x,{6/(\x)});
-    \draw[very thick, forest, domain=-7:-0.86, samples=140, smooth] plot (\x,{6/(\x)});
-  \end{scope}
-  \fill[charcoal] (2,3) circle (3.2pt);
-  \fill[charcoal] (3,2) circle (3.2pt);
-  \node[charcoal, font=\scriptsize, right] at (3.3,2.6) {$(3,2)$};
-\end{tikzpicture}\\[2pt]
-{\small $y=\dfrac{6}{x}$ \quad (inverse, $k=6$)}
-\end{minipage}
-\end{center}
-
-\vspace{3pt}
-On the right, the asymptotes are the \textbf{axes themselves}: $x=\blank{0.7cm}$ and
-$y=\blank{0.7cm}$. That is not a new fact --- an inverse variation \emph{is} the rational parent
-$\frac1x$ stretched by $k$.
-
-\vspace{3pt}
-\begin{center}
-\fbox{\parbox{0.93\linewidth}{\centering\vspace{2pt}
-\textbf{Constant quotient $\Rightarrow$ direct. \; Constant product $\Rightarrow$ inverse. \;
-Neither constant $\Rightarrow$ neither.}\\[2pt]
-``Neither'' is a real answer, and it is the most common one in life.\vspace{2pt}}}
-\end{center}
-\end{notesbox}
-
-\begin{notesbox}{2. Direct Variation --- Worked}
-Gasoline costs the same per gallon no matter how much you buy. Let $g$ be gallons and $c$ the cost.
-\begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\rowcolor{forestbg}
-$g$ (gallons) & $4$ & $7$ & $10$ & $12$ \\ \hline
-$c$ (dollars) & $13.60$ & $23.80$ & $34.00$ & $40.80$ \\ \hline
-$c\div g$ & & & & \\ \hline
-\end{tabular}
-\end{center}
-\vspace{-2pt}
-\textbf{Step 1 --- test it.} The quotient row is constant, so this is a \blank{2.4cm} variation.
-
-\textbf{Step 2 --- name $k$.} $k=\blank{1.6cm}$
-
-\textbf{Step 3 --- write the equation.} $c=\blank{2.2cm}$
-
-\textbf{Step 4 --- say what $k$ means} (A2.F.2f). The constant of variation is not a bare number. Its
-units are \blank{4.0cm}, and in plain words it is \blank{5.0cm}.
-
-\vspace{3pt}
-\textbf{Now use it.} $15$ gallons costs \blank{2.0cm}. \; And $\$27.20$ buys \blank{2.0cm} gallons.
-
-\vspace{3pt}
-{\small Notice the graph would pass through $(0,0)$, and it should: zero gallons costs zero dollars.
-Every direct variation says that. If a situation has a fee you pay before you buy anything, it is
-\emph{not} a direct variation.}
-\end{notesbox}
-
-\begin{notesbox}{3. Inverse Variation --- Worked, and It Is the Parent Function}
-You are driving a fixed $240$ miles. Let $r$ be your average speed and $t$ the time it takes.
-\begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\rowcolor{forestbg}
-$r$ (mph) & $30$ & $40$ & $48$ & $60$ \\ \hline
-$t$ (hours) & $8$ & $6$ & $5$ & $4$ \\ \hline
-$r\cdot t$ & & & & \\ \hline
-\end{tabular}
-\end{center}
-\vspace{-2pt}
-The product row is constant, so this is an \blank{2.4cm} variation with $k=\blank{1.4cm}$,
-and the equation is $t=\blank{1.8cm}$.
-
-\vspace{3pt}
-\textbf{What is $k$ this time?} It is not a rate. It is \blank{5.8cm} --- which makes sense,
-because $\text{rate}\times\text{time}=\text{distance}$ is the equation you already knew.
-
-\vspace{4pt}
-\begin{center}
-\begin{minipage}{0.42\linewidth}\centering
-\begin{tikzpicture}[scale=0.34]
-  \draw[step=1, linegray!40, very thin] (0,0) grid (9,14);
-  \draw[->, semithick, charcoal] (0,0)--(9.6,0) node[below right, font=\scriptsize]{$r$};
-  \draw[->, semithick, charcoal] (0,0)--(0,14.6) node[left, font=\scriptsize]{$t$};
-  \node[below, font=\tiny] at (2,0) {$20$};
-  \node[below, font=\tiny] at (4,0) {$40$};
-  \node[below, font=\tiny] at (6,0) {$60$};
-  \node[below, font=\tiny] at (8,0) {$80$};
-  \node[left, font=\tiny] at (0,4) {$4$};
-  \node[left, font=\tiny] at (0,8) {$8$};
-  \node[left, font=\tiny] at (0,12) {$12$};
-  \begin{scope}
-    \clip (0,0) rectangle (9,14);
-    \draw[very thick, forest, domain=1.75:9, samples=160, smooth] plot (\x,{24/(\x)});
-  \end{scope}
-  \fill[charcoal] (3,8) circle (3.4pt);
-  \fill[charcoal] (4,6) circle (3.4pt);
-  \fill[charcoal] (6,4) circle (3.4pt);
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \node (x) at (0,0) {$x$};
+  \node[draw=forest, thick, rounded corners, fill=forestbg, minimum width=1.4cm,
+        minimum height=0.85cm] (f) at (2.4,0) {$f$};
+  \node[draw=navy, thick, rounded corners, fill=sky, minimum width=1.4cm,
+        minimum height=0.85cm] (fi) at (6.4,0) {$f^{-1}$};
+  \node (out) at (9.1,0) {$x$ \;\emph{(back where you started)}};
+  \draw[->, thick, charcoal] (x)--(f);
+  \draw[->, thick, charcoal] (f)--node[above, font=\scriptsize]{$f(x)$}(fi);
+  \draw[->, thick, charcoal] (fi)--(out);
 \end{tikzpicture}
-\end{minipage}\hfill
-\begin{minipage}{0.54\linewidth}
+\end{center}
+\vspace{-2pt}
+\begin{center}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
 \small
-\textbf{Read the graph} (A2.F.2f).
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
-  \item At $r=40$, $t=\blank{1.0cm}$. In a sentence: \blank{4.6cm}
-  \item The \textbf{vertical asymptote} is $r=\blank{0.8cm}$. What does it say about the trip?
-        \blank{4.6cm}
-  \item The \textbf{horizontal asymptote} is $t=\blank{0.8cm}$. What does \emph{it} say?
-        \blank{4.6cm}
-  \item Only one branch is drawn. The equation allows $r=-30$; the road does not. So the domain
-        \emph{in context} is $r\blank{1.2cm}$.
-\end{enumerate}
+\textbf{The notation --- and the year's most misread symbol.} The inverse of $f$ is written
+$f^{-1}(x)$, read ``\emph{$f$ inverse of $x$}.''
+\\[3pt]
+That $-1$ is \textbf{not an exponent}. \quad
+$f^{-1}(x)\ \blank{0.9cm}\ \dfrac{1}{f(x)}$ \quad --- ever.
+\\[3pt]
+Here $-1$ is a \emph{label} meaning ``the undoing function.'' If $f(x)=2x$, then
+$f^{-1}(x)=\blank{1.6cm}$, \; while $\dfrac{1}{f(x)}=\blank{1.6cm}$. Two completely different
+functions.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{Warm-Up item 3, in this language.} The trick was ``double, then add $5$.'' Its inverse is
+``\blank{2.2cm}, then \blank{2.2cm}'' --- the opposite operations, in the
+\blank{2.2cm} order. Like taking off your shoes before your socks.
+\end{notesbox}
+
+\begin{notesbox}{2. The Test: Compose Both Ways and Look for $x$}
+Yesterday's tool is today's proof. If $f$ and $g$ really undo each other, then feeding a number
+through both machines must return it unchanged --- \emph{no matter which one runs first}.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering\small
+\textbf{The inverse test.} \quad $f$ and $g$ are inverses \; exactly when \;
+$f\big(g(x)\big)=\blank{1.0cm}$ \; \textbf{and} \; $g\big(f(x)\big)=\blank{1.0cm}$.
+\\[3pt]
+Both orders. Every time. One is not enough.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{(a) A pair that passes} --- the one from your Warm-Up. \quad $f(x)=2x+6$, \;
+$g(x)=\dfrac{x-6}{2}$. \quad Both orders gave \blank{1.0cm}, so they \blank{2.4cm} inverses.
+
+\vspace{5pt}
+\textbf{(b) A pair that fails --- and it is the Hook's mistake.} Keep $f(x)=2x+6$, but try
+$h(x)=\dfrac{x}{2}-6$ (halve, then subtract $6$: the right operations, in the wrong order).
+\[
+  f\big(h(x)\big)=2\!\left(\frac{x}{2}-6\right)+6=\blank{2.6cm}
+\]
+Not $x$, so $h$ is \blank{2.4cm}. Notice it is \emph{close} --- off by a constant --- which is
+exactly why this error survives an eyeball check and only composition catches it.
+
+\vspace{5pt}
+\textbf{(c) The pair from yesterday that passes \emph{one} order only.} $f(x)=x^{2}$ and
+$g(x)=\sqrt{x}$.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.96\linewidth}{@{}X|X@{}}
+$f\big(g(x)\big)=\left(\sqrt{x}\,\right)^{2}=\blank{1.2cm}$ \; --- but only for $x\ \blank{1.0cm}\ 0$ &
+$g\big(f(x)\big)=\sqrt{x^{2}}=\blank{1.2cm}$ \; (Lesson 5.1) --- which is \emph{not} $x$ when $x<0$ \\
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+So $x^{2}$ and $\sqrt{x}$ are \emph{almost} inverses --- and ``almost'' is precisely why the test
+demands \blank{2.4cm} orders. Section 5 fixes this pair for good.
+\end{notesbox}
+
+\begin{notesbox}{3. Building the Inverse: Swap and Solve}
+Testing a partner someone hands you is easy. Now build one from scratch. The idea comes straight
+from what an inverse \emph{is}: it trades inputs for outputs.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\small
+\textbf{Swap and solve.} \quad
+\textbf{Step 1.} Write $y=f(x)$. \quad
+\textbf{Step 2.} \blank{2.4cm} $x$ and $y$. \quad
+\textbf{Step 3.} Solve for \blank{0.8cm}. \quad
+\textbf{Step 4.} Rename it $f^{-1}(x)$.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+Step 3 is nothing new --- it is Warm-Up item 1, \emph{solve for the other variable}.
+
+\vspace{5pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.98\linewidth}{@{}l X X X@{}}
+\hline
+\textbf{$f(x)$} & \textbf{Swap} & \textbf{Solve for $y$} & \textbf{$f^{-1}(x)$} \\
+\hline
+(a) $f(x)=3x-7$ & $x=3y-7$ & \blank{2.6cm} & \blank{2.6cm} \\
+(b) $f(x)=\dfrac{x}{4}+2$ & \blank{2.2cm} & \blank{2.6cm} & \blank{2.6cm} \\
+(c) $f(x)=x^{3}+1$ & \blank{2.2cm} & \blank{2.6cm} & \blank{2.6cm} \\
+(d) $f(x)=\sqrt{x-2}$ & \blank{2.2cm} & \blank{2.6cm} & \blank{2.6cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+Rows (c) and (d) are this unit's own pair of moves: a \blank{2.4cm} undoes a cube, and
+\blank{2.4cm} undoes a square root. That is what ``inverse families'' meant back in Lesson 5.0.
+
+\vspace{4pt}
+\textbf{Row (d) needs one more word.} $f(x)=\sqrt{x-2}$ never outputs a negative number, so the
+partner is only allowed to \emph{accept} the numbers $f$ can produce:
+\[
+  f^{-1}(x)=x^{2}+2 \quad\text{for}\quad x\ \blank{1.0cm}\ 0.
+\]
+Without that condition, $x^{2}+2$ is a different function --- and it fails the test. Check: at
+$x=-3$, $f^{-1}$ would report \blank{1.2cm}, but $f$ never sent anything to $-3$ in the first place.
+
+\vspace{4pt}
+\textbf{Always finish by testing.} Verify row (a) with Section 2: $f\big(f^{-1}(x)\big)=\blank{2.6cm}$
+and $f^{-1}\big(f(x)\big)=\blank{2.6cm}$. \; \checkmark
+\end{notesbox}
+
+\begin{notesbox}{4. Points, Tables, and the Reflection Over $y=x$}
+Swapping $x$ and $y$ in the \emph{equation} is the same move as swapping the coordinates of every
+\blank{2.6cm}.
+\begin{center}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.7pt, arc=1.5mm, width=0.90\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\centering\small
+If $(a,b)$ is on the graph of $f$, then $\big(\blank{0.7cm},\blank{0.7cm}\big)$ is on the graph of
+$f^{-1}$ --- and $f(a)=b$ says exactly the same thing as $f^{-1}(b)=\blank{0.9cm}$.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{From a table.} Here is $f(x)=\sqrt{x}$ --- the table you built back in Lesson 5.0.
+\begin{center}
+\begin{minipage}[c]{0.46\linewidth}
+\centering\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|c|c|c|c|c|@{}}
+\hline
+$x$ & $0$ & $1$ & $4$ & $9$ \\
+\hline
+$f(x)$ & $0$ & $1$ & $2$ & $3$ \\
+\hline
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.46\linewidth}
+\centering\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|c|c|c|c|c|@{}}
+\hline
+$x$ & \blank{0.6cm} & \blank{0.6cm} & \blank{0.6cm} & \blank{0.6cm} \\
+\hline
+$f^{-1}(x)$ & \blank{0.6cm} & \blank{0.6cm} & \blank{0.6cm} & \blank{0.6cm} \\
+\hline
+\end{tabular}
 \end{minipage}
 \end{center}
+\vspace{-2pt}
+The two rows just traded places, so $f^{-1}(x)=\blank{1.6cm}$ --- and you have known this pair since
+Lesson 5.0.
 
+\vspace{5pt}
+\textbf{What that does to the picture.} Trading $x$ for $y$ flips the plane across the line
+$y=x$ (drawn dashed). \; \textbf{A2.F.2j:} \emph{the graph of $f^{-1}$ is the reflection of the graph
+of $f$ over the line} \blank{1.6cm}.
+\begin{center}
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-1}{6}{-1}{6}
+  \draw[dashed, thick, charcoal] (-0.6,-0.6)--(5.6,5.6);
+  \begin{scope}
+    \clip (-1,-1) rectangle (6,6);
+    \draw[very thick, forest, domain=0:6, samples=140, smooth] plot (\x,{sqrt(\x)});
+    \draw[very thick, navy, domain=0:2.5, samples=140, smooth] plot (\x,{(\x)*(\x)});
+  \end{scope}
+  \fill[forest] (0,0) circle (3.6pt);
+  \node[forest, font=\scriptsize] at (4.6,1.2) {$y=\sqrt{x}$};
+  \node[navy, font=\scriptsize] at (3.7,5.2) {$y=x^{2}$};
+  \node[charcoal, font=\scriptsize] at (4.6,3.4) {$y=x$};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-6}{6}{-6}{6}
+  \draw[dashed, thick, charcoal] (-5.6,-5.6)--(5.6,5.6);
+  \begin{scope}
+    \clip (-6,-6) rectangle (6,6);
+    \draw[very thick, forest] (-1,-6)--(6,8);
+    \draw[very thick, navy] (-6,-1)--(8,6);
+  \end{scope}
+  \fill[charcoal] (4,4) circle (3.6pt);
+  \node[forest, font=\scriptsize] at (-3.4,-2.2) {$f(x)=2x-4$};
+  \node[navy, font=\scriptsize] at (-3.2,1.6) {$f^{-1}$};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\vspace{-2pt}
+Read the right-hand picture: $f(x)=2x-4$ passes through $(0,-4)$ and $(2,0)$, so $f^{-1}$ passes
+through $\big(\blank{0.7cm},\blank{0.7cm}\big)$ and $\big(\blank{0.7cm},\blank{0.7cm}\big)$. The
+$x$-intercept of one is the \blank{2.4cm}-intercept of the other. The two graphs cross at
+$(4,4)$ --- and that point sits on \blank{1.4cm}, which is the only place a graph and its
+reflection can meet.
+\end{notesbox}
+
+\begin{notesbox}{5. When Does the Inverse Fail to Be a Function?}
+Swapping coordinates always produces a \emph{relation}. It does not always produce a
+\emph{function}, and this is where the unit's oldest question finally gets answered.
+\begin{center}
+\begin{minipage}[c]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-4}{4}{-5}{7}
+  \begin{scope}
+    \clip (-4,-5) rectangle (4,7);
+    \draw[very thick, navy, domain=-2.7:2.7, samples=120, smooth] plot (\x,{(\x)*(\x)});
+  \end{scope}
+  \draw[very thick, redacc, dashed] (-4,4)--(4,4);
+  \fill[redacc] (-2,4) circle (4pt);
+  \fill[redacc] (2,4) circle (4pt);
+\end{tikzpicture}
+\\[2pt]
+{\scriptsize $y=x^{2}$ \\ \textbf{Fails} --- $y=4$ hits twice}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-4}{4}{-5}{7}
+  \begin{scope}
+    \clip (-4,-5) rectangle (4,7);
+    \draw[very thick, navy, domain=0:2.7, samples=120, smooth] plot (\x,{(\x)*(\x)});
+  \end{scope}
+  \draw[very thick, greenacc, dashed] (-4,4)--(4,4);
+  \fill[greenacc] (2,4) circle (4pt);
+  \fill[navy] (0,0) circle (3.6pt);
+\end{tikzpicture}
+\\[2pt]
+{\scriptsize $y=x^{2},\ x\ge0$ \\ \textbf{Passes} --- domain restricted}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-4}{4}{-5}{7}
+  \begin{scope}
+    \clip (-4,-5) rectangle (4,7);
+    \draw[very thick, forest, domain=-1.75:1.9, samples=140, smooth] plot (\x,{(\x)*(\x)*(\x)});
+  \end{scope}
+  \draw[very thick, greenacc, dashed] (-4,4)--(4,4);
+  \fill[greenacc] (1.587,4) circle (4pt);
+\end{tikzpicture}
+\\[2pt]
+{\scriptsize $y=x^{3}$ \\ \textbf{Passes} --- no restriction}
+\end{minipage}
+\end{center}
 \vspace{2pt}
-{\small Part (d) is Lesson 5.6's habit doing new work: an answer can be rejected because the algebra
-forbids it (\emph{extraneous}) or because the situation forbids it. Today it is always the second kind.}
-\end{notesbox}
-
-\begin{notesbox}{4. The Third Answer: ``Neither''}
-A phone plan charges a flat monthly fee plus a price per gigabyte. Let $x$ be gigabytes used and $y$
-the bill.
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\rowcolor{forestbg}
-$x$ & $2$ & $4$ & $6$ & $8$ \\ \hline
-$y$ & $25$ & $35$ & $45$ & $55$ \\ \hline
-$y\div x$ & & & & \\ \hline
-$x\cdot y$ & & & & \\ \hline
-\end{tabular}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\small
+\textbf{Horizontal line test.} A function has an inverse that is \emph{also a function} exactly when
+no \blank{2.6cm} line crosses its graph more than \blank{1.2cm} time.
+\\[3pt]
+\emph{Why:} two points at the same height, $(-2,4)$ and $(2,4)$, swap into
+$\big(4,\blank{0.7cm}\big)$ and $\big(4,\blank{0.7cm}\big)$ --- one input with two outputs, which
+breaks the \blank{2.4cm} line test.
+\end{tcolorbox}
 \end{center}
-\vspace{-2pt}
-Quotients constant? \blank{1.0cm} \; Products constant? \blank{1.0cm} \; So the answer is
-\blank{2.0cm}. The equation is $y=5x+15$ --- a perfectly good \emph{line}, just not one through the
-origin.
-
-\vspace{4pt}
-\textbf{The other half of the trap.} Here $y$ goes \emph{down} as $x$ goes up. Is that enough to call
-it inverse?
+\vspace{2pt}
+\textbf{The fix, and the answer to the question you asked in Lesson 5.0.} Cut $y=x^{2}$ down to
+$x\ge0$ --- a \textbf{restricted domain} --- and only one arm survives. \emph{That} half passes the
+horizontal line test, and its inverse is $y=\blank{1.6cm}$.
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\rowcolor{forestbg}
-$x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-$y$ & $9$ & $8$ & $7$ & $6$ \\ \hline
-$x\cdot y$ & & & & \\ \hline
-\end{tabular}
-\end{center}
-\vspace{-2pt}
-Products: \blank{4.0cm} --- not constant, so this is \blank{2.0cm}. It is $y=10-x$.
-
-\vspace{3pt}
-\begin{center}
-\fbox{\parbox{0.93\linewidth}{\centering\vspace{2pt}
-\textbf{``Goes up together'' is not direct. \; ``One up, one down'' is not inverse.} \\[2pt]
-Only a constant quotient or a constant product decides it --- and it has to hold for
-\emph{every} row.\vspace{2pt}}}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.7pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\small
+Now the whole unit lines up. $y=x^{2}$ has \textbf{two} arms, so it needs a restriction and its
+inverse $y=\sqrt{x}$ gets only \emph{half} the number line as a domain. $y=x^{3}$ has
+\textbf{one} arm and never repeats an output, so it needs \emph{no} restriction and
+$y=\sqrt[3]{x}$ accepts \blank{2.6cm}. That single difference is where every contrast between the
+square root and cube root families came from --- domain, endpoint, symmetry, extrema, end behavior.
+\end{tcolorbox}
 \end{center}
 \end{notesbox}
 
-\begin{notesbox}{5. Find $k$, Then Answer the Question}
-Most problems hand you \emph{one} pair of values and ask about a different one. Same two steps every
-time: use the pair you were given to find $k$, write the equation, then substitute.
-
-\vspace{4pt}
+\begin{notesbox}{6. Domain and Range Trade Places}
+An inverse reads the arrows backwards, so what went \emph{in} now comes \emph{out}.
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}X|X@{}}
-\textbf{(a) Direct.} $y$ varies directly as $x$, and $y=21$ when $x=6$. &
-\textbf{(b) Inverse.} $y$ varies inversely as $x$, and $y=12$ when $x=5$. \\[3pt]
-$k=\dfrac{y}{x}=\blank{1.6cm}$ & $k=xy=\blank{1.6cm}$ \\[6pt]
-Equation: $y=\blank{2.0cm}$ & Equation: $y=\blank{2.0cm}$ \\[6pt]
-Find $y$ when $x=10$: \blank{1.6cm} & Find $y$ when $x=4$: \blank{1.6cm} \\[6pt]
-Find $x$ when $y=56$: \blank{1.6cm} & Find $x$ when $y=8$: \blank{1.6cm} \\
-\end{tabularx}
+\begin{tcolorbox}[colback=sky, colframe=navy, boxrule=0.7pt, arc=1.5mm, width=0.90\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\centering\small
+domain of $f^{-1}$ $=$ \blank{2.6cm} of $f$ \hspace{0.35in}
+range of $f^{-1}$ $=$ \blank{2.6cm} of $f$
+\end{tcolorbox}
 \end{center}
-
-\vspace{4pt}
-\textbf{The shortcut --- and it is yesterday's shortcut.} If you only need the missing value, you can
-skip $k$ entirely.
+\vspace{2pt}
+Fill the table for the pair you built in Section 3, $f(x)=\sqrt{x-2}$.
 \begin{center}
-\fbox{\parbox{0.93\linewidth}{\centering\vspace{3pt}
-\textbf{Direct:} \; $\dfrac{y_1}{x_1}=\dfrac{y_2}{x_2}$ \; --- one fraction equal to one fraction, so
-\blank{3.4cm} it. \\[5pt]
-\textbf{Inverse:} \; $x_1y_1=x_2y_2$ \; --- the products all equal the same
-$k$.\vspace{3pt}}}
-\end{center}
-
-\vspace{3pt}
-Check (b) with the shortcut: $5\cdot 12 = 4\cdot y$, so $y=\blank{1.4cm}$ --- same answer, no $k$
-written down. \; {\small But write $k$ anyway when the problem asks what it \emph{means}.}
-\end{notesbox}
-
-\begin{notesbox}{6. Joint and Combined Variation \emph{(enrichment)}}
-{\small These two are the same move, done twice. They are worth knowing and they are not on the test.}
-
-\vspace{3pt}
-\begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabularx}{\linewidth}{@{}p{0.20\linewidth} l X@{}}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.94\linewidth}{@{}l X X@{}}
 \hline
-\textbf{Joint} & $y=kxz$ & $y$ varies \emph{directly} as two things at once. Area of a triangle: $A=\frac12 bh$, so $A$ varies jointly as $b$ and $h$ with $k=\blank{1.0cm}$. \\
-\textbf{Combined} & $y=\dfrac{kx}{z}$ & $y$ varies directly as $x$ \emph{and} inversely as $z$. \\
+ & \textbf{Domain} & \textbf{Range} \\
+\hline
+$f(x)=\sqrt{x-2}$ & \blank{3.0cm} & \blank{3.0cm} \\
+$f^{-1}(x)=x^{2}+2$ & \blank{3.0cm} & \blank{3.0cm} \\
 \hline
 \end{tabularx}
 \end{center}
-
-\vspace{3pt}
-\textbf{Worked (joint).} $y$ varies jointly as $x$ and $z$; $y=60$ when $x=3$ and $z=4$. \\
-Then $k=\dfrac{60}{(3)(4)}=\blank{1.0cm}$, the equation is $y=\blank{1.6cm}$, and when $x=2$,
-$z=7$ we get $y=\blank{1.4cm}$.
-
-\vspace{3pt}
-\textbf{Worked (combined).} $y$ varies directly as $x$ and inversely as $z$; $y=20$ when $x=8$ and
-$z=2$. \\
-Then $k=\blank{1.0cm}$, the equation is $y=\blank{1.8cm}$, and when $x=6$, $z=3$ we get
-$y=\blank{1.4cm}$.
+\vspace{-2pt}
+The two rows are the same two sets, swapped --- which is why the restriction $x\ge0$ on $f^{-1}$ was
+\emph{not} optional bookkeeping. It is the \blank{2.0cm} of $f$, written down.
 \end{notesbox}
 
 \begin{practicebox}
-A crew is repainting one building --- the same job, no matter how many people show up. Let $w$ be the
-number of workers and $t$ the hours it takes.
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-\rowcolor{forestbg}
-$w$ & $2$ & $3$ & $5$ & $6$ \\ \hline
-$t$ & $15$ & $10$ & $6$ & $5$ \\ \hline
-\end{tabular}
-\end{center}
-\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
-  \item Which row of arithmetic is constant --- quotients or products? \blank{2.4cm} \; So this is a
-        \blank{2.4cm} variation.
-  \item $k=\blank{1.2cm}$, and the equation is $t=\blank{1.8cm}$.
-  \item What does $k$ \emph{mean} here? \blank{6.0cm}
-  \item With $4$ workers the job takes \blank{1.6cm} hours. With $12$ workers, \blank{1.6cm} hours.
-  \item The graph has a vertical asymptote at $w=\blank{0.8cm}$. Say what that means about the
-        building. \writeline
-  \item Your equation happily returns an answer for $w=4.5$. Should you report it? Why or why not ---
-        and is this the same kind of rejection as an \emph{extraneous} solution? \writeline
-\end{enumerate}
+Show your steps, and test every inverse you build.
+
+\vspace{4pt}
+\textbf{1.} Are $f(x)=5x-1$ and $g(x)=\dfrac{x+1}{5}$ inverses? Compose \emph{both} ways.
+\vspace{0.55in}
+
+$f\big(g(x)\big)=\blank{2.4cm}$ \hspace{0.3in} $g\big(f(x)\big)=\blank{2.4cm}$ \hspace{0.3in}
+Verdict: \blank{2.4cm}
+
+\vspace{6pt}
+\textbf{2.} Find $f^{-1}(x)$ for $f(x)=\sqrt[3]{x}+2$. \; Swap and solve.
+\vspace{0.55in}
+
+$f^{-1}(x)=\blank{3.0cm}$
+
+\vspace{6pt}
+\textbf{3.} The point $(-3,7)$ is on the graph of $f$. Name a point that must be on the graph of
+$f^{-1}$: \blank{2.0cm} \; What is $f^{-1}(7)$? \blank{1.4cm}
+
+\vspace{6pt}
+\textbf{4.} In one sentence: why does $y=x^{2}$ need a restricted domain before it can have an
+inverse function, while $y=x^{3}$ does not? \writeline
 \end{practicebox}
 
 \end{document}

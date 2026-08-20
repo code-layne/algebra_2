@@ -1,16 +1,8 @@
-%! Piecewise \& Step Functions — Unit 2, Lesson 2.4 — Homework (Answer Key)
+%! Complex Numbers — Unit 2, Lesson 2.4 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Endpoint dots
-\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
-\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
 
 \begin{document}
 
@@ -19,82 +11,97 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show your work. To evaluate a piecewise function, first find the piece whose condition the input
-satisfies (watch the boundary), then apply that rule. On a graph, a \emph{closed} dot includes its
-endpoint; an \emph{open} dot excludes it.
+Show your work. Pull the $i$ out \emph{first}, replace $i^2=-1$ when you multiply, and write every answer
+in standard $a+bi$ form.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Evaluate} $f(x)=\begin{cases} x+4, & x\le -1 \\ 2x, & x>-1 \end{cases}$
-        \\[3pt]
-        $f(-3)={\color{keyred}\mathbf{1}}$ \quad $f(-1)={\color{keyred}\mathbf{3}}$ \quad
-        $f(0)={\color{keyred}\mathbf{0}}$ \quad $f(5)={\color{keyred}\mathbf{10}}$
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Rewrite with $i$} (simplest radical form).
+    \[ \sqrt{-25}=\ans{$5i$} \quad \sqrt{-8}=\ans{$2i\sqrt{2}$} \quad \sqrt{-72}=\ans{$6i\sqrt{2}$} \quad \sqrt{-100}=\ans{$10i$} \quad -\sqrt{-49}=\ans{$-7i$} \]
 
-  \item \textbf{Read the graph} of $f(x)=\begin{cases} x+2, & x<1 \\ 5-x, & x\ge 1 \end{cases}$.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \lgrid{-3}{5}{-1}{5}
-          \draw[navy, dashed, semithick] (1,-1)--(1,5);
-          \draw[very thick, forest] (-3,-1)--(1,3);
-          \opendot{1}{3}
-          \draw[very thick, forest] (1,4)--(4,1);
-          \closeddot{1}{4}
-        \end{tikzpicture}
-        \end{center}
-        $f(-1)={\color{keyred}\mathbf{1}}$; \; $f(1)={\color{keyred}\mathbf{4}}$; \; domain
-        \ans{all real numbers}; \; increasing on \ans{$(-\infty,1)$}; \; decreasing on
-        \ans{$[1,\infty)$}. \; Is $f$ continuous at $x=1$? \ans{no}.
+  \item \textbf{Write in $a+bi$ form.}
+    \[ 4+\sqrt{-9}=\ans{$4+3i$} \quad -2-\sqrt{-16}=\ans{$-2-4i$} \quad \sqrt{-121}=\ans{$0+11i$} \quad 10=\ans{$10+0i$} \]
 
-  \item \textbf{Write it as pieces.} Rewrite $|x+1|$ as a two-piece function.
-        \[ |x+1|=\begin{cases} {\color{keyred}\mathbf{x+1}}, & x\ge -1 \\[3pt] {\color{keyred}\mathbf{-x-1}}, & x<-1 \end{cases} \]
+  \item \textbf{Add or subtract.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
+      \item $(5+3i)+(2-7i)=$ \ans{$7-4i$}
+      \item $(-4+i)-(3-6i)=$ \ans{$-7+7i$}
+      \item $(8-2i)-(8+2i)=$ \ans{$-4i$}
+    \end{enumerate}
 
-  \item \textbf{Greatest-integer function.} Evaluate.
-        \\[2pt]
-        $\lfloor 4.2\rfloor={\color{keyred}\mathbf{4}}$ \quad $\lfloor -3.1\rfloor={\color{keyred}\mathbf{-4}}$ \quad
-        $\lfloor 6\rfloor={\color{keyred}\mathbf{6}}$ \quad $\lfloor -0.5\rfloor={\color{keyred}\mathbf{-1}}$. \\[2pt]
-        For every $x$ in $[3,4)$, $\lfloor x\rfloor={\color{keyred}\mathbf{3}}$.
+  \item \textbf{Multiply.} FOIL, then replace $i^2=-1$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
+      \item $(2+i)(3+4i)$
+        \begin{work}
+          (2+i)(3+4i) &= 6+8i+3i+4i^2 \\
+                      &= 6+11i+4(-1) \\
+                      &= 2+11i
+        \end{work}
+      \item $(5-3i)(2-i)$
+        \begin{work}
+          (5-3i)(2-i) &= 10-5i-6i+3i^2 \\
+                      &= 10-11i+3(-1) \\
+                      &= 7-11i
+        \end{work}
+      \item $(1+6i)^2$
+        \begin{work}
+          (1+6i)^2 &= 1+12i+36i^2 \\
+                   &= 1+12i+36(-1) \\
+                   &= -35+12i
+        \end{work}
+      \item $3i(4-5i)$
+        \begin{work}
+          3i(4-5i) &= 12i-15i^2 \\
+                   &= 12i-15(-1) \\
+                   &= 15+12i
+        \end{work}
+    \end{enumerate}
 
-  \item \textbf{Model it.} A phone plan costs \$30 for up to $5$ GB of data, then \$10 for each GB over
-        $5$. Let $C(g)$ be the monthly cost for $g$ GB.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-          \item Complete the rule:
-                $C(g)=\begin{cases} {\color{keyred}\mathbf{30}}, & 0\le g\le 5 \\[3pt] 30+{\color{keyred}\mathbf{10(g-5)}}, & g>5 \end{cases}$
-          \item Find $C(3)$ and $C(8)$, and say what $C(8)$ means.
-                \begin{work}
-                  C(3) &= 30 \\
-                  C(8) &= 30+10(8-5) \\
-                       &= 30+10(3) \\
-                       &= 60
-                \end{work}
-                \ansline{\$60 is the cost for 8 GB --- \$30 base plus 3 GB over 5 at \$10 each.}
-        \end{enumerate}
+  \item \textbf{Conjugate products.} Multiply by the conjugate; your answer should be a real number.
+    \[ (7+2i)(7-2i)=\ans{$53$} \qquad (3-5i)(3+5i)=\ans{$34$} \]
 
-  \item \textbf{Explain.} When you evaluate a piecewise function at $x=a$, how do you decide which piece
-        to use? And how can you tell whether the function is \emph{continuous} at a boundary?
-        \ansline{Use the piece whose condition $x=a$ satisfies (the $\le/\ge$ tells you which piece owns a boundary point).}
-        \ansline{It is continuous at a boundary when both pieces give the \emph{same value} there; if they differ, the graph jumps.}
+  \item \textbf{Powers of $i$.} Reduce the exponent mod $4$.
+    \[ i^{12}=\ans{$1$} \quad i^{27}=\ans{$-i$} \quad i^{50}=\ans{$-1$} \quad i^{101}=\ans{$i$} \]
+
+  \item \textbf{Solve over the complex numbers.} Both solutions, in $a+bi$ form.
+    \[ x^2=-64:\ x=\ans{$\pm8i$} \qquad x^2+20=0:\ x=\ans{$\pm2i\sqrt{5}$} \]
+
+  \item \textbf{Explain.} A classmate claims ``$i^2=1$, because squaring always makes a number positive.''
+        What is wrong with this reasoning, and what is $i^2$ really?
+        \ansline{``Squaring gives a nonnegative result'' is a rule for \emph{real} numbers. $i$ is not real; it is \emph{defined} so that $i^2=-1$. So $i^2=-1$, not $1$.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Build and reason.}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item Write the piecewise rule for the function that is the constant $0$ for $x<0$, the line $y=2x$ for
-        $0\le x\le 2$, and the constant $4$ for $x>2$. Is it continuous at $x=0$ and at $x=2$? Explain.
-  \item A simple tax charges $10\%$ on income up to \$10{,}000 and $20\%$ on the amount above \$10{,}000.
-        Writing $T(x)$ for the tax on income $x$, complete $T(x)=\{\,0.10x \text{ if } 0\le x\le 10000;\
-        1000+{\color{keyred}\mathbf{0.20(x-10000)}} \text{ if } x>10000\,\}$, and explain why $T$ is
-        continuous at \$10{,}000.
+\textbf{Complex roots by completing the square.} Solve each; the two solutions are complex conjugates.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item $x^2-6x+13=0$
+    \begin{work}
+      x^2-6x &= -13 \\
+      x^2-6x+9 &= -4 \\
+      (x-3)^2 &= -4 \\
+      x-3 &= \pm2i \\
+      x &= 3\pm2i
+    \end{work}
+  \item $2x^2+8=0$ (divide by $2$ first)
+    \begin{work}
+      x^2+4 &= 0 \\
+      x^2 &= -4 \\
+      x &= \pm2i
+    \end{work}
+  \item Check (a): substitute one of your roots back into $x^2-6x+13$ and show it gives $0$.
+    \begin{work}
+      (3+2i)^2-6(3+2i)+13 &= (9+12i+4i^2)-(18+12i)+13 \\
+                          &= (5+12i)-(18+12i)+13 \\
+                          &= 0
+    \end{work}
 \end{enumerate}
-\ansline{(a) $f(x)=\{\,0 \text{ if } x<0;\ 2x \text{ if } 0\le x\le 2;\ 4 \text{ if } x>2\,\}$; continuous at both boundaries.}
-\ansline{At $x=0$ both pieces give $0$; at $x=2$ both give $4$ --- the pieces meet, so no jump.}
-\ansline{(b) $T$ is continuous at \$10{,}000 because $0.10(10000)=1000$ matches $1000+0.20(0)=1000$.}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 2.5: Linear Regression.} We leave exact rules behind: given a
-\emph{scatter} of real data points that don't lie on one line, we'll fit a single \textbf{line of best
-fit} and measure how well it fits with the \textbf{correlation coefficient}, then use it to make
-predictions.
+\textbf{Coming next --- Lesson 2.5: The Quadratic Formula \& the Discriminant.} You can now handle a
+\emph{negative} under a square root, so \emph{every} quadratic is solvable. Next you'll get one formula
+that solves them all, $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$, and use the \textbf{discriminant} $b^2-4ac$ to
+predict --- before solving --- whether the roots are two real, one real, or two complex conjugates.
 \end{spiralbox}
 
 \end{document}

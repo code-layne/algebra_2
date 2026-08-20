@@ -1,9 +1,11 @@
-%! Solving Rational Equations — Unit 5, Lesson 5.6 — Group Activity (Answer Key)
+%! Composition of Functions — Unit 5, Lesson 5.6 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+% In-formula answer slots (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\mexp}[1]{{\color{keyred}#1}}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -17,229 +19,258 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Solve, Then Check.} Same four steps every time, and always in this order:
-\textbf{(1)} factor every denominator and \emph{write the restriction list first}; \textbf{(2)} multiply
-every term by the LCD; \textbf{(3)} solve what is left; \textbf{(4)} check each candidate against the
-list, throw away any match, and verify the survivors. A number is not an answer until Step 4 says so.
+\small\textbf{Wired in Series.} Two machines, one after the other --- and the wire between them
+carries exactly one number. With your partner, write that middle number down \emph{every single
+time}. Most mistakes today are not arithmetic; they are running the machines in the wrong order.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- The list, before anything else.} Do \emph{not} solve. Just factor the denominators
-and write every excluded value.
+\textbf{Part 1 --- One step at a time.} \; Let $f(x)=x+4$ and $g(x)=3x$.
 \begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{0.96\linewidth}{@{}l X X X@{}}
 \hline
-\textbf{Equation} & \textbf{Restrictions} & \textbf{LCD} \\
+ & \textbf{Which runs first?} & \textbf{The middle number} & \textbf{Final answer} \\
 \hline
-\TallMath{\frac{3}{x}+\frac{1}{x-2}=1}          & \ans{$x\neq0,\,2$}  & \ans{$x(x-2)$} \\
-\TallMath{\frac{x}{x+5}=\frac{4}{x-1}}          & \ans{$x\neq-5,\,1$} & \ans{$(x+5)(x-1)$} \\
-\TallMath{\frac{2}{x-4}+\frac{1}{x+4}=\frac{6}{x^2-16}} & \ans{$x\neq4,\,-4$} & \ans{$(x-4)(x+4)$} \\
-\TallMath{\frac{5}{x^2-x}=\frac{1}{x}}          & \ans{$x\neq0,\,1$}  & \ans{$x(x-1)$} \\
+$(f\circ g)(2)$ & \ans{$g$} & $g(2)=\mans{6}$ & $f(\mans{6})=\mans{10}$ \\
+$(g\circ f)(2)$ & \ans{$f$} & $f(2)=\mans{6}$ & $g(\mans{6})=\mans{18}$ \\
 \hline
+\end{tabularx}
+\end{center}
+\vspace{-4pt}
+Same two functions, same input, two answers. Which one is bigger, and why does the order do that?
+\ans{$(g\circ f)(2)=18$. When tripling happens \emph{last}, the $+4$ gets tripled too.}
+
+\vspace{6pt}
+\textbf{Part 2 --- Now you run them.} Let $f(x)=2x-1$ and $g(x)=x^{2}$. Show the middle number.
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+(a) \; $(f\circ g)(3)$: \; middle $=\mans{9}$, \; answer $=\mans{17}$ &
+(b) \; $(g\circ f)(3)$: \; middle $=\mans{5}$, \; answer $=\mans{25}$ \\
+(c) \; $(f\circ g)(-2)$: \; middle $=\mans{4}$, \; answer $=\mans{7}$ &
+(d) \; $(g\circ f)(0)$: \; middle $=\mans{-1}$, \; answer $=\mans{1}$ \\
 \end{tabularx}
 \end{center}
 
 \vspace{4pt}
-\textbf{Part 2 --- Solution, or not?} Each candidate below is already given to you. Decide, and say
-\emph{why} in a few words. (Two of them are fine. Two are not.)
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item $\dfrac{x}{x-5}=\dfrac{5}{x-5}$, \; candidate $x=5$: \; \ans{not a solution} \; because
-        \ans{$5$ makes both denominators $0$ --- it is extraneous}
-  \item $\dfrac{4}{x}+\dfrac{1}{2}=\dfrac{5}{x}$, \; candidate $x=2$: \; \ans{solution} \; because
-        \ans{$2+\frac12=\frac52$, and $2$ is not excluded}
-  \item $\dfrac{1}{x+3}=\dfrac{2}{x^2-9}$, \; candidate $x=3$: \; \ans{not a solution} \; because
-        \ans{$x^2-9=0$ at $x=3$; the right side does not exist}
-  \item $\dfrac{2}{x-1}=\dfrac{x}{x+2}$, \; candidate $x=-1$: \; \ans{solution} \; because
-        \ans{both sides equal $-1$, and $-1$ is not excluded}
-\end{enumerate}
-\vspace{2pt}
-{\small One of these is a \emph{negative} answer that is perfectly good. Being negative is not a reason
-to reject anything.}
-
-\vspace{4pt}
-\textbf{Part 3 --- Twins.} These two equations differ by a single digit. Run all four steps on each.
+\textbf{Part 3 --- Read it off the graphs.} These are the same two graphs from your notes.
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}X|X@{}}
-\textbf{(a)} \; $\dfrac{x}{x-4}=\dfrac{4}{x-4}+3$ &
-\textbf{(b)} \; $\dfrac{x}{x-4}=\dfrac{2}{x-4}+3$ \\[6pt]
-Restrictions: $x\neq$ \ans{$4$} & Restrictions: $x\neq$ \ans{$4$} \\[4pt]
-Multiply by $x-4$: \; $x=$ \ans{$4+3(x-4)$} & Multiply by $x-4$: \; $x=$ \ans{$2+3(x-4)$} \\[4pt]
-Solve: \; $x=$ \ans{$4$} & Solve: \; $x=$ \ans{$5$} \\[4pt]
-Check: \ans{$4$ is excluded} & Check: \ans{$5$ is not excluded} \\[4pt]
-Answer: \ans{no solution} & Answer: \ans{$x=5$} \\
-\end{tabularx}
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-5}{7}{-3}{5}
+  \draw[very thick, forest] (-4,-2)--(0,2)--(4,0)--(6,4);
+  \fill[forest] (0,2) circle (3.4pt);
+  \fill[forest] (4,0) circle (3.4pt);
+  \node[forest, font=\scriptsize] at (-2.6,2.6) {$y=f(x)$};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-5}{7}{-3}{5}
+  \draw[very thick, navy] (-4,4)--(2,-2)--(6,2);
+  \fill[navy] (2,-2) circle (3.4pt);
+  \node[navy, font=\scriptsize] at (4.4,3.4) {$y=g(x)$};
+\end{tikzpicture}
+\end{minipage}
 \end{center}
 \vspace{-2pt}
-The algebra was the same both times. What made the answers different? \ansline{where the candidate
-landed --- in (a) it landed on the restriction list, in (b) it did not}
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.96\linewidth}{@{}X X X X@{}}
+\hline
+ & \textbf{Middle number} & \textbf{Read on which graph?} & \textbf{Answer} \\
+\hline
+(a) $(f\circ g)(-4)$ & \ans{$4$} & \ans{$g$} & \ans{$0$} \\
+(b) $(g\circ f)(-4)$ & \ans{$-2$} & \ans{$f$} & \ans{$2$} \\
+(c) $(f\circ g)(6)$ & \ans{$2$} & \ans{$g$} & \ans{$1$} \\
+(d) $(g\circ f)(2)$ & \ans{$1$} & \ans{$f$} & \ans{$-1$} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-4pt}
+Rows (a) and (b) start from the same input, $x=-4$. Explain to your partner why they do not finish
+at the same place. \ans{They hand different middle numbers along the wire: (a) sends $g(-4)=4$ into
+$f$, (b) sends $f(-4)=-2$ into $g$.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- A full solve, with one to throw away.} \;
-$\dfrac{x}{x-2}+\dfrac{2}{x+2}=\dfrac{8}{x^2-4}$
-\begin{enumerate}[label=\arabic*., leftmargin=2.1em, itemsep=5pt]
-  \item Factor the last denominator: $x^2-4=({\color{keyred}\mathbf{x-2}})({\color{keyred}\mathbf{x+2}})$. \;
-        Restrictions $x\neq$ \ans{$2,\,-2$}. \; LCD $=$ \ans{$(x-2)(x+2)$}
-  \item Multiply every term and cancel: \;
-        $x({\color{keyred}\mathbf{x+2}})+2({\color{keyred}\mathbf{x-2}})={\color{keyred}\mathbf{8}}$
-  \item Expand and collect: \; $0=x^2+{\color{keyred}\mathbf{4}}\,x-{\color{keyred}\mathbf{12}}
-        =(x+{\color{keyred}\mathbf{6}})(x-{\color{keyred}\mathbf{2}})$. \; Candidates \ans{$-6,\;2$}
-  \item Check against the list. Extraneous: \ans{$2$} \; Survivor: \ans{$-6$}
-  \item Verify the survivor in the \emph{original}: left side $=$ \ans{$\frac34-\frac12=\frac14$}, right side
-        $=$ \ans{$\frac{8}{32}=\frac14$}. \; Solution set \ans{$\{-6\}$}
-\end{enumerate}
-
-\vspace{5pt}
-\textbf{Part 2 --- Find the answer on a graph.} Consider $\dfrac{x^2}{x+3}=\dfrac{9}{x+3}$.
-
-\vspace{2pt}
-Subtract the right side from the left and combine into one fraction:
-\[ \frac{x^2}{x+3}-\frac{9}{x+3}=\frac{{\color{keyred}\mathbf{x^2-9}}}{x+3}
-   ={\color{keyred}\mathbf{x-3}},\qquad x\neq{\color{keyred}\mathbf{-3}} \]
-Solving the equation means finding where that combined function equals \ans{$0$}. Here is its
-graph.
+\textbf{Part 1 --- Both orders, in general.} For each pair, find both compositions and then decide
+whether they are the same function.
 \begin{center}
-\begin{tikzpicture}[scale=0.38]
-  \lgrid{-7}{7}{-9}{5}
-  \begin{scope}
-    \clip (-7,-9) rectangle (7,5);
-    \draw[very thick, forest] (-7,-10)--(7,4);
-  \end{scope}
-  \draw[forest, very thick, fill=white] (-3,-6) circle (4.4pt);
-  \node[charcoal, font=\scriptsize, right] at (-2.6,-6.6) {$(-3,-6)$};
-  \fill[charcoal] (3,0) circle (3.4pt) node[above left, font=\scriptsize]{$(3,0)$};
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}l X X c@{}}
+\hline
+\textbf{$f$ and $g$} & \textbf{$(f\circ g)(x)$} & \textbf{$(g\circ f)(x)$} & \textbf{Same?} \\
+\hline
+(a) $f(x)=3x$, \; $g(x)=x-2$ & \ans{$3x-6$} & \ans{$3x-2$} & \ans{no} \\
+(b) $f(x)=x^{2}$, \; $g(x)=x+1$ & \ans{$x^{2}+2x+1$} & \ans{$x^{2}+1$} & \ans{no} \\
+(c) $f(x)=\sqrt{x}$, \; $g(x)=x-9$ & \ans{$\sqrt{x-9}$} & \ans{$\sqrt{x}-9$} & \ans{no} \\
+(d) $f(x)=x+3$, \; $g(x)=x-3$ & \ans{$x$} & \ans{$x$} & \ans{yes} \\
+(e) $f(x)=3x-1$, \; $g(x)=\dfrac{x+1}{3}$ & \ans{$x$} & \ans{$x$} & \ans{yes} \\
+\hline
+\end{tabularx}
 \end{center}
-\vspace{-4pt}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item Read the solution off the graph: $x=$ \ans{$3$}, because that is the \ans{$x$-intercept}.
-  \item Now solve the equation algebraically. Candidates \ans{$3,\;-3$}; extraneous \ans{$-3$};
-        solution set \ans{$\{3\}$}.
-  \item The extraneous candidate is at the \ans{hole} in the picture. In one sentence, explain
-        what the picture is telling you that the candidate list alone did not. \ansline{the function
-        has no point at all at $x=-3$, so there is nothing there to equal zero --- the candidate is a
-        gap in the graph, not a crossing}
+\vspace{1.35in}
+
+\textbf{Part 2 --- What did you just find?}
+\begin{enumerate}[label=\textbf{J\arabic*.}, leftmargin=2.4em, itemsep=6pt]
+  \item Rows (d) and (e) behaved differently from the others: \emph{both} orders came out to the
+        same thing, and that thing was remarkably plain. What was it? What are those two functions
+        doing to each other --- and what word would you invent for a pair like that?
+        \ansline{Both compositions came out to $x$ itself --- whatever you start with, you get back.
+        Each function \emph{undoes} the other: $g$ subtracts $3$ and $f$ adds it back; $g$ divides
+        the shifted number by $3$ and $f$ multiplies and shifts back. Student wording will vary
+        (``opposites,'' ``reversers,'' ``undo-ers''); the real word is \textbf{inverse functions},
+        which is Lesson 5.7. Note for them that the check $f(g(x))=g(f(x))=x$ is exactly what they
+        just performed.}
+  \item Row (c) is the one to be careful with. The two answers do not have the same domain. State
+        both domains, and for each one say \emph{which stage} of the composition does the refusing.
+        \ansline{$\sqrt{x-9}$ has domain $x\ge9$: stage 1 accepts everything, but stage 2 (the
+        square root) demands $x-9\ge0$. \; $\sqrt{x}-9$ has domain $x\ge0$: here the square root
+        \emph{is} stage 1, so it refuses negatives immediately; subtracting $9$ afterwards restricts
+        nothing.}
+  \item A classmate answered row (b) with $(f\circ g)(x)=x^{2}+1$. That is a real function --- just
+        not the one that was asked for. Which composition did they actually compute, and what is the
+        one-sentence fix? \ansline{They computed $(g\circ f)(x)$ --- squared first, added $1$
+        second. Fix: the function next to the $x$ runs first, so $f$ receives the \emph{whole}
+        expression $x+1$ and squares all of it: $(x+1)^{2}$.}
 \end{enumerate}
 
 \vspace{4pt}
-\textbf{Part 3 --- Error analysis.} A student solved $\dfrac{2}{x-5}+\dfrac{3}{x}=\dfrac{10}{x^2-5x}$
-and wrote:
+\textbf{Part 3 --- Domains, on purpose.} Find $(f\circ g)(x)$, simplify it, and \emph{then} work out
+the domain from the two machines.
 \begin{center}
-\fbox{\parbox{0.80\linewidth}{\centering \vspace{2pt}
-``LCD is $x(x-5)$. So $2x+3(x-5)=10$, \\
-$5x-15=10$, \; $5x=25$, \; $x=5$. \\
-The solution is $x=5$.''\vspace{2pt}}}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{$f$ and $g$} & \textbf{$(f\circ g)(x)$, simplified} & \textbf{Domain} \\
+\hline
+(a) $f(x)=\sqrt{x}$, \; $g(x)=x+2$ & \ans{$\sqrt{x+2}$} & \ans{$x\ge-2$} \\
+(b) $f(x)=\sqrt{x-1}$, \; $g(x)=4x$ & \ans{$\sqrt{4x-1}$} & \ans{$x\ge\tfrac14$} \\
+(c) $f(x)=x^{2}+1$, \; $g(x)=\sqrt{x}$ & \ans{$x+1$} & \ans{$x\ge0$} \\
+\hline
+\end{tabularx}
 \end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item Is the LCD correct? \ans{yes} \; Is the cleared equation correct? \ans{yes} \;
-        Is the arithmetic correct? \ans{yes}
-  \item So the student made no mistake at all in Steps 1--3. What did they skip? \ans{Step 4 --- the
-        check against the restriction list}
-  \item Restrictions: $x\neq$ \ans{$0,\;5$}. \; Correct answer: \ans{no solution}
-  \item Write the one sentence the student should have written, using the words \emph{extraneous} and
-        \emph{denominator}. \ansline{$x=5$ is extraneous, because it makes the denominators $x-5$ and
-        $x^2-5x$ equal to zero, so the original equation is undefined there and has no solution}
-\end{enumerate}
+\vspace{-2pt}
+Row (c) simplifies to something with no radical left in it at all. Why is its domain still
+restricted? \ansline{Because the restriction happens at \emph{Gate 1}: the inner machine is
+$\sqrt{x}$, and it refuses a negative input before the squaring ever runs. Squaring afterwards
+cleans up the radical in the \emph{formula}, but it cannot go back and admit inputs that were
+already turned away.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Build the equation yourself.} Mia and Dev are painting a mural. Working alone, Dev
-takes \textbf{3 hours longer} than Mia. Working together, they finish in \textbf{2 hours}.
-
-\vspace{2pt}
-{\small In one hour, a person who needs $t$ hours for the whole job finishes $\frac{1}{t}$ of it.}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item Let $x=$ the hours \emph{Mia} needs alone. Then Dev needs \ans{$x+3$} hours. In one hour
-        Mia paints \ans{$\frac1x$} of the mural and Dev paints \ans{$\frac{1}{x+3}$}, and together they
-        paint \ans{$\frac12$} of it.
-  \item Write the equation: \; \ans{$\dfrac{1}{x}+\dfrac{1}{x+3}=\dfrac12$}
-  \item Restrictions (from the algebra): $x\neq$ \ans{$0,\;-3$}. \; Solve it. Candidates
-        \ans{$3,\;-2$}
-  \item Neither candidate is on the restriction list --- so \emph{both} of them really do solve the
-        equation. Check $x=-2$ in your equation to confirm it: \ans{$-\frac12+1=\frac12$, true}
-  \item You still have to reject $x=-2$. \textbf{Why?} And why is that a \emph{different} kind of
-        rejection from an extraneous solution? \ansline{a job cannot take $-2$ hours, so $-2$ is
-        rejected by the \emph{context}, not by the algebra --- it genuinely satisfies the equation,
-        while an extraneous root does not satisfy it at all}
-  \item Answer the question that was asked: Mia alone takes \ans{$3$} hours; Dev alone takes
-        \ans{$6$} hours.
+\textbf{Part 1 --- Settle the jacket argument for every price.} Keep $f(x)=0.80x$ (the $20\%$
+discount) and $g(x)=x-10$ (the coupon), but stop using \$$80$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Find both compositions as rules. \; $(f\circ g)(x)=\ans{$0.8x-8$}$ \; and \;
+        $(g\circ f)(x)=\ans{$0.8x-10$}$
+        \vspace{0.35in}
+  \item Subtract one from the other. The gap between the two orders is \ans{\$$2$} --- and it does
+        not depend on the price at all. Explain where that number comes from in terms of the
+        \$$10$ coupon and the $20\%$ discount. \ansline{Applying the coupon first means the $20\%$
+        discount is also taken off the \$$10$ you already saved: $0.20\times10=\$2$ of the coupon is
+        discounted away. The $x$-terms cancel in the subtraction, so the loss is \$$2$ at every
+        price.}
+  \item Which order does the \emph{store} prefer, and which does the \emph{customer} prefer? Does
+        your answer change for an expensive jacket? \ansline{The store prefers coupon-first (the
+        customer pays \$$2$ more); the customer prefers discount-first. It never changes --- the gap
+        is the constant $2$, not a percentage of the price.}
 \end{enumerate}
 
-\vspace{5pt}
-\textbf{Part 2 --- Make one on purpose.}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item Write a rational equation whose \emph{only} candidate is $x=3$ and for which $x=3$ is
-        extraneous --- so the equation has no solution. \;
-        \ans{e.g.\ $\dfrac{x}{x-3}=\dfrac{3}{x-3}$ (answers vary)}
-  \item Explain how you forced it. \ansline{put the target value in the denominator so it is excluded,
-        then arrange the numerators so that clearing produces an equation whose only root is that same
-        value}
-  \item Harder: write one with candidates $x=4$ and $x=-1$, where $x=-1$ is extraneous and $x=4$ is a
-        genuine solution. \; \ans{e.g.\ $\dfrac{x^2-3x}{x+1}=\dfrac{4}{x+1}$ (answers vary)}
+\vspace{4pt}
+\textbf{Part 2 --- When \emph{do} two linear functions commute?} Let $f(x)=ax+b$ and $g(x)=cx+d$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=4]
+  \item Compose both ways and simplify. \; $(f\circ g)(x)=\ans{$acx+ad+b$}$, \;
+        $(g\circ f)(x)=\ans{$acx+cb+d$}$
+        \vspace{0.40in}
+  \item The $x$-terms are identical no matter what. So the two compositions are equal for
+        \emph{every} $x$ exactly when the constants match: \ans{$ad+b=cb+d$}
+  \item Test your condition on Tier A row (d) ($f(x)=x+3$, $g(x)=x-3$) and on the jacket pair
+        ($f(x)=0.8x$, $g(x)=x-10$). Does it predict the right verdict both times? \ansline{Row (d):
+        $a=1,b=3,c=1,d=-3$, so $ad+b=0$ and $cb+d=0$ --- equal, and indeed both compositions gave
+        $x$. Jacket: $a=0.8,b=0,c=1,d=-10$, so $ad+b=-8$ and $cb+d=-10$ --- not equal, and the gap
+        between them, $-8-(-10)=2$, is the \$$2$ from Part 1.}
 \end{enumerate}
 
-\vspace{5pt}
-\textbf{Part 3 --- Can clearing the denominators ever \emph{lose} a solution?} Multiplying by the LCD
-can hand you extra answers. This question asks about the opposite direction.
+\vspace{4pt}
+\textbf{Part 3 --- More than two machines.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=7]
+  \item Let $f(x)=x^{2}$, $g(x)=x-1$, $h(x)=3x$. Find $(f\circ g\circ h)(2)$ by going right to left.
+        \; middles: \ans{$6$}, \ans{$5$} \; answer $=\ans{$25$}$
+  \item Take $h(x)=2\sqrt{x-5}+1$ apart into \emph{three} machines run in order. \\
+        First: \ans{$x-5$} \quad Second: \ans{$\sqrt{x}$} \quad Third: \ans{$2x+1$}
+  \item In Lesson 5.4 you called $2\sqrt{x-5}+1$ ``the parent, shifted right $5$, stretched by $2$,
+        shifted up $1$.'' Compare that list with your answer to (h). What is a transformation,
+        really? \ansline{It is the same list. A transformation \emph{is} a composition: the inside
+        machine changes the input before the parent sees it (horizontal moves), and the outside
+        machine changes the parent's answer afterwards (vertical moves).}
+\end{enumerate}
 
-\vspace{2pt}
-Take $\dfrac{x^2}{x-1}=\dfrac{x}{x-1}$.
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item Restrictions \ans{$x\neq1$}. Clear the denominator: \; \ans{$x^2=x$}. \; Candidates
-        \ans{$0,\;1$}. \; Extraneous \ans{$1$}. \; Solution set \ans{$\{0\}$}
-  \item A second student clears the denominator, gets $x^2=x$, and then \emph{divides both sides by
-        $x$} to get $x=1$. They report $x=1$. Two things went wrong at once --- name them both.
-        \ansline{dividing by $x$ threw away the root $x=0$, which was the only real solution; and they
-        never checked, so they kept $x=1$, which is extraneous}
-  \item Fill in the two rules. Multiplying both sides by an expression that could be zero can
-        \ans{add} solutions, so you must \ans{check} at the end. Dividing both sides by an
-        expression that could be zero can \ans{lose} solutions, so you should
-        \ans{factor and set each factor to zero} instead.
+\vspace{4pt}
+\textbf{Part 4 --- The pair that almost undoes itself.} Complete both columns. Write ``undefined''
+where the expression does not exist over the real numbers.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.9\linewidth}{@{}c X X@{}}
+\hline
+\textbf{$x$} & \TallMath{\left(\sqrt{x}\,\right)^{2}} & \TallMath{\sqrt{x^{2}}} \\
+\hline
+$-4$ & \ans{undefined} & \ans{$4$} \\
+$-1$ & \ans{undefined} & \ans{$1$} \\
+$0$ & \ans{$0$} & \ans{$0$} \\
+$4$ & \ans{$4$} & \ans{$4$} \\
+$9$ & \ans{$9$} & \ans{$9$} \\
+\hline
+\end{tabularx}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt, start=10]
+  \item As formulas, $\left(\sqrt{x}\,\right)^{2}=\ans{$x$}$ and $\sqrt{x^{2}}=\ans{$|x|$}$
+        (Lesson 5.1). One of them is defined for every real number; the other is not.
+        \ans{$\sqrt{x^{2}}$ is defined everywhere; $\left(\sqrt{x}\,\right)^{2}$ needs $x\ge0$.}
+  \item On which inputs do \emph{both} columns hand you back the $x$ you started with?
+        \ans{$x\ge0$}
+  \item So squaring and square-rooting undo each other --- but only on part of the number line.
+        Tomorrow you will meet the word for two functions that undo each other everywhere. What do
+        you predict has to be done to $y=x^{2}$ first, to make that possible? \ansline{Its domain
+        has to be \emph{restricted} to $x\ge0$ (keep only the right half of the parabola). On that
+        half, squaring and square-rooting really are perfect opposites in both orders --- which is
+        the answer to the question left open in Lesson 5.0.}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{teachernote}
-\textbf{Tier R Part 3 is the tier's whole point.} The two equations are identical except for one digit,
-and the four steps run the same way on both. Groups that finish quickly will notice that the ``$+3$''
-never mattered and the numerator did --- push them to say \emph{why}: in (a) the cleared equation's root
-happens to coincide with the excluded value, and in (b) it does not. There is nothing about the
-\emph{process} that predicts which. That is exactly why the check is mandatory.
-
-\vspace{3pt}
-\textbf{Tier R Part 2(d) is deliberate.} Students routinely reject negative answers on reflex. Here
-$x=-1$ is a genuine solution and the number they should reject, in 2(a) and 2(c), is positive. If a
-group rejects (d), stop and make them substitute.
-
-\vspace{3pt}
-\textbf{Tier A Part 2 is the graphical-verification requirement} (A2.EI.4b/c) and it is the item to
-debrief with the whole class if you debrief anything. The combined function is a \emph{line with a
-hole} --- $y=x-3$, with the point at $x=-3$ removed --- so the picture is unmistakable: the true
-solution is where the graph crosses the $x$-axis, and the extraneous candidate is the missing point.
-Students with graphing technology can reproduce this in ten seconds for any equation on the page.
-
-\vspace{3pt}
-\textbf{Tier A Part 3 is the error analysis with no error in it.} That framing matters: every line of
-the student's algebra is correct, and the answer is still wrong. It is the cleanest available argument
-that checking is part of solving rather than a proofreading habit. Expect at least one group to insist
-the student must have made an arithmetic slip.
-
-\vspace{3pt}
-\textbf{Tier E Part 1 draws the distinction the standard asks for} (A2.EI.4c vs.\ A2.EI.4d). Both
-candidates satisfy the equation; $-2$ is thrown out because a job cannot take negative hours, not
-because it breaks a denominator. Do not let ``extraneous'' become a synonym for ``rejected.''
-
-\vspace{3pt}
-\textbf{Tier E Part 3 answers a question sharp students ask} the first time they meet extraneous roots:
-if multiplying can add solutions, can it also lose them? It cannot --- but \emph{dividing} can, and the
-example is engineered so that the careless division discards the only real solution and keeps the
-extraneous one. Both failure modes in a single line of work.
+\small \textbf{Assign one tier, not all three.} Tier R is a procedure clinic; Tier A is the target
+work and every student headed for the exit ticket should get through its Part 1 and J2; Tier E is a
+genuine extension and its Part 4 is the direct set-up for Lesson 5.7.
+\begin{itemize}[leftmargin=1.3em, nosep]
+  \item \textbf{Insist on the middle number} in Tier R. A pair that stops writing it is a pair about
+        to reverse an order. Tier R Part 3 rows (a) and (b) exist only to make that visible: same
+        starting input, different wire, different destination.
+  \item \textbf{Tier A rows (d) and (e) are the point of the whole activity.} Do \emph{not} tell
+        groups what they have found. Let J1 be answered in their own words and collect the wordings
+        --- ``they cancel,'' ``they undo each other,'' ``you get $x$ back'' --- and open Lesson 5.7
+        by putting those exact phrases on the board next to the word \emph{inverse}. Row (e) matters
+        because it is the first pair students could not have guessed by eye.
+  \item \textbf{J2 is the item to grade closely.} ``Different domains'' is not the answer; naming
+        \emph{which stage} refuses, and \emph{what number} it refuses, is. Students who cannot do
+        this will not follow 5.7's restricted-domain argument.
+  \item \textbf{Tier A Part 3(c) is the sleeper.} $x+1$ with domain $x\ge0$ looks like a mistake to
+        students. It is the same phenomenon as Tier E Part 4 in smaller print --- if a group finds
+        it and argues about it, that argument is worth more than finishing the page.
+  \item \textbf{Tier E Part 2} is the only fully general result in the lesson, and it is worth
+        pointing out that the two $x$-terms come out identical \emph{automatically}: composition of
+        linear functions always multiplies the slopes, which is why only the constants can disagree.
+\end{itemize}
 \end{teachernote}
 
 \end{document}

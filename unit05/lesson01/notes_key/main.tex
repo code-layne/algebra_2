@@ -1,4 +1,4 @@
-%! Simplifying Rational Expressions — Unit 5, Lesson 5.1 — Guided Notes (Answer Key)
+%! $n$th Roots \& Rational Exponents — Unit 5, Lesson 5.1 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -7,6 +7,13 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Cube root: pgfmath has no cbrt, so plot the two branches separately.
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)});}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
 % The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
 % paragraph, so without them each term label gets pulled onto the previous answer's line.
@@ -23,9 +30,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item factor a rational expression completely and write it in \emph{simplest form} by dividing out common \emph{factors} --- never terms;
-  \item list every \emph{domain restriction} from the \emph{original} denominator, including the ones that cancel;
-  \item \emph{justify} that two rational expressions are equivalent, and say exactly which inputs they disagree on.
+  \item find \emph{$n$th roots}, name the \emph{principal} root, and explain --- with exponents --- why an even root of a negative number does not exist while an odd one does;
+  \item convert back and forth between \emph{radical form} and \emph{rational exponent form}, using $a^{m/n}=\sqrt[n]{a^m}=\left(\sqrt[n]{a}\right)^m$, and evaluate such expressions without a calculator;
+  \item apply the exponent properties I already know to rational exponents --- including combining radicals with \emph{different indices}, which no radical rule can do.
 \end{itemize}
 \end{objectivebox}
 
@@ -35,225 +42,293 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
-\vocabans{Rational expression}{a quotient of two polynomials, $\frac{P(x)}{Q(x)}$, where $Q(x)\neq0$}
-\vocabans{Simplest form (lowest terms)}{the form in which the numerator and denominator share no common factor except $1$ --- with the original restrictions still attached}
-\vocabans{Factor vs.\ term}{factors are \emph{multiplied}; terms are \emph{added or subtracted}. Only common \emph{factors} may be divided out}
-\vocabans{Equivalent rational expressions}{expressions that give the same value at every input for which \emph{both} are defined}
-\vocabans{Opposite binomials}{two binomials with every sign flipped, such as $x-5$ and $5-x$; one is $-1$ times the other, so their quotient is $-1$}
+\vocabans{$n$th root}{a number $b$ with $b^n=a$, written $\sqrt[n]{a}$; the index $n$ says which root is being taken}
+\vocabans{Principal $n$th root}{the one value the radical symbol returns --- the non-negative root when the index is even; write $\pm$ yourself if you want both}
+\vocabans{Rational exponent}{a fractional exponent; $a^{1/n}$ means $\sqrt[n]{a}$, because $\left(a^{1/n}\right)^n=a$}
+\vocabans{The $a^{m/n}$ rule}{$a^{m/n}=\sqrt[n]{a^m}=\left(\sqrt[n]{a}\right)^m$ --- the \emph{denominator} is the index (the root), the \emph{numerator} is the power}
+\vocabans{Negative rational exponent}{$a^{-m/n}=\dfrac{1}{a^{m/n}}$ --- it means \emph{reciprocal}, never a negative answer}
 \end{vocabbox}
 
 \begin{hookbox}
-Two expressions, one table. Let $A(x)=\dfrac{x^2-x-6}{x^2-9}$ and $B(x)=\dfrac{x+2}{x+3}$.
-\begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-$x$ & $0$ & $1$ & $4$ & $3$ \\ \hline
-$A(x)$ & \ans{$\frac23$} & \ans{$\frac34$} & \ans{$\frac67$} & \ans{undef.} \\ \hline
-$B(x)$ & \ans{$\frac23$} & \ans{$\frac34$} & \ans{$\frac67$} & \ans{$\frac56$} \\ \hline
-\end{tabular}
-\end{center}
+Here is a problem you cannot do --- yet:
+\[
+  \sqrt{x}\cdot\sqrt[3]{x} = \underline{\hspace{2.5cm}}
+\]
+Every radical rule you have ever seen requires the two indices to \textbf{match}, and these do not.
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Where do $A$ and $B$ agree? \ansline{everywhere they are both defined --- at $x=0,1,4$ and at every other allowed input}
-  \item There is exactly one column where they do \emph{not} agree. Which one, and what goes wrong there? \ansline{at $x=3$: $A(3)=\frac{0}{0}$ is undefined (the denominator $x^2-9$ is zero), while $B(3)=\frac56$}
+  \item So try the other direction. What number, raised to the power $2$, gives $a$? \ansline{$\sqrt{a}$ --- the square root of $a$, by definition.}
+  \item Now suppose $a^{1/2}$ meant something. Using ``power to a power,'' $\left(a^{1/2}\right)^2 = a^{\,\mans{1}} = a$. So $a^{1/2}$ has \textbf{no choice} --- it must equal \ans{$\sqrt{a}$}.
 \end{itemize}
-$B$ is what you get when you factor $A$ and cancel. It is \emph{almost} the same expression --- and the
-whole lesson lives in that word \emph{almost}: \textbf{cancelling changes how an expression looks, but
-it never gives back an input that was already thrown away.}
+That is today's whole idea: \textbf{a radical is an exponent in disguise.} Once you can write
+$\sqrt[n]{a}$ as $a^{1/n}$, every exponent rule from the Warm-Up applies to radicals --- and the
+problem above becomes one line.
 \end{hookbox}
 
-\begin{notesbox}{1. Rational Expressions and Their Restrictions}
-A \textbf{rational expression} is a \emph{quotient of two polynomials} --- the same object as a
-rational function, just written without the ``$f(x)=$.'' Because division by zero is undefined, every
-input making the denominator zero is a \textbf{domain restriction} (an \textbf{excluded value}).
+\begin{notesbox}{1. $n$th Roots and the \emph{Principal} Root}
+\textbf{Definition.} $\sqrt[n]{a} = b$ means $b$ raised to the \ans{$n$th} power equals $a$.
+\; The \textbf{index} $n$
+says which root; the number under the radical is the \textbf{radicand}.
 
 \vspace{3pt}
-\textbf{The procedure from Lesson 5.0, unchanged:} set the \ans{denominator} equal to \ans{0},
-solve, and exclude every answer.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item For the anchor $A(x)=\dfrac{x^2-x-6}{x^2-9}$: solve $x^2-9=0$. \; Factored: \ans{$(x-3)(x+3)$},
-        \; so the excluded values are $x=$ \ans{$3,\ -3$}.
-  \item \textbf{Careful:} the \emph{numerator} is allowed to be zero --- that gives a \textbf{zero} of
-        the expression, not a restriction.
-\end{itemize}
-
-\vspace{3pt}
-\textbf{Find the restrictions \emph{before} you simplify.} That is not advice about tidiness --- it is
-the only way to get them all, as the next two pages show.
-\end{notesbox}
-
-\begin{notesbox}{2. Why Cancelling Works --- and What It Is Not}
-Cancelling is not crossing out matching symbols. It is one rule:
+But ``which root'' hides a subtlety. Since $4^2=16$ \emph{and} $(-4)^2=16$, the number $16$ has
+\emph{two} real square roots. The radical symbol is defined to give only the
+\textbf{principal} (the \emph{non-negative}) one:
 \[
-  \frac{a\cdot c}{b\cdot c} \;=\; \frac{a}{b}\cdot\frac{c}{c} \;=\; \frac{a}{b}\cdot 1
-  \;=\; \frac{a}{b}, \qquad b\neq0,\ c\neq0 .
+  \sqrt{16} = \mans{4}, \qquad -\sqrt{16} = \mans{-4},
+  \qquad \pm\sqrt{16} = \mans{\pm 4}.
 \]
-You are dividing out a factor equal to \ans{1}. This works \emph{only} when $c$ is a
-\textbf{factor} --- something multiplied by everything else --- and only when $c\neq0$, which is
-exactly why the restrictions matter.
+If you want both roots, you must \emph{write} the $\pm$ yourself --- the symbol will not give it to you.
 
-\vspace{4pt}
-\textbf{Factors are multiplied. Terms are added or subtracted.}
+\vspace{3pt}
+\textbf{How many real $n$th roots are there?} Fill in the table from the Warm-Up.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l l X X@{}}
+\hline
+\textbf{Index $n$} & \textbf{Radicand $a$} & \textbf{How many real $n$th roots?} & \textbf{Example} \\
+\hline
+\textbf{Even} & $a>0$ & \ans{two} (one positive, one negative) & $\sqrt[4]{81}=$ \ans{$3$}, and $-3$ also works \\
+\textbf{Even} & $a=0$ & \ans{one (just $0$)} & $\sqrt{0}=0$ \\
+\textbf{Even} & $a<0$ & \ans{none (not a real number)} & $\sqrt{-16}$ is \ans{not real} \\
+\textbf{Odd}  & any $a$ & \ans{exactly one}, with the same sign as $a$ & $\sqrt[3]{-27}=$ \ans{$-3$} \\
+\hline
+\end{tabularx}
+\end{center}
+\textbf{Why?} Warm-Up item~1 already answered it. An \textbf{even} power of any real number is
+\ans{never negative}, so nothing real can be raised to an even power and come out negative. An
+\textbf{odd} power \ans{keeps} the sign, so a negative radicand is no problem at all. \emph{This
+is the algebraic reason behind Lesson 5.0's domain rule.}
+
+\vspace{3pt}
+\textbf{Perfect $n$th powers to know on sight} (you will read these \emph{backwards} all period):
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+Squares & $4,\ 9,\ 16,\ 25,\ 36,\ 49,\ 64,\ 81,\ 100,\ 121,\ 144$ \\
+Cubes   & $8,\ 27,\ 64,\ 125,\ 216$ \quad and $-8,\ -27,\ -64,\dots$ \\
+Fourth powers & $16,\ 81,\ 256$ \qquad Fifth powers: $32,\ 243$ \\
+\end{tabularx}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $\sqrt[5]{32}=$ \ans{$2$} \quad because \ans{$2$}$^5=32$.
+  \item $\sqrt[4]{81}=$ \ans{$3$} \quad $\sqrt[3]{-64}=$ \ans{$-4$} \quad
+        $\sqrt[3]{\dfrac{8}{125}}=$ \ans{$\dfrac{2}{5}$} \quad (take the root of the top \emph{and} the bottom).
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{2. The Trap: $\sqrt[n]{a^n}$ Is Not Always $a$}
+Simplify each one \emph{carefully} --- work from the inside out.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}l l l@{}}
+(a) \; $\sqrt{5^2}=\sqrt{\mans{25}}=\mans{5}$ &
+(b) \; $\sqrt{(-5)^2}=\sqrt{\mans{25}}=\mans{5}$ &
+(c) \; $\sqrt[3]{(-5)^3}=\sqrt[3]{\mans{-125}}=\mans{-5}$ \\
+\end{tabular}
+\end{center}
+In (b) the answer came back \emph{positive} even though we started with $-5$. The square destroyed
+the sign, and the principal root refuses to put it back. So:
+\begin{center}
+\begin{tabular}{@{}l l@{}}
+$n$ \textbf{even}: \; $\sqrt[n]{a^n}=\mans{|a|}$ &
+\qquad $n$ \textbf{odd}: \; $\sqrt[n]{a^n}=\mans{a}$ \\
+\end{tabular}
+\end{center}
+So $\sqrt{x^2}=$ \ans{$|x|$} (we do not know whether $x$ is positive!), while
+$\sqrt[3]{x^3}=$ \ans{$x$}.
+\end{notesbox}
+
+\begin{notesbox}{3. A Radical \emph{Is} an Exponent: $\sqrt[n]{a}=a^{1/n}$}
+Nobody decided this --- the exponent rules \textbf{force} it. Whatever $a^{1/n}$ means, ``power to a
+power'' has to keep working:
+\[
+  \left(a^{1/n}\right)^n = a^{\frac{1}{n}\cdot n} = a^{\mans{1}} = a .
+\]
+So $a^{1/n}$ is the number that, raised to the $n$th power, gives back $a$ --- and that is exactly
+the definition of \ans{the $n$th root of $a$}. Therefore:
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.62\linewidth]
+\centering $\displaystyle \sqrt[n]{a} = a^{1/n}$ \qquad \emph{(the index becomes the denominator)}
+\end{tcolorbox}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $\sqrt{7}=7^{\,\mans{1/2}}$ \quad $\sqrt[3]{x}=x^{\,\mans{1/3}}$ \quad
+        $\sqrt[5]{2y}=(2y)^{\,\mans{1/5}}$
+  \item $11^{1/2}=$ \ans{$\sqrt{11}$} \quad $m^{1/4}=$ \ans{$\sqrt[4]{m}$} \quad
+        $64^{1/3}=$ \ans{$\sqrt[3]{64}$} (and now you can \emph{evaluate} it: \ans{$4$})
+\end{itemize}
+\emph{Watch the parentheses:} $2y^{1/5}$ and $(2y)^{1/5}$ are different --- in the first, only the
+$y$ is under the root.
+\end{notesbox}
+
+\begin{notesbox}{4. The Full Rule: $a^{m/n}$ --- Denominator Roots, Numerator Powers}
+What if the numerator is not $1$? Split the fraction: $\dfrac{m}{n}=\dfrac{1}{n}\cdot m$, so
+$a^{m/n}=\left(a^{1/n}\right)^m$. Both orders are legal:
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.86\linewidth]
+\centering $\displaystyle a^{m/n} = \sqrt[n]{a^m} = \left(\sqrt[n]{a}\right)^m$
+\qquad \textbf{denominator} $=$ the \ans{index}, \quad \textbf{numerator} $=$ the \ans{power}
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{Converting (both directions).}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}X X | X X@{}}
+\textbf{Radical form} & \textbf{Rational exponent} & \textbf{Rational exponent} & \textbf{Radical form} \\
+\hline
+$\sqrt[4]{x^3}$ & $x^{\,\mans{3/4}}$ & $y^{2/5}$ & \ans{$\sqrt[5]{y^2}$} \\
+$\left(\sqrt[3]{x}\right)^7$ & $x^{\,\mans{7/3}}$ & $w^{5/2}$ & \ans{$\sqrt{w^5}$} \\
+$\sqrt{x^5}$ & $x^{\,\mans{5/2}}$ & $(3t)^{3/4}$ & \ans{$\sqrt[4]{(3t)^3}$} \\
+\end{tabularx}
+\end{center}
+\emph{The single most common error of this lesson is flipping the fraction.} $\sqrt[4]{x^3}$ is
+$x^{3/4}$, \textbf{not} $x^{4/3}$ --- the \emph{index} is on the bottom, because it came from
+$\frac{1}{n}$.
+
+\vspace{4pt}
+\textbf{Evaluating: take the root \emph{first}.} Both orders give the same answer, but one is
+arithmetic you can do in your head.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
 \begin{tabularx}{\linewidth}{@{}l X X@{}}
 \hline
- & \textbf{You may divide out} & \textbf{You may never divide out} \\
+ & \textbf{Power first (hard)} & \textbf{Root first (easy)} \\
 \hline
-Name & a common \ans{factor} & a common \ans{term} \\
-Example & $\dfrac{6(x+1)}{6(x-4)}=\dfrac{x+1}{x-4}$ & $\dfrac{6+x}{6-4}$ \; --- nothing cancels \\
+$8^{2/3}$ & $\sqrt[3]{8^2}=\sqrt[3]{\mans{64}}=\mans{4}$ &
+            $\left(\sqrt[3]{8}\right)^2=\left(\mans{2}\right)^2=\mans{4}$ \\
+$16^{3/4}$ & $\sqrt[4]{16^3}=\sqrt[4]{\mans{4096}}=\mans{8}$ &
+             $\left(\sqrt[4]{16}\right)^3=\left(\mans{2}\right)^3=\mans{8}$ \\
 \hline
 \end{tabularx}
 \end{center}
 
 \vspace{2pt}
-\textbf{Kill the error with a number.} A classmate claims $\dfrac{x+3}{3}=x$. Test it at $x=6$: the
-left side $\dfrac{6+3}{3}$ equals \ans{3}, and the right side equals \ans{6}. They
-disagree, so the ``rule'' is \ans{false}. In $\dfrac{x+3}{3}$ the $3$ on top is a \ans{term}
-of the numerator, not a factor of it.
-\end{notesbox}
-
-\begin{notesbox}{3. The Four Steps}
-\begin{enumerate}[leftmargin=1.9em, itemsep=2pt]
-  \item \textbf{Factor} the numerator and the denominator \emph{completely} (GCF first --- the Unit 4 toolkit).
-  \item \textbf{List the restrictions} from the \textbf{original} denominator's factors. \emph{Every} one.
-  \item \textbf{Divide out} the factors the top and bottom share.
-  \item \textbf{Write the simplest form}, and carry the restrictions along with it.
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{The anchor, worked.} $A(x)=\dfrac{x^2-x-6}{x^2-9}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Numerator factors as \ans{$(x-3)(x+2)$}; \; denominator factors as \ans{$(x-3)(x+3)$}.
-  \item Restrictions, from the \emph{original} bottom: $x\neq$ \ans{$3,\ -3$}.
-  \item The shared factor is \ans{$(x-3)$}. Divide it out: simplest form \ans{$\frac{x+2}{x+3}$}.
-\end{itemize}
-
-\vspace{3pt}
-Now notice what just happened: the factor $(x-3)$ cancelled, but $x=3$ \textbf{is still excluded}. The
-simplified expression looks perfectly happy at $x=3$; the \emph{original} is not, and the original is
-what the question was about. In Lesson~5.0 you read that single missing point off a graph and called
-it a \ans{hole}.
-
-\vspace{5pt}
-\textbf{Monomial factors work the same way.} Simplify $\dfrac{12x^3y}{18x^5y^2}$.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Restrictions: the denominator is zero when $x=0$ or $y=0$, so $x\neq$ \ans{0} and
-        $y\neq$ \ans{0}.
-  \item Divide out the common numerical factor \ans{6} and the shared powers of $x$ and $y$:
-        the answer is \ans{$\frac{2}{3x^2y}$}.
-\end{itemize}
-
-\vspace{4pt}
-\textbf{One more, with a GCF.} Simplify $\dfrac{3x^2-12}{x^2+x-6}$.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Factored numerator: \ans{$3(x-2)(x+2)$} \quad Factored denominator: \ans{$(x+3)(x-2)$}
-  \item Restrictions: $x\neq$ \ans{$2,\ -3$}. \quad Simplest form: \ans{$\frac{3(x+2)}{x+3}$}.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{4. Opposite Binomials: the Hidden Factor of $-1$}
-$x-5$ and $5-x$ are not the same, so they do not cancel --- but they are \textbf{opposites}, and
-opposites divide to give $-1$:
+\textbf{Negative rational exponents} mean exactly what they meant in the Warm-Up ---
+\textbf{reciprocal}, never ``negative answer'':
 \[
-  \frac{5-x}{x-5} \;=\; \frac{-1(x-5)}{x-5} .
+  a^{-m/n} = \frac{1}{a^{\,m/n}} .
 \]
-So $\dfrac{5-x}{x-5}$ simplifies to \ans{$-1$}, and in general $\dfrac{a-b}{b-a}$ equals
-\ans{$-1$}.
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item \textbf{How to spot it:} two binomials with the same terms and \emph{every} sign flipped.
-        Factor $-1$ out of one of them and they match.
-  \item \textbf{Not the same situation:} $x+3$ and $3+x$ \emph{are} equal (addition can be reordered),
-        so they cancel to \ans{1}. Only \emph{subtraction} order matters.
-  \item \textbf{Worked:} $\dfrac{x^2-16}{4-x}=\dfrac{(x-4)(x+4)}{-(x-4)}$, which simplifies to
-        \ans{$-(x+4)$}, \; for $x\neq$ \ans{4}.
+  \item $16^{-1/2} = \dfrac{1}{16^{\,1/2}} = \dfrac{1}{\mans{4}} = \mans{\tfrac{1}{4}}$ \quad
+        (\emph{not} $-4$ --- the minus sign moves the expression, it does not change its sign).
+  \item $27^{-2/3} = \dfrac{1}{\left(\sqrt[3]{27}\right)^{2}} = \dfrac{1}{\mans{9}}
+        = \mans{\tfrac{1}{9}}$
 \end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{5. Equivalence --- and the Graph It Describes}
-Two rational expressions are \textbf{equivalent} when they produce the same value at every input
-\emph{both} are defined for. Simplifying always produces an equivalent expression --- but the two forms
-can have different \emph{domains}, and \textbf{the restriction list belongs to the original}.
-
-\vspace{3pt}
-Here is the graph of the anchor $A(x)=\dfrac{x^2-x-6}{x^2-9}$, whose simplified form is
-$\dfrac{x+2}{x+3}$ with $x\neq3$.
+\begin{notesbox}{5. The Payoff: Every Exponent Property Now Works on Radicals}
+The four rules from the Warm-Up never cared whether the exponent was a whole number. Rewrite, apply,
+and (if asked) convert back.
 \begin{center}
-\begin{tikzpicture}[scale=0.48]
-  \lgrid{-8}{6}{-4}{5}
-  \draw[navy, dashed, semithick] (-3,-4)--(-3,5);
-  \draw[navy, dashed, semithick] (-8,1)--(6,1);
-  \node[navy, font=\scriptsize, above left] at (-3,5) {$x=-3$};
-  \node[navy, font=\scriptsize, below] at (-6.4,1) {$y=1$};
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+Product & $a^{r}\cdot a^{s}=a^{\,\mans{r+s}}$ \\
+Quotient & $\dfrac{a^{r}}{a^{s}}=a^{\,\mans{r-s}}$ \\
+Power to a power & $\left(a^{r}\right)^{s}=a^{\,\mans{rs}}$ \\
+Negative & $a^{-r}=\mans{\tfrac{1}{a^{r}}}$ \\
+\hline
+\end{tabularx}
+\end{center}
+Now return to the Hook. Two \emph{different} indices, which no radical rule can touch:
+\[
+  \sqrt{x}\cdot\sqrt[3]{x} \;=\; x^{1/2}\cdot x^{1/3}
+  \;=\; x^{\,\mans{5/6}} \;=\; \mans{\sqrt[6]{x^5}}\ \text{(back in radical form)}.
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $\dfrac{x^{3/4}}{x^{1/2}} = x^{\,\mans{1/4}}$ \hfill
+        $\left(x^{2/3}\right)^{6} = x^{\,\mans{4}}$
+  \item $\sqrt[4]{x}\cdot\sqrt[4]{x^{2}} = x^{\,\mans{3/4}}$ \hfill
+        $\left(8x^{6}\right)^{1/3} = $ \ans{$2x^{2}$}
+\end{itemize}
+\emph{This is why the notation exists.} Radicals with different indices are a dead end; the same
+expressions as exponents are a one-line problem.
+\end{notesbox}
+
+\begin{notesbox}{6. Back to Lesson 5.0: the Denominator Decides the Domain}
+These are the same two graphs you read yesterday --- only the notation changed.
+\begin{center}
+\begin{tikzpicture}[scale=0.34]
+  % y = x^(1/2)
   \begin{scope}
-    \clip (-8,-4) rectangle (6,5);
-    \draw[very thick, forest, domain=-8:-3.25, samples=100, smooth]
-      plot (\x,{((\x)+2)/((\x)+3)});
-    \draw[very thick, forest, domain=-2.8:6, samples=100, smooth]
-      plot (\x,{((\x)+2)/((\x)+3)});
+    \lgrid{-2}{9}{-2}{4}
+    \begin{scope}
+      \clip (-2,-2) rectangle (9,4);
+      \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
+    \end{scope}
+    \fill[forest] (0,0) circle (5pt);
+    \node[charcoal, font=\scriptsize] at (3.5,-3.4) {$y=x^{1/2}$};
   \end{scope}
-  \draw[forest, very thick, fill=white] (3,0.833) circle (4.2pt);
-  \fill[charcoal] (-2,0) circle (2.6pt);
-  \node[charcoal, font=\scriptsize, below] at (-1.2,-0.35) {$(-2,0)$};
-  \node[charcoal, font=\scriptsize] at (4.0,3.4) {the hole};
-  \draw[charcoal, thin, ->] (3.7,3.0) -- (3.15,1.1);
+  % y = x^(1/3)
+  \begin{scope}[xshift=19cm]
+    \lgrid{-8}{8}{-3}{3}
+    \begin{scope}
+      \clip (-8,-3) rectangle (8,3);
+      \cbrtpos{0}{8}
+      \cbrtneg{-8}{0}
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-4.4) {$y=x^{1/3}$};
+  \end{scope}
 \end{tikzpicture}
 \end{center}
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item The two excluded values do \emph{different} jobs. At $x=-3$ the factor \emph{stays}, giving a
-        \ans{vertical asymptote}; at $x=3$ the factor \emph{cancels}, giving a \ans{hole}.
-  \item The hole's height comes from the \emph{simplified} form: substituting $x=3$ into
-        $\dfrac{x+2}{x+3}$ gives \ans{$\frac56$}, so the hole sits at \ans{$\left(3,\frac56\right)$}.
-  \item \textbf{Which form should you write?} The simplified one --- \emph{with} the restrictions
-        attached. The simplified form tells you the shape of the graph; the restrictions tell you which
-        points were punched out of it.
-\end{enumerate}
-
-\vspace{3pt}
-\textbf{Checking equivalence two ways.} Are $\dfrac{x^2-4x}{x^2-16}$ and $\dfrac{x}{x+4}$ equivalent?
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item \emph{By factoring:} $\dfrac{x(x-4)}{(x-4)(x+4)}$ simplifies to \ans{$\frac{x}{x+4}$} --- yes.
-  \item \emph{By testing an input:} at $x=1$, the first gives $\dfrac{-3}{-15}=$ \ans{$\frac15$} and the
-        second gives \ans{$\frac15$}. One matching test cannot \emph{prove} equivalence, but one failed
-        test \emph{disproves} it --- which is exactly how the $x=6$ test settled the argument in
-        Section~2.
-  \item \emph{The catch:} the two still disagree at $x=$ \ans{4}, where the first expression is
-        \ans{undefined ($\frac00$)} and the second equals $\tfrac14$.
+  \item $y=x^{1/2}$ is another name for $y=$ \ans{$\sqrt{x}$}, so its domain is \ans{$[0,\infty)$}.
+  \item $y=x^{1/3}$ is another name for $y=$ \ans{$\sqrt[3]{x}$}, so its domain is \ans{all reals}.
+  \item \textbf{The rule, in exponent language:} in $x^{m/n}$ (in lowest terms), if the
+        \textbf{denominator} $n$ is \ans{even}, the domain is restricted to $x\ge 0$;
+        if $n$ is \ans{odd}, the domain is all reals. The \emph{numerator} never restricts
+        anything.
+  \item Test it: $x^{2/5}$ --- denominator \ans{$5$}, so the domain is \ans{all reals}. \quad
+        $x^{3/4}$ --- denominator \ans{$4$}, so the domain is \ans{$[0,\infty)$}.
 \end{itemize}
+\emph{``Even index restricts the domain'' and ``even denominator restricts the domain'' are the same
+sentence.}
 \end{notesbox}
 
 \begin{practicebox}
-Simplify completely and state \emph{all} restrictions. Show the factored line.
-
-\vspace{3pt}
-\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
-  \item $\dfrac{x^2+5x+6}{x^2-4}$ \hfill Factored: \ans{$\frac{(x+2)(x+3)}{(x-2)(x+2)}$} \\[4pt]
-        Simplest form: \ans{$\frac{x+3}{x-2}$} \quad Restrictions: $x\neq$ \ans{$2,\ -2$}
-  \item $\dfrac{9-x^2}{x^2-2x-3}$ \hfill Factored: \ans{$\frac{-(x-3)(x+3)}{(x-3)(x+1)}$} \\[4pt]
-        Simplest form: \ans{$-\frac{x+3}{x+1}$} \quad Restrictions: $x\neq$ \ans{$3,\ -1$}
-  \item In problem 2, which restriction produces a \emph{hole} and which produces a \emph{vertical
-        asymptote}? \ans{$x=3$ cancels $\Rightarrow$ hole; $x=-1$ stays $\Rightarrow$ asymptote}
+Work these with your class. Assume all variables represent positive real numbers.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item Write in rational exponent form: \; $\sqrt[5]{x^{2}}=$ \ans{$x^{2/5}$} \quad
+        $\left(\sqrt{y}\right)^{3}=$ \ans{$y^{3/2}$} \quad $\sqrt[3]{7t}=$ \ans{$(7t)^{1/3}$}
+  \item Write in radical form: \; $x^{4/3}=$ \ans{$\sqrt[3]{x^4}$} \quad $c^{1/6}=$ \ans{$\sqrt[6]{c}$} \quad
+        $(5n)^{3/2}=$ \ans{$\sqrt{(5n)^3}$}
+  \item Evaluate without a calculator (root first!): \; $125^{2/3}=$ \ans{$25$} \quad
+        $81^{3/4}=$ \ans{$27$} \quad $32^{-2/5}=$ \ans{$\dfrac{1}{4}$}
+  \item Simplify using the exponent properties; leave the answer with a positive rational exponent:
+        \; $x^{1/4}\cdot x^{1/2}=$ \ans{$x^{3/4}$} \quad $\dfrac{y^{5/6}}{y^{1/3}}=$ \ans{$y^{1/2}$} \quad
+        $\left(w^{3/4}\right)^{2/3}=$ \ans{$w^{1/2}$}
+  \item \textbf{Explain.} A classmate writes $\sqrt[3]{x^{5}} = x^{3/5}$. What did they do wrong, and
+        how would you remind them which number goes on the bottom? \ansline{They flipped the
+        fraction --- the correct answer is $x^{5/3}$. The index is the \emph{denominator} because
+        $\sqrt[3]{\phantom{x}}$ came from the exponent $\frac{1}{3}$; the power $5$ stays on top.
+        A quick check: $\sqrt[3]{x^5}$ is bigger than $x$ for $x>1$, so its exponent must be more
+        than $1$, and $\frac{3}{5}<1$.}
 \end{enumerate}
 \end{practicebox}
 
 \begin{teachernote}
-\textbf{Pacing.} Sections 1--3 are the lesson; Sections 4--5 are what separates a B from an A. If time
-is short, move the monomial example to homework rather than cutting Section~5 --- the equivalence idea
-is the A2.EO.1d half of the standard.
+\textbf{Pacing.} Sections 1--2 are quick (about 10 minutes); Section 3 is the intellectual center and
+deserves 8 minutes on its own. Do \emph{not} present $a^{1/n}=\sqrt[n]{a}$ as a definition to
+memorize --- run the $\left(a^{1/n}\right)^n=a^{1}=a$ line and let students see that the exponent
+rules leave no other possibility. Students who watch that derivation stop flipping the fraction,
+because they can rebuild it.
 
-\vspace{3pt}
-\textbf{The one sentence to repeat.} \emph{Cancelling never restores an input.} Students accept this in
-the hook table (they can see $A(3)$ fail) and then forget it two problems later. When they do, send
-them back to the $x=3$ column, not to a rule.
+\textbf{The four errors to expect.} (1) \emph{Flipping} --- $\sqrt[4]{x^3}\to x^{4/3}$; this is the
+single most common error and the reason Section 4 states the rule twice. (2) \emph{Negative
+exponent, negative answer} --- $16^{-1/2}\to-4$; say ``the minus sign moves it downstairs, it does
+not change its sign'' every time. (3) \emph{Power first} --- technically correct but leads to
+$\sqrt[4]{4096}$ and a stalled student; the root-first table exists to make that visible. (4)
+\emph{Dropping the absolute value} in Section 2. Note that the Guided Practice and the Activity say
+``assume all variables are positive'' precisely so students can drop it there --- but the exit
+ticket and homework ask about $\sqrt{x^2}$ directly, so the distinction must be taught, not skipped.
 
-\vspace{3pt}
-\textbf{Errors to expect.} (1) Cancelling \emph{terms}: $\frac{x^2+9}{x+3}=x+3$, or $\frac{x+3}{3}=x$
---- always disprove numerically, never by assertion. (2) Restrictions read off the \emph{simplified}
-denominator, which silently deletes the hole; this is the same mistake that manufactures extraneous
-solutions in 5.6, so name the connection now. (3) Cancelling $x-5$ against $5-x$ as if they matched,
-losing the $-1$. (4) Writing the simplest form with no restrictions at all --- the answer is the
-expression \emph{and} its restriction list. (5) In Section~5, claiming the two expressions are
-``different functions'' --- they are equivalent wherever both are defined; they differ only in domain.
+\textbf{Section 6 is not optional.} It is what makes this an Algebra 2 \emph{function} lesson rather
+than a notation drill: the domain rule students computed graphically yesterday is re-derived from
+the denominator of the exponent, and the two graphs are literally yesterday's graphs relabeled.
 \end{teachernote}
 
 \end{document}

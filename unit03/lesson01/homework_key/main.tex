@@ -1,115 +1,98 @@
-%! Graphing Quadratic Functions & Transformations — Unit 3, Lesson 3.1 — Homework (Answer Key)
+%! Operations with Polynomials — Unit 3, Lesson 3.1 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.1}{Homework --- Answer Key}
+\namedateperiod
 
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show your reasoning. Read the feature straight from the form that advertises it.
+Write every answer in \textbf{standard form}. Show the products or the sign changes you used.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Transformations of $y=x^2$.} For each, describe the move(s) and give the new vertex.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{@{}l X l@{}}
-    \textbf{Equation} & \textbf{Transformation of $y=x^2$} & \textbf{Vertex} \\
-    \hline
-    $y=x^2-5$      & \ans{down $5$} & \ans{$(0,-5)$} \\
-    $y=(x+4)^2$    & \ans{left $4$} & \ans{$(-4,0)$} \\
-    $y=-3x^2$      & \ans{reflect over $x$-axis, stretch by $3$ (narrower)} & \ans{$(0,0)$} \\
-    $y=(x-2)^2+1$  & \ans{right $2$, up $1$} & \ans{$(2,1)$} \\
-    \end{tabularx}
-    \end{center}
+  \item \textbf{Name it.} Consider $8 - 3x^2 + x^5 - 6x$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item Standard form: \ans{$x^5 - 3x^2 - 6x + 8$}
+      \item Degree: \ans{5} \quad Leading coefficient: \ans{1} \quad Number of terms:
+            \ans{4}
+      \item Based on the degree and leading coefficient, both arms of its graph: \ans{left down, right up}
+    \end{enumerate}
 
-  \item \textbf{Vertex form.} For $y=(x-3)^2-4$: vertex \ans{$(3,-4)$}, axis $x=$ \ans{$3$}, opens
-        \ans{up}, min/max value \ans{min, $-4$}. Then expand to standard form: \ans{$x^2-6x+5$}.
+  \item \textbf{Add and subtract.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+      \item $(6x^3 - x + 4) + (2x^2 + 5x - 9) = $ \ans{$6x^3 + 2x^2 + 4x - 5$}
+      \item $(9x^2 - 3x + 2) - (4x^2 - 3x - 6) = $ \ans{$5x^2 + 8$}
+    \end{enumerate}
 
-  \item \textbf{Standard form + graph.} The graph is $f(x)=x^2+2x-3$.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-4}{2}{-5}{3}
-      \draw[navy, dashed, semithick] (-1,-5)--(-1,3);
-      \begin{scope}\clip (-4,-5) rectangle (2,3);
-        \draw[very thick, forest, domain=-3.6:1.6, samples=75, smooth] plot (\x,{(\x)*(\x) + 2*(\x) - 3});
-      \end{scope}
-      \fill[charcoal] (-1,-4) circle (3pt);
-      \fill[charcoal] (0,-3) circle (3pt);
-      \fill[charcoal] (-3,0) circle (3pt);
-      \fill[charcoal] (1,0) circle (3pt);
-    \end{tikzpicture}
-    \end{center}
-    Axis $x=-\dfrac{b}{2a}=$ \ans{$-1$} \quad Vertex: \ans{$(-1,-4)$} \quad $y$-intercept: \ans{$(0,-3)$}
-    \quad Range: \ans{$y\ge -4$}.
+  \item \textbf{Multiply.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+      \item $-3x^2(2x^3 - x + 5) = $ \ans{$-6x^5 + 3x^3 - 15x^2$}
+      \item $(4x - 1)(x + 7) = $ \ans{$4x^2 + 27x - 7$}
+      \item $(x - 2)(x^2 + 3x - 5) = $ \ans{$x^3 + x^2 - 11x + 10$}
+    \end{enumerate}
 
-  \item \textbf{Intercept form.} For $g(x)=(x-2)(x-6)$: zeros $x=$ \ans{$2$} and $x=$ \ans{$6$};
-        axis $x=$ \ans{$4$}; vertex \ans{$(4,-4)$}; $y$-intercept \ans{$(0,12)$}.
+  \item \textbf{Special products.} Use the identities --- no box needed.
 
-  \item \textbf{Matching.} Write the letter of the graph that matches each equation.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.36]
-      % P: (x-1)^2 - 4  vertex (1,-4) up
-      \begin{scope}
-        \lgrid{-2}{4}{-5}{3}
-        \begin{scope}\clip (-2,-5) rectangle (4,3);
-          \draw[very thick, forest, domain=-1.4:3.4, samples=60, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
-        \end{scope}
-        \fill[charcoal] (1,-4) circle (2.5pt);
-        \node[charcoal, font=\scriptsize] at (1,-6.6){\textbf{P}};
-      \end{scope}
-      % Q: -(x+2)^2 + 1  vertex (-2,1) down
-      \begin{scope}[xshift=8cm]
-        \lgrid{-5}{1}{-4}{2}
-        \begin{scope}\clip (-5,-4) rectangle (1,2);
-          \draw[very thick, forest, domain=-4.2:0.2, samples=60, smooth] plot (\x,{-1*(\x+2)*(\x+2) + 1});
-        \end{scope}
-        \fill[charcoal] (-2,1) circle (2.5pt);
-        \node[charcoal, font=\scriptsize] at (-2,-5.6){\textbf{Q}};
-      \end{scope}
-      % R: x^2 + 2  vertex (0,2) up
-      \begin{scope}[xshift=16cm]
-        \lgrid{-3}{3}{0}{6}
-        \begin{scope}\clip (-3,0) rectangle (3,6);
-          \draw[very thick, forest, domain=-2:2, samples=60, smooth] plot (\x,{(\x)*(\x) + 2});
-        \end{scope}
-        \fill[charcoal] (0,2) circle (2.5pt);
-        \node[charcoal, font=\scriptsize] at (0,-1.4){\textbf{R}};
-      \end{scope}
-    \end{tikzpicture}
-    \end{center}
-    $y=(x-1)^2-4:$ \ans{P} \qquad $y=-(x+2)^2+1:$ \ans{Q} \qquad $y=x^2+2:$ \ans{R}
+    \vspace{3pt}
+    (a) $(x + 9)^2 = $ \ans{$x^2 + 18x + 81$} \qquad (b) $(2x - 5)^2 = $ \ans{$4x^2 - 20x + 25$}
 
-  \item \textbf{Explain.} Which form would you choose to read each feature the fastest, and why?
-        Zeros: \ans{intercept form} \; Vertex: \ans{vertex form} \; $y$-intercept: \ans{standard form}.
-        \ansline{Each form displays one feature directly: intercept form sets each factor to zero for the zeros, vertex form shows $(h,k)$, and standard form gives $(0,c)$ by reading $c$.}
+    \vspace{4pt}
+    (c) $(3x + 8)(3x - 8) = $ \ans{$9x^2 - 64$} \qquad (d) $(x + 6y)(x - 6y) = $ \ans{$x^2 - 36y^2$}
+
+  \item \textbf{Back to a graph you already read.} On yesterday's Exit Ticket you read the graph of
+        $k(x) = (x+1)^2(x-2)$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+      \item Expand $(x+1)^2$: \ans{$x^2 + 2x + 1$}
+      \item Now multiply by $(x-2)$ and write $k$ in standard form: \ans{$x^3 - 3x - 2$}
+      \item Degree: \ans{3} \quad Leading coefficient: \ans{1} \quad End behavior:
+            \ans{left down, right up}
+      \item Substituting $x=0$ into your standard form gives the $y$-intercept \ans{$(0,-2)$}. Does it
+            agree with the graph you read yesterday? \ans{Yes}
+    \end{enumerate}
+
+  \item \textbf{Explain.} Why does subtracting a polynomial require changing the sign of \emph{every}
+        term inside the parentheses, and not just the first one? Support your answer with a short
+        example that goes wrong if you change only the first sign.
+        \ansline{The minus sign in front of the parentheses is a factor of $-1$, and the distributive property multiplies that $-1$ by \emph{each} term inside --- not only the first. Example: $(x^2)-(x^2-5)$ should be $x^2-x^2+5=5$. Changing only the first sign gives $x^2-x^2-5=-5$, the wrong answer by $10$.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{A fountain arc.} A garden fountain's water arcs so its height (in feet) at horizontal distance
-$x$ feet from the nozzle is $h(x) = -x(x-6)$ (given in intercept form).
+\textbf{An area model that needs both operations.} A rectangular garden measures $(2x+3)$ feet by
+$(x+5)$ feet. A square pond with side $x$ feet is dug inside it, and the rest is planted.
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Where does the water leave the ground and where does it land? (the zeros)
-  \item What is the maximum height, and how far out does it occur? (the vertex)
-  \item At $x=1$ ft the water is $5$ ft high. Use \emph{symmetry} --- no algebra --- to name another
-        distance where it is again $5$ ft high.
+  \item Write and expand a polynomial for the \emph{total} garden area.
+        \ans{$(2x+3)(x+5) = 2x^2 + 13x + 15$ square feet.}
+  \item Write a polynomial for the \emph{planted} area (total minus pond) in standard form.
+        \ans{$(2x^2+13x+15) - x^2 = x^2 + 13x + 15$ square feet.}
+  \item Use your answer to (b) to find the planted area when $x = 4$ feet.
+        \ans{$16 + 52 + 15 = 83$ square feet.}
+  \item Check part (c) a second way: find the garden's actual dimensions and the pond's actual area at
+        $x=4$, and subtract. Do the two methods agree?
+        \ansline{At $x=4$ the garden is $11$ ft by $9$ ft, so its area is $99$ ft\textsuperscript{2}; the pond is $4\times4=16$ ft\textsuperscript{2}. Then $99-16=83$ ft\textsuperscript{2} --- the same as (c), so the polynomial is correct.}
 \end{enumerate}
-\ansline{(a) Zeros $x=0$ and $x=6$: it leaves the ground at the nozzle ($x=0$) and lands $6$ ft away. \;\; (b) Axis $x=3$ (halfway between $0$ and $6$); $h(3)=-3(-3)=9$, so the maximum height is $9$ ft, $3$ ft out. \;\; (c) $x=1$ is $2$ ft left of the axis $x=3$, so its mirror is $2$ ft right: $x=5$ ft (check $h(5)=-5(-1)=5$).}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 3.2: Solving Quadratics by Factoring.} Today you \emph{read} zeros from
-intercept form. Next you will learn to \emph{produce} that factored form --- turning $x^2+2x-3$ into
-$(x+3)(x-1)$ --- so you can find the zeros of a quadratic given in standard form by hand.
+\textbf{Coming next --- Lesson 3.2: Advanced Factoring.} Today you ran products \emph{forward}:
+$(x-1)^2(x+2)$ became $x^3-3x+2$. Next you will run them \emph{backward} --- pulling out a GCF,
+factoring by grouping, and recognizing the difference of squares and the new sum and difference of
+\emph{cubes} --- turning a standard form back into the factored form that shows you the zeros.
 \end{spiralbox}
+
+\begin{teachernote}
+Item~2(b) is the diagnostic: the $-3x$ terms cancel and the constants become $+8$, so an answer of
+$5x^2-6x-4$ means the subtraction was distributed to no term but the first. Item~5 is the one to
+grade for understanding rather than points --- $k(x)=x^3-3x-2$ should match yesterday's graph at
+every feature students already recorded (zeros $-1$ and $2$, $y$-intercept $(0,-2)$, left down / right
+up), and naming that agreement out loud is what makes ``two forms, one function'' stick. The
+extension's part~(d) is the same idea a third time: a polynomial model is only trustworthy if it
+agrees with a direct computation.
+\end{teachernote}
 
 \end{document}

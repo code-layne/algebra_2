@@ -1,79 +1,47 @@
-%! Equations and Inequalities — Unit 1, Lesson 1.2 — Warm-Up
+%! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Warm-Up
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
-% Pre-drawn number line; #1 receives the shading/endpoint overlay.
-\newcommand{\numline}[1]{%
-  \begin{tikzpicture}[baseline=-3pt, x=0.58cm, y=0.58cm]
-    \draw[<->, thick, charcoal] (-5.6,0) -- (5.6,0);
-    \foreach \t in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {\draw[charcoal] (\t,0.13) -- (\t,-0.13);}
-    \foreach \t in {-4,-2,0,2,4} {\node[below=0pt, font=\scriptsize] at (\t,-0.10) {$\t$};}
-    #1
-  \end{tikzpicture}}
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.2}{Warm-Up}
-\namedateperiod
 
-\vspace{0.06in}
+\vspace{0.10in}
 
-\begin{notesbox}{Getting Ready: Skills We'll Use Today}
-\small Three skills, one from each of the last two lessons. Work quickly.
-
-\vspace{3pt}
-\textbf{1. Name the move (Lesson 1.0).} The work is done for you. Write the \emph{property} that
-makes each line legal.
-\begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-\textbf{Line} & \textbf{Why is this allowed?} \\
-\hline
-$5(x-3)=2x+9$ & \emph{given} \\
-$5x-15=2x+9$ & \blank{7.6cm} \\
-$3x-15=9$ & \blank{7.6cm} \\
-$3x=24$ & \blank{7.6cm} \\
-$x=8$ & \blank{7.6cm} \\
-\hline
-\end{tabularx}
-\end{center}
-``I moved it to the other side'' is not one of the answers. Every line has a \emph{name}.
-
-\vspace{3pt}
-\textbf{2. Factor completely (Lesson 1.1).}
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l@{}}
-(a) \; $x^2-5x-14=$ \blank{3.6cm} &
-(b) \; $3x^2-27=$ \blank{3.6cm} \\
-\end{tabular}
-\end{center}
-Now finish this sentence, which you already believe: \\
-If two numbers multiply to give \textbf{zero}, then \blank{4.2cm} or \blank{4.2cm} must be zero.
-\\[2pt]
-Does the same reasoning work if the two numbers multiply to give \textbf{eight}? \blank{1.6cm}
+\begin{notesbox}{Getting Ready: Distance, Solving, and Number Lines}
+\small Today an absolute value asks a \emph{distance} question, and you'll solve the linear equation
+inside the bars \emph{twice}. These three skills are the tools you'll need.
 
 \vspace{4pt}
-\textbf{3. Read the picture.} Each number line below shows a \emph{solution set}. Write the
-inequality it represents.
-\begin{center}
-\begin{tabular}{@{}c c@{}}
-(a) & (b) \\[2pt]
-\numline{\draw[ultra thick, forest] (-1,0) -- (5.55,0);
-         \draw[thick, forest, fill=white] (-1,0) circle (2.7pt);}
-&
-\numline{\draw[ultra thick, forest] (3,0) -- (-5.55,0);
-         \fill[forest] (3,0) circle (2.7pt);}
-\\[3pt]
-$x$ \blank{2.6cm} & $x$ \blank{2.6cm} \\
-\end{tabular}
-\end{center}
-Roughly how many numbers are in solution set (a)? \blank{4.0cm} \\
-That answer is exactly why we \emph{draw} a solution set instead of listing it.
+\textbf{1. Absolute value is distance from zero.} Evaluate each.
+\[
+  |-7| = \blank{1.2cm} \qquad |4| = \blank{1.2cm} \qquad
+  |{-3}| + |5| = \blank{1.2cm} \qquad -|{-6}| = \blank{1.2cm}
+\]
+How many different numbers have an absolute value of $7$? \blank{2.2cm}\; Name them: \blank{2.4cm}
 
+\vspace{6pt}
+\textbf{2. Solve the two-step equation.} (You'll repeat this move once the bars split into two cases.)
+\[ 2x - 3 = 7 \hspace{2.0cm} 2x - 3 = -7 \]
+\begin{work}
+  2x - 3 &= 7 \quad\text{or}\quad 2x - 3 = -7 \\
+      2x &= 10 \quad\text{or}\quad 2x = -4 \\
+       x &= 5 \quad\text{or}\quad x = -2
+\end{work}
+
+\vspace{6pt}
+\textbf{3. Graph on a number line, then name it in interval notation.} Shade $x \ge -1$.
+\begin{center}
+\begin{tikzpicture}[scale=0.55]
+  \numline{-5}{5}
+\end{tikzpicture}
+\end{center}
+Interval notation: \blank{3.0cm} \qquad {\footnotesize (Use $[\,$ or $]$ for ``or equal to,'' $($ or $)$ otherwise.)}
 \end{notesbox}
 
 \end{document}

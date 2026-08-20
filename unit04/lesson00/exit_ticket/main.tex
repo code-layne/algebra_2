@@ -1,4 +1,4 @@
-%! Characteristics of Polynomial Functions — Unit 4, Lesson 4.0 — Exit Ticket
+%! Characteristics of Rational Functions — Unit 4, Lesson 4.0 — Exit Ticket
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -13,39 +13,48 @@
 \pageheader{Unit 4, Lesson 4.0}{Exit Ticket}
 \namedateperiod
 
-\vspace{0.10in}
+\vspace{0.08in}
 
-No notes. The graph below is the polynomial $k(x) = (x+1)^2(x-2)$. Use it for all questions.
+No notes. The graph below is $f(x) = \dfrac{x+3}{x+1}$. Use it for questions 1 and 2.
 \begin{center}
-\begin{tikzpicture}[scale=0.52]
-  \lgrid{-3}{3}{-5}{3}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-6}{4}{-4}{6}
+  \draw[navy, dashed, semithick] (-1,-4)--(-1,6);
+  \draw[navy, dashed, semithick] (-6,1)--(4,1);
   \begin{scope}
-    \clip (-3,-5) rectangle (3,3);
-    \draw[very thick, forest, domain=-2.1:2.25, samples=90, smooth]
-      plot (\x,{(\x)*(\x)*(\x) - 3*(\x) - 2});
+    \clip (-6,-4) rectangle (4,6);
+    \draw[very thick, forest, domain=-6:-1.4, samples=90, smooth]
+      plot (\x,{((\x)+3)/((\x)+1)});
+    \draw[very thick, forest, domain=-0.6:4, samples=90, smooth]
+      plot (\x,{((\x)+3)/((\x)+1)});
   \end{scope}
-  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$(-1,0)$};
-  \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{$(1,-4)$};
-  \fill[charcoal] (2,0) circle (3pt) node[above right, font=\scriptsize]{$(2,0)$};
-  \fill[charcoal] (0,-2) circle (3pt) node[right, font=\scriptsize]{$(0,-2)$};
+  \fill[charcoal] (-3,0) circle (3pt) node[below left, font=\scriptsize]{$(-3,0)$};
+  \fill[charcoal] (0,3) circle (3pt) node[right, font=\scriptsize]{$(0,3)$};
 \end{tikzpicture}
 \end{center}
 
-\begin{enumerate}[leftmargin=1.8em, itemsep=9pt]
-  \item \textbf{Read the features.} State the end behavior (both arms), the two turning points and
-        whether each is a relative maximum or minimum, and the zeros --- saying whether the graph
-        \emph{crosses} or \emph{touches} at each.
+\begin{enumerate}[leftmargin=1.8em, itemsep=8pt]
+  \item \textbf{Read the features.} Write each asymptote as an \emph{equation}.
+
+        Vertical asymptote: \blank{2.0cm} \quad Horizontal asymptote: \blank{2.0cm}
+
+        \vspace{3pt}
+        Domain: \blank{4.6cm} \quad $x$-intercept: \blank{1.8cm} \quad $y$-intercept: \blank{1.8cm}
+
+        \vspace{3pt}
+        $f$ is decreasing on \blank{2.4cm} and on \blank{2.4cm}.
+
+  \item \textbf{Explain.} Why can this graph never cross the line $x=-1$? And why is the value $y=1$
+        missing from the range, even though the curve gets very close to it?
         \writelines{2}
-  \item \textbf{Classify \& justify.} Is $k$ even, odd, or neither? Justify your answer (think about
-        the degree and about how $k(-x)$ compares to $k(x)$). Does $k$ have an \emph{absolute}
-        maximum? Explain.
-        \writelines{2}
-  \item \textbf{SOL-style multiple choice.} Which statement about $k(x)=(x+1)^2(x-2)$ is \emph{true}?
+
+  \item \textbf{SOL-style multiple choice.} Let $h(x) = \dfrac{x-4}{x^2-16}$. Which statement is
+        \emph{true}?
         \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-          \item The graph crosses the $x$-axis at $x=-1$.
-          \item $k$ has an absolute maximum.
-          \item As $x\to-\infty$, $k(x)\to-\infty$.
-          \item $k$ is an even function.
+          \item $h$ has vertical asymptotes at $x=4$ and at $x=-4$.
+          \item $h$ has a hole at $x=4$ and a vertical asymptote at $x=-4$.
+          \item $h$ has a vertical asymptote at $x=4$ and a hole at $x=-4$.
+          \item $h$ has no domain restrictions, because it simplifies to $\dfrac{1}{x+4}$.
         \end{enumerate}
 \end{enumerate}
 

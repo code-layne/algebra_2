@@ -1,4 +1,4 @@
-%! Complex Numbers — Unit 3, Lesson 3.4 — Lesson Plan
+%! Zeros of Polynomials: the Rational Root Theorem — Unit 3, Lesson 3.4 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 3: Quadratic Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.4: Complex Numbers}
+\newcommand{\UnitNumberName}{Unit 3: Polynomial Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 3.4: Zeros of Polynomials: the Rational Root Theorem}
 
 \begin{document}
 \begin{center}
@@ -19,22 +19,23 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students break the ``no real solution'' wall from Lesson~3.3 by
-    \emph{inventing a new number}. They explain the meaning of the \emph{imaginary unit} $i=\sqrt{-1}$
-    (so $i^2=-1$), and use it to rewrite a negative square root: $\sqrt{-k}=i\sqrt{k}$ (pull the $i$ out
-    \emph{first}, then simplify). They write complex numbers in \emph{standard form} $a+bi$, name the real
-    and imaginary parts, and classify a number as real, imaginary, or pure imaginary. They \emph{add,
-    subtract, and multiply} complex numbers --- add/subtract by combining like terms, multiply by FOIL
-    followed by the substitution $i^2=-1$ --- recognize that the product of \emph{conjugates} $a\pm bi$ is
-    the real number $a^2+b^2$, and simplify \emph{powers of $i$} by using the length-$4$ cycle. The lesson
-    closes by reconnecting to completing the square: $x^2+2x+5=0$ now has the complex solutions
-    $-1\pm2i$, previewing Lesson~3.5.
+    \textbf{Primary Objective:} Students can generate the \emph{candidate list} for a polynomial
+    with integer coefficients --- $\pm\frac{p}{q}$ with $p$ a divisor of the constant term and $q$ a
+    divisor of the leading coefficient --- and then run the workflow the rest of this unit depends
+    on: \textbf{list $\rightarrow$ test $\rightarrow$ divide $\rightarrow$ finish}. They test
+    candidates efficiently (Remainder Theorem, synthetic division, and the $x$-intercepts of a
+    graph), divide out each zero they find, factor the depressed polynomial completely, solve the
+    equation, and \emph{verify} their solutions by substitution and against the graph. They also
+    learn what the theorem does not promise: the list holds \emph{possible} zeros, and it finds
+    \emph{rational} ones only.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.4a} (explain the meaning of $i$), \textbf{A2.EO.4b}
-    (identify equivalent radical expressions containing negative rationals and expressions in $a+bi$ form),
-    and \textbf{A2.EO.4c} (apply properties to add, subtract, and multiply complex numbers). Builds on
-    \textbf{A2.EO.2} (simplifying radical expressions) and connects forward to \textbf{A2.EI.2b} (solving
-    quadratics over the complex numbers, Lesson~3.5).
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.6c} --- solve a polynomial equation of degree
+    three or higher (today over the reals; the complex case is Lesson~3.5) --- and
+    \textbf{A2.EI.6d} --- verify possible solutions algebraically and graphically and explain the
+    solution method. \textbf{A2.EO.3c} (synthetic division) and \textbf{A2.EO.3b} (factor the
+    depressed polynomial completely) are used on every problem, and \textbf{A2.F.2c} whenever zeros
+    are read as $x$-intercepts. The lesson is the direct prerequisite for \textbf{A2.EI.6a/b} in
+    Lesson~3.5.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -44,22 +45,23 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Define $i=\sqrt{-1}$; the working rule is $i^2=-1$.
-  \item Rewrite $\sqrt{-k}=i\sqrt{k}$ --- pull the $i$ out \emph{first}, then simplify the radical.
-  \item Write numbers in standard form $a+bi$; name real/imaginary parts; classify the number.
-  \item \textbf{Add/subtract} by combining like terms; \textbf{multiply} by FOIL then $i^2=-1$.
-  \item The product of conjugates $(a+bi)(a-bi)=a^2+b^2$ is \emph{real}.
-  \item Simplify powers of $i$ using the cycle $i,\,-1,\,-i,\,1$ (reduce the exponent mod $4$).
+  \item State the \textbf{Rational Root Theorem} and build the candidate list $\pm\frac{p}{q}$.
+  \item Keep the bookkeeping clean: constant on \emph{top}, leading coefficient on the \emph{bottom}, reduce, drop repeats, keep every $\pm$.
+  \item \textbf{Test} candidates with the Remainder Theorem or synthetic division; use a graph's $x$-intercepts to choose which to try.
+  \item \textbf{Divide} out a confirmed zero and factor the \textbf{depressed polynomial} completely.
+  \item Solve $f(x)=0$ for degree $3$ and $4$, including \emph{fractional} solutions from non-monic factors.
+  \item \textbf{Verify} solutions by substitution and against the graph (A2.EI.6d).
+  \item Recognize the limits: the list may contain \emph{no} zeros, and irrational zeros never appear on it.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Extending the number system fixes what real numbers could not do: give $x^2=-4$ a solution.
-  \item $\sqrt a\sqrt b=\sqrt{ab}$ is \emph{only} valid for nonnegative $a,b$, so convert to $i$ before combining.
-  \item ``$a+bi$'' names two independent pieces --- a real part and an imaginary part --- like $x$-terms and constants.
-  \item Complex arithmetic is just polynomial arithmetic with the single extra fact $i^2=-1$.
-  \item Conjugates clear the imaginary part --- the same trick that will rationalize complex denominators.
-  \item $i^4=1$, so the powers of $i$ repeat every four steps.
+  \item Testing candidates is useless unless the list is \emph{finite} --- the theorem's whole job is turning infinity into a dozen numbers.
+  \item A zero $\frac{p}{q}$ comes from a factor $(qx-p)$; the $q$'s multiply to the leading coefficient and the $p$'s to the constant term, so neither can hide.
+  \item A leading coefficient of $1$ forces $q=\pm1$ --- which is why almost every candidate list students have seen so far was made of integers.
+  \item Each zero found \emph{shrinks} the problem: lower degree, shorter list, and at a quadratic the guessing stops entirely.
+  \item ``Find the zeros,'' ``solve $f(x)=0$,'' and ``find the $x$-intercepts'' are one task in three vocabularies.
+  \item The list is \emph{suspects, not convictions}. An empty result is information, not an arithmetic error.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -67,180 +69,158 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Imaginary unit $i$} & The number defined by $i=\sqrt{-1}$, so $i^2=-1$. The engine of every complex computation. \\
-\textbf{$\sqrt{-k}=i\sqrt{k}$} & For $k>0$; pull out $i$ \emph{before} simplifying, since the product rule fails for negatives. \\
-\textbf{Complex number} & Any number $a+bi$ with $a,b$ real; $a$ is the \emph{real part}, $b$ the \emph{imaginary part}. \\
-\textbf{Pure imaginary} & A complex number $bi$ with $a=0$, $b\ne0$ (e.g. $3i$); reals are the $b=0$ case. \\
-\textbf{Complex conjugate} & The pair $a+bi$ and $a-bi$; their product $a^2+b^2$ is a real number. \\
-\textbf{Powers of $i$} & Cycle $i^1=i,\ i^2=-1,\ i^3=-i,\ i^4=1$, then repeat; reduce the exponent mod $4$. \\
+\textbf{Rational Root Theorem} & \TallMath{\text{If } \tfrac{p}{q} \text{ (lowest terms) is a zero of } a_nx^n+\cdots+a_0, \text{ then } p \mid a_0 \text{ and } q \mid a_n .} \\
+\textbf{Candidate} & One value on the list $\pm\frac{p}{q}$ --- a number worth testing, not a guaranteed zero. \\
+\textbf{Lowest terms} & Why $\tfrac{2}{2}$ and $\tfrac{6}{3}$ never get their own entries; reduce before listing. \\
+\textbf{Depressed polynomial} & The quotient after dividing out $(x-r)$: one degree lower, with a shorter list of its own. \\
+\textbf{Solution / root} & A value making $f(x)=0$ --- the same object as a zero of $f$ and an $x$-intercept of its graph. \\
+\textbf{Verifying a solution} & Substituting to get $0$, and confirming against the graph's $x$-intercepts (A2.EI.6d). \\
+\textbf{Rational vs.\ irrational zero} & The theorem reaches only the first kind; $\pm\sqrt{3}$ arrives from the depressed polynomial. \\
+\textbf{Monic polynomial} & Leading coefficient $1$ $\Rightarrow$ every $q=\pm 1$ $\Rightarrow$ the candidates are the divisors of the constant term. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses exactly what today needs: \textbf{(1)} \emph{simplifying radicals}
-    ($\sqrt{50}=5\sqrt2$) so answers like $\sqrt{-50}=5i\sqrt2$ land in simplest form; \textbf{(2)}
-    \emph{multiplying binomials} by FOIL ($(x+3)(x-3)=x^2-9$) --- the mechanics of multiplying complex
-    numbers, with the conjugate pattern hiding in plain sight; \textbf{(3)} \emph{combining like terms}
-    ($(3x+5)+(2x-8)$), which is all that adding/subtracting complex numbers requires; and \textbf{(4)} the
-    \emph{Lesson-3.3 wall} --- $x^2=-4$ has no real solution --- reopened to motivate inventing $i$.
-    Debrief item~4 last and leave it on the board; it \emph{is} the hook.
+    The Warm-Up assembles today's theorem out of parts students already own, without naming it.
+    \textbf{(1)} \emph{Divisors} of $6$ and of $2$, positives \emph{and} negatives --- the two lists
+    the theorem asks for. \textbf{(2)} \emph{Building fractions} $\frac{p}{q}$ from those lists,
+    reducing, and crossing out duplicates ($\tfrac22$, $\tfrac62$) --- twelve candidates, and the
+    bookkeeping that most students lose points on. \textbf{(3)} \emph{Finishing Lesson~3.3's Tier E
+    preview}: synthetic division of $h(x)=2x^3-3x^2-11x+6$ by $(x-3)$, then factoring
+    $2x^2+3x-2=(2x-1)(x+2)$ to get all three zeros $3$, $\tfrac12$, $-2$. \textbf{(4)} The question
+    the lesson answers: yesterday's candidate list was the divisors of $6$, and $\tfrac12$ was not on
+    it --- \textbf{``where did that denominator come from?''} Debrief items 2 and 4 together, take
+    answers about the leading coefficient $2$, and \emph{do not} state the theorem yet.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put the wall on the board: \[ x^2=-4. \] Ask: ``In Lesson~3.3 we solved everything --- except this.
-    \emph{Why} is there no real answer?'' (Nothing real squares to a negative; the parabola $y=x^2+4$
-    never touches the $x$-axis.) Then reframe the impasse as an \emph{opportunity}: negative numbers,
-    fractions, and irrationals were each once ``impossible'' until the number system was extended to
-    include them. So we do it again --- \emph{define} a number whose square is $-1$, call it $i$, and see
-    what it lets us do. Land the theme: \emph{mathematicians don't stop at ``no solution''; they build the
-    numbers that make one.}
+    Put the graph of $h(x) = 2x^3-3x^2-11x+6$ on the board (it is in the notes, pre-drawn) with its
+    three $x$-intercepts at $-2$, $\tfrac12$, and $3$. Then say the honest thing about yesterday:
+    \textbf{``Lesson 3.3 could crack any polynomial --- as long as somebody told you which number to
+    test. Nobody is going to tell you on the test.''} Ask the class how many numbers there are to
+    try. (Infinitely many.) So testing is worthless unless the list of suspects is finite. Point at
+    the intercept at $\tfrac12$: \textbf{``And notice a whole-number list would have walked right
+    past this one.''} Frame the period as a single question --- \emph{which numbers are worth
+    testing?} --- and promise that by the end of class they will be able to write down, for any
+    polynomial with integer coefficients, a short list guaranteed to contain every rational zero it
+    has.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Define $i$.} Introduce the imaginary unit: $i=\sqrt{-1}$, so $i^2=-1$. This one fact is the
-entire lesson's engine. Immediately cash it in: $\sqrt{-4}=\sqrt4\cdot\sqrt{-1}=2i$, and the wall opens ---
-$x^2=-4\Rightarrow x=\pm2i$.
+\textbf{1. Why guessing fails.} One minute, and it earns the rest. Infinitely many numbers, no way to
+test them all; the theorem's entire job is to produce a \emph{finite} list.
 
-\textbf{2. Negative radicals.} Generalize: for $k>0$, $\sqrt{-k}=i\sqrt{k}$. \emph{Pull the $i$ out first},
-then simplify: $\sqrt{-50}=i\sqrt{50}=5i\sqrt2$. Flag the trap: $\sqrt{-2}\cdot\sqrt{-2}\ne\sqrt4$; convert
-to $i$ first, giving $2i^2=-2$. The product rule for radicals fails for negatives.
+\textbf{2. State the theorem, then earn it.} For $f(x)=a_nx^n+\cdots+a_0$ with \emph{integer}
+coefficients, a rational zero $\frac{p}{q}$ in lowest terms has $p \mid a_0$ and $q \mid a_n$. Then
+do the ``why'' live on the Warm-Up's factorization $h(x)=(x-3)(2x-1)(x+2)$: the leading coefficients
+of the factors multiply to $2$, the constants multiply to $6$. A zero $\frac{p}{q}$ comes from a
+factor $(qx-p)$, and those numbers have nowhere to hide. Students accept the rule either way, but
+this makes it inevitable rather than arbitrary --- and it explains the $\tfrac12$ they just found.
 
-\textbf{3. Standard form $a+bi$.} Every complex number has a real part $a$ and an imaginary part $b$.
-$b=0$ gives the reals; $a=0$ (with $b\ne0$) gives the pure imaginaries. Practice naming parts and
-classifying, and (optionally) plotting on the complex plane (real $\to$ horizontal, imaginary $\to$
-vertical) to reinforce the two-component structure.
+\textbf{3. Build two lists.} $f(x)=x^3-4x^2+x+6$ (monic --- candidates are just the divisors of $6$;
+say out loud that this is why every list they have seen so far was integers) and
+$g(x)=4x^3-4x^2-x+1$ (candidates $\pm1,\pm\tfrac12,\pm\tfrac14$). Name the error of the day
+\emph{before} it happens: flipping the fraction. Ask whether $4$ could plausibly be a zero of $g$.
 
 \columnbreak
 
-\textbf{4. Add \& subtract.} Combine like terms: $(3+2i)+(5-8i)=8-6i$. Subtraction distributes the minus
-over \emph{both} parts.
+\textbf{4. Run the workflow end to end.} On $f(x)=x^3-4x^2+x+6$: list, test ($f(1)=4$, $f(-1)=0$),
+divide by $x+1$ synthetically, factor the depressed $x^2-5x+6$, answer $(x+1)(x-2)(x-3)$. Then
+\textbf{Step 5, verify} --- substitute, and count against the degree. Verification is in the
+standard (A2.EI.6d); treat it as part of the answer, not as a nicety.
 
-\textbf{5. Multiply.} FOIL as usual, then replace $i^2=-1$ and re-collect: $(2+3i)(4-i)=8+10i-3i^2=11+10i$.
-Then the \emph{conjugate} product $(a+bi)(a-bi)=a^2+b^2$ is real --- demonstrate with $(5+2i)(5-2i)=29$.
+\textbf{5. Make the search shorter.} Three moves, in order of value: \emph{read the graph} (the
+pre-drawn graph in the notes has intercepts at $-1$, $2$, $3$ --- all on the list); \emph{shrink the
+problem} (each zero found lowers the degree and shortens the list; at a quadratic, stop hunting);
+\emph{test cheaply} with the Remainder Theorem. Then say the equivalence plainly: find the zeros
+$=$ solve $f(x)=0$ $=$ find the $x$-intercepts.
 
-\textbf{6. Powers of $i$.} Build the cycle $i,-1,-i,1$ and reduce the exponent mod $4$:
-$i^{23}\to23\bmod4=3\to i^3=-i$.
+\textbf{6. Solve one together.} $2x^3+3x^2-8x+3=0$ gives $(x-1)(2x-1)(x+3)$ and the solution set
+$\{-3,\tfrac12,1\}$ --- a second fractional solution, from a second non-monic factor. Watch the
+board for students reading $2x-1=0$ as $x=2$ or $x=-\tfrac12$.
 
-\textbf{7. Why we needed them (capstone).} Completing the square on $x^2+2x+5=0$ gives $(x+1)^2=-4$, so
-$x=-1\pm2i$ --- the first quadratic whose solutions are complex. This reconnects 3.3 and previews the
-discriminant in 3.5.
+\textbf{7. Close on the limits.} The practice section supplies both: $k(x)=x^3-x^2-2x+2$ has one
+rational zero and two irrational ones ($\pm\sqrt2$, from the depressed polynomial), and a depressed
+$x^2+4$ has no real zeros at all. \textbf{Leave the second one unresolved} --- it is the door into
+Lesson~3.5.
 \end{multicols}
-\end{skillbox}
-
-\begin{skillbox}[Explicit Instruction: Multiplying Complex Numbers]{forestbg}
-\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
-\textbf{Steps (post and refer back):}
-\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
-  \item Write each factor in $a+bi$ form (convert any $\sqrt{-k}$ to $i\sqrt k$ \emph{first}).
-  \item FOIL / distribute exactly as with binomials.
-  \item Replace every $i^2$ with $-1$.
-  \item Combine like terms into a single $a+bi$.
-\end{enumerate}
-&
-\textbf{Worked example.} Multiply $(4-3i)(2+i)$.
-\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
-  \item FOIL: $8+4i-6i-3i^2$.
-  \item Combine $i$-terms: $8-2i-3i^2$.
-  \item $i^2=-1$: $8-2i-3(-1)=8-2i+3$.
-  \item Collect: $11-2i$.
-\end{itemize}
-\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item leaving a negative radical unsimplified ($\sqrt{-50}$ as $\sqrt{50}\,i$) or dropping/mis-placing the sign ($-\sqrt{-49}$);
-  \item the $\sqrt{-a}\cdot\sqrt{-b}=\sqrt{ab}$ \textbf{trap} --- not converting to $i$ before multiplying;
-  \item forgetting to substitute $i^2=-1$, so a product stops at $\dots-3i^2$;
-  \item sign slips on subtraction (not distributing the minus over the imaginary part);
-  \item confusing the real and imaginary parts, or writing a pure imaginary as ``real'';
-  \item powers of $i$: forgetting the remainder (e.g.\ calling $i^{40}$ anything but $1$).
+  \item the \textbf{flipped fraction} --- divisors of the leading coefficient on top; ask whether that number could plausibly be a zero;
+  \item a \textbf{missing $\pm$} --- half the list gone, and in more than one problem today the only zero found by testing is negative;
+  \item \textbf{unreduced duplicates} --- $\tfrac22$, $\tfrac63$, $\tfrac{2}{6}$ written as new candidates;
+  \item \textbf{reading zeros off non-monic factors} --- $(2x-1)$ gives $x=\tfrac12$, not $2$ and not $-\tfrac12$. This is the new error this lesson introduces;
+  \item \textbf{grinding the whole list} when a graph is on the page --- correct answer, missed point;
+  \item stopping at the \textbf{depressed polynomial} instead of factoring completely (still Lesson 3.2's standard);
+  \item treating an \textbf{empty list} as an arithmetic failure;
+  \item forgetting that the theorem needs \textbf{integer coefficients} to say anything at all.
 \end{itemize}
-Cold-call prompts: ``What is $i$ squared, and why does that matter?'' ``How do you rewrite $\sqrt{-18}$?''
-``After you FOIL, what's the \emph{next} move?'' ``$i^{27}$ --- what's the shortcut?''
+Cold-call prompts: ``What is the constant term, and what goes on top?'' ``How many candidates are on
+your list --- did you count the negatives?'' ``You found $2x-1$; what value of $x$ makes that zero?''
+``The graph crosses between $-1$ and $0$: which candidates live there?'' ``Your list came up empty
+--- is that a mistake?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{The Number $i$} activity (tiered; mirrors the notes).
+\textbf{Suspect List} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Rewrite negative radicals with $i$, evaluate small powers of $i$, name real
-and imaginary parts and classify, and add/subtract complex numbers.
+\textbf{Tier R --- Remediate.} Two \emph{monic} cubics so the candidate list is simply the divisors
+of the constant term and the workflow can be practiced without fraction bookkeeping ---
+$x^3-2x^2-5x+6$ walked through step by step with the synthetic grid pre-drawn, then
+$x^3+2x^2-x-2$ solved independently (and re-derived by grouping, a Lesson~3.2 callback). The third
+problem is list-building only, on the non-monic $2x^3+x^2-5x+2$.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Multiply (FOIL $+\ i^2=-1$), compute conjugate products and notice they are
-real, reduce larger powers of $i$ mod $4$, and \emph{read} complex numbers off the complex plane.
+\textbf{Tier A --- Approaching.} A non-monic solve with a fractional zero, $2x^3-x^2-8x+4$ (checked
+a second way by grouping); a \textbf{graph-driven} problem on $2x^3+3x^2-11x-6$ where the pre-drawn
+graph names two integer zeros and locates the third between $-1$ and $0$, so students choose
+$-\tfrac12$ off the list instead of grinding through twelve candidates; the quartic
+$x^4-x^3-7x^2+x+6$, requiring the workflow \emph{twice}; and error analysis on the two signature
+mistakes --- a list with no negatives, and the belief that a candidate list must contain a zero.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Solve quadratics with complex solutions (including completing the square),
-divide by a conjugate (rationalize), and analyze the $\sqrt{-a}\cdot\sqrt{-b}$ error.
+\textbf{Tier E --- Extension.} A guided \emph{proof} of the monic case ($d=-r(r^2+br+c)$, so
+$r \mid d$), plus why that argument breaks when $a_n \ne 1$; running the theorem \emph{backward} to
+build $6x^3+x^2-4x+1$ from the zeros $\tfrac12$, $\tfrac13$, $-1$ (the A2.EI.6a skill Lesson~3.5
+opens with); $k(x)=x^3-3x-1$, which has \emph{no} rational zeros yet three real ones, established
+from a table of values with three sign changes; and a preview task on $x^3-x^2+4x-4$, whose depressed
+polynomial $x^2+4$ has no real zeros --- groups conjecture where the missing two solutions went.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): rewrite $\sqrt{-72}$ and write $3-\sqrt{-16}$ in $a+bi$ form;
-multiply $(3+2i)(4-i)$ (FOIL then $i^2=-1$); and an \textbf{SOL-style multiple-choice} item asking for
-$i^{38}$ (answer $-1$). Collect and sort into ``got it / lost the $i$ / dropped $i^2=-1$ /
-power-of-$i$ slip'' to decide whether Lesson~3.5 opens with a re-teach.
+\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} the full workflow on
+$3x^3+2x^2-7x+2=0$ --- build the list ($\pm1,\pm2,\pm\tfrac13,\pm\tfrac23$), test, divide, factor to
+$(x-1)(3x-1)(x+2)$, give the solutions $-2$, $\tfrac13$, $1$, and \emph{verify} one by substitution;
+\textbf{(2)} error analysis on a flipped candidate list for $2x^3+5x^2-x-6$, which forces students to
+say \emph{which} coefficient goes where; and \textbf{(3)} an \textbf{SOL-style multiple-choice} item
+asking which value is \emph{not} a possible rational zero of $4x^3-x^2+6x-3$, with $\tfrac23$ as the
+answer (its numerator does not divide $3$ and its denominator does not divide $4$) and three valid
+candidates as distractors. Sort into ``got it / list built wrong / division or arithmetic / stopped
+before solving.'' A large ``list built wrong'' pile is the one to fix immediately, because
+Lesson~3.5 assumes students can produce a candidate list unaided. Watch specifically for zeros
+listed as $-\tfrac13$ from the factor $(3x-1)$ --- that is the non-monic sign error, and two minutes
+of ``set each factor equal to zero and \emph{solve}'' fixes it.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} rewrite negative radicals, write numbers in $a+bi$ form, add/subtract, multiply (FOIL
-$+\ i^2=-1$), compute conjugate products, simplify powers of $i$, solve $x^2=-k$, and explain why
-$i^2\ne1$. \textbf{Extension:} find complex roots by completing the square and verify a root by
-substitution. \textbf{Preview:} Lesson~3.5, \emph{The Quadratic Formula \& the Discriminant} --- one
-formula for every quadratic, and using $b^2-4ac$ to predict two real, one real, or two complex-conjugate
-roots \emph{before} solving.
+\textbf{Homework:} three list-only items of increasing nastiness (ending with $6x^3+x^2-5x-2$ and its
+twelve candidates); two monic solves; a non-monic solve, $2x^3-5x^2-4x+3$, whose fractional solution
+$\tfrac12$ an integers-only list would have missed; a quartic, $x^4-4x^3-x^2+16x-12$, needing the
+workflow twice; a ``no hints this time'' item on $x^3+2x^2-5x-6$ --- Lesson~3.3's exit ticket, where
+the divisor was handed over and now must be generated --- with an explicit A2.EI.6d verification
+step; a solve whose depressed polynomial is $x^2-3$, so two of the three solutions are irrational and
+were never on the list; and two written items, including the one most students miss: a candidate list
+with no winners is not an arithmetic error. \textbf{Extension:} a planter box of volume
+$2x^3+3x^2-3x-2$ whose dimensions come out $(x-1)(2x+1)(x+2)$ with the domain restriction $x>1$,
+checked numerically at $x=3$; building $3x^3-13x^2+2x+8$ from the zeros $-\tfrac23$, $1$, $4$; and
+the sharpest one-question check of the theorem --- if $\tfrac35$ is a zero, what is the smallest the
+leading coefficient could be? \textbf{Preview:} Lesson~3.5, the \emph{Fundamental Theorem of
+Algebra} --- today a cubic twice refused to give up three real solutions; tomorrow you find out that
+nothing was missing.
 \end{skillbox}
-% ── Teacher notes (migrated from the component keys) ──
-% One per component, titled for it. They live here rather than in the _key
-% files so that every component is the same length blank and keyed.
-
-\begin{teachernote}[Warm-Up]
-Every item is a direct prerequisite. Item~1 keeps radicals in simplest form --- exactly what
-$\sqrt{-50}=5i\sqrt2$ will need once the negative comes out as $i$. Item~2 is FOIL, the engine for
-multiplying complex numbers (and $(x+3)(x-3)=x^2-9$ previews the conjugate product). Item~3 is
-combining like terms --- adding/subtracting complex numbers is nothing more than this with a real
-part and an ``$i$ part.'' Item~4 reopens the Lesson~3.3 wall ($x^2=-4$) that today's imaginary unit
-$i$ finally breaks. Keep item~4 on the board to launch the hook.
-\end{teachernote}
-
-\begin{teachernote}[Guided Notes]
-Pace: box~1 (define $i$, $i^2=-1$) is the crux --- linger until every student can say ``$i$ squared is
-negative one.'' Common errors to pre-empt: (i) $\sqrt{-50}=5i\sqrt2$, not $\sqrt{-50}=\sqrt{50}\,i$ left
-unsimplified or $-\sqrt{50}$; (ii) the $\sqrt{-2}\cdot\sqrt{-2}=-2$ trap --- the rule
-$\sqrt a\sqrt b=\sqrt{ab}$ fails for negatives, so convert to $i$ \emph{first}; (iii) dropping $i^2=-1$
-during FOIL (so $(2+3i)(4-i)$ stops at $8+10i-3i^2$); (iv) sign slips subtracting, forgetting to
-distribute the minus over both terms. For powers of $i$, teach ``divide the exponent by $4$, keep the
-remainder'': $i^{23}\to 23\bmod4=3\to i^3=-i$. The completing-the-square capstone reconnects to 3.3 and
-sets up 3.5 --- if time is short, assign it as the first homework item instead.
-\end{teachernote}
-
-\begin{teachernote}[Group Activity]
-Tier R secures the definition and vocabulary (parts + type); watch for $\sqrt{-20}=2i\sqrt5$ left as
-$\sqrt{-20}=\sqrt{20}\,i$ or as $-\sqrt{20}$. Tier A is the multiplication core --- insist on the $i^2=-1$
-substitution step written explicitly, and let the conjugate products (both real: $29$, $10$) motivate the
-$a^2+b^2$ pattern used for division in Tier E. Tier~E~\#3 (division) is beyond the add/subtract/multiply
-standard --- assign it only to groups ready for a challenge; it previews rationalizing denominators.
-Tier~E~\#4 is the single most valuable discussion: the $\sqrt a\sqrt b$ rule is \emph{not} valid for
-negative radicands, which is exactly why we convert to $i$ before doing anything else.
-\end{teachernote}
-
-\begin{teachernote}[Exit Ticket]
-Sort into ``got it / lost the $i$ / dropped $i^2=-1$ / power-of-$i$ slip.'' Telltales: item~1 leaving
-$\sqrt{-72}=\sqrt{72}\,i$ unsimplified or writing $-6i\sqrt2$; item~2 stopping at $12+5i-2i^2$ (didn't
-substitute $i^2=-1$) or a sign slip giving $12+5i-2$; item~3 choosing \textbf{D} (forgot the remainder).
-If the $i^2=-1$ substitution is widely missed, reopen Lesson~3.5 with a 60-second multiply-and-substitute
-recap before the quadratic formula.
-\end{teachernote}
-
-\begin{teachernote}[Homework]
-Answer traps to flag while grading: \#1 not simplifying ($\sqrt{-72}=6i\sqrt2$, not $\sqrt{72}\,i$) or
-mishandling the leading minus in $-\sqrt{-49}=-7i$; \#4c forgetting $i^2=-1$ so $(1+6i)^2$ stops at
-$1+12i+36i^2$; \#6 forgetting the remainder ($i^{12}=1$ because $12$ is a multiple of $4$); \#7 dropping
-the $\pm$. The extension is the bridge to 3.5 --- if a student asks \emph{why} the roots are conjugates,
-that ``why'' (the discriminant $b^2-4ac<0$) is exactly next lesson.
-\end{teachernote}
-
 \end{document}

@@ -1,7 +1,8 @@
-%! Characteristics of Linear Functions — Unit 2, Lesson 2.0 — Homework (Answer Key)
+%! Characteristics of Quadratic Functions — Unit 2, Lesson 2.0 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -13,132 +14,93 @@
 
 \vspace{0.10in}
 
-\begin{notesbox}{Practice: Reading Linear Functions}
-Eight problems. For every graph, table, or rule, read the features \emph{and} be able to say how you
-know. Show your thinking where there is room.
+\begin{notesbox}{Practice}
+Show how you read each feature. For every graph, give the \emph{full} feature list.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{An increasing line.} Read every feature of the graph.
-    \begin{center}
-    \begin{minipage}[c]{0.38\linewidth}\centering
-    \begin{tikzpicture}[scale=0.42]
-      \lgrid{-4}{4}{-4}{6}
-      \draw[very thick, forest] (-3,-4)--(2,6);
-      \fill[charcoal] (0,2) circle (3pt);
-      \fill[charcoal] (-1,0) circle (3pt);
-    \end{tikzpicture}
-    \end{minipage}\hfill
-    \begin{minipage}[c]{0.58\linewidth}
-    \renewcommand{\arraystretch}{1.45}
-    \begin{tabular}{@{}l l@{}}
-      Domain: \ans{all reals} & Range: \ans{all reals} \\
-      $y$-intercept: \ans{$(0,2)$} & Zero: \ans{$(-1,0)$} \\
-      Slope: \ans{$2$} & Incr.\ or decr.? \ans{increasing} \\
-      Positive when $x$ \ans{$>-1$} & Negative when $x$ \ans{$<-1$}
-    \end{tabular}
-    \end{minipage}
-    \end{center}
-
-  \item \textbf{A decreasing line.} Read every feature of the graph.
-    \begin{center}
-    \begin{minipage}[c]{0.38\linewidth}\centering
-    \begin{tikzpicture}[scale=0.42]
-      \lgrid{-3}{4}{-4}{5}
-      \draw[very thick, forest] (-1.5,5)--(3,-4);
-      \fill[charcoal] (0,2) circle (3pt);
-      \fill[charcoal] (1,0) circle (3pt);
-    \end{tikzpicture}
-    \end{minipage}\hfill
-    \begin{minipage}[c]{0.58\linewidth}
-    \renewcommand{\arraystretch}{1.45}
-    \begin{tabular}{@{}l l@{}}
-      Domain: \ans{all reals} & Range: \ans{all reals} \\
-      $y$-intercept: \ans{$(0,2)$} & Zero: \ans{$(1,0)$} \\
-      Slope: \ans{$-2$} & Incr.\ or decr.? \ans{decreasing} \\
-      Positive when $x$ \ans{$<1$} & Negative when $x$ \ans{$>1$}
-    \end{tabular}
-    \end{minipage}
-    \end{center}
-
-  \item \textbf{From a table.} A linear function is given by the table below. (Watch the step in $x$!)
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{From a table.} A quadratic function is given by the table below.
     \begin{center}
     \renewcommand{\arraystretch}{1.25}
-    \begin{tabular}{|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|c|}
     \hline
-    $x$ & $0$ & $2$ & $4$ & $6$ \\ \hline
-    $f(x)$ & $-6$ & $-3$ & $0$ & $3$ \\ \hline
+    $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+    $f(x)$ & $5$ & $0$ & $-3$ & $-4$ & $-3$ \\ \hline
     \end{tabular}
     \end{center}
-    Slope $m = \dfrac{\Delta y}{\Delta x} = {\color{keyred}\mathbf{\tfrac{3}{2}}}$ \quad $y$-intercept: \ans{$(0,-6)$} \quad
-    zero: \ans{$(4,0)$} \\[3pt]
-    Increasing or decreasing? \ans{increasing} \quad $f(x)<0$ when $x$ \ans{$<4$}
-
-  \item \textbf{In context.} A pool already holds $600$ gallons when a hose is turned on; it adds
-        $150$ gallons per minute, so the volume after $t$ minutes is $W(t) = 600 + 150t$.
     \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item The slope $150$ means: \ans{the pool gains $150$ gallons every minute}
-      \item The $y$-intercept $(0,600)$ means: \ans{when the hose is turned on ($t=0$) the pool already holds $600$ gal}
-      \item Find the zero of $W$ by solving $W(t)=0$.
-        \begin{work}
-          600 + 150t &= 0 \\
-                150t &= -600 \\
-                   t &= -4
-        \end{work}
-        Does this zero mean anything in the story?
-        \ansline{No. $t=-4$ is four minutes \emph{before} the hose was turned on, which is outside the story --- the pool was never empty while we were filling it.}
-      \item Which inputs $t$ make sense here, and is $W$ increasing or decreasing on them?
-            \ans{$t\ge 0$ (until the pool is full); increasing}
+      \item The \emph{second differences} of the outputs are constant. Compute them: they equal
+            \ans{$+2$}. Because that value is \emph{positive}, the parabola opens \ans{up}.
+      \item Using the symmetry of the outputs, the vertex is \ans{$(3,-4)$} and the axis of symmetry is
+            $x=\textcolor{keyred}{\mathbf{3}}$.
+      \item The zeros are $x=\textcolor{keyred}{\mathbf{1}}$ and $x=\textcolor{keyred}{\mathbf{5}}$; the $y$-intercept is \ans{$(0,5)$}.
+      \item Is the vertex a max or a min, and what is the range? \ans{minimum; range $y\ge -4$}
     \end{enumerate}
 
-  \item \textbf{A horizontal line.} The graph of $c(x) = -2$ is a flat line through $(0,-2)$.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item What is its slope? \ans{$0$} \quad Is it increasing, decreasing, or constant?
-            \ans{constant}
-      \item What is its range? \ans{$\{-2\}$} \quad Does it have a zero? \ans{no}
-      \item Is $c(x)$ positive or negative? \ans{negative everywhere}
-    \end{enumerate}
-
-  \item \textbf{Same zero, opposite behavior.} Both lines below have their zero at $x=1$.
+  \item \textbf{An upward parabola.} The graph is $m(x) = x^2 + 4x + 3$.
     \begin{center}
-    \begin{minipage}[c]{0.38\linewidth}\centering
-    \begin{tikzpicture}[scale=0.42]
-      \lgrid{-3}{5}{-4}{4}
-      \draw[very thick, forest] (-2.5,-3.5)--(4.5,3.5) node[above left, font=\scriptsize, forest]{$f$};
-      \draw[very thick, navy] (-2.5,3.5)--(4.5,-3.5) node[below left, font=\scriptsize, navy]{$g$};
-      \fill[charcoal] (1,0) circle (3pt);
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-5}{1}{-2}{5}
+      \draw[navy, dashed, semithick] (-2,-2)--(-2,5);
+      \begin{scope}
+        \clip (-5,-2) rectangle (1,5);
+        \draw[very thick, forest, domain=-4.4:0.4, samples=70, smooth]
+          plot (\x,{(\x)*(\x) + 4*(\x) + 3});
+      \end{scope}
+      \fill[charcoal] (-2,-1) circle (3pt);
+      \fill[charcoal] (0,3) circle (3pt);
+      \fill[charcoal] (-3,0) circle (3pt);
+      \fill[charcoal] (-1,0) circle (3pt);
     \end{tikzpicture}
-    \end{minipage}\hfill
-    \begin{minipage}[c]{0.58\linewidth}
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item Which line is increasing? \ans{$f$} \; Which is decreasing? \ans{$g$}
-      \item $f(x)>0$ when $x$ \ans{$>1$} \qquad $g(x)>0$ when $x$ \ans{$<1$}
-      \item At $x=3$, is $f$ positive or negative? \ans{positive} \; Is $g$? \ans{negative}
-    \end{enumerate}
-    \end{minipage}
     \end{center}
+    Vertex: \ans{$(-2,-1)$} \quad Min/max value: \ans{min, $-1$} \quad Axis: $x=$ \ans{$-2$} \quad
+    Zeros: \ans{$x=-3,\,-1$} \\[3pt]
+    Domain: \ans{all reals} \quad Range: \ans{$y\ge -1$} \quad Increasing on: \ans{$(-2,\infty)$} \quad
+    Negative on: \ans{$-3<x<-1$}.
 
-  \item \textbf{Explain.} A line is not horizontal. Why does the sign of $f(x)$ (positive vs.\
-        negative) change at the \emph{zero} and nowhere else?
-        \ansline{To go from above the $x$-axis to below it (or back), a line has to \emph{cross} the axis, and the crossing is the zero. A line that is not horizontal crosses the axis exactly once, so it changes sign exactly once --- there.}
+  \item \textbf{A downward parabola.} The graph is $n(x) = -x^2 + 4$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-3}{3}{-3}{5}
+      \draw[navy, dashed, semithick] (0,-3)--(0,5);
+      \begin{scope}
+        \clip (-3,-3) rectangle (3,5);
+        \draw[very thick, forest, domain=-2.6:2.6, samples=70, smooth]
+          plot (\x,{-1*(\x)*(\x) + 4});
+      \end{scope}
+      \fill[charcoal] (0,4) circle (3pt);
+      \fill[charcoal] (-2,0) circle (3pt);
+      \fill[charcoal] (2,0) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Vertex: \ans{$(0,4)$} \quad Min/max value: \ans{max, $4$} \quad Axis: $x=$ \ans{$0$} \quad
+    Zeros: \ans{$x=-2,\,2$} \\[3pt]
+    Domain: \ans{all reals} \quad Range: \ans{$y\le 4$} \quad Decreasing on: \ans{$(0,\infty)$} \quad
+    End behavior: \ans{both arms $\to-\infty$}.
 
-  \item \textbf{Multiple choice.} Consider the linear function $y = -3x + 6$. Which statement is
-        true?
-    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=1pt]
-      \item The function is increasing.
-      \item The function is positive for all $x > 2$.
-      \item The zero of the function is at $x = 2$. \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
-      \item The $y$-intercept is $(0,-3)$.
-    \end{enumerate}
-    Explain why each of the \emph{other} three statements is false.
-    \ansline{A: slope $-3<0$, so it is decreasing. B: decreasing with zero at $2$ means positive for $x<2$, not $x>2$. D: the $y$-intercept is $(0,6)$ --- $-3$ is the slope. C is true: $-3(2)+6=0$.}
+  \item \textbf{Explain.} A parabola has exactly \emph{one} turning point (its vertex). Explain why
+        its \emph{end behavior} sends \emph{both} arms the same direction, and how the sign of $a$
+        decides which direction.
+        \ansline{Past the single turning point the curve heads one way forever, and by symmetry the other arm mirrors it, so both arms go the same direction. The leading term $ax^2$ dominates for large $|x|$: if $a>0$ the outputs grow large positive (both arms up); if $a<0$ they grow large negative (both arms down).}
 \end{enumerate}
 \end{notesbox}
 
+\begin{extensionbox}
+\textbf{Reading a model in context.} A dolphin leaps so its height is $h(t) = -16t^2 + 16t + 32$ feet
+after $t$ seconds (measuring from the water's surface).
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item The vertex of this parabola is $(0.5,\ 36)$. Interpret it \emph{in context}. What does the
+        $y$-intercept $(0,32)$ mean?
+  \item The positive zero is $t=2$. What is the \emph{meaningful domain} of $h$, and what does the
+        zero tell you happens then?
+\end{enumerate}
+\ansline{(a) The dolphin reaches a maximum height of $36$ ft at $t=0.5$ s; the $y$-intercept means it left the platform at $32$ ft above the water. \;\; (b) Meaningful domain $0\le t\le 2$; the zero $t=2$ is when it reaches the water ($h=0$). After that the model no longer applies.}
+\end{extensionbox}
+
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 2.1: Linear Functions.} Today you \emph{read} the characteristics
-of a line from its graph, table, and rule. Next you will use those same features --- slope and
-intercepts --- to \emph{write} linear equations in slope-intercept, point-slope, and standard form,
-and to graph lines by transforming a parent line.
+\textbf{Coming next --- Lesson 2.1: Graphing Quadratic Functions.} Today you \emph{read} a parabola's
+characteristics from its graph. Next you will use the \textbf{vertex form} $f(x)=a(x-h)^2+k$,
+\textbf{standard form}, and \textbf{intercept form} to \emph{find} the vertex, axis, and intercepts
+from the equation, and to graph a parabola by transforming the parent $y=x^2$.
 \end{spiralbox}
 
 \end{document}

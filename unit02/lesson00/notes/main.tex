@@ -1,0 +1,172 @@
+%! Characteristics of Quadratic Functions — Unit 2, Lesson 2.0 — Guided Notes
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
+\begin{document}
+
+\pageheader{Unit 2, Lesson 2.0}{Guided Notes}
+
+\vspace{0.10in}
+
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item name a parabola's \emph{vertex} (its \emph{turning point}) and \emph{axis of symmetry}, and say whether the vertex is a \emph{maximum} or a \emph{minimum};
+  \item read the \emph{domain}, \emph{range}, \emph{intercepts}, and \emph{zeros} of a quadratic from its graph, and the intervals where it is increasing, decreasing, positive, or negative;
+  \item describe a parabola's \emph{end behavior} and use its \emph{symmetry} to justify what I read.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.06in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}
+\termblanklong{Parabola}
+\termblanklong{Vertex (turning point)}
+\termblanklong{Axis of symmetry}
+\termblanklong{Maximum / minimum value}
+\termblanklong{End behavior}
+\end{vocabbox}
+
+\begin{hookbox}
+A ball is thrown upward. Its height after $t$ seconds is $h(t) = -16t^2 + 32t + 48$ feet.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item How high was the ball when it was released (at $t=0$)? \writeline
+  \item The graph rises, turns, and falls. What is happening to the ball at the \emph{turning point}? \writeline
+\end{itemize}
+The ball's whole flight --- its start, its highest point, and where it lands --- is written in the
+\emph{shape} of one curve. That U-shaped (here, upside-down-U) curve is a \textbf{parabola}, and today
+we learn to read it.
+\end{hookbox}
+
+\boxguard[20]
+\begin{notesbox}{1. What Makes a Function Quadratic}
+A \textbf{quadratic function} has the form $f(x) = ax^2 + bx + c$ with $a \ne 0$ --- its highest power
+is $x^{\blank{0.6cm}}$. Build a table for $f(x) = x^2 - 2x - 3$:
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+$f(x)$ & $5$ & $0$ & $-3$ & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} \\ \hline
+\end{tabular}
+\end{center}
+The outputs fall, reach a lowest value, then rise again --- they do \emph{not} change by a constant
+amount, so the graph is \textbf{not} a line. Its graph is a symmetric U-shaped curve called a
+\blank{2.8cm}. Because $a = 1 > 0$, this parabola opens \blank{1.6cm} (a bowl); if $a<0$ it opens
+\blank{1.6cm} (a dome).
+\end{notesbox}
+
+\begin{notesbox}{2. Reading a Parabola: The Characteristics}
+Here is the graph of $f(x) = x^2 - 2x - 3$. Read each feature straight off the picture.
+\begin{center}
+\begin{tikzpicture}[scale=0.52]
+  \lgrid{-3}{5}{-5}{6}
+  \draw[navy, dashed, semithick] (1,-5)--(1,6);
+  \node[navy, font=\scriptsize, right] at (1.05,5.4){axis $x=1$};
+  \begin{scope}
+    \clip (-3,-5) rectangle (5,6);
+    \draw[very thick, forest, domain=-2.2:4.2, samples=80, smooth]
+      plot (\x,{(\x)*(\x) - 2*(\x) - 3});
+  \end{scope}
+  \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{vertex $(1,-4)$};
+  \fill[charcoal] (0,-3) circle (3pt) node[right, font=\scriptsize]{$(0,-3)$};
+  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$(-1,0)$};
+  \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$(3,0)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item \textbf{Vertex (turning point):} the point where the curve turns, $(\blank{0.7cm},\,\blank{0.7cm})$.
+        Here the curve turns from falling to rising, so the vertex is a \textbf{minimum}.
+  \item \textbf{Axis of symmetry:} the vertical mirror line through the vertex, $x = \blank{0.8cm}$. The
+        two halves of the parabola are reflections across it.
+  \item \textbf{Minimum value:} the \emph{output} at the vertex, $f = \blank{0.9cm}$. (A minimum is a
+        $y$-value, not a point.)
+  \item \textbf{$y$-intercept:} set $x=0$: the point $(0,\,\blank{0.8cm})$.
+  \item \textbf{$x$-intercepts / zeros:} where $f(x)=0$: $x = \blank{0.9cm}$ and $x = \blank{0.9cm}$. A
+        parabola can have \emph{two}, one, or no zeros.
+  \item \textbf{Domain / range:} domain is \blank{3.2cm}; because the lowest output is $-4$ and the
+        curve rises forever, the range is \blank{2.8cm}.
+  \item \textbf{Increasing / decreasing:} the graph \emph{falls} then \emph{rises}, turning at the
+        vertex. Decreasing on \blank{2.0cm}; increasing on \blank{2.0cm}.
+  \item \textbf{Positive / negative:} above the $x$-axis (so $f(x)>0$) when $x<-1$ \emph{or} $x>3$;
+        below it (so $f(x)<0$) on the interval \blank{2.2cm} (between the zeros).
+  \item \textbf{End behavior:} follow both arms. As $x \to +\infty$, $f(x) \to \blank{1.0cm}$; and as
+        $x \to -\infty$, $f(x) \to \blank{1.0cm}$. Both arms go \emph{up} because $a>0$.
+\end{enumerate}
+\end{notesbox}
+
+\boxguard[20]
+\begin{notesbox}{3. Opening Direction \& Symmetry}
+The sign of $a$ decides which way a parabola opens --- and therefore whether the vertex is a
+\textbf{minimum} or a \textbf{maximum}.
+\begin{center}
+\begin{tikzpicture}[scale=0.44]
+  % Parent y = x^2 : even symmetry about the y-axis
+  \begin{scope}
+    \lgrid{-3}{3}{-1}{6}
+    \draw[navy, dashed, semithick] (0,-1)--(0,6);
+    \begin{scope}
+      \clip (-3,-1) rectangle (3,6);
+      \draw[very thick, forest, domain=-2.4:2.4, samples=60, smooth] plot (\x,{(\x)*(\x)});
+    \end{scope}
+    \fill[charcoal] (0,0) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (0,-2.2){$y=x^2$ \; (opens up, min)};
+  \end{scope}
+  % g(x) = -x^2 + 2x + 3 : opens down, max
+  \begin{scope}[xshift=10cm]
+    \lgrid{-3}{5}{-4}{6}
+    \draw[navy, dashed, semithick] (1,-4)--(1,6);
+    \begin{scope}
+      \clip (-3,-4) rectangle (5,6);
+      \draw[very thick, forest, domain=-2.2:4.2, samples=80, smooth]
+        plot (\x,{-1*(\x)*(\x) + 2*(\x) + 3});
+    \end{scope}
+    \fill[charcoal] (1,4) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (1,-5.2){$g(x)=-x^2+2x+3$ \; (opens down, max)};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item \textbf{Even symmetry.} The parent $y=x^2$ is a mirror image across the \blank{1.8cm}-axis:
+        inputs $x$ and $-x$ give the \emph{same} output, e.g.\ $(-2)^2 = (2)^2 = \blank{0.7cm}$.
+  \item \textbf{Every parabola} is symmetric across its \textbf{axis of symmetry}. For $g$ above, the
+        axis is $x=\blank{0.7cm}$, so points the same distance left and right of it share an output.
+  \item \textbf{$g$ opens down} ($a=-1<0$), so its vertex $(1,4)$ is a \textbf{maximum}; its maximum
+        value is \blank{0.9cm}, its range is \blank{2.6cm}, and \emph{both} end-behavior arms go
+        \blank{1.4cm}.
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+The graph below is $p(x) = x^2 - 4$. Read each characteristic and write it on the line.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-4}{4}{-5}{5}
+  \draw[navy, dashed, semithick] (0,-5)--(0,5);
+  \begin{scope}
+    \clip (-4,-5) rectangle (4,5);
+    \draw[very thick, forest, domain=-3:3, samples=70, smooth] plot (\x,{(\x)*(\x) - 4});
+  \end{scope}
+  \fill[charcoal] (0,-4) circle (3pt) node[below right, font=\scriptsize]{$(0,-4)$};
+  \fill[charcoal] (-2,0) circle (3pt) node[above left, font=\scriptsize]{$(-2,0)$};
+  \fill[charcoal] (2,0) circle (3pt) node[above right, font=\scriptsize]{$(2,0)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item Vertex: \blank{2.0cm} \quad Min or max? \blank{1.8cm} \quad Axis of symmetry: $x=$ \blank{1.2cm}
+  \item Zeros: \blank{2.6cm} \qquad $y$-intercept: \blank{1.8cm}
+  \item Domain: \blank{2.8cm} \qquad Range: \blank{2.8cm}
+  \item Decreasing on \blank{2.0cm}; \; increasing on \blank{2.0cm}; \; negative on \blank{2.0cm}.
+\end{enumerate}
+\end{practicebox}
+
+\end{document}

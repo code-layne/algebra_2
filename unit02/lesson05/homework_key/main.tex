@@ -1,14 +1,8 @@
-%! Linear Regression — Unit 2, Lesson 2.5 — Homework (Answer Key)
+%! The Quadratic Formula & the Discriminant — Unit 2, Lesson 2.5 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
 
 \begin{document}
 
@@ -17,118 +11,120 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show your work. Describe an association by \emph{direction}, \emph{form}, and \emph{strength}. The
-correlation coefficient $r\in[-1,1]$ gives direction (sign) and strength ($|r|$). To predict with a line of
-best fit $\hat y=ax+b$, substitute an $x$.
+Show your work. Write in standard form first, read $a,b,c$ with signs, and simplify every answer (use
+$a+bi$ when the roots are complex).
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Classify the direction} (positive / negative / none) of each scatterplot.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{2}\dpt{2}{3}\dpt{3}{3}\dpt{4}{5}\dpt{5}{6}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(a)};
-        \end{tikzpicture}
-        \hspace{0.6cm}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{4}\dpt{2}{2}\dpt{3}{5}\dpt{4}{3}\dpt{5}{4}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(b)};
-        \end{tikzpicture}
-        \end{center}
-        (a) is \ans{positive}; \quad (b) is \ans{none}.
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item \textbf{Standard form, then $a,b,c$.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $x^2=6x-2 \Rightarrow$ \ans{$x^2-6x+2=0$}\quad $a=\ans{$1$}\ b=\ans{$-6$}\ c=\ans{$2$}$
+      \item $5x-3=2x^2 \Rightarrow$ \ans{$2x^2-5x+3=0$}\quad $a=\ans{$2$}\ b=\ans{$-5$}\ c=\ans{$3$}$
+    \end{enumerate}
 
-  \item \textbf{Match $r$ to the plot.} Assign each $r\in\{\,0.98,\ -0.60,\ 0.05\,\}$ to a plot.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{1}\dpt{2}{2}\dpt{3}{3}\dpt{4}{5}\dpt{5}{5}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(P)};
-        \end{tikzpicture}
-        \hspace{0.4cm}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{5}\dpt{2}{3}\dpt{3}{4}\dpt{4}{2}\dpt{5}{3}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(Q)};
-        \end{tikzpicture}
-        \hspace{0.4cm}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{3}\dpt{2}{5}\dpt{3}{2}\dpt{4}{4}\dpt{5}{3}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(R)};
-        \end{tikzpicture}
-        \end{center}
-        (P): $r={\color{keyred}\mathbf{0.98}}$; \quad (Q): $r={\color{keyred}\mathbf{-0.60}}$; \quad
-        (R): $r={\color{keyred}\mathbf{0.05}}$.
+  \item \textbf{Discriminant \& classify} (compute $b^2-4ac$; state two real / one repeated / two complex).
+    \[ x^2-2x-8=0:\ \ans{$36$; two real} \qquad x^2+x+1=0:\ \ans{$-3$; two complex} \]
+    \[ 9x^2-12x+4=0:\ \ans{$0$; one repeated} \qquad x^2+5x+2=0:\ \ans{$17$; two real} \]
 
-  \item \textbf{Interpret and predict.} A biologist records the number of \emph{days} a plant has grown
-        ($x$) and its \emph{height in cm} ($y$). Over days $0$ to $30$, technology gives
-        $\hat y=0.8x+5$ with $r=0.97$.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-          \item Interpret the slope $0.8$ in context.
-                \ans{each additional day of growth is associated with about $0.8$ cm more height.}
-          \item Interpret the $y$-intercept $5$ in context.
-                \ans{at day $0$ (the start) the predicted height is $5$ cm.}
-          \item Predict the height at $x=20$ days.
-                \begin{work}
-                  \hat y &= 0.8(20) + 5 \\
-                         &= 16 + 5      \\
-                         &= 21
-                \end{work}
-                Height $\approx$ \ans{$21$} cm. Interpolation or extrapolation?
-                \ans{interpolation ($20$ is within $0$--$30$)}
-          \item Predict at $x=100$ days.
-                \begin{work}
-                  \hat y &= 0.8(100) + 5 \\
-                         &= 80 + 5       \\
-                         &= 85
-                \end{work}
-                Height $\approx$ \ans{$85$} cm. Why is this prediction unreasonable?
-                \ans{$100$ days is far outside the data (extrapolation); a real plant stops growing, so it will not keep rising linearly to $85$ cm.}
-        \end{enumerate}
+  \item \textbf{Solve} (real, rational).
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $x^2-x-6=0$
+        \begin{work}
+          x &= \frac{1\pm\sqrt{(-1)^2-4(1)(-6)}}{2(1)} \\
+            &= \frac{1\pm\sqrt{25}}{2} \\
+            &= \frac{1\pm5}{2} \\
+            &= 3,\ -2
+        \end{work}
+      \item $2x^2-7x+3=0$
+        \begin{work}
+          x &= \frac{7\pm\sqrt{(-7)^2-4(2)(3)}}{2(2)} \\
+            &= \frac{7\pm\sqrt{25}}{4} \\
+            &= \frac{7\pm5}{4} \\
+            &= 3,\ \frac{1}{2}
+        \end{work}
+    \end{enumerate}
 
-  \item \textbf{Correlation vs.\ causation.} A study finds a strong positive correlation between children's
-        \emph{shoe size} and their \emph{reading level}. Does a bigger shoe \emph{cause} better reading?
-        \ans{no} \; Name a \textbf{lurking variable}.
-        \ans{the child's \emph{age} --- older children have bigger feet \emph{and} read better.}
+  \item \textbf{Solve} (real, irrational --- simplest radical form).
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $x^2-6x+7=0$
+        \begin{work}
+          x &= \frac{6\pm\sqrt{(-6)^2-4(1)(7)}}{2(1)} \\
+            &= \frac{6\pm\sqrt{8}}{2} \\
+            &= \frac{6\pm2\sqrt{2}}{2} \\
+            &= 3\pm\sqrt{2}
+        \end{work}
+      \item $x^2+4x+1=0$
+        \begin{work}
+          x &= \frac{-4\pm\sqrt{4^2-4(1)(1)}}{2(1)} \\
+            &= \frac{-4\pm\sqrt{12}}{2} \\
+            &= \frac{-4\pm2\sqrt{3}}{2} \\
+            &= -2\pm\sqrt{3}
+        \end{work}
+    \end{enumerate}
 
-  \item \textbf{Explain.} What two things does the correlation coefficient $r$ tell you about a scatterplot,
-        and how does each show up in the value of $r$?
-        \ansline{Direction --- the \emph{sign} of $r$ ($+$ rising, $-$ falling); and strength --- the \emph{size} $|r|$.}
-        \ansline{$|r|$ near $1$ is a tight linear pattern; $|r|$ near $0$ is little or no linear trend.}
+  \item \textbf{Solve} (complex --- $a+bi$ form).
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $x^2-2x+10=0$
+        \begin{work}
+          x &= \frac{2\pm\sqrt{(-2)^2-4(1)(10)}}{2(1)} \\
+            &= \frac{2\pm\sqrt{-36}}{2} \\
+            &= \frac{2\pm6i}{2} \\
+            &= 1\pm3i
+        \end{work}
+      \item $x^2+16=0$
+        \begin{work}
+          x &= \frac{0\pm\sqrt{0^2-4(1)(16)}}{2(1)} \\
+            &= \frac{\pm\sqrt{-64}}{2} \\
+            &= \frac{\pm8i}{2} \\
+            &= \pm4i
+        \end{work}
+      \item $2x^2+2x+1=0$
+        \begin{work}
+          x &= \frac{-2\pm\sqrt{2^2-4(2)(1)}}{2(2)} \\
+            &= \frac{-2\pm\sqrt{-4}}{4} \\
+            &= \frac{-2\pm2i}{4} \\
+            &= -\frac{1}{2}\pm\frac{1}{2}i
+        \end{work}
+    \end{enumerate}
+
+  \item \textbf{Discriminant $\to$ graph.} State how many times each parabola crosses the $x$-axis.
+    \[ b^2-4ac=49:\ \ans{$2$} \qquad b^2-4ac=0:\ \ans{$1$} \qquad b^2-4ac=-4:\ \ans{$0$} \]
+
+  \item \textbf{Choose the most efficient method} (square roots / factoring / quadratic formula --- you need not solve).
+    \[ x^2-25=0:\ \ans{square roots} \quad x^2-7x+12=0:\ \ans{factoring} \quad x^2+3x+5=0:\ \ans{formula} \]
+
+  \item \textbf{Explain.} A classmate says ``the discriminant is negative, so the equation has \emph{no}
+        solutions.'' What is the correct statement?
+        \ansline{A negative discriminant means no \emph{real} solutions --- but there are still \emph{two} solutions: a complex-conjugate pair $a\pm bi$. Every quadratic has solutions over the complex numbers.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Which line fits better?} For the five data points below, two candidate lines are proposed:
-$y_1=1.5x+0.5$ and $y_2=x+2$. Fill in each line's predictions and its \emph{error} (error $=$ data $-$
-prediction) at every point.
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-$x$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \hline
-data $y$ & $2$ & $3$ & $5$ & $6$ & $8$ \\ \hline
-$y_1=1.5x+0.5$ & $\mathbf{2}$ & $\mathbf{3.5}$ & $\mathbf{5}$ & $\mathbf{6.5}$ & $\mathbf{8}$ \\ \hline
-error & $\mathbf{0}$ & $\mathbf{-0.5}$ & $\mathbf{0}$ & $\mathbf{-0.5}$ & $\mathbf{0}$ \\ \hline
-$y_2=x+2$ & $\mathbf{3}$ & $\mathbf{4}$ & $\mathbf{5}$ & $\mathbf{6}$ & $\mathbf{7}$ \\ \hline
-error & $\mathbf{-1}$ & $\mathbf{-1}$ & $\mathbf{0}$ & $\mathbf{0}$ & $\mathbf{1}$ \\ \hline
-\end{tabular}
-\end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item Total error \emph{size} (add the absolute values of the errors): \; $y_1$: \ans{$1.0$}; \quad
-        $y_2$: \ans{$3.0$}.
-  \item The line of best fit makes predictions closest to the data overall. Which candidate fits better, and
-        how do you know?
-        \ans{$y_1$ --- its total error size ($1.0$) is smaller than $y_2$'s ($3.0$), so its predictions sit closer to the data.}
-\end{enumerate}
+\textbf{1. Model.} A firework is launched so its height is $h(t)=-16t^2+32t+48$ (feet, $t$ in seconds).
+Solve $h(t)=0$ with the formula to find when it lands; reject the impossible root.
+\begin{work}
+  t &= \frac{-32\pm\sqrt{32^2-4(-16)(48)}}{2(-16)} \\
+    &= \frac{-32\pm\sqrt{4096}}{-32} \\
+    &= \frac{-32\pm64}{-32} \\
+    &= -1,\ 3 \quad\text{reject } t=-1,\ \text{so it lands at } t=3\text{ s}
+\end{work}
+
+\textbf{2. Parameter.} For what value of $k$ does $x^2+6x+k=0$ have exactly one repeated real root?
+\ans{$k=9$}\; For what values of $k$ does it have two complex roots? \ans{$k>9$}
+
+\textbf{3. Verify a complex root.} Substitute $x=1+3i$ into $x^2-2x+10$ (from \#5a) and show it gives $0$.
+\begin{work}
+  (1+3i)^2-2(1+3i)+10 &= (1+6i+9i^2)-(2+6i)+10 \\
+                      &= (1+6i-9)-(2+6i)+10 \\
+                      &= (-8+6i)-(2+6i)+10 \\
+                      &= 0
+\end{work}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- the Unit 2 Test, then Unit 3: Quadratic Functions.} You've now met linear functions
-from every angle: characteristics, forms, absolute value, piecewise, and fitting a line to data. In Unit~3
-the data can \emph{curve} --- a falling-then-rising pattern that no line can capture --- and the curve of
-best fit becomes a \textbf{parabola}.
+\textbf{Coming next --- Lesson 2.6: Systems Involving Quadratics.} You can now solve \emph{any} single
+quadratic. Next you'll solve \emph{systems} --- a line and a parabola, or two parabolas --- by substitution.
+The catch: substitution collapses the system into one quadratic equation, which you'll finish with today's
+formula, and the discriminant will tell you how many times the two graphs intersect.
 \end{spiralbox}
 
 \end{document}

@@ -1,8 +1,9 @@
-%! The Quadratic Formula & the Discriminant — Unit 3, Lesson 3.5 — Group Activity (Answer Key)
+%! Fundamental Theorem of Algebra and Complex Zeros — Unit 3, Lesson 3.5 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -11,137 +12,279 @@
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.5}{Group Activity --- Answer Key}
+\namepartnerperiod
 
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{One Formula, Every Quadratic.} With your partner, always start in \textbf{standard form}
-$ax^2+bx+c=0$, read $a,b,c$ \emph{with signs}, and compute the \textbf{discriminant} $b^2-4ac$ \emph{first}
---- it tells you what kind of answer to expect. Then run the formula and simplify.
+\small\textbf{Nothing Is Missing.} Two rules run every problem on this page. \textbf{(1)} A polynomial
+of degree $n$ has \emph{exactly} $n$ complex zeros, counted with multiplicity --- so the degree tells
+you when to stop looking. \textbf{(2)} When the coefficients are real, imaginary zeros come in
+\emph{conjugate pairs}: $a+bi$ never shows up without $a-bi$. Before you write a final answer, count
+it against the degree. If your count is short, you stopped too early; if your imaginary zeros are an
+odd number, one of them lost its partner.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. Standard form, then $a,b,c$.}
-\begin{itemize}\setlength{\itemsep}{3pt}
-  \item $x^2-5x=-6 \Rightarrow$ \ans{$x^2-5x+6=0$} \hfill $a=\ans{$1$}\ b=\ans{$-5$}\ c=\ans{$6$}$
-  \item $3x^2+2=7x \Rightarrow$ \ans{$3x^2-7x+2=0$} \hfill $a=\ans{$3$}\ b=\ans{$-7$}\ c=\ans{$2$}$
-\end{itemize}
+\begin{enumerate}[leftmargin=1.7em, itemsep=9pt]
+  \item \textbf{Count first --- no solving.} Each polynomial is already factored.
 
-\textbf{2. Compute the discriminant $b^2-4ac$.}
-\[ x^2-4x+1=0:\ \ans{$12$} \qquad x^2+2x+5=0:\ \ans{$-16$} \qquad x^2-6x+9=0:\ \ans{$0$} \]
+    \vspace{3pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{|X|C{1.8cm}|C{3.6cm}|C{3.4cm}|}
+    \hline
+    \rowcolor{forestbg}
+    \textbf{Polynomial} & \textbf{Degree} & \textbf{Distinct zeros} & \textbf{Zeros with multiplicity} \\ \hline
+    (a) $(x-2)(x+5)(x-1)$ & \ans{$3$} & \ans{$2, -5, 1$} & \ans{$2, -5, 1$ \; (3)} \\ \hline
+    (b) $(x-4)^2(x+3)$    & \ans{$3$} & \ans{$4, -3$}    & \ans{$4, 4, -3$ \; (3)} \\ \hline
+    (c) $(x+1)(x^2+9)$    & \ans{$3$} & \ans{$-1, 3i, -3i$} & \ans{$-1, 3i, -3i$ \; (3)} \\ \hline
+    \end{tabularx}
 
-\textbf{3. Classify the roots} from the discriminant (circle one for each).
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}c X@{}}
-\textbf{$b^2-4ac$} & \textbf{Roots (circle one)} \\
-\hline
-$25$  & \ans{two real} \quad / \quad one repeated real \quad / \quad two complex \\
-$0$   & two real \quad / \quad \ans{one repeated real} \quad / \quad two complex \\
-$-9$  & two real \quad / \quad one repeated real \quad / \quad \ans{two complex} \\
-\end{tabularx}
-\end{center}
+    \vspace{3pt}
+    In row (c), the factor $x^2+9$ gives the two zeros \ans{$\pm 3i$}. Are they real or imaginary?
+    \ans{imaginary}
 
-\textbf{4. Match to a graph.} Which parabola goes with $b^2-4ac>0$, $=0$, and $<0$?
-\begin{center}
-\begin{tikzpicture}[scale=0.34]
-  \lgrid{-2}{2}{-2}{4}
-  \begin{scope}\clip (-2,-2) rectangle (2,4);
-    \draw[very thick, forest, domain=-1.7:1.7, samples=50, smooth] plot (\x,{\x*\x-1});
-  \end{scope}
-  \node[font=\scriptsize\bfseries, charcoal] at (0,-3.2){A};
-\end{tikzpicture}
-\hspace{0.6cm}
-\begin{tikzpicture}[scale=0.34]
-  \lgrid{-2}{2}{-1}{4}
-  \begin{scope}\clip (-2,-1) rectangle (2,4);
-    \draw[very thick, forest, domain=-1.6:1.6, samples=50, smooth] plot (\x,{\x*\x+1});
-  \end{scope}
-  \node[font=\scriptsize\bfseries, charcoal] at (0,-2.2){B};
-\end{tikzpicture}
-\hspace{0.6cm}
-\begin{tikzpicture}[scale=0.34]
-  \lgrid{-1}{3}{-1}{4}
-  \begin{scope}\clip (-1,-1) rectangle (3,4);
-    \draw[very thick, forest, domain=-0.6:2.6, samples=50, smooth] plot (\x,{(\x-1)*(\x-1)});
-  \end{scope}
-  \node[font=\scriptsize\bfseries, charcoal] at (1,-2.2){C};
-\end{tikzpicture}
-\end{center}
-\[ b^2-4ac>0:\ \ans{A} \qquad b^2-4ac=0:\ \ans{C} \qquad b^2-4ac<0:\ \ans{B} \]
+  \item \textbf{Two quadratics, finished properly.} ``No real solutions'' is not an answer anymore.
+
+    \vspace{2pt}
+    (a) $x^2 + 25 = 0 \;\Rightarrow\; x^2 = $ \ans{$-25$} $\;\Rightarrow\; x = $ \ans{$\pm 5i$}
+
+    \vspace{2pt}
+    (b) $x^2 - 6x + 13 = 0$. \quad Discriminant: \ans{$-16$} \quad $x = $
+    \ans{$\frac{6 \pm 4i}{2} = 3 \pm 2i$}
+
+    \vspace{2pt}
+    (c) In each part, the two answers are \ans{conjugates} of each other.
+
+  \item \textbf{A guided solve over $\mathbb{C}$.} Solve $x^3 - 2x^2 + 9x - 18 = 0$. Start with the
+    candidate $r = 2$.
+
+    \vspace{2pt}
+    Divide it out:
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
+    \ans{$2$} & $1$ & $-2$ & $9$ & $-18$ \\
+        &     & \ans{$2$} & \ans{$0$} & \ans{$18$} \\ \cline{2-5}
+        & \ans{$1$} & \ans{$0$} & \ans{$9$} & \ans{$0$} \\
+    \end{tabular}
+    \end{center}
+
+    \vspace{2pt}
+    Depressed polynomial: \ans{$x^2+9$} \; Solve it: $x = $ \ans{$\pm 3i$}
+
+    \vspace{2pt}
+    Completely factored: \ans{$(x-2)(x^2+9)$} \qquad All solutions: \ans{$2,\ 3i,\ -3i$}
+
+    \vspace{2pt}
+    Number and type: \ans{$1$} real, \ans{$2$} imaginary. Total \ans{$3$} $=$ degree
+    \ans{$3$}. \checkmark
+
+  \item \textbf{Build one from real zeros.} Write a polynomial whose zeros are $-3$, $0$, and $2$.
+
+    \vspace{2pt}
+    Factored form: \ans{$x(x+3)(x-2)$} \qquad Standard form: \ans{$x^3 + x^2 - 6x$}
+\end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. Solve with the formula.} Give simplest radical or $a+bi$ form.
+\begin{enumerate}[leftmargin=1.7em, itemsep=10pt]
+  \item \textbf{The whole workflow, over $\mathbb{C}$.} Solve $x^3 - 3x^2 + 4x - 12 = 0$. Nobody hands
+    you a candidate this time.
 
-\textbf{(a)} $x^2-3x-10=0$
-\begin{work}
-  x &= \frac{3\pm\sqrt{(-3)^2-4(1)(-10)}}{2(1)} \\
-    &= \frac{3\pm\sqrt{49}}{2} \\
-    &= \frac{3\pm7}{2} \\
-    &= 5,\ -2
-\end{work}
-\textbf{(b)} $x^2-4x+1=0$
-\begin{work}
-  x &= \frac{4\pm\sqrt{(-4)^2-4(1)(1)}}{2(1)} \\
-    &= \frac{4\pm\sqrt{12}}{2} \\
-    &= \frac{4\pm2\sqrt{3}}{2} \\
-    &= 2\pm\sqrt{3}
-\end{work}
+    \vspace{2pt}
+    Candidates: \ans{$\pm1, \pm2, \pm3, \pm4, \pm6, \pm12$}
 
-\textbf{2. Complex cases.} The discriminant is negative --- keep both conjugate roots.
+    \vspace{2pt}
+    One that works: $r = $ \ans{$3$} \quad Depressed polynomial: \ans{$x^2+4$}
 
-\textbf{(a)} $x^2-2x+5=0$
-\begin{work}
-  x &= \frac{2\pm\sqrt{(-2)^2-4(1)(5)}}{2(1)} \\
-    &= \frac{2\pm\sqrt{-16}}{2} \\
-    &= \frac{2\pm4i}{2} \\
-    &= 1\pm2i
-\end{work}
-\textbf{(b)} $2x^2+3x+2=0$
-\begin{work}
-  x &= \frac{-3\pm\sqrt{3^2-4(2)(2)}}{2(2)} \\
-    &= \frac{-3\pm\sqrt{-7}}{4} \\
-    &= \frac{-3\pm i\sqrt{7}}{4} \\
-    &= -\frac{3}{4}\pm\frac{\sqrt{7}}{4}i
-\end{work}
+    \vspace{2pt}
+    Completely factored: \ans{$(x-3)(x^2+4)$} \quad All solutions: \ans{$3,\ 2i,\ -2i$}
 
-\textbf{3. Verify.} Substitute $x=5$ into $x^2-3x-10$ (from \#1) and show it gives $0$.
-\begin{work}
-  (5)^2-3(5)-10 &= 25-15-10 \\
-                &= 0
-\end{work}
+    \vspace{2pt}
+    This one also factors by \emph{grouping} (Lesson 3.2). Show that route in one line:
+    \ans{$x^2(x-3)+4(x-3)=(x-3)(x^2+4)$}
+
+  \item \textbf{Let the graph tell you how many are imaginary.} Below is a polynomial function $p$ with
+    real coefficients and \textbf{degree 4}. (Each horizontal gridline is $4$ units.)
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-3}{3}{-3}{4}
+      \begin{scope}
+        \clip (-3,-3) rectangle (3,4);
+        \draw[very thick, forest, domain=-2.42:2.42, samples=160, smooth]
+          plot (\x,{((\x)*(\x)*(\x)*(\x) - 3*(\x)*(\x) - 4)/4});
+      \end{scope}
+      \foreach \x in {-2,-1,1,2}
+        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+      \fill[charcoal] (-2,0) circle (2.5pt);
+      \fill[charcoal] (2,0)  circle (2.5pt);
+    \end{tikzpicture}
+    \end{center}
+
+    \vspace{2pt}
+    (a) How many $x$-intercepts? \ans{$2$} \; At $x = $ \ans{$-2$ and $2$} \; Does the graph cross or
+    touch at each? \ans{crosses both}
+
+    \vspace{2pt}
+    (b) Real zeros counted with multiplicity: \ans{$2$} \quad Total zeros promised by the degree:
+    \ans{$4$}
+
+    \vspace{2pt}
+    (c) So the number of \emph{imaginary} zeros is \ans{$2$}. Check: is that number even?
+    \ans{yes}
+
+    \vspace{2pt}
+    (d) You did all of that \emph{without solving anything}. Explain in one sentence how the graph and
+    the degree together gave you the answer. \ans{The degree promises 4 zeros, the graph shows the 2
+    real ones, so the missing 2 must be imaginary.}
+
+    \vspace{2pt}
+    (e) The function is $p(x) = x^4 - 3x^2 - 4$. Factor it in quadratic form and list all four zeros
+    to confirm: \ans{$(x^2-4)(x^2+1)$; \; $x = 2, -2, i, -i$}
+
+  \item \textbf{Build one that needs a partner.} Write a polynomial of \emph{least} degree with real
+    coefficients whose zeros include $5$ and $1 - i$.
+
+    \vspace{2pt}
+    (a) The full list of zeros: \ans{$5,\ 1-i,\ 1+i$} \; Why did you have to add one? \ans{real
+    coefficients force the conjugate}
+
+    \vspace{2pt}
+    (b) The conjugate pair's factors multiply to the real quadratic \ans{$x^2-2x+2$}
+
+    \vspace{2pt}
+    (c) Factored form: \ans{$(x-5)(x^2-2x+2)$} \quad Standard form: \ans{$x^3-7x^2+12x-10$}
+
+    \vspace{2pt}
+    (d) Verify: the degree is \ans{$3$} and you listed \ans{$3$} zeros. \checkmark
+
+  \item \textbf{Error analysis.} Two students, two different misunderstandings.
+
+    \vspace{2pt}
+    (a) A student says the zeros of a certain cubic with real coefficients are $4$, $2i$, and $6$.
+    What is impossible about that list, and how do you know without seeing the polynomial?
+    \ans{$2i$ has no partner --- with real coefficients $-2i$ would also have to be a zero, and then
+    the cubic would need four zeros.}
+
+    \vspace{2pt}
+    (b) A student is told a quartic with real coefficients has zeros $1$, $-1$, $3i$, and $-3i$, and
+    then says: ``So its graph has four $x$-intercepts.'' How many does it actually have?
+    \ans{$2$} \; What went wrong in their thinking? \ans{Only \emph{real} zeros are $x$-intercepts;
+    imaginary zeros never appear on the graph.}
+\end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. Model (projectile).} A rocket's height is $h(t)=-16t^2+32t+20$ (feet, $t$ in seconds). Find when
-it hits the ground ($h=0$) with the formula, and keep only the sensible root.
-\begin{work}
-  t &= \frac{-32\pm\sqrt{32^2-4(-16)(20)}}{2(-16)} \\
-    &= \frac{-32\pm\sqrt{2304}}{-32} \\
-    &= \frac{-32\pm48}{-32} \\
-    &= -0.5,\ 2.5 \quad\text{reject } t=-0.5,\ \text{so it lands at } t=2.5\text{ s}
-\end{work}
+\textbf{Part 1 --- Prove that the pair keeps the coefficients real.} Let $a$ and $b$ be real numbers
+with $b \ne 0$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item Write the two factors contributed by the zeros $a+bi$ and $a-bi$, then group each one as
+        $(x-a) \mp bi$: \; $\big((x-a) - bi\big)\big((x-a) + bi\big)$
 
-\tcbbreak
-\textbf{2. Discriminant as a dial (parameter).}
-\begin{itemize}\setlength{\itemsep}{3pt}
-  \item For what value(s) of $k$ does $x^2+kx+9=0$ have exactly \emph{one repeated} real root? \ans{$k=\pm6$ (since $k^2-36=0$)}
-  \item For what values of $k$ does $x^2-4x+k=0$ have \emph{two complex} roots? \ans{$k>4$ (since $16-4k<0$)}
-\end{itemize}
+        \vspace{2pt}
+        This is a difference of squares, so it equals $(x-a)^2 - $ \ans{$(bi)^2 = b^2i^2$}
+  \item Since $i^2 = -1$, that becomes $(x-a)^2 + $ \ans{$b^2$}, and expanding gives
+        $x^2 - $ \ans{$2a$} $x + $ \ans{$(a^2+b^2)$}
+  \item Are $2a$ and $a^2+b^2$ real numbers? \ans{yes} \; So the pair of imaginary zeros
+        contributes a factor with \ans{real} coefficients. \; $\blacksquare$
+  \item Now explain the contrapositive in one sentence: why can a polynomial with real coefficients
+        \emph{never} have $a+bi$ as a zero without also having $a-bi$?
+        \ansline{Without the partner, the factor $x-(a+bi)$ leaves an $i$ in the coefficients, so the polynomial could not have been real.}
+\end{enumerate}
 
-\textbf{3. Verify a complex root.} Substitute $x=1+2i$ into $x^2-2x+5$ (Tier A \#2) and show it gives $0$.
-\begin{work}
-  (1+2i)^2-2(1+2i)+5 &= (1+4i+4i^2)-(2+4i)+5 \\
-                     &= (1+4i-4)-(2+4i)+5 \\
-                     &= (-3+4i)-(2+4i)+5 \\
-                     &= 0
-\end{work}
+\vspace{5pt}
+\textbf{Part 2 --- Odd degree always has a real zero.} Let $f$ have real coefficients and odd degree
+$n$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item By the counting corollary, $f$ has exactly \ans{$n$} zeros with multiplicity, and by
+        Part 1 the imaginary ones come in \ans{pairs}.
+  \item So the number of imaginary zeros is \ans{even}, and $n$ is \ans{odd}. An odd number
+        minus an even number is \ans{odd}, so the number of real zeros is at least
+        \ans{$1$}.
+  \item \textbf{Same conclusion, from Lesson 3.0.} An odd-degree polynomial's end behavior sends its
+        two arms in \ans{opposite} directions. Why does that force an $x$-intercept?
+        \ansline{One arm goes to $+\infty$ and the other to $-\infty$, so the continuous graph must pass through $y=0$ somewhere.}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 3 --- A graph with nothing on it.} Solve $x^4 + 13x^2 + 36 = 0$ and compare it to its
+graph. (Each horizontal gridline is $20$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-2}{2}{-1}{4}
+  \begin{scope}
+    \clip (-2,-1) rectangle (2,4);
+    \draw[very thick, forest, domain=-1.66:1.66, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x)*(\x) + 13*(\x)*(\x) + 36)/20});
+  \end{scope}
+  \foreach \x in {-1,1}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item Factor in quadratic form: $x^4+13x^2+36 = ($\ans{$x^2+4$}$)($\ans{$x^2+9$}$)$
+  \item All four solutions: \ans{$2i,\ -2i,\ 3i,\ -3i$}
+  \item How many $x$-intercepts does the graph have? \ans{$0$} \; Is that consistent with your
+        answer to (b)? \ans{yes} \; Explain: \ans{all four zeros are imaginary, and imaginary zeros
+        are never $x$-intercepts}
+  \item Could a polynomial of degree $4$ with real coefficients have \emph{three} imaginary zeros and
+        one real one? \ans{no} \; Why or why not?
+        \ansline{Imaginary zeros come in conjugate pairs, so their number must be even --- three is impossible.}
+\end{enumerate}
+
+\vspace{5pt}
+\textbf{Part 4 --- Least degree, and one honest exception.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+  \item Write a polynomial of least degree with real coefficients whose zeros include $2i$ and
+        $1+i$. \; Full list of zeros: \ans{$2i, -2i, 1+i, 1-i$} \; Least degree: \ans{$4$}
+
+        \vspace{2pt}
+        Factored form: \ans{$(x^2+4)(x^2-2x+2)$} \; Standard form:
+        \ans{$x^4-2x^3+6x^2-8x+8$}
+  \item Consider $f(x) = x - i$. \; Its only zero is \ans{$i$}. \; Is $-i$ a zero?
+        \ans{no}
+  \item That looks like a counterexample to the Complex Conjugate Root Theorem. It is not. Which
+        word in the theorem's statement does $f(x)=x-i$ fail? \ans{``real'' (coefficients)} \; Explain why that
+        word is doing all the work.
+        \ansline{The pairing exists only to keep the coefficients real. This polynomial's coefficients already contain $i$, so it has nothing to protect and the theorem simply does not apply.}
+\end{enumerate}
 \end{tcolorbox}
+
+\begin{teachernote}
+\textbf{Tier R} is deliberately front-loaded with \emph{counting} rather than solving. Item~1 gets
+students saying ``three zeros'' for a cubic before they can solve one over $\mathbb{C}$, and row (c)
+sneaks a conjugate pair into the count without any work. Item~3 is worth pointing out explicitly
+after groups finish: it is the same polynomial the notes \emph{built} from the zeros $2$ and $3i$
+(section 6b), now met from the opposite direction. Say that out loud --- ``you just took apart the
+thing we assembled'' --- because A2.EI.6a and 6c are the same road driven both ways.
+
+\vspace{3pt}
+\textbf{Tier A item~2 is the standard.} Parts (a)--(d) are A2.EI.6b almost verbatim, and part (e) is
+the verification (A2.EI.6d) that the counting was right. Do not let groups skip to (e) and work
+backward --- the point is that the answer was available from the picture and the degree alone. The
+predictable failure is students insisting there must be two more intercepts ``off the screen''; the
+fix is the degree-4 end behavior from Lesson~3.0 (both arms up, so the graph leaves and never
+returns).
+
+\vspace{3pt}
+\textbf{Tier E Part 1} is the proof of the day, and it is short if students group the factors as
+$(x-a)\mp bi$ first --- straight from the Warm-Up's conjugate product. Part~4(c) is the sharpest item
+on the page and rewards a group that has been listening: every theorem this year has come with
+hypotheses, and this is the first time students meet a polynomial whose coefficients are not real.
+Expect ``the theorem is wrong'' before ``the theorem does not apply''; the distinction is worth the
+minute it takes.
+
+\vspace{3pt}
+\textbf{Timing.} Tier R runs about 12 minutes, Tier A about 18. Tier E Parts~1--2 are the priority;
+Parts~3--4 can go home with a group that wants them. If the class as a whole is slow on Tier A
+item~1, it is a Lesson~3.4 problem (candidate lists), not a Lesson~3.5 problem --- rebuild the list
+together on the board and let them keep the new material moving.
+\end{teachernote}
 
 \end{document}

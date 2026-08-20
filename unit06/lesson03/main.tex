@@ -1,4 +1,4 @@
-%! Multiplying \& Dividing Radicals; Rationalizing — Unit 6, Lesson 6.3 — Lesson Plan
+%! Solving Exponential Equations with a Common Base — Unit 6, Lesson 6.3 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 6: Radical Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 6.3: Multiplying \& Dividing Radicals; Rationalizing}
+\newcommand{\UnitNumberName}{Unit 6: Exponential Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 6.3: Solving Exponential Equations with a Common Base}
 
 \begin{document}
 \begin{center}
@@ -19,27 +19,28 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can run the product and quotient properties of radicals
-    \emph{forwards} --- multiplying radicals, distributing across a sum, and multiplying two
-    binomials --- and can simplify the result, recognizing that a product frequently contains a
-    perfect power that neither factor had. They can state and use the single mechanical fact the
-    lesson rests on, $\sqrt{a}\cdot\sqrt{a}=a$; can identify a \emph{conjugate} and explain why a
-    conjugate pair always multiplies to a \emph{rational} number, while the same binomial squared
-    does not; and can \emph{rationalize} a denominator --- one radical, a higher index, or a
-    binomial --- while explaining why multiplying by a form of $1$ changes an expression's form but
-    never its value.
+    \textbf{Primary Objective:} Students can solve an exponential equation by rewriting \emph{both}
+    sides as powers of a single base and then setting the exponents equal --- and can say why that is
+    allowed rather than treating it as a rule. The justification is a fact they already own: an
+    exponential graph has no turning points (Lesson 6.0), so it never produces the same output twice,
+    which is exactly what forces $b^{m}=b^{n}$ to mean $m=n$. Students also read the same solution off
+    a graph as the crossing point of a curve and a horizontal line, and use the \textbf{range} to
+    decide when an exponential equation has no solution at all. The lesson ends by separating two
+    failures that look identical on paper: $2^{x}=-3$ has \emph{no} solution, while $2^{x}=5$ has one
+    that today's method cannot reach.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.2b} --- add, subtract, multiply, and divide
-    radical expressions, including rationalizing denominators --- is the governing standard, and
-    this lesson carries its \emph{multiplicative} half (Lesson 6.2 carried the additive half; that
-    split is why A2.EO.2b spans the pair). \textbf{A2.EO.2a} is used continuously, since every
-    answer must be returned to simplest radical form, and today closes simplest-form condition 3,
-    which 6.2 deliberately left open. \textbf{A2.EO.2c} (radical $\leftrightarrow$ rational
-    exponent) reappears in the mismatched-index case $\sqrt2\cdot\sqrt[3]2$ and in the Activity's
-    and homework's ``two roads'' items, where rationalizing is shown to be nothing but converting
-    $a^{-1/n}$ into a positive exponent. The conjugate work is a deliberate structural callback to
-    \textbf{A2.EO.4c} (Lesson 3.4), where $(a+bi)(a-bi)$ served the identical purpose in a
-    different number system.
+    \textbf{Standards (2023 VA SOL): none --- this lesson is \textit{beyond-SOL / precalculus prep}.}
+    The 2023 standards contain \emph{no} \texttt{A2.EI} strand for exponential equations (that strand
+    runs absolute value $\to$ quadratic $\to$ quadratic systems $\to$ rational $\to$ radical $\to$
+    polynomial and stops) and no \texttt{A2.EO} standard for exponential expressions. The lesson is
+    kept as a full lesson anyway, because Unit 7 cannot run without it and because 6.4's closing wall
+    is dishonest if students have never solved an exponential equation at all. Per the unit ruling,
+    6.3 content is taught and assessed on the unit test but stays \textbf{off the SOL-style
+    multiple-choice items} --- which is why today's exit ticket carries an ordinary multiple-choice
+    item instead of the SOL-style item used in 6.0--6.2. Two standards are \emph{exercised} without
+    being claimed: \textbf{A2.EO.2c} (radical $\leftrightarrow$ rational exponent, Lesson 5.1) supplies
+    every rewrite in Step 1, and \textbf{A2.F.2a} (domain and range) is what rules solutions out in
+    Section 4.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -49,30 +50,26 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Multiply radicals: outsides times outsides, insides times insides, \textbf{then} simplify.
-  \item \textbf{Distribute} a radical over a sum and \textbf{FOIL} two radical binomials.
-  \item Square a radical binomial \emph{with} its middle term.
-  \item Write the \textbf{conjugate} of $a+\sqrt b$ and predict that the product is rational.
-  \item Divide radicals with the quotient property, run forwards.
-  \item \textbf{Rationalize} a monomial denominator --- including index $>2$.
-  \item \textbf{Rationalize} a binomial denominator with the conjugate.
-  \item Justify rationalizing as multiplication by a form of $1$.
+  \item Rewrite a number as a power of a given base, including negative and fractional exponents ($\frac{1}{27}=3^{-3}$, $\sqrt2=2^{1/2}$).
+  \item Apply the \textbf{one-to-one property}: if $b^{m}=b^{n}$ with $b>0$, $b\neq1$, then $m=n$.
+  \item Solve $b^{\,\text{expr}}=b^{\,\text{expr}}$ in three steps: one base, equal exponents, solve.
+  \item Use \textbf{power of a power} correctly --- $\left(2^{3}\right)^{x}=2^{3x}$ --- and distribute across a \emph{binomial} exponent.
+  \item Accept and check a non-integer solution using rational exponents.
+  \item Read the solution of $b^{x}=c$ off a graph as a crossing point.
+  \item Decide from the \textbf{range} when $b^{x}=c$ has no solution.
+  \item Tell ``no solution'' apart from ``a solution this method cannot reach.''
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Nothing here is a new rule. It is yesterday's property read right-to-left, plus the
-        distributive property students have used since Algebra 1.
-  \item \textbf{$\sqrt a\cdot\sqrt a=a$}: a square root times itself erases the radical. Every
-        other idea today is a consequence of this one line.
-  \item A \emph{product} often simplifies when neither factor could --- so ``finish it'' is a habit,
-        not a step.
-  \item Conjugates work because the middle terms \emph{cancel} and the squares \emph{clear}. Change
-        one sign and the effect vanishes.
-  \item Rationalizing is legal because $\frac{\sqrt b}{\sqrt b}=1$. The form changes; the value
-        cannot. Without that, it is a ritual.
-  \item The reason the rule exists at all is arithmetic: dividing \emph{by} an irrational number is
-        painful; dividing by a whole number is not.
+  \item \emph{You may drop the base because an exponential never uses the same output twice.} That is Lesson 6.0's ``no turning points,'' cashed in one unit later.
+  \item The property is not a new rule to memorize --- it is a consequence of a shape students already described.
+  \item $b\neq1$ and $b>0$ were rules about \emph{models} in 6.1. Today they become the conditions that make \emph{solving} valid: $1^{5}=1^{9}$ breaks everything.
+  \item Step 1 is Unit 5 work. Almost every wrong answer today is an exponent-rule slip, not a solving slip.
+  \item A fractional answer is not a symptom of error --- the exponent is a location on the $x$-axis.
+  \item Solving and graphing are two views of one question: where does the curve meet the line?
+  \item ``No solution'' is a \emph{range} fact, settled without algebra.
+  \item The method's limits are the point: knowing where it stops is what makes 6.4 and Unit 7 make sense.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -80,174 +77,169 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Product Property (forwards)} & \TallMath{\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab}} --- same statement as Lesson 6.2, read the other direction. Indices must match. \\
-\textbf{Quotient Property (forwards)} & \TallMath{\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}}=\sqrt[n]{\dfrac{a}{b}}}, $b\ne0$ --- two radicals with one index pull together under one radical. \\
-\textbf{The eraser} & $\sqrt{a}\cdot\sqrt{a}=a$ and $\left(\sqrt a\right)^{2}=a$. A cube root needs \emph{three} copies: the index still sets the group size. \\
-\textbf{Conjugate} & The same binomial with the middle sign reversed: $a+\sqrt b$ and $a-\sqrt b$. \\
-\textbf{Conjugate product} & $\left(a+\sqrt b\right)\left(a-\sqrt b\right)=a^{2}-b$ and $\left(\sqrt a+\sqrt b\right)\left(\sqrt a-\sqrt b\right)=a-b$ --- \emph{always rational}. \\
-\textbf{Rationalizing} & Clearing a radical out of a denominator by multiplying the numerator \emph{and} denominator by the same expression. \\
-\textbf{Form of $1$} & $\frac{\sqrt b}{\sqrt b}=1$; multiplying by it changes an expression's \emph{form}, never its \emph{value}. The justification for the whole method. \\
-\textbf{Simplest radical form} & Now complete: (1) no perfect $n$th power factor; (2) no fraction under a radical; (3) no radical in a denominator. \\
+\textbf{Exponential equation} & An equation with the variable in an exponent: $2^{x}=32$, $9^{\,x-2}=27^{x}$. \\
+\textbf{Common base} & One base that \emph{both} sides can be rewritten as a power of. Finding it is Step 1, and it is where the work is. \\
+\textbf{One-to-one property of exponents} & \TallMath{b^{\,m}=b^{\,n} \;\Longrightarrow\; m=n \quad (b>0,\; b\neq1)} \\
+\textbf{Why it holds} & An exponential has no turning points, so it is one-to-one --- no output is ever produced by two different inputs. \\
+\textbf{Power of a power} & $\left(b^{m}\right)^{n}=b^{mn}$. The exponents \emph{multiply}. Contrast $b^{m}\cdot b^{n}=b^{m+n}$. \\
+\textbf{Rational exponent} & $\sqrt[n]{b}=b^{1/n}$ (Lesson 5.1) --- what makes $4^{x}=\sqrt8$ solvable. \\
+\textbf{Solution as an intersection} & The solution of $b^{x}=c$ is the $x$-coordinate where $y=b^{x}$ meets $y=c$. \\
+\textbf{No solution (range)} & If $c\le0$ the line never meets the curve, because the range is $(0,\infty)$. \\
+\textbf{Out of reach vs.\ nonexistent} & $2^{x}=5$ has a solution the method cannot name; $2^{x}=-3$ has none at all. Different failures. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses three prerequisites, and each is a third of today's lesson in disguise.
-    \textbf{(1)} Distributing and multiplying binomials --- $3x(2x+5)$, $(x+4)(x-4)$, $(x+4)^{2}$.
-    The follow-up question about $(x+4)(x-4)$ is doing the most work on the page: get the words
-    \emph{``same terms, opposite middle sign''} said aloud now, because that sentence \emph{is} the
-    definition of a conjugate, arriving in Section 3. And $(x+4)^{2}$ pre-kills the middle-term
-    error before it can happen --- when a student later writes
-    $\left(\sqrt5+\sqrt2\right)^{2}=7$, you can point at work they did themselves this period.
-    \textbf{(2)} $\sqrt{12}$, $\sqrt{50}$ from yesterday, then $\sqrt7\cdot\sqrt7$ and
-    $\left(\sqrt{11}\right)^{2}$ --- the entire engine of the lesson. Make sure the word
-    \emph{erases} (or ``undoes,'' ``cancels the radical'') is spoken. \textbf{(3)} Equivalent
-    fractions: $\frac34=\frac{15}{20}$, and $\frac55=1$. This is the honesty check on rationalizing;
-    students who hesitate on the last blank are the ones who will suspect Section 5 of cheating.
+    The Warm-Up rehearses exactly what today needs, in the order the lesson uses it. \textbf{(1)}
+    Rewriting numbers as powers --- $4$, $32$, $\frac18$, $\sqrt2$ over base $2$; $81$, $\frac1{27}$
+    over base $3$; $125$ over $5$; $\sqrt[3]{7}$ over $7$ --- which is Unit 5 (\texttt{A2.EO.2c})
+    and is the whole of Step 1. \textbf{(2)} The add-versus-multiply contrast, done \emph{numerically}
+    before it is ever stated as a rule: $2^{3}\cdot2^{4}=128=2^{7}$ against
+    $\left(2^{3}\right)^{4}=4096=2^{12}$. This is the single most common error of the lesson, and
+    students who compute both numbers cannot later claim $\left(2^{3}\right)^{x}=2^{\,3+x}$.
+    \textbf{(3)} A table of $y=2^{x}$ and one question: does this function ever produce the same
+    output twice? The answer is a fact about \emph{shape} (Lesson 6.0: no turning points), and it is
+    the justification for everything in the lesson --- so do not let it pass as a table observation.
+    Debrief items 2 and 3 at the board and leave $2^{3}\cdot2^{4}=2^{7}$ and
+    $\left(2^{3}\right)^{4}=2^{12}$ written where they will stay all period.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put two expressions on the board and ask the class to decide which student is right.
-    \begin{center}
-    Student A: \; $\dfrac{1}{\sqrt2}$ \qquad\qquad Student B: \; $\dfrac{\sqrt2}{2}$
-    \end{center}
-    Let them argue for a minute, then hand out calculators: both are $0.7071067\ldots$ Neither
-    student is wrong. \textbf{So ask the honest question: ``If both are correct, why does every
-    textbook insist on the second one?''} Students will guess ``it looks nicer'' or ``it's the
-    rule.'' Give them the real answer instead, because it is the one that makes the rest of the
-    period feel non-arbitrary: \emph{``It is 1850. You have no calculator, and you must actually
-    compute one of these by hand. Which long division would you rather do ---
-    $1\div1.414214$, or $1.414214\div2$?''} Every hand agrees. That is the whole reason simplest
-    form has a third condition: a radical on \emph{top} is harmless, a radical on the \emph{bottom}
-    is a nuisance, and the convention long predates the calculator that made it cosmetic.
-    \\[3pt]
-    Then turn to the mechanism: \textbf{how did Student B get there?} They multiplied top and
-    bottom by $\sqrt2$, and $\sqrt2\cdot\sqrt2=2$ --- the radical simply left. Point back at
-    Warm-Up item 2 and Warm-Up item 3: they have already established both halves of that move
-    (a root times itself erases; multiplying by $\frac{n}{n}$ is safe). Today is those two facts,
-    applied everywhere.
+    Two graphs on the board, and one gold horizontal line at the same height on each: $y=x^{2}$ with
+    $y=4$, and $y=2^{x}$ with $y=4$. Under them, the two equations: \textbf{$x^{2}=4$} and
+    \textbf{$2^{x}=4$}. Students solve both in ten seconds --- $\pm2$ and $2$ --- and that is not the
+    question. Ask instead: \textbf{``The line is at the same height in both pictures. Why does it hit
+    one curve twice and the other exactly once?''} Take answers until someone reaches the parabola's
+    turning point: it climbs to a height of $4$ on the way up and hits the same height again on the way
+    down, while the exponential only ever climbs. Then make it a general claim: \textbf{``Which fact
+    from Lesson 6.0 guarantees the right-hand picture can never look like the left-hand one?''} ---
+    \emph{no turning points, no extrema; always increasing or always decreasing.} Close by stating the
+    consequence and writing it above both graphs, where it stays all period: \textbf{an exponential
+    never uses the same output twice, so if the bases match, the exponents have no choice but to match
+    too.} Do not introduce the property's fine print here; Section 1 earns it.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Multiplying (about 8 min).} Do not present it as new: write
-$\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab}$ and say out loud that it is yesterday's property read
-right-to-left. The teaching point is the \emph{last} step, not the first: choose examples where
-neither factor simplifies alone but the product does ($\sqrt6\cdot\sqrt{10}=\sqrt{60}=2\sqrt{15}$),
-so that ``finish it'' is discovered rather than nagged. Then isolate $\sqrt a\cdot\sqrt a=a$ and
-name it --- \emph{the eraser} --- and note the cube-root version needs three copies. Mention
-mismatched indices once ($\sqrt2\cdot\sqrt[3]2=2^{5/6}$, Lesson 6.1) and move on.
+\textbf{1. The permission slip.} Define \emph{exponential equation}, then box the one-to-one property.
+State it as a consequence, never as a new rule: a horizontal line meets a curve with no turning points
+at most once, so $b^{m}=b^{n}$ forces $m=n$. Then spend real time on the fine print, because it pays a
+debt from Lesson 6.1. Students were told a model needs $b>0$ and $b\neq1$ and accepted it. Now put
+$1^{5}=1^{9}$ on the board: with $b=1$ the graph is flat, every output repeats, and matching bases
+proves nothing. The restriction was never arbitrary --- it is precisely the condition today's method
+requires. Add $(-4)^{1/2}$ for $b>0$ and move on.
 
-\textbf{2. Distributing \& FOIL (about 6 min).} Fast, because it is Algebra 1 with radicals
-substituted for variables. Spend the time only on $\left(\sqrt7+\sqrt2\right)^{2}$, and connect it
-to Warm-Up 1(c) explicitly.
+\textbf{2. Getting the bases to match.} Fill the powers-of-$2$/$3$/$5$ table together; it is Warm-Up
+item 1 with more entries and it is Step 1 for the rest of the year. Then the red box, which is the
+whole error surface of the lesson: \emph{power of a power multiplies} (point at the Warm-Up numbers,
+do not re-derive), and \emph{the multiplication has to reach both terms} of a binomial exponent ---
+$\left(3^{2}\right)^{x+4}=3^{\,2(x+4)}=3^{\,2x+8}$. Insist on the parentheses being written before
+they are removed. Nearly every wrong answer today comes out of these two lines.
 
 \columnbreak
 
-\textbf{3. Conjugates (about 10 min --- the center of the lesson).} \emph{Do not state the rule
-first.} Work $\left(4+\sqrt3\right)\left(4-\sqrt3\right)$ term by term on the board, let the class
-watch $-4\sqrt3$ and $+4\sqrt3$ cancel, and then ask: ``what kind of number is $13$?'' The word
-\emph{rational} should come from a student. Immediately put $\left(4+\sqrt3\right)^{2}=19+8\sqrt3$
-beside it --- same two numbers, radical survives. That contrast is the argument. Then name the
-term, generalize to $a^{2}-b$, and spend ninety seconds on the Lesson 3.4 callback:
-$(a+bi)(a-bi)=a^{2}+b^{2}$ did the same job in a different number system, and the sign difference is
-entirely $i^{2}=-1$ versus $\left(\sqrt b\right)^{2}=+b$.
+\textbf{3. Three steps, four examples.} One base, equal exponents, solve. Work A ($2^{\,x+1}=32$),
+B ($8^{x}=4$), C ($3^{x}=\frac1{27}$), D ($9^{\,x-2}=27^{x}$) across the table. \textbf{B is the one to
+slow down on:} $x=\frac23$, and a fractional answer reads as ``I did it wrong'' to most students, who
+will erase correct work. Check it with rational exponents in full --- $8^{2/3}=\left(\sqrt[3]8\right)^{2}=4$
+--- and say the sentence out loud: the exponent is a location on the $x$-axis, and nothing requires it to
+be a whole number. \textbf{D is the distribution trap;} a student who writes $3^{\,2x-2}$ gets $x=-2$
+and never sees why.
 
-\textbf{4--5. Dividing, then rationalizing one radical (about 8 min).} Division is quick; land on
-$\sqrt3/\sqrt5$ as the one that will not come out, which reopens condition 3 by name. Then the
-move, with the justification \emph{first}: $\frac{\sqrt b}{\sqrt b}=1$. Include the higher-index
-case $\frac{1}{\sqrt[3]2}$ --- it needs $\sqrt[3]4$, not $\sqrt[3]2$, and the reason is yesterday's
-``the index sets the group size,'' now read forwards.
-
-\textbf{6. Binomial denominators (about 12 min).} Ask first: \emph{what could we possibly multiply
-$3-\sqrt5$ by?} Let someone propose $\sqrt5$ and let it fail on the board. Then the conjugate,
-which they now have a reason to expect. Finish with the reduce-at-the-end habit and the three
-errors.
+\textbf{4. The same answer, seen.} Every equation solved today is a crossing point. On $y=2^{x}$ the
+gold line $y=4$ meets the curve at $x=2$ --- which is exactly where $y=2^{x}-4$ crossed the $x$-axis in
+Lesson 6.2, and 6.2's homework and exit ticket both promised this moment. The red line $y=-3$ never
+meets it: not an algebra failure but a \textbf{range} fact, $(0,\infty)$. Establish the count --- one
+solution when $c>0$, none when $c\le0$, never two --- and name where the $\pm$ reflex comes from. Then
+the blue box: $2^{x}=5$. The line \emph{does} cross, between $x=2$ and $x=3$, so a solution exists;
+$5$ is simply not a power of $2$. Post all three unsolved equations. Preview Lesson~6.4.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
-Circulate during Guided Practice and the tiers. Watch for and correct:
+Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{stopping at the product} --- $\sqrt6\cdot\sqrt{10}$ left as $\sqrt{60}$; yesterday's ``check the leftover'' failing in a new setting, and the reason the examples were chosen so neither factor simplifies alone;
-  \item \textbf{dropping the middle term} --- $\left(\sqrt5+\sqrt2\right)^{2}=7$; do not re-explain, just write $(x+4)^{2}$ next to it and wait;
-  \item \textbf{multiplying only the denominator} by the conjugate --- the tell that a student thinks rationalizing is something you do \emph{to the bottom} rather than to the whole fraction;
-  \item \textbf{using the same binomial} instead of the conjugate --- the work \emph{looks} right and accomplishes nothing, which is exactly why it is the exit ticket's hardest distractor;
-  \item \textbf{the sign of a negative conjugate product} --- $\frac{6}{\sqrt3-3}$ gives $3-9=-6$, and the minus must distribute over \emph{both} numerator terms (homework 3(h));
-  \item \textbf{wrong multiplier at a higher index} --- $\frac{1}{\sqrt[3]2}\cdot\frac{\sqrt[3]2}{\sqrt[3]2}$; the same misconception as calling $\sqrt[3]{9}$ unfinished on the 6.2 exit ticket;
-  \item \textbf{forgetting to reduce} --- $\frac{6\left(3+\sqrt5\right)}{4}$ left unreduced.
+  \item \textbf{adding} where power-of-a-power \textbf{multiplies} --- $\left(2^{3}\right)^{x}=2^{\,3+x}$; this is \emph{the} signature error, and the fix is Warm-Up item 2, not a lecture;
+  \item failing to distribute across a binomial exponent --- $9^{\,x-2}$ written as $3^{\,2x-2}$;
+  \item comparing exponents that sit on \textbf{different bases} --- ``$9^{x}=27$, so $x=3$'' (ask: \emph{whose} exponent is $x$?);
+  \item erasing a correct fractional answer because it ``looks wrong'' --- $\frac23$, $\frac32$, $\frac53$, $\frac16$ all appear today;
+  \item reading $=1$ as ``no exponent'' and declaring no solution, instead of $b^{0}$;
+  \item dropping the negative when a reciprocal is rewritten --- $\frac{1}{27}=3^{-3}$, not $3^{3}$;
+  \item the $\pm$ reflex from Unit 2 --- an exponential equation of this shape never has two answers;
+  \item answering ``no solution'' for $2^{x}=5$: the correct statement is that the solution exists and this method cannot reach it;
+  \item in Tier E, treating $1^{x}=1$ as having one solution rather than infinitely many.
 \end{itemize}
-Cold-call prompts: ``You have an answer --- is it \emph{simplest}?'' ``How many products does FOIL
-give you? Show me all four.'' ``What are you multiplying the whole fraction by, and what does that
-number equal?'' ``Is the denominator rational \emph{yet}?'' ``What is the index, and how many
-copies do you need under there?''
+Cold-call prompts: ``What base are you rewriting to, and why that one?'' ``Did the exponents add or
+multiply there? Prove it with the Warm-Up numbers.'' ``Whose exponent is $x$ --- the $9$'s or the
+$3$'s?'' ``Is your answer a whole number? Should it be?'' ``Does that equation have no solution, or a
+solution we can't find yet? Those are different sentences.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Making It Rational} activity (tiered; mirrors the notes).
+\textbf{Make the Bases Match --- and Say Why You're Allowed To} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} A five-row multiply-and-simplify scaffold whose payoff is the
-follow-up question --- \emph{three} rows finished with no radical at all, and the reason is that the
-radicands multiplied to a perfect power matching the index. Then distributing, a
-``what do I multiply by?'' table for monomial denominators (one row, $\frac{5}{\sqrt5}=\sqrt5$,
-reduces further than students expect), and a conjugate table ending in the question of why the
-product is always radical-free.
+\textbf{Tier R --- Remediate.} A rewriting table over bases $2$, $3$, and $5$ (including $1=b^{0}$ and
+reciprocals), then six one-rewrite equations: $2^{x}=64$, $5^{\,x-1}=25$, $3^{x}=\frac19$, $4^{x}=64$,
+$10^{\,2x}=1000$, and $7^{\,x+2}=1$. Two are then \emph{proved} by substitution. The last equation is
+the one to debrief: $=1$ means $7^{0}$, and students who read it as ``no exponent'' will say no
+solution.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Four products including an algebraic one and a cube root; four
-expansions where (c) and (d) are deliberately paired so that only one comes out rational; four
-rationalizations spanning monomial, simplify-first, and both binomial types; a three-row
-\textbf{error analysis} --- the highest-value items on the page, worth a whole-class share; and a
-\textbf{rectangle} with sides $3\pm\sqrt5$ whose area (\,$4$\,) \emph{and} perimeter (\,$12$\,) are
-both rational for two \emph{different} reasons, closed by a square whose area is not.
+\textbf{Tier A --- Approaching.} Six equations where both sides must move --- $9^{x}=27$,
+$8^{\,x+1}=16$, $\left(\frac13\right)^{x}=81$, $25^{x}=125^{\,x-1}$, $4^{\,3x}=8^{\,x+2}$,
+$6^{\,2x-1}=\frac1{36}$ --- with three non-integer answers among them. Then the same work read off a
+graph of $y=3^{x}$ against $y=9$, $y=1$, and $y=-2$, closing on \emph{how many times can a horizontal
+line cross an exponential curve?} Then the \textbf{error analysis}: Devon adds instead of multiplying
+($8^{x}=4 \Rightarrow x=-1$), Priya never rewrites the left side ($9^{x}=27\Rightarrow x=3$). The two
+need different re-teaches, and students are asked which one Warm-Up item 2 would fix.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Three parts. \textbf{(1)} Rationalize $\frac{1}{3-\sqrt5}$ three
-ways, two of which fail --- so the conjugate is \emph{ruled in} rather than announced --- then the
-general proof and the 3.4 sign question. \textbf{(2)} Rationalizing the \textbf{numerator}:
-$\frac{\sqrt{x+9}-3}{x}$ is $\frac00$ at $x=0$, becomes $\frac{1}{\sqrt{x+9}+3}$, and a table at
-$x=7,1,0.1,0.01$ closes on $\frac16$ --- a genuine calculus limit, done with today's tool.
-\textbf{(3)} Higher-index rationalizing ($\sqrt[3]2$, $\sqrt[3]9$, $\sqrt[4]8$), generalized, then
-re-derived with rational exponents.
+\textbf{Tier E --- Extension.} Three parts. \emph{Radicals are exponents too:} $2^{x}=\sqrt[3]2$,
+$4^{x}=\sqrt8$, $\left(\frac15\right)^{\,x-1}=\sqrt[3]{25}$, and $2^{x}\cdot8^{\,x-1}=32$, which needs
+the product rule on top of everything else. \emph{The fine print, tested:} students construct
+$1^{m}=1^{n}$ themselves, discover $1^{x}=1$ has infinitely many solutions, and then state the
+\emph{solving} reason for $b\neq1$. \emph{A colony:} $P(t)=50\cdot2^{t}$ reaches $3200$ at $t=6$ and
+$12{,}800$ at $t=8$ --- but $1000$ needs $2^{t}=20$, which has no common base and must be trapped
+between $t=4$ and $t=5$. Part (e) is the item of the day: one of $50\cdot2^{t}=1000$ and
+$50\cdot2^{t}=0$ has no solution, the other has one we cannot yet find.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes, no calculator): four computations spanning a product
-that must be simplified afterward ($\sqrt6\cdot\sqrt{18}=6\sqrt3$), a FOIL, a monomial
-rationalization, and a binomial one chosen so the denominator collapses completely
-($\frac{2}{\sqrt7-\sqrt5}=\sqrt7+\sqrt5$) --- a wrong answer there is about method, not stamina; an
-\textbf{explanation} item requiring the student to show $\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$ and say
-why multiplying by $\frac{\sqrt2}{\sqrt2}$ is safe; and an \textbf{SOL-style multiple-choice} item
-on $\frac{4}{2-\sqrt3}$ (answer $8+4\sqrt3$) whose distractors each break one idea ---
-$\frac{8+4\sqrt3}{7}$ added instead of subtracting in $a^{2}-b^{2}$, $8-4\sqrt3$ used the same
-binomial rather than the conjugate, $2+\sqrt3$ cancelled the $4$ against the $2$. Sort into
-``got it / did not simplify / middle-term droppers / conjugate confusion.'' The last pile governs
-how much of 6.4 opens with algebra; the explanation item, not any computation, is what identifies
-students who are performing rationalizing as a ritual and will therefore not reach for it in Lesson
-6.5, where nobody prompts for it by name.
+\textbf{Exit Ticket} (independent, no notes), four items on one page: \textbf{(1)} solve
+$3^{\,x+1}=81$ with the common-base step shown; \textbf{(2)} solve $25^{x}=125$, where the two sides
+do not start on the same base and the answer is $\frac32$ --- a wrong answer of exactly $3$ means the
+student matched $125$'s exponent without rewriting $25$, which is Priya's error from the Activity;
+\textbf{(3)} explain, without algebra, why $2^{x}=-8$ cannot be solved, using the \emph{range}; and
+\textbf{(4)} \textbf{multiple choice} --- which of $9^{x}=27$, $5^{x}=\frac1{125}$, $2^{x}=10$,
+$8^{x}=\sqrt2$ \emph{cannot} be solved with a common base (answer: $2^{x}=10$) --- followed by the most
+informative line on the page: \emph{does that equation still have a solution?} ``No'' is wrong, and it
+is a different misconception from anything in items 1--3. \emph{Note:} this is deliberately an ordinary
+multiple-choice item and \textbf{not} an SOL-style item --- 6.3 has no SOL standard, and per the unit
+ruling its content stays off the SOL-style items while still being assessed on the unit test. Sort the
+collected tickets into \emph{got it / rewrite / range / the wall}. The \emph{rewrite} pile needs
+practice, not re-teaching; the \emph{range} pile gets the Section 4 graph again; a large \emph{wall}
+pile means Lesson 6.4 opens with five minutes on $y=2^{x}$ and the line $y=10$.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} eight products (including $\left(3\sqrt7\right)^{2}$, a cube root, an algebraic
-radicand, and $2\sqrt{12}\cdot\sqrt{27}=36$); six expansions closed by a diagnostic question ---
-two of the six are conjugate pairs and \emph{predictable} in advance, while a third, $\sqrt2
-\left(\sqrt8+\sqrt{18}\right)=10$, is rational only by luck of the numbers, and students who cannot
-tell those apart have learned a pattern instead of a mechanism; eight divide-or-rationalize items
-ending on $\frac{6}{\sqrt3-3}$, whose conjugate product is \emph{negative}; a two-part conceptual
-item (refute $\left(\sqrt3+\sqrt5\right)^{2}=8$ numerically; explain why $2-\sqrt3$ works where
-$2+\sqrt3$ fails \emph{and} why either is allowed); and a closing ``two roads'' item that
-rationalizes $\frac{1}{\sqrt[3]5}$ with radicals and again with rational exponents ---
-$5^{-1/3}=\frac{5^{2/3}}{5}$ --- so that rationalizing is revealed as nothing but moving a negative
-exponent up. \textbf{Extension:} the \textbf{golden ratio} $\varphi=\frac{1+\sqrt5}{2}$. Unlike the
-unit's earlier models (free-fall, Kepler, Kleiber, the pendulum), rationalizing here is not a
-tidying-up step --- it is the \emph{only} way to see the result. A table produces the startling
-$1.6180 / 0.6180 / 2.6180$; the conjugate then proves $\frac1\varphi=\varphi-1$ and
-$\varphi^{2}=\varphi+1$; and the pre-drawn golden rectangle closes it: cut off the $1\times1$
-square and the leftover has ratio $\frac{1}{\varphi-1}=\frac{2}{\sqrt5-1}=\varphi$, so the cut can
-be repeated forever. \textbf{Preview:} Lesson 6.4, \emph{Graphing Radical Functions \&
-Transformations} --- the algebra is finished, and the unit returns to the pictures from 6.0 with
-$y=a\sqrt{x-h}+k$ and $y=a\sqrt[3]{x-h}+k$, the endpoint as the transformation anchor, in both
-directions (equation $\to$ graph and graph $\to$ equation).
+\textbf{Homework:} eight equations spanning every rewrite type, three of which have non-integer answers
+--- and students must list those three and explain why that is not a symptom of error; a graph of
+$y=2^{x}$ read in \emph{both} directions (given the lines $y=8$, $y=2$, $y=-4$, find the solutions;
+then given the solutions $x=0$ and $x=-1$, name the lines --- $y=1$ and $y=\frac12$, the second of
+which students often think is illegal); a \textbf{sorting task} on whether a common base exists, whose
+two ``no'' rows ($2^{x}=12$ and $10^{x}=45$) must then be trapped between consecutive integers;
+\textbf{error analysis} repeating the Activity's two mechanical errors with new numbers (Jamal adds,
+Elise fails to distribute); and a closing $x^{2}=64$ versus $2^{x}=64$ that sends students back to the
+Hook. \textbf{Extension:} $4^{x}\cdot2^{\,x+1}=8^{\,x-1}$, which reduces to $3x+1=3x-3$ --- a
+contradiction, so there is genuinely \textbf{no solution}. Students then rewrite each side as a
+multiple of $8^{x}$ ($2\cdot8^{x}$ and $\frac18\cdot8^{x}$) and explain in \emph{Lesson 6.2's} language
+why two vertical stretches of one curve never meet, since $8^{x}$ is never $0$. Part (d) is the payoff:
+compare this with $2^{x}=5$ and name the two different reasons the method failed. \textbf{Preview:}
+Lesson~6.4, \emph{Compound Interest, Half-Life, and $e$} --- where the numbers come from money and
+medicine and nobody arranges them conveniently: $1000(1.05)^{t}=2000$, and $2$ is not a power of
+$1.05$. Students leave with four unsolved equations on a list --- $2^{x}=5$, $132(0.85)^{t}=32$,
+$(0.9)^{t}=2.118$, and now the investment --- every one of which has an answer. Do not name logarithms;
+that is Unit 7.
 \end{skillbox}
 \end{document}

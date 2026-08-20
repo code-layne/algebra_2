@@ -1,58 +1,67 @@
-%! Graphing Quadratic Functions & Transformations — Unit 3, Lesson 3.1 — Warm-Up (Answer Key)
+%! Operations with Polynomials — Unit 3, Lesson 3.1 — Warm-Up (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.1}{Warm-Up --- Answer Key}
+\namedateperiod
 
 \vspace{0.10in}
 
 \begin{notesbox}{Getting Ready: Skills We'll Use Today}
-\small These skills power today's lesson on graphing parabolas. Work quickly.
+\small These four skills are the whole engine of today's lesson. Work quickly.
 
-\vspace{4pt}
-\textbf{1. The parent $y=x^2$.} Complete the table of the five ``anchor'' points, then read the graph.
-\begin{center}
-\begin{minipage}{0.50\linewidth}\centering
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-$x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ \\ \hline
-$y=x^2$ & \ans{$4$} & \ans{$1$} & \ans{$0$} & \ans{$1$} & \ans{$4$} \\ \hline
-\end{tabular}
-\end{minipage}%
-\begin{minipage}{0.40\linewidth}\centering
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-3}{3}{-1}{5}
-  \begin{scope}
-    \clip (-3,-1) rectangle (3,5);
-    \draw[very thick, forest, domain=-2.2:2.2, samples=60, smooth] plot (\x,{(\x)*(\x)});
-  \end{scope}
-  \fill[charcoal] (0,0) circle (2.5pt);
-\end{tikzpicture}
-\end{minipage}
-\end{center}
-The vertex of $y=x^2$ is the point \ans{$(0,0)$}, and it opens \ans{up}.
+\vspace{5pt}
+\textbf{1. Multiplying powers.} Multiply the coefficients; do something else with the exponents.
 
-\vspace{4pt}
-\textbf{2. Move one point (Unit 2 review).} The point $(2,4)$ is on the parent $y=x^2$. Give the new
-location of \emph{that} point after each change:
-\[
-  y=x^2+3:\ \ans{$(2,7)$} \qquad y=(x-1)^2:\ \ans{$(3,4)$} \qquad y=-x^2:\ \ans{$(2,-4)$}
-\]
+\vspace{2pt}
+$x^3 \cdot x^5 = $ \ans{$x^8$} \qquad $(2x^2)(-4x^3) = $ \ans{$-8x^5$} \qquad
+$(-3x)(5x^4) = $ \ans{$-15x^5$}
 
-\vspace{4pt}
-\textbf{3. Expand a square.} Multiply out and simplify (write in the form $x^2+bx+c$).
-\[
-  (x-1)^2 - 4 = \ans{$x^2 - 2x - 3$}
-\]
+\vspace{3pt}
+Complete the rule: to multiply, \textbf{multiply} the coefficients and \ans{add} the exponents.
+
+\vspace{6pt}
+\textbf{2. Combining like terms.} Only terms with the \emph{same variable and same exponent} combine.
+
+\vspace{2pt}
+$6x^3 - 2x + 5 + x^3 + 7x - 9 = $ \ans{$7x^3 + 5x - 4$}
+
+\vspace{3pt}
+Circle the true statement: \quad $3x^2 + 3x^3 = 6x^5$ \qquad $3x^2 + 3x^3$ cannot be combined
+\ans{$\leftarrow$ true}
+
+\vspace{6pt}
+\textbf{3. Distributing --- watch the negative.}
+
+\vspace{2pt}
+$-(4x^2 - 7x + 3) = $ \ans{$-4x^2 + 7x - 3$}
+
+\vspace{3pt}
+$3x(2x^2 - 5x + 1) = $ \ans{$6x^3 - 15x^2 + 3x$}
+
+\vspace{6pt}
+\textbf{4. A product you already know, and a name from Lesson 3.0.}
+
+\vspace{2pt}
+$(x+3)(x-5) = $ \ans{$x^2 - 2x - 15$}
+
+\vspace{3pt}
+For $x^3 - 3x + 2$: \; degree $=$ \ans{3} \quad leading coefficient $=$ \ans{1} \quad
+so both arms: \ans{left down, right up}
+
 \end{notesbox}
+
+\begin{teachernote}
+Item~1 is the engine of every product today (coefficients multiply, exponents \emph{add}) --- the
+mirror-image error, adding exponents when \emph{adding} terms, is what item~2 guards against. Item~3
+is the single highest-value debrief: ask what happened to the sign of \emph{each} of the three terms,
+not just the first, because $-(4x^2-7x+3)$ is exactly the move students will drop in today's
+subtraction problems. Item~4's polynomial is Lesson~3.0's anchor $g(x)=x^3-3x+2$; students met it as
+$(x-1)^2(x+2)$, and today's Hook asks whether those two forms are really the same function.
+\end{teachernote}
 
 \end{document}

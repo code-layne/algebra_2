@@ -1,9 +1,9 @@
-%! Graphing Polynomial Functions and Modeling — Unit 4, Lesson 4.6 — Group Activity (Answer Key)
+%! Solving Rational Equations — Unit 4, Lesson 4.6 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -17,290 +17,229 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Predict, Then Look.} Every problem on this page runs the same five steps: \textbf{(1)}
-degree and leading coefficient give the arms, \textbf{(2)} the factors give the $x$-intercepts,
-\textbf{(3)} the multiplicities say cross, touch, or flatten, \textbf{(4)} $f(0)$ gives one exact
-point, \textbf{(5)} one test value per interval says above or below. Make the prediction
-\emph{before} you look at any graph --- the point of the page is that the equation already told you.
+\small\textbf{Solve, Then Check.} Same four steps every time, and always in this order:
+\textbf{(1)} factor every denominator and \emph{write the restriction list first}; \textbf{(2)} multiply
+every term by the LCD; \textbf{(3)} solve what is left; \textbf{(4)} check each candidate against the
+list, throw away any match, and verify the survivors. A number is not an answer until Step 4 says so.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\begin{enumerate}[leftmargin=1.7em, itemsep=9pt]
-  \item \textbf{Three cousins.} These three functions use the same two numbers, $-1$ and $2$. Fill in
-    the table from the factored form --- no expanding.
+\textbf{Part 1 --- The list, before anything else.} Do \emph{not} solve. Just factor the denominators
+and write every excluded value.
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Equation} & \textbf{Restrictions} & \textbf{LCD} \\
+\hline
+\TallMath{\frac{3}{x}+\frac{1}{x-2}=1}          & \ans{$x\neq0,\,2$}  & \ans{$x(x-2)$} \\
+\TallMath{\frac{x}{x+5}=\frac{4}{x-1}}          & \ans{$x\neq-5,\,1$} & \ans{$(x+5)(x-1)$} \\
+\TallMath{\frac{2}{x-4}+\frac{1}{x+4}=\frac{6}{x^2-16}} & \ans{$x\neq4,\,-4$} & \ans{$(x-4)(x+4)$} \\
+\TallMath{\frac{5}{x^2-x}=\frac{1}{x}}          & \ans{$x\neq0,\,1$}  & \ans{$x(x-1)$} \\
+\hline
+\end{tabularx}
+\end{center}
 
-    \vspace{3pt}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{|X|C{1.2cm}|C{1.4cm}|C{2.6cm}|C{2.6cm}|C{1.6cm}|}
-    \hline
-    \rowcolor{forestbg}
-    \textbf{Function} & \textbf{Deg.} & \textbf{Lead} & \textbf{Left arm / right arm} & \textbf{At $x=-1$ / at $x=2$} & \textbf{$y$-int} \\ \hline
-    (a) $f(x)=(x+1)(x-2)^2$  & \ans{$3$} & \ans{$1$}  & \ans{down / up} & \ans{cross / touch} & \ans{$4$} \\ \hline
-    (b) $g(x)=-(x+1)(x-2)^2$ & \ans{$3$} & \ans{$-1$} & \ans{up / down} & \ans{cross / touch} & \ans{$-4$} \\ \hline
-    (c) $h(x)=(x+1)^2(x-2)$  & \ans{$3$} & \ans{$1$}  & \ans{down / up} & \ans{touch / cross} & \ans{$-2$} \\ \hline
-    \end{tabularx}
-
-  \item \textbf{Now match.} Each graph below is one of the three. Write the letter under each one.
-    (Each horizontal gridline is $2$ units.)
-    \begin{center}
-    \begin{tikzpicture}[scale=0.42]
-      \lgrid{-3}{3}{-4}{4}
-      \begin{scope}
-        \clip (-3,-4) rectangle (3,4);
-        \draw[very thick, forest, domain=-1.6:2.7, samples=150, smooth]
-          plot (\x,{(0 - (\x)*(\x)*(\x) + 3*(\x)*(\x) - 4)/2});
-      \end{scope}
-      \foreach \x in {-2,-1,1,2}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-      \node[font=\scriptsize\bfseries, charcoal] at (-2.2,3.4) {I};
-    \end{tikzpicture}
-    \hspace{0.15cm}
-    \begin{tikzpicture}[scale=0.42]
-      \lgrid{-3}{3}{-4}{4}
-      \begin{scope}
-        \clip (-3,-4) rectangle (3,4);
-        \draw[very thick, forest, domain=-1.6:2.7, samples=150, smooth]
-          plot (\x,{((\x)*(\x)*(\x) - 3*(\x)*(\x) + 4)/2});
-      \end{scope}
-      \foreach \x in {-2,-1,1,2}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-      \node[font=\scriptsize\bfseries, charcoal] at (-2.2,3.4) {II};
-    \end{tikzpicture}
-    \hspace{0.15cm}
-    \begin{tikzpicture}[scale=0.42]
-      \lgrid{-3}{3}{-4}{4}
-      \begin{scope}
-        \clip (-3,-4) rectangle (3,4);
-        \draw[very thick, forest, domain=-2.2:2.3, samples=150, smooth]
-          plot (\x,{((\x)*(\x)*(\x) - 3*(\x) - 2)/2});
-      \end{scope}
-      \foreach \x in {-2,-1,1,2}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-      \node[font=\scriptsize\bfseries, charcoal] at (-2.2,3.4) {III};
-    \end{tikzpicture}
-    \end{center}
-
-    \vspace{2pt}
-    Graph I is \ans{(b)} \qquad Graph II is \ans{(a)} \qquad Graph III is \ans{(c)}
-
-    \vspace{2pt}
-    Which \emph{one} feature separates (a) from (c)? \ans{which zero is the double one --- (a) touches
-    at $2$, (c) touches at $-1$}
-
-  \item \textbf{Sign chart practice.} Use $f(x) = (x+1)(x-2)^2$ from row (a).
-
-    \vspace{3pt}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{|C{2.6cm}|C{1.6cm}|C{3.6cm}|C{1.8cm}|X|}
-    \hline
-    \rowcolor{forestbg}
-    \textbf{Interval} & \textbf{Test $x$} & \textbf{$f(\text{test }x) = $} & \textbf{Sign} & \textbf{Above / below} \\ \hline
-    $x<-1$    & $-2$ & \ans{$(-1)(16)=-16$} & \ans{$-$} & \ans{below} \\ \hline
-    $-1<x<2$  & $0$  & \ans{$(1)(4)=4$}     & \ans{$+$} & \ans{above} \\ \hline
-    $x>2$     & $3$  & \ans{$(4)(1)=4$}     & \ans{$+$} & \ans{above} \\ \hline
-    \end{tabularx}
-
-    \vspace{2pt}
-    The sign changed at $x=-1$ but \emph{not} at $x=2$. Why not? \ans{the factor $(x-2)$ is squared,
-    so it never turns negative --- the graph touches and turns back}
-
-  \item \textbf{Count the turns.} A polynomial has degree $5$.
-
-    \vspace{2pt}
-    At most how many turning points can its graph have? \ans{$4$} \quad At most how many
-    $x$-intercepts? \ans{$5$}
-
-    \vspace{2pt}
-    Must its graph cross the $x$-axis at least once? \ans{yes} \; Why? \ans{odd degree sends the arms
-    in opposite directions, so it has to pass through}
+\vspace{4pt}
+\textbf{Part 2 --- Solution, or not?} Each candidate below is already given to you. Decide, and say
+\emph{why} in a few words. (Two of them are fine. Two are not.)
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item $\dfrac{x}{x-5}=\dfrac{5}{x-5}$, \; candidate $x=5$: \; \ans{not a solution} \; because
+        \ans{$5$ makes both denominators $0$ --- it is extraneous}
+  \item $\dfrac{4}{x}+\dfrac{1}{2}=\dfrac{5}{x}$, \; candidate $x=2$: \; \ans{solution} \; because
+        \ans{$2+\frac12=\frac52$, and $2$ is not excluded}
+  \item $\dfrac{1}{x+3}=\dfrac{2}{x^2-9}$, \; candidate $x=3$: \; \ans{not a solution} \; because
+        \ans{$x^2-9=0$ at $x=3$; the right side does not exist}
+  \item $\dfrac{2}{x-1}=\dfrac{x}{x+2}$, \; candidate $x=-1$: \; \ans{solution} \; because
+        \ans{both sides equal $-1$, and $-1$ is not excluded}
 \end{enumerate}
+\vspace{2pt}
+{\small One of these is a \emph{negative} answer that is perfectly good. Being negative is not a reason
+to reject anything.}
+
+\vspace{4pt}
+\textbf{Part 3 --- Twins.} These two equations differ by a single digit. Run all four steps on each.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{(a)} \; $\dfrac{x}{x-4}=\dfrac{4}{x-4}+3$ &
+\textbf{(b)} \; $\dfrac{x}{x-4}=\dfrac{2}{x-4}+3$ \\[6pt]
+Restrictions: $x\neq$ \ans{$4$} & Restrictions: $x\neq$ \ans{$4$} \\[4pt]
+Multiply by $x-4$: \; $x=$ \ans{$4+3(x-4)$} & Multiply by $x-4$: \; $x=$ \ans{$2+3(x-4)$} \\[4pt]
+Solve: \; $x=$ \ans{$4$} & Solve: \; $x=$ \ans{$5$} \\[4pt]
+Check: \ans{$4$ is excluded} & Check: \ans{$5$ is not excluded} \\[4pt]
+Answer: \ans{no solution} & Answer: \ans{$x=5$} \\
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+The algebra was the same both times. What made the answers different? \ansline{where the candidate
+landed --- in (a) it landed on the restriction list, in (b) it did not}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\begin{enumerate}[leftmargin=1.7em, itemsep=10pt]
-  \item \textbf{Factor first, then predict.} $f(x) = x^3 - x^2 - 6x$
+\textbf{Part 1 --- A full solve, with one to throw away.} \;
+$\dfrac{x}{x-2}+\dfrac{2}{x+2}=\dfrac{8}{x^2-4}$
+\begin{enumerate}[label=\arabic*., leftmargin=2.1em, itemsep=5pt]
+  \item Factor the last denominator: $x^2-4=({\color{keyred}\mathbf{x-2}})({\color{keyred}\mathbf{x+2}})$. \;
+        Restrictions $x\neq$ \ans{$2,\,-2$}. \; LCD $=$ \ans{$(x-2)(x+2)$}
+  \item Multiply every term and cancel: \;
+        $x({\color{keyred}\mathbf{x+2}})+2({\color{keyred}\mathbf{x-2}})={\color{keyred}\mathbf{8}}$
+  \item Expand and collect: \; $0=x^2+{\color{keyred}\mathbf{4}}\,x-{\color{keyred}\mathbf{12}}
+        =(x+{\color{keyred}\mathbf{6}})(x-{\color{keyred}\mathbf{2}})$. \; Candidates \ans{$-6,\;2$}
+  \item Check against the list. Extraneous: \ans{$2$} \; Survivor: \ans{$-6$}
+  \item Verify the survivor in the \emph{original}: left side $=$ \ans{$\frac34-\frac12=\frac14$}, right side
+        $=$ \ans{$\frac{8}{32}=\frac14$}. \; Solution set \ans{$\{-6\}$}
+\end{enumerate}
 
-    \vspace{2pt}
-    (a) Factor completely (GCF first --- Lesson 4.2): \ans{$x(x-3)(x+2)$}
+\vspace{5pt}
+\textbf{Part 2 --- Find the answer on a graph.} Consider $\dfrac{x^2}{x+3}=\dfrac{9}{x+3}$.
 
-    \vspace{2pt}
-    (b) Degree \ans{$3$}, leading coefficient \ans{$1$}. End behavior: as $x\to-\infty$,
-    $f(x)\to$ \ans{$-\infty$}; as $x\to+\infty$, $f(x)\to$ \ans{$+\infty$}
+\vspace{2pt}
+Subtract the right side from the left and combine into one fraction:
+\[ \frac{x^2}{x+3}-\frac{9}{x+3}=\frac{{\color{keyred}\mathbf{x^2-9}}}{x+3}
+   ={\color{keyred}\mathbf{x-3}},\qquad x\neq{\color{keyred}\mathbf{-3}} \]
+Solving the equation means finding where that combined function equals \ans{$0$}. Here is its
+graph.
+\begin{center}
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-7}{7}{-9}{5}
+  \begin{scope}
+    \clip (-7,-9) rectangle (7,5);
+    \draw[very thick, forest] (-7,-10)--(7,4);
+  \end{scope}
+  \draw[forest, very thick, fill=white] (-3,-6) circle (4.4pt);
+  \node[charcoal, font=\scriptsize, right] at (-2.6,-6.6) {$(-3,-6)$};
+  \fill[charcoal] (3,0) circle (3.4pt) node[above left, font=\scriptsize]{$(3,0)$};
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Read the solution off the graph: $x=$ \ans{$3$}, because that is the \ans{$x$-intercept}.
+  \item Now solve the equation algebraically. Candidates \ans{$3,\;-3$}; extraneous \ans{$-3$};
+        solution set \ans{$\{3\}$}.
+  \item The extraneous candidate is at the \ans{hole} in the picture. In one sentence, explain
+        what the picture is telling you that the candidate list alone did not. \ansline{the function
+        has no point at all at $x=-3$, so there is nothing there to equal zero --- the candidate is a
+        gap in the graph, not a crossing}
+\end{enumerate}
 
-    \vspace{2pt}
-    (c) Zeros: \ans{$-2,\,0,\,3$} \quad Each one is a \ans{crossing} (multiplicity $1$).
-    \quad $y$-intercept: \ans{$(0,0)$}
-
-    \vspace{2pt}
-    (d) Sign chart --- four intervals this time:
-
-    \vspace{2pt}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{|C{2.4cm}|C{1.4cm}|C{3.0cm}|C{1.6cm}|X|}
-    \hline
-    \rowcolor{forestbg}
-    \textbf{Interval} & \textbf{Test $x$} & \textbf{$f(\text{test }x)$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
-    $x<-2$    & $-3$ & \ans{$-18$} & \ans{$-$} & \ans{below} \\ \hline
-    $-2<x<0$  & $-1$ & \ans{$4$}   & \ans{$+$} & \ans{above} \\ \hline
-    $0<x<3$   & $1$  & \ans{$-6$}  & \ans{$-$} & \ans{below} \\ \hline
-    $x>3$     & $4$  & \ans{$24$}  & \ans{$+$} & \ans{above} \\ \hline
-    \end{tabularx}
-
-    \vspace{3pt}
-    (e) Here is the real graph. (Each horizontal gridline is $4$ units.) Check every prediction you
-    just made against it.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-3}{4}{-3}{3}
-      \begin{scope}
-        \clip (-3,-3) rectangle (4,3);
-        \draw[very thick, forest, domain=-2.5:3.5, samples=170, smooth]
-          plot (\x,{((\x)*(\x)*(\x) - (\x)*(\x) - 6*(\x))/4});
-      \end{scope}
-      \foreach \x in {-2,-1,1,2,3}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-      \foreach \p in {-2,0,3} \fill[charcoal] (\p,0) circle (2.5pt);
-    \end{tikzpicture}
-    \end{center}
-
-    \vspace{2pt}
-    (f) From the graph: \textbf{domain} \ans{all reals}, \textbf{range} \ans{all reals}. \;
-    Relative maximum near $x\approx$ \ans{$-1.1$}, relative minimum near $x\approx$ \ans{$1.8$}.
-
-    \vspace{2pt}
-    (g) Does this function have an \emph{absolute} maximum or minimum? \ans{no} \; Explain using
-    the degree: \ans{odd degree --- one arm runs to $+\infty$ and the other to $-\infty$}
-
-  \item \textbf{Read the equation off the picture.} The graph below is a cubic.
-    (Each horizontal gridline is $4$ units.)
-    \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-4}{3}{-3}{3}
-      \begin{scope}
-        \clip (-4,-3) rectangle (3,3);
-        \draw[very thick, forest, domain=-3.6:2.0, samples=170, smooth]
-          plot (\x,{(0 - (\x)*(\x)*(\x) - (\x)*(\x) + 5*(\x) - 3)/4});
-      \end{scope}
-      \foreach \x in {-3,-2,-1,1,2}
-        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-      \fill[charcoal] (-3,0) circle (2.5pt);
-      \fill[charcoal] (1,0)  circle (2.5pt);
-    \end{tikzpicture}
-    \end{center}
-
-    \vspace{2pt}
-    (a) $x$-intercepts: \ans{$-3$ and $1$} \; Which one is a touch? \ans{$x=1$} \; So which factor is
-    squared? \ans{$(x-1)$}
-
-    \vspace{2pt}
-    (b) Skeleton: $f(x) = a\,($\ans{$x+3$}$)($\ans{$x-1$}$)^2$
-
-    \vspace{2pt}
-    (c) The graph passes through $(0,-3)$, so $a = $ \ans{$-1$}. \; (Check the sign against the
-    arms: is the left arm up or down? \ans{up})
-
-    \vspace{2pt}
-    (d) Final equation: \ans{$f(x) = -(x+3)(x-1)^2$}
-
-  \item \textbf{Error analysis.} Two classmates, two different mistakes.
-
-    \vspace{2pt}
-    (a) ``The graph of $y=(x-4)^2(x+1)$ crosses the $x$-axis at $x=4$ and at $x=-1$.''
-    What is wrong, and what does the graph actually do at $x=4$? \ans{$x=4$ has multiplicity $2$, so
-    the graph touches there and turns back; only $x=-1$ is a crossing}
-
-    \vspace{2pt}
-    (b) ``This graph has four turning points, so the function has degree $4$.''
-    What is the smallest degree it could have? \ans{$5$} \; Explain: \ans{degree $n$ allows at most
-    $n-1$ turns, so $4$ turns needs $n\ge5$ --- and the graph only gives a \emph{minimum} degree}
+\vspace{4pt}
+\textbf{Part 3 --- Error analysis.} A student solved $\dfrac{2}{x-5}+\dfrac{3}{x}=\dfrac{10}{x^2-5x}$
+and wrote:
+\begin{center}
+\fbox{\parbox{0.80\linewidth}{\centering \vspace{2pt}
+``LCD is $x(x-5)$. So $2x+3(x-5)=10$, \\
+$5x-15=10$, \; $5x=25$, \; $x=5$. \\
+The solution is $x=5$.''\vspace{2pt}}}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Is the LCD correct? \ans{yes} \; Is the cleared equation correct? \ans{yes} \;
+        Is the arithmetic correct? \ans{yes}
+  \item So the student made no mistake at all in Steps 1--3. What did they skip? \ans{Step 4 --- the
+        check against the restriction list}
+  \item Restrictions: $x\neq$ \ans{$0,\;5$}. \; Correct answer: \ans{no solution}
+  \item Write the one sentence the student should have written, using the words \emph{extraneous} and
+        \emph{denominator}. \ansline{$x=5$ is extraneous, because it makes the denominators $x-5$ and
+        $x^2-5x$ equal to zero, so the original equation is undefined there and has no solution}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- The box, run backward.} The open box from the notes has volume
-$V(x) = x(10-2x)(8-2x) = 4x^3 - 36x^2 + 80x$ cubic inches, with feasible domain $0 < x < 4$. A
-customer wants a box holding \textbf{exactly $48$ cubic inches}.
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-  \item Write the equation to solve, then move everything to one side and divide out the common
-        factor $4$: \; \ans{$4x^3-36x^2+80x=48 \Rightarrow x^3-9x^2+20x-12=0$}
-  \item List the possible rational zeros of that cubic (Lesson 4.4): \ans{$\pm1,\pm2,\pm3,\pm4,\pm6,\pm12$}
-  \item Find one that works and divide it out. Depressed polynomial: \ans{$x^2-8x+12$}
+\textbf{Part 1 --- Build the equation yourself.} Mia and Dev are painting a mural. Working alone, Dev
+takes \textbf{3 hours longer} than Mia. Working together, they finish in \textbf{2 hours}.
 
-        \vspace{2pt}
-        Factor it: \ans{$(x-2)(x-6)$} \; All three solutions: \ans{$x=1,\,2,\,6$}
-  \item Which solutions are \emph{feasible} cuts? \ans{$x=1$ and $x=2$} \; Which one must you reject, and
-        why? \ans{$x=6$ --- it is outside $0<x<4$; a $6$-inch cut leaves negative side lengths}
-  \item You found \emph{two} different cuts that give $48$ cubic inches. Look at the table in your
-        notes and explain how one volume can happen twice. \ansline{The volume rises to about $52.5$
-        near $x=1.5$ and falls again, so it passes the value $48$ once on the way up ($x=1$) and once
-        on the way down ($x=2$).}
+\vspace{2pt}
+{\small In one hour, a person who needs $t$ hours for the whole job finishes $\frac{1}{t}$ of it.}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Let $x=$ the hours \emph{Mia} needs alone. Then Dev needs \ans{$x+3$} hours. In one hour
+        Mia paints \ans{$\frac1x$} of the mural and Dev paints \ans{$\frac{1}{x+3}$}, and together they
+        paint \ans{$\frac12$} of it.
+  \item Write the equation: \; \ans{$\dfrac{1}{x}+\dfrac{1}{x+3}=\dfrac12$}
+  \item Restrictions (from the algebra): $x\neq$ \ans{$0,\;-3$}. \; Solve it. Candidates
+        \ans{$3,\;-2$}
+  \item Neither candidate is on the restriction list --- so \emph{both} of them really do solve the
+        equation. Check $x=-2$ in your equation to confirm it: \ans{$-\frac12+1=\frac12$, true}
+  \item You still have to reject $x=-2$. \textbf{Why?} And why is that a \emph{different} kind of
+        rejection from an extraneous solution? \ansline{a job cannot take $-2$ hours, so $-2$ is
+        rejected by the \emph{context}, not by the algebra --- it genuinely satisfies the equation,
+        while an extraneous root does not satisfy it at all}
+  \item Answer the question that was asked: Mia alone takes \ans{$3$} hours; Dev alone takes
+        \ans{$6$} hours.
 \end{enumerate}
 
 \vspace{5pt}
-\textbf{Part 2 --- Build a graph to order.} Write a polynomial in factored form whose graph
-\emph{touches} the $x$-axis at $x=-1$, \emph{crosses} at $x=0$ and $x=3$, and has \textbf{both arms
-pointing down}.
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-  \item The three zeros force the factors \ans{$(x+1)$, $x$, $(x-3)$}, and the touch forces one of them to have
-        exponent \ans{$2$}.
-  \item So the smallest possible degree is \ans{$4$}. Is that even or odd? \ans{even}
-  \item Both arms down requires an \ans{even} degree and a \ans{negative} leading coefficient.
-        Does your degree from (b) cooperate? \ans{yes}
-  \item Final answer: $f(x) = $ \ans{$-x(x+1)^2(x-3)$} \quad Its $y$-intercept is \ans{$(0,0)$}.
-  \item Could a \emph{cubic} have done this job? \ans{no} \; Explain in one sentence.
-        \ansline{A touch plus two crossings already needs degree $4$, and an odd degree can never
-        point both arms the same way.}
+\textbf{Part 2 --- Make one on purpose.}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Write a rational equation whose \emph{only} candidate is $x=3$ and for which $x=3$ is
+        extraneous --- so the equation has no solution. \;
+        \ans{e.g.\ $\dfrac{x}{x-3}=\dfrac{3}{x-3}$ (answers vary)}
+  \item Explain how you forced it. \ansline{put the target value in the denominator so it is excluded,
+        then arrange the numerators so that clearing produces an equation whose only root is that same
+        value}
+  \item Harder: write one with candidates $x=4$ and $x=-1$, where $x=-1$ is extraneous and $x=4$ is a
+        genuine solution. \; \ans{e.g.\ $\dfrac{x^2-3x}{x+1}=\dfrac{4}{x+1}$ (answers vary)}
 \end{enumerate}
 
 \vspace{5pt}
-\textbf{Part 3 --- What a picture can and cannot prove.} A polynomial $p$ has real coefficients. Its
-graph has exactly \textbf{two} $x$-intercepts, both simple crossings, and exactly \textbf{three}
-turning points.
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-  \item Three turning points forces the degree to be at least \ans{$4$}.
-  \item The arms: with three turning points and two crossings, both arms point the \ans{same}
-        direction, so the degree is \ans{even}.
-  \item Take the degree to be exactly $4$. Counting with multiplicity, how many \emph{real} zeros
-        does $p$ have? \ans{$2$} \; So how many \emph{imaginary} zeros? \ans{$2$} \;
-        (Lesson 4.5 --- and check that the number is even.)
-  \item A classmate says ``the graph proves the polynomial has degree $4$.'' Give a degree-$6$
-        polynomial whose graph could look exactly the same, and say what the graph really proves.
-        \ansline{$p(x)=(x+2)(x-2)(x^2+1)^2$ has the same two crossings and no new intercepts, because
-        $x^2+1$ contributes only imaginary zeros. A graph proves a \emph{minimum} degree, never the
-        exact degree.}
+\textbf{Part 3 --- Can clearing the denominators ever \emph{lose} a solution?} Multiplying by the LCD
+can hand you extra answers. This question asks about the opposite direction.
+
+\vspace{2pt}
+Take $\dfrac{x^2}{x-1}=\dfrac{x}{x-1}$.
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Restrictions \ans{$x\neq1$}. Clear the denominator: \; \ans{$x^2=x$}. \; Candidates
+        \ans{$0,\;1$}. \; Extraneous \ans{$1$}. \; Solution set \ans{$\{0\}$}
+  \item A second student clears the denominator, gets $x^2=x$, and then \emph{divides both sides by
+        $x$} to get $x=1$. They report $x=1$. Two things went wrong at once --- name them both.
+        \ansline{dividing by $x$ threw away the root $x=0$, which was the only real solution; and they
+        never checked, so they kept $x=1$, which is extraneous}
+  \item Fill in the two rules. Multiplying both sides by an expression that could be zero can
+        \ans{add} solutions, so you must \ans{check} at the end. Dividing both sides by an
+        expression that could be zero can \ans{lose} solutions, so you should
+        \ans{factor and set each factor to zero} instead.
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{teachernote}
-\textbf{Tier R} is a matching set built on one idea: three functions, the same two numbers, three
-different pictures. If a group finishes item 1 quickly, make them predict the match before looking
---- the table already contains the answer, and saying so is the whole lesson. The most common Tier R
-error is reading Graph I as (a) because both have a hump: send them to the arms first.
+\textbf{Tier R Part 3 is the tier's whole point.} The two equations are identical except for one digit,
+and the four steps run the same way on both. Groups that finish quickly will notice that the ``$+3$''
+never mattered and the numerator did --- push them to say \emph{why}: in (a) the cleared equation's root
+happens to coincide with the excluded value, and in (b) it does not. There is nothing about the
+\emph{process} that predicts which. That is exactly why the check is mandatory.
 
 \vspace{3pt}
-\textbf{Tier A} adds the two things Tier R does not require: factoring before analyzing (item 1a ---
-watch for students who never pull the GCF and then cannot find $x=0$ as a zero), and solving for the
-stretch factor $a$ from the $y$-intercept (item 2c). If a group writes $a=1$ in item 2 without
-checking, ask them what the left arm does and let the contradiction do the teaching. Item 1(f)--(g)
-is the A2.F.2a/c/d/e work: \emph{no absolute extrema} for an odd degree is the sentence to insist on.
+\textbf{Tier R Part 2(d) is deliberate.} Students routinely reject negative answers on reflex. Here
+$x=-1$ is a genuine solution and the number they should reject, in 2(a) and 2(c), is positive. If a
+group rejects (d), stop and make them substitute.
 
 \vspace{3pt}
-\textbf{Tier E Part 1} is the payoff problem of the unit --- a modeling question that turns into a
-cubic equation and is finished with the Rational Root Theorem from Lesson 4.4. Part (e) is the one
-worth debriefing with the whole class: the two answers $x=1$ and $x=2$ straddle the maximum near
-$x=1.5$, and both appear in the notes table as $48$. Students who noticed that in the notes will
-recognize it instantly. Part 3(d) is the deepest item on the page: a graph gives a \emph{minimum}
-degree, because imaginary zeros and even-multiplicity factors are invisible.
+\textbf{Tier A Part 2 is the graphical-verification requirement} (A2.EI.4b/c) and it is the item to
+debrief with the whole class if you debrief anything. The combined function is a \emph{line with a
+hole} --- $y=x-3$, with the point at $x=-3$ removed --- so the picture is unmistakable: the true
+solution is where the graph crosses the $x$-axis, and the extraneous candidate is the missing point.
+Students with graphing technology can reproduce this in ten seconds for any equation on the page.
 
 \vspace{3pt}
-\textbf{Answers that look wrong but are not:} in Tier A item 1(c), the $y$-intercept is $(0,0)$ ---
-the origin is both the $y$-intercept and one of the zeros. In Tier E Part 2(d), $f(0)=0$ for the same
-reason.
+\textbf{Tier A Part 3 is the error analysis with no error in it.} That framing matters: every line of
+the student's algebra is correct, and the answer is still wrong. It is the cleanest available argument
+that checking is part of solving rather than a proofreading habit. Expect at least one group to insist
+the student must have made an arithmetic slip.
+
+\vspace{3pt}
+\textbf{Tier E Part 1 draws the distinction the standard asks for} (A2.EI.4c vs.\ A2.EI.4d). Both
+candidates satisfy the equation; $-2$ is thrown out because a job cannot take negative hours, not
+because it breaks a denominator. Do not let ``extraneous'' become a synonym for ``rejected.''
+
+\vspace{3pt}
+\textbf{Tier E Part 3 answers a question sharp students ask} the first time they meet extraneous roots:
+if multiplying can add solutions, can it also lose them? It cannot --- but \emph{dividing} can, and the
+example is engineered so that the careless division discards the only real solution and keeps the
+extraneous one. Both failure modes in a single line of work.
 \end{teachernote}
 
 \end{document}

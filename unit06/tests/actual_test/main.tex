@@ -1,13 +1,7 @@
-%! Unit 6: Radical Functions — Summative Assessment — Unit Test (blank)
+%! Unit 6: Exponential Functions — Summative Assessment — Unit Test (blank)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\dpt}[2]{\fill[charcoal] (#1,#2) circle (2.6pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -17,222 +11,23 @@
 
 \begin{document}
 
-\pageheader{Unit 6: Radical Functions}{Unit Test}
+\pageheader{Unit 6: Exponential Functions}{Unit Test}
 \namedateperiod
 
 \vspace{0.06in}
 \noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so.
 
 % ======================================================================
-\parthead{Part A --- Vocabulary (8 pts)}
-Write the letter of the best description next to each term.
+\parthead{Part A --- Vocabulary}
+% TODO: matching / fill-in vocabulary items for this unit.
 
-\vspace{4pt}
-\noindent
-\begin{minipage}[t]{0.36\textwidth}
-\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
-  \item Index \blank{1.2cm}
-  \item Radicand \blank{1.2cm}
-  \item Principal root \blank{1.2cm}
-  \item Conjugate \blank{1.2cm}
-  \item Extraneous solution \blank{1.2cm}
-  \item Composition \blank{1.2cm}
-  \item Inverse function \blank{1.2cm}
-  \item Anchor point \blank{1.2cm}
-\end{enumerate}
-\end{minipage}%
-\hfill
-\begin{minipage}[t]{0.61\textwidth}
-\small
-\begin{description}[leftmargin=1.4em, itemsep=3pt]
-  \item[(A)] A candidate that satisfies the powered-up equation but fails when it is tested in the original.
-  \item[(B)] The non-negative value the radical symbol by itself returns; a $\pm$ must be written in by hand.
-  \item[(C)] The function that reverses another's inputs and outputs; its graph is the mirror image over the line $y=x$.
-  \item[(D)] A binomial with the same two terms but the opposite middle sign; multiplying by it turns an irrational denominator rational.
-  \item[(E)] The small number in the crook of the radical symbol that says which power is being undone.
-  \item[(F)] The point $(h,k)$ that positions a transformed radical graph --- an endpoint when the index is even, a turning point when it is odd.
-  \item[(G)] Everything written underneath the radical symbol; when the index is even, it may not be negative.
-  \item[(H)] The operation that feeds one function's output into another function's input, written $(f\circ g)(x)$.
-\end{description}
-\end{minipage}
+\parthead{Part B --- Multiple Choice}
+% TODO: multiple-choice items (concept checks); an SOL-style MC item fits well here.
 
-% ======================================================================
-\parthead{Part B --- Multiple Choice (12 pts)}
-Circle the best answer.
+\parthead{Part C --- Short Answer \& Computation}
+% TODO: computation items; leave \vspace work room after each.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
-  \item Written with a rational exponent, $\sqrt[5]{x^4}$ is
-    \hfill (A) $x^{5/4}$ \quad (B) $x^{4/5}$ \quad (C) $x^{20}$ \quad (D) $x^{-5/4}$
-  \item The domain of $f(x)=\sqrt{9-3x}$ is
-    \hfill (A) $x\le 3$ \quad (B) $x\ge 3$ \quad (C) $x\ge -3$ \quad (D) all real numbers
-  \item The graph of $y=\sqrt{2x-10}+3$ begins at the point
-    \hfill (A) $(10,3)$ \quad (B) $(5,3)$ \quad (C) $(5,-3)$ \quad (D) $(-5,3)$
-  \item In simplest form, $\sqrt{98}+\sqrt{32}$ is
-    \hfill (A) $\sqrt{130}$ \quad (B) $28\sqrt2$ \quad (C) $11\sqrt{130}$ \quad (D) $11\sqrt2$
-  \item Which equation has \emph{no real solution}?
-    \\[3pt]\hspace*{1.2em} (A) $\sqrt[3]{x+2}=-3$
-    \hspace{1.0cm} (B) $\sqrt{x+1}=-5$
-    \hspace{1.0cm} (C) $\sqrt{x-4}=6$
-    \hspace{1.0cm} (D) $\sqrt[3]{x}=0$
-  \item If $f(x)=\sqrt{x}$ and $g(x)=x+4$, then $(f\circ g)(x)=$
-    \hfill (A) $\sqrt{x+4}$ \quad (B) $\sqrt{x}+4$ \quad (C) $\sqrt{4x}$ \quad (D) $x\sqrt{x}+4\sqrt{x}$
-\end{enumerate}
-
-% ======================================================================
-\parthead{Part C --- Short Answer \& Computation (40 pts)}
-Show your work. Assume every variable is non-negative unless told otherwise.
-
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Read the graph.} The radical function $f$ is graphed below; each gridline is one unit
-        and the solid dot is the endpoint.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.45]
-          \lgrid{-6}{8}{-4}{4}
-          \begin{scope}
-            \clip (-6,-4) rectangle (8,4);
-            \draw[very thick, forest, domain=-4:8, samples=120, smooth]
-              plot (\x,{sqrt((\x)+4)-1});
-          \end{scope}
-          \fill[forest] (-4,-1) circle (4pt);
-          \foreach \x in {-5,-2,2,4,6}
-            \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-          \dpt{-3}{0}
-          \dpt{0}{1}
-          \dpt{5}{2}
-        \end{tikzpicture}
-        \end{center}
-        (a) Coordinates of the endpoint: \blank{2.4cm}
-        \\[4pt]
-        (b) Domain (interval notation): \blank{3.0cm}; \quad range: \blank{3.0cm}
-        \\[4pt]
-        (c) $x$-intercept: \blank{2.0cm}; \quad $y$-intercept: \blank{2.0cm}
-        \\[4pt]
-        (d) Interval(s) where $f$ is increasing: \blank{4.0cm}
-        \\[4pt]
-        (e) Does $f$ have an absolute maximum or an absolute minimum? Give it and say where it occurs.
-        \\[2pt] \blank{11.0cm}
-        \\[4pt]
-        (f) End behavior: as $x\to\infty$, $f(x)\to$ \blank{2.0cm};
-            \ as $x\to-\infty$, \blank{4.6cm}
-        \\[4pt]
-        (g) Interval(s) where $f(x)<0$: \blank{4.0cm}
-
-  \item \textbf{Radicals and rational exponents.} Rewrite or evaluate. Leave no negative exponents.
-        \\[4pt]
-        (a) Write $\sqrt[3]{x^2}$ with a rational exponent. \blank{3.0cm}
-        \\[4pt]
-        (b) Write $y^{7/2}$ as a radical. \blank{3.0cm}
-        \\[4pt]
-        (c) $8^{2/3}=$ \blank{2.2cm} \hspace{1.2cm}
-        (d) $25^{-1/2}=$ \blank{2.2cm}
-        \\[4pt]
-        (e) Write $x^{3/4}\cdot x^{1/2}$ as a single radical.
-        \vspace{1.2cm}
-
-  \item \textbf{Simplify. Add or subtract where you can.}
-        \\[6pt]
-        (a) $\sqrt{98}$ \hspace{2.4cm} (b) $\sqrt[3]{40}$
-        \vspace{1.9cm}
-        \\
-        (c) $\sqrt{18x^5}$ \hspace{2.1cm} (d) $3\sqrt{8}-\sqrt{50}$
-        \vspace{2.1cm}
-
-  \item \textbf{Multiply, then rationalize.} Every answer must be in simplest form.
-        \\[6pt]
-        (a) $\sqrt{10}\cdot\sqrt{14}$ \hspace{1.8cm} (b) $\left(3+\sqrt7\right)\left(3-\sqrt7\right)$
-        \vspace{2.1cm}
-        \\
-        (c) $\dfrac{10}{\sqrt5}$ \hspace{3.0cm} (d) $\dfrac{6}{4-\sqrt{10}}$
-        \vspace{2.5cm}
-
-  \item \textbf{Transformations.} Let $g(x)=-3\sqrt{x-2}+1$.
-        \\[4pt]
-        (a) List every transformation that takes $y=\sqrt{x}$ to $g$. \blank{6.6cm}
-        \\[4pt]
-        (b) Anchor point: \blank{2.2cm}
-        \\[4pt]
-        (c) Domain: \blank{2.8cm}; \quad range: \blank{2.8cm}
-        \\[4pt]
-        (d) Is the anchor an absolute maximum or an absolute minimum? \blank{4.0cm}
-        \\[4pt]
-        (e) A different graph of the form $y=\sqrt{x-h}+k$ begins at $(-4,3)$. Write its equation.
-            \blank{3.6cm}
-        \\[4pt]
-        (f) For $p(x)=\sqrt[3]{x+5}-1$, give the anchor point \blank{2.2cm} and the domain
-            \blank{2.6cm}. In one sentence, say why that domain is not like $g$'s.
-        \\[2pt] \blank{12.0cm}
-
-  \item \textbf{Solve. Test every candidate in the original equation.}
-        \\[6pt]
-        (a) $\sqrt{3x+4}=x$
-        \vspace{2.9cm}
-        \\
-        (b) $\sqrt[3]{x-1}=-2$
-        \vspace{2.1cm}
-        \\
-        (c) $\sqrt{2x-5}+7=3$
-        \vspace{2.1cm}
-        \\
-        (d) $x^{2/3}=16$
-        \vspace{2.1cm}
-
-  \item \textbf{Composition.} Let $f(x)=\sqrt{x}$ and $g(x)=x-9$.
-        \\[4pt]
-        (a) $(f\circ g)(x)=$ \blank{3.0cm}, \quad domain: \blank{2.6cm}
-        \\[4pt]
-        (b) $(g\circ f)(x)=$ \blank{3.0cm}, \quad domain: \blank{2.6cm}
-        \\[4pt]
-        (c) Are these the same function? Answer using \emph{both} the rule and the domain.
-        \\[2pt] \blank{12.0cm}
-        \\[4pt]
-        (d) $(f\circ g)(25)=$ \blank{2.2cm}
-        \\[4pt]
-        (e) For $p(x)=3x-2$ and $q(x)=x^2+1$, find $(p\circ q)(-3)$. \blank{3.0cm}
-
-  \item \textbf{Inverses.}
-        \\[4pt]
-        (a) $f(x)=5x+3$. Find $f^{-1}(x)$. \blank{4.0cm}
-        \\[4pt]
-        (b) Verify by composition --- \emph{both} orders --- that your answer really is the inverse.
-        \vspace{2.6cm}
-        \\
-        (c) $g(x)=\sqrt{x-4}$. Find $g^{-1}(x)$ and state its domain.
-        \vspace{2.4cm}
-        \\
-        (d) The point $(13,3)$ lies on the graph of $g$. What point must lie on the graph of
-            $g^{-1}$? \blank{2.6cm}
-\end{enumerate}
-
-% ======================================================================
-\parthead{Part D --- Extended Response (12 pts)}
-Explain your reasoning in full sentences.
-
-\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
-  \item \textbf{The full analysis.} Consider $f(x)=\sqrt{x-4}+1$.
-        \textbf{(a)} Give the anchor point, the domain, and the range, both in interval notation.
-        \textbf{(b)} Find the $x$-intercept and the $y$-intercept, or explain why one does not exist.
-        \textbf{(c)} List the transformations that take $y=\sqrt{x}$ to $f$.
-        \textbf{(d)} Find $f^{-1}(x)$ and state its domain, saying exactly where that restriction
-        comes from.
-        \textbf{(e)} Justify with composition --- both orders --- that $f$ and $f^{-1}$ are inverses.
-        \textbf{(f)} A classmate writes $y=(x-1)^2+4$ with \emph{no} restriction and calls it the
-        inverse. Explain why that is not the inverse of $f$.
-        \vspace{6.2cm}
-
-  \item \textbf{Modeling.} Highway engineers estimate the greatest safe speed on a flat curved ramp
-        of radius $r$ feet as
-        \[ s(r)=4\sqrt{r}\ \text{ miles per hour.} \]
-        \textbf{(a)} State the domain that makes sense here, and connect it to the rule about what an
-        even index will accept.
-        \textbf{(b)} Find $s(25)$ and $s(100)$, with units. What does quadrupling the radius do to the
-        safe speed, and which feature of $\sqrt{\,\cdot\,}$ is responsible?
-        \textbf{(c)} A ramp is posted at $36$ miles per hour. Find its radius algebraically, and check
-        your answer.
-        \textbf{(d)} Write the inverse, $r$ as a function of $s$, and say what it tells an engineer
-        that $s(r)$ does not.
-        \textbf{(e)} Part (c) required squaring both sides. Explain why there is no danger of an
-        extraneous solution in this problem.
-        \vspace{5.5cm}
-\end{enumerate}
+\parthead{Part D --- Extended Response}
+% TODO: one or two interpret/justify items ("what does this mean, and how do you know?").
 
 \end{document}

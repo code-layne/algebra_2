@@ -141,7 +141,7 @@ breaks drift.
 Key mirrors exactly: same macro, answers in the second argument of each `\answerspace`,
 `\ans{}` in the blanks, MC option tagged `\textcolor{keyred}{\textbf{$\leftarrow$ correct}}`.
 `\boxguard` counts here are 12pt-relative: use ~14–16, not the 24–30 used in 10pt components.
-Reference implementation: `unit02/lesson00/experience`.
+Reference implementation: `unit01/lesson00/experience`.
 
 ## Homework
 
@@ -188,7 +188,7 @@ a "how today works" block) → warm-up → activity launch (the context, the sce
 → 3–4 **debrief frames** that formalize in "red ink" (a `\redink{}` macro colors the formal
 terms `redacc`, mirroring the second marker color on the board) → a QuickNotes summary frame →
 practice/homework. The debrief frames are the deck's payload — everything before them stays
-vocabulary-free. Reference implementation: `unit02/lesson00/slides`.
+vocabulary-free. Reference implementation: `unit01/lesson00/slides`.
 
 ## Unit tests (summative assessments)
 

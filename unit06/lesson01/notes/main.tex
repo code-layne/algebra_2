@@ -1,4 +1,4 @@
-%! $n$th Roots \& Rational Exponents — Unit 6, Lesson 6.1 — Guided Notes
+%! Exponential Growth and Decay — Unit 6, Lesson 6.1 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -7,11 +7,11 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Cube root: pgfmath has no cbrt, so plot the two branches separately.
-\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
-  plot (\x,{pow(\x,1/3)});}
-\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
-  plot (\x,{-pow(-1*(\x),1/3)});}
+% Exponentials are plotted as a*e^{(ln b)x}: pgfmath's pow() is unreliable for negative and
+% fractional exponents, but exp() is not. #2 is ln(b).
+% ln2 = 0.693147   ln3 = 1.098612   ln4 = 1.386294
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
@@ -23,9 +23,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item find \emph{$n$th roots}, name the \emph{principal} root, and explain --- with exponents --- why an even root of a negative number does not exist while an odd one does;
-  \item convert back and forth between \emph{radical form} and \emph{rational exponent form}, using $a^{m/n}=\sqrt[n]{a^m}=\left(\sqrt[n]{a}\right)^m$, and evaluate such expressions without a calculator;
-  \item apply the exponent properties I already know to rational exponents --- including combining radicals with \emph{different indices}, which no radical rule can do.
+  \item \emph{build} the equation $y=ab^{x}$ from a table, from two points, and from a written description;
+  \item translate a \emph{percent} into a \emph{factor} --- ``up $8\%$'' means $b=1.08$ and ``down $15\%$'' means $b=0.85$ --- and explain why the percent itself is never the base;
+  \item evaluate a model I built and interpret the answer in the context it came from.
 \end{itemize}
 \end{objectivebox}
 
@@ -35,267 +35,236 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{$n$th root}
-\termblanklong{Principal $n$th root}
-\termblanklong{Rational exponent}
-\termblanklong{The $a^{m/n}$ rule}
-\termblanklong{Negative rational exponent}
+\termblanklong{Initial value $a$}
+\termblanklong{Growth (or decay) factor $b$}
+\termblanklong{Growth (or decay) rate $r$}
+\termblanklong{Exponential growth model $y=a(1+r)^{t}$}
+\termblanklong{Exponential decay model $y=a(1-r)^{t}$}
 \end{vocabbox}
 
 \begin{hookbox}
-Here is a problem you cannot do --- yet:
-\[
-  \sqrt{x}\cdot\sqrt[3]{x} = \underline{\hspace{2.5cm}}
-\]
-Every radical rule you have ever seen requires the two indices to \textbf{match}, and these do not.
+Two towns publish their plans for the next ten years.
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{0.92\linewidth}{@{}l X@{}}
+\hline
+\textbf{Riverton} & Population $8{,}000$ today. \emph{``We expect to gain $300$ people every year.''} \\
+\textbf{Kellsboro} & Population $8{,}000$ today. \emph{``We expect to grow by $4\%$ every year.''} \\
+\hline
+\end{tabularx}
+\end{center}
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item So try the other direction. What number, raised to the power $2$, gives $a$? \writeline
-  \item Now suppose $a^{1/2}$ meant something. Using ``power to a power,'' $\left(a^{1/2}\right)^2 = a^{\,\blank{1.2cm}} = a$. So $a^{1/2}$ has \textbf{no choice} --- it must equal \blank{2.2cm}.
+  \item Which town's plan is a \textbf{linear} model, and which is \textbf{exponential}? How can you tell without doing any arithmetic? \writeline
+  \item Kellsboro grows $4\%$ this year. Next year it grows $4\%$ again --- of \emph{what}? \writeline
 \end{itemize}
-That is today's whole idea: \textbf{a radical is an exponent in disguise.} Once you can write
-$\sqrt[n]{a}$ as $a^{1/n}$, every exponent rule from the Warm-Up applies to radicals --- and the
-problem above becomes one line.
+Yesterday somebody handed you $y=ab^{x}$ and you read it. Today you have to \textbf{write} it. And the
+whole thing comes down to one question: \emph{when a sentence says $4\%$, what number goes in the base?}
 \end{hookbox}
 
-\begin{notesbox}{1. $n$th Roots and the \emph{Principal} Root}
-\textbf{Definition.} $\sqrt[n]{a} = b$ means $b$ raised to the \blank{1.2cm} power equals $a$.
-\; The \textbf{index} $n$
-says which root; the number under the radical is the \textbf{radicand}.
-
-\vspace{3pt}
-But ``which root'' hides a subtlety. Since $4^2=16$ \emph{and} $(-4)^2=16$, the number $16$ has
-\emph{two} real square roots. The radical symbol is defined to give only the
-\textbf{principal} (the \emph{non-negative}) one:
-\[
-  \sqrt{16} = \blank{1.2cm}, \qquad -\sqrt{16} = \blank{1.2cm},
-  \qquad \pm\sqrt{16} = \blank{1.6cm}.
-\]
-If you want both roots, you must \emph{write} the $\pm$ yourself --- the symbol will not give it to you.
-
-\vspace{3pt}
-\textbf{How many real $n$th roots are there?} Fill in the table from the Warm-Up.
+\begin{notesbox}{1. You Only Ever Need Two Numbers --- and a Table Hands You Both}
+An exponential model is $y=ab^{x}$, so building one means finding exactly two numbers:
 \begin{center}
 \renewcommand{\arraystretch}{1.35}
-\begin{tabularx}{\linewidth}{@{}l l X X@{}}
+\begin{tabularx}{0.94\linewidth}{@{}l l X@{}}
 \hline
-\textbf{Index $n$} & \textbf{Radicand $a$} & \textbf{How many real $n$th roots?} & \textbf{Example} \\
-\hline
-\textbf{Even} & $a>0$ & \blank{2.0cm} (one positive, one negative) & $\sqrt[4]{81}=\blank{0.8cm}$, and $-3$ also works \\
-\textbf{Even} & $a=0$ & \blank{2.0cm} & $\sqrt{0}=0$ \\
-\textbf{Even} & $a<0$ & \blank{2.0cm} & $\sqrt{-16}$ is \blank{2.4cm} \\
-\textbf{Odd}  & any $a$ & \blank{2.0cm}, with the same sign as $a$ & $\sqrt[3]{-27}=\blank{0.8cm}$ \\
+$a$ & the \textbf{initial value} & the output when $x=$ \blank{0.8cm} --- where the model \emph{starts} \\
+$b$ & the \textbf{factor} & what you \textbf{multiply} by each time $x$ goes up by $1$ \\
 \hline
 \end{tabularx}
 \end{center}
-\textbf{Why?} Warm-Up item~1 already answered it. An \textbf{even} power of any real number is
-\blank{3.0cm}, so nothing real can be raised to an even power and come out negative. An
-\textbf{odd} power \blank{3.0cm} the sign, so a negative radicand is no problem at all. \emph{This
-is the algebraic reason behind Lesson 6.0's domain rule.}
 
 \vspace{3pt}
-\textbf{Perfect $n$th powers to know on sight} (you will read these \emph{backwards} all period):
+\textbf{From a table} (with $x$-values one step apart), both numbers are sitting right there:
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-Squares & $4,\ 9,\ 16,\ 25,\ 36,\ 49,\ 64,\ 81,\ 100,\ 121,\ 144$ \\
-Cubes   & $8,\ 27,\ 64,\ 125,\ 216$ \quad and $-8,\ -27,\ -64,\dots$ \\
-Fourth powers & $16,\ 81,\ 256$ \qquad Fifth powers: $32,\ 243$ \\
-\end{tabularx}
-\end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item $\sqrt[5]{32}=\blank{1.0cm}$ \quad because $\blank{0.8cm}^5=32$.
-  \item $\sqrt[4]{81}=\blank{1.0cm}$ \quad $\sqrt[3]{-64}=\blank{1.0cm}$ \quad
-        $\sqrt[3]{\dfrac{8}{125}}=\blank{1.2cm}$ \quad (take the root of the top \emph{and} the bottom).
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{2. The Trap: $\sqrt[n]{a^n}$ Is Not Always $a$}
-Simplify each one \emph{carefully} --- work from the inside out.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l@{}}
-(a) \; $\sqrt{5^2}=\sqrt{\rule{0pt}{1.7ex}\blank{1.0cm}}=\blank{1.0cm}$ &
-(b) \; $\sqrt{(-5)^2}=\sqrt{\rule{0pt}{1.7ex}\blank{1.0cm}}=\blank{1.0cm}$ &
-(c) \; $\sqrt[3]{(-5)^3}=\sqrt[3]{\rule{0pt}{1.7ex}\blank{1.4cm}}=\blank{1.0cm}$ \\
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+$y$ & $3$ & $12$ & $48$ & $192$ & $768$ \\ \hline
 \end{tabular}
 \end{center}
-In (b) the answer came back \emph{positive} even though we started with $-5$. The square destroyed
-the sign, and the principal root refuses to put it back. So:
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Read $a$} straight off the $x=0$ column: $a=$ \blank{1.2cm}.
+  \item \textbf{Divide to get $b$:} $\frac{12}{3}=$ \blank{0.9cm}, \; $\frac{48}{12}=$
+        \blank{0.9cm}, \; $\frac{192}{48}=$ \blank{0.9cm}. \; Same every time, so the table
+        \emph{is} exponential and $b=$ \blank{1.0cm}.
+  \item \textbf{Write it:} $y=$ \blank{2.6cm}
+  \item \textbf{Check} with a row you did not use: at $x=4$ the model gives \blank{2.6cm},
+        and the table says \blank{1.4cm}. \; Match? \blank{1.2cm}
+\end{enumerate}
+
+\vspace{3pt}
+\textbf{Your turn.} Build the model for this table.
 \begin{center}
-\begin{tabular}{@{}l l@{}}
-$n$ \textbf{even}: \; $\sqrt[n]{a^n}=\blank{1.6cm}$ &
-\qquad $n$ \textbf{odd}: \; $\sqrt[n]{a^n}=\blank{1.6cm}$ \\
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+$y$ & $800$ & $200$ & $50$ & $12.5$ \\ \hline
 \end{tabular}
 \end{center}
-So $\sqrt{x^2}=\blank{1.4cm}$ (we do not know whether $x$ is positive!), while
-$\sqrt[3]{x^3}=\blank{1.4cm}$.
+$a=$ \blank{1.6cm} \quad $b=$ \blank{1.6cm} \quad Growth or decay? \blank{2.0cm} \quad
+$y=$ \blank{3.0cm}
+
+\vspace{2pt}
+\emph{Careful:} always divide \textbf{a later output by an earlier one}. Doing it upside down here
+gives $4$ and turns a shrinking table into a growing model.
 \end{notesbox}
 
-\begin{notesbox}{3. A Radical \emph{Is} an Exponent: $\sqrt[n]{a}=a^{1/n}$}
-Nobody decided this --- the exponent rules \textbf{force} it. Whatever $a^{1/n}$ means, ``power to a
-power'' has to keep working:
+\begin{notesbox}{2. Percent $\to$ Factor: the Translation This Whole Lesson Runs On}
+A sentence almost never hands you $b$. It hands you a \textbf{percent rate} $r$, and you have to
+convert. Go back to the Warm-Up: a \$$50$ jacket that goes \textbf{up} $8\%$ is now worth $108\%$ of
+\$$50$, so you multiply by \blank{1.2cm}. A \$$50$ jacket that goes \textbf{down} $15\%$ is now worth
+\blank{1.2cm}\% of \$$50$, so you multiply by \blank{1.2cm}.
 \[
-  \left(a^{1/n}\right)^n = a^{\frac{1}{n}\cdot n} = a^{\blank{0.8cm}} = a .
+  \textbf{Growth:}\quad b = 1 + r
+  \qquad\qquad
+  \textbf{Decay:}\quad b = 1 - r
 \]
-So $a^{1/n}$ is the number that, raised to the $n$th power, gives back $a$ --- and that is exactly
-the definition of \blank{3.2cm}. Therefore:
 \begin{center}
-\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
-    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.62\linewidth]
-\centering $\displaystyle \sqrt[n]{a} = a^{1/n}$ \qquad \emph{(the index becomes the denominator)}
-\end{tcolorbox}
-\end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $\sqrt{7}=7^{\,\blank{0.9cm}}$ \quad $\sqrt[3]{x}=x^{\,\blank{0.9cm}}$ \quad
-        $\sqrt[5]{2y}=(2y)^{\,\blank{0.9cm}}$
-  \item $11^{1/2}=\blank{1.6cm}$ \quad $m^{1/4}=\blank{1.6cm}$ \quad
-        $64^{1/3}=\blank{1.0cm}$ (and now you can \emph{evaluate} it: \blank{0.8cm})
-\end{itemize}
-\emph{Watch the parentheses:} $2y^{1/5}$ and $(2y)^{1/5}$ are different --- in the first, only the
-$y$ is under the root.
-\end{notesbox}
-
-\begin{notesbox}{4. The Full Rule: $a^{m/n}$ --- Denominator Roots, Numerator Powers}
-What if the numerator is not $1$? Split the fraction: $\dfrac{m}{n}=\dfrac{1}{n}\cdot m$, so
-$a^{m/n}=\left(a^{1/n}\right)^m$. Both orders are legal:
-\begin{center}
-\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
-    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.86\linewidth]
-\centering $\displaystyle a^{m/n} = \sqrt[n]{a^m} = \left(\sqrt[n]{a}\right)^m$
-\qquad \textbf{denominator} $=$ the \blank{1.8cm}, \quad \textbf{numerator} $=$ the \blank{1.8cm}
-\end{tcolorbox}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\linewidth}{@{}X l l X@{}}
+\hline
+\textbf{The sentence says\dots} & \textbf{Rate $r$} & \textbf{Grows or shrinks?} & \textbf{Factor $b$} \\
+\hline
+increases by $8\%$ each year & \blank{1.3cm} & \blank{1.6cm} & \blank{1.6cm} \\
+decreases by $15\%$ each year & \blank{1.3cm} & \blank{1.6cm} & \blank{1.6cm} \\
+increases by $3.5\%$ each year & \blank{1.3cm} & \blank{1.6cm} & \blank{1.6cm} \\
+loses $40\%$ of its value each hour & \blank{1.3cm} & \blank{1.6cm} & \blank{1.6cm} \\
+$100\%$ of it remains each day & \blank{1.3cm} & \blank{1.6cm} & \blank{1.6cm} \\
+\textbf{doubles} each year & \blank{1.3cm} & \blank{1.6cm} & \blank{1.6cm} \\
+\hline
+\end{tabularx}
 \end{center}
 
 \vspace{2pt}
-\textbf{Converting (both directions).}
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}X X | X X@{}}
-\textbf{Radical form} & \textbf{Rational exponent} & \textbf{Rational exponent} & \textbf{Radical form} \\
-\hline
-$\sqrt[4]{x^3}$ & $x^{\,\blank{0.9cm}}$ & $y^{2/5}$ & \blank{2.0cm} \\
-$\left(\sqrt[3]{x}\right)^7$ & $x^{\,\blank{0.9cm}}$ & $w^{5/2}$ & \blank{2.0cm} \\
-$\sqrt{x^5}$ & $x^{\,\blank{0.9cm}}$ & $(3t)^{3/4}$ & \blank{2.0cm} \\
-\end{tabularx}
-\end{center}
-\emph{The single most common error of this lesson is flipping the fraction.} $\sqrt[4]{x^3}$ is
-$x^{3/4}$, \textbf{not} $x^{4/3}$ --- the \emph{index} is on the bottom, because it came from
-$\frac{1}{n}$.
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{The two errors everybody makes today.} Both are ``I used the percent as the base.''
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt]
+  \item Writing $b=0.08$ for ``up $8\%$.'' That base is \emph{less} than $1$, so it is a
+        \blank{1.6cm} model --- and it says only $8\%$ of the amount survives, a
+        \blank{1.4cm}\% \emph{loss}.
+  \item Writing $b=1.15$ for ``down $15\%$.'' That base is \emph{greater} than $1$, so it makes the
+        quantity \blank{1.8cm} --- it models a $15\%$ \blank{1.8cm} instead.
+\end{itemize}
+\textbf{The two-second check:} after you write $b$, ask \emph{is $b$ on the correct side of $1$?}
+Growth needs $b>1$; decay needs $0<b<1$.
+\end{tcolorbox}
+\end{notesbox}
+
+\begin{notesbox}{3. From a Story to a Model --- and Back to the Story}
+Same three moves every time: pull out $a$, translate the percent into $b$, then write $y=ab^{x}$.
 
 \vspace{4pt}
-\textbf{Evaluating: take the root \emph{first}.} Both orders give the same answer, but one is
-arithmetic you can do in your head.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
-\hline
- & \textbf{Power first (hard)} & \textbf{Root first (easy)} \\
-\hline
-$8^{2/3}$ & $\sqrt[3]{8^2}=\sqrt[3]{\rule{0pt}{1.7ex}\blank{1.2cm}}=\blank{1.0cm}$ &
-            $\left(\sqrt[3]{8}\right)^2=\left(\blank{0.8cm}\right)^2=\blank{1.0cm}$ \\
-$16^{3/4}$ & $\sqrt[4]{16^3}=\sqrt[4]{\rule{0pt}{1.7ex}\blank{1.6cm}}=\blank{1.0cm}$ &
-             $\left(\sqrt[4]{16}\right)^3=\left(\blank{0.8cm}\right)^3=\blank{1.0cm}$ \\
-\hline
-\end{tabularx}
-\end{center}
+\textbf{Worked example --- growth.} A town of $12{,}000$ people grows by $3\%$ each year. Write a
+model for the population $P$ after $t$ years, then predict the population in $10$ years.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Initial value: $a=$ \blank{1.8cm} \quad (the population at $t=0$, \emph{today}).
+  \item Rate $r=$ \blank{1.2cm}, and the town is \blank{1.8cm}, so
+        $b=1+$ \blank{1.0cm} $=$ \blank{1.2cm}.
+  \item Model: $P(t)=$ \blank{3.4cm}
+  \item Predict: $P(10)=$ \blank{5.0cm} $\approx$ \blank{2.0cm} people.
+  \item Interpret in a sentence: \writeline
+\end{enumerate}
+
+\vspace{3pt}
+\textbf{Worked example --- decay.} A car is bought for \$$24{,}000$ and loses $12\%$ of its value
+every year. Write a model for the value $V$ after $t$ years, then find its value after $5$ years.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item $a=$ \blank{1.8cm} \quad $r=$ \blank{1.2cm} \quad
+        $b=1-$ \blank{1.0cm} $=$ \blank{1.2cm}
+  \item Model: $V(t)=$ \blank{3.4cm}
+  \item $V(5)=$ \blank{5.0cm} $\approx$ \blank{2.0cm}
+  \item Interpret in a sentence: \writeline
+  \item Why is $b=0.88$ and \emph{not} $0.12$? \writeline
+\end{enumerate}
 
 \vspace{2pt}
-\textbf{Negative rational exponents} mean exactly what they meant in the Warm-Up ---
-\textbf{reciprocal}, never ``negative answer'':
-\[
-  a^{-m/n} = \frac{1}{a^{\,m/n}} .
-\]
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $16^{-1/2} = \dfrac{1}{16^{\,1/2}} = \dfrac{1}{\blank{0.8cm}} = \blank{1.0cm}$ \quad
-        (\emph{not} $-4$ --- the minus sign moves the expression, it does not change its sign).
-  \item $27^{-2/3} = \dfrac{1}{\left(\sqrt[3]{27}\right)^{2}} = \dfrac{1}{\blank{0.8cm}}
-        = \blank{1.0cm}$
-\end{itemize}
+\textbf{The check-your-model routine.} Before you use a model you just wrote, run all three:
+\begin{enumerate}[label=(\arabic*), leftmargin=1.9em, itemsep=2pt]
+  \item Does $y$ at $x=0$ give back the \blank{2.4cm} amount from the story?
+  \item Is $b$ on the correct \blank{1.6cm} of $1$ for growth vs.\ decay?
+  \item Does one step forward change the answer by the right \blank{2.0cm}?
+\end{enumerate}
 \end{notesbox}
 
-\begin{notesbox}{5. The Payoff: Every Exponent Property Now Works on Radicals}
-The four rules from the Warm-Up never cared whether the exponent was a whole number. Rewrite, apply,
-and (if asked) convert back.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-Product & $a^{r}\cdot a^{s}=a^{\,\blank{1.4cm}}$ \\
-Quotient & $\dfrac{a^{r}}{a^{s}}=a^{\,\blank{1.4cm}}$ \\
-Power to a power & $\left(a^{r}\right)^{s}=a^{\,\blank{1.4cm}}$ \\
-Negative & $a^{-r}=\blank{1.4cm}$ \\
-\hline
-\end{tabularx}
-\end{center}
-Now return to the Hook. Two \emph{different} indices, which no radical rule can touch:
-\[
-  \sqrt{x}\cdot\sqrt[3]{x} \;=\; x^{1/2}\cdot x^{1/3}
-  \;=\; x^{\,\blank{1.4cm}} \;=\; \blank{2.4cm}\ \text{(back in radical form)}.
-\]
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $\dfrac{x^{3/4}}{x^{1/2}} = x^{\,\blank{1.4cm}}$ \hfill
-        $\left(x^{2/3}\right)^{6} = x^{\,\blank{1.4cm}}$
-  \item $\sqrt[4]{x}\cdot\sqrt[4]{x^{2}} = x^{\,\blank{1.4cm}}$ \hfill
-        $\left(8x^{6}\right)^{1/3} = \blank{2.2cm}$
-\end{itemize}
-\emph{This is why the notation exists.} Radicals with different indices are a dead end; the same
-expressions as exponents are a one-line problem.
-\end{notesbox}
+\begin{notesbox}{4. Building From Two Points --- Dividing Makes $a$ Disappear}
+Sometimes all you get is two points on the curve.
 
-\begin{notesbox}{6. Back to Lesson 6.0: the Denominator Decides the Domain}
-These are the same two graphs you read yesterday --- only the notation changed.
+\vspace{3pt}
+\textbf{Case 1: one of them is the $y$-intercept.} The curve passes through $(0,5)$ and $(3,40)$.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item The point $(0,5)$ gives $a$ immediately: $a=$ \blank{1.2cm}.
+  \item Substitute the other point into $y=ab^{x}$: \; $40 = 5\,b^{\,3}$, so $b^{3}=$
+        \blank{1.2cm} and $b=$ \blank{1.2cm}. \;
+        \emph{(A cube root --- Unit 5 machinery, nothing new.)}
+  \item Model: $y=$ \blank{2.8cm}
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Case 2: neither point is the $y$-intercept.} Read the two labeled points off the graph.
 \begin{center}
-\begin{tikzpicture}[scale=0.34]
-  % y = x^(1/2)
+\begin{minipage}[c]{0.46\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-4}{4}{-1}{9}
   \begin{scope}
-    \lgrid{-2}{9}{-2}{4}
-    \begin{scope}
-      \clip (-2,-2) rectangle (9,4);
-      \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
-    \end{scope}
-    \fill[forest] (0,0) circle (5pt);
-    \node[charcoal, font=\scriptsize] at (3.5,-3.4) {$y=x^{1/2}$};
+    \clip (-4,-1) rectangle (4,9);
+    \expcurve{2}{0.693147}{-4}{2.17}
   \end{scope}
-  % y = x^(1/3)
-  \begin{scope}[xshift=19cm]
-    \lgrid{-8}{8}{-3}{3}
-    \begin{scope}
-      \clip (-8,-3) rectangle (8,3);
-      \cbrtpos{0}{8}
-      \cbrtneg{-8}{0}
-    \end{scope}
-    \node[charcoal, font=\scriptsize] at (0,-4.4) {$y=x^{1/3}$};
-  \end{scope}
+  \draw[navy, dashed, semithick] (-4,0)--(4,0);
+  \fill[charcoal] (-1,1) circle (3pt) node[below right, font=\scriptsize]{$(-1,1)$};
+  \fill[charcoal] (2,8) circle (3pt) node[left, font=\scriptsize]{$(2,8)$};
 \end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.50\linewidth}
+\small
+\textbf{Divide the two equations.} Writing both points into $y=ab^{x}$ gives
+$1=a\,b^{-1}$ and $8=a\,b^{2}$. Dividing the second by the first cancels $a$:
+\[
+  \frac{8}{1} \;=\; \frac{a\,b^{2}}{a\,b^{-1}} \;=\; b^{\,3}
+\]
+so $b^{3}=$ \blank{1.0cm} and $b=$ \blank{1.0cm}.
+\end{minipage}
 \end{center}
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $y=x^{1/2}$ is another name for $y=\blank{1.6cm}$, so its domain is \blank{2.4cm}.
-  \item $y=x^{1/3}$ is another name for $y=\blank{1.6cm}$, so its domain is \blank{2.6cm}.
-  \item \textbf{The rule, in exponent language:} in $x^{m/n}$ (in lowest terms), if the
-        \textbf{denominator} $n$ is \blank{1.6cm}, the domain is restricted to $x\ge 0$;
-        if $n$ is \blank{1.6cm}, the domain is all reals. The \emph{numerator} never restricts
-        anything.
-  \item Test it: $x^{2/5}$ --- denominator \blank{0.8cm}, so the domain is \blank{2.4cm}. \quad
-        $x^{3/4}$ --- denominator \blank{0.8cm}, so the domain is \blank{2.4cm}.
+  \item Now put $b$ back into \emph{either} point to get $a$: \; $8=a\cdot$ \blank{1.0cm}, so
+        $a=$ \blank{1.0cm}.
+  \item Model: $y=$ \blank{2.6cm}. \; Check it against the graph: the curve should cross the
+        $y$-axis at \blank{1.6cm}, and it does.
+  \item \textbf{Why the exponent came out $3$:} the two $x$-values are \blank{1.4cm} steps apart,
+        and each step multiplies by $b$ once.
 \end{itemize}
-\emph{``Even index restricts the domain'' and ``even denominator restricts the domain'' are the same
-sentence.}
 \end{notesbox}
 
 \begin{practicebox}
-Work these with your class. Assume all variables represent positive real numbers.
-\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
-  \item Write in rational exponent form: \; $\sqrt[5]{x^{2}}=\blank{1.6cm}$ \quad
-        $\left(\sqrt{y}\right)^{3}=\blank{1.6cm}$ \quad $\sqrt[3]{7t}=\blank{2.0cm}$
-  \item Write in radical form: \; $x^{4/3}=\blank{2.0cm}$ \quad $c^{1/6}=\blank{2.0cm}$ \quad
-        $(5n)^{3/2}=\blank{2.4cm}$
-  \item Evaluate without a calculator (root first!): \; $125^{2/3}=\blank{1.4cm}$ \quad
-        $81^{3/4}=\blank{1.4cm}$ \quad $32^{-2/5}=\blank{1.4cm}$
-  \item Simplify using the exponent properties; leave the answer with a positive rational exponent:
-        \; $x^{1/4}\cdot x^{1/2}=\blank{1.6cm}$ \quad $\dfrac{y^{5/6}}{y^{1/3}}=\blank{1.6cm}$ \quad
-        $\left(w^{3/4}\right)^{2/3}=\blank{1.6cm}$
-  \item \textbf{Explain.} A classmate writes $\sqrt[3]{x^{5}} = x^{3/5}$. What did they do wrong, and
-        how would you remind them which number goes on the bottom? \writelines{2}
+Build the model in each case. Write your answer in the form $y=ab^{x}$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item \textbf{From a table.}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+    $y$ & $4$ & $10$ & $25$ & $62.5$ \\ \hline
+    \end{tabular}
+    \end{center}
+    $a=$ \blank{1.4cm} \quad $b=$ \blank{1.4cm} \quad $y=$ \blank{3.0cm}
+
+  \item \textbf{From a story.} A city currently uses $900$ million gallons of water a year and has
+        cut its use by $4\%$ each year. \\[3pt]
+        $W(t)=$ \blank{3.4cm} \quad $W(5)=$ \blank{2.6cm} million gallons \\[3pt]
+        What does $W(5)$ mean? \writeline
+
+  \item \textbf{From two points.} A curve $y=ab^{x}$ passes through $(0,7)$ and $(2,63)$. \\[3pt]
+        $a=$ \blank{1.4cm} \quad $b^{2}=$ \blank{1.4cm} \quad $b=$ \blank{1.4cm} \quad
+        $y=$ \blank{2.8cm}
+
+  \item A classmate models ``a savings account of \$$400$ that earns $6\%$ per year'' as
+        $S(t)=400(0.06)^{t}$. Without computing anything, give \emph{one} reason this cannot be
+        right. \writeline
 \end{enumerate}
 \end{practicebox}
 

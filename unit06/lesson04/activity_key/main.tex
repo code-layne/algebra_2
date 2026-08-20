@@ -1,21 +1,8 @@
-%! Graphing Radical Functions \& Transformations — Unit 6, Lesson 6.4 — Group Activity (Answer Key)
+%! Modeling with Exponential Functions: Interest, Half-Life, and e — Unit 6, Lesson 6.4 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
-\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
-% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
-\newcommand{\cbrtplot}[5]{%
-  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
-    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
-  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
-    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
 
 \begin{document}
 
@@ -25,218 +12,259 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Follow the Anchor.} Every radical graph is built around one point. Find it, and the
-domain, the range, and the direction of the arm all come free. With your partner, work each problem
-\emph{and} say out loud which part of the equation produced each answer. Write every domain and
-range in \textbf{interval notation}.
+\small\textbf{The Base Is One Period. The Exponent Counts Periods.} Every model below is
+$y=ab^{x}$ wearing a costume. Before either partner touches a calculator, both of you must agree out
+loud on two things: \textbf{what is one period here?} and \textbf{how many of them fit in the time
+given?} Answer those and the substitution writes itself. Round money to the nearest cent and
+milligrams to two decimal places.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-The solid graph is $r(x)=\sqrt{x-2}+1$. The dashed graph is the parent $y=\sqrt{x}$, shown so you
-can see what moved.
+\textbf{Part 1 --- Set up before you solve.} \$2000 is invested at $3\%$ for $10$ years. Fill in one
+row at a time; the last column is the whole point.
 \begin{center}
-\begin{tikzpicture}[scale=0.46]
-  \lgrid{-2}{13}{-2}{6}
-  \begin{scope}
-    \clip (-2,-2) rectangle (13,6);
-    \draw[very thick, slate, dashed, domain=0:13, samples=100, smooth] plot (\x,{sqrt(\x)});
-    \draw[very thick, forest, domain=2:13, samples=100, smooth] plot (\x,{sqrt((\x)-2)+1});
-  \end{scope}
-  \fill[slate] (0,0) circle (3.4pt);
-  \fill[forest] (2,1) circle (4pt) node[left, font=\scriptsize]{$(2,1)$};
-  \fill[charcoal] (3,2) circle (2.6pt);
-  \fill[charcoal] (6,3) circle (2.6pt) node[above left, font=\scriptsize]{$(6,3)$};
-  \fill[charcoal] (11,4) circle (2.6pt);
-\end{tikzpicture}
+\small
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Compounded} & $n$ & \textbf{base} $1+\frac{r}{n}$ & \textbf{exponent} $nt$ & \textbf{$A=2000\left(1+\frac{r}{n}\right)^{nt}$} \\
+\hline
+annually  & $1$ & $1.03$ & $10$ & \ans{\$2687.83} \\
+\hline
+quarterly & $4$ & \ans{$1.0075$} & \ans{$40$} & \ans{\$2696.70} \\
+\hline
+\end{tabular}
 \end{center}
-\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
-  \item Compare $r(x)=\sqrt{x-2}+1$ with the parent $y=\sqrt{x}$. \\
-        $h=\mans{2}$ \quad $k=\mans{1}$ \quad so the graph moved right \ans{2}
-        and up \ans{1}.
-  \item The \textbf{anchor point} (for a square root, the endpoint) is \ans{$(2,1)$}. \\
-        Check it against the picture: the dashed graph starts at $(0,0)$ and the solid one starts at
-        \ans{$(2,1)$}.
-  \item \textbf{Domain:} \ans{$[2,\infty)$} \quad \textbf{Range:} \ans{$[1,\infty)$}
-  \item Now find the domain \emph{the Lesson 6.0 way}: set the radicand $\ge 0$ and solve. \\
-        $x-2\ge 0$, so $x\ge\mans{2}$. \; Does this match your answer to \#3?
-        \ans{yes} \\
-        Explain, in one sentence, why these two methods can never disagree. \ans{Shifting the graph
-        right $2$ and refusing every input below $2$ are the same event described twice.}
-  \item Is the anchor an absolute maximum or an absolute minimum? \ans{absolute minimum} \\
-        Which way does the arm leave the anchor --- up or down? \ans{up}
-  \item \textbf{End behavior.} As $x\to+\infty$, $r(x)\to\mans{+\infty}$. \\
-        As $x\to-\infty$: careful --- say exactly what happens. \ans{Nothing --- the graph stops at
-        $x=2$. There is no left arm.}
-  \item Does $r$ have a $y$-intercept? \ans{no} \quad Why or why not? \ans{$x=0$ is not in the
-        domain; $r(0)=\sqrt{-2}+1$ is not real.}
-\end{enumerate}
+
+\vspace{2pt}
+Compounding four times as often earned an extra \ans{\$8.87} over ten years. Was that more or less
+than your partner expected? \ans{Answers vary --- almost everyone guesses high.}
+
+\vspace{6pt}
+\textbf{Part 2 --- A medicine that halves.} A $600$ mg dose has a half-life of $12$ hours.
+
+\vspace{3pt}
+\hspace*{1.0em} Model: $A(t)=$ \ans{$600\left(\frac12\right)^{t/12}$}, \; where $t$ is measured in \ans{hours}.
+
+\vspace{3pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+$t$ (hours) & $0$ & $12$ & $24$ & $36$ & $48$ \\ \hline
+halvings $t/12$ & $0$ & \ans{1} & \ans{2} & \ans{3} & \ans{4} \\ \hline
+$A(t)$ (mg) & $600$ & \ans{300} & \ans{150} & \ans{75} & \ans{37.5} \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{2pt}
+Every row cuts the one before it in half, yet the amount never reaches $0$. Which feature of the graph
+says so? \ans{the horizontal asymptote at $A=0$ --- the range is $(0,600]$}
+
+\vspace{5pt}
+\textbf{Part 3 --- One period, named.} For each model, say what one period is and how many periods fit
+in the time asked for.
+
+\vspace{2pt}
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Model} & \textbf{One period is\dots} & \textbf{Periods in the time given} \\
+\hline
+$4000(1.02)^{4t}$, \; $t=3$ yr & \ans{one quarter} & \ans{$12$} \\
+$50\left(\frac12\right)^{t/9}$, \; $t=27$ days & \ans{$9$ days (one half-life)} & \ans{$3$} \\
+$300\cdot2^{\,t/4}$, \; $t=20$ hours & \ans{$4$ hours (one doubling)} & \ans{$5$} \\
+\hline
+\end{tabularx}
+\end{center}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- No graphs allowed.} Everything below can be read straight off the equation.
+\textbf{Part 1 --- Two offers, one deposit.} A credit union offers \$5000 at $3.6\%$ compounded
+\emph{monthly}. A bank offers the same \$5000 at $3.6\%$ compounded \emph{continuously}. Both are
+left alone for $8$ years.
+
+\vspace{3pt}
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.20\linewidth} X X X X@{}}
- & $p(x)=\sqrt{x+3}-2$ & $q(x)=-\sqrt{x-1}+3$ & $s(x)=\sqrt[3]{x-2}+1$ & $t(x)=\tfrac12\sqrt{x}-4$ \\
+\small
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X X c@{}}
 \hline
-$a$ & \ans{$1$} & \ans{$-1$} & \ans{$1$} & \ans{$\tfrac12$} \\
-$h$ & \ans{$-3$} & \ans{$1$} & \ans{$2$} & \ans{$0$} \\
-$k$ & \ans{$-2$} & \ans{$3$} & \ans{$1$} & \ans{$-4$} \\
-Anchor point & \ans{$(-3,-2)$} & \ans{$(1,3)$} & \ans{$(2,1)$} & \ans{$(0,-4)$} \\
-Domain & \ans{$[-3,\infty)$} & \ans{$[1,\infty)$} & \ans{all reals} & \ans{$[0,\infty)$} \\
-Range & \ans{$[-2,\infty)$} & \ans{$(-\infty,3]$} & \ans{all reals} & \ans{$[-4,\infty)$} \\
-Anchor is a max, a min, or neither? & \ans{min} & \ans{max} & \ans{neither} & \ans{min} \\
+& \textbf{Formula used} & \textbf{Substitution} & \textbf{Balance} \\
+\hline
+Credit union & \ans{$P\left(1+\frac{r}{n}\right)^{nt}$} & \ans{$5000(1.003)^{96}$} & \ans{\$6665.91} \\
+Bank & \ans{$Pe^{\,rt}$} & \ans{$5000e^{\,0.288}$} & \ans{\$6668.79} \\
+\hline
 \end{tabularx}
 \end{center}
 
-\vspace{4pt}
-\textbf{Part 2 --- Write the equation.} The graph below is a square root function in the form
-$y=a\sqrt{x-h}+k$.
-\begin{center}
-\begin{tikzpicture}[scale=0.44]
-  \lgrid{-1}{14}{-5}{5}
-  \begin{scope}
-    \clip (-1,-5) rectangle (14,5);
-    \draw[very thick, forest, domain=4:14, samples=100, smooth] plot (\x,{2*sqrt((\x)-4)-3});
-  \end{scope}
-  \fill[forest] (4,-3) circle (4pt) node[below left, font=\scriptsize]{$(4,-3)$};
-  \fill[charcoal] (5,-1) circle (2.6pt);
-  \fill[charcoal] (8,1) circle (2.6pt) node[above left, font=\scriptsize]{$(8,1)$};
-  \fill[charcoal] (13,3) circle (2.6pt);
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
-  \item Anchor point: \ans{$(4,-3)$} \quad so $h=\mans{4}$ and $k=\mans{-3}$.
-  \item Substitute the point $(8,1)$ and solve for $a$. \; $a=\mans{2}$
+\vspace{2pt}
+\textbf{(a)} Which is better, and by how much? \ans{the bank, by \$2.88 over eight years}
 
-        {\small\color{keyred}$1=a\sqrt{8-4}-3 \;\Rightarrow\; 1=a\sqrt{4}-3 \;\Rightarrow\;
-        1=2a-3 \;\Rightarrow\; 4=2a \;\Rightarrow\; a=2$}
-  \item \textbf{Equation:} $y=$ \ans{$2\sqrt{x-4}-3$}
-  \item Check your equation against the third point $(13,3)$. Show the substitution.
-        \ans{$2\sqrt{13-4}-3=2\sqrt{9}-3=2(3)-3=3$ \checkmark}
-\end{enumerate}
+\vspace{3pt}
+\textbf{(b)} A classmate says continuous compounding should ``obviously'' win by a lot, since it
+compounds infinitely often. Using your two numbers, explain what is actually true.
+\ansline{Continuous compounding is the ceiling, but it is a very low ceiling: on \$5000 over eight years it beats monthly by \$2.88, about $0.04\%$.}
+\ansline{Each extra chop of the year adds less than the one before, so ``infinitely often'' is worth barely more than ``twelve times a year.''}
 
 \vspace{5pt}
-\textbf{Part 3 --- Justify.}
-\begin{enumerate}[label=\textbf{J\arabic*.}, leftmargin=2.4em, itemsep=6pt]
-  \item $p$ and $q$ are both square root functions, but only one of them has an absolute
-        \emph{maximum}. Which one, and which single symbol in its equation is responsible?
-        \ansline{$q$, and the responsible symbol is the \emph{minus sign} in front of the radical
-        ($a=-1$). A negative $a$ makes every output the opposite of the parent's, so the arm leaves
-        the anchor going \emph{down} instead of up --- which makes the anchor the highest point on
-        the graph rather than the lowest. The $+3$ has nothing to do with it; it only says
-        \emph{where} that highest point sits.}
-  \item $s(x)=\sqrt[3]{x-2}+1$ has an $h$ and a $k$ just like the others, and its graph is still
-        built around the point $(2,1)$. So why is that point \emph{not} an endpoint, and why does
-        knowing it tell you nothing about the domain? \ansline{Because the index is \emph{odd}. An
-        endpoint exists only when some inputs are forbidden --- the graph has to stop somewhere. A
-        cube root accepts every real number, so nothing stops it: the graph runs through $(2,1)$ and
-        keeps going in both directions. The point is still the anchor (it is where the curve
-        flattens and changes the way it bends --- the \textbf{inflection point}), but the domain is
-        all real numbers no matter what $h$ is, so $h$ tells you only \emph{where} the graph is, not
-        \emph{where it is allowed to be}.}
-\end{enumerate}
+\textbf{Part 2 --- Between the halvings.} A $120$ mg dose has a half-life of $5$ hours.
+
+\vspace{2pt}
+\hspace*{1.0em} $A(t)=$ \ans{$120\left(\frac12\right)^{t/5}$} \hfill $A(10)=$ \ans{30 mg} \hfill $A(17)=$ \ans{11.37 mg}
+
+\vspace{3pt}
+$A(17)$ is not a whole number of halvings. Explain why that is fine, and check that your answer is the
+size it ought to be by naming the two table values it must fall between.
+\ansline{$17\div5=3.4$ halvings --- a fractional exponent is a legal exponent (Lesson 5.1), and $t$ does not have to land on a half-life.}
+\ansline{It must sit between $A(15)=15$ mg and $A(20)=7.5$ mg, and $11.37$ does.}
+
+\vspace{5pt}
+\textbf{Part 3 --- Error analysis.} An account pays $8\%$ compounded quarterly. Three students model
+\$1000 after $5$ years. Name each error, then write the correct model and value.
+
+\vspace{2pt}
+\textbf{(a)} Renata writes $A=1000(1.08)^{20}$.
+\ansline{She counted the periods correctly ($20$ quarters) but never split the rate --- her base $1.08$ pays a full year's interest \emph{every quarter}.}
+\ansline{Her answer, \$4660.96, is the balance after $20$ \emph{years}, not $5$. Base and exponent must agree on what one period is.}
+
+\vspace{1pt}
+\textbf{(b)} Miles writes $A=1000(1.02)^{5}$.
+\ansline{He split the rate correctly ($1.02$ per quarter) but counted years instead of quarters, so his model only runs for five quarters.}
+\ansline{His answer, \$1104.08, is the balance after $1\frac14$ years --- the opposite half of Renata's mistake.}
+
+\vspace{1pt}
+\textbf{(c)} Correct model: $A=$ \ans{$1000(1.02)^{20}$} $=$ \ans{\$1485.95}
+
+\vspace{3pt}
+Renata and Miles made \emph{opposite} halves of the same mistake. Say what the one sentence is that
+both of them broke. \ans{The base is what happens in one period; the exponent counts periods.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- The hidden $h$.} None of these radicands is in the form $x-h$. Factor out the
-coefficient of $x$ first, then read the graph off the result.
+\textbf{Part 1 --- Where the chopping stops.} You saw $\left(1+\frac1m\right)^{m}$ close in on $e$.
+Now watch the same thing happen at a realistic rate: $\left(1+\frac{0.06}{n}\right)^{n}$, the growth
+factor for one year at $6\%$.
+
+\vspace{3pt}
 \begin{center}
+\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+$n$ & $1$ & $4$ & $12$ & $365$ & continuous \\
+\hline
+one-year factor & $1.060000$ & $1.061364$ & $1.061678$ & $1.061831$ & \ans{$1.061837$} \\
+\hline
+\end{tabular}
+\end{center}
+\hspace*{1.0em} The last cell is $e^{\,0.06}$. Compute it to six decimal places: \ans{$1.061837$}
+
+\vspace{3pt}
+\textbf{(a)} A bank advertises ``compounded every \emph{second}.'' How much more than daily
+compounding could that possibly pay on \$1000 in one year? \ans{about half a cent (\$0.005)}
+
+\vspace{3pt}
+\textbf{(b)} Why is $e^{\,0.06}$ a \emph{ceiling} rather than just the next entry in the table?
+\ansline{No value of $n$ ever reaches it --- the factors climb toward $e^{0.06}$ and stop getting closer in any way you could notice.}
+\ansline{``Every second,'' ``every instant,'' and every faster schedule are all still below it, so nothing beyond continuous compounding exists to try.}
+
+\vspace{6pt}
+\textbf{Part 2 --- The Rule of 72.} Bankers estimate doubling time with a shortcut: at $r\%$ per year
+compounded annually, money doubles in about $\frac{72}{r}$ years. Test it against the graph-reading you
+did in the notes.
+
+\vspace{3pt}
+\begin{center}
+\small
 \renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X X X@{}}
+\begin{tabularx}{\linewidth}{@{}c X c X c@{}}
 \hline
-\textbf{Function} & \textbf{Factored form} & \textbf{Rewritten as $a\sqrt[n]{x-h}+k$} & \textbf{Anchor \& domain} \\
+\textbf{Rate} & \textbf{Rule of 72 estimate} & \textbf{$(1+r)^{t}$ at $t=$ estimate} & \textbf{Over or under 2?} & \textbf{True doubling time} \\
 \hline
-$\sqrt{4x}$ & \ans{$\sqrt{4\cdot x}$} & \ans{$2\sqrt{x}$} & \ans{$(0,0)$; $[0,\infty)$} \\
-$\sqrt{9x-18}$ & \ans{$\sqrt{9(x-2)}$} & \ans{$3\sqrt{x-2}$} & \ans{$(2,0)$; $[2,\infty)$} \\
-$\sqrt[3]{8x+8}$ & \ans{$\sqrt[3]{8(x+1)}$} & \ans{$2\sqrt[3]{x+1}$} & \ans{$(-1,0)$; all reals} \\
+$5\%$ & \ans{$14.4$ yr} & \ans{$2.019$} & \ans{over} & about $14.2$ yr \\
+$8\%$ & \ans{$9$ yr} & \ans{$1.999$} & \ans{under} & about $9.0$ yr \\
+$12\%$ & \ans{$6$ yr} & \ans{$1.974$} & \ans{under} & about $6.1$ yr \\
 \hline
 \end{tabularx}
 \end{center}
-A classmate looks at $\sqrt{9x-18}$ and says ``the graph starts at $x=18$.'' What went wrong, and
-what is the real answer? \ansline{They read the constant straight out of the radicand without
-factoring, as though the radicand were $x-18$. It is not: the $x$ has a coefficient of $9$. Factoring
-gives $\sqrt{9(x-2)}=3\sqrt{x-2}$, so the graph starts at $x=\mathbf{2}$ --- confirmed the old way by
-$9x-18\ge0 \Rightarrow x\ge2$.}
 
-\vspace{5pt}
-\textbf{Part 2 --- Two names for one graph.} The SOL lists $f(kx)$ (squeeze the input) and $kf(x)$
-(stretch the output) as \emph{different} transformations. For radical functions they collapse into
-one.
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item Explain, using the product property $\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$, why
-        $y=\sqrt{kx}$ is the same graph as $y=\sqrt{k}\cdot\sqrt{x}$ for every $k>0$.
-        \ansline{The product property splits the radicand: $\sqrt{kx}=\sqrt{k}\cdot\sqrt{x}$. Since
-        $k$ is a constant, $\sqrt{k}$ is just a number, so the right side is the parent multiplied
-        by that number. The two expressions are equal at every $x\ge0$, so they cannot be two
-        graphs --- they are one graph with two descriptions.}
-  \item Rewrite the claim with \textbf{rational exponents} (Lesson 6.1) to see it in one line:
-        $(kx)^{1/n}=$ \ans{$k^{1/n}$} $\cdot$ \ans{$x^{1/n}$}. \\
-        So compressing the input of $\sqrt[n]{x}\,$ by a factor of $k$ is the same as stretching the
-        output by a factor of \ans{$\sqrt[n]{k}$}.
-  \item Squeezing $y=\sqrt{x}$ horizontally by $16$ gives $y=\sqrt{16x}$. What single vertical
-        stretch produces the identical graph? \ans{a stretch by $4$, since $\sqrt{16x}=4\sqrt{x}$}
-\end{enumerate}
+\vspace{2pt}
+\textbf{(a)} At which of the three rates is the shortcut most accurate? \ans{at $8\%$ --- it is off by about a week}
 
-\vspace{5pt}
-\textbf{Part 3 --- Where the trick breaks.} Now try the same move on $y=\sqrt{x}+1$, which is the
-parent \emph{plus a vertical shift}.
+\vspace{2pt}
+\textbf{(b)} A shortcut is only worth having if you know when to distrust it. Based on your table, when
+does the Rule of 72 start to go wrong?
+\ansline{It drifts as you move away from $8\%$: at $5\%$ it overshoots the doubling and at $12\%$ it falls short, and the error grows at the high end.}
+\ansline{It is an estimate for ordinary interest rates; the further from about $8\%$ you go, the less you should trust the last digit.}
+
+\vspace{6pt}
+\textbf{Part 3 --- Which of these can you actually finish?} Each question below reduces to an
+exponential equation. Reduce it, then decide whether Lesson 6.3's common-base method finishes the job.
+
+\vspace{3pt}
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|c|c|}
+\small
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}l X c X@{}}
 \hline
-$x$ & $0$ & $1$ & $4$ & $9$ \\ \hline
-Squeeze the input: \; $\sqrt{9x}+1$ & \ans{$1$} & \ans{$4$} & \ans{$7$} & \ans{$10$} \\ \hline
-Stretch the output: \; $3\left(\sqrt{x}+1\right)$ & \ans{$3$} & \ans{$6$} & \ans{$9$} & \ans{$12$} \\ \hline
-\end{tabular}
+\textbf{Question} & \textbf{Equation, after dividing} & \textbf{Common base?} & \textbf{If yes, the answer} \\
+\hline
+$600$ mg, $h=12$ h: when is $75$ mg left? & \ans{$\left(\frac12\right)^{t/12}=\frac18$} & \ans{yes} & \ans{$t=36$ h} \\
+$300$ cells, $d=4$ h: when are there $2400$? & \ans{$2^{\,t/4}=8$} & \ans{yes} & \ans{$t=12$ h} \\
+\$2000 at $3\%$ annually: when is it \$4000? & \ans{$(1.03)^{t}=2$} & \ans{no} & \ans{---} \\
+$600$ mg, $h=12$ h: when is $200$ mg left? & \ans{$\left(\frac12\right)^{t/12}=\frac13$} & \ans{no} & \ans{---} \\
+\hline
+\end{tabularx}
 \end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=4]
-  \item Are the two rows the same? \ans{no} \quad By how much do they differ, at every
-        single $x$? \ans{by exactly $2$}
-  \item Explain what went wrong. Which part of $\sqrt{x}+1$ refuses to be handled by the product
-        property, and why? \ansline{The $+1$. The product property splits a \emph{product} inside a
-        radical --- it says nothing about a term sitting \emph{outside} one. Squeezing the input
-        touches only the radical, giving $3\sqrt{x}+1$, while stretching the output multiplies
-        \emph{everything}, giving $3\sqrt{x}+3$. The radical parts agree; the constant does not, and
-        the gap is $3(1)-1=2$ at every $x$.}
-  \item Write a one-sentence rule a classmate could trust: \emph{for which radical functions can you
-        trade a horizontal size change for a vertical one, and for which can you not?}
-        \ansline{You can trade them freely for a \emph{pure} radical --- anything of the form
-        $a\sqrt[n]{kx}$, with nothing added on --- because the constant walks out from under the
-        radical; the moment there is a vertical shift $+k$ (or any term outside the radical), the
-        two transformations stop agreeing.}
-\end{enumerate}
+
+\vspace{2pt}
+\textbf{(a)} Two of the four defeated the method. For each one, say whether the answer \emph{exists},
+and how you know without solving.
+\ansline{Both answers exist. $2$ and $\frac13$ are positive, so each sits in the range $(0,\infty)$ and the horizontal line really does cross the curve.}
+\ansline{Only the \emph{method} failed: neither $2$ nor $\frac13$ is a power of the base. Compare $2^{x}=-3$, which has no solution at all.}
+
+\vspace{2pt}
+\textbf{(b)} Rows 1 and 4 are the same drug with the same half-life. One works and one does not. What
+is it about the \emph{target number} that decides it?
+\ansline{$75$ is $600$ halved three times, so the target is a power of $\frac12$ times the start; $200$ is a \emph{third} of $600$, and no number of halvings produces a third.}
+\ansline{Common-base solving only reaches targets the base can actually land on: $\frac12$, $\frac14$, $\frac18$, $\frac1{16}$ of the start --- nothing in between.}
 \end{tcolorbox}
 
 \begin{teachernote}
-\small
-\textbf{Tier R} exists to make one comparison happen: item~3 and item~4 ask for the same domain by
-two different routes. Do not let a group skip item~4 because they ``already have the answer'' ---
-answering it twice \emph{is} the point, and the one-sentence explanation is the lesson's thesis in
-the students' own words. Item~6 recycles 6.0's most-missed idea (``the graph stops'' is a complete
-answer); item~7 catches anyone still hunting for a $y$-intercept outside the domain.
+\textbf{Tier R Part 3 is the diagnostic, and it takes ninety seconds to read.} A student who can name
+``one period'' for all three rows will get every computation on this page right; a student who cannot
+will get all of them wrong in the same way. Check Part 3 before you check Part 1 --- it tells you
+whether to re-teach or to let them work.
 
-\textbf{Tier A, Part 1} is deliberately arranged so that $t(x)=\tfrac12\sqrt{x}-4$ is the only one
-with a fractional $a$ and $s$ is the only cube root --- every column differs from every other in at
-least two rows, so a group that pattern-matches instead of reading will produce a visibly wrong
-table. The row that separates proficiency from fluency is the last one: \emph{neither} is the
-correct answer for $s$, and students reliably want to write ``min.''
+\textbf{Tier A Part 3 is written so the two errors cannot be confused.} Renata keeps the annual rate
+with the quarterly count; Miles keeps the quarterly rate with the annual count. They need different
+corrections, and the closing question is the one that matters --- both students broke the same sentence
+in opposite directions. If a group writes ``they both made a mistake with the exponent,'' push back:
+only one of them did.
 
-\textbf{Part 2 is the SOL's harder direction} (\textbf{A2.F.1b}, write the equation from a graph).
-Insist on the order --- anchor first, then $a$ --- and on the check in (d). Groups that hunt for $a$
-first end up with two unknowns and stall.
+\textbf{Tier A Part 1(b) is worth a whole-class share-out.} The $\$2.88$ result over eight years is
+genuinely counterintuitive and it is the honest answer to the Hook. Continuous compounding matters
+because it is the \emph{model} for things that change without pausing, not because it makes anyone
+richer.
 
-\textbf{Tier E, Part 3 is the item worth circulating for.} Parts 1 and 2 will convince a fast group
-that horizontal and vertical size changes are ``always the same thing,'' which is false and would
-carry a real misconception into Unit 7. The table forces the counterexample into the open before
-anyone can generalize, and the constant gap of $2$ is a satisfying thing to notice. If a group
-finishes early, ask them the follow-up: \emph{what would the gap be for $\sqrt{x}+5$?} (It is
-$3(5)-5=10$.)
+\textbf{Tier E Part 2 is not a formula to memorize.} The point is calibration: the Rule of 72 is
+excellent near $8\%$ and drifts either side of it. Students who ask \emph{why} $72$ are asking a
+logarithm question --- tell them so, and tell them it is Unit 7. Do not derive it.
+
+\textbf{Tier E Part 3 is the closing beat of the lesson and should be debriefed even if groups do not
+finish it.} Rows 1 and 4 are the whole idea: the same model, the same half-life, and one target that
+common-base solving reaches and one it cannot. Part (a) is where students must say \emph{the answer
+exists, the method failed} --- the distinction Lesson 6.3 established and Unit 7 resolves. Any group
+that writes ``no solution'' for row 3 or row 4 should be corrected on the spot.
 \end{teachernote}
 
 \end{document}

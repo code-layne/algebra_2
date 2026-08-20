@@ -1,4 +1,4 @@
-%! Characteristics of Polynomial Functions — Unit 4, Lesson 4.0 — Guided Notes
+%! Characteristics of Rational Functions — Unit 4, Lesson 4.0 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -18,9 +18,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item identify a polynomial's \emph{degree} and \emph{leading coefficient} and use them to describe its \emph{end behavior};
-  \item read a polynomial's \emph{turning points}, its \emph{relative} and \emph{absolute} maxima/minima, its \emph{domain}, \emph{range}, \emph{intercepts}, and \emph{zeros}, and use each zero's \emph{multiplicity} to tell a \emph{cross} from a \emph{touch};
-  \item classify a polynomial's \emph{symmetry} as \emph{even} ($y$-axis), \emph{odd} (origin), or neither, and justify it.
+  \item find a rational function's \emph{domain restrictions}, and tell a \emph{vertical asymptote} from a \emph{hole};
+  \item write the \emph{equations} of the vertical and horizontal asymptotes, from a graph or an equation, and use the horizontal asymptote to state \emph{end behavior};
+  \item read a rational graph's \emph{domain}, \emph{range}, \emph{intercepts}/\emph{zeros}, and \emph{increasing/decreasing} and \emph{positive/negative} intervals, and contrast it with a polynomial graph.
 \end{itemize}
 \end{objectivebox}
 
@@ -29,195 +29,246 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-\termblanklong{Degree \& leading coefficient}
-\termblanklong{End behavior}
-\termblanklong{Turning point}
-\termblanklong{Relative (local) vs.\ absolute (global) extrema}
-\termblanklong{Multiplicity of a zero}
-\termblanklong{Even / odd symmetry}
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
+\termblanklong{Rational function}
+\termblanklong{Domain restriction (excluded value)}
+\termblanklong{Vertical asymptote}
+\termblanklong{Horizontal asymptote}
+\termblanklong{Hole (removable discontinuity)}
 \end{vocabbox}
 
 \begin{hookbox}
-Here is the graph of $g(x) = x^3 - 3x + 2$.
+Here is the graph of $f(x) = \dfrac{x+2}{x-1}$.
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{3}{-3}{5}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-4}{5}{-4}{5}
+  \draw[navy, dashed, semithick] (1,-4)--(1,5);
+  \draw[navy, dashed, semithick] (-4,1)--(5,1);
+  \node[navy, font=\scriptsize, above] at (1,5) {$x=1$};
+  \node[navy, font=\scriptsize, below] at (4.3,1) {$y=1$};
   \begin{scope}
-    \clip (-3,-3) rectangle (3,5);
-    \draw[very thick, forest, domain=-2.15:2.1, samples=90, smooth]
-      plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
+    \clip (-4,-4) rectangle (5,5);
+    \draw[very thick, forest, domain=-4:0.4, samples=90, smooth]
+      plot (\x,{((\x)+2)/((\x)-1)});
+    \draw[very thick, forest, domain=1.75:5, samples=90, smooth]
+      plot (\x,{((\x)+2)/((\x)-1)});
   \end{scope}
-  \fill[charcoal] (-1,4) circle (3pt) node[above right, font=\scriptsize]{$(-1,4)$};
-  \fill[charcoal] (1,0) circle (3pt) node[below right, font=\scriptsize]{$(1,0)$};
   \fill[charcoal] (-2,0) circle (3pt) node[above left, font=\scriptsize]{$(-2,0)$};
-  \fill[charcoal] (0,2) circle (3pt) node[right, font=\scriptsize]{$(0,2)$};
+  \fill[charcoal] (0,-2) circle (3pt) node[right, font=\scriptsize]{$(0,-2)$};
 \end{tikzpicture}
 \end{center}
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item A parabola turns \emph{once}. How many times does this curve turn? \writeline
-  \item The curve \emph{bounces off} the $x$-axis at $x=1$ but \emph{cuts straight through} at $x=-2$. What could be different about those two zeros? \writeline
+  \item Every graph we have read this year --- lines, parabolas, polynomials --- was \emph{one unbroken curve}. This one comes in \textbf{two pieces}. What input is missing, and why? \writeline
+  \item At both far ends the curve hugs the line $y=1$ but never lands on it. What is $f(x)$ doing as $x$ runs off to the left and to the right? \writeline
 \end{itemize}
-A polynomial's whole shape --- its arms, its hills and valleys, and how it meets the $x$-axis --- is
-written into its \textbf{degree}, its \textbf{leading coefficient}, and the \textbf{multiplicities}
-of its zeros. Today we learn to read all of it.
+A rational function is a \emph{fraction} of polynomials, and the \textbf{denominator runs the show}:
+it decides which inputs are thrown out, where the graph breaks, and what the graph settles down to at
+the far ends. Today we learn to read all of it.
 \end{hookbox}
 
-\begin{notesbox}{1. What Makes a Function a Polynomial}
-A \textbf{polynomial function} is a sum of terms $a_kx^k$ whose exponents are all \emph{whole
-numbers}:
+\begin{notesbox}{1. What Makes a Function Rational --- and Where It Is Undefined}
+A \textbf{rational function} is a \emph{quotient of two polynomials}:
 \[
-  f(x) = a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0 .
+  R(x) = \frac{P(x)}{Q(x)}, \qquad Q(x) \neq 0 .
 \]
-Its graph is always \textbf{smooth} (no sharp corners) and \textbf{continuous} (no breaks or holes).
-Written in \emph{standard form} (powers high to low):
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item the \textbf{degree} is the \blank{3.2cm} power, and
-  \item the \textbf{leading coefficient} is the number multiplying that \blank{3.6cm} term.
+Division by zero is undefined, so \emph{every} input that makes the denominator zero is thrown out of
+the domain. Such an input is called a \textbf{domain restriction} or an \textbf{excluded value}.
+
+\vspace{3pt}
+\textbf{The one procedure behind this whole unit:} to find the restrictions, set the
+\blank{3.6cm} equal to \blank{1.0cm} and solve.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item For $f(x)=\dfrac{x+2}{x-1}$: solve $x-1=0$, so $x=\blank{0.8cm}$ is excluded.
+        Domain: \blank{5.4cm}.
+  \item For $g(x)=\dfrac{5}{x^2-9}$: solve $x^2-9=0$, so $x=\blank{2.0cm}$ are excluded.
+        Domain: \blank{5.4cm}.
+  \item \textbf{Careful:} the \emph{numerator} is allowed to be zero --- that just makes
+        $R(x)=\blank{0.8cm}$, which is an $x$-intercept (a \textbf{zero} of the function), not a
+        restriction.
 \end{itemize}
-For $g(x)=x^3-3x+2$: degree $=\blank{0.8cm}$, leading coefficient $=\blank{0.8cm}$.
-\emph{Not} polynomials (why?): $\dfrac{1}{x}=x^{-1}$ and $\sqrt{x}=x^{1/2}$ --- their exponents are
-\blank{4.6cm}.
+
+\vspace{3pt}
+Because inputs are missing, a rational graph can be \textbf{discontinuous} --- it can have breaks.
+This is the first function family of the year whose graph is not one connected piece. A break shows up
+in exactly \textbf{two} ways, and the rest of the lesson is about telling them apart:
+\begin{center}
+\small
+a \textbf{vertical asymptote} (the graph flies off near that input) \quad or \quad
+a \textbf{hole} (a single missing point).
+\end{center}
 \end{notesbox}
 
-\begin{notesbox}{2. End Behavior: The Two-Question Rule}
-The two \emph{arms} of a polynomial (what happens as $x\to-\infty$ and $x\to+\infty$) are decided by
-only \textbf{two} questions: \emph{Is the degree even or odd?} and \emph{Is the leading coefficient
-$+$ or $-$?}
-\begin{center}
-\renewcommand{\arraystretch}{1.1}
-\begin{tabular}{cccc}
-\begin{tikzpicture}[scale=0.32]
-  \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-0.6)--(0,4);
-  \draw[very thick, forest, domain=-1.7:1.7, samples=40, smooth] plot (\x,{(\x)*(\x)});
-\end{tikzpicture} &
-\begin{tikzpicture}[scale=0.32]
-  \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-4)--(0,0.6);
-  \draw[very thick, forest, domain=-1.7:1.7, samples=40, smooth] plot (\x,{-1*(\x)*(\x)});
-\end{tikzpicture} &
-\begin{tikzpicture}[scale=0.32]
-  \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-3.2)--(0,3.2);
-  \draw[very thick, forest, domain=-1.45:1.45, samples=50, smooth] plot (\x,{(\x)*(\x)*(\x)});
-\end{tikzpicture} &
-\begin{tikzpicture}[scale=0.32]
-  \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-3.2)--(0,3.2);
-  \draw[very thick, forest, domain=-1.45:1.45, samples=50, smooth] plot (\x,{-1*(\x)*(\x)*(\x)});
-\end{tikzpicture} \\[2pt]
-{\scriptsize even, $a>0$} & {\scriptsize even, $a<0$} & {\scriptsize odd, $a>0$} & {\scriptsize odd, $a<0$} \\
-{\scriptsize both arms \blank{0.9cm}} & {\scriptsize both arms \blank{0.9cm}} & {\scriptsize \blank{1.4cm}} & {\scriptsize \blank{1.4cm}} \\
-\end{tabular}
-\end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item \textbf{Even degree} $\Rightarrow$ both arms go the \blank{2.0cm} way (like a parabola).
-        \textbf{Odd degree} $\Rightarrow$ the arms go \blank{2.4cm} ways.
-  \item The \textbf{sign of the leading coefficient} sets the \emph{right} arm: $a>0 \Rightarrow$
-        right arm \blank{1.2cm}; \; $a<0 \Rightarrow$ right arm \blank{1.2cm}.
-  \item So for $g(x)=x^3-3x+2$ (odd degree, $a>0$): as $x\to+\infty,\ g(x)\to\blank{1.0cm}$; \; as
-        $x\to-\infty,\ g(x)\to\blank{1.0cm}$.
+\begin{notesbox}{2. Vertical Asymptotes: the Walls}
+A \textbf{vertical asymptote} is a vertical line the graph approaches but \emph{never} touches or
+crosses. Near it the outputs grow without bound --- exactly what Warm-Up item~2 showed.
+
+\vspace{3pt}
+\textbf{How to find it.} If $x=a$ is a domain restriction and the factor $(x-a)$ does \emph{not}
+cancel, then $x=a$ is a vertical asymptote.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Write the answer as an \textbf{equation of a line}, not just a number:
+        \blank{1.8cm}, not ``$1$.''
+  \item For the anchor $f(x)=\dfrac{x+2}{x-1}$, the vertical asymptote is \blank{2.0cm}.
+  \item A graph can \emph{never} cross a vertical asymptote, because that input is
+        \blank{4.4cm} --- there is no point to plot.
+  \item The two branches on either side of a vertical asymptote are why the domain must be written
+        as a \textbf{union}: for $f$, domain $=(-\infty,\ \blank{0.7cm}) \cup (\blank{0.7cm},\ \infty)$.
 \end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{3. Turning Points, Extrema, Zeros \& Multiplicity}
-Read every feature off the anchor graph $g(x)=x^3-3x+2=(x-1)^2(x+2)$ (same curve as the Hook).
+\begin{notesbox}{3. Horizontal Asymptotes \& End Behavior: the Level}
+A \textbf{horizontal asymptote} is a horizontal line the graph approaches as $x\to-\infty$ and
+$x\to+\infty$. It \emph{is} the end-behavior statement for a rational function: instead of arms that
+run off to $\pm\infty$ like a polynomial's, a rational graph's arms usually \textbf{flatten out
+toward a level}.
+
+\vspace{2pt}
+For the anchor: as $x\to+\infty,\ f(x)\to\blank{0.8cm}$; \; as $x\to-\infty,\ f(x)\to\blank{0.8cm}$;
+\; so the horizontal asymptote is \blank{2.0cm}.
+
+\vspace{4pt}
+\textbf{Finding it from the equation: compare the degrees.} Let $n=\deg$ of the numerator and
+$m=\deg$ of the denominator.
 \begin{center}
-\begin{tikzpicture}[scale=0.6]
-  \lgrid{-3}{3}{-3}{5}
-  \begin{scope}
-    \clip (-3,-3) rectangle (3,5);
-    \draw[very thick, forest, domain=-2.15:2.1, samples=100, smooth]
-      plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
-  \end{scope}
-  \fill[charcoal] (-1,4) circle (2.6pt) node[above right, font=\scriptsize]{$(-1,4)$ rel.\ max};
-  \fill[charcoal] (1,0) circle (2.6pt) node[above right, font=\scriptsize]{$(1,0)$ rel.\ min};
-  \fill[charcoal] (-2,0) circle (2.6pt) node[above left, font=\scriptsize]{$(-2,0)$};
-  \fill[charcoal] (0,2) circle (2.6pt) node[right, font=\scriptsize]{$(0,2)$};
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\hline
+\textbf{Case} & \textbf{Horizontal asymptote} & \textbf{Example} \\
+\hline
+$n<m$ (bottom-heavy) & $y=\blank{1.0cm}$ & $\dfrac{4}{x^2+1}$: \; HA is \blank{1.8cm} \\
+$n=m$ (tie) & $y=\dfrac{\text{lead coef.\ of }P}{\text{lead coef.\ of }Q}$ & $\dfrac{x+2}{x-1}$: \; HA is \blank{1.8cm} \\
+$n>m$ (top-heavy) & \blank{2.6cm} & $\dfrac{x^2}{x+1}$: \; the outputs grow \blank{2.4cm} \\
+\hline
+\end{tabularx}
 \end{center}
-\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
-  \item \textbf{Turning points:} each place the curve changes rise$\leftrightarrow$fall. This graph
-        has \blank{0.8cm} turning points. (A degree-$n$ polynomial has \emph{at most} $n-1$; here
-        $n=3$.)
-  \item \textbf{Relative (local) extrema:} the outputs \emph{at} the turning points. Relative
-        \textbf{maximum} at $(-1,\,\blank{0.6cm})$; relative \textbf{minimum} at
-        $(\blank{0.6cm},\,0)$. ``Relative'' means highest/lowest \emph{near there}.
-  \item \textbf{Absolute (global) extrema:} the highest/lowest output of the \emph{whole} function.
-        Because both arms run off to $\pm\infty$, this polynomial has \blank{1.4cm} absolute
-        maximum and \blank{1.4cm} absolute minimum.
-  \item \textbf{$y$-intercept:} set $x=0$: the point $(0,\,\blank{0.7cm})$.
-  \item \textbf{Zeros \& multiplicity:} the \emph{multiplicity} of a zero is the exponent of its
-        factor. At $x=-2$ the factor $(x+2)$ has multiplicity~$1$ (\textbf{odd}), so the graph
-        \blank{1.6cm} the axis. At $x=1$ the factor $(x-1)^2$ has multiplicity~$2$ (\textbf{even}),
-        so the graph \blank{1.6cm} the axis (bounces). \emph{Odd crosses; even touches.}
-  \item \textbf{Domain / range:} domain is \blank{2.6cm}; because the arms cover every height, the
-        range is \blank{2.6cm}.
-  \item \textbf{Increasing / decreasing:} increasing on \blank{3.6cm}; decreasing on \blank{2.0cm}.
-\end{enumerate}
+
+\vspace{2pt}
+\textbf{Two warnings.}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item A horizontal asymptote describes the \emph{far ends} only. Unlike a vertical asymptote, a
+        graph \textbf{may} cross its horizontal asymptote in the middle. (Check: $y=\dfrac{2x}{x^2+1}$
+        has HA $y=0$, and at $x=0$ the output is $\blank{0.8cm}$ --- so it \emph{sits on} the line
+        there.)
+  \item In the top-heavy case there is \emph{no} horizontal asymptote at all --- the graph's end
+        behavior looks like a \blank{3.0cm} instead.
+\end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{4. Symmetry: Even vs.\ Odd}
-Symmetry is tested with $f(-x)$. A polynomial with \emph{only even powers} is \textbf{even}; with
-\emph{only odd powers}, \textbf{odd}; with a mix, \textbf{neither}.
+\begin{notesbox}{4. Holes: When a Restriction Cancels}
+Sometimes a restriction does \emph{not} produce a wall. Look at
+\[
+  h(x) = \frac{x^2-4}{x-2} = \frac{(x-2)(x+2)}{x-2} = x+2, \qquad x \neq 2 .
+\]
+The factor $(x-2)$ cancels, so the graph is just the \emph{line} $y=x+2$ --- with the single point at
+$x=2$ punched out. That missing point is a \textbf{hole}, also called a \textbf{removable
+discontinuity}.
 \begin{center}
 \begin{tikzpicture}[scale=0.46]
-  % Even: y = x^4
+  \lgrid{-4}{4}{-3}{7}
   \begin{scope}
-    \lgrid{-2}{2}{-1}{5}
-    \draw[navy, dashed, semithick] (0,-1)--(0,5);
-    \begin{scope}
-      \clip (-2,-1) rectangle (2,5);
-      \draw[very thick, forest, domain=-1.5:1.5, samples=60, smooth] plot (\x,{(\x)^4});
-    \end{scope}
-    \fill[charcoal] (-1,1) circle (2.6pt); \fill[charcoal] (1,1) circle (2.6pt);
-    \node[charcoal, font=\scriptsize] at (0,-2){$y=x^4$ \; (even: $y$-axis mirror)};
+    \clip (-4,-3) rectangle (4,7);
+    \draw[very thick, forest] (-4,-2)--(4,6);
   \end{scope}
-  % Odd: y = x^3
-  \begin{scope}[xshift=9cm]
-    \lgrid{-2}{2}{-4}{4}
-    \begin{scope}
-      \clip (-2,-4) rectangle (2,4);
-      \draw[very thick, forest, domain=-1.55:1.55, samples=60, smooth] plot (\x,{(\x)*(\x)*(\x)});
-    \end{scope}
-    \fill[charcoal] (1,1) circle (2.6pt); \fill[charcoal] (-1,-1) circle (2.6pt);
-    \node[charcoal, font=\scriptsize] at (0,-5){$y=x^3$ \; (odd: $180^\circ$ about origin)};
-  \end{scope}
+  \draw[forest, very thick, fill=white] (2,4) circle (4.2pt);
+  \node[charcoal, font=\scriptsize, right] at (-1.2,6.2) {the hole};
+  \draw[charcoal, thin, ->] (-0.1,6.0) -- (1.75,4.25);
 \end{tikzpicture}
 \end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item \textbf{Even:} $f(-x)=f(x)$. For $y=x^4$: $(-1)^4=(1)^4=\blank{0.7cm}$, so the two sides
-        mirror across the \blank{1.6cm}-axis.
-  \item \textbf{Odd:} $f(-x)=-f(x)$. For $y=x^3$: $(-1)^3=\blank{0.8cm}$ while $(1)^3=1$ --- opposite
-        outputs, so the graph maps onto itself under a $180^\circ$ turn about the \blank{1.6cm}.
-  \item The anchor $g(x)=x^3-3x+2$ has \emph{both} an odd-power term and a constant, so it is
-        \blank{1.8cm}.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item \textbf{The cancel test.} Factor the top and bottom. A restriction whose factor
+        \textbf{cancels} gives a \blank{1.6cm}; a restriction whose factor \textbf{stays} in the
+        denominator gives a \blank{4.6cm}.
+  \item \textbf{Find the hole's coordinates} by substituting the excluded value into the
+        \emph{simplified} expression: here $x=2$ gives $y=\blank{0.8cm}$, so the hole is at
+        $(\blank{0.6cm},\ \blank{0.6cm})$.
+  \item \textbf{Cancelling never restores the input.} Even though the simplified form $x+2$ looks
+        perfectly happy at $x=2$, the original function is still \blank{3.0cm} there. Always read
+        restrictions off the \textbf{original} denominator.
+  \item \textbf{Both at once.} For $k(x)=\dfrac{x-3}{x^2-9}=\dfrac{x-3}{(x-3)(x+3)}=\dfrac{1}{x+3}$,
+        $x\neq 3$: the restriction $x=3$ cancels, so it is a \blank{1.4cm}; the restriction
+        $x=-3$ does not cancel, so it is a \blank{4.0cm}.
 \end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{5. The Full Feature List --- and How Rational Differs from Polynomial}
+Now read \emph{every} characteristic off the anchor $f(x)=\dfrac{x+2}{x-1}$.
+\begin{center}
+\begin{tikzpicture}[scale=0.52]
+  \lgrid{-4}{6}{-5}{6}
+  \draw[navy, dashed, semithick] (1,-5)--(1,6);
+  \draw[navy, dashed, semithick] (-4,1)--(6,1);
+  \node[navy, font=\scriptsize, above] at (1,6) {$x=1$};
+  \node[navy, font=\scriptsize, below] at (5.0,1) {$y=1$};
+  \begin{scope}
+    \clip (-4,-5) rectangle (6,6);
+    \draw[very thick, forest, domain=-4:0.5, samples=100, smooth]
+      plot (\x,{((\x)+2)/((\x)-1)});
+    \draw[very thick, forest, domain=1.6:6, samples=100, smooth]
+      plot (\x,{((\x)+2)/((\x)-1)});
+  \end{scope}
+  \fill[charcoal] (-2,0) circle (2.6pt) node[above left, font=\scriptsize]{$(-2,0)$};
+  \fill[charcoal] (0,-2) circle (2.6pt) node[right, font=\scriptsize]{$(0,-2)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Vertical asymptote:} \blank{1.8cm} \quad \textbf{Horizontal asymptote:}
+        \blank{1.8cm}
+  \item \textbf{Domain:} \blank{5.0cm} \quad \textbf{Range:} \blank{5.0cm} \\
+        (The range excludes the horizontal-asymptote value because the graph never \emph{reaches}
+        it.)
+  \item \textbf{$x$-intercept / zero:} \blank{1.8cm} --- found by setting the \blank{2.4cm} equal to
+        zero. \quad \textbf{$y$-intercept:} \blank{1.8cm} --- found by evaluating $f(0)$.
+  \item \textbf{Increasing / decreasing:} the curve falls on \emph{both} branches, so $f$ is
+        decreasing on \blank{2.6cm} and on \blank{2.6cm}. \emph{Never} write a single interval
+        across a vertical asymptote --- the function is undefined there.
+  \item \textbf{Positive / negative:} $f(x)>0$ on \blank{4.4cm}; \quad $f(x)<0$ on \blank{2.4cm}.
+  \item \textbf{End behavior:} as $x\to\pm\infty$, $f(x)\to\blank{0.8cm}$.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Compare and contrast} (this is what makes rational functions a new family):
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\hline
+ & \textbf{Polynomial (Unit 3)} & \textbf{Rational (Unit 4)} \\
+\hline
+Graph & smooth and \emph{continuous} & may be \blank{2.6cm} (breaks) \\
+Domain & \emph{all} real numbers & all reals \blank{3.0cm} \\
+Asymptotes & \blank{1.6cm} & vertical and/or horizontal \\
+End behavior & arms run to $\pm\infty$ & arms usually flatten toward \blank{2.4cm} \\
+\hline
+\end{tabularx}
+\end{center}
 \end{notesbox}
 
 \begin{practicebox}
-The graph below is $h(x) = x^4 - 4x^2 = x^2(x-2)(x+2)$. Read each characteristic and write it on the
-line.
+The graph below is $r(x) = \dfrac{4}{x^2-4} = \dfrac{4}{(x-2)(x+2)}$. Read each characteristic and
+write it on the line.
 \begin{center}
-\begin{tikzpicture}[scale=0.55]
-  \lgrid{-3}{3}{-5}{5}
-  \draw[navy, dashed, semithick] (0,-5)--(0,5);
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-5}{5}{-5}{5}
+  \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
+  \draw[navy, dashed, semithick] (2,-5)--(2,5);
+  \node[navy, font=\scriptsize, above] at (-2,5) {$x=-2$};
+  \node[navy, font=\scriptsize, above] at (2,5) {$x=2$};
   \begin{scope}
-    \clip (-3,-5) rectangle (3,5);
-    \draw[very thick, forest, domain=-2.28:2.28, samples=100, smooth]
-      plot (\x,{(\x)^4 - 4*(\x)*(\x)});
+    \clip (-5,-5) rectangle (5,5);
+    \draw[very thick, forest, domain=-5:-2.19, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
+    \draw[very thick, forest, domain=-1.789:1.789, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
+    \draw[very thick, forest, domain=2.19:5, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
   \end{scope}
-  \fill[charcoal] (0,0) circle (2.6pt) node[above right, font=\scriptsize]{$(0,0)$};
-  \fill[charcoal] (-2,0) circle (2.6pt) node[above left, font=\scriptsize]{$(-2,0)$};
-  \fill[charcoal] (2,0) circle (2.6pt) node[above right, font=\scriptsize]{$(2,0)$};
-  \fill[charcoal] (1.414,-4) circle (2.6pt) node[below, font=\scriptsize]{$(\approx1.4,-4)$};
-  \fill[charcoal] (-1.414,-4) circle (2.6pt) node[below, font=\scriptsize]{$(\approx-1.4,-4)$};
+  \fill[charcoal] (0,-1) circle (2.6pt) node[below right, font=\scriptsize]{$(0,-1)$};
 \end{tikzpicture}
 \end{center}
-\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
-  \item Degree even or odd? \blank{1.8cm} \quad Leading coefficient $+$ or $-$? \blank{1.4cm} \quad
-        So both arms go \blank{1.4cm}.
-  \item Turning points: \blank{0.8cm}. \quad Zeros (with cross/touch): $x=-2$ \blank{1.6cm};
-        $x=0$ \blank{1.6cm}; $x=2$ \blank{1.6cm}.
-  \item Relative maximum: \blank{1.8cm}. \quad Absolute minimum value: \blank{1.4cm}.
-  \item Symmetry (even / odd / neither): \blank{2.2cm}, because $h$ has \blank{2.6cm}.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Vertical asymptotes: \blank{1.4cm} and \blank{1.4cm}. \quad Domain: \blank{5.4cm}
+  \item Horizontal asymptote: \blank{1.6cm}. \quad Which degree case is this
+        ($n<m$, $n=m$, $n>m$)? \blank{1.6cm}
+  \item $y$-intercept: \blank{1.6cm}. \quad Does $r$ have an $x$-intercept? \blank{1.2cm}
+        Why or why not? \blank{5.0cm}
+  \item How many pieces does this graph come in? \blank{1.0cm} \quad Is $r(x)$ positive or negative
+        between the two asymptotes? \blank{1.8cm}
 \end{enumerate}
 \end{practicebox}
 

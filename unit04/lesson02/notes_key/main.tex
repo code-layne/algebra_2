@@ -1,13 +1,17 @@
-%! Advanced Factoring — Unit 4, Lesson 4.2 — Guided Notes (Answer Key)
+%! Multiplying \& Dividing Rational Expressions — Unit 4, Lesson 4.2 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
@@ -19,10 +23,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item factor out the \emph{GCF} first, in one and two variables, including a negative leading coefficient;
-  \item choose a method by the \emph{number of terms}, and apply the \emph{difference of squares}, \emph{perfect-square trinomial}, and \emph{sum and difference of cubes} identities;
-  \item factor a four-term polynomial by \emph{grouping} and recognize \emph{quadratic form};
-  \item factor \emph{completely}, recognize a \emph{prime} polynomial, and read a function's \emph{zeros} off its factored form.
+  \item multiply rational expressions by \emph{factoring first} and dividing out common factors across the whole product --- never by multiplying out;
+  \item divide rational expressions by multiplying by the \emph{reciprocal} of the divisor (keep--change--flip), flipping \emph{before} cancelling anything;
+  \item list \emph{every} restriction from all \textbf{three} sources --- each original denominator \emph{and} the numerator of the divisor.
 \end{itemize}
 \end{objectivebox}
 
@@ -31,199 +34,251 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-
-\termblanklong{Prime (irreducible) polynomial}
-\ansline{A polynomial that cannot be factored further over the integers --- e.g.\ $x^2+9$, $2x^2-9$, $x^2+2x+4$.}
-\termblanklong{Factored completely}
-\ansline{Written as a product in which \emph{every} factor is prime --- nothing is left to pull apart.}
-\termblanklong{Sum \& difference of cubes}
-\ansline{$a^3+b^3=(a+b)(a^2-ab+b^2)$; \; $a^3-b^3=(a-b)(a^2+ab+b^2)$.}
-\termblanklong{Factoring by grouping}
-\ansline{Split four terms into two pairs, GCF each pair, then factor out the binomial they share.}
-\termblanklong{Quadratic form}
-\ansline{A polynomial like $x^4+bx^2+c$ (exponents $2n$ and $n$) that factors as though $x^2$ were the variable.}
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Reciprocal (multiplicative inverse)}{the fraction turned upside down: $\frac{c}{d}$ and $\frac{d}{c}$, whose product is $1$ --- and it exists only when $c\neq0$}
+\vocabans{Divisor}{the expression you are dividing \emph{by} --- the fraction after the $\div$ sign}
+\vocabans{Keep--change--flip}{keep the first fraction, change $\div$ to $\times$, flip the divisor: $\frac ab\div\frac cd=\frac ab\cdot\frac dc$}
+\vocabans{Hidden restriction}{an excluded value that appears in neither the simplified answer nor (for a divisor's numerator) the original denominators --- but is excluded all the same}
 \end{vocabbox}
 
 \begin{hookbox}
-In Lesson 4.0 you read this graph of $q(x) = x^4 - 5x^2 + 4$.
+Two expressions, one table --- again. Let
+\[
+  Q(x)=\frac{x+1}{x-5}\div\frac{x-2}{x+3}
+  \qquad\text{and}\qquad
+  R(x)=\frac{(x+1)(x+3)}{(x-5)(x-2)} .
+\]
+$R$ is what you get when you keep--change--flip $Q$ and multiply across.
 \begin{center}
-\begin{tikzpicture}[scale=0.45]
-  \lgrid{-3}{3}{-3}{6}
-  \begin{scope}
-    \clip (-3,-3) rectangle (3,6);
-    \draw[very thick, forest, domain=-2.45:2.45, samples=120, smooth]
-      plot (\x,{(\x)*(\x)*(\x)*(\x) - 5*(\x)*(\x) + 4});
-  \end{scope}
-  \fill[charcoal] (-2,0) circle (3pt);
-  \fill[charcoal] (-1,0) circle (3pt);
-  \fill[charcoal] (1,0)  circle (3pt);
-  \fill[charcoal] (2,0)  circle (3pt);
-  \fill[charcoal] (0,4)  circle (3pt) node[right, font=\scriptsize]{$(0,4)$};
-\end{tikzpicture}
-\end{center}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Read the four $x$-intercepts off the graph: \ans{$-2,\ -1,\ 1,\ 2$}
-  \item Now look at $x^4 - 5x^2 + 4$. Can you \emph{see} those four numbers anywhere in it? \ans{No}
-  \item What form of the equation \emph{would} show them? \ansline{The factored form --- a product of linear factors, one per zero.}
-\end{itemize}
-Yesterday you turned a \textbf{factored} form into a \textbf{standard} form by multiplying. Today you
-run the machine backward --- and the prize is the \emph{zeros}. One warning before we start: write
-$x^4-16=(x^2-4)(x^2+4)$. Is that factored? \ans{Yes} \; Is it factored \emph{completely}?
-\ans{No} \; Why not? \ansline{Because $x^2-4$ is itself a difference of squares: $(x-2)(x+2)$.}
-\end{hookbox}
-
-\begin{notesbox}{1. Always Start with the GCF}
-The \textbf{GCF} of a polynomial uses the largest common coefficient and the \ans{lowest} power of
-every variable the terms \emph{share}.
-
-\vspace{4pt}
-\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
-  \item $12x^5 - 18x^4 + 30x^3 = $ \ans{$6x^3(2x^2 - 3x + 5)$}
-  \item Two variables: \; $15x^3y^2 - 25x^2y^3 = $ \ans{$5x^2y^2(3x - 5y)$}
-  \item Negative lead --- factor out $-4x$: \; $-4x^3 + 8x^2 - 12x = $ \ans{$-4x(x^2 - 2x + 3)$}
-
-        Pulling out a \emph{negative} changes the sign of \ans{every term} inside the parentheses.
-\end{itemize}
-
-\vspace{4pt}
-\textbf{Why first?} Because the GCF can \emph{uncover} a pattern that was hidden. On its own,
-$2x^3 - 50x$ matches nothing. Take out $2x$: \; $2x^3 - 50x = $ \ans{$2x(x^2-25)$} \; --- and now the
-inside is a \ans{difference of squares}, so the complete answer is \ans{$2x(x-5)(x+5)$}
-\end{notesbox}
-
-\begin{notesbox}{2. Count the Terms --- That Tells You Which Tool}
-\begin{center}
-\renewcommand{\arraystretch}{1.45}
-\begin{tabular}{|c|p{10.6cm}|}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Terms} & \textbf{Try this} \\ \hline
-$2$ & difference of squares $a^2-b^2$ \; \emph{or} \; sum/difference of \textbf{cubes} $a^3\pm b^3$ \\ \hline
-$3$ & perfect-square trinomial, ordinary trinomial factoring, or \textbf{quadratic form} \\ \hline
-$4$ & factoring by \textbf{grouping} \\ \hline
+$x$ & $0$ & $1$ & $2$ & $-3$ \\ \hline
+$Q(x)$ & \ans{$\frac{3}{10}$} & \ans{$2$} & \ans{undef.} & \ans{undef.} \\ \hline
+$R(x)$ & \ans{$\frac{3}{10}$} & \ans{$2$} & \ans{undef.} & \ans{$0$} \\ \hline
 \end{tabular}
 \end{center}
-And the rule that beats all of them: after every step, \ans{look at every factor again.}
-\end{notesbox}
-
-\begin{notesbox}{3. Two Terms: Squares}
-\textbf{Difference of squares:} \; $a^2 - b^2 = $ \ans{$(a+b)(a-b)$}
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $49x^2 - 64 = $ \ans{$(7x+8)(7x-8)$} \qquad ($a = $ \ans{$7x$}, $b = $ \ans{$8$})
-  \item Two variables: \; $9x^2 - 25y^2 = $ \ans{$(3x+5y)(3x-5y)$}
-  \item Go twice: \; $x^4 - 16 = ($\ans{$x^2-4$}$)($\ans{$x^2+4$}$) = $ \ans{$(x-2)(x+2)(x^2+4)$}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Both are undefined at $x=2$ --- but for the \emph{same} reason? \ansline{No. In $R$ the factor $(x-2)$ is a denominator; in $Q$ it is on \emph{top} of the divisor, and it makes the whole divisor $0$ --- so $Q$ is dividing by zero.}
+  \item There is exactly one column where they disagree. Which one, and what breaks in $Q$ that does
+        not break in $R$? \ansline{At $x=-3$: the divisor $\frac{x-2}{x+3}$ is undefined, so $Q(-3)$ does not exist --- but flipping moved $(x+3)$ upstairs, so $R(-3)=0$.}
 \end{itemize}
+Yesterday the danger was that cancelling hides a restriction. Today there is a second danger:
+\textbf{flipping hides a different one.} The safe habit is to read the restrictions off the problem
+\emph{as it was written} --- and then add one more.
+\end{hookbox}
 
-\vspace{4pt}
-\textbf{The one that will not factor.} A \emph{sum} of squares, $a^2 + b^2$, is
-\ans{prime} over the integers. For $x^2 + 4$ we would need two integers whose product is $4$ and
-whose sum is \ans{$0$} --- and there are none. So we stop.
-
-\vspace{5pt}
-\textbf{Perfect-square trinomials} (three terms, but they belong with the squares):
-$a^2 \pm 2ab + b^2 = $ \ans{$(a\pm b)^2$}
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $x^2 - 14x + 49 = $ \ans{$(x-7)^2$} \quad Check the middle: $2(x)(7) = $ \ans{$14x$} \checkmark
-  \item $4x^2 + 20xy + 25y^2 = $ \ans{$(2x+5y)^2$}
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{4. Four Terms: Grouping}
-Split into two pairs, take the GCF out of \emph{each} pair, then factor out the shared
-\textbf{binomial}.
-
-\vspace{4pt}
-\textbf{Example.} $x^3 + 5x^2 - 4x - 20$
-
-\vspace{2pt}
-\emph{Step 1 --- group in pairs:} \; $(x^3 + 5x^2) + (-4x - 20)$
-
-\vspace{2pt}
-\emph{Step 2 --- GCF each pair:} \; \ans{$x^2$}$(x+5)$ \; \ans{$-4$}$(x+5)$
-
-\vspace{2pt}
-\emph{Step 3 --- factor out the common binomial:} \ans{$(x+5)(x^2-4)$}
-
-\vspace{2pt}
-\emph{Step 4 --- keep going!} \; $x^2 - 4$ is a \ans{difference of squares}, so the complete answer is
-\ans{$(x+5)(x-2)(x+2)$}
-
-\vspace{5pt}
-\textbf{The sign move.} When the third term is negative, factor a \textbf{negative} out of the second
-pair so the two binomials \emph{match}. If your two binomials come out different, the reason is
-almost always \ans{a sign}.
-
-\vspace{4pt}
-\textbf{Sometimes ``completely'' means stopping.} \; $2x^3 - 6x^2 - 9x + 27 = $ \ans{$(x-3)(2x^2-9)$}
-
-\vspace{2pt}
-Can $2x^2 - 9$ be factored over the integers? \ans{No} \; Why not? \ansline{It is not a difference of squares --- $9$ is a perfect square but $2x^2$ is not, and there is no integer pair to use.}
-\end{notesbox}
-
-\begin{notesbox}{5. Two Terms: Cubes --- Today's New Identity}
-Look back at Warm-Up item 3. You multiplied $(x+2)(x^2-2x+4)$ and got \ans{$x^3+8$}. You proved
-today's formula before you knew it had a name.
+\begin{notesbox}{1. Multiplying: the Rule Is Easy, the Discipline Is Factoring}
+For numbers and for polynomials, the rule is the same --- multiply straight across:
 \[
-  a^3 + b^3 = (a+b)(a^2 - ab + b^2) \qquad\qquad a^3 - b^3 = (a-b)(a^2 + ab + b^2)
+  \frac{a}{b}\cdot\frac{c}{d}=\frac{a\,c}{b\,d}, \qquad b\neq0,\ d\neq0 .
 \]
-\textbf{SOAP} --- the sign pattern shared by both identities:
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item \textbf{S}ame --- the binomial factor takes the \ans{same} sign as the original.
-  \item \textbf{O}pposite --- the trinomial's middle term takes the \ans{opposite} sign.
-  \item \textbf{A}lways \textbf{P}ositive --- the trinomial's last term is \ans{positive}.
-\end{itemize}
+
+\vspace{3pt}
+\textbf{But you should almost never actually multiply across first.} In the Warm-Up,
+$\dfrac{6}{35}\cdot\dfrac{25}{9}$ took one line by factoring and dividing out; multiplying first gives
+$\dfrac{150}{315}$, which you then have to reduce anyway. With polynomials it is worse than tedious:
+an expanded product \emph{hides its own factors}, and Unit~3 showed you exactly how much work getting
+them back costs.
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{\centering\vspace{2pt}
+\textbf{Factor everything first. Divide out. Multiply last --- and often not at all.}\vspace{2pt}}}
+\end{center}
 
 \vspace{4pt}
-\textbf{Two traps.} The middle term is $ab$, \emph{not} $2ab$ --- this is \ans{never} a
-perfect-square trinomial. And the trinomial factor $a^2 \mp ab + b^2$ is always \ans{prime}, so
-never try to break it apart.
+\textbf{Monomial factors first.} Simplify $\dfrac{6x^2}{5y}\cdot\dfrac{15y^3}{8x^5}$.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Restrictions come from \emph{both} denominators: $5y\neq0$ gives $y\neq$ \ans{0}, and
+        $8x^5\neq0$ gives $x\neq$ \ans{0}.
+  \item Divide out the numbers ($6$ and $8$ share \ans{2}; $5$ and $15$ share \ans{5})
+        and the shared powers. Answer: \ans{$\frac{9y^2}{4x^3}$}.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{2. The Four Steps for a Product}
+\begin{enumerate}[leftmargin=1.9em, itemsep=2pt]
+  \item \textbf{Factor} every numerator and every denominator completely.
+  \item \textbf{List the restrictions} from \emph{every} original denominator --- there are two of them now.
+  \item \textbf{Divide out} any numerator factor against any denominator factor --- across the \emph{whole} product, not just within one fraction.
+  \item \textbf{Write} the result as a single fraction, restrictions attached. Leave it \emph{factored}.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{The anchor, worked.} \; $\dfrac{x^2-9}{x^2+2x-8}\cdot\dfrac{x+4}{x^2+3x}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Factor all four parts. \; $x^2-9=$ \ans{$(x-3)(x+3)$}; \quad $x^2+2x-8=$ \ans{$(x+4)(x-2)$};
+        \quad $x^2+3x=$ \ans{$x(x+3)$}.
+  \item Restrictions from the \emph{first} denominator: $x\neq$ \ans{$-4,\ 2$}; \; from the
+        \emph{second}: $x\neq$ \ans{$0,\ -3$}.
+  \item Divide out \ans{$(x+4)$} and \ans{$(x+3)$}. \; Result: \ans{$\frac{x-3}{x(x-2)}$}, \;
+        $x\neq$ \ans{$0,\ 2,\ -3,\ -4$}.
+\end{itemize}
+
+\vspace{3pt}
+Notice what carried over from Lesson~4.1 and what is new. Same as yesterday: two of those four
+restrictions are now \textbf{invisible} in the answer. New today: a cancelled factor can come from
+\emph{either} fraction, so you have two denominators to read before you touch anything.
 
 \vspace{5pt}
-Identify $a$ and $b$ \emph{first}, every time.
-\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
-  \item $x^3 + 8$: \quad $a = $ \ans{$x$}, $b = $ \ans{$2$} \quad $\Rightarrow$ \ans{$(x+2)(x^2-2x+4)$}
-  \item $27x^3 - 64$: \quad $a = $ \ans{$3x$}, $b = $ \ans{$4$} \quad $\Rightarrow$ \ans{$(3x-4)(9x^2+12x+16)$}
-  \item $8x^3 + 125y^3 = $ \ans{$(2x+5y)(4x^2-10xy+25y^2)$}
-  \item GCF first! \; $5x^3 - 40 = 5($\ans{$x^3-8$}$) = $ \ans{$5(x-2)(x^2+2x+4)$}
+\textbf{Opposite binomials still count} (Lesson 4.1). Simplify
+$\dfrac{x^2-25}{x+2}\cdot\dfrac{2x+4}{5-x}$.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $5-x=$ \ans{$-1$} $\cdot\,(x-5)$, so the $(x-5)$'s divide out and leave a factor of
+        \ans{$-1$}.
+  \item Answer: \ans{$-2(x+5)$}, \; $x\neq$ \ans{$-2,\ 5$}.
 \end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{3. Dividing: Keep, Change, Flip --- and Why}
+The \textbf{reciprocal} of $\dfrac{c}{d}$ is $\dfrac{d}{c}$, and the two multiply to
+\ans{1}. Dividing by an expression means multiplying by whatever \emph{undoes} it, so:
+\[
+  \frac{a}{b}\div\frac{c}{d} \;=\; \frac{a}{b}\cdot\frac{d}{c} .
+\]
+\textbf{Keep} the first fraction, \textbf{change} $\div$ to $\times$, \textbf{flip} the second.
+
+\vspace{4pt}
+\textbf{One warning worth a whole page: flip \emph{first}, then cancel.} Watch what happens if you
+cancel across the $\div$ sign:
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\hline
+\textbf{Cancelled first (wrong)} & \textbf{Flipped first (right)} \\
+\hline
+$\dfrac{4}{3}\div\dfrac{5}{4}\;\to\;\dfrac{1}{3}\div\dfrac{5}{1}=$ \ans{$\frac{1}{15}$} &
+$\dfrac{4}{3}\div\dfrac{5}{4}=\dfrac{4}{3}\cdot\dfrac{4}{5}=$ \ans{$\frac{16}{15}$} \\
+\hline
+\end{tabularx}
+\end{center}
+The two answers are not equal, so cancelling across a $\div$ is \ans{illegal}. The $\div$ symbol is
+not a fraction bar --- until you flip, nothing is lined up yet.
+
+\vspace{3pt}
+\textbf{Also worth naming:} $\dfrac{c}{d}$ has a reciprocal only when $c\neq0$. That one sentence is
+the whole new idea of Section~4.
+\end{notesbox}
+
+\begin{notesbox}{4. The Three Sources of a Restriction}
+Take any quotient $\;\dfrac{A}{B}\div\dfrac{C}{D}$. Three separate things must be true:
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\hline
+\textbf{\#} & \textbf{Condition} & \textbf{Why --- and where it hides} \\
+\hline
+1 & $B\neq0$ & the first fraction has to exist. \emph{Visible} in the problem and (usually) in the answer. \\
+2 & $D\neq0$ & the divisor has to exist before you can divide by it. Goes \textbf{invisible after the flip} --- $D$ moves upstairs. \\
+3 & $C\neq0$ & you cannot divide by \ans{0}, and the divisor equals zero exactly when its \emph{numerator} does. \textbf{Invisible before the flip} --- $C$ is upstairs in the problem as written. \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{Flipping trades one blind spot for another.} Write the restrictions from the problem
+\emph{as written}, then add the \textbf{divisor's numerator}.\vspace{2pt}}}
+\end{center}
+
+\vspace{4pt}
+\textbf{Back to the Hook.} \; $Q(x)=\dfrac{x+1}{x-5}\div\dfrac{x-2}{x+3}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Source 1 (first denominator): $x\neq$ \ans{5}. \quad Source 2 (divisor's denominator):
+        $x\neq$ \ans{$-3$}.
+  \item Source 3 (divisor's \emph{numerator}): $x\neq$ \ans{2}.
+  \item Simplified: \ans{$\frac{(x+1)(x+3)}{(x-5)(x-2)}$}, \; $x\neq$ \ans{$5,\ 2,\ -3$}.
+\end{itemize}
+That is why the table disagreed at $x=-3$: there $Q$ is being asked to divide by
+$\dfrac{-5}{0}$, which is not a number at all --- while $R$, where the $(x+3)$ has quietly moved to the
+top, is perfectly happy.
+
+\vspace{5pt}
+\textbf{The division anchor, worked.} \; $\dfrac{x^2-4}{x^2+7x+12}\div\dfrac{x^2+2x}{x+3}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Factor first. \; $x^2-4=$ \ans{$(x-2)(x+2)$}; \quad $x^2+7x+12=$ \ans{$(x+3)(x+4)$}; \quad
+        $x^2+2x=$ \ans{$x(x+2)$}.
+  \item Restrictions, all three sources: $x\neq$ \ans{$-3,\ -4$ (source 1), $-3$ (source 2), $0,\ -2$ (source 3)}
+  \item Keep--change--flip, divide out, and write the answer: \ans{$\frac{x-2}{x(x+4)}$}
+\end{itemize}
+Two of those four restrictions do not appear anywhere in your final answer. They still belong to it.
+\end{notesbox}
+
+\begin{notesbox}{5. The Picture: a Product With Two Holes}
+Every restriction you list is a point the graph does not get to keep. Consider
+\[
+  P(x)=\frac{x^2-1}{x}\cdot\frac{x}{x+1} .
+\]
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Factored: $\dfrac{(x-1)(x+1)}{x}\cdot\dfrac{x}{x+1}$. \; Restrictions: $x\neq$ \ans{$0,\ -1$}.
+  \item Everything divides out except \ans{$x-1$} --- so away from those two inputs, $P$ \emph{is}
+        a straight line.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-4}{5}{-5}{4}
+  \begin{scope}
+    \clip (-4,-5) rectangle (5,4);
+    \draw[very thick, forest] (-4,-5)--(5,4);
+  \end{scope}
+  \draw[forest, very thick, fill=white] (0,-1) circle (4.2pt);
+  \draw[forest, very thick, fill=white] (-1,-2) circle (4.2pt);
+  \node[charcoal, font=\scriptsize] at (-2.3,2.6) {two holes};
+  \draw[charcoal, thin, ->] (-2.0,2.2) -- (-0.2,-0.75);
+  \draw[charcoal, thin, ->] (-2.0,2.2) -- (-1.1,-1.7);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item The hole at $x=0$ came from the denominator of the \ans{first} fraction; the hole at
+        $x=-1$ came from the denominator of the \ans{second} fraction.
+  \item Read the holes' heights off the \emph{simplified} form $y=x-1$: they sit at \ans{$(0,-1)$}
+        and \ans{$(-1,-2)$}.
+  \item Neither excluded value shows up in the simplified expression $x-1$ --- there is no denominator
+        left to show them. Explain why they are still part of the answer. \ansline{because the restrictions belong to the \emph{original} product: at $x=0$ and $x=-1$ one of the two fractions has no value, so $P$ has none either --- the line $y=x-1$ only tells you where the graph was headed}
+\end{enumerate}
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{Back to the Hook.} $q(x) = x^4 - 5x^2 + 4$ has three terms --- and the powers $4$ and $2$ are
-in \textbf{quadratic form}: it factors as though $x^2$ were the variable.
-\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
-  \item Find two numbers whose product is $4$ and whose sum is $-5$: \ans{$-1$} and \ans{$-4$}
-  \item So $x^4 - 5x^2 + 4 = ($\ans{$x^2-1$}$)($\ans{$x^2-4$}$)$.
-  \item Are you done? Each factor is a \ans{difference of squares}, so keep going:
-        $q(x) = $ \ans{$(x-1)(x+1)(x-2)(x+2)$}
-  \item A product is zero exactly when one of its factors is zero, so the zeros of $q$ are
-        \ans{$1,\ -1,\ 2,\ -2$}
-  \item Compare with the $x$-intercepts you read off the graph at the top of these notes. Do they
-        match? \ans{Yes}
-  \item \textbf{The wall.} Try today's tools on the unit's anchor, $x^3 - 3x + 2$. GCF?
-        \ans{No} \; Three terms, but quadratic form? \ans{No} \; Four terms to group?
-        \ans{No} \; And yet it \emph{does} factor --- you saw it as $(x-1)^2(x+2)$ in Lesson 4.0.
-        What that means: \ansline{Today's tools do not reach every polynomial --- we need a new one (division), which is Lesson 4.3.}
+Simplify completely and state \emph{all} restrictions. Show the factored line.
+
+\vspace{3pt}
+\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
+  \item $\dfrac{x^2-x-6}{x^2-1}\cdot\dfrac{x+1}{x-3}$ \hfill Factored: \ans{$\frac{(x-3)(x+2)}{(x-1)(x+1)}\cdot\frac{x+1}{x-3}$} \\[4pt]
+        Simplest form: \ans{$\frac{x+2}{x-1}$} \quad Restrictions: $x\neq$ \ans{$1,\ -1,\ 3$}
+  \item $\dfrac{x^2-16}{3x}\div\dfrac{x+4}{6x^2}$ \hfill Factored (after the flip): \ans{$\frac{(x-4)(x+4)}{3x}\cdot\frac{6x^2}{x+4}$} \\[4pt]
+        Simplest form: \ans{$2x(x-4)$} \quad Restrictions: $x\neq$ \ans{$0,\ -4$}
+  \item Your answer to problem 2 has no denominator at all. Explain why it still carries restrictions,
+        and name which source each one came from.
+        \ansline{$x\neq0$ comes from the original denominators $3x$ and $6x^2$ (sources 1 and 2); $x\neq-4$ comes from}
+        \ansline{the divisor's \emph{numerator} $x+4$ (source 3) --- at $x=-4$ the problem asks you to divide by zero.}
 \end{enumerate}
 \end{practicebox}
 
 \begin{teachernote}
-\textbf{Pacing.} Sections 1--2 are fast (about eight minutes together) --- the GCF is review, and the
-term-count table is the organizer students will lean on for the rest of the unit, so leave it on the
-board. Spend the time in Sections 4 and 5.
+\textbf{Pacing.} Sections 1--3 are the mechanics and go quickly if yesterday landed; \textbf{Section 4
+is the lesson}. If time runs short, move the opposite-binomial example in Section~2 to homework rather
+than cutting Section~4 or 5 --- the three-source rule is what makes today more than ``5.1 with two
+fractions.''
 
 \vspace{3pt}
-\textbf{The two answers to insist on.} (1) In Section~3, do not let ``$x^2+4$ is prime'' be an
-assertion --- run the integer search out loud until it fails. (2) In Section~5, students who write a
-$2$ in the middle term are pattern-matching to $(a\pm b)^2$; the cure is to have them multiply
-$(x+2)(x^2-2x+4)$ back out, which they already did in the Warm-Up.
+\textbf{The one sentence to repeat.} \emph{Flipping trades one blind spot for another.} Students accept
+the divisor-numerator restriction in the Warm-Up (item 1c, with numbers) and forget it the moment
+letters appear. When they do, send them back to $\frac49\div\frac{n}{15}$, not to a rule.
 
 \vspace{3pt}
-\textbf{The Practice box is the assessment that matters.} Item~3 separates ``can factor'' from ``can
-factor \emph{completely}'' --- students who stop at $(x^2-1)(x^2-4)$ have the method but not the
-standard. Item~6 is deliberately a dead end: it is honest about the limits of today's toolkit and
-creates the need for Lesson~4.3. If time is short, cut Section~3's two-variable line rather than
-item~6.
+\textbf{Errors to expect.} (1) Multiplying out first, producing a quartic nobody wants to re-factor ---
+this is a habit, so name it early and often. (2) Cancelling \emph{across} the $\div$ before flipping;
+the Section~3 table is the disproof, so make students compute both cells. (3) Flipping the
+\emph{first} fraction instead of the divisor. (4) Missing the divisor's-numerator restriction --- the
+signature error of the day, and the one the exit ticket's MC item is built to catch. (5) Reading the
+restrictions off the final answer, which is yesterday's signature error and still costs a point today.
+
+\vspace{3pt}
+\textbf{Section 5} is worth protecting. A product of two rational expressions whose graph is a plain
+line with two holes punched in it is the clearest possible picture of why restrictions survive
+cancelling --- and it is the same picture 4.5 will build from an equation.
 \end{teachernote}
 
 \end{document}

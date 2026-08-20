@@ -1,370 +1,163 @@
-%! Equations and Inequalities — Unit 1, Lesson 1.2 — Guided Notes
+%! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
-% Pre-drawn number line; #1 receives any shading/endpoint overlay (empty = blank axis).
-\newcommand{\numline}[1]{%
-  \begin{tikzpicture}[baseline=-3pt, x=0.55cm, y=0.55cm]
-    \draw[<->, thick, charcoal] (-5.6,0) -- (5.6,0);
-    \foreach \t in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {\draw[charcoal] (\t,0.13) -- (\t,-0.13);}
-    \foreach \t in {-4,-2,0,2,4} {\node[below=0pt, font=\scriptsize] at (\t,-0.10) {$\t$};}
-    #1
-  \end{tikzpicture}}
-
-% Small parabola on a shared window; #1 is the expression in \x, #2 the plotting domain.
-\newcommand{\minipara}[2]{%
-  \begin{tikzpicture}[x=0.30cm, y=0.21cm]
-    \draw[->, charcoal] (-3.3,0) -- (5.3,0);
-    \draw[->, charcoal] (0,-5.3) -- (0,6.6);
-    \foreach \t in {-2,2,4} {\draw[charcoal] (\t,0.35) -- (\t,-0.35);}
-    \draw[forest, very thick, domain=#2, smooth, variable=\x] plot ({\x},{#1});
-  \end{tikzpicture}}
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.2}{Guided Notes}
-\namedateperiod
 
-\vspace{0.08in}
+\vspace{0.10in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item solve multistep linear equations and inequalities in one variable, \emph{naming the property} behind every step;
-  \item decide whether a linear equation has \emph{one}, \emph{no}, or \emph{infinitely many} solutions;
-  \item graph an inequality's solution set on a number line and rearrange a \emph{literal} equation for a specified variable;
-  \item write an equation or inequality from a situation and interpret the answer back in that situation;
-  \item solve a quadratic by square roots, by factoring with the \emph{zero product property}, and by the \emph{quadratic formula};
-  \item use the \emph{discriminant} to say how many real solutions exist before solving --- and match it to the graph.
+  \item read \emph{absolute value} as distance from zero and solve $|ax+b|=c$ with the two-case rule;
+  \item recognize when an equation or inequality has \emph{no solution} or \emph{one solution};
+  \item solve absolute value \emph{inequalities} (``and'' for $<$, ``or'' for $>$);
+  \item write a solution set in \emph{set}, \emph{interval}, and \emph{number-line} form, and model a tolerance situation.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.05in}
+\vspace{0.06in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{Equation (vs.\ expression) / solution set}
-\termblanklong{Properties of equality}
-\termblanklong{Identity vs.\ contradiction}
-\termblanklong{Literal equation}
-\termblanklong{Properties of inequality}
-\termblanklong{Zero product property}
-\termblanklong{Discriminant}
+\vspace{2pt}
+\termblanklong{Absolute value (distance from zero)}
+\termblanklong{Two-case rule for $|X|=c$}
+\termblanklong{``And'' case: $|X|<c$}
+\termblanklong{``Or'' case: $|X|>c$}
+\termblanklong{Set / interval notation}
 \end{vocabbox}
 
-\boxguard
 \begin{hookbox}
-\textbf{Solve all three.} Nothing else --- just solve them.
-
-\vspace{2pt}
-(a) \; $3(x-2)=x-6$
-\begin{work}
-  3(x-2) &= x-6 \\
-    3x-6 &= x-6 \\
-    2x-6 &= -6  \\
-      2x &= 0   \\
-       x &= 0
-\end{work}
-
-(b) \; $3(x-2)=3x-6$
-\begin{work}
-  3(x-2) &= 3x-6 \\
-    3x-6 &= 3x-6 \\
-      -6 &= -6
-\end{work}
-
-(c) \; $3(x-2)=3x-5$
-\begin{work}
-  3(x-2) &= 3x-5 \\
-    3x-6 &= 3x-5 \\
-      -6 &= -5
-\end{work}
-Two of those did something you were not expecting: the variable \blank{3.0cm}. That is not a
-mistake --- it is the answer arriving in a different costume.
+A cereal box is labeled $500$ g. Quality control rejects any box that is \emph{more than $5$ g off}
+the label.
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item In (b) you were left with a statement that is \blank{2.0cm}, so how many values of $x$ work? \blank{3.6cm}
-  \item In (c) you were left with a statement that is \blank{2.0cm}, so how many values of $x$ work? \blank{3.6cm}
+  \item Lightest box that still passes? \blank{2.0cm} \qquad Heaviest? \blank{2.0cm}
+  \item Write ``the weight $w$ is off from $500$ by \emph{at most} $5$'' with one symbol:
+        $\big|\,\blank{1.4cm}\,\big| \le \blank{0.8cm}$
 \end{itemize}
-\textbf{Now the same question in another family.} How many real solutions does each have?
-\quad $x^2=9$: \blank{1.2cm} \quad $x^2=0$: \blank{1.2cm} \quad $x^2=-9$: \blank{1.2cm}
-\\[2pt]
-\textbf{The idea the whole lesson hangs on:} an expression was a \emph{recipe}; an equation is a
-\textbf{question}. The answer is a \emph{solution set}, and it is allowed to hold one number, no
-numbers, or every number. By the end of today you will know the count \textbf{before} you solve.
+An absolute value is a \emph{distance}. Every problem today asks how far an expression is from a
+target: ``exactly this far'' (equation) or ``within / beyond this far'' (inequality).
 \end{hookbox}
 
-\begin{notesbox}{1. Linear Equations --- and How Many Answers They Have}
-An \textbf{equation} joins two expressions with $=$. Unlike an expression, it asks a
-\blank{2.4cm}, and a \textbf{solution} is a value that makes it \blank{1.8cm}.
-
-\vspace{3pt}
-\textbf{Solve, and name every move.} The \emph{properties of equality} are the only moves that keep
-the solution set the same --- which is exactly why they are allowed and nothing else is.
+\boxguard
+\begin{notesbox}{1. Absolute Value Is a Distance}
+$|x|$ is the distance of $x$ from $0$, so it is \textbf{never negative}. The question $|x|=5$ asks
+\emph{which numbers are exactly $5$ units from zero} --- and there are \blank{1.0cm} of them:
+\[ x = \blank{1.2cm} \quad\text{or}\quad x = \blank{1.2cm}. \]
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-\textbf{Line} & \textbf{Property that makes it legal} \\
-\hline
-$5x+3(x-2)=2(x+9)$ & \emph{given} \\
-\blank{4.6cm} & distributive property \\
-$8x-6=2x+18$ & \emph{combine like terms} \\
-\blank{4.6cm} & \blank{6.0cm} \\
-\blank{4.6cm} & \blank{6.0cm} \\
-$x=$ \blank{1.2cm} & \blank{6.0cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\textbf{Verify it.} Substitute your answer into the \emph{original} equation --- not into a line
-partway down, where a mistake would already be baked in.
-\\[2pt]
-Left side: \blank{4.4cm} \qquad Right side: \blank{4.4cm} \qquad Equal? \blank{1.2cm}
-\\[2pt]
-Checking is not politeness. It is the \blank{3.0cm} of the word ``solution.''
-
-\vspace{4pt}
-\textbf{Back to the Hook: three possible answers.} Fill in what the \emph{last line} tells you.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l l X l@{}}
-\hline
-\textbf{Equation} & \textbf{Last line} & \textbf{Solution set} & \textbf{Name} \\
-\hline
-$3(x-2)=x-6$ & \blank{1.8cm} & \blank{3.4cm} & --- \\
-$3(x-2)=3x-6$ & \blank{1.8cm} & \blank{3.4cm} & \blank{2.4cm} \\
-$3(x-2)=3x-5$ & \blank{1.8cm} & \blank{3.4cm} & \blank{2.4cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\fbox{\parbox{0.95\linewidth}{\centering If the variable survives $\to$ \blank{2.6cm} solution.
-\quad If it vanishes leaving a \textbf{true} statement $\to$ \blank{3.2cm}. \\
-If it vanishes leaving a \textbf{false} statement $\to$ \blank{3.0cm}.}}
-
-\vspace{4pt}
-\textbf{Write one from a situation.} A repair shop charges a \$40 flat fee plus \$15 per hour of
-labor. A bill came to \$130.
-\\[2pt]
-Equation: \blank{5.0cm} \qquad Solve: \blank{3.0cm}
-\\[2pt]
-Now answer the \emph{question that was asked}, in a sentence with units: \writeline
-\end{notesbox}
-
-\begin{notesbox}{2. Literal Equations --- Same Moves, Scarier Alphabet}
-A \textbf{literal equation} has several letters. ``Solve for $h$'' means: get $h$ \blank{4.6cm},
-using the same properties of equality as always.
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-\hline
-\textbf{Formula} & \textbf{Solve for} & \textbf{Result} \\
-\hline
-$A=\tfrac12 bh$ \; (area of a triangle) & $h$ & \blank{6.0cm} \\
-$P=2\ell+2w$ \; (perimeter) & $w$ & \blank{6.0cm} \\
-$y=mx+b$ & $x$ & \blank{6.0cm} \\
-$C=\tfrac59(F-32)$ & $F$ & \blank{6.0cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\textbf{The one real trap.} In $P=2\ell+2w$, are $2\ell$ and $2w$ like terms? \blank{1.4cm} \;
-So you may \emph{not} write $P=4\ell w$. And when you divide, you must divide \blank{3.6cm} term,
-not just the one you were looking at.
-\\[2pt]
-\emph{Coming attraction:} in Unit 2 you will meet $y=mx+b$ rearranged three different ways and hear
-them called ``forms.'' They are not three facts --- they are one equation, solved for different
-things.
-\end{notesbox}
-
-\begin{notesbox}{3. Linear Inequalities --- and Why the Symbol Flips}
-Everything about solving is the same \dots\ except for one move. Let's find it rather than announce it.
-
-\vspace{2pt}
-\fbox{\parbox{0.95\linewidth}{Start with a statement that is definitely true: \quad $2<6$.
-\\[3pt]
-Multiply \emph{both sides} by $-1$: \quad $-2$ \blank{1.0cm} $-6$ \quad
-(write in the symbol that is actually true) \\[3pt]
-What happened to the order? \blank{6.2cm}}}
-\\[2pt]
-On the number line, multiplying by a negative \blank{3.4cm} everything across zero --- and a
-reflection \blank{3.0cm} the order. So the rule is not a convention somebody chose:
-\\[2pt]
-\textbf{Multiplying or dividing both sides by a negative number \blank{4.2cm} the inequality symbol.}
-(Adding or subtracting a negative does \emph{not} --- only multiplying and dividing.)
-
-\vspace{4pt}
-\textbf{Solve and graph.} Shade the solution set on the number line. Endpoint circles:
-\emph{open} $\circ$ for $<$ and $>$, \emph{closed} $\bullet$ for $\le$ and $\ge$.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}X c@{}}
-\hline
-\textbf{Solve} & \textbf{Graph the solution set} \\
-\hline
-(a) \; $4x-9\le 11$ \qquad $x$ \blank{2.2cm} & \numline{} \\
-(b) \; $-3x+7>19$ \qquad $x$ \blank{2.2cm} & \numline{} \\
-(c) \; $2(x+4)\ge 6x-4$ \qquad $x$ \blank{2.2cm} & \numline{} \\
-\hline
-\end{tabularx}
-\end{center}
-Which one made you flip the symbol, and at exactly which step? \writeline
-In (c) you may end with $3\ge x$. Rewrite it as $x$ \blank{1.6cm} $3$ before you graph --- reading
-the shading off a backwards inequality is how the picture ends up on the wrong side.
-
-\vspace{3pt}
-\textbf{Write one from a situation.} Concert tickets cost \$12 each and you can spend
-\textbf{at most} \$75.
-\\[2pt]
-``At most'' translates to the symbol \blank{1.2cm}. \quad Inequality: \blank{3.6cm} \quad
-Solve: $t$ \blank{2.4cm}
-\\[2pt]
-The algebra says $t\le 6.25$. How many tickets can you actually buy, and why is the answer not
-$6.25$? \writeline
-\end{notesbox}
-
-\begin{notesbox}{4. Quadratic Equations --- Three Methods and a Head Count}
-A \textbf{quadratic equation} can be written $ax^2+bx+c=0$ with $a\ne$ \blank{0.8cm}. Which method
-you use depends on what the equation \emph{looks like}.
-
-\vspace{3pt}
-\textbf{Method 1 --- Square roots} (use when there is no $x$ term). Isolate the square, then take
-the root of both sides. \textbf{Both} roots: the $\pm$ is not optional.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{@{}l l l@{}}
-(a) \; $x^2=49$, \; $x=$ \blank{2.2cm} &
-(b) \; $2x^2-50=0$, \; $x=$ \blank{2.2cm} &
-(c) \; $(x-1)^2=16$, \; $x=$ \blank{2.6cm} \\
-\end{tabular}
-\end{center}
-Writing only $x=7$ in (a) does not lose a step --- it loses \blank{2.4cm}.
-
-\vspace{3pt}
-\textbf{Method 2 --- Factor, then the zero product property} (use when it factors).
-\begin{center}
-\fbox{\parbox{0.95\linewidth}{\centering \textbf{Zero product property:} if $mn=0$ then
-\blank{2.0cm} or \blank{2.0cm}. \\
-\textbf{Step 0, every single time:} make one side equal \blank{1.2cm} first.}}
-\end{center}
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
-\hline
-\textbf{Equation} & \textbf{Set to zero, then factor completely} & \textbf{Solutions} \\
-\hline
-$x^2+2x-15=0$ & \blank{4.4cm} & \blank{2.6cm} \\
-$x^2-3x=10$ & \blank{4.4cm} & \blank{2.6cm} \\
-$2x^2-18=0$ & \blank{4.4cm} & \blank{2.6cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\emph{Why ``completely'' matters more now.} In Lesson 1.1, stopping at $2(x^2-9)$ cost you a step.
-Here it costs you \blank{3.4cm}. \\
-\emph{And why the zero is not negotiable:} from $(x-2)(x+5)=8$, may you conclude $x-2=8$?
-\blank{1.2cm} \; Why not? \writeline
-
-\vspace{3pt}
-\textbf{Method 3 --- The quadratic formula} (use when nothing else works --- it always works).
-\begin{center}
-\fbox{\parbox{0.72\linewidth}{\centering \TallMath{x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}}}}
-\end{center}
-Solve $x^2-4x-7=0$. \quad $a=$ \blank{0.9cm} \quad $b=$ \blank{0.9cm} \quad $c=$ \blank{0.9cm}
-\\[2pt]
-Substitute and simplify:
-\begin{work}
-  x &= \frac{4\pm\sqrt{(-4)^2-4(1)(-7)}}{2(1)} \\
-    &= \frac{4\pm\sqrt{16+28}}{2} \\
-    &= \frac{4\pm\sqrt{44}}{2}    \\
-    &= \frac{4\pm 2\sqrt{11}}{2}  \\
-    &= 2\pm\sqrt{11}
-\end{work}
---- these are \textbf{irrational} solutions, and simplifying that radical is
-Lesson 1.1 doing its job.
-
-\vspace{4pt}
-\textbf{The head count: the discriminant.} The piece under the radical, $b^2-4ac$, decides
-everything \emph{before} you solve. Same $a$ and $b$ below --- only $c$ changes.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l l X l@{}}
-\hline
-\textbf{Equation} & $b^2-4ac$ & \textbf{Positive / zero / negative?} & \textbf{\# real solutions} \\
-\hline
-$x^2-2x-3=0$ & \blank{1.8cm} & \blank{3.0cm} & \blank{1.6cm} \\
-$x^2-2x+1=0$ & \blank{1.8cm} & \blank{3.0cm} & \blank{1.6cm} \\
-$x^2-2x+3=0$ & \blank{1.8cm} & \blank{3.0cm} & \blank{1.6cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\textbf{The same three facts, drawn.} Below are the graphs of those three, in order. Label each one
-with the number of times it crosses the $x$-axis.
-\begin{center}
-\begin{tabular}{@{}c c c@{}}
-\minipara{\x*\x-2*\x-3}{-1.7:3.7} &
-\minipara{\x*\x-2*\x+1}{-1.3:3.3} &
-\minipara{\x*\x-2*\x+3}{-1.0:3.0} \\
-crossings: \blank{1.0cm} & crossings: \blank{1.0cm} & crossings: \blank{1.0cm} \\
-\end{tabular}
-\end{center}
-The discriminant and the picture are the \blank{3.0cm} fact told twice --- a real solution
-\emph{is} an $x$-intercept.
-
-\vspace{3pt}
-\textbf{Read the graph, then confirm with algebra.} This is $y=x^2-2x-3$.
-\begin{center}
-\begin{minipage}[c]{0.36\linewidth}\centering
-\begin{tikzpicture}[x=0.45cm, y=0.32cm]
-  \draw[xstep=1, ystep=1, linegray!45, very thin] (-3,-5) grid (5,4);
-  \draw[->, charcoal, thick] (-3.3,0) -- (5.3,0) node[right, font=\scriptsize] {$x$};
-  \draw[->, charcoal, thick] (0,-5.3) -- (0,4.4) node[above, font=\scriptsize] {$y$};
-  \foreach \t in {-2,2,4} {\node[below right=-1pt, font=\tiny] at (\t,0) {$\t$};}
-  \draw[forest, very thick, domain=-1.8:3.8, smooth, variable=\x] plot ({\x},{\x*\x-2*\x-3});
+\begin{tikzpicture}[scale=0.5]
+  \numline{-6}{6}
+  \fill[forest] (-5,0) circle (3.5pt); \fill[forest] (5,0) circle (3.5pt);
+  \draw[<->, forest!70, thick] (0,0.6) to[bend left=18] node[above, font=\scriptsize]{$5$} (5,0.6);
+  \draw[<->, forest!70, thick] (-5,0.6) to[bend left=18] node[above, font=\scriptsize]{$5$} (0,0.6);
 \end{tikzpicture}
-\end{minipage}
-\begin{minipage}[c]{0.60\linewidth}
-Read the $x$-intercepts off the graph: \; $x=$ \blank{1.2cm} and $x=$ \blank{1.2cm}
-\\[4pt]
-Now confirm by factoring $x^2-2x-3=0$: \blank{5.0cm}
-\\[4pt]
-Do they agree? \blank{1.2cm} \; Finish the sentence: solving $x^2-2x-3=0$ is the same task as
-finding the \blank{3.4cm} of the graph.
-\end{minipage}
 \end{center}
+\textbf{Big idea:} a single distance corresponds to \emph{two} inputs --- one on each side of zero.
+That is the whole engine of this lesson.
+\end{notesbox}
+
+\begin{notesbox}{2. Solving $|ax+b| = c$ --- The Two-Case Rule}
+\textbf{Step 1: isolate} the absolute value. \textbf{Step 2:} if $c \ge 0$, split into two cases:
+\[ ax+b = c \qquad\text{or}\qquad ax+b = -c. \]
+\textbf{Try it:} $|2x - 3| = 7$.
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{0.92\linewidth}{@{}X | X@{}}
+\textbf{Case 1 (positive):} & \textbf{Case 2 (negative):} \\
+$2x - 3 = 7$ & $2x - 3 = -7$ \\
+$x = \blank{1.6cm}$ & $x = \blank{1.6cm}$ \\
+\end{tabularx}
+\end{center}
+\textbf{Verify} both in the original: $|2(\blank{0.7cm})-3| = 7$ \checkmark \; and
+$|2(\blank{0.7cm})-3| = 7$ \checkmark. Graphically, these are the two $x$-values where $y=|2x-3|$
+meets the line $y=7$.
+\end{notesbox}
+
+\begin{notesbox}{3. Isolate First --- and Two Special Cases}
+You \emph{cannot} split until the bars stand alone. Solve $3|x+1| - 2 = 10$:
+\begin{work}
+  3|x+1| - 2 &= 10 \\
+      3|x+1| &= 12 \\
+       |x+1| &= 4 \\
+         x+1 &= 4 \quad\text{or}\quad x+1 = -4 \\
+           x &= 3 \quad\text{or}\quad x = -5
+\end{work}
+\textbf{Special cases} (explain each from the distance meaning):
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item $|x - 4| = -3$ has \blank{3.2cm}, because a distance can never be \blank{2.0cm}.
+  \item $|x - 4| = 0$ has exactly \blank{2.0cm} solution: $x = \blank{1.0cm}$ (distance $0$ means the expression \emph{is} zero).
+\end{itemize}
+\end{notesbox}
+
+\boxguard
+\begin{notesbox}{4. Inequalities --- The ``And'' Case ($<$, $\le$)}
+$|x| < 3$ asks \emph{which numbers are within $3$ of zero} --- everything \textbf{between} $-3$ and
+$3$. \textbf{``Less th\emph{AND}''}: $|X| < c \iff -c < X < c$ (one connected interval).
+
+\textbf{Solve} $|2x - 1| \le 5$:
+\begin{work}
+        |2x - 1| &\le 5 \\
+  -5 \le 2x - 1 &\le 5 \\
+      -4 \le 2x &\le 6 \\
+       -2 \le x &\le 3
+\end{work}
+Write the solution three ways:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\linewidth}{@{}l l X@{}}
+\textbf{Set notation:} & $\{\,x \mid \blank{3.0cm}\,\}$ &
+\textbf{Interval:} $\blank{2.4cm}$ \\
+\end{tabularx}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \numline{-4}{5}
+\end{tikzpicture}
+\end{center}
+{\footnotesize Shade \emph{between} the two bounds; use \textbf{closed} dots because of ``$\le$''.}
+\end{notesbox}
+
+\begin{notesbox}{5. Inequalities --- The ``Or'' Case ($>$, $\ge$)}
+$|x| > 3$ asks \emph{which numbers are more than $3$ from zero} --- everything \textbf{outside}
+$[-3,3]$. \textbf{``Great\emph{OR}''}: $|X| > c \iff X < -c$ \textbf{or} $X > c$ (two rays).
+
+\textbf{Solve} $|x + 2| \ge 4$:
+\begin{work}
+  |x + 2| &\ge 4 \\
+    x + 2 &\le -4 \quad\text{or}\quad x + 2 \ge 4 \\
+        x &\le -6 \quad\text{or}\quad x \ge 2
+\end{work}
+Write the solution three ways:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{0.95\linewidth}{@{}l l X@{}}
+\textbf{Set notation:} & $\{\,x \mid \blank{3.4cm}\,\}$ &
+\textbf{Interval:} $\blank{3.2cm}$ \\
+\end{tabularx}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \numline{-8}{4}
+\end{tikzpicture}
+\end{center}
+{\footnotesize Shade the two \emph{outside} rays; the interval uses $\cup$ (``union'').}
 \end{notesbox}
 
 \begin{practicebox}
-\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
-  \item Solve and check: $7(x-2)=3x+6$.
-        \begin{work}
-          7(x-2) &= 3x+6 \\
-           7x-14 &= 3x+6 \\
-           4x-14 &= 6    \\
-              4x &= 20   \\
-               x &= 5
-        \end{work}
-        Check: \blank{4.6cm}
-  \item How many solutions does $2(3x+4)=6x+8$ have? \blank{3.0cm} \; How do you know?
-        \blank{5.0cm}
-  \item Solve $-5x+3\ge 23$ and graph the solution set.
-        \begin{work}
-          -5x+3 &\ge 23 \\
-            -5x &\ge 20 \\
-              x &\le -4
-        \end{work}
-        \numline{}
-  \item Solve for $r$: \; $C=2\pi r$. \quad $r=$ \blank{3.0cm}
-  \item Without solving, how many real solutions does $x^2+4x+9=0$ have? \blank{2.0cm} \;
-        Justify with a number: \blank{3.6cm}
-  \item Solve by factoring: $x^2+x=12$.
-        \begin{work}
-            x^2+x &= 12 \\
-         x^2+x-12 &= 0  \\
-       (x+4)(x-3) &= 0  \\
-                x &= -4 \quad\text{or}\quad x = 3
-        \end{work}
-        Verify one solution: \blank{4.0cm}
+Solve $|3x - 6| > 9$ and write the solution set in all three forms.
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item Split (``or''): $3x - 6 < \blank{1.0cm}$ or $3x - 6 > \blank{1.0cm}$.
+  \item Solve: $x < \blank{1.2cm}$ or $x > \blank{1.2cm}$.
+  \item Set: $\{\,x \mid \blank{3.2cm}\,\}$; \quad Interval: $\blank{3.4cm}$.
 \end{enumerate}
 \end{practicebox}
 

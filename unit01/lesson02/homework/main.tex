@@ -1,202 +1,125 @@
-%! Equations and Inequalities — Unit 1, Lesson 1.2 — Homework
+%! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Homework
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
-% Pre-drawn number line; #1 receives any shading/endpoint overlay (empty = blank axis).
-\newcommand{\numline}[1]{%
-  \begin{tikzpicture}[baseline=-3pt, x=0.50cm, y=0.50cm]
-    \draw[<->, thick, charcoal] (-5.6,0) -- (5.6,0);
-    \foreach \t in {-5,-4,-3,-2,-1,0,1,2,3,4,5} {\draw[charcoal] (\t,0.13) -- (\t,-0.13);}
-    \foreach \t in {-4,-2,0,2,4} {\node[below=0pt, font=\scriptsize] at (\t,-0.10) {$\t$};}
-    #1
-  \end{tikzpicture}}
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.2}{Homework}
-\namedateperiod
 
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Every solution gets \textbf{checked}. Every inequality gets \textbf{graphed}. Every quadratic gets
-one side set to \textbf{zero} before anything else happens.
+Show your work. Isolate the absolute value \emph{before} splitting, and write every inequality
+solution in set, interval, and number-line form.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Solve, and justify one step.} For each equation, give the solution and name one
-        property of equality you used along the way.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{@{}l l X@{}}
-    \hline
-    \textbf{Equation} & \textbf{Solution} & \textbf{One property you used} \\
-    \hline
-    (a) \; $4x-9=3x+2$ & $x=$ \blank{1.4cm} & \blank{5.2cm} \\
-    (b) \; $6(x+2)=4x-2$ & $x=$ \blank{1.4cm} & \blank{5.2cm} \\
-    (c) \; $\dfrac{x}{3}-5=1$ & $x=$ \blank{1.4cm} & \blank{5.2cm} \\
-    (d) \; $3(2x-1)+4=5x+9$ & $x=$ \blank{1.4cm} & \blank{5.2cm} \\
-    \hline
-    \end{tabularx}
-    \end{center}
-    Check your answer to (d) in the original equation. \blank{7.0cm}
-
-  \item \textbf{How many solutions?} You are given only the \emph{last line} of each student's work.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabular}{@{}l l l l@{}}
-    (a) \; $7=7$ \; $\to$ \blank{2.8cm} &
-    (b) \; $x=-2$ \; $\to$ \blank{2.8cm} \\[6pt]
-    (c) \; $4=9$ \; $\to$ \blank{2.8cm} &
-    (d) \; $0=0$ \; $\to$ \blank{2.8cm} \\
-    \end{tabular}
-    \end{center}
-    Which of the four came from an \textbf{identity}? \blank{2.6cm} \quad From a
-    \textbf{contradiction}? \blank{2.6cm}
-
-  \item \textbf{Literal equations.} Solve each for the variable named.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.8}
-    \begin{tabularx}{\linewidth}{@{}l l X@{}}
-    \hline
-    (a) \; $V=\ell wh$ & solve for $w$ & \blank{5.6cm} \\
-    (b) \; $2x+5y=20$ & solve for $y$ & \blank{5.6cm} \\
-    (c) \; $cx-4x=d$ & solve for $x$ & \blank{5.6cm} \\
-    \hline
-    \end{tabularx}
-    \end{center}
-    Item (c) is different from the other two. What did you have to do first, and why?
-    \blank{7.0cm}
-
-  \item \textbf{Solve and graph.} Shade each solution set. Open $\circ$ for $<$ and $>$, closed
-        $\bullet$ for $\le$ and $\ge$.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabularx}{\linewidth}{@{}X c@{}}
-    \hline
-    (a) \; $3x-5\le 4$ \qquad $x$ \blank{1.8cm} & \numline{} \\
-    (b) \; $-2x+1>9$ \qquad $x$ \blank{1.8cm} & \numline{} \\
-    (c) \; $5(x+1)\ge 3x+7$ \qquad $x$ \blank{1.8cm} & \numline{} \\
-    (d) \; $2(x-1)<x+3$ \qquad $x$ \blank{1.8cm} & \numline{} \\
-    \hline
-    \end{tabularx}
-    \end{center}
-    Exactly one of those four made you reverse the symbol. Which, and at which step?
-    \blank{7.0cm}
-
-  \item \textbf{Write it, solve it, say it.} Answer each in a sentence with units --- not as
-        ``$x=$ something.''
-    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-      \item A gym charges a \$25 sign-up fee plus \$12 per month. Ana has paid \$121 in total.
-            \\[2pt]
-            Equation: \blank{4.0cm} \quad Answer: \writeline
-      \item A club orders T-shirts: a \$45 setup fee plus \$8 per shirt, and the budget is
-            \textbf{at most} \$300.
-            \\[2pt]
-            Inequality: \blank{4.0cm} \quad Answer: \writeline
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{Solve (already isolated).}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item $|x| = 10$: \quad $x = \blank{3.0cm}$
+      \item $|x - 5| = 2$: \quad $x = \blank{3.0cm}$
     \end{enumerate}
 
-  \item \textbf{Quadratics --- pick your method.} Two are square-root problems, two factor, and two
-        need the formula (leave those in simplest radical form).
-    \begin{center}
-    \renewcommand{\arraystretch}{1.9}
-    \begin{tabular}{@{}l l@{}}
-    (a) \; $x^2=64$, \quad $x=$ \blank{3.2cm} &
-    (b) \; $3x^2-27=0$, \quad $x=$ \blank{3.2cm} \\
-    (c) \; $x^2-2x-24=0$, \quad $x=$ \blank{3.2cm} &
-    (d) \; $x^2+7x=-10$, \quad $x=$ \blank{3.2cm} \\
-    (e) \; $x^2-6x+2=0$, \quad $x=$ \blank{3.2cm} &
-    (f) \; $2x^2+4x-1=0$, \quad $x=$ \blank{3.2cm} \\
-    \end{tabular}
-    \end{center}
-    \textbf{The two that need the formula --- work them in full.}
-    \\[2pt]
-    (e) \; $x^2-6x+2=0$
-    \begin{work}
-      x &= \frac{6\pm\sqrt{(-6)^2-4(1)(2)}}{2(1)} \\
-        &= \frac{6\pm\sqrt{28}}{2} \\
-        &= \frac{6\pm 2\sqrt7}{2}  \\
-        &= 3\pm\sqrt7
-    \end{work}
-    (f) \; $2x^2+4x-1=0$
-    \begin{work}
-      x &= \frac{-4\pm\sqrt{4^2-4(2)(-1)}}{2(2)} \\
-        &= \frac{-4\pm\sqrt{24}}{4} \\
-        &= \frac{-4\pm 2\sqrt6}{4}  \\
-        &= \frac{-2\pm\sqrt6}{2}
-    \end{work}
-    Which item required a Step 0 the others did not, and what was it? \blank{6.4cm} \\
-    Verify one solution of (c) by substituting it back. \blank{7.0cm}
-
-  \item \textbf{Count before you solve.} Fill the table in \emph{without} solving anything.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{@{}l l X l@{}}
-    \hline
-    \textbf{Equation} & $b^2-4ac$ & \textbf{Positive / zero / negative?} & \textbf{\# real solutions} \\
-    \hline
-    (a) \; $x^2+5x+6=0$ & \blank{1.8cm} & \blank{2.8cm} & \blank{1.6cm} \\
-    (b) \; $x^2+4x+4=0$ & \blank{1.8cm} & \blank{2.8cm} & \blank{1.6cm} \\
-    (c) \; $x^2+x+5=0$ & \blank{1.8cm} & \blank{2.8cm} & \blank{1.6cm} \\
-    (d) \; $3x^2-2x-1=0$ & \blank{1.8cm} & \blank{2.8cm} & \blank{1.6cm} \\
-    \hline
-    \end{tabularx}
-    \end{center}
-    One of those four has a graph that touches the $x$-axis without crossing it. Which?
-    \blank{2.6cm}
-
-  \item \textbf{Explain.} A classmate solves $(x+1)(x-4)=6$ by writing ``$x+1=6$ or $x-4=6$.''
-        Explain what is wrong, why the zero product property needs the zero, and then solve the
-        equation correctly.
-        \writelines{5}
+  \item \textbf{Isolate, then solve.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item $|4x + 2| = 10$:
         \begin{work}
-          (x+1)(x-4) &= 6 \\
-            x^2-3x-4 &= 6 \\
-           x^2-3x-10 &= 0 \\
-          (x-5)(x+2) &= 0 \\
-                   x &= 5 \quad\text{or}\quad x = -2
+          |4x + 2| &= 10 \\
+            4x + 2 &= 10 \quad\text{or}\quad 4x + 2 = -10 \\
+                4x &= 8 \quad\text{or}\quad 4x = -12 \\
+                 x &= 2 \quad\text{or}\quad x = -3
         \end{work}
+        $x = \blank{3.0cm}$
+      \item $2|x - 4| - 1 = 9$:
+        \begin{work}
+          2|x - 4| - 1 &= 9 \\
+              2|x - 4| &= 10 \\
+               |x - 4| &= 5 \\
+                 x - 4 &= 5 \quad\text{or}\quad x - 4 = -5 \\
+                     x &= 9 \quad\text{or}\quad x = -1
+        \end{work}
+        $x = \blank{3.0cm}$
+    \end{enumerate}
+
+  \item \textbf{How many solutions?} Write \emph{none}, \emph{one}, or \emph{two}, and give any
+        solution(s).
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item $|x + 7| = -2$: \blank{4.5cm}
+      \item $|x - 3| = 0$: \blank{4.5cm}
+      \item $|x| = 5$: \blank{4.5cm}
+    \end{enumerate}
+
+  \item \textbf{Solve the ``and'' inequality} $|x + 2| < 6$.
+        \begin{work}
+              |x + 2| &< 6 \\
+          -6 < x + 2 &< 6 \\
+              -8 < x &< 4
+        \end{work}
+        Set: \blank{3.4cm} \qquad Interval: \blank{2.8cm}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \numline{-9}{5}
+        \end{tikzpicture}
+        \end{center}
+
+  \item \textbf{Solve the ``or'' inequality} $|2x - 1| \ge 7$.
+        \begin{work}
+          |2x - 1| &\ge 7 \\
+            2x - 1 &\le -7 \quad\text{or}\quad 2x - 1 \ge 7 \\
+                2x &\le -6 \quad\text{or}\quad 2x \ge 8 \\
+                 x &\le -3 \quad\text{or}\quad x \ge 4
+        \end{work}
+        Set: \blank{3.4cm} \qquad Interval: \blank{3.2cm}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \numline{-5}{6}
+        \end{tikzpicture}
+        \end{center}
+
+  \item \textbf{Model it.} A thermostat holds a room within $2^\circ$F of the $68^\circ$F setting.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item Write an absolute-value inequality for an acceptable temperature $T$. \blank{4.0cm}
+      \item Solve it and state the coolest and warmest acceptable temperatures.
+        \begin{work}
+                |T - 68| &\le 2 \\
+          -2 \le T - 68 &\le 2 \\
+              66 \le T &\le 70
+        \end{work}
+        Coolest \blank{2.2cm} \quad Warmest \blank{2.2cm}
+    \end{enumerate}
+
+  \item \textbf{Explain.} In your own words, how do you decide whether an absolute-value inequality
+        becomes an ``and'' (one interval) or an ``or'' (two rays)? \writelines{2}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{The solution-count audit.} In each problem below, a letter sits \emph{inside} the equation.
-Your job is to say which values of that letter produce each possible number of solutions --- so the
-count becomes something you control rather than something you discover.
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
-\hline
-\textbf{Number of solutions} & \textbf{For which $c$ does} $5x+c=5x+8$ ? & \textbf{For which $b$ does} $x^2+bx+9=0$ have that many \emph{real} solutions? \\
-\hline
-two & --- & \blank{4.0cm} \\
-exactly one & \blank{4.0cm} & \blank{4.0cm} \\
-none & \blank{4.0cm} & \blank{4.0cm} \\
-infinitely many & \blank{4.0cm} & --- \\
-\hline
-\end{tabularx}
-\end{center}
-\begin{enumerate}[label=(\arabic*), leftmargin=1.9em, itemsep=5pt]
-  \item One box in the left column is impossible to fill. Which, and why can that never happen for
-        $5x+c=5x+8$? \writeline
-  \item A linear equation \emph{can} have infinitely many solutions. A quadratic equation with
-        $a\ne0$ never can. Explain why not --- what is it about the $x^2$ term that makes an
-        identity impossible? \writelines{2}
-  \item In the right column, the answers to ``two'' and ``none'' are ranges of $b$, not single
-        values. Say what that means about the graph of $y=x^2+bx+9$ as $b$ increases from $0$
-        through $6$ and past it. \writelines{2}
+\textbf{Tolerance and reasoning.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item A bolt is acceptable if its diameter $d$ is within $0.2$ mm of the $15$ mm target. Write and
+        solve an inequality; give the smallest and largest acceptable diameters.
+        \begin{work}
+                 |d - 15| &\le 0.2 \\
+          -0.2 \le d - 15 &\le 0.2 \\
+              14.8 \le d &\le 15.2
+        \end{work}
+        Smallest \blank{2.2cm} \quad Largest \blank{2.2cm}
+  \item For what values of $k$ does $|x - 3| < k$ have \emph{no solution}? For what values of $k$ is
+        \emph{every} real number a solution of $|x - 3| > k$? Justify from the meaning of absolute
+        value.
+        \writelines{3}
 \end{enumerate}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 1.3: Functions.} The third and last Algebra 1 domain area, and
-today's equations become its machinery. A function's \textbf{zeros} are defined as the solutions of
-$f(x)=0$ --- so every technique in problem 6 is a way of finding where a graph crosses the
-$x$-axis, and the discriminant in problem 7 is a way of counting those crossings before you draw
-anything. The inequalities in problem 4 are how a function's \textbf{domain} gets written down when
-some inputs are not allowed. And the literal equations in problem 3 are the reason $y=mx+b$ has
-three different ``forms'' in Unit 2: it is one equation, solved for different things.
+\textbf{Coming next --- Lesson 1.3: Absolute Value Functions \& Transformations.} Today you
+\emph{solved} $|ax+b|=c$; next you'll \emph{graph} $y=|ax+b|$ --- a \textbf{V-shape}. The two
+solutions you found for an equation are exactly where that V crosses the horizontal line $y=c$, which
+previews the vertex, axis of symmetry, and minimum you'll study formally in Unit~2.
 \end{spiralbox}
 
 \end{document}

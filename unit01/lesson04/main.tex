@@ -1,0 +1,246 @@
+%! Piecewise \& Step Functions — Unit 1, Lesson 1.4 — Lesson Plan
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\usepackage{graphicx}   % -article does NOT load graphicx; needed for thumbnails/screenshots
+\graphicspath{{images/}}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\CourseName}{Algebra 2: Shepherd}
+\newcommand{\SchoolYear}{2026--2027}
+\newcommand{\MeetingLength}{55 minutes}
+\newcommand{\UnitNumberName}{Unit 1: Linear Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 1.4: Piecewise \& Step Functions}
+
+\begin{document}
+\begin{center}
+    {\Large\bfseries \CourseName: \SchoolYear \\
+    {\small\bfseries \UnitNumberName \LessonNumberName}}
+\end{center}
+
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+    \textbf{Primary Objective:} Students can read a \textbf{piecewise-defined function} as a single
+    function built from \emph{different rules on different pieces of the domain}. They \textbf{evaluate}
+    such a function by first deciding \emph{which piece} an input belongs to (watching the boundary and
+    its $<$ vs.\ $\le$), and they read a pre-drawn piecewise graph, using \textbf{open and closed
+    endpoints} to tell where a piece starts and stops and to spot a \textbf{discontinuity} (a jump).
+    They connect back to Lesson~1.3 by writing the absolute value function as the two-piece rule
+    $|x|=\{\,x \text{ if } x\ge 0,\ -x \text{ if } x<0\,\}$, and they meet the \textbf{greatest-integer
+    (step) function} $\lfloor x\rfloor$, whose staircase graph is \emph{constant} on each interval and
+    jumps at every integer. From either an equation or a graph they read domain, range,
+    increasing/decreasing/constant intervals, and $f(x)$ at a point, and interpret it in context.
+    \\[2pt]
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2} --- investigate and analyze the characteristics
+    of \emph{piecewise-defined functions} algebraically and graphically: domain, range, zeros, and
+    intercepts, \textbf{including graphs with discontinuities} (\textbf{A2.F.2a}); compare and contrast
+    characteristics of piecewise-defined functions with the other families (\textbf{A2.F.2b});
+    increasing, decreasing, or \textbf{constant} intervals (\textbf{A2.F.2c}); and, for any $x$ in the
+    domain, determine $f(x)$ from a graph or equation and explain its meaning in context
+    (\textbf{A2.F.2f}). Absolute value (1.3) and the greatest-integer function are the two named entry
+    examples of the piecewise family.
+\end{tcolorbox}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{skillbox}[Priority Ideas \& Skills]{goldbox}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
+\hline
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item Read piecewise notation: one function, several rules, each on a stated part of the domain.
+  \item \textbf{Evaluate} $f(x)$ by choosing the piece whose condition $x$ satisfies (mind the boundary).
+  \item Read a piecewise graph: \textbf{open} vs.\ \textbf{closed} endpoints, and where it \emph{jumps}.
+  \item Write $y=|x|$ (and $|x-h|$) as a \textbf{two-piece} function --- the V is two lines pasted.
+  \item Evaluate and read the \textbf{greatest-integer} $\lfloor x\rfloor$ (step) function's staircase.
+  \item Read domain, range, increasing/decreasing/\textbf{constant} intervals, and $f(x)$ in context.
+\end{itemize}
+&
+\vspace{-6pt}
+\begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
+  \item A function can follow one rule here and another there --- it is still \emph{one} input-to-output machine.
+  \item The condition is a \emph{filter}: an input belongs to exactly one piece, so first find the piece, then apply its rule.
+  \item A closed dot \emph{includes} its endpoint; an open dot does not --- that is how a graph shows $\le$ vs.\ $<$.
+  \item A \emph{jump} (discontinuity) is allowed: pieces need not meet. They meet only when both rules agree at the boundary.
+  \item A step function holds a \emph{constant} output across a whole interval, then jumps --- pricing that ``rounds'' behaves this way.
+  \item Absolute value is the bridge: Lesson~1.3's V is exactly a two-piece linear function.
+\end{itemize}
+\end{tabularx}
+\end{skillbox}
+
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Piecewise-defined function} & A function given by different rules (``pieces'') on different parts of its domain, written with a brace: $f(x)=\begin{cases}\dots\end{cases}$ \\
+\textbf{Piece / sub-domain} & One rule together with the interval of $x$-values on which it applies. \\
+\textbf{Boundary (breakpoint)} & An $x$-value where the rule changes; the inequality ($<$ or $\le$) says which piece owns it. \\
+\textbf{Open / closed endpoint} & An open circle $\circ$ excludes that point ($<$ or $>$); a closed circle $\bullet$ includes it ($\le$ or $\ge$). \\
+\textbf{Discontinuity (jump)} & A break in the graph where the two pieces do \emph{not} meet at the boundary. \\
+\textbf{Continuous at a boundary} & Both pieces give the \emph{same} value there, so the graph connects with no jump. \\
+\textbf{Greatest-integer function} & $\lfloor x\rfloor=$ the greatest integer $\le x$ (round \emph{down}); its graph is a staircase. \\
+\textbf{Step function} & A piecewise function that is \emph{constant} on each interval, then jumps (e.g.\ $\lfloor x\rfloor$). \\
+\end{tabularx}
+\end{skillbox}
+
+\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
+    The Warm-Up rehearses the three prerequisites today rests on: \textbf{(1)} \emph{evaluate a linear
+    rule} at several inputs (Lesson~1.1) --- the mechanical skill each piece needs; \textbf{(2)} recall
+    from Lesson~1.3 that the V $y=|x|$ is really \emph{two lines} ($y=x$ for $x\ge 0$, $y=-x$ for $x<0$)
+    --- the seed of piecewise notation; and \textbf{(3)} read \emph{open vs.\ closed endpoints} and the
+    inequalities $<,\le$ on a number line, so students can decide whether a boundary point is included.
+    Debrief item~3 aloud: ``$x=1$ is \emph{not} a solution of $x<1$ but \emph{is} a solution of
+    $x\le 1$'' --- that single distinction drives which piece owns a boundary and whether its dot is
+    open or closed.
+\end{fixedskillbox}
+
+\begin{skillbox}[Hook]{forestbg}
+    A streaming service is \textbf{free for the first 3 months}, then costs \textbf{\$10 per month} for
+    every month after that. Write the cost after $m$ months and ask: \textbf{``What do you pay at $m=2$?
+    At $m=3$? At $m=5$?''} ($\$0$, $\$0$, $\$20$). Land the point: \emph{no single line} describes this
+    --- the cost follows \emph{one} rule ($0$) up to month~3 and a \emph{different} rule ($10(m-3)$)
+    afterward. That is a \textbf{piecewise-defined function}:
+    \[ C(m)=\begin{cases} 0, & 0\le m\le 3\\ 10(m-3), & m>3 \end{cases} \]
+    Today we learn to evaluate such functions (which piece owns the input?) and to read their graphs
+    (where do they start, stop, and jump?), then meet the step-function cousin that ``rounds.''
+\end{skillbox}
+
+\begin{skillbox}[Lesson]{forestbg}
+\begin{multicols}{2}
+\textbf{1. What a piecewise function is.} One function, several rules, each with a condition. Model
+$f(x)=\{\,2x+1 \text{ if } x<2;\ 5-x \text{ if } x\ge 2\,\}$. To evaluate, \emph{first pick the piece},
+then apply its rule: $f(0)=1$ (top), $f(2)=3$ (bottom, since $2\ge 2$), $f(5)=0$. \textbf{Stress the
+boundary}: only the $\le$/$\ge$ piece owns $x=2$.
+
+\textbf{2. Absolute value is piecewise.} Bridge from 1.3: $|x|=\{\,x \text{ if } x\ge 0;\ -x \text{ if }
+x<0\,\}$. The V is two lines pasted at the vertex --- exactly a two-piece linear function. Check
+$|-3|=-(-3)=3$.
+
+\textbf{3. Reading a piecewise graph.} \textbf{Open} vs.\ \textbf{closed} endpoints show $<$ vs.\ $\le$.
+Use a pre-drawn graph with a \emph{jump}: read $f$ at points (take the \emph{closed} dot at a boundary),
+name increasing/decreasing intervals, and ask \textbf{``Is it continuous at the breakpoint?''} --- no
+if the pieces disagree there (a \emph{discontinuity}). This is A2.F.2a's ``graphs with
+discontinuities.''
+
+\columnbreak
+
+\textbf{4. Step functions: $\lfloor x\rfloor$.} The \textbf{greatest-integer} function rounds
+\emph{down} to the nearest integer: $\lfloor 3.7\rfloor=3$, $\lfloor 5\rfloor=5$,
+$\lfloor -0.4\rfloor=-1$, $\lfloor -2.5\rfloor=-3$ (down, not toward zero!). Its graph is a
+\textbf{staircase}: on each interval $[n,n+1)$ the output is the \emph{constant} $n$ --- closed on the
+left, open on the right --- then it jumps. Real pricing that ``rounds'' (parking by the hour, shipping
+by the pound) is a step function.
+
+\textbf{5. Read the characteristics.} From an equation or a graph, read domain, range,
+increasing/decreasing/\textbf{constant} intervals, and $f(x)$ in context --- \emph{never sketch from
+scratch}. Match a rule to the right pre-drawn graph, evaluate from a graph, or write $|x-h|$ as two
+pieces. Connect forward: 1.5 fits a \emph{line} to data.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Active Monitoring]{redbox}
+Circulate during the notes practice and Tier work. Watch for and correct:
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{wrong-piece} evaluation: not checking the condition, or picking the piece by the wrong inequality at a boundary;
+  \item boundary confusion: giving $x=2$ to the $<2$ piece when the $\ge 2$ piece owns it (open vs.\ closed);
+  \item reading a \textbf{closed} dot as open (or vice versa) when evaluating $f$ at a breakpoint from a graph;
+  \item calling every piecewise graph ``discontinuous'' --- pieces \emph{can} meet; check whether the values agree;
+  \item greatest-integer errors: rounding \emph{toward zero} instead of \emph{down} ($\lfloor -2.5\rfloor=-2$ is wrong; it is $-3$);
+  \item saying a step function is ``increasing'' on a step --- it is \textbf{constant} there, then jumps;
+  \item dropping the domain condition when writing $|x|$ as pieces (forgetting the ``if $x<0$'' half).
+\end{itemize}
+Cold-call prompts: ``Which piece owns this input --- how do you know?'' ``Open or closed dot here, and
+what inequality does that show?'' ``Do the two pieces meet at the boundary?'' ``What does
+$\lfloor 3.7\rfloor$ mean --- round which way?''
+\end{skillbox}
+
+\begin{skillbox}[Group Work \& Differentiation]{redbox}
+\textbf{Pieces, Graphs \& Staircases} activity (tiered; mirrors the notes).
+\begin{multicols}{3}
+\textbf{Tier R --- Remediate.} Evaluate a two-piece function at listed inputs; read $f$ and identify the
+closed endpoint on a simple pre-drawn piecewise graph; match a rule to its graph.
+
+\columnbreak
+\textbf{Tier A --- Approaching.} Evaluate across a boundary and decide continuity; read domain,
+increasing/decreasing intervals, and continuity off a graph with a jump; write $|x-3|$ as a two-piece
+rule; evaluate $\lfloor x\rfloor$ at several inputs (including negatives).
+
+\columnbreak
+\textbf{Tier E --- Extension.} Model an overtime pay scale as a piecewise function and interpret it;
+read a parking-cost \emph{step} graph and explain its jumps; reason about the exact condition under
+which two pieces meet continuously at a boundary.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Individual Work \& Assessment]{redbox}
+\textbf{Exit Ticket} (independent, no notes): evaluate a two-piece function at three inputs including
+the boundary and justify \emph{which} piece was used; read a pre-drawn piecewise graph (evaluate $f$ at
+two points and decide continuity at the breakpoint); and one \textbf{SOL-style multiple-choice} item on
+the greatest-integer value $\lfloor -1.5\rfloor$. Collect and sort into ``got it / wrong-piece slip /
+open-vs-closed slip / continuity slip / floor-rounding slip'' to decide whether Lesson~1.5 needs a
+two-minute re-teach of piece selection.
+\end{skillbox}
+
+\begin{skillbox}[Reinforcement \& Extension]{goldbox}
+\textbf{Homework:} evaluate piecewise functions (with boundaries); match rules to pre-drawn graphs;
+read domain, increasing/decreasing intervals, and continuity off a graph with a discontinuity; write an
+absolute value as a two-piece rule; evaluate and read the greatest-integer function; and model a
+real-world piecewise context (a data plan). \textbf{Extension:} build a piecewise rule from a described
+graph, and reason about tax-bracket-style continuity. \textbf{Preview:} Lesson~1.5, \emph{Linear
+Regression} --- we leave exact rules behind and fit a \emph{single line of best fit} to scattered data,
+measuring how well it fits with the correlation coefficient.
+\end{skillbox}
+% ── Teacher notes (migrated from the component keys) ──
+% One per component, titled for it. They live here rather than in the _key
+% files so that every component is the same length blank and keyed.
+
+\begin{teachernote}[Warm-Up]
+Item~1 is the mechanical core: each ``piece'' of a piecewise function is just a rule you evaluate, so
+students must be fluent plugging in --- including into $|x|$. Item~2 is the whole bridge from
+Lesson~1.3: the V is literally two linear rules, $y=x$ and $y=-x$, joined at the vertex; that is the
+first piecewise function students already know. Item~3 is the make-or-break idea for today: $x=1$
+satisfies $x\le 1$ but not $x<1$, which is exactly how a boundary point is assigned to one piece (and
+drawn with a closed vs.\ open dot). Debrief item~3 aloud before the notes.
+\end{teachernote}
+
+\begin{teachernote}[Guided Notes]
+The organizing move all lesson is \emph{piece selection}: to evaluate, find the piece whose condition
+the input satisfies, then apply that rule. Two boundary errors recur --- (1) handing $x=2$ to the
+strict-$<$ piece (Section~1); insist students read the $\le/\ge$ to see which piece \emph{owns} the
+boundary. (2) The greatest-integer sign error (Section~4): $\lfloor -2.5\rfloor=-3$ because ``down''
+means \emph{more negative}, not ``toward zero.'' Section~3 is the A2.F.2a target --- a graph with a
+\emph{discontinuity}; make students take the \emph{closed} dot when reading $f$ at a breakpoint, and
+have them state \emph{why} it jumps (pieces disagree). Contrast with the practice box, where the two
+pieces \emph{agree} at $x=-1$ so the graph is continuous --- ``meets $\Leftrightarrow$ same value at the
+boundary'' is the whole idea. Section~2 ties back to 1.3: the V is the first piecewise function they
+already knew.
+\end{teachernote}
+
+\begin{teachernote}[Group Activity]
+Tier~A is the conceptual core: item~1 forces the boundary decision ($x=2$ belongs to the $\le$ piece, so
+$h(2)=-1$) and then tests continuity by comparing the two rules' values there ($-1$ vs.\ $-2$ $\Rightarrow$
+jump). Item~2 is the A2.F.2a ``graph with a discontinuity'' --- push students to read the \emph{closed}
+dot for $f(2)$ and to name the \emph{constant} interval. Common slips: reading $\lfloor -1.2\rfloor$ as
+$-1$ (it is $-2$ --- round \emph{down}); in E1, forgetting the \$600 base before overtime; in E2, thinking
+$C(1.5)=3$ (any part of the 2nd hour already costs the full \$4). E3 is the payoff idea: pieces are
+continuous at a boundary $\Leftrightarrow$ they share a value there.
+\end{teachernote}
+
+\begin{teachernote}[Exit Ticket]
+Item~1 checks piece selection at a boundary --- students who wrote $f(1)=3$ used the strict-$<$ piece and
+missed that $x=1$ belongs to the $\ge$ piece. Item~2 checks reading a graph with a \emph{discontinuity}:
+take the \emph{closed} dot for $f(0)=1$, and justify the jump by the pieces disagreeing. Item~3 is the
+classic greatest-integer trap: rounding \emph{down} sends $-1.5$ to $-2$. Sort exit tickets into ``got it /
+wrong-piece slip / open-vs-closed slip / continuity slip / floor-rounding slip'' to decide whether
+Lesson~1.5 needs a two-minute re-teach of piece selection.
+\end{teachernote}
+
+\begin{teachernote}[Homework]
+Item~1 tests the boundary: $x=-1$ belongs to the $\le$ piece, so $f(-1)=3$ (students who wrote $-2$ used
+the wrong piece). Item~2 is the A2.F.2a discontinuity read --- take the \emph{closed} dot for $f(1)=4$
+and justify the jump ($3$ open vs.\ $4$ closed). Item~4 checks ``round down'': $\lfloor -3.1\rfloor=-4$
+and $\lfloor -0.5\rfloor=-1$ are the classic traps. Item~5 is a real step-free piecewise model; note
+$C$ \emph{is} continuous at $g=5$ (both give \$30). The extension makes continuity explicit --- both
+parts (a) and (b) are continuous because the pieces share a value at each boundary, the same reasoning
+that governs tax brackets.
+\end{teachernote}
+
+\end{document}

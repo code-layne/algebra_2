@@ -1,176 +1,337 @@
-%! The Quadratic Formula & the Discriminant — Unit 3, Lesson 3.5 — Guided Notes (Answer Key)
+%! Fundamental Theorem of Algebra and Complex Zeros — Unit 3, Lesson 3.5 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\vocabans}[2]{%
-  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.5}{Guided Notes --- Answer Key}
+\namedateperiod
 
-\vspace{0.10in}
+\vspace{0.08in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item solve \emph{any} quadratic with the \emph{quadratic formula}, giving real or complex answers in simplest form;
-  \item compute the \emph{discriminant} $b^2-4ac$ and predict the number and type of roots \emph{before} solving;
-  \item choose an efficient method, verify a solution, and model a situation with a quadratic.
+  \item state the \emph{Fundamental Theorem of Algebra} and use it to say how many solutions a polynomial equation has \emph{before} solving it;
+  \item explain why imaginary zeros of a polynomial with real coefficients come in \emph{conjugate pairs};
+  \item determine the \emph{number and type} of solutions (real or imaginary) from a degree and a graph;
+  \item solve a polynomial equation of degree $3$ or higher over the \emph{complex} numbers, and write a polynomial from a given list of zeros.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.06in}
+\vspace{0.05in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}
-\vocabans{Quadratic formula}{$x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$; solves any $ax^2+bx+c=0$ ($a\ne0$)}
-\vocabans{Standard form $ax^2+bx+c=0$}{all terms on one side set equal to $0$; needed to read $a,b,c$}
-\vocabans{Discriminant $b^2-4ac$}{the expression under the radical; its sign predicts the roots}
-\vocabans{Double (repeated) root}{one real solution counted twice, when $b^2-4ac=0$ (vertex on the $x$-axis)}
-\vocabans{Complex-conjugate roots}{the pair $a\pm bi$ produced when $b^2-4ac<0$}
+\vspace{2pt}
+
+\termblanklong{Fundamental Theorem of Algebra}
+\ansline{Every polynomial of degree $n \ge 1$ has at least one complex zero --- so, counting with multiplicity, it has exactly $n$ of them.}
+\termblanklong{Zeros counted with multiplicity}
+\ansline{A repeated zero is counted once for every time its factor appears: $(x-1)^2$ contributes the zero $1$ twice.}
+\termblanklong{Complex Conjugate Root Theorem}
+\ansline{If a polynomial has real coefficients and $a+bi$ is a zero, then its conjugate $a-bi$ is a zero too.}
+\termblanklong{Complex conjugate pair}
+\ansline{$a+bi$ and $a-bi$ --- same real part, opposite imaginary parts. Their factors multiply to a real quadratic.}
+\termblanklong{Number and type of solutions}
+\ansline{How many of the $n$ solutions are real and how many are imaginary --- answerable from the degree and the graph before solving.}
 \end{vocabbox}
 
 \begin{hookbox}
-Four quadratics, four different ``best methods'': $x^2-2x-3=0$ (factor), $x^2-6x+7=0$ (won't factor),
-$x^2+2x+5=0$ (complex roots), $2x^2-7x+3=0$. Choosing the right tool each time is a hassle. \textbf{What if
-one formula solved every quadratic --- real or complex --- with no guessing?} It exists, and it comes from
-a move you already know: \emph{completing the square}, done once on the general equation.
+Here is $f(x) = x^3 - x^2 + 4x - 4$, the polynomial you finished in the Warm-Up.
+(The $y$-axis is compressed: each horizontal gridline is $8$ units.)
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-2}{3}{-4}{4}
+  \begin{scope}
+    \clip (-2,-4) rectangle (3,4);
+    \draw[very thick, forest, domain=-1.95:3.0, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x) - (\x)*(\x) + 4*(\x) - 4)/8});
+  \end{scope}
+  \foreach \x in {-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (1,0) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item How many times does this graph cross the $x$-axis? \ans{once} \; At $x = $ \ans{$1$}
+  \item How many solutions did you find in the Warm-Up? \ans{$3$} \; List them:
+        \ans{$1,\ 2i,\ -2i$}
+  \item So two of your three solutions are \emph{not} on this graph. What kind of numbers are they?
+        \ans{imaginary}
+\end{itemize}
+\textbf{Today's question: how many solutions does a polynomial equation \emph{really} have --- and
+how many of them can a graph show you?}
 \end{hookbox}
 
-\begin{notesbox}{1. The quadratic formula --- completing the square, done once}
-Complete the square on the \emph{general} quadratic $ax^2+bx+c=0$ (same steps as Lesson 3.3, now with
-letters). The result is the \textbf{quadratic formula}:
-\[ x=\frac{-b\pm\sqrt{\rule{0pt}{1.6ex}\ans{$b^2-4ac$}}}{\ans{$2a$}}. \]
-Because completing the square works on \emph{every} quadratic, this formula does too. \textbf{The protocol:}
-\begin{enumerate}[leftmargin=1.7em, itemsep=1pt]
-  \item Write the equation in \textbf{standard form} $ax^2+bx+c=0$.
-  \item Identify $a,b,c$ \emph{with signs}.
-  \item Substitute and simplify (radical or $a+bi$).
-\end{enumerate}
-\textbf{Anchor example.} Solve $x^2-2x-3=0$: \ $a=\ans{$1$}$, $b=\ans{$-2$}$, $c=\ans{$-3$}$.
-\[
-\begin{aligned}
-  x &= \frac{-(-2)\pm\sqrt{(-2)^2-4(1)(-3)}}{2(1)} \\
-    &= \frac{2\pm\sqrt{\ans{$16$}}}{2} \\
-    &= \frac{2\pm\ans{$4$}}{2} \\
-    &= \ans{$3,\ -1$}
-\end{aligned}
-\]
-Same zeros as factoring $(x+1)(x-3)$ in 3.2 --- \emph{one method now solves it all.}
+\begin{notesbox}{1. The Fundamental Theorem of Algebra}
+\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+\textbf{Fundamental Theorem of Algebra.} Every polynomial of degree $n \ge 1$ has at least
+\ans{one} \emph{complex} zero.
+
+\vspace{4pt}
+\textbf{The corollary we actually use.} A polynomial of degree $n$ has \emph{exactly}
+\ans{$n$} complex zeros, counted with \textbf{multiplicity}, and factors completely as
+\[ f(x) \;=\; a(x - r_1)(x - r_2)\cdots(x - r_n). \]
+\end{tcolorbox}
+
+\vspace{4pt}
+\textbf{Why the corollary follows.} The theorem promises one zero $r_1$. By the Factor Theorem
+(Lesson 3.3), $(x - r_1)$ is then a \ans{factor} of $f$, so dividing leaves a quotient of degree
+\ans{$n-1$}. Apply the theorem to \emph{that} polynomial, and repeat. Each pass uses up one degree,
+so the process runs exactly \ans{$n$} times.
+
+\vspace{5pt}
+\textbf{Read that again, because it is new.} Every other tool this year found solutions. This one
+\emph{counts} them --- before you find any. Two words matter:
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item \textbf{complex}: real numbers \emph{are} complex numbers ($5 = 5 + 0i$), so the count
+        includes both kinds. It does \emph{not} mean all $n$ are imaginary.
+  \item \textbf{counted with multiplicity}: a repeated zero is counted as many times as it
+        \ans{repeats}.
+\end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{2. The discriminant $b^2-4ac$ --- predict before you solve}
-The quantity under the radical, $b^2-4ac$, is the \textbf{discriminant}. Its \emph{sign} alone tells you the
-number and type of roots --- \emph{before} you finish solving. Fill in the table and match each to its graph.
+\begin{notesbox}{2. Counting With Multiplicity}
+Here is the unit's anchor polynomial $g(x) = x^3 - 3x + 2 = (x-1)^2(x+2)$, whose graph you read back
+in Lesson 3.0. (Each horizontal gridline is $2$ units.)
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}c l X@{}}
-\textbf{If $b^2-4ac$ is\dots} & \textbf{Roots} & \textbf{Graph ($x$-intercepts)} \\
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{3}{-4}{4}
+  \begin{scope}
+    \clip (-3,-4) rectangle (3,4);
+    \draw[very thick, forest, domain=-2.55:2.2, samples=150, smooth]
+      plot (\x,{((\x)*(\x)*(\x) - 3*(\x) + 2)/2});
+  \end{scope}
+  \foreach \x in {-2,-1,1,2}
+    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
+  \fill[charcoal] (-2,0) circle (2.5pt);
+  \fill[charcoal] (1,0)  circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item How many \emph{different} numbers are zeros of $g$? \ans{$2$} \; Which ones?
+        \ans{$1$ and $-2$}
+  \item The degree is \ans{$3$}, so the theorem promises \ans{$3$} zeros. That does not match
+        --- unless we count $x = 1$ \ans{two} times, because its factor is
+        \ans{$(x-1)^2$}.
+  \item Zeros of $g$ counted with multiplicity: \ans{$1,\ 1,\ -2$}
+  \item Lesson 3.0 check: at the double zero the graph \ans{touches} the axis; at the single zero it
+        \ans{crosses} it. The graph shows the multiplicity.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{The sentence to remember:} \emph{distinct} zeros can be fewer than $n$. Zeros \emph{counted
+with multiplicity} are never fewer and never \ans{more} --- always exactly $n$.
+\end{notesbox}
+
+\begin{notesbox}{3. Imaginary Zeros Travel in Pairs}
+Look back at the Warm-Up. Item 2(b) gave $1+2i$ and $1-2i$. Item 3 gave $2i$ and $-2i$. Not a
+coincidence.
+
+\vspace{4pt}
+\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
+    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
+\textbf{Complex Conjugate Root Theorem.} If a polynomial has \emph{\ans{real}} coefficients and
+$a + bi$ (with $b \ne 0$) is a zero, then \ans{$a - bi$} is also a zero.
+\end{tcolorbox}
+
+\vspace{4pt}
+\textbf{Why the pair is necessary.} Multiply the two factors that a conjugate pair contributes:
+\[ \big(x - (a+bi)\big)\big(x - (a-bi)\big) \;=\; x^2 - {\color{keyred}\mathbf{2a}}\,x + {\color{keyred}\mathbf{(a^2+b^2)}} \]
+Every $i$ cancels, so the pair contributes a factor with \ans{real} coefficients. A \emph{lone}
+imaginary zero would leave an $i$ stranded in the coefficients --- which is why it can never happen in
+a real polynomial.
+
+\vspace{5pt}
+\textbf{Two consequences worth more than the theorem itself.}
+\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
+  \item The number of imaginary zeros is always \ans{even} ($0$, $2$, $4$, \dots), because they are
+        counted in pairs.
+  \item Therefore a polynomial of \textbf{odd} degree with real coefficients must have at least
+        \ans{one} real zero. (Pair up the imaginary ones; an odd number cannot be left with
+        \ans{zero} real zeros.)
+  \item \textbf{Lesson 3.0 agrees.} An odd-degree graph has arms pointing in \ans{opposite}
+        directions, so it has no choice but to \ans{cross} the $x$-axis at least once.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Number and Type --- Without Solving Anything}
+An $x$-intercept is a \textbf{real} zero. An imaginary zero is nowhere on the graph. So a graph is an
+honest witness, but an \ans{incomplete} one --- and that gap is exactly what you can now measure:
+\[ \text{(number of imaginary zeros)} \;=\; \text{degree} \;-\; \text{(number of {\color{keyred}\textbf{real}} zeros, counted with multiplicity)} \]
+
+\vspace{3pt}
+Each row below describes a polynomial with \emph{real} coefficients. Fill in the rest.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{|l|C{2.2cm}|C{3.0cm}|C{2.6cm}|X|}
 \hline
-$>0$ & \ans{two distinct real} & \ans{crosses the $x$-axis twice (two intercepts)} \\
-$=0$ & \ans{one repeated real (double)} & \ans{vertex on the $x$-axis (one intercept)} \\
-$<0$ & \ans{two complex conjugates} & \ans{never touches the $x$-axis (no intercepts)} \\
+\rowcolor{forestbg}
+& \textbf{Degree} & \textbf{Real zeros (with mult.)} & \textbf{Imaginary zeros} & \textbf{How you know} \\ \hline
+(a) $f$ from the Hook & $3$ & \ans{$1$} & \ans{$2$} & \ans{one crossing; $3-1=2$} \\ \hline
+(b) a quartic whose graph crosses twice & $4$ & $2$ & \ans{$2$} & \ans{$4-2=2$, and $2$ is even \checkmark} \\ \hline
+(c) $g(x)=(x-1)^2(x+2)$ & \ans{$3$} & \ans{$3$} & \ans{$0$} & \ans{double zero counts twice} \\ \hline
+(d) a quintic whose graph crosses once & $5$ & \ans{$1$} & \ans{$4$} & \ans{$5-1=4$ (two pairs)} \\ \hline
 \end{tabularx}
 \end{center}
+
+\vspace{3pt}
+\textbf{The question to test yourself with:} could a \emph{cubic} with real coefficients have
+\emph{no} $x$-intercepts at all? \ans{no} \; Why not?
+\ansline{That would need $3$ imaginary zeros, but they come in pairs --- $3$ is odd, so it is impossible.}
+\end{notesbox}
+
+\begin{notesbox}{5. Solving Over the Complex Numbers}
+The workflow is Lesson 3.4's, unchanged: \textbf{list} $\rightarrow$ \textbf{test} $\rightarrow$
+\textbf{divide} $\rightarrow$ \textbf{finish}. Only the last step changes --- when the depressed
+quadratic has a negative discriminant you no longer write ``no solution.'' You write the
+\ans{conjugate pair}.
+
+\vspace{5pt}
+\textbf{(a) Together:} Solve $x^3 - 5x^2 + 9x - 5 = 0$.
+
 \vspace{2pt}
+Candidates: \ans{$\pm 1, \pm 5$} \quad One that works: $r = $ \ans{$1$}
 \begin{center}
-\begin{tikzpicture}[scale=0.36]
-  \lgrid{-2}{4}{-5}{3}
-  \begin{scope}\clip (-2,-5) rectangle (4,3);
-    \draw[very thick, forest, domain=-1.2:3.2, samples=60, smooth] plot (\x,{(\x-1)*(\x-1)-4});
-  \end{scope}
-  \fill[charcoal] (-1,0) circle (3pt); \fill[charcoal] (3,0) circle (3pt);
-  \node[font=\scriptsize, charcoal] at (1,-6.2){$b^2-4ac>0$};
-\end{tikzpicture}
-\hspace{0.5cm}
-\begin{tikzpicture}[scale=0.36]
-  \lgrid{0}{4}{-1}{5}
-  \begin{scope}\clip (0,-1) rectangle (4,5);
-    \draw[very thick, forest, domain=0.05:3.95, samples=60, smooth] plot (\x,{(\x-2)*(\x-2)});
-  \end{scope}
-  \fill[charcoal] (2,0) circle (3pt);
-  \node[font=\scriptsize, charcoal] at (2,-2.4){$b^2-4ac=0$};
-\end{tikzpicture}
-\hspace{0.5cm}
-\begin{tikzpicture}[scale=0.36]
-  \lgrid{-3}{3}{-1}{7}
-  \begin{scope}\clip (-3,-1) rectangle (3,7);
-    \draw[very thick, forest, domain=-2.3:2.3, samples=60, smooth] plot (\x,{\x*\x+1});
-  \end{scope}
-  \fill[charcoal] (0,1) circle (3pt);
-  \node[font=\scriptsize, charcoal] at (0,-2.4){$b^2-4ac<0$};
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
+\ans{$1$} & $1$ & $-5$ & $9$ & $-5$ \\
+    &     & \ans{$1$} & \ans{$-4$} & \ans{$5$} \\ \cline{2-5}
+    & \ans{$1$} & \ans{$-4$} & \ans{$5$} & \ans{$0$} \\
+\end{tabular}
 \end{center}
-\vspace{-2pt}
-Classify \emph{without} solving --- just compute $b^2-4ac$:
-\[ x^2-6x+7=0:\ b^2-4ac=\ans{$8$}\ \Rightarrow\ \ans{two real (irrational)}. \]
-\[ 4x^2-12x+9=0:\ b^2-4ac=\ans{$0$}\ \Rightarrow\ \ans{one repeated real root}. \]
+Depressed polynomial: \ans{$x^2-4x+5$} \; Discriminant: \ans{$-4$} \; so the other two solutions are
+\ans{imaginary}.
+
+\vspace{2pt}
+Finish it: $x = $ \ans{$\frac{4 \pm 2i}{2} = 2 \pm i$} \qquad All solutions:
+\ans{$x = 1,\ 2+i,\ 2-i$}
+
+\vspace{2pt}
+\textbf{Number and type:} \ans{$1$} real and \ans{$2$} imaginary --- and
+{\color{keyred}\textbf{1}} $+$ {\color{keyred}\textbf{2}} $= 3$, the degree. That check \emph{is} the
+verification step (A2.EI.6d).
+
+\vspace{6pt}
+\textbf{(b) No division needed.} Solve $x^4 - 5x^2 - 36 = 0$ using \emph{quadratic form}
+(Lesson 3.2).
+
+\vspace{2pt}
+Factor: $x^4 - 5x^2 - 36 = ($\ans{$x^2-9$}$)($\ans{$x^2+4$}$)$
+
+\vspace{2pt}
+Set each factor to zero: $x = $ \ans{$\pm 3$} \quad and \quad $x = $ \ans{$\pm 2i$}
+
+\vspace{2pt}
+Four solutions for a degree-\ans{$4$} equation: \ans{$3, -3, 2i, -2i$} \; ---
+\ans{$2$} real, \ans{$2$} imaginary.
+
+\vspace{3pt}
+\textbf{Note:} over the \emph{real} numbers, $x^2+4$ is as far as you can factor --- it is
+irreducible. Over the \emph{complex} numbers it splits into $(x-2i)(x+2i)$, which is what ``factors
+completely'' means once imaginary numbers are allowed.
 \end{notesbox}
 
-\begin{notesbox}{3. When the discriminant is negative --- complex solutions}
-A negative discriminant is \emph{not} a dead end. Use $i$ (Lesson 3.4): the roots are a
-\textbf{complex-conjugate pair} $a\pm bi$. Solve the 3.4 leftover $x^2+2x+5=0$:
-\[ a=1,\ b=2,\ c=5:\quad b^2-4ac=4-20=\ans{$-16$}. \]
-\[
-\begin{aligned}
-  x &= \frac{-2\pm\sqrt{-16}}{2} \\
-    &= \frac{-2\pm\ans{$4i$}}{2} \\
-    &= \ans{$-1\pm2i$}
-\end{aligned}
-\]
-These are the \emph{same} solutions completing the square gave in Lesson 3.4 --- now from the formula.
-The parabola $y=x^2+2x+5$ never touches the $x$-axis, which is exactly what $b^2-4ac<0$ predicted.
-\end{notesbox}
+\begin{notesbox}{6. Running It Backward: Building a Polynomial From Its Zeros}
+Lesson 3.4 went polynomial $\rightarrow$ zeros. The standard also asks for the reverse: zeros
+$\rightarrow$ \ans{factors} $\rightarrow$ polynomial. Each zero $r$ contributes the factor
+\ans{$(x-r)$}.
 
-\begin{notesbox}{4. Choose a method \& model}
-The formula \emph{always} works, but it is not always fastest. Quick guide:
-\begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Factoring} & fastest \emph{when} it factors over integers (e.g.\ $x^2-2x-3$). \\
-\textbf{Square roots} & for $x^2=k$ or $(x-h)^2=k$ (no middle term). \\
-\textbf{Quadratic formula} & the universal fallback --- always works, real or complex. \\
-\end{tabularx}
-\end{center}
-\textbf{Model.} A ball is thrown so its height is $h(t)=-16t^2+24t+6$ (feet, seconds). When does it hit the
-ground ($h=0$)? Set up and solve; keep only the physically sensible root.
-\begin{work}
-  -16t^2+24t+6 &= 0 \\
-  t &= \frac{-24\pm\sqrt{24^2-4(-16)(6)}}{2(-16)} \\
-    &= \frac{-24\pm\sqrt{960}}{-32} \\
-    &= \frac{-24\pm8\sqrt{15}}{-32} \\
-    &= \frac{3\pm\sqrt{15}}{4} \\
-    &\approx 1.72\text{ s} \quad\text{(reject the negative root)}
-\end{work}
+\vspace{5pt}
+\textbf{(a) Real zeros $-1$ (multiplicity 2) and $4$.}
+
+\vspace{2pt}
+Factored form: $f(x) = $ \ans{$(x+1)^2(x-4)$} \quad Degree: \ans{$3$}
+
+\vspace{2pt}
+Standard form (multiply it out): \ans{$x^3 - 2x^2 - 7x - 4$}
+
+\vspace{6pt}
+\textbf{(b) Zeros $2$ and $3i$, with \emph{real} coefficients.} \; Before anything else:
+which zero must you \emph{also} include, and why? \ans{$-3i$ --- the conjugate, or the coefficients
+could not be real}
+
+\vspace{2pt}
+Factored form using the conjugate pair's real quadratic: $f(x) = ($\ans{$x-2$}$)($\ans{$x^2+9$}$)$
+
+\vspace{2pt}
+Standard form: $f(x) = $ \ans{$x^3 - 2x^2 + 9x - 18$}
+
+\vspace{2pt}
+Check: the degree is \ans{$3$}, and you listed \ans{$3$} zeros. \checkmark
+
+\vspace{6pt}
+\textbf{(c) The question that tests whether you believe the theorem.} What is the \emph{smallest}
+possible degree of a polynomial with real coefficients whose zeros include $5$ and $1 - i$?
+\ans{$3$} \; Explain:
+\ansline{$1-i$ forces its conjugate $1+i$ along, so there are at least three zeros: $5$, $1-i$, $1+i$.}
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{Solve with the quadratic formula. Simplify; use $a+bi$ when needed.}
-\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
-  \item $x^2+2x-5=0$
-    \begin{work}
-      x &= \frac{-2\pm\sqrt{2^2-4(1)(-5)}}{2(1)} \\
-        &= \frac{-2\pm\sqrt{24}}{2} \\
-        &= \frac{-2\pm2\sqrt{6}}{2} \\
-        &= -1\pm\sqrt{6}
-    \end{work}
-  \item $2x^2-4x+3=0$
-    \begin{work}
-      x &= \frac{4\pm\sqrt{(-4)^2-4(2)(3)}}{2(2)} \\
-        &= \frac{4\pm\sqrt{-8}}{4} \\
-        &= \frac{4\pm2i\sqrt{2}}{4} \\
-        &= 1\pm\frac{\sqrt{2}}{2}i
-    \end{work}
-  \item Discriminant only: how many/what type of roots does $9x^2-6x+1=0$ have? \ans{$b^2-4ac=0$: one repeated real root}
+\textbf{A. Solve over $\mathbb{C}$.} $x^3 + 3x^2 + 9x + 27 = 0$ \; (try factoring by grouping first).
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Factored form: \ans{$x^2(x+3)+9(x+3) = (x+3)(x^2+9)$}
+  \item All solutions: \ans{$x = -3,\ 3i,\ -3i$}
+  \item Number and type: \ans{$1$} real, \ans{$2$} imaginary. Does that total match the
+        degree? \ans{yes, $3$}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{B. Count without solving.} A polynomial with real coefficients has degree $6$, and its graph
+crosses the $x$-axis at exactly $x = -3$ and $x = 1$ and touches it at $x = 4$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt, start=4]
+  \item Real zeros counted with multiplicity: \ans{$4$} \; (remember what a \emph{touch} means)
+  \item Imaginary zeros: \ans{$2$} \; How do you know that number had to be even? \ans{imaginary
+        zeros come in conjugate pairs}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{C. Build one.} Write a polynomial of least degree with real coefficients whose zeros are
+$-2$ and $1 + 3i$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt, start=6]
+  \item The full list of zeros: \ans{$-2,\ 1+3i,\ 1-3i$}
+  \item Factored form: \ans{$(x+2)(x^2-2x+10)$}
+  \item Standard form: \ans{$x^3 + 6x + 20$}
 \end{enumerate}
 \end{practicebox}
+
+\begin{teachernote}
+\textbf{Pacing.} Sections 1--3 are the lesson; sections 4--6 are the three things students are
+actually assessed on. If time is short, compress the ``why the corollary follows'' argument in
+section~1 (it is one sentence: find a zero, divide, repeat) and protect section~4 --- it is the
+literal wording of A2.EI.6b and it is the part that transfers to Lesson~3.6.
+
+\vspace{3pt}
+\textbf{Section 3, the algebra step.} Have students actually expand
+$\big(x-(a+bi)\big)\big(x-(a-bi)\big)$ rather than being shown it. Grouping the terms as
+$\big((x-a)-bi\big)\big((x-a)+bi\big) = (x-a)^2 - (bi)^2 = (x-a)^2 + b^2$ is the cleanest route and
+reuses the Lesson~2.4 conjugate product they just did in the Warm-Up. Expanding gives
+$x^2-2ax+(a^2+b^2)$.
+
+\vspace{3pt}
+\textbf{Section 4 is the assessment target.} Row (b) is the one to slow down on: a quartic that
+crosses twice has two imaginary zeros \emph{and} students should check that $2$ is even. Push the
+closing question hard --- ``could a cubic have no $x$-intercepts?'' --- and get both justifications on
+the board: the pairing argument, and Lesson~3.0's opposite-arm end behavior. Students who can give
+both are ready for the exit ticket.
+
+\vspace{3pt}
+\textbf{Predictable errors.} (1) ``No real solutions'' still written for $x^2-4x+5$ in section 5(a)
+--- name it, do not just correct it. (2) $x = \frac{4\pm 2i}{2}$ simplified to $2 \pm 2i$ (divided only
+one term). (3) In 6(b), students writing $(x-2)(x-3i)$ and stopping. Ask them to multiply it out and
+find the $i$ in the coefficients --- the contradiction does the teaching. (4) In practice item B, a
+\emph{touch} counted once instead of twice, giving $3$ real and $3$ imaginary --- an odd number of
+imaginary zeros, which is itself the signal that something is wrong.
+\end{teachernote}
 
 \end{document}

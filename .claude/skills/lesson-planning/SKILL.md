@@ -8,9 +8,9 @@ description: >-
   or any lesson component — warm-up, experience (activity + QuickNotes + practice), homework,
   cover sheet, unit test, or their answer keys. Lessons follow the Math Medic
   "experience first, formalize later" (EFFL) model. The course is defined by COURSE_PLAN.md at the
-  project root: eight function-family units, each opening with a Lesson 0 "Characteristics of
+  project root: seven function-family units, each opening with a Lesson 0 "Characteristics of
   ____ Functions," with a cumulative characteristics-of-functions spine. Decompose units into
-  lessons from it. Trigger this even when the user just says "make lesson 2.3" or "I need a
+  lessons from it. Trigger this even when the user just says "make lesson 1.3" or "I need a
   warm-up and key for tomorrow," and even if they don't say "skill" or "LaTeX."
   Also use it to RETROFIT an already-authored lesson to a named convention — boxguard,
   namestrip, vocabpar, the work rule, teachernotes — as in "apply boxguard namestrip retrofit
@@ -36,10 +36,10 @@ component, no exit ticket, and no tiered instruction.** The 60-minute period run
 
 ## The course at a glance
 
-- **Structure** comes from **`COURSE_PLAN.md`** (project root) — the scope & sequence: the eight
+- **Structure** comes from **`COURSE_PLAN.md`** (project root) — the scope & sequence: the seven
   units, each unit's lesson list, and the cumulative **characteristics-of-functions spine**
   (§3), where each Lesson 0 introduces the new characteristics its function type is the first to
-  require (asymptotes in Unit 5, origin symmetry in Unit 4, and so on). **This is the
+  require (asymptotes in Unit 4, origin symmetry in Unit 3, and so on). **This is the
   unit/lesson map.** See `references/course-workflow.md`.
 - **Content** is **standards-based and original**: sourced from `COURSE_PLAN.md`, the standards
   the user supplies (usually Virginia SOL codes), and — as a topic/difficulty **model only** —
@@ -166,7 +166,7 @@ component subdirectories you request, **and (if missing) the unit `Makefile`** s
 works:
 
 ```bash
-python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
+python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 01 --lesson 03 \
   --title "Absolute Value Functions" --unit-title "Linear Functions" \
   --course "Algebra 2: Shepherd" \
   --components cover,warmup,experience,homework,slides
@@ -258,12 +258,12 @@ directory.
 Build from the lesson directory (or the unit/root for wider packets):
 
 ```bash
-make -C unit02/lesson03 all       # all five work products — the usual command
-make -C unit02/lesson03 plan      # the lesson plan            → lessonYY_plan.pdf
-make -C unit02/lesson03 slides    # the Beamer deck            → lessonYY_slides.pdf
-make -C unit02/lesson03 pptx      # the deck, PowerPoint-ready → lessonYY_slides.pptx
-make -C unit02/lesson03 student   # cover + blank components   → lessonYY_student.pdf
-make -C unit02/lesson03 key       # same packet, answered      → lessonYY_key.pdf
+make -C unit01/lesson03 all       # all five work products — the usual command
+make -C unit01/lesson03 plan      # the lesson plan            → lessonYY_plan.pdf
+make -C unit01/lesson03 slides    # the Beamer deck            → lessonYY_slides.pdf
+make -C unit01/lesson03 pptx      # the deck, PowerPoint-ready → lessonYY_slides.pptx
+make -C unit01/lesson03 student   # cover + blank components   → lessonYY_student.pdf
+make -C unit01/lesson03 key       # same packet, answered      → lessonYY_key.pdf
 ```
 
 `make -C unitXX student|key` merges a unit; `make student|key` at the root merges the whole
@@ -295,8 +295,8 @@ build and report. Each has a fix and, where it is mechanical, a script:
 | --- | --- | --- |
 | **boxguard** | No box stranded as a ~1in sliver across a page break | `\boxguard` (or `\boxguard[n]`) on its own line before the `\begin{...}` — blank **and** key |
 | **namestrip** | Name/date/period row on the cover only | `python3 .claude/skills/lesson-planning/scripts/namestrip.py --project . --unit NN --lesson MM` (`--check` to preview) |
-| **vocabpar** | `\par` around `\termblanklong`/`\ansline` in a `vocabbox` | Hand fix per lesson; `unit05/lesson00` is the reference |
-| **work rule** | A component is the same length blank and keyed | `work` blocks authored identically in both files; `steptable`/`\step` for printed solutions; `\writelines{n}` to match a wrapped `\ansline`. References: `unit01/lesson02` (work), `unit01/lesson00` (steptable) |
+| **vocabpar** | `\par` around `\termblanklong`/`\ansline` in a `vocabbox` | Hand fix per lesson; `unit04/lesson00` is the reference |
+| **work rule** | A component is the same length blank and keyed | `work` blocks authored identically in both files; `steptable`/`\step` for printed solutions; `\writelines{n}` to match a wrapped `\ansline`. References: `unit01/lesson02` (work); steptable has no in-tree example since the review-unit deletion (2026-08-20) — follow the spec in `references/conventions.md` |
 | **teachernotes** | Teacher prose in the lesson plan, one titled note per component | `python3 .claude/skills/lesson-planning/scripts/movenotes.py unitNN/lessonMM` (`--check` to preview) |
 
 Full spec for each: `references/conventions.md` and `COURSE_PLAN.md` §7.

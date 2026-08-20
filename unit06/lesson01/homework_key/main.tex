@@ -1,8 +1,15 @@
-%! $n$th Roots \& Rational Exponents — Unit 6, Lesson 6.1 — Homework (Answer Key)
+%! Exponential Growth and Decay — Unit 6, Lesson 6.1 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #2 is ln(b):  ln2 = 0.693147   ln3 = 1.098612
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
@@ -12,164 +19,189 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Assume all variables represent \textbf{positive} real numbers except where a problem says otherwise.
-No calculator.
+Show the two numbers ($a$ and $b$) for every model. Round money to the nearest cent and counts of
+living things down to a whole number.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Translate both directions.} Fill in every empty cell.
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{Percent and factor, both directions.}
+
+    \textbf{(a)} Write the factor $b$ for each description.
     \begin{center}
-    \renewcommand{\arraystretch}{1.9}
-    \begin{tabularx}{\linewidth}{@{}X X | X X@{}}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\linewidth}{@{}X l l X@{}}
     \hline
-    \textbf{Radical form} & \textbf{Rational exponent} & \textbf{Rational exponent} & \textbf{Radical form} \\
+    \textbf{The sentence says\dots} & \textbf{Rate $r$} & \textbf{Grows or shrinks?} & \textbf{Factor $b$} \\
     \hline
-    $\sqrt[3]{x^{4}}$ & \ans{$x^{4/3}$} & $m^{1/5}$   & \ans{$\sqrt[5]{m}$} \\
-    $\sqrt{y^{7}}$    & \ans{$y^{7/2}$} & $p^{5/6}$   & \ans{$\sqrt[6]{p^{5}}$} \\
-    $\left(\sqrt[4]{w}\right)^{5}$ & \ans{$w^{5/4}$} & $(2k)^{2/3}$ & \ans{$\sqrt[3]{(2k)^{2}}$} \\
+    grows by $12\%$ each year & \ans{0.12} & \ans{grows} & \ans{$1.12$} \\
+    decreases by $5\%$ each month & \ans{0.05} & \ans{shrinks} & \ans{$0.95$} \\
+    loses $8\%$ of it each hour & \ans{0.08} & \ans{shrinks} & \ans{$0.92$} \\
+    doubles each day & \ans{$1$ ($100\%$)} & \ans{grows} & \ans{$2$} \\
+    increases by $0.75\%$ each year & \ans{0.0075} & \ans{grows} & \ans{$1.0075$} \\
     \hline
     \end{tabularx}
     \end{center}
 
-  \item \textbf{Evaluate.} Take the root first.
+    \textbf{(b)} Now go backwards. Each model is built --- describe it in words.
     \begin{center}
-    \renewcommand{\arraystretch}{1.9}
-    \begin{tabularx}{\linewidth}{@{}X X X X@{}}
-    (a) \; $49^{1/2}=$ \ans{$7$} & (b) \; $8^{2/3}=$ \ans{$4$} &
-    (c) \; $81^{3/4}=$ \ans{$27$} & (d) \; $32^{2/5}=$ \ans{$4$} \\
-    (e) \; $100^{-1/2}=$ \ans{$\dfrac{1}{10}$} & (f) \; $64^{-2/3}=$ \ans{$\dfrac{1}{16}$} &
-    (g) \; $(-125)^{1/3}=$ \ans{$-5$} & (h) \; $\left(\dfrac{16}{81}\right)^{3/4}=$ \ans{$\dfrac{8}{27}$} \\
-    \end{tabularx}
-    \end{center}
-    \emph{Work for the harder ones:} (f) $\dfrac{1}{\left(\sqrt[3]{64}\right)^{2}}=\dfrac{1}{4^{2}}$. \;
-    (h) $\left(\sqrt[4]{16/81}\right)^{3}=\left(\tfrac{2}{3}\right)^{3}$.
-
-  \item \textbf{Simplify with the exponent properties.} Leave every answer with a single
-        \emph{positive} rational exponent.
-    \begin{center}
-    \renewcommand{\arraystretch}{2.0}
-    \begin{tabularx}{\linewidth}{@{}X X@{}}
-    (a) \; $x^{2/3}\cdot x^{1/6} = $ \ans{$x^{5/6}$} &
-    (b) \; $\dfrac{c^{7/4}}{c^{1/2}} = $ \ans{$c^{5/4}$} \\
-    (c) \; $\left(t^{4/5}\right)^{5/2} = $ \ans{$t^{2}$} &
-    (d) \; $\sqrt[3]{x}\cdot\sqrt{x} = $ \ans{$x^{5/6}$} \\
-    (e) \; $\dfrac{\sqrt[4]{n^{3}}}{\sqrt[8]{n}} = $ \ans{$n^{5/8}$} &
-    (f) \; $\left(27x^{9}\right)^{2/3} = $ \ans{$9x^{6}$} \\
-    \end{tabularx}
-    \end{center}
-    \emph{Work:} (a) $\tfrac{4}{6}+\tfrac{1}{6}=\tfrac{5}{6}$. \; (b) $\tfrac{7}{4}-\tfrac{2}{4}$. \;
-    (c) $\tfrac{4}{5}\cdot\tfrac{5}{2}=2$. \; (d) $\tfrac{1}{3}+\tfrac{1}{2}=\tfrac{5}{6}$. \;
-    (e) $\tfrac{6}{8}-\tfrac{1}{8}$. \; (f) $27^{2/3}=9$ and $x^{9\cdot 2/3}=x^{6}$.
-
-  \item \textbf{The absolute-value rule.} Here $x$ may be \emph{any} real number.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.8}
-    \begin{tabular}{@{}l l l@{}}
-    (a) \; $\sqrt{x^{2}}=$ \ans{$|x|$} & (b) \; $\sqrt[3]{x^{3}}=$ \ans{$x$} &
-    (c) \; $\sqrt[4]{x^{4}}=$ \ans{$|x|$} \\
-    \end{tabular}
-    \end{center}
-    Explain the pattern: which indices need absolute value bars, and why does the other kind not?
-    \ansline{\textbf{Even} indices need the bars. An even power destroys the sign, so $x^{2}$ and
-    $x^{4}$ are never negative --- and the radical then returns the \emph{principal} (non-negative)
-    root, which cannot give a negative $x$ back. Writing $|x|$ is how we say ``whatever the sign
-    was, the answer is non-negative.'' \textbf{Odd} indices need nothing: an odd power keeps the
-    sign and the odd root gives it back, so $\sqrt[3]{(-2)^{3}}=\sqrt[3]{-8}=-2$ exactly.}
-
-  \item \textbf{Back to domains (Lesson 6.0, in exponent language).} For each function, state
-        whether the domain is restricted, and give the domain. Look at the \emph{denominator}.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.8}
+    \renewcommand{\arraystretch}{1.5}
     \begin{tabularx}{\linewidth}{@{}l X X X@{}}
     \hline
-    \textbf{Function} & \textbf{Denominator: even or odd?} & \textbf{Restricted?} & \textbf{Domain} \\
+    \textbf{Model} & \textbf{Initial value} & \textbf{Percent rate} & \textbf{Increase or decrease?} \\
     \hline
-    $f(x)=x^{1/2}$   & \ans{even ($2$)} & \ans{yes} & \ans{$[0,\infty)$} \\
-    $g(x)=x^{1/3}$   & \ans{odd ($3$)} & \ans{no} & \ans{all reals} \\
-    $h(x)=x^{2/5}$   & \ans{odd ($5$)} & \ans{no} & \ans{all reals} \\
-    $j(x)=(x-3)^{1/4}$ & \ans{even ($4$)} & \ans{yes} & \ans{$[3,\infty)$} \\
+    $y=300(1.09)^{t}$ & \ans{300} & \ans{$9\%$} & \ans{increase} \\
+    $y=64(0.85)^{t}$ & \ans{64} & \ans{$15\%$} & \ans{decrease} \\
+    $y=1500(1.5)^{t}$ & \ans{1500} & \ans{$50\%$} & \ans{increase} \\
     \hline
     \end{tabularx}
     \end{center}
-    \emph{Note on $j$:} the base is $x-3$, not $x$, so the condition is $x-3\ge 0$ --- the same
-    ``set the radicand $\ge 0$'' move as Lesson 6.0.
 
-  \item \textbf{Explain.} Yesterday you learned that an \emph{even index} restricts a radical
-        function's domain. Today you learned that an \emph{even denominator} does the same thing.
-        Explain why these are not two rules but one. \ansline{Because the denominator \emph{is} the
-        index. Writing $\sqrt[n]{a}$ as $a^{1/n}$ puts the index in the denominator, so
-        $x^{1/2}$ and $\sqrt{x}$ are the same function written two ways. Saying ``even denominator''
-        and saying ``even index'' are the same sentence in two notations --- and the underlying
-        reason is the same in both: an even power of a real number is never negative, so an even
-        root of a negative number does not exist.}
+  \item \textbf{From tables.} For each table, decide whether it can be modeled by $y=ab^{x}$. If it
+    can, give $a$, $b$, and the equation. If it cannot, say what family it belongs to and why.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+    A: $y$ & $6$ & $18$ & $54$ & $162$ & $486$ \\ \hline
+    B: $y$ & $160$ & $80$ & $40$ & $20$ & $10$ \\ \hline
+    C: $y$ & $2$ & $5$ & $8$ & $11$ & $14$ \\ \hline
+    \end{tabular}
+    \end{center}
+    A: \; $a=$ \ans{6} \quad $b=$ \ans{3} \quad $y=$ \ans{$6\cdot 3^{x}$} \\[3pt]
+    B: \; $a=$ \ans{160} \quad $b=$ \ans{$\frac12$} \quad $y=$ \ans{$160\left(\frac12\right)^{x}$} \\[3pt]
+    C: \; \ans{Not exponential --- \emph{linear}. The ratios ($\frac52$, $\frac85$, $\frac{11}{8}$) are not constant, but the differences are a constant $+3$, so $y=3x+2$.}
+
+  \item \textbf{From a graph.} The curve below is $y=ab^{x}$, with two points labeled.
+    \begin{center}
+    \begin{minipage}[c]{0.42\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-1}{6}{-1}{10}
+      \begin{scope}
+        \clip (-1,-1) rectangle (6,10);
+        \expcurve{8}{-0.693147}{-0.32}{6}
+      \end{scope}
+      \draw[navy, dashed, semithick] (-1,0)--(6,0);
+      \fill[charcoal] (0,8) circle (3pt) node[right, font=\scriptsize]{$(0,8)$};
+      \fill[charcoal] (3,1) circle (3pt) node[above right, font=\scriptsize]{$(3,1)$};
+    \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[c]{0.54\linewidth}
+    $a=$ \ans{8} \; (read it off the $y$-axis) \\[6pt]
+    Substituting $(3,1)$: \; $1=a\,b^{3}$, so $b^{3}=$ \ans{$\frac18$} \\[6pt]
+    and $b=$ \ans{$\frac12$}. \quad Growth or decay? \ans{decay} \\[6pt]
+    $y=$ \ans{$8\left(\frac12\right)^{x}$} \\[6pt]
+    Range: \ans{$(0,\infty)$} \quad Asymptote: \ans{$y=0$}
+    \end{minipage}
+    \end{center}
+
+  \item \textbf{From stories.} Build each model, evaluate it, and interpret the result.
+
+    \textbf{(a)} A culture starts with $250$ bacteria cells and the count increases by $40\%$ every
+    hour. \\[3pt]
+    $C(t)=$ \ans{$250(1.4)^{t}$} \quad $C(6)=$ \ans{$250(7.5295)$} $\approx$ \ans{$1882$} cells \\[3pt]
+    What does $C(6)$ mean? \ansline{Six hours after the culture was started there are about $1882$
+    cells --- the colony has grown to roughly seven and a half times its original size.}
+
+    \vspace{4pt}
+    \textbf{(b)} A phone bought for \$$900$ loses $22\%$ of its value each year. \\[3pt]
+    $V(t)=$ \ans{$900(0.78)^{t}$} \quad $V(4)=$ \ans{$900(0.37015)$} $\approx$ \ans{\$$333.14$} \\[3pt]
+    What does $V(4)$ mean? \ansline{Four years after it was bought the phone is worth about
+    \$$333.14$, a little over a third of what it cost.}
+
+  \item \textbf{Error analysis.} For each student, name the error, say what their model
+    \emph{actually} describes, and write the correct model.
+
+    \textbf{(a)} ``A \$$18{,}000$ truck loses $15\%$ of its value each year.'' \\
+    \hspace*{1.2em} Jonah wrote $V(t) = 18{,}000(1.15)^{t}$.
+    \ansline{Jonah \emph{added} the rate instead of subtracting it. His base is greater than $1$, so
+    his model has the truck \emph{gaining} $15\%$ a year --- worth more than \$$36{,}000$ after five
+    years. Losing $15\%$ leaves $85\%$, so $b=1-0.15=0.85$ and
+    $V(t)=18{,}000(0.85)^{t}$.}
+
+    \textbf{(b)} ``A colony of $250$ bees grows $7\%$ each week.'' \\
+    \hspace*{1.2em} Priya wrote $P(w) = 250(0.07)^{w}$.
+    \ansline{Priya used the \emph{percent} as the base. Her model keeps only $7\%$ of the colony each
+    week --- a $93\%$ collapse, down to about $17$ bees after one week. Growing $7\%$ means having
+    $107\%$, so $b=1+0.07=1.07$ and $P(w)=250(1.07)^{w}$.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Why a bigger animal does not eat proportionally more.} Biologists model an animal's resting
-metabolic rate --- roughly, the calories per day it burns just staying alive --- as a rational
-power of its body mass. For a mammal of mass $w$ kilograms,
-\[
-  M(w) = 70\,w^{3/4} \ \text{ kilocalories per day.}
-\]
+\textbf{Two towns, ten years.} Ashford has $20{,}000$ people and is \textbf{losing $2\%$} of its
+population each year. Brookvale has $12{,}000$ people and is \textbf{gaining $5\%$} each year.
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-$w$ (kg)        & $1$ & $16$ & $81$ & $256$ \\ \hline
-$M(w)$ (kcal/day) & $70$ & \ans{$560$} & \ans{$1890$} & \ans{$4480$} \\ \hline
+Year $t$ & $0$ & $2$ & $4$ & $6$ & $8$ & $10$ \\ \hline
+Ashford & $20{,}000$ & $19{,}208$ & $18{,}447$ & $17{,}717$ & $17{,}015$ & $16{,}341$ \\ \hline
+Brookvale & $12{,}000$ & $13{,}230$ & $14{,}586$ & $16{,}081$ & $17{,}730$ & $19{,}547$ \\ \hline
 \end{tabular}
 \end{center}
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Complete the table without a calculator. (Each mass was chosen to be a perfect fourth power.)
-        \ansline{$16^{3/4}=\left(\sqrt[4]{16}\right)^{3}=2^{3}=8$, so $M=70\cdot 8=560$; likewise
-        $81^{3/4}=3^{3}=27\Rightarrow 1890$, and $256^{3/4}=4^{3}=64\Rightarrow 4480$.}
-  \item Write $M(w)$ in radical form. Which of the two equivalent radical forms is easier to compute
-        with, and why? \ansline{$M(w)=70\left(\sqrt[4]{w}\right)^{3}$, or equivalently
-        $70\sqrt[4]{w^{3}}$. The first is easier: rooting first keeps the numbers small
-        ($\sqrt[4]{16}=2$), while the second asks for $\sqrt[4]{4096}$.}
-  \item From $w=16$ to $w=256$ the mass is multiplied by $16$. By what factor is the metabolic rate
-        multiplied? Show the arithmetic, then say in one sentence what the exponent $\frac{3}{4}$
-        --- a number \emph{less} than $1$ --- is doing to the growth.
-        \ansline{$4480\div 560=8$, so the rate multiplies by only $8$ while the mass multiplies by
-        $16$. (Consistently: $16^{3/4}=8$.) An exponent below $1$ \emph{damps} the growth --- the
-        output grows, but slower than the input, so a $16\times$ heavier mammal burns only about
-        $8\times$ the calories.}
-  \item Solve $M=70w^{3/4}$ for $w$ in terms of $M$. Which power did you raise both sides to, and
-        why that one? \ansline{Divide first: $\dfrac{M}{70}=w^{3/4}$. Then raise both sides to
-        $\dfrac{4}{3}$ --- the \emph{reciprocal} --- because
-        $\left(w^{3/4}\right)^{4/3}=w^{1}=w$. So $w=\left(\dfrac{M}{70}\right)^{4/3}$.}
-  \item Your answer to (d) is the \textbf{inverse} of $M$ --- the same relationship run backwards,
-        exactly as in Lesson 6.0. What does it let a biologist do that $M$ itself does not?
-        \ansline{$M$ predicts calories from a known mass; the inverse \emph{estimates the mass} from
-        a measured metabolic rate --- useful for an animal you can put in a respiration chamber but
-        cannot easily weigh. Inputs and outputs have traded places, exactly like the swapped tables
-        in Lesson 6.0.}
+  \item Write both models, $A(t)$ and $B(t)$.
+  \item Verify one entry in each row of the table by evaluating your model.
+  \item Brookvale starts $8{,}000$ people behind. Between which two years in the table does it pass
+        Ashford? What tells you that from the table alone?
+  \item To find the crossing \emph{exactly} you would have to solve
+        $20{,}000(0.98)^{t} = 12{,}000(1.05)^{t}$. Try rewriting both sides with a common base ---
+        what goes wrong?
+  \item Ashford's model has horizontal asymptote $A=0$. What does that claim about the town, and how
+        far into the future would you trust this model? Explain.
 \end{enumerate}
+\ansline{(a) $A(t)=20{,}000(0.98)^{t}$ \; and \; $B(t)=12{,}000(1.05)^{t}$. Losing $2\%$ leaves
+$98\%$; gaining $5\%$ gives $105\%$.\\[3pt]
+(b) For example $A(4)=20{,}000(0.98)^{4}=20{,}000(0.92237)\approx 18{,}447$ and
+$B(4)=12{,}000(1.05)^{4}=12{,}000(1.21551)\approx 14{,}586$ --- both match.\\[3pt]
+(c) Between year $6$ and year $8$. At $t=6$ Ashford is still ahead ($17{,}717$ vs.\ $16{,}081$); at
+$t=8$ Brookvale is ahead ($17{,}730$ vs.\ $17{,}015$), so the two populations are equal somewhere in
+between. (Checking year by year puts it a little past $t=7$.)\\[3pt]
+(d) There is no common base: $0.98$ and $1.05$ are not powers of any one number you can write down,
+so ``rewrite both sides over the same base and equate the exponents'' has nothing to work with. You
+can \emph{read} the crossing off a graph or narrow it down in a table, but solving it exactly needs a
+tool we do not have yet --- that is what Unit 7 is for.\\[3pt]
+(e) It claims Ashford never fully empties: each year keeps $98\%$ of a positive number, which stays
+positive forever, so the model has no $t$-intercept. That is fine for the next decade or two, when
+$2\%$ is a plausible steady rate. It is not believable across a century --- populations do not decay
+smoothly forever, and a town of $3$ people is not a town. Trust the model in the range the data came
+from, not in the tail.}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 6.2: Simplifying Radicals; Adding \& Subtracting.} Today you learned
-that $\sqrt[n]{a}=a^{1/n}$, which makes an exponent rule out of every radical rule. Next you will use
-two of them constantly --- $\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$ and
-$\sqrt[n]{a/b}=\sqrt[n]{a}\big/\sqrt[n]{b}$ --- to pull perfect $n$th powers out from under a
-radical ($\sqrt{72}=6\sqrt{2}$), and then discover that radicals add only when they are
-\emph{like radicals}, in exactly the way $3x+5x$ works but $3x+5y$ does not.
+\textbf{Coming next --- Lesson 6.2: Graphing Exponential Functions \& Transformations.} You can now
+build $y=ab^{x}$. Next you will move it: shift it, stretch it, and flip it, using the same
+transformation rules you have applied since Unit 1. One of them behaves differently here than
+anywhere else in the course --- adding $k$ to the outside, $f(x)+k$, is the only transformation that
+\emph{moves the horizontal asymptote}, and therefore the only one that changes the range. Also worth
+noticing today: $y=8\left(\frac12\right)^{x}$ in problem 3 could just as well have been written
+$y=8\cdot 2^{-x}$. In 6.2 that stops being a curiosity and becomes a rule --- reflecting an
+exponential across the $y$-axis turns growth into decay.
 \end{spiralbox}
 
 \begin{teachernote}
-Items 1--3 are the routine load and should take about fifteen minutes. \textbf{Item 4 is the one to
-grade closely}: it is the only place all week where variables are \emph{not} assumed positive, and
-students who have been dropping the bars all period will drop them here too. If more than a third of
-the class misses it, open 6.2 by asking for $\sqrt{x^{2}}$ at $x=-3$ before touching the product
-property. \textbf{Items 5--6 are the conceptual spine} --- 6 in particular asks students to state
-that the two domain rules are one rule in two notations, which is the whole justification for
-teaching this lesson between 6.0 and 6.2. Accept any answer that connects ``denominator'' to
-``index''; do not require the full evenness argument.
-The \textbf{Extension} is Kleiber's law, and its shape is deliberately the same as the Activity's
-Kepler problem: a rational-exponent model, a table of perfect powers, a growth-rate interpretation,
-and an inverse found by raising both sides to the reciprocal power. Part (c) is the payoff --- an
-exponent between $0$ and $1$ means the output grows more slowly than the input, which is exactly the
-flattening shape students read off the square root graph in Lesson 6.0.
+\textbf{Problem 1(b) is the item to grade first.} Running the translation backwards is what proves a
+student understands the rule rather than pattern-matching it, and the $0.85 \Rightarrow 15\%$
+\emph{decrease} row is where the sign error shows up. The $1.5 \Rightarrow 50\%$ row catches students
+who read the base as the percent.
+
+\textbf{Problem 2, Table C} is the deliberate trap: it is the only table that is not exponential, and
+it must be diagnosed with the Lesson 6.0 fingerprint test rather than by eye. Accept ``linear'' with
+the constant difference cited; the equation $y=3x+2$ is a bonus.
+
+\textbf{Problem 3} is Section 4's Case 1 with a fractional answer --- $b^{3}=\frac18$ gives
+$b=\frac12$, not $b=\frac13$. Watch for students dividing the exponent instead of taking a root.
+
+\textbf{Problem 5 carries the lesson.} Jonah and Priya make the \emph{two different} errors, and the
+assignment asks students to name each one, not just fix it. A complete answer says which side of $1$
+the wrong base fell on and what percent change it really encodes. If a student can write both
+paragraphs, they own the translation.
+
+\textbf{The Extension sets up two future lessons.} Part (d) is the wall Lesson 6.4 ends on, arriving
+a few days early on purpose --- do not let students grind at it, and do not hint that logarithms
+exist unless someone asks. Part (e) reruns Lesson 6.0's asymptote-believability question in a new
+context, and part (c) is the reading-a-crossing-from-a-table skill that 6.3 will make algebraic in
+the special case where a common base \emph{does} exist.
 \end{teachernote}
 
 \end{document}

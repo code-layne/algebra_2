@@ -1,0 +1,138 @@
+%! Characteristics of Quadratic Functions — Unit 2, Lesson 2.0 — Group Activity
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
+\begin{document}
+
+\pageheader{Unit 2, Lesson 2.0}{Group Activity}
+
+\vspace{0.08in}
+
+\begin{headlinebox}{forestbg}
+\small\textbf{Reading Parabolas.} Every characteristic of a quadratic function is something you can
+\emph{point to} on its graph. With your partner, read each graph carefully and \emph{justify} your
+answers --- especially the max/min and the intervals.
+\end{headlinebox}
+
+\vspace{0.06in}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+The graph shows $r(x) = x^2 - 4x + 3$.
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-1}{5}{-2}{5}
+  \draw[navy, dashed, semithick] (2,-2)--(2,5);
+  \begin{scope}
+    \clip (-1,-2) rectangle (5,5);
+    \draw[very thick, forest, domain=-0.4:4.4, samples=70, smooth]
+      plot (\x,{(\x)*(\x) - 4*(\x) + 3});
+  \end{scope}
+  \fill[charcoal] (2,-1) circle (3pt);
+  \fill[charcoal] (0,3) circle (3pt);
+  \fill[charcoal] (1,0) circle (3pt);
+  \fill[charcoal] (3,0) circle (3pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
+  \item The parabola opens (circle one): \textbf{up} \; / \; \textbf{down}. \quad So its vertex is a
+        (circle one): \textbf{minimum} \; / \; \textbf{maximum}.
+  \item Vertex $=(\blank{1.0cm},\ \blank{1.0cm})$. \quad Axis of symmetry: $x=\blank{1.0cm}$.
+  \item The curve crosses the $x$-axis (the \textbf{zeros}) at $x=\blank{1.0cm}$ and $x=\blank{1.0cm}$,
+        and the $y$-axis at $(0,\ \blank{1.0cm})$.
+  \item The \emph{minimum value} (the lowest output) is $y=\blank{1.2cm}$.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+For \emph{each} parabola, give the full feature list, then answer the justification below.
+\begin{center}
+\begin{tikzpicture}[scale=0.4]
+  % f(x) = x^2 - 6x + 5  (opens up)
+  \begin{scope}
+    \lgrid{-1}{7}{-5}{6}
+    \draw[navy, dashed, semithick] (3,-5)--(3,6);
+    \begin{scope}
+      \clip (-1,-5) rectangle (7,6);
+      \draw[very thick, forest, domain=-0.2:6.2, samples=80, smooth]
+        plot (\x,{(\x)*(\x) - 6*(\x) + 5});
+    \end{scope}
+    \fill[charcoal] (3,-4) circle (3pt);
+    \fill[charcoal] (1,0) circle (3pt);
+    \fill[charcoal] (5,0) circle (3pt);
+    \fill[charcoal] (0,5) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (3,-6.4){$f(x)=x^2-6x+5$};
+  \end{scope}
+  % g(x) = -x^2 - 2x + 3  (opens down)
+  \begin{scope}[xshift=11cm]
+    \lgrid{-5}{3}{-3}{5}
+    \draw[navy, dashed, semithick] (-1,-3)--(-1,5);
+    \begin{scope}
+      \clip (-5,-3) rectangle (3,5);
+      \draw[very thick, forest, domain=-3.6:1.6, samples=80, smooth]
+        plot (\x,{-1*(\x)*(\x) - 2*(\x) + 3});
+    \end{scope}
+    \fill[charcoal] (-1,4) circle (3pt);
+    \fill[charcoal] (-3,0) circle (3pt);
+    \fill[charcoal] (1,0) circle (3pt);
+    \fill[charcoal] (0,3) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (-1,-4.4){$g(x)=-x^2-2x+3$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
+ & \textbf{$f(x)=x^2-6x+5$} & \textbf{$g(x)=-x^2-2x+3$} \\
+\hline
+Opens up / down & \blank{2.2cm} & \blank{2.2cm} \\
+Vertex & \blank{2.2cm} & \blank{2.2cm} \\
+Max or min? Value? & \blank{2.2cm} & \blank{2.2cm} \\
+Axis of symmetry & \blank{2.2cm} & \blank{2.2cm} \\
+Zeros & \blank{2.2cm} & \blank{2.2cm} \\
+Range & \blank{2.2cm} & \blank{2.2cm} \\
+Increasing on & \blank{2.2cm} & \blank{2.2cm} \\
+End behavior & \blank{2.2cm} & \blank{2.2cm} \\
+\end{tabularx}
+\vspace{2pt}
+
+\textbf{Justify:} For $f$, the outputs at $x=1$ and $x=5$ are \emph{equal}. Using the axis of symmetry,
+explain \emph{why} those two inputs must give the same output. \writelines{2}
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
+    fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
+\textbf{Back to the ball.} A ball's height after $t$ seconds is $h(t) = -16t^2 + 32t + 48$ feet.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \draw[xstep=1, ystep=8, linegray!40, very thin] (0,0) grid (3,72);
+  \draw[->, semithick, charcoal] (0,0)--(3.2,0) node[below right, font=\scriptsize]{$t$ (s)};
+  \draw[->, semithick, charcoal] (0,0)--(0,74) node[left, font=\scriptsize]{$h$ (ft)};
+  \foreach \y in {16,32,48,64} \node[charcoal, font=\scriptsize, left] at (0,\y){\y};
+  \foreach \x in {1,2,3} \node[charcoal, font=\scriptsize, below] at (\x,0){\x};
+  \draw[navy, dashed, semithick] (1,0)--(1,64);
+  \draw[very thick, forest, domain=0:3, samples=80, smooth]
+    plot (\x,{-16*(\x)*(\x) + 32*(\x) + 48});
+  \fill[charcoal] (1,64) circle (3pt);
+  \fill[charcoal] (0,48) circle (3pt);
+  \fill[charcoal] (3,0) circle (3pt);
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
+  \item Interpret each feature \emph{in context}: the $y$-intercept means \blank{5.0cm};
+        the vertex means \blank{5.0cm}; the positive zero means \blank{5.0cm}.
+  \item What is the \emph{meaningful domain} of $h$ in this situation, and why is it \emph{not} all
+        real numbers? \writelines{2}
+  \item \textbf{Use symmetry.} The ball is $60$ ft high on the way \emph{up} at $t=0.5$ s. Without any
+        algebra, at what later time is it again $60$ ft high on the way \emph{down}? Explain how the
+        axis of symmetry $t=1$ tells you. \writelines{2}
+\end{enumerate}
+\end{tcolorbox}
+
+\end{document}

@@ -1,4 +1,4 @@
-%! Linear Functions: Slope, Forms \& Graphing — Unit 2, Lesson 2.1 — Slides (Beamer)
+%! Graphing Quadratic Functions & Transformations — Unit 2, Lesson 2.1 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -16,131 +16,187 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.1}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Linear Functions: Slope, Forms \& Graphing}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2: Linear Functions}
+    {\color{white}\bfseries\LARGE Graphing Quadratic Functions \& Transformations}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 2: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% HOOK
+% HOOK — three costumes
 \begin{frame}[t, plain]
-  \forestheader{A rate plus a starting value}
+  \forestheader{One parabola, three costumes}
   \sectionlabel{Hook}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      A streaming service: \textbf{\$5 signup} $+$ \textbf{\$2 per month}.
+    \begin{column}{0.56\textwidth}
+      All three are the \emph{same} curve:
+      \[ x^2-2x-3 = (x-1)^2-4 = (x+1)(x-3). \]
       \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Same change each month? $\to$ \textbf{slope} $=2$
-        \item Cost before any months? $\to$ \textbf{$y$-intercept} $=5$
-        \item One rule? $\to$ $C(m) = 2m + 5$
+        \item Vertex at a glance? $\to$ \textbf{vertex form}
+        \item Zeros at a glance? $\to$ \textbf{intercept form}
+        \item $y$-intercept at a glance? $\to$ \textbf{standard form}
       \end{itemize}
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \centering
-      \renewcommand{\arraystretch}{1.2}
-      \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        $m$ & $0$ & $1$ & $2$ & $3$ \\ \hline
-        \$ & $5$ & $7$ & $9$ & $11$ \\ \hline
-      \end{tabular}
-    \end{column}
-  \end{columns}
-  \vspace{2pt}
-  \begin{block}{Today}
-    A rate of change plus a starting value \emph{is} slope-intercept form --- and three ways to
-    write any line.
-  \end{block}
-\end{frame}
-
-% SLOPE
-\begin{frame}[t, plain]
-  \forestheader{Slope is the rate of change}
-  \sectionlabel{Definition}
-  \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      For any two points on a line,
-      \[ m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{rise}}{\text{run}}. \]
-      Constant rate $\Rightarrow$ \emph{any} two points give the same $m$.
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      Using $(1,4)$ and $(3,0)$:
-      \[ m = \frac{0 - 4}{3 - 1} = \frac{-4}{2} = -2. \]
-      {\footnotesize Subtract $y$'s and $x$'s in the \textbf{same order}.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% THREE FORMS
-\begin{frame}[t, plain]
-  \forestheader{Three forms, one line}
-  \sectionlabel[goldacc]{$y = 2x - 4$}
-  \begin{itemize}\setlength{\itemsep}{7pt}
-    \item \textbf{Slope-intercept:} $y = mx + b$ \; --- reads off slope $2$ and $y$-intercept $(0,-4)$.
-    \item \textbf{Point-slope:} $y - y_1 = m(x - x_1)$ \; --- from $(2,0)$: $y - 0 = 2(x-2)$.
-    \item \textbf{Standard:} $Ax + By = C$ \; --- $2x - y = 4$ (integers, $A \ge 0$).
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{Same line, different outfits}
-    Distribute the point-slope form: $y = 2(x-2) = 2x - 4$. All three are equal.
-  \end{block}
-\end{frame}
-
-% WRITING EQUATIONS
-\begin{frame}[t, plain]
-  \forestheader{Writing a line: match the givens}
-  \sectionlabel{The main event}
-  \begin{itemize}\setlength{\itemsep}{7pt}
-    \item \textbf{Slope $+$ $y$-intercept} $\to$ drop into $y = mx + b$.
-    \item \textbf{Slope $+$ any point} $\to$ point-slope, then simplify.
-    \item \textbf{Two points} $\to$ find $m$ first, then point-slope.
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{Worked: through $(1,4)$ and $(3,0)$}
-    $m = -2$; \; $y - 0 = -2(x - 3)$; \; so $y = -2x + 6$, or $2x + y = 6$.
-  \end{block}
-\end{frame}
-
-% TRANSFORMATIONS
-\begin{frame}[t, plain]
-  \forestheader{Graphing by transforming $y = x$}
-  \sectionlabel[goldacc]{The course-wide lens}
-  \begin{columns}[T]
     \begin{column}{0.42\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-2}{6}{-6}{6}
-        \draw[very thick, forest!55, dashed] (-2,-2)--(6,6);
-        \draw[very thick, forest] (-1,-6)--(5,6);
-        \fill[charcoal] (0,-4) circle (3pt) node[left, font=\tiny]{$(0,-4)$};
+      \begin{tikzpicture}[scale=0.4]
+        \lgrid{-3}{5}{-5}{3}
+        \draw[navy, dashed, thick] (1,-5)--(1,3);
+        \begin{scope}\clip (-3,-5) rectangle (5,3);
+          \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
+        \end{scope}
+        \fill[charcoal] (1,-4) circle (3.5pt) node[below right, font=\tiny]{$(1,-4)$};
+        \fill[charcoal] (-1,0) circle (3.5pt);
+        \fill[charcoal] (3,0) circle (3.5pt);
+        \fill[charcoal] (0,-3) circle (3.5pt);
       \end{tikzpicture}
     \end{column}
-    \begin{column}{0.58\textwidth}
-      From $y=x$ to $y = 2x - 4$:
+  \end{columns}
+\end{frame}
+
+% PARENT + TRANSFORMATIONS
+\begin{frame}[t, plain]
+  \forestheader{The parent $y=x^2$ and its four moves}
+  \sectionlabel{Transformations}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \footnotesize
       \begin{itemize}\setlength{\itemsep}{5pt}
-        \item vertical \textbf{stretch} by $2$ \; ($kf(x)$): slope $1 \to 2$;
-        \item \textbf{shift down} $4$ \; ($f(x)+k$): intercept $0 \to -4$.
+        \item $f(x)+k$: shift \textbf{up} $k$ (down if $k<0$)
+        \item $f(x-h)$: shift \textbf{right} $h$ --- \emph{sign flips!}
+        \item $a\,f(x)$: \textbf{narrower} if $|a|>1$, wider if $|a|<1$
+        \item $-f(x)$: \textbf{reflect} over the $x$-axis
       \end{itemize}
-      {\footnotesize A negative slope also \textbf{reflects} over the $x$-axis.}
+      \vspace{4pt}
+      Together: $a(x-h)^2+k$ has vertex $(h,k)$.
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-3}{5}{-5}{5}
+        \begin{scope}\clip (-3,-5) rectangle (5,5);
+          \draw[very thick, forest!45, domain=-2.2:2.2, samples=60, smooth] plot (\x,{(\x)*(\x)});
+          \draw[very thick, forest, domain=-1.2:3.2, samples=70, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
+        \end{scope}
+        \fill[forest!55] (0,0) circle (3pt);
+        \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\tiny]{$(1,-4)$};
+        \draw[->, navy, thick] (0.2,-0.3) -- (0.8,-3.5);
+      \end{tikzpicture}\\
+      {\tiny parent (light) $\to$ right $1$, down $4$}
     \end{column}
   \end{columns}
-  \vspace{2pt}
-  \begin{block}{Big idea}
-    $kf(x)$ and $f(x)+k$ will graph \emph{every} function family this year.
-  \end{block}
+\end{frame}
+
+% VERTEX FORM
+\begin{frame}[t, plain]
+  \forestheader{Vertex form: $a(x-h)^2+k$}
+  \sectionlabel[goldacc]{Reads out the vertex}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      For $f(x)=(x-1)^2-4$:
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $a=1,\ h=1,\ k=-4$
+        \item \textbf{Vertex} $(h,k)=(1,-4)$; \textbf{axis} $x=1$
+        \item $a>0 \Rightarrow$ opens \textbf{up}, \textbf{min} value $-4$
+        \item Expand: $(x-1)^2-4 = x^2-2x-3$
+      \end{itemize}
+      \vspace{4pt}
+      \begin{block}{Watch the sign}
+        $(x-1)$ makes the square zero at $x=1$, so the vertex sits at $x=+1$ --- \emph{not} $-1$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-3}{5}{-5}{3}
+        \draw[navy, dashed, thick] (1,-5)--(1,3);
+        \begin{scope}\clip (-3,-5) rectangle (5,3);
+          \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
+        \end{scope}
+        \fill[charcoal] (1,-4) circle (3.5pt) node[below right, font=\tiny]{$(1,-4)$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% STANDARD FORM
+\begin{frame}[t, plain]
+  \forestheader{Standard form: $ax^2+bx+c$}
+  \sectionlabel{Find the hidden vertex}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      For $f(x)=x^2-6x+5$:
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Axis:} $x=-\dfrac{b}{2a}=-\dfrac{-6}{2}=3$
+        \item \textbf{Vertex:} $f(3)=9-18+5=-4 \Rightarrow (3,-4)$
+        \item \textbf{$y$-intercept:} $(0,c)=(0,5)$
+      \end{itemize}
+      \vspace{4pt}
+      \begin{block}{Why $-\tfrac{b}{2a}$?}
+        The axis is the \emph{average} of two symmetric points --- the midpoint of the parabola.
+      \end{block}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-1}{7}{-5}{6}
+        \draw[navy, dashed, thick] (3,-5)--(3,6);
+        \begin{scope}\clip (-1,-5) rectangle (7,6);
+          \draw[very thick, forest, domain=-0.2:6.2, samples=80, smooth] plot (\x,{(\x)*(\x) - 6*(\x) + 5});
+        \end{scope}
+        \fill[charcoal] (3,-4) circle (3.5pt);
+        \fill[charcoal] (0,5) circle (3.5pt);
+        \fill[charcoal] (1,0) circle (3.5pt);
+        \fill[charcoal] (5,0) circle (3.5pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% INTERCEPT FORM
+\begin{frame}[t, plain]
+  \forestheader{Intercept form: $a(x-p)(x-q)$}
+  \sectionlabel[goldacc]{Reads out the zeros}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      For $f(x)=(x+1)(x-3)$:
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Zeros:} set each factor $=0 \Rightarrow x=-1,\ 3$
+        \item \textbf{Axis:} halfway between, $x=\dfrac{-1+3}{2}=1$
+        \item \textbf{Vertex:} $f(1)=(2)(-2)=-4 \Rightarrow (1,-4)$
+      \end{itemize}
+      \vspace{6pt}
+      Same curve again --- the three costumes of $x^2-2x-3$.
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-3}{5}{-5}{3}
+        \draw[navy, dashed, thick] (1,-5)--(1,3);
+        \begin{scope}\clip (-3,-5) rectangle (5,3);
+          \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x+1)*(\x-3)});
+        \end{scope}
+        \fill[charcoal] (-1,0) circle (3.5pt) node[above left, font=\tiny]{$-1$};
+        \fill[charcoal] (3,0) circle (3.5pt) node[above right, font=\tiny]{$3$};
+        \fill[charcoal] (1,-4) circle (3.5pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % ROADMAP
 \begin{frame}[t, plain]
-  \forestheader{Where Unit 2 goes next}
-  \sectionlabel{Connections}
-  \textbf{Today:} slope as a rate; slope-intercept, point-slope, and standard form; writing
-  equations; graphing by transforming $y=x$.\\[8pt]
-  \begin{itemize}\setlength{\itemsep}{4pt}
-    \item \textbf{2.2} Absolute value equations \& inequalities.
-    \item \textbf{2.3} Absolute value functions \& transformations (the V-shape).
-    \item \textbf{2.4} Piecewise-defined functions.
-    \item \textbf{2.5} Linear regression.
+  \forestheader{Which form for which feature?}
+  \sectionlabel{Summary}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item \textbf{Vertex form} $a(x-h)^2+k$ $\Rightarrow$ vertex $(h,k)$, axis $x=h$.
+    \item \textbf{Standard form} $ax^2+bx+c$ $\Rightarrow$ $y$-intercept $(0,c)$, axis $x=-\tfrac{b}{2a}$.
+    \item \textbf{Intercept form} $a(x-p)(x-q)$ $\Rightarrow$ zeros $p,q$, axis $x=\tfrac{p+q}{2}$.
   \end{itemize}
+  \vspace{4pt}
+  \begin{block}{Next}
+    \textbf{2.2 Solving by factoring} --- how to \emph{produce} the factored form so we can find zeros
+    from standard form by hand.
+  \end{block}
 \end{frame}
 
 \end{document}

@@ -1,67 +1,79 @@
-%! Solving Quadratics by Factoring — Unit 3, Lesson 3.2 — Warm-Up (Answer Key)
+%! Advanced Factoring — Unit 3, Lesson 3.2 — Warm-Up (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.2}{Warm-Up --- Answer Key}
+\namedateperiod
 
 \vspace{0.10in}
 
 \begin{notesbox}{Getting Ready: Skills We'll Use Today}
-\small These skills power today's lesson on factoring and solving. Work quickly.
+\small Yesterday you multiplied polynomials \emph{forward}. Today you will run them \emph{backward}.
+These four skills are what that takes.
 
-\vspace{4pt}
-\textbf{1. Multiply it out (FOIL).} Today we will run this \emph{backward}, so warm up the forward move.
-\[
-  (x+2)(x+5)=\ans{$x^2+7x+10$} \qquad (x-4)(x+3)=\ans{$x^2-x-12$}
-\]
-\[
-  (2x-1)(x+3)=\ans{$2x^2+5x-3$}
-\]
+\vspace{5pt}
+\textbf{1. Greatest common factor.} The GCF of two monomials uses the largest common number and the
+\emph{lowest} power of each shared variable.
 
-\vspace{4pt}
-\textbf{2. The number game.} Find \emph{two integers} with the given product \textbf{and} sum. (Same
-signs when the product is positive; opposite signs when it is negative.)
+\vspace{2pt}
+GCF of $18$ and $24$: \ans{6} \qquad GCF of $12x^3$ and $18x^5$: \ans{$6x^3$} \qquad
+GCF of $10x^2y$ and $15xy^3$: \ans{$5xy$}
+
+\vspace{3pt}
+Factor it out: \; $10x^2 + 15x = $ \ans{$5x(2x+3)$}
+
+\vspace{6pt}
+\textbf{2. Factoring you already own} (from Lesson 2.2).
+
+\vspace{2pt}
+$x^2 + 7x + 12 = $ \ans{$(x+3)(x+4)$} \qquad $x^2 - 9 = $ \ans{$(x-3)(x+3)$}
+
+\vspace{3pt}
+Which one used the \emph{difference of squares} pattern $a^2-b^2=(a+b)(a-b)$? \ans{the second}
+
+\vspace{6pt}
+\textbf{3. A product from yesterday --- watch what survives.} Multiply, then collect like terms.
+
+\vspace{2pt}
+$(x + 2)(x^2 - 2x + 4)$
+
+\vspace{2pt}
+Six products: \ans{$x^3$} \, \ans{$-2x^2$} \, \ans{$4x$} \, \ans{$2x^2$} \, \ans{$-4x$} \,
+\ans{$8$}
+
+\vspace{3pt}
+Collected answer: \ans{$x^3+8$} \quad How many of the six terms survived? \ans{2}
+
+\vspace{6pt}
+\textbf{4. Perfect cubes.} Fill the table --- you will need these on sight today.
+
+\vspace{2pt}
 \begin{center}
 \renewcommand{\arraystretch}{1.4}
-\begin{tabular}{|l|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
- & product $12$, sum $7$ & product $-10$, sum $3$ & product $-12$, sum $-1$ \\ \hline
-two integers & \ans{$3,\ 4$} & \ans{$5,\ -2$} & \ans{$-4,\ 3$} \\ \hline
+$n$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \hline
+$n^3$ & \ans{1} & \ans{8} & \ans{27} & \ans{64} & \ans{125} \\ \hline
 \end{tabular}
 \end{center}
 
-\vspace{4pt}
-\textbf{3. Read the $x$-intercepts, then solve.} The parabola $y=(x+3)(x-1)$ is graphed below.
-\begin{center}
-\begin{minipage}{0.42\linewidth}\centering
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-4}{2}{-5}{3}
-  \begin{scope}\clip (-4,-5) rectangle (2,3);
-    \draw[very thick, forest, domain=-3.6:1.6, samples=75, smooth] plot (\x,{(\x+3)*(\x-1)});
-  \end{scope}
-  \fill[charcoal] (-3,0) circle (2.5pt);
-  \fill[charcoal] (1,0) circle (2.5pt);
-\end{tikzpicture}
-\end{minipage}%
-\begin{minipage}{0.55\linewidth}
-The graph crosses the $x$-axis at $x=\ans{$-3$}$ and $x=\ans{$1$}$.
-
-\vspace{4pt}
-Solve each tiny equation: \quad $x+3=0 \Rightarrow x=\ans{$-3$}$ \quad
-$x-1=0 \Rightarrow x=\ans{$1$}$.
-
 \vspace{2pt}
-{\small What do you notice about your two answers?} \ans{They match the $x$-intercepts!}
-\end{minipage}
-\end{center}
+Also: $(2x)^3 = $ \ans{$8x^3$} \qquad $(3y)^3 = $ \ans{$27y^3$}
+
 \end{notesbox}
+
+\begin{teachernote}
+Item~3 is the whole point of this Warm-Up: students \emph{derive} today's new identity before it is
+named. Debrief it aloud --- ask why four of the six terms vanished ($-2x^2$ with $+2x^2$, and $+4x$
+with $-4x$) --- because that pairwise cancellation is exactly why the sum of cubes has such a short
+answer. When you reach the cube identities in the notes, point back at this line: $(x+2)(x^2-2x+4)
+= x^3+8$ \emph{is} $a^3+b^3=(a+b)(a^2-ab+b^2)$ with $a=x$, $b=2$. Item~1's last two answers guard the
+year's most common GCF error --- taking the \emph{highest} shared power instead of the lowest.
+Item~4 takes ninety seconds but the cube identities are unusable without it.
+\end{teachernote}
 
 \end{document}

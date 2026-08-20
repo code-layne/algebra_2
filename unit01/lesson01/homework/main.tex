@@ -1,8 +1,12 @@
-%! Expressions and Operations — Unit 1, Lesson 1.1 — Homework
+%! Linear Functions: Slope, Forms \& Graphing — Unit 1, Lesson 1.1 — Homework
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -11,145 +15,95 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Every answer with exponents uses \textbf{positive} exponents only. Every radical is in
-\textbf{simplest form}. Every factorization is \textbf{complete}.
+Show your work. Keep standard form in integers with $A \ge 0$.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Translate.} Let $n$ be the number.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{@{}X l@{}}
-    \hline
-    (a) \; Twelve less than a number & \blank{3.4cm} \\
-    (b) \; The product of 8 and the quantity of a number plus 3 & \blank{3.4cm} \\
-    (c) \; The sum of a number and its square & \blank{3.4cm} \\
-    (d) \; Six less than the quotient of a number and 5 & \blank{3.4cm} \\
-    \hline
-    \end{tabularx}
-    \end{center}
-
-  \item \textbf{Evaluate.} Substitute first. Absolute value bars and radical signs are grouping
-        symbols --- finish the inside before you do anything else.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabularx}{\linewidth}{@{}l X l@{}}
-    \hline
-    \textbf{Expression} & \textbf{Substitute and simplify} & \textbf{Value} \\
-    \hline
-    (a) \; $x^2+6x-4$ at $x=-3$ & \blank{5.6cm} & \blank{1.4cm} \\
-    (b) \; $|4x-9|$ at $x=\tfrac12$ & \blank{5.6cm} & \blank{1.4cm} \\
-    (c) \; $\sqrt{2x+7}$ at $x=\tfrac92$ & \blank{5.6cm} & \blank{1.4cm} \\
-    (d) \; $\sqrt[3]{x}-2x$ at $x=-27$ & \blank{5.6cm} & \blank{1.4cm} \\
-    \hline
-    \end{tabularx}
-    \end{center}
-
-  \item \textbf{Laws of exponents.}
-    \begin{center}
-    \renewcommand{\arraystretch}{1.8}
-    \begin{tabular}{@{}l l@{}}
-    (a) \; $(4x^3)(3x^5)=$ \blank{3.0cm} &
-    (b) \; $(2a^4b)^3=$ \blank{3.0cm} \\
-    (c) \; \TallMath{\frac{x^7}{x^{-2}}} $=$ \blank{3.0cm} &
-    (d) \; $(5m^0n^2)^2=$ \blank{3.0cm} \\
-    (e) \; \TallMath{\frac{24a^3b^{-4}}{8a^{-1}b^2}} $=$ \blank{3.0cm} &
-    (f) \; \TallMath{\frac{10x^{-2}y^5}{15x^3y^{-1}}} $=$ \blank{3.0cm} \\
-    \end{tabular}
-    \end{center}
-
-  \item \textbf{Polynomial operations.}
-    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=7pt]
-      \item $(2x^2+7x-5)+(4x^2-3x+8)=$ \blank{5.6cm}
-      \item $(x^2-4x+9)-(5x^2-x-3)=$ \blank{5.6cm}
-      \item $(x-7)(x+7)=$ \blank{4.0cm} \quad Which pattern is this? \blank{4.0cm}
-      \item $(3x+2)(x^2-4x+5)=$ \blank{6.0cm}
+  \item \textbf{Slope from two points.} Compute each slope.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item $(2,3)$ and $(5,9)$:
+        \begin{work}
+          m &= \frac{9 - 3}{5 - 2} \\
+            &= \frac{6}{3}         \\
+            &= 2
+        \end{work}
+      \item $(-1,4)$ and $(3,-4)$:
+        \begin{work}
+          m &= \frac{-4 - 4}{3 - (-1)} \\
+            &= \frac{-8}{4}            \\
+            &= -2
+        \end{work}
     \end{enumerate}
 
-  \item \textbf{Factor completely.} Four of these six have a GCF to remove first --- and every one
-        of those four still factors after the GCF comes out.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.8}
-    \begin{tabular}{@{}l l@{}}
-    (a) \; $x^2+11x+24=$ \blank{4.2cm} &
-    (b) \; $4x^2-100=$ \blank{4.2cm} \\
-    (c) \; $x^2-3x-40=$ \blank{4.2cm} &
-    (d) \; $2x^3-8x=$ \blank{4.2cm} \\
-    (e) \; $5x^2+35x+50=$ \blank{4.2cm} &
-    (f) \; $3x^2-6x-24=$ \blank{4.2cm} \\
-    \end{tabular}
-    \end{center}
-    Pick any \emph{one} of the six and check it by expanding. Which did you pick, and does it check?
-    \blank{7.0cm}
+  \item \textbf{Write in slope-intercept form.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item Slope $4$, $y$-intercept $(0,-3)$: \quad $y = \blank{3.0cm}$
+      \item Slope $-3$, through $(2,1)$ --- use point-slope first, then simplify:
+        \begin{work}
+          y - 1 &= -3(x - 2) \\
+          y - 1 &= -3x + 6   \\
+              y &= -3x + 7
+        \end{work}
+    \end{enumerate}
 
-  \item \textbf{Divide.}
-    \begin{center}
-    \renewcommand{\arraystretch}{1.9}
-    \begin{tabular}{@{}l l@{}}
-    (a) \; \TallMath{\frac{18x^5-12x^3+6x^2}{6x^2}} $=$ \blank{3.0cm} &
-    (b) \; \TallMath{\frac{x^2+2x-35}{x+7}} $=$ \blank{2.4cm}, \; $x\ne$ \blank{1.2cm} \\
-    \end{tabular}
-    \end{center}
+  \item \textbf{Two points, all three forms.} Write the line through $(1,-1)$ and $(3,5)$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item Slope: $m = \blank{2.0cm}$ \qquad Point-slope: \blank{4.2cm}
+      \item Slope-intercept: \blank{3.2cm} \qquad Standard: \blank{3.2cm}
+    \end{enumerate}
 
-  \item \textbf{Radicals and rational exponents.} Simplify (a)--(d). For (e) and (f), rewrite the
-        expression in the \emph{other} notation.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.8}
-    \setlength{\tabcolsep}{3pt}
-    \begin{tabular}{@{}l l l@{}}
-    (a) \; $\sqrt{50}=$ \blank{2.2cm} &
-    (b) \; $\sqrt[3]{24}=$ \blank{2.2cm} &
-    (c) \; $4\sqrt3+7\sqrt3-\sqrt3=$ \blank{2.2cm} \\
-    (d) \; $\sqrt{20}+\sqrt{45}=$ \blank{2.2cm} &
-    (e) \; $\sqrt{13}=$ \blank{2.0cm} &
-    (f) \; $x^{1/3}=$ \blank{2.0cm} \\
-    \end{tabular}
-    \end{center}
-    Item (d) looked impossible at first, then worked. Why? \blank{7.0cm}
+  \item \textbf{Convert.} A line is given in standard form as $4x - 2y = 10$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item Rewrite it in slope-intercept form by solving for $y$:
+        \begin{work}
+          4x - 2y &= 10       \\
+             - 2y &= -4x + 10 \\
+                y &= 2x - 5
+        \end{work}
+      \item Its slope is \blank{1.8cm} and its $y$-intercept is $(0,\blank{1.0cm})$.
+    \end{enumerate}
 
-  \item \textbf{Explain.} A classmate claims two expressions are equivalent ``because I checked, and
-        they both give the same thing at $x=0$.'' Explain why that is not a proof --- and describe
-        what \emph{would} settle the question. Then give one pair of expressions that agree at
-        $x=0$ but are \emph{not} equivalent.
-        \writelines{4}
+  \item \textbf{Transform the parent $y = x$.} Describe the stretch/reflection and the shift that
+        produce each line.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item $y = 3x$: \blank{6.0cm}
+      \item $y = -x + 4$: \blank{6.0cm}
+    \end{enumerate}
+
+  \item \textbf{Write from a graph.} Read two lattice points off the line, then write its equation
+        in slope-intercept form.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.5]
+      \lgrid{-2}{4}{-4}{4}
+      \draw[very thick, forest] (-1.5,4)--(2.5,-4);
+      \fill[charcoal] (0,1) circle (3pt);
+      \fill[charcoal] (1,-1) circle (3pt);
+    \end{tikzpicture}
+    \end{center}
+    Slope $= \blank{1.8cm}$; \quad $y$-intercept $= \blank{1.8cm}$; \quad equation
+    $y = \blank{3.0cm}$.
+
+  \item \textbf{Explain.} Two \emph{different} lines are parallel. What must be true about their
+        slopes, and what must be different about their equations in slope-intercept form?
+        \writelines{3}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{The equivalence audit.} For each pair, decide. If they \textbf{are} equivalent, prove it
-with algebra --- rewrite one side until it becomes the other. If they are \textbf{not}, kill it with
-a single value of $x$ and show the arithmetic. One row is trickier than it looks.
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}c l l X@{}}
-\hline
- & \textbf{First} & \textbf{Second} & \textbf{Proof, or one disproving value} \\
-\hline
-(a) & $(x-4)^2$ & $x^2-16$ & \blank{6.0cm} \\
-(b) & $(x+2)(x-5)$ & $x^2-3x-10$ & \blank{6.0cm} \\
-(c) & $\sqrt{x^2}$ & $x$ & \blank{6.0cm} \\
-(d) & \TallMath{\frac{2x+6}{2}} & $x+3$ & \blank{6.0cm} \\
-(e) & \TallMath{\frac{x^2-9}{x-3}} & $x+3$ & \blank{6.0cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\begin{enumerate}[label=(\arabic*), leftmargin=1.9em, itemsep=5pt]
-  \item Row (c) fails for \emph{every} negative $x$. Write the rule that actually describes
-        $\sqrt{x^2}$ for all real $x$. \blank{5.0cm}
-  \item Row (e) is the tricky one: the two agree everywhere \emph{except} at one value of $x$, where
-        one of them does not exist at all. Which value, and which expression breaks?
-        \writeline
-  \item So ``equivalent'' has a hidden requirement you have been using all along without saying it.
-        State it. \writeline
+\textbf{Parallel, perpendicular, and a model.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item A line is $y = \tfrac{1}{3}x - 2$. Write the line \emph{parallel} to it through $(0,4)$, and
+        the line \emph{perpendicular} to it through $(0,4)$.
+  \item A gym charges a \$20 joining fee plus \$15 per month: $C(m) = 15m + 20$. Interpret the slope
+        and the $y$-intercept in context, and find the total cost after $6$ months.
 \end{enumerate}
+\writelines{3}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 1.2: Equations and Inequalities.} The second Algebra 1 domain area,
-and every rewriting rule from today goes straight to work there. Distributing clears the
-parentheses; combining like terms collapses the sides; the \emph{zero product property} from Lesson
-1.0 turns your factoring into a way to \textbf{solve} quadratics --- which is exactly why
-``factored'' is not good enough and ``factored \emph{completely}'' is. And when the quadratic
-formula appears, the radical it hands you will be one you now know how to simplify.
+\textbf{Coming next --- Lesson 1.2: Absolute Value Equations \& Inequalities.} You can now write and
+rewrite \emph{linear} equations. Next we solve equations and inequalities that hide a linear
+expression \emph{inside} absolute-value bars, such as $|2x - 3| = 7$ --- the algebra that Lesson~1.3
+turns into the V-shaped graph.
 \end{spiralbox}
 
 \end{document}

@@ -1,4 +1,4 @@
-%! $n$th Roots \& Rational Exponents — Unit 6, Lesson 6.1 — Slides (Beamer)
+%! Exponential Growth and Decay — Unit 6, Lesson 6.1 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -6,11 +6,11 @@
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
-% Cube root: pgfmath has no cbrt, so plot the two branches separately.
-\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
-  plot (\x,{pow(\x,1/3)});}
-\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
-  plot (\x,{-pow(-1*(\x),1/3)});}
+% Exponentials are plotted as a*e^{(ln b)x}: pgfmath's pow() is unreliable for negative and
+% fractional exponents, but exp() is not. #2 is ln(b).
+% ln2 = 0.693147   ln3 = 1.098612
+\newcommand{\expcurve}[4]{\draw[very thick, forest, domain=#3:#4, samples=120, smooth]
+  plot (\x,{#1*exp((#2)*(\x))});}
 
 \begin{document}
 
@@ -21,277 +21,291 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 6.1}\\[0.5cm]
-    {\color{white}\bfseries\LARGE $n$th Roots \& Rational Exponents}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6: Radical Functions}
+    {\color{white}\bfseries\LARGE Exponential Growth and Decay}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 6: Exponential Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{A problem you cannot do --- yet}
+  \forestheader{Two towns, the same population, two very different plans}
   \sectionlabel{Hook}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{ll}
+  \hline
+  \textbf{Riverton} & $8{,}000$ people today. \emph{``We expect to gain $300$ people every year.''} \\
+  \textbf{Kellsboro} & $8{,}000$ people today. \emph{``We expect to grow by $4\%$ every year.''} \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Which one \emph{adds}? Which one \emph{multiplies}?
+        \item Kellsboro grows $4\%$ this year, then $4\%$ again next year --- of \textbf{what}?
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Try the obvious model}
+        $P(t)=8000(0.04)^{t}$ \quad$\Rightarrow$\quad $P(1)=320$ people. \\[3pt]
+        A town of $8{,}000$ does not grow to $320$. So $0.04$ is \textbf{not} the base.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE JOB
+\begin{frame}[t, plain]
+  \forestheader{Building a model means finding exactly two numbers}
+  \sectionlabel{The job}
   \begin{columns}[T]
     \begin{column}{0.46\textwidth}
-      \[ \sqrt{x}\cdot\sqrt[3]{x} \;=\; ? \]
+      \[ y = a\,b^{\,x} \]
       \begin{itemize}\setlength{\itemsep}{5pt}
-        \item Every radical rule you know needs the two \textbf{indices to match}.
-        \item These do not. There is no move to make.
+        \item $a$ --- the \textbf{initial value}: the output at $x=0$, and the $y$-intercept.
+        \item $b$ --- the \textbf{factor}: what you \textbf{multiply} by for each one-unit step.
       \end{itemize}
+      \vspace{4pt}
+      {\footnotesize Yesterday you \emph{read} $a$ and $b$ off a graph. Today you \emph{write} them in.}
     \end{column}
     \begin{column}{0.50\textwidth}
-      \begin{block}{So try the other direction}
-        What number, squared, gives $a$? \; $\sqrt{a}$. \\[4pt]
-        Now suppose $a^{1/2}$ meant \emph{something}. Power to a power says
-        \[ \left(a^{1/2}\right)^{2} = a^{\frac12\cdot 2} = a^{1} = a . \]
+      \begin{block}{Three places a model comes from}
+        \begin{enumerate}\setlength{\itemsep}{3pt}
+          \item A \textbf{table} --- hands you both numbers directly.
+          \item \textbf{Two points} --- dividing recovers $b$.
+          \item A \textbf{sentence} --- gives a \emph{percent}, which must be translated.
+        \end{enumerate}
       \end{block}
       \vspace{2pt}
-      {\footnotesize Nobody \emph{chose} this. If the exponent rules are going to keep working,
-      $a^{1/2}$ has \textbf{no choice} but to be $\sqrt{a}$.}
+      {\footnotesize Only the third one is hard. It is the whole lesson.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% nTH ROOTS + PRINCIPAL ROOT
+% FROM A TABLE
 \begin{frame}[t, plain]
-  \forestheader{$n$th roots --- and why the symbol gives you only one of them}
-  \sectionlabel{Definition}
-  \begin{columns}[T]
-    \begin{column}{0.44\textwidth}
-      $\sqrt[n]{a}=b$ \; means \; $b^{n}=a$.
-      \vspace{4pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $4^{2}=16$ \emph{and} $(-4)^{2}=16$ --- so $16$ has \textbf{two} real square roots.
-        \item The symbol returns the \textbf{principal} (non-negative) one.
-      \end{itemize}
-      \vspace{3pt}
-      {\footnotesize $\sqrt{16}=4$, \; $-\sqrt{16}=-4$, \; $\pm\sqrt{16}=\pm4$. \\
-      Want both? \textbf{Write the $\pm$ yourself.}}
-    \end{column}
-    \begin{column}{0.54\textwidth}
-      \begin{block}{How many real $n$th roots?}
-        \footnotesize
-        \begin{tabular}{lll}
-        \textbf{Index} & \textbf{Radicand} & \textbf{Real roots} \\
-        \hline
-        even & $a>0$ & two ($\pm$) \\
-        even & $a=0$ & one \\
-        even & $a<0$ & \textbf{none} \\
-        odd  & any   & exactly one, same sign as $a$ \\
-        \end{tabular}
-      \end{block}
-      \vspace{2pt}
-      {\footnotesize \textbf{Why:} an even power is never negative, so nothing real is an even root of
-      a negative. An odd power \emph{keeps} the sign. \\
-      \textcolor{goldacc}{\textbf{This is yesterday's domain rule, finally proved.}}}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% THE ABSOLUTE VALUE TRAP
-\begin{frame}[t, plain]
-  \forestheader{The trap: $\sqrt[n]{a^{n}}$ is not always $a$}
-  \sectionlabel[goldacc]{$|a|$ or $a$?}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \begin{itemize}\setlength{\itemsep}{6pt}
-        \item $\sqrt{5^{2}} = \sqrt{25} = 5$ \quad {\footnotesize (fine)}
-        \item $\sqrt{(-5)^{2}} = \sqrt{25} = \textbf{5}$ \quad
-              {\footnotesize \textcolor{keyred}{not $-5$!}}
-        \item $\sqrt[3]{(-5)^{3}} = \sqrt[3]{-125} = -5$ \quad {\footnotesize (fine)}
-      \end{itemize}
-      \vspace{4pt}
-      {\footnotesize The square \textbf{destroyed} the sign, and the principal root refuses to put it
-      back.}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{The rule}
-        \centering
-        $n$ \textbf{even}: \; $\sqrt[n]{a^{n}} = |a|$ \\[5pt]
-        $n$ \textbf{odd}: \; $\sqrt[n]{a^{n}} = a$
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize So $\sqrt{x^{2}}=|x|$ --- unless we are \emph{told} $x>0$.
-      That is why most problems say ``assume all variables are positive.''}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% a^(1/n)
-\begin{frame}[t, plain]
-  \forestheader{A radical \emph{is} an exponent}
-  \sectionlabel[goldacc]{$\sqrt[n]{a}=a^{1/n}$}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      The exponent rules force it:
-      \[ \left(a^{1/n}\right)^{n} = a^{\frac{1}{n}\cdot n} = a^{1} = a \]
-      \vspace{-4pt}
-      \begin{block}{Therefore}
-        \centering $\displaystyle \sqrt[n]{a} = a^{1/n}$ \\[3pt]
-        {\footnotesize the \textbf{index} becomes the \textbf{denominator}}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item $\sqrt{7}=7^{1/2}$ \qquad $\sqrt[3]{x}=x^{1/3}$
-        \item $m^{1/4}=\sqrt[4]{m}$ \qquad $64^{1/3}=\sqrt[3]{64}=4$
-        \item $\sqrt[5]{2y}=(2y)^{1/5}$
-      \end{itemize}
-      \vspace{5pt}
-      {\footnotesize \textbf{Watch the parentheses:} $2y^{1/5}$ and $(2y)^{1/5}$ are different --- in
-      the first, only the $y$ is under the root.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% a^(m/n)
-\begin{frame}[t, plain]
-  \forestheader{Denominator roots, numerator powers}
-  \sectionlabel[goldacc]{$a^{m/n}$}
+  \forestheader{From a table: $a$ is a column, $b$ is a ratio}
+  \sectionlabel[goldacc]{Source 1}
   \begin{center}
-    \begin{minipage}{0.86\textwidth}
-      \begin{block}{The rule}
-        \centering
-        $\displaystyle a^{m/n} \;=\; \sqrt[n]{a^{m}} \;=\; \left(\sqrt[n]{a}\right)^{m}$ \\[4pt]
-        {\footnotesize \textbf{denominator} $=$ the index (the root) \qquad
-        \textbf{numerator} $=$ the power}
-      \end{block}
-    \end{minipage}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+  $y$ & $3$ & $12$ & $48$ & $192$ & $768$ \\ \hline
+  \end{tabular}
   \end{center}
   \vspace{4pt}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \footnotesize
       \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $\sqrt[4]{x^{3}} = x^{3/4}$
-        \item $\left(\sqrt[3]{x}\right)^{7} = x^{7/3}$
-        \item $y^{2/5} = \sqrt[5]{y^{2}}$ \qquad $w^{5/2}=\sqrt{w^{5}}$
+        \item $a=3$ --- straight off the $x=0$ column.
+        \item $\dfrac{12}{3}=\dfrac{48}{12}=\dfrac{192}{48}=4$, so $b=4$.
+        \item $y = 3\cdot 4^{x}$
       \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{The error of the day}
-        $\sqrt[4]{x^{3}}$ is $x^{3/4}$, \textbf{never} $x^{4/3}$. \\[3pt]
-        {\footnotesize The index is on the \emph{bottom} because it came from $\frac{1}{n}$.}
+      \begin{block}{Always check a row you did not use}
+        $x=4$: \; $3\cdot4^{4}=768$ \checkmark \\[3pt]
+        {\scriptsize And always divide \emph{later} by \emph{earlier} --- upside down turns decay
+        into growth.}
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-% ROOT FIRST + NEGATIVE EXPONENTS
+% PERCENT TO FACTOR
 \begin{frame}[t, plain]
-  \forestheader{Take the root first --- and a minus sign is not a minus sign}
-  \sectionlabel{Evaluating}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \footnotesize
-      \begin{tabular}{lll}
-      \hline
-       & \textbf{Power first} & \textbf{Root first} \\
-      \hline
-      $8^{2/3}$ & $\sqrt[3]{64}=4$ & $\left(\sqrt[3]{8}\right)^{2}=2^{2}=4$ \\
-      $16^{3/4}$ & $\sqrt[4]{4096}=8$ & $\left(\sqrt[4]{16}\right)^{3}=2^{3}=8$ \\
-      \hline
-      \end{tabular}
-      \vspace{5pt}
+  \forestheader{From a sentence: a percent is not a base}
+  \sectionlabel[goldacc]{Source 2 --- the translation}
+  \begin{center}
+    Up $8\%$ $\Rightarrow$ you now have $\mathbf{108\%}$ of what you had $\Rightarrow$ multiply by
+    $\mathbf{1.08}$ \\[3pt]
+    Down $15\%$ $\Rightarrow$ you now have $\mathbf{85\%}$ $\Rightarrow$ multiply by $\mathbf{0.85}$
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    \Large $\textbf{Growth: } b = 1+r \qquad\qquad \textbf{Decay: } b = 1-r$
+  \end{center}
+  \vspace{6pt}
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{llll}
+  \hline
+  \textbf{The sentence says\dots} & \textbf{$r$} & \textbf{Direction} & \textbf{$b$} \\
+  \hline
+  increases by $3.5\%$ each year & $0.035$ & grows & $1.035$ \\
+  loses $40\%$ of it each hour & $0.40$ & shrinks & $0.60$ \\
+  $100\%$ of it remains each day & $0$ & neither & $1$ --- the \emph{illegal} base from 6.0 \\
+  \textbf{doubles} each year & $1$ & grows & $2$ \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{frame}
 
-      {\footnotesize Both are correct. Only one is arithmetic you can do in your head ---
-      \textcolor{goldacc}{\textbf{choosing the easy route is the skill.}}}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Negative rational exponents}
-        \centering $\displaystyle a^{-m/n} = \frac{1}{a^{m/n}}$
+% THE TWO ERRORS
+\begin{frame}[t, plain]
+  \forestheader{The two errors everybody makes today}
+  \sectionlabel{Watch out}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{``Up $8\%$'' written as $b=0.08$}
+        $0.08 < 1$, so this is a \textbf{decay} model. \\[3pt]
+        It says only $8\%$ survives each step --- a $\mathbf{92\%}$ \textbf{loss}, not an $8\%$ gain.
       \end{block}
-      \vspace{2pt}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $16^{-1/2} = \dfrac{1}{4}$ \quad
-              \textcolor{keyred}{\textbf{not $-4$}}
-        \item $27^{-2/3} = \dfrac{1}{3^{2}} = \dfrac{1}{9}$
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{``Down $15\%$'' written as $b=1.15$}
+        $1.15 > 1$, so this \textbf{grows}. \\[3pt]
+        It models a $15\%$ \textbf{increase} --- the right size, the wrong direction.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \begin{center}
+    \Large The base is the fraction you \textbf{end up with}, \\[3pt]
+    never the percent that \emph{changed}.
+  \end{center}
+  \vspace{6pt}
+  \begin{center}
+    {\footnotesize \textbf{Two-second check:} is $b$ on the correct side of $1$?
+    Growth needs $b>1$; decay needs $0<b<1$.}
+  \end{center}
+\end{frame}
+
+% STORY TO MODEL
+\begin{frame}[t, plain]
+  \forestheader{Three moves, every single time}
+  \sectionlabel[goldacc]{Story $\to$ model $\to$ story}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Growth.} A town of $12{,}000$ grows $3\%$ a year.
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $a=12{,}000$
+        \item $r=0.03 \Rightarrow b=1.03$
+        \item $P(t)=12{,}000(1.03)^{t}$
+        \item $P(10)=12{,}000(1.3439)\approx \mathbf{16{,}127}$
       \end{itemize}
       \vspace{3pt}
-      {\footnotesize The minus sign \textbf{moves} the expression downstairs. It does not change its
-      sign.}
+      {\footnotesize \emph{In ten years the town will have about $16{,}127$ people.}}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Decay.} A \$$24{,}000$ car loses $12\%$ a year.
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $a=24{,}000$
+        \item $r=0.12 \Rightarrow b=0.88$
+        \item $V(t)=24{,}000(0.88)^{t}$
+        \item $V(5)=24{,}000(0.5277)\approx \mathbf{\$12{,}666}$
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize \emph{Why $0.88$ and not $0.12$? Because $0.12$ is what it \textbf{loses};
+      $b$ is what \textbf{remains}.}}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{center}
+    {\footnotesize A number alone is not an answer. \textbf{Interpret it in a sentence} --- that is
+    the standard being assessed.}
+  \end{center}
+\end{frame}
+
+% TWO POINTS
+\begin{frame}[t, plain]
+  \forestheader{From two points: dividing makes $a$ disappear}
+  \sectionlabel[goldacc]{Source 3}
+  \begin{columns}[T]
+    \begin{column}{0.38\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-4}{4}{-1}{9}
+        \begin{scope}
+          \clip (-4,-1) rectangle (4,9);
+          \expcurve{2}{0.693147}{-4}{2.17}
+        \end{scope}
+        \draw[navy, dashed, thick] (-4,0)--(4,0);
+        \fill[charcoal] (-1,1) circle (4pt) node[below right, font=\tiny]{$(-1,1)$};
+        \fill[charcoal] (2,8) circle (4pt) node[left, font=\tiny]{$(2,8)$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      Both points into $y=ab^{x}$: \quad $1=a\,b^{-1}$ \; and \; $8=a\,b^{2}$.
+      \[ \frac{8}{1} = \frac{a\,b^{2}}{a\,b^{-1}} = b^{\,3} \quad\Rightarrow\quad b=2 \]
+      Then back-substitute: \; $8=a\cdot 2^{2}$, so $a=2$, giving $y=2\cdot2^{x}$. \\[4pt]
+      Check against the graph: it should cross the $y$-axis at $(0,2)$ --- and it does.
+      \vspace{3pt}
+      \begin{block}{The part everyone drops}
+        The exponent $3$ is the \textbf{gap} between the $x$-values, $2-(-1)$ --- not one of them.
+        And finding $b$ is only half the job; $a$ still has to come back.
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-% THE PAYOFF
+% RUN IT BACKWARDS
 \begin{frame}[t, plain]
-  \forestheader{The payoff: every exponent property now works on radicals}
-  \sectionlabel[goldacc]{Why the notation exists}
-  \begin{columns}[T]
-    \begin{column}{0.40\textwidth}
-      \footnotesize
-      \begin{tabular}{ll}
-      \hline
-      Product & $a^{r}a^{s}=a^{r+s}$ \\
-      Quotient & $a^{r}/a^{s}=a^{r-s}$ \\
-      Power & $\left(a^{r}\right)^{s}=a^{rs}$ \\
-      Negative & $a^{-r}=1/a^{r}$ \\
-      \hline
-      \end{tabular}
-      \vspace{5pt}
+  \forestheader{Run the translation backwards to read any model}
+  \sectionlabel{Interpret}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{llll}
+  \hline
+  \textbf{Model} & \textbf{Starts at} & \textbf{Rate} & \textbf{Direction} \\
+  \hline
+  $y=500(1.045)^{t}$ & $500$ & $4.5\%$ & increase \\
+  $y=2200(0.91)^{t}$ & $2200$ & $9\%$ & decrease \\
+  $y=75(2)^{t}$ & $75$ & $100\%$ & increase --- it doubles \\
+  $y=1000(1.005)^{t}$ & $1000$ & $0.5\%$ & increase \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{8pt}
+  \begin{center}
+    Subtract from $1$ or subtract $1$: \; $0.91 \Rightarrow 1-0.91 = 0.09 \Rightarrow 9\%$
+    \textbf{down}; \quad $1.045 \Rightarrow 1.045-1 = 0.045 \Rightarrow 4.5\%$ \textbf{up}.
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    {\footnotesize This is the skill Lesson 6.5 needs: technology will hand you $a$ and $b$, and you
+    have to say what they \emph{mean}.}
+  \end{center}
+\end{frame}
 
-      {\footnotesize None of them ever cared whether the exponent was a whole number.}
-    \end{column}
-    \begin{column}{0.56\textwidth}
-      \begin{block}{Back to the Hook}
-        \centering
-        $\displaystyle \sqrt{x}\cdot\sqrt[3]{x} = x^{1/2}\cdot x^{1/3} = x^{5/6} = \sqrt[6]{x^{5}}$
-      \end{block}
-      \vspace{3pt}
+% LINEAR VS EXPONENTIAL
+\begin{frame}[t, plain]
+  \forestheader{Same first step, completely different futures}
+  \sectionlabel{Compare \& contrast}
+  \begin{center}
+    A $240$-gallon tank. \textbf{Leak A} loses $60$ gallons a day. \textbf{Leak B} loses $25\%$ a day.
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.35}
+  \begin{tabular}{|l|c|c|c|c|c|c|}
+  \hline
+  Day $d$ & $0$ & $1$ & $2$ & $3$ & $4$ & $14$ \\ \hline
+  $A(d)=240-60d$ & $240$ & $180$ & $120$ & $60$ & $0$ & $-600$ \\ \hline
+  $B(d)=240(0.75)^{d}$ & $240$ & $180$ & $135$ & $101.25$ & $75.94$ & $4.28$ \\ \hline
+  \end{tabular}
+  \end{center}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
       \footnotesize
       \begin{itemize}\setlength{\itemsep}{3pt}
-        \item $\dfrac{x^{3/4}}{x^{1/2}} = x^{1/4}$ \qquad $\left(x^{2/3}\right)^{6} = x^{4}$
-        \item $\left(8x^{6}\right)^{1/3} = 2x^{2}$
-        \item $\sqrt{\sqrt[3]{x}} = x^{1/6}$ \quad {\footnotesize (the indices \emph{multiply})}
+        \item Day 1 is \textbf{identical} --- $25\%$ of $240$ \emph{is} $60$.
+        \item After that A keeps subtracting $60$; B takes $25\%$ of a shrinking number: $45$, $33.75$, $25.31$.
       \end{itemize}
-      \vspace{2pt}
-      {\footnotesize Mismatched indices are a dead end as radicals --- and one line as exponents.}
     \end{column}
-  \end{columns}
-\end{frame}
-
-% BACK TO 6.0 — DOMAIN
-\begin{frame}[t, plain]
-  \forestheader{Yesterday's graphs, relabeled}
-  \sectionlabel[goldacc]{The denominator decides}
-  \begin{columns}[T]
-    \begin{column}{0.30\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.26]
-        \lgrid{-2}{9}{-2}{4}
-        \begin{scope}
-          \clip (-2,-2) rectangle (9,4);
-          \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
-        \end{scope}
-        \fill[forest] (0,0) circle (6pt);
-      \end{tikzpicture}\\[2pt]
-      {\footnotesize $y=x^{1/2}$ --- domain $[0,\infty)$}
-    \end{column}
-    \begin{column}{0.30\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.26]
-        \lgrid{-8}{8}{-3}{3}
-        \begin{scope}
-          \clip (-8,-3) rectangle (8,3);
-          \cbrtpos{0}{8}
-          \cbrtneg{-8}{0}
-        \end{scope}
-      \end{tikzpicture}\\[2pt]
-      {\footnotesize $y=x^{1/3}$ --- all reals}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \begin{block}{The rule, in exponent language}
-        In $x^{m/n}$ (lowest terms): \\[3pt]
-        \textbf{even} denominator $\Rightarrow$ domain $x\ge0$ \\[3pt]
-        \textbf{odd} denominator $\Rightarrow$ all reals
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Constant difference vs.\ constant ratio}
+        A hits zero on day 4 and then goes \emph{negative} --- impossible. B has an asymptote at $0$
+        and \textbf{never} gets there.
       \end{block}
-      \vspace{2pt}
-      {\footnotesize The \emph{numerator} never restricts anything. \\[3pt]
-      ``Even index restricts the domain'' and ``even denominator restricts the domain'' are the
-      \textbf{same sentence} --- because the denominator \emph{is} the index.}
     \end{column}
   \end{columns}
 \end{frame}
@@ -300,18 +314,20 @@
 \begin{frame}[t, plain]
   \forestheader{Where Unit 6 goes next}
   \sectionlabel{Connections}
-  \textbf{Today:} $\sqrt[n]{a}=a^{1/n}$ and $a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}$ ---
-  which hands every exponent property to radicals, and gives yesterday's domain rule its algebraic
-  proof.\\[8pt]
+  \textbf{Today:} build $y=ab^{x}$ from a table, from two points, and from a sentence --- translating
+  a percent rate $r$ into a factor $b=1\pm r$ --- then evaluate the model and interpret the result in
+  context.\\[8pt]
   \begin{itemize}\setlength{\itemsep}{3pt}
-    \item \textbf{6.2} Simplifying radicals; adding \& subtracting like radicals.
-    \item \textbf{6.3} Multiplying \& dividing; rationalizing with conjugates.
-    \item \textbf{6.4} Graphing radical functions \& transformations.
-    \item \textbf{6.5} Solving radical equations \& extraneous solutions.
-    \item \textbf{6.6} Composition of functions.
-    \item \textbf{6.7} Inverse functions --- where ``raise both sides to the reciprocal power''
-          becomes a method.
+    \item \textbf{6.2} Graphing \& transformations --- $f(x)+k$ is the one that \emph{moves the asymptote}, and $2^{-x}=\left(\frac12\right)^{x}$ becomes the reflection rule.
+    \item \textbf{6.3} Solving with a common base.
+    \item \textbf{6.4} Compound interest, half-life, and $e$ --- ending on an equation we cannot yet solve.
+    \item \textbf{6.5} Exponential regression --- technology hands you $a$ and $b$; today is why that means anything.
   \end{itemize}
+  \vspace{6pt}
+  \begin{center}
+    {\footnotesize Tonight's extension already hits the wall: $20{,}000(0.98)^{t}=12{,}000(1.05)^{t}$
+    has no common base. Read it off a table --- for now.}
+  \end{center}
 \end{frame}
 
 \end{document}

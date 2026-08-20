@@ -1,9 +1,11 @@
-%! Direct, Inverse \& Joint Variation — Unit 5, Lesson 5.7 — Homework (Answer Key)
+%! Inverse Functions — Unit 5, Lesson 5.7 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\mexp}[1]{{\color{keyred}#1}}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -17,256 +19,264 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Every table gets \emph{both} tests: the quotients $y\div x$ and the products $x\cdot y$. Whichever row
-is constant names the variation --- and if neither is, the answer is ``neither.''
+Reverse the operations \emph{and} the order. Then test what you built --- both ways.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Name the variation} and give $k$ when there is one.
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{Are they inverses?} Compose both ways before you answer. One of these four pairs is
+        an impostor.
     \begin{center}
-    \begin{minipage}{0.47\linewidth}\centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{|l|c|c|c|c|}
+    \renewcommand{\arraystretch}{1.9}
+    \begin{tabularx}{\linewidth}{@{}l X X c@{}}
     \hline
-    \rowcolor{forestbg}
-    $x$ & $4$ & $6$ & $9$ & $12$ \\ \hline
-    $y$ & $10$ & $15$ & $22.5$ & $30$ \\ \hline
-    \end{tabular}\\[2pt]
-    {\small (a) \ans{direct} \; $k=$ \ans{$2.5$}}
-    \end{minipage}\hfill
-    \begin{minipage}{0.47\linewidth}\centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{|l|c|c|c|c|}
+    \textbf{$f$ and $g$} & \textbf{$f\big(g(x)\big)$} & \textbf{$g\big(f(x)\big)$} & \textbf{Inverses?} \\
     \hline
-    \rowcolor{forestbg}
-    $x$ & $3$ & $4$ & $6$ & $12$ \\ \hline
-    $y$ & $8$ & $6$ & $4$ & $2$ \\ \hline
-    \end{tabular}\\[2pt]
-    {\small (b) \ans{inverse} \; $k=$ \ans{$24$}}
-    \end{minipage}
+    (a) $f(x)=x-9$, \; $g(x)=x+9$ & \ans{$(x+9)-9=x$} & \ans{$(x-9)+9=x$} & \ans{yes} \\
+    (b) $f(x)=\dfrac{x}{2}$, \; $g(x)=2x$ & \ans{$\frac{2x}{2}=x$} & \ans{$2\!\left(\frac{x}{2}\right)=x$} & \ans{yes} \\
+    (c) $f(x)=5x-2$, \; $g(x)=\dfrac{x}{5}+2$ & \ans{$5\!\left(\frac{x}{5}+2\right)-2=x+8$} & \ans{$\frac{5x-2}{5}+2=x+\frac{8}{5}$} & \ans{no} \\
+    (d) $f(x)=x^{3}+2$, \; $g(x)=\sqrt[3]{x-2}$ & \ans{$\left(\sqrt[3]{x-2}\right)^{3}+2=x$} & \ans{$\sqrt[3]{(x^{3}+2)-2}=x$} & \ans{yes} \\
+    \hline
+    \end{tabularx}
     \end{center}
-    \vspace{3pt}
+    \vspace{0.10in}
+    (e) Repair the impostor: the true inverse is \ans{$\frac{x+2}{5}$} \\[2pt]
+    \hspace*{0.3in}\emph{What exactly did that row get wrong --- the operations, or the order?}
+    \ans{the order (add $2$ \emph{first}, then divide)}
+
+  \item \textbf{Swap and solve.} Two of these six need a restriction. Write it if it is needed.
     \begin{center}
-    \begin{minipage}{0.47\linewidth}\centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{|l|c|c|c|c|}
+    \renewcommand{\arraystretch}{1.9}
+    \begin{tabularx}{\linewidth}{@{}l X l X@{}}
     \hline
-    \rowcolor{forestbg}
-    $x$ & $1$ & $3$ & $5$ & $7$ \\ \hline
-    $y$ & $4$ & $10$ & $16$ & $22$ \\ \hline
-    \end{tabular}\\[2pt]
-    {\small (c) \ans{neither} \; $k=$ \ans{none}}
-    \end{minipage}\hfill
-    \begin{minipage}{0.47\linewidth}\centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{|l|c|c|c|c|}
+    \textbf{$f(x)$} & \textbf{$f^{-1}(x)$} & \textbf{$f(x)$} & \textbf{$f^{-1}(x)$} \\
     \hline
-    \rowcolor{forestbg}
-    $x$ & $3$ & $6$ & $7$ & $10$ \\ \hline
-    $y$ & $21$ & $42$ & $49$ & $70$ \\ \hline
-    \end{tabular}\\[2pt]
-    {\small (d) \ans{direct} \; $k=$ \ans{$7$}}
-    \end{minipage}
+    (a) $x-11$ & \ans{$x+11$} & (d) $x^{3}-8$ & \ans{$\sqrt[3]{x+8}$} \\
+    (b) $\dfrac{x}{3}+6$ & \ans{$3x-18$} & (e) $\sqrt[3]{x+1}$ & \ans{$x^{3}-1$} \\
+    (c) $7-2x$ & \ans{$\frac{7-x}{2}$} & (f) $\sqrt{x}+4$ & \ans{$(x-4)^{2}$, $x\ge4$} \\
+    \hline
+    \end{tabularx}
     \end{center}
     \vspace{2pt}
-    {\small (c) is $y=3x+1$: the quotients are $4,\,3.\overline{3},\,3.2,\,3.\overline{142857}$ and the
-    products are $4,\,30,\,80,\,154$ --- neither settles down.}
+    {\small \emph{Work, the two that bite:} \; (c) $x=7-2y \Rightarrow 2y=7-x \Rightarrow
+    y=\frac{7-x}{2}$ --- equivalently $-\frac12x+\frac72$; this one is its own kind of trap, since
+    the $-2$ has to be undone \emph{after} the $7$ is moved. \;
+    (f) $x=\sqrt{y}+4 \Rightarrow x-4=\sqrt{y} \Rightarrow y=(x-4)^{2}$, and $\sqrt{y}\ge0$ forces
+    $x-4\ge0$, i.e.\ $x\ge4$. \; Row (e) needs nothing: $x=\sqrt[3]{y+1}\Rightarrow x^{3}=y+1$.}
+    \vspace{4pt}
 
-  \item \textbf{Find $k$, write the equation, answer the question.}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $y$ varies \emph{directly} as $x$; $y=24$ when $x=8$. \hfill $k=$ \ans{$3$} \;
-            $y=$ \ans{$3x$} \; Find $y$ when $x=15$: \ans{$45$}
-      \item $y$ varies \emph{inversely} as $x$; $y=7$ when $x=6$. \hfill $k=$ \ans{$42$} \;
-            $y=$ \ans{$\frac{42}{x}$} \; Find $y$ when $x=14$: \ans{$3$}
-      \item $y$ varies \emph{directly} as $x$; $y=4.5$ when $x=6$. \hfill $k=$ \ans{$0.75$} \;
-            $y=$ \ans{$0.75x$} \; Find $x$ when $y=12$: \ans{$16$}
-      \item $y$ varies \emph{inversely} as $x$; $y=2.5$ when $x=16$. \hfill $k=$ \ans{$40$} \;
-            $y=$ \ans{$\frac{40}{x}$} \; Find $x$ when $y=8$: \ans{$5$}
-      \item $y$ varies \emph{inversely} as $x$; $y=20$ when $x=3$. \hfill $k=$ \ans{$60$} \;
-            $y=$ \ans{$\frac{60}{x}$} \; Find $y$ when $x=5$: \ans{$12$}
-      \item $y$ varies \emph{directly} as $x$; $y=-14$ when $x=4$. \hfill $k=$ \ans{$-3.5$} \;
-            $y=$ \ans{$-3.5x$} \; Find $y$ when $x=10$: \ans{$-35$}
-    \end{enumerate}
-    \vspace{2pt}
-    {\small Part (f) has a negative $k$. Nothing breaks --- but say what it does to the graph:
-    \ans{the line still passes through the origin, but it slopes downward, so $y$ decreases as $x$
-    increases}}
+    Rows (d) and (e) both involve cubes, and neither needed a restriction. Row (f) did. What is it
+    about an \emph{even} index that makes the difference? \ans{An even root never returns a negative
+    number, so $f$'s range is only half a line --- and that half is all $f^{-1}$ may accept.}
 
-  \item \textbf{No table given. Decide from the situation, and say why.}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item The perimeter $P$ of a square and its side length $s$. \; \ans{direct}, because
-            $P=$ \ans{$4s$}, so $k=$ \ans{$4$}.
-      \item One pizza cut into $8$ slices is shared equally among $n$ people. The number of slices
-            each person gets and $n$: \; \ans{inverse}, $k=$ \ans{$8$}.
-      \item A taxi charges $\$3.00$ just to start the meter, plus $\$2.00$ per mile. Is the fare
-            directly proportional to the miles driven? \ans{no} \\
-            Why not? \ans{the fare is $2m+3$: zero miles still costs $\$3$, so the graph misses the
-            origin and fare$\,\div\,$miles is not constant}
-    \end{enumerate}
-
-  \item \textbf{Read the graphs.} One of these is a direct variation and one is an inverse variation.
+  \item \textbf{From a table.} Here are some values of $g$.
     \begin{center}
-    \begin{minipage}{0.46\linewidth}\centering
-    \begin{tikzpicture}[scale=0.30]
-      \lgrid{-7}{7}{-9}{9}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}|c|c|c|c|c|c|@{}}
+    \hline
+    $x$ & $-2$ & $0$ & $1$ & $3$ & $4$ \\
+    \hline
+    $g(x)$ & $-3$ & $1$ & $3$ & $7$ & $9$ \\
+    \hline
+    \end{tabular}
+    \hspace{0.25in}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}|c|c|c|c|c|c|@{}}
+    \hline
+    $x$ & \ans{$-3$} & \ans{$1$} & \ans{$3$} & \ans{$7$} & \ans{$9$} \\
+    \hline
+    $g^{-1}(x)$ & \ans{$-2$} & \ans{$0$} & \ans{$1$} & \ans{$3$} & \ans{$4$} \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \vspace{-2pt}
+    (a) $g^{-1}(7)=$ \ans{$3$} \hspace{0.25in}
+    (b) $g^{-1}(1)=$ \ans{$0$} \hspace{0.25in}
+    (c) $g\big(g^{-1}(9)\big)=$ \ans{$9$} \\[3pt]
+    (d) The graph of $g$ also passes through $(5,11)$. Name a point that must be on the graph of
+    $g^{-1}$: \ans{$(11,5)$} \\[3pt]
+    (e) These values follow the rule $g(x)=2x+1$. Find $g^{-1}(x)$ and check it against your table.
+    \; $g^{-1}(x)=$ \ans{$\frac{x-1}{2}$}
+
+  \item \textbf{From two graphs.} Below are $y=h(x)$ and $y=k(x)$. The dashed line is $y=x$.
+    \begin{center}
+    \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-5}{6}{-5}{5}
+      \draw[dashed, semithick, charcoal] (-4.6,-4.6)--(4.6,4.6);
+      \draw[very thick, forest] (-4,-3)--(-1,0)--(5,3);
+      \fill[forest] (-4,-3) circle (3.4pt);
+      \fill[forest] (-1,0) circle (3.4pt);
+      \fill[forest] (1,1) circle (3.4pt);
+      \fill[forest] (5,3) circle (3.4pt);
+      \node[forest, font=\scriptsize] at (-3.0,2.4) {$y=h(x)$};
+    \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-5}{5}{-5}{5}
       \begin{scope}
-        \clip (-7,-9) rectangle (7,9);
-        \draw[very thick, forest] (-6,-9)--(6,9);
+        \clip (-5,-5) rectangle (5,5);
+        \draw[very thick, navy, domain=-2.9:2.9, samples=120, smooth] plot (\x,{(\x)*(\x)-3});
       \end{scope}
-      \fill[charcoal] (4,6) circle (3.6pt) node[above left, font=\scriptsize]{$(4,6)$};
-    \end{tikzpicture}\\[2pt]
-    {\small \textbf{Graph I}}
-    \end{minipage}\hfill
-    \begin{minipage}{0.46\linewidth}\centering
-    \begin{tikzpicture}[scale=0.30]
-      \lgrid{-9}{9}{-9}{9}
-      \begin{scope}
-        \clip (-9,-9) rectangle (9,9);
-        \draw[very thick, forest, domain=1.34:9, samples=150, smooth] plot (\x,{12/(\x)});
-        \draw[very thick, forest, domain=-9:-1.34, samples=150, smooth] plot (\x,{12/(\x)});
-      \end{scope}
-      \fill[charcoal] (2,6) circle (3.6pt) node[above right, font=\scriptsize]{$(2,6)$};
-      \fill[charcoal] (6,2) circle (3.6pt);
-    \end{tikzpicture}\\[2pt]
-    {\small \textbf{Graph II}}
+      \node[navy, font=\scriptsize] at (-3.2,-4.2) {$y=k(x)$};
+    \end{tikzpicture}
     \end{minipage}
     \end{center}
     \vspace{-2pt}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item Graph I is a \ans{direct} variation; the giveaway is that it is a line through the
-            \ans{origin}. Using the marked point, $k=$ \ans{$1.5$} and $y=$ \ans{$1.5x$}.
-      \item Graph II is an \ans{inverse} variation. Using the marked point, $k=$ \ans{$12$} and
-            $y=$ \ans{$\frac{12}{x}$}.
-      \item Use your equation from (b) to find $y$ when $x=8$: \ans{$1.5$}. \; Would that point be
-            on the drawn curve? \ans{yes}
-      \item Graph II has asymptotes $x=$ \ans{$0$} and $y=$ \ans{$0$}. Graph I has none.
-            Explain why a direct variation can \emph{never} have an asymptote. \ansline{$y=kx$ is a
-            line: every real number is in its domain, so there is no input to build a wall at, and its
-            outputs keep growing rather than settling toward a value}
-    \end{enumerate}
+    (a) Four points are marked on $h$. List the four matching points on $h^{-1}$: \\[3pt]
+    \hspace*{0.3in} \ans{$(-3,-4)$} \hspace{0.15in} \ans{$(0,-1)$} \hspace{0.15in} \ans{$(1,1)$}
+    \hspace{0.15in} \ans{$(3,5)$} \\[3pt]
+    (b) $h(-1)=$ \ans{$0$}, \; so $h^{-1}(0)=$ \ans{$-1$}. \hspace{0.25in}
+    (c) One marked point is its own reflection. Which? \ans{$(1,1)$} \\[3pt]
+    (d) Does $k$ pass the horizontal line test? \ans{no} \; Give a horizontal line that proves
+    your answer: \ans{$y=1$ (hits at $x=\pm2$)} \\[3pt]
+    (e) Name a restricted domain that would give $k$ an inverse function, and write that inverse.
+    \ans{$x\ge0$, giving $k^{-1}(x)=\sqrt{x+3}$ \; (or $x\le0$, giving $-\sqrt{x+3}$)}
 
-  \item \textbf{Error analysis.} The problem: \emph{$y$ varies inversely as $x$, and $y=8$ when $x=3$.
-        Find $y$ when $x=12$.} A student wrote:
+  \item \textbf{Error analysis.} Two classmates, two different misunderstandings.
     \begin{center}
-    \fbox{\parbox{0.80\linewidth}{\centering \vspace{2pt}
-    ``Inverse, so $k=xy=(3)(8)=24$. \\
-    The equation is $y=24x$. \\
-    When $x=12$, \; $y=24(12)=288$.''\vspace{2pt}}}
+    \begin{tcolorbox}[colback=white, colframe=charcoal!45, boxrule=0.7pt, arc=1.5mm,
+        width=0.80\linewidth, left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+    \centering\small
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{}l l@{}}
+    \textbf{Priya writes:} & $f(x)=5x$, \; so \; $f^{-1}(x)=\dfrac{1}{5x}$ \\
+    \textbf{Devon writes:} & $f(x)=\dfrac{x}{4}-9$, \; so \; $f^{-1}(x)=4x+9$ \\
+    \end{tabular}
+    \end{tcolorbox}
     \end{center}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item Is the student's $k$ correct? \ans{yes} \; So the mistake is not in finding $k$ ---
-            it is in \ans{writing the equation}.
-      \item Test their equation on the pair they were \emph{given}: $y=24x$ at $x=3$ gives
-            \ans{$72$}, but it should give \ans{$8$}.
-      \item Write the correct equation \ans{$y=\frac{24}{x}$} and the correct answer \ans{$y=2$}.
-      \item There was a one-second sanity check available before any arithmetic. What is it?
-            \ansline{in an inverse variation, when $x$ goes up ($3\to12$) $y$ must go \emph{down} ---
-            an answer of $288$ instead of $8$ is moving the wrong way}
-    \end{enumerate}
+    \vspace{-4pt}
+    (a) Give the correct inverse in each case. \; Priya's: \ans{$\frac{x}{5}$} \; Devon's:
+    \ans{$4(x+9)=4x+36$} \\[3pt]
+    (b) Catch each error with one number. For Priya, $f(3)=$ \ans{$15$}, so $f^{-1}$ must send
+    that back to \ans{$3$}; hers sends it to \ans{$\frac{1}{75}$}. \\[3pt]
+    \hspace*{0.3in} For Devon, $f(4)=$ \ans{$-8$}, so $f^{-1}$ must send that back to
+    \ans{$4$}; his sends it to \ans{$-23$}. \\[3pt]
+    (c) Name each mistake in a few words --- they are two \emph{different} misunderstandings. \\[2pt]
+    Priya: \ans{read the $-1$ as an exponent and took the reciprocal} \\[3pt]
+    Devon: \ans{reversed the operations but not the order --- multiplied before adding}
 
-  \item \textbf{The seesaw.} To balance a seesaw, the distance $d$ a child sits from the pivot varies
-        inversely as their weight $w$. A $60$-pound child balances at $5$ feet from the pivot.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $k=$ \ans{$300$}, measured in \ans{pound-feet}. \; Equation: $d=$ \ans{$\frac{300}{w}$}
-      \item A $75$-pound child balances at \ans{$4$} feet. A $50$-pound child balances at
-            \ans{$6$} feet.
-      \item As $w$ gets very large, $d$ approaches \ans{$0$}. Say what that horizontal asymptote
-            means for a very heavy rider. \ans{a very heavy rider must sit almost on top of the pivot
-            --- but never exactly at it}
-      \item The vertical asymptote is at $w=$ \ans{$0$}. What does \emph{it} say?
-            \ans{the lighter the rider, the further out they must sit, without bound --- a weightless
-            rider could never balance the seesaw at all}
-      \item The seesaw beam is only $8$ feet long on each side of the pivot. So the equation is only
-            useful for weights of at least \ans{$37.5$} pounds. Show the inequality you solved.
-            \ans{$\frac{300}{w}\le 8 \Rightarrow 300\le 8w \Rightarrow w\ge 37.5$}
-      \item The equation cheerfully accepts $w=-60$ and returns $d=-5$. You reject it. Is that the same
-            kind of rejection as an \emph{extraneous} solution from Lesson 5.6? Explain.
-            \ansline{No. $w=-60$ genuinely satisfies $d=\frac{300}{w}$ --- the algebra has no complaint
-            with it at all.}
-            \ansline{It is rejected because weights and distances cannot be negative, which is the
-            \emph{situation} talking. An extraneous solution never satisfied the original equation in
-            the first place; it made a denominator zero.}
+  \item \textbf{Justify.} Answer both in complete sentences.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $y=x^{2}$ must have its domain restricted before it can have an inverse function, but
+            $y=x^{3}$ does not. Explain the difference, using the horizontal line test. Then say
+            what this has to do with the fact that $\sqrt{x}$ accepts only half the number line
+            while $\sqrt[3]{x}$ accepts all of it.
+      \item Let $f(x)=\sqrt{x+3}$. State the domain and range of $f$, then the domain and range of
+            $f^{-1}$ --- and explain how you got the second pair from the first \emph{without}
+            finding $f^{-1}$ at all.
     \end{enumerate}
+    \ansline{(a) $y=x^{2}$ fails the horizontal line test: $y=4$ crosses it at both $x=-2$ and
+    $x=2$, so swapping coordinates would hand the input $4$ two different outputs --- not a
+    function.}
+    \ansline{\ \ \ \ $y=x^{3}$ passes: it climbs the whole way and never repeats an output, so
+    every horizontal line meets it exactly once and the swap is safe.}
+    \ansline{\ \ \ \ The domain of an inverse is the range of the original. Restricted to $x\ge0$,
+    $y=x^{2}$ has range $y\ge0$, so $\sqrt{x}$ inherits $x\ge0$ as its domain; $y=x^{3}$ has range
+    all reals, so $\sqrt[3]{x}$ inherits all reals.}
+    \ansline{(b) $f$: domain $x\ge-3$, range $y\ge0$. \; $f^{-1}$: domain $x\ge0$, range
+    $y\ge-3$.}
+    \ansline{\ \ \ \ An inverse reads every arrow backwards, so the inputs and outputs trade
+    places: whatever came \emph{out} of $f$ is exactly what goes \emph{into} $f^{-1}$. Swapping the
+    two sets is the entire calculation --- no formula required. (For the record, $f^{-1}(x)=x^{2}-3$
+    with $x\ge0$.)}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Part 1 --- Two variables at once.}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
-  \item $y$ varies jointly as $x$ and $z$; $y=90$ when $x=5$ and $z=3$. \; $k=$ \ans{$6$}, \;
-        $y=$ \ans{$6xz$}, \; and $y=$ \ans{$84$} when $x=2$ and $z=7$.
-  \item $y$ varies directly as $x$ and inversely as $z$; $y=9$ when $x=6$ and $z=4$. \;
-        $k=$ \ans{$6$}, \; $y=$ \ans{$\frac{6x}{z}$}, \; and $y=$ \ans{$12$} when $x=10$ and $z=5$.
+\textbf{Building a clock.} A pendulum of length $L$ feet takes
+\[
+  T(L)=2\pi\sqrt{\frac{L}{32}} \ \text{ seconds}
+\]
+to complete one full swing. A clockmaker has the opposite problem: they know the swing time they
+\emph{want}, and need the length that produces it.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Complete the table. Round to two decimal places.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{}|c|c|c|c|@{}}
+    \hline
+    $L$ (feet) & $2$ & $8$ & $32$ \\
+    \hline
+    $T(L)$ (seconds) & \ans{$1.57$} & \ans{$3.14$} & \ans{$6.28$} \\
+    \hline
+    \end{tabular}
+    \end{center}
+  \item Each length in that table is $4$ times the one before it. What happened to the swing times,
+        and which feature of a square root graph made that inevitable?
+  \item Build the clockmaker's function by swapping and solving. Show that
+        $L(T)=\dfrac{8T^{2}}{\pi^{2}}$.
+  \item A grandfather clock is built so that one swing takes exactly $2$ seconds. How long is its
+        pendulum, in feet and in inches? (Look up a real grandfather clock afterwards.)
+  \item Verify that $T$ and $L$ are inverses by composing them \emph{both} ways.
+  \item State the domain and range of $T$ \emph{in context}, then the domain and range of $L$. Why
+        does this situation hand you the restriction for free, without you having to decide
+        anything?
 \end{enumerate}
-
-\vspace{4pt}
-\textbf{Part 2 --- Prove it, do not just say it.}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
-  \item $y$ varies inversely as $x$. If $x$ is multiplied by $5$, then $y$ is multiplied by
-        \ans{$\frac15$}. Show it by replacing $x$ with $5x$ in $y=\frac kx$.
-        \ansline{new $y=\frac{k}{5x}=\frac15\cdot\frac kx=\frac15\cdot(\text{old }y)$}
-  \item $y$ varies jointly as $x$ and $z$. If $x$ is doubled and $z$ is halved, $y$ \ans{is unchanged}.
-        Show it. \ansline{new $y=k(2x)\left(\frac z2\right)=kxz=\text{old }y$ --- the $2$ and the
-        $\frac12$ cancel}
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{Part 3 --- Can it be both?} Ana claims a table could be a direct variation \emph{and} an
-inverse variation at the same time.
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
-  \item If both were true, then $y=kx$ and $y=\frac mx$ at every row, so $kx=\frac mx$ and therefore
-        $x^2=$ \ans{$\frac mk$}.
-  \item How many different values of $x$ can satisfy that? \ans{two} \; So Ana's table could
-        have at most \ans{two} distinct $x$-values, and no real table of four inputs can do it.
-  \item A direct variation and an inverse variation both pass through $(2,6)$. Their equations are
-        $y=$ \ans{$3x$} and $y=$ \ans{$\frac{12}{x}$}. Where else do the two graphs cross?
-        \ans{$(-2,-6)$}
-\end{enumerate}
+\ansline{(a) $T(2)=2\pi\sqrt{1/16}=\frac{\pi}{2}\approx1.57$; \; $T(8)=2\pi\sqrt{1/4}=\pi\approx3.14$;
+\; $T(32)=2\pi\sqrt{1}=2\pi\approx6.28$.}
+\ansline{(b) They \textbf{doubled} each time. Quadrupling the input doubles a square root's output,
+because $\sqrt{4L}=2\sqrt{L}$ --- the flattening you first read off the graph in Lesson 5.0.}
+\ansline{(c) $T=2\pi\sqrt{L/32} \Rightarrow \frac{T}{2\pi}=\sqrt{\frac{L}{32}} \Rightarrow
+\frac{T^{2}}{4\pi^{2}}=\frac{L}{32} \Rightarrow L=\frac{32T^{2}}{4\pi^{2}}=\frac{8T^{2}}{\pi^{2}}$.
+\; Squaring is legal here because both sides are non-negative --- no extraneous root (5.5).}
+\ansline{(d) $L(2)=\frac{8\cdot4}{\pi^{2}}=\frac{32}{\pi^{2}}\approx3.24$ ft $\approx 38.9$ inches.
+A real grandfather clock's pendulum is about $39$ inches --- this is why.}
+\ansline{(e) $T\big(L(T)\big)=2\pi\sqrt{\frac{8T^{2}/\pi^{2}}{32}}=2\pi\sqrt{\frac{T^{2}}{4\pi^{2}}}
+=2\pi\cdot\frac{T}{2\pi}=T$, and
+$L\big(T(L)\big)=\frac{8}{\pi^{2}}\left(2\pi\sqrt{\frac{L}{32}}\right)^{2}
+=\frac{8}{\pi^{2}}\cdot4\pi^{2}\cdot\frac{L}{32}=L$.}
+\ansline{(f) $T$: domain $L>0$, range $T>0$; $L$: domain $T>0$, range $L>0$ --- the same two sets,
+swapped. The context restricts them for free: a pendulum cannot have negative length and a swing
+cannot take negative time, so the half-line you had to impose \emph{by hand} on $y=x^{2}$ is
+imposed here by the situation.}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- the Unit 5 Test.} That is the whole unit: what a rational function \emph{is}
-and how its graph behaves (5.0), simplifying and the restrictions that come off the \emph{original}
-denominator (5.1), multiplying and dividing (5.2), adding and subtracting with an LCD (5.3), the parent
-$\frac1x$ and its transformations (5.4), graphing from the equation --- holes, walls, and the
-horizontal asymptote by degree comparison (5.5), solving equations and throwing out the extraneous
-answers (5.6), and today, the same function doing an honest day's work. The practice test in your
-packet mirrors the real one in format and ideas with different numbers. One habit is worth more than
-any formula on it: \textbf{factor first, restrict early, and check what the answer is supposed to
-mean.}
+\textbf{That is Unit 5 --- and the loop is closed.} Look back at Lesson 5.0. You noticed then that
+$y=\sqrt{x}$ gets only half the number line while $y=\sqrt[3]{x}$ gets all of it, that one has an
+endpoint and the other does not, that one has an absolute minimum and the other has no extrema at
+all. Today you found the single sentence underneath every one of those differences: $x^{2}$ has two
+arms and $x^{3}$ has one, so the square must be cut down before it is allowed a partner and the cube
+never has to be. Everything in between was the machinery --- rational exponents (5.1) for
+\emph{writing} the two families in one notation, simplifying and operating (5.2--5.3), graphing and
+transformations (5.4), solving equations and the extraneous roots that squaring creates (5.5), and
+composition (5.6), which turned out to be the tool that \emph{proves} an inverse rather than just
+suggesting one.
+\\[4pt]
+\textbf{Next: the Unit 5 test.} Bring back every part of it --- convert between radicals and rational
+exponents, simplify and combine radical expressions, rationalize a denominator, read the
+characteristics of a radical graph, transform one, solve a radical equation and check for
+extraneous solutions, compose two functions and find the domain, and build and justify an inverse.
+The practice test is in your packet.
 \end{spiralbox}
 
 \begin{teachernote}
-\textbf{Problem 1(c) and problem 3(c) are the same idea twice} --- a relationship that is perfectly
-regular and still not a variation, once from a table and once from a sentence. If a student misses both,
-the fix is the Hook, not more practice: $y=3x+1$ and ``$\$3.00$ to start'' are the same $+b$.
-
-\vspace{3pt}
-\textbf{Problem 2(f) is there so ``$k$ is negative'' never becomes ``I did it wrong.''} The line still
-runs through the origin; it just falls instead of rises.
-
-\vspace{3pt}
-\textbf{Problem 4(d) is the unit's structural question} and the best short-answer item on the page. A
-direct variation is a \emph{polynomial} --- domain all reals, no excluded input to build a wall at, and
-end behavior that runs off to infinity rather than settling. That is exactly the 5.0 compare-and-contrast
-table, so it is fair game on the unit test.
-
-\vspace{3pt}
-\textbf{Problem 5 catches the lesson's other big error} --- computing $k$ correctly and then writing the
-wrong \emph{form}. Part (d) is the habit worth the most: in an inverse variation, $x$ up means $y$ down,
-so a bigger answer is wrong before you check the arithmetic.
-
-\vspace{3pt}
-\textbf{Problem 6 is the capstone.} Parts (c) and (d) are the A2.F.2f interpretation items and should be
-graded on the English, not the number. Part (e) is the one students skip: the \emph{physical} beam adds
-a restriction the equation knows nothing about, and $\frac{300}{w}\le8$ is a rational inequality they can
-handle because $w>0$ already. Part (f) is the whole point of following 5.6 with this lesson --- $w=-60$
-solves the equation and is still rejected. Do not accept ``it's extraneous.''
-
-\vspace{3pt}
-\textbf{Extension Part 3} is the sharpest item in the packet. Once $x^2=\frac mk$ is on the page, the
-argument is finished: two $x$-values at most, so a four-row table cannot be both. Part (c) is a pleasant
-landing --- the second intersection is $(-2,-6)$, the reflection through the origin, which both an odd
-line and an odd hyperbola share.
+\small \textbf{Grading priorities, with the unit test three days away.}
+\begin{itemize}[leftmargin=1.3em, nosep]
+  \item \textbf{Item 1(c) and item 5 (Devon)} are the same error twice --- right operations, wrong
+        order. A student who misses both has not internalized socks-and-shoes and will lose the
+        whole inverse strand on the test. Two minutes of Warm-Up item 3 fixes it.
+  \item \textbf{Item 2(f) and item 6(b)} are the A2.F.2i justification items. Treat a missing
+        restriction as wrong, not incomplete: $(x-4)^{2}$ without $x\ge4$ is a different function
+        and it fails the composition test on every input below $4$. The one sentence to demand:
+        \emph{the domain of $f^{-1}$ is the range of $f$}.
+  \item \textbf{Item 2(c)} is the sleeper. $f(x)=7-2x$ trips students who reach for ``divide by
+        $-2$'' first. It is worth putting on the board.
+  \item \textbf{Item 6(a) is the capstone question of the unit.} A complete answer connects three
+        things students have met on three different days: the horizontal line test, the restricted
+        domain, and the domain of $\sqrt{x}$. If most of the class gets two of the three, spend the
+        first ten minutes of the review day on that chain rather than on more procedures.
+  \end{itemize}
+\textbf{The extension} is genuinely worth assigning to everyone, not just the fast finishers: it is
+the only place in the unit where the \emph{inverse} is the thing a real person actually needs --- a
+clockmaker never asks how fast a given pendulum swings, they ask how long to make it. Part (d)
+producing $\approx39$ inches, which students can then check against any real grandfather clock, is
+the payoff. Part (f) is the quiet one: every restricted domain in this unit had to be argued for,
+and here the situation supplies it without anyone deciding anything --- the same move as Lesson
+5.0's free-fall and skid-mark models.
 \end{teachernote}
 
 \end{document}

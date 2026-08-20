@@ -1,9 +1,8 @@
-%! Solving Rational Equations — Unit 5, Lesson 5.6 — Homework
+%! Composition of Functions — Unit 5, Lesson 5.6 — Homework
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -17,148 +16,187 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Every problem starts the same way: \textbf{factor the denominators and write the restriction list.}
-A number is not an answer until you have checked it against that list.
+Work \textbf{inside out}, and write the middle number every time. An answer with no middle step is
+an answer you cannot check.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{The list first.} Do not solve --- just give the restrictions and the LCD.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
-      \item $\dfrac{7}{x}-\dfrac{2}{x+5}=1$ \hfill restrictions \blank{2.0cm} \; LCD \blank{2.8cm}
-      \item $\dfrac{x}{x-7}=\dfrac{3}{x+1}$ \hfill restrictions \blank{2.0cm} \; LCD \blank{2.8cm}
-      \item $\dfrac{4}{x^2-25}=\dfrac{1}{x-5}$ \hfill restrictions \blank{2.0cm} \; LCD \blank{2.8cm}
-      \item $\dfrac{2}{x^2+2x}+\dfrac{1}{x+2}=\dfrac{3}{x}$ \hfill restrictions \blank{2.0cm} \;
-            LCD \blank{2.8cm}
-    \end{enumerate}
-
-  \item \textbf{Solve.} Show the cleared equation, the candidates, and the check. If an equation has no
-        solution, say so.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=7pt]
-      \item $\dfrac{5}{x}+\dfrac{3}{2}=\dfrac{11}{x}$ \hfill candidates \blank{1.8cm} \;
-            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
-      \item $\dfrac{x}{x+3}=\dfrac{4}{x}$ \hfill candidates \blank{1.8cm} \;
-            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
-      \item $\dfrac{x}{4}+\dfrac{1}{x}=\dfrac{5}{4}$ \hfill candidates \blank{1.8cm} \;
-            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
-      \item $\dfrac{x}{x-6}=\dfrac{6}{x-6}+2$ \hfill candidates \blank{1.8cm} \;
-            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
-      \item $\dfrac{x}{x-1}+\dfrac{1}{x+1}=\dfrac{2}{x^2-1}$ \hfill candidates \blank{1.8cm} \;
-            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
-      \item $\dfrac{4}{x^2-16}+\dfrac{1}{x+4}=\dfrac{1}{x-4}$ \hfill candidates \blank{1.8cm} \;
-            extraneous \blank{1.2cm} \; solution \blank{2.0cm}
-    \end{enumerate}
-    \vspace{3pt}
-    Parts (d) and (f) both come out to ``no solution,'' but for two different reasons. Explain the
-    difference. \writelines{2}
-
-  \item \textbf{Check, do not solve.} A candidate is given. Decide, and give the reason.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $\dfrac{x+2}{x-4}=\dfrac{6}{x-4}$, \; candidate $x=4$: \blank{1.8cm}, because
-            \blank{4.8cm}
-      \item $\dfrac{3}{x}-\dfrac{1}{x-2}=\dfrac{1}{x}$, \; candidate $x=4$: \blank{1.8cm}, because
-            \blank{4.8cm}
-      \item $\dfrac{5}{x+1}=\dfrac{x+3}{x+1}$, \; candidate $x=2$: \blank{1.8cm}, because
-            \blank{4.8cm}
-    \end{enumerate}
-
-  \item \textbf{See it on a graph.} Below is the graph of the single fraction you get by moving
-        everything in problem \textbf{2(e)} to one side and combining it.
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{From rules.} Let $f(x)=x^{2}-3$ and $g(x)=2x+5$.
     \begin{center}
-    \begin{tikzpicture}[scale=0.36]
-      \lgrid{-8}{7}{-5}{7}
-      \draw[navy, dashed, semithick] (-1,-5)--(-1,7);
-      \draw[navy, dashed, semithick] (-8,1)--(7,1);
-      \node[navy, font=\scriptsize, above left] at (-1,6.2) {$x=-1$};
-      \node[navy, font=\scriptsize, below right] at (4.6,1) {$y=1$};
-      \begin{scope}
-        \clip (-8,-5) rectangle (7,7);
-        \draw[very thick, forest, domain=-8:-1.35, samples=140, smooth] plot (\x,{1+2/((\x)+1)});
-        \draw[very thick, forest, domain=-0.6:7, samples=140, smooth] plot (\x,{1+2/((\x)+1)});
-      \end{scope}
-      \draw[forest, very thick, fill=white] (1,2) circle (4.2pt);
-      \fill[charcoal] (-3,0) circle (3.2pt) node[below left, font=\scriptsize]{$(-3,0)$};
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}X X X@{}}
+    (a) \; $(f\circ g)(1)=\blank{1.6cm}$ &
+    (b) \; $(g\circ f)(1)=\blank{1.6cm}$ &
+    (c) \; $(f\circ f)(2)=\blank{1.6cm}$ \\
+    (d) \; $(g\circ g)(-1)=\blank{1.6cm}$ &
+    (e) \; $(f\circ g)(-2)=\blank{1.6cm}$ &
+    (f) \; $(g\circ f)(-3)=\blank{1.6cm}$ \\
+    \end{tabularx}
+    \end{center}
+    Parts (a) and (b) use the same functions and the same input. Whose fault is the difference?
+    \blank{6.0cm}
+
+  \item \textbf{From a table.} Use only the values below.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}|c|c|c|c|c|c|c|@{}}
+    \hline
+    $x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\
+    \hline
+    $p(x)$ & $3$ & $1$ & $0$ & $-1$ & $2$ & $-2$ \\
+    \hline
+    $q(x)$ & $-1$ & $2$ & $3$ & $0$ & $1$ & $-2$ \\
+    \hline
+    \end{tabular}
+    \end{center}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}X X X@{}}
+    (a) \; $(p\circ q)(0)=\blank{1.4cm}$ &
+    (b) \; $(q\circ p)(0)=\blank{1.4cm}$ &
+    (c) \; $(p\circ q)(-1)=\blank{1.4cm}$ \\
+    (d) \; $(q\circ p)(2)=\blank{1.4cm}$ &
+    (e) \; $(p\circ p)(1)=\blank{1.4cm}$ &
+    (f) \; $(q\circ q)(3)=\blank{1.4cm}$ \\
+    \end{tabularx}
+    \end{center}
+    (g) Find the value of $x$ for which $(p\circ q)(x)=0$. \; $x=\blank{1.6cm}$ \\[2pt]
+    \hspace*{0.3in}\emph{Hint: work backwards --- which input does $p$ send to $0$?}
+
+  \item \textbf{Algebraically, with domains.} Let $f(x)=x-6$, \; $g(x)=\sqrt{x}$, \; and
+        $h(x)=x^{2}+2$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}l X X@{}}
+    \hline
+    \textbf{Composition} & \textbf{Simplified rule} & \textbf{Domain} \\
+    \hline
+    (a) \; $(g\circ f)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    (b) \; $(f\circ g)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    (c) \; $(h\circ f)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    (d) \; $(f\circ h)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    (e) \; $(g\circ h)(x)$ & \blank{3.2cm} & \blank{3.0cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    \vspace{0.9in}
+    Two of these five have restricted domains and three do not. What do the restricted ones have in
+    common that (e) --- which also contains a square root --- does not? \blank{6.0cm}
+
+  \item \textbf{From two graphs.} Below are $y=u(x)$ and $y=v(x)$.
+    \begin{center}
+    \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-5}{5}{-5}{5}
+      \draw[very thick, forest] (-4,2)--(0,-2)--(4,2);
+      \fill[forest] (0,-2) circle (3.4pt);
+      \node[forest, font=\scriptsize] at (-3.0,3.4) {$y=u(x)$};
     \end{tikzpicture}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[c]{0.47\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.34]
+      \lgrid{-5}{5}{-5}{5}
+      \draw[very thick, navy] (-4,-5)--(4,3);
+      \fill[navy] (1,0) circle (3.4pt);
+      \node[navy, font=\scriptsize] at (2.6,3.6) {$y=v(x)$};
+    \end{tikzpicture}
+    \end{minipage}
+    \end{center}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}X X X@{}}
+    (a) \; $(u\circ v)(0)=\blank{1.4cm}$ &
+    (b) \; $(v\circ u)(0)=\blank{1.4cm}$ &
+    (c) \; $(u\circ v)(-3)=\blank{1.4cm}$ \\
+    (d) \; $(v\circ u)(-3)=\blank{1.4cm}$ &
+    (e) \; $(u\circ v)(3)=\blank{1.4cm}$ &
+    (f) \; $(v\circ u)(3)=\blank{1.4cm}$ \\
+    \end{tabularx}
+    \end{center}
+    (g) Parts (e) and (f) came out \emph{equal}, even though (a) and (b) did not. Try $x=4$ as
+    well: $(u\circ v)(4)=\blank{1.2cm}$ and $(v\circ u)(4)=\blank{1.2cm}$. Where on the number line
+    do the two orders seem to agree, and what is special about $u$ there? \blank{6.0cm}
+
+  \item \textbf{Error analysis.} Two classmates are asked for $(f\circ g)(x)$ where $f(x)=x^{2}$ and
+        $g(x)=x+3$.
+    \begin{center}
+    \begin{tcolorbox}[colback=white, colframe=charcoal!45, boxrule=0.7pt, arc=1.5mm,
+        width=0.72\linewidth, left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+    \centering\small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l l@{}}
+    \textbf{Amara writes:} & $(f\circ g)(x)=x^{2}\cdot(x+3)=x^{3}+3x^{2}$ \\
+    \textbf{Ben writes:} & $(f\circ g)(x)=x^{2}+3$ \\
+    \end{tabular}
+    \end{tcolorbox}
     \end{center}
     \vspace{-4pt}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item Combine and simplify: \;
-            $\dfrac{x}{x-1}+\dfrac{1}{x+1}-\dfrac{2}{x^2-1}=\dfrac{\rule{2.4cm}{0.4pt}}%
-            {\rule{2.4cm}{0.4pt}}=\rule{1.8cm}{0.4pt}$, \; $x\neq\rule{0.7cm}{0.4pt}$
-      \item The solution of the equation is at the graph's \blank{2.2cm}, namely $x=\blank{1.0cm}$.
-      \item The extraneous candidate is at the graph's \blank{1.4cm}, namely $x=\blank{1.0cm}$.
-      \item There is a third interesting $x$-value here: $x=-1$, where the graph has a
-            \blank{2.6cm}. Was $-1$ ever a candidate? \blank{1.0cm} \; So: is every excluded value
-            an extraneous solution? \blank{1.0cm}
-    \end{enumerate}
+    (a) What is the correct answer? \blank{4.0cm} \\[3pt]
+    (b) Evaluate all three expressions at $x=2$: correct $=\blank{1.2cm}$, Amara $=\blank{1.2cm}$,
+    Ben $=\blank{1.2cm}$ \\[3pt]
+    (c) Name each mistake in a few words --- they are two \emph{different} misunderstandings, not
+    the same slip twice. \\[2pt]
+    Amara: \blank{5.4cm} \\[3pt]
+    Ben: \blank{5.4cm}
 
-  \item \textbf{Error analysis.} A student solved $\dfrac{10}{x}-\dfrac{4}{x-1}=1$ and wrote:
-    \begin{center}
-    \fbox{\parbox{0.82\linewidth}{\centering \vspace{2pt}
-    ``LCD is $x(x-1)$. Multiply the fractions by it: \\
-    $10(x-1)-4x=1$, \; so $6x-10=1$, \; so $x=\frac{11}{6}$. \\
-    It's not $0$ or $1$, so it checks out.''\vspace{2pt}}}
-    \end{center}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item The LCD is correct and the check at the end is correct. The mistake is in the
-            \blank{3.4cm} step. Describe it in a few words. \blank{5.0cm}
-      \item Which term did the student fail to multiply? \blank{2.0cm} \; What should the right side
-            have become? \blank{2.4cm}
-      \item Redo it correctly. Cleared equation: \blank{4.2cm}. \; Candidates \blank{2.0cm}.
-      \item Extraneous \blank{1.2cm}. \; Solution set \blank{2.2cm}.
-    \end{enumerate}
-
-  \item \textbf{Paddling against the current.} A kayaker paddles at a steady $4$ miles per hour in
-        still water. On a river with a current of $c$ miles per hour, she goes $6$ miles
-        \emph{upstream} and then the same $6$ miles back \emph{downstream}. The whole trip takes
-        $4$ hours.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item Going upstream her speed over the ground is \blank{1.6cm} mph, so that leg takes
-            \blank{1.6cm} hours. Going downstream her speed is \blank{1.6cm} mph, so that leg takes
-            \blank{1.6cm} hours.
-      \item Write the equation for the whole trip: \; \blank{6.0cm}
-      \item Restrictions: $c\neq\blank{2.0cm}$. \; In plain words, what would a current of exactly
-            $4$ mph do to the upstream leg, and how does the graph of the upstream time show it?
-            \writeline
-      \item Solve. Candidates \blank{2.4cm}. Are either of them extraneous? \blank{1.2cm}
-      \item You must still reject one of them. Which, and \textbf{why}? Is your reason the same kind of
-            reason as ``extraneous''? \writelines{2}
-      \item The current is \blank{1.4cm} mph. Check it: upstream takes \blank{1.2cm} hours,
-            downstream takes \blank{1.2cm} hours, total \blank{1.2cm} hours.
-    \end{enumerate}
+  \item \textbf{Explain.} Let $f(x)=x^{2}$ and $g(x)=\sqrt{x}$. The composition
+        $(f\circ g)(x)=\left(\sqrt{x}\,\right)^{2}$ simplifies all the way down to just $x$ --- and
+        yet its domain is \emph{not} all real numbers. Explain why, using the words \textbf{stage}
+        (or \emph{gate}) and \textbf{domain}. Then say what $(g\circ f)(x)$ simplifies to instead,
+        and why that one \emph{does} accept every real number. \writelines{5}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Part 1 --- Does every excluded value get a turn?} Problem 4(d) suggests an answer. Write a
-rational equation whose restriction list includes $x=2$, but for which $x=2$ never appears as a
-candidate at all.
-\begin{center}
-\blank{6.0cm}
-\end{center}
-\vspace{-2pt}
-Then finish the sentence: every extraneous solution is an excluded value, but \blank{6.4cm}
-
-\vspace{5pt}
-\textbf{Part 2 --- One number decides everything.} Consider the family
-\[ \frac{x}{x-2}=\frac{k}{x-2}, \]
-where $k$ is a number you get to choose.
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item Clear the denominator. The cleared equation is \blank{2.0cm}, so the only candidate is
-        $x=\blank{1.0cm}$.
-  \item For exactly one value of $k$, the equation has \emph{no} solution. That value is
-        $k=\blank{1.0cm}$. Why that one? \blank{5.0cm}
-  \item For every other $k$, the solution is $x=\blank{1.0cm}$. Test your rule on $k=7$ and on
-        $k=-5$. \writeline
+\textbf{The view from the mast.} In Lesson 5.4 you met the horizon formula: from an eye height of
+$h$ feet above the water, you can see about
+\[
+  d(h)=\sqrt{1.5h} \ \text{ miles.}
+\]
+A sailor starts with their eyes $6$ feet above the deck and climbs the mast at a steady $6$ feet per
+second, so after $t$ seconds their eye height is
+\[
+  h(t)=6t+6 \ \text{ feet.}
+\]
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Which function has to run first if you want the horizon distance after $t$ seconds ---
+        $d$ or $h$? Write the composition you need in $\circ$ notation.
+  \item Build the rule. Show that $(d\circ h)(t)=\sqrt{1.5(6t+6)}$ simplifies to
+        $3\sqrt{t+1}$.
+  \item Complete the table. Every entry is a whole number of miles.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{}|c|c|c|c|c|@{}}
+    \hline
+    $t$ (seconds) & $0$ & $3$ & $8$ & $15$ \\
+    \hline
+    $(d\circ h)(t)$ (miles) & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} & \blank{1.4cm} \\
+    \hline
+    \end{tabular}
+    \end{center}
+  \item Your composition is $3\sqrt{t+1}$ --- which, in the language of Lesson 5.4, is the parent
+        $y=\sqrt{t}$ with a horizontal shift and a vertical stretch. Name both, and explain what
+        each one \emph{means} about the sailor.
+  \item It takes $3$ seconds of climbing to go from $3$ miles of visibility to $6$. How long to get
+        from $6$ miles to $12$? Which feature of a square root graph made that answer inevitable?
+  \item The algebra is happy to compute $(d\circ h)(-1)=0$. What does the \emph{situation} say about
+        that input, and what is the domain of the composition \emph{in context}?
 \end{enumerate}
+\writelines{5}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 5.7: Direct, Inverse \& Joint Variation.} The unit closes where it
-started: with $y=\frac{k}{x}$, the rational parent, wearing its working clothes. You will read a table
-and decide whether two quantities are \emph{directly} proportional (one doubles, so does the other) or
-\emph{inversely} proportional (one doubles, the other halves), find the constant $k$, write the
-equation, and say what it means. Today's habit carries straight over: when the answer has to describe
-something real, some solutions get rejected --- and you now know the difference between rejecting one
-because the algebra forbids it and rejecting one because the situation does.
+\textbf{Coming next --- Lesson 5.7: Inverse Functions.} A few of today's pairs did something the
+others did not: composed in \emph{either} order, they handed back the $x$ you started with. That is
+not a coincidence and it is not a curiosity --- it is the definition of a pair of \textbf{inverse}
+functions, and $f(g(x))=g(f(x))=x$ is the test. In 5.7 you will learn to \emph{build} the partner
+for a given function (swap and solve), see the pair as reflections of each other over the line
+$y=x$, and watch the domain and range trade places. And the loose thread from today's Section 6
+finally gets tied: $\left(\sqrt{x}\,\right)^{2}$ gives back $x$ only when $x\ge0$, which is exactly
+why $y=x^{2}$ has to have its domain restricted before it is allowed a square-root inverse --- the
+question you first raised all the way back in Lesson 5.0.
 \end{spiralbox}
 
 \end{document}

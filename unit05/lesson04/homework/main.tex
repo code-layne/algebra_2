@@ -1,13 +1,19 @@
-%! The Rational Parent Function \& Transformations — Unit 5, Lesson 5.4 — Homework
+%! Graphing Radical Functions \& Transformations — Unit 5, Lesson 5.4 — Homework
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
+% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
+\newcommand{\cbrtplot}[5]{%
+  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
+    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
+  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
+    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
 
 \begin{document}
 
@@ -17,180 +23,146 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Every graphing question starts the same way: \textbf{find the two asymptotes.} $x=h$ comes from the
-denominator (and does the opposite of what it says), $y=k$ comes from the number added outside.
+Write every domain and range in \textbf{interval notation}. Show how you found each answer.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Asymptotes at a glance.} Give both asymptotes and describe the move from $y=\frac1x$.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $y=\dfrac{1}{x-7}$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
-      \item $y=\dfrac{1}{x}+9$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
-      \item $y=-\dfrac{1}{x}$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
-      \item $y=\dfrac{5}{x+1}$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
-      \item $y=\dfrac{1}{x-2}+6$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
-      \item $y=\dfrac{-4}{x+3}-2$ \hfill VA \blank{1.2cm} \; HA \blank{1.2cm} \; move: \blank{2.4cm}
-    \end{enumerate}
-
-  \item \textbf{The full read.} For each function give the center, both asymptotes, the domain, the
-        range, and both intercepts. One of the three has no $x$-intercept --- say which and why.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=8pt]
-      \item $g(x)=\dfrac{4}{x-1}-2$ \\[3pt]
-            Center $(\blank{0.7cm},\,\blank{0.7cm})$ \; VA \blank{1.2cm} \; HA \blank{1.2cm} \;
-            Domain \blank{1.8cm} \; Range \blank{1.8cm} \\[3pt]
-            $y$-int \blank{1.4cm} \quad $x$-int \blank{1.4cm}
-      \item $p(x)=\dfrac{-6}{x+3}+3$ \\[3pt]
-            Center $(\blank{0.7cm},\,\blank{0.7cm})$ \; VA \blank{1.2cm} \; HA \blank{1.2cm} \;
-            Domain \blank{1.8cm} \; Range \blank{1.8cm} \\[3pt]
-            $y$-int \blank{1.4cm} \quad $x$-int \blank{1.4cm}
-      \item $q(x)=\dfrac{1}{x+5}$ \\[3pt]
-            Center $(\blank{0.7cm},\,\blank{0.7cm})$ \; VA \blank{1.2cm} \; HA \blank{1.2cm} \;
-            Domain \blank{1.8cm} \; Range \blank{1.8cm} \\[3pt]
-            $y$-int \blank{1.4cm} \quad $x$-int \blank{1.4cm}
-    \end{enumerate}
-    \vspace{2pt}
-    Which one has no $x$-intercept, and what is it about its equation that guarantees that?
-    \blank{6.0cm}
-
-  \item \textbf{Write the equation from the graph.} Asymptotes are dashed; two points are marked on
-        each.
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{From the equation only.} No graphing --- read each row off the transformation form.
     \begin{center}
-    \begin{tikzpicture}[scale=0.33]
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Parent} & \textbf{Transformations, in order} & \textbf{Anchor point} & \textbf{Domain \& range} \\
+    \hline
+    $\sqrt{x-5}+2$ & \blank{1.4cm} & \blank{2.4cm} & \blank{1.6cm} & \blank{2.0cm} \\
+    $\sqrt[3]{x+3}-1$ & \blank{1.4cm} & \blank{2.4cm} & \blank{1.6cm} & \blank{2.0cm} \\
+    $-4\sqrt{x}+2$ & \blank{1.4cm} & \blank{2.4cm} & \blank{1.6cm} & \blank{2.0cm} \\
+    $\tfrac12\sqrt{x+6}-3$ & \blank{1.4cm} & \blank{2.4cm} & \blank{1.6cm} & \blank{2.0cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+  \item \textbf{Read the graph.} The graph is $m(x)=-\sqrt{x+4}+3$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-6}{13}{-3}{5}
       \begin{scope}
-        \lgrid{-2}{8}{-2}{6}
-        \draw[navy, dashed, semithick] (3,-2)--(3,6);
-        \draw[navy, dashed, semithick] (-2,2)--(8,2);
-        \node[navy, font=\scriptsize, above right] at (3,5.2) {$x=3$};
-        \node[navy, font=\scriptsize, below right] at (6.4,2) {$y=2$};
-        \begin{scope} \clip (-2,-2) rectangle (8,6);
-          \draw[very thick, forest, domain=-2:2.75, samples=110, smooth] plot (\x,{-1/((\x)-3)+2});
-          \draw[very thick, forest, domain=3.25:8, samples=110, smooth] plot (\x,{-1/((\x)-3)+2});
-        \end{scope}
-        \fill[charcoal] (2,3) circle (3.2pt) node[above left, font=\scriptsize]{$(2,3)$};
-        \fill[charcoal] (4,1) circle (3.2pt) node[below right, font=\scriptsize]{$(4,1)$};
-        \node[charcoal, font=\small\bfseries] at (3,-4.2){(a)};
+        \clip (-6,-3) rectangle (13,5);
+        \draw[very thick, forest, domain=-4:13, samples=110, smooth] plot (\x,{3-sqrt((\x)+4)});
       \end{scope}
-      \begin{scope}[xshift=15cm]
-        \lgrid{-7}{5}{-5}{5}
-        \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
-        \node[navy, font=\scriptsize, above right] at (-2,4.2) {$x=-2$};
-        \begin{scope} \clip (-7,-5) rectangle (5,5);
-          \draw[very thick, forest, domain=-7:-2.4, samples=110, smooth] plot (\x,{-2/((\x)+2)});
-          \draw[very thick, forest, domain=-1.6:5, samples=110, smooth] plot (\x,{-2/((\x)+2)});
-        \end{scope}
-        \fill[charcoal] (0,-1) circle (3.2pt) node[below right, font=\scriptsize]{$(0,-1)$};
-        \fill[charcoal] (-3,2) circle (3.2pt) node[above left, font=\scriptsize]{$(-3,2)$};
-        \node[charcoal, font=\small\bfseries] at (-1,-7.2){(b)};
-      \end{scope}
+      \fill[forest] (-4,3) circle (4pt) node[above right, font=\scriptsize]{$(-4,3)$};
+      \fill[charcoal] (0,1) circle (2.6pt) node[above right, font=\scriptsize]{$(0,1)$};
+      \fill[charcoal] (5,0) circle (2.6pt) node[above right, font=\scriptsize]{$(5,0)$};
+      \fill[charcoal] (12,-1) circle (2.6pt);
     \end{tikzpicture}
     \end{center}
-    \vspace{-4pt}
-    (a) $h=$ \blank{1.0cm} \; $k=$ \blank{1.0cm} \; $a=$ \blank{1.0cm} \; Equation: \blank{2.8cm}
-    \\[4pt]
-    (b) The horizontal asymptote is not drawn --- read it off the graph: \blank{1.2cm}. \\[3pt]
-    \phantom{(b)} $h=$ \blank{1.0cm} \; $k=$ \blank{1.0cm} \; $a=$ \blank{1.0cm} \; Equation:
-    \blank{2.8cm}
+    $a=\blank{1.0cm}$, \; $h=\blank{1.0cm}$, \; $k=\blank{1.0cm}$ \quad Anchor: \blank{1.8cm} \\[3pt]
+    Domain: \blank{2.6cm} \quad Range: \blank{2.6cm} \\[3pt]
+    $x$-intercept: \blank{1.8cm} \quad $y$-intercept: \blank{1.8cm} \\[3pt]
+    Increasing or decreasing on its domain? \blank{2.4cm} \\[3pt]
+    Absolute \blank{1.6cm} of \blank{1.0cm} at $x=\blank{1.0cm}$; \; no absolute \blank{1.6cm} \\[3pt]
+    End behavior: as $x\to+\infty$, $m(x)\to\blank{1.4cm}$. \; As $x\to-\infty$: \blank{4.0cm}
 
-  \item \textbf{Unmask the disguise.} Each of these \emph{is} a transformed $\frac1x$. Rewrite the
-        numerator using the denominator, then read off both asymptotes.
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=7pt]
-      \item $y=\dfrac{x+5}{x+2}=\;$\blank{2.6cm} \quad VA \blank{1.2cm} \quad HA \blank{1.2cm}
-      \item $y=\dfrac{4x-3}{x-1}=\;$\blank{2.6cm} \quad VA \blank{1.2cm} \quad HA \blank{1.2cm}
-      \item $y=\dfrac{2x}{x+4}=\;$\blank{2.6cm} \quad VA \blank{1.2cm} \quad HA \blank{1.2cm}
-    \end{enumerate}
-    \vspace{2pt}
-    Check all three horizontal asymptotes a second way, using Lesson 5.0's degree comparison. Do they
-    agree? \blank{1.2cm} \; Why must they? \blank{4.6cm}
-
-  \item \textbf{Compare and contrast.} Two tables of values:
+  \item \textbf{Write the equation --- square root.} The graph below has the form
+        $y=a\sqrt{x-h}+k$.
     \begin{center}
-    \renewcommand{\arraystretch}{1.3}
-    \begin{minipage}{0.44\linewidth}\centering
-    \textbf{Table I} \\[2pt]
-    \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    $x$ & $1$ & $2$ & $4$ & $10$ \\ \hline
-    $y$ & $12$ & $6$ & $3$ & $1.2$ \\ \hline
-    \end{tabular}
-    \end{minipage}%
-    \begin{minipage}{0.44\linewidth}\centering
-    \textbf{Table II} \\[2pt]
-    \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    $x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-    $y$ & $3$ & $6$ & $9$ & $12$ \\ \hline
-    \end{tabular}
-    \end{minipage}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-5}{11}{-2}{6}
+      \begin{scope}
+        \clip (-5,-2) rectangle (11,6);
+        \draw[very thick, forest, domain=-3:11, samples=110, smooth] plot (\x,{4-sqrt((\x)+3)});
+      \end{scope}
+      \fill[forest] (-3,4) circle (4pt) node[above right, font=\scriptsize]{$(-3,4)$};
+      \fill[charcoal] (1,2) circle (2.6pt) node[above right, font=\scriptsize]{$(1,2)$};
+      \fill[charcoal] (6,1) circle (2.6pt) node[above right, font=\scriptsize]{$(6,1)$};
+    \end{tikzpicture}
     \end{center}
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item In Table II, the \emph{differences} between consecutive $y$-values are constant, so it
-            comes from a \blank{1.8cm} function: $y=$ \blank{1.4cm}.
-      \item In Table I, the differences are not constant --- but every \emph{product} $x\cdot y$ is
-            \blank{1.0cm}. So $y=$ \blank{1.4cm}, which is the rational parent stretched by
-            \blank{1.0cm}.
-      \item Give two features the graph of Table I's function has that Table II's does not.
-            \writeline
-    \end{enumerate}
+    Anchor \blank{1.8cm} $\Rightarrow$ $h=\blank{0.9cm}$, $k=\blank{0.9cm}$. \; Substitute $(1,2)$:
+    $a=\blank{1.0cm}$. \\[3pt]
+    \textbf{Equation:} $y=\blank{4.4cm}$ \quad Check it against $(6,1)$: \blank{4.0cm}
 
-  \item \textbf{Free throws.} A player has made $12$ of her first $20$ attempts. She then makes the
-        next $x$ shots in a row, so her season percentage is
-        \[ P(x)=\frac{12+x}{20+x}. \]
-    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $P(0)=$ \blank{1.2cm} \quad $P(20)=$ \blank{1.2cm} \quad $P(80)=$ \blank{1.2cm}
-      \item Rewrite $P$ in the form $\dfrac{a}{x-h}+k$ by writing $12+x$ as $(x+20)-\blank{0.8cm}$:
-            \\[3pt]
-            $P(x)=$ \blank{3.0cm}, \quad so $a=$ \blank{1.0cm}, \; $h=$ \blank{1.0cm}, \;
-            $k=$ \blank{1.0cm}.
-      \item The horizontal asymptote is \blank{1.2cm}. What does it mean about this player?
-            \writeline
-      \item How many in a row does she need to reach $90\%$? \blank{1.4cm} \; To reach $95\%$?
-            \blank{1.4cm} \; To reach $100\%$? \blank{2.4cm}
-      \item The algebra puts a vertical asymptote at $x=$ \blank{1.2cm}. Which values of $x$ actually
-            make sense here? \blank{2.6cm}
-    \end{enumerate}
+  \item \textbf{Write the equation --- cube root.} The graph below has the form
+        $y=a\sqrt[3]{x-h}+k$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.40]
+      \lgrid{-8}{10}{-6}{4}
+      \begin{scope}
+        \clip (-8,-6) rectangle (10,4);
+        \cbrtplot{2}{1}{-1}{-8}{10}
+      \end{scope}
+      \fill[forest] (1,-1) circle (5pt) node[right, font=\scriptsize]{$(1,-1)$};
+      \fill[charcoal] (9,3) circle (3pt) node[below right, font=\scriptsize]{$(9,3)$};
+      \fill[charcoal] (-7,-5) circle (3pt) node[above right, font=\scriptsize]{$(-7,-5)$};
+    \end{tikzpicture}
+    \end{center}
+    Inflection point \blank{1.8cm} $\Rightarrow$ $h=\blank{0.9cm}$, $k=\blank{0.9cm}$. \;
+    Substitute $(9,3)$: $a=\blank{1.0cm}$. \\[3pt]
+    \textbf{Equation:} $y=\blank{4.4cm}$ \\[3pt]
+    Why does this function have \emph{no} endpoint, even though it has an $h$ and a $k$?
+    \blank{5.4cm}
+
+  \item \textbf{Factor first.} Rewrite each in the form $a\sqrt[n]{x-h}+k$, then give the anchor
+        point and the domain.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Rewritten} & \textbf{Anchor} & \textbf{Domain} \\
+    \hline
+    $y=\sqrt{25x}$ & \blank{2.2cm} & \blank{1.8cm} & \blank{2.2cm} \\
+    $y=\sqrt{16x-32}$ & \blank{2.2cm} & \blank{1.8cm} & \blank{2.2cm} \\
+    $y=\sqrt[3]{27x-27}$ & \blank{2.2cm} & \blank{1.8cm} & \blank{2.2cm} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+
+  \item \textbf{Explain.} The graphs of $y=-\sqrt{x}$ and $y=\sqrt{-x}$ are \emph{different}. The
+        graphs of $y=-\sqrt[3]{x}$ and $y=\sqrt[3]{-x}$ are \emph{the same}. Explain both facts at
+        once, using the words \textbf{index} and \textbf{symmetry}.
+        \writelines{4}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Part 1 --- Three students, one function.} Each described $y=\dfrac{-2}{x-5}+4$. Mark each
-description right or wrong, and name the error.
+\textbf{How far can you see?} On a clear day, from an eye height of $h$ feet above the water, the
+distance to the horizon is about
+\[
+  d(h) = \sqrt{1.5h} \ \text{ miles.}
+\]
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf{Student} & \textbf{Description} & \textbf{Right or wrong --- and why?} \\
-\hline
-Jonah & VA $x=-5$, HA $y=4$ & \blank{5.4cm} \\
-Kira  & VA $x=5$, HA $y=-2$ & \blank{5.4cm} \\
-Liam  & VA $x=5$, HA $y=4$; right $5$, up $4$, stretched by $2$ & \blank{5.4cm} \\
-\hline
-\end{tabularx}
+$h$ (feet of eye height) & $6$ & $24$ & $54$ & $96$ & $150$ \\ \hline
+$d(h)$ (miles) & $3$ & $6$ & $9$ & $12$ & $15$ \\ \hline
+\end{tabular}
 \end{center}
-\vspace{2pt}
-Liam's is the dangerous one: both asymptotes are right, and he still missed something the graph shows
-plainly. What did he leave out, and where do the branches actually sit? \writelines{2}
-
-\vspace{4pt}
-\textbf{Part 2 --- Design one.} Write the equation of a rational function whose vertical asymptote is
-$x=4$, whose horizontal asymptote is $y=-3$, and whose $y$-intercept is $(0,-2)$.
-\begin{center}
-$y=$ \blank{4.0cm}
-\end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
-  \item Write your answer as a single fraction (Lesson 5.3, run forwards): \blank{3.0cm}
-  \item Confirm the horizontal asymptote from that single fraction with the degree comparison.
-  \item Explain why the $y$-intercept was enough to pin down $a$, but a point \emph{on} the line $y=-3$
-        never could have been.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+  \item Give the domain of $d$ from the radicand. Does the context restrict it any further?
+  \item The graph of $d$ has its anchor point at $(0,0)$. What does that point mean for a swimmer
+        with their eyes right at water level?
+  \item From the table: going from $h=6$ to $h=24$ multiplies the eye height by $4$ but multiplies
+        the viewing distance by only $2$. Use the shape of a square root graph to explain why.
+  \item Use the product property to rewrite $d(h)=\sqrt{1.5h}$ in the form $a\sqrt{h}$, giving $a$ to
+        two decimal places. Then finish this sentence: \emph{the horizon formula is just the parent
+        $y=\sqrt{h}$ with a single \underline{\hspace{2.4cm}} applied to it.}
+  \item A sailor climbs $h$ feet up the mast of a ship whose deck already sits $20$ feet above the
+        water, so their eye height above the water is $h+20$ and the formula becomes
+        $D(h)=\sqrt{1.5(h+20)}$. Describe how the graph of $D$ differs from the graph of $d$, and
+        give the anchor point of $D$.
+  \item Part (e)'s anchor point is not a place any sailor can stand. Explain why, and state the
+        domain that the \emph{context} actually allows --- then give $D(0)$ and say what it means.
 \end{enumerate}
-\writelines{2}
+\writelines{5}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 5.5: Graphing Rational Functions.} Today every function was a
-transformed $\frac1x$: one factor in the denominator, one wall, asymptotes readable off the face of the
-equation. Tomorrow the denominator factors into \emph{two} pieces and the picture must be assembled
-instead of read --- sort each restriction into a hole or a wall (5.0), find the horizontal asymptote by
-degree comparison, compute the intercepts, and use a sign chart. Everything today still applies; it
-just stops being visible.
+\textbf{Coming next --- Lesson 5.5: Solving Radical Equations \& Extraneous Solutions.} Today you
+turned an equation into a graph and a graph back into an equation. Next you will \emph{solve}: given
+$\sqrt{x+4}-1=3$, find the $x$ that makes it true --- by isolating the radical and raising both sides
+to the $n$th power. There is a catch, and it is the same catch that produced excluded values in Unit
+5: squaring destroys sign information, so the answer you get out may be one the original equation
+never accepted. Every solution has to be checked, every time. Graphically, you will be finding where
+today's graphs cross a horizontal line.
 \end{spiralbox}
 
 \end{document}

@@ -1,9 +1,8 @@
-%! Solving Rational Equations — Unit 5, Lesson 5.6 — Guided Notes
+%! Composition of Functions — Unit 5, Lesson 5.6 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
@@ -19,10 +18,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item \textbf{solve} a rational equation by multiplying every term by the LCD and solving the linear or quadratic equation that is left (A2.EI.4b);
-  \item \textbf{check} every candidate against the restriction list and \textbf{verify} the survivors --- algebraically and on a graph (A2.EI.4b/c);
-  \item \textbf{explain why} a candidate can be extraneous, using the fact that multiplying by an expression that could be zero is not reversible (A2.EI.4d);
-  \item \textbf{write} a rational equation to model a situation, solve it, and say what the answer means --- including which answers to reject and why (A2.EI.4a/c).
+  \item evaluate $(f\circ g)(x)=f(g(x))$ \emph{numerically}, \emph{graphically}, and \emph{algebraically}, working \textbf{inside out};
+  \item show that $(f\circ g)(x)$ and $(g\circ f)(x)$ are usually \emph{different functions}, and find the \textbf{domain} of a composition by checking \emph{both} stages;
+  \item write a given function as a composition of two simpler ones --- and explain why every transformation in Lesson 5.4 was a composition already.
 \end{itemize}
 \end{objectivebox}
 
@@ -32,262 +30,344 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{Rational equation}
-\termblanklong{Clearing the denominators}
-\termblanklong{Candidate vs.\ solution}
-\termblanklong{Extraneous solution}
+\termblanklong{Composition of functions}
+\termblanklong{The notation $(f\circ g)(x)$}
+\termblanklong{Inner function / outer function}
+\termblanklong{Inside out}
+\termblanklong{Domain of a composition}
+\termblanklong{Decomposition}
 \end{vocabbox}
 
 \begin{hookbox}
-Two equations. They are the same except for one number in the denominator.
-\[ \textbf{(I)}\quad \frac{x^2}{x-2}=\frac{4}{x-2} \qquad\qquad\qquad
-   \textbf{(II)}\quad \frac{x^2}{x-3}=\frac{4}{x-3} \]
-Multiply both sides of \emph{either} one by its denominator and the very same equation drops out:
-$x^2=4$, so the candidates are $x=\blank{0.8cm}$ and $x=\blank{0.8cm}$ --- for \textbf{both}
-equations. Now put those two numbers back into the originals and see what actually happens.
+A jacket is marked \$$80$. The store is running two offers at the same time:
+\begin{center}
+\small
+\textbf{Offer 1: $20\%$ off} \quad $\rightarrow$ \quad $f(x)=0.80x$ \hspace{0.5in}
+\textbf{Offer 2: \$$10$ coupon} \quad $\rightarrow$ \quad $g(x)=x-10$
+\end{center}
+Two cashiers apply \emph{both} offers, in opposite orders. Follow the money.
 \begin{center}
 \renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{0.96\linewidth}{|C{1.9cm}|C{1.5cm}|C{2.6cm}|C{2.6cm}|X|}
+\begin{tabularx}{0.96\linewidth}{@{}X c c c@{}}
 \hline
-\rowcolor{forestbg}
-\textbf{Equation} & \textbf{Try $x=$} & \textbf{Left side} & \textbf{Right side} &
-\textbf{True? False? Neither?} \\ \hline
-(I)  & $2$  & & & \\ \hline
-(I)  & $-2$ & & & \\ \hline
-(II) & $2$  & & & \\ \hline
-(II) & $-2$ & & & \\ \hline
+ & \textbf{Start} & \textbf{After the first offer} & \textbf{You pay} \\
+\hline
+\textbf{Cashier A:} coupon first, then the discount & \$$80$ & \blank{1.8cm} & \blank{1.8cm} \\
+\textbf{Cashier B:} discount first, then the coupon & \$$80$ & \blank{1.8cm} & \blank{1.8cm} \\
+\hline
 \end{tabularx}
 \end{center}
-\vspace{-2pt}
-Equation (I) has \blank{0.8cm} solution(s); equation (II) has \blank{0.8cm}. The algebra could not
-tell them apart --- \emph{only the check could.} That is today's whole lesson.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Which line would you rather stand in, and by how much? \blank{5.0cm}
+  \item Nobody made an arithmetic mistake. So what \emph{was} the difference between the two
+        cashiers? \writeline
+\end{itemize}
+Today we give that difference a notation. Two functions, run one after the other, make a
+\textbf{composition} --- and \textbf{the order is part of the answer.}
 \end{hookbox}
 
-\begin{notesbox}{1. First: Expression or Equation?}
-These two lines look almost identical, and what you are allowed to do to them is completely different.
+\begin{notesbox}{1. Wiring Two Functions in Series}
+A \textbf{composition} takes the \emph{output} of one function and uses it as the
+\blank{2.0cm} of another. Picture two machines wired in series:
+\begin{center}
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \node (x) at (0,0) {$x$};
+  \node[draw=forest, thick, rounded corners, fill=forestbg, minimum width=1.4cm,
+        minimum height=0.85cm] (g) at (2.2,0) {$g$};
+  \node[draw=navy, thick, rounded corners, fill=sky, minimum width=1.4cm,
+        minimum height=0.85cm] (f) at (6.0,0) {$f$};
+  \node (out) at (8.9,0) {$f\big(g(x)\big)$};
+  \draw[->, thick, charcoal] (x)--(g);
+  \draw[->, thick, charcoal] (g)--node[above, font=\scriptsize]{$g(x)$}(f);
+  \draw[->, thick, charcoal] (f)--(out);
+  \node[font=\scriptsize, forest] at (2.2,-0.85) {runs \textbf{first}};
+  \node[font=\scriptsize, navy] at (6.0,-0.85) {runs \textbf{second}};
+\end{tikzpicture}
+\end{center}
+\vspace{-2pt}
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\centering\small
+\textbf{Notation.} \quad $(f\circ g)(x)=f\big(g(x)\big)$ \quad --- read it ``\emph{$f$ of $g$ of
+$x$}.'' \\[4pt]
+The function written \textbf{next to the $x$} goes \blank{1.6cm}. \\[3pt]
+$g$ is the \textbf{\blank{1.8cm} function} (it is inside the parentheses); \;
+$f$ is the \textbf{\blank{1.8cm} function}. \\[3pt]
+\textbf{Always work \blank{2.6cm}.}
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{Careful:} $(f\circ g)(x)$ is \emph{not} $f(x)\cdot g(x)$. The little circle is not a
+multiplication dot --- it means ``\blank{3.0cm}.''
 
 \vspace{4pt}
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} X X@{}}
-\hline
- & \textbf{Lesson 5.3 --- an \emph{expression}} & \textbf{Lesson 5.6 --- an \emph{equation}} \\
-\hline
-What it looks like & $\dfrac{6}{x}-\dfrac{2}{x-1}$ & $\dfrac{6}{x}-\dfrac{2}{x-1}=1$ \\
-The job & \emph{Combine} it into one fraction & \emph{Solve} it for $x$ \\
-What you do with the LCD & Build it: rewrite each piece \emph{over} the LCD & Multiply \emph{every term} by it, so the denominators cancel away \\
-What is left at the end & A fraction, with restrictions & Numbers, which must then be \blank{2.0cm} \\
-\hline
-\end{tabularx}
-\end{center}
-
-\vspace{3pt}
-\begin{center}
-\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
-\textbf{You may clear denominators only when there is an equals sign.} An expression has no sides to
-multiply. Clearing the denominators of an expression changes its \emph{value}; clearing them in an
-equation keeps the equation balanced.\vspace{2pt}}}
-\end{center}
+\textbf{You did one already.} In Warm-Up item 1 you found $g(-1)=\blank{1.0cm}$ and then put that
+answer into $f$, getting \blank{1.0cm}. In today's notation, that was
+$(f\circ g)(-1)=\blank{1.0cm}$.
 \end{notesbox}
 
-\begin{notesbox}{2. The Four Steps --- Always in This Order}
+\begin{notesbox}{2. Composing Numerically}
+With $f(x)=2x-3$ and $g(x)=x^{2}+1$ --- the same two functions from the Warm-Up --- evaluate each
+composition in \emph{two labelled steps}. Never skip the middle number; it is where the mistakes
+live.
 \begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.96\linewidth}{@{}X X X X@{}}
 \hline
-\textbf{\#} & \textbf{Step} & \textbf{What you write down} \\
+ & \textbf{Step 1: inside} & \textbf{Step 2: outside} & \textbf{Answer} \\
 \hline
-1 & \textbf{Factor \& restrict} & factor every denominator; list every \blank{2.4cm} value. \emph{Write the list at the top of your work.} \\
-2 & \textbf{Multiply by the LCD} & every term, including any term with no denominator; then cancel \\
-3 & \textbf{Solve} & whatever is left --- a \blank{1.6cm} or a \blank{2.0cm} equation \\
-4 & \textbf{Check} & compare each answer to the Step 1 list; discard any match; verify the survivors \\
+(a) $(f\circ g)(3)$ & $g(3)=\blank{1.2cm}$ & $f(\blank{1.0cm})=\blank{1.2cm}$ & \blank{1.4cm} \\
+(b) $(g\circ f)(3)$ & $f(3)=\blank{1.2cm}$ & $g(\blank{1.0cm})=\blank{1.2cm}$ & \blank{1.4cm} \\
+(c) $(f\circ f)(4)$ & $f(4)=\blank{1.2cm}$ & $f(\blank{1.0cm})=\blank{1.2cm}$ & \blank{1.4cm} \\
 \hline
-\end{tabularx}
-\end{center}
-
-\vspace{3pt}
-\begin{center}
-\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
-\textbf{Clearing the denominators solves a \emph{different} equation. The check is what brings you
-back.}\vspace{2pt}}}
-\end{center}
-
-\vspace{3pt}
-Until Step 4 is done, the numbers you have are only \textbf{candidates}. Step 1 is not optional
-bookkeeping --- it is the only thing that makes Step 4 possible, and it must happen \emph{before} you
-touch the equation.
-\end{notesbox}
-
-\begin{notesbox}{3. Why This Happens --- and Why It Is Not Your Fault}
-From the Warm-Up: multiplying both sides of an equation by a \emph{nonzero} number can always be undone
-by dividing, so it never changes the answers. Multiplying both sides by \blank{1.2cm} cannot be
-undone --- and it turns \emph{every} statement, true or false, into $0=0$.
-
-\vspace{4pt}
-When you multiply a rational equation by its LCD, you are not multiplying by a number. You are
-multiplying by an \emph{expression}, and at each excluded value that expression is exactly
-\blank{1.2cm}. So at those inputs --- and only at those inputs --- the multiplication is not
-reversible, and the cleared equation can pick up answers that the original never had.
-
-\vspace{4pt}
-\begin{center}
-\fbox{\parbox{0.94\linewidth}{\centering\vspace{2pt}
-An \textbf{extraneous solution} is a solution of the cleared equation that is \emph{not} a solution of
-the original one. \\[3pt]
-\textbf{It is never a random number. It is always a value from your Step 1
-list.}\vspace{2pt}}}
-\end{center}
-
-\vspace{4pt}
-That last sentence is worth its own line, because it makes Step 4 quick. You are not re-solving
-anything. You are reading two short lists --- \emph{candidates} and \emph{restrictions} --- and looking
-for overlap.
-
-\vspace{3pt}
-\textbf{And notice what a check on an excluded value actually looks like.} Substituting $x=2$ into
-equation (I) of the Hook does not produce a \emph{false} statement. It produces \blank{4.6cm}
---- which is not a statement at all. You cannot check a number into an equation where the equation does
-not exist.
-\end{notesbox}
-
-\begin{notesbox}{4. Worked Example A --- Nothing Gets Thrown Away}
-\[ \frac{6}{x}-\frac{2}{x-1}=1 \]
-
-\textbf{Step 1 --- factor and restrict.} The denominators are $x$ and $x-1$, already factored, so
-$x\neq\blank{0.8cm}$ and $x\neq\blank{0.8cm}$. \; LCD $=\blank{2.6cm}$
-
-\vspace{4pt}
-\textbf{Step 2 --- multiply every term by the LCD.} Watch the term on the right: it has no denominator,
-and it still gets multiplied.
-\[ x(x-1)\cdot\frac{6}{x} \;-\; x(x-1)\cdot\frac{2}{x-1} \;=\; x(x-1)\cdot 1 \]
-Cancel: \quad $\rule{2.2cm}{0.4pt}-\rule{1.6cm}{0.4pt}=\rule{2.2cm}{0.4pt}$
-
-\vspace{4pt}
-\textbf{Step 3 --- solve what is left.} Distribute, collect everything on one side, and factor.
-\[ 6x-6-2x=x^2-x \qquad\Longrightarrow\qquad 0=x^2-\rule{0.7cm}{0.4pt}\,x+\rule{0.7cm}{0.4pt}
-   \qquad\Longrightarrow\qquad 0=(x-\rule{0.5cm}{0.4pt})(x-\rule{0.5cm}{0.4pt}) \]
-Candidates: $x=\blank{0.8cm}$ and $x=\blank{0.8cm}$.
-
-\vspace{4pt}
-\textbf{Step 4 --- check.} Restriction list: \blank{2.0cm}. \; Is either candidate on it?
-\blank{1.0cm} \; So \blank{1.0cm} candidates survive. Verify both in the \emph{original}:
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{0.90\linewidth}{|C{1.6cm}|C{3.4cm}|C{2.0cm}|X|}
-\hline
-\rowcolor{forestbg}
-\textbf{$x$} & \textbf{$\dfrac{6}{x}-\dfrac{2}{x-1}$} & \textbf{Equals $1$?} & \textbf{Verdict} \\ \hline
-$2$ & & & \\ \hline
-$3$ & & & \\ \hline
 \end{tabularx}
 \end{center}
 \vspace{-2pt}
-Solution set: \blank{3.0cm}
-\end{notesbox}
-
-\begin{notesbox}{5. Worked Example B --- One Survives, One Does Not}
-\[ \frac{x}{x+1}+\frac{2}{x-1}=\frac{2}{x^2-1} \]
-
-\textbf{Step 1.} Factor the last denominator first: $x^2-1=(\rule{1.3cm}{0.4pt})(\rule{1.3cm}{0.4pt})$.
-\; Restrictions: $x\neq\blank{0.8cm}$, $x\neq\blank{0.8cm}$. \; LCD $=\blank{3.0cm}$
+Parts (a) and (b) used the same two functions and the same input, and gave
+\blank{3.0cm} answers.
 
 \vspace{4pt}
-\textbf{Step 2.} Multiply all three terms by the LCD and cancel:
-\[ x(\rule{1.1cm}{0.4pt})+2(\rule{1.1cm}{0.4pt})=\rule{1.1cm}{0.4pt} \]
-
-\vspace{2pt}
-\textbf{Step 3.} $x^2-x+2x+2=2 \;\Longrightarrow\; x^2+x=0 \;\Longrightarrow\;
-x(\rule{1.3cm}{0.4pt})=0$. \; Candidates: $x=\blank{0.8cm}$, $x=\blank{0.8cm}$.
-
-\vspace{4pt}
-\textbf{Step 4.} One candidate is sitting on the restriction list: $x=\blank{0.9cm}$ is
-\blank{2.6cm}. Throw it away --- and notice you did \emph{not} have to substitute anything to know
-that. The other candidate, $x=\blank{0.9cm}$, is checked in the original: left side
-$=\dfrac{0}{1}+\dfrac{2}{-1}=\blank{1.0cm}$, right side $=\dfrac{2}{-1}=\blank{1.0cm}$. \;
-Solution set: \blank{2.4cm}
-
-\vspace{5pt}
-\textbf{Now see it (A2.EI.4b, graphically).} Move everything to one side and combine with 5.3:
-\[ \frac{x}{x+1}+\frac{2}{x-1}-\frac{2}{x^2-1}
-   =\frac{x(x-1)+2(x+1)-2}{(x-1)(x+1)}=\frac{x^2+x}{(x-1)(x+1)}
-   =\frac{x(x+1)}{(x-1)(x+1)}=\frac{x}{x-1},\quad x\neq-1 \]
-Solving the equation is the same as asking where that combined function equals \blank{0.8cm}. Run
-Lesson 5.5 on it: the factor $x+1$ cancels, so $x=-1$ is a \blank{1.2cm}; the factor $x-1$ survives,
-so $x=1$ is a \blank{2.6cm}; and the simplified numerator is zero at $x=\blank{0.8cm}$.
-
-\vspace{3pt}
+\textbf{From a table.} You do not need formulas --- values are enough.
 \begin{center}
-\begin{minipage}{0.53\linewidth}\centering
-\begin{tikzpicture}[scale=0.40]
-  \lgrid{-6}{7}{-4}{6}
-  \draw[navy, dashed, semithick] (1,-4)--(1,6);
-  \draw[navy, dashed, semithick] (-6,1)--(7,1);
-  \node[navy, font=\scriptsize, above right] at (1,5.2) {$x=1$};
-  \node[navy, font=\scriptsize, below right] at (5.0,1) {$y=1$};
-  \begin{scope}
-    \clip (-6,-4) rectangle (7,6);
-    \draw[very thick, forest, domain=-6:0.8, samples=140, smooth] plot (\x,{1+1/((\x)-1)});
-    \draw[very thick, forest, domain=1.25:7, samples=140, smooth] plot (\x,{1+1/((\x)-1)});
-  \end{scope}
-  \draw[forest, very thick, fill=white] (-1,0.5) circle (4.2pt);
-  \node[charcoal, font=\scriptsize, left] at (-1.4,0.9) {hole};
-  \fill[charcoal] (0,0) circle (3.4pt);
-\end{tikzpicture}
-\end{minipage}%
-\begin{minipage}{0.45\linewidth}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|c|c|c|c|c|c|@{}}
+\hline
+$x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ \\
+\hline
+$s(x)$ & $1$ & $2$ & $-1$ & $0$ & $-2$ \\
+\hline
+$t(x)$ & $0$ & $-2$ & $1$ & $-1$ & $2$ \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+Same input, three different compositions --- watch how far apart the answers land.
+\begin{center}
 \small
-The solid dot at \blank{1.4cm} is where the combined function is zero. That is the \emph{real}
-solution.
-
-\vspace{4pt}
-The open circle at $\left(-1,\frac12\right)$ is where the extraneous candidate went. The graph has no
-point there at all --- so the equation cannot be satisfied there.
-
-\vspace{4pt}
-\textbf{Fill in the rule:} a true solution shows up as an \blank{2.2cm}; an extraneous candidate
-shows up as a \blank{1.4cm} (or a wall).
-\end{minipage}
+$(s\circ t)(0)=s(\blank{0.9cm})=\blank{0.9cm}$ \hspace{0.28in}
+$(t\circ s)(0)=t(\blank{0.9cm})=\blank{0.9cm}$ \hspace{0.28in}
+$(s\circ s)(0)=s(\blank{0.9cm})=\blank{0.9cm}$
 \end{center}
 \end{notesbox}
 
-\begin{notesbox}{6. Cross-Multiplying, and the Answer ``No Solution''}
-\textbf{The shortcut.} When the equation is a \textbf{proportion} --- one single fraction equal to one
-single fraction --- you may cross-multiply. It is not a new rule; it is Step 2 with the LCD
-$=$ (bottom left)(bottom right), already cancelled for you. \emph{It does not apply when there are
-three terms.}
+\begin{notesbox}{3. Composing Graphically}
+Same idea, with the values read off two graphs instead of a rule. Find the inside value on
+\emph{its} graph, then carry that number over and use it as an $x$ on the \emph{other} graph.
+\begin{center}
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-5}{7}{-3}{5}
+  \draw[very thick, forest] (-4,-2)--(0,2)--(4,0)--(6,4);
+  \fill[forest] (0,2) circle (3.4pt);
+  \fill[forest] (4,0) circle (3.4pt);
+  \node[forest, font=\scriptsize] at (-2.6,2.6) {$y=f(x)$};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-5}{7}{-3}{5}
+  \draw[very thick, navy] (-4,4)--(2,-2)--(6,2);
+  \fill[navy] (2,-2) circle (3.4pt);
+  \node[navy, font=\scriptsize] at (4.4,3.4) {$y=g(x)$};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\vspace{-2pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.96\linewidth}{@{}X X X X@{}}
+\hline
+ & \textbf{Read the inside} & \textbf{Then read the outside} & \textbf{Answer} \\
+\hline
+(a) $(f\circ g)(0)$ & $g(0)=\blank{1.1cm}$ & $f(\blank{0.9cm})=\blank{1.1cm}$ & \blank{1.2cm} \\
+(b) $(g\circ f)(0)$ & $f(0)=\blank{1.1cm}$ & $g(\blank{0.9cm})=\blank{1.1cm}$ & \blank{1.2cm} \\
+(c) $(f\circ g)(-2)$ & $g(-2)=\blank{1.1cm}$ & $f(\blank{0.9cm})=\blank{1.1cm}$ & \blank{1.2cm} \\
+(d) $(g\circ f)(6)$ & $f(6)=\blank{1.1cm}$ & $g(\blank{0.9cm})=\blank{1.1cm}$ & \blank{1.2cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+\textbf{The habit:} an output on one graph becomes an \blank{2.0cm} on the other. Circle the middle
+number every time --- it is the only thing being handed from one machine to the next.
+\end{notesbox}
+
+\begin{notesbox}{4. Composing Algebraically}
+Now compose without any particular input. The move is exactly Warm-Up item 2: substitute the
+\emph{whole} inside function, in parentheses, for every $x$ in the outside function.
 
 \vspace{3pt}
-\[ \frac{2}{x-1}=\frac{x}{x+2} \]
-Restrictions: $x\neq\blank{0.8cm}$, $x\neq\blank{0.8cm}$. \; Cross-multiply:
-$2(\rule{1.2cm}{0.4pt})=x(\rule{1.2cm}{0.4pt})$, so $2x+4=x^2-x$ and
-$0=(x-\rule{0.5cm}{0.4pt})(x+\rule{0.5cm}{0.4pt})$. \\[3pt]
-Candidates $x=\blank{0.9cm}$ and $x=\blank{0.9cm}$. On the restriction list? \blank{1.0cm} \;
-Solution set: \blank{2.6cm}
-
-\vspace{6pt}
-\textbf{And sometimes everything gets thrown away.}
-\[ \frac{1}{x-2}+\frac{1}{x+2}=\frac{4}{x^2-4} \]
-Restrictions: $x\neq\blank{2.0cm}$. \; LCD $=\blank{2.6cm}$. \; Clearing gives
-$(x+2)+(x-2)=4$, so $2x=4$ and the only candidate is $x=\blank{0.8cm}$.
-
+With $f(x)=2x-3$ and $g(x)=x^{2}+1$ again:
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\small
+\textbf{(a)} $(f\circ g)(x)=f\big(g(x)\big)$
+\[ =f\big(\blank{2.0cm}\big) \]
+\[ =2\big(\blank{2.0cm}\big)-3=\blank{2.2cm} \]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\small
+\textbf{(b)} $(g\circ f)(x)=g\big(f(x)\big)$
+\[ =g\big(\blank{2.0cm}\big) \]
+\[ =\big(\blank{2.0cm}\big)^{2}+1=\blank{3.0cm} \]
+\end{minipage}
+\end{center}
 \vspace{2pt}
-That candidate \emph{is} on the restriction list. Every candidate is extraneous, so the equation has
-\blank{2.6cm}. Write that as your answer --- it is a complete answer, not a failure to finish.
+Check your two rules against Section 2: put $x=3$ into each and confirm you get the same numbers you
+already found. \; (a) gives \blank{1.2cm}, \; (b) gives \blank{1.2cm}. \; \checkmark
+
+\vspace{4pt}
+\textbf{The one habit that prevents most errors:} write the parentheses \emph{before} you write what
+goes in them. Dropping them turns $\big(2x-3\big)^{2}+1$ into $2x-3^{2}+1$, which is a different
+problem entirely.
+\end{notesbox}
+
+\begin{notesbox}{5. Order Matters --- and This Unit Has the Best Example}
+Let $f(x)=\sqrt{x}$ \; and \; $g(x)=x-4$. Compose them both ways.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.96\linewidth}{@{}X|X@{}}
+\textbf{$(f\circ g)(x)=f(x-4)=$ \blank{2.4cm}} & \textbf{$(g\circ f)(x)=g\!\left(\sqrt{x}\,\right)=$ \blank{2.4cm}} \\
+\hline
+Subtract \emph{first}, then take the root: the change happens \textbf{inside} the radical. &
+Take the root \emph{first}, then subtract: the change happens \textbf{outside} the radical. \\
+From Lesson 5.4, that is the parent shifted \blank{2.4cm}. &
+From Lesson 5.4, that is the parent shifted \blank{2.4cm}. \\
+\end{tabularx}
+\end{center}
+\begin{center}
+\begin{minipage}[c]{0.52\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-1}{14}{-5}{4}
+  \begin{scope}
+    \clip (-1,-5) rectangle (14,4);
+    \draw[very thick, forest, domain=4:14, samples=110, smooth] plot (\x,{sqrt((\x)-4)});
+    \draw[very thick, navy, domain=0:14, samples=110, smooth] plot (\x,{sqrt(\x)-4});
+  \end{scope}
+  \fill[forest] (4,0) circle (4pt);
+  \fill[navy] (0,-4) circle (4pt);
+  \node[forest, font=\scriptsize] at (10.6,2.6) {$y=\sqrt{x-4}$};
+  \node[navy, font=\scriptsize] at (10.4,-2.6) {$y=\sqrt{x}-4$};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.44\linewidth}
+\small
+Two different curves, from the \emph{same two functions}. \\[5pt]
+$y=\sqrt{x-4}$ starts at $(\blank{0.8cm},\blank{0.8cm})$; domain \blank{1.8cm}. \\[5pt]
+$y=\sqrt{x}-4$ starts at $(\blank{0.8cm},\blank{0.8cm})$; domain \blank{1.8cm}. \\[5pt]
+They do not even accept the same inputs, so
+\[ (f\circ g)(x)\ \blank{0.9cm}\ (g\circ f)(x). \]
+\end{minipage}
+\end{center}
+\vspace{2pt}
+\begin{center}
+\begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.7pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Every transformation you learned in 5.4 was a composition.} A change made
+\emph{inside} the radical --- $f(x-h)$, $f(kx)$ --- is $f$ composed with an inner function that gets
+at the input \emph{before} $f$ ever sees it. A change made \emph{outside} --- $a\,f(x)+k$ --- is an
+outer function applied to $f$'s answer. That is the long-awaited reason inside changes feel
+``backwards'': $\sqrt{x-4}$ moves the graph to the \emph{right} because the inner machine hands
+$\sqrt{\phantom{x}}$ a number that is $4$ \emph{smaller}, so $x$ has to be $4$ \emph{bigger} to make
+up for it.
+\end{tcolorbox}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{6. The Domain of a Composition: An Input Must Survive \emph{Both} Stages}
+An input travels through two machines, so it can be rejected in two places.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=2mm, bottom=2mm]
+\small
+\textbf{Gate 1.} \; $x$ must be in the domain of the \blank{2.0cm} function, $g$. \\[3pt]
+\textbf{Gate 2.} \; The number $g(x)$ must be in the domain of the \blank{2.0cm} function, $f$.
+\end{tcolorbox}
+\end{center}
+\vspace{2pt}
+\textbf{Example.} $f(x)=\sqrt{x}$, $g(x)=2x-10$. Then $(f\circ g)(x)=\blank{2.6cm}$. \; Gate 1 lets
+everything through, but Gate 2 demands $2x-10\ \blank{0.8cm}\ 0$, so the domain is
+\blank{2.4cm}.
+
+\vspace{5pt}
+\textbf{Now the surprise, and it is the most important thing on this page.}
+Let $f(x)=x^{2}$ and $g(x)=\sqrt{x}$.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{0.96\linewidth}{@{}X|X@{}}
+\textbf{$(f\circ g)(x)=\left(\sqrt{x}\,\right)^{2}=$ \blank{1.4cm}} &
+\textbf{$(g\circ f)(x)=\sqrt{x^{2}}=$ \blank{1.4cm}} \; (Lesson 5.1!) \\
+\hline
+The formula looks like it accepts every real number. But can you compute it at $x=-9$?
+\blank{2.0cm} & This one really does accept every real number --- squaring cleans the sign up
+\emph{before} the root ever sees it. \\
+Why not? \blank{5.0cm} & At $x=-9$ it gives \blank{1.4cm}, not $-9$. \\
+Domain: \blank{2.6cm} & Domain: \blank{2.6cm} \\
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+\textbf{The rule this forces:} find the domain from the \blank{2.6cm}, not from the simplified
+answer. Simplifying can erase the evidence that a gate was ever there.
+\begin{center}
+\begin{tcolorbox}[colback=redbg, colframe=redacc, boxrule=0.7pt, arc=1.5mm, width=0.94\linewidth,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Hold on to this until tomorrow.} Squaring and square-rooting \emph{almost} undo each
+other --- one order gives you $x$ back but only for $x\ge0$, and the other order gives you $|x|$.
+Neither one is honestly ``$x$ for every real number.'' In Lesson 5.7 that is exactly why $y=x^{2}$
+has to have its domain \emph{restricted} before it is allowed a square-root inverse --- the loose
+end you first noticed back in Lesson 5.0.
+\end{tcolorbox}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{7. Reading a Composition Backwards (Decomposition)}
+Sometimes the useful question is the reverse: \emph{what two machines built this?} Look for the
+work done \textbf{first} --- that is the inner function; everything wrapped around it is the outer
+function.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{0.96\linewidth}{@{}l X X@{}}
+\hline
+\textbf{Given $h(x)$} & \textbf{Inner $g(x)$ (done first)} & \textbf{Outer $f(x)$ (done second)} \\
+\hline
+$h(x)=\sqrt{3x+1}$ & \blank{3.0cm} & \blank{3.0cm} \\
+$h(x)=(x-5)^{3}$ & \blank{3.0cm} & \blank{3.0cm} \\
+$h(x)=\sqrt[3]{x}+7$ & \blank{3.0cm} & \blank{3.0cm} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-2pt}
+There is more than one right answer to a decomposition --- but the one you want is the one where the
+inner function is what your \emph{hands} would do first if you were evaluating $h(4)$ with a
+calculator.
 \end{notesbox}
 
 \begin{practicebox}
-Solve, showing all four steps. \; $\dfrac{6}{x^2-9}+\dfrac{1}{x+3}=1$
-\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
-  \item Factored denominators \blank{3.2cm}; \; restrictions $x\neq\blank{2.2cm}$; \;
-        LCD $=\blank{3.0cm}$
-  \item After multiplying every term by the LCD (do not forget the $1$):
-        \; $\rule{1.4cm}{0.4pt}+\rule{2.0cm}{0.4pt}=\rule{2.6cm}{0.4pt}$
-  \item Solve: \; $0=x^2-\rule{0.6cm}{0.4pt}\,x-\rule{0.8cm}{0.4pt}
-        =(x-\rule{0.5cm}{0.4pt})(x+\rule{0.5cm}{0.4pt})$. \; Candidates \blank{2.4cm}
-  \item Check. Extraneous: \blank{1.4cm} \; Solution set: \blank{2.0cm}
-  \item In one sentence, say how you knew the extraneous one was extraneous \emph{without} substituting
-        it. \writeline
-\end{enumerate}
+Show the inside step every time.
+
+\vspace{4pt}
+\textbf{1.} Let $f(x)=x-3$ and $g(x)=x^{2}$. \\[3pt]
+\hspace*{0.2in} $(f\circ g)(4)=\blank{1.6cm}$ \hspace{0.3in} $(g\circ f)(4)=\blank{1.6cm}$
+\vspace{0.35in}
+
+\textbf{2.} Let $f(x)=\sqrt{x}$ and $g(x)=2x-6$. Find $(f\circ g)(x)$ and state its domain.
+\vspace{0.55in}
+
+$(f\circ g)(x)=\blank{3.0cm}$ \hspace{0.3in} Domain: \blank{3.0cm}
+
+\vspace{6pt}
+\textbf{3.} Write $h(x)=(x+5)^{3}$ as $f(g(x))$. \; $g(x)=\blank{2.4cm}$, \;
+$f(x)=\blank{2.4cm}$
+
+\vspace{6pt}
+\textbf{4.} A classmate says $(f\circ g)(x)$ and $(g\circ f)(x)$ ``are the same thing written two
+ways.'' Give them one specific counterexample from today. \writeline
 \end{practicebox}
 
 \end{document}

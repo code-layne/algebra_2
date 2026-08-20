@@ -1,4 +1,4 @@
-%! Equations and Inequalities — Unit 1, Lesson 1.2 — Lesson Plan
+%! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,12 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 1: Foundations --- Algebra 1 Review \quad}
-\newcommand{\LessonNumberName}{Lesson 1.2: Equations and Inequalities}
+\newcommand{\UnitNumberName}{Unit 1: Linear Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 1.2: Absolute Value Equations \& Inequalities}
+% Number line: {xmin}{xmax} then draw solutions on top.
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.4,0)--(#2+0.4,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.10)--(\x,-0.10) node[below, font=\scriptsize]{$\x$};}}
 
 \begin{document}
 \begin{center}
@@ -19,39 +23,25 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can write and solve multistep linear equations and
-    inequalities in one variable, justifying each step by a \emph{property of equality} or
-    \emph{property of inequality}; rearrange a literal equation for a specified variable; graph an
-    inequality's solution set on a number line and interpret it in context; determine whether a
-    linear equation has \emph{one}, \emph{no}, or \emph{infinitely many} solutions; and solve a
-    quadratic equation over the real numbers by square roots, by factoring with the zero product
-    property, and by the quadratic formula, determining and justifying the \emph{number of real
-    solutions} before solving. Throughout, students \textbf{verify} every solution by substitution
-    and read it back against the graph.
+    \textbf{Primary Objective:} Students can read absolute value as \emph{distance from zero} and use
+    that meaning to solve absolute value \emph{equations} and \emph{inequalities} in one variable.
+    They isolate the absolute value, split into the \emph{two cases} an equation
+    $|ax+b| = c$ requires, and recognize the special cases (no solution when $c<0$, one solution when
+    $c=0$). For inequalities they translate $|ax+b|<c$ into a ``between'' (\emph{and}) statement and
+    $|ax+b|>c$ into an ``outside'' (\emph{or}) statement, then represent the solution set three ways
+    --- \emph{set notation, interval notation, and a number line} --- and interpret a
+    \emph{tolerance} situation in context. Lesson~1.1 wrote and solved \emph{linear} expressions;
+    today those same expressions live \emph{inside} the absolute-value bars, and Lesson~1.3 turns this
+    algebra into the V-shaped graph.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL --- Algebra 1, reviewed):} this lesson reviews the
-    \textbf{Equations and Inequalities} domain, minus systems. \textbf{A.EI.1} --- write a linear
-    equation or inequality in one variable from a context (a); solve multistep linear equations by
-    the properties of real numbers and of equality (b); solve multistep linear inequalities
-    algebraically and graph the solution set on a number line (c); rearrange a formula or literal
-    equation for a specified variable (d); determine whether a linear equation has one, no, or
-    infinitely many solutions (e); and verify solutions algebraically, graphically, and with
-    technology, explaining the method and interpreting the solution in context (f).
-    \textbf{A.EI.3} --- solve a quadratic equation in one variable over the reals with rational or
-    irrational solutions, including contextual ones (a); determine and justify whether it has no,
-    one, or two real solutions (b); and verify solutions algebraically, graphically, and with
-    technology (c).
-    \\[2pt]
-    \textbf{Deliberately omitted: A.EI.2} (systems of two linear equations, linear inequalities in
-    two variables, systems of linear inequalities). Systems of \emph{linear} equations and linear
-    programming are out of scope for this course, so reviewing them would set up an expectation the
-    year never honors. Systems of \emph{quadratics} return in Unit 3.
-    \\[2pt]
-    \textbf{Prerequisite:} Lessons 1.0 and 1.1. From 1.0: the properties of equality are the
-    \emph{permissions} that make solving legal, and the zero product property is what converts a
-    factorization into solutions. From 1.1: distributing clears parentheses, combining like terms
-    collapses the sides, factoring \emph{completely} is what makes a quadratic solvable, and
-    simplifying radicals is what makes the quadratic formula's answer presentable.
+    \textbf{Standards (2023 VA SOL):} This lesson delivers the whole of \textbf{A2.EI.1} --- represent,
+    solve, and interpret absolute value equations and inequalities in one variable:
+    \textbf{A2.EI.1a} (create an absolute value \emph{equation} to model a context),
+    \textbf{A2.EI.1b} (solve an absolute value equation algebraically and verify graphically),
+    \textbf{A2.EI.1c} (create an absolute value \emph{inequality} to model a context),
+    \textbf{A2.EI.1d} (solve an absolute value inequality and represent the solution set with set
+    notation, interval notation, and a number line), and \textbf{A2.EI.1e} (verify solutions
+    algebraically/graphically, and explain and interpret solutions in context).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -61,27 +51,22 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \textbf{Solve} a multistep linear equation in one variable and \emph{name the property} that licenses each step.
-  \item \textbf{Classify} a linear equation as having one solution, no solution, or infinitely many.
-  \item \textbf{Solve} a multistep linear inequality, \emph{reversing} the sign when multiplying or dividing by a negative --- and explain why.
-  \item \textbf{Graph} an inequality's solution set on a number line; open vs.\ closed circle.
-  \item \textbf{Rearrange} a literal equation or formula for a specified variable.
-  \item \textbf{Write} an equation or inequality from a contextual situation, then interpret the solution back in context.
-  \item \textbf{Solve} a quadratic by square roots, by factoring $+$ the zero product property, and by the quadratic formula.
-  \item \textbf{Determine and justify} the number of real solutions from the discriminant --- \emph{before} solving.
-  \item \textbf{Verify} every solution by substitution, and read it off the graph.
+  \item \textbf{Isolate} the absolute value, then split $|ax+b|=c$ into $ax+b=c$ \emph{or} $ax+b=-c$.
+  \item Recognize \textbf{no solution} ($c<0$) and \textbf{one solution} ($c=0$).
+  \item Solve $|ax+b|<c$ as the compound ``\textbf{and}'' $-c<ax+b<c$ (between).
+  \item Solve $|ax+b|>c$ as the compound ``\textbf{or}'' $ax+b<-c$ \emph{or} $ax+b>c$ (outside).
+  \item Write a solution set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
+  \item \textbf{Model} a tolerance situation and interpret the solution in context.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \emph{An expression is a recipe; an equation is a \textbf{question}.} The question is ``which values make this true?'' and the answer is a \textbf{solution set}.
-  \item ``No solution'' and ``all real numbers'' are \emph{answers}, not failures. An empty set and an infinite set are both perfectly good sets.
-  \item Every solving step replaces the equation with an \textbf{equivalent} one --- same question, easier wording. That is why the properties of equality matter: they are the only moves that preserve the answer.
-  \item The inequality flip is not a rule to memorize. Multiplying by a negative \emph{reflects the number line across zero}, and reflection reverses order.
-  \item A literal equation is solved with exactly the same moves as a numerical one; only the alphabet is scarier.
-  \item Factoring stopped short of \emph{complete} loses solutions --- in 1.1 that cost a step, here it costs an answer.
-  \item The discriminant tells you \emph{how many} answers exist before you find any of them --- and it is the same information as the number of $x$-intercepts.
-  \item Substituting back is not optional politeness. It is the \emph{definition} of a solution.
+  \item $|x|$ is a \emph{distance}, so it is never negative --- that single fact explains every case.
+  \item $|ax+b|=c$ asks ``what inputs sit \emph{distance} $c$ from zero?'' --- two answers, one on each side.
+  \item ``Less th\textbf{AND}, great\textbf{OR}'': $<$ traps the expression \emph{between} bounds; $>$ throws it \emph{outside} them.
+  \item You \emph{must} isolate the bars first --- $2|x|+1=9$ is not solved until it reads $|x|=4$.
+  \item Three notations describe the \emph{same} set; being fluent in all three is the A2.EI.1d skill.
+  \item A ``within-tolerance'' phrase (\emph{no more than $0.5$ off}) is exactly an absolute-value inequality.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -89,293 +74,197 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Equation} & Two expressions joined by $=$. Unlike an expression, it asks a question and is \emph{solved}. \\
-\textbf{Solution / solution set} & A value that makes the equation true; the set of all of them. The set may be one number, no numbers, or every real number. \\
-\textbf{Equivalent equations} & Equations with the same solution set. Every legal solving step produces one. \\
-\textbf{Properties of equality} & Add, subtract, multiply, or divide \emph{both sides} by the same quantity (never divide by $0$). These are what make solving legal. \\
-\textbf{Identity} & An equation true for every value --- both sides simplify to the same expression, e.g.\ $3(x-2)=3x-6$. Solution set: all reals. \\
-\textbf{Contradiction} & An equation true for no value --- the variable vanishes and a false statement remains, e.g.\ $-6=-5$. Solution set: empty. \\
-\textbf{Literal equation} & An equation with several letters, solved for one specified variable, e.g.\ $A=\tfrac12 bh$ solved for $h$. \\
-\textbf{Properties of inequality} & Same as equality with \emph{one} change: multiplying or dividing both sides by a negative \textbf{reverses} the inequality symbol. \\
-\textbf{Solution set on a number line} & \emph{Closed} (filled) circle for $\le$ or $\ge$; \emph{open} circle for $<$ or $>$; shade every value that works. \\
-\textbf{Quadratic equation} & An equation that can be written $ax^2+bx+c=0$ with $a\ne0$. \\
-\textbf{Zero product property} & If $mn=0$, then $m=0$ or $n=0$. The bridge from a \emph{factorization} to \emph{solutions} --- and it works only against $0$. \\
-\textbf{Quadratic formula} & \TallMath{x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}} --- solves \emph{every} quadratic, always. \\
-\textbf{Discriminant} & $b^2-4ac$. Positive $\Rightarrow$ two real solutions; zero $\Rightarrow$ one; negative $\Rightarrow$ none real. \\
-\textbf{Verify} & Substitute the answer back into the \emph{original} equation, or locate it as an $x$-intercept / intersection point on the graph. \\
+\textbf{Absolute value} & $|x|$ is the \emph{distance} of $x$ from $0$ on the number line; always $\ge 0$. \\
+\textbf{Absolute value equation} & An equation with a variable inside absolute-value bars, e.g.\ $|ax+b|=c$. \\
+\textbf{Two-case rule} & If $|X|=c$ and $c\ge 0$, then $X=c$ \emph{or} $X=-c$; if $c<0$, no solution. \\
+\textbf{Compound inequality} & Two inequalities joined by \emph{and} (conjunction) or \emph{or} (disjunction). \\
+\textbf{``And'' ($<$) case} & $|X|<c \iff -c<X<c$: the expression is trapped \emph{between} $-c$ and $c$. \\
+\textbf{``Or'' ($>$) case} & $|X|>c \iff X<-c$ \emph{or} $X>c$: the expression falls \emph{outside} $[-c,c]$. \\
+\textbf{Set / interval notation} & $\{x \mid -3<x<5\}$ vs.\ $(-3,5)$; brackets $[\,]$ include endpoints, parentheses $(\,)$ exclude. \\
+\textbf{Tolerance} & An allowed distance from a target value, modeled by $|\text{measured}-\text{target}|\le \text{tol}$. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three things this lesson is built on, each from a named earlier
-    lesson. \textbf{(1)} A four-step solve of $5(x-3)=2x+9$ with the \emph{work already done} and the
-    \emph{justifications blank} --- students name the property behind each line, which is Lesson 1.0
-    doing exactly the job it was written for. \textbf{(2)} Two factor-completely items from Lesson
-    1.1 ($x^2-5x-14$ and $3x^2-27$), followed by one sentence to complete: ``if a product equals
-    zero, then \dots'' --- so the zero product property arrives as a \emph{consequence} students
-    state themselves, not as a new rule. \textbf{(3)} Two pre-drawn number lines to \emph{read}: an
-    open circle at $-1$ shaded right, and a closed circle at $3$ shaded left. Students write the
-    inequality. Debrief item~1 by refusing ``I moved it over'' --- the property has a name. Debrief
-    item~3 by asking how many numbers are in each solution set; ``infinitely many'' is the answer
-    that makes graphing the set necessary in the first place.
+    The Warm-Up rehearses the three prerequisites today leans on: \textbf{(1)} evaluate absolute
+    values as distance from zero ($|-7|=7$); \textbf{(2)} solve a two-step \emph{linear} equation
+    (Lesson~1.1) --- the move students repeat \emph{twice} once the bars split; and \textbf{(3)} graph
+    a simple inequality on a number line and name it in interval notation, the representation
+    A2.EI.1d demands. Debrief item~1 aloud: because $|x|$ measures distance, \emph{two} different
+    numbers ($7$ and $-7$) share the same absolute value --- that is the seed of the two-case rule.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put three nearly identical equations on the board and say only: \textbf{``Solve all three.''}
-    \emph{(a)} $3(x-2)=x-6$; \emph{(b)} $3(x-2)=3x-6$; \emph{(c)} $3(x-2)=3x-5$. Give four minutes.
-    Everyone gets (a): $x=0$. Then the room stalls, because in (b) the variable disappears and
-    leaves $-6=-6$, and in (c) it disappears and leaves $-6=-5$. Students will say they ``did it
-    wrong.'' They did not. Land the point: \textbf{solving is not a hunt for the number --- it is
-    asking which values make the statement true, and the honest answers are \emph{every} number,
-    \emph{no} number, or \emph{one} number.} (b) is true for everything you substitute; (c) is true
-    for nothing. Both are complete answers.
-    \\[3pt]
-    Now show the same trichotomy in a different family, which is the move that makes the day cohere:
-    $x^2=9$ has two solutions, $x^2=0$ has one, and $x^2=-9$ has none over the reals. Ask what
-    number of solutions a quadratic can have, and get \emph{two, one, or none} on the board next to
-    \emph{one, none, or all}. Then frame the lesson: \emph{today we make the count something you can
-    predict instead of discover} --- for a linear equation by watching whether the variable survives,
-    and for a quadratic by one number, the discriminant, computed before you solve anything.
+    A cereal box is labeled \textbf{500 g}. Quality control rejects any box that is \textbf{more than
+    $5$ g off} the label. Ask: \textbf{``What is the lightest box that still passes? The heaviest?''}
+    ($495$ g and $505$ g.) \textbf{``How could you write `off by at most $5$ g' with one symbol?''}
+    Guide students to $|w-500|\le 5$: the \emph{distance} between the actual weight $w$ and the target
+    $500$ is at most $5$. Land the point: an absolute value is a \emph{distance}, and today every
+    equation and inequality we solve is really a question about distance from a target --- ``exactly
+    this far'' (equation) or ``within / beyond this far'' (inequality).
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Linear equations, and what the answer can look like.} Open by naming the contrast with
-1.1: an expression is a recipe, an equation is a \emph{question}. Solve $5(x-3)=2x+9$ on the board
-and demand a property name for every line --- distributive, subtraction property of equality,
-addition, division. Then insist on the \textbf{check}: substitute $x=8$ back into the
-\emph{original}, because that is what ``solution'' means (\textbf{A.EI.1f}). Return to the Hook and
-formalize: if the variable survives, one solution; if it vanishes leaving a true statement, the
-equation is an \textbf{identity} and every real number works; if it vanishes leaving a false one, a
-\textbf{contradiction} and nothing works (\textbf{A.EI.1e}). Say plainly that the variable
-disappearing is \emph{information}, not an error. Close the section with one contextual setup
-(\textbf{A.EI.1a}): a \$40 fee plus \$15 per hour reaching \$130 --- write it, solve it, and answer
-in \emph{hours}, not in $x$.
+\textbf{1. Absolute value is distance.} $|x|$ is how far $x$ is from $0$, so it is never negative.
+\textbf{Ask: how many numbers are exactly $5$ from zero?} Two --- $5$ and $-5$. So $|x|=5$ has
+\emph{two} solutions. This is the whole lesson in one picture.
 
-\textbf{2. Literal equations.} Same moves, scarier alphabet. Do $A=\tfrac12bh$ for $h$, then
-$P=2\ell+2w$ for $w$, then $y=mx+b$ for $x$ so students see that ``solve for'' is a request, not a
-new skill (\textbf{A.EI.1d}). The one genuine difficulty is that you can no longer combine terms
-just because they look combinable --- $2\ell$ and $2w$ are not like terms. Point out that Unit 2
-will hand them $y=mx+b$ rearranged in three different ways and call them ``forms.''
+\textbf{2. Solving $|ax+b|=c$.} First \textbf{isolate} the bars, then split into two cases:
+$ax+b=c$ \emph{or} $ax+b=-c$. Model $|2x-3|=7$: $2x-3=7 \Rightarrow x=5$, or $2x-3=-7 \Rightarrow
+x=-2$. \textbf{Verify} both in the original --- and note graphically they are where $y=|2x-3|$ meets
+$y=7$ (A2.EI.1b).
+
+\textbf{3. Isolate first --- always.} $3|x+1|-2=10$ is \emph{not} ready to split. Add $2$, divide by
+$3$: $|x+1|=4$, then two cases. \textbf{Stress:} students who split before isolating get the two-case
+step right but the arithmetic wrong.
+
+\textbf{4. Special cases.} $|x-4|=-3$ has \textbf{no solution} (a distance can't be negative);
+$|x-4|=0$ has \textbf{one solution} ($x=4$). Have students \emph{explain} each from the distance
+meaning, not a memorized rule.
 
 \columnbreak
 
-\textbf{3. Linear inequalities.} Solve exactly as before, then confront the one difference honestly
-rather than announcing it. Write the true statement $2<6$, multiply both sides by $-1$, and ask
-whether $-2<-6$. It is false --- and the reason is visible: multiplying by a negative
-\textbf{reflects the number line across zero}, and reflection reverses order. \emph{Then} state the
-rule (\textbf{A.EI.1c}). Solve $-3x+7>19$ to get $x<-4$, and graph the set: open circle at $-4$,
-shaded left. Do a second with $\ge$ so the closed circle appears. Stress what the picture is
-\emph{for}: the solution set has infinitely many members, so a picture is the only way to write it
-down. Finish with a context --- ``at most \$60'' --- and translate ``at most'' to $\le$, then
-interpret the answer as a sentence about the situation.
+\textbf{5. Inequalities --- the ``and'' case.} $|x|<3$ asks ``which numbers are \emph{within} $3$ of
+zero?'' Everything \emph{between} $-3$ and $3$: $-3<x<3$. For $|2x-1|\le 5$: $-5\le 2x-1\le 5$, so
+$-2\le x\le 3$. \textbf{``Less th\emph{AND}''} --- one connected interval.
 
-\textbf{4. Quadratic equations.} Three methods, chosen by what the equation looks like.
-\emph{Square roots} when there is no linear term: $x^2=9$ gives $x=\pm3$, and the lost $-3$ is the
-classic error. \emph{Factoring $+$ zero product property} when it factors: get one side to zero
-first --- the property is about \emph{zero} and nothing else --- then factor \emph{completely} and
-set each factor to $0$. Say out loud that stopping early here costs a \emph{solution}, which is why
-1.1 pressed on ``completely.'' \emph{Quadratic formula} always. Do $x^2-4x-7=0$ so the answer is
-irrational and 1.1's radical simplification is required (\textbf{A.EI.3a}). Then the discriminant
-(\textbf{A.EI.3b}): compute $b^2-4ac$ first and predict the count. Tie it to the picture with the
-three pre-drawn parabolas in the notes --- two $x$-intercepts, one, or none --- and say that the
-discriminant and the graph are the same fact told twice (\textbf{A.EI.3c}).
+\textbf{6. Inequalities --- the ``or'' case.} $|x|>3$ asks ``which numbers are \emph{more than} $3$
+from zero?'' Everything \emph{outside}: $x<-3$ \emph{or} $x>3$. For $|x+2|\ge 4$: $x+2\le -4$ or
+$x+2\ge 4$, so $x\le -6$ or $x\ge 2$. \textbf{``Great\emph{OR}''} --- two rays.
+
+\textbf{7. Three notations, one set.} Every solution set gets written three ways.
+$-2\le x\le 3$ is $\{x \mid -2\le x\le 3\}$ (set), $[-2,3]$ (interval), and a number line shaded
+between two \emph{closed} dots. Match strict $<$ to open dots / parentheses. This is the A2.EI.1d
+deliverable.
+\end{multicols}
+\end{skillbox}
+
+\begin{skillbox}[Explicit Instruction: Solving an Absolute Value Inequality]{forestbg}
+\begin{multicols}{2}
+\textbf{Steps.}
+\begin{enumerate}[leftmargin=1.4em, nosep]
+  \item \textbf{Isolate} the absolute value on one side.
+  \item If it equals a \emph{negative}: $<$/$\le$ gives \emph{no solution}; $>$/$\ge$ gives
+        \emph{all reals}. Otherwise:
+  \item \textbf{$<$ or $\le$} $\to$ ``and'': $-c\le ax+b\le c$ (one interval).\\
+        \textbf{$>$ or $\ge$} $\to$ ``or'': $ax+b\le -c$ or $ax+b\ge c$ (two rays).
+  \item Solve for $x$; keep the \emph{same} direction on both parts of an ``and''.
+  \item Write the set in \textbf{set}, \textbf{interval}, and \textbf{number-line} form.
+\end{enumerate}
+
+\columnbreak
+\textbf{Worked: $|2x-1|\le 5$.}
+\[ -5 \le 2x-1 \le 5 \]
+Add $1$: \; $-4 \le 2x \le 6$. \\
+Divide by $2$: \; $-2 \le x \le 3$.\\[2pt]
+Set: $\{x \mid -2\le x\le 3\}$.\\
+Interval: $[-2,3]$.\\[2pt]
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \numline{-4}{5}
+  \draw[very thick, forest] (-2,0)--(3,0);
+  \fill[forest] (-2,0) circle (3.5pt); \fill[forest] (3,0) circle (3.5pt);
+\end{tikzpicture}
+\end{center}
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item distributing over only the first term: $5(x-3)=5x-3$;
-  \item treating a vanished variable as a mistake --- ``I got $-6=-5$ so I started over'' is the moment to intervene, not later;
-  \item writing ``no solution'' for an identity and ``all reals'' for a contradiction (the two get swapped constantly); the test is whether the leftover statement is \emph{true};
-  \item forgetting to reverse the inequality after dividing by a negative --- and, just as often, reversing it after \emph{subtracting} a negative, which is not a thing;
-  \item open/closed circle mixed up, or the shading pointed at the wrong side because the answer was left as $-4>x$ rather than rewritten as $x<-4$;
-  \item in literal equations, ``combining'' $2\ell+2w$ into $4\ell w$ or dividing only one term by the coefficient;
-  \item applying the zero product property to a product that does \emph{not} equal zero: from $(x-2)(x+5)=8$ concluding $x-2=8$;
-  \item solving $x^2=9$ as $x=3$ only --- half the solution set, silently;
-  \item factoring incompletely, so $2x^2-18=0$ becomes $2(x^2-9)=0$ and the student stops, losing both roots;
-  \item quadratic formula slips: $-b$ written as $b$ when $b$ is already negative, $2a$ dividing only the radical, or $b^2$ computed as a negative number;
-  \item never checking. If nobody at a table has substituted anything back, stop the table.
+  \item \textbf{splitting before isolating}: attacking $3|x+1|-2=10$ as two cases without first getting $|x+1|=4$;
+  \item forgetting the \emph{negative} case, so $|2x-3|=7$ yields only $x=5$;
+  \item sign slips in the negative case: $2x-3=-7$ mis-solved as $x=2$;
+  \item calling $|x-4|=-3$ ``$x=1$ or $x=7$'' instead of \textbf{no solution} (distance can't be negative);
+  \item mixing up ``and''/``or'' --- writing $x<-3$ or $x>3$ for $|x|<3$;
+  \item flipping only \emph{one} side of an ``and'' when dividing, or forgetting to flip on a negative coefficient;
+  \item open vs.\ closed dots / parentheses vs.\ brackets not matching $<$ vs.\ $\le$.
 \end{itemize}
-Cold-call prompts: ``Which property let you do that line?'' ``The $x$ disappeared --- is that good
-news or bad news? Why?'' ``How many numbers are in your solution set?'' ``Multiply my inequality by
-$-1$ and tell me what happened to the order.'' ``Before you solve it: how many real solutions will
-this have, and how do you know?'' ``Show me the check.''
+Cold-call prompts: ``Distance from what, and how far?'' ``Is this an \emph{and} or an \emph{or} --- how do you know from the symbol?'' ``Would $0$ be a solution? Check it.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{How Many Answers Does This Question Have?} activity (tiered; mirrors the notes).
+\textbf{Distance, Cases \& Sets} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Four straightforward blocks, one per notes section. Solve four linear
-equations with the property-name column left blank. Classify four already-solved equations as one /
-none / infinitely many from the last line alone --- no solving, just reading the leftover statement.
-Solve two inequalities and shade the two pre-drawn number lines beneath them. Then solve four
-quadratics that all factor cleanly, each with a check row. Send here any student who called
-$-6=-5$ a mistake.
+\textbf{Tier R --- Remediate.} Evaluate absolute values and solve basic equations
+$|x|=a$ and $|x+b|=c$ (already isolated); match each solution set to a number line.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Mixed and unlabelled --- students must decide what kind of question
-they are looking at before touching it. Includes a multistep equation with fractions, a literal
-equation solved for the variable that appears twice on one side, an inequality whose final step
-divides by a negative, a quadratic requiring the equation be set to zero \emph{first}, and one
-needing the quadratic formula and a simplified radical. Two contextual items: a cost inequality
-answered as a sentence, and a projectile height set equal to a value. Ends with a
-predict-then-solve pair: state the number of real solutions from the discriminant, \emph{then}
-solve and confirm.
+\textbf{Tier A --- Approaching.} Isolate then solve equations; solve both types of inequalities and
+write each solution in set, interval, and number-line form; spot a no-solution case.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Structure work. Given $kx+6=3x+6$, find every $k$ making the equation
-have one solution, no solution, infinitely many --- this forces the classification to become a
-condition on a coefficient rather than an observation after the fact. A ``spot the error'' set of
-four solutions, one per misconception from Active Monitoring, where the error must be
-\textbf{named}. Then: for what values of $c$ does $x^2-6x+c=0$ have two real solutions, one, none?
---- the discriminant read as an inequality in $c$, which is the first time the two halves of the
-lesson are used simultaneously. Closes by asking why the zero product property has no version for
-$mn=8$.
+\textbf{Tier E --- Extension.} Model a tolerance context with an absolute-value inequality, solve it,
+and interpret the endpoints; reason about when an absolute-value equation/inequality has no solution
+or all reals.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): three items. \textbf{(1)} Solve
-$4(x-3)=2(2x-5)+2$ and classify the solution set --- both sides collapse to $4x$, leaving
-$-12=-8$, so the answer is \emph{no solution}; a student who writes ``$x=0$'' or gives up mid-page
-has not absorbed the Hook. \textbf{(2)} Solve $x^2-3x=10$ by factoring and verify \emph{one}
-solution by substitution --- the diagnostic is whether the student sets the equation to zero before
-factoring, since $x(x-3)=10$ leads nowhere. \textbf{(3)} An \textbf{SOL-style multiple-choice}
-item: solve $-3x+7>19$ (answer $x<-4$), with distractors that each break exactly one thing --- the
-flip omitted, the sign of the division lost, or both. Collect and sort into ``got it / classification
-/ inequality direction / zero-first.'' The last pile matters most for Lesson 1.3, where every zero of
-a function is found by solving exactly the equation these students could not set up.
+\textbf{Exit Ticket} (independent, no notes): solve an absolute value \emph{equation} that must be
+isolated first and verify both roots; solve an absolute value \emph{inequality} and represent the
+solution in \textbf{all three} forms (set, interval, number line); and a \textbf{modeling/justify}
+item --- translate a tolerance sentence into an inequality and interpret the answer. Also included:
+one \textbf{SOL-style multiple-choice} item (choose the correct solution set for a $>$ inequality).
+Collect and sort into ``got it / didn't isolate / lost the negative case / and-vs-or slip /
+notation slip'' to decide whether Lesson~1.3 opens with a quick re-teach.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} four multistep linear equations with a property-justification column; four
-classification items answered from the final line; three literal equations including one where the
-target variable appears twice; four inequalities with pre-drawn number lines to shade, one of which
-requires the flip; two contextual items (write it, solve it, answer in a sentence with units); a
-quadratic set of six --- two by square roots, two by factoring where one must first be set to zero,
-two by the quadratic formula with irrational answers to simplify; a discriminant table filled in
-\emph{before} solving; and one written item explaining why the zero product property needs the zero.
-\textbf{Extension:} the solution-count audit --- given a parameter $k$ or $c$ inside the equation,
-state the values that produce each possible number of solutions, for both a linear and a quadratic
-case, and explain why a linear equation can have infinitely many solutions but a quadratic cannot.
-\textbf{Preview:} Lesson 1.3, \emph{Functions} --- the third Algebra 1 domain area, where the
-equations from today become the machinery for finding a function's \textbf{zeros}: every zero is
-the solution of $f(x)=0$, so today's factoring and quadratic formula are how the $x$-intercepts get
-found, and today's inequality is how domain restrictions get written.
+\textbf{Homework:} evaluate and solve isolated equations; isolate-then-solve harder equations;
+identify no-solution / one-solution cases; solve both inequality types and record set, interval, and
+number-line forms; and translate a context into an absolute-value model. \textbf{Extension:} a
+tolerance/manufacturing problem and a ``when is there no solution / all reals?'' reasoning prompt.
+\textbf{Preview:} Lesson~1.3, \emph{Absolute Value Functions \& Transformations} --- the same
+$|ax+b|$ expression becomes a \emph{graph}, and the two solutions we found today are exactly where the
+V-shape crosses a horizontal line (previewing vertex, axis of symmetry, and minimum).
 \end{skillbox}
 % ── Teacher notes (migrated from the component keys) ──
 % One per component, titled for it. They live here rather than in the _key
 % files so that every component is the same length blank and keyed.
 
 \begin{teachernote}[Warm-Up]
-\small
-\textbf{Item 1 is Lesson 1.0 being cashed in.} Refuse ``I moved it over'' out loud --- the whole
-point of 1.0 was that each move has a name and the name is what makes it legal. If the room cannot
-produce ``subtraction property of equality,'' spend two extra minutes here; the notes ask for the
-same column three more times today.
-
-\textbf{Item 2 delivers the zero product property without announcing it.} Students state it
-themselves in the fill-in sentence, and the ``does it work for eight?'' question is the guard that
-matters --- from $(x-2)(x+5)=8$ nothing follows, and that error appears every year. Say the reason:
-zero is the only number with no way to be built from two nonzero factors.
-
-\textbf{Item 3 motivates graphing.} Take the ``how many numbers'' answer publicly. Because the set
-is infinite, no list can express it, so the picture is not decoration --- it is the only available
-notation. Also flag the two circle conventions now: open for $<$ and $>$, closed for $\le$ and
-$\ge$, since \textbf{A.EI.1c} grades that detail.
+Item~1 plants the two-case idea: because $|x|$ is a \emph{distance}, two numbers ($7$ and $-7$) share
+an absolute value --- that is exactly why $|ax+b|=c$ splits into two equations. Item~2 is the linear
+solving from Lesson~1.1; today students do it once for the ``$+c$'' case and once for the ``$-c$''
+case. In item~3, tie the \emph{closed} dot at $-1$ to the bracket in $[-1,\infty)$; $\infty$ always
+takes a parenthesis.
 \end{teachernote}
 
 \begin{teachernote}[Guided Notes]
-\small
-\textbf{The Hook is the lesson.} Do not rescue students from the vanishing variable in (b) and (c).
-The entire day depends on them experiencing ``I got $-6=-5$, so I did it wrong'' and being told
-\emph{no, you finished}. Write ``one / none / all'' on the board next to ``two / one / none'' and
-leave both up for the whole period.
-
-\textbf{Section 1's property column is graded work, not decoration.} \textbf{A.EI.1b} says students
-solve \emph{by applying the properties}, so accepting ``I moved it over'' quietly de-implements the
-standard. This is the third lesson in a row asking for the same column; by 1.3 it should be
-automatic.
-
-\textbf{Section 3: derive the flip, never assert it.} The $2<6$ / $-2>-6$ demonstration takes
-ninety seconds and it is the difference between a rule students forget under pressure and a fact
-they can rebuild. The reflection language pays off again in Unit 2, where $y=-x$ is the same
-reflection acting on a whole graph.
-
-\textbf{Section 4, the two errors that cost real points.} (i) Not setting the equation to zero
-before factoring --- $x^2-3x=10$ becoming $x(x-3)=10$ and then ``$x=10$ or $x-3=10$'' is the single
-most common quadratic error on the SOL. (ii) Dropping the negative root in Method 1. Both are
-diagnosable from the notes table at a glance while circulating.
-
-\textbf{The discriminant before the graphs, not after.} Have the room compute all three
-discriminants first, predict the crossings out loud, \emph{then} look at the three parabolas. If the
-figures are shown first, students read the answer off the picture and the predictive point --- the
-whole content of \textbf{A.EI.3b} --- is lost.
-
-\textbf{Where this goes next.} Lesson 1.3 defines the \emph{zeros} of a function as the solutions of
-$f(x)=0$. Every technique in Section 4 is the machinery for finding $x$-intercepts, and the
-inequality work in Section 3 is how domain restrictions get written. Say that explicitly at the
-close so 1.3 opens as a continuation rather than a new topic.
+The spine of the lesson is the distance meaning: it explains the two cases (Section~1--2), why $c<0$
+gives no solution (Section~3), and the difference between ``between'' and ``outside'' (Sections~4--5).
+Two errors to pre-empt: (1) splitting \emph{before} isolating in Section~3 --- insist on
+$|x+1|=4$ before any cases; (2) the ``and/or'' mix-up --- anchor it to ``less th\emph{AND},
+great\emph{OR}'' and to the picture (within vs.\ beyond). For notation, tie ``$\le$/$\ge$''
+to closed dots and brackets, ``$<$/$>$'' to open dots and parentheses, and remind students that
+$\pm\infty$ always takes a parenthesis.
 \end{teachernote}
 
 \begin{teachernote}[Group Activity]
-\small
-\textbf{Tier R Part 2 is the highest-leverage block on the page.} Students classify without solving,
-which strips the task down to the only thing that matters --- reading the leftover statement.
-Anyone who called $0=7$ ``zero solutions'' but $5=5$ ``one solution'' has the idea half-formed;
-that pair is the diagnostic.
-
-\textbf{Tier A item 7 is worth taking to the whole room} even if only some students reach it. Two
-solutions to a height equation are not an artifact --- the ball genuinely is at $48$ feet twice.
-Students who have been trained that ``the second answer gets thrown out'' need to hear that the
-throwing-out happens only when the context forbids it (negative time, negative lengths), not
-because two answers are suspicious.
-
-\textbf{Tier E Part 1 is the hardest thing on the page and the most worthwhile.} It converts the
-classification from an observation into a condition on a coefficient --- which is how the idea will
-be used from Unit 3 onward. Expect the ``no such $k$'' boxes to be left blank; the point is that
-$kx+6=3x+6$ \emph{cannot} be a contradiction, because matching $x$ terms here also means matching
-constants.
-
-\textbf{Tier E Part 3 is the first time both halves of the lesson run at once} --- a quadratic
-question answered with a linear inequality. If a group finishes early, ask what happens to
-$x^2-6x+c=0$ as $c$ passes through $9$, and connect it to the parabola sliding up until it just
-touches the $x$-axis and then clears it. That picture is Unit 3's opening move.
+Tier~A item~4 and Tier~E item~2 are the conceptual heart --- push students to justify from the
+\emph{distance} meaning, not a memorized rule. Common slips: in A2, flipping to ``or'' for a ``$<$'';
+in A3, forgetting to divide the isolated bounds by $2$; in E1, reading ``within $0.3$'' as ``$<$''
+rather than ``$\le$'' (``within/at most'' includes the endpoint). For E2b, note the boundary case
+$k=0$: $|x+5|>0$ is \emph{all reals except} $x=-5$, so it is \emph{not} every real --- that is why the
+answer is $k<0$, strictly.
 \end{teachernote}
 
 \begin{teachernote}[Exit Ticket]
-\small
-\textbf{Sort the tickets into four piles:} \emph{got it} / \emph{classification} (item 1 answered
-``one solution,'' or abandoned mid-page because the $x$ disappeared) / \emph{inequality direction}
-(item 3 --- A is the flip, C and D divide by $+3$) / \emph{zero-first} (item 2 attacked as
-$x(x-3)=10$).
-
-\textbf{The zero-first pile is the one to act on.} ``$x(x-3)=10$, so $x=10$ or $x-3=10$'' has the
-zero product property without its precondition --- the most common quadratic error on the SOL, and
-the one that matters most for Lesson 1.3, where every \emph{zero of a function} is found by solving
-exactly this kind of equation. Re-run item 2 with new numbers at the top of 1.3 if the pile is large.
+Item~1 checks the whole equation routine: isolate, split into \emph{both} cases, verify. Item~2
+checks all three notations plus the distance interpretation. Item~3 separates students who
+internalized ``great\emph{OR}'' from those who defaulted to ``between.'' Collect and sort into ``got
+it / didn't isolate / lost the negative case / and-vs-or slip / notation slip'' to decide whether
+Lesson~1.3 opens with a quick re-teach.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-\small
-\textbf{Grade problem 2 first.} It takes thirty seconds per paper and it separates students who can
-\emph{interpret} a result from students who can only compute one. A student who is fluent everywhere
-else but writes ``one solution'' for $7=7$ needs one sentence of correction, not a reteach.
-
-\textbf{Problem 6(d) is the one that carries.} $x^2+7x=-10$ is the only item on the page whose first
-move is not the obvious one, and a student who attacks it as $x(x+7)=-10$ will produce confident
-nonsense. Pair it with problem 8, which asks for the same idea in words --- if a student gets 6(d)
-right but 8 wrong, they have the procedure without the reason and will lose it by Unit 3.
-
-\textbf{Problem 5(b) rewards reading, not algebra.} $s\le31.875$ becomes ``$31$ shirts,'' and
-rounding to $32$ blows the budget. \textbf{A.EI.1f} asks students to \emph{interpret} solutions in
-context, and this is where that gets graded --- accept no answer that stops at the decimal.
-
-\textbf{The Extension is optional but item (3) is the best question on the page.} It turns the
-discriminant into a statement about a vertex sliding down through the $x$-axis, which is exactly the
-Unit 3 picture. If any student writes that connection unprompted, put it on the board.
+Watch item~2: students must isolate ($|4x+2|=10$, $|x-4|=5$) before splitting --- a very common miss.
+Item~3 is a quick check that ``distance can't be negative'' (none), ``distance zero'' (one), and the
+generic case (two) are all understood conceptually. In item~6, ``within'' includes the endpoints, so
+it is ``$\le$''; students who write ``$<$'' exclude $66^\circ$ and $70^\circ$. Extension (b)'s boundary
+$k=0$ is worth a mention: $|x-3|>0$ excludes $x=3$, so ``all reals'' needs $k<0$ strictly.
 \end{teachernote}
 
 \end{document}

@@ -1,4 +1,4 @@
-%! Systems Involving Quadratics — Unit 3, Lesson 3.6 — Lesson Plan
+%! Graphing Polynomial Functions and Modeling — Unit 3, Lesson 3.6 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 3: Quadratic Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.6: Systems Involving Quadratics}
+\newcommand{\UnitNumberName}{Unit 3: Polynomial Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 3.6: Graphing Polynomial Functions and Modeling}
 
 \begin{document}
 \begin{center}
@@ -19,24 +19,26 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students extend equation-solving from a single quadratic (Lessons 3.2--3.5) to
-    a \emph{system} of two equations in which at least one is quadratic. They learn that a \textbf{solution} is
-    an ordered pair satisfying \emph{both} equations --- graphically, a \textbf{point of intersection} of the
-    two graphs --- and that a \textbf{linear--quadratic} system (line \& parabola) or
-    \textbf{quadratic--quadratic} system (two parabolas) can have \textbf{0, 1, or 2} solutions. They solve
-    algebraically by \textbf{substitution} (and, for quadratic--quadratic, by \textbf{elimination}), the key
-    move being that substitution \emph{collapses the system into a single quadratic equation} they already know
-    how to solve --- by factoring or the quadratic formula (Lesson 3.5) --- after which they back-substitute to
-    recover the paired coordinate. The \textbf{discriminant} of that collapsed equation predicts the number of
-    intersection points (2 / 1 / 0), tying today's ``how many solutions'' directly back to Lesson 3.5. Students
-    verify solutions algebraically and graphically and model a contextual situation (break-even, meeting paths).
+    \textbf{Primary Objective:} Students assemble every tool of Unit 3 into one procedure that runs
+    in both directions. From an equation they predict the whole picture --- \textbf{end behavior}
+    from the degree and leading coefficient, \textbf{$x$-intercepts} from the factors,
+    \textbf{cross/touch/flatten} from each zero's multiplicity, the \textbf{$y$-intercept} from
+    $f(0)$, the \textbf{turning-point limit} $n-1$, and \textbf{above or below} from a sign chart ---
+    and then match that prediction to the correct graph. From a graph they run the same road backward
+    to a factored equation, and they read a finished graph for domain, range, increasing/decreasing
+    intervals, and relative vs.\ absolute extrema. Finally they build a polynomial \emph{model},
+    restrict it to its \textbf{feasible domain}, and answer a real question with the feature that
+    matches it.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.3c} (solve a linear--quadratic and quadratic--quadratic
-    system algebraically and graphically, including in context), \textbf{A2.EI.3b} (determine the number of
-    solutions), \textbf{A2.EI.3a} (create such a system to model a contextual situation), and \textbf{A2.EI.3d}
-    (verify solutions algebraically, graphically, and with technology; interpret in context). Builds directly on
-    solving a single quadratic by factoring (\textbf{A2.EI.2b}, Lesson 3.2) and the quadratic formula /
-    discriminant (\textbf{A2.EI.2b}, \textbf{A2.F.2d}, Lesson 3.5).
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2a} (domain, range, zeros, intercepts),
+    \textbf{A2.F.2b} (contrasting characteristics across function families --- here, even vs.\ odd
+    degree), \textbf{A2.F.2c} (increasing/decreasing intervals), \textbf{A2.F.2d} (absolute maxima
+    and minima), \textbf{A2.F.2e} (relative maxima and minima), \textbf{A2.F.2f} (determine $f(x)$
+    from a graph or equation and explain its meaning in context --- the modeling strand), and
+    \textbf{A2.F.2g} (end behavior). \textbf{A2.EI.6a} (a factored form from the $x$-intercepts of a
+    graph) drives the ``run it backward'' section. Builds on \textbf{A2.EO.3b} (factor completely,
+    Lesson 3.2), \textbf{A2.EO.3c} and \textbf{A2.EI.6c} (division and the Rational Root Theorem,
+    Lessons 3.3--3.4), and \textbf{A2.EI.6b} (what a graph can and cannot show, Lesson 3.5).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -46,22 +48,24 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Read the solution(s) of a system as the intersection point(s) of two pre-drawn graphs.
-  \item Solve a linear--quadratic system by \textbf{substitution}: substitute the line into the parabola.
-  \item Solve a quadratic--quadratic system by setting the expressions equal (or eliminating).
-  \item Recognize that either method collapses the system into \emph{one} quadratic equation to solve.
-  \item Determine the number of solutions (2 / 1 / 0) --- and connect it to the collapsed equation's discriminant.
-  \item Verify a solution in \emph{both} equations; model and interpret a contextual system.
+  \item Run the \textbf{five-step graph plan}: degree/lead $\rightarrow$ arms; factors $\rightarrow$ intercepts; multiplicity $\rightarrow$ cross/touch/flatten; $f(0)$ $\rightarrow$ one exact point; sign chart $\rightarrow$ above/below.
+  \item Build a \textbf{sign chart} from the \emph{factored} form and read positive/negative intervals off it.
+  \item Use the \textbf{turning-point limit}: at most $n-1$ turns; run backward, $k$ turns forces degree $\ge k+1$.
+  \item \textbf{Match} an equation to the correct graph, and defend the match with a feature, not a feeling.
+  \item \textbf{Write a possible equation} in factored form from a graph, solving for $a$ with the $y$-intercept (A2.EI.6a).
+  \item Read \textbf{domain, range, increasing/decreasing, relative vs.\ absolute extrema} off a polynomial graph (A2.F.2a/c/d/e).
+  \item Build a \textbf{model}, state its \textbf{feasible domain}, and interpret $V(x)$ and its maximum in context (A2.F.2f).
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item A solution must satisfy \emph{both} equations at once --- that is exactly what ``intersection'' means.
-  \item Substitution replaces $y$ so the two-variable system becomes a familiar one-variable quadratic.
-  \item ``Set them equal'' works because at an intersection the two $y$-values agree.
-  \item Every solving path funnels back to Lessons 3.2--3.5 --- there is no genuinely new equation to solve.
-  \item A line can miss, touch, or cross a parabola; the discriminant counts the crossings before you solve.
-  \item An algebraic answer is only a real solution if it checks in \emph{both} equations and makes sense in context.
+  \item Nothing here is new. Every step is a Unit 3 tool; today they run in order and produce a picture.
+  \item Zeros alone do not determine a graph. \textbf{Multiplicity} is what separates two graphs with identical intercepts.
+  \item The sign chart is fast only in factored form --- you never need the value, only the sign.
+  \item Sign changes at odd multiplicities and does \emph{not} change at even ones; the chart makes that automatic instead of memorized.
+  \item The $y$-intercept is the only labeled point that is not a zero, which is exactly why it can pin down $a$.
+  \item A graph proves a \emph{minimum} degree, never the exact degree: imaginary zeros (3.5) and even factors are invisible.
+  \item An odd degree has no absolute extrema. A model's answer lives inside its feasible domain --- the algebra does not know about cardboard.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -69,182 +73,165 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{System of equations} & Two or more equations in the same variables, considered together. \\
-\textbf{Solution of a system} & An ordered pair $(x,y)$ that makes \emph{every} equation true at once. \\
-\textbf{Linear--quadratic system} & One line and one parabola; graphs meet in $0$, $1$, or $2$ points. \\
-\textbf{Quadratic--quadratic system} & Two parabolas; meet in $0$, $1$, or $2$ points (or coincide). \\
-\textbf{Substitution} & Replace $y$ (from the linear equation) into the quadratic to get one equation in $x$. \\
-\textbf{Elimination} & Subtract two ``$y=\dots$'' equations so the $y$'s cancel, leaving one equation in $x$. \\
-\textbf{Point of intersection} & Where two graphs cross --- the graphical picture of a solution. \\
+\textbf{End behavior rule} & Even degree $\Rightarrow$ arms agree; odd degree $\Rightarrow$ arms oppose. The sign of the leading coefficient sets the right arm (Lesson 3.0). \\
+\textbf{Multiplicity behavior} & Odd $\Rightarrow$ crosses (sign changes); even $\Rightarrow$ touches and turns back (no sign change); $\ge 3$ $\Rightarrow$ flattens, then crosses. \\
+\textbf{Sign chart} & Test one $x$-value in each interval between consecutive zeros; record only the sign --- it says above or below the $x$-axis. \\
+\textbf{Turning point} & Where the graph changes from increasing to decreasing or back. A degree-$n$ polynomial has at most $n-1$. \\
+\textbf{Relative (local) extremum} & Highest or lowest \emph{nearby} --- a peak or valley (A2.F.2e). \\
+\textbf{Absolute (global) extremum} & Highest or lowest on the \emph{whole} graph (A2.F.2d). Odd degree $\Rightarrow$ none at all. \\
+\textbf{Feasible domain} & The inputs a model actually allows (positive lengths, no negative sides) --- usually far smaller than ``all reals.'' \\
+\textbf{Possible equation} & What a graph earns you: the factored form of \emph{least} degree consistent with the picture. \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three moves substitution will demand: \textbf{(1)} \emph{solving a single quadratic}
-    $x^2-3x=0$ and $x^2-2x-8=0$ by factoring (Lesson 3.2), because that is exactly what a system collapses to;
-    \textbf{(2)} \emph{evaluating a discriminant} to count real roots (Lesson 3.5), previewing ``how many
-    intersection points''; and \textbf{(3)} \emph{checking whether an ordered pair satisfies an equation}
-    --- the habit that becomes ``verify in both equations.'' Debrief the check last: ``a point on the parabola
-    isn't a solution of the \emph{system} unless it's also on the line.''
+    The Warm-Up hands students the three pieces this lesson assembles, and each piece is already
+    theirs. \textbf{(1)} \emph{End behavior from factored form} (Lessons 3.0 and 3.1): degree and
+    leading coefficient for $(x-1)^2(x+2)$, $-2x(x+3)^3$, and $-x^2(x-3)^3$ --- degrees add, leads
+    multiply, no expanding. \textbf{(2)} \emph{Zeros and multiplicity} (Lesson 3.0) for the unit
+    anchor $g(x)=x^3-3x+2=(x-1)^2(x+2)$, plus the $y$-intercept $g(0)=2$. \textbf{(3)} \emph{A first
+    sign chart}, though it is not named yet: test $x=-3, 0, 2$ and record only the sign. The page
+    closes on the hinge question --- with the arms, the intercepts, the behavior at each, and the
+    sign in every interval, \emph{could you pick this graph out of a lineup?} Yes, except for how
+    high the humps go. Debrief by assembling the three results into one description on the board;
+    do not confirm the hinge, because the notes will.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Project the unit anchor parabola $y=x^2-2x-3$ with three horizontal lines drawn across it --- $y=5$ (cuts it
-    twice), $y=-4$ (just touches the vertex), and $y=-6$ (misses entirely below). Ask: ``How many points does
-    each line share with the parabola?'' Students count $2$, $1$, $0$ straight off the graph. Then the pivot:
-    ``Those counts are the number of \emph{solutions} of a \emph{system}. And notice --- $y=-4$ touching once is
-    the same `one repeated root' story as a zero discriminant from Lesson 3.5.'' Today's job is to find those
-    intersection points \emph{exactly}, with algebra, when the graph won't hand you clean coordinates.
+    Put two cubics on the board: $\;(x-1)^2(x+2)\;$ and $\;(x-1)(x+2)^2$. Ask for the zeros of each.
+    They are the \emph{same two numbers} --- and both are cubics with a positive leading coefficient,
+    so even the arms match. Now show the two graphs (pre-drawn in the notes, side by side) and ask
+    the question the lesson answers: \textbf{``The zeros are identical and the arms are identical.
+    Why do these graphs look nothing alike?''} Take answers until someone says the double zero is in
+    a different place. Name it: \textbf{multiplicity is the feature that separates look-alikes}, and
+    it is invisible until you look at the exponents. Then make the promise: by the end of the period
+    they will be able to describe a polynomial's entire graph from its equation without plotting a
+    point, read an equation off a graph they have never seen, and use both to answer a question about
+    a real object --- a box built from a sheet of cardboard.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. What a solution is.} A \emph{system} pairs two equations; a \emph{solution} is an ordered pair making
-\emph{both} true --- graphically, a \textbf{point of intersection}. Show the anchor parabola $y=x^2-2x-3$ with the
-line $y=x-3$; the graphs cross at $(0,-3)$ and $(3,0)$. Verify $(3,0)$ in \emph{both} equations to model the check.
+\textbf{1. Assemble the plan, do not teach it.} Build the five-step table \emph{from the students}:
+what did Lesson 3.0 give us? (arms, and cross/touch). Lessons 3.2--3.4? (the zeros). What have we
+never done? (decided above/below \emph{between} the zeros). That last gap is the only new content of
+the day, and it takes one minute to fill: test a single $x$-value in each interval and keep the sign.
+Insist the test be done in \emph{factored} form --- $g(-3) = (-4)^2(-1)$ is a ten-second calculation
+and $(-3)^3-3(-3)+2$ is not.
 
-\textbf{2. Substitution (linear--quadratic).} Both equations give $y$, so set the parabola's $y$ equal to the
-line's $y$: $x^2-2x-3=x-3$. The $y$ disappears and a \emph{single quadratic} remains: $x^2-3x=0\Rightarrow
-x(x-3)=0\Rightarrow x=0,3$. Back-substitute into the \emph{line} (easier) to get $y$: $(0,-3),(3,0)$. Post the
-protocol: isolate $y$ $\to$ substitute $\to$ solve the one quadratic $\to$ back-substitute $\to$ write pairs $\to$ check.
+\textbf{2. Worked Example A --- the anchor, one last time.} Run all five steps on
+$g(x)=x^3-3x+2=(x-1)^2(x+2)$, the polynomial students have met in every lesson of this unit, and then
+hold the prediction against the pre-drawn graph. The payoff line: \emph{the equation told us the
+picture}. Emphasize the row of the sign chart where the sign fails to flip at $x=1$; that is the
+even-multiplicity fingerprint the chart catches automatically.
+
+\textbf{3. Worked Example B --- what a triple zero looks like.} $q(x)=-(x+2)(x-1)^3$ adds two new
+features at once: an even degree with a negative lead (both arms down) and a multiplicity-3 zero
+(flattens, then crosses). Have students predict all five steps \emph{before} the graph is revealed;
+the flattening at $x=1$ is the moment worth waiting for.
 
 \columnbreak
 
-\textbf{3. How many solutions?} Return to the hook's three lines against $y=x^2-2x-3$: $y=5$ gives
-$x^2-2x-8=0$ ($D=36>0$, \emph{two} points); $y=-4$ gives $x^2-2x+1=0$ ($D=0$, \emph{one} --- tangent);
-$y=-6$ gives $x^2-2x+3=0$ ($D=-8<0$, \emph{none}). \emph{The discriminant of the collapsed quadratic counts the
-intersections} --- Lesson 3.5, reused.
+\textbf{4. Backward: graph $\rightarrow$ equation (A2.EI.6a).} Same road, other direction. Read the
+intercepts, decide which factor is squared from cross vs.\ touch, write $f(x)=a(\cdots)$, and solve
+for $a$ with the $y$-intercept. Ask why an $x$-intercept cannot be used ($0=0$, true for every $a$),
+and close with the honesty clause from Lesson 3.5: a graph cannot show an imaginary zero, so the
+answer is always a \emph{possible} equation of \emph{least} degree.
 
-\textbf{4. Quadratic--quadratic.} Two parabolas: set them equal. $y=x^2$ and $y=-x^2+8$ give $x^2=-x^2+8\Rightarrow
-2x^2=8\Rightarrow x=\pm2$: points $(\pm2,4)$. Warn: if the $x^2$ terms are \emph{identical} they cancel, leaving a
-\emph{linear} equation and at most one solution (e.g.\ $y=x^2+1$, $y=x^2-2x+5\Rightarrow x=2$).
+\textbf{5. Characteristics off the finished graph (A2.F.2a/c/d/e).} Use $p(x)=x^4-5x^2+4$ --- the
+quartic factored in Lesson 3.2 --- for domain, range, increasing/decreasing, and the distinction that
+matters most: the relative maximum at $(0,4)$ is \emph{not} an absolute maximum, because the arms
+climb past it. State the general rule out loud: odd degree $\Rightarrow$ no absolute extrema; even
+degree $\Rightarrow$ one or the other, never both. Unit 2 taught ``the vertex is the max''; this is
+where that gets corrected.
 
-\textbf{5. Model.} Break-even: revenue $y=-x^2+24x$ meets cost $y=8x+48$ at $x=4$ and $x=12$ (hundreds of units);
-between them revenue beats cost. Create, solve, verify, interpret (A2.EI.3a/c/d).
+\textbf{6. Modeling (A2.F.2f).} Build $V(x)=x(10-2x)(8-2x)$ from a $10\times 8$ sheet, expand it to
+the cubic from Lesson 3.1, and then do the step students skip: find the \textbf{feasible domain}
+$0<x<4$ and say why $x=5$ --- a genuine zero of $V$ --- is nonsense. Read the maximum from the table
+($52.5$ in$^3$ near $x=1.5$), and name it: on the feasible domain, that relative maximum \emph{is}
+the absolute maximum, which is why it answers the question. Finish by interpreting a single value:
+$V(2.5)=37.5$ means a $2.5$-inch cut yields a $37.5$-cubic-inch box.
 \end{multicols}
-\end{skillbox}
-
-\begin{skillbox}[Explicit Instruction: Substitution for a Linear--Quadratic System]{forestbg}
-\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
-\textbf{Steps (post and refer back):}
-\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
-  \item Solve the \emph{linear} equation for $y$ (or $x$).
-  \item Substitute into the \emph{quadratic} --- one equation in one variable.
-  \item Write it in standard form and solve (factor or formula).
-  \item Back-substitute each $x$ into the \emph{line} to get $y$.
-  \item Write each solution as an ordered pair $(x,y)$.
-  \item Check each pair in \emph{both} original equations.
-\end{enumerate}
-&
-\textbf{Worked example.} Solve $\;y=x^2+1,\ \ y=2x+4$.
-\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
-  \item Substitute: $x^2+1=2x+4$.
-  \item Standard form: $x^2-2x-3=0$.
-  \item Factor: $(x-3)(x+1)=0\Rightarrow x=3,-1$.
-  \item Back-sub into $y=2x+4$: $x=3\!\to\!10$, $x=-1\!\to\!2$.
-  \item Solutions: $(3,10)$ and $(-1,2)$.
-  \item Check $(3,10)$: $3^2+1=10$ \checkmark, $2(3)+4=10$ \checkmark.
-\end{itemize}
-\end{tabularx}
 \end{skillbox}
 
 \begin{skillbox}[Active Monitoring]{redbox}
 Circulate during the notes practice and Tier work. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item finding $x$ but \emph{stopping} --- forgetting to back-substitute for $y$ (a solution is a \emph{pair});
-  \item back-substituting into the harder equation, or into only one, so the two coordinates don't match;
-  \item sign slips when moving every term to one side to reach standard form $ax^2+bx+c=0$;
-  \item pairing the $x$'s and $y$'s wrongly (e.g.\ crossing $x=3$ with the other point's $y$);
-  \item on quadratic--quadratic, dropping a solution when the $x^2$ terms \emph{don't} cancel (it's still quadratic);
-  \item calling a point that lies on one graph a ``solution'' without checking it on the \emph{other}.
+  \item \textbf{degree counted as the number of factors} --- $-2(x+2)^3(x-1)$ called a cubic; make them add the exponents;
+  \item \textbf{end behavior taken from the constant term} or from the sign of the $y$-intercept rather than the leading term;
+  \item \textbf{``crosses'' written at every zero} --- the single most common error of the lesson, and the one the hook exists to prevent;
+  \item \textbf{sign charts computed in expanded form} --- slow, arithmetic-heavy, and unnecessary;
+  \item \textbf{signs forced to alternate} at every zero, so a double zero gets an invented sign change;
+  \item \textbf{$a$ never solved for} when reading an equation off a graph (or solved for with an $x$-intercept, giving $0=0$);
+  \item \textbf{relative called absolute} --- a peak on a quartic reported as the maximum of the function;
+  \item \textbf{model answers outside the feasible domain} --- $x=5$ offered as a corner cut because it is a zero of $V$.
 \end{itemize}
-Cold-call prompts: ``Both equations equal $y$ --- so what can you set equal?'' ``You found $x=3$; are you done?''
-``The collapsed equation has discriminant $0$ --- how many times do the graphs meet?'' ``Which original equation is
-easier to back-substitute into?''
+Cold-call prompts: ``Degree and leading coefficient --- which way do the arms point?'' ``Multiplicity
+$2$: cross or touch? Show me the sign chart row that proves it.'' ``You tested $x=0$ and got a
+negative. What does that tell me about the picture?'' ``How many turning points does the degree
+allow? How many does this graph have?'' ``Which labeled point on that graph is \emph{not} a zero, and
+why does that make it the useful one?'' ``Your box has a $5$-inch cut. Draw me that box.''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Where Do They Meet?} activity (tiered; mirrors the notes).
+\textbf{Predict, Then Look} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Read solutions of pre-drawn linear--quadratic and quadratic--quadratic systems as
-intersection points; count $0/1/2$ solutions; verify a given ordered pair in \emph{both} equations.
+\textbf{Tier R --- Remediate.} Three cousins built from the same two numbers ---
+$(x+1)(x-2)^2$, $-(x+1)(x-2)^2$, and $(x+1)^2(x-2)$ --- analyzed in a feature table (degree, lead,
+arms, behavior at each zero, $y$-intercept), then \emph{matched} to three pre-drawn graphs. Students
+must name the one feature that separates the first from the third. A guided sign chart follows, with
+an explicit ``why did the sign not change at $x=2$?'' prompt, and the tier closes on the
+turning-point limit for a quintic and why an odd degree must cross.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} Solve linear--quadratic systems by substitution (factorable and one
-formula/irrational case) and a quadratic--quadratic system by setting equal; write ordered-pair solutions.
+\textbf{Tier A --- Approaching.} Two things Tier R does not require. First, \emph{factor before
+analyzing}: $f(x)=x^3-x^2-6x$ needs a GCF (Lesson 3.2) before its three zeros appear, then a
+four-interval sign chart, a check against the pre-drawn graph, and the A2.F.2a/c/d/e read --- domain,
+range, relative extrema, and \emph{no} absolute extrema because the degree is odd. Second, read an
+equation off a pre-drawn cubic with a touch at $x=1$, solving $a=-1$ from the $y$-intercept and
+checking the sign against the arms. Closes with error analysis on the two signature mistakes: a touch
+called a crossing, and turning points read as the degree.
 
 \columnbreak
-\textbf{Tier E --- Extension.} Model a break-even/meeting-paths context (create, solve, interpret); use a
-discriminant to find the value of a parameter making a line \emph{tangent} to a parabola (exactly one solution).
+\textbf{Tier E --- Extension.} \emph{Part 1:} the notes' box, run backward --- a customer wants
+exactly $48$ in$^3$, which becomes $x^3-9x^2+20x-12=0$, solved with the Rational Root Theorem (3.4)
+to $x=1,2,6$; students reject $6$ and explain how \emph{two} cuts give the same volume (they straddle
+the maximum, and both appear in the notes table). \emph{Part 2:} build a graph to order --- touch at
+$-1$, crossings at $0$ and $3$, both arms down --- which forces degree $4$ and a negative lead, and
+asks why a cubic cannot do it. \emph{Part 3:} a graph with two crossings and three turning points ---
+minimum degree $4$, hence two imaginary zeros (3.5) --- and the closing insight that a degree-$6$
+polynomial could produce the same picture, so a graph proves only a \emph{minimum} degree.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): solve one linear--quadratic system by substitution (integer
-solutions, two points); state the number of solutions of a second system and justify it; and an
-\textbf{SOL-style multiple-choice} item on the number of solutions of a linear--quadratic system. Collect and sort
-into ``got it / found $x$ but no $y$ / mismatched coordinates / didn't check both.'' to decide whether Lesson 3.7
-opens with a re-teach.
+\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} predict the graph of $f(x)=(x-3)(x+1)^2$
+--- degree and leading coefficient, end behavior, both zeros with cross/touch, the $y$-intercept
+$(0,-3)$, the turning-point limit, and one sign question that requires explaining why the sign does
+\emph{not} change at the double zero $x=-1$; \textbf{(2)} read a pre-drawn cubic with intercepts
+$-3$ and $2$ (a touch at $2$) and $y$-intercept $-12$, write $f(x)=-(x+3)(x-2)^2$ by solving for $a$,
+and say whether the function has an absolute maximum (no --- odd degree); and \textbf{(3)} an
+\textbf{SOL-style multiple-choice} item asking which function's graph touches the $x$-axis at $x=2$
+and falls to $-\infty$ on both ends, with $-(x-2)^2(x+1)^2$ correct and three distractors that each
+break exactly one requirement (odd degree, positive lead, multiplicity $3$ at $x=2$). Sort into ``got
+it / end behavior wrong / multiplicity ignored / could not solve for $a$.'' The multiplicity pile is
+the one to reteach on the spot: it is the feature that distinguishes graphs with identical intercepts
+and it appears on the unit test in both directions.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} verify ordered pairs in both equations; solve linear--quadratic systems by substitution (real
-rational and irrational); solve a quadratic--quadratic system by setting equal / eliminating; determine the number
-of solutions from a discriminant and match to a graph; and a short ``explain the error'' item on forgetting to
-back-substitute. \textbf{Extension:} a break-even model and a find-the-parameter (tangent line) discriminant
-problem. \textbf{Preview:} Lesson~3.7, \emph{Modeling with Quadratics} --- projectile, area, and optimization
-problems where the quadratic model itself (and its vertex) carries the meaning.
+\textbf{Homework:} a prediction table for three factored polynomials (including a multiplicity-3
+flatten and a negative lead of $-2$); a two-graph discrimination between $x^2(x-3)$ and $x(x-3)^2$;
+a full five-step analysis with a four-interval sign chart; a factor-first problem ($x^3+2x^2-8x$);
+reading an equation off a graph where $a=2$, so the stretch factor cannot be assumed to be $\pm1$;
+a complete characteristics read of $p(x)=x^4-4x^2$ (including the subtlety that $p(x)<0$ on
+$(-2,0)\cup(0,2)$, with $x=0$ excluded); a $12\times12$ box model with a table, a feasible domain, a
+maximum of $128$ in$^3$ at $x=2$, and an interpretation item; and two written items --- fixing a
+false ``sign changes at the touch'' claim, and explaining why a graph gives only a minimum degree.
+\textbf{Extension:} build a quartic to order; decide whether $4$ intercepts with $2$ turning points is
+possible; find a least degree and then count imaginary zeros; and solve $4x^3-48x^2+144x=108$ with the
+Rational Root Theorem to find the \emph{second} feasible cut, $x\approx1.15$. \textbf{Preview:} the
+Unit 3 test, then Unit 4 --- rational functions, where a polynomial lands in a denominator and
+division by zero puts asymptotes on the graph.
 \end{skillbox}
-% ── Teacher notes (migrated from the component keys) ──
-% One per component, titled for it. They live here rather than in the _key
-% files so that every component is the same length blank and keyed.
-
-\begin{teachernote}[Warm-Up]
-Each item is a direct prerequisite for solving a system. Item~1 is the factoring that finishes a collapsed
-system --- note $x^2-3x=0$ needs a GCF ($x(x-3)$) and has the easy-to-miss root $x=0$. Item~2 previews ``how many
-intersection points'': the collapsed quadratic's discriminant is $0$ (line tangent to parabola, \emph{one} point)
-and $-8<0$ (line misses, \emph{no} points) --- exactly the $y=-4$ and $y=-6$ hook cases. Item~3 builds the
-verification habit: $(3,0)$ satisfies \emph{both} the anchor parabola ($9-6-3=0$) and the line ($3-3=0$), so it is
-a solution of the system; stress that a point on only one graph does \emph{not} qualify. Debrief item~3 last.
-\end{teachernote}
-
-\begin{teachernote}[Guided Notes]
-The spine of the lesson: \emph{every} system collapses to a single quadratic students already solve. In \S2 stress
-step~4 --- students routinely find $x$ and stop; a solution is a \emph{pair}, and back-substituting into the
-\emph{line} (not the parabola) is the easier arithmetic. \S3 is the payoff of Lesson 3.5: the collapsed quadratic's
-discriminant \emph{is} the intersection count, and $y=-4$ (tangent, $D=0$) is the geometric face of ``one repeated
-root.'' In \S4 flag the identical-$x^2$ trap: if the squared terms cancel the system is really linear (at most one
-solution); if they don't, it stays quadratic (up to two). If time is short, assign practice \#3 and the \S4
-watch-out as the must-dos --- they carry the two big ideas (counting solutions; when quad--quad degenerates).
-\end{teachernote}
-
-\begin{teachernote}[Group Activity]
-Tier R keeps everything graphical/verbal: reading intersection points, counting $0/1/2$, and the ``does it satisfy
-\emph{both}?'' check (item 3's $(2,1)$ is the classic trap --- it sits on the parabola but not the line). Tier A is
-the substitution engine; in \#1 have students back-substitute into the \emph{line}. \#3 is the ``won't factor''
-case: $x^2-2x-1=0$, formula gives $1\pm\sqrt2$ --- accept just the $x$-coordinates. Tier E \#1's break-even has a
-\emph{profit region} between the roots (revenue above cost), a good ``interpret in context'' moment; \#2 reuses the
-Lesson 3.5 discriminant as a design tool ($4+4c=0\Rightarrow c=-1$, tangent at $(1,1)$). Early finishers: ask them
-to find a $c$ making $y=2x+c$ \emph{miss} $y=x^2$ entirely ($c<-1$).
-\end{teachernote}
-
-\begin{teachernote}[Exit Ticket]
-Sort into ``got it / found $x$ but no $y$ / mismatched coordinates / didn't check both.'' Telltales: item~1 stopping
-at $x=3,-1$ without producing pairs, or back-substituting into the parabola and slipping; item~2 a sign error making
-$b^2-4ac\ge0$, or reading ``$-4$'' as ``no solution of any kind'' (here it genuinely \emph{is} $0$ real solutions,
-since a system's solutions must be real intersection points); item~3 choosing \textbf{C} (the ``a parabola meets a
-line twice'' default) instead of recognizing the $D=0$ tangent case. If item~3 or the back-substitution step is
-widely missed, reopen Lesson~3.7 with a 60-second ``a solution is a \emph{pair}, and $D$ counts intersections'' recap.
-\end{teachernote}
-
-\begin{teachernote}[Homework]
-Common slips to look for: \#2 stopping at $x$ without pairing coordinates, or back-substituting into the parabola and
-erring; \#3 leaving $\frac{3\pm\sqrt5}{2}$ unsimplified or trying to force factors; \#4(b) is the key
-quadratic--quadratic case --- the $x^2$ terms cancel, leaving the \emph{linear} $2x=-4$, so there is exactly
-\emph{one} solution (students who expect two will hunt for a phantom second point). \#5 rehearses ``discriminant $=$
-intersection count'' (note $D=0$ means \emph{one} point, not zero). \#6 is the lesson's headline misconception ---
-credit any answer that names the missing $y$-coordinates and writes $(3,9),(-2,4)$. Extension \#2 reuses the
-Lesson 3.5 discriminant as a design dial.
-\end{teachernote}
-
 \end{document}

@@ -1,12 +1,8 @@
-%! Adding \& Subtracting Rational Expressions — Unit 5, Lesson 5.3 — Guided Notes
+%! Multiplying \& Dividing Radicals; Rationalizing — Unit 5, Lesson 5.3 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -18,9 +14,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item add and subtract rational expressions with like denominators, putting the second numerator in \emph{parentheses} whenever I subtract;
-  \item build the \textbf{least common denominator} from the \emph{factored} denominators, rewrite each fraction to match it, combine, and simplify;
-  \item recognize a \textbf{complex fraction} and simplify it as a quotient of two simple fractions --- and state every restriction it carries.
+  \item \emph{multiply} radical expressions --- including distributing over a sum and multiplying two binomials --- and simplify the result;
+  \item recognize a \emph{conjugate} and explain why a conjugate pair always multiplies to a \emph{rational} number;
+  \item \emph{rationalize} a denominator, with one radical or with a binomial, and explain why the value of the expression never changes.
 \end{itemize}
 \end{objectivebox}
 
@@ -30,250 +26,267 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{Least common denominator (LCD)}
-\termblanklong{Building factor}
-\termblanklong{Complex algebraic fraction}
-\termblanklong{Main fraction bar}
+\termblanklong{Rationalizing the denominator}
+\termblanklong{Conjugate}
+\termblanklong{Multiplying by a form of $1$}
+\termblanklong{Simplest radical form (all three conditions, at last)}
 \end{vocabbox}
 
 \begin{hookbox}
-Two students subtracted the same expression and got different answers. Let
-\[
-  D(x)=\frac{4x-1}{x+3}-\frac{2x-7}{x+3} .
-\]
+Two students are asked for the exact value of $\dfrac{1}{\sqrt{2}}$. One writes $\dfrac{1}{\sqrt2}$
+and stops. The other writes $\dfrac{\sqrt2}{2}$. Their teacher marks \emph{both} correct.
 \begin{center}
-\renewcommand{\arraystretch}{1.35}
-\begin{tabular}{|l|c|c|c|}
-\hline
- & $x=0$ & $x=1$ & $x=-3$ \\ \hline
-$D(x)$ \; (the original) & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} \\ \hline
-Dev: \; $\dfrac{2x-8}{x+3}$ & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} \\ \hline
-Elin: \; $2$ & \blank{1.2cm} & \blank{1.2cm} & \blank{1.2cm} \\ \hline
-\end{tabular}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+$\dfrac{1}{\sqrt2} \approx \dfrac{1}{1.414\,214}=$ \blank{2.4cm} &
+$\dfrac{\sqrt2}{2} \approx \dfrac{1.414\,214}{2}=$ \blank{2.4cm} \\
+\end{tabularx}
 \end{center}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Dev wrote $\dfrac{4x-1-2x-7}{x+3}$. Which \emph{one} keystroke is missing, and what did losing
-        it do to the sign of the $7$? \writeline
-  \item Elin is right about the value --- but look at the last column. What must she add to her answer
-        before it is finished? \writeline
-\end{itemize}
-Two ideas run the whole period. \textbf{A minus sign in front of a fraction belongs to that fraction's
-entire numerator.} And once again: even an answer as plain as ``$2$'' still carries the restrictions of
-the problem it came from.
+They are the same number. So here is the real question, and it is a fair one:
+\textbf{if both are correct, why does every textbook insist on the second one?}
+\vspace{2pt}
+
+Imagine it is $1850$ and you must actually \emph{compute} one of these by hand, with no calculator.
+Which long division would you rather do --- \; $1 \div 1.414\,214$ \; or \;
+$1.414\,214 \div 2$? \writeline
+\vspace{2pt}
+That is the whole reason the rule exists. A radical on \emph{top} is harmless; a radical on the
+\emph{bottom} is a nuisance. Now look at how the second student got there: they multiplied top and
+bottom by $\sqrt2$, and $\sqrt2\cdot\sqrt2=\blank{0.9cm}$ --- the radical simply
+\blank{2.0cm}. That one fact runs today's entire lesson.
 \end{hookbox}
 
-\begin{notesbox}{1. Like Denominators: Add the Numerators, Keep the Denominator}
-When the denominators already match, there is nothing to build:
-\[
-  \frac{a}{c}+\frac{b}{c}=\frac{a+b}{c}, \qquad
-  \frac{a}{c}-\frac{b}{c}=\frac{a-b}{c}, \qquad c\neq0 .
-\]
-
-\vspace{3pt}
-\textbf{You never add the denominators.} Check it on numbers you already know:
-$\dfrac12+\dfrac12=$ \blank{0.8cm}, \; but adding denominators would give
-$\dfrac{2}{4}=$ \blank{0.8cm}. Adding denominators would make two halves into
-\blank{2.0cm}, which is nonsense.
-
-\vspace{4pt}
-\textbf{Worked.} \; $\dfrac{7}{x^2-4}+\dfrac{x}{x^2-4}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Factor the denominator \emph{first}, so you can see the restrictions: $x^2-4=$ \blank{2.4cm},
-        so $x\neq$ \blank{1.8cm}.
-  \item Add the numerators, keep the denominator: \blank{3.0cm}
-  \item \textbf{Last step, always:} factor the new numerator and check whether anything divides out.
-        Here $x+7$ is prime, so we are done.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{2. Subtracting: the Minus Sign Owns the Whole Numerator}
+\begin{notesbox}{1. Multiplying: the Product Property, Run Forwards}
+Yesterday you read $\sqrt[n]{ab}=\sqrt[n]{a}\cdot\sqrt[n]{b}$ from \emph{left to right} to pull
+factors out. Today you read the same statement from \emph{right to left}.
 \begin{center}
-\fbox{\parbox{0.90\linewidth}{\centering\vspace{2pt}
-\textbf{Put the second numerator in parentheses before you subtract.} Then distribute the minus sign
---- it changes the sign of \emph{every} term inside.\vspace{2pt}}}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.92\linewidth]
+\centering
+$\displaystyle \sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab}$ \qquad --- \qquad
+multiply the \textbf{outsides} together, multiply the \textbf{insides} together, \emph{then}
+simplify.
+\end{tcolorbox}
 \end{center}
 
-\vspace{4pt}
-\textbf{Worked.} \; $\dfrac{6x+5}{x^2-4}-\dfrac{2x+13}{x^2-4}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Write the subtraction with parentheses: $\dfrac{(6x+5)-(\rule{2.0cm}{0.4pt})}{x^2-4}$
-  \item Distribute and collect: numerator $=$ \blank{3.0cm} $=$ \blank{2.4cm} (factored).
-  \item Divide out, then attach the restrictions from the \emph{original} denominator:
-        \blank{2.0cm}, \; $x\neq$ \blank{1.8cm}.
-  \item Check it at $x=0$: the original gives \blank{1.2cm} and your answer gives \blank{1.2cm}.
-\end{itemize}
-
-\vspace{3pt}
-Notice which restriction survived. The factor $(x-2)$ divided out, so $x=2$ is a
-\blank{1.4cm} in the graph; $(x+2)$ stayed, so $x=-2$ is a \blank{1.4cm}. That sort is Lesson 5.0's,
-and it never stops applying.
-\end{notesbox}
-
-\begin{notesbox}{3. Unlike Denominators: Build the LCD}
-You cannot combine pieces that are cut differently. The \textbf{least common denominator} is the
-smallest expression every denominator divides into --- and you build it out of \emph{factors}, never by
-multiplying the denominators together.
-
-\vspace{4pt}
-\textbf{The six steps.}
-\begin{enumerate}[leftmargin=1.9em, itemsep=2pt]
-  \item \textbf{Factor} every denominator completely.
-  \item \textbf{Build the LCD:} take every \emph{distinct} factor, each to the \emph{highest} power it reaches in any one denominator.
-  \item \textbf{List the restrictions} --- set each factor of the LCD equal to zero.
-  \item \textbf{Rewrite} each fraction: multiply it by the \textbf{building factor} $\frac{k}{k}$ that supplies whatever its denominator is missing.
-  \item \textbf{Combine} the numerators over the LCD (parentheses on every subtraction) and simplify.
-  \item \textbf{Factor the numerator} and divide out if you can. Attach the restrictions.
-\end{enumerate}
-
-\vspace{4pt}
-\textbf{Monomial denominators.} \; $\dfrac{5}{6x^2}+\dfrac{7}{4x}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item $6x^2=2\cdot3\cdot x^2$ and $4x=2^2\cdot x$, so LCD $=$ \blank{1.6cm}.
-  \item Building factors: the first needs \blank{1.0cm}, the second needs \blank{1.2cm}.
-  \item Result: \blank{2.6cm}, \; $x\neq$ \blank{1.0cm}.
-\end{itemize}
-
-\vspace{5pt}
-\textbf{The anchor.} \; $\dfrac{3}{x-3}-\dfrac{18}{x^2-9}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Factor: $x^2-9=$ \blank{2.4cm}, so LCD $=$ \blank{2.8cm} and $x\neq$ \blank{1.8cm}.
-  \item The first fraction is missing the factor \blank{1.4cm}; multiply it by that over itself:
-        $\dfrac{3}{x-3}\cdot\dfrac{\rule{1.2cm}{0.4pt}}{\rule{1.2cm}{0.4pt}}=
-        \dfrac{\rule{1.8cm}{0.4pt}}{(x-3)(x+3)}$
-  \item Combine and simplify the numerator: \blank{2.4cm} $=$ \blank{2.4cm} (factored).
-  \item Divide out. Final answer: \blank{2.0cm}, \; $x\neq$ \blank{1.8cm}.
-\end{itemize}
-Where have you seen that answer before today? \writeline
-
-\vspace{5pt}
-\textbf{Two trinomial denominators.} \; $\dfrac{2}{x^2+5x+6}+\dfrac{3}{x^2-9}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Factored: \blank{2.6cm} and \blank{2.6cm}. The shared factor is \blank{1.4cm}, so the LCD uses
-        it \emph{once}: LCD $=$ \blank{4.0cm}.
-  \item Restrictions: $x\neq$ \blank{2.6cm}
-  \item Combine: $\dfrac{2(\rule{1.2cm}{0.4pt})+3(\rule{1.2cm}{0.4pt})}{\text{LCD}}=$ \blank{3.4cm}
-\end{itemize}
-
-\vspace{4pt}
-\begin{center}
-\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
-\textbf{The LCD \emph{is} the restriction list.} Every factor of every original denominator is in
-there, so setting the LCD's factors to zero gives you every excluded value --- and it costs you no
-extra work.\vspace{2pt}}}
-\end{center}
 \vspace{2pt}
-One warning attached to that shortcut: build the LCD from the \emph{original} factored denominators.
-Reading anything off your final answer is the error from Lesson 5.1, and it is still wrong today.
+\textbf{Simplify \emph{last}, and never skip it.} A product often contains a perfect power that
+neither factor had on its own:
+\[
+  \sqrt{6}\cdot\sqrt{10}=\sqrt{\blank{1.0cm}}=\blank{1.8cm}
+  \qquad\qquad
+  \sqrt{3}\cdot\sqrt{12}=\sqrt{\blank{1.0cm}}=\blank{1.4cm}
+\]
+Neither $\sqrt6$ nor $\sqrt{10}$ could be simplified alone. Multiplying them created a perfect
+square out of nothing --- so \emph{finishing} is not optional.
 
-\vspace{5pt}
-\textbf{Opposite binomials in the denominators} (Lesson 5.1, still in force). \;
-$\dfrac{4}{x-5}+\dfrac{2}{5-x}$
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item These denominators are not different --- they are opposites: $5-x=$ \blank{1.2cm} $(x-5)$.
-  \item Rewrite the second fraction as $\dfrac{\rule{1.0cm}{0.4pt}}{x-5}$. Now the denominators match.
-  \item Answer: \blank{2.0cm}, \; $x\neq$ \blank{1.0cm}. \; (The LCD was never $(x-5)(5-x)$.)
-\end{itemize}
+\vspace{3pt}
+\textbf{With coefficients out front.} Outsides multiply outsides; insides multiply insides.
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $2\sqrt5\cdot3\sqrt{10}=$ \blank{2.2cm} & (b) \; $\sqrt[3]{4}\cdot\sqrt[3]{6}=$ \blank{2.2cm} &
+(c) \; $\sqrt{2x}\cdot\sqrt{6x^{3}}=$ \blank{2.4cm} \\
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{The one fact the whole lesson rests on.} A square root multiplied by itself:
+\[
+  \sqrt{a}\cdot\sqrt{a}=\sqrt{a^{2}}=\blank{1.0cm}
+  \qquad\text{so}\qquad \left(\sqrt{7}\right)^{2}=\blank{1.0cm},
+  \qquad \left(3\sqrt5\right)^{2}=9\cdot 5=\blank{1.0cm}
+\]
+\textbf{A square root times itself erases the radical.} (For a cube root you need
+\blank{1.2cm} copies: $\sqrt[3]{2}\cdot\sqrt[3]{2}\cdot\sqrt[3]{2}=2$. The index still sets the
+group size.)
+
+\vspace{3pt}
+\emph{One restriction.} The indices must \blank{1.6cm} before you may combine two radicals. For
+$\sqrt{2}\cdot\sqrt[3]{2}$ there is no radical rule at all --- but Lesson 5.1 handles it:
+$2^{1/2}\cdot 2^{1/3}=2^{\,\blank{1.0cm}}=\sqrt[6]{\blank{0.8cm}}$.
 \end{notesbox}
 
-\begin{notesbox}{4. Complex Fractions: a Division in Disguise}
-A \textbf{complex fraction} has fractions inside its numerator, its denominator, or both. The long
-\textbf{main fraction bar} is not decoration --- it is a division sign.
+\begin{notesbox}{2. Distributing and FOIL --- Radicals Behave Like Binomials}
+Nothing new here at all. In Warm-Up item~1 you expanded $3x(2x+5)$ and $(x+4)(x-4)$. Radicals
+follow the identical rules; the radical just plays the role of the variable.
 \[
-  \frac{\;\dfrac{1}{x}+\dfrac{1}{2}\;}{\;\dfrac{1}{x}-\dfrac{1}{4}\;}
-  \qquad\text{means}\qquad
-  \left(\frac{1}{x}+\frac{1}{2}\right)\div\left(\frac{1}{x}-\frac{1}{4}\right)
+  \sqrt{5}\left(\sqrt{3}+\sqrt{10}\right)
+  = \sqrt{\blank{0.8cm}}+\sqrt{\blank{0.8cm}} = \blank{2.6cm}
+  \qquad
+  \sqrt{2}\left(4-\sqrt{2}\right)=\blank{2.6cm}
+\]
+\emph{Simplify each product separately after distributing} --- in the first one, only the second
+term simplifies.
+
+\vspace{3pt}
+\textbf{Two binomials: FOIL, then collect like radicals (Lesson 5.2).}
+\[
+  \left(2+\sqrt3\right)\left(5-\sqrt3\right)
+  = 10 \;\blank{1.2cm}\; 2\sqrt3 \;+\; 5\sqrt3 \;\blank{1.2cm}\; 3
+  = \blank{2.6cm}
 \]
 
 \vspace{3pt}
-\textbf{Method 1 --- combine, then divide.} Turn the top into one simple fraction, turn the bottom into
-one simple fraction, then keep--change--flip (Lesson 5.2).
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Top: $\dfrac{1}{x}+\dfrac{1}{2}=$ \blank{2.0cm} \qquad Bottom: $\dfrac{1}{x}-\dfrac{1}{4}=$
-        \blank{2.0cm}
-  \item Divide: \; \blank{2.0cm} $\cdot$ \blank{2.0cm} $=$ \blank{2.4cm}
-\end{itemize}
+\textbf{Squaring a binomial --- the error of the day.}
+\[
+  \left(\sqrt7+\sqrt2\right)^{2}
+  = \left(\sqrt7+\sqrt2\right)\left(\sqrt7+\sqrt2\right)
+  = 7 + \blank{1.4cm} + \blank{1.4cm} + 2 = \blank{2.6cm}
+\]
+It is \textbf{not} $7+2=9$. There is a middle term, for exactly the reason
+$(x+4)^{2}\ne x^{2}+16$ --- which you already rejected in the Warm-Up. \; Your turn:
+\; $\left(3-\sqrt5\right)^{2}=\blank{2.8cm}$
+\end{notesbox}
+
+\begin{notesbox}{3. The Pair That Comes Out Rational: Conjugates}
+Now multiply a binomial by its \emph{sign-flipped} partner --- Warm-Up item 1(b), with a radical in
+place of the $4$.
+\[
+  \left(4+\sqrt3\right)\left(4-\sqrt3\right)
+  = 16 - 4\sqrt3 + 4\sqrt3 - 3 = \blank{1.4cm}
+\]
+Two things happened at once, and both matter. The middle terms \blank{2.0cm}, and the last term
+lost its radical because $\sqrt3\cdot\sqrt3=\blank{0.8cm}$. What is left is a plain
+\blank{2.2cm} number --- no radical anywhere.
+\begin{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=3mm, right=3mm, top=1.5mm, bottom=1.5mm, width=0.92\linewidth]
+\centering
+\textbf{Conjugates:} $a+\sqrt{b}$ and $a-\sqrt{b}$ --- same two terms, \textbf{opposite} middle
+sign. \\[3pt]
+$\displaystyle \left(a+\sqrt b\right)\left(a-\sqrt b\right)=a^{2}-b$
+\qquad
+$\displaystyle \left(\sqrt a+\sqrt b\right)\left(\sqrt a-\sqrt b\right)=a-b$ \\[3pt]
+{\small Both products are \textbf{always rational}. It is just difference of squares, and squaring
+is what undoes a square root.}
+\end{tcolorbox}
+\end{center}
+
+\vspace{2pt}
+\textbf{You have seen this move before.} In Lesson 2.4 you multiplied $a+bi$ by $a-bi$ and got
+$a^{2}+b^{2}$ --- a real number. Same trick, different number system: there it turned an
+\emph{imaginary} number real; here it turns an \emph{irrational} number rational. \; Why the
+different sign? Because $i^{2}=\blank{1.0cm}$ while $\left(\sqrt b\right)^{2}=\blank{1.0cm}$.
 
 \vspace{3pt}
-\textbf{Method 2 --- clear all the little fractions at once.} Multiply the top \emph{and} the bottom by
-the LCD of every small fraction inside. Here that LCD is \blank{1.2cm}.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Top becomes \blank{1.6cm}; \; bottom becomes \blank{1.6cm}; \; so the answer is
-        \blank{2.2cm} --- the same one.
-\end{itemize}
-
-\vspace{4pt}
-\textbf{Restrictions: two levels, and the second one hides.}
+\textbf{Practice.} Write each conjugate, then multiply the pair.
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
 \hline
-\textbf{\#} & \textbf{What must be nonzero} & \textbf{Why --- and where it hides} \\
+\textbf{Expression} & \textbf{Its conjugate} & \textbf{Their product} \\
 \hline
-1 & every \emph{inner} denominator & each little fraction has to exist. Visible: just read them. Here $x\neq$ \blank{0.8cm}. \\
-2 & the \emph{whole bottom} & the main bar is a $\div$, and you cannot divide by zero. This is Lesson 5.2's \textbf{source 3} in a new costume: set the bottom's combined \emph{numerator} to zero. Here $4-x=0$ gives $x\neq$ \blank{0.8cm}. \\
+$6+\sqrt{5}$          & \blank{2.6cm} & \blank{2.2cm} \\
+$\sqrt{7}-2$          & \blank{2.6cm} & \blank{2.2cm} \\
+$\sqrt{11}+\sqrt{3}$  & \blank{2.6cm} & \blank{2.2cm} \\
 \hline
 \end{tabularx}
 \end{center}
-Complete restriction list for the anchor: $x\neq$ \blank{2.0cm}. Check the whole thing at $x=2$: the
-original gives \blank{1.0cm} and your answer gives \blank{1.0cm}.
+\end{notesbox}
 
-\vspace{5pt}
-\textbf{One more, with a binomial underneath.} \;
-$\dfrac{\;\dfrac{1}{x}-\dfrac{1}{3}\;}{\;x-3\;}$
+\begin{notesbox}{4. Dividing: the Quotient Property, Run Forwards}
+Same idea, one floor down: two radicals with the \emph{same index} can be pulled under one radical.
+\begin{center}
+\renewcommand{\arraystretch}{2.0}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $\dfrac{\sqrt{48}}{\sqrt{3}}=$ \blank{1.8cm} &
+(b) \; $\dfrac{6\sqrt{20}}{2\sqrt{5}}=$ \blank{1.8cm} &
+(c) \; $\dfrac{\sqrt{40x^{3}}}{\sqrt{5x}}=$ \blank{2.2cm} \\
+\end{tabularx}
+\end{center}
+Every one of those came out clean. But this one does not:
+\; $\dfrac{\sqrt3}{\sqrt5}=\sqrt{\dfrac{3}{5}}$ --- and now there is a radical sitting in the
+\blank{2.2cm}, which breaks simplest-form condition \blank{0.8cm}. That is the condition we
+skipped yesterday. Time to finish it.
+\end{notesbox}
+
+\begin{notesbox}{5. Rationalizing a Denominator with One Radical}
+\textbf{The move:} multiply the top \emph{and} the bottom by the radical that is stuck in the
+bottom. From Warm-Up item~3, that is legal because $\dfrac{\sqrt b}{\sqrt b}=\blank{0.8cm}$, and
+multiplying by $1$ cannot change a number's value --- only its \blank{1.6cm}.
+\[
+  \frac{1}{\sqrt2}\cdot\frac{\sqrt2}{\sqrt2}
+  = \frac{\sqrt2}{\blank{0.8cm}}
+  \qquad\qquad
+  \frac{3}{\sqrt5}\cdot\frac{\blank{1.0cm}}{\blank{1.0cm}} = \blank{1.8cm}
+\]
+The Hook is now closed: the two students had the same number the whole time.
+
+\vspace{3pt}
+\textbf{Your turn.} Rationalize each. In (c), \emph{simplify the denominator first}.
+\begin{center}
+\renewcommand{\arraystretch}{2.2}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(a) \; $\dfrac{5}{\sqrt{3}}=$ \blank{1.8cm} &
+(b) \; $\sqrt{\dfrac{3}{5}}=$ \blank{1.8cm} &
+(c) \; $\dfrac{\sqrt{7}}{\sqrt{12}}=$ \blank{2.0cm} \\
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{A higher index changes what you multiply by.} For $\dfrac{1}{\sqrt[3]{2}}$, multiplying by
+$\sqrt[3]{2}$ is \emph{not} enough --- it only gives $\sqrt[3]{4}$ on the bottom, and that is still
+a radical. You need \blank{1.2cm} equal factors to escape a cube root, so multiply by
+$\sqrt[3]{4}$:
+\[
+  \frac{1}{\sqrt[3]{2}}\cdot\frac{\sqrt[3]{4}}{\sqrt[3]{4}}
+  = \frac{\sqrt[3]{4}}{\sqrt[3]{\blank{0.8cm}}} = \frac{\sqrt[3]{4}}{\blank{0.8cm}}
+\]
+This is yesterday's \emph{``the index sets the group size''} showing up again: you multiply by
+whatever \textbf{completes the group}.
+\end{notesbox}
+
+\begin{notesbox}{6. Rationalizing a Binomial Denominator: Use the Conjugate}
+If the bottom is $3-\sqrt5$, multiplying by $\sqrt5$ is useless --- try it and you still have a
+radical down there. Multiply by the \textbf{conjugate} instead, because a conjugate pair is
+guaranteed to come out rational (Section 3).
+\[
+  \frac{6}{3-\sqrt5}\cdot\frac{\blank{1.6cm}}{\blank{1.6cm}}
+  = \frac{6\left(3+\sqrt5\right)}{9-\blank{0.8cm}}
+  = \frac{6\left(3+\sqrt5\right)}{\blank{0.8cm}}
+  = \blank{2.6cm}
+\]
+Notice the last step: the numerator and the denominator shared a common factor, so the answer
+reduced. \emph{Always check whether it does.}
+
+\vspace{3pt}
+\textbf{Your turn.}
+\begin{center}
+\renewcommand{\arraystretch}{2.4}
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+(a) \; $\dfrac{4}{\sqrt5-1}=$ \blank{2.8cm} &
+(b) \; $\dfrac{\sqrt2}{\sqrt7+\sqrt3}=$ \blank{3.0cm} \\
+\end{tabularx}
+\end{center}
+
+\vspace{2pt}
+\textbf{Three ways this goes wrong.} Write the fix next to each.
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Top: \blank{1.8cm}. \; The bottom is already one piece, so divide by it:
-        \blank{1.8cm} $\cdot\;\dfrac{1}{x-3}$
-  \item Watch the \emph{opposite binomials}: $3-x=$ \blank{1.0cm} $(x-3)$, so the answer is
-        \blank{1.8cm}.
-  \item Restrictions: $x\neq$ \blank{1.6cm} --- one from the inner denominator, one from the main bar.
+  \item Multiplying only the \emph{denominator} by the conjugate. \; Why that is illegal:
+        \blank{5.0cm}
+  \item Multiplying by the \emph{same} binomial instead of the conjugate. \;
+        $\left(3-\sqrt5\right)^{2}=\blank{2.2cm}$, which is still \blank{1.8cm}.
+  \item Forgetting to FOIL the \emph{numerator} when it is also a binomial. \;
+        $\left(2+\sqrt3\right)\left(1+\sqrt3\right)$ has \blank{1.0cm} products, not $2$.
 \end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{5. The Picture: One Subtraction, One Hole and One Wall}
-The anchor from Section 3 was $\;g(x)=\dfrac{3}{x-3}-\dfrac{18}{x^2-9}=\dfrac{3}{x+3}$, with
-$x\neq3,-3$.
-\begin{center}
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-8}{5}{-5}{5}
-  \draw[dashed, redacc, thick] (-3,-5)--(-3,5);
-  \node[redacc, font=\scriptsize, above left] at (-3.1,3.4) {$x=-3$};
-  \begin{scope}
-    \clip (-8,-5) rectangle (5,5);
-    \draw[very thick, forest, domain=-8:-3.62, samples=100, smooth]
-      plot (\x,{3/((\x)+3)});
-    \draw[very thick, forest, domain=-2.38:5, samples=100, smooth]
-      plot (\x,{3/((\x)+3)});
-  \end{scope}
-  \draw[forest, very thick, fill=white] (3,0.5) circle (4pt);
-  \node[charcoal, font=\scriptsize, above right] at (3.1,0.7) {hole};
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item Both excluded values came from the \emph{original} denominators. Write those two denominators
-        in factored form: \blank{2.0cm} and \blank{2.6cm}. \; Which excluded value appears in
-        \emph{both} of them? \blank{1.2cm}
-  \item $x=3$ is a \blank{1.4cm} because its factor \blank{2.4cm}; \; $x=-3$ is a
-        \blank{1.4cm} because its factor \blank{2.4cm}.
-  \item The hole's height comes from the \emph{simplified} form: $\dfrac{3}{3+3}=$ \blank{1.0cm}, so
-        the hole sits at \blank{1.6cm}.
-  \item Your final answer $\dfrac{3}{x+3}$ shows you only one of the two restrictions. Explain, in one
-        sentence, why the other one still belongs to it. \writeline
-\end{enumerate}
-\end{notesbox}
-
 \begin{practicebox}
-Simplify completely and state \emph{all} restrictions. Show the LCD you used.
-
-\vspace{3pt}
-\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
-  \item $\dfrac{x}{x+4}+\dfrac{4}{x+4}$ \hfill Simplest form: \blank{2.0cm} \quad
-        $x\neq$ \blank{1.4cm} \\[3pt]
-        Your answer is a plain number. What is left of the fraction it came from? \blank{4.6cm}
-  \item $\dfrac{5}{x}-\dfrac{2}{x+1}$ \hfill LCD: \blank{2.4cm} \\[4pt]
-        Simplest form: \blank{2.6cm} \quad $x\neq$ \blank{2.0cm}
-  \item $\dfrac{\;\dfrac{2}{x}+3\;}{\;\dfrac{2}{x}-3\;}$ \hfill Simplest form: \blank{2.4cm} \quad
-        $x\neq$ \blank{2.2cm} \\[3pt]
-        Which of your two restrictions came from the \emph{main} fraction bar? \blank{2.0cm}
+Work these with your class. Assume all variables represent positive real numbers, and leave no
+radical in any denominator.
+\begin{enumerate}[leftmargin=1.7em, itemsep=5pt]
+  \item Multiply: \; $\sqrt{6}\cdot\sqrt{15}=\blank{1.8cm}$ \quad
+        $3\sqrt2\cdot4\sqrt{6}=\blank{1.8cm}$ \quad $\sqrt[3]{9}\cdot\sqrt[3]{6}=\blank{1.8cm}$
+  \item Expand: \; $\sqrt3\left(\sqrt{12}-\sqrt6\right)=\blank{2.2cm}$ \quad
+        $\left(4+\sqrt2\right)\left(3-\sqrt2\right)=\blank{2.2cm}$
+  \item Expand: \; $\left(\sqrt5+\sqrt3\right)^{2}=\blank{2.4cm}$ \quad
+        $\left(2\sqrt7-3\right)\left(2\sqrt7+3\right)=\blank{2.0cm}$
+  \item Rationalize: \; $\dfrac{8}{\sqrt6}=\blank{1.8cm}$ \quad
+        $\dfrac{3}{5+\sqrt2}=\blank{2.4cm}$
+  \item \textbf{Explain.} Both answers in item 3 came from squaring or multiplying a pair of
+        binomials with the same two terms, yet one answer still has a radical in it and the other
+        does not. What is the difference between the two problems? \writelines{2}
 \end{enumerate}
 \end{practicebox}
 

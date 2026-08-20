@@ -1,4 +1,4 @@
-%! Characteristics of Polynomial Functions — Unit 4, Lesson 4.0 — Group Activity (Answer Key)
+%! Characteristics of Rational Functions — Unit 4, Lesson 4.0 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -16,138 +16,168 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Reading Polynomial Graphs.} Every characteristic of a polynomial is something you can
-\emph{point to} on its graph. With your partner, read each graph carefully and \emph{justify} your
-answers --- especially the end behavior, the multiplicity (cross vs.\ touch), and relative vs.\
-absolute extrema.
+\small\textbf{Reading Rational Graphs.} Every characteristic of a rational function is something you
+can \emph{point to} on its graph --- or predict from its denominator. With your partner, read each
+graph carefully and \emph{justify} your answers. Write every asymptote as an \textbf{equation}
+($x=3$, $y=0$), never as a bare number.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-The graph shows $p(x) = x^3 - 2x^2 - 5x + 6 = (x+2)(x-1)(x-3)$.
+The graph shows $g(x) = \dfrac{2}{x+2}$.
 \begin{center}
 \begin{tikzpicture}[scale=0.46]
-  \lgrid{-3}{4}{-6}{10}
+  \lgrid{-6}{4}{-5}{5}
+  \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
+  \node[navy, font=\scriptsize, above] at (-2,5) {$x=-2$};
   \begin{scope}
-    \clip (-3,-6) rectangle (4,10);
-    \draw[very thick, forest, domain=-2.6:3.6, samples=100, smooth]
-      plot (\x,{(\x)*(\x)*(\x) - 2*(\x)*(\x) - 5*(\x) + 6});
+    \clip (-6,-5) rectangle (4,5);
+    \draw[very thick, forest, domain=-6:-2.4, samples=80, smooth] plot (\x,{2/((\x)+2)});
+    \draw[very thick, forest, domain=-1.6:4, samples=80, smooth] plot (\x,{2/((\x)+2)});
   \end{scope}
-  \fill[charcoal] (-2,0) circle (3pt) node[below left, font=\scriptsize]{$(-2,0)$};
-  \fill[charcoal] (1,0) circle (3pt) node[below right, font=\scriptsize]{$(1,0)$};
-  \fill[charcoal] (3,0) circle (3pt) node[below right, font=\scriptsize]{$(3,0)$};
-  \fill[charcoal] (0,6) circle (3pt) node[right, font=\scriptsize]{$(0,6)$};
+  \fill[charcoal] (0,1) circle (3pt) node[above right, font=\scriptsize]{$(0,1)$};
 \end{tikzpicture}
 \end{center}
 \begin{enumerate}[leftmargin=1.7em, itemsep=7pt]
-  \item The degree is (circle one): \textbf{even} \; / \; \ans{\textbf{odd}}. \quad Its arms: the left arm
-        points \ans{down} and the right arm points \ans{up}.
-  \item The graph turns \ans{2} times (its turning points).
-  \item The \textbf{zeros} are $x=\ans{-2}$, \; $x=\ans{1}$, \; $x=\ans{3}$, and each
-        one \textbf{crosses} the axis. The \textbf{$y$-intercept} is $(0,\ \ans{6})$.
-  \item Between the zeros the curve makes one hill and one valley. The hill is a
-        \textbf{relative \ans{maximum}} and the valley is a \textbf{relative \ans{minimum}}.
+  \item The graph comes in \ans{2} pieces. The input that is missing is $x=$ \ans{-2},
+        because it makes the \ans{denominator} equal to zero.
+  \item \textbf{Vertical asymptote:} \ans{$x=-2$} \quad \textbf{Horizontal asymptote:}
+        \ans{$y=0$} \quad (write each as an \emph{equation})
+  \item \textbf{Domain:} \ans{$(-\infty,-2)\cup(-2,\infty)$ --- all reals except $x=-2$}
+  \item \textbf{$y$-intercept:} \ans{$(0,1)$}. \quad Does $g$ have an \textbf{$x$-intercept}?
+        \ans{No.} \; Explain, using the numerator. \ans{The numerator is $2$, never $0$.}
+  \item On each piece the curve falls, so $g$ is \textbf{decreasing} on \ans{$(-\infty,-2)$} and on
+        \ans{$(-2,\infty)$}. \quad $g(x)>0$ on \ans{$(-2,\infty)$}.
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-For \emph{each} graph, give the full feature list, then answer the justification below.
+Two rational functions --- \emph{but only one of them has asymptotes}. Fill in the whole table, then
+answer the justification question.
 \begin{center}
 \begin{tikzpicture}[scale=0.42]
-  % p(x) = x^3 - 4x  (odd)
+  % p(x) = (x-2)/(x+1)
   \begin{scope}
-    \lgrid{-3}{3}{-4}{4}
+    \lgrid{-6}{5}{-5}{6}
+    \draw[navy, dashed, semithick] (-1,-5)--(-1,6);
+    \draw[navy, dashed, semithick] (-6,1)--(5,1);
     \begin{scope}
-      \clip (-3,-4) rectangle (3,4);
-      \draw[very thick, forest, domain=-2.4:2.4, samples=90, smooth]
-        plot (\x,{(\x)*(\x)*(\x) - 4*(\x)});
+      \clip (-6,-5) rectangle (5,6);
+      \draw[very thick, forest, domain=-6:-1.6, samples=90, smooth]
+        plot (\x,{((\x)-2)/((\x)+1)});
+      \draw[very thick, forest, domain=-0.5:5, samples=90, smooth]
+        plot (\x,{((\x)-2)/((\x)+1)});
     \end{scope}
-    \fill[charcoal] (-2,0) circle (3pt); \fill[charcoal] (0,0) circle (3pt);
-    \fill[charcoal] (2,0) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (0,-5.2){$p(x)=x^3-4x$};
+    \fill[charcoal] (2,0) circle (3pt); \fill[charcoal] (0,-2) circle (3pt);
+    \node[charcoal, font=\scriptsize] at (-0.5,-6.4){$p(x)=\dfrac{x-2}{x+1}$};
   \end{scope}
-  % r(x) = -x^4 + 4x^2  (even)
-  \begin{scope}[xshift=9cm]
-    \lgrid{-3}{3}{-3}{5}
+  % q(x) = (x^2-1)/(x-1)
+  \begin{scope}[xshift=13.5cm]
+    \lgrid{-4}{4}{-3}{5}
     \begin{scope}
-      \clip (-3,-3) rectangle (3,5);
-      \draw[very thick, forest, domain=-2.3:2.3, samples=100, smooth]
-        plot (\x,{-1*(\x)^4 + 4*(\x)*(\x)});
+      \clip (-4,-3) rectangle (4,5);
+      \draw[very thick, forest] (-4,-3)--(4,5);
     \end{scope}
-    \fill[charcoal] (0,0) circle (3pt); \fill[charcoal] (-2,0) circle (3pt);
-    \fill[charcoal] (2,0) circle (3pt);
-    \fill[charcoal] (1.414,4) circle (3pt); \fill[charcoal] (-1.414,4) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (0,-4.2){$r(x)=-x^4+4x^2$};
+    \draw[forest, very thick, fill=white] (1,2) circle (4.2pt);
+    \node[charcoal, font=\scriptsize] at (0,-4.4){$q(x)=\dfrac{x^2-1}{x-1}$};
   \end{scope}
 \end{tikzpicture}
 \end{center}
+\vspace{0.16in}
 \renewcommand{\arraystretch}{1.5}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.30\linewidth} X X@{}}
- & \textbf{$p(x)=x^3-4x$} & \textbf{$r(x)=-x^4+4x^2$} \\
+ & \textbf{$p(x)=\dfrac{x-2}{x+1}$} & \textbf{$q(x)=\dfrac{x^2-1}{x-1}$} \\
 \hline
-Degree even / odd & \ans{odd} & \ans{even} \\
-End behavior (both arms) & \ans{left down, right up} & \ans{both arms down} \\
-Number of turning points & \ans{2} & \ans{3} \\
-Zeros (cross / touch) & \ans{$-2,0,2$ (all cross)} & \ans{$\pm2$ cross; $0$ touches} \\
-Absolute max / min? & \ans{neither} & \ans{abs.\ max $4$; no abs.\ min} \\
-Symmetry & \ans{odd} & \ans{even} \\
+Excluded value(s) & \ans{$x=-1$} & \ans{$x=1$} \\
+Vertical asymptote & \ans{$x=-1$} & \ans{none} \\
+Horizontal asymptote & \ans{$y=1$} & \ans{none ($n>m$)} \\
+Hole (if any) & \ans{none} & \ans{$(1,2)$} \\
+$x$-intercept & \ans{$(2,0)$} & \ans{$(-1,0)$} \\
+$y$-intercept & \ans{$(0,-2)$} & \ans{$(0,1)$} \\
+Increasing or decreasing? & \ans{increasing on both branches} & \ans{increasing} \\
 \end{tabularx}
-\vspace{2pt}
+\vspace{4pt}
 
-\textbf{Justify:} Show algebraically that $p(x)=x^3-4x$ is \emph{odd} by computing $p(-x)$ and
-comparing it to $p(x)$. What does that tell you about the graph's symmetry?
-\ansline{$p(-x)=(-x)^3-4(-x)=-x^3+4x=-(x^3-4x)=-p(x)$. Since $p(-x)=-p(x)$, $p$ is odd, so its graph has $180^\circ$ rotational symmetry about the origin.}
+\textbf{Justify.} Factor $q(x)=\dfrac{x^2-1}{x-1}$ completely and simplify it. Then explain why
+$x=1$ produces a \emph{hole} rather than a \emph{vertical asymptote} --- and why $x=1$ is
+\emph{still} excluded from the domain even after you cancel.
+\ansline{$q(x)=\frac{(x-1)(x+1)}{x-1}=x+1$ for $x\neq 1$. The factor $(x-1)$ \emph{cancels}, so the}
+\ansline{denominator no longer blows up near $x=1$: nearby outputs close in on $2$, not on $\pm\infty$.}
+\ansline{But the \emph{original} denominator is $0$ at $x=1$, and cancelling is only legal when $x\neq1$, so $1$ can never re-enter the domain --- the graph is the line $y=x+1$ with the single point $(1,2)$ punched out.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Degree detective.} A polynomial's \emph{left} arm points \emph{up} and its
-\emph{right} arm points \emph{down}, and the graph has exactly \textbf{3} turning points.
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-  \item Is the degree even or odd? \ans{odd} \quad How do the arms tell you? \ans{they point in \emph{opposite} directions, which only happens for odd degree}
-  \item Is the leading coefficient positive or negative? \ans{negative} Why? \ans{the right arm points down, so $a<0$}
-  \item A degree-$n$ graph has at most $n-1$ turning points. What is the \emph{smallest} degree this
-        polynomial could have? \ans{5}
-\end{enumerate}
-\begin{itemize}[leftmargin=1.4em, nosep]
-  \item[] \footnotesize $3$ turning points need degree $\ge 4$; but the degree must be \emph{odd} (opposite arms), so the smallest is $5$.
-\end{itemize}
+\textbf{Part 1 --- No graph allowed.} For each function, factor where you can, then fill in the row.
+Write ``none'' when there is nothing to report.
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+\hline
+\textbf{Function} & \textbf{Excluded value(s)} & \textbf{Vert.\ asymptote(s)} & \textbf{Hole} & \textbf{Horiz.\ asymptote} \\
+\hline
+\TallMath{\frac{3}{x-5}} & \ans{$x=5$} & \ans{$x=5$} & \ans{none} & \ans{$y=0$} \\
+\TallMath{\frac{2x}{x+4}} & \ans{$x=-4$} & \ans{$x=-4$} & \ans{none} & \ans{$y=2$} \\
+\TallMath{\frac{x^2-25}{x-5}} & \ans{$x=5$} & \ans{none} & \ans{$(5,10)$} & \ans{none} \\
+\TallMath{\frac{x+1}{x^2+3x+2}} & \ans{$x=-1,\,-2$} & \ans{$x=-2$} & \ans{$(-1,1)$} & \ans{$y=0$} \\
+\hline
+\end{tabularx}
+\end{center}
+Exactly one of the four has \emph{no} horizontal asymptote. Which one, and what is it about the
+degrees that causes that?
+\ansline{$\frac{x^2-25}{x-5}$. The numerator's degree ($2$) is \emph{greater} than the denominator's ($1$) ---}
+\ansline{top-heavy --- so the outputs grow without bound instead of settling toward a level. (Its graph is the line $y=x+5$ with a hole at $(5,10)$.)}
 
-\vspace{4pt}
-\textbf{Part 2 --- Open-box model.} A rectangular sheet $10\text{ in}\times 8\text{ in}$ has a square
-of side $x$ cut from each corner; the flaps fold up into an open box of volume
+\vspace{5pt}
+\textbf{Part 2 --- What an asymptote \emph{means}.} A club pays a one-time \$250 screen-printing setup
+fee plus \$6 per shirt. The \textbf{average cost per shirt} for $n$ shirts is
 \[
-  V(x) = x(10-2x)(8-2x).
+  A(n) = \frac{6n + 250}{n}.
 \]
 \begin{center}
 \renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$x$ & $0$ & $1$ & $1.5$ & $2$ & $3$ & $4$ \\ \hline
-$V(x)$ & $0$ & $48$ & $52.5$ & $48$ & $24$ & $0$ \\ \hline
+$n$ (shirts) & $10$ & $25$ & $50$ & $125$ & $250$ \\ \hline
+$A(n)$ (dollars) & $31$ & $16$ & $11$ & $8$ & $7$ \\ \hline
 \end{tabular}
 \end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-  \item The \emph{feasible domain} is $0<x<4$, not all real numbers. Explain why, using the fact that
-        $x$ is a length and the flap $8-2x$ must be positive.
-        \ansline{$x$ is a cut length, so $x>0$; and $8-2x>0$ forces $x<4$. Outside $0<x<4$ a side would be zero or negative, so no real box exists.}
-  \item From the table, which $x$ gives the greatest volume, and what is that greatest volume?
-        \ans{$x=1.5$ in gives the greatest volume, $V=52.5$ in$^3$.}
-  \item Fully expanded, $V$ has zeros at $x=0,\ 4,\ 5$. Which of these are \emph{meaningful} for the
-        box, and what does each meaningful zero represent?
-        \ansline{$x=0$ and $x=4$ are meaningful --- they bound the feasible domain and each gives $V=0$ (no box): $x=0$ means no corner is cut, $x=4$ cuts the $8$-in side away entirely. $x=5$ is outside $0<x<4$, so it is not meaningful.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Use the degree comparison to find the horizontal asymptote of $A$. \ans{$y=6$} \\
+        What does that number \emph{mean} for the club?
+        \ansline{The degrees tie ($n=m=1$), so the level is the ratio of leading coefficients, $6/1=6$.}
+        \ansline{The more shirts the club orders, the closer the average cost per shirt gets to \$6 --- the true printing cost of one shirt.}
+  \item The average cost gets closer and closer to that level but never equals it. Explain why, in
+        terms of the \$250 setup fee.
+        \ansline{$A(n)=6+\frac{250}{n}$: the setup fee is always split among the shirts, so there is always}
+        \ansline{an extra $250/n$ dollars on top of \$6. That term shrinks toward $0$ but is never $0$, so the average stays just above \$6.}
+  \item $n=0$ is an excluded value, so $A$ has a vertical asymptote at $n=0$. Explain why $n=0$ would
+        be meaningless here \emph{even if} the algebra allowed it, and state a sensible domain for
+        this model.
+        \ansline{You cannot compute a cost \emph{per shirt} when no shirts are made --- there is nothing to}
+        \ansline{average. A sensible domain is the positive integers, $n\ge 1$ (a whole number of shirts).}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{teachernote}
-Tier A's key idea is that ``relative'' and ``absolute'' can differ: the odd-degree $p$ has two
-turning points but \emph{no} absolute extrema (arms run to $\pm\infty$), while the even-degree $r$'s
-two peaks \emph{are} its absolute maximum. In Tier E Part 1(c), the common error is answering ``4''
---- remind students the degree must stay odd, so it jumps to 5. Accept $x\approx1.5$ in Part 2(b);
-the true maximizing cut is near $1.47$ in.
+\textbf{Tier placement.} Tier~R is pure graph-reading on a one-asymptote graph; put students there
+who wrote bare numbers instead of equations in the notes. Tier~A is the discriminating task of the
+lesson --- $q$ \emph{looks} like a line, and groups who fill in ``vertical asymptote: $x=1$'' for it
+have not yet internalized the cancel test. Tier~E is equation-only work plus the A2.F.2f
+interpretation beat.
+
+\textbf{What to listen for.} In Tier~A, the phrase you want is ``the factor cancels, so it is a hole''
+--- not ``there is no asymptote because it is a line.'' Push groups to say \emph{why} the line has a
+gap. In Tier~E Part~2(b), the algebra $A(n)=6+\frac{250}{n}$ is the whole explanation; if a group is
+stuck, have them do that division and the horizontal asymptote becomes obvious.
+
+\textbf{Common errors.} Tier~R item~4: students often invent an $x$-intercept from the graph's
+flattening arm; the numerator argument is the fix. Tier~E row~3: expect ``VA at $x=5$'' out of habit
+--- send them back to factor first. Tier~E row~4: expect only \emph{one} excluded value; both $-1$ and
+$-2$ come from the original denominator, and only one of them survives as an asymptote.
 \end{teachernote}
 
 \end{document}

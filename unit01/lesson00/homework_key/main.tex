@@ -1,9 +1,11 @@
-%! Properties of Real Numbers, Equality, and Inequality — Unit 1, Lesson 1.0 — Homework (Answer Key)
+%! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\ck}{\ans{$\checkmark$}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -11,117 +13,132 @@
 
 \vspace{0.10in}
 
-\begin{notesbox}{Practice}
-Name properties by name. ``I moved it over'' will not earn credit.
+\begin{notesbox}{Practice: Reading Linear Functions}
+Eight problems. For every graph, table, or rule, read the features \emph{and} be able to say how you
+know. Show your thinking where there is room.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
-  \item \textbf{Classify each number.} Check \emph{every} box it belongs to. Three of these eight are
-        not what they appear to be.
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{An increasing line.} Read every feature of the graph.
     \begin{center}
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabular}{|l|c|c|c|c|c|}
+    \begin{minipage}[c]{0.38\linewidth}\centering
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-4}{4}{-4}{6}
+      \draw[very thick, forest] (-3,-4)--(2,6);
+      \fill[charcoal] (0,2) circle (3pt);
+      \fill[charcoal] (-1,0) circle (3pt);
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.58\linewidth}
+    \renewcommand{\arraystretch}{1.45}
+    \begin{tabular}{@{}l l@{}}
+      Domain: \ans{all reals} & Range: \ans{all reals} \\
+      $y$-intercept: \ans{$(0,2)$} & Zero: \ans{$(-1,0)$} \\
+      Slope: \ans{$2$} & Incr.\ or decr.? \ans{increasing} \\
+      Positive when $x$ \ans{$>-1$} & Negative when $x$ \ans{$<-1$}
+    \end{tabular}
+    \end{minipage}
+    \end{center}
+
+  \item \textbf{A decreasing line.} Read every feature of the graph.
+    \begin{center}
+    \begin{minipage}[c]{0.38\linewidth}\centering
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-3}{4}{-4}{5}
+      \draw[very thick, forest] (-1.5,5)--(3,-4);
+      \fill[charcoal] (0,2) circle (3pt);
+      \fill[charcoal] (1,0) circle (3pt);
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.58\linewidth}
+    \renewcommand{\arraystretch}{1.45}
+    \begin{tabular}{@{}l l@{}}
+      Domain: \ans{all reals} & Range: \ans{all reals} \\
+      $y$-intercept: \ans{$(0,2)$} & Zero: \ans{$(1,0)$} \\
+      Slope: \ans{$-2$} & Incr.\ or decr.? \ans{decreasing} \\
+      Positive when $x$ \ans{$<1$} & Negative when $x$ \ans{$>1$}
+    \end{tabular}
+    \end{minipage}
+    \end{center}
+
+  \item \textbf{From a table.} A linear function is given by the table below. (Watch the step in $x$!)
+    \begin{center}
+    \renewcommand{\arraystretch}{1.25}
+    \begin{tabular}{|c|c|c|c|c|}
     \hline
-    \textbf{Number} & \textbf{Natural} & \textbf{Whole} & \textbf{Integer} & \textbf{Rational} & \textbf{Irrational} \\
-    \hline
-    $-15$ & & & \ck & \ck & \\ \hline
-    $\sqrt{49}$ & \ck & \ck & \ck & \ck & \\ \hline
-    $0.\overline{6}$ & & & & \ck & \\ \hline
-    $\sqrt{3}$ & & & & & \ck \\ \hline
-    $\dfrac{20}{5}$ & \ck & \ck & \ck & \ck & \\ \hline
-    $-\pi$ & & & & & \ck \\ \hline
-    $0$ & & \ck & \ck & \ck & \\ \hline
-    $\sqrt[3]{8}$ & \ck & \ck & \ck & \ck & \\ \hline
+    $x$ & $0$ & $2$ & $4$ & $6$ \\ \hline
+    $f(x)$ & $-6$ & $-3$ & $0$ & $3$ \\ \hline
     \end{tabular}
     \end{center}
-    Which three were disguised? \ans{$\sqrt{49}=7$, $\tfrac{20}{5}=4$, and $\sqrt[3]{8}=2$ --- all natural numbers}
+    Slope $m = \dfrac{\Delta y}{\Delta x} = {\color{keyred}\mathbf{\tfrac{3}{2}}}$ \quad $y$-intercept: \ans{$(0,-6)$} \quad
+    zero: \ans{$(4,0)$} \\[3pt]
+    Increasing or decreasing? \ans{increasing} \quad $f(x)<0$ when $x$ \ans{$<4$}
 
-  \item \textbf{Name the property.} No word bank.
+  \item \textbf{In context.} A pool already holds $600$ gallons when a hose is turned on; it adds
+        $150$ gallons per minute, so the volume after $t$ minutes is $W(t) = 600 + 150t$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item The slope $150$ means: \ans{the pool gains $150$ gallons every minute}
+      \item The $y$-intercept $(0,600)$ means: \ans{when the hose is turned on ($t=0$) the pool already holds $600$ gal}
+      \item Find the zero of $W$ by solving $W(t)=0$.
+        \begin{work}
+          600 + 150t &= 0 \\
+                150t &= -600 \\
+                   t &= -4
+        \end{work}
+        Does this zero mean anything in the story?
+        \ansline{No. $t=-4$ is four minutes \emph{before} the hose was turned on, which is outside the story --- the pool was never empty while we were filling it.}
+      \item Which inputs $t$ make sense here, and is $W$ increasing or decreasing on them?
+            \ans{$t\ge 0$ (until the pool is full); increasing}
+    \end{enumerate}
+
+  \item \textbf{A horizontal line.} The graph of $c(x) = -2$ is a flat line through $(0,-2)$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item What is its slope? \ans{$0$} \quad Is it increasing, decreasing, or constant?
+            \ans{constant}
+      \item What is its range? \ans{$\{-2\}$} \quad Does it have a zero? \ans{no}
+      \item Is $c(x)$ positive or negative? \ans{negative everywhere}
+    \end{enumerate}
+
+  \item \textbf{Same zero, opposite behavior.} Both lines below have their zero at $x=1$.
     \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabularx}{\linewidth}{@{}l X@{}}
-    \hline
-    \textbf{Statement} & \textbf{Property} \\
-    \hline
-    (a) \; $3+(8+x)=(3+8)+x$ & \ans{associative property of addition} \\
-    (b) \; $-9(x-4)=-9x+36$ & \ans{distributive property} \\
-    (c) \; $\dfrac{7}{2}\cdot\dfrac{2}{7}=1$ & \ans{multiplicative inverse property} \\
-    (d) \; if $x=7$ and $7=y$, then $x=y$ & \ans{transitive property of equality} \\
-    (e) \; $x-4=10 \;\Rightarrow\; x-4+4=10+4$ & \ans{addition property of equality} \\
-    (f) \; $5\cdot t = t\cdot 5$ & \ans{commutative property of multiplication} \\
-    (g) \; $(x+1)\cdot 0=0$ & \ans{multiplicative property of zero} \\
-    (h) \; if $3x<12$ then $x<4$ & \ans{division property of inequality (positive divisor --- no reversal)} \\
-    (i) \; if $y=2x$ and $x=5$, then $y=2(5)$ & \ans{substitution property of equality} \\
-    (j) \; $-6+0=-6$ & \ans{additive identity property} \\
-    (k) \; if $-2x\le 8$ then $x\ge -4$ & \ans{division property of inequality (negative divisor --- symbol reverses)} \\
-    (l) \; if $(x-3)(x+8)=0$ then $x=3$ or $x=-8$ & \ans{zero product property} \\
-    \hline
-    \end{tabularx}
+    \begin{minipage}[c]{0.38\linewidth}\centering
+    \begin{tikzpicture}[scale=0.42]
+      \lgrid{-3}{5}{-4}{4}
+      \draw[very thick, forest] (-2.5,-3.5)--(4.5,3.5) node[above left, font=\scriptsize, forest]{$f$};
+      \draw[very thick, navy] (-2.5,3.5)--(4.5,-3.5) node[below left, font=\scriptsize, navy]{$g$};
+      \fill[charcoal] (1,0) circle (3pt);
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.58\linewidth}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item Which line is increasing? \ans{$f$} \; Which is decreasing? \ans{$g$}
+      \item $f(x)>0$ when $x$ \ans{$>1$} \qquad $g(x)>0$ when $x$ \ans{$<1$}
+      \item At $x=3$, is $f$ positive or negative? \ans{positive} \; Is $g$? \ans{negative}
+    \end{enumerate}
+    \end{minipage}
     \end{center}
 
-  \item \textbf{Justify every line} of this solution.
-    \begin{steptable}
-      \step{-3(x-2)}{<15}{Given}
-      \step{-3x+6}{<15}{\ans{distributive property}}
-      \step{-3x}{<9}{\ans{subtraction property of inequality (subtracted 6 from both sides)}}
-      \step{x}{>-3}{\ans{division property of inequality --- divided by $-3$, so the symbol reversed}}
-    \end{steptable}
-    Check your answer by testing $x=0$ in the \emph{original} inequality. Does it work?
-    \ans{Yes: $-3(0-2)=6<15$, and $0>-3$.}
+  \item \textbf{Explain.} A line is not horizontal. Why does the sign of $f(x)$ (positive vs.\
+        negative) change at the \emph{zero} and nowhere else?
+        \ansline{To go from above the $x$-axis to below it (or back), a line has to \emph{cross} the axis, and the crossing is the zero. A line that is not horizontal crosses the axis exactly once, so it changes sign exactly once --- there.}
 
-  \item \textbf{Explain.} Using the words \textbf{one side} and \textbf{both sides}, explain in your
-        own words the difference between a \emph{property of real numbers} and a \emph{property of
-        equality}. Give one example of each that does not appear anywhere above.
-        \ansline{A property of real numbers rewrites \textbf{one side} --- it changes how a single
-        expression is written without changing its value, and no equation is needed for it to make
-        sense. A property of equality acts on \textbf{both sides} of an existing equation at once,
-        producing a new equation with exactly the same solutions.\\[3pt]
-        Sample answers (accept any correct originals): real numbers --- $2(y+6)=2y+12$
-        (distributive). Equality --- if $x+11=20$ then $x+11-11=20-11$ (subtraction property of
-        equality).}
+  \item \textbf{Multiple choice.} Consider the linear function $y = -3x + 6$. Which statement is
+        true?
+    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=1pt]
+      \item The function is increasing.
+      \item The function is positive for all $x > 2$.
+      \item The zero of the function is at $x = 2$. \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item The $y$-intercept is $(0,-3)$.
+    \end{enumerate}
+    Explain why each of the \emph{other} three statements is false.
+    \ansline{A: slope $-3<0$, so it is decreasing. B: decreasing with zero at $2$ means positive for $x<2$, not $x>2$. D: the $y$-intercept is $(0,6)$ --- $-3$ is the slope. C is true: $-3(2)+6=0$.}
 \end{enumerate}
 \end{notesbox}
 
-\begin{extensionbox}
-\textbf{The closure investigation.} A set is \textbf{closed} under an operation when the operation
-on members of the set always lands back \emph{inside} the set. Write \textbf{yes} or \textbf{no} in
-each box --- and every ``no'' must be justified with a \textbf{counterexample} written underneath.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l Y Y Y Y@{}}
-\hline
-\textbf{Set} & \textbf{Addition} & \textbf{Subtraction} & \textbf{Multiplication} & \textbf{Division (nonzero)} \\
-\hline
-Natural numbers $\mathbb{N}$ & \ans{yes} & \ans{no} & \ans{yes} & \ans{no} \\
-Integers $\mathbb{Z}$ & \ans{yes} & \ans{yes} & \ans{yes} & \ans{no} \\
-Rationals $\mathbb{Q}$ & \ans{yes} & \ans{yes} & \ans{yes} & \ans{yes} \\
-Irrationals & \ans{no} & \ans{no} & \ans{no} & \ans{no} \\
-\hline
-\end{tabularx}
-\end{center}
-\ansline{Counterexamples --- $\mathbb{N}$ subtraction: $3-8=-5$, not natural. $\mathbb{N}$ division:
-$3\div 8=\tfrac38$, not natural. $\mathbb{Z}$ division: $3\div 5=\tfrac35$, not an integer.
-Irrationals, all four: $\sqrt2+(-\sqrt2)=0$; $\sqrt2-\sqrt2=0$; $\sqrt2\cdot\sqrt2=2$;
-$\sqrt2\div\sqrt2=1$ --- every result is rational.}
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-  \item Which single ``no'' box explains why mathematicians had to invent the \textbf{integers}?
-  \item Which single ``no'' box explains why they then had to invent the \textbf{rationals}?
-  \item One row is ``yes'' in all four columns. Which one, and why does that make it special?
-\end{enumerate}
-\ansline{(a) Natural numbers under \emph{subtraction} --- there was no way to answer $3-8$ until the
-negatives existed. (b) Integers under \emph{division} --- there was no way to answer $3\div 5$ until
-ratios were allowed. (c) The \textbf{rationals}: closed under all four operations, so you can add,
-subtract, multiply, and divide (by nonzero) forever and never leave the set. That self-containment
-is what makes $\mathbb{Q}$ a complete arithmetic system on its own --- and note that the irrationals,
-by contrast, are closed under \emph{nothing}.}
-\end{extensionbox}
-
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 1.1: Expressions and Operations.} This is the first of the three
-Algebra 1 domain areas we are reviewing. The distributive property stops being a name you recite
-and becomes the engine that multiplies polynomials; the inverse properties come back as the laws of
-exponents; and the zero product property you met today is what will make factoring \emph{solve}
-equations in Lesson 1.2. Bring today's vocabulary with you --- you will be asked to justify steps
-there too.
+\textbf{Coming next --- Lesson 1.1: Linear Functions.} Today you \emph{read} the characteristics
+of a line from its graph, table, and rule. Next you will use those same features --- slope and
+intercepts --- to \emph{write} linear equations in slope-intercept, point-slope, and standard form,
+and to graph lines by transforming a parent line.
 \end{spiralbox}
 
 \end{document}

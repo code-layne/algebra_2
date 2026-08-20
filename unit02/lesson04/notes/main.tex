@@ -1,16 +1,12 @@
-%! Piecewise \& Step Functions — Unit 2, Lesson 2.4 — Guided Notes
+%! Complex Numbers — Unit 2, Lesson 2.4 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Endpoint dots
-\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
-\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
 
 \begin{document}
 
@@ -21,111 +17,129 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item read piecewise notation and \emph{evaluate} $f(x)$ by choosing the piece $x$ belongs to;
-  \item read a piecewise graph, using \emph{open} and \emph{closed} endpoints and spotting a \emph{jump};
-  \item write $|x|$ (and $|x-h|$) as a \emph{two-piece} linear function;
-  \item evaluate and read the \emph{greatest-integer (step) function} $\lfloor x\rfloor$.
+  \item explain the meaning of the \emph{imaginary unit} $i$ and write $\sqrt{-k}$ in terms of $i$;
+  \item write a number in \emph{standard} $a+bi$ form and name its real and imaginary parts;
+  \item \emph{add, subtract, and multiply} complex numbers, and simplify \emph{powers of $i$}.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.05in}
+\vspace{0.06in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-\termblanklong{Piecewise-defined function}
-\termblanklong{Boundary / breakpoint}
-\termblanklong{Open vs.\ closed endpoint}
-\termblanklong{Discontinuity (jump)}
-\termblanklong{Greatest-integer (step) function $\lfloor x\rfloor$}
+\par\vspace{2pt}
+\termblanklong{Imaginary unit $i$}
+\termblanklong{Complex number ($a+bi$)}
+\termblanklong{Real part / imaginary part}
+\termblanklong{Pure imaginary number}
+\termblanklong{Complex conjugate}
 \end{vocabbox}
 
 \begin{hookbox}
-A streaming service is \emph{free for the first 3 months}, then costs \emph{\$10 per month} afterward.
-Its cost is $C(m)=\{\,0 \text{ if } 0\le m\le 3;\ 10(m-3) \text{ if } m>3\,\}$.
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Cost at $m=2$? \blank{1.4cm} \quad At $m=3$? \blank{1.4cm} \quad At $m=5$? \blank{1.4cm}
-  \item No single line works: the cost follows \blank{1.4cm} rule(s) on different parts of the domain.
-\end{itemize}
-A function like this --- one rule here, a different rule there --- is a \textbf{piecewise-defined
-function}. Today we evaluate them and read their graphs.
+Lesson 2.3 kept hitting a wall: $x^2=-4$ has \textbf{no real} solution, because no real number squares
+to a negative. On a graph, $y=x^2+4$ (below) \textbf{never crosses the $x$-axis} --- no real zeros.
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{3}{-1}{7}
+  \begin{scope}\clip (-3,-1) rectangle (3,7);
+    \draw[very thick, forest, domain=-1.7:1.7, samples=70, smooth] plot (\x,{\x*\x+4});
+  \end{scope}
+  \fill[charcoal] (0,4) circle (3pt) node[right, font=\scriptsize]{$(0,4)$};
+\end{tikzpicture}
+\end{center}
+\vspace{-4pt}
+Instead of quitting, mathematicians \emph{invented} a number whose square \emph{is} negative. Today we
+meet it and learn to compute with it.
 \end{hookbox}
 
-\begin{notesbox}{1. What a Piecewise Function Is --- and How to Evaluate It}
-A \textbf{piecewise-defined function} uses different rules on different parts of its domain. To
-\textbf{evaluate}, first decide \emph{which piece} the input belongs to, then apply that rule.
-\[ f(x)=\begin{cases} 2x+1, & x<2 \\ 5-x, & x\ge 2 \end{cases} \]
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item $f(0)$: since $0\blank{0.7cm}2$, use the \blank{1.4cm} piece: $f(0)=\blank{1.2cm}$.
-  \item $f(2)$: since $2\ge 2$, use the \blank{1.4cm} piece: $f(2)=5-2=\blank{1.0cm}$.
-  \item $f(5)=\blank{1.2cm}$.
-\end{itemize}
-\textbf{Boundary rule:} the input $x=2$ belongs to the piece whose inequality \emph{includes} it (the
-$\blank{0.8cm}$ piece), \emph{not} the strict-$<$ piece.
+\begin{notesbox}{1. The imaginary unit $i$ --- break the wall}
+Define a brand-new number, the \textbf{imaginary unit}:
+\[ i=\sqrt{-1}, \qquad\text{so}\qquad i^2=\blank{1.4cm}. \]
+That single rule, $i^2=-1$, is the whole engine. Now negative square roots have meaning:
+\[ \sqrt{-4}=\sqrt{4}\cdot\sqrt{-1}=\blank{1.6cm}, \qquad \sqrt{-25}=\blank{1.6cm}. \]
+And the wall from 2.3 finally opens:
+\[ x^2=-4 \ \Rightarrow\ x=\pm\sqrt{-4}=\blank{2.0cm}. \]
 \end{notesbox}
 
-\begin{notesbox}{2. Absolute Value Is Piecewise}
-The V from Lesson 2.3 is really \emph{two lines} pasted at the vertex. When $x\ge 0$, $|x|=x$; when
-$x<0$, $|x|=-x$ (the opposite makes it positive).
-\[ |x|=\begin{cases} \rule{1.4cm}{0.4pt}, & x\ge 0 \\[2pt] \rule{1.4cm}{0.4pt}, & x<0 \end{cases}
-   \qquad\text{Check: } |-3|=-(-3)=\blank{0.9cm}. \]
-So every absolute value function is a two-piece linear function. This is why the graph is a V, and why
-its vertex is the boundary between the two rules.
-\end{notesbox}
+\begin{notesbox}{2. Negative radicals and $a+bi$ form}
+\textbf{Factor out the $i$ first, then simplify the radical.} For $k>0$, \ $\sqrt{-k}=i\sqrt{k}$.
+\[
+  \sqrt{-9}=\blank{1.4cm} \qquad \sqrt{-50}=\blank{2.0cm} \qquad \sqrt{-12}=\blank{2.0cm}
+\]
+\emph{Caution:} pull the $i$ out \textbf{before} multiplying radicals --- $\sqrt{-2}\cdot\sqrt{-2}=i\sqrt2\cdot i\sqrt2=2i^2=-2$, \emph{not} $\sqrt{4}=2$.
 
-\begin{notesbox}{3. Reading a Piecewise Graph: Open, Closed, and Jumps}
-On a graph, a \textbf{closed} dot $\bullet$ \emph{includes} its endpoint ($\le$ or $\ge$); an
-\textbf{open} dot $\circ$ \emph{excludes} it ($<$ or $>$). The graph of
-$f(x)=\{\,x+3 \text{ if } x<1;\ -x+4 \text{ if } x\ge 1\,\}$ is shown.
+\smallskip
+Every complex number can be written in \textbf{standard form} $a+bi$:
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{5}{-1}{5}
-  \draw[very thick, forest] (-3,0)--(1,4);
-  \opendot{1}{4}
-  \draw[very thick, forest] (1,3)--(4,0);
-  \closeddot{1}{3}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+$a$ is the \textbf{real part}, & $b$ is the \textbf{imaginary part}. & If $b=0$ it's \emph{real}; if $a=0$ (and $b\ne0$) it's \emph{pure imaginary}. \\
+\end{tabularx}
+\end{center}
+Write each in $a+bi$ form and name the parts:
+\[ 7-\sqrt{-16}=\blank{2.2cm}, \quad a=\blank{0.8cm},\ b=\blank{0.8cm}; \qquad \sqrt{-9}=\blank{1.6cm},\ a=\blank{0.8cm},\ b=\blank{0.8cm}. \]
+
+\textbf{Read the complex plane.} Real part $\to$ horizontal, imaginary part $\to$ vertical. Name the plotted point:
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \draw[step=1, linegray!40, very thin] (-1,-1) grid (4,3);
+  \draw[->, semithick, charcoal] (-1,0)--(4,0) node[below right, font=\scriptsize]{Re};
+  \draw[->, semithick, charcoal] (0,-1)--(0,3) node[left, font=\scriptsize]{Im};
+  \fill[forest] (3,2) circle (3.5pt);
+  \draw[forest, dashed] (3,0)--(3,2)--(0,2);
+  \node[charcoal, font=\scriptsize, below] at (3,0){$3$};
+  \node[charcoal, font=\scriptsize, left] at (0,2){$2$};
 \end{tikzpicture}
 \end{center}
-\textbf{Read $f$ from the graph} (at the boundary, use the \emph{closed} dot):
-\[ f(-1)=\blank{0.9cm}, \quad f(0)=\blank{0.9cm}, \quad f(1)=\blank{0.9cm}, \quad f(3)=\blank{0.9cm}. \]
-Domain: \blank{2.4cm}. \; The graph \emph{increases} on \blank{1.8cm} and \emph{decreases} on
-\blank{1.8cm}. \; \textbf{Is $f$ continuous at $x=1$?} \blank{1.2cm} --- the pieces
-\blank{2.2cm} there (the graph \emph{jumps} from $4$ to $3$), so this is a \textbf{discontinuity}.
+\vspace{-4pt}
+The point above is \blank{2.0cm} (real part \blank{0.8cm}, imaginary part \blank{0.8cm}).
 \end{notesbox}
 
-\begin{notesbox}{4. Step Functions: the Greatest-Integer Function $\lfloor x\rfloor$}
-The \textbf{greatest-integer function} $\lfloor x\rfloor$ gives the greatest integer that is
-\emph{less than or equal to} $x$ --- it \textbf{rounds down}.
-\[ \lfloor 3.7\rfloor=\blank{0.8cm}, \quad \lfloor 5\rfloor=\blank{0.8cm}, \quad
-   \lfloor -0.4\rfloor=\blank{0.8cm}, \quad \lfloor -2.5\rfloor=\blank{0.8cm}. \]
-\emph{Careful:} rounding \emph{down} sends $-2.5$ to $\blank{0.8cm}$, not $-2$. The graph is a
-\textbf{staircase}: on each interval $[n,n+1)$ the output is the \emph{constant} $n$ (closed on the
-left, open on the right), then it jumps up by $1$.
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-1}{4}{-1}{4}
-  \draw[very thick, forest] (-1,-1)--(0,-1); \closeddot{-1}{-1} \opendot{0}{-1}
-  \draw[very thick, forest] (0,0)--(1,0);    \closeddot{0}{0}   \opendot{1}{0}
-  \draw[very thick, forest] (1,1)--(2,1);    \closeddot{1}{1}   \opendot{2}{1}
-  \draw[very thick, forest] (2,2)--(3,2);    \closeddot{2}{2}   \opendot{3}{2}
-  \draw[very thick, forest] (3,3)--(4,3);    \closeddot{3}{3}   \opendot{4}{3}
-\end{tikzpicture}
-\end{center}
-From the staircase: $\lfloor 1.5\rfloor=\blank{0.8cm}$, and $f$ is \blank{1.6cm} (increasing /
-constant) on the interval $[2,3)$. Real prices that ``round'' --- parking by the hour, shipping by the
-pound --- are step functions.
+\begin{notesbox}{3. Add, subtract, and multiply}
+\textbf{Add / subtract:} combine like terms --- reals with reals, $i$-terms with $i$-terms.
+\[ (3+2i)+(5-8i)=\blank{2.6cm}, \qquad (4-i)-(6-3i)=\blank{2.6cm}. \]
+\textbf{Multiply:} distribute (FOIL), then replace $i^2=-1$ and re-collect into $a+bi$.
+\[ (2+3i)(4-i)=8-2i+12i-3i^2=8+10i-3(\blank{0.7cm})=\blank{2.4cm}. \]
+\textbf{Complex conjugate.} The conjugate of $a+bi$ is $a-bi$. Their product is \emph{always real}:
+\[ (a+bi)(a-bi)=a^2-b^2i^2=\blank{2.0cm}. \qquad (5+2i)(5-2i)=\blank{2.0cm}. \]
 \end{notesbox}
 
-\boxguard
+\boxguard[20]
+\begin{notesbox}{4. Powers of $i$, and where complex numbers come from}
+Powers of $i$ \textbf{cycle} with period $4$. Fill the cycle, then reduce by taking the exponent mod $4$:
+\[ i^1=i,\quad i^2=\blank{0.8cm},\quad i^3=i^2\cdot i=\blank{0.9cm},\quad i^4=\blank{0.8cm},\quad i^5=\blank{0.8cm}. \]
+\[ i^{23}=\blank{1.2cm} \qquad i^{40}=\blank{1.2cm} \]
+\smallskip
+\textbf{Why we needed them.} Complete the square on the 2.3 leftover $x^2+2x+5=0$:
+\[ (x+1)^2=-4 \ \Rightarrow\ x+1=\pm\blank{1.4cm} \ \Rightarrow\ x=\blank{2.2cm}. \]
+The two solutions $-1\pm2i$ are \textbf{complex conjugates} --- a preview of Lesson 2.5.
+\end{notesbox}
+
 \begin{practicebox}
-For $p(x)=\begin{cases} -2x, & x\le -1 \\ x+3, & x>-1 \end{cases}$, complete each part.
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item $p(-3)=\blank{1.2cm}$; \quad $p(-1)=\blank{1.2cm}$ (which piece? \blank{1.6cm}); \quad
-        $p(0)=\blank{1.2cm}$; \quad $p(2)=\blank{1.2cm}$.
-  \item \textbf{Is $p$ continuous at the boundary $x=-1$?} At $x=-1$ the top gives \blank{0.8cm} and the
-        bottom (just past $-1$) gives \blank{0.8cm}. Because the values \blank{2.2cm}, the graph
-        \blank{2.6cm} (does / does not) jump, so $p$ \blank{1.6cm} continuous at $x=-1$.
+\textbf{Simplify. Write every answer in $a+bi$ form.}
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
+  \item $\sqrt{-45}$
+    \begin{work}
+      \sqrt{-45} &= i\sqrt{45} \\
+                 &= 3i\sqrt{5}
+    \end{work}
+  \item $(6-i)+(-2+7i)$
+    \begin{work}
+      (6-i)+(-2+7i) &= (6-2)+(-1+7)i \\
+                    &= 4+6i
+    \end{work}
+  \item $(3+i)(2-5i)$
+    \begin{work}
+      (3+i)(2-5i) &= 6-15i+2i-5i^2 \\
+                  &= 6-13i-5(-1) \\
+                  &= 11-13i
+    \end{work}
+  \item $i^{31}$
+    \begin{work}
+      31 &= 4(7)+3 \\
+      i^{31} &= i^3 = -i
+    \end{work}
 \end{enumerate}
 \end{practicebox}
 

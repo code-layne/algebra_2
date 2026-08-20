@@ -1,4 +1,4 @@
-%! Graphing Rational Functions — Unit 5, Lesson 5.5 — Lesson Plan
+%! Solving Radical Equations \& Extraneous Solutions — Unit 5, Lesson 5.5 — Lesson Plan
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,8 +8,8 @@
 \newcommand{\CourseName}{Algebra 2: Shepherd}
 \newcommand{\SchoolYear}{2026--2027}
 \newcommand{\MeetingLength}{55 minutes}
-\newcommand{\UnitNumberName}{Unit 5: Rational Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 5.5: Graphing Rational Functions}
+\newcommand{\UnitNumberName}{Unit 5: Radical Functions \quad}
+\newcommand{\LessonNumberName}{Lesson 5.5: Solving Radical Equations \& Extraneous Solutions}
 
 \begin{document}
 \begin{center}
@@ -19,28 +19,28 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can take a rational function whose asymptotes are \emph{not}
-    visible in the equation and \textbf{assemble} its graph with the same five steps every time:
-    \textbf{factor} completely; take the restrictions off the \emph{original} denominator and run the
-    \textbf{cancel test} to sort each one into a \textbf{hole} (with coordinates, from the simplified
-    expression) or a \textbf{vertical asymptote}; get the \textbf{horizontal asymptote} from the
-    \textbf{degree comparison}, including answering ``none''; \textbf{compute} both intercepts, taking
-    $x$-intercepts from the \emph{simplified} numerator; and build a \textbf{sign chart} on the
-    $x$-intercepts and the vertical asymptotes to decide, interval by interval, whether the graph runs
-    above or below the $x$-axis. They then describe the finished graph --- domain as a union of
-    intervals, end behavior, branch-by-branch behavior --- and interpret it in context.
+    \textbf{Primary Objective:} Students can solve an equation containing one radical by
+    \emph{isolating} the radical and raising both sides to the power equal to the index, and can
+    solve $x^{m/n}=k$ by raising both sides to the reciprocal power. They \emph{check} every
+    candidate in the original equation, identify the \textbf{extraneous} ones, verify a solution set
+    graphically by counting intersections, and recognize an isolated even root set equal to a
+    negative number as having no real solution before doing any algebra. Above all they can
+    \emph{justify} the check: squaring is a valid but non-reversible step that destroys sign
+    information, so it can enlarge the solution set --- while raising to an \emph{odd} power is
+    reversible and never can.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2h} --- determine the equations of vertical and
-    horizontal asymptotes. \textbf{A2.F.2a} --- domain, range, zeros, and intercepts, including graphs
-    with discontinuities. \textbf{A2.F.2g} --- describe end behavior (the horizontal asymptote
-    \emph{is} the end-behavior statement). Applied: \textbf{A2.F.1c} (graphing from the equation ---
-    Worked Example B turns out to be a transformed parent), \textbf{A2.F.2c}
-    (increasing/decreasing, reported branch by branch), and \textbf{A2.F.2f} (interpreting $f(x)$ in
-    context --- the round-trip and pollution-cost models). Builds on \textbf{A2.EO.3b} (4.2
-    factoring), \textbf{A2.EO.1b/d} (5.1 simplifying and restrictions), and the 4.6 sign chart.
-    \textbf{Slant asymptotes are not in the standard} --- A2.F.2h covers vertical and horizontal only.
-    They appear once, as Tier E enrichment, and are \emph{never} assessed. Prerequisite for
-    \textbf{5.6}, where today's excluded values return as extraneous solutions.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.5a} (governing --- solve an equation containing
+    no more than one radical expression \emph{algebraically and graphically}; the algebraic method
+    runs through every component, the graphical one through Notes~\S5, Activity Tier~R Part~3, and
+    Homework item~4). \textbf{A2.EI.5b} (verify possible solutions algebraically, graphically, and
+    with technology; explain the solution method and \emph{interpret solutions in context}) is the
+    spine of the lesson --- the check is taught as a required step, and the interpretation strand is
+    carried by Tier~E's pendulum and the homework's skid-mark extension. \textbf{A2.EI.5c} (justify
+    why a possible solution to an equation with a square root might be extraneous) is assessed
+    directly in Exit Ticket item~2(c), Activity Tier~A~J1--J2, and Homework item~6. The lesson
+    revisits \textbf{A2.EO.2c} (5.1's rational exponents, in \S6), \textbf{A2.F.1c}/\textbf{A2.F.2a}
+    (5.4's graphs, now read as the two sides of an equation), and \textbf{A2.EI.4c} (4.6's rational
+    equations --- the same extraneous-solution logic, one lesson earlier in the year).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -50,24 +50,27 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Factor a rational function completely, before anything else is attempted.
-  \item List restrictions from the \emph{original} denominator and sort each with the cancel test: hole or vertical asymptote.
-  \item Give a hole's \emph{coordinates} by substituting into the simplified expression.
-  \item Get the horizontal asymptote from the degree comparison, and answer ``none'' when the top outranks the bottom.
-  \item Compute both intercepts --- $x$-intercepts from the \emph{simplified} numerator only.
-  \item Build a sign chart whose boundary points are the $x$-intercepts and the vertical asymptotes (never the holes).
-  \item Assemble and describe: domain as a union, end behavior, branch-by-branch behavior, and where the graph crosses $y=$ HA.
+  \item Run the method in order: \textbf{isolate} $\rightarrow$ raise to the $n$th power $\rightarrow$ solve $\rightarrow$ \textbf{check}.
+  \item Explain why isolating comes \emph{first} --- squaring a sum does not remove a radical.
+  \item Identify extraneous candidates by substituting into the \emph{original} equation.
+  \item \textbf{Justify} why an extraneous solution appeared (A2.EI.5c), in terms of sign.
+  \item Recognize ``isolated even root $=$ negative'' as \textbf{no real solution}, with no algebra.
+  \item Handle an \textbf{odd index}: solve it, and explain why it cannot produce a phantom.
+  \item Verify a solution set \textbf{graphically} --- intersections, not $x$-intercepts.
+  \item Solve $x^{m/n}=k$ by raising both sides to $\frac{n}{m}$, supplying the $\pm$ when the numerator is even.
+  \item \textbf{Interpret} a solution in context, and distinguish an extraneous rejection from a contextual one.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item \textbf{Factor it, and every feature is already in there.} The sign chart is what turns the list into a picture.
-  \item A feature list does \emph{not} determine a graph --- the Hook proves it with three graphs that share every listed feature.
-  \item Restrictions are facts about the \emph{original} expression. Cancelling never restores an input (5.1), and forgetting that is tomorrow's extraneous solution.
-  \item A fraction is zero only when its numerator is. That single fact gives the $x$-intercepts \emph{and} explains every crossing of a horizontal asymptote.
-  \item A hole is not a boundary point: the sign cannot change at a point where the function is the same on both sides.
-  \item 5.5 does not replace 5.4 --- it surrounds it. Worked Example B is yesterday's anchor family with one point punched out.
-  \item ``No horizontal asymptote'' is a complete answer; the graph still has end behavior.
+  \item \emph{Squaring hands you candidates, not solutions.} The check is a step of the method, not a courtesy.
+  \item $a=b \Rightarrow a^{2}=b^{2}$ always; the converse only gives $a=b$ \textbf{or} $a=-b$. That one gap is the entire lesson.
+  \item Squaring \textbf{destroys sign information}: $3$ and $-3$ become the same number, and the extraneous root comes back through that hole.
+  \item An extraneous candidate is never random --- it is exactly the one that makes the \emph{non-radical} side negative. Students can predict it before checking.
+  \item Being negative does not make a candidate extraneous. Homework 2(b) has two negative solutions and both are valid.
+  \item The index runs the show, again: even $\Rightarrow$ principal root, sign lost, phantoms possible; odd $\Rightarrow$ reversible, no phantoms ever.
+  \item This is Lesson 4.6's structure in new clothes: a non-reversible step produces candidates, and only the check promotes them.
+  \item A graph will not do the algebra, but it always tells you \emph{how many} answers to expect.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -75,207 +78,176 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Factored form} & Numerator and denominator each written as a product. Every feature of the graph lives here and nowhere else. \\
-\textbf{The cancel test (5.0)} & A restriction whose factor cancels is a \emph{hole}; one whose factor survives in the denominator is a \emph{vertical asymptote}. \\
-\textbf{Hole (removable discontinuity)} & A single missing point. Its height comes from substituting the excluded value into the \emph{simplified} expression. \\
-\textbf{Degree comparison (5.0)} & \TallMath{n<m \Rightarrow y=0; \quad n=m \Rightarrow y=\tfrac{a_n}{b_m}; \quad n>m \Rightarrow \text{none}} \\
-\textbf{Boundary point} & An $x$-intercept or a vertical asymptote --- the only places the sign of $f(x)$ can change. \emph{Not} a hole. \\
-\textbf{Sign chart} & One test value per interval; records whether the graph is above or below the $x$-axis there. \\
-\textbf{Slant asymptote} & \emph{Enrichment only, never assessed.} When the top outranks the bottom by one, division leaves a linear quotient the graph runs alongside. \\
+\textbf{Radical equation} & An equation in which the variable appears \emph{underneath} a radical, e.g.\ $\sqrt{x+7}=x-5$. \\
+\textbf{Isolating the radical} & Getting the radical alone on one side before raising to a power. Required, because $\left(\sqrt{x}+3\right)^{2}=x+6\sqrt{x}+9$ --- squaring only erases a radical standing by itself. \\
+\textbf{Candidate} & A value produced after raising both sides to a power. Not yet a solution. \\
+\textbf{Extraneous solution} & A candidate that satisfies the raised equation but \emph{not} the original one. \\
+\textbf{The check} & Substitution of every candidate into the \emph{original} equation --- the only thing that turns a candidate into a solution. \\
+\textbf{The one-way street} & \TallMath{a=b \Rightarrow a^{2}=b^{2}, \ \text{but} \ a^{2}=b^{2} \Rightarrow a=b \ \text{or} \ a=-b} \\
+\textbf{Principal root (5.1)} & An even root is never negative --- so an isolated even root equal to a negative number has no real solution. \\
+\textbf{Odd index} & Cubing is reversible ($A^{3}=B^{3}\Rightarrow A=B$, since every real has exactly one real cube root), so it cannot invent solutions. \\
+\textbf{Graphical solution} & The $x$-coordinate of an intersection of $y=\text{left side}$ and $y=\text{right side}$. Number of intersections $=$ number of real solutions. \\
+\textbf{Reciprocal power} & To undo $x^{m/n}=k$, raise both sides to \TallMath{\tfrac{n}{m}}, since \TallMath{\left(x^{m/n}\right)^{n/m}=x^{1}} \\
 \end{tabularx}
 \end{skillbox}
 
 \begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three steps that \emph{are} today's lesson. \textbf{(1)} \emph{Factor,
-    restrict, cancel, sort} on $\frac{x^2-9}{x^2-2x-3}$ --- restrictions $x\neq3,-1$, the factor $x-3$
-    cancels, so $3$ is a hole and $-1$ is a wall. Insist on the order: restrictions come off the
-    \emph{original} denominator. \textbf{(2)} \emph{Degree comparison}, three items, with
-    $\frac{x^3}{x^2-1}$ deliberately last --- ``none'' is a complete answer, and a student who asks what
-    the graph does instead has asked the Tier E question. \textbf{(3)} \emph{Signs, not values}: fill a
-    sign table for $\frac{x+1}{(x-2)(x+3)}$ at four inputs without computing a single output. Debrief
-    the last line out loud --- a sign chart is cheaper than evaluating, and a quotient of signs behaves
-    exactly like the products they have been doing since 4.6. Do \emph{not} promise the signs always
-    alternate; item 1(f) of tonight's homework breaks that promise.
+    The Warm-Up loads all three barrels of today's lesson and fires none of them.
+    \textbf{(1)} Simplifying $\left(\sqrt{x-3}\right)^{2}$, $\left(\sqrt[3]{2x}\right)^{3}$, and
+    $\left(\sqrt{x}+3\right)^{2}$ (6.1, 6.3) --- the follow-up question, \emph{why did one come out
+    clean and the other come out worse}, \emph{is} the reason Step 1 of the method is ``isolate.''
+    Put both answers on the board and leave them there; you will point back at them when someone
+    squares $\sqrt{x}+2=5$ into $x+4=25$. \textbf{(2)} Two yes/no questions --- \emph{if $x=-4$,
+    does $x^{2}=16$? If $x^{2}=16$, does $x=4$?} --- which are the entire lesson in fifteen seconds.
+    Get the phrase ``squaring can add answers'' said out loud \emph{now}, by a student, before any
+    radical equation appears. \textbf{(3)} Factoring $x^{2}-11x+18=0$ from Unit~2, giving $2$ and
+    $9$: precisely the quadratic the Hook's equation produces, so when those two numbers reappear
+    students recognize them --- and the discovery that one of them is a lie lands far harder than it
+    would on unfamiliar numbers. Do not resolve any of the three; each is answered by a specific
+    section of the notes.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    Put three graphs on the board (they are in the notes) and tell the class the truth about all three:
-    each has a vertical asymptote at $x=-2$, a vertical asymptote at $x=3$, an $x$-intercept at
-    $(1,0)$, and branches that flatten toward $y=0$ at both ends. \textbf{``Exactly one of these is
-    $f(x)=\frac{x-1}{(x+2)(x-3)}$. Which one, and how would you know?''} Take guesses, write them on
-    the board, and \emph{leave them there}. The point is the thing students discover when they try to
-    justify a choice: every feature on the checklist is true of all three, so the checklist cannot
-    decide. What separates them is which \emph{side} of the $x$-axis the curve sits on in each region
-    --- and that is what a sign chart, and only a sign chart, answers. This is the argument for the
-    tool, made before the tool. Resolve it in Section 6, after the Worked Example A chart reads
-    \emph{below, above, below, above}, so that B and C are eliminated by arithmetic rather than by the
-    teacher.
+    Put a complete, correct solution to $\sqrt{x+7}=x-5$ on the board --- square, expand, collect,
+    factor, $x=2$ or $x=9$ --- and say plainly: \textbf{``Every line here is right. Check them.''}
+    Give them a minute to hunt. They will not find a bad step, because there is not one. Then have
+    the class substitute both answers into the \emph{original} equation. $x=9$ gives $4=4$. $x=2$
+    gives $\sqrt{9}=3$ on the left and $-3$ on the right. Now ask the question the whole lesson
+    exists to answer: \textbf{``One answer is wrong, and no step was wrong. So where did the wrong
+    answer come from?''} Let them sit in it. The answer is Warm-Up item~2 --- squaring turned the
+    \emph{false} statement $3=-3$ into the \emph{true} statement $9=9$, and $x=2$ walked in through
+    that gap. Land the sentence and keep it on the board all period: \emph{squaring hands you
+    candidates, not solutions --- the check is part of the method.} Note the shift being demanded
+    here: in every previous unit, a correct procedure guaranteed a correct answer. From today,
+    correct procedure plus verification is the standard.
 \end{skillbox}
 
 \begin{skillbox}[Lesson]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Name the change.} Yesterday every function was $\frac{a}{x-h}+k$ and both asymptotes were
-printed on the face of the equation. Today the denominator factors into two pieces, the numerator may
-cancel one of them, and nothing can be read off directly. State the replacement sentence and post it:
-\textbf{factor it, and every feature is already in there --- the sign chart is what turns the list into
-a picture.} Then give the five steps as a fixed order and hold to that order all period.
+\textbf{1. The four steps.} Isolate, raise to the index, solve, \textbf{check}. Justify Step~1 from
+Warm-Up 1(c) rather than asserting it: squaring erases a radical only when the radical stands alone.
+Work $\sqrt{x+4}-1=3$ ($x=12$) and name what the equation is \emph{asking} --- 5.0's function
+$f(x)=\sqrt{x+4}-1$, and where does it equal $3$? That framing is what makes \S5 free.
 
-\textbf{2. Steps 2 and 3, fast.} These are 5.0 recalled, so run them as a quick sort, not a lecture.
-Step 2 is the cancel test: restrictions off the \emph{original} denominator, then a cancelled factor
-gives a hole and a surviving factor gives a wall. The one addition today is that a hole gets
-\emph{coordinates} --- substitute the excluded value into the simplified expression. Step 3 is the
-degree comparison, with two cautions worth writing down: compare the \emph{whole} top with the
-\emph{whole} bottom, not one factor with another, and ``none'' is a complete answer.
-
-\textbf{3. Worked Example A --- $f(x)=\frac{x-1}{x^2-x-6}$.} The full build, out loud, in order.
-Factors $(x+2)(x-3)$; nothing cancels, so two walls and no holes; degrees $1$ and $2$, so HA $y=0$;
-$x$-intercept $(1,0)$; $y$-intercept $(0,\frac16)$. Then stop and make the sign chart the event of the
-period: three boundary points, four intervals, one test value each, signs $-,+,-,+$. Assemble from the
-chart and only then show the picture.
+\textbf{2. Why the check exists.} Write the one-way street: $a=b \Rightarrow a^{2}=b^{2}$ always,
+but $a^{2}=b^{2}$ leaves $a=b$ \emph{or} $a=-b$. So squaring can never lose a solution and can
+always gain one. Say the mechanism in one sentence --- \textbf{squaring destroys sign
+information} --- then finish the Hook on the graph: $y=\sqrt{x+7}$ meets $y=x-5$ exactly once, at
+$(9,4)$, while at $x=2$ the curve sits at $3$ and the line at $-3$. Point at those two red dots.
+They are mirror images, and squaring flattens them onto the same number. Close by naming the
+Lesson~4.6 parallel: multiplying by something that might be zero, squaring something that might be
+negative --- both are non-reversible steps, both produce candidates.
 
 \columnbreak
 
-\textbf{4. The question 5.4 could not ask.} \textbf{``Does this graph cross its horizontal asymptote?''}
-Setting $f(x)=0$ needs the numerator to be zero, which happens at $x=1$ --- so yes, and the crossing is
-at the $x$-intercept. Put the three claims side by side: 5.0 said a rational graph \emph{may} cross its
-HA; 5.4 said a transformed parent \emph{never} does; today explains both in one sentence, because a
-nonzero constant numerator makes a crossing impossible and a numerator with a zero makes it certain.
-Ask where the crossing must be \emph{before} anyone looks at the graph.
+\textbf{3. The free shortcut.} From 5.1, an even root is the \emph{principal} root and is never
+negative. So $\sqrt{2x-1}+5=2$ isolates to $\sqrt{2x-1}=-3$ and is finished --- \emph{no real
+solution}, no algebra. Then square anyway and show $x=5$ failing the check, so they see what the
+shortcut saved them from. Frame it as a reading habit: look at the isolated line before you commit
+to squaring it.
 
-\textbf{5. Worked Example B --- $g(x)=\frac{x^2-4}{x^2-x-6}$.} Now a hole. Restrictions $3$ and $-2$;
-$(x+2)$ cancels, so $-2$ is a hole at $(-2,\frac45)$ and $3$ is a wall; equal degrees, so HA $y=1$;
-$x$-intercept $(2,0)$ --- and here is the trap worth naming out loud: the \emph{original} numerator is
-also zero at $-2$, and $(-2,0)$ is not an intercept, because $-2$ is not in the domain. The sign chart
-has boundary points $2$ and $3$ only; a hole is not a boundary point.
+\textbf{4. Odd index closes the trapdoor.} Every real number has exactly one real cube root, so
+$A^{3}=B^{3}$ forces $A=B$: cubing is \emph{reversible} and cannot invent solutions. Put
+$\sqrt{x-4}=-2$ (no solution) beside $\sqrt[3]{x-4}=-2$ ($x=-4$, and it checks). Same numbers,
+opposite verdicts, and the only difference is the index --- the sentence this unit has run on since
+5.0. Work $2\sqrt[3]{x+1}-3=1$ so they still see an isolation step, and insist on the check anyway:
+an odd index protects you from phantoms, not from arithmetic.
 
-\textbf{6. The payoff, and the Hook.} Simplify $\frac{x-2}{x-3}=1+\frac{1}{x-3}$: Worked Example B is
-yesterday's anchor family with one point removed. Say plainly that 5.5 has not replaced 5.4, it has
-surrounded it. Then return to the board, read the Section 4 sign chart back --- below, above, below,
-above --- and let the class eliminate B (all signs reversed) and C (no sign change at $x=-2$).
+\textbf{5--6. Graphs, then exponents.} Intersections, not $x$-intercepts: the number of crossings is
+the number of real solutions, so a picture tells you how many answers to expect before you find
+them. Then $x^{m/n}=k$ --- raise both sides to $\frac{n}{m}$. Flag both traps: an \emph{even
+numerator} is a square in disguise, so write the $\pm$ yourself ($x^{2/3}=9$ has two solutions); an
+\emph{even denominator} is an even root, so a negative answer would be extraneous.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Explicit Instruction: The Five-Step Build]{forestbg}
-\begin{tabularx}{\linewidth}{@{}p{0.44\linewidth} X@{}}
-\vspace{0pt}
-\textbf{Post these. Always in this order.}
-\begin{enumerate}[leftmargin=1.3em, nosep, after=\vspace{2pt}]
-  \item \textbf{Factor} the top and the bottom completely.
-  \item \textbf{Restrictions} off the \emph{original} denominator; cancel test $\rightarrow$ hole (with coordinates) or vertical asymptote.
-  \item \textbf{Degree comparison} $\rightarrow$ horizontal asymptote, or ``none.''
-  \item \textbf{Intercepts, computed.} $x$-int: zeros of the \emph{simplified} numerator. $y$-int: $f(0)$.
-  \item \textbf{Sign chart.} Boundary points $=$ $x$-intercepts $+$ vertical asymptotes. One test value per interval.
-\end{enumerate}
-
-\vspace{3pt}
-\textbf{Then assemble} and report: domain as a union, end behavior, above/below by interval, and any
-crossing of the horizontal asymptote.
-&
-\vspace{0pt}
-\textbf{Worked, on the anchor.} \; $f(x)=\dfrac{x-1}{x^2-x-6}=\dfrac{x-1}{(x+2)(x-3)}$
-\[ \text{VA } x=-2,\; x=3; \qquad \text{HA } y=0 \;(1<2) \]
-\[ x\text{-int } (1,0); \qquad f(0)=\tfrac{-1}{-6}=\tfrac16 \]
-\centerline{\small Signs at $-3,\,0,\,2,\,4$: \quad $-\;+\;-\;+$ \quad (below, above, below, above)}
-
-\vspace{4pt}
-\textbf{And with a hole:} \; $g(x)=\dfrac{(x-2)(x+2)}{(x-3)(x+2)}=\dfrac{x-2}{x-3}=1+\dfrac{1}{x-3}$
-\[ \text{hole } \left(-2,\tfrac45\right); \quad \text{VA } x=3; \quad \text{HA } y=1 \]
-\vspace{-6pt}
-\textbf{The two questions students must answer aloud:} \emph{did that factor cancel all the way?} and
-\emph{is this zero of the numerator an intercept or a hole?}
-\end{tabularx}
-\end{skillbox}
-
 \begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the guided practice and Tier work. Watch for and correct:
+Circulate during the notes practice and the tiers. Watch for and correct:
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{restrictions read off the simplified form} --- the hole vanishes and the domain is wrong; this is the single most expensive error today, and it is tomorrow's extraneous solution;
-  \item \textbf{a vertical asymptote announced at every excluded value} without running the cancel test;
-  \item \textbf{a cancelled zero called an $x$-intercept} --- Worked Example B's $(-2,0)$, which is the hole;
-  \item \textbf{the hole used as a boundary point} on the sign chart --- the sign cannot change where the function is the same on both sides;
-  \item \textbf{degrees compared factor-by-factor} instead of whole top to whole bottom;
-  \item \textbf{``no $x$-intercept'' refused} when the numerator is a nonzero constant --- students want every graph to cross the axis;
-  \item \textbf{signs assumed to alternate} rather than tested --- true for these examples, false in general (homework 1(f));
-  \item \textbf{one interval spanning a wall} --- 5.0's union rule, still in force;
-  \item \textbf{intercepts guessed off the picture} instead of computed from the equation.
+  \item \textbf{the signature omission:} no check shown. Treat a missing check as an unfinished problem, not a presentation issue --- say so on day one or it will not stick;
+  \item \textbf{squaring without isolating:} $\sqrt{x}+2=5 \rightarrow x+4=25$. Send them back to Warm-Up 1(c); this is homework item 5;
+  \item \textbf{rejecting a candidate for being negative} --- being negative is not the crime. Homework 2(b) has two negative solutions and both are valid. What matters is the sign of the \emph{other} side;
+  \item \textbf{keeping both candidates} because the algebra was clean. Clean algebra is exactly the situation in which a phantom appears;
+  \item \textbf{grinding through} $\sqrt{x+6}+4=1$ instead of reading it. The shortcut is free marks on the SOL;
+  \item \textbf{restricting a cube root} --- writing ``no solution'' for $\sqrt[3]{x-4}=-2$. This is the 5.0 error resurfacing, and it is the exit ticket's MC distractor B;
+  \item \textbf{losing the $\pm$} in $x^{2/3}=25$ (homework 3(b), 3(d));
+  \item checking in the \emph{squared} equation rather than the original --- which of course always ``works,'' and which is the most self-defeating error available today.
 \end{itemize}
-Cold-call prompts: ``Did that factor cancel \emph{all the way}?'' ``Hole or wall --- and how do you
-know?'' ``Where is the hole, exactly? Give me both coordinates.'' ``Which zeros of the numerator are
-intercepts?'' ``Is the hole a boundary point? Why not?'' ``Your chart says positive there --- prove it
-with a number.'' ``Does this one cross its horizontal asymptote, and where must the crossing be?''
+Cold-call prompts: ``Is that an answer or a candidate --- and what turns one into the other?''
+``Before you square: is there any chance this equation has no solution at all? How can you tell?''
+``Which of your two candidates do you expect to fail, \emph{before} you check it? Why that one?''
+``Would this problem have an extraneous solution if the index were $3$? Why not?'' ``How many times
+do those two graphs cross, and what does that tell you about your answer list?''
 \end{skillbox}
 
 \begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Assemble the Graph} activity (tiered; mirrors the notes).
+\textbf{Candidate or Solution?} activity (tiered; mirrors the notes).
 \begin{multicols}{3}
-\textbf{Tier R --- Remediate.} One step at a time. A four-row \textbf{hole-or-wall} sort
-($\frac{x-1}{(x-1)(x+4)}$, $\frac{x+2}{(x-3)(x+5)}$, $\frac{x^2-9}{(x+3)(x-1)}$,
-$\frac{5}{(x-2)(x+2)}$), four \textbf{degree-comparison} items including a ``none,'' then one guided
-build on $f(x)=\frac{3}{(x-1)(x+3)}$. That build is the item to watch: its numerator is the constant
-$3$, so it has \emph{no} $x$-intercept, its sign chart has only two boundary points, and it can never
-cross $y=0$. A group that writes ``$x$-intercept $=3$'' has confused the numerator's value with its
-zero --- a two-minute fix that prevents a much worse error later.
+\textbf{Tier R --- Remediate.} The four steps run one at a time on $\sqrt{x-1}+2=5$, each step in
+its own labelled row, then three on their own: $\sqrt{4x+1}=5$; $\sqrt[3]{x+3}=-1$, whose
+\emph{negative} answer is legal and comes with a required explanation of why; and
+$\sqrt{x+2}+7=3$, which stops at the isolation line. Closes on a pre-drawn graph of
+$y=\sqrt{x-1}+2$ with the lines $y=5$ and $y=1$, confirming the Part~1 answer and showing that
+``no solution'' looks like a line the curve never reaches.
 
 \columnbreak
-\textbf{Tier A --- Approaching.} \emph{Part 1:} a full build of $\frac{x-2}{x^2-x-12}$ checked against
-a pre-drawn graph, closing on the crossing at $(2,0)$ and why 5.4 could never produce one.
-\emph{Part 2:} a build with a hole, $\frac{x^2-2x-3}{x^2-9}$ --- hole $(3,\frac23)$, wall $x=-3$,
-HA $y=1$ --- whose item 4 asks why $(3,0)$ is \emph{not} an intercept even though the original
-numerator vanishes there. \emph{Part 3:} an \textbf{error analysis} on $\frac{x^2-16}{x^2-3x-4}$, where
-a student claims two walls and two intercepts; exactly one of the three claims (the HA) survives,
-because it is the only feature the cancel test does not touch.
+\textbf{Tier A --- Approaching.} A five-row sorting table --- candidates / which check / solution
+set --- over $\sqrt{x+9}=x+3$, $\sqrt{2x+5}=x+1$, $\sqrt{x-3}=x-5$, $\sqrt[3]{2x-1}=3$, and
+$\sqrt{x+6}+4=1$. The first three each lose exactly one candidate; the fourth is odd-index and loses
+none; the fifth never gets squared. Then the discovery item (J1): tabulate the value of the
+\emph{right-hand side} at each rejected candidate --- negative every time --- and write the pattern
+as a usable rule. J2 asks why the cube root row could not have failed, using \emph{index} and
+\emph{sign}; J3 asks what reading item (e) saved.
 
 \columnbreak
-\textbf{Tier E --- Extension.} \emph{Part 1:} build one \textbf{backwards} --- hole at $x=1$, wall at
-$x=-4$, HA $y=2$, $x$-intercept $(3,0)$ --- giving $\frac{2(x-3)(x-1)}{(x+4)(x-1)}$, plus the hole's
-coordinates and why the intercept could not have been at $x=1$. \emph{Part 2:} \textbf{enrichment
-only} --- divide $\frac{x^2-4}{x+1}$ (4.3 long division) to get $x-1-\frac{3}{x+1}$ and meet the
-\textbf{slant asymptote} $y=x-1$ on a pre-drawn graph. Say out loud that it is not in the standard and
-will not be assessed; its job is to show that ``no HA'' still means end behavior, and that the rewrite
-is 5.4's move with a linear quotient. \emph{Part 3:} \textbf{the round trip} --- $30$ miles out at $x$
-mph and back at $x+10$, so $T(x)=\frac{30}{x}+\frac{30}{x+10}=\frac{60x+300}{x(x+10)}$ (5.3 run
-forwards). The wall at $x=0$ and the floor at $y=0$ both mean something; the wall at $x=-10$ and the
-intercept $(-5,0)$ are negative speeds. Doubling $10\to20$ saves $2$ hours, $20\to40$ saves only
-$1.15$.
+\textbf{Tier E --- Extension.} Three parts. \emph{(1)} Two radicals --- beyond A2.EI.5a's
+one-radical cap, so assign it as genuine extension: $\sqrt{3x+1}=\sqrt{x+9}$ (one squaring) and
+$\sqrt{x+5}-\sqrt{x}=1$ (isolate, square, isolate again, square again; $x=4$), plus why two
+squarings make the check twice as necessary. \emph{(2)} Prove the two rules: why $B<0$ makes
+$\sqrt{A}=B$ unsolvable while $A=B^{2}$ cannot tell, and why one real cube root per number forces
+$A^{3}=B^{3}\Rightarrow A=B$. \emph{(3)} 5.2's pendulum $T(L)=2\pi\sqrt{L/32}$ run \emph{backwards}
+--- $T=2\pi$ gives $L=32$ ft and $T=\pi$ gives $L=8$ ft, both checkable against 5.2's own table ---
+then the period $-\pi$, which fails for \emph{two} separate reasons, algebraic and contextual, and a
+required explanation of why those are not the same rejection.
 \end{multicols}
 \end{skillbox}
 
 \begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} a full build of
-$f(x)=\frac{x^2-1}{x^2+2x-3}$ --- factors $\frac{(x-1)(x+1)}{(x+3)(x-1)}$, restrictions $1$ and $-3$,
-hole $(1,\frac12)$, wall $x=-3$, HA $y=1$, $x$-intercept $(-1,0)$, $y$-intercept $(0,\frac13)$, domain
-$(-\infty,-3)\cup(-3,1)\cup(1,\infty)$. \textbf{(2)} the sign chart on those boundary points
-($+,-,+$; below on $(-3,-1)$) and the crossing question --- \emph{no}, because once the common factor
-cancels this is a transformed parent again and $\frac{x+1}{x+3}=1$ would need $x+1=x+3$.
-\textbf{(3)} an \textbf{SOL-style multiple-choice} item: which function has a hole at $x=1$, a
-vertical asymptote at $x=-2$, and a horizontal asymptote $y=1$? Each distractor breaks exactly one
-idea --- $\frac{x-1}{(x-1)(x+2)}$ gets both restrictions right but its degrees give $y=0$,
-$\frac{(x+1)(x+3)}{(x+1)(x-2)}$ flips every sign, and $\frac{(x-1)(x+2)}{(x+2)(x+3)}$ cancels the
-wrong factor. Collect and sort into ``got it / cancel test / degree comparison / sign chart.'' The
-degree pile is the fastest fix. \textbf{The cancel-test pile is the one to re-teach before tomorrow},
-because in 5.6 that same error --- a restriction read off the simplified form --- stops being a
-mislabeled feature and becomes a wrong answer.
+\textbf{Exit Ticket} (independent, no notes): solve and check $\sqrt{3x+1}-2=3$ ($x=8$); then solve,
+check, and sort $\sqrt{x+5}=x-1$ (candidates $4$ and $-1$; $-1$ extraneous), with item~2(c)
+requiring a one-sentence justification that mentions a \emph{sign} --- this is
+\textbf{A2.EI.5c} assessed directly; then an \textbf{SOL-style multiple-choice} item asking which
+equation has \emph{no real solution}, with options $\sqrt{x-1}=5$, $\sqrt[3]{x-1}=-5$,
+$\sqrt{x-1}=-5$, and $\sqrt{x-1}=0$ (answer C). \textbf{B is the item that earns its keep} --- a
+student who learned ``roots can't be negative'' instead of ``\emph{even} roots can't'' picks it, and
+that is a Unit~5 spine failure rather than a slip in today's procedure. Collect and sort into ``got
+it / skipped the check / rejected on reflex / index confusion.'' The third pile --- students who
+threw out $-1$ merely for being negative and got the right answer for the wrong reason --- is the
+one that will silently fail Homework item~2(b), where \emph{both} candidates are negative and both
+are correct. The fourth pile needs the \S4 contrast re-run before Lesson 5.6.
 \end{skillbox}
 
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} six \textbf{hole-or-wall} sorts, ending on $\frac{x^2-9}{x^2-6x+9}$ --- where
-$x-3$ sits on \emph{both} top and bottom and there is still no hole, because the bottom has two copies
-and only one cancels; four \textbf{degree-comparison} items including a ``none''; two \textbf{full
-builds} --- $\frac{x+2}{x^2-2x-8}$, which simplifies to $\frac{1}{x-4}$ and so has a hole at
-$(-2,-\frac16)$, no $x$-intercept, and only one boundary point, and $\frac{x-3}{x^2-4}$, with four
-intervals and a crossing of $y=0$ at $(3,0)$; a \textbf{graph to identify} (hole, wall $x=1$, HA
-$y=1$) among four candidates, followed by rewriting $\frac{x+1}{x-1}=1+\frac{2}{x-1}$ as a transformed
-parent; an \textbf{error analysis} in which a student simplifies $\frac{x^2-x-6}{x^2-9}$ correctly and
-still gets the domain wrong --- the unit's spine, answered with 5.1's sentence, \emph{cancelling never
-restores an input}; and a \textbf{pollution-cost model}, $C(p)=\frac{25p}{100-p}$ thousand dollars to
-remove $p\%$, where the run $25\to100\to225\to475\to2475$ makes the vertical asymptote at $p=100$ mean
-something (no finite budget reaches total removal) and the horizontal asymptote $y=-25$ mean nothing at
-all --- the reverse of the activity's model, and deliberately so. \textbf{Extension:} design a function
-with walls at $x=-1$ and $x=4$, HA $y=0$, and \emph{no} $x$-intercept (the two conditions together force
-a nonzero constant numerator, and every such constant works), plus the careful question of whether a
-hole and a wall can share an $x$-value, tested against $\frac{x-3}{(x-3)^2}$. \textbf{Preview:} Lesson
-5.6, \emph{Solving Rational Equations \& Extraneous Solutions} --- the excluded values students have
-been computing all unit stop being features of a graph and come back as answers that must be thrown
-away.
+\textbf{Homework:} six one-radical equations mixing indices and including one that needs no algebra
+at all ($\sqrt{x-2}+9=5$), with a follow-up asking which one that was and how they knew; a
+three-row sorting table with variable on both sides, whose middle row $\sqrt{4x+13}=x+4$ is the most
+valuable problem on the page --- \emph{both} candidates are negative and \emph{both} are genuine
+solutions, which is the only reliable cure for ``reject the negative one''; four rational-exponent
+equations, two of which have two solutions, with a follow-up asking what those two have in common
+(an even numerator); a pre-drawn graph of $y=\sqrt{x+2}$ against the lines $y=3$, $y=1$, and $y=-1$,
+where part (d) makes students square $\sqrt{x+2}=-1$ anyway and discover it returns part (b)'s
+answer --- the phantom made visible, because squaring cannot tell $y=-1$ from $y=1$; an error
+analysis of a classmate who squared without isolating; and a justification item (\textbf{A2.EI.5c})
+explaining both halves of the even/odd contrast using the words \emph{index} and \emph{sign}.
+\textbf{Extension:} the skid-mark model $s(d)=\sqrt{24d}$ mph from Lesson~5.0's homework, run
+backwards --- $30$ mph predicts $37.5$ ft of skid and $60$ mph predicts $150$ ft (doubling the speed
+\emph{quadruples} the distance, which the square root's flattening predicted), the scene's actual
+$96$ ft gives $48$ mph and contradicts the driver, and then the interpretation item that matters
+(\textbf{A2.EI.5b}): deriving $d=\frac{s^{2}}{24}$ requires squaring both sides, so why is there no
+extraneous-solution risk here? Because both sides are non-negative in context --- an honest example
+of squaring being perfectly safe, worth having on record after a day spent being suspicious of it.
+\textbf{Preview:} Lesson~5.6, \emph{Composition of Functions} --- today one operation undid another;
+next that idea gets a notation, $(f\circ g)(x)=f(g(x))$, and an order that matters. In 5.7 it
+becomes the test for inverses, finally explaining 5.0's reflection over $y=x$.
 \end{skillbox}
 \end{document}

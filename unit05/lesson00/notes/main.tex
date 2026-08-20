@@ -1,4 +1,4 @@
-%! Characteristics of Rational Functions — Unit 5, Lesson 5.0 — Guided Notes
+%! Characteristics of Radical Functions — Unit 5, Lesson 5.0 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -7,6 +7,11 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Cube root: pgfmath has no cbrt, so plot the two branches separately.
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)});}
 
 \begin{document}
 
@@ -18,9 +23,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item find a rational function's \emph{domain restrictions}, and tell a \emph{vertical asymptote} from a \emph{hole};
-  \item write the \emph{equations} of the vertical and horizontal asymptotes, from a graph or an equation, and use the horizontal asymptote to state \emph{end behavior};
-  \item read a rational graph's \emph{domain}, \emph{range}, \emph{intercepts}/\emph{zeros}, and \emph{increasing/decreasing} and \emph{positive/negative} intervals, and contrast it with a polynomial graph.
+  \item find a radical function's \emph{domain} by looking at its \emph{index} and \emph{radicand}, and explain why an \emph{even} index restricts the domain but an \emph{odd} index does not;
+  \item read the \emph{domain}, \emph{range}, \emph{endpoint}, \emph{intercepts}, \emph{increasing/decreasing} and \emph{positive/negative} intervals, \emph{extrema}, and \emph{end behavior} off a square root or cube root graph;
+  \item explain how $y=\sqrt{x}$ and $y=\sqrt[3]{x}$ are the \emph{inverses} of $y=x^2$ and $y=x^3$, and contrast the two radical families with each other.
 \end{itemize}
 \end{objectivebox}
 
@@ -30,245 +35,328 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{Rational function}
-\termblanklong{Domain restriction (excluded value)}
-\termblanklong{Vertical asymptote}
-\termblanklong{Horizontal asymptote}
-\termblanklong{Hole (removable discontinuity)}
+\termblanklong{Radical function}
+\termblanklong{Index}
+\termblanklong{Radicand}
+\termblanklong{Restricted domain (from the radicand)}
+\termblanklong{Endpoint}
+\termblanklong{Inverse relationship}
 \end{vocabbox}
 
 \begin{hookbox}
-Here is the graph of $f(x) = \dfrac{x+2}{x-1}$.
+Here are the two graphs this whole unit is built on: $y=\sqrt{x}$ and $y=\sqrt[3]{x}$.
 \begin{center}
-\begin{tikzpicture}[scale=0.40]
-  \lgrid{-4}{5}{-4}{5}
-  \draw[navy, dashed, semithick] (1,-4)--(1,5);
-  \draw[navy, dashed, semithick] (-4,1)--(5,1);
-  \node[navy, font=\scriptsize, above] at (1,5) {$x=1$};
-  \node[navy, font=\scriptsize, below] at (4.3,1) {$y=1$};
+\begin{tikzpicture}[scale=0.36]
+  % y = sqrt(x)
   \begin{scope}
-    \clip (-4,-4) rectangle (5,5);
-    \draw[very thick, forest, domain=-4:0.4, samples=90, smooth]
-      plot (\x,{((\x)+2)/((\x)-1)});
-    \draw[very thick, forest, domain=1.75:5, samples=90, smooth]
-      plot (\x,{((\x)+2)/((\x)-1)});
+    \lgrid{-2}{9}{-2}{4}
+    \begin{scope}
+      \clip (-2,-2) rectangle (9,4);
+      \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
+    \end{scope}
+    \fill[forest] (0,0) circle (5pt);
+    \node[charcoal, font=\scriptsize] at (3.5,-3.2) {$y=\sqrt{x}$};
   \end{scope}
-  \fill[charcoal] (-2,0) circle (3pt) node[above left, font=\scriptsize]{$(-2,0)$};
-  \fill[charcoal] (0,-2) circle (3pt) node[right, font=\scriptsize]{$(0,-2)$};
+  % y = cbrt(x)
+  \begin{scope}[xshift=19cm]
+    \lgrid{-8}{8}{-3}{3}
+    \begin{scope}
+      \clip (-8,-3) rectangle (8,3);
+      \cbrtpos{0}{8}
+      \cbrtneg{-8}{0}
+    \end{scope}
+    \node[charcoal, font=\scriptsize] at (0,-4.2) {$y=\sqrt[3]{x}$};
+  \end{scope}
 \end{tikzpicture}
 \end{center}
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Every graph we have read this year --- lines, parabolas, polynomials --- was \emph{one unbroken curve}. This one comes in \textbf{two pieces}. What input is missing, and why? \writeline
-  \item At both far ends the curve hugs the line $y=1$ but never lands on it. What is $f(x)$ doing as $x$ runs off to the left and to the right? \writeline
+  \item The cube root graph runs all the way across the plane. The square root graph \textbf{stops dead} at the origin and never appears to the left of it. Which inputs are missing, and why? \writeline
+  \item Warm-Up item~1 already told you the reason. What was different about $\sqrt{-36}$ and $\sqrt[3]{-8}$? \writeline
 \end{itemize}
-A rational function is a \emph{fraction} of polynomials, and the \textbf{denominator runs the show}:
-it decides which inputs are thrown out, where the graph breaks, and what the graph settles down to at
-the far ends. Today we learn to read all of it.
+For every family before this one, we asked \emph{what the graph does}. Radical functions make us ask
+something new first: \textbf{where is the graph allowed to exist at all?} The answer is written under
+the radical.
 \end{hookbox}
 
-\begin{notesbox}{1. What Makes a Function Rational --- and Where It Is Undefined}
-A \textbf{rational function} is a \emph{quotient of two polynomials}:
+\begin{notesbox}{1. What Makes a Function Radical --- and Where It Is Defined}
+A \textbf{radical function} has its variable underneath a radical symbol:
 \[
-  R(x) = \frac{P(x)}{Q(x)}, \qquad Q(x) \neq 0 .
+  f(x) = \sqrt[n]{\;\text{expression in } x\;} .
 \]
-Division by zero is undefined, so \emph{every} input that makes the denominator zero is thrown out of
-the domain. Such an input is called a \textbf{domain restriction} or an \textbf{excluded value}.
-
-\vspace{3pt}
-\textbf{The one procedure behind this whole unit:} to find the restrictions, set the
-\blank{3.6cm} equal to \blank{1.0cm} and solve.
+Two parts have names, and both matter today:
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item For $f(x)=\dfrac{x+2}{x-1}$: solve $x-1=0$, so $x=\blank{0.8cm}$ is excluded.
-        Domain: \blank{5.4cm}.
-  \item For $g(x)=\dfrac{5}{x^2-9}$: solve $x^2-9=0$, so $x=\blank{2.0cm}$ are excluded.
-        Domain: \blank{5.4cm}.
-  \item \textbf{Careful:} the \emph{numerator} is allowed to be zero --- that just makes
-        $R(x)=\blank{0.8cm}$, which is an $x$-intercept (a \textbf{zero} of the function), not a
-        restriction.
+  \item The \textbf{index} $n$ is the small number in the notch of the radical --- it tells you
+        \emph{which} root. A plain $\sqrt{\phantom{x}}$ has index \blank{0.8cm} (we just don't write it).
+  \item The \textbf{radicand} is everything \blank{5.0cm} the radical symbol.
 \end{itemize}
 
 \vspace{3pt}
-Because inputs are missing, a rational graph can be \textbf{discontinuous} --- it can have breaks.
-This is the first function family of the year whose graph is not one connected piece. A break shows up
-in exactly \textbf{two} ways, and the rest of the lesson is about telling them apart:
-\begin{center}
-\small
-a \textbf{vertical asymptote} (the graph flies off near that input) \quad or \quad
-a \textbf{hole} (a single missing point).
-\end{center}
-\end{notesbox}
-
-\begin{notesbox}{2. Vertical Asymptotes: the Walls}
-A \textbf{vertical asymptote} is a vertical line the graph approaches but \emph{never} touches or
-crosses. Near it the outputs grow without bound --- exactly what Warm-Up item~2 showed.
-
-\vspace{3pt}
-\textbf{How to find it.} If $x=a$ is a domain restriction and the factor $(x-a)$ does \emph{not}
-cancel, then $x=a$ is a vertical asymptote.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Write the answer as an \textbf{equation of a line}, not just a number:
-        \blank{1.8cm}, not ``$1$.''
-  \item For the anchor $f(x)=\dfrac{x+2}{x-1}$, the vertical asymptote is \blank{2.0cm}.
-  \item A graph can \emph{never} cross a vertical asymptote, because that input is
-        \blank{4.4cm} --- there is no point to plot.
-  \item The two branches on either side of a vertical asymptote are why the domain must be written
-        as a \textbf{union}: for $f$, domain $=(-\infty,\ \blank{0.7cm}) \cup (\blank{0.7cm},\ \infty)$.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{3. Horizontal Asymptotes \& End Behavior: the Level}
-A \textbf{horizontal asymptote} is a horizontal line the graph approaches as $x\to-\infty$ and
-$x\to+\infty$. It \emph{is} the end-behavior statement for a rational function: instead of arms that
-run off to $\pm\infty$ like a polynomial's, a rational graph's arms usually \textbf{flatten out
-toward a level}.
-
-\vspace{2pt}
-For the anchor: as $x\to+\infty,\ f(x)\to\blank{0.8cm}$; \; as $x\to-\infty,\ f(x)\to\blank{0.8cm}$;
-\; so the horizontal asymptote is \blank{2.0cm}.
-
-\vspace{4pt}
-\textbf{Finding it from the equation: compare the degrees.} Let $n=\deg$ of the numerator and
-$m=\deg$ of the denominator.
+\textbf{The rule that runs this unit.} From Warm-Up item~1:
 \begin{center}
 \renewcommand{\arraystretch}{1.35}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
 \hline
-\textbf{Case} & \textbf{Horizontal asymptote} & \textbf{Example} \\
+\textbf{Index} & \textbf{Can the radicand be negative?} & \textbf{Why} \\
 \hline
-$n<m$ (bottom-heavy) & $y=\blank{1.0cm}$ & $\dfrac{4}{x^2+1}$: \; HA is \blank{1.8cm} \\
-$n=m$ (tie) & $y=\dfrac{\text{lead coef.\ of }P}{\text{lead coef.\ of }Q}$ & $\dfrac{x+2}{x-1}$: \; HA is \blank{1.8cm} \\
-$n>m$ (top-heavy) & \blank{2.6cm} & $\dfrac{x^2}{x+1}$: \; the outputs grow \blank{2.4cm} \\
+\textbf{Even} ($\sqrt{\phantom{x}}$, $\sqrt[4]{\phantom{x}}$) & \blank{2.0cm} & Nothing real, squared, gives a negative. \\
+\textbf{Odd} ($\sqrt[3]{\phantom{x}}$, $\sqrt[5]{\phantom{x}}$) & \blank{2.0cm} & Cubing \emph{keeps} the sign: $(-2)^3=\blank{1.0cm}$. \\
 \hline
 \end{tabularx}
 \end{center}
 
-\vspace{2pt}
-\textbf{Two warnings.}
+\vspace{3pt}
+\textbf{The one procedure behind every domain question in this unit:} if the index is
+\textbf{even}, set the \blank{3.0cm} $\ge 0$ and solve. If the index is \textbf{odd}, the domain is
+\blank{3.4cm}.
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item A horizontal asymptote describes the \emph{far ends} only. Unlike a vertical asymptote, a
-        graph \textbf{may} cross its horizontal asymptote in the middle. (Check: $y=\dfrac{2x}{x^2+1}$
-        has HA $y=0$, and at $x=0$ the output is $\blank{0.8cm}$ --- so it \emph{sits on} the line
-        there.)
-  \item In the top-heavy case there is \emph{no} horizontal asymptote at all --- the graph's end
-        behavior looks like a \blank{3.0cm} instead.
+  \item $g(x)=\sqrt{x-3}$: \; solve $x-3\ge 0$, so the domain is \blank{3.4cm}.
+  \item $h(x)=\sqrt{2x+8}$: \; solve $2x+8\ge 0$, so the domain is \blank{3.4cm}.
+  \item $k(x)=\sqrt{5-x}$: \; solve $5-x\ge 0$, so the domain is \blank{3.4cm}. \\
+        \emph{Notice:} this one runs to the \textbf{left}. A negative in front of the $x$ flips which
+        way the graph goes.
+  \item $m(x)=\sqrt[3]{x-3}$: \; the index is odd, so the domain is \blank{3.4cm} --- no work needed.
 \end{itemize}
+This is genuinely new. A polynomial (Unit~3) was defined \emph{everywhere}. A rational function
+(Unit~4) lost a few scattered inputs where the denominator was zero. A square root function loses
+an entire \textbf{half} of the number line at once.
 \end{notesbox}
 
-\begin{notesbox}{4. Holes: When a Restriction Cancels}
-Sometimes a restriction does \emph{not} produce a wall. Look at
-\[
-  h(x) = \frac{x^2-4}{x-2} = \frac{(x-2)(x+2)}{x-2} = x+2, \qquad x \neq 2 .
-\]
-The factor $(x-2)$ cancels, so the graph is just the \emph{line} $y=x+2$ --- with the single point at
-$x=2$ punched out. That missing point is a \textbf{hole}, also called a \textbf{removable
-discontinuity}.
+\begin{notesbox}{2. The Square Root Parent: $y=\sqrt{x}$}
 \begin{center}
+\begin{minipage}[c]{0.40\linewidth}
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\sqrt{x}$ \\ \hline
+$0$ & \blank{1.0cm} \\ \hline
+$1$ & \blank{1.0cm} \\ \hline
+$4$ & \blank{1.0cm} \\ \hline
+$9$ & \blank{1.0cm} \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.55\linewidth}
+\centering
 \begin{tikzpicture}[scale=0.46]
-  \lgrid{-4}{4}{-3}{7}
+  \lgrid{-2}{10}{-2}{4}
   \begin{scope}
-    \clip (-4,-3) rectangle (4,7);
-    \draw[very thick, forest] (-4,-2)--(4,6);
+    \clip (-2,-2) rectangle (10,4);
+    \draw[very thick, forest, domain=0:10, samples=100, smooth] plot (\x,{sqrt(\x)});
   \end{scope}
-  \draw[forest, very thick, fill=white] (2,4) circle (4.2pt);
-  \node[charcoal, font=\scriptsize, right] at (-1.2,6.2) {the hole};
-  \draw[charcoal, thin, ->] (-0.1,6.0) -- (1.75,4.25);
+  \fill[forest] (0,0) circle (4pt);
+  \fill[charcoal] (1,1) circle (2.4pt);
+  \fill[charcoal] (4,2) circle (2.4pt);
+  \fill[charcoal] (9,3) circle (2.4pt);
+  \node[charcoal, font=\scriptsize, below left] at (0,0) {endpoint};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+The graph starts at a single point and travels in \emph{one} direction only. That starting point is
+called the \textbf{endpoint}, and it is a \emph{solid} dot --- $x=0$ \emph{is} in the domain.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Domain:} \blank{3.2cm} \quad \textbf{Range:} \blank{3.2cm}
+  \item \textbf{Endpoint:} $(\blank{0.6cm},\ \blank{0.6cm})$ \quad \textbf{Intercepts:} the graph
+        crosses both axes at \blank{1.6cm}.
+  \item \textbf{Increasing / decreasing:} increasing on \blank{3.0cm}; it is \emph{never}
+        \blank{2.4cm}.
+  \item \textbf{Extrema:} the endpoint is an \textbf{absolute minimum}, with minimum \emph{value}
+        $y=\blank{0.8cm}$ at $x=\blank{0.8cm}$. There is \textbf{no} absolute
+        \blank{1.8cm}, because the graph keeps climbing forever.
+  \item \textbf{Symmetry:} \blank{2.6cm} (it is neither even nor odd).
+  \item \textbf{End behavior:} as $x\to+\infty$, $y\to\blank{1.0cm}$ --- but \emph{slowly}. \\
+        And there is no left end at all: the graph does not run off to the left, it
+        \blank{2.6cm} at the endpoint. \emph{A radical graph can have only one arm.} This is the
+        first family of the year for which ``end behavior'' has only \emph{one} answer.
+\end{enumerate}
+\end{notesbox}
+
+\begin{notesbox}{3. The Cube Root Parent: $y=\sqrt[3]{x}$}
+\begin{center}
+\begin{minipage}[c]{0.40\linewidth}
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|}
+\hline
+$x$ & $y=\sqrt[3]{x}$ \\ \hline
+$-8$ & \blank{1.0cm} \\ \hline
+$-1$ & \blank{1.0cm} \\ \hline
+$0$ & \blank{1.0cm} \\ \hline
+$1$ & \blank{1.0cm} \\ \hline
+$8$ & \blank{1.0cm} \\ \hline
+\end{tabular}
+\end{minipage}
+\begin{minipage}[c]{0.55\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.46]
+  \lgrid{-9}{9}{-3}{3}
+  \begin{scope}
+    \clip (-9,-3) rectangle (9,3);
+    \cbrtpos{0}{9}
+    \cbrtneg{-9}{0}
+  \end{scope}
+  \fill[charcoal] (-8,-2) circle (2.6pt);
+  \fill[charcoal] (-1,-1) circle (2.6pt);
+  \fill[charcoal] (0,0) circle (2.6pt);
+  \fill[charcoal] (1,1) circle (2.6pt);
+  \fill[charcoal] (8,2) circle (2.6pt);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+Because the index is \textbf{odd}, negatives are welcome under the radical --- and the whole picture
+changes.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Domain:} \blank{3.2cm} \quad \textbf{Range:} \blank{3.2cm}
+  \item \textbf{Endpoint:} \blank{2.0cm} --- there is nothing to stop the graph, so it has none.
+  \item \textbf{Increasing / decreasing:} increasing on \blank{3.0cm}.
+  \item \textbf{Extrema:} \blank{2.0cm}. The graph falls forever on the left and climbs forever on
+        the right, so there is neither an absolute maximum nor an absolute minimum.
+  \item \textbf{Symmetry:} the graph is symmetric about the \blank{1.8cm}, so it is an
+        \textbf{odd} function --- check it algebraically: $\sqrt[3]{-8}=\blank{1.0cm}$ while
+        $-\sqrt[3]{8}=\blank{1.0cm}$, so $f(-x)=\blank{1.6cm}$.
+  \item \textbf{End behavior:} as $x\to+\infty$, $y\to\blank{1.0cm}$; \; as $x\to-\infty$,
+        $y\to\blank{1.0cm}$. \emph{Two} arms, like an odd-degree polynomial --- but flattening as
+        they go, not steepening.
+\end{enumerate}
+\end{notesbox}
+
+\begin{notesbox}{4. Where These Two Parents Come From --- the Inverse Relationship}
+Warm-Up item~3 already showed it: the table for $y=x^2$ and the table for $y=\sqrt{x}$ are the
+\emph{same table with the rows swapped}. Squaring and square-rooting \textbf{undo each other} --- they
+are \textbf{inverses} --- and so do cubing and cube-rooting. On a graph, undoing looks like a
+\textbf{reflection over the line $y=x$}.
+\begin{center}
+\begin{tikzpicture}[scale=0.40]
+  % y = x^2 (right half) and y = sqrt(x)
+  \begin{scope}
+    \lgrid{-1}{7}{-1}{7}
+    \draw[navy, dashed, semithick] (-1,-1)--(7,7);
+    \node[navy, font=\scriptsize, above left] at (6.6,6.6) {$y=x$};
+    \begin{scope}
+      \clip (-1,-1) rectangle (7,7);
+      \draw[very thick, goldacc, domain=0:2.65, samples=80, smooth] plot (\x,{(\x)*(\x)});
+      \draw[very thick, forest, domain=0:7, samples=90, smooth] plot (\x,{sqrt(\x)});
+    \end{scope}
+    \fill[charcoal] (0,0) circle (3pt);
+    \node[goldacc, font=\scriptsize, right] at (3.4,6.4) {$y=x^2,\ x\ge 0$};
+    \node[forest, font=\scriptsize, above] at (5.6,2.4) {$y=\sqrt{x}$};
+  \end{scope}
+  % y = x^3 and y = cbrt(x)
+  \begin{scope}[xshift=13cm]
+    \lgrid{-3}{3}{-3}{3}
+    \draw[navy, dashed, semithick] (-3,-3)--(3,3);
+    \begin{scope}
+      \clip (-3,-3) rectangle (3,3);
+      \draw[very thick, goldacc, domain=-1.45:1.45, samples=80, smooth] plot (\x,{(\x)*(\x)*(\x)});
+      \cbrtpos{0}{3}
+      \cbrtneg{-3}{0}
+    \end{scope}
+    \node[goldacc, font=\scriptsize, right] at (1.7,2.5) {$y=x^3$};
+    \node[forest, font=\scriptsize, below] at (2.6,0.75) {$y=\sqrt[3]{x}$};
+  \end{scope}
 \end{tikzpicture}
 \end{center}
 \begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item \textbf{The cancel test.} Factor the top and bottom. A restriction whose factor
-        \textbf{cancels} gives a \blank{1.6cm}; a restriction whose factor \textbf{stays} in the
-        denominator gives a \blank{4.6cm}.
-  \item \textbf{Find the hole's coordinates} by substituting the excluded value into the
-        \emph{simplified} expression: here $x=2$ gives $y=\blank{0.8cm}$, so the hole is at
-        $(\blank{0.6cm},\ \blank{0.6cm})$.
-  \item \textbf{Cancelling never restores the input.} Even though the simplified form $x+2$ looks
-        perfectly happy at $x=2$, the original function is still \blank{3.0cm} there. Always read
-        restrictions off the \textbf{original} denominator.
-  \item \textbf{Both at once.} For $k(x)=\dfrac{x-3}{x^2-9}=\dfrac{x-3}{(x-3)(x+3)}=\dfrac{1}{x+3}$,
-        $x\neq 3$: the restriction $x=3$ cancels, so it is a \blank{1.4cm}; the restriction
-        $x=-3$ does not cancel, so it is a \blank{4.0cm}.
+  \item Reflecting over $y=x$ \textbf{swaps the coordinates} of every point: $(4,2)$ on $y=\sqrt{x}$
+        came from $(\blank{0.6cm},\ \blank{0.6cm})$ on $y=x^2$. So the two functions also swap their
+        \blank{2.0cm} and their \blank{2.0cm}.
+  \item That is the \emph{deeper} reason for today's domain rule. The domain of $y=\sqrt{x}$ is
+        $[0,\infty)$ because that is the \blank{2.0cm} of $y=x^2$ --- a parabola never produces a
+        negative output, so a square root never accepts a negative input.
+  \item \textbf{Why only half the parabola?} A full parabola sends \emph{two} inputs to the same
+        output ($(-3)^2=3^2=\blank{0.8cm}$), so reflecting all of it would fail the vertical line
+        test. To get a function back, we keep only $x\ge 0$. We say $y=x^2$ needs a
+        \textbf{restricted domain} to have an inverse.
+  \item \textbf{Why does the cube root need no restriction?} Because $y=x^3$ never sends two
+        different inputs to the same output: $(-2)^3=\blank{1.0cm}$ but $2^3=\blank{1.0cm}$. All of
+        it can be reflected, which is exactly why $y=\sqrt[3]{x}$ has domain \blank{2.4cm}.
 \end{itemize}
+\emph{Hold on to this.} It is the reason radical functions look the way they do, and Lessons 5.6 and
+5.7 will make it a full method.
 \end{notesbox}
 
-\begin{notesbox}{5. The Full Feature List --- and How Rational Differs from Polynomial}
-Now read \emph{every} characteristic off the anchor $f(x)=\dfrac{x+2}{x-1}$.
+\begin{notesbox}{5. The Full Feature List --- and How the Two Families Differ}
+Now read \emph{every} characteristic off the anchor $f(x)=\sqrt{x+4}-1$.
 \begin{center}
 \begin{tikzpicture}[scale=0.52]
-  \lgrid{-4}{6}{-5}{6}
-  \draw[navy, dashed, semithick] (1,-5)--(1,6);
-  \draw[navy, dashed, semithick] (-4,1)--(6,1);
-  \node[navy, font=\scriptsize, above] at (1,6) {$x=1$};
-  \node[navy, font=\scriptsize, below] at (5.0,1) {$y=1$};
+  \lgrid{-6}{7}{-3}{4}
   \begin{scope}
-    \clip (-4,-5) rectangle (6,6);
-    \draw[very thick, forest, domain=-4:0.5, samples=100, smooth]
-      plot (\x,{((\x)+2)/((\x)-1)});
-    \draw[very thick, forest, domain=1.6:6, samples=100, smooth]
-      plot (\x,{((\x)+2)/((\x)-1)});
+    \clip (-6,-3) rectangle (7,4);
+    \draw[very thick, forest, domain=-4:7, samples=100, smooth] plot (\x,{sqrt((\x)+4)-1});
   \end{scope}
-  \fill[charcoal] (-2,0) circle (2.6pt) node[above left, font=\scriptsize]{$(-2,0)$};
-  \fill[charcoal] (0,-2) circle (2.6pt) node[right, font=\scriptsize]{$(0,-2)$};
+  \fill[forest] (-4,-1) circle (4pt) node[left, font=\scriptsize]{$(-4,-1)$};
+  \fill[charcoal] (-3,0) circle (2.6pt) node[above left, font=\scriptsize]{$(-3,0)$};
+  \fill[charcoal] (0,1) circle (2.6pt) node[above left, font=\scriptsize]{$(0,1)$};
+  \fill[charcoal] (5,2) circle (2.6pt) node[below right, font=\scriptsize]{$(5,2)$};
 \end{tikzpicture}
 \end{center}
 \begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item \textbf{Vertical asymptote:} \blank{1.8cm} \quad \textbf{Horizontal asymptote:}
-        \blank{1.8cm}
-  \item \textbf{Domain:} \blank{5.0cm} \quad \textbf{Range:} \blank{5.0cm} \\
-        (The range excludes the horizontal-asymptote value because the graph never \emph{reaches}
-        it.)
-  \item \textbf{$x$-intercept / zero:} \blank{1.8cm} --- found by setting the \blank{2.4cm} equal to
-        zero. \quad \textbf{$y$-intercept:} \blank{1.8cm} --- found by evaluating $f(0)$.
-  \item \textbf{Increasing / decreasing:} the curve falls on \emph{both} branches, so $f$ is
-        decreasing on \blank{2.6cm} and on \blank{2.6cm}. \emph{Never} write a single interval
-        across a vertical asymptote --- the function is undefined there.
-  \item \textbf{Positive / negative:} $f(x)>0$ on \blank{4.4cm}; \quad $f(x)<0$ on \blank{2.4cm}.
-  \item \textbf{End behavior:} as $x\to\pm\infty$, $f(x)\to\blank{0.8cm}$.
+  \item \textbf{Domain} (set the radicand $x+4\ge 0$): \blank{3.4cm} \quad \textbf{Range:}
+        \blank{3.4cm}
+  \item \textbf{Endpoint:} \blank{1.8cm} --- and notice the domain and range both \emph{start} at
+        its coordinates.
+  \item \textbf{$x$-intercept / zero:} \blank{1.8cm} \quad \textbf{$y$-intercept:} \blank{1.8cm}
+  \item \textbf{Increasing / decreasing:} increasing on \blank{3.0cm} --- the entire domain.
+  \item \textbf{Positive / negative:} $f(x)<0$ on \blank{2.6cm}; \quad $f(x)>0$ on \blank{2.6cm}.
+        \emph{Careful:} neither interval may include inputs outside the domain.
+  \item \textbf{Extrema:} absolute \blank{1.6cm} of $\blank{0.8cm}$ at $x=\blank{0.8cm}$; no
+        absolute \blank{1.6cm}.
+  \item \textbf{End behavior:} as $x\to+\infty$, $f(x)\to\blank{1.0cm}$. \; As $x\to-\infty$:
+        \blank{4.4cm}.
 \end{enumerate}
 
 \vspace{4pt}
-\textbf{Compare and contrast} (this is what makes rational functions a new family):
+\textbf{Compare and contrast} the two radical families (this is what makes them one unit but two
+pictures):
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X X@{}}
 \hline
- & \textbf{Polynomial (Unit 4)} & \textbf{Rational (Unit 5)} \\
+ & \textbf{Square root} $y=\sqrt{x}$ & \textbf{Cube root} $y=\sqrt[3]{x}$ \\
 \hline
-Graph & smooth and \emph{continuous} & may be \blank{2.6cm} (breaks) \\
-Domain & \emph{all} real numbers & all reals \blank{3.0cm} \\
-Asymptotes & \blank{1.6cm} & vertical and/or horizontal \\
-End behavior & arms run to $\pm\infty$ & arms usually flatten toward \blank{2.4cm} \\
+Index & even & \blank{1.4cm} \\
+Domain & \blank{2.4cm} & \blank{2.4cm} \\
+Range & \blank{2.4cm} & \blank{2.4cm} \\
+Endpoint & yes, at \blank{1.4cm} & \blank{1.4cm} \\
+Symmetry & none & \blank{2.4cm} \\
+Extrema & absolute \blank{1.6cm} & \blank{1.6cm} \\
+Arms & \blank{1.0cm} & \blank{1.0cm} \\
+Inverse of & $y=x^2$ (restricted) & \blank{1.6cm} \\
 \hline
 \end{tabularx}
 \end{center}
+And against the families you already know: a \textbf{polynomial} was defined everywhere and had no
+edges; a \textbf{rational} function lost scattered inputs and gained asymptotes. A \textbf{radical}
+function is the first one whose graph can simply \textbf{begin somewhere and stop}.
 \end{notesbox}
 
 \begin{practicebox}
-The graph below is $r(x) = \dfrac{4}{x^2-4} = \dfrac{4}{(x-2)(x+2)}$. Read each characteristic and
-write it on the line.
+The graph below is $p(x) = \sqrt{4-x}$. Read each characteristic and write it on the line.
 \begin{center}
 \begin{tikzpicture}[scale=0.5]
-  \lgrid{-5}{5}{-5}{5}
-  \draw[navy, dashed, semithick] (-2,-5)--(-2,5);
-  \draw[navy, dashed, semithick] (2,-5)--(2,5);
-  \node[navy, font=\scriptsize, above] at (-2,5) {$x=-2$};
-  \node[navy, font=\scriptsize, above] at (2,5) {$x=2$};
+  \lgrid{-6}{7}{-2}{4}
   \begin{scope}
-    \clip (-5,-5) rectangle (5,5);
-    \draw[very thick, forest, domain=-5:-2.19, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
-    \draw[very thick, forest, domain=-1.789:1.789, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
-    \draw[very thick, forest, domain=2.19:5, samples=80, smooth] plot (\x,{4/((\x)*(\x)-4)});
+    \clip (-6,-2) rectangle (7,4);
+    \draw[very thick, forest, domain=-6:4, samples=100, smooth] plot (\x,{sqrt(4-(\x))});
   \end{scope}
-  \fill[charcoal] (0,-1) circle (2.6pt) node[below right, font=\scriptsize]{$(0,-1)$};
+  \fill[forest] (4,0) circle (4pt) node[below right, font=\scriptsize]{$(4,0)$};
+  \fill[charcoal] (0,2) circle (2.6pt) node[above right, font=\scriptsize]{$(0,2)$};
+  \fill[charcoal] (3,1) circle (2.6pt);
 \end{tikzpicture}
 \end{center}
 \begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item Vertical asymptotes: \blank{1.4cm} and \blank{1.4cm}. \quad Domain: \blank{5.4cm}
-  \item Horizontal asymptote: \blank{1.6cm}. \quad Which degree case is this
-        ($n<m$, $n=m$, $n>m$)? \blank{1.6cm}
-  \item $y$-intercept: \blank{1.6cm}. \quad Does $r$ have an $x$-intercept? \blank{1.2cm}
-        Why or why not? \blank{5.0cm}
-  \item How many pieces does this graph come in? \blank{1.0cm} \quad Is $r(x)$ positive or negative
-        between the two asymptotes? \blank{1.8cm}
+  \item Set the radicand $\ge 0$: $4-x\ge 0$, so the \textbf{domain} is \blank{3.4cm}. \quad
+        \textbf{Range:} \blank{3.0cm}
+  \item \textbf{Endpoint:} \blank{1.6cm}. \quad Is $p$ increasing or decreasing on its domain?
+        \blank{2.4cm}
+  \item \textbf{$x$-intercept:} \blank{1.6cm} \quad \textbf{$y$-intercept:} \blank{1.6cm}
+  \item This graph opens to the \textbf{left} while the parent $y=\sqrt{x}$ opens to the right.
+        Which part of the equation caused that? \blank{5.0cm}
+  \item Does $p$ have an absolute maximum, an absolute minimum, both, or neither?
+        \blank{3.4cm}
 \end{enumerate}
 \end{practicebox}
 

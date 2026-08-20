@@ -1,4 +1,4 @@
-%! $n$th Roots \& Rational Exponents — Unit 6, Lesson 6.1 — Student Packet Cover Sheet
+%! Exponential Growth and Decay — Unit 6, Lesson 6.1 — Student Packet Cover Sheet
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -16,8 +16,8 @@
 
 \begin{center}
   {\color{white}\textbf{\LARGE Algebra 2: Shepherd}}\\[4pt]
-  {\color{forestmid}\large\textbf{Unit 6 \quad Radical Functions}}\\[6pt]
-  {\color{white}\textbf{\large Lesson 6.1 \quad $n$th Roots \& Rational Exponents}}
+  {\color{forestmid}\large\textbf{Unit 6 \quad Exponential Functions}}\\[6pt]
+  {\color{white}\textbf{\large Lesson 6.1 \quad Exponential Growth and Decay}}
 \end{center}
 
 \vspace{0.22in}
@@ -27,9 +27,9 @@
 \begin{learningtargetbox}
 \small
 \begin{enumerate}[leftmargin=1.5em, itemsep=5pt]
-  \item \ldots{} find \textbf{$n$th roots}, name the \textbf{principal} root, and explain why an \textbf{even} root of a negative number is not a real number while an \textbf{odd} one is.
-  \item \ldots{} \textbf{convert} between radical form and \textbf{rational exponent} form using $a^{m/n}=\sqrt[n]{a^m}=\left(\sqrt[n]{a}\right)^m$, and \textbf{evaluate} such expressions without a calculator.
-  \item \ldots{} apply the \textbf{exponent properties} to rational exponents --- including combining radicals with \textbf{different indices} --- and use the denominator to decide whether a domain is restricted.
+  \item \ldots{} \textbf{build} the equation $y=ab^{x}$ from a \textbf{table}, from \textbf{two points}, and from a \textbf{written description} --- by finding just two numbers, the initial value $a$ and the factor $b$.
+  \item \ldots{} translate a \textbf{percent} into a \textbf{factor}: ``up $8\%$'' means $b=1.08$ and ``down $15\%$'' means $b=0.85$ --- and explain why the percent itself is never the base.
+  \item \ldots{} \textbf{evaluate} a model I built and \textbf{interpret} the answer in the context it came from, including whether the model is believable that far out.
 \end{enumerate}
 \end{learningtargetbox}
 
@@ -42,11 +42,11 @@
 \rowcolor{forestbg}
 \textbf{\#} & \textbf{Component} & \textbf{Description} & \textbf{Score} \\
 \midrule
-1 & Warm-Up        & Spiral review: perfect powers, the exponent properties, and fraction arithmetic & \blank{1.2cm} \\
-2 & Guided Notes   & $n$th roots and principal roots, $\sqrt[n]{a}=a^{1/n}$, the $a^{m/n}$ rule, and the properties applied to radicals & \blank{1.2cm} \\
-3 & Group Activity & \emph{One Expression, Two Costumes} --- translating, evaluating, and a Kepler's-law model, by tier & \blank{1.2cm} \\
-4 & Exit Ticket    & Quick check: convert, evaluate, explain even vs.\ odd, plus an SOL-style item & \blank{1.2cm} \\
-5 & Homework       & Mixed conversion and evaluation, the absolute-value rule, domains, and a metabolic-rate model & \blank{1.2cm} \\
+1 & Warm-Up        & Spiral review: percent change two ways, reading $a$ and $b$, and a constant ratio & \blank{1.2cm} \\
+2 & Guided Notes   & Building $y=ab^{x}$ from a table, a percent, a story, and two points & \blank{1.2cm} \\
+3 & Group Activity & \emph{Building the Model} --- three sources, error diagnosis, and a linear-versus-exponential leak, by tier & \blank{1.2cm} \\
+4 & Exit Ticket    & Quick check: percent to factor, one model built and used, plus an SOL-style item & \blank{1.2cm} \\
+5 & Homework       & Both directions of the translation, tables, a graph, two stories, error analysis, and two towns & \blank{1.2cm} \\
 \midrule
   & \multicolumn{2}{r}{\textbf{Total}} & \blank{1.2cm} \\
 \end{tabularx}
@@ -55,19 +55,18 @@
 \vspace{0.10in}
 
 \begin{remindbox}
-\small A radical is an \textbf{exponent in disguise}. Nobody decided this --- the exponent rules
-force it: if ``power to a power'' is to keep working, then $\left(a^{1/n}\right)^{n}=a^{1}=a$, so
-$a^{1/n}$ must be the number whose $n$th power is $a$. That is the definition of
-$\sqrt[n]{a}$. Hence $\sqrt[n]{a}=a^{1/n}$ and, more generally,
-$a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}$: the \textbf{denominator} is the
-\textbf{index} (the root you take) and the \textbf{numerator} is the \textbf{power}. Flipping those
-two is the most common mistake in this lesson --- $\sqrt[4]{x^{3}}$ is $x^{3/4}$, never $x^{4/3}$.
-When you evaluate, take the \textbf{root first}: $16^{3/4}=\left(\sqrt[4]{16}\right)^{3}=2^{3}=8$ is
-mental arithmetic, while $\sqrt[4]{16^{3}}=\sqrt[4]{4096}$ is not. A \textbf{negative} rational
-exponent means \emph{reciprocal}, never a negative answer: $16^{-1/2}=\frac{1}{4}$. And the payoff:
-because these are just exponents, every exponent property you already know now applies to radicals
---- including ones no radical rule can touch, like
-$\sqrt{x}\cdot\sqrt[3]{x}=x^{1/2}\cdot x^{1/3}=x^{5/6}=\sqrt[6]{x^{5}}$.
+\small Building an exponential model means finding exactly \textbf{two numbers}. The \textbf{initial
+value} $a$ is what you start with --- the output at $x=0$, and the $y$-intercept of the graph. The
+\textbf{factor} $b$ is what you \textbf{multiply} by for each one-unit step. A \emph{table} hands you
+both: $a$ sits in the $x=0$ column, and $b$ is the constant ratio you get by dividing each output by
+the one before it. \emph{Two points} give you $b$ by division --- writing both points into $y=ab^{x}$
+and dividing cancels $a$, leaving $b$ raised to the gap between the $x$-values. A \emph{sentence},
+though, almost never hands you $b$. It gives you a percent \textbf{rate} $r$, and you must translate:
+$b=1+r$ when the quantity \textbf{grows}, and $b=1-r$ when it \textbf{decays}. Up $8\%$ leaves you
+with $108\%$ of what you had, so $b=1.08$ --- \emph{not} $0.08$. Down $15\%$ leaves you with $85\%$,
+so $b=0.85$ --- \emph{not} $1.15$. The base is always the fraction you \textbf{end up with}, never
+the percent that changed. When you finish writing a model, run the two-second check: does $x=0$ give
+back the starting amount, and is $b$ on the correct side of $1$?
 \end{remindbox}
 
 \end{document}

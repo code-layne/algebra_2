@@ -1,6 +1,11 @@
-%! Graphing Polynomial Functions and Modeling — Unit 4, Lesson 4.6 — Slides (Beamer)
+%! Solving Rational Equations — Unit 4, Lesson 4.6 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -11,240 +16,272 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.6}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Graphing Polynomial Functions}\\[0.25cm]
-    {\color{white}\bfseries\large and Modeling}\\[1.0cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
+    {\color{white}\bfseries\LARGE Solving Rational Equations}\\[0.35cm]
+    {\color{white}\bfseries\large and extraneous solutions}\\[1.0cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{Same zeros. Different graphs.}
+  \forestheader{Same algebra. Different answers.}
   \sectionlabel{Hook}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \[ (x-1)^2(x+2) \qquad \text{vs.} \qquad (x-1)(x+2)^2 \]
-      \vspace{2pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Both have $x$-intercepts at $-2$ and $1$ --- and nowhere else.
-        \item Both are cubics with a positive lead, so both arms behave the same way.
-        \item Their graphs still look nothing alike.
-      \end{itemize}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Equation (I)}
+        \[ \frac{x^2}{x-2}=\frac{4}{x-2} \]
+        \centering Multiply by $x-2$: \; $x^2=4$
+      \end{block}
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{The question}
-        The zeros are identical. \\[4pt]
-        \textbf{What tells the two pictures apart --- and how much of a graph can you know before
-        plotting a single point?}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Equation (II)}
+        \[ \frac{x^2}{x-3}=\frac{4}{x-3} \]
+        \centering Multiply by $x-3$: \; $x^2=4$
       \end{block}
     \end{column}
   \end{columns}
-\end{frame}
-
-% THE FIVE-STEP PLAN
-\begin{frame}[t, plain]
-  \forestheader{The five-step graph plan --- all of it is review}
-  \sectionlabel[goldacc]{Method}
-  \footnotesize
-  \begin{enumerate}\setlength{\itemsep}{4pt}
-    \item \textbf{Degree \& leading coefficient} $\Rightarrow$ the arms. \hfill {\scriptsize(4.0, 4.1)}
-    \item \textbf{Factor completely} $\Rightarrow$ the $x$-intercepts. \hfill {\scriptsize(4.2--4.4)}
-    \item \textbf{Multiplicity of each zero} $\Rightarrow$ cross, touch, or flatten. \hfill {\scriptsize(4.0)}
-    \item \textbf{$f(0)$} $\Rightarrow$ the $y$-intercept: one exact point.
-    \item \textbf{One test value per interval} $\Rightarrow$ above or below the axis. \hfill {\scriptsize(new today)}
-  \end{enumerate}
-  \vspace{4pt}
-  \begin{block}{What the plan does not give you}
-    The exact coordinates of the turning points. You get \emph{how many} ($\le n-1$) and roughly
-    \emph{where} --- the peak heights need a table or technology.
+  \vspace{8pt}
+  \begin{block}{}
+    \centering Both give the candidates $x=2$ and $x=-2$. \\[3pt]
+    \textbf{But (I) has one solution and (II) has two.} The algebra cannot tell them apart.
+    Only the check can.
   \end{block}
 \end{frame}
 
-% MULTIPLICITY
+% THE CHECK TABLE
 \begin{frame}[t, plain]
-  \forestheader{Multiplicity is the feature that separates look-alikes}
-  \sectionlabel{Key Idea}
+  \forestheader{Put the candidates back in}
+  \sectionlabel[goldacc]{And look at row one}
+  \centering
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{|c|c|c|c|l|}
+  \hline
+  \textbf{Eq.} & \textbf{$x$} & \textbf{Left} & \textbf{Right} & \textbf{True? False? Neither?} \\ \hline
+  (I)  & $2$  & $\frac40$ & $\frac40$ & \textbf{neither --- not a statement} \\ \hline
+  (I)  & $-2$ & $-1$ & $-1$ & true \\ \hline
+  (II) & $2$  & $-4$ & $-4$ & true \\ \hline
+  (II) & $-2$ & $\frac{4}{-5}$ & $\frac{4}{-5}$ & true \\ \hline
+  \end{tabular}
+
+  \vspace{8pt}
+  \begin{block}{}
+    \centering A number that makes the equation \emph{undefined} was never in the running.
+    You cannot check a value into an equation that does not exist there.
+  \end{block}
+\end{frame}
+
+% EXPRESSION VS EQUATION
+\begin{frame}[t, plain]
+  \forestheader{First: is it an expression or an equation?}
+  \sectionlabel{Do not mix these up}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{6pt}
-        \item \textbf{Odd multiplicity} ($1, 3, 5, \dots$): the graph \textbf{crosses} --- the sign
-          of $f(x)$ changes.
-        \item \textbf{Even multiplicity} ($2, 4, \dots$): the graph \textbf{touches} and turns back
-          --- the sign does \emph{not} change.
-        \item \textbf{Multiplicity $3$ or more}: it still crosses, but it \textbf{flattens} on the
-          way through.
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Lesson 4.3 --- expression}
+        \[ \frac{6}{x}-\frac{2}{x-1} \]
+        \textbf{Combine} it. Build the LCD, rewrite each piece over it, keep the denominator.
+      \end{block}
+    \end{column}
+    \begin{column}{0.47\textwidth}
+      \begin{block}{Lesson 4.6 --- equation}
+        \[ \frac{6}{x}-\frac{2}{x-1}=1 \]
+        \textbf{Solve} it. Multiply every term by the LCD and the denominators are gone.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{}
+    \centering\textbf{You may clear denominators only when there is an equals sign.}
+    An expression has no sides to multiply.
+  \end{block}
+\end{frame}
+
+% THE FOUR STEPS
+\begin{frame}[t, plain]
+  \forestheader{The four steps --- always in this order}
+  \sectionlabel[goldacc]{Post this}
+  \begin{enumerate}\setlength{\itemsep}{6pt}
+    \item \textbf{Factor \& restrict.} Factor every denominator; write the list of excluded values
+          \emph{at the top of the page}, before you touch the equation.
+    \item \textbf{Multiply by the LCD.} Every term --- including any term with no denominator. You are
+          multiplying both \emph{sides}, not just the fractions.
+    \item \textbf{Solve} the linear or quadratic equation that is left.
+    \item \textbf{Check.} Compare each candidate to the Step 1 list. Discard any match. Verify the
+          survivors in the \emph{original}.
+  \end{enumerate}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering\textbf{Clearing the denominators solves a \emph{different} equation.
+    The check is what brings you back.}
+  \end{block}
+\end{frame}
+
+% WHY IT HAPPENS
+\begin{frame}[t, plain]
+  \forestheader{Why extraneous solutions exist}
+  \sectionlabel{The Warm-Up, cashed in}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Multiply by a nonzero number}
+        \[ 5=2 \;\xrightarrow{\;\times 3\;}\; 15=6 \]
+        Still false. And you can divide by $3$ to get back --- so nothing changed.
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Multiply by zero}
+        \[ 5=2 \;\xrightarrow{\;\times 0\;}\; 0=0 \]
+        \textbf{Now it is true.} And you cannot divide by $0$ to get back.
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{block}{}
+    The LCD is an \emph{expression}, and at each excluded value it \emph{is} zero. So the cleared
+    equation can gain answers the original never had --- and those answers can only be the excluded
+    values. \\[3pt]
+    \centering\textbf{An extraneous solution is never a random number. It is always on your Step 1
+    list.}
+  \end{block}
+\end{frame}
+
+% WORKED A
+\begin{frame}[t, plain]
+  \forestheader{Worked Example A: $\dfrac{6}{x}-\dfrac{2}{x-1}=1$}
+  \sectionlabel[goldacc]{Nothing gets thrown away}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Restrictions: $x\neq0$, $x\neq1$. \; LCD $=x(x-1)$.
+        \item Clear: $6(x-1)-2x=x(x-1)$.
+        \item $6x-6-2x=x^2-x \Rightarrow x^2-5x+6=0$.
+        \item $(x-2)(x-3)=0$, so candidates $2$ and $3$.
       \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{The unit anchor}
-        $g(x) = x^3-3x+2 = (x-1)^2(x+2)$ \\[4pt]
-        Touches at $1$ (double), crosses at $-2$. \\[4pt]
-        Swap the exponents and you get a completely different picture with the same two intercepts.
+      \begin{block}{Step 4 --- check}
+        Neither candidate is on $\{0,1\}$. \\[4pt]
+        $x=2$: \; $3-2=1$ \;\checkmark \\[2pt]
+        $x=3$: \; $2-1=1$ \;\checkmark \\[4pt]
+        \centering Solution set $\{2,3\}$.
       \end{block}
     \end{column}
   \end{columns}
+  \vspace{6pt}
+  {\footnotesize Notice the term on the right. It has no denominator, and the LCD still multiplies it.
+  Forgetting that is the most common wrong answer of the day.}
 \end{frame}
 
-% SIGN CHART
+% WORKED B
 \begin{frame}[t, plain]
-  \forestheader{The sign chart: above or below, interval by interval}
-  \sectionlabel[goldacc]{New Today}
+  \forestheader{Worked Example B: one survives, one does not}
+  \sectionlabel{$\dfrac{x}{x+1}+\dfrac{2}{x-1}=\dfrac{2}{x^2-1}$}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      \footnotesize
-      $g(x) = (x-1)^2(x+2)$; zeros at $-2$ and $1$.
-      \begin{center}
-      \renewcommand{\arraystretch}{1.25}
-      \begin{tabular}{l|c|c|c}
-      Interval & Test & $g$(test) & Sign \\ \hline
-      $x<-2$   & $-3$ & $(-4)^2(-1) = -16$ & $-$ \\
-      $-2<x<1$ & $0$  & $(-1)^2(2) = 2$    & $+$ \\
-      $x>1$    & $2$  & $(1)^2(4) = 4$     & $+$ \\
-      \end{tabular}
-      \end{center}
-      \vspace{2pt}
-      Use the \textbf{factored} form --- only signs matter, so this is ten seconds of work.
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Read the last two rows again}
-        The sign did \emph{not} flip at $x=1$. \\[4pt]
-        That is not an error --- it is what even multiplicity means, and the sign chart catches it
-        automatically.
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% WORKED EXAMPLE
-\begin{frame}[t, plain]
-  \forestheader{One equation, the whole picture}
-  \sectionlabel{Worked Example}
-  \footnotesize
-  \[ q(x) = -(x+2)(x-1)^3 \]
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Degree $1+3 = 4$; lead $-1$ $\Rightarrow$ \textbf{both arms down}.
-        \item Zeros: $-2$ (crosses), $1$ (multiplicity $3$ --- \textbf{flattens}, then crosses).
-        \item $q(0) = -(2)(-1)^3 = 2$.
-        \item Signs: $-$ on $x<-2$, $+$ on $-2<x<1$, $-$ on $x>1$.
+    \begin{column}{0.50\textwidth}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $x^2-1=(x-1)(x+1)$, so $x\neq1,-1$.
+        \item Clear: $x(x-1)+2(x+1)=2$.
+        \item $x^2+x=0 \Rightarrow x(x+1)=0$.
+        \item Candidates: $0$ and $-1$.
       \end{itemize}
     \end{column}
     \begin{column}{0.46\textwidth}
-      \begin{block}{Assemble}
-        Up from $-\infty$ on the left, cross at $-2$, over the top through $(0,2)$, flatten through
-        $1$, and back down to $-\infty$. \\[4pt]
-        One turning point --- and degree $4$ permits three.
+      \begin{block}{Step 4}
+        $-1$ is on the list $\Rightarrow$ \textbf{extraneous}. \\[3pt]
+        $x=0$: \; $0+(-2)=-2$ \;\checkmark \\[3pt]
+        \centering Solution set $\{0\}$.
       \end{block}
     \end{column}
   \end{columns}
+  \vspace{6pt}
+  {\footnotesize You did not have to substitute $-1$ to reject it. Step 4 is reading two short lists and
+  looking for overlap.}
 \end{frame}
 
-% BACKWARD
+% THE GRAPH
 \begin{frame}[t, plain]
-  \forestheader{Run it backward: graph $\rightarrow$ equation}
-  \sectionlabel[goldacc]{A2.EI.6a}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      A graph touches at $x=-1$, crosses at $x=2$, and passes through $(0,2)$.
-      \begin{enumerate}\setlength{\itemsep}{3pt}
-        \item Skeleton: $f(x) = a(x+1)^2(x-2)$.
-        \item $f(0) = a(1)(-2) = 2 \Rightarrow a = -1$.
-        \item $f(x) = -(x+1)^2(x-2)$.
-        \item Check the arms: degree $3$, lead $-1$ --- up on the left, down on the right. \checkmark
-      \end{enumerate}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Two warnings}
-        The $y$-intercept is the \emph{only} labeled point that is not a zero --- which is exactly
-        why it can pin down $a$. An $x$-intercept gives $0=0$. \\[4pt]
-        And the answer is always ``\emph{a} possible equation'': a graph can hide imaginary zeros
-        (4.5) and extra even factors.
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% CHARACTERISTICS
-\begin{frame}[t, plain]
-  \forestheader{Reading the finished graph}
-  \sectionlabel{A2.F.2a--e}
+  \forestheader{Now see it --- and 4.5 does the work}
+  \sectionlabel[goldacc]{Graphical check}
   \begin{columns}[T]
     \begin{column}{0.52\textwidth}
-      \footnotesize
-      $p(x) = x^4-5x^2+4$:
+      \centering
+      \begin{tikzpicture}[scale=0.30]
+        \lgrid{-6}{7}{-4}{6}
+        \draw[navy, dashed, thick] (1,-4)--(1,6);
+        \draw[navy, dashed, thick] (-6,1)--(7,1);
+        \node[navy, font=\tiny, above right] at (1,5.2) {$x=1$};
+        \begin{scope} \clip (-6,-4) rectangle (7,6);
+          \draw[very thick, forest, domain=-6:0.8, samples=110, smooth] plot (\x,{1+1/((\x)-1)});
+          \draw[very thick, forest, domain=1.25:7, samples=110, smooth] plot (\x,{1+1/((\x)-1)});
+        \end{scope}
+        \draw[forest, very thick, fill=white] (-1,0.5) circle (4.4pt);
+        \fill[charcoal] (0,0) circle (3.4pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \[ \frac{x(x+1)}{(x-1)(x+1)}=\frac{x}{x-1},\; x\neq-1 \]
       \begin{itemize}\setlength{\itemsep}{3pt}
-        \item Domain: all reals --- always, for a polynomial.
-        \item Range: about $[-2.25,\infty)$.
-        \item Zeros $-2,-1,1,2$; $y$-intercept $(0,4)$.
-        \item Relative max at $(0,4)$; absolute min about $-2.25$; \textbf{no} absolute max.
-        \item $3$ turning points --- the most a quartic may have.
+        \item Cancelled factor $\Rightarrow$ \textbf{hole} at $\left(-1,\frac12\right)$.
+        \item Surviving factor $\Rightarrow$ wall at $x=1$.
+        \item Numerator zero at $x=0$.
       \end{itemize}
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Say it out loud}
-        An \textbf{odd}-degree polynomial has \emph{no} absolute extrema at all. \\[4pt]
-        An \textbf{even}-degree one has an absolute minimum (positive lead) or an absolute maximum
-        (negative lead) --- never both.
-      \end{block}
-    \end{column}
   \end{columns}
+  \vspace{6pt}
+  \begin{block}{}
+    \centering\textbf{True solutions are $x$-intercepts. Extraneous candidates are holes.}
+    Yesterday's cancel test, sorting today's answers.
+  \end{block}
 \end{frame}
 
-% MODELING
+% CROSS-MULTIPLY AND NO SOLUTION
 \begin{frame}[t, plain]
-  \forestheader{Modeling: the picture only counts where it makes sense}
-  \sectionlabel[goldacc]{Application}
+  \forestheader{Two more things}
+  \sectionlabel{Shortcut, and an answer people refuse to write}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \footnotesize
-      Cut $x$-inch squares from the corners of a $10 \times 8$ sheet and fold:
-      \[ V(x) = x(10-2x)(8-2x) = 4x^3-36x^2+80x \]
-      \begin{center}
-      \renewcommand{\arraystretch}{1.15}
-      \begin{tabular}{c|cccccc}
-      $x$    & $0.5$ & $1$ & $1.5$ & $2$ & $2.5$ & $3$ \\ \hline
-      $V(x)$ & $31.5$ & $48$ & $\mathbf{52.5}$ & $48$ & $37.5$ & $24$ \\
-      \end{tabular}
-      \end{center}
-      \vspace{2pt}
-      Zeros of $V$: $0$, $4$, $5$ --- none of them is a usable cut.
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Feasible domain: $0 < x < 4$}
-        A cut is positive and cannot exceed half the $8$-inch side. Inside that window the relative
-        maximum \emph{is} the absolute maximum --- which is why it answers ``what is the biggest
-        box?''
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Cross-multiplying}
+        \[ \frac{2}{x-1}=\frac{x}{x+2} \]
+        Only for a \emph{proportion}: one fraction $=$ one fraction. \\[3pt]
+        $2(x+2)=x(x-1) \Rightarrow x=4$ or $x=-1$. Neither excluded. \\[3pt]
+        It is not a new rule --- it is Step 2, pre-cancelled.
       \end{block}
-      \vspace{3pt}
-      {\footnotesize $V(2.5)=37.5$ means a $2.5$-inch cut gives a $37.5$ in$^3$ box. The algebra does
-       not know about cardboard; you do.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% WHERE THIS GOES
-\begin{frame}[t, plain]
-  \forestheader{Every tool in the unit, in one picture}
-  \sectionlabel{Connections}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{Today:}
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item Arms, intercepts, multiplicity, $f(0)$, sign chart --- one procedure.
-        \item Graph $\rightarrow$ equation, using the $y$-intercept to find $a$.
-        \item Domain, range, increasing/decreasing, relative vs.\ absolute extrema.
-        \item Models, feasible domains, and interpreting a maximum.
-      \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{Coming next}
-        \textbf{The Unit 4 test}, and then \textbf{Unit 5: Rational Functions} --- a polynomial in a
-        denominator, where dividing by zero puts brand-new lines on the graph: \emph{asymptotes}.
+      \begin{block}{``No solution'' is an answer}
+        \[ \frac{1}{x-2}+\frac{1}{x+2}=\frac{4}{x^2-4} \]
+        Clears to $2x=4$, so the only candidate is $x=2$ --- which is excluded. \\[3pt]
+        Every candidate extraneous $\Rightarrow$ \textbf{no solution}. Write it down and move on.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Today in one line --- and where it goes next}
+  \sectionlabel[goldacc]{Close}
+  \begin{block}{}
+    \centering\textbf{Clearing the denominators solves a different equation --- the check is what
+    brings you back.}
+  \end{block}
+  \vspace{6pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Errors that cost the most}
+        \begin{itemize}\setlength{\itemsep}{2pt}
+          \item No restriction list, so no way to check.
+          \item Multiplying the fractions but not the whole side.
+          \item Cross-multiplying with three terms.
+          \item Rejecting an answer for being negative.
+          \item Refusing to write ``no solution.''
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Next: Lesson 4.7}
+        Direct and inverse variation --- the rational parent $y=\frac kx$ as a model. Rejecting answers
+        comes back, but for a new reason: not because the algebra forbids them, because the
+        \emph{situation} does.
       \end{block}
     \end{column}
   \end{columns}

@@ -1,0 +1,421 @@
+%! Direct, Inverse \& Joint Variation — Unit 4, Lesson 4.7 — Guided Notes (Answer Key)
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+
+\begin{document}
+
+\pageheader{Unit 4, Lesson 4.7}{Guided Notes --- Answer Key}
+\namedateperiod
+
+\vspace{0.08in}
+
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item \textbf{decide}, from a table of values, whether two variables are \textbf{directly
+        proportional}, \textbf{inversely proportional}, or \textbf{neither} (A2.F.1d);
+  \item \textbf{find} the constant of variation $k$ and \textbf{write} the equation --- $y=kx$ or
+        $y=\frac{k}{x}$ --- then use it to answer a question (A2.F.1d);
+  \item \textbf{recognize} the graph of each: a direct variation is a line \emph{through the origin};
+        an inverse variation is the rational parent, asymptotes and all (A2.F.1d, A2.F.1a);
+  \item \textbf{interpret} $k$, a point on the graph, and the asymptotes in the words of the
+        situation --- and say which answers the situation will not accept (A2.F.2f).
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Direct variation (directly proportional)}{a relationship of the form $y=kx$ with $k\neq0$: the ratio $y/x$ is the same for every pair, so doubling $x$ doubles $y$. Its graph is a line through the origin}
+\vocabans{Inverse variation (inversely proportional)}{a relationship of the form $y=\frac{k}{x}$ with $k\neq0$: the product $xy$ is the same for every pair, so doubling $x$ halves $y$. Its graph is the rational parent, with the axes as its asymptotes}
+\vocabans{Constant of variation, $k$}{the number that stays the same across every pair --- the constant quotient in a direct variation, the constant product in an inverse one. In context it always carries units and a meaning}
+\vocabans{Joint variation \emph{(enrichment)}}{$y=kxz$: $y$ varies directly as two quantities at once. Combined variation, $y=\frac{kx}{z}$, is direct in one variable and inverse in another}
+\end{vocabbox}
+
+\begin{hookbox}
+Two tables. In both of them $y$ goes up by the same amount every single step, so both are
+\textbf{lines}. Exactly one of them is a \emph{direct variation}.
+\begin{center}
+\begin{minipage}{0.46\linewidth}\centering
+\textbf{Table A}\\[2pt]
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\rowcolor{forestbg}
+$x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+$y$ & $6$ & $12$ & $18$ & $24$ \\ \hline
+$y\div x$ & \ans{$6$} & \ans{$6$} & \ans{$6$} & \ans{$6$} \\ \hline
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}{0.46\linewidth}\centering
+\textbf{Table B}\\[2pt]
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\rowcolor{forestbg}
+$x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+$y$ & $9$ & $12$ & $15$ & $18$ \\ \hline
+$y\div x$ & \ans{$9$} & \ans{$6$} & \ans{$5$} & \ans{$4.5$} \\ \hline
+\end{tabular}
+\end{minipage}
+\end{center}
+\vspace{-2pt}
+\textbf{The doubling test.} Take $x$ from $2$ to $4$ --- that is doubling the input.
+In Table A, $y$ goes from $12$ to \ans{$24$}: it \ans{doubled}.
+In Table B, $y$ goes from $12$ to \ans{$18$}: it \ans{did not double}.
+
+\vspace{3pt}
+So ``$y$ climbs steadily'' is \emph{not} the test. Table B's equation is $y=3x+6$, and that
+$+6$ is the whole difference: at $x=0$, Table A gives $y=$ \ans{$0$} but Table B gives
+$y=$ \ans{$6$}. \textbf{A direct variation is a line through the \ans{origin}} --- and the
+quotient row is how you see it without a graph.
+\end{hookbox}
+
+\begin{notesbox}{1. Two Tests, Two Shapes}
+Everything today comes from one question: \textbf{which row of arithmetic settles down to a single
+number?}
+
+\vspace{4pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}p{0.20\linewidth} X X@{}}
+\hline
+ & \textbf{Direct variation} & \textbf{Inverse variation} \\
+\hline
+Said out loud & ``$y$ varies directly as $x$'' / ``$y$ is directly proportional to $x$'' & ``$y$ varies inversely as $x$'' / ``$y$ is inversely proportional to $x$'' \\
+The test on a table & the \ans{quotient} $\dfrac{y}{x}$ is the same for every row & the \ans{product} $xy$ is the same for every row \\
+The equation & $y=$ \ans{$kx$} & $y=$ \ans{$\dfrac{k}{x}$} \\
+In words & double $x$ and $y$ \ans{doubles} & double $x$ and $y$ \ans{is halved} \\
+The graph & a \ans{line} through the origin & the \ans{hyperbola} from Lesson 4.4 \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\begin{center}
+\begin{minipage}{0.46\linewidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-6}{6}{-7}{7}
+  \draw[very thick, forest] (-3.5,-7)--(3.5,7);
+  \fill[charcoal] (0,0) circle (4.2pt);
+  \fill[charcoal] (1,2) circle (3.2pt);
+  \fill[charcoal] (2,4) circle (3.2pt);
+  \node[charcoal, font=\scriptsize, right] at (2.3,4.6) {$(2,4)$};
+\end{tikzpicture}\\[2pt]
+{\small $y=2x$ \quad (direct, $k=2$)}
+\end{minipage}\hfill
+\begin{minipage}{0.46\linewidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-7}{7}{-7}{7}
+  \begin{scope}
+    \clip (-7,-7) rectangle (7,7);
+    \draw[very thick, forest, domain=0.86:7, samples=140, smooth] plot (\x,{6/(\x)});
+    \draw[very thick, forest, domain=-7:-0.86, samples=140, smooth] plot (\x,{6/(\x)});
+  \end{scope}
+  \fill[charcoal] (2,3) circle (3.2pt);
+  \fill[charcoal] (3,2) circle (3.2pt);
+  \node[charcoal, font=\scriptsize, right] at (3.3,2.6) {$(3,2)$};
+\end{tikzpicture}\\[2pt]
+{\small $y=\dfrac{6}{x}$ \quad (inverse, $k=6$)}
+\end{minipage}
+\end{center}
+
+\vspace{3pt}
+On the right, the asymptotes are the \textbf{axes themselves}: $x=$ \ans{$0$} and
+$y=$ \ans{$0$}. That is not a new fact --- an inverse variation \emph{is} the rational parent
+$\frac1x$ stretched by $k$.
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.93\linewidth}{\centering\vspace{2pt}
+\textbf{Constant quotient $\Rightarrow$ direct. \; Constant product $\Rightarrow$ inverse. \;
+Neither constant $\Rightarrow$ neither.}\\[2pt]
+``Neither'' is a real answer, and it is the most common one in life.\vspace{2pt}}}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{2. Direct Variation --- Worked}
+Gasoline costs the same per gallon no matter how much you buy. Let $g$ be gallons and $c$ the cost.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\rowcolor{forestbg}
+$g$ (gallons) & $4$ & $7$ & $10$ & $12$ \\ \hline
+$c$ (dollars) & $13.60$ & $23.80$ & $34.00$ & $40.80$ \\ \hline
+$c\div g$ & \ans{$3.40$} & \ans{$3.40$} & \ans{$3.40$} & \ans{$3.40$} \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+\textbf{Step 1 --- test it.} The quotient row is constant, so this is a \ans{direct} variation.
+
+\textbf{Step 2 --- name $k$.} $k=$ \ans{$3.40$}
+
+\textbf{Step 3 --- write the equation.} $c=$ \ans{$3.40g$}
+
+\textbf{Step 4 --- say what $k$ means} (A2.F.2f). The constant of variation is not a bare number. Its
+units are \ans{dollars per gallon}, and in plain words it is \ans{the price of one gallon of gas}.
+
+\vspace{3pt}
+\textbf{Now use it.} $15$ gallons costs \ans{$\$51.00$}. \; And $\$27.20$ buys \ans{$8$} gallons.
+
+\vspace{3pt}
+{\small Notice the graph would pass through $(0,0)$, and it should: zero gallons costs zero dollars.
+Every direct variation says that. If a situation has a fee you pay before you buy anything, it is
+\emph{not} a direct variation.}
+\end{notesbox}
+
+\begin{notesbox}{3. Inverse Variation --- Worked, and It Is the Parent Function}
+You are driving a fixed $240$ miles. Let $r$ be your average speed and $t$ the time it takes.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\rowcolor{forestbg}
+$r$ (mph) & $30$ & $40$ & $48$ & $60$ \\ \hline
+$t$ (hours) & $8$ & $6$ & $5$ & $4$ \\ \hline
+$r\cdot t$ & \ans{$240$} & \ans{$240$} & \ans{$240$} & \ans{$240$} \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+The product row is constant, so this is an \ans{inverse} variation with $k=$ \ans{$240$},
+and the equation is $t=$ \ans{$\dfrac{240}{r}$}.
+
+\vspace{3pt}
+\textbf{What is $k$ this time?} It is not a rate. It is \ans{the length of the trip, $240$ miles}
+--- which makes sense, because $\text{rate}\times\text{time}=\text{distance}$ is the equation you
+already knew.
+
+\vspace{4pt}
+\begin{center}
+\begin{minipage}{0.42\linewidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \draw[step=1, linegray!40, very thin] (0,0) grid (9,14);
+  \draw[->, semithick, charcoal] (0,0)--(9.6,0) node[below right, font=\scriptsize]{$r$};
+  \draw[->, semithick, charcoal] (0,0)--(0,14.6) node[left, font=\scriptsize]{$t$};
+  \node[below, font=\tiny] at (2,0) {$20$};
+  \node[below, font=\tiny] at (4,0) {$40$};
+  \node[below, font=\tiny] at (6,0) {$60$};
+  \node[below, font=\tiny] at (8,0) {$80$};
+  \node[left, font=\tiny] at (0,4) {$4$};
+  \node[left, font=\tiny] at (0,8) {$8$};
+  \node[left, font=\tiny] at (0,12) {$12$};
+  \begin{scope}
+    \clip (0,0) rectangle (9,14);
+    \draw[very thick, forest, domain=1.75:9, samples=160, smooth] plot (\x,{24/(\x)});
+  \end{scope}
+  \fill[charcoal] (3,8) circle (3.4pt);
+  \fill[charcoal] (4,6) circle (3.4pt);
+  \fill[charcoal] (6,4) circle (3.4pt);
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}{0.54\linewidth}
+\small
+\textbf{Read the graph} (A2.F.2f).
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+  \item At $r=40$, $t=$ \ans{$6$}. In a sentence: \ans{driving an average of $40$ mph makes the
+        $240$-mile trip take $6$ hours}
+  \item The \textbf{vertical asymptote} is $r=$ \ans{$0$}. What does it say about the trip?
+        \ans{the slower you crawl, the longer it takes --- with no speed at all you never arrive}
+  \item The \textbf{horizontal asymptote} is $t=$ \ans{$0$}. What does \emph{it} say?
+        \ans{no matter how fast you drive, the trip can never take zero time}
+  \item Only one branch is drawn. The equation allows $r=-30$; the road does not. So the domain
+        \emph{in context} is $r$ \ans{$>0$}.
+\end{enumerate}
+\end{minipage}
+\end{center}
+
+\vspace{2pt}
+{\small Part (d) is Lesson 4.6's habit doing new work: an answer can be rejected because the algebra
+forbids it (\emph{extraneous}) or because the situation forbids it. Today it is always the second kind.}
+\end{notesbox}
+
+\begin{notesbox}{4. The Third Answer: ``Neither''}
+A phone plan charges a flat monthly fee plus a price per gigabyte. Let $x$ be gigabytes used and $y$
+the bill.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\rowcolor{forestbg}
+$x$ & $2$ & $4$ & $6$ & $8$ \\ \hline
+$y$ & $25$ & $35$ & $45$ & $55$ \\ \hline
+$y\div x$ & \ans{$12.5$} & \ans{$8.75$} & \ans{$7.5$} & \ans{$6.875$} \\ \hline
+$x\cdot y$ & \ans{$50$} & \ans{$140$} & \ans{$270$} & \ans{$440$} \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+Quotients constant? \ans{no} \; Products constant? \ans{no} \; So the answer is
+\ans{neither}. The equation is $y=5x+15$ --- a perfectly good \emph{line}, just not one through the
+origin.
+
+\vspace{4pt}
+\textbf{The other half of the trap.} Here $y$ goes \emph{down} as $x$ goes up. Is that enough to call
+it inverse?
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\rowcolor{forestbg}
+$x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+$y$ & $9$ & $8$ & $7$ & $6$ \\ \hline
+$x\cdot y$ & \ans{$9$} & \ans{$16$} & \ans{$21$} & \ans{$24$} \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-2pt}
+Products: \ans{$9,16,21,24$} --- not constant, so this is \ans{neither}. It is $y=10-x$.
+
+\vspace{3pt}
+\begin{center}
+\fbox{\parbox{0.93\linewidth}{\centering\vspace{2pt}
+\textbf{``Goes up together'' is not direct. \; ``One up, one down'' is not inverse.} \\[2pt]
+Only a constant quotient or a constant product decides it --- and it has to hold for
+\emph{every} row.\vspace{2pt}}}
+\end{center}
+\end{notesbox}
+
+\begin{notesbox}{5. Find $k$, Then Answer the Question}
+Most problems hand you \emph{one} pair of values and ask about a different one. Same two steps every
+time: use the pair you were given to find $k$, write the equation, then substitute.
+
+\vspace{4pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{(a) Direct.} $y$ varies directly as $x$, and $y=21$ when $x=6$. &
+\textbf{(b) Inverse.} $y$ varies inversely as $x$, and $y=12$ when $x=5$. \\[3pt]
+$k=\dfrac{y}{x}=$ \ans{$3.5$} & $k=xy=$ \ans{$60$} \\[6pt]
+Equation: $y=$ \ans{$3.5x$} & Equation: $y=$ \ans{$\dfrac{60}{x}$} \\[6pt]
+Find $y$ when $x=10$: \ans{$35$} & Find $y$ when $x=4$: \ans{$15$} \\[6pt]
+Find $x$ when $y=56$: \ans{$16$} & Find $x$ when $y=8$: \ans{$7.5$} \\
+\end{tabularx}
+\end{center}
+
+\vspace{4pt}
+\textbf{The shortcut --- and it is yesterday's shortcut.} If you only need the missing value, you can
+skip $k$ entirely.
+\begin{center}
+\fbox{\parbox{0.93\linewidth}{\centering\vspace{3pt}
+\textbf{Direct:} \; $\dfrac{y_1}{x_1}=\dfrac{y_2}{x_2}$ \; --- one fraction equal to one fraction, so
+\ans{cross-multiply} it. \\[5pt]
+\textbf{Inverse:} \; $x_1y_1=x_2y_2$ \; --- the products all equal the same
+$k$.\vspace{3pt}}}
+\end{center}
+
+\vspace{3pt}
+Check (b) with the shortcut: $5\cdot 12 = 4\cdot y$, so $y=$ \ans{$15$} --- same answer, no $k$
+written down. \; {\small But write $k$ anyway when the problem asks what it \emph{means}.}
+\end{notesbox}
+
+\begin{notesbox}{6. Joint and Combined Variation \emph{(enrichment)}}
+{\small These two are the same move, done twice. They are worth knowing and they are not on the test.}
+
+\vspace{3pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}p{0.20\linewidth} l X@{}}
+\hline
+\textbf{Joint} & $y=kxz$ & $y$ varies \emph{directly} as two things at once. Area of a triangle: $A=\frac12 bh$, so $A$ varies jointly as $b$ and $h$ with $k=$ \ans{$\frac12$}. \\
+\textbf{Combined} & $y=\dfrac{kx}{z}$ & $y$ varies directly as $x$ \emph{and} inversely as $z$. \\
+\hline
+\end{tabularx}
+\end{center}
+
+\vspace{3pt}
+\textbf{Worked (joint).} $y$ varies jointly as $x$ and $z$; $y=60$ when $x=3$ and $z=4$. \\
+Then $k=\dfrac{60}{(3)(4)}=$ \ans{$5$}, the equation is $y=$ \ans{$5xz$}, and when $x=2$,
+$z=7$ we get $y=$ \ans{$70$}.
+
+\vspace{3pt}
+\textbf{Worked (combined).} $y$ varies directly as $x$ and inversely as $z$; $y=20$ when $x=8$ and
+$z=2$. \\
+Then $k=$ \ans{$5$}, the equation is $y=$ \ans{$\dfrac{5x}{z}$}, and when $x=6$, $z=3$ we get
+$y=$ \ans{$10$}.
+\end{notesbox}
+
+\begin{practicebox}
+A crew is repainting one building --- the same job, no matter how many people show up. Let $w$ be the
+number of workers and $t$ the hours it takes.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\rowcolor{forestbg}
+$w$ & $2$ & $3$ & $5$ & $6$ \\ \hline
+$t$ & $15$ & $10$ & $6$ & $5$ \\ \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
+  \item Which row of arithmetic is constant --- quotients or products? \ans{products (all $30$)} \; So this is an
+        \ans{inverse} variation.
+  \item $k=$ \ans{$30$}, and the equation is $t=$ \ans{$\dfrac{30}{w}$}.
+  \item What does $k$ \emph{mean} here? \ans{the whole job is $30$ worker-hours}
+  \item With $4$ workers the job takes \ans{$7.5$} hours. With $12$ workers, \ans{$2.5$} hours.
+  \item The graph has a vertical asymptote at $w=$ \ans{$0$}. Say what that means about the
+        building. \ansline{with nobody working, the building never gets painted --- as the crew shrinks
+        toward zero, the time needed grows without bound}
+  \item Your equation happily returns an answer for $w=4.5$. Should you report it? Why or why not ---
+        and is this the same kind of rejection as an \emph{extraneous} solution? \ansline{no --- you
+        cannot have half a worker, so the domain in context is the positive whole numbers. This is a
+        \emph{context} rejection: $4.5$ really does satisfy the equation, unlike an extraneous solution,
+        which never satisfied the original at all}
+\end{enumerate}
+\end{practicebox}
+
+\begin{teachernote}
+\textbf{The Hook is the argument.} Both tables are lines, both climb by a constant amount, and only one
+is a direct variation --- exactly the 4.6 move of making the surface features identical so the real
+criterion has to do the work. The sentence to land before anything else: \emph{``goes up steadily'' is
+not the test; a constant quotient is.} Table B is $y=3x+6$, and the ``$+6$'' is a fee you pay before you
+buy anything. That single image handles most of the ``neither'' cases students will ever meet.
+
+\vspace{3pt}
+\textbf{Insist that $k$ is checked on every row, not the first one.} The signature error of this lesson
+is computing $k$ from one pair, writing the equation, and never testing it against the rest of the
+table. Activity Tier A part 3 is built on precisely that, and it is worth pre-loading here: \emph{one
+row can never tell you which kind of variation you have --- every pair of numbers has a quotient and a
+product.}
+
+\vspace{3pt}
+\textbf{Section 3 is where the unit closes its loop.} Do not present $t=\frac{240}{r}$ as a new object.
+It is the rational parent from 4.4, vertically stretched by $240$, with the axes as its asymptotes ---
+and now both asymptotes mean something you can say in English. Ask for the sentences out loud; ``$r=0$
+is a vertical asymptote'' earns nothing next to ``standing still, you never get there.'' Part (d) is the
+A2.F.2f interpretation and the bridge from 4.6: rejecting $r=-30$ is a \emph{context} rejection, not an
+extraneous one.
+
+\vspace{3pt}
+\textbf{Section 4 exists because A2.F.1d says ``or neither.''} Students will not volunteer it. Both
+tables here are traps in opposite directions --- one goes up, one goes down, and neither is a variation.
+Expect the second table to draw ``inverse'' from at least a third of the room.
+
+\vspace{3pt}
+\textbf{Section 5's shortcut is yesterday's cross-multiplying}, so name the connection: a direct
+variation is literally the statement that two quotients are equal, which is a proportion. Students who
+were shaky on 4.6 get a second pass at it here with friendly numbers.
+
+\vspace{3pt}
+\textbf{Section 6 is enrichment and labeled as such} --- A2.F.1d names direct and inverse only. Teach it
+if the room is with you, cut it without guilt if not; nothing later in the lesson depends on it.
+
+\vspace{3pt}
+\textbf{Timing.} If you are short, compress Section 2 --- direct variation is the familiar one and
+students can finish it from the pattern. Protect Sections 3 and 4.
+\end{teachernote}
+
+\end{document}

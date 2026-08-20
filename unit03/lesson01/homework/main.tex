@@ -1,114 +1,84 @@
-%! Graphing Quadratic Functions & Transformations — Unit 3, Lesson 3.1 — Homework
+%! Operations with Polynomials — Unit 3, Lesson 3.1 — Homework
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.1}{Homework}
+\namedateperiod
 
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show your reasoning. Read the feature straight from the form that advertises it.
+Write every answer in \textbf{standard form}. Show the products or the sign changes you used.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Transformations of $y=x^2$.} For each, describe the move(s) and give the new vertex.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.5}
-    \begin{tabularx}{\linewidth}{@{}l X l@{}}
-    \textbf{Equation} & \textbf{Transformation of $y=x^2$} & \textbf{Vertex} \\
-    \hline
-    $y=x^2-5$      & \blank{5.5cm} & \blank{1.6cm} \\
-    $y=(x+4)^2$    & \blank{5.5cm} & \blank{1.6cm} \\
-    $y=-3x^2$      & \blank{5.5cm} & \blank{1.6cm} \\
-    $y=(x-2)^2+1$  & \blank{5.5cm} & \blank{1.6cm} \\
-    \end{tabularx}
-    \end{center}
+  \item \textbf{Name it.} Consider $8 - 3x^2 + x^5 - 6x$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
+      \item Standard form: \blank{6.0cm}
+      \item Degree: \blank{1.0cm} \quad Leading coefficient: \blank{1.0cm} \quad Number of terms:
+            \blank{1.0cm}
+      \item Based on the degree and leading coefficient, both arms of its graph: \blank{3.6cm}
+    \end{enumerate}
 
-  \item \textbf{Vertex form.} For $y=(x-3)^2-4$: vertex \blank{2.0cm}, axis $x=$ \blank{1.0cm}, opens
-        \blank{1.2cm}, min/max value \blank{1.6cm}. Then expand to standard form: \blank{3.8cm}.
+  \item \textbf{Add and subtract.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+      \item $(6x^3 - x + 4) + (2x^2 + 5x - 9) = $ \blank{5.5cm}
+      \item $(9x^2 - 3x + 2) - (4x^2 - 3x - 6) = $ \blank{5.5cm}
+    \end{enumerate}
 
-  \item \textbf{Standard form + graph.} The graph is $f(x)=x^2+2x-3$.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-4}{2}{-5}{3}
-      \draw[navy, dashed, semithick] (-1,-5)--(-1,3);
-      \begin{scope}\clip (-4,-5) rectangle (2,3);
-        \draw[very thick, forest, domain=-3.6:1.6, samples=75, smooth] plot (\x,{(\x)*(\x) + 2*(\x) - 3});
-      \end{scope}
-      \fill[charcoal] (-1,-4) circle (3pt);
-      \fill[charcoal] (0,-3) circle (3pt);
-      \fill[charcoal] (-3,0) circle (3pt);
-      \fill[charcoal] (1,0) circle (3pt);
-    \end{tikzpicture}
-    \end{center}
-    Axis $x=-\dfrac{b}{2a}=$ \blank{1.0cm} \quad Vertex: \blank{2.0cm} \quad $y$-intercept: \blank{1.6cm}
-    \quad Range: \blank{2.2cm}.
+  \item \textbf{Multiply.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+      \item $-3x^2(2x^3 - x + 5) = $ \blank{5.5cm}
+      \item $(4x - 1)(x + 7) = $ \blank{5.5cm}
+      \item $(x - 2)(x^2 + 3x - 5) = $ \blank{5.5cm}
+    \end{enumerate}
 
-  \item \textbf{Intercept form.} For $g(x)=(x-2)(x-6)$: zeros $x=$ \blank{1.0cm} and $x=$ \blank{1.0cm};
-        axis $x=$ \blank{1.0cm}; vertex \blank{2.0cm}; $y$-intercept \blank{1.6cm}.
+  \item \textbf{Special products.} Use the identities --- no box needed.
 
-  \item \textbf{Matching.} Write the letter of the graph that matches each equation.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.36]
-      % P: (x-1)^2 - 4  vertex (1,-4) up
-      \begin{scope}
-        \lgrid{-2}{4}{-5}{3}
-        \begin{scope}\clip (-2,-5) rectangle (4,3);
-          \draw[very thick, forest, domain=-1.4:3.4, samples=60, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
-        \end{scope}
-        \fill[charcoal] (1,-4) circle (2.5pt);
-        \node[charcoal, font=\scriptsize] at (1,-6.6){\textbf{P}};
-      \end{scope}
-      % Q: -(x+2)^2 + 1  vertex (-2,1) down
-      \begin{scope}[xshift=8cm]
-        \lgrid{-5}{1}{-4}{2}
-        \begin{scope}\clip (-5,-4) rectangle (1,2);
-          \draw[very thick, forest, domain=-4.2:0.2, samples=60, smooth] plot (\x,{-1*(\x+2)*(\x+2) + 1});
-        \end{scope}
-        \fill[charcoal] (-2,1) circle (2.5pt);
-        \node[charcoal, font=\scriptsize] at (-2,-5.6){\textbf{Q}};
-      \end{scope}
-      % R: x^2 + 2  vertex (0,2) up
-      \begin{scope}[xshift=16cm]
-        \lgrid{-3}{3}{0}{6}
-        \begin{scope}\clip (-3,0) rectangle (3,6);
-          \draw[very thick, forest, domain=-2:2, samples=60, smooth] plot (\x,{(\x)*(\x) + 2});
-        \end{scope}
-        \fill[charcoal] (0,2) circle (2.5pt);
-        \node[charcoal, font=\scriptsize] at (0,-1.4){\textbf{R}};
-      \end{scope}
-    \end{tikzpicture}
-    \end{center}
-    $y=(x-1)^2-4:$ \blank{0.8cm} \qquad $y=-(x+2)^2+1:$ \blank{0.8cm} \qquad $y=x^2+2:$ \blank{0.8cm}
+    \vspace{3pt}
+    (a) $(x + 9)^2 = $ \blank{4.3cm} \qquad (b) $(2x - 5)^2 = $ \blank{4.3cm}
 
-  \item \textbf{Explain.} Which form would you choose to read each feature the fastest, and why?
-        Zeros: \blank{3.0cm}\; Vertex: \blank{3.0cm}\; $y$-intercept: \blank{3.0cm}. \writeline
+    \vspace{4pt}
+    (c) $(3x + 8)(3x - 8) = $ \blank{3.8cm} \qquad (d) $(x + 6y)(x - 6y) = $ \blank{3.8cm}
+
+  \item \textbf{Back to a graph you already read.} On yesterday's Exit Ticket you read the graph of
+        $k(x) = (x+1)^2(x-2)$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
+      \item Expand $(x+1)^2$: \blank{4.2cm}
+      \item Now multiply by $(x-2)$ and write $k$ in standard form: \blank{5.5cm}
+      \item Degree: \blank{1.0cm} \quad Leading coefficient: \blank{1.0cm} \quad End behavior:
+            \blank{3.4cm}
+      \item Substituting $x=0$ into your standard form gives the $y$-intercept \blank{1.8cm}. Does it
+            agree with the graph you read yesterday? \blank{1.4cm}
+    \end{enumerate}
+
+  \item \textbf{Explain.} Why does subtracting a polynomial require changing the sign of \emph{every}
+        term inside the parentheses, and not just the first one? Support your answer with a short
+        example that goes wrong if you change only the first sign. \writelines{3}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{A fountain arc.} A garden fountain's water arcs so its height (in feet) at horizontal distance
-$x$ feet from the nozzle is $h(x) = -x(x-6)$ (given in intercept form).
+\textbf{An area model that needs both operations.} A rectangular garden measures $(2x+3)$ feet by
+$(x+5)$ feet. A square pond with side $x$ feet is dug inside it, and the rest is planted.
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Where does the water leave the ground and where does it land? (the zeros)
-  \item What is the maximum height, and how far out does it occur? (the vertex)
-  \item At $x=1$ ft the water is $5$ ft high. Use \emph{symmetry} --- no algebra --- to name another
-        distance where it is again $5$ ft high.
+  \item Write and expand a polynomial for the \emph{total} garden area.
+  \item Write a polynomial for the \emph{planted} area (total minus pond) in standard form.
+  \item Use your answer to (b) to find the planted area when $x = 4$ feet.
+  \item Check part (c) a second way: find the garden's actual dimensions and the pond's actual area at
+        $x=4$, and subtract. Do the two methods agree?
 \end{enumerate}
-\writelines{3}
+\writelines{4}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 3.2: Solving Quadratics by Factoring.} Today you \emph{read} zeros from
-intercept form. Next you will learn to \emph{produce} that factored form --- turning $x^2+2x-3$ into
-$(x+3)(x-1)$ --- so you can find the zeros of a quadratic given in standard form by hand.
+\textbf{Coming next --- Lesson 3.2: Advanced Factoring.} Today you ran products \emph{forward}:
+$(x-1)^2(x+2)$ became $x^3-3x+2$. Next you will run them \emph{backward} --- pulling out a GCF,
+factoring by grouping, and recognizing the difference of squares and the new sum and difference of
+\emph{cubes} --- turning a standard form back into the factored form that shows you the zeros.
 \end{spiralbox}
 
 \end{document}

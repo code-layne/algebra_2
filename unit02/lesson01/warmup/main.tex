@@ -1,4 +1,4 @@
-%! Linear Functions: Slope, Forms \& Graphing — Unit 2, Lesson 2.1 — Warm-Up
+%! Graphing Quadratic Functions & Transformations — Unit 2, Lesson 2.1 — Warm-Up
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -14,39 +14,45 @@
 
 \vspace{0.10in}
 
-\begin{notesbox}{Getting Ready: From Reading Lines to Writing Them}
-\small Yesterday you \emph{read} a line's features off its graph. Today you'll \emph{write} the
-equation. These three quick skills are the tools you'll need.
+\begin{notesbox}{Getting Ready: Skills We'll Use Today}
+\small These skills power today's lesson on graphing parabolas. Work quickly.
 
 \vspace{4pt}
-\textbf{1. Read it off the graph.} The line below is graphed on the grid.
+\textbf{1. The parent $y=x^2$.} Complete the table of the five ``anchor'' points, then read the graph.
 \begin{center}
-\begin{minipage}{0.42\linewidth}\centering
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-3}{3}{-4}{5}
-  \draw[very thick, forest] (-1,-3)--(3,5);
-  \fill[charcoal] (0,-1) circle (3.5pt) node[above left, font=\scriptsize]{$(0,-1)$};
-  \fill[charcoal] (1,1) circle (3.5pt);
-\end{tikzpicture}
+\begin{minipage}{0.50\linewidth}\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ \\ \hline
+$y=x^2$ & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} & \blank{0.8cm} \\ \hline
+\end{tabular}
 \end{minipage}%
-\begin{minipage}{0.5\linewidth}
-  $y$-intercept: $(0,\ $\blank{0.9cm}$)$ \\[10pt]
-  Slope $m = \dfrac{\text{rise}}{\text{run}} = $ \blank{1.6cm} \\[10pt]
-  {\footnotesize (Count from $(0,-1)$ to $(1,1)$.)}
+\begin{minipage}{0.40\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{3}{-1}{5}
+  \begin{scope}
+    \clip (-3,-1) rectangle (3,5);
+    \draw[very thick, forest, domain=-2.2:2.2, samples=60, smooth] plot (\x,{(\x)*(\x)});
+  \end{scope}
+  \fill[charcoal] (0,0) circle (2.5pt);
+\end{tikzpicture}
 \end{minipage}
 \end{center}
+The vertex of $y=x^2$ is the point \blank{1.4cm}, and it opens \blank{1.2cm}.
 
-\vspace{2pt}
-\textbf{2. Slope from two points.} Use $m=\dfrac{y_2-y_1}{x_2-x_1}$ for the points $(-2,5)$ and
-$(2,-3)$.
+\vspace{4pt}
+\textbf{2. Move one point (Unit 1 review).} The point $(2,4)$ is on the parent $y=x^2$. Give the new
+location of \emph{that} point after each change:
 \[
-  m = \frac{\blank{1.0cm}-\blank{1.0cm}}{\blank{1.0cm}-\blank{1.0cm}}
-    = \frac{\blank{1.0cm}}{\blank{1.0cm}} = \blank{1.2cm}
+  y=x^2+3:\ \blank{1.6cm} \qquad y=(x-1)^2:\ \blank{1.6cm} \qquad y=-x^2:\ \blank{1.6cm}
 \]
 
-\vspace{2pt}
-\textbf{3. Name the parts.} A line is written $y = \tfrac{3}{4}x - 5$. Without graphing, its
-slope is $m = $ \blank{1.6cm} and its $y$-intercept is $(0,\ $\blank{1.0cm}$)$.
+\vspace{4pt}
+\textbf{3. Expand a square.} Multiply out and simplify (write in the form $x^2+bx+c$).
+\[
+  (x-1)^2 - 4 = \blank{4.5cm}
+\]
 \end{notesbox}
 
 \end{document}

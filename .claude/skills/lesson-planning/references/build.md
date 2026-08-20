@@ -120,7 +120,7 @@ full-bleed page image per slide. It is deliberately **dependency-free** — no L
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
   --title "..." --unit-title "..." \
   --components cover,warmup,experience,homework,slides \
-  [--prefab warmup,warmup_key] [--course "Algebra 2: Shepherd"] [--lesson-id 2.3]
+  [--prefab warmup,warmup_key] [--course "Algebra 2: Shepherd"] [--lesson-id 1.3]
 ```
 
 That component list is the default — `slides` included, since two of the five work products come

@@ -1,4 +1,4 @@
-%! Linear Functions: Slope, Forms \& Graphing — Unit 2, Lesson 2.1 — Guided Notes (Answer Key)
+%! Graphing Quadratic Functions & Transformations — Unit 2, Lesson 2.1 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -9,7 +9,7 @@
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
 \newcommand{\vocabans}[2]{%
-  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
@@ -20,138 +20,175 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item compute \emph{slope} from two points and read it as a constant rate of change;
-  \item write a line in \emph{slope-intercept}, \emph{point-slope}, and \emph{standard} form, and convert among them;
-  \item write the equation of a line from a graph, from two points, or from a slope and a point;
-  \item graph a line by transforming the parent $y=x$.
+  \item read a parabola as \emph{transformations} of the parent $y=x^2$: $f(x)+k$, $f(x-h)$, and $a\,f(x)$;
+  \item find the \emph{vertex}, \emph{axis}, \emph{intercepts}, and \emph{max/min} from a quadratic in \emph{vertex}, \emph{standard}, or \emph{intercept} form;
+  \item use those features to \emph{graph} a quadratic or match it to its graph, and convert between forms.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.08in}
+\vspace{0.06in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-\vocabans{Slope (rate of change)}{$m=\frac{y_2-y_1}{x_2-x_1}=\frac{\text{rise}}{\text{run}}$; the constant change in output per unit change in input}
-\vocabans{Slope-intercept form}{$y=mx+b$, where $m$ is the slope and $(0,b)$ is the $y$-intercept}
-\vocabans{Point-slope form}{$y-y_1=m(x-x_1)$; built from a slope $m$ and a known point $(x_1,y_1)$}
-\vocabans{Standard form}{$Ax+By=C$ with $A,B,C$ integers and $A\ge 0$; convenient for finding intercepts}
-\vocabans{Parent function \& transformation}{the parent line is $y=x$; $kf(x)$ stretches/reflects (sets the slope) and $f(x)+k$ shifts vertically (sets the $y$-intercept)}
+\par\vspace{2pt}
+\vocabans{Vertex form}{$f(x)=a(x-h)^2+k$; the vertex is $(h,k)$ and the axis of symmetry is $x=h$}
+\vocabans{Standard form}{$f(x)=ax^2+bx+c$; the $y$-intercept is $(0,c)$ and the axis is $x=-\frac{b}{2a}$}
+\vocabans{Intercept (factored) form}{$f(x)=a(x-p)(x-q)$; the zeros are $x=p$ and $x=q$, and the axis is halfway between them}
+\vocabans{Horizontal shift $f(x-h)$}{slides the graph right if $h>0$, left if $h<0$ --- opposite the sign inside the parentheses}
+\vocabans{Vertical stretch / reflection $a\,f(x)$}{narrower if $|a|>1$, wider if $0<|a|<1$; reflects over the $x$-axis if $a<0$}
 \end{vocabbox}
 
 \begin{hookbox}
-A streaming service charges a \$5 signup fee plus \$2 each month. Complete the cost table, then
-answer.
-\begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-months $m$ & $0$ & $1$ & $2$ & $3$ \\ \hline
-cost \$ & \ans{$5$} & \ans{$7$} & \ans{$9$} & \ans{$11$} \\ \hline
-\end{tabular}
-\end{center}
+These three equations are all \textbf{the same parabola}:
+\[ f(x)=x^2-2x-3 \qquad f(x)=(x-1)^2-4 \qquad f(x)=(x+1)(x-3). \]
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item What is the \emph{same} change every month (the rate)? \ansline{$+\$2$ per month --- this is the slope.}
-  \item Write one rule for the cost after $m$ months: $C(m) = $ \ans{$2m + 5$}
+  \item Which one shows the \textbf{vertex} at a glance? \ansline{$(x-1)^2-4$ --- vertex form, vertex $(1,-4)$.}
+  \item Which one shows the \textbf{zeros} at a glance? \ansline{$(x+1)(x-3)$ --- intercept form, zeros $x=-1$ and $x=3$.}
 \end{itemize}
-A \emph{rate of change} plus a \emph{starting value} is exactly slope-intercept form. Let's make that
-precise --- and learn three ways to write it.
+Each form is cut to show off a different feature. Today we read all three --- and use them to graph.
 \end{hookbox}
 
-\boxguard[12]
-\begin{notesbox}{1. Slope Is the Rate of Change}
-For \emph{any} two points $(x_1,y_1)$ and $(x_2,y_2)$ on a line,
-\[
-  m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{rise}}{\text{run}}.
-\]
-Because a line's rate of change is \emph{constant}, it does not matter which two points you pick.
-\textbf{Try it} with $(1,4)$ and $(3,0)$:
-\[
-  m = \frac{\textcolor{keyred}{\mathbf{0}} - \textcolor{keyred}{\mathbf{4}}}%
-           {\textcolor{keyred}{\mathbf{3}} - \textcolor{keyred}{\mathbf{1}}}
-    = \frac{\textcolor{keyred}{\mathbf{-4}}}{\textcolor{keyred}{\mathbf{2}}}
-    = \textcolor{keyred}{\mathbf{-2}}.
-\]
-Warning: subtract the $y$'s and the $x$'s in the \emph{same order}, or the sign flips.
-\end{notesbox}
-
-\begin{notesbox}{2. Three Forms, One Line}
-Here is the single line $y = 2x - 4$ written three different ways --- same line, different
-``outfits.'' Fill in what each form makes easy to read.
-
-\vspace{2pt}
+\boxguard[22]
+\begin{notesbox}{1. The Parent $y=x^2$ and Its Transformations}
+Every parabola is the parent $y=x^2$ after some \textbf{shifts}, \textbf{stretches}, and
+\textbf{reflections}. Track the parent's anchor point $(2,4)$ and its vertex $(0,0)$ through each move.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  % Parent
+  \begin{scope}
+    \lgrid{-3}{3}{-1}{5}
+    \begin{scope}\clip (-3,-1) rectangle (3,5);
+      \draw[very thick, forest, domain=-2.2:2.2, samples=60, smooth] plot (\x,{(\x)*(\x)});
+    \end{scope}
+    \fill[charcoal] (0,0) circle (3pt) node[above left, font=\scriptsize]{$(0,0)$};
+    \node[charcoal, font=\scriptsize] at (0,-2){parent $y=x^2$};
+  \end{scope}
+  % Shifted g(x) = (x-1)^2 - 4
+  \begin{scope}[xshift=10cm]
+    \lgrid{-3}{5}{-5}{3}
+    \draw[navy, dashed, semithick] (1,-5)--(1,3);
+    \begin{scope}\clip (-3,-5) rectangle (5,3);
+      \draw[very thick, forest, domain=-1.2:3.2, samples=70, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
+    \end{scope}
+    \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{$(1,-4)$};
+    \node[charcoal, font=\scriptsize] at (1,-6.4){$g(x)=(x-1)^2-4$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+Fill in the effect of each change and where the vertex $(0,0)$ lands:
+\begin{center}
 \renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} l X@{}}
-\textbf{Slope-intercept} & $y = mx + b$ & Reads off the slope $m=\ans{$2$}$ and $y$-intercept $(0,\ans{$-4$})$. \\
-\textbf{Point-slope} & $y - y_1 = m(x - x_1)$ & Built from a slope and a point; e.g.\ $(2,0)$: $\;y - 0 = \ans{$2$}(x - \ans{$2$})$. \\
-\textbf{Standard} & $Ax + By = C$ & Integers, $A\ge 0$; tidy for intercepts. Here: $\ans{$2$}\,x - y = \ans{$4$}$. \\
+\begin{tabularx}{\linewidth}{@{}l X l@{}}
+\textbf{Change to $y=x^2$} & \textbf{Effect on the graph} & \textbf{Vertex $\to$} \\
+\hline
+$f(x)+k$ & shifts \ans{up} ($k>0$) or down ($k<0$) & $(0,\ \textcolor{keyred}{\mathbf{k}})$ \\
+$f(x-h)$ & shifts \ans{right} $h$ units (careful: sign flips!) & $(\textcolor{keyred}{\mathbf{h}},\ 0)$ \\
+$a\,f(x)$, $a>0$ & \ans{narrower} if $a>1$, wider if $0<a<1$ & $(0,0)$ \\
+$-f(x)$ & reflects over the \ans{$x$}-axis (opens down) & $(0,0)$ \\
 \end{tabularx}
-
-\vspace{3pt}
-\textbf{They are equal.} Simplify the point-slope $y - 0 = 2(x-2)$ by distributing:
-\begin{work}
-  y - 0 &= 2(x - 2) \\
-      y &= 2x - 4
-\end{work}
-That is exactly the slope-intercept form above --- each form is the \emph{same} line.
+\end{center}
+Put them together: the graph of $\;a(x-h)^2+k\;$ is the parent moved so its vertex is at
+$(\textcolor{keyred}{\mathbf{h}},\ \textcolor{keyred}{\mathbf{k}})$.
 \end{notesbox}
 
-\begin{notesbox}{3. Writing the Equation of a Line}
-You can always write a line once you have a \textbf{slope} and \textbf{one point}. Match the given
-information to a starting form:
-\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
-  \item \textbf{Slope $+$ $y$-intercept} $\to$ drop straight into $y = mx + b$.\\
-        Slope $3$, $y$-intercept $(0,-2)$: $\;y = \ans{$3x - 2$}$.
-  \item \textbf{Slope $+$ any point} $\to$ point-slope, then simplify.\\
-        Slope $-\tfrac12$ through $(4,1)$: $\;y - 1 = \ans{$-\tfrac12$}(x - \ans{$4$})$,
-        so $y = \ans{$-\tfrac12 x + 3$}$.
-  \item \textbf{Two points} $\to$ find $m$ first, then use point-slope.\\
-        Through $(1,4)$ and $(3,0)$: $\;m = \ans{$-2$}$; using $(3,0)$,
-        $y - 0 = \ans{$-2$}(x - \ans{$3$})$, so $y = \ans{$-2x + 6$}$.
+\begin{notesbox}{2. Vertex Form: $f(x)=a(x-h)^2+k$}
+Vertex form \emph{is} the transformations written down. Read the vertex right off it. For
+$f(x) = (x-1)^2 - 4$:
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-3}{5}{-5}{3}
+  \draw[navy, dashed, semithick] (1,-5)--(1,3);
+  \node[navy, font=\scriptsize, right] at (1.05,2.4){axis $x=1$};
+  \begin{scope}\clip (-3,-5) rectangle (5,3);
+    \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
+  \end{scope}
+  \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{vertex $(1,-4)$};
+  \fill[charcoal] (0,-3) circle (3pt) node[left, font=\scriptsize]{$(0,-3)$};
+  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$(-1,0)$};
+  \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$(3,0)$};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item Match to $a(x-h)^2+k$: $a=\textcolor{keyred}{\mathbf{1}}$, $h=\textcolor{keyred}{\mathbf{1}}$, $k=\textcolor{keyred}{\mathbf{-4}}$.
+  \item \textbf{Vertex} $(h,k) = (\textcolor{keyred}{\mathbf{1}},\ \textcolor{keyred}{\mathbf{-4}})$; \textbf{axis of symmetry} $x=\textcolor{keyred}{\mathbf{1}}$.
+  \item Since $a=1>0$, it opens \ans{up}, so the vertex is a \textbf{minimum} with min value $\textcolor{keyred}{\mathbf{-4}}$.
+  \item \textbf{Check it is the same curve.} Expand: $(x-1)^2-4 = \ans{$x^2-2x-3$}$ --- standard form!
 \end{enumerate}
 \end{notesbox}
 
-\boxguard[20]
-\begin{notesbox}{4. Graphing by Transforming the Parent $y = x$}
-Every non-vertical line is the parent $y = x$ after two moves: a vertical
-\textbf{stretch/reflection} (which sets the \emph{slope}) and a vertical \textbf{shift} (which sets
-the \emph{$y$-intercept}). Below, the dashed line is the parent $y=x$ and the solid line is
-$y = 2x - 4$.
+\boxguard[22]
+\begin{notesbox}{3. Standard Form: $f(x)=ax^2+bx+c$}
+Here the vertex is hidden. Two facts unlock it: the $y$-intercept is $(0,c)$, and the axis of symmetry
+is $x=-\dfrac{b}{2a}$. For $f(x)=x^2-6x+5$ ($a=1,\ b=-6,\ c=5$):
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-2}{6}{-6}{6}
-  \draw[very thick, forest!55, dashed] (-2,-2)--(6,6) node[right, font=\scriptsize, forest!70]{$y=x$};
-  \draw[very thick, forest] (-1,-6)--(5,6) node[right, font=\scriptsize]{$y=2x-4$};
-  \fill[charcoal] (0,0) circle (2.5pt);
-  \fill[charcoal] (0,-4) circle (3pt) node[left, font=\scriptsize]{$(0,-4)$};
+\begin{minipage}{0.52\linewidth}
+\begin{enumerate}[leftmargin=1.6em, itemsep=4pt]
+  \item \textbf{Axis:} $x=-\dfrac{b}{2a}=-\dfrac{-6}{2(1)}=\textcolor{keyred}{\mathbf{3}}$.
+  \item \textbf{Vertex:} substitute that $x$: $f(3)=(3)^2-6(3)+5=\textcolor{keyred}{\mathbf{-4}}$, so the vertex is $(\textcolor{keyred}{\mathbf{3}},\ \textcolor{keyred}{\mathbf{-4}})$.
+  \item \textbf{$y$-intercept:} $(0,\ \textcolor{keyred}{\mathbf{5}})$.
+  \item Opens \ans{up} ($a>0$); range \ans{$y\ge -4$}.
+\end{enumerate}
+\end{minipage}%
+\begin{minipage}{0.46\linewidth}\centering
+\begin{tikzpicture}[scale=0.45]
+  \lgrid{-1}{7}{-5}{6}
+  \draw[navy, dashed, semithick] (3,-5)--(3,6);
+  \begin{scope}\clip (-1,-5) rectangle (7,6);
+    \draw[very thick, forest, domain=-0.2:6.2, samples=80, smooth] plot (\x,{(\x)*(\x) - 6*(\x) + 5});
+  \end{scope}
+  \fill[charcoal] (3,-4) circle (3pt);
+  \fill[charcoal] (0,5) circle (3pt);
+  \fill[charcoal] (1,0) circle (3pt);
+  \fill[charcoal] (5,0) circle (3pt);
 \end{tikzpicture}
+\end{minipage}
 \end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item The slope changed from $1$ to $2$: a vertical \textbf{stretch} by a factor of \ans{$2$}
-        \; (this is $k\,f(x)$ with $k=\ans{$2$}$).
-  \item The $y$-intercept moved from $(0,0)$ to $(0,-4)$: a \textbf{shift down} \ans{$4$} units
-        \; (this is $f(x)+k$ with $k=\ans{$-4$}$).
-  \item If the slope were \emph{negative}, the parent would also be \textbf{reflected} over the
-        $x$-axis. \textbf{Big idea:} this $k\,f(x)$ and $f(x)+k$ language will graph \emph{every}
-        function family this year.
-\end{itemize}
+\emph{Why $-\tfrac{b}{2a}$?} The axis sits \emph{halfway} between any two symmetric points --- including
+the two zeros --- so it is their average. That midpoint is exactly $-\tfrac{b}{2a}$.
 \end{notesbox}
 
 \begin{practicebox}
-Write the equation of the line through $(-2,3)$ and $(2,-5)$ in \emph{all three forms}.
-\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
-  \item Slope: $m = \dfrac{\textcolor{keyred}{\mathbf{-5}}-\textcolor{keyred}{\mathbf{3}}}%
-        {\textcolor{keyred}{\mathbf{2}}-(\textcolor{keyred}{\mathbf{-2}})} = \textcolor{keyred}{\mathbf{-2}}$.
-  \item Point-slope (using $(2,-5)$): $\;y - (\ans{$-5$}) = \ans{$-2$}\,(x - \ans{$2$})$.
-  \item Simplify that point-slope form into slope-intercept form:
-    \begin{work}
-      y + 5 &= -2(x - 2) \\
-      y + 5 &= -2x + 4   \\
-          y &= -2x - 1
-    \end{work}
-  \item Standard form (integers, $A \ge 0$): $\;\ans{$2x + y = -1$}$.
+\textbf{A. Match each vertex-form equation to its graph} by reading the vertex $(h,k)$ and the opening
+direction. Write A, B, or C.
+\begin{center}
+\begin{tikzpicture}[scale=0.38]
+  % A: (x-2)^2 - 1  vertex (2,-1) up
+  \begin{scope}
+    \lgrid{-1}{5}{-2}{4}
+    \begin{scope}\clip (-1,-2) rectangle (5,4);
+      \draw[very thick, forest, domain=0.3:3.7, samples=60, smooth] plot (\x,{(\x-2)*(\x-2) - 1});
+    \end{scope}
+    \fill[charcoal] (2,-1) circle (2.5pt);
+    \node[charcoal, font=\scriptsize] at (2,-3.2){\textbf{A}};
+  \end{scope}
+  % B: -(x-1)^2 + 3  vertex (1,3) down
+  \begin{scope}[xshift=8cm]
+    \lgrid{-2}{4}{-2}{4}
+    \begin{scope}\clip (-2,-2) rectangle (4,4);
+      \draw[very thick, forest, domain=-1.2:3.2, samples=60, smooth] plot (\x,{-1*(\x-1)*(\x-1) + 3});
+    \end{scope}
+    \fill[charcoal] (1,3) circle (2.5pt);
+    \node[charcoal, font=\scriptsize] at (1,-3.2){\textbf{B}};
+  \end{scope}
+  % C: (x+2)^2 + 1  vertex (-2,1) up
+  \begin{scope}[xshift=16cm]
+    \lgrid{-5}{1}{-1}{6}
+    \begin{scope}\clip (-5,-1) rectangle (1,6);
+      \draw[very thick, forest, domain=-4.2:-0.2, samples=60, smooth] plot (\x,{(\x+2)*(\x+2) + 1});
+    \end{scope}
+    \fill[charcoal] (-2,1) circle (2.5pt);
+    \node[charcoal, font=\scriptsize] at (-2,-2.2){\textbf{C}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.9em, itemsep=3pt]
+  \item $y=(x-2)^2-1 \Rightarrow$ vertex \ans{$(2,-1)$}, opens \ans{up}, graph \ans{A}
+  \item $y=-(x-1)^2+3 \Rightarrow$ vertex \ans{$(1,3)$}, opens \ans{down}, graph \ans{B}
+  \item $y=(x+2)^2+1 \Rightarrow$ vertex \ans{$(-2,1)$}, opens \ans{up}, graph \ans{C}
 \end{enumerate}
+\textbf{B. Intercept form.} For $q(x)=(x+1)(x-3)$: zeros $x=\ans{$-1$}$ and $x=\ans{$3$}$; axis
+$x=\ans{$1$}$; vertex $\ans{$(1,-4)$}$.
 \end{practicebox}
 
 \end{document}

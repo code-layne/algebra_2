@@ -1,43 +1,97 @@
-%! Systems Involving Quadratics — Unit 3, Lesson 3.6 — Exit Ticket (Answer Key)
+%! Graphing Polynomial Functions and Modeling — Unit 3, Lesson 3.6 — Exit Ticket (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.6}{Exit Ticket --- Answer Key}
+\namedateperiod
 
-\vspace{0.12in}
+\vspace{0.08in}
 
-No notes. Show your steps. A solution is an ordered pair --- find \emph{both} coordinates and check them.
+No notes. Predict from the equation; read from the picture. Both directions count.
 
-\begin{enumerate}[leftmargin=1.8em, itemsep=14pt]
-  \item \textbf{Solve the system by substitution.} Write each solution as an ordered pair.
-        $y=x^2-x-1, \qquad y=x+2$
-        \begin{work}
-          x^2-x-1 &= x+2 \\
-          x^2-2x-3 &= 0 \\
-          (x-3)(x+1) &= 0 \\
-          x &= 3,\ -1 \\
-          y &= 5,\ 1 \quad\text{so } (3,5) \text{ and } (-1,1)
-        \end{work}
+\begin{enumerate}[leftmargin=1.8em, itemsep=10pt]
+  \item \textbf{Predict the graph.} $f(x) = (x-3)(x+1)^2$
 
-  \item \textbf{Number of solutions --- no solving.} How many solutions does the system
-        $\ y=x^2+2,\ \ y=2x\ $ have? Substitute, then use the discriminant to justify.
-        \[ b^2-4ac=\ans{$-4$} \qquad\Rightarrow\qquad \ans{$0$ solutions (the line misses the parabola)} \]
+    \vspace{3pt}
+    (a) Degree \ans{$3$}, leading coefficient \ans{$1$}. \; As $x \to -\infty$, $f(x) \to$
+    \ans{$-\infty$}; as $x \to +\infty$, $f(x) \to$ \ans{$+\infty$}
 
-  \item \textbf{SOL-style multiple choice.} After substitution, a linear--quadratic system collapses to
-        $x^2-6x+9=0$. How many solutions does the system have?
-        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-          \item $0$ solutions
-          \item exactly $1$ solution \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
-          \item exactly $2$ solutions
-          \item infinitely many solutions
-        \end{enumerate}
-        \begin{itemize}[leftmargin=1.4em, nosep]
-          \item[] $x^2-6x+9=(x-3)^2=0$ has the double root $x=3$ ($b^2-4ac=0$), so the line is \emph{tangent} to the parabola --- exactly one shared point.
-        \end{itemize}
+    \vspace{3pt}
+    (b) Zeros and behavior: $x = $ \ans{$3$} (the graph \ans{crosses}), \quad
+    $x = $ \ans{$-1$} (the graph \ans{touches}).
+
+    \vspace{3pt}
+    (c) $y$-intercept: \ans{$(0,-3)$} \qquad At most how many turning points? \ans{$2$}
+
+    \vspace{3pt}
+    (d) Test $x=0$: $f(0)$ is \ans{negative} (positive/negative), so on $-1<x<3$ the graph is
+    \ans{below} the $x$-axis. Is it above or below just to the \emph{left} of $x=-1$?
+    \ans{below} \; Why does that not change at $x=-1$? \ans{$(x+1)^2$ has even multiplicity --- the
+    graph touches and turns back without changing sign}
+
+  \item \textbf{Read the picture.} The graph below is a cubic; each horizontal gridline is $4$ units.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.45]
+      \lgrid{-4}{4}{-5}{2}
+      \begin{scope}
+        \clip (-4,-5) rectangle (4,2);
+        \draw[very thick, forest, domain=-3.3:3.1, samples=170, smooth]
+          plot (\x,{(0 - (\x)*(\x)*(\x) + (\x)*(\x) + 8*(\x) - 12)/4});
+      \end{scope}
+      \foreach \x in {-3,-2,-1,1,2,3}
+        \draw[charcoal] (\x,-0.15)--(\x,0.15) node[above=1pt, font=\tiny]{$\x$};
+      \fill[charcoal] (-3,0) circle (2.5pt);
+      \fill[charcoal] (2,0)  circle (2.5pt);
+    \end{tikzpicture}
+    \end{center}
+
+    \vspace{2pt}
+    (a) $x$-intercepts: \ans{$-3$ and $2$} \; Which is a touch? \ans{$x=2$} \;
+    $y$-intercept: \ans{$(0,-12)$}
+
+    \vspace{3pt}
+    (b) Skeleton: $f(x) = a\,($\ans{$x+3$}$)($\ans{$x-2$}$)^2$ \quad Solve for $a$:
+    $a = $ \ans{$-1$}
+
+    \vspace{3pt}
+    (c) A possible equation: \ans{$f(x) = -(x+3)(x-2)^2$}
+
+    \vspace{3pt}
+    (d) Does this function have an absolute maximum? \ans{no} \; Explain in one sentence.
+    \ans{it has odd degree, so the left arm rises without bound}
+
+  \item \textbf{SOL-style multiple choice.} Which function's graph \emph{touches} the $x$-axis at
+    $x=2$ and falls toward $-\infty$ on \emph{both} ends?
+    \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
+      \item $f(x) = -(x-2)^2(x+1)^2$ \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item $f(x) = -(x-2)(x+1)^2$
+      \item $f(x) = (x-2)^2(x+1)^2$
+      \item $f(x) = -(x-2)^3(x+1)$
+    \end{enumerate}
 \end{enumerate}
+
+\begin{teachernote}
+\textbf{Item 3:} \textbf{A} is the only choice meeting both requirements --- degree $4$ with lead
+$-1$ (both arms down) and $(x-2)^2$ (a touch). \textbf{B} is odd degree, so its arms oppose;
+\textbf{C} has a positive lead; \textbf{D} has multiplicity $3$ at $x=2$, so it flattens and
+\emph{crosses}. Each distractor breaks exactly one decision.
+
+\vspace{3pt}
+\textbf{Sort into four piles:} got it / end behavior wrong (degree counted as the number of factors)
+/ multiplicity ignored (``crosses'' at every zero, and 1(d) answered with a sign change) / stuck on
+$a$ (unsolved, or solved with an $x$-intercept, which gives $0=0$). Reteach the multiplicity pile on
+the spot --- it is the feature that separates graphs with identical intercepts and it is on the unit
+test in both directions. Grade for completion, but read 1(d) and 2(d) closely: those carry the
+absolute-vs.-relative language of A2.F.2d/e.
+\end{teachernote}
 
 \end{document}

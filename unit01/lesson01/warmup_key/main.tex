@@ -1,87 +1,54 @@
-%! Expressions and Operations — Unit 1, Lesson 1.1 — Warm-Up (Answer Key)
+%! Linear Functions: Slope, Forms \& Graphing — Unit 1, Lesson 1.1 — Warm-Up (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.1}{Warm-Up --- Answer Key}
 
-\vspace{0.08in}
+\vspace{0.10in}
 
-\begin{notesbox}{Getting Ready: Skills We'll Use Today}
-\small These three skills power today's review of expressions. Work quickly.
-
-\vspace{4pt}
-\textbf{1. Order of operations.} Evaluate each one.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l@{}}
-(a) \; $12-3(5-7)=$ \ans{18} &
-(b) \; $|{-6}|+\sqrt{16}-\sqrt[3]{27}=$ \ans{7} &
-(c) \; $\dfrac{4+2^3}{6}=$ \ans{2} \\
-\end{tabular}
-\end{center}
-Now the one that always starts an argument. Let $x=-3$.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l@{}}
-(d) \; $x^2=$ \ans{9} &
-(e) \; $-x^2=$ \ans{$-9$} \\
-\end{tabular}
-\end{center}
-Those two are \emph{not} the same. What exactly is the exponent attached to in each one?
-\ansline{In (d) the variable itself is squared: $x^2=(-3)^2=9$. In (e) the exponent is attached
-\emph{only} to $x$, and the negative sign is applied afterward: $-x^2=-(-3)^2=-(9)=-9$. An exponent
-binds only to what it touches --- parentheses are what change that.}
+\begin{notesbox}{Getting Ready: From Reading Lines to Writing Them}
+\small Yesterday you \emph{read} a line's features off its graph. Today you'll \emph{write} the
+equation. These three quick skills are the tools you'll need.
 
 \vspace{4pt}
-\textbf{2. Exponents --- write them out and count.} Do \emph{not} use a rule. Expand first.
+\textbf{1. Read it off the graph.} The line below is graphed on the grid.
 \begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X l@{}}
-\hline
-\textbf{Expression} & \textbf{Written out as factors} & \textbf{Single power} \\
-\hline
-$2^5\cdot 2^3$ & \ans{$(2\cdot2\cdot2\cdot2\cdot2)(2\cdot2\cdot2)$ --- eight $2$'s} & \ans{$2^8$} \\
-$\dfrac{a^6}{a^2}$ & \ans{$\frac{a\cdot a\cdot a\cdot a\cdot a\cdot a}{a\cdot a}$ --- two cancel, four left} & \ans{$a^4$} \\
-$(a^3)^2$ & \ans{$(a\cdot a\cdot a)(a\cdot a\cdot a)$ --- three $a$'s, twice} & \ans{$a^6$} \\
-\hline
-\end{tabularx}
-\end{center}
-Look at your three answers. Where did the exponents' $+$, $-$, and $\times$ \emph{come from}?
-\ansline{From \emph{counting factors}, nothing else. Multiplying puts the two piles of factors
-together, so you add the counts. Dividing cancels factors in pairs, so you subtract. A power of a
-power repeats a pile of factors, so you multiply. The three laws are descriptions of counting, not
-rules to memorize.}
-
-\vspace{4pt}
-\textbf{3. Distributing --- twice.}
-\begin{center}
-\begin{minipage}[t]{0.44\linewidth}
-\centering (a) \; $4(2x-5)=$ \ans{$8x-20$}
-\vspace{0.35cm}
-\end{minipage}
-\begin{minipage}[t]{0.52\linewidth}
-\centering
-(b) \; Fill in the area model for $(x+3)(x+2)$.
-
-\vspace{3pt}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{|c|c|c|}
-\hline
-$\times$ & $x$ & $+3$ \\ \hline
-$x$ & \ans{$x^2$} & \ans{$3x$} \\ \hline
-$+2$ & \ans{$2x$} & \ans{$6$} \\ \hline
-\end{tabular}
-
-\vspace{3pt}
-Total: \ans{$x^2+5x+6$}
+\begin{minipage}{0.42\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{3}{-4}{5}
+  \draw[very thick, forest] (-1,-3)--(3,5);
+  \fill[charcoal] (0,-1) circle (3.5pt) node[above left, font=\scriptsize]{$(0,-1)$};
+  \fill[charcoal] (1,1) circle (3.5pt);
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+  $y$-intercept: $(0,\ $\ans{$-1$}$)$ \\[10pt]
+  Slope $m = \dfrac{\text{rise}}{\text{run}} = $ \ans{$\tfrac{2}{1}=2$} \\[10pt]
+  {\footnotesize (Count from $(0,-1)$ to $(1,1)$.)}
 \end{minipage}
 \end{center}
-Both parts used the \emph{same} property from Lesson 1.0. Name it. \ans{the distributive property}
 
+\vspace{2pt}
+\textbf{2. Slope from two points.} Use $m=\dfrac{y_2-y_1}{x_2-x_1}$ for the points $(-2,5)$ and
+$(2,-3)$.
+\[
+  m = \frac{\textcolor{keyred}{\mathbf{-3}}-\textcolor{keyred}{\mathbf{5}}}%
+           {\textcolor{keyred}{\mathbf{2}}-(\textcolor{keyred}{\mathbf{-2}})}
+    = \frac{\textcolor{keyred}{\mathbf{-8}}}{\textcolor{keyred}{\mathbf{4}}}
+    = \textcolor{keyred}{\mathbf{-2}}
+\]
+
+\vspace{2pt}
+\textbf{3. Name the parts.} A line is written $y = \tfrac{3}{4}x - 5$. Without graphing, its
+slope is $m = $ \ans{$\tfrac{3}{4}$} and its $y$-intercept is $(0,\ $\ans{$-5$}$)$.
 \end{notesbox}
 
 \end{document}

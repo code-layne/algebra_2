@@ -1,4 +1,4 @@
-%! Characteristics of Polynomial Functions — Unit 4, Lesson 4.0 — Homework (Answer Key)
+%! Characteristics of Rational Functions — Unit 4, Lesson 4.0 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -16,87 +16,129 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show how you read each feature. For every graph, give the \emph{full} feature list.
+Show how you read each feature. Write every asymptote as an \textbf{equation}.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
-  \item \textbf{From a factored form.} Let $f(x) = (x-3)(x+1)^2$ (do \emph{not} expand).
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item Its \textbf{degree} is \ans{3} and its \textbf{leading coefficient} is
-            \ans{1}. (Multiply the leading term of each factor.)
-      \item \textbf{End behavior:} as $x\to-\infty,\ f(x)\to\ans{$-\infty$}$; as
-            $x\to+\infty,\ f(x)\to\ans{$+\infty$}$.
-      \item \textbf{Zeros \& multiplicity:} $x=\ans{3}$ has multiplicity \ans{1}, so the
-            graph \ans{crosses} there; $x=\ans{-1}$ has multiplicity \ans{2}, so the graph
-            \ans{touches} there.
-      \item \textbf{$y$-intercept:} \ans{$(0,-3)$}.
-    \end{enumerate}
-
-  \item \textbf{A cubic graph.} The graph is $d(x) = x^3 - 3x^2 = x^2(x-3)$.
+  \item \textbf{From the equation only.} Factor where you can, then fill in each row. Write ``none''
+        when there is nothing to report.
     \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-2}{4}{-5}{5}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \hline
+    \textbf{Function} & \textbf{Excluded value(s)} & \textbf{Vert.\ asymptote(s)} & \textbf{Hole} & \textbf{Horiz.\ asymptote} \\
+    \hline
+    \TallMath{\frac{5}{x+3}} & \ans{$x=-3$} & \ans{$x=-3$} & \ans{none} & \ans{$y=0$} \\
+    \TallMath{\frac{4x}{x-6}} & \ans{$x=6$} & \ans{$x=6$} & \ans{none} & \ans{$y=4$} \\
+    \TallMath{\frac{x^2-16}{x+4}} & \ans{$x=-4$} & \ans{none} & \ans{$(-4,-8)$} & \ans{none} \\
+    \TallMath{\frac{x-2}{x^2-x-2}} & \ans{$x=2,\,-1$} & \ans{$x=-1$} & \ans{$\left(2,\tfrac13\right)$} & \ans{$y=0$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    {\small \textbf{Work:} $\dfrac{x^2-16}{x+4}=\dfrac{(x-4)(x+4)}{x+4}=x-4$ ($x\neq-4$), so the hole
+    is at $(-4,-8)$ and the top-heavy degrees ($2>1$) leave no horizontal asymptote.
+    $\dfrac{x-2}{x^2-x-2}=\dfrac{x-2}{(x-2)(x+1)}=\dfrac{1}{x+1}$ ($x\neq2$): $(x-2)$ cancels
+    $\Rightarrow$ hole at $\left(2,\tfrac13\right)$; $(x+1)$ stays $\Rightarrow$ asymptote $x=-1$.}
+
+  \item \textbf{A graph with two asymptotes.} The graph is $m(x) = \dfrac{x-4}{x-2}$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.44]
+      \lgrid{-4}{8}{-4}{6}
+      \draw[navy, dashed, semithick] (2,-4)--(2,6);
+      \draw[navy, dashed, semithick] (-4,1)--(8,1);
       \begin{scope}
-        \clip (-2,-5) rectangle (4,5);
-        \draw[very thick, forest, domain=-1.35:3.45, samples=90, smooth]
-          plot (\x,{(\x)*(\x)*(\x) - 3*(\x)*(\x)});
+        \clip (-4,-4) rectangle (8,6);
+        \draw[very thick, forest, domain=-4:1.6, samples=90, smooth]
+          plot (\x,{((\x)-4)/((\x)-2)});
+        \draw[very thick, forest, domain=2.4:8, samples=90, smooth]
+          plot (\x,{((\x)-4)/((\x)-2)});
       \end{scope}
-      \fill[charcoal] (0,0) circle (3pt) node[above left, font=\scriptsize]{$(0,0)$};
-      \fill[charcoal] (2,-4) circle (3pt) node[below right, font=\scriptsize]{$(2,-4)$};
-      \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$(3,0)$};
+      \fill[charcoal] (4,0) circle (3pt) node[below right, font=\scriptsize]{$(4,0)$};
+      \fill[charcoal] (0,2) circle (3pt) node[left, font=\scriptsize]{$(0,2)$};
     \end{tikzpicture}
     \end{center}
-    Degree even/odd: \ans{odd} \quad Both arms: \ans{left down, right up} \\[3pt]
-    Zeros (with cross/touch): $x=0$ \ans{touches (mult.\ 2)}; \; $x=3$ \ans{crosses (mult.\ 1)} \\[3pt]
-    Turning points: \ans{2} \quad Relative max: \ans{$(0,0)$} \quad Relative min: \ans{$(2,-4)$}
-    \\[3pt]
-    Increasing on: \ans{$(-\infty,0)\cup(2,\infty)$} \quad Decreasing on: \ans{$(0,2)$}
+    Vertical asymptote: \ans{$x=2$} \quad Horizontal asymptote: \ans{$y=1$} \\[3pt]
+    Domain: \ans{$(-\infty,2)\cup(2,\infty)$} \quad Range: \ans{$(-\infty,1)\cup(1,\infty)$} \\[3pt]
+    $x$-intercept: \ans{$(4,0)$} \quad $y$-intercept: \ans{$(0,2)$} \\[3pt]
+    Increasing on: \ans{$(-\infty,2)$} \; and \; \ans{$(2,\infty)$} \\[3pt]
+    End behavior: as $x\to\pm\infty$, $m(x)\to$ \ans{1}
 
-  \item \textbf{A quartic graph.} The graph is $e(x) = x^4 - 5x^2 + 4 = (x-1)(x+1)(x-2)(x+2)$.
+  \item \textbf{A graph with a hole.} The graph is $n(x) = \dfrac{x^2-x-6}{x-3}$.
     \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-3}{3}{-3}{6}
-      \draw[navy, dashed, semithick] (0,-3)--(0,6);
+    \begin{tikzpicture}[scale=0.46]
+      \lgrid{-5}{5}{-3}{7}
       \begin{scope}
-        \clip (-3,-3) rectangle (3,6);
-        \draw[very thick, forest, domain=-2.45:2.45, samples=110, smooth]
-          plot (\x,{(\x)^4 - 5*(\x)*(\x) + 4});
+        \clip (-5,-3) rectangle (5,7);
+        \draw[very thick, forest] (-5,-3)--(5,7);
       \end{scope}
-      \fill[charcoal] (0,4) circle (3pt) node[above right, font=\scriptsize]{$(0,4)$};
-      \fill[charcoal] (-1,0) circle (3pt); \fill[charcoal] (1,0) circle (3pt);
-      \fill[charcoal] (-2,0) circle (3pt); \fill[charcoal] (2,0) circle (3pt);
+      \draw[forest, very thick, fill=white] (3,5) circle (4.2pt);
     \end{tikzpicture}
     \end{center}
-    Degree even/odd: \ans{even} \quad Both arms: \ans{up} \quad Turning points: \ans{3}
-    \\[3pt]
-    Zeros (with cross/touch): \ans{$x=-2,-1,1,2$ --- each crosses (all multiplicity 1)} \\[3pt]
-    $y$-intercept: \ans{$(0,4)$} \quad Symmetry (even/odd/neither): \ans{even}
+    Factor and simplify: $n(x)=$ \ans{$\frac{(x-3)(x+2)}{x-3}=x+2$}, \; for $x\neq$ \ans{3} \\[3pt]
+    The hole is at \ans{$(3,5)$} \quad Vertical asymptote: \ans{none} \quad Horizontal asymptote:
+    \ans{none} \\[3pt]
+    Domain: \ans{$(-\infty,3)\cup(3,\infty)$} \quad $x$-intercept: \ans{$(-2,0)$} \quad
+    $y$-intercept: \ans{$(0,2)$}
 
-  \item \textbf{Explain.} Why does an \emph{odd}-degree polynomial have \emph{no} absolute maximum
-        and \emph{no} absolute minimum? Refer to what its two arms do.
-        \ansline{Its arms go in \emph{opposite} directions --- one to $+\infty$, the other to $-\infty$. Since the outputs grow without bound upward in one direction and without bound downward in the other, no output is the greatest and none is the least, so there is neither an absolute maximum nor an absolute minimum.}
+  \item \textbf{Explain.} A graph may \emph{cross} its horizontal asymptote, but it can \emph{never}
+        cross a vertical asymptote. Explain the difference.
+        \ansline{A vertical asymptote sits at an \emph{excluded input}. There is no point on the graph at}
+        \ansline{that $x$-value at all, so there is nothing there to cross --- the graph can only run alongside it.}
+        \ansline{A horizontal asymptote restricts nothing. It only describes what the \emph{outputs} do at the far ends, so in the middle of the graph an output is free to equal that value, and the curve can pass through the line.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Reading a model in context.} A start-up's monthly profit (in thousands of dollars) is
-modeled by $P(t) = t^3 - 6t^2 + 9t$ for $0 \le t \le 3$ months.
+\textbf{Reading a model in context.} After a patient takes one dose of a medication, the concentration
+in the bloodstream (in mg/L) $t$ hours later is modeled by
+\[
+  C(t) = \frac{5t}{t^2+1}, \qquad t \ge 0 .
+\]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$t$ (hours) & $0$ & $0.5$ & $1$ & $2$ & $4$ & $8$ \\ \hline
+$C(t)$ (mg/L) & $0$ & $2$ & $2.5$ & $2$ & $\approx 1.18$ & $\approx 0.62$ \\ \hline
+\end{tabular}
+\end{center}
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Factor $P(t)$ completely and list its zeros with their multiplicities.
-        \ans{$P(t)=t(t-3)^2$; zeros $t=0$ (multiplicity 1) and $t=3$ (multiplicity 2).}
-  \item The graph \emph{touches} the $t$-axis at $t=3$ instead of crossing. What does that
-        \emph{mean} for the company's profit at $t=3$?
-        \ans{Profit reaches $\$0$ (breaks even) at month 3 but does not go negative --- the even multiplicity makes it touch and turn back up.}
-  \item On $0\le t\le 3$, the greatest profit occurs at the relative maximum. Read it from the model
-        ($P(1)$) and interpret it in context.
-        \ansline{$P(1)=1-6+9=4$, so the greatest profit on this interval is $\$4{,}000$, reached in month $t=1$.}
+  \item Compare the degrees of the numerator and denominator to find the horizontal asymptote.
+        \ans{Numerator degree $1$, denominator degree $2$; bottom-heavy ($n<m$), so the HA is $y=0$.}
+  \item What does that horizontal asymptote \emph{mean} about the medication over a long time?
+        \ans{As hours pass the concentration drops toward $0$ --- the body clears the drug out. It gets arbitrarily small without ever becoming exactly $0$ in the model.}
+  \item From the table, when is the concentration highest, and what is that concentration?
+        \ans{At $t=1$ hour, the concentration peaks at $2.5$ mg/L (an absolute maximum on $t\ge0$).}
+  \item Notice that $C(0)=0$ --- the graph \emph{sits on} its horizontal asymptote at the start. Does
+        that contradict anything from today's lesson?
+        \ans{No. A horizontal asymptote governs only the \emph{far ends}; a graph may touch or cross it elsewhere. Only a \emph{vertical} asymptote can never be touched.}
+  \item The denominator $t^2+1$ is \emph{never} zero, so this rational function has \textbf{no}
+        vertical asymptote and no excluded values at all. Why, then, is the domain written $t\ge 0$?
+        \ansline{The restriction comes from the \emph{context}, not the algebra: $t$ is hours since the dose, and}
+        \ansline{negative time is meaningless here. A rational function is not required to have a vertical asymptote --- only a denominator that can equal zero produces one.}
 \end{enumerate}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 4.1: Operations with Polynomials.} Today you \emph{read} a
-polynomial's characteristics from its graph. Next you will \textbf{add}, \textbf{subtract}, and
-\textbf{multiply} polynomial expressions --- combining like terms and distributing carefully --- so
-you can build and rewrite the very functions whose graphs you just learned to analyze.
+\textbf{Coming next --- Lesson 4.1: Simplifying Rational Expressions \& Domain Restrictions.} Today
+you \emph{read} holes and asymptotes off a graph. Next you will do the algebra that produces them:
+factor a rational expression, cancel common factors, and list the restrictions --- always from the
+\textbf{original} denominator. That last habit is the one that will save you in Lesson~4.6, when a
+``solution'' turns out to be an excluded value in disguise.
 \end{spiralbox}
+
+\begin{teachernote}
+\textbf{Item 1} is the lesson's transfer task: rows 3 and 4 cannot be answered without factoring
+first, and both are designed to catch the habit of announcing a vertical asymptote at every excluded
+value. Row 4 is the hardest --- two excluded values, only one asymptote --- and the hole's $y$-value
+$\tfrac13$ must come from the \emph{simplified} expression $\frac{1}{x+1}$, not the original.
+\textbf{Item 3} is the mirror of Activity Tier~A: the graph is a plain line, so students who wrote
+``vertical asymptote'' anywhere in it need the cancel test re-taught before 4.1. \textbf{Item 4} is
+the conceptual item worth the most discussion; accept any answer that distinguishes a restriction on
+\emph{inputs} from a description of \emph{outputs}.
+
+\textbf{Extension} part (e) is deliberately unsettling and worth two minutes of class time: a rational
+function with \emph{no} vertical asymptote at all. It blocks the overgeneralization ``every rational
+function has a vertical asymptote,'' which otherwise resurfaces in 4.5.
+\end{teachernote}
 
 \end{document}

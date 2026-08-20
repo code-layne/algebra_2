@@ -1,83 +1,85 @@
-%! Solving Rational Equations — Unit 5, Lesson 5.6 — Exit Ticket (Answer Key)
+%! Composition of Functions — Unit 5, Lesson 5.6 — Exit Ticket (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
 
 \begin{document}
 
 \pageheader{Unit 5, Lesson 5.6}{Exit Ticket --- Answer Key}
 \namedateperiod
 
-\vspace{0.06in}
+\vspace{0.08in}
 
-No notes. Write your restriction list \emph{before} you touch the equation.
+No notes. Work \textbf{inside out} --- and show the inside step, not just the final number.
 
-\vspace{0.04in}
+\begin{enumerate}[leftmargin=1.8em, itemsep=10pt]
+  \item \textbf{Both orders.} Let $f(x)=3x-2$ and $g(x)=x^{2}+1$.
 
-\begin{enumerate}[leftmargin=1.8em, itemsep=9pt]
-  \item \textbf{Solve completely.} \; $\dfrac{x}{x-1}+\dfrac{1}{x}=\dfrac{1}{x^2-x}$
+        {\small \emph{Work:} (a) $g(2)=2^{2}+1=5$, then $f(5)=3(5)-2=13$. \\
+        (b) $f(2)=3(2)-2=4$, then $g(4)=4^{2}+1=17$.}
 
-        \vspace{3pt}
-        \textbf{Step 1.} Factor: $x^2-x={\color{keyred}\mathbf{x(x-1)}}$. \;
-        Restrictions: $x\neq$ \ans{$0,\;1$}. \; LCD $=$ \ans{$x(x-1)$}
+        (a) $(f\circ g)(2)=\ans{$13$}$ \hspace{0.35in}
+        (b) $(g\circ f)(2)=\ans{$17$}$
 
-        \vspace{3pt}
-        \textbf{Step 2.} Multiply every term and cancel:
-        \; \ans{$x\cdot x$} $+$ \ans{$(x-1)$} $=$ \ans{$1$}
+        \vspace{4pt}
+        (c) Your two answers are different. Which function did you evaluate \emph{first} in part (a)?
+        \ans{$g$ --- the inside function, the one written next to the $x$}
 
-        \vspace{3pt}
-        \textbf{Step 3.} Solve: $0=x^2+{\color{keyred}\mathbf{1}}\,x-{\color{keyred}\mathbf{2}}
-        =(x+{\color{keyred}\mathbf{2}})(x-{\color{keyred}\mathbf{1}})$. \; Candidates \ans{$-2,\;1$}
+  \item \textbf{Algebra and domain.} Let $f(x)=\sqrt{x}$ and $g(x)=x+7$.
 
-        \vspace{3pt}
-        \textbf{Step 4.} Extraneous \ans{$1$} \quad Solution set \ans{$\{-2\}$}
+        {\small \emph{Work:} $(f\circ g)(x)=f(g(x))=f(x+7)=\sqrt{x+7}$. \; Stage 1 ($g$) accepts
+        every real number; stage 2 ($f$) accepts only inputs $\ge 0$, so we need $x+7\ge0$.}
 
-  \item \textbf{Justify it.} In one or two sentences, explain to a classmate why the candidate you threw
-        away in item 1 is not a solution --- and why that does \emph{not} mean anyone made an algebra
-        mistake. Use the words \textbf{denominator} and \textbf{extraneous}.
-        \ansline{$x=1$ makes the denominators $x-1$ and $x^2-x$ equal to zero, so the original
-        equation is undefined there and $1$ cannot be a solution --- it is extraneous.}
-        \ansline{No mistake was made: multiplying both sides by the LCD multiplies by zero at $x=1$,
-        and that step cannot be undone, so the cleared equation has a root the original never had.}
-        \ansline{Full credit needs both halves --- the zero denominator \emph{and} the reason the extra
-        root appeared. ``It doesn't work when you plug it in'' alone is not a justification.}
+        (a) $(f\circ g)(x)=\ans{$\sqrt{x+7}$}$ \hspace{0.3in}
+        (b) Domain: \ans{$x\ge-7$, i.e.\ $[-7,\infty)$}
 
-  \item \textbf{SOL-style multiple choice.} What is the solution set of
-        \[ \frac{x}{x+3}+\frac{3}{x-3}=\frac{18}{x^2-9}\;? \]
-        \vspace{-8pt}
+        \vspace{5pt}
+        (c) In one sentence, say why the domain is \emph{not} all real numbers --- your sentence
+        should name which \emph{stage} of the composition does the refusing. \ansline{Stage 1 takes
+        anything, but stage 2 is a square root, so the number handed to it ($x+7$) must be
+        non-negative --- which forces $x\ge-7$.}
+
+  \item \textbf{SOL-style multiple choice.} If $f(x)=x^{2}$ and $g(x)=x-5$, which expression is
+        equal to $(f\circ g)(x)$?
         \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-          \item $\{3\}$
-          \item $\{-3\}$
-          \item $\{3,\,-3\}$
-          \item no solution \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+          \item $x^{2}-5$
+          \item $(x-5)^{2}$ \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+          \item $x^{2}-25$
+          \item $x^{3}-5x^{2}$
         \end{enumerate}
+        \vspace{2pt}
+        \begin{itemize}[leftmargin=1.4em, nosep]
+          \item \textbf{B} is correct: $g$ runs first, so $f$ receives $x-5$ and squares
+                \emph{all} of it.
+          \item \textbf{A} is $(g\circ f)(x)$ --- the \textbf{order error}, and the most common miss
+                on this item. Square first, subtract second.
+          \item \textbf{C} expands $(x-5)^{2}$ as $x^{2}-25$: the perfect-square trinomial error from
+                Unit 3, still alive. Correct expansion is $x^{2}-10x+25$.
+          \item \textbf{D} \emph{multiplied} the two functions instead of composing them. A student
+                who picks this thinks $\circ$ is a product symbol.
+        \end{itemize}
 \end{enumerate}
 
 \begin{teachernote}
-\textbf{Item 1.} Clearing gives $x^2+(x-1)=1$, so $x^2+x-2=0$ and $(x+2)(x-1)=0$. The restriction list
-is $\{0,1\}$, so $x=1$ is extraneous and the solution set is $\{-2\}$. Two things to watch: students who
-factored $x^2-x$ as $x(x-1)$ but then wrote only $x\neq1$ have lost half the list (and would still get
-this item right, which is why item 3 exists); and students who reject $-2$ for being negative have
-imported a rule from the modeling problems that does not apply here.
-
-\vspace{3pt}
-\textbf{Item 2 is the A2.EI.4d item} and should be graded on the \emph{reason}, not the verdict.
-Accept anything that names a zero denominator in the \emph{original} equation and connects the extra
-root to the LCD step. Do not accept ``it doesn't check'' or ``it's extraneous'' with no mechanism ---
-that restates the verdict.
-
-\vspace{3pt}
-\textbf{Item 3.} Clearing by $(x+3)(x-3)$ gives $x(x-3)+3(x+3)=18$, so $x^2=9$ and the candidates are
-$3$ and $-3$ --- \emph{both} excluded. The answer is \textbf{D}. Each distractor is a specific failure:
-\textbf{A} and \textbf{B} keep one candidate (usually whichever one the student happened to check),
-and \textbf{C} skips Step 4 entirely. A student who picks C did the algebra perfectly.
-
-\vspace{3pt}
-\textbf{Sorting the pile.} ``Got it'' / ``no restriction list'' / ``list written but never used'' /
-``rejected for the wrong reason.'' The middle two are the same fix and it is a fast one --- require the
-list at the top of the page before any work. The last pile is the one to watch in 5.7, where rejecting
-a solution \emph{for context} becomes correct and the two reasons have to stay separate.
+\small Graded for completion. Sort into four piles; they decide how 5.7 opens.
+\begin{itemize}[leftmargin=1.3em, nosep]
+  \item \textbf{Got it} --- $13$ and $17$, $\sqrt{x+7}$ with $x\ge-7$, item 3 $=$ B.
+  \item \textbf{Order reversed} --- item 1 answered $17$ and $13$, and/or item 3 $=$ A. This is the
+        signature error of the lesson and it is pure notation: the function written next to the $x$
+        goes first. Re-run Warm-Up 1(d) with them; they got it right before the symbol existed.
+  \item \textbf{Composed correctly, domain missing} --- item 2(b) answered ``all reals.'' They are
+        simplifying and then reading the domain off the answer. The two-stage gate needs re-teaching
+        \emph{before} 5.7, because the entire restricted-domain argument there depends on it.
+  \item \textbf{Composition $=$ multiplication} --- item 3 $=$ D. Rare but serious; sit with them and
+        run one composition as a two-box machine diagram.
+\end{itemize}
+\textbf{Item 2(c) is the conceptual item.} A student who writes ``because of the square root'' has
+half of it; the sentence you want names \emph{which stage} refuses and \emph{what number} it is
+refusing --- not $x$, but $x+7$. That distinction is the whole content of the domain rule, and it is
+what makes the $\left(\sqrt{x}\,\right)^{2}=x$ surprise land in Lesson 5.7.
 \end{teachernote}
 
 \end{document}

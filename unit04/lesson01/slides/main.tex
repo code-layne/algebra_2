@@ -1,6 +1,11 @@
-%! Operations with Polynomials — Unit 4, Lesson 4.1 — Slides (Beamer)
+%! Simplifying Rational Expressions — Unit 4, Lesson 4.1 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 
 \begin{document}
 
@@ -11,205 +16,220 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.1}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Operations with Polynomials}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
+    {\color{white}\bfseries\LARGE Simplifying Rational Expressions \& Domain Restrictions}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{Two names for yesterday's curve --- same function?}
+  \forestheader{Two expressions. One disagreement.}
   \sectionlabel{Hook}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \[ g(x) = (x-1)^2(x+2) \]
-      \[ g(x) = x^3 - 3x + 2 \]
-      \vspace{2pt}
+    \begin{column}{0.44\textwidth}
+      \[ A(x)=\frac{x^2-x-6}{x^2-9} \qquad B(x)=\frac{x+2}{x+3} \]
+      \vspace{-6pt}
       \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Both give $2$ at $x=0$, $4$ at $x=2$, $0$ at $x=-2$.
-        \item Three matching points is \emph{evidence}, not \emph{proof}.
+        \item $B$ is $A$ factored and cancelled.
+        \item They agree everywhere\dots{} except one input.
       \end{itemize}
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{What each costume is good for}
-        \textbf{Factored} $\Rightarrow$ the \emph{zeros}. \\[3pt]
-        \textbf{Standard} $\Rightarrow$ the \emph{degree} and \emph{leading coefficient}, hence the
-        \emph{end behavior}.
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize \textbf{Today:} travel from factored to standard by multiplying.}
+    \begin{column}{0.54\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{|l|c|c|c|c|}
+      \hline
+      $x$ & $0$ & $1$ & $4$ & $3$ \\ \hline
+      $A(x)$ & $\frac23$ & $\frac34$ & $\frac67$ & \textbf{undef.} \\ \hline
+      $B(x)$ & $\frac23$ & $\frac34$ & $\frac67$ & $\frac56$ \\ \hline
+      \end{tabular}
     \end{column}
   \end{columns}
-\end{frame}
-
-% NAMING
-\begin{frame}[t, plain]
-  \forestheader{Standard form comes first}
-  \sectionlabel{Definition}
-  \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      Powers from highest to lowest:
-      \[ a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0 \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item \textbf{Degree:} the highest power.
-        \item \textbf{Leading coefficient:} that term's coefficient.
-        \item \textbf{Terms:} 1 monomial, 2 binomial, 3 trinomial.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.42\textwidth}
-      \begin{block}{Two variables}
-        A \emph{term's} degree is the \textbf{sum} of its exponents: \\[3pt]
-        $-7x^2y^3$ has degree $5$.
-      \end{block}
-      \vspace{2pt}
-      {\footnotesize $-5x^2+7x^4-3+x \;\Rightarrow\; 7x^4-5x^2+x-3$: degree $4$, lead $7$.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% ADD & SUBTRACT
-\begin{frame}[t, plain]
-  \forestheader{Adding \& subtracting: collecting, not creating}
-  \sectionlabel[goldacc]{The sign trap}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{Like terms} = same variables, same exponents. \\
-      $3x^2$ and $3x^3$ never combine.
-      \vspace{6pt}
-      \[ (3x^3-5x+2)+(x^3+4x^2-7) \]
-      \[ = 4x^3+4x^2-5x-5 \]
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      A minus sign in front is a factor of $-1$ --- it flips \emph{every} sign inside.
-      \[ (3x^3-5x+2)-(x^3+4x^2-7) \]
-      \[ = 3x^3-5x+2-x^3-4x^2+7 \]
-      \[ = 2x^3-4x^2-5x+9 \]
-    \end{column}
-  \end{columns}
-  \vspace{2pt}
-  \begin{block}{A degree can drop}
-    $(x^4+2x)-(x^4-5)=2x+5$ --- the leading terms cancel, so a sum or difference has degree
-    \emph{at most} the larger degree.
+  \vspace{6pt}
+  \begin{block}{Today}
+    Cancelling changes how an expression \textbf{looks}. It never gives back an input that was already
+    thrown away.
   \end{block}
 \end{frame}
 
-% MULTIPLY
+% WHY CANCELLING WORKS
 \begin{frame}[t, plain]
-  \forestheader{Multiplying: every term times every term}
-  \sectionlabel{One rule, three sizes}
+  \forestheader{Cancelling is one rule, not a habit}
+  \sectionlabel{Why it works}
   \begin{columns}[T]
-    \begin{column}{0.46\textwidth}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item \textbf{Monomial $\times$ polynomial:} \\ $-2x^2(3x^3-4x+6)=-6x^5+8x^3-12x^2$
-        \item \textbf{Binomial $\times$ binomial:} \\ $(2x-5)(3x+4)=6x^2-7x-20$
-        \item \textbf{Two variables:} \\ $(3x+2y)(x-4y)=3x^2-10xy-8y^2$
-      \end{itemize}
-      \vspace{3pt}
-      Coefficients \emph{multiply}; exponents \emph{add}.
-    \end{column}
     \begin{column}{0.52\textwidth}
-      \centering
-      {\footnotesize $(x+3)(x^2-2x+4)$ --- six products, no drops:}\\[4pt]
-      \renewcommand{\arraystretch}{1.5}
-      {\footnotesize
-      \begin{tabular}{|c|c|c|c|}
-      \hline
-      $\times$ & $x^2$ & $-2x$ & $+4$ \\ \hline
-      $x$  & $x^3$  & $-2x^2$ & $4x$ \\ \hline
-      $+3$ & $3x^2$ & $-6x$   & $12$ \\ \hline
-      \end{tabular}}\\[5pt]
-      {\footnotesize $= x^3 + x^2 - 2x + 12$}
+      \[ \frac{a\cdot c}{b\cdot c}=\frac{a}{b}\cdot\frac{c}{c}=\frac{a}{b}\cdot 1=\frac{a}{b} \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item You are dividing out a factor equal to \textbf{1}.
+        \item It works \emph{only} if $c$ is a \textbf{factor}, and only if $c\neq0$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Factors vs.\ terms}
+        \textbf{Factors} are multiplied --- you may divide them out. \\[3pt]
+        \textbf{Terms} are added --- you may never divide them out.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Claim: $\dfrac{x+3}{3}=x$. \; Test $x=6$: \; $\dfrac{9}{3}=3$, but $x=6$.
+      \\[3pt] One number ends the argument.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% DEGREE OF A PRODUCT
+% THE FOUR STEPS
 \begin{frame}[t, plain]
-  \forestheader{Know the shape before you expand}
-  \sectionlabel[goldacc]{Degrees add, leads multiply}
-  \[ (2x^3 - 1)(-3x^4 + x) \]
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item Only the two \emph{leading} terms can make the highest power: $2x^3\cdot(-3x^4) = -6x^7$.
-    \item \textbf{Degrees add:} $3+4=7$. \quad \textbf{Leading coefficients multiply:} $2\cdot(-3)=-6$.
-    \item Degree \emph{odd}, lead \emph{negative} $\Rightarrow$ (Lesson 4.0) left arm \textbf{up},
-          right arm \textbf{down}.
-  \end{itemize}
-  \begin{block}{Why it never fails}
-    Nothing can cancel the top term --- there is only one way to build it. So a \emph{product} never
-    loses degree, even though a \emph{sum} can.
-  \end{block}
+  \forestheader{The four steps --- and the order matters}
+  \sectionlabel[goldacc]{Procedure}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{enumerate}\setlength{\itemsep}{5pt}
+        \item \textbf{Factor} top and bottom completely (GCF first).
+        \item \textbf{List the restrictions} --- from the \textbf{original} denominator.
+        \item \textbf{Divide out} the shared factors.
+        \item \textbf{Write} the simplest form \emph{with} its restrictions.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{The anchor}
+        \[ \frac{x^2-x-6}{x^2-9}=\frac{(x-3)(x+2)}{(x-3)(x+3)}=\frac{x+2}{x+3} \]
+        \centering $x\neq 3,\;-3$
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Step 2 comes \emph{before} step 3 for a reason: after cancelling, $x=3$ is
+      invisible --- but it is still excluded.}
+    \end{column}
+  \end{columns}
 \end{frame}
 
-% SPECIAL PRODUCTS
+% CANCELLING NEVER RESTORES AN INPUT
 \begin{frame}[t, plain]
-  \forestheader{Special products --- and the year's worst error}
-  \sectionlabel{Identities}
+  \forestheader{Cancelling never restores an input}
+  \sectionlabel{The big idea}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \[ (a+b)^2 = a^2 + 2ab + b^2 \]
-      \[ (a-b)^2 = a^2 - 2ab + b^2 \]
-      \[ (a+b)(a-b) = a^2 - b^2 \]
-      \vspace{2pt}
-      {\footnotesize $(3x-4)^2 = 9x^2-24x+16$ \\[3pt]
-       $(2x+7)(2x-7) = 4x^2-49$ \\[3pt]
-       $(5x-3y)^2 = 25x^2-30xy+9y^2$}
+    \begin{column}{0.46\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-8}{6}{-4}{5}
+        \draw[navy, dashed, thick] (-3,-4)--(-3,5);
+        \draw[navy, dashed, thick] (-8,1)--(6,1);
+        \begin{scope}
+          \clip (-8,-4) rectangle (6,5);
+          \draw[very thick, forest, domain=-8:-3.25, samples=100, smooth]
+            plot (\x,{((\x)+2)/((\x)+3)});
+          \draw[very thick, forest, domain=-2.8:6, samples=100, smooth]
+            plot (\x,{((\x)+2)/((\x)+3)});
+        \end{scope}
+        \draw[forest, very thick, fill=white] (3,0.833) circle (5pt);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Two restrictions, two jobs}
+        $x=-3$: factor \textbf{stays} $\Rightarrow$ \textbf{vertical asymptote} \\[3pt]
+        $x=3$: factor \textbf{cancels} $\Rightarrow$ \textbf{hole} at $\left(3,\tfrac56\right)$
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize This is Lesson 4.0's cancel test, run from the algebra side. The hole's height
+      comes from the \emph{simplified} form --- the original has no value there at all.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% OPPOSITE BINOMIALS
+\begin{frame}[t, plain]
+  \forestheader{Opposite binomials: the hidden factor of $-1$}
+  \sectionlabel[goldacc]{$\frac{a-b}{b-a}=-1$}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \[ \frac{5-x}{x-5}=\frac{-1(x-5)}{x-5}=-1 \]
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Same terms, \emph{every} sign flipped $\Rightarrow$ factor out $-1$.
+        \item $x+3$ and $3+x$ are \emph{equal} --- only subtraction cares about order.
+      \end{itemize}
     \end{column}
     \begin{column}{0.46\textwidth}
-      \begin{block}{$(x+4)^2 \ne x^2+16$}
-        Test at $x=1$: \\[3pt]
-        $(1+4)^2 = 25$ \quad but \quad $1+16=17$. \\[4pt]
-        The missing piece is the middle term $8x$: \\[3pt]
-        $(x+4)^2 = x^2+8x+16$.
+      \begin{block}{Worked}
+        \[ \frac{x^2-16}{4-x}=\frac{(x-4)(x+4)}{-(x-4)}=-(x+4) \]
+        \centering $x\neq4$
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize Dropping that $-1$ is the single most common lost point on this topic.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% EQUIVALENCE
+\begin{frame}[t, plain]
+  \forestheader{What ``equivalent'' actually means}
+  \sectionlabel{A2.EO.1d}
+  \begin{center}
+    Two rational expressions are \textbf{equivalent} when they give the same value at every input
+    \textbf{both} are defined for.
+  \end{center}
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Check by factoring}
+        $\dfrac{x^2-4x}{x^2-16}=\dfrac{x(x-4)}{(x-4)(x+4)}=\dfrac{x}{x+4}$
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Check by testing}
+        At $x=1$: \; $\dfrac{-3}{-15}=\dfrac15$ \; and \; $\dfrac{1}{5}$. \\[3pt]
+        One match proves nothing; one \emph{mismatch} disproves everything.
       \end{block}
     \end{column}
   \end{columns}
+  \vspace{5pt}
+  \begin{center}\footnotesize
+    They still disagree at $x=4$ --- undefined on the left, $\tfrac14$ on the right. Different
+    \emph{domains}, same \emph{values}: still equivalent.
+  \end{center}
 \end{frame}
 
-% CLOSING THE LOOP
+% ERROR GALLERY
 \begin{frame}[t, plain]
-  \forestheader{Closing the loop on the Hook}
-  \sectionlabel[goldacc]{$(x-1)^2(x+2)$}
+  \forestheader{The four ways to lose a point today}
+  \sectionlabel{Watch out}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \centering
-      {\footnotesize Step 1: $(x-1)^2 = x^2-2x+1$}\\[5pt]
-      \renewcommand{\arraystretch}{1.5}
-      {\footnotesize
-      \begin{tabular}{|c|c|c|c|}
-      \hline
-      $\times$ & $x^2$ & $-2x$ & $+1$ \\ \hline
-      $x$  & $x^3$  & $-2x^2$ & $x$ \\ \hline
-      $+2$ & $2x^2$ & $-4x$   & $2$ \\ \hline
-      \end{tabular}}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Cancelling terms}
+        $\dfrac{x^2+9}{x+3}\neq x+3$ \\[3pt]
+        {\footnotesize Test $x=1$: $\tfrac{10}{4}$ vs.\ $4$. And $x^2+9$ is \emph{prime}.}
+      \end{block}
+      \vspace{3pt}
+      \begin{block}{Restrictions from the simplified form}
+        The cancelled restriction disappears --- and the hole with it.
+      \end{block}
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item $-2x^2$ and $+2x^2$ \textbf{cancel} --- that is why there is no $x^2$ term.
-        \item $x - 4x = -3x$.
-        \item Result: $\;x^3 - 3x + 2$. \; \textbf{Proved.}
-        \item Degree $3$, lead $1$ $\Rightarrow$ left down, right up --- exactly yesterday's graph.
-      \end{itemize}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Losing the $-1$}
+        $\dfrac{3-x}{x^2-9}=-\dfrac{1}{x+3}$, not $\dfrac{1}{x+3}$.
+      \end{block}
+      \vspace{3pt}
+      \begin{block}{No restrictions at all}
+        The answer is the expression \textbf{and} its restriction list. Half an answer is half credit.
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ROADMAP
 \begin{frame}[t, plain]
-  \forestheader{Where Unit 4 goes next}
+  \forestheader{Where this goes}
   \sectionlabel{Connections}
-  \textbf{Today:} add, subtract, and multiply polynomials in one and two variables; special products;
-  degree and leading coefficient of a result.\\[8pt]
+  \textbf{Today:} factor, restrict, divide out --- and know exactly which inputs your simplified form
+  quietly dropped.\\[8pt]
   \begin{itemize}\setlength{\itemsep}{3pt}
-    \item \textbf{4.2} Advanced factoring --- today's products run \emph{backward}, plus the sum and difference of cubes.
-    \item \textbf{4.3} Dividing polynomials; Remainder \& Factor Theorems.
-    \item \textbf{4.4--4.5} Zeros: Rational Root Theorem; complex zeros \& the FTA.
-    \item \textbf{4.6} Graphing polynomial functions \& modeling.
+    \item \textbf{4.2--4.3} Multiply, divide, add \& subtract --- every one of them starts by factoring.
+    \item \textbf{4.5} Graphing from the equation: the cancel test decides hole vs.\ wall.
+    \item \textbf{4.6} Solving rational equations --- an ``extraneous solution'' is nothing but one of
+          today's excluded values sneaking back in.
   \end{itemize}
+  \vspace{6pt}
+  \begin{center}
+    \textbf{Cancelling never restores an input.} Say it once more on the way out.
+  \end{center}
 \end{frame}
 
 \end{document}

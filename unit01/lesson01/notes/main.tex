@@ -1,286 +1,150 @@
-%! Expressions and Operations — Unit 1, Lesson 1.1 — Guided Notes
+%! Linear Functions: Slope, Forms \& Graphing — Unit 1, Lesson 1.1 — Guided Notes
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.1}{Guided Notes}
 
-\vspace{0.08in}
+\vspace{0.10in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item \emph{translate} a verbal situation into an algebraic expression and \emph{evaluate} it at given values --- including absolute values, square roots, and cube roots;
-  \item apply the \emph{laws of exponents} to simplify multivariable expressions and monomial ratios, and explain where each law comes from;
-  \item add, subtract, multiply, \emph{factor completely}, and divide polynomials in one variable;
-  \item simplify \emph{radicals} and convert between radical and rational-exponent notation;
-  \item \emph{justify} that two expressions are equivalent --- or disprove it with a single value.
+  \item compute \emph{slope} from two points and read it as a constant rate of change;
+  \item write a line in \emph{slope-intercept}, \emph{point-slope}, and \emph{standard} form, and convert among them;
+  \item write the equation of a line from a graph, from two points, or from a slope and a point;
+  \item graph a line by transforming the parent $y=x$.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.05in}
+\vspace{0.08in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{Expression (vs.\ equation)}
-\termblanklong{Evaluate}
-\termblanklong{Polynomial / degree}
-\termblanklong{Factor completely}
-\termblanklong{Simplest radical form}
-\termblanklong{Rational exponent}
-\termblanklong{Equivalent expressions}
+\vspace{2pt}
+\termblanklong{Slope (rate of change)}
+\termblanklong{Slope-intercept form}
+\termblanklong{Point-slope form}
+\termblanklong{Standard form}
+\termblanklong{Parent function \& transformation}
 \end{vocabbox}
 
-\boxguard
 \begin{hookbox}
-\textbf{Equivalent, or not?} No rules yet --- just decide, and be ready to defend it.
+A streaming service charges a \$5 signup fee plus \$2 each month. Complete the cost table, then
+answer.
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}c l l X@{}}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
- & \textbf{First} & \textbf{Second} & \textbf{Equivalent? How do you know?} \\
-\hline
-(a) & $2^3\cdot 2^4$ & $2^{12}$ & \blank{5.6cm} \\
-(b) & $(x+3)(x-3)$ & $x^2-9$ & \blank{5.6cm} \\
-(c) & $(x+5)^2$ & $x^2+25$ & \blank{5.6cm} \\
-(d) & $\sqrt{9+16}$ & $\sqrt9+\sqrt{16}$ & \blank{5.6cm} \\
-\hline
-\end{tabularx}
+months $m$ & $0$ & $1$ & $2$ & $3$ \\ \hline
+cost \$ & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} & \blank{0.9cm} \\ \hline
+\end{tabular}
 \end{center}
-Three of those four die to a \emph{single} number. One survives every value you try.
 \begin{itemize}\setlength{\itemsep}{1pt}
-  \item Which one survived? \blank{2.0cm}
-  \item You tested it at several values and it worked every time. Does that \textbf{prove} the two
-        are equivalent? \blank{1.6cm} \; Why or why not? \writeline
+  \item What is the \emph{same} change every month (the rate)? \writeline
+  \item Write one rule for the cost after $m$ months: $C(m) = $ \blank{3.2cm}
 \end{itemize}
-\textbf{The asymmetry to remember all year:} one bad value \emph{disproves} equivalence forever, but
-no number of good values ever \emph{proves} it. For proof you need algebra --- and every rule in
-today's lesson is a rewriting move that was proved once, so you never have to test again.
+A \emph{rate of change} plus a \emph{starting value} is exactly slope-intercept form. Let's make that
+precise --- and learn three ways to write it.
 \end{hookbox}
 
-\begin{notesbox}{1. Translating and Evaluating}
-An \textbf{expression} is a recipe for a number. It has no equals sign, so it is never
-\emph{solved} --- it is \blank{2.4cm} once you supply values.
-
-\vspace{3pt}
-\textbf{Translate.} Watch the two traps: ``less than'' \blank{2.6cm} the order, and ``the quantity''
-signals \blank{2.4cm}.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}X l@{}}
-\hline
-\textbf{Words} & \textbf{Expression} \\
-\hline
-Seven less than twice a number & \blank{3.0cm} \\
-The quotient of a number and 4, increased by 9 & \blank{3.0cm} \\
-Five times the quantity of a number decreased by 2 & \blank{3.0cm} \\
-\hline
-\end{tabularx}
-\end{center}
-Now read this one \emph{back} into words: \; $3n+8$ \; is \blank{7.0cm}
-
-\vspace{4pt}
-\textbf{Evaluate.} Replace, then follow the order of operations. Remember: absolute value bars and
-radical signs are \textbf{grouping symbols} --- finish the inside first.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X l@{}}
-\hline
-\textbf{Expression} & \textbf{Substitute and simplify} & \textbf{Value} \\
-\hline
-$3x^2-4x+1$ at $x=-2$ & \blank{6.0cm} & \blank{1.4cm} \\
-$|2x-7|$ at $x=1.5$ & \blank{6.0cm} & \blank{1.4cm} \\
-$\sqrt{x+9}$ at $x=-\tfrac{11}{4}$ & \blank{6.0cm} & \blank{1.4cm} \\
-$\sqrt[3]{x}+x$ at $x=-8$ & \blank{6.0cm} & \blank{1.4cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\textbf{The sign trap from the Warm-Up.} At $x=-3$: \quad $(-x)^2=$ \blank{1.4cm} \quad but
-$-x^2=$ \blank{1.4cm}. \\
-An exponent binds only to \blank{4.0cm}, and \blank{2.4cm} are what change that.
-\end{notesbox}
-
-\boxguard[30]
-\begin{notesbox}{2. The Laws of Exponents --- Derived, Not Memorized}
-Every law below is just \textbf{counting factors}. Fill in the reason, not only the rule.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-\hline
-\textbf{Law} & \textbf{Rule} & \textbf{Why (count the factors)} \\
-\hline
-Product & $a^m\cdot a^n=a^{\blank{1.0cm}}$ & the two piles of factors are put together, so the counts \blank{1.8cm} \\
-Quotient & $\dfrac{a^m}{a^n}=a^{\blank{1.0cm}}$ & factors cancel in pairs, so the counts \blank{1.8cm} \\
-Power of a power & $(a^m)^n=a^{\blank{1.0cm}}$ & a pile of $m$ factors, repeated $n$ times \\
-Power of a product & $(ab)^n=$ \blank{2.0cm} & every factor inside gets the exponent \\
-Zero & $a^0=$ \blank{1.0cm} & because $\dfrac{a^3}{a^3}$ is both $a^0$ and \blank{1.0cm} \\
-Negative & $a^{-n}=$ \blank{1.6cm} & because $\dfrac{a^2}{a^5}$ is both $a^{-3}$ and \blank{1.6cm} \\
-\hline
-\end{tabularx}
-\end{center}
-\emph{Notice:} the last two are not conventions somebody invented. They are what the quotient law
-\textbf{forces} if we want it to keep working past where it ``should'' stop.
-
-\vspace{3pt}
-\textbf{Apply them.} Write every answer with \textbf{positive} exponents only.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l@{}}
-(a) \; $3x^2\cdot 4x^3=$ \blank{2.4cm} &
-(b) \; $(2x^3y)^4=$ \blank{2.6cm} &
-(c) \; $\dfrac{12x^5y^{-2}}{3x^2y^4}=$ \blank{2.6cm} \\[8pt]
-(d) \; $\left(\dfrac{x^4}{x^{-1}}\right)^2=$ \blank{2.4cm} &
-(e) \; $(5a^0b^3)(2b^{-5})=$ \blank{2.6cm} &
-(f) \; $\dfrac{(2m^2)^3}{4m^5}=$ \blank{2.6cm} \\
-\end{tabular}
-\end{center}
-\emph{Careful on (a):} the coefficients are \blank{2.6cm}, but the exponents are \blank{2.0cm}.
-\end{notesbox}
-
-\begin{notesbox}{3. Polynomial Operations --- and Factoring, Which Is the Same Trip Backwards}
-A \textbf{polynomial} is a sum of terms $ax^n$ where every $n$ is a \blank{2.4cm} number. Its
-\textbf{degree} is the \blank{2.6cm} exponent.
-
-\vspace{3pt}
-\textbf{Add and subtract} by combining like terms. All the difficulty is in one place.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-(a) \; $(3x^2-5x+2)+(x^2+4x-9)=$ & \blank{6.4cm} \\
-(b) \; $(3x^2-5x+2)-(x^2+4x-9)=$ & \blank{6.4cm} \\
-\hline
-\end{tabularx}
-\end{center}
-In (b), the minus sign must be distributed to \blank{4.4cm} of the second polynomial --- not just
-the first one. That single slip is the most common polynomial error there is.
-
-\vspace{3pt}
-\textbf{Multiply} with the distributive property. Two patterns are worth recognizing on sight.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{@{}l l@{}}
-(c) \; $(x+3)(x-3)=$ \blank{3.0cm} &
-(d) \; $(x+5)^2=$ \blank{3.4cm} \\[6pt]
-\multicolumn{2}{@{}l@{}}{(e) \; $(2x-1)(3x^2+x-4)=$ \blank{6.0cm}} \\
-\end{tabular}
-\end{center}
-\textbf{Difference of squares:} $a^2-b^2=$ \blank{3.0cm} \qquad
-\textbf{Perfect square trinomial:} $(a+b)^2=$ \blank{3.4cm} \\
-Hook item (c) is now settled: $(x+5)^2$ is \emph{not} $x^2+25$, because the middle term
-\blank{1.6cm} is missing.
-
-\vspace{4pt}
-\textbf{Factor completely.} Factoring is multiplying \emph{backwards}, so you can always check by
-\blank{2.6cm}. Follow the order every time:
-\begin{center}
-\fbox{\parbox{0.94\linewidth}{\centering \textbf{(1)} Pull out the \blank{1.6cm} first, always.
-\quad \textbf{(2)} Then use a pattern or the trinomial method. \\
-\textbf{(3)} Then check whether any factor \emph{still} factors. That is what
-``\blank{2.4cm}'' means.}}
-\end{center}
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}l l l@{}}
-(f) \; $x^2+7x+12=$ \blank{2.3cm} &
-(g) \; $x^2-64=$ \blank{2.3cm} &
-(h) \; $6x^2-15x=$ \blank{2.3cm} \\[6pt]
-(i) \; $2x^2-18=$ \blank{2.3cm} &
-(j) \; $3x^2+15x+18=$ \blank{2.3cm} &
-(k) \; $x^2-5x-14=$ \blank{2.3cm} \\
-\end{tabular}
-\end{center}
-\emph{Watch (i).} If you stop at $2(x^2-9)$ you have factored --- but not \blank{2.6cm}, because
-$x^2-9$ is still a \blank{4.0cm}.
-
-\vspace{3pt}
-\textbf{Divide} by splitting the fraction (monomial divisor) or cancelling common factors.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l@{}}
-(l) \; $\dfrac{12x^4-8x^3+4x^2}{4x^2}=$ \blank{3.6cm} &
-(m) \; $\dfrac{x^2+7x+12}{x+3}=$ \blank{3.0cm} \\
-\end{tabular}
-\end{center}
-In (m), cancelling assumes $x+3\ne 0$, so $x\ne$ \blank{1.2cm}.
-\end{notesbox}
-
 \boxguard[12]
-\begin{notesbox}{4. Radicals and Rational Exponents}
-\textbf{Simplify} by pulling out the largest perfect power. The method is identical for square and
-cube roots --- only the \blank{1.6cm} changes.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X l@{}}
-\hline
-\textbf{Radical} & \textbf{Largest perfect square / cube factor} & \textbf{Simplest form} \\
-\hline
-$\sqrt{72}$ & \blank{4.6cm} & \blank{2.0cm} \\
-$\sqrt{50}$ & \blank{4.6cm} & \blank{2.0cm} \\
-$\sqrt[3]{54}$ & \blank{4.6cm} & \blank{2.0cm} \\
-$\sqrt[3]{-24}$ & \blank{4.6cm} & \blank{2.0cm} \\
-\hline
-\end{tabularx}
-\end{center}
+\begin{notesbox}{1. Slope Is the Rate of Change}
+For \emph{any} two points $(x_1,y_1)$ and $(x_2,y_2)$ on a line,
+\[
+  m = \frac{y_2 - y_1}{x_2 - x_1} = \frac{\text{rise}}{\text{run}}.
+\]
+Because a line's rate of change is \emph{constant}, it does not matter which two points you pick.
+\textbf{Try it} with $(1,4)$ and $(3,0)$:
+\[
+  m = \frac{\blank{0.8cm} - \blank{0.8cm}}{\blank{0.8cm} - \blank{0.8cm}}
+    = \frac{\blank{0.8cm}}{\blank{0.8cm}} = \blank{1.0cm}.
+\]
+Warning: subtract the $y$'s and the $x$'s in the \emph{same order}, or the sign flips.
+\end{notesbox}
+
+\begin{notesbox}{2. Three Forms, One Line}
+Here is the single line $y = 2x - 4$ written three different ways --- same line, different
+``outfits.'' Fill in what each form makes easy to read.
 
 \vspace{2pt}
-\textbf{Add and subtract} only \emph{like} radicals --- same index, same radicand. This is exactly
-the like-terms rule wearing a different costume.
-\begin{center}
 \renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l@{}}
-(a) \; $3\sqrt5+2\sqrt5=$ \blank{2.0cm} &
-(b) \; $3\sqrt5+2\sqrt3=$ \blank{2.6cm} &
-(c) \; $\sqrt{12}+\sqrt{27}=$ \blank{2.4cm} \\
-\end{tabular}
-\end{center}
-\emph{Why does (c) work when the radicands started different?} Because after simplifying, they
-became \blank{2.6cm}.
+\begin{tabularx}{\linewidth}{@{}p{0.30\linewidth} l X@{}}
+\textbf{Slope-intercept} & $y = mx + b$ & Reads off the slope $m=\blank{0.9cm}$ and $y$-intercept $(0,\blank{0.9cm})$. \\
+\textbf{Point-slope} & $y - y_1 = m(x - x_1)$ & Built from a slope and a point; e.g.\ $(2,0)$: $\;y - 0 = \blank{0.7cm}(x - \blank{0.7cm})$. \\
+\textbf{Standard} & $Ax + By = C$ & Integers, $A\ge 0$; tidy for intercepts. Here: $\blank{0.7cm}\,x - y = \blank{0.9cm}$. \\
+\end{tabularx}
 
 \vspace{3pt}
-\textbf{Multiply} with $\sqrt a\cdot\sqrt b=\sqrt{ab}$:
-\quad (d) \; $\sqrt6\cdot\sqrt{10}=$ \blank{2.6cm} \quad
-(e) \; $\sqrt3(\sqrt3+\sqrt5)=$ \blank{3.0cm}
+\textbf{They are equal.} Simplify the point-slope $y - 0 = 2(x-2)$ by distributing:
+\begin{work}
+  y - 0 &= 2(x - 2) \\
+      y &= 2x - 4
+\end{work}
+That is exactly the slope-intercept form above --- each form is the \emph{same} line.
+\end{notesbox}
 
-\vspace{4pt}
-\textbf{Two spellings of one idea.} A radical \emph{is} a fractional exponent:
+\begin{notesbox}{3. Writing the Equation of a Line}
+You can always write a line once you have a \textbf{slope} and \textbf{one point}. Match the given
+information to a starting form:
+\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
+  \item \textbf{Slope $+$ $y$-intercept} $\to$ drop straight into $y = mx + b$.\\
+        Slope $3$, $y$-intercept $(0,-2)$: $\;y = \blank{2.6cm}$.
+  \item \textbf{Slope $+$ any point} $\to$ point-slope, then simplify.\\
+        Slope $-\tfrac12$ through $(4,1)$: $\;y - 1 = \blank{1.4cm}(x - \blank{0.8cm})$,
+        so $y = \blank{2.6cm}$.
+  \item \textbf{Two points} $\to$ find $m$ first, then use point-slope.\\
+        Through $(1,4)$ and $(3,0)$: $\;m = \blank{1.0cm}$; using $(3,0)$,
+        $y - 0 = \blank{1.4cm}(x - \blank{0.8cm})$, so $y = \blank{2.4cm}$.
+\end{enumerate}
+\end{notesbox}
+
+\boxguard[20]
+\begin{notesbox}{4. Graphing by Transforming the Parent $y = x$}
+Every non-vertical line is the parent $y = x$ after two moves: a vertical
+\textbf{stretch/reflection} (which sets the \emph{slope}) and a vertical \textbf{shift} (which sets
+the \emph{$y$-intercept}). Below, the dashed line is the parent $y=x$ and the solid line is
+$y = 2x - 4$.
 \begin{center}
-\fbox{\parbox{0.90\linewidth}{\centering
-$a^{1/2}=\blank{1.6cm}$ \qquad and \qquad $a^{1/3}=\blank{1.6cm}$}}
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-2}{6}{-6}{6}
+  \draw[very thick, forest!55, dashed] (-2,-2)--(6,6) node[right, font=\scriptsize, forest!70]{$y=x$};
+  \draw[very thick, forest] (-1,-6)--(5,6) node[right, font=\scriptsize]{$y=2x-4$};
+  \fill[charcoal] (0,0) circle (2.5pt);
+  \fill[charcoal] (0,-4) circle (3pt) node[left, font=\scriptsize]{$(0,-4)$};
+\end{tikzpicture}
 \end{center}
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l@{}}
-(f) \; $\sqrt{7}=7^{\blank{0.8cm}}$ &
-(g) \; $25^{1/2}=$ \blank{1.4cm} &
-(h) \; $\sqrt[3]{8}=8^{1/3}=(2^3)^{1/3}=$ \blank{1.4cm} \\
-\end{tabular}
-\end{center}
-Look at (h): the \blank{5.0cm} law from Section~2 did the work. \emph{That} is why this notation
-matters --- the exponent spelling is what lets the exponent laws reach radicals at all, and it is
-the notation all of Unit 6 is built on.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item The slope changed from $1$ to $2$: a vertical \textbf{stretch} by a factor of \blank{1.0cm}
+        \; (this is $k\,f(x)$ with $k=\blank{0.8cm}$).
+  \item The $y$-intercept moved from $(0,0)$ to $(0,-4)$: a \textbf{shift down} \blank{1.0cm} units
+        \; (this is $f(x)+k$ with $k=\blank{1.0cm}$).
+  \item If the slope were \emph{negative}, the parent would also be \textbf{reflected} over the
+        $x$-axis. \textbf{Big idea:} this $k\,f(x)$ and $f(x)+k$ language will graph \emph{every}
+        function family this year.
+\end{itemize}
 \end{notesbox}
 
 \begin{practicebox}
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item Evaluate $x^2-3x+|x+2|$ at $x=-4$.
-\begin{work}
-  x^2-3x+|x+2| &= (-4)^2-3(-4)+|{-4}+2| \\
-               &= 16+12+2               \\
-               &= 30
-\end{work}
-  \item Simplify $\dfrac{20a^6b^{-3}}{5a^2b}$ with positive exponents. \blank{3.4cm}
-  \item Factor completely: $5x^2-45$. \blank{3.4cm} \; Check by expanding: \blank{3.4cm}
-  \item Simplify $\sqrt{98}$. \blank{2.4cm} \quad Write $\sqrt[3]{11}$ with a rational exponent.
-        \blank{2.0cm}
-  \item Are $(x-4)^2$ and $x^2-16$ equivalent? Answer with \emph{one} value of $x$ if they are not.
-        \writeline
+Write the equation of the line through $(-2,3)$ and $(2,-5)$ in \emph{all three forms}.
+\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
+  \item Slope: $m = \dfrac{\blank{0.8cm}-\blank{0.8cm}}{\blank{0.8cm}-\blank{0.8cm}} = \blank{1.0cm}$.
+  \item Point-slope (using $(2,-5)$): $\;y - (\blank{0.8cm}) = \blank{1.2cm}\,(x - \blank{0.8cm})$.
+  \item Simplify that point-slope form into slope-intercept form:
+    \begin{work}
+      y + 5 &= -2(x - 2) \\
+      y + 5 &= -2x + 4   \\
+          y &= -2x - 1
+    \end{work}
+  \item Standard form (integers, $A \ge 0$): $\;\blank{3.0cm}$.
 \end{enumerate}
 \end{practicebox}
 

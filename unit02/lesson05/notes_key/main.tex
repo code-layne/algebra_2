@@ -1,180 +1,175 @@
-%! Linear Regression — Unit 2, Lesson 2.5 — Guided Notes (Answer Key)
+%! The Quadratic Formula & the Discriminant — Unit 2, Lesson 2.5 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\setlength{\workrowsep}{8pt}   % handwriting room; moves blank and key together
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
-% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
 \newcommand{\vocabans}[2]{%
-  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.5}{Guided Notes --- Answer Key}
 
-\vspace{0.08in}
+\vspace{0.10in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item read a \emph{scatterplot} and describe its association by \emph{direction}, \emph{form}, and \emph{strength};
-  \item interpret the \emph{correlation coefficient} $r$ and match an $r$-value to a scatterplot;
-  \item read a \emph{line of best fit} $\hat y=ax+b$, interpret its \emph{slope} and \emph{intercept}, and \emph{predict};
-  \item tell \emph{interpolation} from \emph{extrapolation} and explain why \emph{correlation is not causation}.
+  \item solve \emph{any} quadratic with the \emph{quadratic formula}, giving real or complex answers in simplest form;
+  \item compute the \emph{discriminant} $b^2-4ac$ and predict the number and type of roots \emph{before} solving;
+  \item choose an efficient method, verify a solution, and model a situation with a quadratic.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.04in}
+\vspace{0.06in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-\vocabans{Scatterplot / bivariate data}{bivariate data is paired measurements $(x,y)$ on the same individuals; a scatterplot plots those pairs as points}
-\vocabans{Association (direction, form, strength)}{the pattern in a scatterplot: direction (rise/fall), form (linear or not), and strength (how tightly the points cluster)}
-\vocabans{Correlation coefficient $r$}{a number in $[-1,1]$; its sign is the direction and its size $|r|$ the strength of the \emph{linear} fit}
-\vocabans{Line of best fit (regression line) $\hat y=ax+b$}{the line (from technology) that best summarizes the trend; $\hat y$ is a predicted value}
-\vocabans{Interpolation vs.\ extrapolation}{predicting \emph{inside} the data's $x$-range (interpolation) vs.\ \emph{outside} it (extrapolation --- riskier)}
+\par\vspace{2pt}
+\vocabans{Quadratic formula}{$x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$; solves any $ax^2+bx+c=0$ ($a\ne0$)}
+\vocabans{Standard form $ax^2+bx+c=0$}{all terms on one side set equal to $0$; needed to read $a,b,c$}
+\vocabans{Discriminant $b^2-4ac$}{the expression under the radical; its sign predicts the roots}
+\vocabans{Double (repeated) root}{one real solution counted twice, when $b^2-4ac=0$ (vertex on the $x$-axis)}
+\vocabans{Complex-conjugate roots}{the pair $a\pm bi$ produced when $b^2-4ac<0$}
 \end{vocabbox}
 
 \begin{hookbox}
-A coach records, for each player, the \emph{hours practiced} this week ($x$) and the \emph{free throws made}
-out of $15$ ($y$). The points do \emph{not} lie on one line --- but they \emph{trend} upward.
-\begin{center}
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-0.5}{9}{-0.5}{15}
-  \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
-\end{tikzpicture}
-\end{center}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item As hours practiced \emph{increase}, free throws made tend to \ans{increase} (increase / decrease).
-  \item Could a \emph{single line} pass through every point? \ans{no} \; Could one line summarize the \emph{trend}? \ans{yes}
-\end{itemize}
-No exact rule fits messy data --- but a \textbf{line of best fit} can summarize the trend, and today we
-learn to read it, measure it, and predict with it.
+Four quadratics, four different ``best methods'': $x^2-2x-3=0$ (factor), $x^2-6x+7=0$ (won't factor),
+$x^2+2x+5=0$ (complex roots), $2x^2-7x+3=0$. Choosing the right tool each time is a hassle. \textbf{What if
+one formula solved every quadratic --- real or complex --- with no guessing?} It exists, and it comes from
+a move you already know: \emph{completing the square}, done once on the general equation.
 \end{hookbox}
 
-\begin{notesbox}{1. Scatterplots \& Association: Direction, Form, Strength}
-A \textbf{scatterplot} plots paired data $(x,y)$. Describe an association three ways: \textbf{direction}
-(does $y$ rise or fall as $x$ rises?), \textbf{form} (do the points follow a \emph{line}?), and
-\textbf{strength} (how tightly?). Classify each plot below.
+\begin{notesbox}{1. The quadratic formula --- completing the square, done once}
+Complete the square on the \emph{general} quadratic $ax^2+bx+c=0$ (same steps as Lesson 2.3, now with
+letters). The result is the \textbf{quadratic formula}:
+\[ x=\frac{-b\pm\sqrt{\rule{0pt}{1.6ex}\ans{$b^2-4ac$}}}{\ans{$2a$}}. \]
+Because completing the square works on \emph{every} quadratic, this formula does too. \textbf{The protocol:}
+\begin{enumerate}[leftmargin=1.7em, itemsep=1pt]
+  \item Write the equation in \textbf{standard form} $ax^2+bx+c=0$.
+  \item Identify $a,b,c$ \emph{with signs}.
+  \item Substitute and simplify (radical or $a+bi$).
+\end{enumerate}
+\textbf{Anchor example.} Solve $x^2-2x-3=0$: \ $a=\ans{$1$}$, $b=\ans{$-2$}$, $c=\ans{$-3$}$.
+\[
+\begin{aligned}
+  x &= \frac{-(-2)\pm\sqrt{(-2)^2-4(1)(-3)}}{2(1)} \\
+    &= \frac{2\pm\sqrt{\ans{$16$}}}{2} \\
+    &= \frac{2\pm\ans{$4$}}{2} \\
+    &= \ans{$3,\ -1$}
+\end{aligned}
+\]
+Same zeros as factoring $(x+1)(x-3)$ in 2.2 --- \emph{one method now solves it all.}
+\end{notesbox}
+
+\begin{notesbox}{2. The discriminant $b^2-4ac$ --- predict before you solve}
+The quantity under the radical, $b^2-4ac$, is the \textbf{discriminant}. Its \emph{sign} alone tells you the
+number and type of roots --- \emph{before} you finish solving. Fill in the table and match each to its graph.
 \begin{center}
-\begin{tikzpicture}[scale=0.4]
-  \lgrid{-0.5}{7}{-0.5}{7}
-  \dpt{1}{2}\dpt{2}{2}\dpt{3}{4}\dpt{4}{4}\dpt{5}{6}\dpt{6}{6}
-  \node[font=\scriptsize\bfseries] at (3,-1.6){(a)};
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\textbf{If $b^2-4ac$ is\dots} & \textbf{Roots} & \textbf{Graph ($x$-intercepts)} \\
+\hline
+$>0$ & \ans{two distinct real} & \ans{crosses the $x$-axis twice (two intercepts)} \\
+$=0$ & \ans{one repeated real (double)} & \ans{vertex on the $x$-axis (one intercept)} \\
+$<0$ & \ans{two complex conjugates} & \ans{never touches the $x$-axis (no intercepts)} \\
+\end{tabularx}
+\end{center}
+\vspace{2pt}
+\begin{center}
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-2}{4}{-5}{3}
+  \begin{scope}\clip (-2,-5) rectangle (4,3);
+    \draw[very thick, forest, domain=-1.2:3.2, samples=60, smooth] plot (\x,{(\x-1)*(\x-1)-4});
+  \end{scope}
+  \fill[charcoal] (-1,0) circle (3pt); \fill[charcoal] (3,0) circle (3pt);
+  \node[font=\scriptsize, charcoal] at (1,-6.2){$b^2-4ac>0$};
 \end{tikzpicture}
-\hspace{0.3cm}
-\begin{tikzpicture}[scale=0.4]
-  \lgrid{-0.5}{7}{-0.5}{7}
-  \dpt{1}{6}\dpt{2}{5}\dpt{3}{5}\dpt{4}{3}\dpt{5}{2}\dpt{6}{2}
-  \node[font=\scriptsize\bfseries] at (3,-1.6){(b)};
+\hspace{0.5cm}
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{0}{4}{-1}{5}
+  \begin{scope}\clip (0,-1) rectangle (4,5);
+    \draw[very thick, forest, domain=0.05:3.95, samples=60, smooth] plot (\x,{(\x-2)*(\x-2)});
+  \end{scope}
+  \fill[charcoal] (2,0) circle (3pt);
+  \node[font=\scriptsize, charcoal] at (2,-2.4){$b^2-4ac=0$};
 \end{tikzpicture}
-\hspace{0.3cm}
-\begin{tikzpicture}[scale=0.4]
-  \lgrid{-0.5}{7}{-0.5}{7}
-  \dpt{1}{3}\dpt{2}{6}\dpt{3}{2}\dpt{4}{5}\dpt{5}{3}\dpt{6}{5}
-  \node[font=\scriptsize\bfseries] at (3,-1.6){(c)};
+\hspace{0.5cm}
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-3}{3}{-1}{7}
+  \begin{scope}\clip (-3,-1) rectangle (3,7);
+    \draw[very thick, forest, domain=-2.3:2.3, samples=60, smooth] plot (\x,{\x*\x+1});
+  \end{scope}
+  \fill[charcoal] (0,1) circle (3pt);
+  \node[font=\scriptsize, charcoal] at (0,-2.4){$b^2-4ac<0$};
 \end{tikzpicture}
 \end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item Plot (a): direction is \ans{positive}; the points \emph{do / do not} follow a line: \ans{do}.
-  \item Plot (b): direction is \ans{negative} --- as $x$ rises, $y$ \ans{falls}.
-  \item Plot (c): direction is \ans{none} --- there is \emph{no} clear linear trend.
-\end{itemize}
+\vspace{-2pt}
+Classify \emph{without} solving --- just compute $b^2-4ac$:
+\[ x^2-6x+7=0:\ b^2-4ac=\ans{$8$}\ \Rightarrow\ \ans{two real (irrational)}. \]
+\[ 4x^2-12x+9=0:\ b^2-4ac=\ans{$0$}\ \Rightarrow\ \ans{one repeated real root}. \]
 \end{notesbox}
 
-\begin{notesbox}{2. The Correlation Coefficient $r$}
-Technology reports one number, the \textbf{correlation coefficient} $r$, that measures the \emph{linear}
-association. It always lies between ${\color{keyred}\mathbf{-1}}$ and ${\color{keyred}\mathbf{1}}$. Its
-\textbf{sign} gives the \emph{direction}; its \textbf{size} $|r|$ gives the \emph{strength}.
+\begin{notesbox}{3. When the discriminant is negative --- complex solutions}
+A negative discriminant is \emph{not} a dead end. Use $i$ (Lesson 2.4): the roots are a
+\textbf{complex-conjugate pair} $a\pm bi$. Solve the 2.4 leftover $x^2+2x+5=0$:
+\[ a=1,\ b=2,\ c=5:\quad b^2-4ac=4-20=\ans{$-16$}. \]
+\[
+\begin{aligned}
+  x &= \frac{-2\pm\sqrt{-16}}{2} \\
+    &= \frac{-2\pm\ans{$4i$}}{2} \\
+    &= \ans{$-1\pm2i$}
+\end{aligned}
+\]
+These are the \emph{same} solutions completing the square gave in Lesson 2.4 --- now from the formula.
+The parabola $y=x^2+2x+5$ never touches the $x$-axis, which is exactly what $b^2-4ac<0$ predicted.
+\end{notesbox}
+
+\begin{notesbox}{4. Choose a method \& model}
+The formula \emph{always} works, but it is not always fastest. Quick guide:
 \begin{center}
-\begin{tikzpicture}[scale=1]
-  \draw[semithick, charcoal, ->] (-3.4,0)--(3.4,0);
-  \foreach \x/\lab in {-3/-1, 0/0, 3/1}{\draw (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\lab$};}
-  \node[font=\scriptsize, forest] at (-3,0.45){strong negative};
-  \node[font=\scriptsize, forest] at (0,0.45){no linear trend};
-  \node[font=\scriptsize, forest] at (3,0.45){strong positive};
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\textbf{Factoring} & fastest \emph{when} it factors over integers (e.g.\ $x^2-2x-3$). \\
+\textbf{Square roots} & for $x^2=k$ or $(x-h)^2=k$ (no middle term). \\
+\textbf{Quadratic formula} & the universal fallback --- always works, real or complex. \\
+\end{tabularx}
 \end{center}
-\textbf{Match each $r$ to a plot from Section~1} (write a, b, or c):
-\[ r\approx 0.90:\ {\color{keyred}\mathbf{(a)}} \qquad r\approx -0.85:\ {\color{keyred}\mathbf{(b)}}
-   \qquad r\approx 0.05:\ {\color{keyred}\mathbf{(c)}} \]
-\textbf{Warning:} $r$ measures a \emph{linear} fit only, and a strong $|r|$ does \emph{not} prove one
-variable \emph{causes} the other. A negative $r$ is not ``weak'' --- $r=-0.9$ is a \ans{strong} (strong /
-weak) association.
+\textbf{Model.} A ball is thrown so its height is $h(t)=-16t^2+24t+6$ (feet, seconds). When does it hit the
+ground ($h=0$)? Set up and solve; keep only the physically sensible root.
+\begin{work}
+  -16t^2+24t+6 &= 0 \\
+  t &= \frac{-24\pm\sqrt{24^2-4(-16)(6)}}{2(-16)} \\
+    &= \frac{-24\pm\sqrt{960}}{-32} \\
+    &= \frac{-24\pm8\sqrt{15}}{-32} \\
+    &= \frac{3\pm\sqrt{15}}{4} \\
+    &\approx 1.72\text{ s} \quad\text{(reject the negative root)}
+\end{work}
 \end{notesbox}
 
-\begin{notesbox}{3. The Line of Best Fit (Regression Line)}
-Technology also returns the \textbf{line of best fit} $\hat y=ax+b$ --- the single line that best summarizes
-the trend. The hat on $\hat y$ means it is a \emph{predicted} value. For the free-throw data, technology
-gives
-\[ \hat y = 1.5x + 2, \qquad r = 0.96. \]
-\begin{center}
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-0.5}{9}{-0.5}{15}
-  \draw[very thick, forest] (0,2)--(8.5,14.75);
-  \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
-\end{tikzpicture}
-\end{center}
-\textbf{Interpret in context (this is the point):}
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item The \textbf{slope} $a=1.5$ means each additional hour of practice is associated with about
-        \ans{$1.5$} more free throws made.
-  \item The \textbf{$y$-intercept} $b=2$ is the predicted free throws for a player who practices
-        \ans{$0$} hours --- a \emph{baseline}.
-  \item Is $r=0.96$ a strong or weak fit? \ans{strong}, because $|r|$ is close to \ans{$1$}.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{4. Predicting --- and Its Limits}
-To \textbf{predict}, substitute an $x$ into $\hat y=ax+b$.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Predict for $x=6$ hours:
-        \begin{work}
-          \hat y &= 1.5(6) + 2 \\
-                 &= 9 + 2      \\
-                 &= 11
-        \end{work}
-        The data ran from $x=1$ to $x=8$, so $x=6$ is \emph{inside} the data --- this is
-        \ans{interpolation} (interpolation / extrapolation).
-  \item Predict for $x=12$ hours:
-        \begin{work}
-          \hat y &= 1.5(12) + 2 \\
-                 &= 18 + 2      \\
-                 &= 20
-        \end{work}
-        But only $15$ shots were attempted, so $20$ is \ans{unreasonable} (reasonable / unreasonable).
-        Predicting \emph{outside} the data is \ans{extrapolation}, and the trend may break down.
-  \item \textbf{Correlation $\ne$ causation.} In summer, ice-cream sales and pool drownings both rise, so
-        $r>0$ --- but ice cream does not \emph{cause} drownings. The real cause (\emph{hot weather}) is a
-        \ans{lurking} variable. A strong $r$ shows the variables \ans{move} together, not that one
-        \ans{causes} the other.
-\end{itemize}
-\end{notesbox}
-
-\boxguard[32]
 \begin{practicebox}
-A study relates \textbf{daily minutes of exercise} ($x$) to \textbf{resting heart rate in bpm} ($y$).
-Technology gives $\hat y = -0.4x + 78$ with $r=-0.88$.
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item Is the association positive or negative, strong or weak? \ans{negative, strong ($|r|=0.88$)}
-  \item Interpret the slope $-0.4$ in context.
-        \ansline{each additional minute of daily exercise is associated with about $0.4$ bpm lower resting heart rate}
-  \item Predict the resting heart rate for $x=30$ minutes.
-        \begin{work}
-          \hat y &= -0.4(30) + 78 \\
-                 &= -12 + 78      \\
-                 &= 66
-        \end{work}
-  \item The data ran from $x=0$ to $x=45$ minutes. Is the $x=30$ prediction interpolation or extrapolation?
-        \ans{interpolation} \; Does a strong $r$ prove exercise \emph{causes} a lower heart rate? \ans{no}
+\textbf{Solve with the quadratic formula. Simplify; use $a+bi$ when needed.}
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
+  \item $x^2+2x-5=0$
+    \begin{work}
+      x &= \frac{-2\pm\sqrt{2^2-4(1)(-5)}}{2(1)} \\
+        &= \frac{-2\pm\sqrt{24}}{2} \\
+        &= \frac{-2\pm2\sqrt{6}}{2} \\
+        &= -1\pm\sqrt{6}
+    \end{work}
+  \item $2x^2-4x+3=0$
+    \begin{work}
+      x &= \frac{4\pm\sqrt{(-4)^2-4(2)(3)}}{2(2)} \\
+        &= \frac{4\pm\sqrt{-8}}{4} \\
+        &= \frac{4\pm2i\sqrt{2}}{4} \\
+        &= 1\pm\frac{\sqrt{2}}{2}i
+    \end{work}
+  \item Discriminant only: how many/what type of roots does $9x^2-6x+1=0$ have? \ans{$b^2-4ac=0$: one repeated real root}
 \end{enumerate}
 \end{practicebox}
 

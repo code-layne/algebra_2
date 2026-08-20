@@ -1,29 +1,16 @@
-%! Unit 1: Foundations --- Algebra 1 Review — Summative Assessment — Unit Test (blank)
+%! Unit 1: Linear Functions — Summative Assessment — Unit Test (blank)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\setlength{\workrowsep}{10pt}   % handwriting room; moves blank and key together
-
-% Pre-drawn coordinate grid; #1 receives the plotted line and any overlay.
-\newcommand{\gridplot}[1]{%
-  \begin{tikzpicture}[x=0.30cm, y=0.19cm]
-    \draw[step=1, linegray!45, very thin] (-5,-7) grid (5,7);
-    \draw[->, charcoal, thick] (-5.4,0) -- (5.4,0) node[right, font=\scriptsize] {$x$};
-    \draw[->, charcoal, thick] (0,-7.4) -- (0,7.4) node[above, font=\scriptsize] {$y$};
-    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
-    \foreach \t in {-6,-4,-2,2,4,6} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
-    #1
-  \end{tikzpicture}}
-
-% Pre-drawn number line from -6 to 6; #1 receives the graphed solution.
-\newcommand{\numline}[1]{%
-  \begin{tikzpicture}[x=0.55cm, y=0.55cm]
-    \draw[<->, charcoal, thick] (-6.7,0) -- (6.7,0);
-    \foreach \t in {-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6} {
-      \draw[charcoal] (\t,-0.16) -- (\t,0.16);
-      \node[below=1pt, font=\tiny] at (\t,-0.16) {$\t$};}
-    #1
-  \end{tikzpicture}}
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
+\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
+\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
 
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
@@ -33,358 +20,161 @@
 
 \begin{document}
 
-\pageheader{Unit 1: Foundations --- Algebra 1 Review}{Unit Test}
+\pageheader{Unit 1: Linear Functions}{Unit Test}
 \namedateperiod
 
 \vspace{0.06in}
-\noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so. A wrong answer
-with a right idea can still earn credit; a right answer with no work may not. Each solve has ruled
-space sized to the work it takes --- use it.
+\noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so.
 
 % ======================================================================
-\boxguard[8]
 \parthead{Part A --- Vocabulary (8 pts)}
 Write the letter of the best description next to each term.
 
 \vspace{4pt}
 \noindent
-\begin{minipage}[t]{0.34\textwidth}
+\begin{minipage}[t]{0.42\textwidth}
 \begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
-  \item Rational number \blank{1.2cm}
-  \item Associative property \blank{1.2cm}
-  \item Factor completely \blank{1.2cm}
-  \item Identity \blank{1.2cm}
-  \item Zero product property \blank{1.2cm}
-  \item Radicand \blank{1.2cm}
+  \item Correlation coefficient \blank{1.2cm}
+  \item Axis of symmetry \blank{1.2cm}
+  \item Rate of change \blank{1.2cm}
+  \item Extrapolation \blank{1.2cm}
+  \item Slope \blank{1.2cm}
+  \item Vertex \blank{1.2cm}
   \item Zero of a function \blank{1.2cm}
-  \item Parallel lines \blank{1.2cm}
+  \item Piecewise function \blank{1.2cm}
 \end{enumerate}
 \end{minipage}%
 \hfill
-\begin{minipage}[t]{0.63\textwidth}
+\begin{minipage}[t]{0.55\textwidth}
 \small
 \begin{description}[leftmargin=1.4em, itemsep=3pt]
-  \item[(A)] An equation true for every real number, so its solution set is all real numbers.
-  \item[(B)] The expression written underneath the radical symbol.
-  \item[(C)] Two distinct lines with equal slopes, so they never meet.
-  \item[(D)] A real number that can be written as a ratio of two integers; its decimal terminates or repeats.
-  \item[(E)] If a product equals $0$, then at least one factor equals $0$ --- the rule that turns a factored quadratic into solutions.
-  \item[(F)] The property that lets you re-group terms without moving any of them past another.
-  \item[(G)] To rewrite an expression as a product --- GCF first --- until no factor breaks down further over the integers.
-  \item[(H)] An input whose output is $0$; also a solution of $f(x)=0$ and an $x$-intercept of the graph.
+  \item[(A)] The turning point of a V-shaped (absolute value) graph, where it changes direction.
+  \item[(B)] A number $r$ between $-1$ and $1$ measuring the direction and strength of a linear association.
+  \item[(C)] An $x$-value where $f(x)=0$; the graph's $x$-intercept.
+  \item[(D)] The constant ratio $\dfrac{\Delta y}{\Delta x}$ --- how fast $y$ changes per unit of $x$.
+  \item[(E)] Predicting \emph{outside} the range of the data used to build the model.
+  \item[(F)] A function defined by different rules on different intervals of its domain.
+  \item[(G)] The steepness of a line, $\dfrac{\text{rise}}{\text{run}}$.
+  \item[(H)] The vertical line $x=h$ that splits an absolute value graph into mirror halves.
 \end{description}
 \end{minipage}
 
 % ======================================================================
-\boxguard[8]
 \parthead{Part B --- Multiple Choice (12 pts)}
 Circle the best answer.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
-  \item Which property justifies the step $2\cdot(5x)=(2\cdot 5)x$?
-    \\[3pt]\hspace*{1.2em} (A) Commutative property of multiplication
-    \hspace{0.6cm} (B) Associative property of multiplication
-    \\[2pt]\hspace*{1.2em} (C) Distributive property
-    \hspace{3.15cm} (D) Multiplicative identity
-  \item Simplified with no negative exponents, $\dfrac{28p^6q^{-1}}{7p^2q^3}$ is
-    \hfill (A) $\dfrac{4p^4}{q^4}$ \quad (B) $\dfrac{4p^4}{q^2}$ \quad (C) $4p^4q^4$ \quad (D) $\dfrac{21p^4}{q^4}$
-  \item The solution of $-5x+4\ge 24$ is
-    \hfill (A) $x\ge -4$ \quad (B) $x\le -4$ \quad (C) $x\le 4$ \quad (D) $x\ge 4$
-  \item How many \emph{real} solutions does $3x^2-2x+5=0$ have?
-    \hfill (A) two \quad (B) one \quad (C) none \quad (D) infinitely many
-  \item Which relation is \emph{not} a function?
-    \\[3pt]\hspace*{1.2em} (A) $\{(-3,5),(0,5),(2,5),(6,5)\}$
-    \hspace{0.9cm} (B) $\{(4,-2),(4,3),(7,1)\}$
-    \\[2pt]\hspace*{1.2em} (C) $\{(-2,4),(-1,1),(0,0),(1,1)\}$
-    \hspace{0.9cm} (D) $y=5x+2$
-  \item \textbf{SOL-style.} Which equation represents the line shown?
-    \begin{center}
-    \begin{tabular}{@{}c l@{}}
-    \gridplot{\draw[forest, very thick, domain=-5:5, smooth, variable=\x] plot ({\x},{0.5*\x+3});}
-    &
-    \begin{minipage}[c]{0.46\linewidth}
-    \begin{enumerate}[label=(\Alph*), leftmargin=1.7em, itemsep=3pt]
-      \item $y=2x+3$
-      \item $y=\tfrac12 x+3$
-      \item $y=-\tfrac12 x+3$
-      \item $y=\tfrac12 x-3$
-    \end{enumerate}
-    \end{minipage}
-    \\
-    \end{tabular}
-    \end{center}
+  \item The slope of the line through $(3,\,-1)$ and $(-1,\,7)$ is
+    \hfill (A) $2$ \quad (B) $-2$ \quad (C) $\tfrac12$ \quad (D) $-\tfrac12$
+  \item The graph of $y=|x+2|-3$ is the parent $y=|x|$ shifted
+    \hfill (A) right 2, up 3 \quad (B) left 2, up 3 \quad (C) left 2, down 3 \quad (D) right 2, down 3
+  \item $\lfloor 3.7 \rfloor =$
+    \hfill (A) $4$ \quad (B) $3$ \quad (C) $-3$ \quad (D) $-4$
+  \item A data set has correlation coefficient $r=-0.94$. The linear association is best described as
+    \hfill (A) weak/none \quad (B) strong positive \quad (C) strong negative \quad (D) perfect
+  \item Which equation is written in \textbf{point-slope form}?
+    \hfill (A) $y=3x-5$ \quad (B) $y-2=3(x-1)$ \quad (C) $3x-y=5$ \quad (D) $y=|x|+3$
+  \item The solution of $|x|>2$ is
+    \hfill (A) $x>2$ \quad (B) $-2<x<2$ \quad (C) $x<-2$ or $x>2$ \quad (D) $x<2$
 \end{enumerate}
 
 % ======================================================================
-\boxguard[8]
 \parthead{Part C --- Short Answer \& Computation (40 pts)}
 Show your work.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Numbers and justification.}
-        \\[4pt]
-        (a) Label each number \textbf{R} (rational) or \textbf{I} (irrational).
-        \\[3pt]
-        \hspace*{1.2em}$\sqrt{81}$ \blank{1.0cm} \quad $\sqrt{15}$ \blank{1.0cm} \quad
-        $-\tfrac49$ \blank{1.0cm} \quad $0.\overline{6}$ \blank{1.0cm} \quad $\sqrt[3]{7}$ \blank{1.0cm}
-        \\[4pt]
-        (b) Name the property that justifies each step.
-        \\[3pt]
-        \hspace*{1.2em}$8(x+3)=8x+24$ \blank{4.6cm}
-        \\[3pt]
-        \hspace*{1.2em}$(2+x)+7=2+(x+7)$ \blank{4.6cm}
-        \\[3pt]
-        \hspace*{1.2em}$4x\cdot 1=4x$ \blank{4.6cm}
-        \\[4pt]
-        (c) ``The set of natural numbers is closed under division.'' Disprove it.
-        \\[2pt]
-        \writelines{2}
-
-  \item \textbf{Translate and evaluate.}
-        \\[4pt]
-        (a) Write an expression for ``four less than the square of a number $n$.'' \blank{3.2cm}
-        \\[4pt]
-        (b) Evaluate $\dfrac{|a-b|}{4}+\sqrt{c}$ \; for $a=-6$, $b=6$, $c=36$.
-        \begin{work}
-          \frac{|a-b|}{4}+\sqrt{c} &= \frac{|-6-6|}{4}+\sqrt{36} \\
-                                   &= \frac{|-12|}{4}+6 \\
-                                   &= 3+6 \\
-                                   &= 9
-        \end{work}
-        (c) Evaluate $\sqrt[3]{x}-6y$ \; for $x=-8$, $y=\tfrac13$.
-        \begin{work}
-          \sqrt[3]{x}-6y &= \sqrt[3]{-8}-6\left(\tfrac13\right) \\
-                         &= -2-2 \\
-                         &= -4
-        \end{work}
-
-  \item \textbf{Exponents and polynomial operations.}
-        \\[4pt]
-        (a) $(5m^4n)(-4m^2n^6)$
-        \begin{work}
-          (5m^4n)(-4m^2n^6) &= (5)(-4)\,m^{4+2}n^{1+6} \\
-                            &= -20m^{6}n^{7}
-        \end{work}
-        (b) $\dfrac{42u^4v^2}{7u^4v^6}$ \; (no negative exponents)
-        \begin{work}
-          \frac{42u^4v^2}{7u^4v^6} &= 6u^{4-4}v^{2-6} \\
-                                   &= 6u^{0}v^{-4} \\
-                                   &= \frac{6}{v^{4}}
-        \end{work}
-        (c) $(4x-3)(2x+5)$
-        \begin{work}
-          (4x-3)(2x+5) &= 8x^2+20x-6x-15 \\
-                       &= 8x^2+14x-15
-        \end{work}
-        (d) $(6x^2-2x+3)-(x^2+5x-4)$
-        \begin{work}
-          (6x^2-2x+3)-(x^2+5x-4) &= 6x^2-2x+3-x^2-5x+4 \\
-                                 &= 5x^2-7x+7
-        \end{work}
-
-  \item \textbf{Factor completely.} GCF first, every time.
-        \\[4pt]
-        (a) $2x^2-50$
-        \begin{work}
-          2x^2-50 &= 2(x^2-25) \\
-                  &= 2(x-5)(x+5)
-        \end{work}
-        (b) $x^2-4x-21$
-        \begin{work}
-          x^2-4x-21 &= (x-7)(x+3)
-        \end{work}
-        (c) $3x^2+11x+6$
-        \begin{work}
-          3x^2+11x+6 &= 3x^2+9x+2x+6 \\
-                     &= 3x(x+3)+2(x+3) \\
-                     &= (3x+2)(x+3)
-        \end{work}
-        (d) $5x^3-25x^2+30x$
-        \begin{work}
-          5x^3-25x^2+30x &= 5x(x^2-5x+6) \\
-                         &= 5x(x-2)(x-3)
-        \end{work}
-
-  \item \textbf{Radicals and rational exponents.}
-        \\[4pt]
-        (a) $\sqrt{98}=$ \blank{2.4cm} \hspace{1.2cm}
-        (b) $\sqrt[3]{24}=$ \blank{2.4cm}
-        \\[4pt]
-        (c) Write $\sqrt{x^5}$ with a rational exponent. \blank{2.6cm}
-        \\[4pt]
-        (d) Write $27^{2/3}$ as a radical, then evaluate it. \blank{4.6cm}
-        \\[4pt]
-        (e) $\sqrt{8}+\sqrt{32}=$
-        \begin{work}
-          \sqrt{8}+\sqrt{32} &= 2\sqrt{2}+4\sqrt{2} \\
-                             &= 6\sqrt{2}
-        \end{work}
-
-  \item \textbf{Linear equations and inequalities.}
-        \\[4pt]
-        (a) Solve $5(2x-3)=6x+9$.
-        \begin{work}
-          5(2x-3) &= 6x+9 \\
-           10x-15 &= 6x+9 \\
-            4x-15 &= 9 \\
-               4x &= 24 \\
-                x &= 6
-        \end{work}
-        (b) Classify each solution set as \textbf{one solution}, \textbf{no solution}, or
-        \textbf{infinitely many}. You should not need to finish solving.
-        \\[3pt]
-        \hspace*{1.2em}$2x-5=2x+1$ \blank{3.6cm} \hspace{0.8cm}
-        $3(x+4)=3x+12$ \blank{3.6cm}
-        \\[4pt]
-        (c) Solve $V=\tfrac13 Bh$ for $h$.
-        \begin{work}
-             V &= \tfrac13 Bh \\
-            3V &= Bh \\
-          \frac{3V}{B} &= h
-        \end{work}
-        (d) Solve $-4x-3<9$, then graph the solution on the number line.
-        \begin{work}
-          -4x-3 &< 9 \\
-            -4x &< 12 \\
-              x &> -3
-        \end{work}
-        \begin{center}\numline{}\end{center}
-
-  \item \textbf{Quadratic equations.}
-        \\[4pt]
-        (a) Solve by factoring: $x^2+2x-8=0$
-        \begin{work}
-            x^2+2x-8 &= 0 \\
-          (x+4)(x-2) &= 0 \\
-            x=-4 \quad&\text{or}\quad x=2
-        \end{work}
-        (b) Solve by square roots: $(x+2)^2=36$
-        \begin{work}
-          (x+2)^2 &= 36 \\
-              x+2 &= \pm 6 \\
-              x=4 \quad&\text{or}\quad x=-8
-        \end{work}
-        (c) Solve with the quadratic formula: $x^2+6x-3=0$ \; (exact answer)
-        \begin{work}
-          x &= \frac{-6\pm\sqrt{6^2-4(1)(-3)}}{2(1)} \\
-            &= \frac{-6\pm\sqrt{36+12}}{2} \\
-            &= \frac{-6\pm\sqrt{48}}{2} \\
-            &= \frac{-6\pm 4\sqrt{3}}{2} \\
-            &= -3\pm 2\sqrt{3}
-        \end{work}
-        (d) \emph{Without solving}, use the discriminant to say how many real solutions
-        $x^2-10x+25=0$ has.
-        \\[2pt] \hspace*{1.2em}Discriminant: \blank{3.4cm} \quad
-        Number of real solutions: \blank{4.0cm}
-
-  \item \textbf{Read the graph.} The linear function $g$ is graphed below; each gridline is one unit.
+  \item \textbf{Read the graph.} The line $f$ is shown below.
         \begin{center}
-        \gridplot{\draw[forest, very thick, domain=-2.4:3.4, smooth, variable=\x] plot ({\x},{-2*\x+2});}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-2}{6}{-5}{3}
+          \draw[very thick, forest] (-1,-4)--(5,2);
+          \fill[charcoal] (0,-3) circle (3pt);
+          \fill[charcoal] (3,0) circle (3pt);
+        \end{tikzpicture}
         \end{center}
-        (a) $g(-2)=$ \blank{1.8cm} \hspace{1.2cm}
-        (b) Solve $g(x)=0$: \; $x=$ \blank{1.8cm}
+        Give the $y$-intercept: \blank{1.6cm}; \quad the zero ($x$-intercept): \blank{1.6cm}; \quad
+        the slope: \blank{1.6cm}. \quad Is $f$ increasing or decreasing? \blank{2.4cm}
+
+  \item \textbf{Write the equation.} Find the equation of the line through $(2,\,5)$ and $(4,\,1)$.
+        Write it in slope-intercept form $y=mx+b$.
+        \vspace{2.0cm}
+
+  \item \textbf{Absolute value transformations.} For $g(x)=|x+3|-4$, state the vertex, the axis of
+        symmetry, whether the graph opens up or down, and the maximum or minimum value.
+        \vspace{1.8cm}
+
+  \item \textbf{Solve.} Solve the absolute value equation. Show both cases.
+        \[ |2x+3| = 11 \]
+        \vspace{2.0cm}
+
+  \item \textbf{Solve and express three ways.} Solve $|x-2|< 5$. Write the solution as an inequality
+        and in interval notation, then graph it on the number line.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \draw[->,semithick,charcoal] (-8,0)--(8,0);
+          \foreach \x in {-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7}
+            \draw[charcoal] (\x,0.15)--(\x,-0.15) node[below, font=\scriptsize]{$\x$};
+        \end{tikzpicture}
+        \end{center}
+        \vspace{0.4cm}
+
+  \item \textbf{Evaluate a piecewise function.} Let
+        $f(x)=\begin{cases} x-3, & x\le 0 \\ 2x, & x>0 \end{cases}$
         \\[4pt]
-        (c) That number in (b) is called the \blank{2.6cm} of $g$, and on the graph it is the
-        point \blank{2.2cm}.
+        $f(-2)=\blank{1.4cm}$ \qquad $f(0)=\blank{1.4cm}$ \qquad $f(3)=\blank{1.4cm}$
         \\[4pt]
-        (d) Slope: \blank{1.8cm}; \quad $y$-intercept: \blank{2.0cm}; \quad
-        equation of $g$: \blank{3.2cm}
-        \\[4pt]
-        (e) Is $g$ increasing or decreasing? \blank{2.6cm} \quad Domain: \blank{2.4cm}
-        \\[4pt]
-        (f) Write the equation of the line through $(0,-4)$ \textbf{parallel} to $g$
-        \blank{3.2cm}, and the line through $(0,3)$ \textbf{perpendicular} to $g$
-        \blank{3.2cm}.
+        Which piece did you use for $f(0)$, and how do you know? \blank{5.0cm}
+
+  \item \textbf{Read a piecewise graph.} The function $h$ is shown below.
+        \begin{center}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-3}{4}{-3}{4}
+          \draw[very thick, forest] (-3,-2)--(0,1);
+          \closeddot{0}{1}
+          \draw[very thick, forest] (0,3)--(3.5,3);
+          \opendot{0}{3}
+        \end{tikzpicture}
+        \end{center}
+        $h(2)=\blank{1.2cm}$; \quad $h(0)=\blank{1.2cm}$. \quad Is $h$ continuous at $x=0$? Explain.
+        \blank{4.5cm}
+
+  \item \textbf{Linear regression.} A study of $x=$ age of a used car (years, from $2$ to $12$) and
+        $y=$ price (in \$1000s) gives the line of best fit
+        \[ \hat y = -1.8x + 30. \]
+        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+          \item Interpret the slope $-1.8$ in context. \blank{6.0cm}
+          \item Predict the price of a $5$-year-old car: $\hat y=\blank{2.0cm}$ (that is \$\blank{1.8cm}).
+          \item Is predicting the price at $x=25$ years interpolation or extrapolation? Why might that
+                prediction be unreliable? \blank{5.0cm}
+        \end{enumerate}
 \end{enumerate}
 
 % ======================================================================
-\boxguard[8]
 \parthead{Part D --- Extended Response (12 pts)}
 Explain your reasoning in full sentences.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=14pt]
-  \item \textbf{Three families, five questions.} Each table below is generated by a linear, a
-        quadratic, or an exponential rule.
+\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
+  \item The absolute value function $g(x)=|x+2|-3$ is graphed below.
         \begin{center}
-        \renewcommand{\arraystretch}{1.25}
-        \begin{tabular}{@{}c@{\hspace{1.1cm}}c@{\hspace{1.1cm}}c@{}}
-        \begin{tabular}{@{}c|c@{}}
-          $x$ & $A(x)$ \\ \hline
-          $0$ & $2$ \\ $1$ & $7$ \\ $2$ & $12$ \\ $3$ & $17$ \\
-        \end{tabular}
-        &
-        \begin{tabular}{@{}c|c@{}}
-          $x$ & $B(x)$ \\ \hline
-          $0$ & $1$ \\ $1$ & $3$ \\ $2$ & $9$ \\ $3$ & $27$ \\
-        \end{tabular}
-        &
-        \begin{tabular}{@{}c|c@{}}
-          $x$ & $C(x)$ \\ \hline
-          $0$ & $4$ \\ $1$ & $5$ \\ $2$ & $8$ \\ $3$ & $13$ \\
-        \end{tabular}
-        \\
-        \end{tabular}
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-7}{3}{-4}{3}
+          \draw[very thick, forest] (-6,1)--(-2,-3)--(2,1);
+          \fill[charcoal] (-2,-3) circle (3.5pt);
+          \fill[charcoal] (-5,0) circle (3pt);
+          \fill[charcoal] (1,0) circle (3pt);
+        \end{tikzpicture}
         \end{center}
-        \textbf{(a)} Name the family of each table and give the numerical evidence --- constant
-        difference, constant \emph{second} difference, or constant ratio.
-        \\[2pt]
-        \writelines{3}
-        \textbf{(b)} Write a rule for each function.
-        \\[4pt]
-        \hspace*{1.2em}$A(x)=$ \blank{3.0cm} \quad $B(x)=$ \blank{3.0cm} \quad $C(x)=$ \blank{3.0cm}
-        \\[6pt]
-        \textbf{(c)} Which function is largest at $x=1$? At $x=4$? Show the values.
-        \begin{work}
-          A(1)=7, \quad B(1)&=3, \quad C(1)=5 \\
-          A(4)=22, \quad B(4)&=81, \quad C(4)=20
-        \end{work}
-        \textbf{(d)} A classmate says ``$B$ is just the biggest one.'' Use your answers to (c) to
-        explain why ``which is bigger'' is not a fair question until someone says \emph{where}.
-        \\[2pt]
-        \writelines{3}
-        \textbf{(e)} If $B$ modeled a population of bacteria in hours, what domain would make sense,
-        and why is that narrower than the domain of the rule by itself?
-        \\[2pt]
-        \writelines{3}
+        \textbf{(a)} State the two zeros of $g$.
+        \textbf{(b)} On what interval is $g(x)<0$ (the function negative)? On what set is $g(x)>0$?
+        \textbf{(c)} Using the zeros, explain \emph{why} the sign of $g$ switches where it does.
+        \vspace{2.6cm}
 
-  \item \textbf{Modeling and solution sets.} Two shops quote a price for printing team shirts.
-        \\[3pt]
-        \hspace*{1.2em}\textbf{Ridgeway:} a one-time \$30 setup fee, then \$8 per shirt.
-        \\[2pt]
-        \hspace*{1.2em}\textbf{Lakeside:} no setup fee, \$14 per shirt.
-        \\[4pt]
-        \textbf{(a)} Write a function for the total cost at each shop for $s$ shirts.
-        \\[4pt]
-        \hspace*{1.2em}$R(s)=$ \blank{3.6cm} \hspace{1.4cm} $L(s)=$ \blank{3.6cm}
-        \\[6pt]
-        \textbf{(b)} Find the number of shirts at which the two costs are equal. Show every step.
-        \begin{work}
-          8s+30 &= 14s \\
-             30 &= 6s \\
-              5 &= s
-        \end{work}
-        Name the property of equality that justifies each step above.
-        \\[3pt]
-        \hspace*{1.2em}Step 1: \blank{5.4cm} \quad Step 2: \blank{5.4cm}
-        \\[6pt]
-        \textbf{(c)} Verify your answer by substituting it into \emph{both} functions.
-        \begin{work}
-          R(5) &= 8(5)+30 = 70 \\
-          L(5) &= 14(5) = 70
-        \end{work}
-        \textbf{(d)} Which shop is cheaper for $3$ shirts? For $20$ shirts? Give the costs.
-        \begin{work}
-          R(3)=54, \quad L(3)&=42 \\
-          R(20)=190, \quad L(20)&=280
-        \end{work}
-        \textbf{(e)} Suppose Lakeside changed its quote to a \$30 setup fee plus \$8 per shirt.
-        Setting the two costs equal would give $8s+30=8s+30$. What is the solution set, what is
-        that kind of equation called, and what does it mean about the two shops?
-        \\[2pt]
-        \writelines{3}
-        \textbf{(f)} What domain makes sense for $s$ in this situation, and why?
-        \\[2pt]
-        \writelines{2}
+  \item A study finds that students who spend more time on social media tend to have lower GPAs, with
+        correlation coefficient $r=-0.78$.
+        \textbf{(a)} Describe the direction and strength of this association.
+        \textbf{(b)} Does this prove that social media \emph{causes} lower GPAs? Explain the difference
+        between correlation and causation, and give one lurking variable that could explain the pattern.
+        \vspace{2.6cm}
 \end{enumerate}
 
 \end{document}

@@ -1,10 +1,18 @@
-%! Simplifying Radicals; Adding \& Subtracting — Unit 6, Lesson 6.2 — Group Activity (Answer Key)
+%! Graphing Exponential Functions and Transformations — Unit 6, Lesson 6.2 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
-\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% g(x) = a*b^(x-h) + k plotted as a*exp((ln b)(x-h))+k.
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax
+% ln2 = 0.693147   ln3 = 1.098612   ln(1/2) = -0.693147
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+\newcommand{\hasym}[3]{\draw[navy, dashed, semithick] (#1,#3)--(#2,#3);}
 
 \begin{document}
 
@@ -14,222 +22,261 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Hiding in Plain Sight.} Two radicals that look nothing alike can be the same radical
-wearing different clothes --- and you will never know until you simplify them. With your partner,
-simplify \emph{first} and decide \emph{second}. Say out loud which perfect power you pulled out and
-why it was the largest one. Assume all variables represent \textbf{positive} real numbers.
+\small\textbf{Move It --- and Say What Moved.} Every problem below starts from a parent $y=b^{x}$ and
+does something to it. For each one, your partner should be able to stop you and ask the two questions
+that decide everything: \textbf{did the asymptote move?} and \textbf{what is the range now?} If a
+transformation did not move the dashed line, it did not change the range either.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. Find the largest perfect square, then simplify.} The first row is done for you.
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}l X X X@{}}
-\hline
-\textbf{Radical} & \textbf{Largest perfect square factor} & \textbf{Rewrite} & \textbf{Simplified} \\
-\hline
-$\sqrt{18}$  & $9$ & $\sqrt{9\cdot 2}$ & $3\sqrt2$ \\
-$\sqrt{32}$  & \ans{$16$} & \ans{$\sqrt{16\cdot 2}$} & \ans{$4\sqrt2$} \\
-$\sqrt{44}$  & \ans{$4$}  & \ans{$\sqrt{4\cdot 11}$} & \ans{$2\sqrt{11}$} \\
-$\sqrt{75}$  & \ans{$25$} & \ans{$\sqrt{25\cdot 3}$} & \ans{$5\sqrt3$} \\
-$\sqrt{90}$  & \ans{$9$}  & \ans{$\sqrt{9\cdot 10}$} & \ans{$3\sqrt{10}$} \\
-$\sqrt{128}$ & \ans{$64$} & \ans{$\sqrt{64\cdot 2}$} & \ans{$8\sqrt2$} \\
-\hline
-\end{tabularx}
-\end{center}
-
-\vspace{3pt}
-\textbf{2. Finished, or not finished?} Mark each \textbf{D} (done --- already in simplest form) or
-\textbf{N} (not done). If it is N, finish it.
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
-(a) \; $3\sqrt5$ \quad \ans{D} &
-(b) \; $2\sqrt{12}$ \quad \ans{N} \; \ans{$4\sqrt3$} &
-(c) \; $\sqrt{15}$ \quad \ans{D} \\
-(d) \; $5\sqrt{8}$ \quad \ans{N} \; \ans{$10\sqrt2$} &
-(e) \; $\sqrt[3]{9}$ \quad \ans{D} &
-(f) \; $\sqrt[3]{24}$ \quad \ans{N} \; \ans{$2\sqrt[3]{3}$} \\
-\end{tabularx}
-\end{center}
-{\small\emph{Watch (e):} $9=3^{2}$ is a perfect \emph{square}, but under a \emph{cube} root that
-buys nothing --- there is no perfect cube inside $9$, so it is already done.}
-
-\vspace{3pt}
-\textbf{3. Find the families.} Simplify all six, then sort them into two groups of like radicals.
+\textbf{Part 1 --- What moved?} Every row starts from the parent $y=3^{x}$, whose asymptote is $y=0$
+and whose range is $(0,\infty)$.
 \begin{center}
 \renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
-$\sqrt{12}=$ \ans{$2\sqrt3$} & $\sqrt{50}=$ \ans{$5\sqrt2$} & $\sqrt{27}=$ \ans{$3\sqrt3$} \\
-$\sqrt{8}=$ \ans{$2\sqrt2$} & $\sqrt{75}=$ \ans{$5\sqrt3$} & $\sqrt{32}=$ \ans{$4\sqrt2$} \\
+\begin{tabularx}{\linewidth}{@{}l X l X@{}}
+\hline
+\textbf{Function} & \textbf{Move(s) from the parent} & \textbf{Asymptote} & \textbf{Range} \\
+\hline
+$y=3^{x}+4$ & \ans{up $4$} & \ans{$y=4$} & \ans{$(4,\infty)$} \\
+$y=3^{\,x-2}$ & \ans{right $2$} & \ans{$y=0$} & \ans{$(0,\infty)$} \\
+$y=3^{x}-5$ & \ans{down $5$} & \ans{$y=-5$} & \ans{$(-5,\infty)$} \\
+$y=-3^{x}$ & \ans{flip over the $x$-axis} & \ans{$y=0$} & \ans{$(-\infty,0)$} \\
+\hline
 \end{tabularx}
 \end{center}
-\begin{itemize}[leftmargin=1.6em, itemsep=3pt]
-  \item The $\sqrt{3}$ family: \ans{$\sqrt{12},\ \sqrt{27},\ \sqrt{75}$} \; Their sum: \ans{$10\sqrt3$}
-  \item The $\sqrt{2}$ family: \ans{$\sqrt{50},\ \sqrt{8},\ \sqrt{32}$} \; Their sum: \ans{$11\sqrt2$}
-\end{itemize}
+Two of those four rows have the same asymptote as the parent. Which two, and what do they have in
+common? \ans{Rows 2 and 4 --- neither one is a \emph{vertical shift}.}
 
-\vspace{2pt}
-\textbf{4.} Why can the two sums above not be combined into a single term? \ansline{They are not
-like radicals --- one has radicand $3$ and the other has radicand $2$. It is the same reason
-$10a+11b$ stays as it is: there is nothing to collect. $10\sqrt3+11\sqrt2$ is already in simplest
-form.}
+\vspace{6pt}
+\textbf{Part 2 --- One function, all the way through.} Let $g(x)=2^{x}+3$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Parent function: $y=$ \ans{$2^{x}$} \quad Move: \ans{up $3$}
+  \item Horizontal asymptote: $y=$ \ans{3}
+  \item Fill in the table. (Remember $2^{-1}=\frac12$ and $2^{-2}=\frac14$.)
+    \begin{center}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ \\ \hline
+    $g(x)$ & \ans{3.25} & \ans{3.5} & \ans{4} & \ans{5} & \ans{7} \\ \hline
+    \end{tabular}
+    \end{center}
+  \item $y$-intercept: \ans{$(0,4)$} \quad Range: \ans{$(3,\infty)$}
+  \item Every output in your table is bigger than $3$. Will \emph{any} input ever give an output of
+        exactly $3$? Why not? \ans{No --- $2^{x}$ is always positive, never $0$, so $2^{x}+3>3$ always.}
+  \item Does this graph have an $x$-intercept? Explain using the asymptote.
+        \ans{No. The whole graph sits above $y=3$, which is already above the $x$-axis.}
+\end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{1. Simplify completely.}
+\textbf{Part 1 --- Match, then read.} Each graph below is a transformation of $y=2^{x}$. The dashed
+line is the horizontal asymptote.
 \begin{center}
-\renewcommand{\arraystretch}{2.0}
-\begin{tabularx}{\linewidth}{@{}X X X@{}}
-(a) \; $\sqrt{162}=$ \ans{$9\sqrt2$} &
-(b) \; $\sqrt[3]{128}=$ \ans{$4\sqrt[3]{2}$} &
-(c) \; $\sqrt{48x^{7}}=$ \ans{$4x^{3}\sqrt{3x}$} \\
-(d) \; $\sqrt[3]{81y^{8}}=$ \ans{$3y^{2}\sqrt[3]{3y^{2}}$} &
-(e) \; $\sqrt{\dfrac{45}{4}}=$ \ans{$\dfrac{3\sqrt5}{2}$} &
-(f) \; $\dfrac{\sqrt{98}}{\sqrt{2}}=$ \ans{$7$} \\
+\begin{tikzpicture}[scale=0.28]
+  % P: y = 2^x + 2
+  \begin{scope}
+    \lgrid{-2}{5}{-4}{8}
+    \begin{scope}\clip (-2,-4) rectangle (5,8); \expgraph{1}{0.693147}{0}{2}{-2}{5} \end{scope}
+    \hasym{-2}{5}{2}
+    \node[charcoal, font=\small] at (1.5,-5.6) {\textbf{P}};
+  \end{scope}
+  % Q: y = 2^x - 2
+  \begin{scope}[xshift=9.5cm]
+    \lgrid{-2}{5}{-4}{8}
+    \begin{scope}\clip (-2,-4) rectangle (5,8); \expgraph{1}{0.693147}{0}{-2}{-2}{5} \end{scope}
+    \hasym{-2}{5}{-2}
+    \node[charcoal, font=\small] at (1.5,-5.6) {\textbf{Q}};
+  \end{scope}
+  % R: y = 2^(x-2)
+  \begin{scope}[xshift=19cm]
+    \lgrid{-2}{5}{-4}{8}
+    \begin{scope}\clip (-2,-4) rectangle (5,8); \expgraph{1}{0.693147}{2}{0}{-2}{5} \end{scope}
+    \hasym{-2}{5}{0}
+    \node[charcoal, font=\small] at (1.5,-5.6) {\textbf{R}};
+  \end{scope}
+  % S: y = 2^(-x)
+  \begin{scope}[xshift=28.5cm]
+    \lgrid{-2}{5}{-4}{8}
+    \begin{scope}\clip (-2,-4) rectangle (5,8); \expgraph{1}{-0.693147}{0}{0}{-2}{5} \end{scope}
+    \hasym{-2}{5}{0}
+    \node[charcoal, font=\small] at (1.5,-5.6) {\textbf{S}};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+\vspace{2pt}
+Write the letter of the matching graph, then fill in the last two columns from the \emph{equation}.
+\begin{center}
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\hline
+\textbf{Equation} & \textbf{Graph} & \textbf{Asymptote} & \textbf{Range} \\
+\hline
+$y=2^{x}+2$ & \ans{P} & \ans{$y=2$} & \ans{$(2,\infty)$} \\
+$y=2^{x}-2$ & \ans{Q} & \ans{$y=-2$} & \ans{$(-2,\infty)$} \\
+$y=2^{\,x-2}$ & \ans{R} & \ans{$y=0$} & \ans{$(0,\infty)$} \\
+$y=2^{-x}$ & \ans{S} & \ans{$y=0$} & \ans{$(0,\infty)$} \\
+\hline
 \end{tabularx}
 \end{center}
-{\small\emph{Work:} (a) $162=81\cdot2$. \; (b) $128=64\cdot2$. \; (c) $48=16\cdot3$ and
-$x^{7}=x^{6}\cdot x$. \; (d) $81=27\cdot3$ and $y^{8}=y^{6}\cdot y^{2}$ (divide $8$ by $3$:
-quotient $2$, remainder $2$). \; (e) $\sqrt{45}/\sqrt4=3\sqrt5/2$. \; (f) run the quotient property
-backwards: $\sqrt{98/2}=\sqrt{49}$.}
+Exactly one of those four graphs has an $x$-intercept. Which one, and why is it the only one?
+\ans{Q --- it is the only one whose asymptote sits \emph{below} the $x$-axis, so its range includes $0$.}
 
-\vspace{3pt}
-\textbf{2. Combine.} Simplify every term \emph{first}, then collect like radicals.
+\vspace{6pt}
+\textbf{Part 2 --- Backwards: from the graph to the equation.} The curve has the form
+$y=a\,b^{x}+k$.
 \begin{center}
-\renewcommand{\arraystretch}{2.0}
-\begin{tabularx}{\linewidth}{@{}X X@{}}
-(a) \; $2\sqrt{18}+3\sqrt{50}=$ \ans{$21\sqrt2$} &
-(b) \; $\sqrt{80}-\sqrt{45}+\sqrt{20}=$ \ans{$3\sqrt5$} \\
-(c) \; $\sqrt{27x}+\sqrt{12x}=$ \ans{$5\sqrt{3x}$} &
-(d) \; $4\sqrt{24}-\sqrt{54}+\sqrt{6}=$ \ans{$6\sqrt6$} \\
-\end{tabularx}
+\begin{minipage}[c]{0.42\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-3}{4}{-3}{11}
+  \begin{scope}\clip (-3,-3) rectangle (4,11); \expgraph{3}{0.693147}{0}{-1}{-3}{4} \end{scope}
+  \hasym{-3}{4}{-1}
+  \node[navy, font=\scriptsize, left] at (-1.2,-1.7) {$y=-1$};
+  \fill[charcoal] (0,2) circle (3pt) node[left, font=\scriptsize]{$(0,2)$};
+  \fill[charcoal] (1,5) circle (3pt) node[right, font=\scriptsize]{$(1,5)$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.54\linewidth}
+Step 1 --- the dashed line gives $k=$ \ans{$-1$} \\[6pt]
+Step 2 --- the $y$-intercept is $a+k$, so $a=$ \ans{3} \\[6pt]
+Step 3 --- use $(1,5)$: \; $5=$ \ans{3}$\cdot b+$ \ans{$(-1)$}, so $b=$ \ans{2} \\[6pt]
+Equation: $y=$ \ans{$3(2)^{x}-1$} \\[6pt]
+Range: \ans{$(-1,\infty)$}
+\end{minipage}
 \end{center}
-{\small\emph{Work:} (a) $6\sqrt2+15\sqrt2$. \; (b) $4\sqrt5-3\sqrt5+2\sqrt5$. \;
-(c) $3\sqrt{3x}+2\sqrt{3x}$. \; (d) $8\sqrt6-3\sqrt6+\sqrt6$.}
 
-\vspace{3pt}
-\textbf{3. Find the mistake.} Each student made exactly one error. Name it and give the correct
-answer.
-\begin{center}
-\renewcommand{\arraystretch}{1.7}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
-\hline
-\textbf{Student work} & \textbf{What went wrong} & \textbf{Correct answer} \\
-\hline
-$\sqrt{20}+\sqrt{5}=\sqrt{25}=5$ & \ans{split the radical over addition --- there is no such rule} & \ans{$3\sqrt5$} \\
-$3\sqrt7+2\sqrt7=5\sqrt{14}$ & \ans{added the radicands too; only the numbers in front add} & \ans{$5\sqrt7$} \\
-$\sqrt[3]{54}=\sqrt[3]{9\cdot 6}=3\sqrt[3]{6}$ & \ans{used a perfect \emph{square} under a \emph{cube} root; $9$ does not come out} & \ans{$3\sqrt[3]{2}$} \\
-\hline
-\end{tabularx}
-\end{center}
-{\small The first student's own numbers refute them: $\sqrt{20}+\sqrt5\approx 4.47+2.24=6.71$,
-not $5$. The third student happened to write ``$3$'' outside, which looks right --- but they got it
-from $\sqrt{9}$, not from $\sqrt[3]{27}$; $54=27\cdot 2$.}
-
-\vspace{3pt}
-\textbf{4. Exact beats approximate.} A rectangular garden plot measures $\sqrt{75}$ meters by
-$\sqrt{12}$ meters.
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
-  \item Write each side in simplest radical form: \; length \ans{$5\sqrt3$}, \; width \ans{$2\sqrt3$}
-  \item Find the \textbf{exact} perimeter as a single simplified radical: \ans{$14\sqrt3$ m}
-  \item Now approximate it to the nearest tenth of a meter: \ans{$\approx 24.2$ m}
-  \item Why would a builder want the answer in part (b) and not just the one in part (c)?
-        \ansline{$14\sqrt3$ is exact --- no rounding has happened yet, so it can be scaled, doubled,
-        or fed into another calculation without the error growing. $24.2$ has already thrown
-        information away, and every later step inherits that loss. Round \emph{once}, at the end.}
-\end{enumerate}
+\vspace{4pt}
+\textbf{Justify.} Nadia says $y=-5^{x}$ and $y=5^{-x}$ are ``the same thing, just written
+differently --- they both have a negative.'' She is wrong. For \emph{each} function, say which axis
+it reflects over, give its range, and say whether it is growth or decay. Then state in one sentence
+what Nadia is actually confusing.
+\ansline{$y=-5^{x}$ reflects over the \textbf{$x$}-axis. Range $(-\infty,0)$. The base is still $5$,
+so it is still a growth function --- the graph falls only because $a<0$.\\[3pt]
+$y=5^{-x}$ reflects over the \textbf{$y$}-axis. Range $(0,\infty)$, unchanged. It equals
+$\left(\frac15\right)^{x}$, so it is \textbf{decay}.\\[3pt]
+Nadia is confusing a negative on the \emph{output} (which flips the graph over the $x$-axis and moves
+the range to the other side of the asymptote) with a negative on the \emph{input} (which flips it over
+the $y$-axis and changes the base).}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Prove the error is never a lucky guess.} Everyone knows
-$\sqrt{a}+\sqrt{b}\ne\sqrt{a+b}$ ``usually.'' You are going to prove it is \emph{never} true unless
-one of the two numbers is zero. Let $a\ge 0$ and $b\ge 0$, and \emph{suppose} for a moment that
-\[
-  \sqrt{a}+\sqrt{b}=\sqrt{a+b}.
-\]
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
-  \item Square both sides. The left side is a binomial squared --- expand it carefully.
-        \ansline{$\left(\sqrt a+\sqrt b\right)^{2}=a+2\sqrt{ab}+b$, and
-        $\left(\sqrt{a+b}\right)^{2}=a+b$, so $a+2\sqrt{ab}+b=a+b$.}
-  \item Subtract $a+b$ from both sides. What is left? \ans{$2\sqrt{ab}=0$}
-  \item Solve that equation. What must be true about $a$ and $b$? \ans{$ab=0$, so $a=0$ or $b=0$}
-  \item State the conclusion in a sentence, then check it against $a=9$, $b=16$. \ansline{The two
-        sides are equal \textbf{only} when at least one of the numbers is zero; for any two
-        \emph{positive} numbers the equation is false, always. Check: $\sqrt9+\sqrt{16}=7$ while
-        $\sqrt{25}=5$, and neither $9$ nor $16$ is zero --- so of course they disagree.\\[3pt]
-        The extra term $2\sqrt{ab}$ is exactly what the mistake throws away.}
+\textbf{Part 1 --- A horizontal shift in disguise.} Exponentials do something no other family in this
+course does. Use the exponent rules from Unit 5.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Rewrite $2^{\,x-3}$ as a product: \; $2^{\,x-3}=2^{x}\cdot 2^{\,\square}$ where $\square=$
+        \ans{$-3$}, \; and $2^{\,\square}=$ \ans{$\frac18$}. \\[3pt]
+        So $2^{\,x-3}=$ \ans{$\frac18$} $\cdot\, 2^{x}$.
+  \item Check it in a table.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.35}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & $3$ & $4$ & $5$ & $6$ \\ \hline
+    $2^{\,x-3}$ & \ans{1} & \ans{2} & \ans{4} & \ans{8} \\ \hline
+    $\frac18\cdot 2^{x}$ & \ans{1} & \ans{2} & \ans{4} & \ans{8} \\ \hline
+    \end{tabular}
+    \end{center}
+  \item So for an exponential, shifting \emph{right} $3$ produces the same graph as a vertical
+        \ans{compression} by a factor of $\frac18$. Does either move change the asymptote?
+        \ans{No --- still $y=0$.}
+  \item Try the same trick on the parabola: is $(x-3)^{2}$ equal to some fixed number times $x^{2}$?
+        Test it at $x=4$ and $x=5$ and explain what goes wrong.
+        \ansline{At $x=4$: $(4-3)^{2}=1$ while $x^{2}=16$, a ratio of $\frac{1}{16}$. At $x=5$:
+        $4$ versus $25$, a ratio of $\frac{4}{25}$. The ratio is not fixed, so no.\\[3pt]
+        The trick works only for exponentials because there the input sits in the \emph{exponent},
+        where subtracting $3$ factors out as the constant $2^{-3}$.}
 \end{enumerate}
 
 \vspace{5pt}
-\textbf{Part 2 --- A staircase of radicals.} Simplify each term, then add.
-\[
-  \sqrt{2}+\sqrt{8}+\sqrt{18}+\sqrt{32}+\sqrt{50} \;=\;
-  \mans{\sqrt2}+\mans{2\sqrt2}+\mans{3\sqrt2}+\mans{4\sqrt2}+\mans{5\sqrt2}
-  \;=\; \mans{15\sqrt2}
-\]
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
-  \item Look at the radicands $2,\,8,\,18,\,32,\,50$. Write each one in the form
-        $2\cdot(\text{something})^{2}$: \ans{$2\cdot1^{2},\ 2\cdot2^{2},\ 2\cdot3^{2},\ 2\cdot4^{2},\ 2\cdot5^{2}$}
-  \item Explain in one sentence why $\sqrt{2k^{2}}=k\sqrt{2}$. \ansline{By the product property,
-        $\sqrt{2k^{2}}=\sqrt{k^{2}}\cdot\sqrt2=k\sqrt2$ for $k>0$ --- the perfect square $k^{2}$
-        comes out and the $2$ has no partner, so it stays.}
-  \item What is the \emph{next} term in the staircase, and what does it simplify to?
-        \ans{$\sqrt{72}=6\sqrt2$ \;(since $72=2\cdot 6^{2}$)}
-  \item Predict the total of the first $n$ terms, in terms of $n$: \ans{$\dfrac{n(n+1)}{2}\sqrt2$} \\
-        \emph{Hint:} you added $1+2+3+\dots$ Check your formula against the $n=5$ answer above.
-        \ansline{Every term contributes its position number, so the total is
-        $(1+2+\dots+n)\sqrt2=\frac{n(n+1)}{2}\sqrt2$. At $n=5$: $\frac{5\cdot6}{2}\sqrt2=15\sqrt2$,
-        which matches.}
-  \item Build the same staircase with $3$ in place of $2$: simplify
-        $\sqrt{3}+\sqrt{12}+\sqrt{27}+\sqrt{48}=$ \ans{$10\sqrt3$}
-\end{enumerate}
+\textbf{Part 2 --- All four moves at once.} Let $g(x)=-2(3)^{\,x-1}+5$.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+\hline
+Parent function & \ans{$y=3^{x}$} \\
+The moves, in words & \ans{right $1$; stretch vertically by $2$ and flip over the $x$-axis; up $5$} \\
+Horizontal asymptote & \ans{$y=5$} \\
+Range & \ans{$(-\infty,5)$} \\
+$y$-intercept ($g(0)$, exact) & \ans{$\left(0,\tfrac{13}{3}\right)$, since $-2\cdot\tfrac13+5=\tfrac{13}{3}$} \\
+\hline
+\end{tabularx}
+\end{center}
+Does $g$ have an $x$-intercept? Answer using the signs of $a$ and $k$ --- not by graphing.
+\ans{Yes. $a=-2<0$ and $k=5>0$ are opposite signs, so the range $(-\infty,5)$ contains $0$.}
 
 \vspace{5pt}
-\textbf{Part 3 --- Two functions that were secretly the same shape.} Consider
-$f(x)=\sqrt{8x}$ and $g(x)=\sqrt{2x}$.
+\textbf{Part 3 --- When the asymptote is a real thing.} A cup of coffee is poured at
+$200^{\circ}$F into a room held at $68^{\circ}$F. Its temperature after $t$ minutes is
+\[
+  T(t) = 68 + 132(0.85)^{t}.
+\]
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-$x$ & $2$ & $8$ & $18$ \\ \hline
-$g(x)=\sqrt{2x}$ & \ans{$2$} & \ans{$4$} & \ans{$6$} \\ \hline
-$f(x)=\sqrt{8x}$ & \ans{$4$} & \ans{$8$} & \ans{$12$} \\ \hline
+$t$ (min) & $0$ & $4$ & $8$ & $12$ & $16$ & $20$ \\ \hline
+$T(t)$ ($^{\circ}$F) & $200$ & $136.9$ & $104.0$ & \ans{86.8} & $77.8$ & $73.1$ \\ \hline
 \end{tabular}
 \end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt]
-  \item In every column, $f(x)$ is exactly \ans{$2$} times $g(x)$.
-  \item Prove it with the product property: $\sqrt{8x}=\sqrt{\mans{4}\cdot 2x}=$ \ans{$2\sqrt{2x}$}
-  \item So $f$ is not a new function at all --- it is $g$ stretched \textbf{vertically} by a factor
-        of \ans{$2$}. Which of the two do $f$ and $g$ share: the same domain, the same
-        endpoint, or both? \ansline{Both. A vertical stretch multiplies every output by $2$ but
-        touches no input, so the domain is still $x\ge0$; and the endpoint $(0,0)$ has output $0$,
-        and $2\cdot 0=0$, so it does not move either. Only the steepness changed.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Identify $a$, $b$, and $k$: \; $a=$ \ans{132} \quad $b=$ \ans{0.85} \quad
+        $k=$ \ans{68}
+  \item Fill the missing table entry by evaluating $T(12)$. \ans{$68+132(0.1422)\approx 86.8^{\circ}$F}
+  \item The horizontal asymptote is $y=$ \ans{68}. What does that number \emph{mean} about
+        this coffee? \ans{Room temperature --- the coffee cools toward $68^{\circ}$ but never reaches it.}
+  \item Algebraically the range of $T$ is $(68,\infty)$. But the temperatures this coffee actually
+        takes are only $(68,200]$. Explain the difference.
+        \ansline{The algebraic range allows every real $t$, including negative ones. The story starts
+        the clock at $t=0$, and the coffee is hottest at that instant, so $200$ is the largest output
+        the situation ever produces --- and it \emph{is} reached, which is why that end is a bracket.}
+  \item At what time is the coffee exactly $68^{\circ}$F? \ans{Never --- $68$ is the asymptote.}
+  \item Between which two table times does the coffee pass $100^{\circ}$F? \ans{between $8$ and $12$ min} \\[3pt]
+        To find that moment \emph{exactly} you would have to solve $132(0.85)^{t}=32$. Try rewriting
+        both sides with a common base --- what goes wrong?
+        \ansline{Dividing gives $(0.85)^{t}=\frac{32}{132}\approx 0.2424$, and there is no base that
+        writes both $0.85$ and $0.2424$ as clean powers. The common-base method cannot reach this one ---
+        we need a new tool.}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{teachernote}
-\textbf{Tier R} (under twelve minutes). Item 2(e) is the one to watch: most students will call
-$\sqrt[3]{9}$ ``not done'' because they see a $9$ and think ``perfect square.'' Worth a whole-class
-share --- the \emph{index} decides what counts. In item 3, do not let groups sort before they
-simplify; the sorting is impossible otherwise, which is the point.
+\textbf{Tier R Part 1's closing question is the whole activity.} Rows 2 and 4 keep the parent's
+asymptote because neither is a \emph{vertical shift}; rows 1 and 3 move it because both are. Students
+who answer that correctly can be sent straight to Tier A.
 
-\textbf{Tier A} item 3 is the highest-value item on the page. Have three groups present the three
-errors: the first student's own decimals ($4.47+2.24=6.71\ne5$) refute them, and the third
-student's answer \emph{looks} right, which is why it teaches. Item 4(d) names a modeling habit ---
-keep the exact form, round once, at the end.
+\textbf{Tier A's matching is diagnostic, not busywork.} Q is the only graph with an $x$-intercept, and
+the reason --- its asymptote is below the $x$-axis --- is the payoff of Lesson 6.0's ``no zeros ever.''
+Watch for pairs who match P and Q by ``it looks higher'' instead of reading the dashed line; make them
+name the asymptote out loud before writing a letter. In Part 2, the signature error is $a=2$ (grabbing
+the $y$-intercept) instead of $a=3$; the $y$-intercept is $a+k$, and here $k$ is \emph{negative}, so
+$a$ comes out \emph{larger} than the intercept. That surprise is worth a whole-class pause.
 
-\textbf{Tier E} Part 1 is a real proof, and accessible: it all turns on expanding a binomial
-square. The punch line is that $2\sqrt{ab}$ is exactly the term the classic error deletes. Part 2
-closes with a genuine generalization; groups that get (d) can be asked whether \emph{every}
-staircase $\sqrt{c}+\sqrt{4c}+\sqrt{9c}+\dots$ behaves the same way (it does). Part 3 is a bridge to
-Lesson 6.4 --- simplifying $\sqrt{8x}$ into $2\sqrt{2x}$ reveals a \textbf{vertical stretch}, the
-same $a$ in $y=a\sqrt{x-h}+k$ students meet in two days.
+\textbf{The Justify item is the assessed idea of the lesson} and is worth more time than its length
+suggests. Both students' functions contain a minus sign, but one negates the \emph{output} and the
+other negates the \emph{input}. Require all three pieces for each function --- axis, range, family ---
+because a student can get ``$x$-axis'' right and still say $-5^{x}$ is decay. It is not: the base is
+$5$, and Lesson 6.0's rule is that growth versus decay is read off $b$ against $1$, never off $a$.
+
+\textbf{Tier E Part 1 is genuinely new mathematics, not review.} $2^{\,x-3}=\frac18\cdot 2^{x}$ says a
+horizontal shift and a vertical compression are the \emph{same transformation} for this family --- the
+exponential analogue of the input/output equivalence students met for radicals in Lesson 5.4. Part (d)
+is what keeps it honest: the trick fails for $y=x^{2}$ because there the input is not in an exponent.
+Do not let a group skip (d).
+
+\textbf{Tier E Part 3 is where $k$ stops being decoration.} The asymptote is room temperature, a
+physical fact, and part (d) is a contextual-domain conversation worth having: an algebraic range and a
+realistic range are different objects. Part (f) hits Lesson 6.4's wall on purpose --- $0.85$ and
+$\frac{8}{33}$ share no convenient base. Leave it standing; do not mention logarithms. Lesson 6.3 will
+solve the ones that \emph{do} cooperate, and Unit 7 will come back for this one.
+
+\textbf{Pacing.} Tier E Part 3 is the piece to protect if time runs short; Part 1 can go home as an
+extension.
 \end{teachernote}
 
 \end{document}

@@ -1,4 +1,4 @@
-%! Characteristics of Polynomial Functions — Unit 4, Lesson 4.0 — Slides (Beamer)
+%! Characteristics of Rational Functions — Unit 4, Lesson 4.0 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -16,210 +16,266 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 4.0}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Characteristics of Polynomial Functions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Polynomial Functions}
+    {\color{white}\bfseries\LARGE Characteristics of Rational Functions}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 4: Rational Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{A parabola turns once --- this turns twice}
+  \forestheader{Every graph so far was one unbroken curve}
   \sectionlabel{Hook}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      \[ g(x) = x^3 - 3x + 2 = (x-1)^2(x+2) \]
+    \begin{column}{0.52\textwidth}
+      \[ f(x) = \frac{x+2}{x-1} \]
       \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Top of the hill / bottom of the valley? $\to$ \textbf{relative extrema}
-        \item Far-left / far-right arms? $\to$ \textbf{end behavior}
-        \item Bounces at $x=1$, cuts through at $x=-2$? $\to$ \textbf{multiplicity}
+        \item This one comes in \textbf{two pieces}. Which input is missing?
+        \item Near $x=1$ the curve flies off $\to$ \textbf{vertical asymptote}
+        \item At the far ends it hugs $y=1$ $\to$ \textbf{horizontal asymptote}
       \end{itemize}
     \end{column}
-    \begin{column}{0.44\textwidth}
+    \begin{column}{0.46\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-3}{3}{-3}{5}
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-4}{6}{-5}{6}
+        \draw[navy, dashed, thick] (1,-5)--(1,6);
+        \draw[navy, dashed, thick] (-4,1)--(6,1);
         \begin{scope}
-          \clip (-3,-3) rectangle (3,5);
-          \draw[very thick, forest, domain=-2.15:2.1, samples=90, smooth]
-            plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
+          \clip (-4,-5) rectangle (6,6);
+          \draw[very thick, forest, domain=-4:0.5, samples=90, smooth]
+            plot (\x,{((\x)+2)/((\x)-1)});
+          \draw[very thick, forest, domain=1.6:6, samples=90, smooth]
+            plot (\x,{((\x)+2)/((\x)-1)});
         \end{scope}
-        \fill[charcoal] (-1,4) circle (4pt); \fill[charcoal] (1,0) circle (4pt);
-        \fill[charcoal] (-2,0) circle (4pt); \fill[charcoal] (0,2) circle (4pt);
+        \fill[charcoal] (-2,0) circle (4pt); \fill[charcoal] (0,-2) circle (4pt);
       \end{tikzpicture}
     \end{column}
   \end{columns}
   \vspace{2pt}
   \begin{block}{Today}
-    Read \emph{every} characteristic of a polynomial straight off its graph.
+    The \textbf{denominator runs the show}: it decides which inputs are thrown out, where the graph
+    breaks, and what the graph settles down to.
   \end{block}
 \end{frame}
 
-% DEFINITION: degree & leading coefficient
+% DEFINITION + DOMAIN RESTRICTIONS
 \begin{frame}[t, plain]
-  \forestheader{Polynomials: degree and leading coefficient}
+  \forestheader{Rational functions: the denominator makes the rules}
   \sectionlabel{Definition}
   \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      A \textbf{polynomial} is a sum of terms $a_kx^k$ with \emph{whole-number} exponents ---
-      a \emph{smooth}, \emph{continuous} curve.
-      \[ f(x)=a_nx^n+\dots+a_1x+a_0 \]
+    \begin{column}{0.54\textwidth}
+      A \textbf{rational function} is a quotient of two polynomials.
+      \[ R(x)=\frac{P(x)}{Q(x)}, \qquad Q(x)\neq 0 \]
       \begin{itemize}\setlength{\itemsep}{4pt}
-        \item \textbf{Degree:} the highest power $n$.
-        \item \textbf{Leading coefficient:} $a_n$, in standard form.
+        \item Division by zero is undefined $\Rightarrow$ every input with $Q(x)=0$ is a
+              \textbf{domain restriction}.
+        \item \textbf{The one procedure:} set the \emph{denominator} $=0$ and solve.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Examples}
+        $\dfrac{x+2}{x-1}$: \; $x\neq 1$ \\[4pt]
+        $\dfrac{5}{x^2-9}$: \; $x\neq 3,\,-3$
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize A zero \emph{numerator} is fine --- that is an $x$-intercept, not a restriction.
+      \\[3pt] \textbf{The numerator makes zeros; the denominator makes trouble.}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% VERTICAL ASYMPTOTES
+\begin{frame}[t, plain]
+  \forestheader{Vertical asymptotes: the walls}
+  \sectionlabel[goldacc]{$x=a$}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item A line the graph approaches but \textbf{never} touches or crosses.
+        \item Comes from a restriction whose factor \textbf{does not cancel}.
+        \item \emph{Why} can it never be crossed? That input is not in the domain --- there is no
+              point to plot.
+        \item Two branches $\Rightarrow$ the domain is a \textbf{union}:
+              $(-\infty,1)\cup(1,\infty)$.
       \end{itemize}
     \end{column}
     \begin{column}{0.42\textwidth}
-      \begin{block}{Not polynomials}
-        $\dfrac{1}{x}=x^{-1}$, \quad $\sqrt{x}=x^{1/2}$ \\[3pt]
-        {\footnotesize exponents must be whole numbers.}
+      \begin{block}{Write the equation}
+        \centering
+        $x=1$ \quad\textbf{not}\quad ``$1$''
       \end{block}
-      \vspace{2pt}
-      {\footnotesize For $g(x)=x^3-3x+2$: degree $3$, leading coefficient $1$.}
+      \vspace{4pt}
+      {\footnotesize From the Warm-Up, $y=\frac{1}{x-1}$ near $x=1$:
+      \[ -10,\ -100,\ \big|\ 100,\ 10 \]
+      The outputs grow without bound \emph{and} flip sign --- that jump is the break.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% END BEHAVIOR: the two-question rule
+% HORIZONTAL ASYMPTOTES + DEGREE RULE
 \begin{frame}[t, plain]
-  \forestheader{End behavior: only two questions}
-  \sectionlabel[goldacc]{Even/odd degree \& sign of $a$}
+  \forestheader{Horizontal asymptotes: the level (and the end behavior)}
+  \sectionlabel[goldacc]{Compare the degrees}
+  For a rational function, the horizontal asymptote \emph{is} the end-behavior statement: the arms
+  flatten toward a level instead of running to $\pm\infty$.
+  \vspace{4pt}
   \begin{center}
-  \begin{tabular}{cccc}
-  \begin{tikzpicture}[scale=0.34]
-    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-0.6)--(0,4);
-    \draw[very thick, forest, domain=-1.7:1.7, samples=40, smooth] plot (\x,{(\x)*(\x)});
-  \end{tikzpicture} &
-  \begin{tikzpicture}[scale=0.34]
-    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-4)--(0,0.6);
-    \draw[very thick, forest, domain=-1.7:1.7, samples=40, smooth] plot (\x,{-1*(\x)*(\x)});
-  \end{tikzpicture} &
-  \begin{tikzpicture}[scale=0.34]
-    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-3.2)--(0,3.2);
-    \draw[very thick, forest, domain=-1.45:1.45, samples=50, smooth] plot (\x,{(\x)*(\x)*(\x)});
-  \end{tikzpicture} &
-  \begin{tikzpicture}[scale=0.34]
-    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-3.2)--(0,3.2);
-    \draw[very thick, forest, domain=-1.45:1.45, samples=50, smooth] plot (\x,{-1*(\x)*(\x)*(\x)});
-  \end{tikzpicture} \\[2pt]
-  {\footnotesize even, $a>0$} & {\footnotesize even, $a<0$} & {\footnotesize odd, $a>0$} & {\footnotesize odd, $a<0$} \\
-  {\footnotesize both up} & {\footnotesize both down} & {\footnotesize L$\downarrow$ R$\uparrow$} & {\footnotesize L$\uparrow$ R$\downarrow$} \\
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{lll}
+  \hline
+  \textbf{Case} & \textbf{Horizontal asymptote} & \textbf{Example} \\
+  \hline
+  $n<m$ \; (bottom-heavy) & $y=0$ & $\dfrac{4}{x^2+1}\Rightarrow y=0$ \\
+  $n=m$ \; (tie) & $y=\dfrac{\text{lead of }P}{\text{lead of }Q}$ & $\dfrac{x+2}{x-1}\Rightarrow y=1$ \\
+  $n>m$ \; (top-heavy) & \textbf{none} & $\dfrac{x^2}{x+1}$ grows without bound \\
+  \hline
   \end{tabular}
   \end{center}
-  \begin{itemize}\setlength{\itemsep}{3pt}
-    \item \textbf{Even} degree $\Rightarrow$ arms the \emph{same} way; \textbf{odd} degree $\Rightarrow$ arms \emph{opposite}.
-    \item Sign of $a$ sets the \emph{right} arm: $+\Rightarrow$ up, $-\Rightarrow$ down.
-  \end{itemize}
+  \vspace{2pt}
+  \begin{center}\footnotesize $n=\deg P$ (numerator), \quad $m=\deg Q$ (denominator).\end{center}
 \end{frame}
 
-% TURNING POINTS & EXTREMA
+% THE TWO WARNINGS
 \begin{frame}[t, plain]
-  \forestheader{Turning points: relative vs.\ absolute}
-  \sectionlabel[goldacc]{$g(x)=x^3-3x+2$}
+  \forestheader{Two things a horizontal asymptote is \emph{not}}
+  \sectionlabel{Warnings}
   \begin{columns}[T]
-    \begin{column}{0.44\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-3}{3}{-3}{5}
-        \begin{scope}
-          \clip (-3,-3) rectangle (3,5);
-          \draw[very thick, forest, domain=-2.15:2.1, samples=90, smooth]
-            plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
-        \end{scope}
-        \fill[charcoal] (-1,4) circle (4pt) node[above right, font=\tiny]{$(-1,4)$};
-        \fill[charcoal] (1,0) circle (4pt) node[below right, font=\tiny]{$(1,0)$};
-      \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.56\textwidth}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item A \textbf{turning point} is where the curve changes rise$\leftrightarrow$fall; degree $n$ has \emph{at most} $n-1$.
-        \item \textbf{Relative (local) max} $(-1,4)$, \textbf{relative min} $(1,0)$ --- highest/lowest \emph{nearby}.
-        \item \textbf{Absolute (global)} max/min = highest/lowest of the \emph{whole} function.
-        \item Odd degree $\Rightarrow$ arms split to $\pm\infty$ $\Rightarrow$ \emph{no} absolute max or min.
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% ZEROS & MULTIPLICITY
-\begin{frame}[t, plain]
-  \forestheader{Multiplicity: cross vs.\ touch}
-  \sectionlabel{Zeros}
-  \begin{columns}[T]
-    \begin{column}{0.44\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-3}{3}{-3}{5}
-        \begin{scope}
-          \clip (-3,-3) rectangle (3,5);
-          \draw[very thick, forest, domain=-2.15:2.1, samples=90, smooth]
-            plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
-        \end{scope}
-        \fill[charcoal] (-2,0) circle (4pt) node[above left, font=\tiny]{cross};
-        \fill[charcoal] (1,0) circle (4pt) node[above right, font=\tiny]{touch};
-      \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.56\textwidth}
-      \[ g(x)=(x-1)^2(x+2) \]
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item \textbf{Multiplicity} $=$ the exponent of the factor.
-        \item $x=-2$: multiplicity $1$ (\textbf{odd}) $\Rightarrow$ graph \textbf{crosses}.
-        \item $x=1$: multiplicity $2$ (\textbf{even}) $\Rightarrow$ graph \textbf{touches} (bounces).
-      \end{itemize}
-      \begin{block}{Remember}
-        \textbf{Odd crosses, even touches.}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{It is not a wall}
+        A graph \textbf{may cross} its horizontal asymptote --- the line only describes the
+        \emph{far ends}.
       \end{block}
+      \vspace{3pt}
+      {\footnotesize Check $y=\dfrac{2x}{x^2+1}$: bottom-heavy, so HA is $y=0$. \\[3pt]
+      At $x=0$ the output is $0$ --- the graph \emph{sits on} the line.}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{It is not guaranteed}
+        Top-heavy ($n>m$) $\Rightarrow$ \textbf{no} horizontal asymptote; the end behavior looks like a
+        polynomial's.
+      \end{block}
+      \vspace{3pt}
+      {\footnotesize And a \emph{vertical} asymptote is not guaranteed either: $\dfrac{5t}{t^2+1}$ has
+      a denominator that is never zero, so it has \textbf{no} restrictions at all.}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{center}
+    \textbf{Vertical} $=$ a restriction on \emph{inputs} (untouchable). \quad
+    \textbf{Horizontal} $=$ a description of \emph{outputs} at the ends.
+  \end{center}
+\end{frame}
+
+% HOLES
+\begin{frame}[t, plain]
+  \forestheader{Holes: when a restriction cancels}
+  \sectionlabel{Removable discontinuity}
+  \begin{columns}[T]
+    \begin{column}{0.46\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.38]
+        \lgrid{-4}{4}{-3}{7}
+        \begin{scope}
+          \clip (-4,-3) rectangle (4,7);
+          \draw[very thick, forest] (-4,-2)--(4,6);
+        \end{scope}
+        \draw[forest, very thick, fill=white] (2,4) circle (5pt);
+      \end{tikzpicture}\\
+      {\footnotesize $h(x)=\dfrac{x^2-4}{x-2}=x+2$, \; $x\neq2$}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{block}{The cancel test}
+        Factor top and bottom. \\[3pt]
+        Factor \textbf{cancels} $\Rightarrow$ \textbf{hole} \\
+        Factor \textbf{stays} $\Rightarrow$ \textbf{vertical asymptote}
+      \end{block}
+      \vspace{2pt}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item The hole's $y$-value comes from the \emph{simplified} form: $2+2=4$, so $(2,4)$.
+        \item \textbf{Cancelling never restores the input} --- always read restrictions off the
+              \emph{original} denominator.
+        \item Both at once: $\dfrac{x-3}{x^2-9}=\dfrac{1}{x+3}$, $x\neq3$ $\Rightarrow$ hole at
+              $x=3$, wall at $x=-3$.
+      \end{itemize}
     \end{column}
   \end{columns}
 \end{frame}
 
-% SYMMETRY
+% FULL FEATURE READ
 \begin{frame}[t, plain]
-  \forestheader{Symmetry: even vs.\ odd}
-  \sectionlabel[goldacc]{The $f(-x)$ test}
+  \forestheader{Reading the whole feature list}
+  \sectionlabel[goldacc]{$f(x)=\frac{x+2}{x-1}$}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.40\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.38]
-        \lgrid{-2}{2}{-1}{5}
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-4}{6}{-5}{6}
+        \draw[navy, dashed, thick] (1,-5)--(1,6);
+        \draw[navy, dashed, thick] (-4,1)--(6,1);
         \begin{scope}
-          \clip (-2,-1) rectangle (2,5);
-          \draw[very thick, forest, domain=-1.5:1.5, samples=60, smooth] plot (\x,{(\x)^4});
+          \clip (-4,-5) rectangle (6,6);
+          \draw[very thick, forest, domain=-4:0.5, samples=90, smooth]
+            plot (\x,{((\x)+2)/((\x)-1)});
+          \draw[very thick, forest, domain=1.6:6, samples=90, smooth]
+            plot (\x,{((\x)+2)/((\x)-1)});
         \end{scope}
-        \fill[charcoal] (-1,1) circle (3pt); \fill[charcoal] (1,1) circle (3pt);
-      \end{tikzpicture}\\
-      {\footnotesize $y=x^4$: \textbf{even}, $f(-x)=f(x)$, $y$-axis mirror}
+        \fill[charcoal] (-2,0) circle (4pt); \fill[charcoal] (0,-2) circle (4pt);
+      \end{tikzpicture}
     \end{column}
-    \begin{column}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.38]
-        \lgrid{-2}{2}{-4}{4}
-        \begin{scope}
-          \clip (-2,-4) rectangle (2,4);
-          \draw[very thick, forest, domain=-1.55:1.55, samples=60, smooth] plot (\x,{(\x)*(\x)*(\x)});
-        \end{scope}
-        \fill[charcoal] (1,1) circle (3pt); \fill[charcoal] (-1,-1) circle (3pt);
-      \end{tikzpicture}\\
-      {\footnotesize $y=x^3$: \textbf{odd}, $f(-x)=-f(x)$, $180^\circ$ about origin}
+    \begin{column}{0.58\textwidth}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item VA $x=1$; \; HA $y=1$
+        \item Domain $(-\infty,1)\cup(1,\infty)$; \; Range $(-\infty,1)\cup(1,\infty)$ --- the graph
+              never \emph{reaches} $1$
+        \item Zero $(-2,0)$ from the \textbf{numerator}; \; $y$-int $(0,-2)$ from $f(0)$
+        \item Decreasing on $(-\infty,1)$ \emph{and} on $(1,\infty)$ --- never one interval across a
+              wall
+        \item $f(x)>0$ on $(-\infty,-2)\cup(1,\infty)$; \; $f(x)<0$ on $(-2,1)$
+        \item End behavior: $f(x)\to 1$ as $x\to\pm\infty$
+      \end{itemize}
     \end{column}
   \end{columns}
-  \vspace{3pt}
-  \begin{center}\footnotesize Only even powers $\Rightarrow$ even; only odd powers $\Rightarrow$ odd; a mix $\Rightarrow$ neither.\end{center}
+\end{frame}
+
+% COMPARE & CONTRAST
+\begin{frame}[t, plain]
+  \forestheader{Polynomial vs.\ rational --- what actually changed}
+  \sectionlabel{Compare \& contrast}
+  \begin{center}
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{lll}
+  \hline
+   & \textbf{Polynomial (Unit 3)} & \textbf{Rational (Unit 4)} \\
+  \hline
+  Graph & smooth and \emph{continuous} & may be \emph{discontinuous} (breaks) \\
+  Domain & \emph{all} real numbers & all reals except the excluded values \\
+  Asymptotes & none & vertical and/or horizontal \\
+  End behavior & arms run to $\pm\infty$ & arms usually flatten toward a level \\
+  Intervals & single intervals & \textbf{unions}, broken at each wall \\
+  \hline
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    Continuity was a free gift from polynomials. Losing it is what makes this a new family.
+  \end{center}
 \end{frame}
 
 % ROADMAP
 \begin{frame}[t, plain]
   \forestheader{Where Unit 4 goes next}
   \sectionlabel{Connections}
-  \textbf{Today:} read degree/leading coefficient, end behavior, turning points, relative/absolute
-  extrema, zeros \& multiplicity, and symmetry from a polynomial graph.\\[8pt]
+  \textbf{Today:} read domain restrictions, vertical and horizontal asymptotes, holes, intercepts,
+  intervals, and end behavior off a rational graph.\\[8pt]
   \begin{itemize}\setlength{\itemsep}{3pt}
-    \item \textbf{4.1} Operations with polynomials (add, subtract, multiply).
-    \item \textbf{4.2} Advanced factoring (grouping, sum \& difference of cubes).
-    \item \textbf{4.3} Dividing polynomials; Remainder \& Factor Theorems.
-    \item \textbf{4.4--4.5} Zeros: Rational Root Theorem; complex zeros \& the FTA.
-    \item \textbf{4.6} Graphing polynomial functions \& modeling.
+    \item \textbf{4.1} Simplifying rational expressions \& domain restrictions.
+    \item \textbf{4.2--4.3} Multiplying, dividing, adding \& subtracting rational expressions.
+    \item \textbf{4.4} The parent $y=\frac1x$ and transformations (the asymptotes move).
+    \item \textbf{4.5} Graphing rational functions from the equation.
+    \item \textbf{4.6} Solving rational equations \& extraneous solutions.
+    \item \textbf{4.7} Direct, inverse \& joint variation.
   \end{itemize}
 \end{frame}
 

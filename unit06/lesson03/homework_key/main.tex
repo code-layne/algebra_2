@@ -1,10 +1,16 @@
-%! Multiplying \& Dividing Radicals; Rationalizing — Unit 6, Lesson 6.3 — Homework (Answer Key)
+%! Solving Exponential Equations with a Common Base — Unit 6, Lesson 6.3 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
-\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% #1=a  #2=ln(b)  #3=h  #4=k  #5=xmin  #6=xmax   (ln2 = 0.693147)
+\newcommand{\expgraph}[6]{\draw[very thick, forest, domain=#5:#6, samples=140, smooth]
+  plot (\x,{(#1)*exp((#2)*((\x)-(#3)))+(#4)});}
+\newcommand{\solline}[3]{\draw[goldacc, very thick] (#1,#3)--(#2,#3);}
 
 \begin{document}
 
@@ -14,238 +20,173 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Assume all variables represent \textbf{positive} real numbers. Leave no radical in any denominator.
-No calculator except where a problem asks for a decimal.
+Every solution below needs a visible common-base step. An answer with no rewriting shown is not a
+solution.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Multiply and simplify.} Remember: the product is where a perfect power often
-        appears out of nowhere, so finish every one.
+\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
+  \item \textbf{Solve each equation.}
     \begin{center}
     \renewcommand{\arraystretch}{1.9}
-    \begin{tabularx}{\linewidth}{@{}X X X X@{}}
-    (a) \; $\sqrt5\cdot\sqrt{20}=$ \ans{$10$} & (b) \; $\sqrt6\cdot\sqrt{14}=$ \ans{$2\sqrt{21}$} &
-    (c) \; $4\sqrt3\cdot2\sqrt6=$ \ans{$24\sqrt2$} & (d) \; $\left(3\sqrt7\right)^{2}=$ \ans{$63$} \\
-    (e) \; $\sqrt[3]{4}\cdot\sqrt[3]{10}=$ \ans{$2\sqrt[3]{5}$} &
-    (f) \; $\sqrt{6x}\cdot\sqrt{3x^{3}}=$ \ans{$3x^{2}\sqrt2$} &
-    (g) \; $\sqrt{10}\cdot\sqrt{10}=$ \ans{$10$} &
-    (h) \; $2\sqrt{12}\cdot\sqrt{27}=$ \ans{$36$} \\
+    \begin{tabularx}{\linewidth}{@{}l X c@{\hspace{1.6em}} l X c@{}}
+    \hline
+    \textbf{(a)} $2^{x}=128$ & \ans{$2^{x}=2^{7}$} & $x=$ \ans{7} &
+    \textbf{(b)} $3^{\,2x}=81$ & \ans{$3^{\,2x}=3^{4}$} & $x=$ \ans{2} \\
+    \textbf{(c)} $5^{x}=\frac{1}{25}$ & \ans{$5^{x}=5^{-2}$} & $x=$ \ans{$-2$} &
+    \textbf{(d)} $16^{x}=64$ & \ans{$2^{\,4x}=2^{6}$} & $x=$ \ans{$\frac32$} \\
+    \textbf{(e)} $\left(\frac12\right)^{x}=32$ & \ans{$2^{-x}=2^{5}$} & $x=$ \ans{$-5$} &
+    \textbf{(f)} $27^{\,x-1}=9$ & \ans{$3^{\,3x-3}=3^{2}$} & $x=$ \ans{$\frac53$} \\
+    \textbf{(g)} $4^{\,x+2}=8^{x}$ & \ans{$2^{\,2x+4}=2^{\,3x}$} & $x=$ \ans{4} &
+    \textbf{(h)} $6^{\,3x}=\sqrt{6}$ & \ans{$6^{\,3x}=6^{1/2}$} & $x=$ \ans{$\frac16$} \\
+    \hline
     \end{tabularx}
     \end{center}
-    \emph{Work:} (a) $\sqrt{100}$. \; (b) $\sqrt{84}=\sqrt{4\cdot21}$. \;
-    (c) $8\sqrt{18}=8\cdot3\sqrt2$. \; (d) $9\cdot7$ --- squaring erases the radical. \;
-    (e) $\sqrt[3]{40}=\sqrt[3]{8\cdot5}$. \; (f) $\sqrt{18x^{4}}=\sqrt{9x^{4}}\cdot\sqrt2$. \;
-    (g) $\sqrt{100}$ again --- a square root times itself is the radicand. \;
-    (h) $2\sqrt{324}=2\cdot18$.
+    \emph{Work space --- show the rewriting for at least four of the eight.}
+    \vspace{1.05in}
 
-  \item \textbf{Expand and simplify.} Distribute or FOIL, then collect like radicals.
+    Three of your eight answers are not whole numbers. List them, and say in one sentence why that is
+    not a sign of a mistake. \ans{(d) $\frac32$, (f) $\frac53$, (h) $\frac16$ --- the exponent is a position on the $x$-axis, and nothing requires a curve to cross a given height at a whole number.}
+
+  \item \textbf{Read it, then prove it.} The curve is $y=2^{x}$.
     \begin{center}
-    \renewcommand{\arraystretch}{2.1}
-    \begin{tabularx}{\linewidth}{@{}X X@{}}
-    (a) \; $\sqrt2\left(\sqrt8+\sqrt{18}\right)=$ \ans{$10$} &
-    (b) \; $\sqrt5\left(3-\sqrt{15}\right)=$ \ans{$3\sqrt5-5\sqrt3$} \\
-    (c) \; $\left(1+\sqrt3\right)\left(4-\sqrt3\right)=$ \ans{$1+3\sqrt3$} &
-    (d) \; $\left(\sqrt6-\sqrt2\right)^{2}=$ \ans{$8-4\sqrt3$} \\
-    (e) \; $\left(5+\sqrt7\right)\left(5-\sqrt7\right)=$ \ans{$18$} &
-    (f) \; $\left(2\sqrt3+\sqrt5\right)\left(2\sqrt3-\sqrt5\right)=$ \ans{$7$} \\
+    \begin{minipage}[c]{0.40\linewidth}
+    \centering
+    \begin{tikzpicture}[scale=0.38]
+      \lgrid{-3}{4}{-5}{9}
+      \begin{scope}
+        \clip (-3,-5) rectangle (4,9);
+        \expgraph{1}{0.693147}{0}{0}{-3}{4}
+      \end{scope}
+      \solline{-3}{4}{8}
+      \solline{-3}{4}{2}
+      \draw[redacc, dashed, very thick] (-3,-4)--(4,-4);
+      \node[goldacc, font=\scriptsize, left] at (-1.2,8.6) {$y=8$};
+      \node[goldacc, font=\scriptsize, left] at (-1.2,2.6) {$y=2$};
+      \node[redacc, font=\scriptsize, left] at (-1.2,-4.6) {$y=-4$};
+    \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[c]{0.56\linewidth}
+    \small
+    \renewcommand{\arraystretch}{1.7}
+    \begin{tabularx}{\linewidth}{@{}l X c@{}}
+    \hline
+    \textbf{Equation} & \textbf{Common base} & \textbf{$x=$} \\
+    \hline
+    $2^{x}=8$ & \ans{$2^{x}=2^{3}$} & \ans{3} \\
+    $2^{x}=2$ & \ans{$2^{x}=2^{1}$} & \ans{1} \\
+    $2^{x}=-4$ & \ans{impossible} & \ans{none} \\
+    \hline
+    \end{tabularx}
+    \end{minipage}
+    \end{center}
+    \vspace{2pt}
+    \textbf{(a)} What horizontal line would you have to draw to make the solution $x=0$?
+    \ans{$y=1$} \\[4pt]
+    \textbf{(b)} What horizontal line would give the solution $x=-1$? \ans{$y=\frac12$} \\[4pt]
+    \textbf{(c)} Explain why \emph{no} horizontal line drawn below the $x$-axis will ever produce a
+    solution. \ans{The range of $y=2^{x}$ is $(0,\infty)$, and $y=0$ is a horizontal asymptote --- the curve stays above it forever, so nothing below the $x$-axis is ever an output.}
+
+  \item \textbf{Sort them.} Decide whether each equation can be solved by writing both sides over a
+    common base. Write \textbf{yes} or \textbf{no}, and solve the ones you can.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.75}
+    \begin{tabularx}{\linewidth}{@{}l c X c@{\hspace{1.4em}} l c X c@{}}
+    \hline
+    \textbf{(a)} $2^{x}=16$ & \ans{yes} & \ans{$2^{x}=2^{4}$} & \ans{4} &
+    \textbf{(b)} $2^{x}=12$ & \ans{no} & \ans{---} & \ans{---} \\
+    \textbf{(c)} $5^{\,x+1}=\sqrt5$ & \ans{yes} & \ans{$5^{\,x+1}=5^{1/2}$} & \ans{$-\frac12$} &
+    \textbf{(d)} $7^{x}=1$ & \ans{yes} & \ans{$7^{x}=7^{0}$} & \ans{0} \\
+    \textbf{(e)} $10^{x}=45$ & \ans{no} & \ans{---} & \ans{---} &
+    \textbf{(f)} $\left(\frac14\right)^{x}=8$ & \ans{yes} & \ans{$2^{-2x}=2^{3}$} & \ans{$-\frac32$} \\
+    \hline
     \end{tabularx}
     \end{center}
-    \emph{Work:} (a) $\sqrt{16}+\sqrt{36}=4+6$. \; (b) $3\sqrt5-\sqrt{75}=3\sqrt5-5\sqrt3$. \;
-    (c) $4-\sqrt3+4\sqrt3-3$. \; (d) $6-2\sqrt{12}+2=8-4\sqrt3$. \; (e) $25-7$. \;
-    (f) $\left(2\sqrt3\right)^{2}-\left(\sqrt5\right)^{2}=12-5$.
+    You should have exactly two \textbf{no}s. For each of those two, answer this: does the equation
+    still have a solution, and between which two whole numbers does it sit?
+    \ans{Both do. $2^{x}=12$ sits between $x=3$ ($2^{3}=8$) and $x=4$ ($2^{4}=16$); $10^{x}=45$ sits between $x=1$ ($10$) and $x=2$ ($100$).}
+
+  \item \textbf{Error analysis.} Name the error, then give the correct solution.
+
+    \textbf{(a)} Jamal solved $8^{x}=32$ this way: ``$\left(2^{3}\right)^{x}=2^{5}$, so
+    $2^{\,3+x}=2^{5}$, so $3+x=5$ and $x=2$.''
+    \ansline{A power of a power \emph{multiplies} the exponents: $\left(2^{3}\right)^{x}=2^{\,3x}$, not $2^{\,3+x}$. Jamal used the product rule instead.}
+    \ansline{Correct: $2^{\,3x}=2^{5}$, so $3x=5$ and $x=\frac53$. (His answer fails the check: $8^{2}=64$, not $32$.)}
+
+    \textbf{(b)} Elise solved $9^{\,x+2}=27$ this way: ``$3^{\,2x+2}=3^{3}$, so $2x+2=3$ and
+    $x=\frac12$.''
+    \ansline{Elise multiplied the $2$ by the $x$ but not by the $2$ in $x+2$: $\left(3^{2}\right)^{x+2}=3^{\,2(x+2)}=3^{\,2x+4}$.}
+    \ansline{Correct: $2x+4=3$, so $x=-\frac12$. Writing the parentheses before removing them prevents this every time.}
+
+  \item \textbf{One answer or two?} Solve both equations, then explain the difference using the
+    \emph{shape} of each graph --- not the algebra.
+
+    \vspace{3pt}
+    \hspace*{1.2em} $x^{2}=64$ \; gives $x=$ \ans{$\pm8$} \hfill
+    $2^{x}=64$ \; gives $x=$ \ans{6}
 
     \vspace{2pt}
-    Two of the six are \textbf{conjugate pairs}, and you could tell before multiplying. Which two?
-    \ans{(e) and (f)} \; A \emph{third} problem also came out with no radical, for a completely
-    different reason. Which one, and what was the reason? \ansline{\textbf{(a).} Nothing cancelled
-    there --- it is not a conjugate pair at all. Distributing produced $\sqrt{16}$ and $\sqrt{36}$,
-    and both radicands happened to be \emph{perfect squares}, so each term came out whole on its
-    own. (e) and (f) are rational because the middle terms cancel; (a) is rational by luck of the
-    numbers.}
-
-  \item \textbf{Divide, and rationalize where you must.}
-    \begin{center}
-    \renewcommand{\arraystretch}{2.3}
-    \begin{tabularx}{\linewidth}{@{}X X@{}}
-    (a) \; $\dfrac{\sqrt{72}}{\sqrt{2}}=$ \ans{$6$} &
-    (b) \; $\dfrac{\sqrt{45x^{3}}}{\sqrt{5x}}=$ \ans{$3x$} \\
-    (c) \; $\dfrac{7}{\sqrt{2}}=$ \ans{$\dfrac{7\sqrt2}{2}$} &
-    (d) \; $\dfrac{\sqrt{3}}{\sqrt{8}}=$ \ans{$\dfrac{\sqrt6}{4}$} \\
-    (e) \; $\sqrt{\dfrac{2}{7}}=$ \ans{$\dfrac{\sqrt{14}}{7}$} &
-    (f) \; $\dfrac{10}{4+\sqrt{6}}=$ \ans{$4-\sqrt6$} \\
-    (g) \; $\dfrac{\sqrt{2}}{\sqrt{5}+\sqrt{3}}=$ \ans{$\dfrac{\sqrt{10}-\sqrt6}{2}$} &
-    (h) \; $\dfrac{6}{\sqrt{3}-3}=$ \ans{$-\sqrt3-3$} \\
-    \end{tabularx}
-    \end{center}
-    \emph{Work:} (a) $\sqrt{36}$. \; (b) $\sqrt{9x^{2}}$. \; (d) simplify $\sqrt8=2\sqrt2$ first,
-    then $\frac{\sqrt3}{2\sqrt2}\cdot\frac{\sqrt2}{\sqrt2}=\frac{\sqrt6}{4}$. \;
-    (f) conjugate $4-\sqrt6$; denominator $16-6=10$, which cancels the $10$ on top entirely. \;
-    (g) conjugate $\sqrt5-\sqrt3$; denominator $5-3=2$. \;
-    (h) conjugate $\sqrt3+3$; denominator $3-9=-6$, so
-    $\frac{6\left(\sqrt3+3\right)}{-6}=-\left(\sqrt3+3\right)$. \emph{The sign in (h) is the whole
-    point} --- a conjugate product can be negative, and the minus sign belongs to the entire
-    numerator.
-
-  \item \textbf{Two questions about why this works.}
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-      \item A classmate claims $\left(\sqrt3+\sqrt5\right)^{2}=3+5=8$. Use decimals to show this is
-            wrong, then expand it correctly and name the term they threw away.
-            \ansline{$\sqrt3+\sqrt5\approx1.732+2.236=3.968$, and $3.968^{2}\approx15.75$ --- not
-            $8$. Correctly: $\left(\sqrt3+\sqrt5\right)^{2}=3+\sqrt{15}+\sqrt{15}+5=8+2\sqrt{15}$,
-            and $8+2(3.873)\approx15.75$, which matches.\\[3pt]
-            The discarded term is the \textbf{middle term} $2\sqrt{15}$ --- the two ``outer and
-            inner'' products of FOIL. It is the same error as $(x+4)^{2}=x^{2}+16$: squaring a sum
-            is never just squaring the pieces.}
-      \item To rationalize $\dfrac{1}{2+\sqrt3}$, why does multiplying top and bottom by
-            $2+\sqrt3$ fail while $2-\sqrt3$ succeeds? And why is either one \emph{allowed} in the
-            first place --- what keeps the value of the expression from changing?
-            \ansline{Multiplying by $2+\sqrt3$ gives $\left(2+\sqrt3\right)^{2}=7+4\sqrt3$ --- both
-            middle products are $+2\sqrt3$, so they add and the radical survives. Multiplying by
-            the \emph{conjugate} $2-\sqrt3$ gives $4-3=1$: the middle products $-2\sqrt3$ and
-            $+2\sqrt3$ cancel, and each remaining term is a square, so no radical is left. (The
-            answer is $2-\sqrt3$.)\\[3pt]
-            Either is \emph{allowed} because in both cases the numerator and denominator are
-            multiplied by the \emph{same} expression --- that is multiplying by a fraction equal to
-            $1$, which changes an expression's form but never its value. Only one of the two is
-            \emph{useful}.}
-    \end{enumerate}
-
-  \item \textbf{Two roads, one answer (connecting to Lesson 6.1).} Rationalize
-        $\dfrac{1}{\sqrt[3]{5}}$ two ways.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item \emph{With radicals.} You need \ans{$3$} copies of $5$ under the cube root, so
-            multiply top and bottom by \ans{$\sqrt[3]{25}$}: \;
-            $\dfrac{1}{\sqrt[3]5}=$ \ans{$\dfrac{\sqrt[3]{25}}{5}$}
-      \item \emph{With exponents.} $\dfrac{1}{\sqrt[3]5}=5^{\mans{-1/3}}
-            =\dfrac{5^{\mans{2/3}}}{5}=$ \ans{$\dfrac{\sqrt[3]{25}}{5}$}
-      \item Why must the two roads agree? \ansline{They are the same operation written twice.
-            Multiplying by $\sqrt[3]{25}=5^{2/3}$ raises the denominator's exponent from
-            $\frac13$ to $\frac13+\frac23=1$, which is exactly what ``complete the group of three''
-            means. In exponent language, rationalizing is just turning the negative exponent
-            $5^{-1/3}$ into a positive one by borrowing a whole $5$: $5^{-1/3}=5^{2/3-1}
-            =\frac{5^{2/3}}{5}$.}
-    \end{enumerate}
+    \ansline{The parabola has a turning point, so it climbs to the height $64$ on both sides of its vertex --- one output, two inputs.}
+    \ansline{The exponential has no turning point; it only ever increases, so it reaches the height $64$ once and never returns to it.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{The golden ratio: the number that is its own reciprocal, plus one.} The
-\textbf{golden ratio} is
+\textbf{When matching bases tells you there is nothing to find.} Consider
 \[
-  \varphi = \frac{1+\sqrt{5}}{2}.
+  4^{x}\cdot 2^{\,x+1} = 8^{\,x-1}.
 \]
-It shows up wherever a shape can be divided so that the part relates to the whole the way the
-smaller piece relates to the part. Everything interesting about $\varphi$ is invisible until you
-rationalize.
-
-\begin{center}
-\begin{tikzpicture}[scale=2.4, line join=round]
-  % golden rectangle, width phi = 1.618, height 1
-  \draw[thick, forest, fill=forestbg] (0,0) rectangle (1.618,1);
-  \draw[thick, goldacc] (1,0) -- (1,1);
-  \node[charcoal] at (0.5,0.55) {\footnotesize square};
-  \node[charcoal] at (0.5,0.38) {\footnotesize $1\times 1$};
-  \node[charcoal, align=center] at (1.309,0.5) {\footnotesize what's\\[-2pt] \footnotesize left};
-  % dimension labels
-  \draw[<->, slate] (0,-0.13) -- (1.618,-0.13);
-  \node[below, charcoal] at (0.809,-0.13) {\footnotesize $\varphi$};
-  \draw[<->, slate] (-0.13,0) -- (-0.13,1);
-  \node[left, charcoal] at (-0.13,0.5) {\footnotesize $1$};
-  \draw[<->, slate] (1,1.13) -- (1.618,1.13);
-  \node[above, charcoal] at (1.309,1.13) {\footnotesize $\varphi-1$};
-\end{tikzpicture}
-\end{center}
-
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Using $\sqrt5\approx2.236068$, fill in the table to four decimal places.
-        \begin{center}
-        \renewcommand{\arraystretch}{1.4}
-        \begin{tabular}{|c|c|c|}
-        \hline
-        $\varphi$ & $\dfrac{1}{\varphi}$ & $\varphi^{2}$ \\ \hline
-        \ans{$1.6180$} & \ans{$0.6180$} & \ans{$2.6180$} \\ \hline
-        \end{tabular}
-        \end{center}
-        Something very strange is going on with those three decimals. Describe it in one sentence.
-        \ansline{All three have the \emph{identical} decimal part $.6180$: the reciprocal is exactly
-        one \emph{less} than $\varphi$, and the square is exactly one \emph{more}. No other positive
-        number does this.}
-  \item \textbf{Prove the first strange thing:} $\dfrac{1}{\varphi}=\varphi-1$. Start from
-        $\dfrac{1}{\varphi}=\dfrac{2}{1+\sqrt5}$, rationalize with the conjugate, and compare your
-        result to $\varphi-1$. \ansline{$\dfrac{2}{1+\sqrt5}\cdot\dfrac{1-\sqrt5}{1-\sqrt5}
-        =\dfrac{2\left(1-\sqrt5\right)}{1-5}=\dfrac{2\left(1-\sqrt5\right)}{-4}
-        =\dfrac{\sqrt5-1}{2}$.\\[3pt]
-        And $\varphi-1=\dfrac{1+\sqrt5}{2}-\dfrac{2}{2}=\dfrac{\sqrt5-1}{2}$. Identical.}
-  \item \textbf{Prove the second:} $\varphi^{2}=\varphi+1$. Square $\dfrac{1+\sqrt5}{2}$, simplify,
-        and compare to $\varphi+1$ written over a common denominator.
-        \ansline{$\varphi^{2}=\dfrac{\left(1+\sqrt5\right)^{2}}{4}=\dfrac{1+2\sqrt5+5}{4}
-        =\dfrac{6+2\sqrt5}{4}=\dfrac{3+\sqrt5}{2}$ --- note the middle term $2\sqrt5$, which is
-        exactly what item 4(a) warned you not to drop.\\[3pt]
-        And $\varphi+1=\dfrac{1+\sqrt5}{2}+\dfrac{2}{2}=\dfrac{3+\sqrt5}{2}$. Identical.}
-  \item \textbf{The rectangle.} The figure above is $\varphi$ wide and $1$ tall. Cut off the
-        $1\times1$ square. The leftover rectangle is $1$ tall and $\varphi-1$ wide, so its
-        \emph{long side divided by its short side} is $\dfrac{1}{\varphi-1}$. Rationalize that
-        expression and show it equals $\varphi$ --- the leftover rectangle has exactly the same
-        proportions as the original. \ansline{From (b), $\varphi-1=\dfrac{\sqrt5-1}{2}$, so
-        $\dfrac{1}{\varphi-1}=\dfrac{2}{\sqrt5-1}$. Multiply by the conjugate:
-        $\dfrac{2}{\sqrt5-1}\cdot\dfrac{\sqrt5+1}{\sqrt5+1}
-        =\dfrac{2\left(\sqrt5+1\right)}{5-1}=\dfrac{\sqrt5+1}{2}=\varphi$.\\[3pt]
-        So the leftover rectangle's long-to-short ratio is $\varphi$ as well --- it is another
-        golden rectangle, just smaller and turned on its side.}
-  \item What does part (d) mean about repeating the cut on the leftover rectangle, and then again
-        on \emph{its} leftover? Why is this one of the few facts about $\varphi$ you could not have
-        seen without rationalizing? \ansline{The cut can be repeated \textbf{forever}. Every
-        leftover is golden, so every leftover can have a square removed to produce yet another
-        golden rectangle --- an infinite nested spiral of them, which is why this shape appears in
-        art and design.\\[3pt]
-        You could not see it in the original form because $\dfrac{1}{\varphi-1}$ has a radical
-        buried in its denominator, and in that shape it looks like nothing in particular.
-        Rationalizing turns it into $\dfrac{1+\sqrt5}{2}$, and only then is it recognizably
-        $\varphi$ again. Rationalizing did not compute anything new --- it made an equality
-        \emph{visible}.}
+  \item Write each side as a single power of $2$, then set the exponents equal. Something strange
+        happens --- write down the equation you end up with and say what it tells you.
+  \item Now rewrite each side as a \emph{multiple of} $8^{x}$. Fill in the two constants:
+        the left side is \ans{2} $\cdot\,8^{x}$ and the right side is \ans{$\frac18$}
+        $\cdot\,8^{x}$.
+  \item In Lesson 6.2's language, both sides are vertical stretches of the same curve $y=8^{x}$.
+        Explain why two such curves can never intersect. (Hint: setting them equal leads to
+        $\frac{15}{8}\cdot 8^{x}=0$. Why is that impossible?)
+  \item Compare this equation with $2^{x}=5$. Both defeated today's method, but for completely
+        different reasons. Say what each reason is, in one sentence apiece --- and say which of the
+        two equations actually has a solution.
 \end{enumerate}
+\ansline{(a) $4^{x}\cdot2^{\,x+1}=2^{\,2x}\cdot2^{\,x+1}=2^{\,3x+1}$ and $8^{\,x-1}=2^{\,3x-3}$, so $3x+1=3x-3$, i.e. $1=-3$.}
+\ansline{That is false for every $x$, so the equation has \emph{no solution} --- the method did not fail, it answered.}
+\ansline{(c) $8^{x}$ is never $0$ (its range is $(0,\infty)$), so $\frac{15}{8}\cdot8^{x}$ is never $0$ either; the left curve sits $16$ times higher than the right one at every input, and two curves that differ by a constant factor never meet.}
+\ansline{(d) $4^{x}\cdot2^{\,x+1}=8^{\,x-1}$ has no solution --- the graphs never cross. $2^{x}=5$ \emph{does} have a solution, between $x=2$ and $x=3$, and only our method is missing.}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 6.4: Graphing Radical Functions \& Transformations.} The algebra of
-radicals is now finished: you can simplify them, add them, multiply them, and clear them out of a
-denominator. Next you go back to the \emph{pictures} from Lesson 6.0 and learn to move them around:
-$y=a\sqrt{x-h}+k$ and $y=a\sqrt[3]{x-h}+k$, where the \textbf{endpoint} is the anchor that every
-transformation moves, and $a$, $h$, and $k$ do exactly what they did to parabolas back in Unit 3.
-You will read a graph and write its equation, and write an equation and predict its graph.
+\textbf{Coming next --- Lesson 6.4: Compound Interest, Half-Life, and $e$.} Today's method is fast, and
+it is also narrow: it works only when both sides happen to be powers of one base. Next lesson the
+equations come from money and medicine, where nobody arranges the numbers for you --- an investment of
+\$1000 at $5\%$ interest reaches \$2000 when $1000(1.05)^{t}=2000$, and $2$ is not a power of $1.05$.
+You will build the models, evaluate them, watch compounding more and more often produce the number
+$e$, and then run into that wall on purpose. Keep the list you started today: $2^{x}=5$, the coffee's
+$132(0.85)^{t}=32$, the soda's $(0.9)^{t}=2.118$, and now $1000(1.05)^{t}=2000$. Every one of them has
+an answer. Unit 7 is where you finally get to write it down.
 \end{spiralbox}
 
 \begin{teachernote}
-Items 1--3 are the routine load, about twenty-five minutes. Two spot-checks are worth your time.
-\textbf{Item 2(a)} is a trap for anyone who distributes without finishing: $\sqrt{16}+\sqrt{36}$
-looks like an answer and is not. \textbf{Item 3(h)} is the one problem on the page with a
-\emph{negative} conjugate product ($3-9=-6$); students who write $\sqrt3+3$ instead of
-$-\sqrt3-3$ have done everything right except distribute the minus sign over both terms, which is
-the Unit 4 leading-minus error resurfacing.
+\textbf{Grade problem 1 by the rewriting column, not the answer column.} Several of these can be
+guessed --- (a), (b), (g) especially --- and a guessed answer will collapse on the unit test. The
+closing question about non-whole answers exists because students erase correct fractional work; if the
+class listed fewer than three, they changed something.
 
-\textbf{Item 2's follow-up question is the best diagnostic on the page.} A student who lists (a)
-among the conjugate pairs has learned ``no radical in the answer $\Rightarrow$ conjugates'' as a
-pattern rather than a mechanism. The distinction matters: (e) and (f) are rational \emph{by
-structure} and can be predicted before any multiplying; (a) is rational because two particular
-radicands happened to be perfect squares.
+\textbf{Problem 2(b) is the only item on the page that needs a negative exponent read off a picture},
+and it is the one most likely to come back blank. $y=\frac12$ is a legal horizontal line; students who
+say ``you can't'' have quietly restricted themselves to integer heights.
 
-\textbf{Item 4(b) is the conceptual spine} and should be graded on the explanation, not the answer.
-Two separate things have to be said --- \emph{why the conjugate works} (middle terms cancel) and
-\emph{why multiplying by it is legal at all} (it is a form of $1$). Students who can say only the
-first will treat rationalizing as a ritual; they are the ones who will not think to use it in
-Lesson 6.5 when it is not asked for by name.
+\textbf{Problem 4 is Devon's and Elise's errors from the Activity, one night later and with new
+numbers.} That repetition is deliberate: (a) is add-versus-multiply and (b) is failure to distribute
+across a binomial exponent, and they are the only two mechanical errors this lesson produces. If a
+student misses both, reteach the parentheses habit --- write $3^{\,2(x+2)}$ before writing anything
+else --- rather than the individual problems.
 
-\textbf{Item 5} closes the same kind of loop Lesson 6.2's homework closed: a procedure and its
-rational-exponent explanation, meeting in the middle. Accept any wording that connects
-``complete the group of three'' to $\frac13+\frac23=1$.
-
-The \textbf{Extension} is the golden ratio, and its shape deliberately matches the unit's earlier
-models --- a table of exact values, a surprising pattern, a structural rewrite. But its point is
-different from the pendulum's or Kepler's: here rationalizing is not a tidying-up step, it is the
-\emph{only} way to see that $\frac{1}{\varphi-1}$ and $\varphi$ are the same number. Part (a) is
-worth the whole assignment on its own --- students genuinely do not expect $1.6180$, $0.6180$, and
-$2.6180$ --- and parts (b)--(d) turn that observation into proof. Part (c) quietly re-tests the
-middle-term error from item 4(a): a student who squares $1+\sqrt5$ as $1+5$ gets
-$\varphi^{2}=\frac{6}{4}$ and the pattern collapses, which is a self-correcting check.
+\textbf{The Extension is the most important thing in tonight's assignment and is worth class time
+tomorrow.} It separates two failures that look identical on paper: an equation with \emph{no solution}
+(the graphs never meet) and an equation whose solution exists but is \emph{out of reach} (the graphs
+meet at a place our algebra cannot name). Lesson 6.4 ends on the second kind and Unit 7 resolves it, so
+students who cannot tell them apart will decide that logarithms are magic. Part (c) is also a genuine
+Lesson 6.2 callback --- two vertical stretches of one curve --- so it rewards students who kept those
+notes.
 \end{teachernote}
 
 \end{document}

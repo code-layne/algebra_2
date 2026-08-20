@@ -22,7 +22,7 @@ Examples:
     python3 namestrip.py --project . --unit 02 --lesson 03
 
     # or point straight at a lesson directory
-    python3 namestrip.py unit02/lesson03
+    python3 namestrip.py unit01/lesson03
 """
 from __future__ import annotations
 

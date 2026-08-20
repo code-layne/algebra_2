@@ -1,8 +1,13 @@
-%! Fundamental Theorem of Algebra and Complex Zeros — Unit 4, Lesson 4.5 — Homework (Answer Key)
+%! Graphing Rational Functions — Unit 4, Lesson 4.5 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -12,160 +17,172 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-The degree tells you how many zeros to find. Conjugate pairs tell you that imaginary zeros never come
-alone. Count every answer against the degree before you move on.
+Every problem starts the same way: \textbf{factor}. Restrictions come off the \emph{original}
+denominator, and the cancel test sorts each one into a hole or a wall.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=8pt]
-  \item \textbf{Just count.} Each polynomial is already factored. Give the degree and the zeros
-    counted with multiplicity.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item $f(x) = (x-7)(x+2)^3$: \; degree \ans{$4$}, zeros \ans{$7, -2, -2, -2$}
-      \item $g(x) = (x^2+1)(x-5)^2$: \; degree \ans{$4$}, zeros \ans{$i, -i, 5, 5$}
-      \item $h(x) = (x^2+4)^2(x-1)$: \; degree \ans{$5$}, zeros \ans{$2i, 2i, -2i, -2i, 1$}
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Hole or wall?} Give the restrictions, then sort them.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $\dfrac{x+3}{(x+3)(x-5)}$ \hfill restrictions \ans{$-3,5$} \; hole \ans{$x=-3$} \;
+            VA \ans{$x=5$}
+      \item $\dfrac{x-6}{(x-2)(x+1)}$ \hfill restrictions \ans{$2,-1$} \; hole \ans{none} \;
+            VA \ans{$x=2$, $x=-1$}
+      \item $\dfrac{x^2-25}{x^2-5x}$ \hfill restrictions \ans{$0,5$} \; hole \ans{$x=5$} \;
+            VA \ans{$x=0$}
+      \item $\dfrac{x^2+x-6}{x^2-4}$ \hfill restrictions \ans{$2,-2$} \; hole \ans{$x=2$} \;
+            VA \ans{$x=-2$}
+      \item $\dfrac{7}{x^2-16}$ \hfill restrictions \ans{$4,-4$} \; hole \ans{none} \;
+            VA \ans{$x=4$, $x=-4$}
+      \item $\dfrac{x^2-9}{x^2-6x+9}$ \hfill restrictions \ans{$3$} \; hole \ans{none} \;
+            VA \ans{$x=3$}
+    \end{enumerate}
+    \vspace{2pt}
+    Part (f) is the odd one. The factor $x-3$ appears on top \emph{and} on the bottom, and there is
+    still no hole. Why not? \ans{the denominator has \emph{two} copies of $x-3$ and the top has one, so one copy survives the cancelling --- leaving $\frac{x+3}{x-3}$, a wall}
 
-        \vspace{2pt}
-        In (c), how many of those zeros are imaginary? \ans{$4$} \; Is that number even?
-        \ans{yes}
+  \item \textbf{Horizontal asymptotes.} Degrees only --- do not factor.
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
+      \item $y=\dfrac{5x-1}{x^2+3}$: \; HA \ans{$y=0$}
+      \item $y=\dfrac{2x^2+x}{3x^2-5}$: \; HA \ans{$y=\frac23$}
+      \item $y=\dfrac{x^3+1}{x^2-4}$: \; HA \ans{none}
+      \item $y=\dfrac{-4x}{x-9}$: \; HA \ans{$y=-4$}
     \end{enumerate}
 
-  \item \textbf{Number and type, without solving.} Each polynomial has \emph{real} coefficients.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item Degree $3$; its graph passes straight through the $x$-axis exactly once. \;
-        Real: \ans{$1$} \; Imaginary: \ans{$2$}
-      \item Degree $4$; its graph \emph{touches} the $x$-axis at $x=3$ and meets it nowhere else. \;
-        Real: \ans{$2$} \; Imaginary: \ans{$2$}
-      \item Degree $5$; its graph passes straight through at $x=0$, $x=2$, and $x=-4$, and nowhere
-        else. \; Real: \ans{$3$} \; Imaginary: \ans{$2$}
-      \item Degree $6$; its graph never touches the $x$-axis. \; Real: \ans{$0$} \;
-        Imaginary: \ans{$6$}
+  \item \textbf{Two full builds.}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=8pt]
+      \item $f(x)=\dfrac{x+2}{x^2-2x-8}$ \\[3pt]
+            Factored \ans{$\frac{x+2}{(x-4)(x+2)}$} \; Restrictions \ans{$4,-2$} \; Simplified \ans{$\frac{1}{x-4}$}
+            \\[3pt]
+            Hole \ans{$(-2,-\frac16)$} \; VA \ans{$x=4$} \; HA \ans{$y=0$} \;
+            $x$-int \ans{none} \; $y$-int \ans{$(0,-\frac14)$} \\[3pt]
+            Sign chart --- boundary points \ans{$4$}. \; Test $x=0$: \ans{$-$} \;
+            test $x=5$: \ans{$+$} \\[3pt]
+            Domain \ans{$(-\infty,-2)\cup(-2,4)\cup(4,\infty)$}
+      \item $g(x)=\dfrac{x-3}{x^2-4}$ \\[3pt]
+            Factored \ans{$\frac{x-3}{(x-2)(x+2)}$} \; Restrictions \ans{$2,-2$} \; Holes \ans{none}
+            \\[3pt]
+            VA \ans{$x=2$, $x=-2$} \; HA \ans{$y=0$} \; $x$-int \ans{$(3,0)$} \;
+            $y$-int \ans{$(0,\frac34)$} \\[3pt]
+            Sign chart --- boundary points \ans{$-2$, $2$, $3$}.
+            \begin{center}
+            \renewcommand{\arraystretch}{1.4}
+            \begin{tabularx}{0.86\linewidth}{|C{2.4cm}|C{1.5cm}|C{1.6cm}|X|}
+            \hline
+            \rowcolor{forestbg}
+            \textbf{Interval} & \textbf{Test $x$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
+            $x<-2$   & $-3$  & \ans{$-$} & \ans{below} \\ \hline
+            $-2<x<2$ & $0$   & \ans{$+$} & \ans{above} \\ \hline
+            $2<x<3$  & $2.5$ & \ans{$-$} & \ans{below} \\ \hline
+            $x>3$    & $4$   & \ans{$+$} & \ans{above} \\ \hline
+            \end{tabularx}
+            \end{center}
+            \vspace{-4pt}
+            Domain \ans{$(-\infty,-2)\cup(-2,2)\cup(2,\infty)$} \; This graph crosses its horizontal asymptote at \ans{$(3,0)$}.
     \end{enumerate}
 
-  \item \textbf{Solve over $\mathbb{C}$.} $x^3 + 2x^2 + 4x + 8 = 0$ \; (this is the quotient
-    Lesson 4.3's homework produced when you divided $x^4-16$ by $x-2$ --- now finish it).
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item Factored form (grouping works): \ans{$x^2(x+2)+4(x+2) = (x+2)(x^2+4)$}
-      \item All solutions: \ans{$-2,\ 2i,\ -2i$}
-      \item Number and type: \ans{$1$} real, \ans{$2$} imaginary
+  \item \textbf{Which equation is this?} The dashed lines are the asymptotes, the solid dot is an
+        intercept, and the open circle is a hole.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-7}{7}{-5}{7}
+      \draw[navy, dashed, semithick] (1,-5)--(1,7);
+      \draw[navy, dashed, semithick] (-7,1)--(7,1);
+      \node[navy, font=\scriptsize, above right] at (1,6.2) {$x=1$};
+      \node[navy, font=\scriptsize, below left] at (-3.4,1) {$y=1$};
+      \begin{scope}
+        \clip (-7,-5) rectangle (7,7);
+        \draw[very thick, forest, domain=-7:0.62, samples=140, smooth] plot (\x,{1+2/((\x)-1)});
+        \draw[very thick, forest, domain=1.33:7, samples=140, smooth] plot (\x,{1+2/((\x)-1)});
+      \end{scope}
+      \draw[forest, very thick, fill=white] (-3,0.5) circle (4.0pt);
+      \fill[charcoal] (-1,0) circle (3.2pt) node[above right, font=\scriptsize]{$(-1,0)$};
+      \fill[charcoal] (0,-1) circle (3.2pt) node[below right, font=\scriptsize]{$(0,-1)$};
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-4pt}
+    \begin{center}
+    \textbf{A.} $\dfrac{x+1}{x-1}$ \quad
+    \textbf{B.} $\dfrac{(x+1)(x+3)}{(x-1)(x+3)}$ \quad
+    \textbf{C.} $\dfrac{(x+1)(x-3)}{(x-1)(x-3)}$ \quad
+    \textbf{D.} $\dfrac{x+3}{(x-1)(x+3)}$
+    \end{center}
+    \vspace{3pt}
+    Answer \ans{B}. \; The hole is at \ans{$(-3,\frac12)$}, so the domain is \ans{$(-\infty,-3)\cup(-3,1)\cup(1,\infty)$}.
+    \\[3pt]
+    Finally, rewrite the simplified form as a transformed parent (Lesson 4.4):
+    $\dfrac{x+1}{x-1}=\dfrac{(x-1)+{\color{keyred}\mathbf{2}}}{x-1}={\color{keyred}1+\frac{2}{x-1}}$
+    \\[3pt]
+    {\small \textbf{A} has no hole; \textbf{C} puts it at $+3$; \textbf{D} gives HA $y=0$.}
+
+  \item \textbf{Error analysis.} A student analyzed $g(x)=\dfrac{x^2-x-6}{x^2-9}$ and wrote:
+    \begin{center}
+    \fbox{\parbox{0.84\linewidth}{\centering \vspace{2pt}
+    ``It simplifies to $\dfrac{x+2}{x+3}$, so the domain is all reals except $x=-3$, \\
+    and the graph is exactly the graph of $\dfrac{x+2}{x+3}$.''\vspace{2pt}}}
+    \end{center}
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item The simplification is \ans{correct} (correct / incorrect).
+      \item What did the student leave out of the domain, and why? \ans{$x=3$ --- the \emph{original} denominator $x^2-9$ is zero there, so $3$ was never an allowed input}
+      \item The hole is at \ans{$(3,\frac56)$}, so the correct domain is \ans{$(-\infty,-3)\cup(-3,3)\cup(3,\infty)$}.
+      \item State the rule from Lesson 4.1 that the student broke, in one sentence.
+            \ansline{cancelling never restores an input --- restrictions are read off the original denominator, and the cancelled one leaves a hole behind}
     \end{enumerate}
 
-  \item \textbf{Solve over $\mathbb{C}$ --- this one needs the full workflow.}
-    $x^3 - 7x^2 + 17x - 15 = 0$
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item Candidates: \ans{$\pm1, \pm3, \pm5, \pm15$} \; One that works: $r = $ \ans{$3$}
-      \item Depressed polynomial: \ans{$x^2-4x+5$} \; Its discriminant: \ans{$16-20=-4$}
-      \item All solutions: \ans{$3,\ 2+i,\ 2-i$}
-      \item \textbf{Verify} one of the imaginary solutions is paired correctly, and explain how the
-        degree confirms you are finished. \ans{$2+i$ and $2-i$ are conjugates \checkmark; degree $3$
-        promises exactly $3$ zeros and $1+2=3$.}
-    \end{enumerate}
-
-  \item \textbf{Closing a loop.} Solve $x^4 - 16 = 0$ completely.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item Factor as a difference of squares --- \emph{twice} if you can:
-        \ans{$(x^2-4)(x^2+4) = (x-2)(x+2)(x^2+4)$}
-      \item All four solutions: \ans{$2,\ -2,\ 2i,\ -2i$}
-      \item In Lesson 4.2 you would have said $x^2+4$ is prime and stopped. Is it still prime over
-        the \emph{complex} numbers? \ans{no} \; Factor it: \ans{$(x-2i)(x+2i)$}
-    \end{enumerate}
-
-  \item \textbf{Build them.} Write each polynomial in factored form \emph{and} standard form.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item Zeros $3$ (multiplicity $2$) and $-1$. \; Factored: \ans{$(x-3)^2(x+1)$} \;
-        Standard: \ans{$x^3-5x^2+3x+9$}
-      \item Real coefficients; zeros include $-4$ and $2i$. \; Full zero list: \ans{$-4, 2i, -2i$}
-
-        \vspace{2pt}
-        Factored: \ans{$(x+4)(x^2+4)$} \; Standard: \ans{$x^3+4x^2+4x+16$}
-    \end{enumerate}
-
-  \item \textbf{Deduce the missing one.} A polynomial of degree $5$ with real coefficients has zeros
-    $3$, $-1$ (multiplicity $2$), and $2-i$.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item How many zeros have you been given, counted with multiplicity? \ans{$4$}
-      \item What is the fifth zero, and how do you know? \ans{$2+i$ --- the conjugate of $2-i$, which
-        real coefficients require}
-      \item How many $x$-intercepts does the graph of this function have? \ans{$2$ (at $3$ and $-1$)}
-    \end{enumerate}
-
-  \item \textbf{Explain.} Answer each in one or two sentences.
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-      \item Why must every polynomial of \emph{odd} degree with real coefficients have at least one
-        real zero? Give both reasons --- the conjugate-pair one and the end-behavior one.
-        \ansline{Imaginary zeros come in pairs, so their number is even; an odd degree minus an even number is odd, so at least one real zero is left.}
-        \ansline{And an odd-degree graph's arms point in opposite directions, so it must pass through the $x$-axis at least once.}
-      \item A classmate solves a cubic, finds one real solution, and says ``the other two are
-        missing.'' Rewrite their sentence so it is correct, and say what a graph can and cannot show.
-        \ansline{``The other two are imaginary'' --- nothing is missing; a cubic always has exactly three complex zeros.}
-        \ansline{A graph shows every real zero as an $x$-intercept, but it can never show an imaginary zero.}
+  \item \textbf{Cleaning the smokestack.} A factory must remove pollution from its exhaust. Removing
+        $p$ percent of the pollutant costs
+        \[ C(p)=\frac{25p}{100-p} \quad \text{thousand dollars,} \qquad 0\le p<100. \]
+    \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+      \item $C(50)=$ \ans{$25$}, \; $C(80)=$ \ans{$100$}, \; $C(90)=$ \ans{$225$}, \;
+            $C(95)=$ \ans{$475$}, \; $C(99)=$ \ans{$2475$} (thousand dollars).
+      \item Run the build. Restriction \ans{$p\neq100$}; vertical asymptote \ans{$p=100$};
+            degrees \ans{$1$} and \ans{$1$}, so the horizontal asymptote is \ans{$y=-25$}.
+      \item Which of those two asymptotes means something about this factory, and what does it say?
+            And why is the other one meaningless here? \ansline{the wall at $p=100$: as the target approaches $100\%$ the cost grows without bound, so total removal cannot be bought at any price. $y=-25$ describes $p$ running far past $100$, at a negative cost --- but $p$ only lives between $0$ and $100$}
+      \item The $x$-intercept is \ans{$(0,0)$}. In plain words, that says \ans{removing none of it costs nothing}.
+      \item Going from $90\%$ to $95\%$ costs an extra \ans{$250$} thousand dollars. Going from
+            $95\%$ to $99\%$ costs an extra \ans{$2000$} thousand. What is the graph doing near
+            $p=100$, and what does that mean for a law requiring $100\%$ removal? \ansline{it climbs steeply along the vertical asymptote --- each additional percent costs more than the one before, and a $100\%$ requirement is a requirement no finite budget can meet}
     \end{enumerate}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{Design and justify.}
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Show that for any real numbers $a$ and $b$, the product
-        $\big(x-(a+bi)\big)\big(x-(a-bi)\big)$ has real coefficients, and state what it equals.
-        (Group the factors as $(x-a) \mp bi$ first.)
-
-        \ans{$\big((x-a)-bi\big)\big((x-a)+bi\big) = (x-a)^2 - b^2i^2 = (x-a)^2 + b^2 = x^2 - 2ax + (a^2+b^2)$. Since $a,b$ are real, so are $2a$ and $a^2+b^2$.}
-  \item What is the smallest possible degree of a polynomial with real coefficients whose zeros
-        include $0$, $\sqrt{5}$, and $3-2i$? Explain which zeros do and do not force a partner ---
-        and be careful, because only one of these rules applies to $\sqrt{5}$.
-
-        \ans{Degree $4$. Only $3-2i$ forces a partner ($3+2i$); $0$ and $\sqrt{5}$ are \emph{real}
-        numbers, and real coefficients place no pairing requirement on real zeros. (It is
-        \emph{rational} coefficients that would force $-\sqrt{5}$ along --- a different hypothesis.)}
-  \item Write a quartic with real coefficients whose graph has \emph{exactly two} $x$-intercepts,
-        then a quartic whose graph has \emph{none}. Give each in factored form and justify the number
-        of intercepts using the counting rules, not a graph.
-
-        \ans{Two intercepts: $(x-1)(x+3)(x^2+1)$ --- two real zeros, one conjugate pair, $2+2=4$.
-        None: $(x^2+1)(x^2+9)$ --- all four zeros imaginary ($\pm i, \pm 3i$), two full pairs, so no
-        real zeros exist to be intercepts.}
-  \item Explain why no polynomial with real coefficients and degree $4$ can have exactly \emph{three}
-        $x$-intercepts, each a simple crossing, and no other zeros.
-
-        \ans{Three simple crossings use three of the four zeros, leaving exactly one --- and a single
-        leftover zero cannot be imaginary (they come in pairs), so it would have to be real, giving a
-        fourth intercept or a repeated one. The description contradicts itself.}
+\textbf{Part 1 --- Design one.} Write the equation of a rational function with vertical asymptotes at
+$x=-1$ and $x=4$, a horizontal asymptote $y=0$, and \emph{no} $x$-intercept at all.
+\begin{center}
+$y=$ \ans{$\dfrac{1}{(x+1)(x-4)}$}
+\end{center}
+\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
+  \item Which requirement forced the denominator? \ans{the two vertical asymptotes --- and neither factor may cancel}
+  \item Which two requirements, together, forced the numerator to be a nonzero \emph{constant}?
+        \ansline{``no $x$-intercept'' means the numerator is never zero, and HA $y=0$ means its degree is below $2$ --- together that leaves a nonzero constant}
+  \item Is your answer the only one? What could someone else have written instead? \ans{no --- any nonzero constant on top works, e.g.\ $\frac{5}{(x+1)(x-4)}$ or $\frac{-2}{x^2-3x-4}$}
 \end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 2 --- One question, carefully.} Can a rational function have a hole \emph{and} a vertical
+asymptote at the same $x$-value? Answer, then test your answer against $y=\dfrac{x-3}{(x-3)^2}$ ---
+which has $x-3$ on the top and on the bottom.
+\ansline{No. The cancel test sends each restriction to exactly one outcome: the factor either cancels
+completely (hole) or leaves a copy in the denominator (wall). In $\frac{x-3}{(x-3)^2}$ one copy cancels
+and one remains, leaving $\frac{1}{x-3}$ --- a wall at $x=3$ and no hole. A shared factor is not
+enough; it has to cancel \emph{all the way}.}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 4.6: Graphing Polynomial Functions \& Modeling.} You now own every
-piece of a polynomial's graph separately: end behavior from the degree and leading coefficient
-(4.0), zeros from factoring and the Rational Root Theorem (4.2--4.4), how the graph behaves at each
-zero from its multiplicity (4.0), and --- as of today --- exactly how many zeros exist and how many of
-them the graph is allowed to show. Tomorrow those pieces become one procedure: read a polynomial,
-predict its graph, and use it to answer questions about a real situation.
+\textbf{Coming next --- Lesson 4.6: Solving Rational Equations.} All unit long you have computed
+excluded values and then \emph{kept} them off the graph. Tomorrow they come back as answers: clearing
+the denominators hands you numbers that solve the cleared equation but not the original one --- exactly
+the excluded values you have been listing since 4.1. You already know how to find them.
 \end{spiralbox}
 
 \begin{teachernote}
-\textbf{Items 1--2 are the fastest diagnostic on the page} and are worth grading first. A student who
-can count $(x^2+4)^2(x-1)$ to five zeros and read ``degree $6$, no intercepts $\Rightarrow$ six
-imaginary zeros'' has the theorem. Item~2(b) is the one that separates: a \emph{touch} is a double
-zero, so it uses two of the four slots and leaves two imaginary --- students who count the touch once
-get $1$ real and $3$ imaginary, and the odd number should be their own red flag.
-
-\vspace{3pt}
-\textbf{Item 5 closes the longest loop in the unit.} $x^4-16$ was divided in Lesson~4.3, its quotient
-$x^3+2x^2+4x+8$ was factored to $(x+2)(x^2+4)$ there, and $x^2+4$ was declared prime in Lesson~4.2.
-Part~(c) is where students find out that ``prime'' was always relative to a number system. If only
-one item gets discussed at the start of Lesson~4.6, make it this one.
-
-\vspace{3pt}
-\textbf{Extension (b) is deliberately a trap} and is the only place students meet the distinction
-between real and rational coefficients. Many will pair $\sqrt5$ with $-\sqrt5$ and answer $5$. That is
-the \emph{right instinct} applied to the wrong hypothesis --- worth full credit if the reasoning is
-stated, and worth a minute of class time either way, since the irrational conjugate pairing is real
-mathematics they will meet again.
-
-\vspace{3pt}
-\textbf{Common errors.} $(x+4)(x-2i)$ left unpaired in 6(b); $(x+4)(x^2-4)$ from the $i^2$ sign slip;
-$(x-3)^2(x+1)$ expanded as $x^3-5x^2+3x-9$ (constant sign); and, in item~4, students who find $r=3$
-and then report only ``$x=3$'' because the depressed quadratic ``has no solutions.'' That last one is
-the whole lesson, and it should be corrected in writing, not just marked wrong.
+\textbf{1(f)}: two copies of $x-3$ downstairs, one upstairs --- the restriction survives as a wall and
+there is no hole. \textbf{3(a)} has \emph{no} $x$-intercept; \textbf{3(b)} crosses its HA at $(3,0)$.
+\textbf{Problem 5} is the unit's spine: the algebra is right and the conclusion still wrong. Accept any
+phrasing of 4.1's \emph{cancelling never restores an input}, and flag anyone missing it --- it is
+tomorrow's extraneous solution. \textbf{Problem 6} reverses the activity's model: here the
+\emph{vertical} asymptote is the one that means something.
 \end{teachernote}
 
 \end{document}

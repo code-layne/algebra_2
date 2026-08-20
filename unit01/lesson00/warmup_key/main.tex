@@ -1,86 +1,65 @@
-%! Properties of Real Numbers, Equality, and Inequality — Unit 1, Lesson 1.0 — Warm-Up (Answer Key)
+%! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Warm-Up (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\ck}{\ans{$\checkmark$}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.0}{Warm-Up --- Answer Key}
 
-\vspace{0.08in}
+\vspace{0.10in}
 
 \begin{notesbox}{Getting Ready: Skills We'll Use Today}
-\small Welcome back. These three items are all Algebra 1 --- you can already do every one of them.
-Today's lesson gives names to what you are about to do.
+\small Three things you already know from Algebra~1. Today's activity leans on all three --- work
+quickly and check with a neighbor.
 
 \vspace{4pt}
-\textbf{1. Where does each number live?} Put a check in \emph{every} box that the number belongs to.
-Several numbers belong to more than one.
+\textbf{1. Read the points.} Write the coordinates $(x,y)$ of each labeled point on the grid.
 \begin{center}
-\renewcommand{\arraystretch}{1.45}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-\textbf{Number} & \textbf{Natural} & \textbf{Whole} & \textbf{Integer} & \textbf{Rational} & \textbf{Irrational} \\
-\hline
-$-7$ & & & \ck & \ck & \\ \hline
-$0$ & & \ck & \ck & \ck & \\ \hline
-$\tfrac34$ & & & & \ck & \\ \hline
-$\sqrt{9}$ & \ck & \ck & \ck & \ck & \\ \hline
-$\sqrt{5}$ & & & & & \ck \\ \hline
-$\pi$ & & & & & \ck \\ \hline
-\end{tabular}
-\end{center}
-Two of these six numbers caused an argument at your table. Which two, and why?
-\ansline{$\sqrt{9}$ and $0$. $\sqrt{9}=3$, so it is a \emph{natural number} --- the radical sign
-does not make a number irrational; the \emph{value} decides. And $0$ is whole and an integer but
-\emph{not} natural, since counting starts at $1$.}
-
-\vspace{4pt}
-\textbf{2. Fill in the blank --- these should take you no time at all.}
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l l l@{}}
-(a) \; $5+0=$ \ans{5} &
-(b) \; $7\cdot 1=$ \ans{7} &
-(c) \; $4+(-4)=$ \ans{0} &
-(d) \; $2\cdot\tfrac12=$ \ans{1} \\
-\end{tabular}
-\end{center}
-Every one of those four is an example of a rule that has a \emph{name}. Do you know any of the four
-names? Write down any you know --- and it is completely fine to write ``none.''
-\ansline{Accept anything, including ``none.'' The four names, handed out in Section 2 today:
-(a) additive identity, (b) multiplicative identity, (c) additive inverse, (d) multiplicative
-inverse (reciprocal).}
-
-\vspace{4pt}
-\textbf{3. Solve each one. Show every step.}
-\begin{center}
-\begin{minipage}[t]{0.45\linewidth}
-\centering $2x-7=11$
-\vspace{2pt}
-
-\ans{$2x = 18$}
-
-\ans{$x = 9$}
-\vspace{0.55cm}
-\end{minipage}
-\begin{minipage}[t]{0.45\linewidth}
-\centering $-3x>12$
-\vspace{2pt}
-
-\ans{$x < -4$}
-
-\ans{(divided by $-3$, so the symbol reversed)}
-\vspace{0.55cm}
+\begin{minipage}{0.42\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-4}{4}{-4}{4}
+  \fill[forest] (3,2) circle (3.5pt)   node[above right, font=\scriptsize, charcoal]{$A$};
+  \fill[forest] (-2,-3) circle (3.5pt) node[below left, font=\scriptsize, charcoal]{$B$};
+  \fill[forest] (0,-1) circle (3.5pt)  node[below right, font=\scriptsize, charcoal]{$C$};
+  \fill[forest] (-3,0) circle (3.5pt)  node[above left, font=\scriptsize, charcoal]{$D$};
+\end{tikzpicture}
+\end{minipage}%
+\begin{minipage}{0.5\linewidth}
+  $A = ($\ans{$3$}$,$\;\ans{$2$}$)$ \qquad $B = ($\ans{$-2$}$,$\;\ans{$-3$}$)$ \\[10pt]
+  $C = ($\ans{$0$}$,$\;\ans{$-1$}$)$ \qquad $D = ($\ans{$-3$}$,$\;\ans{$0$}$)$ \\[8pt]
+  Which point sits \emph{on} the $y$-axis? \ans{$C$} \quad On the $x$-axis? \ans{$D$}
 \end{minipage}
 \end{center}
-One of those two problems made you do something \emph{extra} that the other one did not. Which one,
-and what was the extra thing?
-\ansline{The inequality $-3x>12$. Dividing both sides by $-3$ --- a \emph{negative} number ---
-forced the $>$ to turn around into $<$. Nothing like that happened in the equation.}
 
+\vspace{2pt}
+\textbf{2. Evaluate a function.} Let $g(x) = 3x - 6$. Find each output, then write it as a point
+$(x, g(x))$.
+\[
+  g(0) = {\color{keyred}\mathbf{-6}}\;(\text{point: }{\color{keyred}\mathbf{(0,-6)}})
+  \quad
+  g(2) = {\color{keyred}\mathbf{0}}\;(\text{point: }{\color{keyred}\mathbf{(2,0)}})
+  \quad
+  g(4) = {\color{keyred}\mathbf{6}}\;(\text{point: }{\color{keyred}\mathbf{(4,6)}})
+\]
+For what input $x$ is $g(x) = 0$? \ans{$x = 2$ (since $3(2)-6=0$)}
+
+\vspace{4pt}
+\textbf{3. Spot the pattern.} The table follows a steady pattern. Fill in the missing values.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$x$ & $0$ & $1$ & $2$ & $3$ & $4$ & $10$ \\ \hline
+$y$ & $5$ & $8$ & $11$ & \ans{$14$} & \ans{$17$} & \ans{$35$} \\ \hline
+\end{tabular}
+\end{center}
+Each time $x$ goes up by $1$, $y$ goes up by \ans{$3$}. \; A rule for $y$ in terms of $x$
+is $y = $ \ans{$3x + 5$}.
 \end{notesbox}
 
 \end{document}

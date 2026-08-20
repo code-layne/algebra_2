@@ -1,4 +1,4 @@
-%! Simplifying Rational Expressions — Unit 5, Lesson 5.1 — Slides (Beamer)
+%! $n$th Roots \& Rational Exponents — Unit 5, Lesson 5.1 — Slides (Beamer)
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -6,6 +6,11 @@
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% Cube root: pgfmath has no cbrt, so plot the two branches separately.
+\newcommand{\cbrtpos}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{pow(\x,1/3)});}
+\newcommand{\cbrtneg}[2]{\draw[very thick, forest, domain=#1:#2, samples=70, smooth]
+  plot (\x,{-pow(-1*(\x),1/3)});}
 
 \begin{document}
 
@@ -16,220 +21,297 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 5.1}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Simplifying Rational Expressions \& Domain Restrictions}\\[1.2cm]
-    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Rational Functions}
+    {\color{white}\bfseries\LARGE $n$th Roots \& Rational Exponents}\\[1.2cm]
+    {\color{forestmid}\small Algebra 2: Shepherd~$\cdot$~Unit 5: Radical Functions}
   \end{minipage}
 \end{frame}
 }
 
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{Two expressions. One disagreement.}
+  \forestheader{A problem you cannot do --- yet}
   \sectionlabel{Hook}
   \begin{columns}[T]
-    \begin{column}{0.44\textwidth}
-      \[ A(x)=\frac{x^2-x-6}{x^2-9} \qquad B(x)=\frac{x+2}{x+3} \]
-      \vspace{-6pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $B$ is $A$ factored and cancelled.
-        \item They agree everywhere\dots{} except one input.
+    \begin{column}{0.46\textwidth}
+      \[ \sqrt{x}\cdot\sqrt[3]{x} \;=\; ? \]
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item Every radical rule you know needs the two \textbf{indices to match}.
+        \item These do not. There is no move to make.
       \end{itemize}
     \end{column}
-    \begin{column}{0.54\textwidth}
-      \centering
-      \renewcommand{\arraystretch}{1.4}
-      \begin{tabular}{|l|c|c|c|c|}
-      \hline
-      $x$ & $0$ & $1$ & $4$ & $3$ \\ \hline
-      $A(x)$ & $\frac23$ & $\frac34$ & $\frac67$ & \textbf{undef.} \\ \hline
-      $B(x)$ & $\frac23$ & $\frac34$ & $\frac67$ & $\frac56$ \\ \hline
-      \end{tabular}
+    \begin{column}{0.50\textwidth}
+      \begin{block}{So try the other direction}
+        What number, squared, gives $a$? \; $\sqrt{a}$. \\[4pt]
+        Now suppose $a^{1/2}$ meant \emph{something}. Power to a power says
+        \[ \left(a^{1/2}\right)^{2} = a^{\frac12\cdot 2} = a^{1} = a . \]
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize Nobody \emph{chose} this. If the exponent rules are going to keep working,
+      $a^{1/2}$ has \textbf{no choice} but to be $\sqrt{a}$.}
     \end{column}
   \end{columns}
-  \vspace{6pt}
-  \begin{block}{Today}
-    Cancelling changes how an expression \textbf{looks}. It never gives back an input that was already
-    thrown away.
-  \end{block}
 \end{frame}
 
-% WHY CANCELLING WORKS
+% nTH ROOTS + PRINCIPAL ROOT
 \begin{frame}[t, plain]
-  \forestheader{Cancelling is one rule, not a habit}
-  \sectionlabel{Why it works}
+  \forestheader{$n$th roots --- and why the symbol gives you only one of them}
+  \sectionlabel{Definition}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      $\sqrt[n]{a}=b$ \; means \; $b^{n}=a$.
+      \vspace{4pt}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $4^{2}=16$ \emph{and} $(-4)^{2}=16$ --- so $16$ has \textbf{two} real square roots.
+        \item The symbol returns the \textbf{principal} (non-negative) one.
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize $\sqrt{16}=4$, \; $-\sqrt{16}=-4$, \; $\pm\sqrt{16}=\pm4$. \\
+      Want both? \textbf{Write the $\pm$ yourself.}}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{block}{How many real $n$th roots?}
+        \footnotesize
+        \begin{tabular}{lll}
+        \textbf{Index} & \textbf{Radicand} & \textbf{Real roots} \\
+        \hline
+        even & $a>0$ & two ($\pm$) \\
+        even & $a=0$ & one \\
+        even & $a<0$ & \textbf{none} \\
+        odd  & any   & exactly one, same sign as $a$ \\
+        \end{tabular}
+      \end{block}
+      \vspace{2pt}
+      {\footnotesize \textbf{Why:} an even power is never negative, so nothing real is an even root of
+      a negative. An odd power \emph{keeps} the sign. \\
+      \textcolor{goldacc}{\textbf{This is yesterday's domain rule, finally proved.}}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE ABSOLUTE VALUE TRAP
+\begin{frame}[t, plain]
+  \forestheader{The trap: $\sqrt[n]{a^{n}}$ is not always $a$}
+  \sectionlabel[goldacc]{$|a|$ or $a$?}
   \begin{columns}[T]
     \begin{column}{0.52\textwidth}
-      \[ \frac{a\cdot c}{b\cdot c}=\frac{a}{b}\cdot\frac{c}{c}=\frac{a}{b}\cdot 1=\frac{a}{b} \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item You are dividing out a factor equal to \textbf{1}.
-        \item It works \emph{only} if $c$ is a \textbf{factor}, and only if $c\neq0$.
+      \begin{itemize}\setlength{\itemsep}{6pt}
+        \item $\sqrt{5^{2}} = \sqrt{25} = 5$ \quad {\footnotesize (fine)}
+        \item $\sqrt{(-5)^{2}} = \sqrt{25} = \textbf{5}$ \quad
+              {\footnotesize \textcolor{keyred}{not $-5$!}}
+        \item $\sqrt[3]{(-5)^{3}} = \sqrt[3]{-125} = -5$ \quad {\footnotesize (fine)}
       \end{itemize}
+      \vspace{4pt}
+      {\footnotesize The square \textbf{destroyed} the sign, and the principal root refuses to put it
+      back.}
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{Factors vs.\ terms}
-        \textbf{Factors} are multiplied --- you may divide them out. \\[3pt]
-        \textbf{Terms} are added --- you may never divide them out.
+    \begin{column}{0.44\textwidth}
+      \begin{block}{The rule}
+        \centering
+        $n$ \textbf{even}: \; $\sqrt[n]{a^{n}} = |a|$ \\[5pt]
+        $n$ \textbf{odd}: \; $\sqrt[n]{a^{n}} = a$
       \end{block}
       \vspace{3pt}
-      {\footnotesize Claim: $\dfrac{x+3}{3}=x$. \; Test $x=6$: \; $\dfrac{9}{3}=3$, but $x=6$.
-      \\[3pt] One number ends the argument.}
+      {\footnotesize So $\sqrt{x^{2}}=|x|$ --- unless we are \emph{told} $x>0$.
+      That is why most problems say ``assume all variables are positive.''}
     \end{column}
   \end{columns}
 \end{frame}
 
-% THE FOUR STEPS
+% a^(1/n)
 \begin{frame}[t, plain]
-  \forestheader{The four steps --- and the order matters}
-  \sectionlabel[goldacc]{Procedure}
+  \forestheader{A radical \emph{is} an exponent}
+  \sectionlabel[goldacc]{$\sqrt[n]{a}=a^{1/n}$}
   \begin{columns}[T]
-    \begin{column}{0.50\textwidth}
-      \begin{enumerate}\setlength{\itemsep}{5pt}
-        \item \textbf{Factor} top and bottom completely (GCF first).
-        \item \textbf{List the restrictions} --- from the \textbf{original} denominator.
-        \item \textbf{Divide out} the shared factors.
-        \item \textbf{Write} the simplest form \emph{with} its restrictions.
-      \end{enumerate}
+    \begin{column}{0.48\textwidth}
+      The exponent rules force it:
+      \[ \left(a^{1/n}\right)^{n} = a^{\frac{1}{n}\cdot n} = a^{1} = a \]
+      \vspace{-4pt}
+      \begin{block}{Therefore}
+        \centering $\displaystyle \sqrt[n]{a} = a^{1/n}$ \\[3pt]
+        {\footnotesize the \textbf{index} becomes the \textbf{denominator}}
+      \end{block}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{The anchor}
-        \[ \frac{x^2-x-6}{x^2-9}=\frac{(x-3)(x+2)}{(x-3)(x+3)}=\frac{x+2}{x+3} \]
-        \centering $x\neq 3,\;-3$
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize Step 2 comes \emph{before} step 3 for a reason: after cancelling, $x=3$ is
-      invisible --- but it is still excluded.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% CANCELLING NEVER RESTORES AN INPUT
-\begin{frame}[t, plain]
-  \forestheader{Cancelling never restores an input}
-  \sectionlabel{The big idea}
-  \begin{columns}[T]
-    \begin{column}{0.46\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.36]
-        \lgrid{-8}{6}{-4}{5}
-        \draw[navy, dashed, thick] (-3,-4)--(-3,5);
-        \draw[navy, dashed, thick] (-8,1)--(6,1);
-        \begin{scope}
-          \clip (-8,-4) rectangle (6,5);
-          \draw[very thick, forest, domain=-8:-3.25, samples=100, smooth]
-            plot (\x,{((\x)+2)/((\x)+3)});
-          \draw[very thick, forest, domain=-2.8:6, samples=100, smooth]
-            plot (\x,{((\x)+2)/((\x)+3)});
-        \end{scope}
-        \draw[forest, very thick, fill=white] (3,0.833) circle (5pt);
-      \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.54\textwidth}
-      \begin{block}{Two restrictions, two jobs}
-        $x=-3$: factor \textbf{stays} $\Rightarrow$ \textbf{vertical asymptote} \\[3pt]
-        $x=3$: factor \textbf{cancels} $\Rightarrow$ \textbf{hole} at $\left(3,\tfrac56\right)$
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize This is Lesson 5.0's cancel test, run from the algebra side. The hole's height
-      comes from the \emph{simplified} form --- the original has no value there at all.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% OPPOSITE BINOMIALS
-\begin{frame}[t, plain]
-  \forestheader{Opposite binomials: the hidden factor of $-1$}
-  \sectionlabel[goldacc]{$\frac{a-b}{b-a}=-1$}
-  \begin{columns}[T]
-    \begin{column}{0.50\textwidth}
-      \[ \frac{5-x}{x-5}=\frac{-1(x-5)}{x-5}=-1 \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Same terms, \emph{every} sign flipped $\Rightarrow$ factor out $-1$.
-        \item $x+3$ and $3+x$ are \emph{equal} --- only subtraction cares about order.
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item $\sqrt{7}=7^{1/2}$ \qquad $\sqrt[3]{x}=x^{1/3}$
+        \item $m^{1/4}=\sqrt[4]{m}$ \qquad $64^{1/3}=\sqrt[3]{64}=4$
+        \item $\sqrt[5]{2y}=(2y)^{1/5}$
       \end{itemize}
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{Worked}
-        \[ \frac{x^2-16}{4-x}=\frac{(x-4)(x+4)}{-(x-4)}=-(x+4) \]
-        \centering $x\neq4$
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize Dropping that $-1$ is the single most common lost point on this topic.}
+      \vspace{5pt}
+      {\footnotesize \textbf{Watch the parentheses:} $2y^{1/5}$ and $(2y)^{1/5}$ are different --- in
+      the first, only the $y$ is under the root.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% EQUIVALENCE
+% a^(m/n)
 \begin{frame}[t, plain]
-  \forestheader{What ``equivalent'' actually means}
-  \sectionlabel{A2.EO.1d}
+  \forestheader{Denominator roots, numerator powers}
+  \sectionlabel[goldacc]{$a^{m/n}$}
   \begin{center}
-    Two rational expressions are \textbf{equivalent} when they give the same value at every input
-    \textbf{both} are defined for.
+    \begin{minipage}{0.86\textwidth}
+      \begin{block}{The rule}
+        \centering
+        $\displaystyle a^{m/n} \;=\; \sqrt[n]{a^{m}} \;=\; \left(\sqrt[n]{a}\right)^{m}$ \\[4pt]
+        {\footnotesize \textbf{denominator} $=$ the index (the root) \qquad
+        \textbf{numerator} $=$ the power}
+      \end{block}
+    \end{minipage}
   \end{center}
   \vspace{4pt}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      \begin{block}{Check by factoring}
-        $\dfrac{x^2-4x}{x^2-16}=\dfrac{x(x-4)}{(x-4)(x+4)}=\dfrac{x}{x+4}$
-      \end{block}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $\sqrt[4]{x^{3}} = x^{3/4}$
+        \item $\left(\sqrt[3]{x}\right)^{7} = x^{7/3}$
+        \item $y^{2/5} = \sqrt[5]{y^{2}}$ \qquad $w^{5/2}=\sqrt{w^{5}}$
+      \end{itemize}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{Check by testing}
-        At $x=1$: \; $\dfrac{-3}{-15}=\dfrac15$ \; and \; $\dfrac{1}{5}$. \\[3pt]
-        One match proves nothing; one \emph{mismatch} disproves everything.
+      \begin{block}{The error of the day}
+        $\sqrt[4]{x^{3}}$ is $x^{3/4}$, \textbf{never} $x^{4/3}$. \\[3pt]
+        {\footnotesize The index is on the \emph{bottom} because it came from $\frac{1}{n}$.}
       \end{block}
     \end{column}
   \end{columns}
-  \vspace{5pt}
-  \begin{center}\footnotesize
-    They still disagree at $x=4$ --- undefined on the left, $\tfrac14$ on the right. Different
-    \emph{domains}, same \emph{values}: still equivalent.
-  \end{center}
 \end{frame}
 
-% ERROR GALLERY
+% ROOT FIRST + NEGATIVE EXPONENTS
 \begin{frame}[t, plain]
-  \forestheader{The four ways to lose a point today}
-  \sectionlabel{Watch out}
+  \forestheader{Take the root first --- and a minus sign is not a minus sign}
+  \sectionlabel{Evaluating}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Cancelling terms}
-        $\dfrac{x^2+9}{x+3}\neq x+3$ \\[3pt]
-        {\footnotesize Test $x=1$: $\tfrac{10}{4}$ vs.\ $4$. And $x^2+9$ is \emph{prime}.}
-      \end{block}
-      \vspace{3pt}
-      \begin{block}{Restrictions from the simplified form}
-        The cancelled restriction disappears --- and the hole with it.
-      \end{block}
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      \begin{tabular}{lll}
+      \hline
+       & \textbf{Power first} & \textbf{Root first} \\
+      \hline
+      $8^{2/3}$ & $\sqrt[3]{64}=4$ & $\left(\sqrt[3]{8}\right)^{2}=2^{2}=4$ \\
+      $16^{3/4}$ & $\sqrt[4]{4096}=8$ & $\left(\sqrt[4]{16}\right)^{3}=2^{3}=8$ \\
+      \hline
+      \end{tabular}
+      \vspace{5pt}
+
+      {\footnotesize Both are correct. Only one is arithmetic you can do in your head ---
+      \textcolor{goldacc}{\textbf{choosing the easy route is the skill.}}}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Losing the $-1$}
-        $\dfrac{3-x}{x^2-9}=-\dfrac{1}{x+3}$, not $\dfrac{1}{x+3}$.
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Negative rational exponents}
+        \centering $\displaystyle a^{-m/n} = \frac{1}{a^{m/n}}$
+      \end{block}
+      \vspace{2pt}
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $16^{-1/2} = \dfrac{1}{4}$ \quad
+              \textcolor{keyred}{\textbf{not $-4$}}
+        \item $27^{-2/3} = \dfrac{1}{3^{2}} = \dfrac{1}{9}$
+      \end{itemize}
+      \vspace{3pt}
+      {\footnotesize The minus sign \textbf{moves} the expression downstairs. It does not change its
+      sign.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% THE PAYOFF
+\begin{frame}[t, plain]
+  \forestheader{The payoff: every exponent property now works on radicals}
+  \sectionlabel[goldacc]{Why the notation exists}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \footnotesize
+      \begin{tabular}{ll}
+      \hline
+      Product & $a^{r}a^{s}=a^{r+s}$ \\
+      Quotient & $a^{r}/a^{s}=a^{r-s}$ \\
+      Power & $\left(a^{r}\right)^{s}=a^{rs}$ \\
+      Negative & $a^{-r}=1/a^{r}$ \\
+      \hline
+      \end{tabular}
+      \vspace{5pt}
+
+      {\footnotesize None of them ever cared whether the exponent was a whole number.}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \begin{block}{Back to the Hook}
+        \centering
+        $\displaystyle \sqrt{x}\cdot\sqrt[3]{x} = x^{1/2}\cdot x^{1/3} = x^{5/6} = \sqrt[6]{x^{5}}$
       \end{block}
       \vspace{3pt}
-      \begin{block}{No restrictions at all}
-        The answer is the expression \textbf{and} its restriction list. Half an answer is half credit.
+      \footnotesize
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $\dfrac{x^{3/4}}{x^{1/2}} = x^{1/4}$ \qquad $\left(x^{2/3}\right)^{6} = x^{4}$
+        \item $\left(8x^{6}\right)^{1/3} = 2x^{2}$
+        \item $\sqrt{\sqrt[3]{x}} = x^{1/6}$ \quad {\footnotesize (the indices \emph{multiply})}
+      \end{itemize}
+      \vspace{2pt}
+      {\footnotesize Mismatched indices are a dead end as radicals --- and one line as exponents.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% BACK TO 5.0 — DOMAIN
+\begin{frame}[t, plain]
+  \forestheader{Yesterday's graphs, relabeled}
+  \sectionlabel[goldacc]{The denominator decides}
+  \begin{columns}[T]
+    \begin{column}{0.30\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-2}{9}{-2}{4}
+        \begin{scope}
+          \clip (-2,-2) rectangle (9,4);
+          \draw[very thick, forest, domain=0:9, samples=90, smooth] plot (\x,{sqrt(\x)});
+        \end{scope}
+        \fill[forest] (0,0) circle (6pt);
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=x^{1/2}$ --- domain $[0,\infty)$}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-8}{8}{-3}{3}
+        \begin{scope}
+          \clip (-8,-3) rectangle (8,3);
+          \cbrtpos{0}{8}
+          \cbrtneg{-8}{0}
+        \end{scope}
+      \end{tikzpicture}\\[2pt]
+      {\footnotesize $y=x^{1/3}$ --- all reals}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \begin{block}{The rule, in exponent language}
+        In $x^{m/n}$ (lowest terms): \\[3pt]
+        \textbf{even} denominator $\Rightarrow$ domain $x\ge0$ \\[3pt]
+        \textbf{odd} denominator $\Rightarrow$ all reals
       \end{block}
+      \vspace{2pt}
+      {\footnotesize The \emph{numerator} never restricts anything. \\[3pt]
+      ``Even index restricts the domain'' and ``even denominator restricts the domain'' are the
+      \textbf{same sentence} --- because the denominator \emph{is} the index.}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ROADMAP
 \begin{frame}[t, plain]
-  \forestheader{Where this goes}
+  \forestheader{Where Unit 5 goes next}
   \sectionlabel{Connections}
-  \textbf{Today:} factor, restrict, divide out --- and know exactly which inputs your simplified form
-  quietly dropped.\\[8pt]
+  \textbf{Today:} $\sqrt[n]{a}=a^{1/n}$ and $a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}$ ---
+  which hands every exponent property to radicals, and gives yesterday's domain rule its algebraic
+  proof.\\[8pt]
   \begin{itemize}\setlength{\itemsep}{3pt}
-    \item \textbf{5.2--5.3} Multiply, divide, add \& subtract --- every one of them starts by factoring.
-    \item \textbf{5.5} Graphing from the equation: the cancel test decides hole vs.\ wall.
-    \item \textbf{5.6} Solving rational equations --- an ``extraneous solution'' is nothing but one of
-          today's excluded values sneaking back in.
+    \item \textbf{5.2} Simplifying radicals; adding \& subtracting like radicals.
+    \item \textbf{5.3} Multiplying \& dividing; rationalizing with conjugates.
+    \item \textbf{5.4} Graphing radical functions \& transformations.
+    \item \textbf{5.5} Solving radical equations \& extraneous solutions.
+    \item \textbf{5.6} Composition of functions.
+    \item \textbf{5.7} Inverse functions --- where ``raise both sides to the reciprocal power''
+          becomes a method.
   \end{itemize}
-  \vspace{6pt}
-  \begin{center}
-    \textbf{Cancelling never restores an input.} Say it once more on the way out.
-  \end{center}
 \end{frame}
 
 \end{document}

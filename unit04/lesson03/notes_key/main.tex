@@ -1,14 +1,17 @@
-%! Dividing Polynomials; Remainder and Factor Theorems — Unit 4, Lesson 4.3 — Guided Notes (Answer Key)
+%! Adding \& Subtracting Rational Expressions — Unit 4, Lesson 4.3 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\mans}[1]{{\color{keyred}\boldsymbol{#1}}}   % math-mode answer (\ans is text-only)
-
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
@@ -20,10 +23,9 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item divide a polynomial by a \emph{monomial}, and by a \emph{binomial} or \emph{factorable trinomial} using long division;
-  \item use \emph{synthetic division} when the divisor has the form $x - r$, and write the answer as quotient plus remainder over divisor;
-  \item use the \emph{Remainder Theorem} to find a remainder without dividing, and the \emph{Factor Theorem} to decide whether $(x-r)$ is a factor;
-  \item divide out a known factor to \emph{finish} a factorization that Lesson 4.2's tools could not reach.
+  \item add and subtract rational expressions with like denominators, putting the second numerator in \emph{parentheses} whenever I subtract;
+  \item build the \textbf{least common denominator} from the \emph{factored} denominators, rewrite each fraction to match it, combine, and simplify;
+  \item recognize a \textbf{complex fraction} and simplify it as a quotient of two simple fractions --- and state every restriction it carries.
 \end{itemize}
 \end{objectivebox}
 
@@ -32,264 +34,290 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-
-\termblanklong{Division statement (dividend $=$ divisor $\times$ quotient $+$ remainder)}
-\ansline{$P(x) = D(x)\,Q(x) + R(x)$, where the degree of $R$ is less than the degree of $D$.}
-\termblanklong{Synthetic division}
-\ansline{A shortcut for dividing by $x-r$ that uses only the coefficients: bring down, multiply by $r$, add.}
-\termblanklong{Remainder Theorem}
-\ansline{Dividing $f(x)$ by $x-r$ leaves the remainder $f(r)$.}
-\termblanklong{Factor Theorem}
-\ansline{$(x-r)$ is a factor of $f(x)$ exactly when $f(r)=0$.}
-\termblanklong{Depressed polynomial}
-\ansline{The quotient left after dividing a known factor out --- one degree lower, and easier to factor.}
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Least common denominator (LCD)}{the smallest expression every denominator divides into --- built by taking each \emph{distinct} factor to the \emph{highest} power it reaches in any one denominator}
+\vocabans{Building factor}{the form of $1$, written $\frac{k}{k}$, that you multiply a fraction by to give its denominator whatever the LCD has and it is missing}
+\vocabans{Complex algebraic fraction}{a fraction that has fractions inside its numerator, its denominator, or both --- simplified as a quotient of two simple fractions}
+\vocabans{Main fraction bar}{the long bar of a complex fraction; it is a division sign, so whatever sits below it may never equal zero}
 \end{vocabbox}
 
 \begin{hookbox}
-Lesson 4.2 ended at a wall. The unit's anchor, $p(x) = x^3 - 3x + 2$, has no GCF, is not a
-difference of squares or cubes, is not in quadratic form, and has only three terms --- so it cannot
-be grouped. \emph{And yet it factors:} in Lesson 4.0 you read its graph and saw a touch at $x = 1$
-and a crossing at $x = -2$.
-\begin{center}
-\begin{tikzpicture}[scale=0.45]
-  \lgrid{-3}{3}{-2}{6}
-  \begin{scope}
-    \clip (-3,-2) rectangle (3,6);
-    \draw[very thick, forest, domain=-2.6:2.1, samples=120, smooth]
-      plot (\x,{(\x)*(\x)*(\x) - 3*(\x) + 2});
-  \end{scope}
-  \fill[charcoal] (-2,0) circle (3pt) node[below left, font=\scriptsize]{$(-2,0)$};
-  \fill[charcoal] (1,0)  circle (3pt) node[below right, font=\scriptsize]{$(1,0)$};
-\end{tikzpicture}
-\end{center}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item In the Warm-Up you found $p(1) = $ \ans{$0$} and $p(-2) = $ \ans{$0$}.
-  \item You also multiplied $(x-1)(x^2+x-2)$ and got \ans{$x^3-3x+2$}, so $(x-1)$ \emph{is}
-        a factor of $p$.
-  \item Here is the honest question: nobody handed you $x^2 + x - 2$ today. If you know $(x-1)$ is a
-        factor, how would you \emph{find} the other factor yourself? \ansline{Divide $p(x)$ by $(x-1)$ --- the quotient is the other factor.}
-\end{itemize}
-\textbf{Answer: divide.} That is the whole lesson.
-\end{hookbox}
-
-\begin{notesbox}{1. What Division Even Means (the statement behind everything)}
-Warm-Up item 1: $247 \div 5$ gave quotient $49$ and remainder $2$, which you wrote as
-$247 = 5 \cdot 49 + 2$. Polynomials obey the exact same statement.
+Two students subtracted the same expression and got different answers. Let
 \[
-  \underbrace{P(x)}_{\text{dividend}} \;=\; \underbrace{D(x)}_{\text{divisor}} \cdot
-  \underbrace{Q(x)}_{\text{quotient}} \;+\; \underbrace{R(x)}_{\text{remainder}}
-  \qquad\Longleftrightarrow\qquad
-  \frac{P(x)}{D(x)} = Q(x) + \frac{R(x)}{D(x)}
+  D(x)=\frac{4x-1}{x+3}-\frac{2x-7}{x+3} .
 \]
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item You stop dividing when the degree of the remainder is \ans{less than} the degree of the divisor.
-  \item Every division can be \emph{checked} by \ans{multiplying $D\cdot Q$ and adding $R$}.
-  \item And the case we care most about: if $R = 0$, then $P(x) = D(x)\cdot Q(x)$, which says
-        $D(x)$ is a \ans{factor} of $P(x)$.
-\end{itemize}
-\end{notesbox}
-
-\begin{notesbox}{2. Dividing by a Monomial: Split the Fraction}
-A sum over a single term splits term by term: $\dfrac{a+b}{c} = \dfrac{a}{c} + \dfrac{b}{c}$.
-
-\vspace{4pt}
-\begin{itemize}[leftmargin=1.5em, itemsep=4pt]
-  \item $\dfrac{12x^4 - 8x^3 + 6x^2}{2x^2} = $ \ans{$6x^2 - 4x + 3$}
-  \item Two variables: \; $\dfrac{15x^3y^2 - 10x^2y^3 + 5x^2y^2}{5x^2y^2} = $ \ans{$3x - 2y + 1$}
-\end{itemize}
-
-\vspace{4pt}
-\textbf{The trap.} In that second problem the last term divides out to \ans{$1$} --- \emph{not}
-zero. A term that cancels completely leaves a \ans{$1$} behind.
-\end{notesbox}
-
-\begin{notesbox}{3. Long Division: When the Divisor Has More Than One Term}
-\textbf{Setup rules.} Write both polynomials in \ans{standard} form (highest power first), and put a
-\ans{$0$} in for every missing power. Then repeat: divide the leading terms, multiply,
-\emph{subtract}, bring down.
-
-\vspace{5pt}
-\textbf{Model --- knock the wall down.} Divide $p(x) = x^3 - 3x + 2$ by $x - 1$. Note the
-placeholder $0x^2$.
-\[
-\begin{array}{r}
-  x^2 + x - 2 \phantom{{}+2} \\[2pt]
-  x-1\,\overline{\smash{\big)}\,x^3+0x^2-3x+2} \\[2pt]
-  \underline{-(x^3-\phantom{1}x^2)}\phantom{{}-3x+2} \\[2pt]
-  x^2-3x\phantom{{}+2} \\[2pt]
-  \underline{-(x^2-\phantom{1}x)}\phantom{{}+2} \\[2pt]
-  -2x+2 \\[2pt]
-  \underline{-(-2x+2)} \\[2pt]
-  0
-\end{array}
-\]
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Quotient: \ans{$x^2+x-2$} \qquad Remainder: \ans{$0$}
-  \item Because the remainder is $0$: \; $x^3 - 3x + 2 = (x-1)\cdot($ \ans{$x^2+x-2$} $)$
-  \item Now finish the job --- the quotient still factors:
-        $x^3 - 3x + 2 = $ \ans{$(x-1)(x-1)(x+2) = (x-1)^2(x+2)$}
-  \item Check it against the graph in the Hook: the zero $x = 1$ has multiplicity \ans{$2$},
-        so the graph \ans{touches} there, and $x = -2$ has multiplicity \ans{$1$}, so the graph
-        \ans{crosses} there. \textbf{The wall from Lesson 4.2 is down.}
-\end{itemize}
-
-\vspace{5pt}
-\textbf{Your turn --- and this one has a remainder.} Divide $2x^3 + 3x^2 - 5$ by $x + 2$. Fill in the
-missing power first.
-\[
-\begin{array}{r}
-  \mans{2x^2 - x + 2} \phantom{{}-5} \\[2pt]
-  x+2\,\overline{\smash{\big)}\,2x^3+3x^2+\mans{0x}-5} \\[2pt]
-  \underline{-(2x^3+4x^2)}\phantom{{}+0x-5} \\[2pt]
-  -x^2+0x\phantom{{}-5} \\[2pt]
-  \underline{-(-x^2-2x)}\phantom{{}-5} \\[2pt]
-  2x-5 \\[2pt]
-  \underline{-(2x+4)} \\[2pt]
-  -9
-\end{array}
-\]
-\vspace{4pt}
-
-Quotient: \ans{$2x^2-x+2$} \quad Remainder: \ans{$-9$} \quad Final answer:
-$\dfrac{2x^3+3x^2-5}{x+2} = $ \ans{$2x^2-x+2-\dfrac{9}{x+2}$}
-\end{notesbox}
-
-\begin{notesbox}{4. Synthetic Division: The Shortcut (and Its One Restriction)}
-Synthetic division works \textbf{only} when the divisor looks like $x - r$. It throws away the
-variables and keeps the \ans{coefficients}.
-
-\vspace{4pt}
-\textbf{The sign flip --- the error to guard against.} For $x - 1$ you use $r = $ \ans{$1$}. For
-$x + 2$, rewrite it as $x - ($\ans{$-2$}$)$, so $r = $ \ans{$-2$}.
-
-\vspace{5pt}
-\textbf{Same problem, faster.} $x^3 - 3x + 2 \;\div\; (x-1)$ --- coefficients $1,\;0,\;-3,\;2$
-(there is that placeholder again). Bring down, multiply by $r$, add.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{r|C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}}
-$1$ & $1$ & $0$ & $-3$ & $2$ \\
-    &     & \ans{$1$} & \ans{$1$} & \ans{$-2$} \\ \cline{2-5}
-    & \ans{$1$} & \ans{$1$} & \ans{$-2$} & \ans{$0$} \\
-\end{tabular}
-\end{center}
-The last number in the bottom row is the \ans{remainder}; the others are the coefficients of the
-quotient, whose degree is \ans{one less than} the dividend's.
-
-\vspace{2pt}
-Quotient: \ans{$x^2+x-2$} \quad Remainder: \ans{$0$} \quad Same as the long division? \ans{Yes}
-
-\vspace{5pt}
-\textbf{Now the one with a remainder.} $2x^3 + 3x^2 - 5 \;\div\; (x+2)$, so $r = $ \ans{$-2$}.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{r|C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}}
-\ans{$-2$} & $2$ & $3$ & $0$ & $-5$ \\
-    &     & \ans{$-4$} & \ans{$2$} & \ans{$-4$} \\ \cline{2-5}
-    & \ans{$2$} & \ans{$-1$} & \ans{$2$} & \ans{$-9$} \\
-\end{tabular}
-\end{center}
-Quotient: \ans{$2x^2-x+2$} \quad Remainder: \ans{$-9$}
-\end{notesbox}
-
-\begin{notesbox}{5. The Remainder Theorem}
-Look hard at that last remainder, $-9$. Now evaluate the dividend at $r = -2$:
-$f(-2) = 2(-2)^3 + 3(-2)^2 - 5 = $ \ans{$-9$}. \textbf{Not a coincidence.}
-
-\vspace{4pt}
-\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
-    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-\textbf{Remainder Theorem.} When $f(x)$ is divided by $x - r$, the remainder equals \ans{$f(r)$}.
-\end{tcolorbox}
-
-\vspace{3pt}
-\textbf{Why it works} --- one line from the division statement. Write $f(x) = (x-r)q(x) + R$ and
-substitute $x = r$:
-\[
-  f(r) = (\,\mans{0}\,)\,q(r) + R = \mans{R}
-\]
-So the theorem cuts both ways: it gives a remainder without dividing, \emph{and} it gives a fast way
-to evaluate $f$ at a number.
-\end{notesbox}
-
-\begin{notesbox}{6. The Factor Theorem --- Five Ways to Say One Thing}
-\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
-    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-\textbf{Factor Theorem.} $(x-r)$ is a factor of $f(x)$ \; if and only if \; $f(r) = $ \ans{$0$}.
-\end{tcolorbox}
-
-\vspace{4pt}
-For a polynomial $f$ and a number $r$, all five of these say \emph{exactly} the same thing:
 \begin{center}
 \renewcommand{\arraystretch}{1.35}
-\begin{tabular}{|c|p{11.0cm}|}
+\begin{tabular}{|l|c|c|c|}
 \hline
-1 & $f(r) = 0$ \\ \hline
-2 & The remainder on dividing $f(x)$ by $x-r$ is \ans{$0$} \\ \hline
-3 & $(x-r)$ is a \ans{factor} of $f(x)$ \\ \hline
-4 & $r$ is a \ans{zero} of the function $f$ \\ \hline
-5 & The point $($\ans{$r$}$,\;$\ans{$0$}$)$ is an $x$-intercept of the graph of $f$ \\ \hline
+ & $x=0$ & $x=1$ & $x=-3$ \\ \hline
+$D(x)$ \; (the original) & \ans{$2$} & \ans{$2$} & \ans{undef.} \\ \hline
+Dev: \; $\dfrac{2x-8}{x+3}$ & \ans{$-\frac83$} & \ans{$-\frac32$} & \ans{undef.} \\ \hline
+Elin: \; $2$ & \ans{$2$} & \ans{$2$} & \ans{$2$} \\ \hline
 \end{tabular}
 \end{center}
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Dev wrote $\dfrac{4x-1-2x-7}{x+3}$. Which \emph{one} keystroke is missing, and what did losing
+        it do to the sign of the $7$? \ansline{the parentheses around $2x-7$. Subtracting the whole numerator makes it $-(2x-7)=-2x+7$; Dev kept the $-7$, so his numerator is off by $14$.}
+  \item Elin is right about the value --- but look at the last column. What must she add to her answer
+        before it is finished? \ansline{the restriction $x\neq-3$. The original has no value at $x=-3$, so the answer is ``$2$, for every $x$ except $-3$'' --- a horizontal line with a hole in it.}
+\end{itemize}
+Two ideas run the whole period. \textbf{A minus sign in front of a fraction belongs to that fraction's
+entire numerator.} And once again: even an answer as plain as ``$2$'' still carries the restrictions of
+the problem it came from.
+\end{hookbox}
+
+\begin{notesbox}{1. Like Denominators: Add the Numerators, Keep the Denominator}
+When the denominators already match, there is nothing to build:
+\[
+  \frac{a}{c}+\frac{b}{c}=\frac{a+b}{c}, \qquad
+  \frac{a}{c}-\frac{b}{c}=\frac{a-b}{c}, \qquad c\neq0 .
+\]
 
 \vspace{3pt}
-Warm-Up item 3 gave you $p(1) = 0$ and $p(-2) = 0$ for $p(x) = x^3-3x+2$. So without dividing
-anything, you already knew that both \ans{$(x-1)$} and \ans{$(x+2)$} are factors of $p$.
+\textbf{You never add the denominators.} Check it on numbers you already know:
+$\dfrac12+\dfrac12=$ \ans{1}, \; but adding denominators would give
+$\dfrac{2}{4}=$ \ans{$\frac12$}. Adding denominators would make two halves into
+\ans{one half}, which is nonsense.
 
 \vspace{4pt}
-\textbf{The workflow for the rest of this unit.} Test a candidate $r$ with the Remainder Theorem
-(or a synthetic division). If you get $0$, divide it out. The quotient --- one degree lower --- is
-called the \textbf{depressed polynomial}, and it is small enough to finish with Lesson 4.2's tools.
+\textbf{Worked.} \; $\dfrac{7}{x^2-4}+\dfrac{x}{x^2-4}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Factor the denominator \emph{first}, so you can see the restrictions: $x^2-4=$ \ans{$(x-2)(x+2)$},
+        so $x\neq$ \ans{$2,\ -2$}.
+  \item Add the numerators, keep the denominator: \ans{$\frac{x+7}{(x-2)(x+2)}$}
+  \item \textbf{Last step, always:} factor the new numerator and check whether anything divides out.
+        Here $x+7$ is prime, so we are done.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{2. Subtracting: the Minus Sign Owns the Whole Numerator}
+\begin{center}
+\fbox{\parbox{0.90\linewidth}{\centering\vspace{2pt}
+\textbf{Put the second numerator in parentheses before you subtract.} Then distribute the minus sign
+--- it changes the sign of \emph{every} term inside.\vspace{2pt}}}
+\end{center}
+
+\vspace{4pt}
+\textbf{Worked.} \; $\dfrac{6x+5}{x^2-4}-\dfrac{2x+13}{x^2-4}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Write the subtraction with parentheses:
+        $\dfrac{(6x+5)-({\color{keyred}\mathbf{2x+13}})}{x^2-4}$
+  \item Distribute and collect: numerator $=$ \ans{$4x-8$} $=$ \ans{$4(x-2)$} (factored).
+  \item Divide out, then attach the restrictions from the \emph{original} denominator:
+        \ans{$\frac{4}{x+2}$}, \; $x\neq$ \ans{$2,\ -2$}.
+  \item Check it at $x=0$: the original gives \ans{2} and your answer gives \ans{2}.
+\end{itemize}
+
+\vspace{3pt}
+Notice which restriction survived. The factor $(x-2)$ divided out, so $x=2$ is a
+\ans{hole} in the graph; $(x+2)$ stayed, so $x=-2$ is a \ans{wall}. That sort is Lesson 4.0's,
+and it never stops applying.
+\end{notesbox}
+
+\begin{notesbox}{3. Unlike Denominators: Build the LCD}
+You cannot combine pieces that are cut differently. The \textbf{least common denominator} is the
+smallest expression every denominator divides into --- and you build it out of \emph{factors}, never by
+multiplying the denominators together.
+
+\vspace{4pt}
+\textbf{The six steps.}
+\begin{enumerate}[leftmargin=1.9em, itemsep=2pt]
+  \item \textbf{Factor} every denominator completely.
+  \item \textbf{Build the LCD:} take every \emph{distinct} factor, each to the \emph{highest} power it reaches in any one denominator.
+  \item \textbf{List the restrictions} --- set each factor of the LCD equal to zero.
+  \item \textbf{Rewrite} each fraction: multiply it by the \textbf{building factor} $\frac{k}{k}$ that supplies whatever its denominator is missing.
+  \item \textbf{Combine} the numerators over the LCD (parentheses on every subtraction) and simplify.
+  \item \textbf{Factor the numerator} and divide out if you can. Attach the restrictions.
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Monomial denominators.} \; $\dfrac{5}{6x^2}+\dfrac{7}{4x}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item $6x^2=2\cdot3\cdot x^2$ and $4x=2^2\cdot x$, so LCD $=$ \ans{$12x^2$}.
+  \item Building factors: the first needs \ans{$\frac22$}, the second needs \ans{$\frac{3x}{3x}$}.
+  \item Result: \ans{$\frac{21x+10}{12x^2}$}, \; $x\neq$ \ans{0}.
+\end{itemize}
+
+\vspace{5pt}
+\textbf{The anchor.} \; $\dfrac{3}{x-3}-\dfrac{18}{x^2-9}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Factor: $x^2-9=$ \ans{$(x-3)(x+3)$}, so LCD $=$ \ans{$(x-3)(x+3)$} and $x\neq$ \ans{$3,\ -3$}.
+  \item The first fraction is missing the factor \ans{$x+3$}; multiply it by that over itself:
+        $\dfrac{3}{x-3}\cdot\dfrac{{\color{keyred}\mathbf{x+3}}}{{\color{keyred}\mathbf{x+3}}}=
+        \dfrac{{\color{keyred}\mathbf{3x+9}}}{(x-3)(x+3)}$
+  \item Combine and simplify the numerator: \ans{$3x-9$} $=$ \ans{$3(x-3)$} (factored).
+  \item Divide out. Final answer: \ans{$\frac{3}{x+3}$}, \; $x\neq$ \ans{$3,\ -3$}.
+\end{itemize}
+Where have you seen that answer before today? \ansline{it is exactly the Warm-Up's item 3 --- the simplified form of $\frac{3x-9}{x^2-9}$, restrictions and all. Two different starting points, one function.}
+
+\vspace{5pt}
+\textbf{Two trinomial denominators.} \; $\dfrac{2}{x^2+5x+6}+\dfrac{3}{x^2-9}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Factored: \ans{$(x+2)(x+3)$} and \ans{$(x-3)(x+3)$}. The shared factor is \ans{$x+3$}, so the LCD uses
+        it \emph{once}: LCD $=$ \ans{$(x+2)(x+3)(x-3)$}.
+  \item Restrictions: $x\neq$ \ans{$-2,\ -3,\ 3$}
+  \item Combine: $\dfrac{2({\color{keyred}\mathbf{x-3}})+3({\color{keyred}\mathbf{x+2}})}{\text{LCD}}=$
+        \ans{$\frac{5x}{(x+2)(x+3)(x-3)}$}
+\end{itemize}
+
+\vspace{4pt}
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering\vspace{2pt}
+\textbf{The LCD \emph{is} the restriction list.} Every factor of every original denominator is in
+there, so setting the LCD's factors to zero gives you every excluded value --- and it costs you no
+extra work.\vspace{2pt}}}
+\end{center}
+\vspace{2pt}
+One warning attached to that shortcut: build the LCD from the \emph{original} factored denominators.
+Reading anything off your final answer is the error from Lesson 4.1, and it is still wrong today.
+
+\vspace{5pt}
+\textbf{Opposite binomials in the denominators} (Lesson 4.1, still in force). \;
+$\dfrac{4}{x-5}+\dfrac{2}{5-x}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item These denominators are not different --- they are opposites: $5-x=$ \ans{$-1\cdot$} $(x-5)$.
+  \item Rewrite the second fraction as $\dfrac{{\color{keyred}\mathbf{-2}}}{x-5}$. Now the denominators match.
+  \item Answer: \ans{$\frac{2}{x-5}$}, \; $x\neq$ \ans{5}. \; (The LCD was never $(x-5)(5-x)$.)
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{4. Complex Fractions: a Division in Disguise}
+A \textbf{complex fraction} has fractions inside its numerator, its denominator, or both. The long
+\textbf{main fraction bar} is not decoration --- it is a division sign.
+\[
+  \frac{\;\dfrac{1}{x}+\dfrac{1}{2}\;}{\;\dfrac{1}{x}-\dfrac{1}{4}\;}
+  \qquad\text{means}\qquad
+  \left(\frac{1}{x}+\frac{1}{2}\right)\div\left(\frac{1}{x}-\frac{1}{4}\right)
+\]
+
+\vspace{3pt}
+\textbf{Method 1 --- combine, then divide.} Turn the top into one simple fraction, turn the bottom into
+one simple fraction, then keep--change--flip (Lesson 4.2).
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Top: $\dfrac{1}{x}+\dfrac{1}{2}=$ \ans{$\frac{x+2}{2x}$} \qquad Bottom: $\dfrac{1}{x}-\dfrac{1}{4}=$
+        \ans{$\frac{4-x}{4x}$}
+  \item Divide: \; \ans{$\frac{x+2}{2x}$} $\cdot$ \ans{$\frac{4x}{4-x}$} $=$ \ans{$\frac{2(x+2)}{4-x}$}
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Method 2 --- clear all the little fractions at once.} Multiply the top \emph{and} the bottom by
+the LCD of every small fraction inside. Here that LCD is \ans{$4x$}.
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Top becomes \ans{$4+2x$}; \; bottom becomes \ans{$4-x$}; \; so the answer is
+        \ans{$\frac{2(x+2)}{4-x}$} --- the same one.
+\end{itemize}
+
+\vspace{4pt}
+\textbf{Restrictions: two levels, and the second one hides.}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}c l X@{}}
+\hline
+\textbf{\#} & \textbf{What must be nonzero} & \textbf{Why --- and where it hides} \\
+\hline
+1 & every \emph{inner} denominator & each little fraction has to exist. Visible: just read them. Here $x\neq$ \ans{0}. \\
+2 & the \emph{whole bottom} & the main bar is a $\div$, and you cannot divide by zero. This is Lesson 4.2's \textbf{source 3} in a new costume: set the bottom's combined \emph{numerator} to zero. Here $4-x=0$ gives $x\neq$ \ans{4}. \\
+\hline
+\end{tabularx}
+\end{center}
+Complete restriction list for the anchor: $x\neq$ \ans{$0,\ 4$}. Check the whole thing at $x=2$: the
+original gives \ans{4} and your answer gives \ans{4}.
+
+\vspace{5pt}
+\textbf{One more, with a binomial underneath.} \;
+$\dfrac{\;\dfrac{1}{x}-\dfrac{1}{3}\;}{\;x-3\;}$
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item Top: \ans{$\frac{3-x}{3x}$}. \; The bottom is already one piece, so divide by it:
+        \ans{$\frac{3-x}{3x}$} $\cdot\;\dfrac{1}{x-3}$
+  \item Watch the \emph{opposite binomials}: $3-x=$ \ans{$-1\cdot$} $(x-3)$, so the answer is
+        \ans{$-\frac{1}{3x}$}.
+  \item Restrictions: $x\neq$ \ans{$0,\ 3$} --- one from the inner denominator, one from the main bar.
+\end{itemize}
+\end{notesbox}
+
+\begin{notesbox}{5. The Picture: One Subtraction, One Hole and One Wall}
+The anchor from Section 3 was $\;g(x)=\dfrac{3}{x-3}-\dfrac{18}{x^2-9}=\dfrac{3}{x+3}$, with
+$x\neq3,-3$.
+\begin{center}
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-8}{5}{-5}{5}
+  \draw[dashed, redacc, thick] (-3,-5)--(-3,5);
+  \node[redacc, font=\scriptsize, above left] at (-3.1,3.4) {$x=-3$};
+  \begin{scope}
+    \clip (-8,-5) rectangle (5,5);
+    \draw[very thick, forest, domain=-8:-3.62, samples=100, smooth]
+      plot (\x,{3/((\x)+3)});
+    \draw[very thick, forest, domain=-2.38:5, samples=100, smooth]
+      plot (\x,{3/((\x)+3)});
+  \end{scope}
+  \draw[forest, very thick, fill=white] (3,0.5) circle (4pt);
+  \node[charcoal, font=\scriptsize, above right] at (3.1,0.7) {hole};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Both excluded values came from the \emph{original} denominators. Write those two denominators
+        in factored form: \ans{$x-3$} and \ans{$(x-3)(x+3)$}. \; Which excluded value appears in
+        \emph{both} of them? \ans{$x=3$}
+  \item $x=3$ is a \ans{hole} because its factor \ans{divided out}; \; $x=-3$ is a
+        \ans{wall} because its factor \ans{stayed downstairs}.
+  \item The hole's height comes from the \emph{simplified} form: $\dfrac{3}{3+3}=$ \ans{$\frac12$}, so
+        the hole sits at \ans{$\left(3,\frac12\right)$}.
+  \item Your final answer $\dfrac{3}{x+3}$ shows you only one of the two restrictions. Explain, in one
+        sentence, why the other one still belongs to it. \ansline{because $g$ is the \emph{original} subtraction, and at $x=3$ both of its fractions are undefined --- the simplified form only tells you what height the graph was heading for.}
+\end{enumerate}
 \end{notesbox}
 
 \begin{practicebox}
-\textbf{Crack one on your own.} Let $g(x) = x^3 + 4x^2 + x - 6$.
-\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
-  \item Test $r = 1$ with the Remainder Theorem: $g(1) = $ \ans{$0$}
-  \item So $(x - 1)$ \ans{is} a factor of $g$. (is / is not)
-  \item Divide it out synthetically:
-    \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
-    $1$ & $1$ & $4$ & $1$ & $-6$ \\
-        &     & \ans{$1$} & \ans{$5$} & \ans{$6$} \\ \cline{2-5}
-        & \ans{$1$} & \ans{$5$} & \ans{$6$} & \ans{$0$} \\
-    \end{tabular}
-    \end{center}
-    Depressed polynomial: \ans{$x^2+5x+6$}
-  \item Factor that quotient (Lesson 4.2 tools): \ans{$(x+2)(x+3)$}
-  \item Write $g$ completely factored: \; $g(x) = $ \ans{$(x-1)(x+2)(x+3)$}
-  \item List the three zeros of $g$: \ans{$1,\ -2,\ -3$}
-  \item \textbf{The next wall.} We tried $r = 1$ only because the problem pointed us there. If you
-        were handed $2x^3 - 3x^2 - 11x + 6$ with no hint, which numbers would you even test ---
-        and how many are there? \ansline{Guessing is hopeless: there are infinitely many numbers. We need a rule that narrows the candidates to a short list --- that is Lesson 4.4.}
+Simplify completely and state \emph{all} restrictions. Show the LCD you used.
+
+\vspace{3pt}
+\begin{enumerate}[leftmargin=1.7em, itemsep=8pt]
+  \item $\dfrac{x}{x+4}+\dfrac{4}{x+4}$ \hfill Simplest form: \ans{$1$} \quad
+        $x\neq$ \ans{$-4$} \\[3pt]
+        Your answer is a plain number. What is left of the fraction it came from? \ans{only the restriction --- a hole at $(-4,1)$}
+  \item $\dfrac{5}{x}-\dfrac{2}{x+1}$ \hfill LCD: \ans{$x(x+1)$} \\[4pt]
+        Simplest form: \ans{$\frac{3x+5}{x(x+1)}$} \quad $x\neq$ \ans{$0,\ -1$}
+  \item $\dfrac{\;\dfrac{2}{x}+3\;}{\;\dfrac{2}{x}-3\;}$ \hfill Simplest form: \ans{$\frac{2+3x}{2-3x}$} \quad
+        $x\neq$ \ans{$0,\ \frac23$} \\[3pt]
+        Which of your two restrictions came from the \emph{main} fraction bar? \ans{$x=\frac23$}
 \end{enumerate}
 \end{practicebox}
 
 \begin{teachernote}
-\textbf{Pacing.} Sections 1--2 take about eight minutes; Section 2 is mostly Unit 1 exponent rules
-and exists to satisfy the ``monomial divisor'' half of A2.EO.3c and to kill the
-$\frac{5x^2y^2}{5x^2y^2}=0$ error. Spend the period in Sections 3--6.
+\textbf{Pacing.} Sections 1--2 are fast if the Hook lands; \textbf{Section 3 is the lesson} and
+\textbf{Section 4 is the standard's other half} (A2.EO.1c). If time runs short, move the
+opposite-binomial example at the end of Section 3 to homework --- it is already there --- rather than
+cutting Section 4 or 5.
 
 \vspace{3pt}
-\textbf{The three errors to pre-empt.} (1) \emph{Missing placeholders} --- both worked problems have
-a gap on purpose ($x^3-3x+2$ has no $x^2$; $2x^3+3x^2-5$ has no $x$). (2) \emph{Subtraction} --- in
-long division the sign change is written out as $-(\;\cdots)$ in the model for a reason; students who
-skip it get the right first term and wrong everything after. (3) \emph{The synthetic sign flip} ---
-$x+2$ means $r=-2$. Make them say the rewritten form $x-(-2)$ out loud.
+\textbf{The three sentences to repeat.} \emph{The minus sign owns the whole numerator.} \emph{Build the
+LCD out of factors, not by multiplying denominators.} \emph{The main bar is a division sign.} Every
+error today is one of those three going unsaid.
 
 \vspace{3pt}
-\textbf{The moment that matters} is the end of Section 3: dividing $x^3-3x+2$ by $x-1$ produces
-$x^2+x-2$, which factors to $(x+2)(x-1)$ --- so $p(x)=(x-1)^2(x+2)$, exactly the multiplicity-2 touch
-at $x=1$ and the crossing at $x=-2$ that students read off the graph back in Lesson 4.0. Say plainly
-that the wall Lesson 4.2 hit is now down. Section 5's derivation is two lines and worth doing live:
-substituting $x=r$ annihilates the $(x-r)$ term, so $f(r)=R$.
+\textbf{Errors to expect.} (1) Dropping the parentheses on a subtraction --- the signature error, and
+worth more class time than it looks, because the wrong answer often \emph{simplifies more prettily}
+than the right one (see the homework extension). Send students to Warm-Up 2(a), not to a rule.
+(2) Adding the denominators, $\frac1x+\frac13=\frac{2}{x+3}$ --- kill it numerically at $x=1$, never by
+assertion; this is the Tier A error analysis. (3) Using the \emph{product} of the denominators, which
+is not wrong, only expensive; let a student do it and then re-factor the result in front of the class.
+(4) Cancelling a term out of a sum before it is combined (Lesson 4.1's ghost). (5) Forgetting the
+restriction on a constant or polynomial answer --- the Hook and Practice 1 both plant it.
 
 \vspace{3pt}
-\textbf{Practice item 7} is the setup for tomorrow and should be left \emph{unresolved}. The honest
-answer is that there are infinitely many candidates; the Rational Root Theorem in Lesson 4.4 cuts
-them to a finite list. If time is short, cut Section 2's two-variable line, not item 7.
+\textbf{Complex fractions.} The standard (A2.EO.1c) literally asks students to simplify one \emph{as a
+product or quotient of simple algebraic fractions}, so Method 1 is the assessed method and Method 2 is
+the speed trick. Teach both, but make the point that Method 2 \emph{destroys the evidence} for
+restriction source 1: multiplying through by $4x$ clears every inner denominator, so nothing on the
+page remembers that $x=0$ was ever a problem. Method 1 keeps both sources readable --- the inner
+denominators are still there, and the bottom's numerator is the divisor's numerator from 4.2. Ask which
+version they would rather hand a grader.
+
+\vspace{3pt}
+\textbf{Section 5} is worth protecting: one subtraction produced one hole and one wall, and both came
+from denominators that no longer appear. It is the same picture 4.5 will build from an equation, and
+the same fact 4.6 will call an extraneous solution.
 \end{teachernote}
 
 \end{document}

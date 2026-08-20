@@ -1,4 +1,4 @@
-%! The Quadratic Formula & the Discriminant — Unit 3, Lesson 3.5 — Exit Ticket (Answer Key)
+%! Fundamental Theorem of Algebra and Complex Zeros — Unit 3, Lesson 3.5 — Exit Ticket (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -7,35 +7,87 @@
 \begin{document}
 
 \pageheader{Unit 3, Lesson 3.5}{Exit Ticket --- Answer Key}
+\namedateperiod
 
-\vspace{0.12in}
+\vspace{0.10in}
 
-No notes. Show your steps; write every answer in simplest form (use $a+bi$ when the roots are complex).
+No notes. Count your answers against the degree before you turn this in --- and never let an
+imaginary zero travel alone.
 
-\begin{enumerate}[leftmargin=1.8em, itemsep=14pt]
-  \item \textbf{Solve with the quadratic formula.} Identify $a,b,c$, then substitute.
-        $x^2-4x+13=0$
-        \begin{work}
-          x &= \frac{4\pm\sqrt{(-4)^2-4(1)(13)}}{2(1)} \\
-            &= \frac{4\pm\sqrt{-36}}{2} \\
-            &= \frac{4\pm6i}{2} \\
-            &= 2\pm3i
-        \end{work}
+\begin{enumerate}[leftmargin=1.8em, itemsep=12pt]
+  \item \textbf{Solve over the complex numbers.} $x^3 + x^2 + 4x + 4 = 0$
 
-  \item \textbf{Discriminant only --- no solving.} How many roots does $3x^2-5x+1=0$ have, and of what type?
-        \[ b^2-4ac=\ans{$13$} \qquad\Rightarrow\qquad \ans{two distinct real (irrational) roots} \]
+    \vspace{3pt}
+    (a) Factor the left side. (Try grouping.) \ans{$x^2(x+1)+4(x+1) = (x+1)(x^2+4)$}
 
-  \item \textbf{SOL-style multiple choice.} A quadratic equation has discriminant $b^2-4ac=-8$. Which best
-        describes its solutions?
-        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-          \item two distinct real solutions
-          \item one repeated real solution
-          \item two complex-conjugate solutions \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
-          \item no solutions of any kind
-        \end{enumerate}
-        \begin{itemize}[leftmargin=1.4em, nosep]
-          \item[] $b^2-4ac<0$ gives two complex-conjugate roots. \textbf{D} is the trap --- a negative discriminant does \emph{not} mean ``no solutions,'' it means \emph{complex} solutions (Lesson 3.4).
-        \end{itemize}
+    \vspace{3pt}
+    (b) Set each factor equal to zero and solve both: $x = $ \ans{$-1$} \quad and \quad
+    $x = $ \ans{$\pm 2i$}
+
+    \vspace{3pt}
+    (c) All solutions: \ans{$x = -1,\ 2i,\ -2i$}
+
+    \vspace{3pt}
+    (d) \textbf{Number and type:} \ans{$1$} real and \ans{$2$} imaginary. How does the
+    degree tell you the list is complete? \ans{Degree $3$ promises exactly $3$ complex zeros, and
+    $1+2=3$.}
+
+  \item \textbf{Build one.} Write a polynomial of \emph{least} degree with \emph{real} coefficients
+    whose zeros include $-2$ and $4i$.
+
+    \vspace{3pt}
+    (a) The full list of zeros: \ans{$-2,\ 4i,\ -4i$} \quad Why? \ans{real coefficients force the
+    conjugate $-4i$}
+
+    \vspace{3pt}
+    (b) Factored form: \ans{$(x+2)(x^2+16)$}
+
+    \vspace{3pt}
+    (c) Standard form: \ans{$x^3 + 2x^2 + 16x + 32$}
+
+  \item \textbf{SOL-style multiple choice.} A polynomial function of degree $4$ has \emph{real}
+    coefficients. Which list \emph{cannot} be its complete set of zeros, counted with multiplicity?
+    \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
+      \item $-1,\; 5,\; 2i,\; -2i$
+      \item $3,\; 3,\; -4,\; 0$
+      \item $1,\; -1,\; 3i,\; 3i$ \quad \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item $1+i,\; 1-i,\; 2+i,\; 2-i$
+    \end{enumerate}
+    \begin{itemize}[leftmargin=1.5em, nosep]
+      \item \textbf{C} lists $3i$ twice but never lists $-3i$. With real coefficients every imaginary zero needs its conjugate, so this set is impossible.
+      \item \textbf{A} pairs $2i$ with $-2i$; \textbf{D} is two complete conjugate pairs; \textbf{B} is all real (a double zero at $3$ is fine --- multiplicity is not the issue).
+      \item Each list has four entries, so counting alone does not settle it. The \emph{pairing} is what separates them.
+    \end{itemize}
 \end{enumerate}
+
+\begin{teachernote}
+Three items, three different failure modes, and they sort cleanly.
+
+\vspace{3pt}
+\textbf{Item 1} fails if a student writes ``no real solution'' for $x^2+4$ and stops --- the exact
+habit this lesson exists to replace --- or drops the $\pm$ and reports only $2i$. Part (d) is the
+A2.EI.6d verification and is worth as much as the algebra: a student who solves correctly but cannot
+say \emph{why the list is complete} has the procedure without the theorem. Accept any wording of
+``degree $3$ means exactly $3$ zeros.''
+
+\vspace{3pt}
+\textbf{Item 2} is the conjugate check, and it is pass/fail on one decision. A student who writes
+$(x+2)(x-4i)$ has a degree-$2$ answer with an $i$ in its coefficients; ask them to multiply it out.
+Watch also for $(x+2)(x^2-16)$ --- the conjugate pair for $\pm 4i$ gives $x^2 + 16$, since
+$(x-4i)(x+4i) = x^2 - 16i^2$. That sign is the single most common arithmetic slip of the lesson.
+
+\vspace{3pt}
+\textbf{Item 3} tests the theorem as a \emph{filter} rather than a procedure. Distractor B catches
+students who think a repeated zero is illegal; distractor D catches students who think ``two
+imaginary pairs'' is too many. Students who evaluate or multiply anything here have missed the point
+--- the answer is visible from the list alone.
+
+\vspace{3pt}
+Sort into four piles: \emph{got it} / \emph{stopped at ``no real solutions''} / \emph{conjugate not
+supplied} / \emph{counted wrong}. The conjugate pile is the one to fix immediately, because
+Lesson~3.6 has students moving constantly among a graph, a factored form, and a degree, and a missing
+conjugate breaks that triangle in all three directions. If the $x^2-16$ sign error is widespread,
+sixty seconds re-multiplying $(x-4i)(x+4i)$ on the board at the start of 3.6 is enough.
+\end{teachernote}
 
 \end{document}

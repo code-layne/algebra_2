@@ -1,62 +1,32 @@
-%! Functions — Unit 1, Lesson 1.3 — Guided Notes (Answer Key)
+%! Absolute Value Functions \& Transformations — Unit 1, Lesson 1.3 — Guided Notes (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Vocab answer: \par on BOTH ends (see COURSE_PLAN.md §7)
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
 \newcommand{\vocabans}[2]{%
   \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
-
-% Pre-drawn coordinate grid; #1 receives the plotted curve and any overlay.
-\newcommand{\gridplot}[1]{%
-  \begin{tikzpicture}[x=0.36cm, y=0.24cm]
-    \draw[step=1, linegray!45, very thin] (-5,-7) grid (5,7);
-    \draw[->, charcoal, thick] (-5.4,0) -- (5.4,0) node[right, font=\scriptsize] {$x$};
-    \draw[->, charcoal, thick] (0,-7.4) -- (0,7.4) node[above, font=\scriptsize] {$y$};
-    \foreach \t in {-4,-2,2,4} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
-    \foreach \t in {-6,-4,-2,2,4,6} {\node[above left=-2pt, font=\tiny] at (0,\t) {$\t$};}
-    #1
-  \end{tikzpicture}}
-
-% Smaller grid for side-by-side matching tasks.
-\newcommand{\minigrid}[1]{%
-  \begin{tikzpicture}[x=0.26cm, y=0.19cm]
-    \draw[step=1, linegray!45, very thin] (-4,-6) grid (4,6);
-    \draw[->, charcoal] (-4.3,0) -- (4.3,0);
-    \draw[->, charcoal] (0,-6.3) -- (0,6.3);
-    \foreach \t in {-2,2} {\node[below right=-2pt, font=\tiny] at (\t,0) {$\t$};}
-    #1
-  \end{tikzpicture}}
-
-% Exponential window (tall y-range, no grid).
-\newcommand{\expgraph}[1]{%
-  \begin{tikzpicture}[x=0.42cm, y=0.098cm]
-    \draw[->, charcoal, thick] (-3.6,0) -- (4.6,0) node[right, font=\scriptsize] {$x$};
-    \draw[->, charcoal, thick] (0,-2.5) -- (0,19.5) node[above, font=\scriptsize] {$y$};
-    \foreach \t in {-3,-2,-1,1,2,3,4} {\draw[charcoal] (\t,1.2) -- (\t,-1.2);}
-    \foreach \t in {-2,2,4} {\node[below, font=\tiny] at (\t,-1.4) {$\t$};}
-    \foreach \t in {4,8,12,16} {\draw[charcoal] (0.1,\t) -- (-0.1,\t);
-      \node[left, font=\tiny] at (-0.12,\t) {$\t$};}
-    \draw[forest, very thick, domain=-3.4:4.15, smooth, variable=\x] plot ({\x},{pow(2,\x)});
-    #1
-  \end{tikzpicture}}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.3}{Guided Notes --- Answer Key}
 
-\vspace{0.08in}
+\vspace{0.10in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item decide whether a relation --- given as ordered pairs, a table, a mapping, or a graph --- is a \emph{function}, and state its \emph{domain} and \emph{range};
-  \item use function notation: find $f(x)$ from $x$, and find $x$ from $f(x)$, algebraically and graphically;
-  \item determine a linear function's domain, range, \emph{zeros}, slope, and intercepts, and interpret each one in context;
-  \item write a linear equation in slope-intercept, point-slope, and standard form --- from a graph, from two points, from a slope and a point, and parallel or perpendicular to a given line;
-  \item explain how transforming the parent $y=x$ by $kf(x)$ and $f(x)+k$ changes the slope and the $y$-intercept;
-  \item read the key characteristics of \emph{quadratic} and \emph{exponential} functions off their graphs;
-  \item compare and contrast the three families using tables and graphs.
+  \item graph the \emph{absolute value parent} $f(x)=|x|$ and read its vertex, axis, and minimum;
+  \item use \emph{vertex form} $g(x)=a|x-h|+k$ to find the vertex $(h,k)$ and axis $x=h$;
+  \item decide from $a$ whether a V \emph{opens up or down} (min vs.\ max) and is narrower or wider;
+  \item describe any absolute value graph as \emph{shifts, a stretch, and a reflection} of $y=|x|$.
 \end{itemize}
 \end{objectivebox}
 
@@ -65,436 +35,167 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\par\vspace{2pt}
-\vocabans{Relation vs.\ function}{A relation is any pairing of inputs with outputs. It is a function when every input has \emph{exactly one} output. Repeated \emph{outputs} are fine; repeated \emph{inputs} with different outputs are not.}
-\vocabans{Domain and range}{The domain is the set of all inputs ($x$); the range is the set of all outputs ($y$). Context can restrict either one.}
-\vocabans{Function notation $f(x)$}{Read ``$f$ of $x$'' --- the output of the function $f$ at the input $x$. It is not multiplication. ``$f(3)=0$'' and ``$(3,0)$ is on the graph'' say the same thing.}
-\vocabans{Zero of a function}{An input that makes the output $0$ --- a solution of $f(x)=0$. On the graph it is an $x$-intercept.}
-\vocabans{Slope (rate of change)}{$m=\frac{y_2-y_1}{x_2-x_1}$: how much $y$ changes per unit change in $x$. A function is linear exactly when this rate is constant.}
-\vocabans{Forms of a linear function}{Slope-intercept $y=mx+b$ (shows slope and $y$-intercept), point-slope $y-y_1=m(x-x_1)$ (shows a slope and a point), standard $Ax+By=C$ (shows both intercepts easily). One line, three costumes.}
-\vocabans{Parent function and transformation}{The simplest member of a family --- $y=x$, $y=x^2$, $y=b^x$. Transformations change it: $k\,f(x)$ stretches/reflects (here: changes the slope), $f(x)+k$ shifts vertically (here: changes the $y$-intercept).}
-\vocabans{Constant difference vs.\ constant ratio}{Linear data have a constant first difference; quadratic data have a constant \emph{second} difference; exponential data have a constant ratio (you multiply, not add).}
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Absolute value parent function $f(x)=|x|$}{a V opening up, vertex at the origin; the rays $y=x$ ($x\ge 0$) and $y=-x$ ($x<0$)}
+\vocabans{Vertex (turning point)}{the V's lowest point (opens up) or highest point (opens down)}
+\vocabans{Axis of symmetry}{the vertical line $x=h$ through the vertex; the two rays mirror across it}
+\vocabans{Vertex form $a|x-h|+k$}{vertex $(h,k)$, axis $x=h$; $a$ sets opening direction and width}
+\vocabans{Reflection / stretch / compression}{$a<0$ flips it to open down; $|a|>1$ narrower, $0<|a|<1$ wider}
 \end{vocabbox}
 
 \begin{hookbox}
-\textbf{Part 1 --- One in, one out.} Three rules. For each, decide whether \emph{every} input gets
-\emph{exactly one} output.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l X l@{}}
-\hline
-\textbf{Rule} & \textbf{What goes wrong, if anything} & \textbf{One in, one out?} \\
-\hline
-(a) \; $\{(1,3),(2,5),(4,9)\}$ & \ans{nothing --- three inputs, three outputs} & \ans{yes} \\
-(b) \; $\{(1,3),(2,5),(1,7)\}$ & \ans{the input $1$ is sent to both $3$ and $7$} & \ans{no} \\
-(c) \; $\{(1,6),(2,6),(4,6)\}$ & \ans{nothing --- outputs may repeat} & \ans{yes} \\
-\hline
-\end{tabularx}
-\end{center}
-Exactly one of those three fails. Which, and what is the rule it broke?
-\ans{(b) --- one input cannot have two different outputs.}
-
-\vspace{3pt}
-\textbf{Part 2 --- Three machines, same inputs.} Fill in the table.
-\begin{center}
-\renewcommand{\arraystretch}{1.45}
-\begin{tabularx}{\linewidth}{@{}X|c|c|c|c|c|c@{}}
-\hline
-$x$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\
-\hline
-$f(x)=x$ & $0$ & $1$ & \ans{$2$} & \ans{$3$} & \ans{$4$} & \ans{$5$} \\
-$g(x)=x^2$ & $0$ & $1$ & \ans{$4$} & \ans{$9$} & \ans{$16$} & \ans{$25$} \\
-$h(x)=2^x$ & $1$ & $2$ & \ans{$4$} & \ans{$8$} & \ans{$16$} & \ans{$32$} \\
-\hline
-\end{tabularx}
-\end{center}
-Who is biggest at $x=2$? \ans{tie: $g$ and $h$} \quad At $x=4$? \ans{tie again} \quad
-At $x=5$? \ans{$h$, the exponential}
-\\[2pt]
-The answer \emph{changed}. Write down what that tells you:
-\ans{Which function is ``bigger'' depends on where you look --- and the exponential eventually wins.}
-\\[2pt]
-\textbf{The idea the whole lesson hangs on:} an equation was a question about \emph{numbers}. A
-\textbf{function} is a \emph{machine} --- and its graph shows every answer at once. Today we ask one
-fixed set of questions (domain, range, zeros, intercepts, rate) of \textbf{three} families, and see
-how differently each one answers.
+You drive toward a rest stop, reach it after $2$ hours, and keep going. Your \emph{distance from the
+rest stop} (in tens of miles) is $d(t)=30\,|t-2|$.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item Distance at $t=0$? \ans{$60$} \quad At $t=2$? \ans{$0$} \quad At $t=4$? \ans{$60$}
+  \item You are \emph{closest} at $t=\ans{$2$}$, where the distance is \ans{$0$}.
+\end{itemize}
+Plot those points and the shape is a \textbf{V}. A distance is never negative, so the graph bottoms
+out at one turning point --- the \emph{vertex} --- and is symmetric about the line through it. Every
+absolute value function is this same V, moved and stretched.
 \end{hookbox}
 
-\begin{notesbox}{1. What Makes a Rule a Function --- and How We Talk to It}
-A \textbf{relation} is any pairing of inputs with outputs. It is a \textbf{function} when every
-input has \ans{exactly one} output.
-\\[2pt]
-Note carefully what is \emph{not} forbidden: two different inputs \emph{may} share the same output.
-The promise is about \ans{inputs} only. (Hook item (c) is a function.)
-
-\vspace{3pt}
-\textbf{The same relation, four ways.} A function can arrive as ordered pairs, a table, a mapping,
-or a graph. The test looks different each time, but it is always the same test.
+\boxguard[18]
+\begin{notesbox}{1. The Parent Function $f(x)=|x|$}
+Complete the table, then read the graph.
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
+\renewcommand{\arraystretch}{1.15}
+\begin{minipage}{0.40\linewidth}
+\centering
+\begin{tabular}{|c|c|}
 \hline
-\textbf{Given as\dots} & \textbf{How you check} \\
-\hline
-ordered pairs / a table & look for a repeated \ans{input ($x$-value)} with different outputs \\
-a mapping diagram & look for an input arrow that \ans{splits, pointing to two outputs} \\
-a graph & the \textbf{vertical line test}: \ans{no vertical line may cross the graph twice} \\
-\hline
-\end{tabularx}
-\end{center}
-\emph{Why the vertical line test works.} A vertical line is the set of all points with one fixed
-$x$. If it hits the graph twice, that single input has \ans{two} outputs --- the promise is
-broken. The test is not a trick; it is the definition, \emph{drawn}.
-\begin{center}
-\begin{tabular}{@{}c c c@{}}
-\minigrid{\draw[forest, very thick] (-4,-3) -- (4,5);
-          \draw[keyred, dashed] (1,-6) -- (1,6);
-          \fill[keyred] (1,2) circle (2.0pt);} &
-\minigrid{\draw[forest, very thick] (2,-6) -- (2,6);
-          \draw[keyred, dashed] (2,-6) -- (2,6);} &
-\minigrid{\draw[forest, very thick, domain=-2.3:2.3, smooth, variable=\x] plot ({\x},{\x*\x-2});
-          \draw[keyred, dashed] (1,-6) -- (1,6);
-          \fill[keyred] (1,-1) circle (2.0pt);} \\
-function? \ans{yes} & function? \ans{no} & function? \ans{yes} \\
+$x$ & $y=|x|$ \\ \hline
+$-2$ & ${\color{keyred}\mathbf{2}}$ \\ \hline
+$-1$ & ${\color{keyred}\mathbf{1}}$ \\ \hline
+$0$ & ${\color{keyred}\mathbf{0}}$ \\ \hline
+$1$ & ${\color{keyred}\mathbf{1}}$ \\ \hline
+$2$ & ${\color{keyred}\mathbf{2}}$ \\ \hline
 \end{tabular}
-\end{center}
-The middle one is the line $x=2$. It \emph{is} a perfectly good line --- it is just not a
-\ans{function}, because the single input $2$ is paired with every $y$ there is.
-
-\vspace{4pt}
-\textbf{Domain and range.} The \textbf{domain} is the set of all \ans{inputs}; the \textbf{range}
-is the set of all \ans{outputs}.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
-\hline
-\textbf{Function} & \textbf{Domain} & \textbf{Range} \\
-\hline
-$\{(-3,4),(0,1),(2,4),(5,9)\}$ & \ans{$\{-3,0,2,5\}$} & \ans{$\{1,4,9\}$} \\
-the line in the Warm-Up, $2x-6$ & \ans{all real numbers} & \ans{all real numbers} \\
-\hline
-\end{tabularx}
-\end{center}
-For a set of pairs the domain is a \emph{list}. For an unbroken line it is \emph{all real numbers}
---- because you may put any number in.
-
-\vspace{4pt}
-\textbf{Function notation.} $f(x)$ is read ``$f$ of $x$.'' It is \emph{not} multiplication.
-\begin{center}
-\fbox{\parbox{0.95\linewidth}{\centering
-$f$ is the \ans{name} of the machine \quad $\cdot$ \quad $x$ is the \ans{input} \quad
-$\cdot$ \quad $f(x)$ is the \ans{output} \\[3pt]
-So ``$f(3)=0$'' and ``the point $(3,0)$ is on the graph'' are the \ans{same} sentence.}}
-\end{center}
-Let $f(x)=2x-6$. Fill both directions --- going \emph{forward} is arithmetic; going
-\emph{backward} is solving an equation, which is all of Lesson 1.2.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}X X@{}}
-\hline
-\textbf{Forward: given $x$, find $f(x)$} & \textbf{Backward: given $f(x)$, find $x$} \\
-\hline
-$f(0)=$ \ans{$-6$} & $f(x)=4$ when $x=$ \ans{$5$} \\
-$f(5)=$ \ans{$4$} & $f(x)=-2$ when $x=$ \ans{$2$} \\
-$f(-1)=$ \ans{$-8$} & $f(x)=0$ when $x=$ \ans{$3$} \\
-\hline
-\end{tabularx}
-\end{center}
-That last box has a name. The value of $x$ that makes $f(x)=0$ is called a \textbf{zero} of the
-function, and on the graph it is the \ans{$x$-intercept}.
-\\[2pt]
-\emph{So Lesson 1.2 was never really about equations.} Every time you solved $ax+b=0$ or
-$ax^2+bx+c=0$, you were finding \ans{the zeros of a function}.
-\end{notesbox}
-
-\begin{notesbox}{2. Linear Functions --- Every Characteristic, Read Off One Graph}
-Below is $f(x)=2x-6$ again, this time as an object to interrogate. Answer each question from the
-picture, then check it against the rule.
-\begin{center}
-\begin{tabular}{@{}c l@{}}
-\gridplot{\draw[forest, very thick, domain=-0.6:5, smooth, variable=\x] plot ({\x},{2*\x-6});
-          \fill[keyred] (3,0) circle (2.6pt);
-          \fill[keyred] (0,-6) circle (2.6pt);}
-&
-\begin{minipage}[c]{0.56\linewidth}
-\renewcommand{\arraystretch}{1.45}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-\textbf{Domain} & \ans{all real numbers} \\
-\textbf{Range} & \ans{all real numbers} \\
-\textbf{Zero} & $x=$ \ans{$3$} \\
-\textbf{$x$-intercept} & \ans{$(3,0)$} \\
-\textbf{$y$-intercept} & \ans{$(0,-6)$} \\
-\textbf{Slope} & \ans{$2$} \\
-\hline
-\end{tabularx}
+\end{minipage}%
+\begin{minipage}{0.55\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.5]
+  \lgrid{-4}{4}{-1}{5}
+  \draw[navy, dashed, semithick] (0,-1)--(0,5);
+  \draw[very thick, forest] (-4,4)--(0,0)--(4,4);
+  \fill[charcoal] (0,0) circle (3.5pt);
+\end{tikzpicture}
 \end{minipage}
-\\
-\end{tabular}
 \end{center}
-Two of those six rows are the same fact written two ways. Which two?
-\ans{the zero and the $x$-intercept}
-\\[2pt]
-\textbf{Slope is a rate.} \; \TallMath{m=\frac{\text{change in } y}{\text{change in } x}
-=\frac{y_2-y_1}{x_2-x_1}}
-\\[2pt]
-Use the points $(3,0)$ and $(5,4)$ from the graph: \; $m=$ \ans{$\dfrac{4-0}{5-3}=2$}
-\\[2pt]
-Say it in words: every time $x$ goes up by $1$, $y$ goes \ans{up by $2$}. That constant, unchanging
-step is what makes the function \ans{linear}.
-
-\vspace{4pt}
-\textbf{Now in context, where the numbers mean something.} A pool is being drained. The volume in
-gallons after $t$ minutes is $V(t)=800-25t$.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-\textbf{Feature} & \textbf{What it means \emph{here} --- with units} \\
-\hline
-$y$-intercept $=800$ & \ans{the pool held $800$ gallons at the start ($t=0$)} \\
-slope $=-25$ & \ans{it loses $25$ gallons every minute (negative = draining)} \\
-zero: $V(t)=0$ at $t=$ \ans{$32$} & \ans{the pool is empty after $32$ minutes} \\
-\hline
-\end{tabularx}
-\end{center}
-What is the domain \emph{in this situation}? \ans{$0\le t\le 32$} \; Why is it not all real numbers?
-\ansline{Negative time has no meaning here, and after $32$ minutes the pool is empty --- the model
-stops describing anything. The algebra allows every real number; the \emph{situation} does not, and
-the situation wins.}
+\textbf{Read the V:} vertex $({\color{keyred}\mathbf{0}},\,{\color{keyred}\mathbf{0}})$; \; axis of
+symmetry $x={\color{keyred}\mathbf{0}}$; \; minimum value \ans{$0$}; \; domain \ans{all real numbers};
+\; range \ans{$y\ge 0$}. It \emph{decreases} on \ans{$(-\infty,0]$} and \emph{increases} on
+\ans{$[0,\infty)$}. The V is really two lines pasted at the vertex:
+$y={\color{keyred}\mathbf{x}}$ when $x\ge 0$, and $y={\color{keyred}\mathbf{-x}}$ when $x<0$.
 \end{notesbox}
 
-\begin{notesbox}{3. Writing the Line --- Three Forms, Four Situations}
-Same line, three costumes. Each form is honest about a different thing.
+\boxguard[26]
+\begin{notesbox}{2. Up / Down and Left / Right}
+\textbf{Outside} the bars acts \emph{vertically, as expected}; \textbf{inside} the bars acts
+\emph{horizontally and backwards}.
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l l X@{}}
-\hline
-\textbf{Form} & \textbf{Looks like} & \textbf{Hands you, for free\dots} \\
-\hline
-slope-intercept & $y=mx+b$ & \ans{the slope $m$ and the $y$-intercept $b$} \\
-point-slope & $y-y_1=m(x-x_1)$ & \ans{a slope and one point already on the line} \\
-standard & $Ax+By=C$ & \ans{both intercepts quickly (set $x=0$, then $y=0$)} \\
-\hline
+$y=|x|+k$ & shifts the V \ans{up / down} & $y=|x|-3$: vertex $({\color{keyred}\mathbf{0}},\,{\color{keyred}\mathbf{-3}})$ \\
+$y=|x-h|$ & shifts the V \ans{left / right} & $y=|x-3|$: vertex $({\color{keyred}\mathbf{3}},\,{\color{keyred}\mathbf{0}})$; \quad $y=|x+2|$: vertex $({\color{keyred}\mathbf{-2}},\,{\color{keyred}\mathbf{0}})$ \\
 \end{tabularx}
 \end{center}
-Rewrite $y-4=2(x-5)$ in slope-intercept form: \ans{$y=2x-6$} \; then in standard form:
-\ans{$2x-y=6$} \\
-Did the line change? \ans{No} \; This is Lesson 1.2's \emph{literal equations} --- one
-equation, solved for different things.
-
-\vspace{4pt}
-\textbf{Write the equation.} Four situations, one strategy: get a slope, get a point.
+Each solid V below is the parent (dashed) after \emph{one} shift. Name each vertex on the line.
 \begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
-\hline
-\textbf{You are given\dots} & \textbf{Work} & \textbf{Equation} \\
-\hline
-(a) slope $-3$, point $(2,5)$ & \ans{$y-5=-3(x-2)$} & \ans{$y=-3x+11$} \\
-(b) the points $(1,2)$ and $(4,11)$ & \ans{$m=\frac{11-2}{4-1}=3$} & \ans{$y=3x-1$} \\
-(c) a vertical line through $(7,-2)$ & \emph{no slope exists} & \ans{$x=7$} \\
-(d) a horizontal line through $(7,-2)$ & \emph{slope is} \ans{$0$} & \ans{$y=-2$} \\
-\hline
-\end{tabularx}
+\begin{tikzpicture}[scale=0.44]
+  % left: y = |x - 3|  (right 3)
+  \begin{scope}
+    \lgrid{-2}{6}{-1}{5}
+    \draw[very thick, forest!40, dashed] (-1,1)--(0,0)--(4,4);
+    \draw[very thick, forest] (-1,4)--(3,0)--(6,3);
+    \fill[charcoal] (3,0) circle (3.5pt);
+    \node[charcoal, font=\scriptsize] at (2,-2.4){$y=|x-3|$};
+  \end{scope}
+  % right: y = |x| - 3  (down 3)
+  \begin{scope}[xshift=11cm]
+    \lgrid{-4}{4}{-4}{3}
+    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
+    \draw[very thick, forest] (-3,0)--(0,-3)--(3,0);
+    \fill[charcoal] (0,-3) circle (3.5pt);
+    \node[charcoal, font=\scriptsize] at (0,-5.2){$y=|x|-3$};
+  \end{scope}
+\end{tikzpicture}
 \end{center}
-Only one of (c) and (d) is a function. Which, and why?
-\ans{(d) --- $x=7$ fails the vertical line test; $y=-2$ gives every input the single output $-2$.}
-
-\vspace{3pt}
-\textbf{Parallel and perpendicular.} Parallel lines have \ans{equal} slopes. Perpendicular lines
-have slopes that are \ans{opposite reciprocals} (multiply to $-1$).
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabular}{@{}l l@{}}
-Through $(0,1)$, parallel to $y=\tfrac12x-4$: & \ans{$y=\tfrac12x+1$} \\
-Through $(0,1)$, perpendicular to $y=\tfrac12x-4$: & \ans{$y=-2x+1$} \\
-\end{tabular}
-\end{center}
-
-\vspace{3pt}
-\textbf{Transforming the parent.} The \textbf{parent} linear function is $y=x$: slope $1$,
-$y$-intercept $0$. Two moves change it, and each one touches exactly one feature.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X X@{}}
-\hline
-\textbf{Change} & \textbf{New slope} & \textbf{New $y$-intercept} \\
-\hline
-$k\,f(x)$: \; $y=3x$ & \ans{$3$} & \ans{$0$ --- unchanged} \\
-$f(x)+k$: \; $y=x+3$ & \ans{$1$ --- unchanged} & \ans{$3$} \\
-$k\,f(x)$ with $k<0$: \; $y=-x$ & \ans{$-1$ (reflected)} & \ans{$0$ --- unchanged} \\
-\hline
-\end{tabularx}
-\end{center}
-So multiplying changes the \ans{slope} and adding changes the \ans{$y$-intercept}. Match each equation
-to its graph (the dashed line is the parent $y=x$ in every panel).
-\begin{center}
-\begin{tabular}{@{}c c c@{}}
-\minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
-          \draw[forest, very thick] (-2,-6) -- (2,6);} &
-\minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
-          \draw[forest, very thick] (-4,-1) -- (3,6);} &
-\minigrid{\draw[linegray, thick, dashed] (-4,-4) -- (4,4);
-          \draw[forest, very thick] (-4,4) -- (4,-4);} \\
-\ans{$y=3x$} & \ans{$y=x+3$} & \ans{$y=-x$} \\
-\end{tabular}
-\end{center}
-\emph{Remember this pair of moves.} In Unit 2 the same two transformations get applied to a V, in
-Unit 3 to a parabola, and in Unit 7 to a growth curve. The parent changes; the moves do not.
+Left vertex: $({\color{keyred}\mathbf{3}},\,{\color{keyred}\mathbf{0}})$. \qquad
+Right vertex: $({\color{keyred}\mathbf{0}},\,{\color{keyred}\mathbf{-3}})$.
 \end{notesbox}
 
-\begin{notesbox}{4. The Other Two Families --- Quadratic and Exponential}
-Same questions. Different answers. Read everything off the pictures.
-
-\vspace{3pt}
-\textbf{Quadratic: $g(x)=x^2-2x-3$.} You met this curve in Lesson 1.2, where you solved
-$x^2-2x-3=0$. Now the solutions have a job.
+\boxguard[20]
+\begin{notesbox}{3. Stretch, Compress, and Reflect: $y=a|x|$}
+The number $a$ multiplies the \emph{outputs}: it scales the V and, if negative, flips it.
 \begin{center}
-\begin{tabular}{@{}c l@{}}
-\gridplot{\draw[forest, very thick, domain=-2.2:4.2, smooth, variable=\x] plot ({\x},{\x*\x-2*\x-3});
-          \fill[keyred] (-1,0) circle (2.6pt);
-          \fill[keyred] (3,0) circle (2.6pt);
-          \fill[keyred] (1,-4) circle (2.6pt);}
-&
-\begin{minipage}[c]{0.56\linewidth}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-\textbf{Zeros ($x$-intercepts)} & \ans{$x=-1$ and $x=3$} \\
-\textbf{$y$-intercept} & \ans{$(0,-3)$} \\
-\textbf{Vertex} & \ans{$(1,-4)$} \\
-\textbf{Maximum or minimum?} & \ans{minimum, value $-4$} \\
-\textbf{Domain} & \ans{all real numbers} \\
-\textbf{Range} & \ans{$y\ge -4$} \\
-\hline
-\end{tabularx}
-\end{minipage}
-\\
-\end{tabular}
+\begin{tikzpicture}[scale=0.42]
+  % y = 2|x|  (narrow)
+  \begin{scope}
+    \lgrid{-3}{3}{-1}{5}
+    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
+    \draw[very thick, forest] (-2.2,4.4)--(0,0)--(2.2,4.4);
+    \node[charcoal, font=\scriptsize] at (0,-2.4){$y=2|x|$};
+  \end{scope}
+  % y = 1/2 |x|  (wide)
+  \begin{scope}[xshift=9cm]
+    \lgrid{-4}{4}{-1}{5}
+    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
+    \draw[very thick, forest] (-4,2)--(0,0)--(4,2);
+    \node[charcoal, font=\scriptsize] at (0,-2.4){$y=\tfrac12|x|$};
+  \end{scope}
+  % y = -|x|  (down)
+  \begin{scope}[xshift=19cm]
+    \lgrid{-3}{3}{-4}{2}
+    \draw[very thick, forest!40, dashed] (-2,2)--(0,0)--(2,2);
+    \draw[very thick, forest] (-3,-3)--(0,0)--(3,-3);
+    \node[charcoal, font=\scriptsize] at (0,-5.4){$y=-|x|$};
+  \end{scope}
+\end{tikzpicture}
 \end{center}
-The factored form is $g(x)=(x-3)(x+1)$. Where do you \emph{see} the $3$ and the $-1$ on the graph?
-\ans{they are exactly the two $x$-intercepts} \\
-That is the connection between the algebra and the picture: the factored form displays the
-\ans{zeros}, the standard form displays the \ans{$y$-intercept}.
-\\[2pt]
-\textbf{The range is the new one.} For the line, the range was every real number. Here it is not ---
-because the graph has a \ans{minimum} it never goes below. Range: \ans{$y\ge-4$}
-
-\vspace{4pt}
-\textbf{Exponential: $h(x)=2^x$.} Here $y=ab^x$ with $a=$ \ans{$1$} and $b=$ \ans{$2$}.
-\begin{center}
-\begin{tabular}{@{}c l@{}}
-\expgraph{\fill[keyred] (0,1) circle (2.4pt);}
-&
-\begin{minipage}[c]{0.56\linewidth}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\hline
-\textbf{$y$-intercept} & \ans{$(0,1)$} \\
-\textbf{Any $x$-intercept?} & \ans{none --- it never reaches $0$} \\
-\textbf{Domain} & \ans{all real numbers} \\
-\textbf{Range} & \ans{$y>0$} \\
-\textbf{Increasing or decreasing?} & \ans{increasing} \\
-\hline
-\end{tabularx}
-\end{minipage}
-\\
-\end{tabular}
-\end{center}
-This family has \textbf{no zero at all}. Explain why not, using the table you built in the Hook:
-\ansline{Doubling a positive number never produces zero, and running backwards halves it forever
---- $2^{-1}=\frac12$, $2^{-3}=\frac18$, $2^{-10}=\frac{1}{1024}$. The outputs shrink toward zero
-without ever arriving, so $2^x=0$ has no solution and the graph has no $x$-intercept.}
-\\[2pt]
-The $y$-intercept of $y=ab^x$ is always $a$, because $b^0=$ \ans{$1$} --- so the $a$ is the
-\emph{starting amount}.
-
-\vspace{3pt}
-\textbf{In context.} A colony starts at $50$ bacteria and doubles every hour: $P(t)=50\cdot 2^{\,t}$.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}X|c|c|c|c@{}}
-\hline
-$t$ (hours) & $0$ & $1$ & $2$ & $3$ \\
-\hline
-$P(t)$ & \ans{$50$} & \ans{$100$} & \ans{$200$} & \ans{$400$} \\
-\hline
-\end{tabularx}
-\end{center}
-What does the $50$ mean here? \ans{the starting population} \; The $2$? \ans{it doubles each hour}
-\\[2pt]
-Going \emph{backward}: after how many hours are there $800$ bacteria? \ans{$4$ hours} \;
-(You can read this off the table --- no new algebra needed yet.)
+\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
+  \item $|a|>1$ makes the V \ans{narrower}; \quad $0<|a|<1$ makes it \ans{wider}.
+  \item $a<0$ \ans{reflects} the V, so it opens \ans{down} instead of up.
+  \item The value of $a$ is the \emph{slope} of the \ans{right-hand} ray of the V.
+\end{itemize}
 \end{notesbox}
 
-\begin{notesbox}{5. Three Families, Side by Side}
-Return to the Hook table and look at how each column \emph{grows}.
+\boxguard[23]
+\begin{notesbox}{4. Vertex Form: $g(x)=a|x-h|+k$}
+All three moves at once. The vertex is $(h,k)$ and the axis of symmetry is $x=h$.
+\[ \text{opens \textbf{up} if } a>0 \ (k \text{ is a } \textbf{minimum}); \qquad
+   \text{opens \textbf{down} if } a<0 \ (k \text{ is a } \textbf{maximum}). \]
+\textbf{Worked:} $g(x)=-2|x-1|+3$.
 \begin{center}
-\renewcommand{\arraystretch}{1.45}
-\begin{tabularx}{\linewidth}{@{}l|c|c|c|c|c|X@{}}
-\hline
-$x$ & $0$ & $1$ & $2$ & $3$ & $4$ & \textbf{How it changes} \\
-\hline
-$f(x)=x$ & $0$ & $1$ & $2$ & $3$ & $4$ & add \ans{$1$} each time \\
-$g(x)=x^2$ & $0$ & $1$ & $4$ & $9$ & $16$ & differences $1,3,5,7$ --- \emph{those} go up by \ans{$2$} \\
-$h(x)=2^x$ & $1$ & $2$ & $4$ & $8$ & $16$ & \ans{multiply} by $2$ each time \\
-\hline
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}X X X X@{}}
+Vertex $({\color{keyred}\mathbf{1}},\,{\color{keyred}\mathbf{3}})$ & Axis $x={\color{keyred}\mathbf{1}}$ & Opens \ans{down} & \ans{maximum} value $={\color{keyred}\mathbf{3}}$ \\
 \end{tabularx}
 \end{center}
-\fbox{\parbox{0.95\linewidth}{\centering
-\textbf{Linear:} constant \ans{difference}. \quad
-\textbf{Quadratic:} constant \emph{second} \ans{difference}. \quad
-\textbf{Exponential:} constant \ans{ratio}.}}
-\\[3pt]
-This is how you identify a family from a \emph{table} alone, with no equation and no graph.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}l|c c c c|X@{}}
-\hline
-\textbf{At} $x=0,1,2,3$ & \multicolumn{4}{c|}{\textbf{the $y$ values are\dots}} & \textbf{Which family? How do you know?} \\
-\hline
-(a) & $5$ & $8$ & $11$ & $14$ & \ans{linear --- add $3$ each time} \\
-(b) & $3$ & $6$ & $12$ & $24$ & \ans{exponential --- multiply by $2$} \\
-(c) & $1$ & $4$ & $9$ & $16$ & \ans{quadratic --- second differences are $2$} \\
-\hline
-\end{tabularx}
-\end{center}
-
-\vspace{2pt}
-\textbf{The comparison that matters.} Fill in the last row of the summary.
-\begin{center}
-\renewcommand{\arraystretch}{1.45}
-\begin{tabularx}{\linewidth}{@{}l X X X@{}}
-\hline
- & \textbf{Linear $x$} & \textbf{Quadratic $x^2$} & \textbf{Exponential $2^x$} \\
-\hline
-Domain & all reals & all reals & all reals \\
-Range & all reals & \ans{$y\ge0$} & \ans{$y>0$} \\
-Number of zeros & \ans{one} & $0$, $1$, or $2$ & \ans{none} \\
-Eventually largest? & \ans{no} & \ans{no} & \ans{yes} \\
-\hline
-\end{tabularx}
-\end{center}
-In the Hook the exponential was \emph{tied} at $x=2$ and again at $x=4$, then pulled ahead for good.
-Write the moral in one sentence:
-\ansline{A function that \emph{multiplies} eventually beats one that only adds, no matter how far
-behind it starts --- so ``which is bigger'' is never a fair question without saying \emph{where}.}
+Because $a=-2$, the V is \ans{narrower} (narrower / wider) than the parent and opens \ans{down}.
+Evaluate at $x=0$ straight from the rule:
+\begin{work}
+  g(0) &= -2\,|\,0-1\,| + 3 \\
+       &= -2\,|{-1}| + 3     \\
+       &= -2(1) + 3          \\
+       &= 1
+\end{work}
 \end{notesbox}
 
 \begin{practicebox}
-\begin{enumerate}[leftmargin=1.7em, itemsep=4pt]
-  \item Is $\{(2,7),(3,7),(5,1)\}$ a function? \ans{yes} \; Domain: \ans{$\{2,3,5\}$} \;
-        Range: \ans{$\{1,7\}$}
-  \item $f(x)=4x-10$. \quad $f(3)=$ \ans{$2$} \quad $f(x)=6$ when $x=$ \ans{$4$} \quad
-        Zero: \ans{$2.5$}
-  \item Write the equation of the line through $(2,-1)$ and $(6,7)$. \ans{$y=2x-5$}
-  \item Write the equation of the line through $(0,5)$ perpendicular to $y=4x-1$.
-        \ans{$y=-\tfrac14x+5$}
-  \item A parabola has $x$-intercepts $-2$ and $6$ and opens upward. Is its vertex a maximum or a
-        minimum? \ans{minimum} \; What is the $x$-coordinate of the vertex? \ans{$2$}
-  \item A table reads $y=2,\ 10,\ 50,\ 250$ for $x=0,1,2,3$. Which family, and what is the rule?
-        \ans{exponential; $y=2\cdot5^x$}
+For $g(x) = \tfrac12\,|x+4| - 2$, fill in each feature.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Vertex $({\color{keyred}\mathbf{-4}},\,{\color{keyred}\mathbf{-2}})$; \quad axis of symmetry $x={\color{keyred}\mathbf{-4}}$.
+  \item Opens \ans{up} (up / down), so $k$ is a \ans{min} (max / min) value of \ans{$-2$}.
+  \item Compared to $y=|x|$, this graph is shifted \ans{left} $4$ and \ans{down} $2$, and is
+        \ans{wider} (narrower / wider).
+  \item Evaluate $g(0)$, one step per line.
+        \begin{work}
+          g(0) &= \tfrac12\,|0+4| - 2 \\
+               &= \tfrac12(4) - 2      \\
+               &= 2 - 2                \\
+               &= 0
+        \end{work}
 \end{enumerate}
 \end{practicebox}
 

@@ -1,59 +1,84 @@
-%! Zeros of Polynomials: the Rational Root Theorem — Unit 4, Lesson 4.4 — Exit Ticket
+%! The Rational Parent Function \& Transformations — Unit 4, Lesson 4.4 — Exit Ticket
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
 \pageheader{Unit 4, Lesson 4.4}{Exit Ticket}
 \namedateperiod
 
-\vspace{0.10in}
+\vspace{0.06in}
 
-No notes. Constant term on top, leading coefficient on the bottom --- and do not lose the $\pm$.
+No notes. Find the asymptotes before you do anything else.
 
-\begin{enumerate}[leftmargin=1.8em, itemsep=11pt]
-  \item \textbf{The whole workflow.} Solve $3x^3 + 2x^2 - 7x + 2 = 0$.
+\vspace{0.04in}
 
-    \vspace{3pt}
-    $p$ divides \blank{0.9cm} \quad $q$ divides \blank{0.9cm} \quad
-    Candidates: \blank{6.0cm}
+\begin{enumerate}[leftmargin=1.8em, itemsep=7pt]
+  \item \textbf{Read the equation.} \; $g(x)=\dfrac{-3}{x+2}-1$
 
-    \vspace{3pt}
-    A candidate that works: $r = $ \blank{1.0cm}
-    \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabular}{r|C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}}
-        &     &     &     &     \\
-        &     &     &     &     \\ \cline{2-5}
-        &     &     &     &     \\
-    \end{tabular}
-    \end{center}
+        \vspace{3pt}
+        $a=$ \blank{0.9cm} \quad $h=$ \blank{0.9cm} \quad $k=$ \blank{0.9cm} \quad
+        Center: $(\blank{0.7cm},\,\blank{0.7cm})$
 
-    \vspace{2pt}
-    Depressed polynomial: \blank{3.0cm} \quad Completely factored: \blank{4.6cm}
+        \vspace{3pt}
+        Vertical asymptote: \blank{1.4cm} \quad Horizontal asymptote: \blank{1.4cm} \quad
+        $y$-intercept: \blank{1.6cm}
 
-    \vspace{3pt}
-    Solutions: \blank{4.0cm} \quad Verify one of them by substituting: \blank{4.6cm}
+        \vspace{3pt}
+        Domain: \blank{2.6cm} \quad Range: \blank{2.6cm}
 
-  \item \textbf{Error analysis.} For $f(x) = 2x^3 + 5x^2 - x - 6$, a classmate writes the candidate
-    list $\pm 1,\ \pm 2,\ \pm\tfrac12,\ \pm\tfrac13,\ \pm\tfrac16$.
+        \vspace{3pt}
+        Does this graph ever \emph{cross} its horizontal asymptote? Answer and explain in one
+        sentence. \writeline
 
-    \vspace{3pt}
-    What did they do wrong? \blank{6.4cm}
+  \item \textbf{Write the equation.} The asymptotes are dashed and two points are marked.
+        \begin{center}
+        \begin{minipage}{0.42\linewidth}\centering
+        \begin{tikzpicture}[scale=0.30]
+          \lgrid{-4}{8}{-5}{5}
+          \draw[navy, dashed, semithick] (2,-5)--(2,5);
+          \draw[navy, dashed, semithick] (-4,-1)--(8,-1);
+          \node[navy, font=\scriptsize, above right] at (2,4.2) {$x=2$};
+          \node[navy, font=\scriptsize, below left] at (-0.6,-1) {$y=-1$};
+          \begin{scope}
+            \clip (-4,-5) rectangle (8,5);
+            \draw[very thick, forest, domain=-4:1.6, samples=110, smooth] plot (\x,{3/((\x)-2)-1});
+            \draw[very thick, forest, domain=2.4:8, samples=110, smooth] plot (\x,{3/((\x)-2)-1});
+          \end{scope}
+          \fill[charcoal] (3,2) circle (3.4pt) node[above right, font=\scriptsize]{$(3,2)$};
+          \fill[charcoal] (5,0) circle (3.4pt) node[above right, font=\scriptsize]{$(5,0)$};
+        \end{tikzpicture}
+        \end{minipage}%
+        \begin{minipage}{0.55\linewidth}
+        \small
+        $h=$ \blank{1.0cm} \quad $k=$ \blank{1.0cm}
 
-    \vspace{3pt}
-    Write the correct list: \blank{7.0cm}
+        \vspace{3pt}
+        Substitute $(3,2)$ and solve for $a$:
 
-  \item \textbf{SOL-style multiple choice.} Which value is \emph{not} a possible rational zero of
-    $f(x) = 4x^3 - x^2 + 6x - 3$?
-    \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
-      \item $-3$
-      \item $\dfrac{3}{4}$
-      \item $\dfrac{2}{3}$
-      \item $\dfrac{1}{2}$
-    \end{enumerate}
+        \vspace{22pt}
+        $a=$ \blank{1.0cm} \quad Equation: \blank{2.8cm}
+
+        \vspace{3pt}
+        Check on $(5,0)$: \blank{2.4cm}
+        \end{minipage}
+        \end{center}
+
+  \item \textbf{SOL-style multiple choice.} Which function has a vertical asymptote at $x=-4$ and a
+        horizontal asymptote at $y=3$?
+        \begin{enumerate}[label=\Alph*., leftmargin=1.9em, itemsep=1pt]
+          \item $y=\dfrac{2}{x-4}+3$
+          \item $y=\dfrac{2}{x+4}+3$
+          \item $y=\dfrac{2}{x+3}+4$
+          \item $y=\dfrac{3}{x+4}+2$
+        \end{enumerate}
 \end{enumerate}
 
 \end{document}

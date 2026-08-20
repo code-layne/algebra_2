@@ -1,8 +1,15 @@
-%! Direct, Inverse \& Joint Variation — Unit 5, Lesson 5.7 — Group Activity (Answer Key)
+%! Inverse Functions — Unit 5, Lesson 5.7 — Group Activity (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
+\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
+\newcommand{\mexp}[1]{{\color{keyred}#1}}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 
@@ -12,336 +19,351 @@
 \vspace{0.08in}
 
 \begin{headlinebox}{forestbg}
-\small\textbf{Constant Quotient, Constant Product.} One question decides every table:
-\textbf{which row of arithmetic stays the same?} Quotients constant $\Rightarrow$ \emph{direct},
-$y=kx$. Products constant $\Rightarrow$ \emph{inverse}, $y=\frac kx$. Neither constant
-$\Rightarrow$ \emph{neither} --- a real answer, and a common one. Test \emph{every} row, not the
-first one.
+\small\textbf{Undo It.} Every function today comes with a partner whose only job is to put things
+back the way they were. Two rules for the period: \textbf{(1)} reverse the operations \emph{and} the
+order, and \textbf{(2)} never announce an inverse you have not tested by composing \emph{both} ways.
 \end{headlinebox}
 
 \vspace{0.06in}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier R --- Remediate},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Run both tests.} Fill in both arithmetic rows, then circle your verdict and give
-$k$ if there is one.
+\textbf{Part 1 --- Undo the machine.} List what the function does, in order. Then list the undoing
+steps \emph{in the reverse order}, and write the rule.
 \begin{center}
-\begin{minipage}{0.47\linewidth}\centering
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|l|c|c|c|c|}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}l X X X@{}}
 \hline
-\rowcolor{forestbg}
-$x$ & $3$ & $5$ & $8$ & $10$ \\ \hline
-$y$ & $12$ & $20$ & $32$ & $40$ \\ \hline
-$y\div x$ & \ans{$4$} & \ans{$4$} & \ans{$4$} & \ans{$4$} \\ \hline
-$x\cdot y$ & \ans{$36$} & \ans{$100$} & \ans{$256$} & \ans{$400$} \\ \hline
-\end{tabular}\\[2pt]
-{\small (a) \; \textcolor{keyred}{\textbf{direct}} \; / \; inverse \; / \; neither \quad
-$k=$ \ans{$4$}}
-\end{minipage}\hfill
-\begin{minipage}{0.47\linewidth}\centering
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|l|c|c|c|c|}
+\textbf{$f(x)$} & \textbf{What it does, in order} & \textbf{Undo, in reverse order} & \textbf{$f^{-1}(x)$} \\
 \hline
-\rowcolor{forestbg}
-$x$ & $2$ & $4$ & $8$ & $16$ \\ \hline
-$y$ & $24$ & $12$ & $6$ & $3$ \\ \hline
-$y\div x$ & \ans{$12$} & \ans{$3$} & \ans{$0.75$} & \ans{$0.1875$} \\ \hline
-$x\cdot y$ & \ans{$48$} & \ans{$48$} & \ans{$48$} & \ans{$48$} \\ \hline
-\end{tabular}\\[2pt]
-{\small (b) \; direct \; / \; \textcolor{keyred}{\textbf{inverse}} \; / \; neither \quad
-$k=$ \ans{$48$}}
-\end{minipage}
+(a) $x+8$ & add $8$ & \ans{subtract $8$} & \ans{$x-8$} \\
+(b) $3x$ & multiply by $3$ & \ans{divide by $3$} & \ans{$\frac{x}{3}$} \\
+(c) $2x-1$ & multiply by $2$, then subtract $1$ & \ans{add $1$, then divide by $2$} & \ans{$\frac{x+1}{2}$} \\
+(d) $\dfrac{x}{5}+4$ & \ans{divide by $5$, then add $4$} & \ans{subtract $4$, then multiply by $5$} & \ans{$5x-20$} \\
+\hline
+\end{tabularx}
 \end{center}
-\vspace{4pt}
+\vspace{-4pt}
+In rows (c) and (d) the undoing steps came out in the \emph{opposite} order from the original.
+Explain to your partner why that has to happen. \ans{The last thing done is the first thing that has
+to come off --- shoes before socks.}
+
+\vspace{6pt}
+\textbf{Part 2 --- Test the partner.} Compose both ways. Only one verdict per row, and only after
+\emph{both} boxes are filled.
 \begin{center}
-\begin{minipage}{0.47\linewidth}\centering
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|l|c|c|c|c|}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\linewidth}{@{}l X X c@{}}
 \hline
-\rowcolor{forestbg}
-$x$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-$y$ & $20$ & $17$ & $14$ & $11$ \\ \hline
-$y\div x$ & \ans{$20$} & \ans{$8.5$} & \ans{$4.\overline{6}$} & \ans{$2.75$} \\ \hline
-$x\cdot y$ & \ans{$20$} & \ans{$34$} & \ans{$42$} & \ans{$44$} \\ \hline
-\end{tabular}\\[2pt]
-{\small (c) \; direct \; / \; inverse \; / \; \textcolor{keyred}{\textbf{neither}} \quad
-$k=$ \ans{none}}
-\end{minipage}\hfill
-\begin{minipage}{0.47\linewidth}\centering
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|l|c|c|c|c|}
+\textbf{$f$ and $g$} & \textbf{$f\big(g(x)\big)$} & \textbf{$g\big(f(x)\big)$} & \textbf{Inverses?} \\
 \hline
-\rowcolor{forestbg}
-$x$ & $2$ & $3$ & $5$ & $7$ \\ \hline
-$y$ & $14$ & $21$ & $35$ & $49$ \\ \hline
-$y\div x$ & \ans{$7$} & \ans{$7$} & \ans{$7$} & \ans{$7$} \\ \hline
-$x\cdot y$ & \ans{$28$} & \ans{$63$} & \ans{$175$} & \ans{$343$} \\ \hline
-\end{tabular}\\[2pt]
-{\small (d) \; \textcolor{keyred}{\textbf{direct}} \; / \; inverse \; / \; neither \quad
-$k=$ \ans{$7$}}
-\end{minipage}
+(a) $f(x)=x+7$, \; $g(x)=x-7$ & \ans{$(x-7)+7=x$} & \ans{$(x+7)-7=x$} & \ans{yes} \\
+(b) $f(x)=4x$, \; $g(x)=\dfrac{x}{4}$ & \ans{$4\cdot\frac{x}{4}=x$} & \ans{$\frac{4x}{4}=x$} & \ans{yes} \\
+(c) $f(x)=3x+1$, \; $g(x)=\dfrac{x}{3}+1$ & \ans{$3\!\left(\frac{x}{3}+1\right)+1=x+4$} & \ans{$\frac{3x+1}{3}+1=x+\frac{4}{3}$} & \ans{no} \\
+\hline
+\end{tabularx}
 \end{center}
-\vspace{2pt}
-{\small In (c) the $y$-values go \emph{down}. That is not enough to make it inverse --- check the
-product row and see.}
+\vspace{0.25in}
+Row (c) uses the right two operations but gets them in the wrong order. Fix it: the real inverse of
+$f(x)=3x+1$ is $f^{-1}(x)=$ \ans{$\dfrac{x-1}{3}$}
 
-\vspace{5pt}
-\textbf{Part 2 --- Find $k$, then answer.} Two steps every time.
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item $y$ varies \textbf{directly} as $x$, and $y=15$ when $x=3$. \; $k=$ \ans{$5$},
-        equation $y=$ \ans{$5x$}. \; Find $y$ when $x=7$: \ans{$35$}
-  \item $y$ varies \textbf{inversely} as $x$, and $y=9$ when $x=4$. \; $k=$ \ans{$36$},
-        equation $y=$ \ans{$\dfrac{36}{x}$}. \; Find $y$ when $x=6$: \ans{$6$}
-  \item $y$ varies \textbf{directly} as $x$, and $y=30$ when $x=12$. \; $k=$ \ans{$2.5$}. \;
-        Find $x$ when $y=45$: \ans{$18$}
-  \item $y$ varies \textbf{inversely} as $x$, and $y=5$ when $x=8$. \; $k=$ \ans{$40$}. \;
-        Find $x$ when $y=2$: \ans{$20$}
-\end{enumerate}
-
-\vspace{5pt}
-\textbf{Part 3 --- Twins.} In \emph{both} of these tables, $y$ goes up by exactly $5$ every time $x$
-goes up by $2$. Exactly one of them is a direct variation.
+\vspace{6pt}
+\textbf{Part 3 --- Swap the points.} \; Here is a table of $f$, and the graph of a different
+function $p$.
 \begin{center}
-\begin{minipage}{0.47\linewidth}\centering
-\textbf{Twin (a)}\\[2pt]
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|l|c|c|c|c|}
+\begin{minipage}[c]{0.50\linewidth}
+\centering\small
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|c|c|c|c|c|c|@{}}
 \hline
-\rowcolor{forestbg}
-$x$ & $2$ & $4$ & $6$ & $8$ \\ \hline
-$y$ & $5$ & $10$ & $15$ & $20$ \\ \hline
-$y\div x$ & \ans{$2.5$} & \ans{$2.5$} & \ans{$2.5$} & \ans{$2.5$} \\ \hline
-\end{tabular}\\[3pt]
-{\small Verdict \ans{direct}; \; equation \ans{$y=2.5x$}}
-\end{minipage}\hfill
-\begin{minipage}{0.47\linewidth}\centering
-\textbf{Twin (b)}\\[2pt]
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|l|c|c|c|c|}
+$x$ & $-2$ & $0$ & $1$ & $3$ & $5$ \\
 \hline
-\rowcolor{forestbg}
-$x$ & $2$ & $4$ & $6$ & $8$ \\ \hline
-$y$ & $8$ & $13$ & $18$ & $23$ \\ \hline
-$y\div x$ & \ans{$4$} & \ans{$3.25$} & \ans{$3$} & \ans{$2.875$} \\ \hline
-\end{tabular}\\[3pt]
-{\small Verdict \ans{neither}; \; equation \ans{$y=2.5x+3$}}
+$f(x)$ & $-5$ & $-1$ & $1$ & $5$ & $9$ \\
+\hline
+\end{tabular}
+\\[8pt]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}|c|c|c|c|c|c|@{}}
+\hline
+$x$ & \ans{$-5$} & \ans{$-1$} & \ans{$1$} & \ans{$5$} & \ans{$9$} \\
+\hline
+$f^{-1}(x)$ & \ans{$-2$} & \ans{$0$} & \ans{$1$} & \ans{$3$} & \ans{$5$} \\
+\hline
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.46\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-5}{5}{-5}{5}
+  \draw[dashed, semithick, charcoal] (-4.6,-4.6)--(4.6,4.6);
+  \draw[very thick, forest] (-4,-3)--(0,1)--(4,3);
+  \fill[forest] (-4,-3) circle (3.4pt);
+  \fill[forest] (0,1) circle (3.4pt);
+  \fill[forest] (2,2) circle (3.4pt);
+  \fill[forest] (4,3) circle (3.4pt);
+  \node[forest, font=\scriptsize] at (-2.4,2.6) {$y=p(x)$};
+\end{tikzpicture}
 \end{minipage}
 \end{center}
 \vspace{-2pt}
-Both tables climb at the same steady rate. What made the verdicts different? \ansline{Twin (b) starts
-$3$ ahead: at $x=0$ it would give $y=3$, not $0$. A constant step makes a \emph{line}, but only a line
-through the origin has a constant quotient}
+Four points are marked on the graph of $p$: $(-4,-3)$, $(0,1)$, $(2,2)$, $(4,3)$. Write the four
+matching points on the graph of $p^{-1}$.
+\begin{center}
+\ans{$(-3,-4)$} \hspace{0.2in} \ans{$(1,0)$} \hspace{0.2in} \ans{$(2,2)$} \hspace{0.2in}
+\ans{$(3,4)$}
+\end{center}
+\vspace{-4pt}
+One of those four points did not move at all. Which one, and what is special about where it sits?
+\ans{$(2,2)$ --- it lies on the mirror line $y=x$.}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier A --- Approaching Proficiency},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- A spring.} Hang a weight on a spring and it stretches. Let $w$ be the weight in
-pounds and $s$ the stretch in centimeters.
+\textbf{Part 1 --- Swap and solve.} Two of these six inverses need a restriction. Find them.
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabular}{|l|c|c|c|c|}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabularx}{\linewidth}{@{}l X l X@{}}
 \hline
-\rowcolor{forestbg}
-$w$ (lb) & $4$ & $6$ & $10$ & $15$ \\ \hline
-$s$ (cm) & $3$ & $4.5$ & $7.5$ & $11.25$ \\ \hline
-$s\div w$ & \ans{$0.75$} & \ans{$0.75$} & \ans{$0.75$} & \ans{$0.75$} \\ \hline
-\end{tabular}
-\end{center}
-\begin{enumerate}[label=\arabic*., leftmargin=2.1em, itemsep=5pt]
-  \item Verdict: \ans{direct} variation. \; $k=$ \ans{$0.75$}. \; Equation: $s=$ \ans{$0.75w$}
-  \item What are the \emph{units} of $k$? \ans{cm per pound} \; Say what $k$ means in one sentence.
-        \ans{each additional pound stretches the spring another $0.75$ cm}
-  \item A $20$-pound weight stretches the spring \ans{$15$} cm. \; A stretch of $9$ cm means a
-        weight of \ans{$12$} pounds.
-  \item The graph of $s=kw$ passes through $(0,0)$. Explain why the \emph{situation} requires that.
-        \ansline{with no weight hanging on it, the spring is not stretched at all --- zero weight must
-        give zero stretch}
-\end{enumerate}
-
-\vspace{5pt}
-\textbf{Part 2 --- Every rectangle with area $36$.} A rectangle has base $b$ and height $h$, and its
-area is always $36$ square inches.
-\begin{center}
-\begin{minipage}{0.44\linewidth}\centering
-\begin{tikzpicture}[scale=0.30]
-  \draw[step=1, linegray!40, very thin] (0,0) grid (13,14);
-  \draw[->, semithick, charcoal] (0,0)--(13.6,0) node[below right, font=\scriptsize]{$b$};
-  \draw[->, semithick, charcoal] (0,0)--(0,14.6) node[left, font=\scriptsize]{$h$};
-  \node[below, font=\tiny] at (3,0) {$3$};
-  \node[below, font=\tiny] at (6,0) {$6$};
-  \node[below, font=\tiny] at (9,0) {$9$};
-  \node[below, font=\tiny] at (12,0) {$12$};
-  \node[left, font=\tiny] at (0,3) {$3$};
-  \node[left, font=\tiny] at (0,6) {$6$};
-  \node[left, font=\tiny] at (0,9) {$9$};
-  \node[left, font=\tiny] at (0,12) {$12$};
-  \begin{scope}
-    \clip (0,0) rectangle (13,14);
-    \draw[very thick, forest, domain=2.6:13, samples=170, smooth] plot (\x,{36/(\x)});
-  \end{scope}
-  \fill[charcoal] (3,12) circle (3.4pt);
-  \fill[charcoal] (6,6) circle (3.4pt);
-  \fill[charcoal] (12,3) circle (3.4pt);
-\end{tikzpicture}
-\end{minipage}\hfill
-\begin{minipage}{0.52\linewidth}
-\small
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
-  \item $b$ and $h$ vary \ans{inversely}, because $b\cdot h$ is always \ans{$36$}. Equation:
-        $h=$ \ans{$\dfrac{36}{b}$}
-  \item Read the graph: when $b=6$, $h=$ \ans{$6$}. What is special about that rectangle?
-        \ans{it is a square}
-  \item Solve for the base when $h=8$: $b=$ \ans{$4.5$}. Is that point on the drawn curve?
-        \ans{yes}
-  \item The curve gets very close to the $b$-axis on the right but never touches it. Say what that
-        means about rectangles. \ans{a rectangle of area $36$ can be made as short as you like by
-        making it long enough, but its height can never actually reach $0$}
-  \item The equation is also happy with $b=-4$. Why does the situation say no?
-        \ans{a base is a length, so it has to be positive}
-\end{enumerate}
-\end{minipage}
-\end{center}
-
-\vspace{5pt}
-\textbf{Part 3 --- Error analysis.} A student is handed this table and writes what follows.
-\begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|l|c|c|c|c|}
+\textbf{$f(x)$} & \textbf{$f^{-1}(x)$} & \textbf{$f(x)$} & \textbf{$f^{-1}(x)$} \\
 \hline
-\rowcolor{forestbg}
-$x$ & $2$ & $4$ & $6$ & $8$ \\ \hline
-$y$ & $6$ & $10$ & $14$ & $18$ \\ \hline
-\end{tabular}
+(a) $4x+9$ & \ans{$\frac{x-9}{4}$} & (d) $(x+5)^{3}$ & \ans{$\sqrt[3]{x}-5$} \\
+(b) $\dfrac{2x-1}{3}$ & \ans{$\frac{3x+1}{2}$} & (e) $\sqrt{x+5}$ & \ans{$x^{2}-5$, $x\ge0$} \\
+(c) $x^{3}-4$ & \ans{$\sqrt[3]{x+4}$} & (f) $\sqrt{x}-3$ & \ans{$(x+3)^{2}$, $x\ge-3$} \\
+\hline
+\end{tabularx}
 \end{center}
 \vspace{2pt}
+{\small \emph{Work, the two that bite:} \; (e) $x=\sqrt{y+5}\Rightarrow x^{2}=y+5\Rightarrow
+y=x^{2}-5$, and $f$ only ever outputs numbers $\ge0$, so $f^{-1}$ may only accept $x\ge0$. \;
+(f) $x=\sqrt{y}-3\Rightarrow x+3=\sqrt{y}\Rightarrow y=(x+3)^{2}$, and $\sqrt{y}\ge0$ forces
+$x+3\ge0$, i.e.\ $x\ge-3$. \; Rows (c) and (d) need \emph{no} restriction --- an odd index accepts
+every real number.}
+
+\vspace{0.10in}
+
+\textbf{Part 2 --- Justify it.} Pick row (a) and row (e). For each, show \emph{both} compositions and
+state the verdict.
+\ansline{(a) $f\!\left(\frac{x-9}{4}\right)=4\!\left(\frac{x-9}{4}\right)+9=x$ \; and \;
+$f^{-1}(4x+9)=\frac{(4x+9)-9}{4}=x$. \; Inverses.}
+\ansline{(e) $f(x^{2}-5)=\sqrt{(x^{2}-5)+5}=\sqrt{x^{2}}=|x|=x$ \emph{because} $x\ge0$ on the
+domain of $f^{-1}$ --- this is where the restriction earns its keep.}
+\ansline{\ \ \ \ And $f^{-1}\!\left(\sqrt{x+5}\,\right)=\left(\sqrt{x+5}\,\right)^{2}-5=(x+5)-5=x$
+for every $x\ge-5$. \; Inverses, once the restriction is stated.}
+\ansline{Verdict for both rows: yes. Neither is settled by one order alone --- row (e) is exactly the
+$\left(\sqrt{x}\,\right)^{2}$ versus $\sqrt{x^{2}}$ pair from Lesson 5.6, in disguise.}
+
+\vspace{4pt}
+\textbf{Part 3 --- Does an inverse function exist?} Apply the horizontal line test to each
+pre-drawn graph.
 \begin{center}
-\fbox{\parbox{0.80\linewidth}{\centering \vspace{2pt}
-``$x=2$ goes with $y=6$, so $k=\frac{6}{2}=3$. \\
-The equation is $y=3x$. \\
-It's a direct variation with $k=3$.''\vspace{2pt}}}
+\begin{minipage}[c]{0.235\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.26]
+  \lgrid{-5}{5}{-5}{5}
+  \draw[very thick, forest] (-5,-1.5)--(5,3.5);
+  \node[forest, font=\tiny] at (-4.0,-4.0) {(a)};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.235\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.26]
+  \lgrid{-5}{5}{-5}{5}
+  \begin{scope}
+    \clip (-5,-5) rectangle (5,5);
+    \draw[very thick, navy, domain=-3:3, samples=110, smooth] plot (\x,{(\x)*(\x)-4});
+  \end{scope}
+  \node[navy, font=\tiny] at (-4.0,-4.0) {(b)};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.235\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.26]
+  \lgrid{-5}{5}{-5}{5}
+  \begin{scope}
+    \clip (-5,-5) rectangle (5,5);
+    \draw[very thick, forest, domain=0:5, samples=110, smooth] plot (\x,{sqrt(\x)});
+  \end{scope}
+  \fill[forest] (0,0) circle (3pt);
+  \node[forest, font=\tiny] at (-4.0,-4.0) {(c)};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.235\linewidth}
+\centering
+\begin{tikzpicture}[scale=0.26]
+  \lgrid{-5}{5}{-5}{5}
+  \begin{scope}
+    \clip (-5,-5) rectangle (5,5);
+    \draw[very thick, navy, domain=-2.3:2.3, samples=140, smooth]
+      plot (\x,{(\x)*(\x)*(\x)-3*(\x)});
+  \end{scope}
+  \node[navy, font=\tiny] at (-4.0,-4.0) {(d)};
+\end{tikzpicture}
+\end{minipage}
 \end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item Is the student's arithmetic on the \emph{first} pair correct? \ans{yes}
-  \item Test their equation on the rest of the table: $y=3x$ predicts \ans{$12$} at $x=4$, but
-        the table says \ans{$10$}.
-  \item Finish both rows properly. \; $y\div x$: \ans{$3,\;2.5,\;2.\overline{3},\;2.25$} \\
-        $x\cdot y$: \ans{$12,\;40,\;84,\;144$} \; So the correct verdict is \ans{neither}.
-  \item The table is $y=2x+2$. Write the one-sentence rule the student needed. \ansline{One pair of
-        values can never decide the type --- every pair has both a quotient and a product.}
-        \ansline{The constant has to hold for \emph{every} row in the table, so you check them all
-        before you name it.}
+\vspace{-2pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{0.96\linewidth}{@{}l c X@{}}
+\hline
+ & \textbf{Passes the test?} & \textbf{If not: how many times does the \emph{worst} horizontal line cross?} \\
+\hline
+(a) & \ans{yes} & \ans{---\; a line never repeats an output} \\
+(b) & \ans{no} & \ans{$2$ (every line above the vertex)} \\
+(c) & \ans{yes} & \ans{---\; the arm only climbs} \\
+(d) & \ans{no} & \ans{$3$ (e.g.\ $y=1$, between the two turning points)} \\
+\hline
+\end{tabularx}
+\end{center}
+\vspace{-4pt}
+For graph (b), name a restricted domain that would let it have an inverse function.
+\ans{$x\ge0$ (or $x\le0$) --- either arm alone}
+
+\vspace{4pt}
+\textbf{Part 4 --- Say what you found.}
+\begin{enumerate}[label=\textbf{J\arabic*.}, leftmargin=2.4em, itemsep=6pt]
+  \item Row (f) of Part 1 is the one everybody gets \emph{almost} right. Its inverse needs the
+        condition $x\ge-3$, not $x\ge0$. Where does the $-3$ come from? \ansline{From the
+        \emph{range} of $f$. Since $\sqrt{x}\ge0$, the outputs of $f(x)=\sqrt{x}-3$ are all
+        $\ge-3$ --- and the outputs of $f$ are exactly the inputs $f^{-1}$ is allowed to take.}
+        \ansline{The restriction is never guessed; it is read off the original function's range.}
+  \item Complete the table for row (e), $f(x)=\sqrt{x+5}$, and say in one sentence what you notice.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.6}
+    \begin{tabularx}{0.9\linewidth}{@{}l X X@{}}
+    \hline
+     & \textbf{Domain} & \textbf{Range} \\
+    \hline
+    $f$ & \ans{$x\ge-5$} & \ans{$y\ge0$} \\
+    $f^{-1}$ & \ans{$x\ge0$} & \ans{$y\ge-5$} \\
+    \hline
+    \end{tabularx}
+    \end{center}
+    \ansline{The two rows are the same pair of sets with the columns swapped: domain and range
+    trade places.}
+  \item A classmate writes: ``The inverse of $f(x)=x^{2}-4$ is $f^{-1}(x)=\sqrt{x+4}$.'' Their
+        algebra is fine. Using your answer to Part 3(b), say what is wrong with the
+        \emph{sentence}, and rewrite it so it is true. \ansline{$f(x)=x^{2}-4$ fails the horizontal
+        line test on its full domain, so it has \emph{no} inverse function at all --- there is
+        nothing for ``the inverse'' to name. (Check: $f(-3)=f(3)=5$, so $f^{-1}(5)$ would have to be
+        both $-3$ and $3$.)}
+        \ansline{True version: ``If $f(x)=x^{2}-4$ is restricted to $x\ge0$, then
+        $f^{-1}(x)=\sqrt{x+4}$.''}
+        \ansline{The algebra was never the problem. Swap-and-solve will happily produce a formula
+        for a function that has no inverse; the horizontal line test is what tells you whether the
+        formula is entitled to the name.}
+  \item In Tier R Part 3, one marked point stayed exactly where it was. State the general rule:
+        which points of a graph never move when you reflect over $y=x$, and why?
+        \ansline{The points already \emph{on} the line $y=x$ --- the ones with $x=y$. Swapping the
+        coordinates of $(2,2)$ gives $(2,2)$ back, so a reflection cannot move it.}
+        \ansline{Consequence used in Tier E: if $f$ and $f^{-1}$ ever meet, they meet on $y=x$.}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{tcolorbox}[colback=white, colframe=black!40, title=\textbf{Tier E --- Extension},
     fonttitle=\bfseries, arc=1.5mm, left=3mm, right=3mm, top=2mm, bottom=2mm, breakable]
-\textbf{Part 1 --- Two variables at once} \emph{(joint and combined variation --- enrichment)}.
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item $y$ varies jointly as $x$ and $z$, and $y=48$ when $x=4$ and $z=2$. \; $k=$ \ans{$6$},
-        equation $y=$ \ans{$6xz$}. \; Find $y$ when $x=5$, $z=3$: \ans{$90$}
-  \item The volume $V$ of a cylinder varies jointly as its height $h$ and the \emph{square} of its
-        radius $r$. When $r=5$ and $h=4$, $V=100\pi$. \\
-        Then $k=$ \ans{$\pi$} and the equation is $V=$ \ans{$\pi r^2h$}. Do you recognize it?
-        \ans{it is the volume formula for a cylinder}
-  \item $y$ varies directly as $x$ and inversely as $z$, and $y=14$ when $x=7$ and $z=3$. \;
-        $k=$ \ans{$6$}, equation $y=$ \ans{$\dfrac{6x}{z}$}. \; Find $y$ when $x=10$, $z=4$:
-        \ans{$15$}
+\textbf{Part 1 --- Finish the Hook.} $F(c)=\dfrac{9}{5}c+32$ turns Celsius into Fahrenheit.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Build $F^{-1}$ by swapping and solving. \; $F^{-1}(f)=$ \ans{$\frac{5}{9}(f-32)$}
+
+        {\small \emph{Work:} $c=\frac95 f'+32$ after the swap, so $c-32=\frac95 f'$ and
+        $f'=\frac59(c-32)$ --- subtract \emph{first}, then scale. Malik's version.}
+  \item Prove it is right --- both orders, algebraically, not just at one temperature.
+        \ansline{$F\big(F^{-1}(f)\big)=\frac95\cdot\frac59(f-32)+32=(f-32)+32=f$ \checkmark}
+        \ansline{$F^{-1}\big(F(c)\big)=\frac59\!\left(\left(\frac95 c+32\right)-32\right)
+        =\frac59\cdot\frac95 c=c$ \checkmark \; --- Rosa's $\frac59f-32$ fails both.}
+        \ansline{One test temperature could never settle this; two functions can agree at a point
+        and disagree everywhere else.}
+  \item There is exactly one temperature that reads the \emph{same} number on both scales. Find it
+        by solving $F(c)=c$. \; $c=$ \ans{$-40$}
+
+        {\small \emph{Work:} $\frac95 c+32=c \Rightarrow 32=c-\frac95 c=-\frac45 c \Rightarrow
+        c=-40$. \; $-40^\circ$C $=-40^\circ$F.}
+  \item Explain that answer using the reflection picture: where must the graphs of $F$ and $F^{-1}$
+        cross, and why is that the same as asking for $F(c)=c$? \ansline{A graph and its reflection
+        can only meet on the mirror line, so $F$ and $F^{-1}$ cross on $y=x$.}
+        \ansline{A point on $y=x$ is a point whose output equals its input --- which is exactly the
+        equation $F(c)=c$. Same question, asked geometrically.}
 \end{enumerate}
 
-\vspace{5pt}
-\textbf{Part 2 --- No numbers required.} Fill the table using the equations alone.
+\vspace{4pt}
+\textbf{Part 2 --- Functions that are their own inverse.} Find $f^{-1}$ for each.
 \begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l l X@{}}
-\hline
-\textbf{Relationship} & \textbf{What you do to $x$ (and $z$)} & \textbf{What happens to $y$} \\
-\hline
-$y=kx$ & triple $x$ & \ans{$y$ is tripled} \\
-$y=kx$ & cut $x$ in half & \ans{$y$ is cut in half} \\
-$y=\dfrac{k}{x}$ & triple $x$ & \ans{$y$ becomes one third of what it was} \\
-$y=\dfrac{k}{x}$ & cut $x$ in half & \ans{$y$ is doubled} \\
-$y=kxz$ & double $x$ \emph{and} triple $z$ & \ans{$y$ becomes $6$ times as big} \\
-$y=\dfrac{kx}{z}$ & double $x$ \emph{and} double $z$ & \ans{$y$ does not change at all} \\
-\hline
+\renewcommand{\arraystretch}{1.8}
+\begin{tabularx}{\linewidth}{@{}X X X@{}}
+(e) \; $f(x)=6-x$ \; $f^{-1}(x)=$ \ans{$6-x$} &
+(f) \; $f(x)=\dfrac{1}{x}$ \; $f^{-1}(x)=$ \ans{$\dfrac{1}{x}$} &
+(g) \; $f(x)=\dfrac{2x+3}{x-2}$ \; $f^{-1}(x)=$ \ans{$\dfrac{2x+3}{x-2}$} \\
 \end{tabularx}
 \end{center}
-\vspace{-2pt}
-Prove one of them instead of trusting it. Start from $y=\dfrac{k}{x}$ and replace $x$ with $3x$:
-\[ \text{new } y=\frac{k}{{\color{keyred}\mathbf{3x}}}=\frac{1}{{\color{keyred}\mathbf{3}}}\cdot
-   \frac{k}{x}=\frac{1}{{\color{keyred}\mathbf{3}}}\cdot(\text{old } y) \]
+\vspace{2pt}
+{\small \emph{Work for (g):} $x=\frac{2y+3}{y-2}\Rightarrow x(y-2)=2y+3\Rightarrow xy-2x=2y+3
+\Rightarrow y(x-2)=2x+3\Rightarrow y=\frac{2x+3}{x-2}$ --- the same rule it started as.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt, start=8]
+  \item All three came out the same as $f$. What does that force to be true about each graph and the
+        line $y=x$? \ansline{Each graph is its own reflection over $y=x$ --- it is symmetric about
+        that line. (Reflecting it does nothing at all.)}
+        \ansline{Such a function is called an \emph{involution}: applying it twice returns $x$.}
+\end{enumerate}
 
-\vspace{5pt}
-\textbf{Part 3 --- A direct variation in disguise, and a design task.}
-\begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-  \item Ravi says: ``$y=\dfrac{6}{x}$ is an \emph{inverse} variation between $y$ and $x$ --- but it is
-        a \emph{direct} variation between $y$ and $\frac1x$.'' Test him.
-        \begin{center}
-        \renewcommand{\arraystretch}{1.3}
-        \begin{tabular}{|l|c|c|c|c|}
-        \hline
-        \rowcolor{forestbg}
-        $x$ & $1$ & $2$ & $3$ & $6$ \\ \hline
-        $\frac1x$ & $1$ & $0.5$ & \ans{$\frac13$} & \ans{$\frac16$} \\ \hline
-        $y=\frac6x$ & $6$ & $3$ & \ans{$2$} & \ans{$1$} \\ \hline
-        $y\div\frac1x$ & \ans{$6$} & \ans{$6$} & \ans{$6$} & \ans{$6$} \\ \hline
-        \end{tabular}
-        \end{center}
-        \vspace{-2pt}
-        Is Ravi right? \ans{yes} \; What is the constant? \ans{$6$} \; So the graph of $y$
-        against $\frac1x$ would be a \ans{line through the origin}.
-  \item Write an \emph{inverse} variation whose graph passes through $(4,5)$: \ans{$y=\dfrac{20}{x}$}
-        \\
-        Write a \emph{direct} variation whose graph passes through $(4,5)$: \ans{$y=1.25x$}
-  \item Now try to write a direct variation whose graph passes through $(0,3)$. \ans{impossible}
-        \\
-        Explain what goes wrong, in one sentence. \ansline{$y=kx$ always gives $y=0$ when $x=0$, so
-        every direct variation passes through the origin and none of them can also pass through
-        $(0,3)$}
-  \item Every inverse variation $y=\frac kx$ is the Lesson 5.4 parent $\frac1x$ after one
-        transformation. Which one? \ans{a vertical stretch by a factor of $k$} \; And its asymptotes
-        are always $x=$ \ans{$0$} and $y=$ \ans{$0$}, no matter what $k$ is --- explain why $k$ cannot
-        move them. \ansline{a vertical stretch only rescales outputs: $x=0$ is still the one input with
-        no output, and $k$ times something approaching $0$ still approaches $0$}
+\vspace{4pt}
+\textbf{Part 3 --- Socks and shoes, in symbols.} Let $f(x)=2x$ and $g(x)=x+3$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt, start=9]
+  \item $(f\circ g)(x)=$ \ans{$2x+6$}, \; so $(f\circ g)^{-1}(x)=$ \ans{$\frac{x}{2}-3$}
+  \item $f^{-1}(x)=$ \ans{$\frac{x}{2}$} and $g^{-1}(x)=$ \ans{$x-3$}. Now build \emph{both} orders: \\[3pt]
+        $g^{-1}\big(f^{-1}(x)\big)=$ \ans{$\frac{x}{2}-3$ \checkmark} \hspace{0.3in}
+        $f^{-1}\big(g^{-1}(x)\big)=$ \ans{$\frac{x-3}{2}$ \; $\times$}
+  \item Only one of those two matched your answer to (i). Complete the rule:
+        $(f\circ g)^{-1}=$ \ans{$g^{-1}\circ f^{-1}$}
+  \item Say why in plain English, using socks and shoes. \ansline{Socks first, then shoes. To undo
+        it you take the \emph{shoes} off first --- the machine that ran \textbf{last} is the one
+        undone \textbf{first}, so the inverses come back in the opposite order.}
+        \ansline{This is Warm-Up item 3 and the Hook, now proved in general.}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part 4 --- The other half of the parabola.} In the notes you restricted $y=x^{2}$ to
+$x\ge0$ and got $y=\sqrt{x}$.
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=5pt, start=13]
+  \item Restrict it to $x\le0$ instead --- the \emph{left} arm. Swap and solve, and keep the arm you
+        are actually on. \; $f^{-1}(x)=$ \ans{$-\sqrt{x}$}
+
+        {\small \emph{Work:} $x=y^{2}$ with $y\le0$, so $y=-\sqrt{x}$ --- the negative root is the
+        one that lives on the arm you kept.}
+  \item Both restrictions are legal, and they give different inverses. So ``the'' inverse of
+        $y=x^{2}$ is not a well-posed question until you say what? \ans{which half of the parabola
+        you kept --- i.e.\ the restricted domain}
+  \item The area of a circle is $A=\pi r^{2}$ --- the same shape of function. Solve it for $r$, and
+        say which restriction the \emph{situation} chooses for you, without any algebra.
+        \ansline{$r=\sqrt{A/\pi}$. The context restricts $r\ge0$ all by itself: a radius cannot be
+        negative, so the left arm was never on the table.}
+        \ansline{This is the same move as Lesson 5.0's free-fall and skid-mark models --- context
+        picks the branch that algebra alone leaves open.}
 \end{enumerate}
 \end{tcolorbox}
 
 \begin{teachernote}
-\textbf{Tier R, Part 1 is the whole skill}, and the two rows are there on purpose: a student who fills
-in only the row matching their guess has not tested anything. Table (c) is the one to watch --- $y$
-decreases, which draws ``inverse'' from a lot of groups until the product row ($20, 34, 42, 44$) is
-actually written down. Note that the products \emph{almost} stabilize, which is exactly why the rule
-is ``every row.''
-
-\vspace{3pt}
-\textbf{Tier R, Part 3 mirrors the Hook} and is the tier's argument. Both twins climb by $5$ for every
-$2$; nothing about the \emph{pattern} distinguishes them. Twin (b) is $y=2.5x+3$ --- a head start of
-$3$ --- and the quotient row is the only thing that catches it. If a group finishes early, ask them to
-predict $y$ at $x=0$ for both tables before you say anything.
-
-\vspace{3pt}
-\textbf{Tier A, Part 2 is the A2.F.2f item.} Push for the sentences, not the numbers: $(6,6)$ is the
-square, and the right-hand tail says a rectangle of fixed area can be made arbitrarily short but never
-flat. Part (e) is the 5.6 bridge --- $b=-4$ is a perfectly good solution of $bh=36$ and is rejected by
-the \emph{situation}, not by the algebra. Do not let ``extraneous'' get used here.
-
-\vspace{3pt}
-\textbf{Tier A, Part 3 is the signature error of the lesson.} The student's arithmetic is flawless;
-they simply stopped after one row. Expect a group to defend them (``but $k$ \emph{is} $3$ for that
-pair''), which is the right conversation: every pair has a quotient and a product, so a single pair
-carries no information about the type at all.
-
-\vspace{3pt}
-\textbf{Tier E, Part 2 is the most valuable page here} if a group is flying --- it is the whole lesson
-without a single number, and the little proof at the bottom makes ``triple $x$, get a third of $y$''
-something they can show rather than recite. \textbf{Part 3(a)} is the deepest idea in the lesson: an
-inverse variation \emph{is} a direct variation with respect to $\frac1x$, which is why $y=\frac kx$ is
-the parent $\frac1x$ scaled by $k$. \textbf{Part 3(c)} usually needs one prompt --- ``what does $y=kx$
-give you when $x=0$?'' --- and then it lands.
-
-\vspace{3pt}
-\textbf{Joint and combined variation are enrichment} (A2.F.1d names direct and inverse only). Part 1(b)
-is worth the time even with a mixed group: they derive $V=\pi r^2h$ rather than being handed it.
+\small \textbf{Tier R} is deliberately arithmetic-first: Part 1 never uses the word ``inverse'' until
+the last column, because the reversal of \emph{order} is the idea that has to land, and it lands
+faster on ``multiply by $2$, then subtract $1$'' than on notation. Row (c) of Part 2 is the whole
+lesson in one line --- right operations, wrong order, and only composition catches it.
+\\[3pt]
+\textbf{Tier A} rows (e) and (f) of Part 1 are the assessed discriminator. Nearly everyone produces
+$x^{2}-5$ and $(x+3)^{2}$; almost nobody writes the restriction unprompted, and the students who
+write $x\ge0$ on row (f) have pattern-matched rather than thought. \textbf{J1 is the item to
+circulate for} --- the $-3$ comes from the \emph{range} of $f$, and a student who can say that
+sentence has the whole concept. J3 is the deepest question on the page: swap-and-solve will happily
+hand you a formula for a function that has no inverse, so the horizontal line test is what licenses
+the word ``the.''
+\\[3pt]
+\textbf{Tier E} Part 1 is worth previewing to the whole class even if only one group reaches it ---
+$-40^\circ$ is a fact students remember for years, and part (d) explains it with the mirror line
+rather than with algebra. Part 3 is the formal version of the Hook and of Warm-Up item 3: reversing
+a composition reverses the order of the inverses, which is why Rosa's answer was wrong. If a group
+finishes Part 3, send them to Part 4(o) and ask them to connect it to Lesson 5.0's free-fall model.
 \end{teachernote}
 
 \end{document}

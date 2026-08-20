@@ -1,21 +1,9 @@
-%! Graphing Radical Functions \& Transformations — Unit 6, Lesson 6.4 — Homework (Answer Key)
+%! Modeling with Exponential Functions: Interest, Half-Life, and e — Unit 6, Lesson 6.4 — Homework (Answer Key)
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% In-formula answer slot (\ans is text-mode and must never appear inside $...$).
-\newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Cube root a*cbrt(x-h)+k: pgfmath has no cbrt, so plot the two branches separately.
-% #1=a  #2=h  #3=k  #4=xmin  #5=xmax
-\newcommand{\cbrtplot}[5]{%
-  \draw[very thick, forest, domain=#2:#5, samples=70, smooth]
-    plot (\x,{(#1)*pow((\x)-(#2),1/3)+(#3)});
-  \draw[very thick, forest, domain=#4:#2, samples=70, smooth]
-    plot (\x,{-(#1)*pow((#2)-(\x),1/3)+(#3)});}
+% ln(1.06) = 0.0582689
 
 \begin{document}
 
@@ -25,208 +13,170 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Write every domain and range in \textbf{interval notation}. Show how you found each answer.
+Every answer needs a visible substitution. Round money to the nearest cent and milligrams to two
+decimal places.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
-  \item \textbf{From the equation only.} No graphing --- read each row off the transformation form.
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{Four accounts.} Write the base and the exponent first, then evaluate.
     \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabularx}{\linewidth}{@{}l X X X X@{}}
+    \small
+    \renewcommand{\arraystretch}{1.8}
+    \begin{tabularx}{\linewidth}{@{}l X c c c@{}}
     \hline
-    \textbf{Function} & \textbf{Parent} & \textbf{Transformations, in order} & \textbf{Anchor point} & \textbf{Domain \& range} \\
+    & \textbf{Deposit, rate, compounding, time} & \textbf{base} & \textbf{exponent} & \textbf{$A$} \\
     \hline
-    $\sqrt{x-5}+2$ & \ans{$\sqrt{x}$} & \ans{right 5, up 2} & \ans{$(5,2)$} & \ans{$[5,\infty)$; $[2,\infty)$} \\
-    $\sqrt[3]{x+3}-1$ & \ans{$\sqrt[3]{x}$} & \ans{left 3, down 1} & \ans{$(-3,-1)$} & \ans{all reals; all reals} \\
-    $-4\sqrt{x}+2$ & \ans{$\sqrt{x}$} & \ans{stretch by 4, reflect over the $x$-axis, up 2} & \ans{$(0,2)$} & \ans{$[0,\infty)$; $(-\infty,2]$} \\
-    $\tfrac12\sqrt{x+6}-3$ & \ans{$\sqrt{x}$} & \ans{left 6, compress by $\tfrac12$, down 3} & \ans{$(-6,-3)$} & \ans{$[-6,\infty)$; $[-3,\infty)$} \\
+    \textbf{(a)} & \$1200 at $4.5\%$, quarterly, $6$ years & \ans{$1.01125$} & \ans{$24$} & \ans{\$1569.59} \\
+    \textbf{(b)} & \$7500 at $2.4\%$, monthly, $3$ years & \ans{$1.002$} & \ans{$36$} & \ans{\$8059.34} \\
+    \textbf{(c)} & \$2500 at $5\%$, annually, $12$ years & \ans{$1.05$} & \ans{$12$} & \ans{\$4489.64} \\
+    \textbf{(d)} & \$900 at $6\%$, daily ($n=365$), $4$ years & \ans{$1+\frac{0.06}{365}$} & \ans{$1460$} & \ans{\$1144.10} \\
     \hline
     \end{tabularx}
     \end{center}
+    \emph{Work space --- show the substitution for at least two of the four.}
+    \vspace{1.05in}
 
-  \item \textbf{Read the graph.} The graph is $m(x)=-\sqrt{x+4}+3$.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.44]
-      \lgrid{-6}{13}{-3}{5}
-      \begin{scope}
-        \clip (-6,-3) rectangle (13,5);
-        \draw[very thick, forest, domain=-4:13, samples=110, smooth] plot (\x,{3-sqrt((\x)+4)});
-      \end{scope}
-      \fill[forest] (-4,3) circle (4pt) node[above right, font=\scriptsize]{$(-4,3)$};
-      \fill[charcoal] (0,1) circle (2.6pt) node[above right, font=\scriptsize]{$(0,1)$};
-      \fill[charcoal] (5,0) circle (2.6pt) node[above right, font=\scriptsize]{$(5,0)$};
-      \fill[charcoal] (12,-1) circle (2.6pt);
-    \end{tikzpicture}
-    \end{center}
-    $a=\mans{-1}$, \; $h=\mans{-4}$, \; $k=\mans{3}$ \quad Anchor: \ans{$(-4,3)$} \\[3pt]
-    Domain: \ans{$[-4,\infty)$} \quad Range: \ans{$(-\infty,3]$} \\[3pt]
-    $x$-intercept: \ans{$(5,0)$} \quad $y$-intercept: \ans{$(0,1)$} \\[3pt]
-    Increasing or decreasing on its domain? \ans{decreasing} \\[3pt]
-    Absolute \ans{maximum} of \ans{$3$} at $x=\mans{-4}$; \; no absolute \ans{minimum} \\[3pt]
-    End behavior: as $x\to+\infty$, $m(x)\to\mans{-\infty}$. \; As $x\to-\infty$: \ans{the graph
-    stops at $x=-4$}
+  \item \textbf{Quarterly against continuous.} \$6000 is invested at $4\%$ for $10$ years.
 
-  \item \textbf{Write the equation --- square root.} The graph below has the form
-        $y=a\sqrt{x-h}+k$.
+    \vspace{3pt}
+    \hspace*{1.0em} Compounded quarterly: $A=$ \ans{$6000(1.01)^{40}$} $=$ \ans{\$8933.18}
+
+    \vspace{3pt}
+    \hspace*{1.0em} Compounded continuously: $A=$ \ans{$6000e^{\,0.4}$} $=$ \ans{\$8950.95}
+
+    \vspace{3pt}
+    Over ten years, continuous compounding is worth \ans{\$17.77} more. Explain why that is so small
+    when the compounding went from $40$ times to infinitely many. \ansline{Each extra chop of the year adds less than the one before, and the balances close in on the ceiling $Pe^{rt}$ --- ``infinitely often'' is barely better than quarterly.}
+
+  \item \textbf{Caffeine.} A $200$ mg coffee has a half-life of about $5$ hours in the body.
+
+    \vspace{3pt}
+    \hspace*{1.0em} $A(t)=$ \ans{$200\left(\frac12\right)^{t/5}$} \; where $t$ is in \ans{hours}.
+
+    \vspace{3pt}
     \begin{center}
-    \begin{tikzpicture}[scale=0.44]
-      \lgrid{-5}{11}{-2}{6}
-      \begin{scope}
-        \clip (-5,-2) rectangle (11,6);
-        \draw[very thick, forest, domain=-3:11, samples=110, smooth] plot (\x,{4-sqrt((\x)+3)});
-      \end{scope}
-      \fill[forest] (-3,4) circle (4pt) node[above right, font=\scriptsize]{$(-3,4)$};
-      \fill[charcoal] (1,2) circle (2.6pt) node[above right, font=\scriptsize]{$(1,2)$};
-      \fill[charcoal] (6,1) circle (2.6pt) node[above right, font=\scriptsize]{$(6,1)$};
-    \end{tikzpicture}
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{|l|c|c|c|c|c|}
+    \hline
+    $t$ (hours) & $0$ & $5$ & $10$ & $15$ & $20$ \\ \hline
+    $A(t)$ (mg) & $200$ & \ans{100} & \ans{50} & \ans{25} & \ans{12.5} \\ \hline
+    \end{tabular}
     \end{center}
-    Anchor \ans{$(-3,4)$} $\Rightarrow$ $h=\mans{-3}$, $k=\mans{4}$. \; Substitute $(1,2)$:
-    $a=\mans{-1}$. \\[3pt]
-    \textbf{Equation:} $y=$ \ans{$-\sqrt{x+3}+4$} \quad Check it against $(6,1)$:
-    \ans{$-\sqrt{9}+4=1$ \checkmark}
 
     \vspace{2pt}
-    {\small\emph{Work for $a$:} $2=a\sqrt{1+3}+4 \Rightarrow 2=2a+4 \Rightarrow -2=2a \Rightarrow
-    a=-1$. The graph falls, so a negative $a$ was expected before any algebra.}
+    \textbf{(a)} How much is left $8$ hours after the coffee? \ans{65.98 mg} \; Check it against the
+    table: it must land between \ans{100 mg} and \ans{50 mg}.
 
-  \item \textbf{Write the equation --- cube root.} The graph below has the form
-        $y=a\sqrt[3]{x-h}+k$.
+    \vspace{3pt}
+    \textbf{(b)} According to this model, is the caffeine ever completely gone? \ans{No} \;
+    Name the graph feature that decides it. \ans{the horizontal asymptote $A=0$; the range is $(0,200]$}
+
+  \item \textbf{Read the doubling off the graph.} \$800 is invested at $6\%$ compounded annually, so
+    $A(t)=800(1.06)^{t}$.
     \begin{center}
-    \begin{tikzpicture}[scale=0.40]
-      \lgrid{-8}{10}{-6}{4}
-      \begin{scope}
-        \clip (-8,-6) rectangle (10,4);
-        \cbrtplot{2}{1}{-1}{-8}{10}
-      \end{scope}
-      \fill[forest] (1,-1) circle (5pt) node[right, font=\scriptsize]{$(1,-1)$};
-      \fill[charcoal] (9,3) circle (3pt) node[below right, font=\scriptsize]{$(9,3)$};
-      \fill[charcoal] (-7,-5) circle (3pt) node[above right, font=\scriptsize]{$(-7,-5)$};
+    \begin{minipage}[c]{0.44\linewidth}
+    \centering
+    \begin{tikzpicture}[x=0.25cm, y=0.0019cm]
+      \draw[linegray!40, very thin, xstep=2, ystep=400] (0,0) grid (20,2400);
+      \draw[->, semithick, charcoal] (0,0)--(21.5,0) node[above right, font=\scriptsize]{$t$ (yr)};
+      \draw[->, semithick, charcoal] (0,0)--(0,2600) node[left, font=\scriptsize]{$A$};
+      \foreach \t in {5,10,15,20} \node[below, font=\tiny] at (\t,0) {$\t$};
+      \foreach \a in {800,1600,2400} \node[left, font=\tiny] at (0,\a) {$\a$};
+      \draw[very thick, forest, domain=0:20, samples=120, smooth]
+        plot (\x,{800*exp(0.0582689*(\x))});
+      \draw[goldacc, very thick] (0,1600)--(20,1600);
+      \node[goldacc, font=\scriptsize, above] at (4,1620) {$A=1600$};
     \end{tikzpicture}
-    \end{center}
-    Inflection point \ans{$(1,-1)$} $\Rightarrow$ $h=\mans{1}$, $k=\mans{-1}$. \;
-    Substitute $(9,3)$: $a=\mans{2}$. \\[3pt]
-    \textbf{Equation:} $y=$ \ans{$2\sqrt[3]{x-1}-1$} \\[3pt]
-    Why does this function have \emph{no} endpoint, even though it has an $h$ and a $k$?
-    \ans{Because the index is odd, so no input is forbidden --- nothing stops the graph.}
+    \end{minipage}
+    \begin{minipage}[c]{0.52\linewidth}
+    \small
+    \textbf{(a)} $A(11)=$ \ans{\$1518.64} \quad $A(12)=$ \ans{\$1609.76}
 
-  \item \textbf{Factor first.} Rewrite each in the form $a\sqrt[n]{x-h}+k$, then give the anchor
-        point and the domain.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.6}
-    \begin{tabularx}{\linewidth}{@{}l X X X@{}}
-    \hline
-    \textbf{Function} & \textbf{Rewritten} & \textbf{Anchor} & \textbf{Domain} \\
-    \hline
-    $y=\sqrt{25x}$ & \ans{$5\sqrt{x}$} & \ans{$(0,0)$} & \ans{$[0,\infty)$} \\
-    $y=\sqrt{16x-32}$ & \ans{$4\sqrt{x-2}$} & \ans{$(2,0)$} & \ans{$[2,\infty)$} \\
-    $y=\sqrt[3]{27x-27}$ & \ans{$3\sqrt[3]{x-1}$} & \ans{$(1,0)$} & \ans{all reals} \\
-    \hline
-    \end{tabularx}
+    \vspace{3pt}
+    \textbf{(b)} The money doubles between year \ans{11} and year \ans{12}.
+
+    \vspace{3pt}
+    \textbf{(c)} Write the equation you would have to solve to find the exact doubling time, then
+    divide to simplify it. \ans{$800(1.06)^{t}=1600$, so $(1.06)^{t}=2$}
+
+    \vspace{3pt}
+    \textbf{(d)} Try Step 1 of Lesson 6.3 on it. What stops you? \ans{$2$ is not a power of $1.06$ --- there is no common base}
+    \end{minipage}
     \end{center}
 
-  \item \textbf{Explain.} The graphs of $y=-\sqrt{x}$ and $y=\sqrt{-x}$ are \emph{different}. The
-        graphs of $y=-\sqrt[3]{x}$ and $y=\sqrt[3]{-x}$ are \emph{the same}. Explain both facts at
-        once, using the words \textbf{index} and \textbf{symmetry}.
-        \ansline{Both pairs ask the same question --- flip the outputs, or flip the inputs? --- and
-        the \textbf{index} decides whether the two flips agree. A square root has an \emph{even}
-        index, so it accepts only $x\ge0$: $-\sqrt{x}$ lives to the right of the $y$-axis and hangs
-        below the $x$-axis, while $\sqrt{-x}$ accepts only $x\le0$ and so lives to the \emph{left}
-        and above. They do not even share a domain, let alone a graph. A cube root has an
-        \emph{odd} index, which is exactly the statement that $\sqrt[3]{-x}=-\sqrt[3]{x}$ --- the
-        origin \textbf{symmetry} of Lesson 6.0, $f(-x)=-f(x)$. Moving the minus sign from the inside
-        to the outside changes nothing, so the vertical flip and the horizontal flip produce one
-        curve. The square root has no symmetry to trade on, so its two flips stay apart.}
+  \item \textbf{Error analysis.} Name the error, then give the correct model and value.
+
+    \vspace{2pt}
+    \textbf{(a)} Tobias models \$5000 at $6\%$ compounded monthly for $4$ years as
+    $A=5000(1.06)^{48}$, and reports \$81{,}969.36.
+    \ansline{He counted the periods right ($48$ months) but never split the rate: his base pays a full year's interest every month.}
+    \ansline{Correct: $A=5000(1.005)^{48}=\$6352.45$. The size of his answer is the tell --- \$5000 does not become \$82{,}000 in four years.}
+
+    \vspace{2pt}
+    \textbf{(b)} Marisol models a $90$ mg dose with a $6$-hour half-life as
+    $A(t)=90\left(\frac12\right)^{t}$, and reports that $0.00034$ mg is left after $18$ hours.
+    \ansline{Her exponent counts \emph{hours}, not half-lives, so her model halves the dose $18$ times instead of $3$.}
+    \ansline{Correct: $A(t)=90\left(\frac12\right)^{t/6}$, so $A(18)=90\left(\frac12\right)^{3}=11.25$ mg.}
 \end{enumerate}
 \end{notesbox}
 
 \begin{extensionbox}
-\textbf{How far can you see?} On a clear day, from an eye height of $h$ feet above the water, the
-distance to the horizon is about
-\[
-  d(h) = \sqrt{1.5h} \ \text{ miles.}
-\]
-\begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-$h$ (feet of eye height) & $6$ & $24$ & $54$ & $96$ & $150$ \\ \hline
-$d(h)$ (miles) & $3$ & $6$ & $9$ & $12$ & $15$ \\ \hline
-\end{tabular}
-\end{center}
+\textbf{A truck that loses value the way a drug leaves the body.} A delivery truck costs \$32{,}000 new
+and loses $18\%$ of its value every year.
 \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item Give the domain of $d$ from the radicand. Does the context restrict it any further?
-        \ansline{$1.5h\ge0$ gives $h\ge0$, so $[0,\infty)$ --- and the context agrees exactly, since
-        a negative eye height is meaningless. (In practice it also has a sensible upper limit; the
-        formula assumes you are close enough to the surface for the curvature model to hold.)}
-  \item The graph of $d$ has its anchor point at $(0,0)$. What does that point mean for a swimmer
-        with their eyes right at water level? \ansline{Eye height $0$ gives viewing distance $0$:
-        with your eyes exactly at the surface the horizon is at your eyes, and you can see no
-        distance at all. Every inch you rise buys you some view --- and the first inches buy the
-        most, because the graph is steepest at the anchor.}
-  \item From the table: going from $h=6$ to $h=24$ multiplies the eye height by $4$ but multiplies
-        the viewing distance by only $2$. Use the shape of a square root graph to explain why.
-        \ansline{A square root grows like the $\frac12$ power, so multiplying the input by $4$
-        multiplies the output by $\sqrt4=2$. On the graph that is the flattening: each extra foot of
-        height adds less distance than the foot before it. To \emph{double} your view you must
-        \emph{quadruple} your height --- $6\to24$, then $24\to96$, which the table confirms
-        ($6\to12$ miles).}
-  \item Use the product property to rewrite $d(h)=\sqrt{1.5h}$ in the form $a\sqrt{h}$, giving $a$ to
-        two decimal places. Then finish this sentence: \emph{the horizon formula is just the parent
-        $y=\sqrt{h}$ with a single \underline{\hspace{2.4cm}} applied to it.}
-        \ansline{$\sqrt{1.5h}=\sqrt{1.5}\cdot\sqrt{h}\approx 1.22\sqrt{h}$ --- so the horizon formula
-        is the parent $y=\sqrt h$ with a single \textbf{vertical stretch} (by about $1.22$) applied
-        to it. No shift, no reflection: same anchor, same domain, same shape, just scaled.}
-  \item A sailor climbs $h$ feet up the mast of a ship whose deck already sits $20$ feet above the
-        water, so their eye height above the water is $h+20$ and the formula becomes
-        $D(h)=\sqrt{1.5(h+20)}$. Describe how the graph of $D$ differs from the graph of $d$, and
-        give the anchor point of $D$. \ansline{$D$ is $d$ shifted $20$ units to the \emph{left}
-        (the $+20$ is inside, so it moves the graph the opposite way). Its anchor point is
-        $(-20,0)$. Nothing else changes --- the stretch of $\approx1.22$ and the shape are the
-        same.}
-  \item Part (e)'s anchor point is not a place any sailor can stand. Explain why, and state the
-        domain that the \emph{context} actually allows --- then give $D(0)$ and say what it means.
-        \ansline{$h=-20$ would mean climbing $20$ feet \emph{below} the deck --- down to the
-        waterline. Algebra allows it; the mast does not. The context domain is $h\ge0$, so the
-        usable part of the graph starts at $h=0$, well to the right of the anchor.
-        $D(0)=\sqrt{1.5(20)}=\sqrt{30}\approx5.5$ miles: standing on the deck without climbing at
-        all, the sailor already sees about $5.5$ miles. \emph{An anchor point can sit outside the
-        domain a situation allows --- read the context, not only the equation.}}
+  \item Write the model $V(t)$, then find the truck's value after $4$ years. Say which number in your
+        model is the $18\%$, and why it is not $0.18$.
+  \item A ``half-life'' for a truck would be the time until it is worth half what it cost. Write the
+        equation for that, then divide to get it into the form $(0.82)^{t}=\text{something}$.
+  \item You know $(0.82)^{3}\approx0.551$ and $(0.82)^{4}\approx0.452$. Between which two whole years
+        does the truck lose half its value? Does your answer to (b) have a common base?
+  \item According to this model, does the truck ever become worthless? Answer with the range and the
+        asymptote --- then say in one sentence why that is a limitation of the \emph{model} rather
+        than a fact about trucks.
 \end{enumerate}
+\ansline{(a) $V(t)=32{,}000(0.82)^{t}$ and $V(4)=\$14{,}467.90$. The $18\%$ is inside the base: losing $18\%$ leaves $82\%$, so $b=1-0.18=0.82$.}
+\ansline{\hspace{1.2em} $b=0.18$ would mean the truck keeps only $18\%$ of its value each year --- Lesson 6.1's percent-as-base error.}
+\ansline{(b) $32{,}000(0.82)^{t}=16{,}000$, and dividing by $32{,}000$ gives $(0.82)^{t}=0.5$.}
+\ansline{(c) Between year $3$ and year $4$, since $0.551>0.5>0.452$. No common base: $0.5$ is not a power of $0.82$, so this joins the running list.}
+\ansline{(d) No. The range is $(0,32{,}000]$ with a horizontal asymptote at $V=0$, so the model's value shrinks forever without reaching zero.}
+\ansline{\hspace{1.2em} A real truck stops running, gets scrapped, or hits a fixed salvage value --- the exponential is a good description for the early years only.}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 6.5: Solving Radical Equations \& Extraneous Solutions.} Today you
-turned an equation into a graph and a graph back into an equation. Next you will \emph{solve}: given
-$\sqrt{x+4}-1=3$, find the $x$ that makes it true --- by isolating the radical and raising both sides
-to the $n$th power. There is a catch, and it is the same catch that produced excluded values in Unit
-5: squaring destroys sign information, so the answer you get out may be one the original equation
-never accepted. Every solution has to be checked, every time. Graphically, you will be finding where
-today's graphs cross a horizontal line.
+\textbf{Coming next --- Lesson 6.5: Exponential Regression \& Choosing a Model.} Today every model was
+handed to you: a rate, a half-life, a doubling time. Real data arrives as a pile of points with nobody
+to tell you which family it belongs to. Next lesson you bring back Lesson 6.0's fingerprint test ---
+constant difference, constant second difference, constant \emph{ratio} --- and use it to decide whether
+a data set is linear, quadratic, or exponential before letting technology fit a curve. Then you
+interpret the $a$ and the $b$ the calculator hands you, exactly as you did today with $P$ and
+$1+\frac{r}{n}$. \textbf{And the list is still standing:} $2^{x}=5$, $132(0.85)^{t}=32$,
+$(0.9)^{t}=2.118$, $(1.05)^{t}=2$, and now $(0.82)^{t}=0.5$. Every one has an answer; not one has a
+common base. Unit 7 is where you finally write those answers down.
 \end{spiralbox}
 
 \begin{teachernote}
-\small
-\textbf{Item 1} is the whole lesson in twenty blanks and should take five minutes. The row that
-separates understanding from copying is $-4\sqrt{x}+2$: students who write the range as
-$[2,\infty)$ have found the anchor without noticing that a negative $a$ turns the arm --- and
-therefore the range --- upside down. \textbf{Item 2} is deliberately the same shape, read off a
-picture instead, so the two can be marked against each other.
+\textbf{Problem 1(d) is the one to check first.} The exponent is $365\times4=1460$ and students who
+write $4$ or $365$ have lost the sentence the lesson is built on. The balance (\$1144.10) is also only
+about a dollar above the same account compounded monthly, which is the Hook restated in homework form
+--- ask about it in the warm-up debrief tomorrow.
 
-\textbf{Items 3 and 4 are the SOL's harder direction} (\textbf{A2.F.1b}). Both are set up so the sign
-of $a$ can be predicted before any algebra: item 3's graph falls, so $a<0$. Students who substitute
-first and get $a=-1$ ``by surprise'' have not yet connected the coefficient to the picture. Item 4's
-cube root reinforces that the anchor works identically even when it is not an endpoint.
+\textbf{Problems 5(a) and 5(b) are the same error in two different models, and that is the point.}
+Tobias keeps an annual base with a monthly count; Marisol keeps a per-half-life base with an hourly
+count. Both are ``the base and the exponent stopped agreeing about one period.'' The absurd sizes of
+their answers (\$81{,}969 from \$5000; $0.00034$ mg from $90$ mg) are the reasonableness check students
+should be running on their own work --- name that habit out loud.
 
-\textbf{Item 6 is the conceptual item} and is worth the most discussion time. A complete answer must
-do more than say ``cube roots are odd'' --- it has to connect $\sqrt[3]{-x}=-\sqrt[3]{x}$ to why the
-two square-root graphs cannot possibly coincide (they do not share a domain). Accept any wording
-that gets both halves.
+\textbf{Problem 4 rehearses the Section 4 graph with different numbers, and 4(d) is the assessed
+sentence.} A student who writes ``no solution'' rather than ``no common base'' has the misconception
+that Lesson 7.4 exists to fix; flag those papers and open Lesson 6.5 with thirty seconds on the graph.
+The Rule of 72 predicts $12$ years here, which brackets nicely with the graph read --- mention it only
+if a student who did Tier E raises it.
 
-\textbf{The extension is the unit's fifth model} (after free-fall, Kepler, Kleiber, the pendulum, and
-the golden ratio) and the first where the payoff is a \emph{transformation} rather than a value. Part
-(d) is the point of the whole thing: a real formula from navigation turns out to be nothing but the
-parent square root with one vertical stretch, which is what today's lesson claims all radical
-functions are. Part (f) is the sharpest item --- an anchor point that exists algebraically but not
-physically. Students who answered part (a) thoughtfully will see it immediately.
+\textbf{The Extension is where depreciation and half-life are revealed to be the same object.} Part (c)
+adds a fifth equation to the running list, and part (d) is the honest modeling beat: the asymptote is
+mathematically correct and physically wrong, which is exactly the kind of judgement Lesson 6.5's
+extrapolation discussion needs. Accept any sensible limitation --- salvage value, scrapping, a total
+loss --- as long as the range and asymptote are stated first.
 \end{teachernote}
 
 \end{document}
