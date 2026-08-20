@@ -47,7 +47,8 @@ needed (see "Scaffolding a lesson"), so you rarely write them by hand:
     sending output to `target/UNIT/LESSON/<comp>/` and a stamp to `.stamps/`.
   - Copies the plan to its `_plan.pdf` name, renders the deck 3-up to `_slides.pdf` and
     full-page to `_slides.pptx`, and merges the two packets:
-    - **student** = `cover warmup experience notes activity exit_ticket homework` (blank versions
+    - **student** = `cover warmup experience` + the legacy `notes activity exit_ticket homework`
+      still merged for pre-EFFL lessons (blank versions
       present — EFFL lessons have `experience` and no `notes`/`activity`/`exit_ticket`; legacy
       lessons the reverse),
       in that pedagogical order → `lessonYY_student.pdf`.
@@ -119,7 +120,7 @@ full-bleed page image per slide. It is deliberately **dependency-free** — no L
 ```bash
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
   --title "..." --unit-title "..." \
-  --components cover,warmup,experience,homework,slides \
+  --components cover,warmup,experience,slides \
   [--prefab warmup,warmup_key] [--course "Algebra 2: Shepherd"] [--lesson-id 1.3]
 ```
 

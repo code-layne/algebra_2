@@ -89,13 +89,39 @@
 > preview (the old homework `spiralbox`) moves to the end of the experience. **Lesson 1.2 is
 > regenerated against this (2026-08-20) and is the reference implementation.**
 >
-> **Not yet propagated:** the `lesson-planning` skill still lists `homework` in its default
-> component set (SKILL.md, references/components.md, references/build.md) and `new_lesson.py`
-> still scaffolds `homework`/`homework_key`; every other lesson directory in the tree still has a
-> `homework` dir. Both need a follow-up pass. **Lesson 1.0 still has the old three-part experience
-> plus a homework component and needs re-cutting to this budget.**
-> **Next: strip homework from the skill + scaffolder, re-cut 1.0, then continue the rollout at
-> Lesson 1.1 — regenerate, don't patch.**
+> **Skill + scaffolder updated (2026-08-20, same pass).** `homework` is out of the EFFL default
+> component set everywhere: SKILL.md (component list, "there is no `homework` component", CYU now
+> authored toward the full 2pp with ~6 items, legacy note tells you to fold homework into CYU when
+> regenerating), references/components.md (TOC, packet order, plan section order — "Homework &
+> Preview" → **"Close & Preview"**, two teacher notes not three, cover TOC three rows, the CYU spec
+> rewritten around spanning the whole standard, and the old `## Homework` section replaced by
+> `## Homework — removed` documenting the legacy state and the conversion recipe),
+> references/conventions.md, references/build.md, references/course-workflow.md, and
+> `new_lesson.py` (`DEFAULT_COMPONENTS = cover, warmup, experience, slides`; `homework` demoted to
+> the legacy-but-scaffoldable list beside `notes`/`activity`/`exit_ticket`). Skeletons updated:
+> `cover.tex` (homework row → the NA-scored CYU row), `lesson_plan.tex` (six-phase glance table
+> with the **Application row that was missing**, a new Application box, the CYU box rewritten,
+> Close & Preview, `[Homework]` teacher note deleted), `slides.tex` (final frame is "No homework").
+> **Smoke-tested:** a fresh default scaffold creates no `homework` dir and builds all five work
+> products, EXIT 0.
+>
+> **`shared/lesson.mk` is deliberately unchanged** — it still merges `homework`/`homework_key` when
+> present, because 42 legacy lesson dirs still have them and their packets must keep building.
+>
+> **The remaining `homework` dirs are a byproduct, not a cleanup task — user direction 2026-08-20:
+> *every* lesson gets regenerated, 1.0 and 1.1 included, so homework disappears lesson by lesson as
+> the rollout reaches each one.** Do not open a separate sweep to delete them, and do not patch a
+> legacy lesson's homework in place: when the rollout reaches a lesson, regenerate it whole in the
+> EFFL shape and the homework dir goes with it. 42 dirs still carry one today (only 1.0 and 1.1 are
+> authored; the rest are skeletons that will be written fresh anyway).
+>
+> **Final step, once the last lesson is regenerated:** drop `homework`/`homework_key` from
+> `STUDENT_ORDER`/`KEYED_PAIRS` in `shared/lesson.mk` and from `KEYED` in `new_lesson.py`. They are
+> retained *only* to keep not-yet-regenerated lessons building; when none remain, homework leaves
+> the build system too and the word is gone from the project.
+>
+> **Next: re-cut 1.0 (old three-part experience + homework), then 1.1, then straight through the
+> rollout — regenerate, don't patch.**
 
 ---
 

@@ -15,7 +15,7 @@ truth — if the styles diverge from this, follow the styles.
 
 ## Per-document-type preambles
 
-**Student component** (warmup, homework, cover — and the legacy notes/activity/exit_ticket):
+**Student component** (warmup, cover — and the legacy homework/notes/activity/exit_ticket):
 ```latex
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
@@ -128,10 +128,10 @@ Titled student boxes (title is fixed by the environment unless it takes an argum
 | `notesbox{Title}` | generic titled notes section | title |
 | `practicebox` | "Guided Practice" | — |
 | `spiralbox` | "Connections & Big Ideas" | — |
-| `scenariobox[Title]{color}` | activity/homework scenario | title, color |
+| `scenariobox[Title]{color}` | activity scenario | title, color |
 | `headlinebox{color}` | colored callout strip (content in the body) | color |
 | `blurbbox[Title]{color}` | study/excerpt blurb | title, color |
-| `reflectionbox` | "Reflection" (homework) | — |
+| `reflectionbox` | "Reflection" (legacy homework) | — |
 | `extensionbox` | "Extension — optional" | — |
 | `tocbox` | "What's in This Packet" (cover) | — |
 | `remindbox` | "Keep in Mind" (cover / practice-test intro) | — |
@@ -217,7 +217,7 @@ The lesson plan closes with one note per component, in packet order, each titled
 \begin{teachernote}[Guided Notes]   ... \end{teachernote}
 \begin{teachernote}[Group Activity] ... \end{teachernote}
 \begin{teachernote}[Exit Ticket]    ... \end{teachernote}
-\begin{teachernote}[Homework]       ... \end{teachernote}
+\begin{teachernote}[Experience]     ... \end{teachernote}
 ```
 
 The environment is defined in **`-boxes`** (the lesson plan does not load `-key`) and the argument
@@ -281,7 +281,7 @@ Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: **5/
 Warm-Up (the seeds) → Experience: the Activity (what students do | what the teacher does —
 questions, cues, prompts) → Debrief: Formalize (the red-ink moves + QuickNotes walkthrough) →
 **Application** (the worked-together problem) → **Check Your Understanding — practice, *not
-scored*** (+ the formative check) → Watch For → Homework & Preview →
-Teacher Notes ([Warm-Up], [Experience], [Homework]). See `references/components.md` for the
+scored*** (the lesson's whole practice set — there is no homework) → Watch For → Close & Preview
+(nothing is assigned) → Teacher Notes ([Warm-Up], [Experience]). See `references/components.md` for the
 full spec and `references/course-workflow.md` for where content comes from. *(Legacy plans from
 before 2026-08 use the old Hook / Explicit Instruction / Tiers order.)*
