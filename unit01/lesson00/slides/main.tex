@@ -1,5 +1,6 @@
 %! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Slides (Beamer)
-% Deck follows the lesson's EFFL flow: launch → warm-up → activity → debrief (formalize) → practice → homework.
+% Deck follows the lesson's EFFL flow: launch → warm-up → activity → debrief (formalize) →
+% application → Check Your Understanding. There is no homework.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -49,8 +50,9 @@
   \end{itemize}
   \vspace{4pt}
   \begin{block}{How today works}
-    Warm-up $\to$ \textbf{Freezing Point} with your group $\to$ we name what you found $\to$
-    Check Your Understanding $\to$ homework.
+    Warm-up $\to$ \textbf{Freezing Point} with your group $\to$ we name what you found $\to$ one
+    we do together $\to$ Check Your Understanding. \textbf{No homework} --- the practice happens
+    here.
   \end{block}
 \end{frame}
 
@@ -82,7 +84,7 @@
 
 % ACTIVITY LAUNCH
 \begin{frame}[t, plain]
-  \forestheader{Experience: Freezing Point}
+  \forestheader{Experience \& Formalize: Freezing Point}
   \sectionlabel[goldacc]{Groups of 3--4 $\cdot$ 20 minutes}
   \begin{columns}[T]
     \begin{column}{0.60\textwidth}
@@ -183,7 +185,7 @@
 % DEBRIEF 3 — positive is not increasing
 \begin{frame}[t, plain]
   \forestheader{``Positive'' is not ``increasing''}
-  \sectionlabel[goldacc]{The key distinction --- your answer to 2d}
+  \sectionlabel[goldacc]{The key distinction --- your answer to 2c}
   \begin{itemize}\setlength{\itemsep}{7pt}
     \item At 5 p.m.\ Sunday the temperature is $4^\circ$: \textbf{positive}. And it is
           \textbf{falling}. Both at once.
@@ -210,7 +212,7 @@
         \item My example: a thermostat holds $T(h)=21$ all day. Change per hour $0$ $\to$ slope
               $0$, a \redink{constant function}. Never crosses: \redink{no zero}, positive
               everywhere. Only one output: \redink{range $\{21\}$}.
-        \item Your 2e/2f: the \emph{story} accepts only the evening hours, but the \emph{rule}
+        \item Your 2e: the \emph{story} accepts only the evening hours, but the \emph{rule}
               accepts any real number. \redink{Domain} = allowed inputs, \redink{range} =
               resulting outputs.
         \item A line that is not horizontal: domain all reals, range all reals. In a story, keep only
@@ -261,20 +263,58 @@
   \end{columns}
 \end{frame}
 
-% PRACTICE + HOMEWORK
+% APPLICATION — worked together
 \begin{frame}[t, plain]
-  \forestheader{Check Your Understanding, then homework}
-  \sectionlabel{Practice: pairs for 1--2, on your own for 3--4}
+  \forestheader{Application: the car-wash card}
+  \sectionlabel[goldacc]{We do this one together $\cdot$ 7 minutes}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      \small
+      A gift card starts with \textbf{\$40}. Each wash costs \textbf{\$8}, so after $w$ washes the
+      balance is $B(w) = 40 - 8w$.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item What does the \textbf{slope} $-8$ mean here? The \textbf{$y$-intercept} $(0,40)$?
+        \item Solve $B(w) = 0$. What does the \textbf{zero} mean --- in \emph{washes}?
+        \item Which inputs $w$ make sense? Is $B$ increasing or decreasing on them?
+      \end{itemize}
+      \vspace{2pt}
+      \begin{block}{Now change one number}
+        A wash costs \textbf{\$10} instead. Sooner or later? And on the graph --- does the line
+        \emph{start} somewhere else, get \emph{steeper}, or both?
+      \end{block}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.62cm, y=0.08cm]
+        \draw[xstep=1, ystep=8, linegray!45, thin] (0,0) grid (6,40);
+        \draw[->, thick, charcoal] (0,0)--(6.6,0) node[right, font=\tiny]{$w$};
+        \draw[->, thick, charcoal] (0,0)--(0,44) node[above, font=\tiny]{$B$};
+        \foreach \y in {8,16,24,32,40} \node[charcoal, font=\tiny, left] at (0,\y){\y};
+        \foreach \x in {1,...,6} \node[charcoal, font=\tiny, below] at (\x,0){\x};
+        \draw[very thick, forest] (0,40)--(5,0);
+        \fill[charcoal] (0,40) circle (2.6pt);
+        \fill[charcoal] (5,0) circle (2.6pt);
+        \draw[very thick, redacc, dashed] (0,40)--(4,0);
+        \node[redacc, font=\tiny, right] at (2.6,14){\$10 a wash};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% CHECK YOUR UNDERSTANDING — practice, not a quiz. No homework.
+\begin{frame}[t, plain]
+  \forestheader{Check Your Understanding}
+  \sectionlabel{Practice, not a quiz $\cdot$ pairs for 1--3, on your own for 4--6}
   \begin{itemize}\setlength{\itemsep}{5pt}
-    \item A graphed line with slope $-\tfrac32$, a gift card $B(w)=40-8w$, a horizontal line,
-          and one multiple-choice item.
+    \item Six exercises: a graphed line, two lines that \emph{share} a zero, a table (watch the
+          step in $x$), the flat line, a pool model, and one multiple-choice item.
     \item For every feature: \emph{where do you see it} --- on the graph, in the table, in the rule?
-    \item Item~4 comes to me before you leave.
+    \item Short on time? Do \textbf{1, 2, 5, 6} first.
   \end{itemize}
   \vspace{4pt}
-  \begin{block}{Homework --- 8 problems}
-    Feature lists from graphs and a table, a pool model whose zero is \emph{outside} the story,
-    a horizontal line, two lines that share a zero, and one ``explain why the others are false.''
+  \begin{block}{No homework}
+    This is the practice for the lesson, it is \textbf{not scored}, and you keep the packet.
+    I will look at item~6 as you work.
   \end{block}
   \vspace{4pt}
   \textbf{Next:} Lesson 1.1 --- using these features to \emph{write} equations of lines.
