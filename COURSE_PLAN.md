@@ -146,6 +146,26 @@
 > content and build evidence. All three are homework-free; `unit01/lesson0{0,1}/homework{,_key}`
 > were deleted with the regeneration, leaving **38** legacy homework dirs in Units 2--7.
 >
+> **Consistency pass on 1.0, 1.1, and 1.2 (2026-08-20/21).** 1.0's activity had lost Scenario 1's
+> graph and items c--f and Scenario 2's whole box header, so the packet referred to a "Sunday
+> evening" it never set up; both are restored and the activity is back to 2pp / 11 sub-questions
+> (details in the §4 Unit 1 block). **1.1 and 1.2 were then checked for the same class of loss and
+> are clean** — both keep two properly framed `scenariobox`es, every plan cue (1b/2b/2d/2e/2f in
+> 1.1; 1a–1d/2a–2f in 1.2) resolves to a real packet item, and the arithmetic in every activity,
+> application, and CYU item was re-derived and checks out. What they *did* carry was **teacher-plan
+> drift of the same kind, none of it visible to students**, now fixed: 1.1's plan numbered the
+> Drone Descent application as four items (the packet folds standard form into item 2, so the
+> 60 m concept check is item **3**, not 4 — wrong in both the Application box and the teacher note)
+> and miscounted its `work` blocks ("three", listing four; the lesson has **six**, since activity 2b
+> and 2d carry them too); 1.2's teacher note called #4–6 the early-finisher bank while the CYU box,
+> the Close box, and its own next sentence treat #6 as the formative check (now #4–5); and 1.0's
+> plan pointed the CYU `work` block at 5c when it is **5b**. All three rebuild at exit 0 with
+> **experience 5/5** and **packets 10pp/10pp**.
+>
+> **Lesson learned for the rollout: after a compression pass, re-read the plan against the packet
+> item by item** — every `1c`/`2d`-style cue, every "item~N is the point of the box", and every
+> `work`-block count. Compression is where these break.
+>
 > **Next: continue the rollout at Lesson 1.3, then 1.4 and 1.5 — regenerate, don't patch.** After
 > Unit 1 is fully EFFL, resume Unit 6 at 6.4 and Unit 7 at 7.1.
 
@@ -260,8 +280,26 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > table (5/20/13/7/10/5), separate Application and CYU boxes, **Close & Preview** in place of
 > "Homework & Preview", and **two** teacher notes. Deck is 11 frames with a new Application frame,
 > ending on "No homework". Standards unchanged: **A2.F.2a/c/f**.
-> **Build evidence:** `make -C unit01/lesson00 all` → EXIT 0; warm-up 1/1, experience **4/4**,
-> cover 1, plan 6, slides 11 (handout 4pp + pptx); packets **8pp/8pp**.
+>
+> **Consistency fix — Lesson 1.0's activity had lost half of Scenario 1 and all of Scenario 2's
+> frame (2026-08-20, found on review).** The 2026-08-20 re-cut compressed the *Freezing Point*
+> activity into a single `scenariobox` titled *1. Saturday Morning*: Saturday kept only its table
+> and its rule (its graph and items c--f were gone), and the **`2. Sunday Evening` box header and
+> setup prose were dropped**, leaving Sunday's five questions orphaned inside Saturday's box. The
+> handout therefore restarted its lettering at **a** mid-box, showed a *falling* line with no story
+> attached to it, asked "what does each crossing tell you about **Sunday** evening?" and evaluated
+> "5:00 **p.m.**" with no Sunday ever introduced, and gave $T(h)=6-2h$ inside a box whose own rule
+> is $T(h)=2h-6$. The plan's circulate cues (1c/1d, 1e), its Part 1 description, and its debrief
+> instruction to put "Saturday and Sunday side by side" all pointed at content the packet no longer
+> contained. **Fixed:** Scenario 1 regains its pre-drawn rising graph and items **c--f** (the two
+> axis crossings, the per-hour change located in the rule *and* on the graph, direction, and the
+> above/below-freezing inequalities), compressed to hold one page; Scenario 2 regains its box and
+> its "4:00 p.m., $6\,^\circ$C, falling $2\,^\circ$/hr" setup. Sunday's box and line are now
+> **navy** and Saturday's **forest**, matching the deck's launch and debrief frames. Sub-question
+> count is **11** (6 + 5) and the activity holds exactly **2pp**, as the timebox rule requires. Both
+> `experience` and `experience_key` were edited identically, so they still paginate page-for-page.
+> **Build evidence (after the fix):** `make -C unit01/lesson00 all` → EXIT 0; warm-up 1/1,
+> experience **5/5**, cover 1, plan 6, slides 11 (handout 4pp + pptx); packets **10pp/10pp**.
 >
 > **Lesson 1.1 regenerated from the legacy shape (2026-08-20)** — the first full legacy→EFFL
 > conversion in the course. `notes`, `activity`, `exit_ticket`, `homework` and their keys were
