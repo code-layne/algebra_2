@@ -1,6 +1,6 @@
 # Algebra 2 — Unit & Lesson Breakdown
 
-**Course:** Algebra 2: Shepherd · **Year:** 2026–2027 · **7 units · 50 lessons**
+**Course:** Algebra 2 · **7 units · 50 lessons**
 
 Derived from [COURSE_PLAN.md](COURSE_PLAN.md) §2–§4; authoring status verified against the
 files on disk (2026-08-06), not the plan's prose.

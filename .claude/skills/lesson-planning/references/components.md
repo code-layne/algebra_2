@@ -41,7 +41,8 @@ General rules:
 `main.tex` at the lesson root — teacher-facing, never handed to students. Canonical section
 order (same skeleton for review and primary-content lessons):
 
-1. **Title block** — `\CourseName: \SchoolYear` + `\UnitNumberName \LessonNumberName`.
+1. **Title block** — `\CourseName` + `\UnitNumberName \LessonNumberName`. The course name is
+   just `Algebra 2`: no teacher name, no school year.
 2. **Primary Objective / Standards / Lesson model** — a `tcolorbox` (forestbg/forest): the
    objective in formal terms (the plan is teacher-facing — the spoiler rule does not apply
    here), the standards codes, and a one-paragraph statement of the EFFL model.
