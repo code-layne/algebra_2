@@ -20,7 +20,7 @@ description: >-
 
 # Lesson Planning — Algebra 2
 
-This skill authors lessons for the **Algebra 2: Shepherd** course and produces print-ready PDFs
+This skill authors lessons for the **Algebra 2** course and produces print-ready PDFs
 through the project's own build system. **It builds around the project's conventions — it does
 not invent its own.** The course is a **function-family** course for a secondary-school
 audience: each unit is built around one function type, and **every unit opens with a Lesson 0,
@@ -60,7 +60,8 @@ new label just says both halves out loud, because the component carries the form
   trigonometry, and linear systems / linear programming.
 - **Style prefix is `algebra2`** — `shared/algebra2-{colors,article,boxes,key}.sty`, plus
   `shared/algebra2-beamer.sty` for the optional teacher `slides` deck. Course macros
-  (`\CourseName`, `\SchoolYear`) are **inlined in each lesson plan**, not defined in `shared/`.
+  (`\CourseName`) are **inlined in each lesson plan**, not defined in `shared/`. The printed
+  title is **just `Algebra 2`** — no teacher name, no school year, anywhere a title renders.
 
 ## What a lesson is
 
@@ -164,7 +165,7 @@ clean, detect project context:
 2. **Confirm the prefix.** `ls shared/*-colors.sty` → it is `algebra2`. All
    `\usepackage{algebra2-article}` etc. use it.
 3. **Course macros are inlined in the lesson plan.** This course does **not** define
-   `\CourseName`/`\SchoolYear` in `shared/`, so each lesson plan sets them itself (the scaffolder
+   `\CourseName` in `shared/`, so each lesson plan sets it itself (the scaffolder
    writes them — pass `--course` to set the name).
 4. **Find the insertion point.** List `unit*/lesson*` to find the next unit/lesson number and
    whether the target lesson already exists.
@@ -192,15 +193,15 @@ works:
 ```bash
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 01 --lesson 03 \
   --title "Absolute Value Functions" --unit-title "Linear Functions" \
-  --course "Algebra 2: Shepherd" \
+  --course "Algebra 2" \
   --components cover,warmup,experience,slides
 ```
 
 That component list is the default, so `--components` can be omitted entirely. The script
 auto-detects the prefix and writes each authored component's `main.tex` as a correctly-preambled
 skeleton (and the matching `_key` skeleton for keyed components). Because this course inlines
-course macros, pass `--course` (and `--year` if it differs) so the generated lesson plan defines
-`\CourseName` correctly. Pass `--prefab warmup` to create that component as an empty drop-in
+course macros, pass `--course "Algebra 2"` so the generated lesson plan defines
+`\CourseName` correctly. There is no `--year`: the school year is never printed. Pass `--prefab warmup` to create that component as an empty drop-in
 directory instead (Step 4). `slides` requires `shared/algebra2-beamer.sty`. Then fill in the
 skeletons — **including the deck**, which is no longer optional.
 

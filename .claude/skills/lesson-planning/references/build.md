@@ -121,7 +121,7 @@ full-bleed page image per slide. It is deliberately **dependency-free** — no L
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
   --title "..." --unit-title "..." \
   --components cover,warmup,experience,slides \
-  [--prefab warmup,warmup_key] [--course "Algebra 2: Shepherd"] [--lesson-id 1.3]
+  [--prefab warmup,warmup_key] [--course "Algebra 2"] [--lesson-id 1.3]
 ```
 
 That component list is the default — `slides` included, since two of the five work products come
@@ -129,8 +129,8 @@ from the deck.
 
 It detects the prefix (`algebra2`) from `shared/*-colors.sty`, and detects whether `\CourseName`
 is defined in `shared/` — it is **not** in this course, so the generated lesson plan inlines the
-course macros (pass `--course`/`--year` to set them; they default to "Algebra 2: Shepherd" /
-2026–2027 if detected). It writes the lesson `Makefile`, the lesson plan, and each authored
+course macros (pass `--course "Algebra 2"` to set the name; there is no `--year`, since the
+school year is never printed). It writes the lesson `Makefile`, the lesson plan, and each authored
 component + key skeleton — **and creates the unit `Makefile` (and the root `Makefile` if it were
 missing)** so unit/curriculum builds work, never clobbering existing ones. Pass `--prefab <dirs>`
 to create empty drop-in directories instead (where you place each `main.pdf`). The `slides`
@@ -222,7 +222,7 @@ packet, so the `sample_test` prefab exists when `unit.mk` merges it. Output land
   (`\includegraphics{warmup/main}`) resolves.
 - **`Undefined control sequence \CourseName`** → the course macros aren't defined. In this
   course they are **inlined in the lesson plan** (not in `shared/`); the scaffolder writes them,
-  but a hand-edited plan may have dropped them. Re-add `\CourseName`/`\SchoolYear` to the preamble.
+  but a hand-edited plan may have dropped them. Re-add `\CourseName` to the preamble.
 - **`\includegraphics` fails for a screenshot** → put images in `images/` (the plan sets
   `\graphicspath{{images/}}`) and load `graphicx` (the plan does; `-article` does not).
 - **Key won't compile / option clash** → a key loads `-key` only; do **not** also load

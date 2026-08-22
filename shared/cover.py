@@ -717,7 +717,7 @@ def fit_size(text: str, role: str, start: float, max_w: float) -> float:
     return size
 
 
-def title_block(unit_no: int, unit_title: str, teacher: str = "Shepherd") -> str:
+def title_block(unit_no: int, unit_title: str, teacher: str = "") -> str:
     def haloed(svg: str) -> str:
         halo = svg.replace("<text ", '<text stroke="#ffffff" stroke-width="7" '
                                      'stroke-linejoin="round" ', 1)
@@ -732,7 +732,7 @@ def title_block(unit_no: int, unit_title: str, teacher: str = "Shepherd") -> str
     unit_line = f"Unit {unit_no}:  {unit_title}"
     s_course = fit_size("Algebra 2", "serif", 94, W - 260)
     s_unit = fit_size(unit_line, "serif", 42, W - 210)
-    s_name = fit_size(teacher, "script", 58, W - 340)
+    s_name = fit_size(teacher, "script", 58, W - 340) if teacher else 0.0
 
     rule_w = max(measure("Algebra 2", "serif", s_course),
                  measure(unit_line, "serif", s_unit)) + 46
@@ -744,12 +744,15 @@ def title_block(unit_no: int, unit_title: str, teacher: str = "Shepherd") -> str
         g.append(path(f"M{ra:.0f} {y}H{rb:.0f}", stroke="#ffffff", width=7))
         g.append(path(f"M{ra:.0f} {y}H{rb:.0f}", stroke=EDGE, width=1.4))
     g.append(haloed(line(unit_line, "serif", s_unit, 588, TXT2)))
-    g.append(haloed(line(teacher, "script", s_name, 672, TXT)))
-    sw = measure(teacher, "script", s_name) * 0.92
-    sa, sb = W / 2 - sw / 2, W / 2 + sw / 2
-    swoosh = f"M{sa:.0f} 692Q{W / 2:.0f} 682 {sb:.0f} 692"
-    g.append(path(swoosh, stroke="#ffffff", width=8))
-    g.append(path(swoosh, stroke=EDGE, width=2, cap="round"))
+    # The teacher name is off by default -- the course title is just "Algebra 2".
+    # Pass --teacher (or set TEACHER in a unit spec) to bring the signature back.
+    if teacher:
+        g.append(haloed(line(teacher, "script", s_name, 672, TXT)))
+        sw = measure(teacher, "script", s_name) * 0.92
+        sa, sb = W / 2 - sw / 2, W / 2 + sw / 2
+        swoosh = f"M{sa:.0f} 692Q{W / 2:.0f} 682 {sb:.0f} 692"
+        g.append(path(swoosh, stroke="#ffffff", width=8))
+        g.append(path(swoosh, stroke=EDGE, width=2, cap="round"))
     g.append("</g>")
     return "".join(g)
 
@@ -997,7 +1000,7 @@ def main(argv=None) -> int:
     ap.add_argument("-o", "--out", help="output PDF (default UNIT/binder_cover/main.pdf)")
     ap.add_argument("--spec", help="content spec (default UNIT/binder_cover/spec.py)")
     ap.add_argument("--svg-out", help="also write cover_front.svg / cover_back.svg here")
-    ap.add_argument("--teacher", default="Shepherd")
+    ap.add_argument("--teacher", default="")
     ap.add_argument("--seed", type=int, default=7, help="auto-layout jitter seed")
     ap.add_argument("--check-fonts", action="store_true",
                     help="preflight the fonts and cairosvg, then exit")

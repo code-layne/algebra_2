@@ -59,8 +59,7 @@ first, then the shading, then the endpoint dots** — open dots as `\draw[color,
 **Lesson plan** (`main.tex` at the lesson root): loads `-boxes` and **defines the course/unit/
 lesson macros inline** — this course does not define them in `shared/`:
 ```latex
-\newcommand{\CourseName}{Algebra 2: Shepherd}
-\newcommand{\SchoolYear}{2026--2027}
+\newcommand{\CourseName}{Algebra 2}
 \newcommand{\MeetingLength}{...}   % if the plan uses it
 \newcommand{\UnitNumberName}{Unit X: ...}
 \newcommand{\LessonNumberName}{Lesson X.Y: ...}

@@ -1,7 +1,13 @@
 # Algebra 2 — Course Scope & Sequence
 
-**Course:** Algebra 2: Shepherd · **School year:** 2026–2027
+**Course:** Algebra 2
 
+> **Status (2026-08-22):** **The course title is now just `Algebra 2`.** The teacher name and the
+> school year were stripped from every surface that renders a title — all 44 lesson plans, all 44
+> packet covers, all 44 deck title slides, `shared/cover.py`'s binder-cover title block, the
+> `lesson-planning` skeletons/scaffolder/docs, and these planning docs. `\SchoolYear` was deleted
+> outright and `new_lesson.py --year` is gone. See §7 "Course title" for the per-surface spec.
+>
 > **Status:** **The Algebra 1 review unit was dropped and the course renumbered (2026-08-20).**
 > The old Unit 1 (Foundations: Algebra 1 Review) was deleted outright — directories, tests, and
 > its §4 block — and every remaining unit moved down one: old Units 2–8 are now **Units 1–7**
@@ -3035,6 +3041,31 @@ The root `Makefile` is now a thin `include shared/root.mk`, matching the unit an
 lesson emits all five products. Generated `.pptx` packages check out structurally — well-formed
 XML throughout, no dangling relationships, every part content-typed, slide count matching the PDF.
 
+### Course title — "Algebra 2", nothing else (2026-08-22)
+
+Every place a course title renders, it reads **`Algebra 2`**. No teacher name, no school year.
+The old `Algebra 2: Shepherd: 2026--2027` form is gone from the whole tree.
+
+Where it lives, and what it is now:
+
+| Surface | Source | Now |
+| --- | --- | --- |
+| Lesson plan title block | `unitXX/lessonYY/main.tex` | `{\Large\bfseries \CourseName \\` with `\newcommand{\CourseName}{Algebra 2}` |
+| Packet cover banner | `.../cover/main.tex` | `{\color{white}\textbf{\LARGE Algebra 2}}` |
+| Deck title slide | `.../slides/main.tex` | `Algebra 2~$\cdot$~Unit N: <Unit Title>` (literal — beamer has no `\CourseName`) |
+| Unit binder cover | `shared/cover.py` | serif `Algebra 2` + unit line; the script-font teacher name is **off** |
+| Unit cover sheet | `unitXX/unit_cover/main.tex` | already `Algebra 2` — unchanged |
+
+**`\SchoolYear` no longer exists.** Its `\newcommand` was deleted from all 44 lesson plans, from
+`assets/skeletons/lesson_plan.tex`, and from `old_templates/main.tex`; `new_lesson.py` no longer
+emits it and its `--year` flag is gone. A plan that still references `\SchoolYear` will fail with
+`Undefined control sequence` — delete the reference, do not re-add the macro.
+
+**`shared/cover.py`** keeps the signature capability but defaults it off: `title_block(...)` and
+`--teacher` default to `""` and the name + swoosh are skipped when empty. Passing
+`--teacher Shepherd` (or `TEACHER` in a unit `spec.py`) brings it back for a one-off cover.
+
+Scaffolding a new lesson: pass `--course "Algebra 2"`. There is no year to pass.
 ---
 
 ## 8. Deferred cleanup — do after Unit 7 and the finals are done

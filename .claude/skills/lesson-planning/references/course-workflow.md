@@ -10,7 +10,7 @@ lesson's parts come from.
 
 ## Course identity (read this first)
 
-This is **Algebra 2: Shepherd**, a **function-family** course for a secondary-school
+This is **Algebra 2**, a **function-family** course for a secondary-school
 audience. After a foundations unit, each unit is built around one function type
 (linear → quadratic → polynomial → rational → radical → exponential → logarithmic), and
 **every unit opens with a Lesson 0, "Characteristics of ____ Functions."** Prize concrete
