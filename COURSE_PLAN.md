@@ -8,6 +8,10 @@
 > `lesson-planning` skeletons/scaffolder/docs, and these planning docs. `\SchoolYear` was deleted
 > outright and `new_lesson.py --year` is gone. See §7 "Course title" for the per-surface spec.
 >
+> **Binder covers are gone (2026-08-22).** `shared/cover.py`, both `binder_cover/` directories,
+> and all of `unit.mk`'s binder plumbing were deleted — unit covers are designed in Claude Design
+> now and printed on their own. See §7 "Binder covers removed".
+>
 > **Status:** **The Algebra 1 review unit was dropped and the course renumbered (2026-08-20).**
 > The old Unit 1 (Foundations: Algebra 1 Review) was deleted outright — directories, tests, and
 > its §4 block — and every remaining unit moved down one: old Units 2–8 are now **Units 1–7**
@@ -3053,7 +3057,6 @@ Where it lives, and what it is now:
 | Lesson plan title block | `unitXX/lessonYY/main.tex` | `{\Large\bfseries \CourseName \\` with `\newcommand{\CourseName}{Algebra 2}` |
 | Packet cover banner | `.../cover/main.tex` | `{\color{white}\textbf{\LARGE Algebra 2}}` |
 | Deck title slide | `.../slides/main.tex` | `Algebra 2~$\cdot$~Unit N: <Unit Title>` (literal — beamer has no `\CourseName`) |
-| Unit binder cover | `shared/cover.py` | serif `Algebra 2` + unit line; the script-font teacher name is **off** |
 | Unit cover sheet | `unitXX/unit_cover/main.tex` | already `Algebra 2` — unchanged |
 
 **`\SchoolYear` no longer exists.** Its `\newcommand` was deleted from all 44 lesson plans, from
@@ -3061,11 +3064,40 @@ Where it lives, and what it is now:
 emits it and its `--year` flag is gone. A plan that still references `\SchoolYear` will fail with
 `Undefined control sequence` — delete the reference, do not re-add the macro.
 
-**`shared/cover.py`** keeps the signature capability but defaults it off: `title_block(...)` and
-`--teacher` default to `""` and the name + swoosh are skipped when empty. Passing
-`--teacher Shepherd` (or `TEACHER` in a unit `spec.py`) brings it back for a one-off cover.
+The generated binder cover also carried the name in a script face. That whole feature was
+removed the same day — see "Binder covers removed" below.
 
 Scaffolding a new lesson: pass `--course "Algebra 2"`. There is no year to pass.
+### Binder covers removed (2026-08-22)
+
+The generated binder cover is **gone from the project**. Unit covers are designed in Claude
+Design now and printed on their own, so the build no longer draws one or merges one.
+
+Deleted: `shared/cover.py` (the SVG generator), `unit01/binder_cover/main.pdf`,
+`unit02/binder_cover/{main.pdf,spec.py}`, and every binder hook in `shared/unit.mk` —
+`HAS_BINDER_COVER`, `BINDER_COVER_SRC`/`_PDF`, `PYTHON`/`COVER_SCRIPT`, the `binder_cover`,
+`_binder_cover`, and `clean_unit_cover` targets, and the `$(BINDER_COVER_PDF)` entry at the head
+of both the `student` and `key` `pdfunite` lists.
+
+Consequences:
+
+- **`make -C unitXX clean_unit_cover` and `make -C unitXX binder_cover` no longer exist.** They
+  error as unknown targets. Nothing replaces them.
+- **The unit01 and unit02 packets are 2 pages shorter** — those were the only two units that had
+  a binder cover, and it contributed the same sheet twice.
+- **The project's optional dependencies are gone with it.** `cairosvg`, the native `cairo`
+  library, and the five TeX OpenType fonts the generator needed at the OS level were required by
+  nothing else; the README section documenting them is deleted. The build now needs only XeLaTeX,
+  `latexmk`, poppler, and `python3`.
+- **`unit_cover/` is unaffected** and is *not* the same thing: it is the LaTeX unit overview page
+  (`unitXX/unit_cover/main.tex`), still compiled and still leading both unit packets.
+
+Earlier §4 status entries that describe authoring a binder cover (Unit 1, Unit 2) are left as
+written — they are dated records of what happened, superseded by this block.
+
+If a designed cover should ever be bound *into* a unit packet rather than printed separately, the
+cheap path is a prefab drop-in slot modeled on `sample_test/` — a directory whose `main.pdf` is
+merged as-is, with no generator. That is deliberately **not** built; ask for it if it is wanted.
 ---
 
 ## 8. Deferred cleanup — do after Unit 7 and the finals are done
