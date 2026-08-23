@@ -2343,7 +2343,9 @@ Per Unit 1's pattern:
 - **Course-level reference exists** in `spec/`: mid-year test and final exam
   (All Things Algebra originals) — usable as models, not for redistribution.
 
-*(Open: mid-year checkpoint placement — natural break after Unit 3.)*
+*(Resolved 2026-08-23: the **Mid-Year Exam sits in Week 16 (early January) and is cumulative
+over Units 1–4** — Unit 4's test falls on the last day before December break, which is the real
+halfway point. See the pacing ruling in §6.)*
 
 ---
 
@@ -2413,10 +2415,59 @@ Per Unit 1's pattern:
   the course capstone. Every unit applied these clauses in passing, but no lesson ever made them
   the teaching focus.
 
+- **Pacing is set against the 2026–2027 calendar (2026-08-23)** — resolved while completing the
+  school's Algebra 2 syllabus (`Algebra 2 Syllabus 26-27.docx`, Chatham Hall template). **31
+  instructional weeks, 144 school days, 50 lessons.** The ruling:
+  **two days per lesson** is the default, with a **practice-test/review day + a test day** closing
+  every unit, and a small flex bank per unit. Week map:
+
+  | Weeks | Block | Days |
+  |---|---|:--:|
+  | 1 | Course launch (1 day) + Lesson 1.0 | 3 |
+  | 1–4 | **Unit 1 — Linear** (6 lessons), test in Wk 4 | 14 |
+  | 4–8 | **Unit 2 — Quadratic** (8 lessons), test in Wk 8 | 19 |
+  | 8–11 | **Unit 3 — Polynomial** (7 lessons), test in Wk 11 | 17 |
+  | 12–15 | **Unit 4 — Rational** (8 lessons), test on the last day before December break | 18 |
+  | 16 | Cumulative review + **Mid-Year Exam** (Units 1–4) | 3 |
+  | 16–20 | **Unit 5 — Radical** (8 lessons), test in Wk 20 | 20 |
+  | 21–23 | **Unit 6 — Exponential** (6 lessons), test in the last week of February | 14 |
+  | 24 | **Quarter 3 cumulative checkpoint** — the week before Pathways & Spring Break | 5 |
+  | 25–28 | **Unit 7 — Logarithmic** (7 lessons; 7.6 capstone gets 3 days), test in Wk 28 | 19 |
+  | 29–31 | Cumulative course review, then **Final Exam** in the last week | 14 |
+
+  Consequences, all decided here:
+  - **Unit 7 is not compressed.** The earlier contingency (merge 7.1 into 7.3 if the calendar is
+    tight) is **not needed** — 7.0–7.5 fit at two days each with 7.6 at three, plus two flex days.
+    Keep that contingency on the shelf only if a unit runs long earlier in the year.
+  - **The mid-year checkpoint lands after Unit 4, not Unit 3.** §5's note said the natural break
+    was after Unit 3, but Unit 3's test falls in early November and Unit 4's on the last day
+    before December break — 4 of 7 units and 29 of 50 lessons — which is the real halfway point.
+    **The mid-year exam is cumulative over Units 1–4.** Supersedes the §5 open item.
+  - **Unit 6's test moved up to late February**, which frees the week of March 1 to be a clean
+    Quarter 3 cumulative checkpoint before the long Pathways & Spring Break — so **Unit 7 runs
+    uninterrupted after the break** instead of straddling it. February therefore carries two unit
+    tests (Unit 5 on ~Feb. 1, Unit 6 on ~Feb. 22); that is a consequence of Unit 6 being the short
+    unit.
+  - **Weeks 29–31 are a cumulative course-review block ending in the Final Exam** (14 days). This
+    was never budgeted before.
+  - The two no-SOL-standard Unit 7 lessons (7.3, 7.4) keep their full two days each, labelled
+    precalculus preparation, consistent with the 6.3 ruling.
+
+- **Students do NOT sit the Algebra 2 SOL end-of-course test — user direction, 2026-08-23.** The
+  course's only cumulative assessments are the **Mid-Year Exam** (Units 1–4) and a **cumulative
+  Final Exam**. Consequences:
+  - **No SOL review block and no testing window** in the calendar; weeks 29–31 are ordinary
+    cumulative review for the final.
+  - The syllabus carries **no reference to the SOL end-of-course assessment** anywhere.
+  - **Standards alignment is unchanged** — the course is still built on the 2023 VA SOL Algebra 2
+    standards, and every lesson keeps its A2.* citations. The standards drive the content; the
+    state test simply is not administered.
+  - **Open:** the unit tests' Part B currently specifies "SOL-style" multiple-choice items
+    (§4 Unit 1 pattern, followed by all seven units). With no EOC to prepare for, that framing is
+    now decorative. Left as-is — do NOT re-author seven units of tests over it — but decide the
+    wording before the next test is written.
+
 **Still open:**
-- **Pacing:** days per lesson / target unit lengths, and how they fit the calendar. **Unit 7 at 7
-  lessons is the longest of the back half** — if the calendar is tight, the compression candidate
-  is merging 7.1 into 7.3 (intro + properties as one dense lesson), *not* cutting 7.6.
 - **`A2.EI.2c` (quadratic inequalities in one variable) is uncovered** — cited by no lesson, and
   Unit 2 is marked complete. Unlike `A2.ST.1` and `A2.ST.3`, which are *knowingly* out of scope per
   the decisions above, this clause was never declared out. Needs a home. See §8.
