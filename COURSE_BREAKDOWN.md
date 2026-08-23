@@ -193,7 +193,8 @@ B Multiple Choice (6 items incl. SOL-style, 12 pts), C Short Answer & Computatio
 (8 items, 40 pts), D Extended Response (2 justify items, 12 pts). Practice and actual are
 parallel with different numbers and contexts.
 
-*Open:* mid-year checkpoint placement — the natural break is after Unit 3.
+*Resolved (2026-08-23):* the **Mid-Year Exam is in Week 16 and covers Units 1–4** — Unit 4's
+test lands on the last day before December break. Full 31-week pacing map in COURSE_PLAN.md §6.
 
 ---
 
