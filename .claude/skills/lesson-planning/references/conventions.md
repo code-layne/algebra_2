@@ -281,7 +281,7 @@ Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: **5/
 Warm-Up (the seeds) → Experience & Formalize: the Activity (what students do | what the teacher does —
 questions, cues, prompts) → Debrief: Formalize (the red-ink moves + QuickNotes walkthrough) →
 **Application** (the worked-together problem) → **Check Your Understanding — practice, *not
-scored*** (the lesson's whole practice set — there is no homework) → Watch For → Close & Preview
-(nothing is assigned) → Teacher Notes ([Warm-Up], [Experience & Formalize]). See `references/components.md` for the
+scored*** (the packet's whole practice set; graded homework is a DeltaMath set) → Watch For → Close & Preview
+(assign the DeltaMath set) → Teacher Notes ([Warm-Up], [Experience & Formalize]). See `references/components.md` for the
 full spec and `references/course-workflow.md` for where content comes from. *(Legacy plans from
 before 2026-08 use the old Hook / Explicit Instruction / Tiers order.)*

@@ -71,7 +71,8 @@
 > group activity applying prior knowledge and stretching into the new material, then a QuickNotes
 > box for the formal notes/examples, then an Application worked together, then a
 > Check-Your-Understanding practice section)**. **No tiered instruction, no separate guided-notes
-> or exit-ticket components — and, as of 2026-08-20, no homework component either.** Teacher circulates with questions/cues/prompts, not answers; the debrief attaches
+> or exit-ticket components — and no homework *component* either (2026-08-20; since 2026-08-27
+> homework exists again, but as a **DeltaMath** set outside the packet).** Teacher circulates with questions/cues/prompts, not answers; the debrief attaches
 > the vocabulary to what the groups found. **Lesson 1.0 is the pilot and is rebuilt in this shape
 > (2026-08-19)** — see the Unit 1 block in §4 for the component map, build evidence, and what the
 > build system needed. **The `lesson-planning` skill is updated to the EFFL schematic
@@ -129,6 +130,22 @@
 > `STUDENT_ORDER`/`KEYED_PAIRS` in `shared/lesson.mk` and from `KEYED` in `new_lesson.py`. They are
 > retained *only* to keep not-yet-regenerated lessons building; when none remain, homework leaves
 > the build system too and the word is gone from the project.
+>
+> **HOMEWORK IS BACK — but in DeltaMath, not in the packet. User direction 2026-08-27, reversing
+> the 2026-08-20 "no homework" decision above.** Nothing changes about the repo's component set:
+> there is still **no `homework` directory** and the scaffolder still must not create one. What
+> changed is the *language*: a lesson no longer claims that Check Your Understanding is the only
+> practice or that nothing is assigned. CYU stays exactly what it was — **in-class, unscored,
+> cover score column reads NA, students keep the packet** — and the graded practice is a
+> **DeltaMath** set assigned outside the packet. Concretely, every EFFL lesson now carries a
+> **fourth cover row, `4 & Homework & In DeltaMath --- <due date> & \blank{1.2cm}`** (scored, so
+> it takes a blank, not NA), the Keep-in-Mind box points at DeltaMath, the plan's Close & Preview
+> says *assign the DeltaMath set* instead of *nothing is assigned*, and the deck's final block is
+> titled **Homework: DeltaMath**. **Lessons 1.0, 1.1 and 1.2 are swept against this (2026-08-27)**
+> — all three build EXIT 0 with blank/key parity at 10 pages each. **Open:** 1.1 and 1.2 carry the
+> placeholder due date *"due date posted with the assignment"*; only 1.0 has a real one
+> (Sun 30 Aug, 11:59 pm). Legacy lessons 1.3–1.5 keep their in-repo `homework` dirs and were not
+> touched.
 >
 > **THE COMPONENT IS NOW CALLED "EXPERIENCE & FORMALIZE" — user direction, 2026-08-20.** The
 > `experience` component is labelled **Experience & Formalize** everywhere a student or a teacher
@@ -271,7 +288,22 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 ### Unit 1 — Linear Functions
 > **Lessons 1.0, 1.1, and 1.2 regenerated in the four-part *Experience & Formalize* shape
 > (2026-08-20).** Component set for all three: `cover`, `warmup`(+key), **`experience`**(+key),
-> `slides`, plan. No `homework` anywhere in Unit 1's first three lessons.
+> `slides`, plan. No `homework` *directory* anywhere in Unit 1's first three lessons.
+>
+> **DeltaMath homework swept into 1.0/1.1/1.2 (2026-08-27) — see the reversal entry in §Status.**
+> Every "no homework" / "nothing is assigned" claim is gone from all three lessons' cover, plan,
+> deck, and Experience & Formalize (blank *and* key). Each cover now carries **row 4, Homework —
+> In DeltaMath**, scored with a `\blank{1.2cm}`; each plan's Close & Preview and glance-table close
+> row say *assign the DeltaMath set*; each deck's final block is **Homework: DeltaMath**. CYU is
+> unchanged: in-class, unscored, score column **NA**. **Build evidence (2026-08-27):**
+> `make -C unit01/lesson{00,01,02} all` → EXIT 0 for all three; cover 1pp, warm-up 1/1,
+> experience **5/5**, packets **10/10** student/key for each; **zero** overfull vboxes in all three
+> decks. The `lesson-planning` skill, its four reference docs, the `cover`/`lesson_plan`/`slides`
+> skeletons, and `new_lesson.py`'s header comment are updated to match, so new lessons scaffold
+> with the DeltaMath row and never re-assert "no homework."
+> **Open:** 1.1 and 1.2 carry the placeholder due date *"due date posted with the assignment"* —
+> only 1.0 has a real date (Sun 30 Aug, 11:59 pm). Legacy lessons **1.3–1.5 were not touched** and
+> keep their in-repo `homework` dirs.
 >
 > **Lesson 1.0 re-cut from three parts to four (2026-08-20).** The old three-part experience
 > (Activity / QuickNotes / Practice) plus an 8-problem homework became: **Activity** (unchanged

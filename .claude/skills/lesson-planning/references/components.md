@@ -13,7 +13,7 @@ Contents: [Lesson plan](#lesson-plan) · [Cover](#cover) · [Warm-up](#warm-up) 
 
 **The lesson model is Math Medic EFFL** — experience first, formalize later. The student packet
 is cover → warm-up → Experience & Formalize. There are **no** guided-notes, activity, or exit-ticket
-components, **no tiers**, and — since 2026-08-20 — **no homework**: that component's unscored
+components, **no tiers**, and **no in-repo homework component** (since 2026-08-27 the graded homework is a **DeltaMath** set assigned outside the packet): that component's unscored
 Check Your Understanding is a lesson's entire practice set, done in class, packet kept by the
 student. (Lessons authored before those dates still carry the old components; new and regenerated
 lessons must not.)
@@ -69,15 +69,15 @@ order (same skeleton for review and primary-content lessons):
    asks while the students hold the pen, and the concept the "what if we change a number?" part is
    really testing.
 10. **Check Your Understanding — the lesson's practice, *not scored*** — `skillbox{redbox}`: the
-   ~6 items itemized, pairing (pairs → solo), an explicit "**there is no homework**, so this is the
+   ~6 items itemized, pairing (pairs → solo), an explicit "these are the **in-class** practice, so this is the
    whole practice set", an explicit "these carry no point value — do not collect for a grade (the
    cover's score column reads **NA**)", **which item is the formative check** with the sort
    categories, and — since 10 minutes rarely covers six items — **which items are the priority and
    which are the early-finisher bank**.
 11. **Watch For** — `skillbox{redbox}`: misconceptions to catch while circulating, keyed to item
     numbers, plus cold-call prompts.
-12. **Close & Preview** — `skillbox{goldbox}`: **nothing is assigned** — say so explicitly, name
-    what changed today, and preview the next lesson. Never write a homework paragraph here.
+12. **Close & Preview** — `skillbox{goldbox}`: **assign the DeltaMath set** with its due date, name
+    what changed today, assign the **DeltaMath** set with its due date, and preview the next lesson.
 13. **Teacher Notes** — one `teachernote` per component, in packet order:
     `\begin{teachernote}[Warm-Up]`, `[Experience \& Formalize]`. Pacing splits, must-land
     moments, the early-finisher move, how to sort the formative check. **This is the only place
@@ -98,7 +98,10 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
 - `tocbox` — a `tabularx` with three rows (Warm-Up, Experience & Formalize,
   **Check Your Understanding**) +
   a Total row. Score cells are `\blank{1.2cm}` **except Check Your Understanding, which prints
-  `\textbf{NA}`** — it is practice and is not scored. **No homework row.** Keep descriptions
+  `\textbf{NA}`** — it is practice and is not scored. **Row 4 is the graded DeltaMath homework**
+  (`4 & Homework & In \textbf{DeltaMath} --- \emph{due <date>} & \blank{1.2cm} \\`) — it IS scored,
+  so it takes a `\blank{}`. The table is four columns (`c l X r`); every row needs four cells.
+  Keep descriptions
   spoiler-free too.
 - `remindbox` (Keep in Mind) — describes the **EFFL process only** ("you and your group will
   work out … using what you already know — and only afterward will we name what you found")
@@ -171,12 +174,12 @@ breaks drift.
 4. **Check Your Understanding** — a `notesbox` titled
    `Check Your Understanding \quad {\normalfont\itshape (practice --- not scored)}` with
    **~6 items in new contexts**, worked pairs → solo. **This is the lesson's entire practice set —
-   there is no homework** — so it must span the lesson's whole standard, not just sample it: the
+   it is the packet's only practice** — so it must span the lesson's whole standard, not just sample it: the
    core procedure, a *deliberate contrast pair* (same task, opposite condition — the pair that
    surfaces the target misconception), the special case the activity dropped plus its boundary
    ("for which $k$ does … fail?"), a **modeling item** in a fresh context with an
    interpret-the-answer follow-up, and an **SOL-style multiple-choice item as the formative check**
-   (the plan says how to sort responses). Say "there is no homework" in the box's own intro line so
+   (the plan says how to sort responses). Say in the box's own intro line that this is the in-class practice so
    students know the practice is here. Use `\answerspace` for explain items. Close the document
    with the `spiralbox` preview of the next lesson (it used to live at the end of the homework).
 

@@ -25,7 +25,7 @@ SKEL_DIR = Path(__file__).resolve().parent.parent / "assets" / "skeletons"
 # a lesson is cover / warmup / experience / slides. The `experience` directory name is a build
 # identifier (shared/lesson.mk STUDENT_ORDER/KEYED_PAIRS); the component is *labelled*
 # "Experience & Formalize" everywhere a student or teacher reads it (user direction,
-# 2026-08-20). There is NO homework: its unscored Check Your Understanding is a lesson's
+# 2026-08-20). There is no homework COMPONENT: its unscored Check Your Understanding is the packet's
 # entire practice set (user direction, 2026-08-20). The legacy homework, notes, activity, and exit_ticket components remain
 # scaffoldable by name so pre-EFFL lessons can still be regenerated, but are NOT defaults.
 KEYED = ["warmup", "experience", "homework", "notes", "activity", "exit_ticket"]

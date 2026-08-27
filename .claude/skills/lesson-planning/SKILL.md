@@ -75,17 +75,19 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
 - An **answer key** for each keyed component, as a *separate* sibling directory:
   `warmup_key`, `experience_key`. (`cover` and `slides` have no key.)
 
-  **There is no `homework` component.** Homework was dropped from the course on 2026-08-20: the
-  Experience & Formalize component's unscored **Check Your Understanding** is a lesson's entire practice set, done in
-  class, and the student keeps the packet. Never scaffold, author, or reference a `homework` dir in
-  a new lesson. (Legacy lessons still carry one — see the note below.)
+  **There is no `homework` component — but there IS homework.** The in-repo `homework` component
+  was dropped on 2026-08-20 and never came back: never scaffold, author, or reference a `homework`
+  dir in a new lesson. Since 2026-08-27 the graded homework is a **DeltaMath** set assigned
+  *outside* the packet, so a lesson must never claim "there is no homework" or "nothing is
+  assigned." Check Your Understanding stays **in-class, unscored** (cover score column **NA**) and
+  the student keeps the packet. (Legacy lessons still carry a `homework` dir — see below.)
 - **`experience` — *Experience & Formalize* — is the heart of the lesson.** One document in
   **four** parts on a page budget:
   the group **Activity** (two scenarios worked from prior knowledge, **≤2pp**), a **QuickNotes**
   box the debrief fills (**½pp**), an **Application** worked together (**½–1pp**), and
-  **Check Your Understanding** (**1–2pp**, practice — **not scored**). With homework gone, CYU is
-  the lesson's *only* practice, so author toward the **full 2pp**: ~6 items spanning the lesson's
-  whole standard, with the last one as the formative check. See `references/components.md`.
+  **Check Your Understanding** (**1–2pp**, practice — **not scored**). CYU is the lesson's only
+  *in-packet* practice, so author toward the **full 2pp**: ~6 items spanning the lesson's whole
+  standard, with the last one as the formative check. See `references/components.md`.
 - *Legacy shape:* lessons authored before the 2026-08 EFFL redesign still carry `notes`,
   `activity`, and `exit_ticket` dirs, and lessons authored before 2026-08-20 also carry a
   `homework` dir; the build accepts all of them. When touching a legacy lesson, ask whether to
@@ -232,13 +234,18 @@ and a worked skeleton for every component and its key. Hold to these invariants:
   debrief, the Application, or Check Your Understanding — not the activity.
 - **The Experience & Formalize page budget (non-negotiable).** Activity **≤2pp** · QuickNotes **½pp** ·
   Application **½–1pp** · Check Your Understanding **1–2pp**. A part that runs over gets cut, not
-  carried. Prefer a *full* single CYU page over a second page that is 10% used. Because CYU is now
-  the lesson's whole practice set, the 2pp end of that range is the norm, not the exception — but
-  it is still a **ceiling**: extra practice gets cut, never spilled onto a third page or revived as
-  homework.
+  carried. Prefer a *full* single CYU page over a second page that is 10% used. Because CYU is the
+  packet's whole practice set, the 2pp end of that range is the norm, not the exception — but it is
+  still a **ceiling**: extra practice gets cut, never spilled onto a third page or turned into an
+  in-repo homework component (extra practice belongs in the DeltaMath set).
 - **Check Your Understanding is not scored.** It is practice: the cover's score column prints
   **`\textbf{NA}`** for it rather than a `\blank{}`, the plan tells the teacher to spot-check the
   formative item instead of collecting for a grade, and the deck says "practice, not a quiz."
+- **The cover carries a fourth row for DeltaMath homework** (2026-08-27):
+  `4 & Homework & In \textbf{DeltaMath} --- \emph{due <date>} & \blank{1.2cm} \\`. It IS scored,
+  so it takes a `\blank{}`, not `NA`. The plan's Close & Preview says *assign the DeltaMath set*,
+  and the deck's final block is titled **Homework: DeltaMath**. The four-column packet table is
+  `@{} c l X r @{}` — every row needs **four** cells or the table's widths collapse.
 - **The spoiler rule.** Nothing the student sees *before* the activity — the cover and the
   deck's learning-targets frame — may pre-name the vocabulary the debrief will attach. Write
   targets in plain language ("where it starts, where it hits zero, how fast it changes"), and
