@@ -305,6 +305,20 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > only 1.0 has a real date (Sun 30 Aug, 11:59 pm). Legacy lessons **1.3–1.5 were not touched** and
 > keep their in-repo `homework` dirs.
 >
+> **Lesson 1.0 deck: the third scenario removed (2026-08-27).** The activity dropped its constant
+> function long ago, but the deck still staged it as a full frame of its own — a thermostat holding
+> $T(h)=21$, with its own graph — which read to students as a third temperature story. That frame is
+> now entirely **item 2e**: *"Debrief: the story, and then the math"* — domain/range, with Sunday's
+> line drawn solid across the hours the story allows and dashed arrows off both ends for the hours
+> only the rule allows. The constant case survives as **one line of vocabulary** ($m=0 \Rightarrow
+> f(x)=b$, range $\{b\}$, no zero unless $b=0$) attached to the QuickNotes $m=0$ row, and is
+> *worked* in **CYU 4** ($c(x)=-2$). The lesson plan's debrief script was updated to match: item 3 no
+> longer tells the teacher to pose the thermostat cold, item 6 now carries the constant case, and the
+> "Why this order" note says the flat line has no scenario of its own. **Build evidence:**
+> `make -C unit01/lesson00 all` → EXIT 0; deck **11 frames / 4pp** 3-up, packets **10/10**
+> student/key, plan 6pp, **zero** overfull vboxes. No `T(h)=21` remains outside one explanatory
+> source comment.
+>
 > **Lesson 1.0 re-cut from three parts to four (2026-08-20).** The old three-part experience
 > (Activity / QuickNotes / Practice) plus an 8-problem homework became: **Activity** (unchanged
 > *Freezing Point* Saturday/Sunday pair, trimmed to 11 sub-questions — 1f folded into 1e, and the
