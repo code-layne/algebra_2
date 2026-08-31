@@ -83,7 +83,7 @@ Do the same for the other units from `COURSE_PLAN.md`.
 | **Hook** | a scenario or graph that motivates the topic |
 | **Learning Targets** (cover, "I can…") | one target per priority skill (or per standard), reworded as "I can …" |
 | **Standards line** (lesson plan) | the SOL/other codes the user supplied for this lesson; record them for the audit trail |
-| Activity / practice contexts | original scenarios and practice exercising each skill; the Experience & Formalize component's two scenarios stretch prior knowledge into the new material, and Check Your Understanding — the lesson's in-class practice; the graded homework is a DeltaMath set — spans the difficulty the standards imply (no tiers) |
+| Activity / practice contexts | original scenarios and practice exercising each skill; the Group Activity's four parts apply the Guided Notes to a straightforward case, a contrast case, a comparison, and a model, and the Homework page spans the whole standard the lesson covers (no tiers) |
 
 Keep wording in the course's teaching voice. The recurring move: read/interpret a graph or
 result, *then* justify — "what does this feature mean here, and how do you know?" Where a lesson
