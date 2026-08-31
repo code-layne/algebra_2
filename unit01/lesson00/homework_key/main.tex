@@ -1,0 +1,137 @@
+%! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Homework (Answer Key)
+% Mirrors homework/main.tex; each \writelines{2} is answered with exactly two \ansline's.
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
+\begin{document}
+
+\pageheader{Unit 1, Lesson 1.0}{Homework --- Answer Key}
+
+\vspace{0.10in}
+
+\begin{notesbox}{Practice}
+Show your work. For every linear function, remember the two questions are separate: \emph{which way
+it moves} (increasing / decreasing) and \emph{where it sits} (positive / negative).
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Read the rule.} Complete the feature list for $f(x) = 2x + 2$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l l l@{}}
+      Slope: \ans{$2$} & $y$-intercept: \ans{$(0,2)$} & Zero: \ans{$(-1,0)$} \\
+      Domain: \ans{all reals} & Range: \ans{all reals} & Incr.\ or decr.? \ans{increasing} \\
+      Positive when $x$ \ans{$>-1$} & Negative when $x$ \ans{$<-1$} & Sign flips at: \ans{$x=-1$}
+    \end{tabular}
+    \end{center}
+
+  \boxguard[16]
+  \item \textbf{Same zero, opposite behaviour.} Both lines have their zero at $x = 1$.
+    \begin{center}
+    \begin{minipage}[c]{0.34\linewidth}\centering
+    \begin{tikzpicture}[scale=0.40]
+      \lgrid{-3}{5}{-4}{4}
+      \draw[very thick, forest] (-2.5,-3.5)--(4.5,3.5) node[above left, font=\scriptsize, forest]{$f$};
+      \draw[very thick, navy] (-2.5,3.5)--(4.5,-3.5) node[below left, font=\scriptsize, navy]{$g$};
+      \fill[charcoal] (1,0) circle (3.4pt);
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.62\linewidth}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Increasing: \ans{$f$} \; Decreasing: \ans{$g$}
+      \item $f(x)>0$ when $x$ \ans{$>1$} \quad $g(x)>0$ when $x$ \ans{$<1$}
+      \item At $x=3$: $f$ is \ans{positive} \; $g$ is \ans{negative}
+    \end{enumerate}
+    \end{minipage}
+    \end{center}
+    (d) Why can a line's sign change at its \emph{zero} and nowhere else?
+    \ansline{The sign changes only where the graph crosses the $x$-axis, and that crossing is the zero.}
+    \ansline{A non-horizontal line crosses the axis exactly once, so it changes sign exactly once.}
+
+  \item \textbf{From a table.} A linear function is given below. \emph{Watch the step in $x$.}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $2$ & $4$ & $6$ \\ \hline
+    $f(x)$ & $-6$ & $-3$ & $0$ & $3$ \\ \hline
+    \end{tabular}
+    \end{center}
+    Slope $m = \dfrac{\Delta y}{\Delta x} = \ans{$\tfrac32$}$ \quad
+    $y$-intercept: \ans{$(0,-6)$} \quad Zero: \ans{$(4,0)$} \\[4pt]
+    Increasing or decreasing? \ans{increasing} \quad $f(x)<0$ when $x$ \ans{$<4$}
+
+  \boxguard[16]
+  \item \textbf{The flat one.} The graph of $c(x) = -2$ is a horizontal line through $(0,-2)$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Slope: \ans{$0$} \; Incr., decr., or constant? \ans{constant} \;
+            Range: \ans{$\{-2\}$} \; A zero? \ans{none}
+      \item Is $c(x)$ positive or negative? \ans{negative for every $x$}
+      \item For which value of $b$ does $c(x) = b$ \emph{have} a zero? \ans{$b=0$} \;
+            And then how many zeros does it have? \ans{infinitely many --- every input}
+    \end{enumerate}
+
+  \boxguard[20]
+  \item \textbf{Model it.} A pool already holds $600$ gallons when a hose is turned on; the hose adds
+        $150$ gallons a minute, so $W(t) = 600 + 150t$ after $t$ minutes.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Slope $150$ means \ans{the pool gains 150 gal each minute} \;
+            $(0,600)$ means \ans{600 gal when the hose starts}
+      \item Find the zero of $W$ by solving $W(t) = 0$.
+        \begin{work}
+          600 + 150t &= 0 \\
+                150t &= -600 \\
+                   t &= -4
+        \end{work}
+        Does that zero mean anything in this story? Explain.
+        \ansline{No. $t=-4$ is four minutes \emph{before} the hose was turned on, which the story}
+        \ansline{does not cover. It is a real feature of the line but a meaningless moment here.}
+      \item Which inputs $t$ make sense? \ans{$t\ge 0$} \; Is $W$ increasing or
+            decreasing on them? \ans{increasing}
+    \end{enumerate}
+
+  \item \textbf{Multiple choice (SOL-style).} For the linear function $y = -3x + 6$, which statement
+        is \emph{true}?
+    \begin{enumerate}[label=(\Alph*), leftmargin=2.0em, itemsep=1pt]
+      \item The function is increasing.
+      \item It is positive for all $x > 2$.
+      \item \ans{The zero is at $x = 2$.}
+      \item The $y$-intercept is $(0,-3)$.
+    \end{enumerate}
+    Name one of the other three and say why it is false.
+    \ansline{\textbf{C} is correct. \textbf{A} is false: $m=-3<0$, so the function is decreasing.}
+    \ansline{(\textbf{B} has the sign backwards --- it is positive for $x<2$; \textbf{D} reads the slope as the intercept.)}
+\end{enumerate}
+\end{notesbox}
+
+\boxguard[18]
+\begin{extensionbox}
+\textbf{Build and reason.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item A line has $y$-intercept $(0,-5)$ and its zero at $x = 2$. Find the slope, then write the
+        rule.
+        \begin{work}
+          m &= \frac{0 - (-5)}{2 - 0} \\
+            &= \frac{5}{2} \\
+          f(x) &= \tfrac52 x - 5
+        \end{work}
+  \item A classmate claims a linear function can be positive only between $x=1$ and $x=4$, and
+        negative everywhere else. Explain why no line can do that.
+        \ansline{That would need the sign to change twice, at $x=1$ and again at $x=4$ --- so two zeros.}
+        \ansline{A non-horizontal line has exactly one zero, and a horizontal one never changes sign.}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 1.1: Linear Functions.} Today you \emph{read} a line's characteristics
+off its graph, table, and rule. Next you run it backwards: a slope and a point will let you
+\emph{write} the equation --- three different ways --- and shifting the parent line $y=x$ will graph
+it.
+\end{spiralbox}
+
+\end{document}

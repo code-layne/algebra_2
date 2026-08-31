@@ -1,6 +1,6 @@
 %! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Slides (Beamer)
-% Deck follows the lesson's EFFL flow: launch → warm-up → activity → debrief (formalize) →
-% application → Check Your Understanding. Graded homework is a DeltaMath set.
+% Deck follows the lesson's gradual-release flow: hook → warm-up → guided notes (I do / we do) →
+% group activity → debrief → close & homework.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -8,15 +8,13 @@
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
-% Temperature grid used by the activity: h on 0..7, T on -8..8, h-axis drawn at T=0.
+% Temperature grid used by the hook and the activity: h on 0..7, T on -8..8.
 \newcommand{\tempgrid}{%
   \draw[step=1, linegray!45, thin] (0,-8) grid (7,8);
   \draw[->, thick, charcoal] (0,0)--(7.6,0) node[right, font=\tiny]{$h$};
   \draw[->, thick, charcoal] (0,-8.6)--(0,8.8) node[above, font=\tiny]{$T$};
   \foreach \x in {1,...,7} \node[charcoal, font=\tiny, below] at (\x,0){\x};
   \foreach \y in {-8,-4,4,8} \node[charcoal, font=\tiny, left] at (0,\y){\y};}
-% "Red ink" — the formal label the teacher adds on top of student work during the debrief.
-\newcommand{\redink}[1]{{\color{redacc}\bfseries #1}}
 
 \begin{document}
 
@@ -35,24 +33,20 @@
 
 % LEARNING TARGETS
 \begin{frame}[t, plain]
-  \forestheader{Today: experience first, formalize later}
-  \sectionlabel{Learning targets}
-  % Spoiler-free (EFFL): plain-language targets — the debrief attaches the vocabulary later.
-  By the end of today, I can\ldots
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
   \begin{itemize}\setlength{\itemsep}{6pt}
-    \item read the story a straight-line graph tells --- where it \textbf{starts}, where it
-          \textbf{hits zero}, how fast it \textbf{changes} --- and say what each means in the
-          situation;
-    \item tell the difference between \emph{where a graph sits} and \emph{which way it is
-          heading};
-    \item decide which inputs and outputs \textbf{make sense} --- for the math, and for the story
-          it models.
+    \item Find the \textbf{slope} of a line --- its constant \textbf{rate of change} --- from a
+          graph, a table, or any two points.
+    \item Find the \textbf{$y$-intercept} and the \textbf{zero}, and say what each one means in a
+          situation.
+    \item Say where a line is \textbf{increasing / decreasing / constant}, and where it is
+          \textbf{positive / negative}.
+    \item State the \textbf{domain} and \textbf{range} --- for the rule, and for the story.
   \end{itemize}
   \vspace{4pt}
-  \begin{block}{How today works}
-    Warm-up $\to$ \textbf{Freezing Point} with your group $\to$ we name what you found $\to$ one
-    we do together $\to$ Check Your Understanding. Practice happens here; the graded set is in
-    \textbf{DeltaMath}.
+  \begin{block}{How today runs}
+    Warm-up (5) $\to$ notes together (15) $\to$ group activity (25) $\to$ debrief (10) $\to$ close (5).
   \end{block}
 \end{frame}
 
@@ -61,274 +55,207 @@
   \forestheader{Warm-Up: three things you already know}
   \sectionlabel{5 minutes --- alone, then check with a neighbor}
   \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
+    \begin{column}{0.55\textwidth}
       \begin{enumerate}\setlength{\itemsep}{6pt}
-        \item Read the coordinates of $A$, $B$, $C$, $D$. Which point is \emph{on} an axis?
-        \item $g(x)=3x-6$: find $g(0)$, $g(2)$, $g(4)$ and write each as a point. For what $x$ is
-              $g(x)=0$?
-        \item Continue the table $5, 8, 11, \ldots$ and write the rule.
+        \item Read the coordinates of $A$, $B$, $C$, $D$. Which one is \emph{on} the $y$-axis?
+              On the $x$-axis?
+        \item $g(x)=3x-6$: find $g(0)$, $g(2)$, $g(4)$ and write each as a point. Then: for what
+              $x$ is $g(x)=0$?
+        \item Continue the table $5, 8, 11, \dots$ and write a rule for $y$.
       \end{enumerate}
-    \end{column}
-    \begin{column}{0.40\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.36]
-        \lgrid{-4}{4}{-4}{4}
-        \fill[forest] (3,2) circle (4pt)   node[above right, font=\tiny, charcoal]{$A$};
-        \fill[forest] (-2,-3) circle (4pt) node[below left, font=\tiny, charcoal]{$B$};
-        \fill[forest] (0,-1) circle (4pt)  node[below right, font=\tiny, charcoal]{$C$};
-        \fill[forest] (-3,0) circle (4pt)  node[above left, font=\tiny, charcoal]{$D$};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% ACTIVITY LAUNCH
-\begin{frame}[t, plain]
-  \forestheader{Experience \& Formalize: Freezing Point}
-  \sectionlabel[goldacc]{Groups of 3--4 $\cdot$ 20 minutes}
-  \begin{columns}[T]
-    \begin{column}{0.60\textwidth}
-      On a cold weekend the number that matters is \textbf{zero}: above it the roads are wet,
-      below it they are ice.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item \textbf{Saturday morning:} $-6\,^\circ$C at 6 a.m., \emph{warming} $2^\circ$ per hour.
-        \item \textbf{Sunday evening:} $6\,^\circ$C at 4 p.m., \emph{cooling} $2^\circ$ per hour.
-      \end{itemize}
-      \vspace{4pt}
-      \begin{block}{Your job}
-        Use what you already know --- tables, rules, points. For \emph{every} answer, be ready to
-        show me \textbf{where you see it on the graph}.
-      \end{block}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \centering
-      \begin{tikzpicture}[x=0.42cm, y=0.2cm]
-        \tempgrid
-        \draw[very thick, forest] (0,-6)--(7,8);
-        \draw[very thick, navy] (0,6)--(7,-8);
-        \fill[charcoal] (0,-6) circle (3pt);
-        \fill[charcoal] (0,6) circle (3pt);
-        \fill[charcoal] (3,0) circle (3pt);
-
-        \node[forest, font=\tiny, right] at (5.6,6.2){Sat};
-        \node[navy, font=\tiny, right] at (5.6,-4.2){Sun};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% DEBRIEF 1 — intercepts and slope
-\begin{frame}[t, plain]
-  \forestheader{Debrief: naming what you found (1)}
-  \sectionlabel[redacc]{Saturday: $T(h)=2h-6$}
-  \begin{columns}[T]
-    \begin{column}{0.60\textwidth}
-      \small
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item ``Same $+2$ every hour'' $\to$ \redink{constant rate of change}. A rule with one is a
-              \redink{linear function}, $f(x)=mx+b$; the constant is the \redink{slope}
-              $m=\dfrac{\Delta y}{\Delta x}=\dfrac{\text{rise}}{\text{run}}$.
-        \item The crossing on the vertical axis, $(0,-6)$ $\to$ the \redink{$y$-intercept} $(0,b)$:
-              the starting value. Set $x=0$.
-        \item The crossing on the horizontal axis, $(3,0)$ $\to$ the \redink{$x$-intercept}, the
-              \redink{zero}: the input where the output is $0$. Solve $f(x)=0$.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \centering
-      \begin{tikzpicture}[x=0.42cm, y=0.2cm]
-        \tempgrid
-        \draw[very thick, forest] (0,-6)--(7,8);
-        \draw[semithick, redacc, dashed] (4,2)--(5,2)--(5,4);
-        \node[redacc, font=\tiny, right] at (5.05,3){$+2$};
-        \fill[redacc] (0,-6) circle (3pt) node[right, font=\tiny, redacc]{$(0,-6)$};
-        \fill[redacc] (3,0) circle (3pt)  node[above left, font=\tiny, redacc]{$(3,0)$};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% DEBRIEF 2 — direction and sign
-\begin{frame}[t, plain]
-  \forestheader{Debrief: naming what you found (2)}
-  \sectionlabel[redacc]{Saturday vs.\ Sunday --- same zero, opposite behavior}
-  \begin{columns}[T]
-    \begin{column}{0.60\textwidth}
-      \small
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item ``Going up'' / ``going down'' $\to$ \redink{increasing} / \redink{decreasing}, read
-              left to right. Decided by the \redink{sign of the slope}: $+2$ vs.\ $-2$.
-        \item ``Above freezing'' / ``below freezing'' $\to$ \redink{positive} ($f(x)>0$, graph above
-              the axis) / \redink{negative} ($f(x)<0$, below). The sign can only switch at a
-              \redink{zero}.
-        \item Saturday: negative \emph{before} $h=3$, positive after. Sunday: positive before
-              $h=3$, negative after.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \centering
-      \begin{tikzpicture}[x=0.42cm, y=0.2cm]
-        \fill[greenbg] (0,0) rectangle (7,8);
-        \fill[redbg] (0,-8) rectangle (7,0);
-        \tempgrid
-        \draw[very thick, forest] (0,-6)--(7,8);
-        \draw[very thick, navy] (0,6)--(7,-8);
-        \fill[charcoal] (3,0) circle (3pt);
-
-        \node[greenacc, font=\tiny] at (1.2,7){$T>0$};
-        \node[redacc, font=\tiny] at (1.2,-7){$T<0$};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% DEBRIEF 3 — positive is not increasing
-\begin{frame}[t, plain]
-  \forestheader{``Positive'' is not ``increasing''}
-  \sectionlabel[goldacc]{The key distinction --- your answer to 2c}
-  \begin{itemize}\setlength{\itemsep}{7pt}
-    \item At 5 p.m.\ Sunday the temperature is $4^\circ$: \textbf{positive}. And it is
-          \textbf{falling}. Both at once.
-    \item \textbf{Positive / negative} asks where the graph \emph{sits}: above or below the
-          $x$-axis. It switches at the \textbf{zero}.
-    \item \textbf{Increasing / decreasing} asks which way the graph \emph{moves} as you read
-          left to right --- the sign of the \textbf{slope}.
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{They are independent}
-    Sunday's line $T(h)=6-2h$ falls everywhere, yet $T>0$ for all $h<3$. A line can be positive
-    and decreasing, or negative and increasing.
-  \end{block}
-\end{frame}
-
-% DEBRIEF 4 — domain and range: the story vs. the math
-% The activity's third scenario (the constant T(h)=21 thermostat) was dropped from the lesson,
-% so this frame is now entirely item 2e. The constant case arrives as one line of vocabulary
-% attached to the QuickNotes m=0 row; students work it in CYU 4.
-\begin{frame}[t, plain]
-  \forestheader{Debrief: the story, and then the math}
-  \sectionlabel[redacc]{Your 2e --- what a rule accepts, and what it gives back}
-  \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
-      \small
-      \begin{itemize}\setlength{\itemsep}{6pt}
-        \item The \emph{story} takes only the evening hours you listed. The \emph{rule}
-              $T(h)=6-2h$ accepts \emph{any} number, and its line runs on both ways.
-        \item \redink{Domain} = the inputs a function allows; \redink{range} = the outputs it
-              gives back. For a line that is not horizontal: domain all reals, range all reals.
-              Model a story and you keep only the inputs that make sense --- the graph becomes a
-              \emph{piece} of the line, and the range shrinks with it.
-        \item Slope $0$ is the exception: $f(x)=b$ is a \redink{constant function} --- one output,
-              so \redink{range $\{b\}$}, and it never crosses, so \redink{no zero} (unless $b=0$).
-              You work one in Check Your Understanding~4.
-      \end{itemize}
     \end{column}
     \begin{column}{0.42\textwidth}
       \centering
-      \begin{tikzpicture}[x=0.42cm, y=0.2cm]
-        \fill[goldacc!18] (0,-8) rectangle (7,8);
-        \draw[step=1, linegray!45, thin] (-2,-8) grid (8,8);
-        \draw[->, thick, charcoal] (-2,0)--(8.6,0) node[right, font=\tiny]{$h$};
-        \draw[->, thick, charcoal] (0,-8.6)--(0,8.8) node[above, font=\tiny]{$T$};
-        \foreach \x in {2,4,6} \node[charcoal, font=\tiny, below] at (\x,0){\x};
-        \foreach \y in {-8,-4,4,8} \node[charcoal, font=\tiny, left] at (0,\y){\y};
-        % Solid = the hours the story allows; dashed arrows = the rule, running past the picture.
-        \draw[very thick, navy] (0,6)--(7,-8);
-        \draw[->, semithick, navy, dashed] (0,6)--(-1.3,8.6);
-        \draw[->, semithick, navy, dashed] (7,-8)--(8.3,-10.6);
-        \fill[charcoal] (0,6) circle (3pt);
-        \fill[charcoal] (7,-8) circle (3pt);
-        \node[goldacc, font=\tiny] at (4.4,7){the story};
-      \end{tikzpicture}\\[5pt]
-      {\tiny\color{slate} Shaded: the hours the story allows. The rule keeps going.}
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-4}{4}{-4}{4}
+        \fill[forest] (3,2) circle (4pt)   node[above right, font=\scriptsize, charcoal]{$A$};
+        \fill[forest] (-2,-3) circle (4pt) node[below left, font=\scriptsize, charcoal]{$B$};
+        \fill[forest] (0,-1) circle (4pt)  node[below right, font=\scriptsize, charcoal]{$C$};
+        \fill[forest] (-3,0) circle (4pt)  node[above left, font=\scriptsize, charcoal]{$D$};
+      \end{tikzpicture}
     \end{column}
   \end{columns}
 \end{frame}
 
-% QUICKNOTES SUMMARY
+% HOOK
 \begin{frame}[t, plain]
-  \forestheader{QuickNotes: six characteristics of $f(x)=2x-4$}
-  \sectionlabel{Fill the box in your packet}
+  \forestheader{Hook: a cold Saturday morning}
+  \sectionlabel[goldacc]{Two numbers tell the whole story}
   \begin{columns}[T]
-    \begin{column}{0.40\textwidth}
+    \begin{column}{0.54\textwidth}
+      At 6:00 a.m.\ it was $-6\,^\circ$C, rising a steady $2\,^\circ$C an hour.
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $T(0)=-6$, \; $T(1)=-4$, \; $T(2)=-2$, \; $T(4)=2$
+        \item It reaches $0\,^\circ$ at $h=3$ --- 9:00 a.m.
+      \end{itemize}
+      \vspace{3pt}
+      \emph{Where it starts} and \emph{how fast it changes}. And one moment splits the morning into
+      ``icy'' and ``not.''
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.52cm, y=0.20cm]
+        \tempgrid
+        \draw[very thick, forest] (0,-6)--(7,8);
+        \fill[charcoal] (0,-6) circle (3pt);
+        \fill[charcoal] (3,0) circle (3pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% NOTES 1 — LINEAR / SLOPE
+\begin{frame}[t, plain]
+  \forestheader{Notes 1: linear means the rate of change is constant}
+  \sectionlabel{Slope}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      The differences in the Saturday table are $+2$, $+2$, $+2$ --- \emph{constant}. That is what
+      makes it \textbf{linear}, and the constant is the \textbf{slope}.
+      \[ m=\frac{\Delta y}{\Delta x}=\frac{\text{rise}}{\text{run}}=\frac{y_2-y_1}{x_2-x_1}
+         \qquad f(x)=mx+b \]
+      From $(1,-2)$ and $(3,2)$: \; $m=\dfrac{2-(-2)}{3-1}=\dfrac{4}{2}=2$.
+      \vspace{2pt}\\
+      \emph{Any} two points work --- the rate is constant.
+    \end{column}
+    \begin{column}{0.42\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.40]
         \lgrid{-2}{6}{-6}{6}
         \draw[very thick, forest] (-1,-6)--(5,6);
-        \draw[semithick, navy, dashed] (2,0)--(3,0)--(3,2);
-        \fill[charcoal] (0,-4) circle (3.5pt) node[left, font=\tiny]{$(0,-4)$};
-        \fill[charcoal] (2,0) circle (3.5pt) node[above left, font=\tiny]{$(2,0)$};
-      \end{tikzpicture}
-    \end{column}
-    \begin{column}{0.58\textwidth}
-      \footnotesize
-      \begin{enumerate}\setlength{\itemsep}{3pt}
-        \item \textbf{Slope:} $\tfrac{\text{rise}}{\text{run}}=\tfrac{2}{1}=2$ (constant)
-        \item \textbf{$y$-intercept:} $(0,-4)$
-        \item \textbf{$x$-intercept / zero:} $(2,0)$, where $f(x)=0$
-        \item \textbf{Increasing} (slope $>0$)
-        \item \textbf{Positive} for $x>2$, \textbf{negative} for $x<2$
-        \item \textbf{Domain:} all reals \quad \textbf{Range:} all reals
-      \end{enumerate}
+        \draw[thick, navy, dashed] (2,0)--(3,0)--(3,2);
+        \node[navy, font=\tiny] at (2.5,-0.8){run $1$};
+        \node[navy, font=\tiny, right] at (3.1,1){rise $2$};
+        \fill[charcoal] (0,-4) circle (4pt);
+        \fill[charcoal] (2,0) circle (4pt);
+      \end{tikzpicture}\\[2pt]
+      {\scriptsize $f(x)=2x-4$}
     \end{column}
   \end{columns}
 \end{frame}
 
-% APPLICATION — worked together
+% NOTES 2 — INTERCEPTS
 \begin{frame}[t, plain]
-  \forestheader{Application: the car-wash card}
-  \sectionlabel[goldacc]{We do this one together $\cdot$ 7 minutes}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
-      \small
-      A gift card starts with \textbf{\$40}. Each wash costs \textbf{\$8}, so after $w$ washes the
-      balance is $B(w) = 40 - 8w$.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item What does the \textbf{slope} $-8$ mean here? The \textbf{$y$-intercept} $(0,40)$?
-        \item Solve $B(w) = 0$. What does the \textbf{zero} mean --- in \emph{washes}?
-        \item Which inputs $w$ make sense? Is $B$ increasing or decreasing on them?
-      \end{itemize}
-      \vspace{2pt}
-      \begin{block}{Now change one number}
-        A wash costs \textbf{\$10} instead. Sooner or later? And on the graph --- does the line
-        \emph{start} somewhere else, get \emph{steeper}, or both?
-      \end{block}
-    \end{column}
-    \begin{column}{0.40\textwidth}
-      \centering
-      \begin{tikzpicture}[x=0.62cm, y=0.08cm]
-        \draw[xstep=1, ystep=8, linegray!45, thin] (0,0) grid (6,40);
-        \draw[->, thick, charcoal] (0,0)--(6.6,0) node[right, font=\tiny]{$w$};
-        \draw[->, thick, charcoal] (0,0)--(0,44) node[above, font=\tiny]{$B$};
-        \foreach \y in {8,16,24,32,40} \node[charcoal, font=\tiny, left] at (0,\y){\y};
-        \foreach \x in {1,...,6} \node[charcoal, font=\tiny, below] at (\x,0){\x};
-        \draw[very thick, forest] (0,40)--(5,0);
-        \fill[charcoal] (0,40) circle (2.6pt);
-        \fill[charcoal] (5,0) circle (2.6pt);
-        \draw[very thick, redacc, dashed] (0,40)--(4,0);
-        \node[redacc, font=\tiny, right] at (2.6,14){\$10 a wash};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% CHECK YOUR UNDERSTANDING — in-class practice, not a quiz. Homework is in DeltaMath.
-\begin{frame}[t, plain]
-  \forestheader{Check Your Understanding}
-  \sectionlabel{Practice, not a quiz $\cdot$ pairs for 1--3, on your own for 4--6}
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item Six exercises: a graphed line, two lines that \emph{share} a zero, a table (watch the
-          step in $x$), the flat line, a pool model, and one multiple-choice item.
-    \item For every feature: \emph{where do you see it} --- on the graph, in the table, in the rule?
-    \item Short on time? Do \textbf{1, 2, 5, 6} first.
+  \forestheader{Notes 2: where the graph meets the axes}
+  \sectionlabel{Intercepts and zeros}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item \textbf{$y$-intercept} $(0,b)$: set $x=0$. \; The \emph{starting value}.
+    \item \textbf{$x$-intercept}, the \textbf{zero}, $(a,0)$: solve $f(x)=0$. \; The moment the
+          quantity runs out --- or crosses over.
   \end{itemize}
   \vspace{4pt}
-  \begin{block}{Homework: DeltaMath}
-    This page is \textbf{not scored} and you keep it; I will look at item~6 as you work.
-    Your graded set is in \textbf{DeltaMath} --- the due date is posted there.
+  \begin{block}{Worked: $f(x)=2x-4$}
+    $y$-intercept $(0,-4)$, straight off the rule. \; Zero: $2x-4=0 \Rightarrow 2x=4 \Rightarrow x=2$,
+    so $(2,0)$. Check both against the graph.
+  \end{block}
+\end{frame}
+
+% NOTES 3 — MOVES vs SITS
+\begin{frame}[t, plain]
+  \forestheader{Notes 3: which way it \emph{moves}, where it \emph{sits}}
+  \sectionlabel[redacc]{Two different questions}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Which way it moves}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $m>0$: \textbf{increasing}
+        \item $m<0$: \textbf{decreasing}
+        \item $m=0$: \textbf{constant}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Where it sits}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $f(x)>0$: \textbf{above} the $x$-axis
+        \item $f(x)<0$: \textbf{below} it
+        \item the sign switches only at a \textbf{zero}
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{block}{Careful: ``positive'' is not ``increasing''}
+    Sunday: $g(h)=6-2h$. At $h=1$, $g(1)=4$ --- a \emph{positive} number --- and the temperature is
+    \emph{falling}. Both at once.
+  \end{block}
+\end{frame}
+
+% NOTES 4 — DOMAIN / RANGE + PRACTICE
+\begin{frame}[t, plain]
+  \forestheader{Notes 4: domain and range --- the math, and the story}
+  \sectionlabel{And your turn}
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item Not horizontal: domain \textbf{all reals}, range \textbf{all reals}.
+    \item Horizontal $c(x)=b$: slope $0$, range $\{b\}$, and \emph{no} zero unless $b=0$ --- and then
+          \emph{every} input is one.
+    \item In a story, the domain shrinks to the inputs that make sense.
+  \end{itemize}
+  \vspace{5pt}
+  \begin{block}{Your turn (practice box): $h(x)=-2x+6$}
+    Slope? \; $y$-intercept? \; Increasing or decreasing? \; Solve $-2x+6=0$ for the zero. \;
+    Where is $h$ positive? Negative? \; Domain and range?
+  \end{block}
+\end{frame}
+
+% GROUP ACTIVITY LAUNCH
+\begin{frame}[t, plain]
+  \forestheader{Group Activity: \emph{Freezing Point}}
+  \sectionlabel[goldacc]{Groups of 3--4 $\cdot$ 25 minutes}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{enumerate}\setlength{\itemsep}{4pt}
+        \item \textbf{Saturday morning} --- rising $2^\circ$/hr from $-6^\circ$. Table, rule, both
+              intercepts, slope, sign intervals.
+        \item \textbf{Sunday evening} --- falling $2^\circ$/hr from $6^\circ$. Same toolkit, plus
+              the story-vs-rule domain question.
+        \item \textbf{Side by side} --- same zero, opposite signs.
+        \item \textbf{Model it} --- the \$40 car-wash card, $B(w)=40-8w$.
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.50cm, y=0.19cm]
+        \tempgrid
+        \draw[very thick, forest] (0,-6)--(7,8);
+        \draw[very thick, navy] (0,6)--(7,-8);
+        \fill[charcoal] (3,0) circle (3pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \textbf{The rule:} for every answer, be ready to show me \emph{where you see it on the graph}.
+\end{frame}
+
+% DEBRIEF
+\begin{frame}[t, plain]
+  \forestheader{Debrief: the four things to take away}
+  \sectionlabel[redacc]{10 minutes --- correct your own page as we go}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item \textbf{Part 1} labelled completely: slope $2$, $y$-intercept $(0,-6)$, zero $(3,0)$,
+          negative before 9~a.m., positive after.
+    \item \textbf{2c:} $4^\circ$ and falling. \emph{Positive} = where it \textbf{sits};
+          \emph{increasing} = which way it \textbf{moves}.
+    \item \textbf{Part 3:} both lines cross at $h=3$ --- so a line changes sign \emph{only} at its
+          zero, and therefore at most once.
+    \item \textbf{4d:} a \$10 wash does not move the start; it steepens the line, so the card runs
+          out \emph{sooner} ($w=4$).
+  \end{enumerate}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Close}
+  \sectionlabel{What changed today}
+  You walked in able to read points off a graph. You walk out able to name what a line's features
+  \emph{mean} --- where it starts, where it crosses zero, how fast it changes, which way it heads,
+  and where it sits above or below the axis.
+  \vspace{5pt}
+  \begin{block}{Homework}
+    The \textbf{Homework} page in your packet --- due next class. Six problems plus an extension:
+    a rule, two graphs sharing a zero, a table (\emph{watch the step in $x$}), the flat line, a pool
+    model, and one multiple-choice item.
   \end{block}
   \vspace{4pt}
-  \textbf{Next:} Lesson 1.1 --- using these features to \emph{write} equations of lines.
+  \textbf{Next:} Lesson 1.1 --- using these features to \emph{write} the equation of a line.
 \end{frame}
 
 \end{document}

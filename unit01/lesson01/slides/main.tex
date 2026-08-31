@@ -1,7 +1,6 @@
-%! Linear Functions: Slope, Forms \& Graphing — Unit 1, Lesson 1.1 — Slides (Beamer)
-% Deck follows the lesson's EFFL flow: title → targets → warm-up → activity launch →
-% four debrief frames (formalize) → QuickNotes summary → application → Check Your
-% Understanding. Graded homework is a DeltaMath set.
+%! Linear Functions: Slope, Forms & Graphing — Unit 1, Lesson 1.1 — Slides (Beamer)
+% Deck follows the lesson's gradual-release flow: hook → warm-up → guided notes (I do / we do) →
+% group activity → debrief → close & homework.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -9,15 +8,13 @@
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
-% The gyms' cost axes: climbs n on 0..8, cost C on 0..30.
+% Gym cost grid: climbs n on 0..8, cost C on 0..30.
 \newcommand{\gymgrid}{%
   \draw[xstep=1, ystep=3, linegray!45, thin] (0,0) grid (8,30);
   \draw[->, thick, charcoal] (0,0)--(8.7,0) node[right, font=\tiny]{$n$};
   \draw[->, thick, charcoal] (0,0)--(0,32) node[above, font=\tiny]{$C$};
   \foreach \x in {2,4,6,8} \node[charcoal, font=\tiny, below] at (\x,0){\x};
-  \foreach \y in {6,12,18,24,30} \node[charcoal, font=\tiny, left] at (0,\y){\y};}
-% "Red ink" — the formal label the teacher adds on top of student work during the debrief.
-\newcommand{\redink}[1]{{\color{redacc}\bfseries #1}}
+  \foreach \y in {6,18,30} \node[charcoal, font=\tiny, left] at (0,\y){\y};}
 
 \begin{document}
 
@@ -36,22 +33,19 @@
 
 % LEARNING TARGETS
 \begin{frame}[t, plain]
-  \forestheader{Today: experience first, formalize later}
-  \sectionlabel{Learning targets}
-  % Spoiler-free (EFFL): plain-language targets — the debrief attaches the vocabulary later.
-  By the end of today, I can\ldots
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item work out how fast something changes from \emph{any} two facts about it;
-    \item build a rule for a steady situation \textbf{even when nobody tells me the starting
-          amount};
-    \item spot when two rules that \emph{look} different are the same rule, and rewrite one into
-          the other;
-    \item say what changes about a straight-line graph when I change a number in its rule.
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item Find the \textbf{slope} from a graph or from \emph{any} two points.
+    \item Write a line in \textbf{slope-intercept}, \textbf{point-slope}, and \textbf{standard}
+          form --- even when nobody tells you the starting value.
+    \item Recognise when two equations that \emph{look} different are the same line.
+    \item Describe a line as a transformation of the parent $y=x$; identify \textbf{parallel},
+          \textbf{perpendicular}, horizontal, and vertical.
   \end{itemize}
-  \vspace{3pt}
-  \begin{block}{How today works}
-    Warm-up $\to$ \textbf{Two Receipts} with your group $\to$ we name what you found $\to$ one we
-    do together $\to$ Check Your Understanding. Practice happens here; graded set in \textbf{DeltaMath}.
+  \vspace{4pt}
+  \begin{block}{How today runs}
+    Warm-up (5) $\to$ notes together (15) $\to$ group activity (25) $\to$ debrief (10) $\to$ close (5).
   \end{block}
 \end{frame}
 
@@ -59,45 +53,149 @@
 \begin{frame}[t, plain]
   \forestheader{Warm-Up: three things you already know}
   \sectionlabel{5 minutes --- alone, then check with a neighbour}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item \textbf{Count the steps.} From $(1,-1)$ to $(4,3)$: how far right, how far up? So how far
+          up per \emph{one} step right? Where does the line cross the vertical axis?
+    \item \textbf{Solve for $y$.} \; $2x+3y=12$ \quad and \quad $5x-y=8$.
+    \item \textbf{Distribute, then tidy.} \; $y-5=3(x-2)$ \quad and \quad $y+1=-2(x+4)$.
+  \end{enumerate}
+  \vspace{6pt}
+  \begin{block}{Hold on to this}
+    In 2 and 3 you started with equations that looked nothing alike and ended with something much
+    easier to read.
+  \end{block}
+\end{frame}
+
+% HOOK
+\begin{frame}[t, plain]
+  \forestheader{Hook: the bill that hides the monthly fee}
+  \sectionlabel[goldacc]{Work backwards}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item Two months of bills: \textbf{4~GB cost \$52}, \textbf{10~GB cost \$70}.
+    \item $6$ more GB for \$$18$ more \; $\Rightarrow$ \; \$$3$ per GB.
+    \item So the flat fee is $52 - 4(3) = \$40$.
+  \end{itemize}
+  \vspace{6pt}
+  \begin{block}{The point}
+    Nobody handed you the starting value --- you \emph{worked back} to it. Today: build the equation
+    of a line from a graph, from two points, or from a slope and \emph{any} point at all.
+  \end{block}
+\end{frame}
+
+% NOTES 1 — SLOPE
+\begin{frame}[t, plain]
+  \forestheader{Notes 1: slope from any two points}
+  \sectionlabel{Same order, top and bottom}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \begin{enumerate}\setlength{\itemsep}{6pt}
-        \item Count the steps from $(1,-1)$ to $(4,3)$: how far right, how far up? Then: how far up
-              for \emph{one} step right?
-        \item Solve for $y$: \quad $2x + 3y = 12$ \quad and \quad $5x - y = 8$.
-        \item Multiply out and tidy: \quad $y - 5 = 3(x-2)$ \quad and \quad $y + 1 = -2(x+4)$.
-      \end{enumerate}
+    \begin{column}{0.54\textwidth}
+      \[ m=\frac{\Delta y}{\Delta x}=\frac{y_2-y_1}{x_2-x_1} \]
+      The phone plan gives the points $(4,52)$ and $(10,70)$:
+      \[ m=\frac{70-52}{10-4}=\frac{18}{6}=3 \]
+      \$3 per GB. \; \emph{Any} two points work --- the rate is constant (Lesson 1.0).
     \end{column}
-    \begin{column}{0.46\textwidth}
+    \begin{column}{0.42\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.38]
-        \lgrid{-2}{6}{-3}{7}
-        \draw[very thick, forest] (-1.5,-3)--(5.5,7);
-        \fill[charcoal] (1,-1) circle (5pt) node[below right, font=\tiny, charcoal]{$(1,-1)$};
-        \fill[charcoal] (4,3) circle (5pt)  node[above left,  font=\tiny, charcoal]{$(4,3)$};
+      \begin{tikzpicture}[scale=0.40]
+        \lgrid{-3}{5}{-6}{6}
+        \draw[very thick, forest] (-2,-6)--(4,6);
+        \draw[thick, navy, dashed] (1,0)--(2,0)--(2,2);
+        \node[navy, font=\tiny] at (1.5,-0.8){run};
+        \node[navy, font=\tiny, right] at (2.1,1){rise};
+        \fill[charcoal] (0,-2) circle (4pt);
+        \fill[charcoal] (3,4) circle (4pt);
       \end{tikzpicture}
     \end{column}
   \end{columns}
 \end{frame}
 
-% ACTIVITY LAUNCH
+% NOTES 2 — THREE FORMS
 \begin{frame}[t, plain]
-  \forestheader{Experience \& Formalize: Two Receipts}
-  \sectionlabel[goldacc]{Groups of 3--4 $\cdot$ 20 minutes}
+  \forestheader{Notes 2: three ways to write one line}
+  \sectionlabel{The forms}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item \textbf{Slope-intercept} $y=mx+b$ --- hands you the rate and the starting value.
+    \item \textbf{Point-slope} $y-y_1=m(x-x_1)$ --- built from a slope and \emph{any} point.
+    \item \textbf{Standard} $Ax+By=C$ --- integers, $A\ge0$; tidy for reading intercepts.
+  \end{itemize}
+  \vspace{5pt}
+  \begin{block}{Why point-slope exists}
+    In the phone plan the $y$-intercept was the one number nobody gave you. Point-slope lets you
+    write the line \emph{immediately}, from the point you already have:
+    \; $y-52 = 3(x-4)$.
+  \end{block}
+\end{frame}
+
+% NOTES 3 — CONVERT
+\begin{frame}[t, plain]
+  \forestheader{Notes 3: same line, different outfit}
+  \sectionlabel[redacc]{Expand, then tidy}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Point-slope $\to$ slope-intercept}
+      \begin{align*}
+        y-52 &= 3(x-4) \\
+        y-52 &= 3x-12 \\
+           y &= 3x+40
+      \end{align*}
+      And there is the \$40 monthly fee.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{$\to$ standard}
+      \begin{align*}
+             y &= 3x+40 \\
+        -3x+y &= 40 \\
+         3x-y &= -40
+      \end{align*}
+      Integers, and $A \ge 0$.
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  \textbf{Check any conversion:} at $x=10$, slope-intercept gives \$70 --- and so did the bill.
+\end{frame}
+
+% NOTES 4 — PARENT & SPECIAL CASES
+\begin{frame}[t, plain]
+  \forestheader{Notes 4: the parent $y=x$, and four special cases}
+  \sectionlabel{And your turn}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item Multiply by $k$: changes the \textbf{slope} (steeper, flatter, flipped).
+        \item Add $k$: changes the \textbf{$y$-intercept}.
+        \item \textbf{Parallel}: equal slopes. \; \textbf{Perpendicular}: opposite reciprocals,
+              $m_1m_2=-1$.
+        \item $y=c$: slope $0$. \; $x=a$: slope \emph{undefined} --- the one line $y=mx+b$ cannot
+              write.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.38]
+        \lgrid{-4}{5}{-6}{6}
+        \draw[very thick, navy, dashed] (-4,-4)--(5,5) node[above left, font=\tiny, navy]{$y=x$};
+        \draw[very thick, forest] (-1,-6)--(5,6) node[below right, font=\tiny, forest]{$y=2x-4$};
+        \fill[charcoal] (0,-4) circle (4pt);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{3pt}
+  \textbf{Your turn:} slope $-\tfrac12$ through $(2,-5)$ --- point-slope, then slope-intercept, then
+  the parallel and perpendicular slopes.
+\end{frame}
+
+% GROUP ACTIVITY LAUNCH
+\begin{frame}[t, plain]
+  \forestheader{Group Activity: \emph{Two Receipts}}
+  \sectionlabel[goldacc]{Groups of 3--4 $\cdot$ 25 minutes}
   \begin{columns}[T]
     \begin{column}{0.58\textwidth}
-      Two climbing gyms charge the same way --- \textbf{something to walk in the door, then a price
-      per climb}. They just tell you about it very differently.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item \textbf{Summit} shows you the graph.
-        \item \textbf{Basecamp} hands you two receipts: \textbf{3 climbs, \$24} and
-              \textbf{7 climbs, \$32}. That is all.
-      \end{itemize}
-      \vspace{3pt}
-      \begin{block}{Your job}
-        Use what you already know --- rates, tables, solving. For \emph{every} number you write
-        down, be ready to show me \textbf{where it came from}.
-      \end{block}
+      \begin{enumerate}\setlength{\itemsep}{4pt}
+        \item \textbf{Summit Gym} --- they show you the graph. Read the fee, the rate, write the rule.
+        \item \textbf{Basecamp Gym} --- all you get is two receipts: 3 climbs \$24, 7 climbs \$32.
+              Work back to the fee. Then: is \emph{Priya's} rule the same line as yours?
+        \item \textbf{Which is cheaper?} At 2 climbs? At 15? Where does the answer switch?
+        \item \textbf{Model it} --- the drone descent, two points to all three forms.
+      \end{enumerate}
     \end{column}
     \begin{column}{0.40\textwidth}
       \centering
@@ -105,222 +203,44 @@
         \gymgrid
         \draw[very thick, forest] (0,6)--(8,30);
         \fill[charcoal] (0,6) circle (3pt);
-        \fill[charcoal] (4,18) circle (3pt) node[right, font=\tiny, charcoal]{$(4,18)$};
-        \node[forest, font=\tiny, above left] at (8,30){Summit};
-      \end{tikzpicture}
+        \fill[charcoal] (4,18) circle (3pt);
+      \end{tikzpicture}\\[2pt]
+      {\scriptsize Summit Gym}
     \end{column}
   \end{columns}
+  \vspace{2pt}
+  \textbf{The rule:} for every number you write down, be ready to show me \emph{where it came from}.
 \end{frame}
 
-% DEBRIEF 1 — slope, and slope-intercept form
+% DEBRIEF
 \begin{frame}[t, plain]
-  \forestheader{Debrief: naming what you found (1)}
-  \sectionlabel[redacc]{Summit: \$12 over 4 climbs}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
-      \small
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item ``\$12 over 4 climbs'' $\to$ the \redink{slope}
-              $m=\dfrac{\Delta y}{\Delta x}=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{18-6}{4-0}=3$.
-        \item Why can you use \emph{any} two points? Because the rate is \redink{constant} ---
-              that is what made it a line back in Lesson 1.0.
-        \item Your $C(n) = 3n + 6$ is \redink{slope-intercept form}, $y = mx + b$: a
-              \redink{rate} and a \redink{starting value}, each sitting where you can read it.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.40\textwidth}
-      \centering
-      \begin{tikzpicture}[x=0.44cm, y=0.11cm]
-        \gymgrid
-        \draw[very thick, forest] (0,6)--(8,30);
-        \draw[semithick, redacc, dashed] (0,6)--(4,6)--(4,18);
-        \node[redacc, font=\tiny, below] at (2,6){$4$ climbs};
-        \node[redacc, font=\tiny, right] at (4.1,12){$+\$12$};
-        \fill[redacc] (0,6) circle (3pt) node[left, font=\tiny, redacc]{$b=6$};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
+  \forestheader{Debrief: the four things to take away}
+  \sectionlabel[redacc]{10 minutes --- correct your own page as we go}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item \textbf{2b, the backwards move.} Three climbs cost \$6, so the fee is \$18 --- the same
+          reasoning as the phone plan's \$40.
+    \item \textbf{2c: same line, different outfit.} Priya's $D-24=2(n-3)$ expands to $D=2n+18$.
+          Point-slope exists because the intercept is the point you did \emph{not} have.
+    \item \textbf{Part 3:} slopes $3$ and $2$ are different, so the lines are not parallel --- they
+          cross exactly once, at $n=12$ (\$42). That is where the cheaper gym switches.
+    \item \textbf{4c:} starting from $60$~m changes $b$, not $m$. The line \emph{shifts up}; it does
+          not tilt.
+  \end{enumerate}
 \end{frame}
 
-% DEBRIEF 2 — point-slope: the crux
+% CLOSE
 \begin{frame}[t, plain]
-  \forestheader{Same line, different outfit}
-  \sectionlabel[goldacc]{Priya's rule --- your answer to 2d}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \small
-      Priya never found Basecamp's walk-in fee. She started from the receipt she \emph{had}:
-      \[ D - 24 = 2(n - 3) \]
-      Your group started from the fee:
-      \[ D = 2n + 18 \]
-      \vspace{-6pt}
-      \begin{block}{Same line?}
-        At $n = 7$ both give \$32. That is evidence --- expanding hers is proof.
-      \end{block}
-    \end{column}
-    \begin{column}{0.50\textwidth}
-      \small
-      \begin{align*}
-        D - 24 &= 2(n-3) \\
-        D - 24 &= 2n - 6 \\
-             D &= 2n + 18
-      \end{align*}
-      \vspace{-4pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Priya's form is \redink{point-slope}: $y - y_1 = m(x - x_1)$.
-        \item It is built from a slope and \redink{any point at all} --- which matters, because the
-              $y$-intercept is often the one point you \emph{do not} have.
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% DEBRIEF 3 — standard form
-\begin{frame}[t, plain]
-  \forestheader{Debrief: a third outfit --- and it is mine, not yours}
-  \sectionlabel[redacc]{Standard form: $Ax + By = C$}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \small
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item Nothing in the activity produced this one, so here it is cold: \redink{standard form}
-              $Ax + By = C$, with $A$, $B$, $C$ integers and $A \ge 0$.
-        \item It hides the slope, but it hands you both \redink{intercepts} quickly --- set $x=0$,
-              then set $y=0$.
-        \item Three outfits, one line. Expand point-slope to get slope-intercept; clear fractions
-              and move the $x$ across to get standard.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \small
-      Basecamp, all three ways:
-      \begin{align*}
-        D - 24 &= 2(n - 3) &&\text{point-slope}\\
-             D &= 2n + 18  &&\text{slope-intercept}\\
-        2n - D &= -18      &&\text{standard}
-      \end{align*}
-      \vspace{-4pt}
-      \begin{block}{Read it off}
-        In $2n - D = -18$: set $n=0$ and the walk-in fee \$18 falls straight out.
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% DEBRIEF 4 — the parent line and the special cases
-\begin{frame}[t, plain]
-  \forestheader{Debrief: every line is $y=x$ in disguise}
-  \sectionlabel[redacc]{Transformations, and the four special cases}
-  \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
-      \small
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Start with the \redink{parent} $y = x$. Multiply by $k$: the line gets steeper,
-              flatter, or flips --- that is the \redink{slope}. Add $k$: the whole line slides up
-              or down --- that is the \redink{$y$-intercept}.
-        \item \redink{Parallel} lines: equal slopes. \redink{Perpendicular} lines: opposite
-              reciprocals, $m_1m_2 = -1$.
-        \item Horizontal $y = c$: slope \redink{$0$}. \; Vertical $x = a$: slope
-              \redink{undefined} --- the one line $y = mx + b$ cannot write.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.42\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.34]
-        \lgrid{-4}{5}{-6}{6}
-        \draw[very thick, navy, dashed] (-4,-4)--(5,5) node[above left, font=\tiny, navy]{$y=x$};
-        \draw[very thick, forest] (-1,-6)--(5,6) node[below right, font=\tiny, forest]{$y=2x-4$};
-        \fill[redacc] (0,-4) circle (4pt);
-        \fill[redacc] (2,0) circle (4pt);
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% QUICKNOTES SUMMARY
-\begin{frame}[t, plain]
-  \forestheader{QuickNotes: three ways to write one line}
-  \sectionlabel{Fill the box in your packet}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \footnotesize
-      \begin{enumerate}\setlength{\itemsep}{3pt}
-        \item \textbf{Slope:} $m=\dfrac{y_2-y_1}{x_2-x_1}$, from \emph{any} two points.
-        \item \textbf{Slope-intercept:} $y = mx+b$ --- the rate and the starting value.
-        \item \textbf{Point-slope:} $y-y_1 = m(x-x_1)$ --- a slope and any point.
-        \item \textbf{Standard:} $Ax+By=C$ --- integers, $A\ge0$, tidy intercepts.
-      \end{enumerate}
-    \end{column}
-    \begin{column}{0.50\textwidth}
-      \footnotesize
-      \begin{enumerate}\setlength{\itemsep}{3pt}
-        \setcounter{enumi}{4}
-        \item[5.] \textbf{Parent $y=x$:} $\times k$ changes the slope; $+k$ changes the intercept.
-        \item[6.] \textbf{Parallel} = equal slopes. \; \textbf{Perpendicular} = opposite
-              reciprocals.
-        \item[7.] $y=c$ has slope $0$; \; $x=a$ has \emph{undefined} slope.
-      \end{enumerate}
-      \vspace{2pt}
-      \begin{block}{The one to remember}
-        Different-looking equations are \textbf{not} different lines. That was Priya.
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% APPLICATION — worked together
-\begin{frame}[t, plain]
-  \forestheader{Application: the drone descent}
-  \sectionlabel[goldacc]{We do this one together $\cdot$ 7 minutes}
-  \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
-      \small
-      A drone comes down at a steady rate. At $t = 2$~s it is $46$~m up; at $t = 6$~s it is $30$~m
-      up.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Find the rate. What does the \textbf{sign} tell you?
-        \item Write it in \textbf{point-slope} from $(2,46)$, then expand. What does the number
-              $54$ mean --- and did anyone measure it?
-        \item Put the same line in \textbf{standard} form.
-      \end{itemize}
-      \vspace{2pt}
-      \begin{block}{Now change one number}
-        Same descent, but from $60$~m. In $h = mt + b$, \textbf{which number moves} --- and does
-        the graph tilt or slide?
-      \end{block}
-    \end{column}
-    \begin{column}{0.42\textwidth}
-      \centering
-      \begin{tikzpicture}[x=0.35cm, y=0.08cm]
-        \draw[xstep=1, ystep=10, linegray!45, thin] (0,0) grid (13,60);
-        \draw[->, thick, charcoal] (0,0)--(13.6,0) node[right, font=\tiny]{$t$};
-        \draw[->, thick, charcoal] (0,0)--(0,64) node[above, font=\tiny]{$h$};
-        \foreach \y in {20,40,60} \node[charcoal, font=\tiny, left] at (0,\y){\y};
-        \foreach \x in {4,8,12} \node[charcoal, font=\tiny, below] at (\x,0){\x};
-        \draw[very thick, forest] (0,54)--(13.5,0);
-        \fill[charcoal] (2,46) circle (3pt);
-        \fill[charcoal] (6,30) circle (3pt);
-        \fill[redacc] (0,54) circle (3pt) node[right, font=\tiny, redacc]{$54$};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% CHECK YOUR UNDERSTANDING — in-class practice, not a quiz. Homework is in DeltaMath.
-\begin{frame}[t, plain]
-  \forestheader{Check Your Understanding}
-  \sectionlabel{Practice, not a quiz $\cdot$ pairs for 1--3, on your own for 4--6}
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item Six exercises: slope from two points (including the two odd ones), one line written two
-          ways, a change of outfit with fractions, the parent line, a candle, and one
-          multiple-choice item.
-    \item For every equation: \emph{which two facts did you use, and where did they come from?}
-    \item Short on time? Do \textbf{1, 2, 5, 6} first.
-  \end{itemize}
-  \vspace{4pt}
-  \begin{block}{Homework: DeltaMath}
-    This page is \textbf{not scored} and you keep it; I will look at item~6 as you work.
-    Your graded set is in \textbf{DeltaMath} --- the due date is posted there.
+  \forestheader{Close}
+  \sectionlabel{What changed today}
+  You walked in able to \emph{read} a line's features off a graph. You walk out able to \emph{write}
+  the line yourself --- from a graph, from two points, or from a slope and any point at all --- and
+  to recognise the same line wearing three different outfits.
+  \vspace{5pt}
+  \begin{block}{Homework}
+    The \textbf{Homework} page in your packet --- due next class. Six problems plus an extension:
+    slope from two points (watch the horizontal and vertical cases), one line written two ways, a
+    fraction-heavy conversion, the parent and its two odd cousins, a candle model, and one
+    multiple-choice item on perpendicular slopes.
   \end{block}
   \vspace{4pt}
   \textbf{Next:} Lesson 1.2 --- a rule that reaches the same value \emph{twice}.

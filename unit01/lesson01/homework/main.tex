@@ -1,0 +1,124 @@
+%! Linear Functions: Slope, Forms & Graphing — Unit 1, Lesson 1.1 — Homework
+% Gradual release: the "you do alone" block. Homework is generated per lesson (user direction,
+% 2026-08-31); the teacher may substitute a DeltaMath set where the content is available there.
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
+\begin{document}
+
+\pageheader{Unit 1, Lesson 1.1}{Homework}
+
+\vspace{0.10in}
+
+\begin{notesbox}{Practice}
+Show your work. Remember: \emph{slope-intercept} hands you a rate and a start, \emph{point-slope} is
+built from a slope and \emph{any} point, and \emph{standard} is the tidy integer version --- all
+three can describe the same line.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
+  \item \textbf{Slope from two points.} \\[3pt]
+        Through $(-2,7)$ and $(4,-5)$: $m = \blank{1.4cm}$ \quad
+        Through $(-3,4)$ and $(6,4)$: $m = \blank{1.2cm}$ \quad
+        Through $(5,1)$ and $(5,-3)$: $m = $ \blank{2.0cm}
+
+  \boxguard[18]
+  \item \textbf{One line, two ways.} The line shown passes through $(0,-1)$ and $(3,5)$.
+    \begin{center}
+    \begin{minipage}[c]{0.32\linewidth}\centering
+    \begin{tikzpicture}[scale=0.30]
+      \lgrid{-3}{5}{-6}{7}
+      \draw[very thick, forest] (-2.5,-6)--(4,7);
+      \fill[charcoal] (0,-1) circle (4pt);
+      \fill[charcoal] (3,5) circle (4pt);
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.64\linewidth}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Slope: \blank{1.2cm} \; Slope-intercept form: \blank{2.8cm}
+      \item Point-slope form, using $(3,5)$: \blank{3.6cm}
+      \item Are (a) and (b) the same line? \blank{1.4cm} \; Show it:
+    \end{enumerate}
+    \end{minipage}
+    \end{center}
+    \begin{work}
+      y - 5 &= 2(x - 3) \\
+      y - 5 &= 2x - 6 \\
+          y &= 2x - 1
+    \end{work}
+
+  \item \textbf{Change its outfit.} Rewrite $y + 2 = -\tfrac34(x - 4)$ in slope-intercept form,
+        then in standard form.
+    \begin{work}
+      y + 2 &= -\tfrac34(x-4) \\
+      y + 2 &= -\tfrac34 x + 3 \\
+          y &= -\tfrac34 x + 1 \\
+         4y &= -3x + 4 \\
+    3x + 4y &= 4
+    \end{work}
+    Slope-intercept: \blank{3.0cm} \quad Standard: \blank{2.6cm}
+
+  \boxguard[18]
+  \item \textbf{The parent, and the two odd ones.} Start from $y = x$ and end at $y = -3x + 2$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Steeper or flatter? \blank{1.4cm} \; Flipped? \blank{1.0cm} \;
+            Shifted? \blank{1.4cm}
+      \item Slope of $y = 4$: \blank{1.2cm} \quad Slope of $x = 4$: \blank{2.0cm}
+      \item Which of those two \emph{cannot} be written as $y = mx + b$, and why? \writelines{2}
+    \end{enumerate}
+
+  \boxguard[20]
+  \item \textbf{Model it.} A candle burns at a steady rate. After $1$ hour it is $17$~cm tall;
+        after $4$ hours it is $11$~cm tall.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Find the rate, then the rule.
+        \begin{work}
+          m &= \frac{11 - 17}{4 - 1} \\
+            &= \frac{-6}{3} \\
+            &= -2 \\
+          h(t) &= -2t + 19
+        \end{work}
+      \item The $y$-intercept means \blank{3.4cm} \; After $6$ hours:
+            \blank{1.4cm} \; Burns out at \blank{1.8cm}
+    \end{enumerate}
+
+  \item \textbf{Multiple choice (SOL-style).} Which line is \emph{perpendicular} to
+        $y = \tfrac12 x - 4$ and passes through $(2,-1)$?
+    \begin{enumerate}[label=(\Alph*), leftmargin=2.0em, itemsep=1pt]
+      \item $y = \tfrac12 x - 2$
+      \item $y = -2x + 3$
+      \item $y = 2x - 5$
+      \item $y = -\tfrac12 x$
+    \end{enumerate}
+    Say in one sentence how you ruled out one of the others. \writelines{2}
+\end{enumerate}
+\end{notesbox}
+
+\boxguard[18]
+\begin{extensionbox}
+\textbf{Build and reason.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item Write the equation of the line through $(-4,3)$ that is \emph{parallel} to $2x - y = 5$.
+        \begin{work}
+          2x - y &= 5 \\
+               y &= 2x - 5 \\
+           y - 3 &= 2(x + 4) \\
+               y &= 2x + 11
+        \end{work}
+  \item Priya's rule came from one receipt, yours came from another. Explain why point-slope gives
+        the \emph{same} line no matter which point on the line you start from. \writelines{2}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 1.2: Absolute Value Equations \& Inequalities.} Every line you wrote
+today crosses zero exactly once. Next comes a rule that reaches the same value \emph{twice}, because
+it measures \emph{distance} --- so one equation will have two answers.
+\end{spiralbox}
+
+\end{document}

@@ -1,0 +1,184 @@
+%! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Guided Notes (Answer Key)
+% Mirrors notes/main.tex exactly; every \blank{} becomes an \ans{} and every work block is
+% authored byte-identically, so blank and key paginate alike.
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+
+\begin{document}
+
+\pageheader{Unit 1, Lesson 1.0}{Guided Notes --- Answer Key}
+
+\vspace{0.10in}
+
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item recognise a \emph{linear} function by its \emph{constant rate of change}, and find that rate
+        (the \emph{slope}) from a graph, a table, or two points;
+  \item find the \emph{$y$-intercept} and the \emph{zero} ($x$-intercept) from a graph, a table, or a rule;
+  \item say where a line is \emph{increasing}, \emph{decreasing}, or \emph{constant}, and where it is
+        \emph{positive} or \emph{negative};
+  \item state the \emph{domain} and \emph{range} of a line --- as pure math, and as a story allows.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Linear function}{a function with a constant rate of change; its graph is a straight line, and it can be written $f(x)=mx+b$}
+\vocabans{Slope (rate of change)}{$m=\Delta y/\Delta x=(y_2-y_1)/(x_2-x_1)$ --- the change in output per unit change in input}
+\vocabans{$y$-intercept}{the point $(0,b)$ where the graph crosses the $y$-axis; the output when $x=0$ --- the ``starting value''}
+\vocabans{$x$-intercept (zero)}{the point $(a,0)$ where the graph crosses the $x$-axis; the input $a$ with $f(a)=0$}
+\vocabans{Increasing / decreasing / constant}{rising ($m>0$) / falling ($m<0$) / flat ($m=0$), read left to right}
+\vocabans{Positive / negative interval}{the $x$-values where the graph sits above ($f(x)>0$) or below ($f(x)<0$) the $x$-axis}
+\end{vocabbox}
+
+\begin{hookbox}
+At 6:00 a.m.\ Saturday it was $-6\,^\circ$C in Blacksburg, and the temperature rose a steady
+$2\,^\circ$C every hour. Let $h$ be the hours after 6:00 a.m.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item $T(0)=\ans{$-6$}$ \quad $T(1)=\ans{$-4$}$ \quad $T(2)=\ans{$-2$}$ \quad $T(4)=\ans{$2$}$
+  \item The temperature reaches $0\,^\circ$ at $h=\ans{$3$}$ --- and \emph{that} is the hour the
+        roads stop being icy.
+\end{itemize}
+Two numbers tell the whole story: \emph{where it starts} and \emph{how fast it changes}. Today we
+name every feature of a line, and read each one three ways --- off a graph, a table, and a rule.
+\end{hookbox}
+
+\boxguard[24]
+\begin{notesbox}{1. Linear Means the Rate of Change Is Constant}
+Fill in the Saturday table, then the row of changes underneath it.
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$h$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
+$T$ & $-6$ & $-4$ & \ans{$-2$} & \ans{$0$} & \ans{$2$} \\ \hline
+change in $T$ & --- & $+2$ & \ans{$+2$} & \ans{$+2$} & \ans{$+2$} \\ \hline
+\end{tabular}
+\end{center}
+The change is the \ans{same $+2$} every step --- that is what makes the function
+\textbf{linear} and the graph \ans{straight}. We call that constant the \textbf{slope}.
+\begin{center}
+\begin{minipage}[c]{0.46\linewidth}
+\[ m \;=\; \frac{\Delta y}{\Delta x} \;=\; \frac{\text{rise}}{\text{run}}
+        \;=\; \frac{y_2-y_1}{x_2-x_1} \]
+Every linear function can be written
+\[ f(x) \;=\; mx + b. \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.48\linewidth}\centering
+\begin{tikzpicture}[scale=0.44]
+  \lgrid{-2}{6}{-6}{6}
+  \draw[very thick, forest] (-1,-6)--(5,6);
+  \draw[semithick, navy, dashed] (2,0)--(3,0)--(3,2);
+  \node[navy, font=\tiny] at (2.5,-0.8){run $1$};
+  \node[navy, font=\tiny, right] at (3.1,1){rise $2$};
+  \fill[charcoal] (0,-4) circle (3.4pt);
+  \fill[charcoal] (2,0) circle (3.4pt);
+\end{tikzpicture}\\[1pt]
+{\footnotesize $f(x)=2x-4$}
+\end{minipage}
+\end{center}
+\textbf{Slope from any two points.} The line above passes through $(1,-2)$ and $(3,2)$.
+\begin{work}
+  m &= \frac{2 - (-2)}{3 - 1} \\
+    &= \frac{4}{2} \\
+    &= 2
+\end{work}
+\emph{Any} two points give the same answer --- because the rate of change is \ans{constant}.
+\end{notesbox}
+
+\boxguard[22]
+\begin{notesbox}{2. Where the Graph Meets the Axes}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X X@{}}
+\textbf{Feature} & \textbf{How to find it} & \textbf{What it means in a story} \\
+\hline
+$y$-intercept $(0,b)$ & set $x=\ans{$0$}$ & the \ans{starting} value \\
+$x$-intercept, or \textbf{zero}, $(a,0)$ & solve $f(x)=\ans{$0$}$ & the moment the quantity \ans{runs out} \\
+\end{tabularx}
+\end{center}
+\textbf{Worked: $f(x)=2x-4$.} \; Its $y$-intercept is $(0,\ans{$-4$})$ --- read it straight
+off the rule. For the zero, solve:
+\begin{work}
+  2x - 4 &= 0 \\
+      2x &= 4 \\
+       x &= 2
+\end{work}
+so the zero is at $(\ans{$2$},\,\ans{$0$})$. Check it against the graph above.
+\end{notesbox}
+
+\boxguard[26]
+\begin{notesbox}{3. Which Way It Moves --- and Where It Sits}
+These are \emph{two different questions}. Keep them apart.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Which way it moves} (read left to right) & \textbf{Where it sits} (above or below the $x$-axis) \\
+\hline
+$m>0$: the line is \ans{increasing} & $f(x)>0$ where the graph is \ans{above} the axis \\
+$m<0$: the line is \ans{decreasing} & $f(x)<0$ where the graph is \ans{below} the axis \\
+$m=0$: the line is \ans{constant} & the sign can only switch at a \ans{zero} \\
+\end{tabularx}
+\end{center}
+\textbf{For $f(x)=2x-4$:} it is \ans{increasing}; it is positive when $x \ans{$>2$}$
+and negative when $x \ans{$<2$}$.
+
+\vspace{3pt}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\textbf{\textcolor{goldacc}{Careful: ``positive'' is not ``increasing.''}} \;
+Sunday's temperature was $g(h)=6-2h$. At $h=1$ it is $g(1)=\ans{$4$}$ degrees --- a
+\ans{positive} number --- and the temperature is \ans{falling}. Both at once.
+\emph{Positive} says where the graph \textbf{sits}; \emph{increasing} says which way it
+\textbf{moves}.
+\end{tcolorbox}
+\end{notesbox}
+
+\boxguard[20]
+\begin{notesbox}{4. Domain and Range --- the Math, and the Story}
+\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
+  \item A line that is \emph{not} horizontal: domain \ans{all reals}, range \ans{all reals}.
+        The rule accepts every input and produces every output.
+  \item A \textbf{horizontal} line $c(x)=b$ is the exception: slope \ans{$0$}, neither
+        increasing nor decreasing, and range \ans{$\{b\}$} --- a single value. It has no zero
+        at all unless $b=\ans{$0$}$, and then \emph{every} input is one.
+  \item In a \textbf{story}, the domain shrinks to the inputs that \ans{make sense}. Saturday's
+        rule works for $h=-100$; Saturday morning does not.
+\end{itemize}
+\end{notesbox}
+
+\begin{practicebox}
+Everything at once, on a new line: $h(x) = -2x + 6$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item Slope \ans{$-2$}; \quad $y$-intercept \ans{$(0,6)$}; \quad increasing or decreasing?
+        \ans{decreasing}
+  \item Find the zero.
+        \begin{work}
+          -2x + 6 &= 0 \\
+             -2x  &= -6 \\
+               x  &= 3
+        \end{work}
+        Zero: $(\ans{$3$},\,\ans{$0$})$.
+  \item $h(x)>0$ when $x \ans{$<3$}$; \quad $h(x)<0$ when $x \ans{$>3$}$.
+  \item Domain \ans{all reals}; \quad range \ans{all reals}.
+\end{enumerate}
+\end{practicebox}
+
+\end{document}
