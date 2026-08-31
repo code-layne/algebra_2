@@ -10,7 +10,7 @@ creates the root Makefile and the unit Makefile if they don't exist yet.
 Example:
     python new_lesson.py --project . --unit 01 --lesson 01 \
         --title "Vectors" --unit-title "Vectors as Data" \
-        --components cover,warmup,experience,slides
+        --components cover,warmup,notes,activity,homework,slides
 """
 from __future__ import annotations
 
@@ -21,29 +21,37 @@ from pathlib import Path
 
 SKEL_DIR = Path(__file__).resolve().parent.parent / "assets" / "skeletons"
 
-# EFFL component set (Math Medic "experience first, formalize later", 2026-08 redesign):
-# a lesson is cover / warmup / experience / slides. The `experience` directory name is a build
-# identifier (shared/lesson.mk STUDENT_ORDER/KEYED_PAIRS); the component is *labelled*
-# "Experience & Formalize" everywhere a student or teacher reads it (user direction,
-# 2026-08-20). There is no homework COMPONENT: its unscored Check Your Understanding is the packet's
-# entire practice set (user direction, 2026-08-20). The legacy homework, notes, activity, and exit_ticket components remain
-# scaffoldable by name so pre-EFFL lessons can still be regenerated, but are NOT defaults.
-KEYED = ["warmup", "experience", "homework", "notes", "activity", "exit_ticket"]
+# GRADUAL-RELEASE component set (user direction, 2026-08-31 — EFFL is scratched, "the students
+# have revolted"): a lesson is cover / warmup / notes / activity / homework / slides, run as
+# warm-up 5 - guided notes 15 - group activity 25 - debrief 10 - close & homework 5.
+# The DEBRIEF IS NOT A COMPONENT: it is a phase of the lesson plan, in which the class corrects
+# its own activity pages. There is NO exit ticket and there are NO tiers.
+# HOMEWORK IS AN IN-REPO COMPONENT AGAIN: every lesson generates one, because DeltaMath does not
+# cover all of this content; the teacher overrides per lesson and assigns DeltaMath instead where
+# it does. `exit_ticket` stays scaffoldable by name so pre-2026-08 lessons can be rebuilt, but is
+# NOT a default and must not be added to a converted lesson.
+KEYED = ["warmup", "notes", "activity", "homework", "exit_ticket"]
 NO_KEY = ["cover", "slides"]
 ALL_COMPONENTS = KEYED + NO_KEY
 # slides is a default: every lesson owes a deck, since lessonYY_slides.pdf and
 # lessonYY_slides.pptx are two of the five work products the build produces.
-DEFAULT_COMPONENTS = ["cover", "warmup", "experience", "slides"]
+DEFAULT_COMPONENTS = ["cover", "warmup", "notes", "activity", "homework", "slides"]
+
+# `experience` is deliberately NOT scaffoldable. It was the EFFL centerpiece; the directories that
+# still exist on disk (unit01/lesson02 and any unconverted unit) are removed when that lesson is
+# regenerated. shared/lesson.mk still merges them meanwhile, so do not touch the build system.
 
 DOC_TITLE = {
     "warmup": "Warm-Up",
-    "experience": "Experience \\& Formalize",
-    # legacy (pre-EFFL) components:
-    "homework": "Homework",
     "notes": "Guided Notes",
     "activity": "Group Activity",
+    "homework": "Homework",
+    # legacy (pre-2026-08) component, scaffoldable but never a default:
     "exit_ticket": "Exit Ticket",
 }
+
+# Components with a purpose-built skeleton rather than the generic worksheet one.
+DEDICATED_SKELETON = ("notes", "activity", "homework")
 # NAMESTRIP (COURSE_PLAN.md §7): worksheet components carry NO name/date/period row —
 # the student writes their name once, on the cover, and the components are stapled behind
 # it. Only cover.tex and the unit tests (taken in a testing setting) keep \namedateperiod.
@@ -263,12 +271,11 @@ def main() -> None:
             write(dest / "cover" / "main.tex", render("cover.tex", base), args.force)
         elif comp == "slides":
             write(dest / "slides" / "main.tex", render("slides.tex", base), args.force)
-        elif comp == "experience":
-            # The EFFL centerpiece — labelled "Experience & Formalize" — gets its own 12pt
-            # skeleton (activity + QuickNotes + application + CYU, \answerspace macro)
-            # rather than the generic worksheet.
-            write(dest / "experience" / "main.tex", render("experience.tex", base), args.force)
-        else:  # authored worksheet component
+        elif comp in DEDICATED_SKELETON:
+            # notes / activity / homework each have their own skeleton laying out the section
+            # structure references/components.md specifies, rather than the generic worksheet.
+            write(dest / comp / "main.tex", render(f"{comp}.tex", base), args.force)
+        else:  # authored worksheet component (exit_ticket)
             subs = {**base, "DOCTITLE": DOC_TITLE[comp]}
             write(dest / comp / "main.tex", render("worksheet.tex", subs), args.force)
         # answer key for keyed components
@@ -276,8 +283,8 @@ def main() -> None:
             key = f"{comp}_key"
             if key in prefab:
                 prefab_dir(dest / key)
-            elif comp == "experience":
-                write(dest / key / "main.tex", render("experience_key.tex", base), args.force)
+            elif comp in DEDICATED_SKELETON:
+                write(dest / key / "main.tex", render(f"{comp}_key.tex", base), args.force)
             else:
                 subs = {**base, "DOCTITLE": DOC_TITLE[comp]}
                 write(dest / key / "main.tex", render("worksheet_key.tex", subs), args.force)

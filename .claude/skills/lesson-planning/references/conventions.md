@@ -15,34 +15,21 @@ truth — if the styles diverge from this, follow the styles.
 
 ## Per-document-type preambles
 
-**Student component** (warmup, cover — and the legacy homework/notes/activity/exit_ticket):
+**Student component** — warmup, cover, notes, activity, homework (and the legacy
+exit_ticket/experience). **Every one of them is 10pt**; there is no 12pt component any more, and
+no `\answerspace` macro — the 12pt Math Medic sizing went out with EFFL on 2026-08-31. Open
+responses use `\writelines{n}`; short fills use `\blank{width}`.
 ```latex
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 % cover and some components also: \usepackage{ltablex}\keepXColumns
+% components with figures also define a grid macro, e.g.
+% \newcommand{\lgrid}[4]{...}   % {xmin}{xmax}{ymin}{ymax}
 ```
 
-**Experience & Formalize component** (directory `experience/` — the EFFL activity + QuickNotes +
-Application + Check Your Understanding document) uses **12pt**
-(Math Medic sizing) and defines the open-answer-space macro in its preamble, byte-identical in
-the blank and the key:
-```latex
-\documentclass[12pt]{article}
-\usepackage{algebra2-article}
-\usepackage{algebra2-boxes}   % key: algebra2-key instead
-\newcommand{\answerspace}[2]{\par\nopagebreak\noindent\begin{minipage}[t][#1][t]{\linewidth}%
-  \color{keyred}\bfseries #2\end{minipage}\par}
-```
-It is **four parts on a page budget** — Activity ≤2pp · QuickNotes ½pp · Application
-½–1pp · Check Your Understanding 1–2pp (unscored) — see `references/components.md`.
-
-`\answerspace{2.0cm}{}` in the blank reserves exactly 2.0cm of open space glued to its prompt;
-the key passes the answer as the second argument, occupying the identical height — that is what
-keeps the two files page-for-page without write-lines. Sizing guide: 1.4cm ≈ 2 handwritten
-lines, 2.0cm ≈ 3, 2.6–2.8cm ≈ 4. Two 12pt cautions: **`\boxguard` counts are baseline-relative**
-(use ~14–16 where a 10pt component would use 24–30), and **a key `\ans{}` wider than the blank
-it replaces can wrap an extra line and shift a page break** — keep interval/short answers terse.
+Component budgets: **notes 2–3pp · activity 2–3pp · homework 2pp** (2pp is a ceiling). At 10pt,
+`\boxguard` counts run **16–26**.
 
 **Draw-order caution (any document, any size).** In a number-line or grid figure, shading drawn
 *before* `\numline` (or the axis) is painted over by it and effectively disappears. **Draw the axis
@@ -55,6 +42,16 @@ first, then the shading, then the endpoint dots** — open dots as `\draw[color,
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}     % pulls in -boxes; do NOT also load -boxes
 ```
+A key whose blank has a `vocabbox` also defines the vocab-answer macro. The leading and trailing
+`\par` are **required**: `\ansline` ends with `\dotfill` but does not end the paragraph, so
+without them each term label is pulled onto the previous answer's line.
+```latex
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+```
+Two cautions: **a key `\ans{}` wider than the blank it replaces can wrap an extra line and shift a
+page break** — keep answers terse; and **a `\writelines{n}` is answered with exactly `n`
+`\ansline{}`s**, each under ~95 characters so it does not wrap onto an extra line.
 
 **Lesson plan** (`main.tex` at the lesson root): loads `-boxes` and **defines the course/unit/
 lesson macros inline** — this course does not define them in `shared/`:
@@ -210,15 +207,16 @@ The reference implementation was the old review unit’s Lesson 0, deleted in th
 in a key with no counterpart in the blank, so it made the key run longer than its blank for no
 student-facing reason — the last thing costing a packet blank pages once the work rule is in.
 
-The lesson plan closes with one note per component, in packet order, each titled for it:
+The lesson plan closes with **four** notes, one per component, in packet order, each titled for it:
 
 ```latex
 \begin{teachernote}[Warm-Up]        ... \end{teachernote}   % → "Teacher Note: Warm-Up"
 \begin{teachernote}[Guided Notes]   ... \end{teachernote}
 \begin{teachernote}[Group Activity] ... \end{teachernote}
-\begin{teachernote}[Exit Ticket]    ... \end{teachernote}
-\begin{teachernote}[Experience \& Formalize] ... \end{teachernote}
+\begin{teachernote}[Homework]       ... \end{teachernote}
 ```
+(Legacy plans also carry `[Exit Ticket]` or `[Experience \& Formalize]`; both go when the lesson
+is regenerated.)
 
 The environment is defined in **`-boxes`** (the lesson plan does not load `-key`) and the argument
 is **optional** — a bare `\begin{teachernote}` still renders plain "Teacher Note", so lessons not
@@ -274,14 +272,18 @@ Secondary accent — used by the **vocabulary** box and related callouts: `navy`
 `slate`, `linegray`, `keyred` (#CC0000). Lesson-plan background aliases: `goldbox`,
 `forestbox`, `greenbox`, `redbox`.
 
-## Lesson-plan section order (canonical, EFFL)
+## Lesson-plan section order (canonical, gradual release)
 
-Primary Objective / Standards / Lesson model → Learning Targets & Key Understandings →
-Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: **5/20/13/7/10/5**) →
-Warm-Up (the seeds) → Experience & Formalize: the Activity (what students do | what the teacher does —
-questions, cues, prompts) → Debrief: Formalize (the red-ink moves + QuickNotes walkthrough) →
-**Application** (the worked-together problem) → **Check Your Understanding — practice, *not
-scored*** (the packet's whole practice set; graded homework is a DeltaMath set) → Watch For → Close & Preview
-(assign the DeltaMath set) → Teacher Notes ([Warm-Up], [Experience & Formalize]). See `references/components.md` for the
-full spec and `references/course-workflow.md` for where content comes from. *(Legacy plans from
-before 2026-08 use the old Hook / Explicit Instruction / Tiers order.)*
+Primary Objective / Standards / Lesson model → Priority Ideas & Skills →
+Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: **5/15/25/10/5**) →
+Warm-Up (spiral review, and how it hands off to the notes) → **Hook** → **Guided Notes — the
+Lesson (15 min)** (one paragraph per numbered section) → **Group Work (25 min)** ("one common
+task, no tiers"; what students do | what the teacher does — questions, cues, prompts) →
+**Debrief (10 min)** (the four things to land on the board) → Active Monitoring — Watch For →
+**Reinforcement & Extension** (the homework itemized, the **DeltaMath override**, the preview) →
+Teacher Notes (**four**: `[Warm-Up]`, `[Guided Notes]`, `[Group Activity]`, `[Homework]`).
+
+See `references/components.md` for the full spec and `references/course-workflow.md` for where
+content comes from. *(Plans from 2026-08-19 → 2026-08-31 use the EFFL order — Experience &
+Formalize / Debrief: Formalize / Application / Check Your Understanding; plans before that use the
+Hook / Explicit Instruction / Tiers order. Both are legacy: regenerate rather than patch.)*

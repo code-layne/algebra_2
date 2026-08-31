@@ -47,11 +47,10 @@ needed (see "Scaffolding a lesson"), so you rarely write them by hand:
     sending output to `target/UNIT/LESSON/<comp>/` and a stamp to `.stamps/`.
   - Copies the plan to its `_plan.pdf` name, renders the deck 3-up to `_slides.pdf` and
     full-page to `_slides.pptx`, and merges the two packets:
-    - **student** = `cover warmup experience` (the last displayed as *Experience & Formalize*) + the legacy `notes activity exit_ticket homework`
-      still merged for pre-EFFL lessons (blank versions
-      present — EFFL lessons have `experience` and no `notes`/`activity`/`exit_ticket`; legacy
-      lessons the reverse),
-      in that pedagogical order → `lessonYY_student.pdf`.
+    - **student** = `cover warmup notes activity homework` (whichever have a blank version
+      present), in that pedagogical order → `lessonYY_student.pdf`. `STUDENT_ORDER` also still
+      lists `experience` and `exit_ticket` so unconverted lessons keep building; a current lesson
+      has neither.
     - **key** = the *same* packet with every blank component swapped for its `_key` (cover has no
       key and appears unchanged) → `lessonYY_key.pdf`. It carries no lesson plan and no slides —
       it is the student packet, answered, **page for page** (see "Packet pagination").
@@ -120,7 +119,7 @@ full-bleed page image per slide. It is deliberately **dependency-free** — no L
 ```bash
 python3 ${CLAUDE_SKILL_DIR}/scripts/new_lesson.py --project . --unit 02 --lesson 03 \
   --title "..." --unit-title "..." \
-  --components cover,warmup,experience,slides \
+  --components cover,warmup,notes,activity,homework,slides \
   [--prefab warmup,warmup_key] [--course "Algebra 2"] [--lesson-id 1.3]
 ```
 

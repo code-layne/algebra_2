@@ -1,0 +1,176 @@
+%! Linear Functions: Slope, Forms & Graphing — Unit 1, Lesson 1.1 — Guided Notes (Answer Key)
+% Mirrors notes/main.tex exactly; every \blank{} becomes an \ans{} and every work block is
+% authored byte-identically, so blank and key paginate alike.
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
+\newcommand{\vocabans}[2]{%
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+
+\begin{document}
+
+\pageheader{Unit 1, Lesson 1.1}{Guided Notes --- Answer Key}
+
+\vspace{0.10in}
+
+\begin{objectivebox}
+\textbf{By the end of this lesson, I will be able to\dots}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item find the \emph{slope} of a line from a graph or from \emph{any} two points;
+  \item write a line in \emph{slope-intercept}, \emph{point-slope}, and \emph{standard} form, and
+        convert among them --- even when I am never told the starting value;
+  \item describe a line as a transformation of the \emph{parent} $y=x$;
+  \item identify \emph{parallel}, \emph{perpendicular}, horizontal, and vertical lines.
+\end{itemize}
+\end{objectivebox}
+
+\vspace{0.05in}
+
+\begin{vocabbox}
+\small
+Fill in each term as we build it together.
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Slope from two points}{$m=(y_2-y_1)/(x_2-x_1)$ --- subtract in the same order top and bottom}
+\vocabans{Slope-intercept form}{$y=mx+b$; hands you the slope $m$ and the $y$-intercept $(0,b)$}
+\vocabans{Point-slope form}{$y-y_1=m(x-x_1)$; built from a slope and \emph{any} point on the line}
+\vocabans{Standard form}{$Ax+By=C$ with $A,B,C$ integers and $A\ge0$; convenient for intercepts}
+\vocabans{Parent function $y=x$ / transformation}{the simplest line; $ky$ changes the slope, $+k$ shifts it vertically}
+\vocabans{Parallel / perpendicular}{equal slopes / opposite-reciprocal slopes ($m_1m_2=-1$)}
+\end{vocabbox}
+
+\begin{hookbox}
+Your phone bill does not list the monthly fee --- only the total. Two months of bills:
+\textbf{4~GB cost \$52}, and \textbf{10~GB cost \$70}.
+\begin{itemize}\setlength{\itemsep}{1pt}
+  \item From one bill to the other: \ans{$6$} more GB for \$\ans{$18$} more, so each
+        GB costs \$\ans{$3$}.
+  \item So what is the flat monthly fee --- the cost of \emph{zero} GB? \ans{\$40}
+\end{itemize}
+Nobody handed you the starting value; you \emph{worked back} to it. Today we build the equation of a
+line from whatever we are given --- a graph, two points, or a slope and \emph{any} point at all.
+\end{hookbox}
+
+\boxguard[22]
+\begin{notesbox}{1. Slope from Any Two Points}
+\begin{center}
+\begin{minipage}[c]{0.50\linewidth}
+\[ m \;=\; \frac{\Delta y}{\Delta x} \;=\; \frac{y_2-y_1}{x_2-x_1} \]
+Subtract in the \emph{same order} top and bottom. \emph{Any} two points on the line give the same
+answer, because a line's rate of change is \ans{constant}.
+\end{minipage}\hfill
+\begin{minipage}[c]{0.46\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
+  \lgrid{-3}{5}{-6}{6}
+  \draw[very thick, forest] (-2,-6)--(4,6);
+  \draw[semithick, navy, dashed] (1,0)--(2,0)--(2,2);
+  \node[navy, font=\tiny] at (1.5,-0.8){run};
+  \node[navy, font=\tiny, right] at (2.1,1){rise};
+  \fill[charcoal] (0,-2) circle (3.4pt);
+  \fill[charcoal] (3,4) circle (3.4pt);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\textbf{Worked: the phone plan.} The bills give the points $(4,52)$ and $(10,70)$.
+\begin{work}
+  m &= \frac{70 - 52}{10 - 4} \\
+    &= \frac{18}{6} \\
+    &= 3
+\end{work}
+So the plan costs \$\ans{$3$} per GB.
+\end{notesbox}
+
+\boxguard[24]
+\begin{notesbox}{2. Three Ways to Write One Line}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\textbf{Form} & \textbf{Looks like} & \textbf{Hands you \dots\ / use it when \dots} \\
+\hline
+Slope-intercept & $y = mx + b$ & the \ans{slope $m$} and the \ans{intercept $(0,b)$} \\
+Point-slope & $y - y_1 = m(x - x_1)$ & a slope and \ans{\emph{any} point $(x_1,y_1)$} \\
+Standard & $Ax + By = C$ & integers, $A \ge 0$; tidy for reading \ans{intercepts} \\
+\end{tabularx}
+\end{center}
+\textbf{Why point-slope exists.} In the phone plan you had a rate and a point --- but the
+$y$-intercept was the one number nobody gave you. Point-slope lets you write the line
+\emph{immediately}, from the point you already have:
+\[ y - \ans{$52$} \;=\; \ans{$3$}\,(x - \ans{$4$}) \qquad
+   \text{using the point } (4,52). \]
+\end{notesbox}
+
+\boxguard[24]
+\begin{notesbox}{3. Same Line, Different Outfit}
+Two equations that \emph{look} different can be the same line. Expand point-slope to get
+slope-intercept:
+\begin{work}
+  y - 52 &= 3(x - 4) \\
+  y - 52 &= 3x - 12 \\
+       y &= 3x + 40
+\end{work}
+There is the monthly fee: $b = \ans{$40$}$ --- the same number you worked back to in the hook.
+Now move $x$ across to get standard form:
+\begin{work}
+  y &= 3x + 40 \\
+  -3x + y &= 40 \\
+  3x - y &= -40
+\end{work}
+\textbf{Test any conversion} by putting one input through both rules. At $x=10$: \; slope-intercept
+gives \ans{\$70}, and the original bill said \ans{\$70}.
+\end{notesbox}
+
+\boxguard[24]
+\begin{notesbox}{4. The Parent $y=x$, and Four Special Cases}
+Every non-vertical line is the parent $y=x$ after \emph{two} moves.
+\begin{center}
+\begin{minipage}[c]{0.46\linewidth}
+\begin{itemize}[leftmargin=1.4em, itemsep=2pt]
+  \item Multiplying by $k$ changes the \ans{slope} --- steeper, flatter, or (if $k<0$)
+        \ans{flipped}.
+  \item Adding $k$ changes the \ans{$y$-intercept}: the line slides up or down.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.50\linewidth}\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-4}{5}{-6}{6}
+  \draw[very thick, navy, dashed] (-4,-4)--(5,5) node[above left, font=\tiny, navy]{$y=x$};
+  \draw[very thick, forest] (-1,-6)--(5,6) node[below right, font=\tiny, forest]{$y=2x-4$};
+  \fill[charcoal] (0,-4) circle (3.4pt);
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}l X l X@{}}
+\textbf{Parallel} & slopes are \ans{equal} & \textbf{Perpendicular} & slopes are \ans{opposite reciprocals}, so $m_1m_2 = \ans{$-1$}$ \\
+\textbf{Horizontal} $y=c$ & slope \ans{$0$} & \textbf{Vertical} $x=a$ & slope \ans{undefined} \\
+\end{tabularx}
+\end{center}
+Only one of those four \emph{cannot} be written as $y = mx+b$: \ans{$x=a$} --- because it has
+no slope to put in for $m$.
+\end{notesbox}
+
+\begin{practicebox}
+A line has slope $-\tfrac12$ and passes through $(2,-5)$.
+\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+  \item \textbf{Point-slope} form: \ans{$y+5=-\tfrac12(x-2)$}
+  \item Convert to \textbf{slope-intercept} form.
+        \begin{work}
+          y + 5 &= -\tfrac12(x - 2) \\
+          y + 5 &= -\tfrac12 x + 1 \\
+              y &= -\tfrac12 x - 4
+        \end{work}
+  \item A line \textbf{parallel} to it has slope \ans{$-\tfrac12$}; a line \textbf{perpendicular}
+        to it has slope \ans{$2$}.
+\end{enumerate}
+\end{practicebox}
+
+\end{document}

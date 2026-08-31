@@ -1,0 +1,130 @@
+%! Characteristics of Linear Functions — Unit 1, Lesson 1.0 — Homework
+% Gradual release: the "you do alone" block. Homework is generated per lesson (user direction,
+% 2026-08-31); the teacher may substitute a DeltaMath set where the content is available there.
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+
+\begin{document}
+
+\pageheader{Unit 1, Lesson 1.0}{Homework}
+
+\vspace{0.10in}
+
+\begin{notesbox}{Practice}
+Show your work. For every linear function, remember the two questions are separate: \emph{which way
+it moves} (increasing / decreasing) and \emph{where it sits} (positive / negative).
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Read the rule.} Complete the feature list for $f(x) = 2x + 2$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l l l@{}}
+      Slope: \blank{1.5cm} & $y$-intercept: \blank{1.8cm} & Zero: \blank{1.6cm} \\
+      Domain: \blank{1.8cm} & Range: \blank{1.8cm} & Incr.\ or decr.? \blank{2.0cm} \\
+      Positive when $x$ \blank{1.4cm} & Negative when $x$ \blank{1.4cm} & Sign flips at: \blank{1.6cm}
+    \end{tabular}
+    \end{center}
+
+  \boxguard[16]
+  \item \textbf{Same zero, opposite behaviour.} Both lines have their zero at $x = 1$.
+    \begin{center}
+    \begin{minipage}[c]{0.34\linewidth}\centering
+    \begin{tikzpicture}[scale=0.40]
+      \lgrid{-3}{5}{-4}{4}
+      \draw[very thick, forest] (-2.5,-3.5)--(4.5,3.5) node[above left, font=\scriptsize, forest]{$f$};
+      \draw[very thick, navy] (-2.5,3.5)--(4.5,-3.5) node[below left, font=\scriptsize, navy]{$g$};
+      \fill[charcoal] (1,0) circle (3.4pt);
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.62\linewidth}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Increasing: \blank{1.2cm} \; Decreasing: \blank{1.2cm}
+      \item $f(x)>0$ when $x$ \blank{1.4cm} \quad $g(x)>0$ when $x$ \blank{1.4cm}
+      \item At $x=3$: $f$ is \blank{1.8cm} \; $g$ is \blank{1.8cm}
+    \end{enumerate}
+    \end{minipage}
+    \end{center}
+    (d) Why can a line's sign change at its \emph{zero} and nowhere else? \writelines{2}
+
+  \item \textbf{From a table.} A linear function is given below. \emph{Watch the step in $x$.}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    $x$ & $0$ & $2$ & $4$ & $6$ \\ \hline
+    $f(x)$ & $-6$ & $-3$ & $0$ & $3$ \\ \hline
+    \end{tabular}
+    \end{center}
+    Slope $m = \dfrac{\Delta y}{\Delta x} = \blank{1.4cm}$ \quad
+    $y$-intercept: \blank{1.8cm} \quad Zero: \blank{1.6cm} \\[4pt]
+    Increasing or decreasing? \blank{2.4cm} \quad $f(x)<0$ when $x$ \blank{1.4cm}
+
+  \boxguard[16]
+  \item \textbf{The flat one.} The graph of $c(x) = -2$ is a horizontal line through $(0,-2)$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Slope: \blank{1.2cm} \; Incr., decr., or constant? \blank{2.0cm} \;
+            Range: \blank{1.6cm} \; A zero? \blank{1.2cm}
+      \item Is $c(x)$ positive or negative? \blank{3.0cm}
+      \item For which value of $b$ does $c(x) = b$ \emph{have} a zero? \blank{1.8cm} \;
+            And then how many zeros does it have? \blank{4.0cm}
+    \end{enumerate}
+
+  \boxguard[20]
+  \item \textbf{Model it.} A pool already holds $600$ gallons when a hose is turned on; the hose adds
+        $150$ gallons a minute, so $W(t) = 600 + 150t$ after $t$ minutes.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Slope $150$ means \blank{4.4cm} \;
+            $(0,600)$ means \blank{3.6cm}
+      \item Find the zero of $W$ by solving $W(t) = 0$.
+        \begin{work}
+          600 + 150t &= 0 \\
+                150t &= -600 \\
+                   t &= -4
+        \end{work}
+        Does that zero mean anything in this story? Explain. \writelines{2}
+      \item Which inputs $t$ make sense? \blank{2.6cm} \; Is $W$ increasing or
+            decreasing on them? \blank{2.4cm}
+    \end{enumerate}
+
+  \item \textbf{Multiple choice (SOL-style).} For the linear function $y = -3x + 6$, which statement
+        is \emph{true}?
+    \begin{enumerate}[label=(\Alph*), leftmargin=2.0em, itemsep=1pt]
+      \item The function is increasing.
+      \item It is positive for all $x > 2$.
+      \item The zero is at $x = 2$.
+      \item The $y$-intercept is $(0,-3)$.
+    \end{enumerate}
+    Name one of the other three and say why it is false. \writelines{2}
+\end{enumerate}
+\end{notesbox}
+
+\boxguard[18]
+\begin{extensionbox}
+\textbf{Build and reason.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item A line has $y$-intercept $(0,-5)$ and its zero at $x = 2$. Find the slope, then write the
+        rule.
+        \begin{work}
+          m &= \frac{0 - (-5)}{2 - 0} \\
+            &= \frac{5}{2} \\
+          f(x) &= \tfrac52 x - 5
+        \end{work}
+  \item A classmate claims a linear function can be positive only between $x=1$ and $x=4$, and
+        negative everywhere else. Explain why no line can do that. \writelines{2}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 1.1: Linear Functions.} Today you \emph{read} a line's characteristics
+off its graph, table, and rule. Next you run it backwards: a slope and a point will let you
+\emph{write} the equation --- three different ways --- and shifting the parent line $y=x$ will graph
+it.
+\end{spiralbox}
+
+\end{document}

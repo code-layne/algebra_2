@@ -2,6 +2,91 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-08-31) — **EFFL IS SCRATCHED. THE COURSE IS BACK ON GRADUAL RELEASE.**
+>
+> **User direction, 2026-08-31: "the students have revolted."** The Math Medic
+> *experience-first, formalize-later* model is **withdrawn from the course**. Every lesson returns to
+> a traditional **gradual-release** shape — *I do, we do, you do together, you do alone*:
+>
+> | Phase | Min | Component |
+> | --- | --- | --- |
+> | Warm-Up | 5 | `warmup` (+key) — spiral review / activate prior knowledge |
+> | **Guided Notes** (I do / we do) | **15** | `notes` (+key) — vocabulary, worked examples, a guided-practice box |
+> | **Group Activity** (you do together) | **25** | `activity` (+key) — one common task, untiered |
+> | **Debrief** | **10** | *no component* — a lesson-plan phase; the class corrects its own pages |
+> | Close & Homework | 5 | assign the `homework` page |
+>
+> **Confirmed with the user before authoring (2026-08-31):**
+> 1. **No exit ticket.** The debrief closes the lesson; the formative check is the homework's last
+>    item. Do **not** scaffold `exit_ticket` in a converted lesson (legacy 1.3–1.5 still have one).
+> 2. **No tiers.** The Tier R / A / E structure of the legacy activities does **not** come back —
+>    every group works the same task, with the modelling part last as the stretch.
+> 3. **Timing is 5 / 15 / 25 / 10 / 5** — the user chose "shorter notes, longer activity" over the
+>    proposed 5/15/20/10/5 and 5/25/15/10/5.
+>
+> **HOMEWORK IS AN IN-REPO COMPONENT AGAIN.** Reversing the 2026-08-20 deletion *and* the
+> 2026-08-27 DeltaMath-only arrangement: **every lesson generates its own `homework` (+
+> `homework_key`)**, because DeltaMath has thin coverage of some of this content. The teacher
+> **overrides per lesson** and assigns DeltaMath instead where the content is well covered there —
+> so each plan's *Reinforcement & Extension* box carries a **DeltaMath override** sentence naming
+> what to swap in. The cover's homework row is **scored** (`\blank{1.2cm}`, not `NA`) and reads
+> *due next class*. There is no more "Check Your Understanding," no QuickNotes box, and no
+> "not scored" language anywhere in a converted lesson.
+>
+> **Component set for a converted lesson:** `cover`, `warmup`(+key), `notes`(+key),
+> `activity`(+key), `homework`(+key), `slides`, plan. The `experience`/`experience_key` directories
+> are **deleted** as each lesson is converted. All of these names are already in
+> `shared/lesson.mk`'s `STUDENT_ORDER`/`KEYED_PAIRS`, so **the build system needs no change** —
+> and the §Status plan to strip `homework` from it is now void.
+>
+> **Converted so far: Lessons 1.0 and 1.1 (this PR).** Both were regenerated whole — plan, cover,
+> notes+key, activity+key, homework+key, deck — not patched. The warm-ups were kept (they were
+> already spiral review) with one wording tweak in 1.0.
+> **Build evidence (2026-08-31):** `make -C unit01/lesson00 all` and `make -C unit01/lesson01 all`
+> both **EXIT 0**. Blank/key parity, component by component — **1.0:** warm-up 1/1, notes 3/3,
+> activity 3/3, homework 2/2, packets **14/14**; **1.1:** warm-up 1/1, notes 3/3, activity 2/2,
+> homework 2/2, packets **12/12**. Decks: **zero** overfull boxes in both. The only overfull warning
+> anywhere is the pre-existing 6.0pt `\pageheader` hbox that every component in the project emits.
+>
+> **Content mapping used for the conversion** (reuse it for 1.2–1.5 and Units 2–7):
+> * the EFFL **QuickNotes** box → expanded into the four numbered sections of **Guided Notes**,
+>   with a `vocabbox` of `\termblanklong` terms and a `practicebox` as the "we do";
+> * the EFFL **Activity** → **Parts 1–3** of the Group Activity, now free to use the vocabulary
+>   (the spoiler rule is dead — notes come first);
+> * the EFFL **Application** → the Group Activity's final **Model It** part;
+> * the EFFL **Check Your Understanding** → the **Homework** page, plus an `extensionbox` and the
+>   closing `spiralbox`.
+>
+> **THE `lesson-planning` SKILL IS REWRITTEN TO MATCH (same PR, 2026-08-31).** It was entirely
+> EFFL and would have scaffolded the wrong shape. Changed: `SKILL.md` (model, the three confirmed
+> decisions, component table, authoring invariants, a *Converting a lesson that is on an older
+> shape* section, guardrails, and the YAML `description`); all four `references/*.md`
+> (`components.md` — new Guided Notes / Group Activity / Homework specs replacing the
+> Experience & Formalize one, the plan's 13-section order, the cover's four scored rows;
+> `conventions.md` — the 10pt-everywhere preamble, the `\vocabans` key macro, the new plan order;
+> `build.md` — `STUDENT_ORDER` and the scaffold example; `course-workflow.md` — the practice-context
+> row); and `scripts/new_lesson.py` (`DEFAULT_COMPONENTS = cover,warmup,notes,activity,homework,
+> slides`; `experience` is **no longer scaffoldable at all**; `exit_ticket` remains scaffoldable
+> but is not a default). Skeletons: `experience.tex`/`experience_key.tex` **deleted**;
+> `notes{,_key}.tex`, `activity{,_key}.tex`, `homework{,_key}.tex` **added**; `cover.tex`,
+> `lesson_plan.tex`, `slides.tex` rewritten.
+> **Smoke-tested (2026-08-31):** a fresh default scaffold into a throwaway project creates exactly
+> `cover warmup notes activity homework slides` (+ keys) and builds **all five work products,
+> EXIT 0**; `--components …,experience` is rejected with a clear error; `--components …,exit_ticket`
+> still scaffolds for a legacy rebuild.
+>
+> **Still to do:**
+> 1. **Convert Lesson 1.2** (still in the EFFL shape) and **regenerate 1.3–1.5** (legacy shape:
+>    they have `notes`/`activity`/`homework` already, but also an `exit_ticket` to delete, tiered
+>    activities to flatten, and plans on the old phase table). Separate PR, after the user confirms
+>    1.0/1.1 on fidelity, rigor, and duration.
+> 2. Units 2–7 (44 lessons) are all EFFL-or-legacy and unconverted.
+>
+> **Everything below this block that describes EFFL, "Experience & Formalize," QuickNotes, "Check
+> Your Understanding," the spoiler rule, or "homework is in DeltaMath / there is no homework" is
+> HISTORY.** It is retained because Lessons 1.2 and Units 2–7 have not been converted yet and their
+> entries still describe what is on disk. This block wins wherever they conflict.
+
 > **Status (2026-08-22):** **The course title is now just `Algebra 2`.** The teacher name and the
 > school year were stripped from every surface that renders a title — all 44 lesson plans, all 44
 > packet covers, all 44 deck title slides, `shared/cover.py`'s binder-cover title block, the
@@ -286,6 +371,39 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 ## 4. Unit-by-unit lesson breakdown
 
 ### Unit 1 — Linear Functions
+> **GRADUAL-RELEASE CONVERSION — Lessons 1.0 and 1.1 (2026-08-31).** See the ⚠ Status block at the
+> top of this file for the model, the confirmed decisions, and the build evidence. Both lessons now
+> carry `cover`, `warmup`(+key), **`notes`**(+key), **`activity`**(+key), **`homework`**(+key),
+> `slides`, plan; `experience`/`experience_key` were deleted from both.
+>
+> * **1.0 — Characteristics of Linear Functions.** *Guided Notes:* six vocab terms, a
+>   Saturday-morning hook ($T(h)=2h-6$), then four sections — (1) constant rate ⇒ linear, slope from
+>   two points; (2) $y$-intercept and zero, with $2x-4=0$ worked; (3) the two-column
+>   *moves* vs. *sits* table closing on the gold "positive ≠ increasing" caution box ($g(1)=4$,
+>   positive **and** falling); (4) domain/range incl. the constant function. Guided practice:
+>   $h(x)=-2x+6$. *Group Activity* (**Freezing Point**, untiered, 4 parts): Saturday, Sunday,
+>   a new **Side by Side** comparison part (same zero at $h=3$, slopes $\pm2$, "why can the sign
+>   change only at the zero?"), and the car-wash card $B(w)=40-8w$ as Model It. *Homework:* the six
+>   old CYU items verbatim in intent (rule / contrast pair / table with $x$-step 2 / constant
+>   function / pool model $W(t)=600+150t$ / SOL-style MC on $y=-3x+6$) plus an extension (build the
+>   rule from an intercept and a zero; why no line is positive on a bounded interval). *Deck:*
+>   11 frames — targets, warm-up, hook, notes 1–4, activity launch, debrief, close. Standards
+>   unchanged: **A2.F.2a/c/f**.
+> * **1.1 — Linear Functions: Slope, Forms & Graphing.** *Guided Notes* run the whole block on
+>   **one** context, a phone plan (4 GB \$52, 10 GB \$70 ⇒ \$3/GB, \$40 fee), so the three forms
+>   read as three outfits on one line: slope from two points; the three-form table with *why
+>   point-slope exists*; the two conversions ($y-52=3(x-4) \to y=3x+40 \to 3x-y=-40$, where the
+>   hook's \$40 falls out as $b$); the parent $y=x$ and the four special cases. Guided practice:
+>   slope $-\tfrac12$ through $(2,-5)$. *Group Activity* (**Two Receipts**, untiered, 4 parts):
+>   Summit from a graph; Basecamp from two receipts with **Priya's point-slope rule** as the crux;
+>   a new **Which Gym Is Cheaper?** part (they cost the same at $n=12$, \$42 — and they are not
+>   parallel); the drone descent as Model It, running two points → all three forms. *Homework:* the
+>   six old CYU items plus an extension (parallel line from standard form; why point-slope is
+>   point-independent). *Deck:* 11 frames, same skeleton as 1.0. Standards unchanged:
+>   **A.F.1a–e**.
+>
+> **Not yet converted: 1.2 (EFFL) and 1.3–1.5 (legacy, with tiered activities and exit tickets).**
+>
 > **Lessons 1.0, 1.1, and 1.2 regenerated in the four-part *Experience & Formalize* shape
 > (2026-08-20).** Component set for all three: `cover`, `warmup`(+key), **`experience`**(+key),
 > `slides`, plan. No `homework` *directory* anywhere in Unit 1's first three lessons.
