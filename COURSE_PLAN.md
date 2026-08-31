@@ -2,6 +2,47 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-08-31, later) — **LESSON 1.1: GROUP ACTIVITY CUT; INDIVIDUAL PRACTICE ADDED.**
+>
+> **User direction, 2026-08-31 (after the gradual-release conversion below):** for **Lesson 1.1**,
+> *"the warmup length is fine — you can increase the font size but keep it all on one page. I think
+> we should just cut the group activity. The guided notes has a guided practice problem. I'd like
+> for you to add an 'individual practice' and have it with 1–3 problems on the current topic."*
+>
+> **What changed in 1.1 (this pass):**
+> * **`activity/` and `activity_key/` are deleted** (`git rm`). The lesson's "you do" is now done
+>   **alone**, not in groups. The cover TOC drops to **three scored rows** — Warm-Up, Guided Notes,
+>   Homework.
+> * **`notes` gains an `Individual Practice --- On Your Own` block** after the existing
+>   `practicebox` ("Guided Practice"). It is a `scenariobox[...]{navy}` — *no new environment was
+>   added to `shared/`*. **Three problems**, deliberately the three arrows between forms: two points
+>   → point-slope → slope-intercept; standard → slope-intercept; slope-intercept → standard. It
+>   lands on its own page (notes are now **4pp** blank and keyed), so students get a clean working
+>   page.
+> * **The warm-up is now `\documentclass[12pt]`** (the rest of the packet stays 10pt), with the
+>   `\small` dropped, the graph scaled 0.40 → 0.56, and item 3's inter-equation gap tightened so the
+>   second blank stops wrapping. **Still exactly one page**, with room left over.
+> * **Timing is now 5 / 20 / 15 / 10 / 10** for this lesson: warm-up 5, guided notes (incl. guided
+>   practice) 20, individual practice 15, debrief 10, **close & start the homework in class** 10.
+>   The last block is where the freed 25 minutes went — the homework page is launched in class and
+>   finished at home. The plan, the deck's "How today runs" block, and the phase table all say so.
+> * **Every reference to the deleted activity is gone** — the plan's debrief and Active Monitoring
+>   boxes are rebuilt around the three Individual Practice problems, the `[Group Activity]`
+>   teacher note is replaced by an `[Individual Practice]` one, the deck's activity-launch frame is
+>   replaced by an Individual Practice frame (and `\gymgrid` removed), and the *Priya / two receipts*
+>   framing in the homework extension and the plan's misconception line is re-anchored to the notes'
+>   own phone-plan pair $y-52=3(x-4)$ / $y=3x+40$.
+>
+> **Build evidence (2026-08-31):** `make -C unit01/lesson01 all` **EXIT 0**. Blank/key parity —
+> warm-up **1/1**, notes **4/4**, homework **2/2**; packets **10/10**. Deck 11 frames, **zero**
+> overfull boxes; the only overfull warning anywhere is the pre-existing 6.0pt `\pageheader` hbox.
+>
+> **Open for the user:** this shape (no group activity, individual practice inside the notes) is
+> applied **to Lesson 1.1 only**. The `lesson-planning` skill and the gradual-release block below
+> still specify 5/15/25/10/5 with a Group Activity. **Say whether 1.1 is a one-off or the new
+> course-wide shape** — if course-wide, the skill, this Status block, and Lessons 1.0 / 1.2–1.5 and
+> Units 2–7 all need the same treatment.
+
 > ## ⚠ Status (2026-08-31) — **EFFL IS SCRATCHED. THE COURSE IS BACK ON GRADUAL RELEASE.**
 >
 > **User direction, 2026-08-31: "the students have revolted."** The Math Medic
