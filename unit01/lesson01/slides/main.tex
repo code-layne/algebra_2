@@ -1,6 +1,6 @@
 %! Linear Functions: Slope, Forms & Graphing — Unit 1, Lesson 1.1 — Slides (Beamer)
 % Deck follows the lesson's gradual-release flow: hook → warm-up → guided notes (I do / we do) →
-% group activity → debrief → close & homework.
+% individual practice (you do alone) → debrief → close & homework. The group activity is cut.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
@@ -8,13 +8,6 @@
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
-% Gym cost grid: climbs n on 0..8, cost C on 0..30.
-\newcommand{\gymgrid}{%
-  \draw[xstep=1, ystep=3, linegray!45, thin] (0,0) grid (8,30);
-  \draw[->, thick, charcoal] (0,0)--(8.7,0) node[right, font=\tiny]{$n$};
-  \draw[->, thick, charcoal] (0,0)--(0,32) node[above, font=\tiny]{$C$};
-  \foreach \x in {2,4,6,8} \node[charcoal, font=\tiny, below] at (\x,0){\x};
-  \foreach \y in {6,18,30} \node[charcoal, font=\tiny, left] at (0,\y){\y};}
 
 \begin{document}
 
@@ -45,7 +38,8 @@
   \end{itemize}
   \vspace{4pt}
   \begin{block}{How today runs}
-    Warm-up (5) $\to$ notes together (15) $\to$ group activity (25) $\to$ debrief (10) $\to$ close (5).
+    Warm-up (5) $\to$ notes together (20) $\to$ \textbf{practice on your own} (15) $\to$ debrief
+    (10) $\to$ close \& start the homework (10).
   \end{block}
 \end{frame}
 
@@ -179,52 +173,43 @@
     \end{column}
   \end{columns}
   \vspace{3pt}
-  \textbf{Your turn:} slope $-\tfrac12$ through $(2,-5)$ --- point-slope, then slope-intercept, then
-  the parallel and perpendicular slopes.
+  \textbf{Guided Practice, together:} slope $-\tfrac12$ through $(2,-5)$ --- point-slope, then
+  slope-intercept, then the parallel and perpendicular slopes.
 \end{frame}
 
-% GROUP ACTIVITY LAUNCH
+% INDIVIDUAL PRACTICE LAUNCH
 \begin{frame}[t, plain]
-  \forestheader{Group Activity: \emph{Two Receipts}}
-  \sectionlabel[goldacc]{Groups of 3--4 $\cdot$ 25 minutes}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
-      \begin{enumerate}\setlength{\itemsep}{4pt}
-        \item \textbf{Summit Gym} --- they show you the graph. Read the fee, the rate, write the rule.
-        \item \textbf{Basecamp Gym} --- all you get is two receipts: 3 climbs \$24, 7 climbs \$32.
-              Work back to the fee. Then: is \emph{Priya's} rule the same line as yours?
-        \item \textbf{Which is cheaper?} At 2 climbs? At 15? Where does the answer switch?
-        \item \textbf{Model it} --- the drone descent, two points to all three forms.
-      \end{enumerate}
-    \end{column}
-    \begin{column}{0.40\textwidth}
-      \centering
-      \begin{tikzpicture}[x=0.44cm, y=0.11cm]
-        \gymgrid
-        \draw[very thick, forest] (0,6)--(8,30);
-        \fill[charcoal] (0,6) circle (3pt);
-        \fill[charcoal] (4,18) circle (3pt);
-      \end{tikzpicture}\\[2pt]
-      {\scriptsize Summit Gym}
-    \end{column}
-  \end{columns}
-  \vspace{2pt}
-  \textbf{The rule:} for every number you write down, be ready to show me \emph{where it came from}.
+  \forestheader{Individual Practice: on your own}
+  \sectionlabel[goldacc]{15 minutes $\cdot$ silent $\cdot$ last page of your notes}
+  \begin{enumerate}\setlength{\itemsep}{6pt}
+    \item \textbf{From two points.} $(-1,4)$ and $(3,-4)$: slope, then point-slope using $(3,-4)$,
+          then slope-intercept.
+    \item \textbf{From standard form.} Rewrite $3x-4y=12$ as $y=mx+b$. Name the slope and the
+          $y$-intercept.
+    \item \textbf{From a rate and a start.} Slope $\tfrac23$, crossing at $(0,5)$: slope-intercept,
+          then \textbf{standard} --- integers, $A \ge 0$.
+  \end{enumerate}
+  \vspace{5pt}
+  \begin{block}{The rule}
+    Stuck? Look \emph{up the page} at the notes --- not at your neighbour. Done early? Redo
+    problem~1 starting from $(-1,4)$ instead, and see whether you get the same line.
+  \end{block}
 \end{frame}
 
 % DEBRIEF
 \begin{frame}[t, plain]
-  \forestheader{Debrief: the four things to take away}
-  \sectionlabel[redacc]{10 minutes --- correct your own page as we go}
+  \forestheader{Debrief: correct your own page in a second colour}
+  \sectionlabel[redacc]{10 minutes}
   \begin{enumerate}\setlength{\itemsep}{5pt}
-    \item \textbf{2b, the backwards move.} Three climbs cost \$6, so the fee is \$18 --- the same
-          reasoning as the phone plan's \$40.
-    \item \textbf{2c: same line, different outfit.} Priya's $D-24=2(n-3)$ expands to $D=2n+18$.
-          Point-slope exists because the intercept is the point you did \emph{not} have.
-    \item \textbf{Part 3:} slopes $3$ and $2$ are different, so the lines are not parallel --- they
-          cross exactly once, at $n=12$ (\$42). That is where the cheaper gym switches.
-    \item \textbf{4c:} starting from $60$~m changes $b$, not $m$. The line \emph{shifts up}; it does
-          not tilt.
+    \item \textbf{1a --- same order, top and bottom.}
+          $m=\dfrac{-4-4}{3-(-1)}=\dfrac{-8}{4}=-2$.
+    \item \textbf{1b, the must-land moment.} From $(3,-4)$: $y+4=-2(x-3)$. From $(-1,4)$:
+          $y-4=-2(x+1)$. \emph{Both} expand to $y=-2x+2$ --- same line, different outfit. That is
+          why point-slope exists: the intercept is the point you did not have.
+    \item \textbf{2 --- divide \emph{every} term.} $-4y=-3x+12 \Rightarrow y=\tfrac34x-3$, so
+          $m=\tfrac34$ and $(0,-3)$. Check: $x=4$ gives $y=0$ in both forms.
+    \item \textbf{3 --- clear the fraction, then fix the sign.} $3y=2x+15 \Rightarrow -2x+3y=15
+          \Rightarrow 2x-3y=-15$. Standard form wants $A \ge 0$.
   \end{enumerate}
 \end{frame}
 
@@ -236,11 +221,12 @@
   the line yourself --- from a graph, from two points, or from a slope and any point at all --- and
   to recognise the same line wearing three different outfits.
   \vspace{5pt}
-  \begin{block}{Homework}
-    The \textbf{Homework} page in your packet --- due next class. Six problems plus an extension:
-    slope from two points (watch the horizontal and vertical cases), one line written two ways, a
-    fraction-heavy conversion, the parent and its two odd cousins, a candle model, and one
-    multiple-choice item on perpendicular slopes.
+  \begin{block}{Homework --- start it now}
+    The \textbf{Homework} page in your packet. We start item~1 together and you keep going; whatever
+    is left is due next class. Six problems plus an extension: slope from two points (watch the
+    horizontal and vertical cases), one line written two ways, a fraction-heavy conversion, the
+    parent and its two odd cousins, a candle model, and one multiple-choice item on perpendicular
+    slopes.
   \end{block}
   \vspace{4pt}
   \textbf{Next:} Lesson 1.2 --- a rule that reaches the same value \emph{twice}.
