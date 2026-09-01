@@ -1,0 +1,136 @@
+%! Absolute Value Equations & Inequalities — Unit 1, Lesson 1.2 — Homework (Answer Key)
+% Mirrors homework/main.tex exactly; every \blank{} becomes an \ans{}, every \writelines{n} is
+% answered with exactly n \ansline{}s, and every work block is authored byte-identically.
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+% Plain number line: {xmin}{xmax}, ticks labelled every unit.
+\newcommand{\numline}[2]{%
+  \draw[->, semithick, charcoal] (#1-0.5,0)--(#2+0.5,0);
+  \foreach \x in {#1,...,#2}{\draw[charcoal] (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\x$};}}
+
+\begin{document}
+
+\pageheader{Unit 1, Lesson 1.2}{Homework --- Answer Key}
+
+\vspace{0.10in}
+
+\begin{notesbox}{Practice}
+Show your work. Remember: $|x-h|$ is a \emph{distance}, so \textbf{isolate the bars before you
+split}, ``less th\emph{AND}'' gives one interval \emph{between}, and ``great\emph{OR}'' gives two
+rays \emph{outside}.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Solve two equations.} The first splits immediately; the second does not.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $|x - 7| = 4$: \quad $x =$ \ans{$11$ or $3$}
+      \item $5|x + 2| - 1 = 14$. Isolate first.
+        \begin{work}
+          5|x+2| - 1 &= 14 \\
+          5|x+2| &= 15 \\
+          |x+2| &= 3 \\
+          x + 2 &= 3 \quad\text{or}\quad x + 2 = -3 \\
+          x &= 1 \quad\text{or}\quad x = -5
+        \end{work}
+        $x =$ \ans{$1$ or $-5$}
+    \end{enumerate}
+
+  \boxguard[20]
+  \item \textbf{One symbol apart.} Solve both, and notice what changes.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}X|X@{}}
+    \textbf{(a) $|x + 3| < 4$} & \textbf{(b) $|x + 3| > 4$} \\
+    \hline
+    $-4 < x+3 < 4$, so \ans{$-7 < x < 1$} & $x+3 < -4$ or $x+3 > 4$, so \ans{$x<-7$ or $x>1$} \\
+    Interval: \ans{$(-7,1)$} & Interval: \ans{$(-\infty,-7)\cup(1,\infty)$} \\
+    \end{tabularx}
+    \end{center}
+    (c) One of these is a single connected piece and the other is two. Say which, and why the
+    \emph{distance} meaning makes that happen.
+    \ansline{(a) is one piece: ``closer than 4 to $-3$'' is everything between the two endpoints.}
+    \ansline{(b) is two: ``farther than 4'' can be overshooting on either side, so it splits.}
+
+  \boxguard[18]
+  \item \textbf{Read it off the picture.} The shaded numbers below are the solution set of an
+        absolute value inequality.
+    \begin{center}
+    \begin{tikzpicture}[x=0.46cm, y=0.46cm]
+      \numline{-4}{10}
+      \draw[very thick, forest] (-1,0)--(7,0);
+      \fill[forest] (-1,0) circle (3.0pt);
+      \fill[forest] (7,0) circle (3.0pt);
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-4pt}
+    (a) The centre of the shading is at \ans{$3$}, and it reaches \ans{$4$} units each
+    way. \\[4pt]
+    (b) So the inequality is \ans{$|x-3| \le 4$}, and in interval notation the set is
+    \ans{$[-1,7]$}
+
+  \boxguard[18]
+  \item \textbf{The odd ones out.} Answer each from the \emph{distance} meaning, not a memorised
+        rule.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $|x - 4| = -3$ has \ans{no solution} \quad $|x - 4| = 0$ has \ans{one, $x=4$}
+      \item $|x - 4| \ge -3$ has \ans{all real numbers} \; because \ans{distance $\ge 0 > -3$ always}
+      \item For which values of $k$ does $|x - 3| < k$ have \emph{no} solution?
+            \ans{$k \le 0$} \; Be careful at the boundary.
+            \par\ansline{At $k=0$ it reads ``distance $<0$'', which is still impossible --- so $k=0$ is included.}
+    \end{enumerate}
+
+  \boxguard[20]
+  \item \textbf{Model it.} A thermostat holds a room within $2^\circ$F of its $68^\circ$F setting.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Write an absolute value inequality for an acceptable temperature $T$. \ans{$|T-68| \le 2$}
+      \item Solve it.
+        \begin{work}
+          |T - 68| &\le 2 \\
+          -2 \le T - 68 &\le 2 \\
+          66 \le T &\le 70
+        \end{work}
+        Coolest \ans{$66^\circ$} \qquad Warmest \ans{$70^\circ$}
+      \item Is $66^\circ$F acceptable? \ans{yes} \; Which word in the sentence tells you?
+            \ans{``within''}
+    \end{enumerate}
+
+  \item \textbf{Multiple choice (SOL-style).} Which is the solution set of $|x + 2| > 3$?
+    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=1pt]
+      \item $-5 < x < 1$
+      \item $x < -5$ \; or \; $x > 1$ \hfill \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item $x > 1$
+      \item all real numbers
+    \end{enumerate}
+    Say in one sentence how you ruled out one of the others.
+    \ansline{A is the answer to $|x+2|<3$ --- ``greater than'' points outward, not inward.}
+    \ansline{C keeps only one ray; testing $x=-6$ gives $|-4|=4>3$, so the left ray counts too.}
+\end{enumerate}
+\end{notesbox}
+
+\boxguard[18]
+\begin{extensionbox}
+\textbf{Build and reason.}
+\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
+  \item A drone must stay between mile $4$ and mile $16$ of the parkway. Write that stretch as a
+        single absolute value inequality --- you will have to find its centre first.
+        \begin{work}
+          \text{centre} &= \frac{4 + 16}{2} = 10 \\
+          \text{reach} &= 16 - 10 = 6 \\
+          |x - 10| &\le 6
+        \end{work}
+  \item In class you saw that $|x-12| \le 5$ and $|x-12| \ge 5$ split the parkway between them.
+        Which mile markers belong to \emph{both} answers, and why does that not contradict
+        anything?
+    \ansline{Miles 7 and 17 --- the two endpoints, where the distance is exactly 5.}
+    \ansline{Both $\le$ and $\ge$ allow equality, so the boundary is shared, not double-counted.}
+\end{enumerate}
+\end{extensionbox}
+
+\begin{spiralbox}
+\textbf{Coming next --- Lesson 1.3: Absolute Value Functions \& Transformations.} Today you
+\emph{solved} $|ax+b| = c$; next you will \emph{graph} $y = |ax+b|$ --- a \textbf{V-shape}. The two
+solutions you found for an equation are exactly where that V crosses the horizontal line $y = c$,
+which previews the vertex, axis of symmetry, and minimum you will study formally in Unit~2.
+\end{spiralbox}
+
+\end{document}
