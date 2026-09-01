@@ -10,7 +10,7 @@ creates the root Makefile and the unit Makefile if they don't exist yet.
 Example:
     python new_lesson.py --project . --unit 01 --lesson 01 \
         --title "Vectors" --unit-title "Vectors as Data" \
-        --components cover,warmup,notes,activity,homework,slides
+        --components cover,warmup,notes,homework,slides
 """
 from __future__ import annotations
 
@@ -22,20 +22,23 @@ from pathlib import Path
 SKEL_DIR = Path(__file__).resolve().parent.parent / "assets" / "skeletons"
 
 # GRADUAL-RELEASE component set (user direction, 2026-08-31 — EFFL is scratched, "the students
-# have revolted"): a lesson is cover / warmup / notes / activity / homework / slides, run as
-# warm-up 5 - guided notes 15 - group activity 25 - debrief 10 - close & homework 5.
-# The DEBRIEF IS NOT A COMPONENT: it is a phase of the lesson plan, in which the class corrects
-# its own activity pages. There is NO exit ticket and there are NO tiers.
-# HOMEWORK IS AN IN-REPO COMPONENT AGAIN: every lesson generates one, because DeltaMath does not
+# have revolted"; refined 2026-09-01 — the group activity is cut course-wide): a lesson is
+# cover / warmup / notes / homework / slides, run as warm-up 5 - guided notes (incl. guided
+# practice) 20 - individual practice 15 - debrief 10 - close & start the homework 10.
+# THE "YOU DO" IS AN INDIVIDUAL PRACTICE BLOCK INSIDE THE GUIDED NOTES (a scenariobox on the
+# notes' last page) — there is NO activity component and NO group work. The DEBRIEF IS NOT A
+# COMPONENT: it is a phase of the lesson plan, in which the class corrects its own practice.
+# There is NO exit ticket and there are NO tiers. The warm-up is 12pt; everything else is 10pt.
+# HOMEWORK IS AN IN-REPO COMPONENT: every lesson generates one, because DeltaMath does not
 # cover all of this content; the teacher overrides per lesson and assigns DeltaMath instead where
-# it does. `exit_ticket` stays scaffoldable by name so pre-2026-08 lessons can be rebuilt, but is
-# NOT a default and must not be added to a converted lesson.
+# it does. `activity` and `exit_ticket` stay scaffoldable by name so an older lesson can be
+# rebuilt, but neither is a default and neither belongs in a new or regenerated lesson.
 KEYED = ["warmup", "notes", "activity", "homework", "exit_ticket"]
 NO_KEY = ["cover", "slides"]
 ALL_COMPONENTS = KEYED + NO_KEY
 # slides is a default: every lesson owes a deck, since lessonYY_slides.pdf and
 # lessonYY_slides.pptx are two of the five work products the build produces.
-DEFAULT_COMPONENTS = ["cover", "warmup", "notes", "activity", "homework", "slides"]
+DEFAULT_COMPONENTS = ["cover", "warmup", "notes", "homework", "slides"]
 
 # `experience` is deliberately NOT scaffoldable. It was the EFFL centerpiece; the directories that
 # still exist on disk (unit01/lesson02 and any unconverted unit) are removed when that lesson is
@@ -44,6 +47,7 @@ DEFAULT_COMPONENTS = ["cover", "warmup", "notes", "activity", "homework", "slide
 DOC_TITLE = {
     "warmup": "Warm-Up",
     "notes": "Guided Notes",
+    # legacy (2026-08-31 → 2026-09-01 only) component, scaffoldable but never a default:
     "activity": "Group Activity",
     "homework": "Homework",
     # legacy (pre-2026-08) component, scaffoldable but never a default:
@@ -51,7 +55,8 @@ DOC_TITLE = {
 }
 
 # Components with a purpose-built skeleton rather than the generic worksheet one.
-DEDICATED_SKELETON = ("notes", "activity", "homework")
+# (warmup's skeleton is the 12pt one-page spiral review.)
+DEDICATED_SKELETON = ("warmup", "notes", "activity", "homework")
 # NAMESTRIP (COURSE_PLAN.md §7): worksheet components carry NO name/date/period row —
 # the student writes their name once, on the cover, and the components are stapled behind
 # it. Only cover.tex and the unit tests (taken in a testing setting) keep \namedateperiod.
@@ -272,8 +277,9 @@ def main() -> None:
         elif comp == "slides":
             write(dest / "slides" / "main.tex", render("slides.tex", base), args.force)
         elif comp in DEDICATED_SKELETON:
-            # notes / activity / homework each have their own skeleton laying out the section
-            # structure references/components.md specifies, rather than the generic worksheet.
+            # warmup / notes / activity / homework each have their own skeleton laying out the
+            # section structure references/components.md specifies, rather than the generic
+            # worksheet (which now serves only the legacy exit_ticket).
             write(dest / comp / "main.tex", render(f"{comp}.tex", base), args.force)
         else:  # authored worksheet component (exit_ticket)
             subs = {**base, "DOCTITLE": DOC_TITLE[comp]}

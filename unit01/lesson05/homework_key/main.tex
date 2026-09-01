@@ -1,14 +1,15 @@
 %! Linear Regression — Unit 1, Lesson 1.5 — Homework (Answer Key)
+% Mirrors homework/main.tex exactly; every \blank{} becomes an \ans{}, every \writelines{n} is
+% answered with exactly n \ansline{}s, and every work block is authored byte-identically.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.6pt);}
 
 \begin{document}
 
@@ -17,118 +18,144 @@
 \vspace{0.10in}
 
 \begin{notesbox}{Practice}
-Show your work. Describe an association by \emph{direction}, \emph{form}, and \emph{strength}. The
-correlation coefficient $r\in[-1,1]$ gives direction (sign) and strength ($|r|$). To predict with a line of
-best fit $\hat y=ax+b$, substitute an $x$.
+Show your work. Read direction from the \emph{sign} of $r$ and strength from its \emph{size};
+give every slope its units; and check each prediction against the range of the data.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Classify the direction} (positive / negative / none) of each scatterplot.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{2}\dpt{2}{3}\dpt{3}{3}\dpt{4}{5}\dpt{5}{6}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(a)};
-        \end{tikzpicture}
-        \hspace{0.6cm}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{4}\dpt{2}{2}\dpt{3}{5}\dpt{4}{3}\dpt{5}{4}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(b)};
-        \end{tikzpicture}
-        \end{center}
-        (a) is \ans{positive}; \quad (b) is \ans{none}.
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Match $r$ to the plot.} Assign each value $r\in\{\,0.98,\ -0.60,\ 0.05\,\}$ to a
+        plot, and name each plot's direction.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-0.5}{6}{-0.5}{7}
+      \dpt{1}{1}\dpt{2}{2}\dpt{3}{3}\dpt{4}{5}\dpt{5}{5}
+      \node[font=\scriptsize\bfseries] at (2.5,-1.8){(P)};
+    \end{tikzpicture}
+    \hspace{0.4cm}
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-0.5}{6}{-0.5}{7}
+      \dpt{1}{5}\dpt{2}{3}\dpt{3}{4}\dpt{4}{2}\dpt{5}{3}
+      \node[font=\scriptsize\bfseries] at (2.5,-1.8){(Q)};
+    \end{tikzpicture}
+    \hspace{0.4cm}
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-0.5}{6}{-0.5}{7}
+      \dpt{1}{3}\dpt{2}{5}\dpt{3}{2}\dpt{4}{4}\dpt{5}{3}
+      \node[font=\scriptsize\bfseries] at (2.5,-1.8){(R)};
+    \end{tikzpicture}
+    \end{center}
+    (P) $r=$ \ans{$0.98$}, direction \ans{positive} \quad (Q) $r=$ \ans{$-0.60$}, direction
+    \ans{negative} \quad (R) $r=$ \ans{$0.05$}, direction \ans{none}
 
-  \item \textbf{Match $r$ to the plot.} Assign each $r\in\{\,0.98,\ -0.60,\ 0.05\,\}$ to a plot.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{1}\dpt{2}{2}\dpt{3}{3}\dpt{4}{5}\dpt{5}{5}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(P)};
-        \end{tikzpicture}
-        \hspace{0.4cm}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{5}\dpt{2}{3}\dpt{3}{4}\dpt{4}{2}\dpt{5}{3}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(Q)};
-        \end{tikzpicture}
-        \hspace{0.4cm}
-        \begin{tikzpicture}[scale=0.4]
-          \lgrid{-0.5}{6}{-0.5}{7}
-          \dpt{1}{3}\dpt{2}{5}\dpt{3}{2}\dpt{4}{4}\dpt{5}{3}
-          \node[font=\scriptsize\bfseries] at (2.5,-1.6){(R)};
-        \end{tikzpicture}
-        \end{center}
-        (P): $r={\color{keyred}\mathbf{0.98}}$; \quad (Q): $r={\color{keyred}\mathbf{-0.60}}$; \quad
-        (R): $r={\color{keyred}\mathbf{0.05}}$.
+  \boxguard[16]
+  \item \textbf{Sign versus size.} Two studies report $r=-0.85$ and $r=0.45$.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}X|X@{}}
+    \textbf{(a) $r=-0.85$} & \textbf{(b) $r=0.45$} \\
+    \hline
+    Direction \ans{negative}; \; strength \ans{strong} & Direction \ans{positive}; \; strength \ans{moderate} \\
+    \end{tabularx}
+    \end{center}
+    (c) A classmate says ``$r=-0.85$ is the weaker one, because it is negative.'' What is wrong
+    with that?
+    \ansline{The sign only says which way the trend runs; strength is the \emph{size}, $|{-0.85}|=0.85$.}
+    \ansline{$0.85>0.45$, so $r=-0.85$ is the stronger linear relationship --- it just slopes down.}
 
-  \item \textbf{Interpret and predict.} A biologist records the number of \emph{days} a plant has grown
-        ($x$) and its \emph{height in cm} ($y$). Over days $0$ to $30$, technology gives
-        $\hat y=0.8x+5$ with $r=0.97$.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-          \item Interpret the slope $0.8$ in context.
-                \ans{each additional day of growth is associated with about $0.8$ cm more height.}
-          \item Interpret the $y$-intercept $5$ in context.
-                \ans{at day $0$ (the start) the predicted height is $5$ cm.}
-          \item Predict the height at $x=20$ days.
-                \begin{work}
-                  \hat y &= 0.8(20) + 5 \\
-                         &= 16 + 5      \\
-                         &= 21
-                \end{work}
-                Height $\approx$ \ans{$21$} cm. Interpolation or extrapolation?
-                \ans{interpolation ($20$ is within $0$--$30$)}
-          \item Predict at $x=100$ days.
-                \begin{work}
-                  \hat y &= 0.8(100) + 5 \\
-                         &= 80 + 5       \\
-                         &= 85
-                \end{work}
-                Height $\approx$ \ans{$85$} cm. Why is this prediction unreasonable?
-                \ans{$100$ days is far outside the data (extrapolation); a real plant stops growing, so it will not keep rising linearly to $85$ cm.}
-        \end{enumerate}
+  \boxguard[24]
+  \item \textbf{From a data table.} A biologist measures a seedling's height every five days.
+    \begin{center}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+    \hline
+    day $x$ & $0$ & $5$ & $10$ & $15$ & $20$ & $25$ & $30$ \\ \hline
+    height $y$ (cm) & $5$ & $10$ & $11$ & $18$ & $20$ & $26$ & $29$ \\ \hline
+    \end{tabular}
+    \end{center}
+    Technology gives $\hat y=0.8x+5$ with $r=0.99$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item The slope $0.8$ means: each additional \ans{day}, the height grows by about
+            \ans{$0.8$} \ans{cm} (units!). \; The intercept $5$ is the predicted height on
+            day \ans{$0$}.
+      \item Predict the height on day $20$, then compare with the table.
+        \begin{work}
+          \hat y &= 0.8(20) + 5 \\
+                 &= 16 + 5 \\
+                 &= 21
+        \end{work}
+        The table says \ans{$20$} cm; the prediction is \ans{interpolation} (interpolation /
+        extrapolation), and it is close.
+      \item Predict the height on day $100$.
+        \begin{work}
+          \hat y &= 0.8(100) + 5 \\
+                 &= 80 + 5 \\
+                 &= 85
+        \end{work}
+        This is \ans{extrapolation}. Why should the biologist not trust it? \ans{day $100$ is far past the $0$--$30$ data; growth slows, so the line has broken}
+    \end{enumerate}
 
-  \item \textbf{Correlation vs.\ causation.} A study finds a strong positive correlation between children's
-        \emph{shoe size} and their \emph{reading level}. Does a bigger shoe \emph{cause} better reading?
-        \ans{no} \; Name a \textbf{lurking variable}.
-        \ans{the child's \emph{age} --- older children have bigger feet \emph{and} read better.}
+  \boxguard[16]
+  \item \textbf{The special values.} Say what the scatterplot looks like, or why it cannot happen.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item $r=1$ exactly: the points \ans{lie exactly on one rising line}
+      \item $r=0$: does this prove the two variables are unrelated? \ans{no} \; A tight
+            \emph{curved} pattern can have $r\approx0$, because $r$ measures only a
+            \ans{linear} fit.
+      \item A study reports $r=1.3$. What must be true? \ans{impossible --- $r$ is always between $-1$ and $1$}
+    \end{enumerate}
 
-  \item \textbf{Explain.} What two things does the correlation coefficient $r$ tell you about a scatterplot,
-        and how does each show up in the value of $r$?
-        \ansline{Direction --- the \emph{sign} of $r$ ($+$ rising, $-$ falling); and strength --- the \emph{size} $|r|$.}
-        \ansline{$|r|$ near $1$ is a tight linear pattern; $|r|$ near $0$ is little or no linear trend.}
+  \boxguard[18]
+  \item \textbf{Correlation versus causation.} Across an elementary school, \emph{shoe size} and
+        \emph{reading level} have a strong positive correlation.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Does a bigger shoe \emph{cause} better reading? \ans{no} \; Name the lurking
+            variable that pushes both up: \ans{age}
+      \item If the study looked only at $9$-year-olds, would you expect the correlation to stay
+            strong? Explain.
+            \ansline{No --- with age held fixed, the lurking variable can no longer push both up together.}
+            \ansline{Among children of one age, shoe size tells you little about reading level.}
+    \end{enumerate}
+
+  \item \textbf{Multiple choice (SOL-style).} Which correlation coefficient indicates the
+        \emph{strongest} linear relationship?
+    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=1pt]
+      \item $r=0.35$
+      \item $r=-0.82$ \hfill \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item $r=0.60$
+      \item $r=-0.10$
+    \end{enumerate}
+    Say in one sentence how you ruled out one of the others.
+    \ansline{Strength is $|r|$: $0.82$ beats $0.60$, $0.35$, and $0.10$ --- the minus sign is direction, not weakness.}
+    \ansline{C is the largest \emph{positive} value, but $|{-0.82}|>0.60$, so C is not the strongest.}
 \end{enumerate}
 \end{notesbox}
 
+\boxguard[20]
 \begin{extensionbox}
 \textbf{Which line fits better?} For the five data points below, two candidate lines are proposed:
-$y_1=1.5x+0.5$ and $y_2=x+2$. Fill in each line's predictions and its \emph{error} (error $=$ data $-$
-prediction) at every point.
+$y_1=1.5x+0.5$ and $y_2=x+2$. Fill in each line's predictions and its \emph{error} (error $=$
+data $-$ prediction) at every point.
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.25}
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
 $x$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \hline
 data $y$ & $2$ & $3$ & $5$ & $6$ & $8$ \\ \hline
-$y_1=1.5x+0.5$ & $\mathbf{2}$ & $\mathbf{3.5}$ & $\mathbf{5}$ & $\mathbf{6.5}$ & $\mathbf{8}$ \\ \hline
-error & $\mathbf{0}$ & $\mathbf{-0.5}$ & $\mathbf{0}$ & $\mathbf{-0.5}$ & $\mathbf{0}$ \\ \hline
-$y_2=x+2$ & $\mathbf{3}$ & $\mathbf{4}$ & $\mathbf{5}$ & $\mathbf{6}$ & $\mathbf{7}$ \\ \hline
-error & $\mathbf{-1}$ & $\mathbf{-1}$ & $\mathbf{0}$ & $\mathbf{0}$ & $\mathbf{1}$ \\ \hline
+$y_1=1.5x+0.5$ & \ans{$2$} & \ans{$3.5$} & \ans{$5$} & \ans{$6.5$} & \ans{$8$} \\ \hline
+error & \ans{$0$} & \ans{$-0.5$} & \ans{$0$} & \ans{$-0.5$} & \ans{$0$} \\ \hline
+$y_2=x+2$ & \ans{$3$} & \ans{$4$} & \ans{$5$} & \ans{$6$} & \ans{$7$} \\ \hline
+error & \ans{$-1$} & \ans{$-1$} & \ans{$0$} & \ans{$0$} & \ans{$1$} \\ \hline
 \end{tabular}
 \end{center}
-\begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item Total error \emph{size} (add the absolute values of the errors): \; $y_1$: \ans{$1.0$}; \quad
-        $y_2$: \ans{$3.0$}.
-  \item The line of best fit makes predictions closest to the data overall. Which candidate fits better, and
-        how do you know?
-        \ans{$y_1$ --- its total error size ($1.0$) is smaller than $y_2$'s ($3.0$), so its predictions sit closer to the data.}
-\end{enumerate}
+Total error \emph{size} (add the absolute values): \; $y_1$: \ans{$1.0$} \quad $y_2$:
+\ans{$3.0$}. \; The better fit is \ans{$y_1$}, because its predictions are \ans{closest}
+to the data overall --- which is exactly what technology minimises.
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- the Unit 1 Test, then Unit 2: Quadratic Functions.} You've now met linear functions
-from every angle: characteristics, forms, absolute value, piecewise, and fitting a line to data. In Unit~2
-the data can \emph{curve} --- a falling-then-rising pattern that no line can capture --- and the curve of
-best fit becomes a \textbf{parabola}.
+\textbf{Coming next --- the Unit 1 Test, then Unit 2: Quadratic Functions.} You have now met
+linear functions from every angle: characteristics, forms, absolute value, piecewise, and fitting
+a line to data. In Unit~2 the data can \emph{curve} --- a falling-then-rising pattern no line can
+capture --- and the curve of best fit becomes a \textbf{parabola}.
 \end{spiralbox}
 
 \end{document}

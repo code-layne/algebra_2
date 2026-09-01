@@ -2,6 +2,79 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-01, later) — **UNIT 1 COMPLETE IN THE COURSE-WIDE SHAPE: 1.3, 1.4, 1.5 REGENERATED; THE SKILL NOW MATCHES.**
+>
+> **Lessons 1.3–1.5 were regenerated whole** (plan, cover, warm-up+key, notes+key, homework+key,
+> deck) in the course-wide gradual-release shape — no group activity, Individual Practice inside
+> the notes, 5/20/15/10/10, 12pt warm-up, three scored cover rows. Their legacy `activity{,_key}`
+> and `exit_ticket{,_key}` dirs are **deleted** (`git rm`). Unit 1 now has **no `exit_ticket`
+> directory anywhere**; the only `activity` left in the unit is 1.0's.
+>
+> **Content.**
+> * **1.3 — Absolute Value Functions & Transformations.** One context: a trail that drops to a
+>   creek and climbs out, $H(x)=2|x-3|+1$ (height in hundreds of feet). Notes: (1) the parent V;
+>   (2) inside vs.\ outside the bars, closing on the gold box *find the vertex by setting the
+>   inside to zero* (kills the horizontal sign flip); (3) **the target misconception** — valley
+>   $2|x-3|+1$ beside ridge $R(x)=-2|x-3|+7$, same axis, min $1$ vs.\ max $7$, and the caution
+>   *a negative $a$ flips the vertex's job*, tested at $R(5)=3<7$; (4) vertex form all at once, then
+>   *back to 1.2*: $H(x)=5$ solved to $x=1,5$, the two places the V crosses $y=5$. Guided Practice
+>   also *builds* a rule from a graph. Individual Practice: rule → features ($a<0$), graph → rule
+>   with a check by solving, the same-vertex pair $y=\pm|x+2|-3$. Homework: features from three
+>   rules; the one-sign-apart pair; matching + a table; the odd cases ($x$-intercepts of $|x|+k$ as
+>   $k$ changes sign; $a=0$); the drone $D(t)=15|t-6|$ with a solve and a ``twice as fast'' check;
+>   SOL MC on $|x+4|-2$. Standards unchanged: **A2.F.1b/c, A2.F.2a/c/d/f**.
+> * **1.4 — Piecewise & Step Functions.** One context: a streaming service, free for three months
+>   then \$12/month. Notes: (1) evaluate by choosing the piece, with the boundary rule; (2) absolute
+>   value is piecewise — the trail from 1.3 rewritten as $2x-5$ / $7-2x$ in two `work` blocks, and
+>   the pieces *meet* at the vertex; (3) **the target misconception** — total paid $C(m)$ (meets)
+>   beside price-this-month $P(m)$ (jumps), and the caution *exactly one piece owns the boundary*:
+>   $P(3)=0$, the closed dot says so; (4) the greatest-integer staircase, rounding *down*.
+>   Individual Practice: evaluate across a jump, read a graph and *write its rule*, $|x-3|$ as two
+>   pieces + floor values. Homework: evaluate with the boundary; a meets-or-jumps pair one number
+>   apart; a graph with a jump; the staircase incl. $\lfloor x\rfloor=x$; the phone plan with a
+>   surcharge that opens a jump; SOL MC on $f(2)$ at a boundary. Standards unchanged:
+>   **A2.F.2a/b/c/f**.
+> * **1.5 — Linear Regression.** One context: hours practised vs.\ free throws made. **The data
+>   was re-derived so the stated $\hat y=1.5x+2$, $r=0.97$ are what technology actually returns**
+>   for the eight points drawn (the legacy 1.5x+2 / 0.96 did not fit its points). Notes: (1)
+>   direction/form/strength; (2) $r$ — sign is direction, size is strength, with the **target
+>   misconception** caution *which is stronger, $r=-0.9$ or $r=0.4$?*; (3) the line of best fit,
+>   slope and intercept with units; (4) predicting — $x=6$ (interpolation) beside $x=12$ (``20 of
+>   15 shots'': extrapolation breaks) plus correlation ≠ causation. Individual Practice: match $r$
+>   to plots, interpret the salary model (in thousands), the cocoa line that predicts $-10$ cups.
+>   Homework: match $r$; the sign-vs-size pair; a model read from a **data table**; the special
+>   values $r=1,0,1.3$; shoe size vs.\ reading with a hold-age-fixed check; SOL MC on the strongest
+>   $r$; extension compares two candidate lines by total error. Standards unchanged: **A2.ST.2c–h**.
+>
+> **Build evidence (2026-09-01):** `make -C unit01/lesson0{3,4,5} all` **EXIT 0** from clean
+> (`.stamps` and `target` for each lesson removed first). Blank/key parity for every lesson:
+> warm-up **1/1**, notes **4/4**, homework **2/2**; packets **10/10**; plan 5pp; deck **11 frames**;
+> **zero** overfull boxes beyond the pre-existing 6pt `\pageheader` hbox. Conventions verified
+> programmatically for all three: every `work` block byte-identical blank↔key (1.3: 7, 1.4: 6,
+> 1.5: 8), `\writelines` totals equal `\ansline` counts, six `\termblanklong` ↔ six `\vocabans`,
+> **zero** `\ans` in math mode (the four brace-notation blanks in 1.4 are wrapped in `\text{}`),
+> namestrip clean, no `teachernote` in any key. `make -C unit01 student|key` EXIT 0 — **68/69**,
+> the one-page difference being the pre-existing practice test (3pp) vs.\ its key (4pp), not any
+> lesson.
+>
+> **Two new authoring gotchas:** a `cases` environment inside a `tabularx` cell fails
+> (``Forbidden control sequence … \check@nocorr``) — put brace definitions in a display above
+> the table; and a `$` inside a `%` comment fools a naive math-mode scanner — strip comments first.
+>
+> **THE `lesson-planning` SKILL NOW MATCHES THE COURSE (same PR).** `SKILL.md` (model, the four
+> confirmed decisions, component table with the 12pt warm-up and 4pp notes, invariants, the
+> conversion table, guardrails, YAML description), all four `references/*.md`, `new_lesson.py`
+> (`DEFAULT_COMPONENTS = cover,warmup,notes,homework,slides`; `activity` scaffoldable by name only),
+> and the skeletons (`cover.tex` three rows, `lesson_plan.tex` with an Individual Practice box and
+> `[Individual Practice]` teacher note, `slides.tex` with the launch frame, `notes.tex` with the
+> Individual Practice scenariobox, **new** `warmup.tex`/`warmup_key.tex` at 12pt). Smoke-tested: a
+> default scaffold into a throwaway project creates exactly `cover warmup notes homework slides`
+> (+ keys) and builds all five work products, EXIT 0.
+>
+> **Still open:** **Lesson 1.0** keeps its `activity` dir and the interim 5/15/25/10/5 timing
+> (this run was ``beginning with lesson 1.3''); Units 2–7 (44 lessons) are EFFL or pre-EFFL
+> legacy. Next action: regenerate 1.0 in the course-wide shape, then Unit 2 from 2.0.
+
 > ## ⚠ Status (2026-08-31, later) — **LESSON 1.1: GROUP ACTIVITY CUT; INDIVIDUAL PRACTICE ADDED.**
 >
 > **User direction, 2026-08-31 (after the gradual-release conversion below):** for **Lesson 1.1**,
@@ -501,9 +574,12 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 >   5/20/15/10/10. Full content, build evidence, and the two authoring gotchas are in the
 >   2026-09-01 ⚠ Status block at the top of this file. Standards unchanged: **A2.EI.1a–e**.
 >
-> **Not yet converted: 1.0 (gradual release, but still the old 5/15/25/10/5 shape with a Group
-> Activity) and 1.3–1.5 (pre-EFFL legacy, with tiered activities and exit tickets).** No lesson in
-> Unit 1 carries an `experience` dir any more.
+> * **1.3, 1.4, 1.5 — regenerated in the course-wide shape (2026-09-01).** Full content and build
+>   evidence are in the 2026-09-01 (later) ⚠ Status block at the top of this file. `activity`,
+>   `activity_key`, `exit_ticket`, `exit_ticket_key` deleted from all three.
+>
+> **Not yet converted: 1.0 only** (gradual release, but still the interim 5/15/25/10/5 shape with a
+> Group Activity). No lesson in Unit 1 carries an `experience` or `exit_ticket` dir any more.
 >
 > **Lessons 1.0, 1.1, and 1.2 regenerated in the four-part *Experience & Formalize* shape
 > (2026-08-20).** Component set for all three: `cover`, `warmup`(+key), **`experience`**(+key),

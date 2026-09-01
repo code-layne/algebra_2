@@ -1,4 +1,6 @@
-%! Absolute Value Functions \& Transformations — Unit 1, Lesson 1.3 — Slides (Beamer)
+%! Absolute Value Functions & Transformations — Unit 1, Lesson 1.3 — Slides (Beamer)
+% Deck follows the lesson's gradual-release flow: targets → warm-up → hook → guided notes (I do /
+% we do) → individual practice (you do alone) → debrief → close & homework. No group activity.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
@@ -22,137 +24,248 @@
 \end{frame}
 }
 
-% HOOK
+% LEARNING TARGETS
 \begin{frame}[t, plain]
-  \forestheader{A distance graph is a V}
-  \sectionlabel{Hook}
-  \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      You drive toward a rest stop, reach it at $t=2$ h, and keep going. Distance from it (tens of
-      miles) is $d(t)=30\,|t-2|$.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $d(0)=60$, \; $d(2)=0$, \; $d(4)=60$
-        \item Closest at $t=2$: distance $0$ --- the \textbf{vertex}.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-1}{5}{-1}{7}
-        \draw[very thick, forest] (-0.2,6.6)--(2,0)--(4.2,6.6);
-        \fill[charcoal] (2,0) circle (3pt);
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-  \vspace{2pt}
-  \begin{block}{Today}
-    A distance is never negative, so its graph bottoms out at one turning point and is symmetric about
-    the line through it. Every absolute value function is this V, moved and stretched.
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item Read the parent $f(x)=|x|$ as a \textbf{V}: vertex, axis of symmetry, minimum.
+    \item Use \textbf{vertex form} $a|x-h|+k$ to find the vertex $(h,k)$ --- and say why the
+          inside of the bars moves the graph \emph{backwards}.
+    \item Decide from $a$: opens \textbf{up} (a minimum) or \textbf{down} (a maximum)? Narrower
+          or wider than the parent?
+    \item Read a V's features, build its rule from a graph, and connect the two solutions of
+          $|ax+b|=c$ to where the V crosses $y=c$.
+  \end{itemize}
+  \vspace{4pt}
+  \begin{block}{How today runs}
+    Warm-up (5) $\to$ notes together (20) $\to$ \textbf{practice on your own} (15) $\to$ debrief
+    (10) $\to$ close \& start the homework (10).
   \end{block}
 \end{frame}
 
-% PARENT FUNCTION
+% WARM-UP
 \begin{frame}[t, plain]
-  \forestheader{The parent $f(x)=|x|$}
-  \sectionlabel{Parent}
+  \forestheader{Warm-Up: three things you already know}
+  \sectionlabel{5 minutes --- alone, then check with a neighbour}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item \textbf{Build the table} for $y=|x|$ at $x=-2,\dots,2$. Are the two halves the same?
+          Where is the smallest $y$?
+    \item \textbf{Moves from Lesson 1.1.} $y=x+3$ shifts which way? Is $y=2x$ steeper or flatter?
+          What does a negative coefficient do?
+    \item \textbf{Read the V.} Its lowest point, its fold line, and where it crosses the dashed
+          line $y=3$.
+  \end{enumerate}
+  \vspace{6pt}
+  \begin{block}{Hold on to this}
+    The V crosses $y=3$ at $x=-3$ and $x=3$ --- the two answers to $|x|=3$ from last lesson.
+    Keep that; we come back to it.
+  \end{block}
+\end{frame}
+
+% HOOK
+\begin{frame}[t, plain]
+  \forestheader{Hook: the trail and the bridge}
+  \sectionlabel[goldacc]{$H(x)=2|x-3|+1$ --- height above the creek, in hundreds of feet}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item Vertex $(0,0)$; \; axis $x=0$; \; minimum $0$.
-        \item Domain: all reals. \; Range: $y\ge 0$.
-        \item Decreases on $(-\infty,0]$, increases on $[0,\infty)$.
-        \item Really two lines: $y=x$ ($x\ge 0$), $y=-x$ ($x<0$).
-      \end{itemize}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.45]
+        \lgrid{-0.5}{6.5}{-0.5}{8}
+        \draw[very thick, forest] (0,7)--(3,1)--(6,7);
+        \fill[charcoal] (3,1) circle (3.5pt);
+        \node[charcoal, font=\scriptsize, below right] at (3,1){$(3,1)$};
+      \end{tikzpicture}
     \end{column}
-    \begin{column}{0.44\textwidth}
+    \begin{column}{0.54\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item How high at the trailhead? At mile 3? At mile 6? \; \textbf{$7$, $1$, $7$.}
+        \item Where is the trail lowest, and how low? \; \textbf{Mile 3, height 1 --- the bridge.}
+      \end{itemize}
+      \vspace{4pt}
+      \begin{block}{The question that carries today}
+        \textbf{Why can the height never drop below 1?} $|x-3|$ is a \emph{distance} --- never
+        below $0$ --- so $2|x-3|+1$ is never below $1$. Every absolute value graph is this same
+        \textbf{V}, moved, stretched, or flipped.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% NOTES 1 — THE PARENT
+\begin{frame}[t, plain]
+  \forestheader{Notes 1: the parent $f(x)=|x|$ --- a V that turns once}
+  \sectionlabel{One turning point, two mirror-image rays}
+  \begin{columns}[T]
+    \begin{column}{0.36\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.5]
         \lgrid{-4}{4}{-1}{5}
         \draw[very thick, forest] (-4,4)--(0,0)--(4,4);
-        \fill[charcoal] (0,0) circle (3pt);
+        \fill[charcoal] (0,0) circle (3.5pt);
       \end{tikzpicture}
     \end{column}
-  \end{columns}
-\end{frame}
-
-% SHIFTS
-\begin{frame}[t, plain]
-  \forestheader{Up / down and left / right}
-  \sectionlabel[goldacc]{Shifts}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \textbf{Outside} the bars $\to$ vertical (as expected):
-      \[ y=|x|+k \ \text{shifts up/down.} \]
-      \textbf{Inside} the bars $\to$ horizontal and \emph{backwards}:
-      \[ y=|x-h| \ \text{moves the vertex to } x=h. \]
-      Tip: the vertex is where the inside $=0$.
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.44]
-        \lgrid{-2}{6}{-1}{5}
-        \draw[very thick, forest!45, dashed] (-1,1)--(0,0)--(4,4);
-        \draw[very thick, forest] (-1,4)--(3,0)--(6,3);
-        \fill[charcoal] (3,0) circle (3pt);
-        \node[charcoal, font=\scriptsize] at (3.4,-0.7){$y=|x-3|$};
-      \end{tikzpicture}
+    \begin{column}{0.60\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Vertex} $(0,0)$; \textbf{axis of symmetry} $x=0$; \textbf{minimum} $0$.
+        \item Domain: all reals. Range: $y\ge0$ --- a distance never goes below zero.
+        \item Decreasing on $(-\infty,0]$, increasing on $[0,\infty)$.
+        \item Two rays pasted at the vertex: $y=x$ for $x\ge0$, $y=-x$ for $x<0$.
+      \end{itemize}
     \end{column}
   \end{columns}
+  \vspace{4pt}
+  $x$ and $-x$ give the \emph{same} output, so the graph is a mirror image across the $y$-axis.
+  That symmetry \emph{is} the axis of symmetry.
 \end{frame}
 
-% STRETCH / REFLECT
+% NOTES 2 — SHIFTS
 \begin{frame}[t, plain]
-  \forestheader{Stretch, compress, reflect: $y=a|x|$}
-  \sectionlabel[goldacc]{The number $a$}
+  \forestheader{Notes 2: outside is vertical; inside is horizontal --- and backwards}
+  \sectionlabel{Find the vertex by setting the inside to zero}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \begin{itemize}\setlength{\itemsep}{6pt}
-        \item $|a|>1$: \textbf{narrower}; \; $0<|a|<1$: \textbf{wider}.
-        \item $a<0$: \textbf{reflect} --- the V opens \emph{down}.
-        \item $a$ is the slope of the right-hand ray.
+    \begin{column}{0.50\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item $y=|x|+k$: up or down by $k$. \; $y=|x|-3$ has vertex $(0,-3)$.
+        \item $y=|x-h|$: \textbf{right} by $h$. \; $y=|x-3|$ has vertex $(3,0)$; \; $y=|x+2|$ has
+              vertex $(-2,0)$.
       \end{itemize}
     \end{column}
     \begin{column}{0.46\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-3}{3}{-4}{5}
-        \draw[very thick, forest] (-2.2,4.4)--(0,0)--(2.2,4.4);
-        \node[forest, font=\scriptsize] at (2.9,4.4){$2|x|$};
-        \draw[very thick, navy] (-3,-3)--(0,0)--(3,-3);
-        \node[navy, font=\scriptsize] at (3,-3.6){$-|x|$};
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-2}{6}{-1}{5}
+        \draw[very thick, forest!40, dashed] (-1,1)--(0,0)--(4,4);
+        \draw[very thick, forest] (-1,4)--(3,0)--(6,3);
+        \fill[charcoal] (3,0) circle (3.5pt);
+        \node[charcoal, font=\scriptsize] at (2,-2.2){$y=|x-3|$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
-\end{frame}
-
-% VERTEX FORM
-\begin{frame}[t, plain]
-  \forestheader{Vertex form: $g(x)=a|x-h|+k$}
-  \sectionlabel{Putting it together}
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item \textbf{Vertex} $(h,k)$; \; \textbf{axis} $x=h$.
-    \item Opens \textbf{up} if $a>0$ ($k$ is a \emph{min}); \; \textbf{down} if $a<0$ ($k$ is a \emph{max}).
-    \item $|a|$ sets the width.
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{Worked: $g(x)=-2|x-1|+3$}
-    Vertex $(1,3)$, axis $x=1$, opens \textbf{down} $\Rightarrow$ \textbf{maximum} $3$; narrow.
-    And $g(0)=-2|{-1}|+3=1$ straight from the rule.
+  \vspace{4pt}
+  \begin{block}{The rule that beats the sign flip}
+    $|x-3|$ is smallest where $x-3=0$ --- at $x=3$. So $|x-3|$ moves the V \emph{right}, not left.
+    For the trail: inside $=0$ at $x=3$, and the $+1$ lifts it, so the vertex is $(3,1)$ --- the bridge.
   \end{block}
 \end{frame}
 
-% ROADMAP
+% NOTES 3 — THE NUMBER a  (the target misconception)
 \begin{frame}[t, plain]
-  \forestheader{Where Unit 1 goes next}
-  \sectionlabel{Connections}
-  \textbf{Today:} the parent V $y=|x|$; shifts, stretch, and reflection; vertex form
-  $a|x-h|+k$ with its vertex, axis, and min/max.\\[8pt]
-  \begin{itemize}\setlength{\itemsep}{4pt}
-    \item \textbf{1.4} Piecewise-defined functions --- the V is two lines pasted at the vertex.
-    \item \textbf{1.5} Linear regression.
-  \end{itemize}
+  \forestheader{Notes 3: the number $a$ --- up or down, narrow or wide}
+  \sectionlabel[redacc]{Valley vs.\ ridge: same vertex, opposite job}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Valley: $H(x)=2|x-3|+1$} \\[2pt]
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-0.5}{6.5}{-0.5}{8}
+        \draw[very thick, forest] (0,7)--(3,1)--(6,7);
+        \fill[charcoal] (3,1) circle (4pt);
+      \end{tikzpicture} \\[2pt]
+      $a=2>0$: opens \textbf{up}. Vertex $(3,1)$; $1$ is a \textbf{minimum}; range $y\ge1$.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Ridge: $R(x)=-2|x-3|+7$} \\[2pt]
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-0.5}{6.5}{-0.5}{8}
+        \draw[very thick, redacc] (0,1)--(3,7)--(6,1);
+        \fill[charcoal] (3,7) circle (4pt);
+      \end{tikzpicture} \\[2pt]
+      $a=-2<0$: opens \textbf{down} (a reflection). Vertex $(3,7)$; $7$ is a \textbf{maximum};
+      range $y\le7$.
+    \end{column}
+  \end{columns}
+  \vspace{3pt}
+  \begin{block}{Test one point --- $x=5$ on the ridge}
+    $R(5)=-2|2|+7=3$, \emph{below} $7$ --- so $7$ is the highest output. A negative $a$ flips the
+    vertex's job. Width: $a$ is the right ray's slope --- $|a|>1$ narrower, $0<|a|<1$ wider.
+  \end{block}
+\end{frame}
+
+% NOTES 4 — VERTEX FORM + BACK TO 1.2
+\begin{frame}[t, plain]
+  \forestheader{Notes 4: vertex form, all at once --- and back to Lesson 1.2}
+  \sectionlabel{And your turn}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      $g(x)=-2|x-1|+3$:
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item vertex $(1,3)$, axis $x=1$
+        \item opens down, so $3$ is a \textbf{maximum}; range $y\le3$
+        \item right $1$, up $3$, reflected, narrower
+        \item $g(0)=-2|{-1}|+3=1$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      Where is the trail $500$ ft up? $H(x)=5$:
+      \begin{align*}
+        2|x-3|+1 &= 5 \\
+        |x-3| &= 2 \\
+        x &= 5 \;\text{ or }\; x = 1
+      \end{align*}
+      Last lesson's two solutions are the two places the V crosses $y=5$.
+    \end{column}
+  \end{columns}
   \vspace{4pt}
-  {\footnotesize The solutions of $|x-1|=2$ from Lesson 1.2 are where this V meets the line $y=2$.}
+  \textbf{Guided Practice, together:} $g(x)=\tfrac12|x+4|-2$ --- every feature, then $g(0)$; then
+  \emph{build} a rule from a V with vertex $(-1,4)$ through $(1,0)$: down $4$ over $2$, so $a=-2$
+  and $y=-2|x+1|+4$.
+\end{frame}
+
+% INDIVIDUAL PRACTICE LAUNCH
+\begin{frame}[t, plain]
+  \forestheader{Individual Practice: on your own}
+  \sectionlabel[goldacc]{15 minutes $\cdot$ silent $\cdot$ last page of your notes}
+  \begin{enumerate}\setlength{\itemsep}{6pt}
+    \item \textbf{From the rule.} $p(x)=-3|x-2|+5$: every feature, then $p(4)$.
+    \item \textbf{From the graph.} Read the vertex, find $a$ from a second point, write the rule
+          --- then check where it crosses $y=2$ by solving.
+    \item \textbf{Same vertex, opposite job.} $y=|x+2|-3$ beside $y=-|x+2|-3$. A classmate says
+          both have a minimum of $-3$. What did they miss?
+  \end{enumerate}
+  \vspace{5pt}
+  \begin{block}{The rule}
+    Set the inside to zero for the vertex; let the sign of $a$ say up or down. Stuck? Look \emph{up
+    the page} at the notes --- not at your neighbour. Done early? Change problem~2's $a$ to
+    $\tfrac12$: what moves, and what does not?
+  \end{block}
+\end{frame}
+
+% DEBRIEF
+\begin{frame}[t, plain]
+  \forestheader{Debrief: correct your own page in a second colour}
+  \sectionlabel[redacc]{10 minutes}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item \textbf{1 --- inside to zero, then the sign.} $x-2=0 \Rightarrow$ vertex $(2,5)$;
+          $a=-3<0$: opens down, $5$ a \emph{maximum}, range $y\le5$. $p(4)=-1$, below $5$. \checkmark
+    \item \textbf{The must-land moment.} Problem~3: same vertex $(-2,-3)$, same axis --- but one
+          V has $-3$ at the \emph{bottom} (range $y\ge-3$) and the other at the \emph{top}
+          (range $y\le-3$). A negative $a$ flips the vertex's job.
+    \item \textbf{2 --- build, then check.} Vertex $(1,-2)$; up $4$ over $2$ gives $a=2$:
+          $y=2|x-1|-2$. Solve $2|x-1|-2=2$: $x=3$ or $-1$ --- the two crossings. \checkmark
+    \item \textbf{Why $a$ does two jobs.} The V is two rays with slopes $a$ and $-a$: the sign
+          says which way they leave the vertex, the size says how steeply.
+  \end{enumerate}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Close}
+  \sectionlabel{What changed today}
+  You walked in able to \emph{solve} $|ax+b|=c$. You walk out able to \emph{graph} $y=a|x-h|+k$
+  --- read its vertex off the rule, say which way it opens and how wide, and see last lesson's two
+  solutions as the two places a \textbf{V} crosses a horizontal line.
+  \vspace{5pt}
+  \begin{block}{Homework --- start it now}
+    The \textbf{Homework} page in your packet. We start item~1 together and you keep going; whatever
+    is left is due next class. Six problems plus an extension: features from three rules, a
+    one-sign-apart pair, matching graphs and a table, the odd cases, a drone model, and one
+    multiple-choice item.
+  \end{block}
+  \vspace{4pt}
+  \textbf{Next:} Lesson 1.4 --- today's V is two rays pasted at the vertex; next, each ray becomes
+  its own \emph{piece} of one rule, and you meet the staircase-shaped step function.
 \end{frame}
 
 \end{document}

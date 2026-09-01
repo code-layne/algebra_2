@@ -1,181 +1,305 @@
 %! Linear Regression — Unit 1, Lesson 1.5 — Guided Notes (Answer Key)
+% Mirrors notes/main.tex exactly; every \blank{} becomes an \ans{} and every work block is
+% authored byte-identically, so blank and key paginate alike.
+% Gradual release (course-wide shape, 2026-09-01): the notes are the "I do / we do" block,
+% 20 minutes, and the Individual Practice block that closes them is the "you do alone", 15 more.
+% There is no group activity.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\setlength{\workrowsep}{8pt}   % handwriting room; moves blank and key together
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.6pt);}
+% The free-throw data: hours practised (x) vs. free throws made out of 15 (y).
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
+% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
+% paragraph, so without them each term label gets pulled onto the previous answer's line.
 \newcommand{\vocabans}[2]{%
-  \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}}
+  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+\newcommand{\ftdata}{\dpt{1}{4}\dpt{2}{4}\dpt{3}{7}\dpt{4}{7}\dpt{5}{11}\dpt{6}{11}\dpt{7}{12}\dpt{8}{14}}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.5}{Guided Notes --- Answer Key}
 
-\vspace{0.08in}
+\vspace{0.10in}
 
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item read a \emph{scatterplot} and describe its association by \emph{direction}, \emph{form}, and \emph{strength};
-  \item interpret the \emph{correlation coefficient} $r$ and match an $r$-value to a scatterplot;
-  \item read a \emph{line of best fit} $\hat y=ax+b$, interpret its \emph{slope} and \emph{intercept}, and \emph{predict};
-  \item tell \emph{interpolation} from \emph{extrapolation} and explain why \emph{correlation is not causation}.
+  \item read a \emph{scatterplot} and describe its association: \emph{direction}, \emph{form}, \emph{strength};
+  \item interpret the \emph{correlation coefficient} $r$ --- sign for direction, size for strength;
+  \item read a \emph{line of best fit} $\hat y=ax+b$, interpret its slope and intercept, and \emph{predict};
+  \item tell \emph{interpolation} from \emph{extrapolation}, and say why \emph{correlation is not causation}.
 \end{itemize}
 \end{objectivebox}
 
-\vspace{0.04in}
+\vspace{0.05in}
 
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
-\vocabans{Scatterplot / bivariate data}{bivariate data is paired measurements $(x,y)$ on the same individuals; a scatterplot plots those pairs as points}
-\vocabans{Association (direction, form, strength)}{the pattern in a scatterplot: direction (rise/fall), form (linear or not), and strength (how tightly the points cluster)}
-\vocabans{Correlation coefficient $r$}{a number in $[-1,1]$; its sign is the direction and its size $|r|$ the strength of the \emph{linear} fit}
-\vocabans{Line of best fit (regression line) $\hat y=ax+b$}{the line (from technology) that best summarizes the trend; $\hat y$ is a predicted value}
-\vocabans{Interpolation vs.\ extrapolation}{predicting \emph{inside} the data's $x$-range (interpolation) vs.\ \emph{outside} it (extrapolation --- riskier)}
+\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
+\vocabans{Scatterplot (bivariate data)}{paired measurements $(x,y)$ plotted as points, to see how two variables relate}
+\vocabans{Association: direction, form, strength}{does $y$ rise or fall with $x$; do the points follow a line; how tightly}
+\vocabans{Correlation coefficient $r$}{a number in $[-1,1]$: sign is the direction, size $|r|$ is the strength of the linear fit}
+\vocabans{Line of best fit (regression line) $\hat y=ax+b$}{the line from technology that best summarises the trend; $\hat y$ is a predicted value}
+\vocabans{Interpolation vs.\ extrapolation}{predicting inside the data's $x$-range (safe) vs.\ outside it (the trend may break)}
+\vocabans{Correlation is not causation (lurking variable)}{a strong $r$ means the variables move together; a hidden third variable may drive both}
 \end{vocabbox}
 
 \begin{hookbox}
-A coach records, for each player, the \emph{hours practiced} this week ($x$) and the \emph{free throws made}
-out of $15$ ($y$). The points do \emph{not} lie on one line --- but they \emph{trend} upward.
+A coach records, for each player, the \emph{hours practised} this week ($x$) and the \emph{free
+throws made} out of $15$ ($y$). The points do \emph{not} lie on one line --- but they trend upward.
 \begin{center}
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-0.5}{9}{-0.5}{15}
-  \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
+\begin{minipage}[c]{0.40\linewidth}\centering
+\begin{tikzpicture}[scale=0.22]
+  \lgrid{-0.5}{9}{-0.5}{15.5}
+  \ftdata
 \end{tikzpicture}
-\end{center}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item As hours practiced \emph{increase}, free throws made tend to \ans{increase} (increase / decrease).
-  \item Could a \emph{single line} pass through every point? \ans{no} \; Could one line summarize the \emph{trend}? \ans{yes}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.56\linewidth}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item As hours practised increase, free throws made tend to \ans{increase} (increase / decrease).
+  \item Could a \emph{single line} pass through every point? \ans{no} \; Could one line
+        summarise the \emph{trend}? \ans{yes}
+  \item The player who practised $5$ hours made \ans{$11$}; the one who practised $6$ made
+        \ans{$11$}. So more practice does not guarantee more baskets --- it \emph{tends} to.
 \end{itemize}
-No exact rule fits messy data --- but a \textbf{line of best fit} can summarize the trend, and today we
-learn to read it, measure it, and predict with it.
+\end{minipage}
+\end{center}
+No exact rule fits messy data --- but a \textbf{line of best fit} can summarise the trend, and
+today we learn to read it, measure it, and predict with it.
 \end{hookbox}
 
+\boxguard[24]
 \begin{notesbox}{1. Scatterplots \& Association: Direction, Form, Strength}
-A \textbf{scatterplot} plots paired data $(x,y)$. Describe an association three ways: \textbf{direction}
-(does $y$ rise or fall as $x$ rises?), \textbf{form} (do the points follow a \emph{line}?), and
-\textbf{strength} (how tightly?). Classify each plot below.
+A \textbf{scatterplot} plots paired data $(x,y)$. Describe its association three ways:
+\textbf{direction} (as $x$ rises, does $y$ rise or fall?), \textbf{form} (do the points follow a
+\emph{line}?), and \textbf{strength} (how tightly?). Classify each plot.
 \begin{center}
-\begin{tikzpicture}[scale=0.4]
+\begin{tikzpicture}[scale=0.30]
   \lgrid{-0.5}{7}{-0.5}{7}
   \dpt{1}{2}\dpt{2}{2}\dpt{3}{4}\dpt{4}{4}\dpt{5}{6}\dpt{6}{6}
-  \node[font=\scriptsize\bfseries] at (3,-1.6){(a)};
+  \node[font=\scriptsize\bfseries] at (3,-1.8){(a)};
 \end{tikzpicture}
-\hspace{0.3cm}
-\begin{tikzpicture}[scale=0.4]
+\hspace{0.4cm}
+\begin{tikzpicture}[scale=0.30]
   \lgrid{-0.5}{7}{-0.5}{7}
   \dpt{1}{6}\dpt{2}{5}\dpt{3}{5}\dpt{4}{3}\dpt{5}{2}\dpt{6}{2}
-  \node[font=\scriptsize\bfseries] at (3,-1.6){(b)};
+  \node[font=\scriptsize\bfseries] at (3,-1.8){(b)};
 \end{tikzpicture}
-\hspace{0.3cm}
-\begin{tikzpicture}[scale=0.4]
+\hspace{0.4cm}
+\begin{tikzpicture}[scale=0.30]
   \lgrid{-0.5}{7}{-0.5}{7}
   \dpt{1}{3}\dpt{2}{6}\dpt{3}{2}\dpt{4}{5}\dpt{5}{3}\dpt{6}{5}
-  \node[font=\scriptsize\bfseries] at (3,-1.6){(c)};
+  \node[font=\scriptsize\bfseries] at (3,-1.8){(c)};
 \end{tikzpicture}
 \end{center}
 \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item Plot (a): direction is \ans{positive}; the points \emph{do / do not} follow a line: \ans{do}.
-  \item Plot (b): direction is \ans{negative} --- as $x$ rises, $y$ \ans{falls}.
-  \item Plot (c): direction is \ans{none} --- there is \emph{no} clear linear trend.
+  \item Plot (a): direction \ans{positive}; form: the points \ans{do} (do / do not) follow
+        a line; strength \ans{strong}.
+  \item Plot (b): direction \ans{negative} --- as $x$ rises, $y$ \ans{falls}; strength
+        \ans{strong}.
+  \item Plot (c): direction \ans{none} --- there is no clear linear trend at all.
 \end{itemize}
+The free-throw data is direction \ans{positive}, form \ans{linear}, strength \ans{strong}.
 \end{notesbox}
 
-\begin{notesbox}{2. The Correlation Coefficient $r$}
-Technology reports one number, the \textbf{correlation coefficient} $r$, that measures the \emph{linear}
-association. It always lies between ${\color{keyred}\mathbf{-1}}$ and ${\color{keyred}\mathbf{1}}$. Its
+\boxguard[26]
+\begin{notesbox}{2. The Correlation Coefficient $r$ --- Direction \emph{and} Strength in One Number}
+Technology reports one number, the \textbf{correlation coefficient} $r$, for how well a
+\emph{line} fits the points. It always lies between \ans{$-1$} and \ans{$1$}. Its
 \textbf{sign} gives the \emph{direction}; its \textbf{size} $|r|$ gives the \emph{strength}.
 \begin{center}
 \begin{tikzpicture}[scale=1]
-  \draw[semithick, charcoal, ->] (-3.4,0)--(3.4,0);
-  \foreach \x/\lab in {-3/-1, 0/0, 3/1}{\draw (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\lab$};}
+  \draw[semithick, charcoal, ->] (-3.6,0)--(3.6,0);
+  \foreach \x/\lab in {-3/-1, -1.5/-0.5, 0/0, 1.5/0.5, 3/1}{\draw (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\lab$};}
   \node[font=\scriptsize, forest] at (-3,0.45){strong negative};
   \node[font=\scriptsize, forest] at (0,0.45){no linear trend};
   \node[font=\scriptsize, forest] at (3,0.45){strong positive};
 \end{tikzpicture}
 \end{center}
-\textbf{Match each $r$ to a plot from Section~1} (write a, b, or c):
-\[ r\approx 0.90:\ {\color{keyred}\mathbf{(a)}} \qquad r\approx -0.85:\ {\color{keyred}\mathbf{(b)}}
-   \qquad r\approx 0.05:\ {\color{keyred}\mathbf{(c)}} \]
-\textbf{Warning:} $r$ measures a \emph{linear} fit only, and a strong $|r|$ does \emph{not} prove one
-variable \emph{causes} the other. A negative $r$ is not ``weak'' --- $r=-0.9$ is a \ans{strong} (strong /
-weak) association.
-\end{notesbox}
-
-\begin{notesbox}{3. The Line of Best Fit (Regression Line)}
-Technology also returns the \textbf{line of best fit} $\hat y=ax+b$ --- the single line that best summarizes
-the trend. The hat on $\hat y$ means it is a \emph{predicted} value. For the free-throw data, technology
-gives
-\[ \hat y = 1.5x + 2, \qquad r = 0.96. \]
+\textbf{Match each $r$ to a plot from Section 1} (write a, b, or c): \quad
+$r\approx0.90$: \ans{a} \qquad $r\approx-0.85$: \ans{b} \qquad $r\approx0.05$: \ans{c}
 \begin{center}
-\begin{tikzpicture}[scale=0.42]
-  \lgrid{-0.5}{9}{-0.5}{15}
-  \draw[very thick, forest] (0,2)--(8.5,14.75);
-  \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
-\end{tikzpicture}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{$r=0.9$} & \textbf{$r=-0.9$} \\
+\hline
+Direction \ans{positive}; \; strength \ans{strong} & Direction \ans{negative}; \; strength \ans{strong} \\
+Points hug a line that \emph{rises} & Points hug a line that \emph{falls} \\
+\end{tabularx}
 \end{center}
-\textbf{Interpret in context (this is the point):}
+\vspace{2pt}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.9pt, arc=2mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Careful --- the sign is direction only; it says nothing about strength.} A
+classmate says ``$r=-0.9$ is a weak fit, because it is negative.'' Which is the \emph{stronger}
+linear fit, $r=-0.9$ or $r=0.4$? \ans{$r=-0.9$} \; Why? \; $|{-0.9}|=$ \ans{$0.9$} and $|0.4|=$
+\ans{$0.4$}. The points with $r=-0.9$ sit \emph{much} closer to their line --- it just slopes
+down. Two different questions, two different parts of $r$.
+\end{tcolorbox}
+\end{notesbox}
+
+\boxguard[12]
+\begin{notesbox}{3. The Line of Best Fit --- and What Its Numbers Mean}
+Technology also returns the \textbf{line of best fit} (the \emph{regression line}) $\hat y=ax+b$,
+the one line that best summarises the trend; the hat means a \emph{predicted} value. For the
+free-throw data:
+\[ \hat y = 1.5x + 2, \qquad r = 0.97. \]
+\begin{center}
+\begin{minipage}[c]{0.40\linewidth}\centering
+\begin{tikzpicture}[scale=0.19]
+  \lgrid{-0.5}{9}{-0.5}{15.5}
+  \draw[very thick, forest] (0,2)--(8.6,14.9);
+  \ftdata
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.56\linewidth}
+\textbf{Interpret in context --- this is the point.}
 \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item The \textbf{slope} $a=1.5$ means each additional hour of practice is associated with about
-        \ans{$1.5$} more free throws made.
-  \item The \textbf{$y$-intercept} $b=2$ is the predicted free throws for a player who practices
+  \item The \textbf{slope} $a=1.5$: each additional \ans{hour} of practice is associated
+        with about \ans{$1.5$} more free throws made --- a \emph{rate}, with units.
+  \item The \textbf{$y$-intercept} $b=2$: the predicted free throws for a player who practised
         \ans{$0$} hours --- a \emph{baseline}.
-  \item Is $r=0.96$ a strong or weak fit? \ans{strong}, because $|r|$ is close to \ans{$1$}.
+  \item $r=0.97$: a \ans{strong} (strong / weak) fit, because $|r|$ is close to \ans{$1$}.
 \end{itemize}
+\end{minipage}
+\end{center}
 \end{notesbox}
 
+\boxguard[28]
 \begin{notesbox}{4. Predicting --- and Its Limits}
-To \textbf{predict}, substitute an $x$ into $\hat y=ax+b$.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item Predict for $x=6$ hours:
-        \begin{work}
-          \hat y &= 1.5(6) + 2 \\
-                 &= 9 + 2      \\
-                 &= 11
-        \end{work}
-        The data ran from $x=1$ to $x=8$, so $x=6$ is \emph{inside} the data --- this is
-        \ans{interpolation} (interpolation / extrapolation).
-  \item Predict for $x=12$ hours:
-        \begin{work}
-          \hat y &= 1.5(12) + 2 \\
-                 &= 18 + 2      \\
-                 &= 20
-        \end{work}
-        But only $15$ shots were attempted, so $20$ is \ans{unreasonable} (reasonable / unreasonable).
-        Predicting \emph{outside} the data is \ans{extrapolation}, and the trend may break down.
-  \item \textbf{Correlation $\ne$ causation.} In summer, ice-cream sales and pool drownings both rise, so
-        $r>0$ --- but ice cream does not \emph{cause} drownings. The real cause (\emph{hot weather}) is a
-        \ans{lurking} variable. A strong $r$ shows the variables \ans{move} together, not that one
-        \ans{causes} the other.
-\end{itemize}
+To \textbf{predict}, substitute an $x$ into $\hat y=ax+b$. The data ran from $x=1$ to $x=8$ hours.
+\begin{center}
+\begin{minipage}[t]{0.47\linewidth}
+\textbf{Inside the data: $x=6$ hours.}
+\begin{work}
+  \hat y &= 1.5(6) + 2 \\
+         &= 9 + 2 \\
+         &= 11
+\end{work}
+$6$ is inside $1$ to $8$: this is \ans{interpolation}. \\ Reasonable? \ans{yes}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\textbf{Outside the data: $x=12$ hours.}
+\begin{work}
+  \hat y &= 1.5(12) + 2 \\
+         &= 18 + 2 \\
+         &= 20
+\end{work}
+$12$ is outside $1$ to $8$: this is \ans{extrapolation}. \\ Reasonable? \ans{no}
+\end{minipage}
+\end{center}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.9pt, arc=2mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Careful --- the line does not know the story's limits.} Only \ans{$15$} shots
+were attempted, so ``$20$ made'' is impossible. Inside the data the trend held; outside it, the
+line keeps going but reality does not --- always check an \emph{extrapolation} against the story.
+\end{tcolorbox}
+\vspace{2pt}
+\textbf{Correlation is not causation.} In summer, ice-cream sales and pool drownings both rise, so
+their $r$ is \ans{positive} (positive / negative) --- but ice cream does not \emph{cause} drownings.
+The real driver, \ans{hot weather}, is a \textbf{lurking variable} pushing both. A strong $r$ shows
+two variables \ans{move} together, not that one \ans{causes} the other.
 \end{notesbox}
 
-\boxguard[32]
+\boxguard[24]
 \begin{practicebox}
-A study relates \textbf{daily minutes of exercise} ($x$) to \textbf{resting heart rate in bpm} ($y$).
-Technology gives $\hat y = -0.4x + 78$ with $r=-0.88$.
+A study relates \textbf{daily minutes of exercise} ($x$) to \textbf{resting heart rate in beats
+per minute} ($y$) for adults who exercise $0$ to $45$ minutes a day. Technology gives
+$\hat y=-0.4x+78$ with $r=-0.88$.
 \begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item Is the association positive or negative, strong or weak? \ans{negative, strong ($|r|=0.88$)}
-  \item Interpret the slope $-0.4$ in context.
-        \ansline{each additional minute of daily exercise is associated with about $0.4$ bpm lower resting heart rate}
+  \item The association is \ans{negative} (positive / negative) and \ans{strong} (strong / weak),
+        because the sign of $r$ is \ans{negative} and $|r|=$ \ans{$0.88$} is close to $1$.
+  \item Interpret the slope $-0.4$ in context, with units.
+        \par\ansline{Each additional minute of daily exercise is associated with a resting heart rate}
+        \ansline{about $0.4$ beats per minute \emph{lower} --- a rate, not a guarantee for any one person.}
   \item Predict the resting heart rate for $x=30$ minutes.
         \begin{work}
           \hat y &= -0.4(30) + 78 \\
-                 &= -12 + 78      \\
+                 &= -12 + 78 \\
                  &= 66
         \end{work}
-  \item The data ran from $x=0$ to $x=45$ minutes. Is the $x=30$ prediction interpolation or extrapolation?
-        \ans{interpolation} \; Does a strong $r$ prove exercise \emph{causes} a lower heart rate? \ans{no}
+        $30$ is inside $0$ to $45$, so this is \ans{interpolation}. \; Does a strong $r$ prove exercise
+        \emph{causes} a lower heart rate? \ans{no}
 \end{enumerate}
 \end{practicebox}
+
+\boxguard[22]
+\begin{scenariobox}[Individual Practice --- On Your Own]{navy}
+Three problems, quietly and on your own. Sign is direction, size is strength; every slope gets
+its units; check each prediction against the data's range.
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt]
+  \item \textbf{Match $r$ to the plot.} Assign each value $r\in\{\,0.95,\ 0.10,\ -0.70\,\}$.
+    \begin{center}
+    \begin{tikzpicture}[scale=0.24]
+      \lgrid{-0.5}{6}{-0.5}{7}
+      \dpt{1}{1}\dpt{2}{2}\dpt{3}{4}\dpt{4}{5}\dpt{5}{6}
+      \node[font=\scriptsize\bfseries] at (2.5,-1.8){(P)};
+    \end{tikzpicture}
+    \hspace{0.4cm}
+    \begin{tikzpicture}[scale=0.24]
+      \lgrid{-0.5}{6}{-0.5}{7}
+      \dpt{1}{4}\dpt{2}{2}\dpt{3}{5}\dpt{4}{3}\dpt{5}{4}
+      \node[font=\scriptsize\bfseries] at (2.5,-1.8){(Q)};
+    \end{tikzpicture}
+    \hspace{0.4cm}
+    \begin{tikzpicture}[scale=0.24]
+      \lgrid{-0.5}{6}{-0.5}{7}
+      \dpt{1}{5}\dpt{2}{3}\dpt{3}{4}\dpt{4}{2}\dpt{5}{2}
+      \node[font=\scriptsize\bfseries] at (2.5,-1.8){(R)};
+    \end{tikzpicture}
+    \end{center}
+    (P) $r=$ \ans{$0.95$} \quad (Q) $r=$ \ans{$0.10$} \quad (R) $r=$ \ans{$-0.70$} \quad
+    Which plot has the strongest linear fit? \ans{P}
+
+  \item \textbf{Interpret the model.} For workers with $0$ to $15$ years of experience, relating
+        \emph{years of experience} ($x$) to \emph{salary in thousands of dollars} ($y$), technology
+        gives $\hat y=2.5x+38$ with $r=0.91$. \\[3pt]
+    (a) The slope $2.5$ means each additional \ans{year} of experience is associated with about
+        \$\ans{$2{,}500$} more salary. \\[3pt]
+    (b) The intercept $38$ means the predicted salary with no experience is \$\ans{$38{,}000$}. \\[3pt]
+    (c) Predict the salary at $x=10$ years:
+    \begin{work}
+      \hat y &= 2.5(10) + 38 \\
+             &= 25 + 38 \\
+             &= 63
+    \end{work}
+    That is \$\ans{$63{,}000$}, and it is \ans{interpolation} (interpolation / extrapolation). \; A
+    prediction at $x=30$ years would be \ans{extrapolation}.
+
+  \item \textbf{Where the line breaks.} A caf\'e records the daily high \emph{temperature} ($x$,
+        in $^\circ$F) and \emph{cups of hot cocoa sold} ($y$) on days from $20^\circ$ to $60^\circ$.
+        Technology gives $\hat y=-3x+260$ with $r=-0.93$. \\[3pt]
+    (a) Direction \ans{negative}; strength \ans{strong}. The slope $-3$ means: each extra degree
+        is associated with about \ans{$3$} \ans{fewer} (more / fewer) cups sold. \\[3pt]
+    (b) Predict at $x=40^\circ$ and at $x=90^\circ$:
+    \begin{center}
+    \begin{minipage}[t]{0.47\linewidth}
+    \begin{work}
+      \hat y &= -3(40) + 260 \\
+             &= -120 + 260 \\
+             &= 140
+    \end{work}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.47\linewidth}
+    \begin{work}
+      \hat y &= -3(90) + 260 \\
+             &= -270 + 260 \\
+             &= -10
+    \end{work}
+    \end{minipage}
+    \end{center}
+    (c) The $40^\circ$ prediction is \ans{interpolation}; the $90^\circ$ one is \ans{extrapolation}. Why is
+        the second one unreasonable, and what should the caf\'e conclude instead?
+    \par\ansline{You cannot sell $-10$ cups; $90^\circ$ is far outside the $20$--$60^\circ$ data, so the line has broken.}
+    \ansline{Conclude only that very hot days sell few cups --- near zero --- not a negative number.}
+\end{enumerate}
+\end{scenariobox}
 
 \end{document}

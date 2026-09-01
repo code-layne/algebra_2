@@ -5,9 +5,9 @@ description: >-
   shared/ style package — prefix algebra2 — and a Makefile hierarchy that compiles components
   with latexmk and merges them with pdfunite).
   Use this whenever the user wants to create, draft, or build a lesson, a lesson plan, a unit,
-  or any lesson component — warm-up, guided notes, group activity, homework, cover sheet, unit
-  test, or their answer keys. Lessons follow a traditional gradual-release model
-  (warm-up → guided notes → group activity → debrief → homework). The course is defined by
+  or any lesson component — warm-up, guided notes (with the guided and individual practice), homework, cover sheet,
+  unit test, or their answer keys. Lessons follow a traditional gradual-release model
+  (warm-up → guided notes → individual practice → debrief → homework; no group activity). The course is defined by
   COURSE_PLAN.md at the project root: seven function-family units, each opening with a Lesson 0
   "Characteristics of ____ Functions," with a cumulative characteristics-of-functions spine.
   Decompose units into lessons from it.
@@ -27,12 +27,17 @@ audience: each unit is built around one function type, and **every unit opens wi
 "Characteristics of ____ Functions."** Author every component to build graph-reading fluency —
 study how each new function type *behaves* before manipulating and solving it.
 
-**Every lesson follows a traditional gradual-release model** — *I do, we do, you do together,
-you do alone.* A warm-up activates prior knowledge; **Guided Notes** build and name the
-vocabulary with the class and end in a guided-practice box; a **Group Activity** applies it to
-new contexts and a model; a **debrief** consolidates and surfaces errors; a **homework** page is
-the independent practice. The 60-minute period runs
-**5 warm-up / 15 guided notes / 25 group activity / 10 debrief / 5 close & homework**.
+**Every lesson follows a traditional gradual-release model** — *I do, we do, you do alone.* A
+warm-up activates prior knowledge; **Guided Notes** build and name the vocabulary with the class
+on one worked context and end in a **Guided Practice** box (the "we do"); an **Individual
+Practice** block on the notes' last page is the "you do" — three problems, worked silently and
+alone; a **debrief** consolidates and surfaces errors; the **homework** page is started in class
+and finished at home. The 60-minute period runs
+**5 warm-up / 20 guided notes (incl. guided practice) / 15 individual practice / 10 debrief /
+10 close & start the homework**. **There is no group activity** — the user cut it on 2026-08-31
+("just cut the group activity … add an 'individual practice'") and confirmed the shape as
+course-wide on 2026-09-01. `unit01/lesson01` and `unit01/lesson02` are the reference
+implementations; 1.3–1.5 follow them.
 
 > **This replaced the Math Medic "experience first, formalize later" (EFFL) model on 2026-08-31
 > — user direction, "the students have revolted."** Anything still saying *Experience &
@@ -40,14 +45,18 @@ the independent practice. The 60-minute period runs
 > has not been converted yet, not a pattern to copy. See the ⚠ Status block at the top of
 > `COURSE_PLAN.md`.
 
-**Three decisions the user confirmed, and that hold for every lesson (2026-08-31):**
+**Four decisions the user confirmed, and that hold for every lesson (2026-08-31 → 2026-09-01):**
 
 1. **No exit ticket.** The debrief closes the lesson; the formative check is the homework's
    last item (an SOL-style multiple-choice problem). Never scaffold `exit_ticket` in a new or
    converted lesson.
-2. **No tiers.** The old Tier R / Approaching / Extension structure does **not** come back —
-   every group works the same task, with the modelling part last as the stretch.
-3. **Timing is 5 / 15 / 25 / 10 / 5** — shorter notes, longer activity.
+2. **No tiers.** The old Tier R / Approaching / Extension structure does **not** come back.
+3. **No group activity.** The "you do" is an **Individual Practice** block *inside the Guided
+   Notes* — a `scenariobox[Individual Practice --- On Your Own]{navy}` on the notes' own last
+   page, three problems, silent. Never scaffold `activity` in a new or regenerated lesson.
+4. **Timing is 5 / 20 / 15 / 10 / 10** — warm-up / guided notes incl. guided practice /
+   individual practice / debrief / close & *start the homework in class*. The warm-up is set at
+   **12pt**; everything else stays 10pt.
 
 ## The course at a glance
 
@@ -74,19 +83,20 @@ A lesson lives in `unitXX/lessonYY/` and consists of:
 - **`main.tex`** — the teacher-facing **lesson plan** (the root document of the lesson dir).
 - A set of **student components**, each its own subdirectory containing **either** a
   `main.tex` (authored, compiled to a PDF) **or** a `main.pdf` (a prefab PDF, used as-is):
-  `cover`, `warmup`, `notes`, `activity`, `homework`, and `slides`.
+  `cover`, `warmup`, `notes`, `homework`, and `slides`. **There is no `activity` directory.**
 - An **answer key** for each keyed component, as a *separate* sibling directory:
-  `warmup_key`, `notes_key`, `activity_key`, `homework_key`. (`cover` and `slides` have no key.)
+  `warmup_key`, `notes_key`, `homework_key`. (`cover` and `slides` have no key.)
 - **The debrief has no component.** It is a phase of the lesson plan — 10 minutes in which the
-  class corrects its own activity pages while the teacher puts the crux items on the board.
+  class corrects its own Individual Practice in a second colour while the teacher works all
+  three problems on the board.
 
-The three teaching components, and what each is for:
+The teaching components, and what each is for:
 
 | Component | Phase | Budget | What it is |
 | --- | --- | --- | --- |
-| **`notes`** | I do / we do, 15 min | **2–3pp** | `objectivebox` → `vocabbox` → `hookbox` → **four numbered `notesbox` sections** → a `practicebox` as the "we do" |
-| **`activity`** | you do together, 25 min | **2–3pp** | `headlinebox` → **four `scenariobox` parts**, untiered, the last always **Model It** |
-| **`homework`** | you do alone | **2pp** | a `Practice` `notesbox` of **~6 items spanning the whole standard** → `extensionbox` → closing `spiralbox` |
+| **`warmup`** | 5 min, **12pt** | **1p** | three spiral-review items; the last hands off into notes section 1 |
+| **`notes`** | I do / we do 20 min, then you do alone 15 min | **4pp** | `objectivebox` → `vocabbox` → `hookbox` → **four numbered `notesbox` sections** → `practicebox` (the "we do") → **`scenariobox[Individual Practice --- On Your Own]{navy}`**, three problems, on its own clean page |
+| **`homework`** | started in class, finished at home | **2pp** | a `Practice` `notesbox` of **~6 items spanning the whole standard** → `extensionbox` → closing `spiralbox` |
 
 **Homework is an in-repo component and it IS scored.** Every lesson generates one, because
 DeltaMath does not cover all of this course's content; where it does, the teacher **overrides per
@@ -94,13 +104,14 @@ lesson** and assigns a DeltaMath set instead, so each plan's *Reinforcement & Ex
 carries a **DeltaMath override** sentence naming what to swap in. The cover's homework row takes a
 `\blank{1.2cm}` — never `NA` — and reads *due next class*. See `references/components.md`.
 
-*Legacy shapes.* Lessons authored 2026-08-19 → 2026-08-31 carry an `experience`/`experience_key`
-pair (the EFFL centerpiece); lessons authored before that carry `notes`, `activity`,
-`exit_ticket`, and `homework` with **tiered** activities. The build accepts all of them. When
-touching a legacy lesson, **regenerate it in the current shape rather than patching** — delete
-`experience{,_key}` or `exit_ticket{,_key}`, flatten any tiers, and rebuild the plan and deck
-around the new phase table. `unit01/lesson00` and `unit01/lesson01` are the reference
-implementations.
+*Legacy shapes.* Lesson 1.0 (converted 2026-08-31) still carries an `activity`/`activity_key`
+pair and the interim 5/15/25/10/5 group-activity timing; lessons authored 2026-08-19 →
+2026-08-31 in Units 2–7 carry an `experience`/`experience_key` pair (the EFFL centerpiece);
+lessons authored before that carry `activity`, `exit_ticket`, and **tiered** activities. The
+build accepts all of them. When touching a legacy lesson, **regenerate it in the current shape
+rather than patching** — `git rm` the `activity{,_key}`, `experience{,_key}`, or
+`exit_ticket{,_key}` dirs, and rebuild the plan and deck around the 5/20/15/10/10 table.
+`unit01/lesson01` and `unit01/lesson02` are the reference implementations (1.3–1.5 follow them).
 
 ### The five work products
 
@@ -179,9 +190,10 @@ clean, detect project context:
    writes them — pass `--course` to set the name).
 4. **Find the insertion point.** List `unit*/lesson*` to find the next unit/lesson number and
    whether the target lesson already exists.
-5. **Open a model lesson.** `unit01/lesson00` and `unit01/lesson01` are the gradual-release
-   reference implementations — open one and mirror its preamble, box usage, and tone. The live
-   project overrides the reference docs. (Other Unit 1 lessons are still on older shapes.)
+5. **Open a model lesson.** `unit01/lesson01` and `unit01/lesson02` are the course-wide
+   gradual-release reference implementations (1.3–1.5 follow them) — open one and mirror its
+   preamble, box usage, and tone. The live project overrides the reference docs. (1.0 still has
+   a group activity; Units 2–7 are on older shapes.)
 
 ### Step 1 — Map the unit into lessons, then gather the lesson's content
 
@@ -205,19 +217,21 @@ works:
 python3 /Users/layneshepherd/Mathematics/algebra_2/.claude/worktrees/experience-formalize-lessons-3c941a/.claude/skills/lesson-planning/scripts/new_lesson.py --project . --unit 01 --lesson 03 \
   --title "Absolute Value Functions" --unit-title "Linear Functions" \
   --course "Algebra 2" \
-  --components cover,warmup,notes,activity,homework,slides
+  --components cover,warmup,notes,homework,slides
 ```
 
 That component list is the default, so `--components` can be omitted entirely. The script
 auto-detects the prefix and writes each authored component's `main.tex` as a correctly-preambled
-skeleton (and the matching `_key` skeleton for keyed components). Because this course inlines
+skeleton (and the matching `_key` skeleton for keyed components) — the warm-up at 12pt, the
+notes with the Individual Practice block already in place. Because this course inlines
 course macros, pass `--course "Algebra 2"` so the generated lesson plan defines
 `\CourseName` correctly. There is no `--year`: the school year is never printed. Pass `--prefab warmup` to create that component as an empty drop-in
 directory instead (Step 4). `slides` requires `shared/algebra2-beamer.sty`. Then fill in the
 skeletons — **including the deck**, which is no longer optional.
 
-`experience` is **not scaffoldable** — it was the EFFL centerpiece. `exit_ticket` still is, but
-only so a pre-2026-08 lesson can be rebuilt unchanged; never add one to a new or converted lesson.
+`experience` is **not scaffoldable** — it was the EFFL centerpiece. `activity` and `exit_ticket`
+still are, but only so an older lesson can be rebuilt unchanged; never add either to a new or
+regenerated lesson.
 
 **Unit assessments scaffold automatically.** When the run creates a *new* unit, the scaffolder
 also lays down that unit's `tests/`, `test_keys/`, `sample_test/`, and `sample_test_key/` dirs
@@ -237,22 +251,24 @@ Author each file following `references/components.md`, which gives the required 
 and a worked skeleton for every component and its key. Hold to these invariants:
 
 - **Every student component is `\documentclass[10pt]{article}`** with
-  `\usepackage{algebra2-article}` + `\usepackage{algebra2-boxes}`. (The 12pt Math Medic sizing
-  went out with EFFL; there is no 12pt component any more, and no `\answerspace` macro — open
-  responses use `\writelines{n}`.)
+  `\usepackage{algebra2-article}` + `\usepackage{algebra2-boxes}` — **except the warm-up, which
+  is `[12pt]`** (user direction, 2026-08-31) and must still fit one page blank and keyed. There
+  is no `\answerspace` macro — open responses use `\writelines{n}`.
 - **Guided Notes carry the vocabulary, and they come first.** The spoiler rule is dead: the
   cover, the deck, and the notes all name the formal terms, because the notes precede the
-  activity. Build the definitions on the hook's own numbers, and **keep one worked context
+  practice. Build the definitions on the hook's own numbers, and **keep one worked context
   running through all four sections** — that is what makes the block read as one lesson rather
   than four procedures.
 - **Section 3 of the notes is normally the target misconception.** Put the two things students
   conflate side by side in a two-column `tabularx`, then close with a gold caution `tcolorbox`
   giving a case where the two answers *disagree*.
-- **The activity is four parts and untiered.** Parts 1–3 apply the notes (straightforward case →
-  contrast case carrying the crux question → a side-by-side comparison); **part 4 is always
-  "Model It"** — a fresh real context carrying the lesson's modelling standard, with a `work`
-  block and a "what if we change a number?" concept check. ~15–18 lettered sub-questions fills
-  25 minutes.
+- **Individual Practice is three problems, silent, on the notes' last page.** Put a
+  `\boxguard[22]` before the `scenariobox[Individual Practice --- On Your Own]{navy}` so it
+  lands on a clean page. The three problems are deliberately the three *shapes* (or directions)
+  of the skill — e.g. equation / "and" / "or"; rule → features / graph → rule / the same-vertex
+  pair — with the crux last, and every solve in a `work` block. The lesson plan carries an
+  `[Individual Practice]` box (launch script; what students do | what the teacher does — cues,
+  never answers; the early-finisher move) and the debrief works all three on the board.
 - **Homework spans the whole standard, in ~6 items:** the core procedure off a *rule*; a
   deliberate *contrast pair*; the same procedure off a *table or graph* (so all three
   representations appear); the *special case* and its boundary; a *model* in a fresh context with
@@ -269,7 +285,7 @@ and a worked skeleton for every component and its key. Hold to these invariants:
   `\vocabans{Term}{definition}` (the key defines that macro in its own preamble). There is **no**
   answer-key toggle — never try to build one.
 - **Teacher notes go in the lesson plan, not in a key** — **four** `teachernote`s per lesson, in
-  packet order: `[Warm-Up]`, `[Guided Notes]`, `[Group Activity]`, `[Homework]`.
+  packet order: `[Warm-Up]`, `[Guided Notes]`, `[Individual Practice]`, `[Homework]`.
   A note in a key is the one block with no counterpart in the blank, so it makes the key run
   longer and costs the student packet a blank page.
 - **The work rule: a component must be the same number of pages blank and keyed.** Put every
@@ -324,7 +340,7 @@ Details and troubleshooting in `references/build.md`.
 its `_key`'s, and the two packets must match:
 
 ```bash
-for c in warmup notes activity homework; do printf '%s %s/%s\n' "$c" \
+for c in warmup notes homework; do printf '%s %s/%s\n' "$c" \
   "$(pdfinfo target/unit01/lesson03/$c/main.pdf | awk '/^Pages/{print $2}')" \
   "$(pdfinfo target/unit01/lesson03/${c}_key/main.pdf | awk '/^Pages/{print $2}')"; done
 ```
@@ -340,20 +356,20 @@ branch, so the Step 0 sync always brings the latest state forward.
 
 ## Converting a lesson that is on an older shape
 
-Lessons 1.2 (EFFL) and 1.3–1.5 plus Units 2–7 (legacy) are not converted. **Regenerate, don't
-patch.** The content mapping:
+Lesson 1.0 (group-activity shape) and Units 2–7 (EFFL or pre-EFFL legacy) are not converted.
+**Regenerate, don't patch.** The content mapping:
 
-| From EFFL | From the pre-EFFL legacy shape | Becomes |
-| --- | --- | --- |
-| QuickNotes box | `notes` (already close — but drop the tiers language) | the four numbered sections of **Guided Notes** |
-| Activity (2 scenarios) | `activity` Tiers R/A/E, flattened | **Group Activity** parts 1–3 |
-| Application | Tier E's modelling item | Group Activity part 4, **Model It** |
-| Check Your Understanding | `homework` + `exit_ticket` | the **Homework** page + `extensionbox` + `spiralbox` |
+| From the 2026-08-31 group-activity shape | From EFFL | From the pre-EFFL legacy shape | Becomes |
+| --- | --- | --- | --- |
+| `notes` sections 1–4 | QuickNotes box | `notes` (drop the tiers language) | the four numbered sections of **Guided Notes** |
+| the activity's crux items, chosen three | Activity + Application, condensed to three | Tier A/E items, three of them | **Individual Practice** — three problems inside the notes |
+| `homework` | Check Your Understanding | `homework` + `exit_ticket` | the **Homework** page + `extensionbox` + `spiralbox` |
 
-Mechanically: `git rm -r` the `experience{,_key}` or `exit_ticket{,_key}` dirs, scaffold or write
-`notes`/`activity`/`homework` (+ keys), rewrite the cover's TOC to the four scored rows, rebuild
-the plan around the 5/15/25/10/5 table with four teacher notes, and rewrite the deck to
-targets → warm-up → hook → notes 1–4 → activity launch → debrief → close.
+Mechanically: `git rm -r` the `activity{,_key}`, `experience{,_key}`, or `exit_ticket{,_key}`
+dirs, write `notes`/`homework` (+ keys) fresh, set the warm-up to 12pt, rewrite the cover's TOC to
+the **three** scored rows, rebuild the plan around the 5/20/15/10/10 table with four teacher
+notes, and rewrite the deck to targets → warm-up → hook → notes 1–4 → individual-practice launch
+→ debrief → close (11 frames).
 
 **Build gotcha when deleting a component:** a stale stamp under `.stamps/unitXX/lessonYY/` makes
 `make` skip recompiling a *sibling* whose PDF was cleaned, and `pdfunite` then fails on a missing
@@ -409,6 +425,7 @@ why. Then Step 6.
   work rule); a key that runs long costs the student packet blank padding.
 - Function-family pedagogy: study a function type's behavior (Lesson 0) before manipulating it;
   build graph-reading fluency; no "sketch from scratch" questions.
-- Gradual-release discipline: notes before activity, vocabulary named in the notes, **no tiers,
-  no exit ticket, no `experience` component**, and a homework page for every lesson.
+- Gradual-release discipline: vocabulary named in the notes, the "you do" done alone inside the
+  notes, **no tiers, no exit ticket, no group activity, no `experience` component**, and a
+  homework page for every lesson that is started in class.
 - Don't modify `shared/` or the Makefiles to make a lesson build; fix the lesson's `.tex`.
