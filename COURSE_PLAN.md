@@ -37,11 +37,64 @@
 > warm-up **1/1**, notes **4/4**, homework **2/2**; packets **10/10**. Deck 11 frames, **zero**
 > overfull boxes; the only overfull warning anywhere is the pre-existing 6.0pt `\pageheader` hbox.
 >
-> **Open for the user:** this shape (no group activity, individual practice inside the notes) is
-> applied **to Lesson 1.1 only**. The `lesson-planning` skill and the gradual-release block below
-> still specify 5/15/25/10/5 with a Group Activity. **Say whether 1.1 is a one-off or the new
-> course-wide shape** — if course-wide, the skill, this Status block, and Lessons 1.0 / 1.2–1.5 and
-> Units 2–7 all need the same treatment.
+> **RESOLVED 2026-09-01 — this is the new COURSE-WIDE shape, not a one-off.** User direction,
+> asked directly before authoring 1.2. Every lesson from here on carries **no group activity**; the
+> "you do" is an **Individual Practice** block living inside the Guided Notes, and the timing is
+> **5 / 20 / 15 / 10 / 10** (warm-up / guided notes incl. guided practice / individual practice /
+> debrief / close & start the homework in class). Component set: `cover`, `warmup`(+key),
+> `notes`(+key), `homework`(+key), `slides`, plan — **no `activity` dir**, and the cover TOC has
+> **three** scored rows. The warm-up is `\documentclass[12pt]`; the rest of the packet stays 10pt.
+>
+> ## ⚠ Status (2026-09-01) — **LESSON 1.2 REGENERATED IN THE COURSE-WIDE GRADUAL-RELEASE SHAPE.**
+>
+> 1.2 was the last EFFL lesson in the course; `experience`/`experience_key` are **deleted**
+> (`git rm`), and `notes`(+key) and `homework`(+key) are authored fresh. **Unit 1 now has no
+> `experience` directory anywhere.**
+>
+> **Content.** The whole lesson runs on **one** context, the parkway and radio tower (tower at mile
+> 12, radio reaches within 5 miles) — the same setting the deleted EFFL activity used, now carrying
+> the notes instead of a group task. *Guided Notes* (4pp): six vocab terms; the hook asks for the
+> two hikers exactly 5 miles out (miles 7 and 17) and **why there are two**; then (1) $|x-h|$ as
+> distance, with $|x-12|=5$ worked and both roots verified; (2) *isolate before you split*, the
+> $c>0$/$c=0$/$c<0$ table plus $3|x+1|-2=10$, closing on "splitting at the first line gives
+> $3x+1-2=10$ — a single answer, and a wrong one"; (3) **the target misconception** — a two-column
+> `tabularx` putting $|x-12|\le5$ (one piece, $7\le x\le17$) beside $|x-12|\ge5$ (two rays), each
+> with its own shaded parkway, closing on the **gold caution box** where the two disagree: the hiker
+> at **mile 3**, distance 9, fails $9\le5$ but satisfies $9\ge5$; (4) the three notations, endpoint
+> symbols, and why $\infty$ never takes a bracket. *Guided Practice:* $2|x-5|-3=7$, then the same
+> expression with $\le$ and with $\ge$. *Individual Practice* (own clean page, 4th page of the
+> notes): the three **shapes of answer** — an equation ($4|x+1|-5=15$), an "and" ($|2x-1|\le5$), and
+> an "or" ($|3x-6|\ge9$), the last two in all three notations. *Homework* (2pp): two equations (the
+> second needing isolation); the contrast pair $|x+3|<4$ against $|x+3|>4$; **reading an inequality
+> off a shaded number line** (the third representation, and the only item that runs backwards);
+> the special cases plus the $k\le0$ boundary trap; the thermostat model $|T-68|\le2$; and an
+> SOL-style MC on $|x+2|>3$. Extension: build $|x-10|\le6$ from the endpoints 4 and 16, and why
+> miles 7 and 17 belong to **both** answers. *Deck:* 11 frames — targets, warm-up, hook, notes 1–4,
+> individual-practice launch, debrief, close. Standards unchanged: **A2.EI.1a–e**.
+>
+> **Build evidence (2026-09-01):** `make -C unit01/lesson02 all` **EXIT 0** after clearing
+> `.stamps/unit01/lesson02` (required — a deleted component leaves a stale stamp). Blank/key parity:
+> warm-up **1/1**, notes **4/4**, homework **2/2**; packets **10/10**. Deck **11 frames**, **zero**
+> overfull hboxes *and* vboxes. Conventions verified programmatically: 9 `work` blocks
+> byte-identical blank↔key (6 notes + 3 homework), `\writelines` totals match `\ansline` counts
+> (homework 7/7), `\termblanklong` matches `\vocabans` (6/6), **zero** `\ans` inside math mode,
+> namestrip clean (`\namedateperiod` on the cover only), no `teachernote` in any key.
+>
+> **Two authoring gotchas found and fixed here, worth carrying forward:**
+> * **`\centering` inside a `tabularx` X column breaks `\\`** ("Extra alignment tab has been
+>   changed to \cr"). Use `\centering\arraybackslash`.
+> * **`\writeline`'s `\noindent` is a no-op mid-paragraph** — the same defect already documented
+>   for `\termblanklong` in a `vocabbox`. When the prompt text runs to the right margin, the
+>   `\hrulefill` has zero width and the student gets **no visible line at all**. Put `\par` before
+>   `\writelines{n}` (and before the matching `\ansline` in the key) whenever the preceding text
+>   may reach the margin.
+>
+> **Open — the course-wide rollout this decision implies (none of it done yet):** the
+> `lesson-planning` skill still specifies 5/15/25/10/5 with a Group Activity, so **SKILL.md, its
+> four reference docs, and `new_lesson.py` all contradict the course as of today**. **Lesson 1.0**
+> still has an `activity` dir and the old timing. **Lessons 1.3–1.5** are still pre-EFFL legacy
+> (tiered activities + exit tickets), and **Units 2–7** likewise. Next action: update the skill
+> first, so every later regeneration scaffolds the right shape.
 
 > ## ⚠ Status (2026-08-31) — **EFFL IS SCRATCHED. THE COURSE IS BACK ON GRADUAL RELEASE.**
 >
@@ -443,7 +496,14 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 >   point-independent). *Deck:* 11 frames, same skeleton as 1.0. Standards unchanged:
 >   **A.F.1a–e**.
 >
-> **Not yet converted: 1.2 (EFFL) and 1.3–1.5 (legacy, with tiered activities and exit tickets).**
+> * **1.2 — Absolute Value Equations & Inequalities (converted 2026-09-01).** The first lesson
+>   authored in the **course-wide** shape — no group activity, Individual Practice inside the notes,
+>   5/20/15/10/10. Full content, build evidence, and the two authoring gotchas are in the
+>   2026-09-01 ⚠ Status block at the top of this file. Standards unchanged: **A2.EI.1a–e**.
+>
+> **Not yet converted: 1.0 (gradual release, but still the old 5/15/25/10/5 shape with a Group
+> Activity) and 1.3–1.5 (pre-EFFL legacy, with tiered activities and exit tickets).** No lesson in
+> Unit 1 carries an `experience` dir any more.
 >
 > **Lessons 1.0, 1.1, and 1.2 regenerated in the four-part *Experience & Formalize* shape
 > (2026-08-20).** Component set for all three: `cover`, `warmup`(+key), **`experience`**(+key),
