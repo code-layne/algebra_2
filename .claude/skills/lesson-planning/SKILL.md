@@ -104,14 +104,15 @@ lesson** and assigns a DeltaMath set instead, so each plan's *Reinforcement & Ex
 carries a **DeltaMath override** sentence naming what to swap in. The cover's homework row takes a
 `\blank{1.2cm}` — never `NA` — and reads *due next class*. See `references/components.md`.
 
-*Legacy shapes.* Lesson 1.0 (converted 2026-08-31) still carries an `activity`/`activity_key`
-pair and the interim 5/15/25/10/5 group-activity timing; lessons authored 2026-08-19 →
-2026-08-31 in Units 2–7 carry an `experience`/`experience_key` pair (the EFFL centerpiece);
-lessons authored before that carry `activity`, `exit_ticket`, and **tiered** activities. The
+*Legacy shapes.* All of Unit 1 (1.0–1.5) is on the current shape. In Units 2–7, lessons
+authored 2026-08-19 → 2026-08-31 carry an `experience`/`experience_key` pair (the EFFL
+centerpiece); lessons authored before that carry `activity`, `exit_ticket`, and **tiered**
+activities. The
 build accepts all of them. When touching a legacy lesson, **regenerate it in the current shape
 rather than patching** — `git rm` the `activity{,_key}`, `experience{,_key}`, or
 `exit_ticket{,_key}` dirs, and rebuild the plan and deck around the 5/20/15/10/10 table.
-`unit01/lesson01` and `unit01/lesson02` are the reference implementations (1.3–1.5 follow them).
+`unit01/lesson01` and `unit01/lesson02` are the reference implementations (1.0 and 1.3–1.5
+follow them).
 
 ### The five work products
 
@@ -192,8 +193,8 @@ clean, detect project context:
    whether the target lesson already exists.
 5. **Open a model lesson.** `unit01/lesson01` and `unit01/lesson02` are the course-wide
    gradual-release reference implementations (1.3–1.5 follow them) — open one and mirror its
-   preamble, box usage, and tone. The live project overrides the reference docs. (1.0 still has
-   a group activity; Units 2–7 are on older shapes.)
+   preamble, box usage, and tone. The live project overrides the reference docs. (All of Unit 1
+   is on this shape; Units 2–7 are on older shapes.)
 
 ### Step 1 — Map the unit into lessons, then gather the lesson's content
 
@@ -356,8 +357,9 @@ branch, so the Step 0 sync always brings the latest state forward.
 
 ## Converting a lesson that is on an older shape
 
-Lesson 1.0 (group-activity shape) and Units 2–7 (EFFL or pre-EFFL legacy) are not converted.
-**Regenerate, don't patch.** The content mapping:
+Units 2–7 (EFFL or pre-EFFL legacy) are not converted. **Regenerate, don't patch.** The content
+mapping (the first column is the interim 2026-08-31 group-activity shape, which 1.0 was on until
+its conversion the next day):
 
 | From the 2026-08-31 group-activity shape | From EFFL | From the pre-EFFL legacy shape | Becomes |
 | --- | --- | --- | --- |

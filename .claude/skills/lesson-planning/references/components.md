@@ -21,10 +21,9 @@ class corrects its own practice in a second colour while the teacher works all t
 the board.
 
 There is **no group activity** (cut course-wide, 2026-09-01), **no exit ticket**, **no tiers**,
-and no `experience` component. (Lesson 1.0 still has an `activity` pair from the interim
-2026-08-31 shape; Units 2–7 have `experience` pairs or `exit_ticket` + tiered activities. All
-legacy; regenerate rather than patch. See SKILL.md "Converting a lesson that is on an older
-shape.")
+and no `experience` component. (All of Unit 1 is on this shape; Units 2–7 have `experience`
+pairs or `exit_ticket` + tiered activities — legacy; regenerate rather than patch. See SKILL.md
+"Converting a lesson that is on an older shape.")
 
 General rules:
 - **Every student component is 10pt except the warm-up, which is 12pt** (and still one page):

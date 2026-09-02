@@ -2,7 +2,7 @@
 
 **Course:** Algebra 2
 
-> ## ⚠ Status (2026-09-01, later) — **UNIT 1 COMPLETE IN THE COURSE-WIDE SHAPE: 1.3, 1.4, 1.5 REGENERATED; THE SKILL NOW MATCHES.**
+> ## ⚠ Status (2026-09-01, later) — **UNIT 1 COMPLETE IN THE COURSE-WIDE SHAPE: 1.3, 1.4, 1.5 REGENERATED, 1.0 CONVERTED; THE SKILL NOW MATCHES.**
 >
 > **Lessons 1.3–1.5 were regenerated whole** (plan, cover, warm-up+key, notes+key, homework+key,
 > deck) in the course-wide gradual-release shape — no group activity, Individual Practice inside
@@ -53,9 +53,9 @@
 > programmatically for all three: every `work` block byte-identical blank↔key (1.3: 7, 1.4: 6,
 > 1.5: 8), `\writelines` totals equal `\ansline` counts, six `\termblanklong` ↔ six `\vocabans`,
 > **zero** `\ans` in math mode (the four brace-notation blanks in 1.4 are wrapped in `\text{}`),
-> namestrip clean, no `teachernote` in any key. `make -C unit01 student|key` EXIT 0 — **68/69**,
-> the one-page difference being the pre-existing practice test (3pp) vs.\ its key (4pp), not any
-> lesson.
+> namestrip clean, no `teachernote` in any key. `make -C unit01 student|key` EXIT 0 — **64/65**
+> after 1.0's conversion (was 68/69 before it), the one-page difference being the pre-existing
+> practice test (3pp) vs.\ its key (4pp), not any lesson.
 >
 > **Two new authoring gotchas:** a `cases` environment inside a `tabularx` cell fails
 > (``Forbidden control sequence … \check@nocorr``) — put brace definitions in a display above
@@ -71,9 +71,20 @@
 > default scaffold into a throwaway project creates exactly `cover warmup notes homework slides`
 > (+ keys) and builds all five work products, EXIT 0.
 >
-> **Still open:** **Lesson 1.0** keeps its `activity` dir and the interim 5/15/25/10/5 timing
-> (this run was ``beginning with lesson 1.3''); Units 2–7 (44 lessons) are EFFL or pre-EFFL
-> legacy. Next action: regenerate 1.0 in the course-wide shape, then Unit 2 from 2.0.
+> **Lesson 1.0 converted too (same PR, user direction: ``go ahead and convert 1.0 --- we can have
+> that in place for next year'').** `activity`/`activity_key` deleted (`git rm`); the notes gain an
+> Individual Practice page built from the old activity's crux items --- Sunday's falling line with
+> the $4^\circ$-and-falling question, the Saturday/Sunday side-by-side, and the car-wash card
+> $B(w)=40-8w$ with its \$10-wash concept check --- so nothing pedagogically load-bearing was lost;
+> the warm-up is 12pt (its three-item display split onto two lines to fit); the cover has three
+> scored rows; the plan and deck are on the 5/20/15/10/10 table with an `[Individual Practice]`
+> teacher note. **Build evidence:** `make -C unit01/lesson00 all` EXIT 0 from clean; warm-up
+> **1/1**, notes **4/4**, homework **2/2**, packets **10/10**, deck 11 frames, zero overfull boxes
+> beyond the header. **Unit 1 is now uniformly on the course-wide shape** --- no `activity`,
+> `experience`, or `exit_ticket` directory anywhere in it.
+>
+> **Still open:** Units 2–7 (44 lessons) are EFFL or pre-EFFL legacy. Next action: Unit 2 from
+> 2.0, scaffolding with the updated skill.
 
 > ## ⚠ Status (2026-08-31, later) — **LESSON 1.1: GROUP ACTIVITY CUT; INDIVIDUAL PRACTICE ADDED.**
 >
@@ -577,9 +588,12 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > * **1.3, 1.4, 1.5 — regenerated in the course-wide shape (2026-09-01).** Full content and build
 >   evidence are in the 2026-09-01 (later) ⚠ Status block at the top of this file. `activity`,
 >   `activity_key`, `exit_ticket`, `exit_ticket_key` deleted from all three.
+> * **1.0 — converted to the course-wide shape (2026-09-01, same PR).** The *Freezing Point*
+>   activity's Sunday line, side-by-side, and car-wash card became the notes' Individual Practice
+>   page; `activity`/`activity_key` deleted. See the ⚠ Status block.
 >
-> **Not yet converted: 1.0 only** (gradual release, but still the interim 5/15/25/10/5 shape with a
-> Group Activity). No lesson in Unit 1 carries an `experience` or `exit_ticket` dir any more.
+> **Every Unit 1 lesson (1.0–1.5) is now on the course-wide shape.** No lesson in Unit 1 carries
+> an `activity`, `experience`, or `exit_ticket` dir any more.
 >
 > **Lessons 1.0, 1.1, and 1.2 regenerated in the four-part *Experience & Formalize* shape
 > (2026-08-20).** Component set for all three: `cover`, `warmup`(+key), **`experience`**(+key),
