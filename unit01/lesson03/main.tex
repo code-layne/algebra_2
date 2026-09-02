@@ -1,4 +1,7 @@
 %! Absolute Value Functions \& Transformations — Unit 1, Lesson 1.3 — Lesson Plan
+% Gradual-release plan (course-wide shape, 2026-09-01): warm-up → guided notes (with guided
+% practice) → individual practice → debrief → close. There is no group activity; the "you do" is
+% done alone. No tiers, no exit ticket; homework is in-packet.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -9,11 +12,6 @@
 \newcommand{\MeetingLength}{60 minutes}
 \newcommand{\UnitNumberName}{Unit 1: Linear Functions \quad}
 \newcommand{\LessonNumberName}{Lesson 1.3: Absolute Value Functions \& Transformations}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 
 \begin{document}
 \begin{center}
@@ -23,27 +21,33 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can read the absolute value parent function $f(x)=|x|$ as the
-    graph of \emph{distance from zero} --- a \textbf{V-shape} --- and describe every other absolute
-    value function as a \textbf{transformation} of that parent. From the vertex form
-    $g(x)=a|x-h|+k$ they identify the \emph{vertex} $(h,k)$, the \emph{axis of symmetry} $x=h$, the
-    direction of opening (up if $a>0$, down if $a<0$), the \emph{minimum or maximum} value $k$, and
-    whether the graph is \emph{narrower/wider} than the parent ($|a|$). They translate fluently among
-    an equation, a table, and a pre-drawn graph, reading domain, range, intercepts, and
-    increasing/decreasing intervals off the V. Lesson~1.2 \emph{solved} $|ax+b|=c$; today that same
-    expression becomes a \emph{graph}, and the two solutions are exactly where the V meets the line
-    $y=c$. This gives an early, informal look at \textbf{vertex, axis of symmetry, and min/max} that
-    Unit~2 formalizes for parabolas.
+    \textbf{Primary Objective:} Students read the absolute value parent $f(x)=|x|$ as the graph of
+    a \emph{distance} --- a \textbf{V} with a single turning point --- and describe every other
+    absolute value function as a \emph{transformation} of that parent. From vertex form
+    $g(x)=a|x-h|+k$ they locate the \textbf{vertex} $(h,k)$ by setting the inside of the bars to
+    zero, name the \textbf{axis of symmetry} $x=h$, decide from the sign of $a$ whether the V opens
+    up (so $k$ is a \textbf{minimum}) or down (a \textbf{reflection}, so $k$ is a
+    \textbf{maximum}), and from $|a|$ whether it is narrower or wider than the parent. They read
+    domain, range, and increasing/decreasing intervals off a pre-drawn V, build a rule from a graph,
+    and connect back to Lesson~1.2: the two solutions of $|ax+b|=c$ are the two places the V
+    crosses the line $y=c$.
     \\[2pt]
     \textbf{Standards (2023 VA SOL):} This lesson applies the Algebra~2 \emph{transformation lens}
     \textbf{A2.F.1} --- write and graph a function using transformations of a parent function
-    $f(x)+k$, $f(x+k)$, $f(kx)$, and $kf(x)$ (\textbf{A2.F.1b}, \textbf{A2.F.1c}) --- to the absolute
-    value parent as the entry example, and reads the resulting \emph{characteristics} with
+    (\textbf{A2.F.1b}, \textbf{A2.F.1c}: $f(x)+k$, $f(x+k)$, $kf(x)$) --- to the absolute value
+    parent as the entry example, and reads the resulting \emph{characteristics} with
     \textbf{A2.F.2}: domain, range, zeros, and intercepts (\textbf{A2.F.2a}), increasing/decreasing
-    intervals (\textbf{A2.F.2c}), absolute (global) minimum/maximum (\textbf{A2.F.2d}), and evaluating
-    $f(x)$ from a graph or equation (\textbf{A2.F.2f}). Absolute value is itself a
-    \emph{piecewise-defined} function --- one of the families A2.F.2 names --- which motivates
-    Lesson~1.4.
+    intervals (\textbf{A2.F.2c}), absolute maximum/minimum (\textbf{A2.F.2d}), and evaluating $f(x)$
+    from a graph or a rule (\textbf{A2.F.2f}). Absolute value is itself a \emph{piecewise-defined}
+    function, which motivates Lesson~1.4.
+    \\[2pt]
+    \textbf{Lesson model:} \emph{Gradual release} --- I do, we do, you do alone. A warm-up
+    activates prior knowledge; \textbf{Guided Notes} build the vertex-form vocabulary with the
+    class on one worked context (a trail dropping to a creek and climbing out) and close with a
+    \emph{Guided Practice} box (the ``we do''); an \textbf{Individual Practice} block on the same
+    page is the ``you do'' --- three problems, worked silently and alone; a \textbf{debrief}
+    consolidates and surfaces the errors; \textbf{homework} extends the practice. \emph{There is no
+    group activity in this lesson} --- today's independent work is done individually.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -53,22 +57,25 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Graph the parent $f(x)=|x|$ from a table and read its features (V, vertex, axis, min).
-  \item From $g(x)=a|x-h|+k$, name the \textbf{vertex} $(h,k)$ and \textbf{axis} $x=h$.
-  \item Decide \textbf{opens up/down} from the sign of $a$, and \textbf{min vs.\ max} value $k$.
-  \item Read the effect of $|a|$: \textbf{narrower} ($|a|>1$) or \textbf{wider} ($|a|<1$).
-  \item Describe a graph as \textbf{shifts, a stretch, and a reflection} of $y=|x|$.
-  \item Read domain, range, intercepts, and increasing/decreasing intervals off the V.
+  \item Read the parent V: vertex, axis, minimum, domain/range, where it falls and rises.
+  \item Locate the vertex of $a|x-h|+k$ by setting the inside of the bars to zero.
+  \item Decide \textbf{up or down} from the sign of $a$; name $k$ as a min or a max.
+  \item Decide \textbf{narrower or wider} from $|a|$, the slope of the right-hand ray.
+  \item Build a rule from a pre-drawn V: vertex first, then $a$ from a second point.
+  \item Connect $|ax+b|=c$ (Lesson~1.2) to where the V crosses $y=c$.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item $|x|$ is a \emph{distance}, so its graph can't dip below its vertex --- that makes the V and its min/max.
-  \item Inside the bars acts \emph{horizontally} and \emph{backwards}: $|x-h|$ moves the vertex to $x=h$.
-  \item Outside the bars acts \emph{vertically} the way you'd expect: $+k$ up, $a$ scales, $a<0$ flips.
-  \item $a$ is the slope of the right-hand ray --- it controls steepness and which way the V opens.
-  \item Every absolute value graph is the \emph{one} parent V after moving, scaling, and possibly flipping.
-  \item The vertex is the graph's \emph{turning point}: where increasing meets decreasing (previewing Unit~2).
+  \item $|x-h|$ is a \emph{distance}, so it bottoms out at zero exactly once --- that single fact
+        makes the V, the vertex, and the mirror symmetry.
+  \item Inside the bars acts \emph{horizontally and backwards}: $|x-3|$ is smallest where
+        $x-3=0$, at $x=3$ --- a shift \emph{right}.
+  \item \textbf{Target misconception:} that a negative $a$ ``just flips the picture.'' It flips the
+        vertex's \emph{job}: $k$ stops being the lowest output and becomes the highest, and the
+        range flips with it.
+  \item A V is two rays with slopes $a$ and $-a$; that is why $a$ controls both direction and
+        width, and why 1.4 can write the V as two pieces.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
@@ -76,167 +83,232 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Absolute value parent} & $f(x)=|x|$: a V opening up, vertex at the origin, made of the rays $y=x$ ($x\ge 0$) and $y=-x$ ($x<0$). \\
-\textbf{Vertex} & The turning point of the V --- its lowest point (opens up) or highest point (opens down). \\
+\textbf{Absolute value parent} & $f(x)=|x|$: a V opening up, vertex $(0,0)$, made of $y=x$ ($x\ge0$) and $y=-x$ ($x<0$). \\
+\textbf{Vertex} & The turning point --- the lowest point if the V opens up, the highest if it opens down. \\
 \textbf{Axis of symmetry} & The vertical line $x=h$ through the vertex; the two rays are mirror images across it. \\
-\textbf{Vertex form} & $g(x)=a|x-h|+k$, with vertex $(h,k)$ and axis $x=h$. \\
-\textbf{Reflection} & $a<0$ flips the V to open \emph{downward} (over a horizontal line). \\
-\textbf{Vertical stretch / compression} & $|a|>1$ makes the V \emph{narrower}; $0<|a|<1$ makes it \emph{wider}. \\
-\textbf{Minimum / maximum} & The $y$-value $k$ at the vertex: a \emph{minimum} if $a>0$, a \emph{maximum} if $a<0$. \\
+\textbf{Vertex form} & $g(x)=a|x-h|+k$: vertex $(h,k)$, axis $x=h$. Find $h$ by setting the inside to zero. \\
+\textbf{Reflection} & $a<0$ flips the V to open downward, so $k$ becomes a maximum and the range is $y\le k$. \\
+\textbf{Vertical stretch / compression} & $|a|>1$ narrower (steeper rays); $0<|a|<1$ wider. $a$ is the slope of the right-hand ray. \\
+\textbf{Minimum / maximum} & The output $k$ at the vertex: a minimum if $a>0$, a maximum if $a<0$. \\
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses the three prerequisites today leans on: \textbf{(1)} evaluate absolute
-    values and build a table for $y=|x|$, so students \emph{see} why the graph turns at the origin
-    and never dips below it; \textbf{(2)} recall the transformation language from Lesson~1.1 ---
-    ``$+k$'' shifts up/down and a negative coefficient \emph{reflects} --- the exact moves we now
-    apply to a new parent; and \textbf{(3)} read the vertex and axis of symmetry off a pre-drawn V.
-    Debrief item~1 aloud: because $|x|$ is a \emph{distance}, the two sides of the table mirror each
-    other --- that symmetry \emph{is} the axis of symmetry.
+\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
+\hline
+Warm-Up & 5 & Three prior skills, alone then check with a neighbour & Circulate; debrief item~3 aloud (``where does the V cross $y=3$, and where have you seen $-3$ and $3$ before?'') \\
+Guided Notes & 20 & Fill the vocabulary and the four sections with the class, then \emph{Guided Practice} together & \emph{I do / we do}: run the whole block on \emph{one} context, the trail; two \texttt{work} blocks at the board plus the Guided Practice box \\
+Individual Practice & 15 & \emph{Alone and quiet}: three problems --- features from a rule, a rule from a graph, and a same-vertex pair & Circulate; questions, cues, prompts --- \emph{not} answers. Note who to call on in the debrief \\
+Debrief & 10 & Correct their own pages in a second colour & Work all three individual-practice problems on the board; land ``a negative $a$ flips the vertex's job'' \\
+Close \& Homework & 10 & Start the homework page in class; preview 1.4 & Launch item~1 aloud, then circulate; name what changed today \\
+\end{tabularx}
+\end{fixedskillbox}
+
+\begin{fixedskillbox}[Warm-Up --- Activate Prior Knowledge \& Spiral Review]{forestbg}
+The Warm-Up rehearses exactly what today leans on. \textbf{(1)} A five-row table for $y=|x|$ makes
+the symmetry visible before anyone names it --- the two halves match because $|x|$ is a distance,
+and the single smallest value at $x=0$ is the vertex-to-be. \textbf{(2)} Three moves from
+Lesson~1.1 --- $+3$ shifts up, $2x$ is steeper, a negative coefficient reflects --- are the exact
+moves section~2 and section~3 aim at a new parent. \textbf{(3)} Reading the pre-drawn V: the lowest
+point, the fold line, and where the V crosses the dashed line $y=3$. \textbf{Debrief item 3 aloud,
+briefly}, and land only this: \emph{the V crosses $y=3$ at $-3$ and $3$ --- the two answers to
+$|x|=3$ from last lesson. Hold on to that; section~4 comes back to it.} \textbf{This page is set
+at 12pt} --- larger type than the rest of the packet, deliberately.
 \end{fixedskillbox}
 
 \begin{skillbox}[Hook]{forestbg}
-    You drive a straight highway toward a rest stop, reach it after $2$ hours, and keep going past it.
-    Your \textbf{distance from the rest stop} (in tens of miles) is $d(t)=30\,|t-2|$. Ask:
-    \textbf{``How far are you at the start? At $t=2$? At $t=4$?''} ($60$, $0$, $60$.) \textbf{``When
-    are you closest, and what is that distance?''} (at $t=2$, distance $0$). Plot the three points and
-    the shape is a \textbf{V} with its lowest point at $(2,0)$. Land the idea: a distance is never
-    negative, so its graph \emph{bottoms out} at a single turning point --- the \textbf{vertex} --- and
-    is symmetric about the vertical line through it. Every absolute value function is this same V,
-    moved and stretched. Today we learn to read the move straight off the equation.
+    ``A trail drops toward a creek, crosses it on a bridge, and climbs the far side. Its height
+    above the creek, in hundreds of feet, $x$ miles from the trailhead, is $H(x)=2|x-3|+1$.'' Put
+    the V on the board and ask: \textbf{``How high at the trailhead? At mile 3? At mile 6?''}
+    ($7$, $1$, $7$.) \textbf{``Where is the trail lowest, and how low?''} (mile $3$, height $1$ ---
+    the bridge.) Then the question that carries the lesson: \textbf{``Why can the height never
+    drop below 1?''} ($|x-3|$ is a distance, so it is never below $0$, and $2\cdot0+1=1$.) Say:
+    \emph{every absolute value graph is this same V --- the parent $y=|x|$ moved, stretched, or
+    flipped --- and today we read the moves straight off the rule.}
 \end{skillbox}
 
-\begin{skillbox}[Lesson]{forestbg}
+\begin{skillbox}[Guided Notes --- the Lesson (20 min)]{forestbg}
 \begin{multicols}{2}
-\textbf{1. The parent $f(x)=|x|$.} Build the table $x=-2,-1,0,1,2 \to y=2,1,0,1,2$. The graph is a
-\textbf{V} opening up with \textbf{vertex} $(0,0)$, \textbf{axis} $x=0$, \textbf{minimum} $0$. Domain
-all reals; range $y\ge 0$. It \emph{decreases} on $(-\infty,0]$ and \emph{increases} on $[0,\infty)$.
-Note it is the two lines $y=x$ and $y=-x$ pasted at the vertex --- a preview of piecewise (1.4).
+\textbf{1. The parent $f(x)=|x|$.} Fill the table, read the V: vertex $(0,0)$, axis $x=0$,
+minimum $0$, domain all reals, range $y\ge0$, decreasing on $(-\infty,0]$ and increasing on
+$[0,\infty)$. Name the two rays, $y=x$ and $y=-x$ --- the seed of Lesson~1.4.
 
-\textbf{2. Up/down and left/right.} \textbf{Outside} the bars behaves normally: $y=|x|+k$ shifts the
-whole V up ($k>0$) or down. \textbf{Inside} the bars behaves \emph{horizontally and backwards}:
-$y=|x-h|$ moves the vertex to $x=h$ (\emph{right} for $-h$, left for $+h$). Anchor with $y=|x-3|$
-(vertex $(3,0)$) and $y=|x+2|$ (vertex $(-2,0)$).
-
-\textbf{3. Stretch, compress, reflect.} $y=a|x|$ scales the V: $|a|>1$ \textbf{narrower},
-$0<|a|<1$ \textbf{wider}. A \emph{negative} $a$ \textbf{reflects} it to open \emph{downward}. Compare
-$y=2|x|$, $y=\tfrac12|x|$, $y=-|x|$. Stress that $a$ is the slope of the right-hand ray.
+\textbf{2. Move it: inside vs.\ outside.} Outside the bars is vertical and behaves; inside is
+horizontal \emph{and backwards}. Fill the two-row table, label the two pre-drawn shifts, then the
+gold box: \emph{find the vertex by setting the inside to zero} --- $x-3=0$ at $x=3$, so $|x-3|$
+moves \emph{right}. The trail's vertex $(3,1)$ falls out the same way.
 
 \columnbreak
+\textbf{3. The number $a$: up or down, narrow or wide.} The two-column table, valley
+$H(x)=2|x-3|+1$ beside ridge $R(x)=-2|x-3|+7$: same axis, opposite opening, min $1$ versus max $7$,
+range $y\ge1$ versus $y\le7$, and the increasing/decreasing intervals swap. Then the gold caution:
+test $x=5$ on the ridge --- $R(5)=3$, \emph{below} $7$ --- so $7$ is the highest output. \emph{A
+negative $a$ does not just flip the picture; it flips the vertex's job.} This is the target
+misconception, and this box is where it dies. Close with width: $a$ is the right ray's slope,
+so $|a|>1$ is narrower and $0<|a|<1$ wider.
 
-\textbf{4. Vertex form $g(x)=a|x-h|+k$.} All three moves at once. \textbf{Vertex} $(h,k)$;
-\textbf{axis} $x=h$; \textbf{opens up} if $a>0$ (so $k$ is a \emph{minimum}), \textbf{down} if $a<0$
-(so $k$ is a \emph{maximum}); $|a|$ sets the width. Model $g(x)=-2|x-1|+3$: vertex $(1,3)$, axis
-$x=1$, opens \emph{down}, \emph{maximum} $3$, narrow. Read $g(0)=-2|{-1}|+3=1$ straight from the rule.
+\textbf{4. Vertex form, all at once --- and back to 1.2.} Read every feature of $g(x)=-2|x-1|+3$
+from the rule, then the \texttt{work} block $g(0)=1$. Then $H(x)=5$: isolate, split, $x=1$ or $5$
+--- \emph{last lesson's two solutions are the two places the V crosses $y=5$.}
 
-\textbf{5. Equation $\leftrightarrow$ graph $\leftrightarrow$ table.} Practice all three directions,
-but \emph{never sketch from scratch}: match an equation to the correct pre-drawn V, read a vertex off
-a graph, or complete a table and name the vertex. Connect back to 1.2: the solutions of $|x-1|=2$ are
-the two $x$-values where $y=|x-1|$ crosses the line $y=2$.
+\textbf{Guided Practice (the ``we do'').} $g(x)=\tfrac12|x+4|-2$: every feature, $g(0)$ in a
+\texttt{work} block, then \emph{build} a rule from a pre-drawn V --- vertex $(-1,4)$, through
+$(1,0)$, so $a=-2$ and $y=-2|x+1|+4$. Do this one \emph{with} the class --- it is the last thing
+they see before working alone.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
-\begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{horizontal-shift sign flip}: reading $|x-3|$ as a shift \emph{left} $3$ instead of right;
-  \item confusing inside vs.\ outside the bars: applying $+k$ horizontally or the shift vertically;
-  \item forgetting that $a<0$ opens the V \emph{down}, so $k$ becomes a \textbf{maximum}, not a minimum;
-  \item calling a wider graph ``$|a|>1$'': $|a|>1$ is \emph{narrower}, $0<|a|<1$ is wider;
-  \item naming the vertex as $(-h,k)$ or $(h,-k)$ --- mis-reading the signs in $a|x-h|+k$;
-  \item saying the range is ``all reals'' --- the V stops at $k$ (range $y\ge k$ up, $y\le k$ down);
-  \item swapping increasing/decreasing intervals, or splitting them at $0$ instead of at $x=h$.
+\begin{skillbox}[Individual Practice --- \emph{On Your Own} (15 min, silent)]{redbox}
+\textbf{Launch (1 min):} ``Same moves you just watched --- now nobody helps you. Three problems.
+Set the inside to zero for the vertex, then let the sign of $a$ tell you up or down. Stuck? Look
+up the page at the notes, not at your neighbour.'' The block sits on the last page of the Guided
+Notes, so nothing new is handed out.
+\begin{multicols}{2}
+\textbf{What students do.} \textbf{Problem~1} is features from a rule with $a<0$:
+$p(x)=-3|x-2|+5$ --- vertex $(2,5)$, opens down, $5$ a \emph{maximum}, range $y\le5$, narrower ---
+then $p(4)=-1$ in a \texttt{work} block. \textbf{Problem~2} runs the other direction: a pre-drawn
+V with vertex $(1,-2)$ through $(3,2)$ gives $a=2$ and the rule $y=2|x-1|-2$; then they read the two
+crossings with $y=2$ off the graph ($x=-1$ and $3$) and \emph{check} them by solving
+$2|x-1|-2=2$ --- the 1.2 link, worked by hand. \textbf{Problem~3} is the crux: $y=|x+2|-3$ beside
+$y=-|x+2|-3$ --- same vertex, same axis, opposite opening, min versus max, opposite range --- and a
+classmate's claim that ``both have a minimum of $-3$'' to refute in two lines.
+
+\columnbreak
+\textbf{What the teacher does.} Circulate the whole 15 minutes; keep it silent. Give a
+\emph{question, cue, or prompt}, never an answer:
+\begin{itemize}[leftmargin=1.1em, nosep]
+  \item 1: ``Where is the inside of the bars zero? That is your $h$.''
+  \item 1: ``Your $a$ is negative --- so which way do the rays go from the vertex? Then is $5$ the
+        top or the bottom?''
+  \item 2: ``Start at the vertex and walk to $(3,2)$: how far up, how far over?''
+  \item 2: ``You wrote $|x+1|$ --- but where is the vertex? Which sign puts it at $x=1$?''
+  \item 3: ``Draw both, small. Which one has $-3$ at the top?''
+  \item Finished early: ``In problem~2, change $a$ to $\tfrac12$. Does the vertex move? Do the
+        crossings with $y=2$ move?''
 \end{itemize}
-Cold-call prompts: ``Where is the vertex, and how do you see it in the equation?'' ``Does it open up
-or down --- how do you know?'' ``Is $k$ a max or a min here?'' ``Narrower or wider than the parent?''
-\end{skillbox}
-
-\begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Reading \& Building V's} activity (tiered; mirrors the notes).
-\begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Complete tables for $y=|x|$ and one shift; read the vertex, axis, and
-minimum off pre-drawn V-graphs; match two simple equations to their graphs.
-
-\columnbreak
-\textbf{Tier A --- Approaching.} From vertex-form equations, state vertex, axis, opens up/down, and
-min/max; match equations to graphs; describe each as transformations of $y=|x|$; evaluate $g(x)$ at a
-point.
-
-\columnbreak
-\textbf{Tier E --- Extension.} Model a distance/time context with an absolute value function, write
-its equation, and interpret the vertex; write the equation of a V from a described graph; reason about
-how the sign of $a$ forces a max vs.\ a min.
+Note names as you go: one student for each of the three problems, to put work on the board in the
+debrief.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): read the vertex, axis, range, and an increasing interval
-off a pre-drawn V; from $g(x)=-2|x-3|+5$ name the vertex, axis, direction of opening, and the
-max/min value; and one \textbf{SOL-style multiple-choice} item (describe the transformation from
-$y=|x|$ to $y=|x+4|-2$). Collect and sort into ``got it / shift-sign slip / up-vs-down slip /
-vertex-read slip / range slip'' to decide whether Lesson~1.4 opens with a quick re-teach of vertex
-form.
+\boxguard
+\begin{skillbox}[Debrief (10 min --- what goes on the board, in a second color)]{forestbg}
+Students correct their own Individual Practice in a second colour as you go. Work all three, but
+protect the time for items~2 and~4.
+\begin{enumerate}[leftmargin=1.3em, nosep, itemsep=2pt]
+  \item \textbf{Problem~1 --- vertex from the inside, direction from $a$.} $x-2=0$ gives
+        $x=2$; $k=5$; vertex $(2,5)$. $a=-3<0$: opens down, so $5$ is a \emph{maximum} and the
+        range is $y\le5$. Show $p(4)=-3(2)+5=-1$ --- \emph{below} $5$, as it must be.
+  \item \textbf{The must-land moment: a negative $a$ flips the vertex's job.} Put problem~3's
+        two V's side by side. Same vertex $(-2,-3)$, same axis $x=-2$; one opens up (min $-3$,
+        range $y\ge-3$), one opens down (max $-3$, range $y\le-3$). Point back at the ridge's
+        $R(5)=3<7$ from the notes. Say it out loud: \emph{the vertex is the same point, but it is
+        the bottom of one graph and the top of the other.}
+  \item \textbf{Problem~2 --- building a rule, then checking it.} Vertex $(1,-2)$; from there to
+        $(3,2)$ is up $4$, over $2$, so $a=2$: $y=2|x-1|-2$. Ask who wrote $|x+1|$ and where that
+        vertex would be. Then the check: $2|x-1|-2=2 \Rightarrow |x-1|=2 \Rightarrow x=3$ or
+        $-1$ --- exactly the two crossings with $y=2$ on the picture.
+  \item \textbf{Why $a$ does two jobs.} The V is two rays with slopes $a$ and $-a$. The sign of
+        $a$ says which way they leave the vertex (up or down); the size says how steeply (narrow or
+        wide). Preview: in 1.4 those two rays become two \emph{pieces} of one rule.
+\end{enumerate}
+If time is short, cut item~4 and protect items~2 and~3.
 \end{skillbox}
 
+\boxguard
+\begin{skillbox}[Active Monitoring --- Watch For]{redbox}
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{the horizontal sign flip} --- reading $|x-3|$ as a shift \emph{left} $3$
+        (notes~2, Individual Practice~2, homework~6) --- send them to ``inside $=0$,'' not to a rule;
+  \item \textbf{treating a negative $a$ as ``just a flip''} and keeping $k$ as a minimum
+        (Individual Practice~1 and~3, homework~2) --- the lesson's target misconception. Send them
+        to the ridge's $R(5)=3$, not to the rule;
+  \item saying the range is ``all reals'' --- the V stops at $k$: $y\ge k$ up, $y\le k$ down
+        (Individual Practice~1, homework~1);
+  \item calling a wider graph ``$|a|>1$'' --- $|a|>1$ is \emph{narrower}, $0<|a|<1$ wider
+        (notes~3, homework~4b);
+  \item computing $a$ from a graph with the wrong run, or dropping its sign when the V opens down
+        (Guided Practice~3, Individual Practice~2, extension);
+  \item splitting the increasing/decreasing intervals at $0$ instead of at $x=h$ (notes~3);
+  \item in homework~4(b), forgetting that $a=0$ is not a V at all --- the boundary is the trap.
+\end{itemize}
+Cold-call prompts: ``Where is the inside zero?'' ``Up or down --- and so is $k$ the top or the
+bottom?'' ``Narrower or wider than the parent, and how do you know from $a$?'' ``Where does this V
+cross $y=c$, and what equation is that?''
+\end{skillbox}
+
+\boxguard
 \begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} recall the parent's characteristics; match equations to pre-drawn V-graphs; for a
-set of vertex-form equations state vertex, axis, opens up/down, and max/min; describe transformations
-from the parent; complete a table and name a vertex; and model a distance context. \textbf{Extension:}
-write the equation of a V from its graph, and reason about when the vertex is a maximum.
-\textbf{Preview:} Lesson~1.4, \emph{Piecewise-Defined Functions} --- today's V is really \emph{two}
-lines pasted at the vertex ($y=-x$ then $y=x$); next we write functions defined by different rules on
-different pieces of the domain, with the greatest-integer/step function as a second example.
+\textbf{Homework} (in the packet, collected next class): every feature from three rules, one with
+$a<0$ and a fraction; a deliberate \emph{one-sign-apart} pair ($3|x-1|-2$ against $-3|x-1|-2$) with
+the ``same vertex, min or max?'' question; matching three rules to pre-drawn V's and completing a
+table to find a vertex; the odd cases --- how many $x$-intercepts $y=|x|+k$ has as $k$ changes
+sign, and what happens at $a=0$; the drone model $D(t)=15|t-6|$ with a ``when is it 45 m away''
+solve and a ``twice as fast'' concept check; and an SOL-style multiple-choice item on the
+transformation from $y=|x|$ to $y=|x+4|-2$. \textbf{Extension:} build a rule from a vertex and a
+point, and state the range in terms of $k$ when $a<0$. \textbf{DeltaMath override:} well covered
+there --- swap in a DeltaMath set on absolute value graphs and transformations if you prefer
+auto-graded practice. \textbf{Preview:} Lesson~1.4, \emph{Piecewise \& Step Functions} --- today's
+V is two rays pasted at the vertex; next each ray becomes its own \emph{piece} of one rule.
 \end{skillbox}
-% ── Teacher notes (migrated from the component keys) ──
-% One per component, titled for it. They live here rather than in the _key
-% files so that every component is the same length blank and keyed.
 
+% ── Teacher notes — one per component, in packet order ──
 \begin{teachernote}[Warm-Up]
-Item~1 is the seed of the whole lesson: the table is \emph{symmetric} because $|x|$ measures distance,
-so $x$ and $-x$ give the same $y$ --- that symmetry becomes the axis of symmetry, and the single
-smallest value ($0$ at $x=0$) becomes the vertex/minimum. Item~2 reactivates the Lesson~1.1 language
-($+k$ shifts, a negative reflects) that we now aim at the new parent $y=|x|$. In item~3, tie the
-dashed line $x=0$ to the fold line of the V --- the two rays are mirror images across it.
+Item~1's table is the seed of the whole lesson: the two halves match because $|x|$ is a distance,
+so $x$ and $-x$ give the same output --- that symmetry \emph{is} the axis of symmetry, and the one
+smallest value is the vertex. Item~2 reactivates Lesson~1.1's language for the three moves we now
+aim at a new parent; if the room hesitates on ``reflects,'' say it for them --- it is vocabulary,
+not the lesson. Item~3's last question is deliberately a callback: the V crosses $y=3$ at $-3$ and
+$3$, and those are the two solutions of $|x|=3$ from Lesson~1.2. Debrief that one sentence and
+leave it --- section~4 pays it off with the trail. \textbf{This page is set at 12pt} --- larger
+type than the rest of the packet, deliberately. It is still one page; if you add to it, check that
+it stays one page.
 \end{teachernote}
 
 \begin{teachernote}[Guided Notes]
-The spine is the distance meaning: a distance can't go below the vertex, which creates the single
-turning point (min/max) and the mirror symmetry (axis). Two errors to pre-empt: (1) the horizontal
-\emph{sign flip} --- $|x-3|$ moves \emph{right}, because $x=3$ is where the inside equals zero; have
-students set ``inside $=0$'' to locate the vertex every time. (2) The $a<0$ case --- insist that
-opening \emph{down} turns $k$ into a \emph{maximum}, and that the range flips to $y\le k$. For width,
-tie ``narrower'' to $|a|>1$ (steeper rays) and ``wider'' to $0<|a|<1$. In Section~4, model reading
-$g(0)$ \emph{straight from the equation} so students see the function as a machine, not just a
-picture. Connect to Lesson~1.2: the solutions of $|x-1|=2$ are the two $x$'s where this V meets the
-line $y=2$.
+Twenty minutes, paced by section: 3 for the vocabulary and hook, 3 for section~1, 4 for
+section~2, 5 for section~3, 3 for section~4, and 2 for the Guided Practice box worked \emph{with}
+the class. \textbf{Keep the whole notes block on one context} --- the trail --- so ``the bridge is
+the vertex'' is doing the work in every section. Two boxes to protect: section~2's gold box
+(\emph{set the inside to zero}) kills the horizontal sign flip; section~3's two-column table and
+its gold caution kill the ``negative $a$ just flips it'' error, and the ridge's $R(5)=3<7$ is the
+concrete case that makes ``$k$ is now a maximum'' undeniable. Two \texttt{work} blocks are printed
+in the numbered sections ($g(0)$ and the $H(x)=5$ solve) plus three more in the Guided Practice
+and Individual Practice; students write in the reserved space while the key prints the same steps
+there, so the two files paginate alike. If you fall behind, compress section~1's interval reading
+to one sentence --- but do \emph{not} cut section~4's ``back to Lesson 1.2'' solve; Individual
+Practice~2 checks its two crossings the same way.
 \end{teachernote}
 
-\begin{teachernote}[Group Activity]
-Tier~A item~2 and Tier~E items~2--3 are the conceptual core --- push students to locate the vertex by
-setting the inside of the bars to zero, and to read $a$ as ``sign $=$ direction, size $=$ width.''
-Common slips: in A1(b), forgetting that $a<0$ makes $0$ a \emph{maximum}; in A3, reading $|x-1|$ as a
-left shift; in E2, computing $a$ with the wrong run or dropping the negative (the graph opens down, so
-$a<0$). For E1, stress that the vertex $(4,0)$ is the \emph{closest} moment because a distance can't be
-negative --- the same distance idea that makes every V.
-\end{teachernote}
-
-\begin{teachernote}[Exit Ticket]
-Item~1 checks reading the vertex, axis, range, and an increasing interval off a V whose vertex is
-\emph{below} the $x$-axis --- a good test of ``range $=y\ge k$'' and ``increasing to the right of the
-vertex.'' Item~2 checks vertex form with $a<0$: students who say ``min'' missed that opening down makes
-$k=5$ a \emph{maximum}. Item~3 separates students who apply the horizontal sign flip correctly
-(inside, backwards) from those who read $+4$ as a right shift. Sort into ``got it / shift-sign slip /
-up-vs-down slip / vertex-read slip / range slip'' to decide whether Lesson~1.4 opens with a quick
-re-teach of vertex form.
+\begin{teachernote}[Individual Practice]
+Fifteen minutes, and \textbf{keep it silent} --- this is the only block all period where a student
+finds out what they can do without help. Budget roughly 5 minutes each. The three problems are
+deliberately the three \emph{directions} of the skill: rule $\to$ features (with $a<0$), graph
+$\to$ rule (with a check by solving), and the same-vertex pair that isolates what the sign of $a$
+does. A student who can do 1 and 2 but writes ``minimum'' in 3 has not accepted that the vertex
+changes jobs --- send them back to the ridge picture in section~3, not to a rule. Watch for
+$|x+1|$ in problem~2 (vertex at $x=1$ needs $|x-1|$) and for a run of $1$ instead of $2$ when
+computing $a$. Fast finishers change problem~2's $a$ to $\tfrac12$ and report what moves and what
+does not (vertex stays; the crossings with $y=2$ move out to $-7$ and $9$); that is the work you
+want on the board in the debrief.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-Watch item~4(b): $-3|x+1|$ bundles \emph{three} moves (left $1$, reflect, stretch $3$) --- students
-often report only the shift. Item~3(d) tests $a<0$ with a fraction: the graph is \emph{wider} and opens
-down, so $2$ is a \emph{maximum}. In item~6, tie the vertex $(6,0)$ to ``closest'' because a distance
-can't be negative. Extension~(a): $a$ is the slope of the right ray --- rise $4$ over run $2$ gives
-$a=2$; a common slip is to forget that a point $2$ units right of the vertex rose $4$, not $1$.
+Item~1(b) is the double check --- $a=-\tfrac12$ is both negative (opens down, $3$ a maximum) and
+small (wider); expect ``narrower'' from anyone who reads the fraction as a stretch. Item~2 is the
+target misconception in the wild: both rules share $(1,-2)$, and the two-line explanation should
+say the rays \emph{rise} away from the vertex in one and \emph{fall} away in the other. Item~4 is
+the boundary trap: for (b), $a=\pm1$ is the same width as the parent (so excluded) and $a=0$
+flattens the V to the line $y=0$; students who write ``$a<1$'' have the idea but not the boundary.
+Item~5(c) is the concept check --- doubling the speed doubles $a$ (narrower) and leaves the vertex
+alone. Item~6 is the formative check: sort into ``chose B (got it) / chose A (the horizontal sign
+flip, still alive) / chose C (both signs flipped) / chose D (read $+4$ as right and $-2$ as up)''
+to decide whether Lesson~1.4 opens with a one-minute re-look at ``inside $=0$.'' Two
+\texttt{work} blocks (items 5b and the extension). With the group activity cut, the last 10
+minutes are for \emph{starting} this page in class --- launch item~1 aloud, then circulate; the
+rest is due next class.
 \end{teachernote}
 
 \end{document}

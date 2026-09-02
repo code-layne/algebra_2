@@ -15,9 +15,9 @@ truth — if the styles diverge from this, follow the styles.
 
 ## Per-document-type preambles
 
-**Student component** — warmup, cover, notes, activity, homework (and the legacy
-exit_ticket/experience). **Every one of them is 10pt**; there is no 12pt component any more, and
-no `\answerspace` macro — the 12pt Math Medic sizing went out with EFFL on 2026-08-31. Open
+**Student component** — cover, warmup, notes, homework (and the legacy activity /
+exit_ticket / experience). **All are 10pt except the warm-up, which is `[12pt]`** (user
+direction, 2026-08-31 — larger type, still one page). There is no `\answerspace` macro — open
 responses use `\writelines{n}`; short fills use `\blank{width}`.
 ```latex
 \documentclass[10pt]{article}
@@ -28,8 +28,8 @@ responses use `\writelines{n}`; short fills use `\blank{width}`.
 % \newcommand{\lgrid}[4]{...}   % {xmin}{xmax}{ymin}{ymax}
 ```
 
-Component budgets: **notes 2–3pp · activity 2–3pp · homework 2pp** (2pp is a ceiling). At 10pt,
-`\boxguard` counts run **16–26**.
+Component budgets: **warm-up 1p · notes 4pp (the fourth page is Individual Practice) · homework
+2pp** (2pp is a ceiling). At 10pt, `\boxguard` counts run **16–26**.
 
 **Draw-order caution (any document, any size).** In a number-line or grid figure, shading drawn
 *before* `\numline` (or the axis) is painted over by it and effectively disappears. **Draw the axis
@@ -212,11 +212,11 @@ The lesson plan closes with **four** notes, one per component, in packet order, 
 ```latex
 \begin{teachernote}[Warm-Up]        ... \end{teachernote}   % → "Teacher Note: Warm-Up"
 \begin{teachernote}[Guided Notes]   ... \end{teachernote}
-\begin{teachernote}[Group Activity] ... \end{teachernote}
+\begin{teachernote}[Individual Practice] ... \end{teachernote}
 \begin{teachernote}[Homework]       ... \end{teachernote}
 ```
-(Legacy plans also carry `[Exit Ticket]` or `[Experience \& Formalize]`; both go when the lesson
-is regenerated.)
+(Legacy plans also carry `[Group Activity]`, `[Exit Ticket]`, or `[Experience \& Formalize]`;
+all go when the lesson is regenerated.)
 
 The environment is defined in **`-boxes`** (the lesson plan does not load `-key`) and the argument
 is **optional** — a bare `\begin{teachernote}` still renders plain "Teacher Note", so lessons not
@@ -275,13 +275,15 @@ Secondary accent — used by the **vocabulary** box and related callouts: `navy`
 ## Lesson-plan section order (canonical, gradual release)
 
 Primary Objective / Standards / Lesson model → Priority Ideas & Skills →
-Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: **5/15/25/10/5**) →
-Warm-Up (spiral review, and how it hands off to the notes) → **Hook** → **Guided Notes — the
-Lesson (15 min)** (one paragraph per numbered section) → **Group Work (25 min)** ("one common
-task, no tiers"; what students do | what the teacher does — questions, cues, prompts) →
-**Debrief (10 min)** (the four things to land on the board) → Active Monitoring — Watch For →
-**Reinforcement & Extension** (the homework itemized, the **DeltaMath override**, the preview) →
-Teacher Notes (**four**: `[Warm-Up]`, `[Guided Notes]`, `[Group Activity]`, `[Homework]`).
+Vocabulary, Concepts & Theorems → Lesson at a Glance (60-min phase table: **5/20/15/10/10**) →
+Warm-Up (spiral review, and how it hands off to the notes; "this page is set at 12pt") →
+**Hook** → **Guided Notes — the Lesson (20 min)** (one paragraph per numbered section, then the
+Guided Practice) → **Individual Practice — On Your Own (15 min, silent)** (launch script; what
+students do | what the teacher does — questions, cues, prompts, never answers) → **Debrief
+(10 min)** (the three problems worked on the board plus the must-land moment) → Active
+Monitoring — Watch For → **Reinforcement & Extension** (the homework itemized, the **DeltaMath
+override**, the preview) → Teacher Notes (**four**: `[Warm-Up]`, `[Guided Notes]`,
+`[Individual Practice]`, `[Homework]`).
 
 See `references/components.md` for the full spec and `references/course-workflow.md` for where
 content comes from. *(Plans from 2026-08-19 → 2026-08-31 use the EFFL order — Experience &

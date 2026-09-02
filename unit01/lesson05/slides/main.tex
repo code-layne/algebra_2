@@ -1,4 +1,6 @@
 %! Linear Regression — Unit 1, Lesson 1.5 — Slides (Beamer)
+% Deck follows the lesson's gradual-release flow: targets → warm-up → hook → guided notes (I do /
+% we do) → individual practice (you do alone) → debrief → close & homework. No group activity.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
@@ -6,7 +8,9 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
-\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.6pt);}
+\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
+% The free-throw data: hours practised (x) vs. free throws made out of 15 (y).
+\newcommand{\ftdata}{\dpt{1}{4}\dpt{2}{4}\dpt{3}{7}\dpt{4}{7}\dpt{5}{11}\dpt{6}{11}\dpt{7}{12}\dpt{8}{14}}
 
 \begin{document}
 
@@ -23,143 +27,248 @@
 \end{frame}
 }
 
+% LEARNING TARGETS
+\begin{frame}[t, plain]
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item Read a \textbf{scatterplot} and describe its association: \emph{direction},
+          \emph{form}, \emph{strength}.
+    \item Interpret the \textbf{correlation coefficient} $r$ --- sign for direction, size for
+          strength --- and match an $r$ to a plot.
+    \item Read a \textbf{line of best fit} $\hat y=ax+b$, interpret its slope and intercept
+          \emph{in context}, and \textbf{predict} with it.
+    \item Tell \textbf{interpolation} from \textbf{extrapolation}, judge a prediction, and say
+          why \textbf{correlation is not causation}.
+  \end{itemize}
+  \vspace{4pt}
+  \begin{block}{How today runs}
+    Warm-up (5) $\to$ notes together (20) $\to$ \textbf{practice on your own} (15) $\to$ debrief
+    (10) $\to$ close \& start the homework (10).
+  \end{block}
+\end{frame}
+
+% WARM-UP
+\begin{frame}[t, plain]
+  \forestheader{Warm-Up: three things you already know}
+  \sectionlabel{5 minutes --- alone, then check with a neighbour}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item \textbf{Read the points.} Coordinates of $A$, $B$, $C$, $D$. Do they lie on one line?
+          Do they \emph{mostly} rise?
+    \item \textbf{Predict with a rule.} $y=4x+10$ at $x=2$, $5$, $8$.
+    \item \textbf{Slope and direction.} For $y=3x-5$: slope, intercept, and what happens to $y$
+          each time $x$ goes up by $1$.
+  \end{enumerate}
+  \vspace{6pt}
+  \begin{block}{Hold on to this}
+    No single line goes through all four points --- but they \emph{mostly} rise. That is the
+    difference between a \emph{rule} and a \emph{trend}. Keep it.
+  \end{block}
+\end{frame}
+
 % HOOK
 \begin{frame}[t, plain]
-  \forestheader{When the data won't line up}
-  \sectionlabel{Hook}
+  \forestheader{Hook: hours practised, free throws made}
+  \sectionlabel[goldacc]{Eight players, one week, 15 shots each}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      For each player: \textbf{hours practiced} ($x$) vs.\ \textbf{free throws made} out of $15$ ($y$).
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item The points do \emph{not} lie on one line\ldots
-        \item \ldots but they clearly \emph{trend} upward.
-      \end{itemize}
-      \vspace{4pt}
-      No exact rule fits messy data --- but a \textbf{line of best fit} can summarize the trend.
-    \end{column}
-    \begin{column}{0.44\textwidth}
+    \begin{column}{0.40\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.34]
-        \lgrid{-0.5}{9}{-0.5}{15}
-        \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-0.5}{9}{-0.5}{15.5}
+        \ftdata
       \end{tikzpicture}
     \end{column}
-  \end{columns}
-\end{frame}
-
-% ASSOCIATION
-\begin{frame}[t, plain]
-  \forestheader{Describe it: direction, form, strength}
-  \sectionlabel{Scatterplots}
-  \begin{columns}[T]
-    \begin{column}{0.34\textwidth}
-      Three separate questions:
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item \textbf{Direction:} up (positive), down (negative), or none?
-        \item \textbf{Form:} does a \emph{line} fit?
-        \item \textbf{Strength:} how tightly?
+    \begin{column}{0.56\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item As hours go up, what do the free throws do? \; \textbf{They tend to go up.}
+        \item Could a single line pass through every point? \; \textbf{No.} \; Could one line
+              summarise the trend? \; \textbf{Yes.}
+        \item $5$ hours made $11$; $6$ hours made $11$. Does more practice \emph{guarantee}
+              more baskets? \; \textbf{No --- it \emph{tends} to.}
       \end{itemize}
     \end{column}
-    \begin{column}{0.64\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.3]
-        \lgrid{-0.5}{7}{-0.5}{7}
-        \dpt{1}{2}\dpt{2}{2}\dpt{3}{4}\dpt{4}{4}\dpt{5}{6}\dpt{6}{6}
-        \node[font=\scriptsize] at (3,-1.7){positive};
-      \end{tikzpicture}
-      \hspace{0.2cm}
-      \begin{tikzpicture}[scale=0.3]
-        \lgrid{-0.5}{7}{-0.5}{7}
-        \dpt{1}{6}\dpt{2}{5}\dpt{3}{5}\dpt{4}{3}\dpt{5}{2}\dpt{6}{2}
-        \node[font=\scriptsize] at (3,-1.7){negative};
-      \end{tikzpicture}
-      \hspace{0.2cm}
-      \begin{tikzpicture}[scale=0.3]
-        \lgrid{-0.5}{7}{-0.5}{7}
-        \dpt{1}{3}\dpt{2}{6}\dpt{3}{2}\dpt{4}{5}\dpt{5}{3}\dpt{6}{5}
-        \node[font=\scriptsize] at (3,-1.7){none};
-      \end{tikzpicture}
-    \end{column}
   \end{columns}
+  \vspace{4pt}
+  \begin{block}{The idea that carries today}
+    No exact rule fits messy data --- but a \textbf{line of best fit} can summarise the trend.
+    Today we read it, measure how well it fits, and predict with it.
+  \end{block}
 \end{frame}
 
-% CORRELATION COEFFICIENT
+% NOTES 1 — ASSOCIATION
 \begin{frame}[t, plain]
-  \forestheader{One number: the correlation coefficient $r$}
-  \sectionlabel[goldacc]{Goodness of fit}
-  \begin{itemize}\setlength{\itemsep}{4pt}
-    \item $r$ always lies in $[-1,1]$: \textbf{sign} $=$ direction, \textbf{size} $|r|$ $=$ strength.
-    \item $r\approx +1$: tight rising line. \quad $r\approx -1$: tight falling line. \quad $r\approx 0$: no linear trend.
-  \end{itemize}
-  \vspace{2pt}
+  \forestheader{Notes 1: scatterplots \& association}
+  \sectionlabel{Direction, form, strength --- no numbers yet}
   \begin{center}
-  \begin{tikzpicture}[scale=1]
-    \draw[semithick, charcoal, ->] (-4.2,0)--(4.2,0);
-    \foreach \x/\lab in {-4/-1, 0/0, 4/1}{\draw (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\lab$};}
-    \node[font=\scriptsize, forest] at (-4,0.45){strong negative};
-    \node[font=\scriptsize, forest] at (0,0.45){no linear trend};
-    \node[font=\scriptsize, forest] at (4,0.45){strong positive};
+  \begin{tikzpicture}[scale=0.30]
+    \lgrid{-0.5}{7}{-0.5}{7}
+    \dpt{1}{2}\dpt{2}{2}\dpt{3}{4}\dpt{4}{4}\dpt{5}{6}\dpt{6}{6}
+    \node[font=\scriptsize\bfseries] at (3,-1.8){(a)};
+  \end{tikzpicture}
+  \hspace{0.6cm}
+  \begin{tikzpicture}[scale=0.30]
+    \lgrid{-0.5}{7}{-0.5}{7}
+    \dpt{1}{6}\dpt{2}{5}\dpt{3}{5}\dpt{4}{3}\dpt{5}{2}\dpt{6}{2}
+    \node[font=\scriptsize\bfseries] at (3,-1.8){(b)};
+  \end{tikzpicture}
+  \hspace{0.6cm}
+  \begin{tikzpicture}[scale=0.30]
+    \lgrid{-0.5}{7}{-0.5}{7}
+    \dpt{1}{3}\dpt{2}{6}\dpt{3}{2}\dpt{4}{5}\dpt{5}{3}\dpt{6}{5}
+    \node[font=\scriptsize\bfseries] at (3,-1.8){(c)};
   \end{tikzpicture}
   \end{center}
-  \begin{block}{Watch out}
-    A \emph{negative} $r$ is not ``weak.'' $r=-0.9$ is a \textbf{strong} association --- and $r$ measures a
-    \emph{linear} fit only.
-  \end{block}
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item \textbf{Direction:} as $x$ rises, does $y$ rise (positive), fall (negative), or
+          neither? \; (a) positive, (b) negative, (c) none.
+    \item \textbf{Form:} do the points follow a \emph{line}? \; (a) and (b) yes; (c) no.
+    \item \textbf{Strength:} how tightly? \; (a) and (b) strong.
+  \end{itemize}
+  \vspace{2pt}
+  The free-throw data: positive, linear, strong.
 \end{frame}
 
-% LINE OF BEST FIT
+% NOTES 2 — r  (the target misconception)
 \begin{frame}[t, plain]
-  \forestheader{The line of best fit: $\hat y = ax + b$}
-  \sectionlabel{Regression}
+  \forestheader{Notes 2: the correlation coefficient $r$}
+  \sectionlabel[redacc]{Sign is direction; size is strength}
+  \begin{center}
+  \begin{tikzpicture}[scale=1.1]
+    \draw[thick, charcoal, ->] (-3.6,0)--(3.6,0);
+    \foreach \x/\lab in {-3/-1, -1.5/-0.5, 0/0, 1.5/0.5, 3/1}{\draw (\x,0.12)--(\x,-0.12) node[below, font=\scriptsize]{$\lab$};}
+    \node[font=\scriptsize, forest] at (-3,0.45){strong negative};
+    \node[font=\scriptsize, forest] at (0,0.45){no linear trend};
+    \node[font=\scriptsize, forest] at (3,0.45){strong positive};
+  \end{tikzpicture}
+  \end{center}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      Technology returns \; $\hat y = 1.5x + 2$, \; $r=0.96$.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item \textbf{Slope} $1.5$: each extra hour of practice $\Rightarrow$ about $1.5$ more made (a per-unit rate).
-        \item \textbf{Intercept} $2$: baseline made at $0$ hours.
-        \item $\hat y$ is a \emph{predicted} value.
-      \end{itemize}
+    \begin{column}{0.48\textwidth}
+      \textbf{$r=0.9$}: positive, strong --- points hug a line that \emph{rises}.
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.34]
-        \lgrid{-0.5}{9}{-0.5}{15}
-        \draw[very thick, forest] (0,2)--(8.5,14.75);
-        \dpt{1}{4}\dpt{2}{5}\dpt{3}{6}\dpt{4}{8}\dpt{5}{9}\dpt{6}{11}\dpt{7}{12}\dpt{8}{13}
-      \end{tikzpicture}
+    \begin{column}{0.48\textwidth}
+      \textbf{$r=-0.9$}: negative, strong --- points hug a line that \emph{falls}.
     \end{column}
   \end{columns}
-\end{frame}
-
-% PREDICTING
-\begin{frame}[t, plain]
-  \forestheader{Predicting --- inside vs.\ outside the data}
-  \sectionlabel[goldacc]{Interpolation / extrapolation}
-  Substitute an $x$ into $\hat y = 1.5x+2$:
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item $x=6$ (inside the data, $1$--$8$): $\hat y = 11$ --- \textbf{interpolation} (safer).
-    \item $x=12$ (outside): $\hat y = 20$\ldots\ but only $15$ shots exist! \textbf{Extrapolation} can break down.
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{Always ask}
-    Is this prediction \emph{reasonable}? A line predicting $20$ made out of $15$ is a red flag that you have
-    extrapolated too far.
+  \vspace{4pt}
+  Match: $0.90\to$ (a), \; $-0.85\to$ (b), \; $0.05\to$ (c).
+  \vspace{4pt}
+  \begin{block}{Careful --- which is the stronger fit, $r=-0.9$ or $r=0.4$?}
+    $r=-0.9$: \; $|{-0.9}|=0.9>0.4$. The minus sign says which way the trend runs; the $0.9$
+    says how tightly. Negative is \emph{not} weak.
   \end{block}
 \end{frame}
 
-% CAUSATION + ROADMAP
+% NOTES 3 — THE LINE
 \begin{frame}[t, plain]
-  \forestheader{Correlation is not causation --- and where we go next}
-  \sectionlabel{Connections}
-  \textbf{Correlation $\ne$ causation.} Ice-cream sales and pool drownings both rise in summer ($r>0$), but ice
-  cream does not \emph{cause} drownings --- \emph{hot weather} is the lurking variable. A strong $r$ means the
-  variables move \emph{together}, not that one \emph{causes} the other.\\[8pt]
-  \begin{itemize}\setlength{\itemsep}{4pt}
-    \item \textbf{Today:} scatterplots \& association; the coefficient $r$; the line of best fit; predicting; causation.
-    \item \textbf{Next:} the \textbf{Unit 1 Test}, then \textbf{Unit 2 --- Quadratic Functions}, where the curve of best fit is a \emph{parabola}.
-  \end{itemize}
-  \vspace{2pt}
-  {\footnotesize Finding $r$ and the equation is a calculator/Desmos task; reading and interpreting them is on you.}
+  \forestheader{Notes 3: the line of best fit --- and what its numbers mean}
+  \sectionlabel{Technology gives $\hat y=1.5x+2$, \; $r=0.97$}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-0.5}{9}{-0.5}{15.5}
+        \draw[very thick, forest] (0,2)--(8.6,14.9);
+        \ftdata
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item \textbf{Slope $1.5$:} each additional \emph{hour} of practice is associated with
+              about $1.5$ more free throws --- a rate, with units.
+        \item \textbf{Intercept $2$:} the predicted free throws at $0$ hours --- a baseline.
+        \item \textbf{$r=0.97$:} strong, because $|r|$ is close to $1$.
+        \item The hat on $\hat y$: a \emph{predicted} value, not a data point.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  The line runs through the \emph{middle} of the points, not through them --- technology picks the
+  line whose predictions are closest to the data overall.
+\end{frame}
+
+% NOTES 4 — PREDICTING AND ITS LIMITS
+\begin{frame}[t, plain]
+  \forestheader{Notes 4: predicting --- and its limits}
+  \sectionlabel{And your turn}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Inside the data: $x=6$}
+      \[ \hat y = 1.5(6)+2 = 11 \]
+      \textbf{Interpolation.} Reasonable.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Outside the data: $x=12$}
+      \[ \hat y = 1.5(12)+2 = 20 \]
+      \textbf{Extrapolation.} Only $15$ shots --- impossible.
+    \end{column}
+  \end{columns}
+  \vspace{3pt}
+  \begin{block}{Two limits}
+    \textbf{The line does not know the story:} outside the data it keeps going; reality does not.
+    \textbf{Correlation is not causation:} ice-cream sales and drownings both rise in summer
+    ($r>0$) --- hot weather, a \emph{lurking variable}, drives both.
+  \end{block}
+  \vspace{3pt}
+  \textbf{Guided Practice, together:} exercise minutes vs.\ resting heart rate, $\hat y=-0.4x+78$,
+  $r=-0.88$ --- negative \emph{and} strong; the slope with units; $\hat y(30)=66$; interpolation;
+  and no, a strong $r$ does not prove cause.
+\end{frame}
+
+% INDIVIDUAL PRACTICE LAUNCH
+\begin{frame}[t, plain]
+  \forestheader{Individual Practice: on your own}
+  \sectionlabel[goldacc]{15 minutes $\cdot$ silent $\cdot$ last page of your notes}
+  \begin{enumerate}\setlength{\itemsep}{6pt}
+    \item \textbf{Match $r$ to the plot.} $0.95$, $0.10$, $-0.70$ --- and which fit is strongest?
+    \item \textbf{Interpret the model.} Experience vs.\ salary (in thousands):
+          $\hat y=2.5x+38$. Slope with units, intercept, $\hat y(10)$, and interpolation or
+          extrapolation.
+    \item \textbf{Where the line breaks.} Hot cocoa vs.\ temperature, $\hat y=-3x+260$ over
+          $20$--$60^\circ$. Predict at $40^\circ$ and at $90^\circ$ --- then say what went wrong.
+  \end{enumerate}
+  \vspace{5pt}
+  \begin{block}{The rule}
+    Direction from the sign, strength from the size; every slope gets units; check every
+    prediction against the data's range. Stuck? Look \emph{up the page} at the notes --- not at
+    your neighbour. Done early? Add hot days to problem~3 --- what happens to $r$?
+  \end{block}
+\end{frame}
+
+% DEBRIEF
+\begin{frame}[t, plain]
+  \forestheader{Debrief: correct your own page in a second colour}
+  \sectionlabel[redacc]{10 minutes}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item \textbf{1 --- read $r$ in two steps.} Only $R$ falls, so $R$ is $-0.70$. $P$ hugs its
+          line: $0.95$. $Q$ has no line to hug: $0.10$. Strongest: $P$.
+    \item \textbf{The must-land moment.} $r=-0.9$ vs.\ $r=0.4$: which points sit closer to
+          their line? The minus sign is direction; the $0.9$ is strength. Negative is not weak.
+    \item \textbf{2 --- units, or it is not an interpretation.} \$2{,}500 more salary per
+          additional year. $\hat y(10)=63$ is \$63{,}000 --- interpolation. $x=30$ is twice the
+          longest career measured --- extrapolation.
+    \item \textbf{3 --- the line does not know the story.} $\hat y(90)=-10$ cups. The line hits
+          zero near $87^\circ$, far outside $20$--$60^\circ$. Conclude ``very hot days sell almost
+          none'' --- the model's job ends where the data ends.
+  \end{enumerate}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Close}
+  \sectionlabel{What changed today}
+  You walked in with functions whose rules were \emph{exact}. You walk out able to read a
+  \emph{trend} in scattered data, measure it with $r$, interpret the line of best fit in context,
+  predict with it --- and know where to stop trusting it.
+  \vspace{5pt}
+  \begin{block}{Homework --- start it now}
+    The \textbf{Homework} page in your packet. We start item~1 together and you keep going; whatever
+    is left is due next class. Six problems plus an extension: matching $r$ to plots, a
+    sign-versus-size pair, a model from a data table, the special values of $r$, a causation
+    critique, and one multiple-choice item.
+  \end{block}
+  \vspace{4pt}
+  \textbf{Next:} the \textbf{Unit 1 Test} --- then Unit 2, where the data can \emph{curve} and the
+  curve of best fit becomes a parabola.
 \end{frame}
 
 \end{document}

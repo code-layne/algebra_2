@@ -1,16 +1,17 @@
-%! Piecewise \& Step Functions — Unit 1, Lesson 1.4 — Homework (Answer Key)
+%! Piecewise & Step Functions — Unit 1, Lesson 1.4 — Homework (Answer Key)
+% Mirrors homework/main.tex exactly; every \blank{} becomes an \ans{}, every \writelines{n} is
+% answered with exactly n \ansline{}s, and every work block is authored byte-identically.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Endpoint dots
-\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
-\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
+% Endpoint dots: {color}{x}{y}
+\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (3.2pt);}
+\newcommand{\hdot}[3]{\draw[very thick, #1, fill=white] (#2,#3) circle (3.2pt);}
 
 \begin{document}
 
@@ -20,81 +21,116 @@
 
 \begin{notesbox}{Practice}
 Show your work. To evaluate a piecewise function, first find the piece whose condition the input
-satisfies (watch the boundary), then apply that rule. On a graph, a \emph{closed} dot includes its
-endpoint; an \emph{open} dot excludes it.
+satisfies --- at a boundary, the piece whose inequality \emph{includes} it --- then apply that
+rule. On a graph, a closed dot includes its endpoint and an open dot excludes it.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=11pt]
-  \item \textbf{Evaluate} $f(x)=\begin{cases} x+4, & x\le -1 \\ 2x, & x>-1 \end{cases}$
-        \\[3pt]
-        $f(-3)={\color{keyred}\mathbf{1}}$ \quad $f(-1)={\color{keyred}\mathbf{3}}$ \quad
-        $f(0)={\color{keyred}\mathbf{0}}$ \quad $f(5)={\color{keyred}\mathbf{10}}$
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Evaluate.} $f(x)=\begin{cases} x+4, & x\le -1 \\ 2x, & x>-1 \end{cases}$
+    \\[3pt]
+    $f(-3)=$ \ans{$1$} \quad $f(-1)=$ \ans{$3$} \quad $f(0)=$ \ans{$0$} \quad
+    $f(5)=$ \ans{$10$} \quad Which piece owns $x=-1$, and why? \ans{the first: $-1\le-1$ includes it}
 
-  \item \textbf{Read the graph} of $f(x)=\begin{cases} x+2, & x<1 \\ 5-x, & x\ge 1 \end{cases}$.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \lgrid{-3}{5}{-1}{5}
-          \draw[navy, dashed, semithick] (1,-1)--(1,5);
-          \draw[very thick, forest] (-3,-1)--(1,3);
-          \opendot{1}{3}
-          \draw[very thick, forest] (1,4)--(4,1);
-          \closeddot{1}{4}
-        \end{tikzpicture}
-        \end{center}
-        $f(-1)={\color{keyred}\mathbf{1}}$; \; $f(1)={\color{keyred}\mathbf{4}}$; \; domain
-        \ans{all real numbers}; \; increasing on \ans{$(-\infty,1)$}; \; decreasing on
-        \ans{$[1,\infty)$}. \; Is $f$ continuous at $x=1$? \ans{no}.
+  \boxguard[18]
+  \item \textbf{Meets or jumps?} Two functions, one number apart:
+    \[ g(x)=\begin{cases} x+2, & x<1 \\ 5-x, & x\ge1 \end{cases} \qquad\qquad
+       k(x)=\begin{cases} x+2, & x<1 \\ 4-x, & x\ge1 \end{cases} \]
+    \vspace{-8pt}
+    \begin{center}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\linewidth}{@{}X|X@{}}
+    \textbf{(a) $g$} & \textbf{(b) $k$} \\
+    \hline
+    At $x=1$: first rule \ans{$3$}, second rule \ans{$4$} & At $x=1$: first rule \ans{$3$}, second rule \ans{$3$} \\
+    So the graph \ans{jumps} (meets / jumps) & So the graph \ans{meets} (meets / jumps) \\
+    \end{tabularx}
+    \end{center}
+    (c) Say in one sentence what decides whether two pieces meet at a boundary.
+    \ansline{Whether both rules give the \emph{same} value at the boundary --- same value, they meet.}
+    \ansline{In (a) the rules give $3$ and $4$, a gap of $1$; in (b) both give $3$, so no gap.}
 
-  \item \textbf{Write it as pieces.} Rewrite $|x+1|$ as a two-piece function.
-        \[ |x+1|=\begin{cases} {\color{keyred}\mathbf{x+1}}, & x\ge -1 \\[3pt] {\color{keyred}\mathbf{-x-1}}, & x<-1 \end{cases} \]
+  \boxguard[20]
+  \item \textbf{Read the graph.} The graph shows \emph{all} of $f$. \\[2pt]
+    \begin{minipage}[c]{0.60\linewidth}
+    $f(-1)=$ \ans{$1$}; \; $f(1)=$ \ans{$4$} (read the \ans{closed} dot); \\[3pt]
+    domain \ans{$[-3,4]$}; \; increasing on \ans{$[-3,1)$}; \; decreasing on \ans{$[1,4]$}; \\[3pt]
+    continuous at $x=1$? \ans{no} --- the pieces \ans{jump} there.
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.36\linewidth}\centering
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-3.5}{4.5}{-1.5}{5}
+      \draw[very thick, forest] (-3,-1)--(1,3);
+      \fdot{forest}{-3}{-1} \hdot{forest}{1}{3}
+      \draw[very thick, forest] (1,4)--(4,1);
+      \fdot{forest}{1}{4} \fdot{forest}{4}{1}
+    \end{tikzpicture}
+    \end{minipage}
 
-  \item \textbf{Greatest-integer function.} Evaluate.
-        \\[2pt]
-        $\lfloor 4.2\rfloor={\color{keyred}\mathbf{4}}$ \quad $\lfloor -3.1\rfloor={\color{keyred}\mathbf{-4}}$ \quad
-        $\lfloor 6\rfloor={\color{keyred}\mathbf{6}}$ \quad $\lfloor -0.5\rfloor={\color{keyred}\mathbf{-1}}$. \\[2pt]
-        For every $x$ in $[3,4)$, $\lfloor x\rfloor={\color{keyred}\mathbf{3}}$.
+  \boxguard[16]
+  \item \textbf{The staircase.} Round \emph{down} each time.
+    \\[3pt]
+    $\lfloor 4.2\rfloor=$ \ans{$4$} \quad $\lfloor -3.1\rfloor=$ \ans{$-4$} \quad
+    $\lfloor 6\rfloor=$ \ans{$6$} \quad $\lfloor -0.5\rfloor=$ \ans{$-1$} \quad
+    For every $x$ in $[3,4)$, $\lfloor x\rfloor=$ \ans{$3$} \\[3pt]
+    For which inputs is $\lfloor x\rfloor=x$ exactly? \ans{the integers} \; Is $\lfloor x\rfloor$
+    \emph{ever} bigger than $x$? \ans{no}
 
-  \item \textbf{Model it.} A phone plan costs \$30 for up to $5$ GB of data, then \$10 for each GB over
-        $5$. Let $C(g)$ be the monthly cost for $g$ GB.
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-          \item Complete the rule:
-                $C(g)=\begin{cases} {\color{keyred}\mathbf{30}}, & 0\le g\le 5 \\[3pt] 30+{\color{keyred}\mathbf{10(g-5)}}, & g>5 \end{cases}$
-          \item Find $C(3)$ and $C(8)$, and say what $C(8)$ means.
-                \begin{work}
-                  C(3) &= 30 \\
-                  C(8) &= 30+10(8-5) \\
-                       &= 30+10(3) \\
-                       &= 60
-                \end{work}
-                \ansline{\$60 is the cost for 8 GB --- \$30 base plus 3 GB over 5 at \$10 each.}
-        \end{enumerate}
+  \boxguard[24]
+  \item \textbf{Model it.} A phone plan costs \$30 for up to $5$ GB of data, then \$10 for each
+        GB over $5$. Let $C(g)$ be the monthly cost for $g$ GB.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=4pt]
+      \item Complete the rule:
+            $C(g)=\begin{cases} \text{\ans{$30$}}, & 0\le g\le5 \\[3pt] 30+\text{\ans{$10(g-5)$}}, & g>5 \end{cases}$
+      \item Find $C(3)$ and $C(8)$, and say what $C(8)$ means.
+        \begin{work}
+          C(3) &= 30 \\
+          C(8) &= 30 + 10(8-5) \\
+               &= 30 + 30 \\
+               &= 60
+        \end{work}
+        $C(8)$ means: \ans{$8$ GB in a month costs \$60 --- \$30 plus \$10 for each of the $3$ extra GB}
+      \item Suppose the company also adds a \$10 \emph{surcharge} the moment you pass $5$ GB.
+            Rewrite the second piece: $C(g)=$ \ans{$40+10(g-5)$} for $g>5$. Do the pieces still meet at
+            $g=5$? \ans{no} \; The graph now \ans{jumps} from \$\ans{$30$} to
+            \$\ans{$40$}.
+    \end{enumerate}
 
-  \item \textbf{Explain.} When you evaluate a piecewise function at $x=a$, how do you decide which piece
-        to use? And how can you tell whether the function is \emph{continuous} at a boundary?
-        \ansline{Use the piece whose condition $x=a$ satisfies (the $\le/\ge$ tells you which piece owns a boundary point).}
-        \ansline{It is continuous at a boundary when both pieces give the \emph{same value} there; if they differ, the graph jumps.}
+  \item \textbf{Multiple choice (SOL-style).} For
+        $f(x)=\begin{cases} 2x+1, & x<2 \\ x-4, & x\ge2 \end{cases}$, what is $f(2)$?
+    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=1pt]
+      \item $5$
+      \item $-2$ \hfill \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item $3$
+      \item $f(2)$ is undefined
+    \end{enumerate}
+    Say in one sentence how you ruled out one of the others.
+    \ansline{$x=2$ satisfies $x\ge2$, so the second piece owns it: $f(2)=2-4=-2$.}
+    \ansline{A is $2(2)+1$ from the strict-$<$ piece, which does not include $2$; D is wrong because one piece does.}
 \end{enumerate}
 \end{notesbox}
 
+\boxguard[18]
 \begin{extensionbox}
 \textbf{Build and reason.}
 \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=6pt]
-  \item Write the piecewise rule for the function that is the constant $0$ for $x<0$, the line $y=2x$ for
-        $0\le x\le 2$, and the constant $4$ for $x>2$. Is it continuous at $x=0$ and at $x=2$? Explain.
-  \item A simple tax charges $10\%$ on income up to \$10{,}000 and $20\%$ on the amount above \$10{,}000.
-        Writing $T(x)$ for the tax on income $x$, complete $T(x)=\{\,0.10x \text{ if } 0\le x\le 10000;\
-        1000+{\color{keyred}\mathbf{0.20(x-10000)}} \text{ if } x>10000\,\}$, and explain why $T$ is
-        continuous at \$10{,}000.
+  \item A function is the constant $0$ for $x<0$, the line $y=2x$ for $0\le x\le2$, and the
+        constant $4$ for $x>2$. Write it with a brace, then decide whether it is continuous at
+        $x=0$ and at $x=2$.
+        \par\ansline{$f(x)=0$ for $x<0$; $2x$ for $0\le x\le2$; $4$ for $x>2$.}
+        \ansline{Continuous at both: at $0$ both rules give $0$; at $2$ both give $4$.}
+  \item A simple tax charges $10\%$ on income up to \$10{,}000 and $20\%$ on the amount above
+        \$10{,}000. Complete
+        $T(x)=\begin{cases} 0.10x, & 0\le x\le 10000 \\[2pt] 1000+\text{\ans{$0.20(x-10000)$}}, & x>10000 \end{cases}$
+        and explain why $T$ is continuous at \$10{,}000.
+        \par\ansline{At \$10{,}000 the first rule gives $0.10(10000)=1000$ and the second gives $1000+0$.}
+        \ansline{Same value, so no jump --- earning one more dollar never costs more than a dollar in tax.}
 \end{enumerate}
-\ansline{(a) $f(x)=\{\,0 \text{ if } x<0;\ 2x \text{ if } 0\le x\le 2;\ 4 \text{ if } x>2\,\}$; continuous at both boundaries.}
-\ansline{At $x=0$ both pieces give $0$; at $x=2$ both give $4$ --- the pieces meet, so no jump.}
-\ansline{(b) $T$ is continuous at \$10{,}000 because $0.10(10000)=1000$ matches $1000+0.20(0)=1000$.}
 \end{extensionbox}
 
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 1.5: Linear Regression.} We leave exact rules behind: given a
-\emph{scatter} of real data points that don't lie on one line, we'll fit a single \textbf{line of best
-fit} and measure how well it fits with the \textbf{correlation coefficient}, then use it to make
-predictions.
+\textbf{Coming next --- Lesson 1.5: Linear Regression.} We leave exact rules behind. Given a
+\emph{scatter} of real data points that do not lie on any one line, you will read a single
+\textbf{line of best fit}, measure how well it fits with the \textbf{correlation coefficient},
+and use it to make predictions --- the first time in Unit~1 the data is messy.
 \end{spiralbox}
 
 \end{document}

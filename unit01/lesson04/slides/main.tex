@@ -1,4 +1,6 @@
-%! Piecewise \& Step Functions — Unit 1, Lesson 1.4 — Slides (Beamer)
+%! Piecewise & Step Functions — Unit 1, Lesson 1.4 — Slides (Beamer)
+% Deck follows the lesson's gradual-release flow: targets → warm-up → hook → guided notes (I do /
+% we do) → individual practice (you do alone) → debrief → close & homework. No group activity.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
@@ -6,9 +8,16 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
-% Endpoint dots
-\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3pt);}
-\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3pt);}
+% Months grid for the streaming service: x = months 0..7, one y-unit = $12.
+\newcommand{\mgrid}{%
+  \draw[step=1, linegray!40, very thin] (0,0) grid (7,4);
+  \draw[->, thick, charcoal] (0,0)--(7.6,0) node[below right, font=\tiny]{$m$};
+  \draw[->, thick, charcoal] (0,0)--(0,4.6) node[left, font=\tiny]{\$};
+  \foreach \x in {1,...,7}{\node[below, font=\tiny, charcoal] at (\x,0){$\x$};}
+  \foreach \y/\lab in {1/12,2/24,3/36,4/48}{\node[left, font=\tiny, charcoal] at (0,\y){$\lab$};}}
+% Endpoint dots: {color}{x}{y}
+\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (3.2pt);}
+\newcommand{\hdot}[3]{\draw[very thick, #1, fill=white] (#2,#3) circle (3.2pt);}
 
 \begin{document}
 
@@ -25,144 +34,238 @@
 \end{frame}
 }
 
-% HOOK
+% LEARNING TARGETS
 \begin{frame}[t, plain]
-  \forestheader{One function, more than one rule}
-  \sectionlabel{Hook}
-  \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
-      A streaming service is \textbf{free for 3 months}, then \textbf{\$10/month} afterward.
-      \[ C(m)=\begin{cases} 0, & 0\le m\le 3\\ 10(m-3), & m>3 \end{cases} \]
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item $C(2)=0$, \; $C(3)=0$, \; $C(5)=20$.
-        \item No single line works --- the rule \emph{changes} at month~3.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.42\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{0}{7}{-1}{5}
-        \draw[very thick, forest] (0,0)--(3,0);
-        \draw[very thick, forest] (3,0)--(6,3);
-        \closeddot{3}{0}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-  \vspace{2pt}
-  \begin{block}{Today}
-    A \textbf{piecewise-defined function} follows different rules on different parts of its domain. We'll
-    evaluate them, read their graphs, and meet the step-function cousin that ``rounds.''
-  \end{block}
-\end{frame}
-
-% DEFINITION / EVALUATE
-\begin{frame}[t, plain]
-  \forestheader{Evaluating: which piece owns the input?}
-  \sectionlabel{Evaluate}
-  \[ f(x)=\begin{cases} 2x+1, & x<2\\ 5-x, & x\ge 2 \end{cases} \]
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item $f(0)$: since $0<2$, use the \textbf{top}: $f(0)=1$.
-    \item $f(2)$: since $2\ge 2$, use the \textbf{bottom}: $f(2)=3$.
-    \item $f(5)=0$.
-  \end{itemize}
-  \vspace{2pt}
-  \begin{block}{Boundary rule}
-    The input $x=2$ belongs to the piece whose inequality \emph{includes} it (here the $\ge$ piece) ---
-    not the strict-$<$ piece. First find the piece, then apply its rule.
-  \end{block}
-\end{frame}
-
-% ABSOLUTE VALUE AS PIECEWISE
-\begin{frame}[t, plain]
-  \forestheader{Absolute value is piecewise}
-  \sectionlabel[goldacc]{Bridge from 1.3}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      The V is really \textbf{two lines} pasted at the vertex:
-      \[ |x|=\begin{cases} x, & x\ge 0\\ -x, & x<0 \end{cases} \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Check: $|-3|=-(-3)=3$.
-        \item The vertex is the \emph{boundary} between the two rules.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.5]
-        \lgrid{-4}{4}{-1}{5}
-        \draw[very thick, forest] (-4,4)--(0,0)--(4,4);
-        \closeddot{0}{0}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% READING A GRAPH: OPEN/CLOSED, JUMP
-\begin{frame}[t, plain]
-  \forestheader{Reading a graph: open, closed, and jumps}
-  \sectionlabel[goldacc]{Discontinuity}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \[ f(x)=\begin{cases} x+3, & x<1\\ -x+4, & x\ge 1 \end{cases} \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Closed $\bullet$ includes ($\le,\ge$); open $\circ$ excludes ($<,>$).
-        \item At $x=1$ take the \emph{closed} dot: $f(1)=3$.
-        \item Pieces \emph{disagree} at $x=1$ ($4$ vs.\ $3$) --- a \textbf{jump}.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.46]
-        \lgrid{-3}{5}{-1}{5}
-        \draw[very thick, forest] (-3,0)--(1,4);
-        \opendot{1}{4}
-        \draw[very thick, forest] (1,3)--(4,0);
-        \closeddot{1}{3}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% STEP FUNCTION
-\begin{frame}[t, plain]
-  \forestheader{Step functions: $\lfloor x\rfloor$}
-  \sectionlabel{Greatest integer}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      $\lfloor x\rfloor=$ the greatest integer $\le x$ (\textbf{round down}):
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $\lfloor 3.7\rfloor=3$, \; $\lfloor 5\rfloor=5$.
-        \item $\lfloor -0.4\rfloor=-1$, \; $\lfloor -2.5\rfloor=-3$ (down!).
-        \item \emph{Constant} on each $[n,n+1)$, then jumps.
-      \end{itemize}
-      Pricing that ``rounds'' (parking, postage) is a step function.
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.46]
-        \lgrid{-1}{4}{-1}{4}
-        \draw[very thick, forest] (-1,-1)--(0,-1); \closeddot{-1}{-1} \opendot{0}{-1}
-        \draw[very thick, forest] (0,0)--(1,0);    \closeddot{0}{0}   \opendot{1}{0}
-        \draw[very thick, forest] (1,1)--(2,1);    \closeddot{1}{1}   \opendot{2}{1}
-        \draw[very thick, forest] (2,2)--(3,2);    \closeddot{2}{2}   \opendot{3}{2}
-        \draw[very thick, forest] (3,3)--(4,3);    \closeddot{3}{3}   \opendot{4}{3}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% ROADMAP
-\begin{frame}[t, plain]
-  \forestheader{Where Unit 1 goes next}
-  \sectionlabel{Connections}
-  \textbf{Today:} piecewise notation and evaluation (which piece owns the input?); reading open/closed
-  endpoints and \emph{discontinuities}; absolute value as two pieces; the greatest-integer step
-  function.\\[8pt]
-  \begin{itemize}\setlength{\itemsep}{4pt}
-    \item \textbf{1.5} Linear regression --- fit a line of best fit to scattered data.
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item Read a \textbf{piecewise-defined function} --- one function, several rules --- and
+          \textbf{evaluate} it by choosing the piece first, watching the \textbf{boundary}.
+    \item Write $|x|$, and any V, as a \textbf{two-piece} linear rule.
+    \item Read a piecewise graph with \textbf{open} and \textbf{closed} dots, and decide whether
+          the pieces \emph{meet} or \emph{jump}.
+    \item Evaluate the \textbf{greatest-integer function} $\lfloor x\rfloor$ and read its
+          staircase.
   \end{itemize}
   \vspace{4pt}
-  {\footnotesize A piecewise function is continuous at a boundary exactly when both pieces give the same
-  value there.}
+  \begin{block}{How today runs}
+    Warm-up (5) $\to$ notes together (20) $\to$ \textbf{practice on your own} (15) $\to$ debrief
+    (10) $\to$ close \& start the homework (10).
+  \end{block}
+\end{frame}
+
+% WARM-UP
+\begin{frame}[t, plain]
+  \forestheader{Warm-Up: three things you already know}
+  \sectionlabel{5 minutes --- alone, then check with a neighbour}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item \textbf{Evaluate the rule.} $g(x)=2x-1$ at $-2$, $0$, $3$; and $h(x)=5-x$ at $2$
+          and $-4$.
+    \item \textbf{The V is two lines.} $y=|x|$ behaves like $y=$ ? when $x\ge0$ and like $y=$ ?
+          when $x<0$. Check it with $-6$.
+    \item \textbf{Endpoints.} Is $1$ a solution of $x<1$? Of $x\le1$? Open or closed dot for
+          $x\ge2$?
+  \end{enumerate}
+  \vspace{6pt}
+  \begin{block}{Hold on to this}
+    One rule is for $x<1$ and a different rule for $x\ge1$. The input $x=1$ fails $x<1$ and
+    satisfies $x\le1$ --- so it uses \emph{exactly one} rule, the second. Keep that.
+  \end{block}
+\end{frame}
+
+% HOOK
+\begin{frame}[t, plain]
+  \forestheader{Hook: free for three months}
+  \sectionlabel[goldacc]{A streaming service, then \$12 a month}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item Total paid after 2 months? After 3? After 5? \; \textbf{\$0, \$0, \$24.}
+    \item Could one straight line describe the total for every month? \; \textbf{No} --- flat,
+          then rising.
+    \item So how many rules does the cost follow? \; \textbf{Two.}
+  \end{itemize}
+  \[ C(m)=\begin{cases} 0, & 0\le m\le 3 \\ 12(m-3), & m>3 \end{cases} \]
+  \begin{block}{The question that carries today}
+    One function, two rules --- a \textbf{piecewise-defined function}. Which rule does an input
+    use? What does the graph do where the rule changes? And what happens when a rule ``rounds''?
+  \end{block}
+\end{frame}
+
+% NOTES 1 — EVALUATE BY PIECE
+\begin{frame}[t, plain]
+  \forestheader{Notes 1: one function, several rules --- pick the piece first}
+  \sectionlabel{Then apply its rule}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      $C(m)=\begin{cases} 0, & 0\le m\le 3 \\ 12(m-3), & m>3 \end{cases}$
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $C(2)$: $2\le3$, first piece: $0$.
+        \item $C(3)$: the boundary. $3$ satisfies $0\le m\le3$, so first piece: $0$ --- month 3 is
+              still free.
+        \item $C(5)$: $5>3$, second piece: $12(2)=24$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      $f(x)=\begin{cases} 2x+1, & x<2 \\ 5-x, & x\ge2 \end{cases}$
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item $f(0)=1$ (first piece)
+        \item $f(2)=3$ --- the $\ge$ piece owns $2$
+        \item $f(5)=0$
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{5pt}
+  \begin{block}{Boundary rule}
+    An input on the boundary belongs to the piece whose inequality \emph{includes} it --- the
+    one with $\le$ or $\ge$, never the strict one.
+  \end{block}
+\end{frame}
+
+% NOTES 2 — ABSOLUTE VALUE IS PIECEWISE
+\begin{frame}[t, plain]
+  \forestheader{Notes 2: absolute value is piecewise --- the V is two pieces}
+  \sectionlabel{Lesson 1.3's trail, written with a brace}
+  \begin{columns}[T]
+    \begin{column}{0.40\textwidth}
+      \[ |x|=\begin{cases} x, & x\ge0 \\ -x, & x<0 \end{cases} \]
+      Check: $|-3|=-(-3)=3$.
+    \end{column}
+    \begin{column}{0.56\textwidth}
+      $H(x)=2|x-3|+1$, boundary at the vertex $x=3$:
+      \begin{align*}
+        x\ge3:\quad H(x) &= 2(x-3)+1 = 2x-5 \\
+        x<3:\quad H(x) &= 2(3-x)+1 = 7-2x
+      \end{align*}
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  \begin{block}{Meets at the vertex}
+    Right ray slope $2$, left ray slope $-2$ --- and both rules give $H(3)=1$, so the two pieces
+    \emph{meet}. That is the first ``meets'' example; the next slide shows a ``jumps.''
+  \end{block}
+\end{frame}
+
+% NOTES 3 — MEETS OR JUMPS  (the target misconception)
+\begin{frame}[t, plain]
+  \forestheader{Notes 3: open or closed, meets or jumps}
+  \sectionlabel[redacc]{Same story, two functions}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Total paid $C(m)$} \\[2pt]
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \mgrid
+        \draw[very thick, forest] (0,0)--(3,0);
+        \draw[very thick, forest] (3,0)--(7,4);
+        \fdot{forest}{3}{0}
+      \end{tikzpicture} \\[2pt]
+      At $m=3$ both rules give $0$: the pieces \textbf{meet}. Constant on $[0,3]$, increasing after.
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Price this month $P(m)$} \\[2pt]
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \mgrid
+        \draw[very thick, redacc] (0,0)--(3,0);
+        \draw[very thick, redacc] (3,1)--(7,1);
+        \fdot{redacc}{3}{0}
+        \hdot{redacc}{3}{1}
+      \end{tikzpicture} \\[2pt]
+      At $m=3$ the rules give $0$ and $12$: the graph \textbf{jumps}. Range $\{0,12\}$.
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Careful --- exactly one piece owns the boundary}
+    ``$P(3)=12$, because the price is \$12 after the free months''? No: $3$ satisfies
+    $0\le m\le3$, so $P(3)=0$ --- the closed dot says so. The open dot is not a point of the graph.
+  \end{block}
+\end{frame}
+
+% NOTES 4 — STEP FUNCTIONS
+\begin{frame}[t, plain]
+  \forestheader{Notes 4: step functions --- the greatest-integer function}
+  \sectionlabel{And your turn}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      $\lfloor x\rfloor$ = the greatest integer $\le x$: it \textbf{rounds down}.
+      \begin{itemize}\setlength{\itemsep}{3pt}
+        \item $\lfloor3.7\rfloor=3$, \; $\lfloor5\rfloor=5$, \; $\lfloor-0.4\rfloor=-1$
+        \item $\lfloor-2.5\rfloor=-3$ --- down means \emph{more negative}
+        \item Constant $n$ on $[n,n+1)$: closed left, open right, then a jump
+        \item Age in whole years; full hours parked
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.42]
+        \lgrid{-1.5}{4.5}{-1.5}{4}
+        \draw[very thick, forest] (-1,-1)--(0,-1); \fdot{forest}{-1}{-1} \hdot{forest}{0}{-1}
+        \draw[very thick, forest] (0,0)--(1,0);    \fdot{forest}{0}{0}   \hdot{forest}{1}{0}
+        \draw[very thick, forest] (1,1)--(2,1);    \fdot{forest}{1}{1}   \hdot{forest}{2}{1}
+        \draw[very thick, forest] (2,2)--(3,2);    \fdot{forest}{2}{2}   \hdot{forest}{3}{2}
+        \draw[very thick, forest] (3,3)--(4,3);    \fdot{forest}{3}{3}   \hdot{forest}{4}{3}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{3pt}
+  \textbf{Guided Practice, together:} $p(x)=-2x$ for $x\le-1$, $x+3$ for $x>-1$ --- evaluate
+  at $-3,-1,0,2$; both rules give $2$ at $-1$, so it meets; read the intervals and the minimum
+  off the graph.
+\end{frame}
+
+% INDIVIDUAL PRACTICE LAUNCH
+\begin{frame}[t, plain]
+  \forestheader{Individual Practice: on your own}
+  \sectionlabel[goldacc]{15 minutes $\cdot$ silent $\cdot$ last page of your notes}
+  \begin{enumerate}\setlength{\itemsep}{6pt}
+    \item \textbf{Across the boundary.} Evaluate $h$ at $0$, $2$, $5$ --- then does $h$ meet or
+          jump at $2$?
+    \item \textbf{From the graph.} Domain, $f(1)$, $f(2)$ off the closed dot, the intervals ---
+          then \emph{write} the rule.
+    \item \textbf{Two pieces and the staircase.} $|x-3|$ as two pieces; then round down:
+          $\lfloor2.9\rfloor$, $\lfloor-1.2\rfloor$, $\lfloor4\rfloor$.
+  \end{enumerate}
+  \vspace{5pt}
+  \begin{block}{The rule}
+    Find the piece first; at a boundary, ask which inequality \emph{includes} the input. Stuck?
+    Look \emph{up the page} at the notes --- not at your neighbour. Done early? Change problem~1's
+    second rule to $2x-5$: does $h$ meet at $2$ now?
+  \end{block}
+\end{frame}
+
+% DEBRIEF
+\begin{frame}[t, plain]
+  \forestheader{Debrief: correct your own page in a second colour}
+  \sectionlabel[redacc]{10 minutes}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item \textbf{1 --- the piece first.} $0\le2$: $h(0)=1$. \; $2\le2$: $h(2)=-1$. \; $5>2$:
+          $h(5)=4$. The other rule gives $-2$ at $2$, so $h$ \emph{jumps}. \checkmark
+    \item \textbf{The must-land moment.} Two dots at $x=2$ in problem~2. The \emph{filled} one is
+          $f(2)=-2$; the open one is where the slanted piece stops. The story cannot decide it ---
+          the inequality does. Same as $P(3)=0$.
+    \item \textbf{Meets or jumps --- one test.} Same value at the boundary means meet; different
+          means jump. Guided Practice met ($2$ and $2$); problems~1 and~2 jump.
+    \item \textbf{3 --- two pieces, rounding down.} $|x-3|$ is $x-3$ on the right, $3-x$ on the
+          left. $\lfloor-1.2\rfloor=-2$: down means more negative. Constant on $[4,5)$.
+  \end{enumerate}
+\end{frame}
+
+% CLOSE
+\begin{frame}[t, plain]
+  \forestheader{Close}
+  \sectionlabel{What changed today}
+  You walked in with functions that follow \emph{one} rule. You walk out able to read a function
+  that follows \emph{several} --- pick the piece, mind the boundary, read the dots --- and to see
+  Lesson 1.3's V as the first piecewise function you already knew.
+  \vspace{5pt}
+  \begin{block}{Homework --- start it now}
+    The \textbf{Homework} page in your packet. We start item~1 together and you keep going; whatever
+    is left is due next class. Six problems plus an extension: evaluating with a boundary, a
+    meets-or-jumps pair, reading a graph, the staircase, a phone-plan model, and one
+    multiple-choice item.
+  \end{block}
+  \vspace{4pt}
+  \textbf{Next:} Lesson 1.5 --- we leave exact rules behind and fit one \emph{line of best fit} to
+  scattered data, then measure how well it fits.
 \end{frame}
 
 \end{document}

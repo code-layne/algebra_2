@@ -1,8 +1,10 @@
-%! Absolute Value Functions \& Transformations — Unit 1, Lesson 1.3 — Guided Notes
+%! Absolute Value Functions & Transformations — Unit 1, Lesson 1.3 — Guided Notes
+% Gradual release (course-wide shape, 2026-09-01): the notes are the "I do / we do" block,
+% 20 minutes, and the Individual Practice block that closes them is the "you do alone", 15 more.
+% There is no group activity.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
@@ -18,10 +20,14 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item graph the \emph{absolute value parent} $f(x)=|x|$ and read its vertex, axis, and minimum;
-  \item use \emph{vertex form} $g(x)=a|x-h|+k$ to find the vertex $(h,k)$ and axis $x=h$;
-  \item decide from $a$ whether a V \emph{opens up or down} (min vs.\ max) and is narrower or wider;
-  \item describe any absolute value graph as \emph{shifts, a stretch, and a reflection} of $y=|x|$.
+  \item read the \emph{absolute value parent} $f(x)=|x|$ as a V, and name its vertex, axis of
+        symmetry, and minimum;
+  \item use \emph{vertex form} $g(x)=a|x-h|+k$ to find the vertex $(h,k)$ and axis $x=h$ ---
+        and say why the inside of the bars moves the graph \emph{backwards};
+  \item decide from $a$ whether a V opens up (a \emph{minimum}) or down (a \emph{maximum}), and
+        whether it is narrower or wider than the parent;
+  \item read domain, range, and increasing/decreasing intervals off a V, and build its rule from
+        a graph.
 \end{itemize}
 \end{objectivebox}
 
@@ -31,32 +37,44 @@
 \small
 Fill in each term as we build it together.
 \par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{Absolute value parent function $f(x)=|x|$}
+\termblanklong{Absolute value parent function}
 \termblanklong{Vertex (turning point)}
 \termblanklong{Axis of symmetry}
 \termblanklong{Vertex form $a|x-h|+k$}
-\termblanklong{Reflection / stretch / compression}
+\termblanklong{Reflection}
+\termblanklong{Vertical stretch / compression}
 \end{vocabbox}
 
 \begin{hookbox}
-You drive toward a rest stop, reach it after $2$ hours, and keep going. Your \emph{distance from the
-rest stop} (in tens of miles) is $d(t)=30\,|t-2|$.
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Distance at $t=0$? \blank{1.4cm} \quad At $t=2$? \blank{1.4cm} \quad At $t=4$? \blank{1.4cm}
-  \item You are \emph{closest} at $t=\blank{1.0cm}$, where the distance is \blank{1.0cm}.
+A trail drops toward a creek, crosses it on a bridge, and climbs the far side. Its height above
+the creek, in \emph{hundreds of feet}, $x$ miles from the trailhead, is $H(x)=2|x-3|+1$.
+\begin{center}
+\begin{minipage}[c]{0.36\linewidth}\centering
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-0.5}{6.5}{-0.5}{8}
+  \draw[very thick, forest] (0,7)--(3,1)--(6,7);
+  \fill[charcoal] (3,1) circle (3.5pt);
+  \node[charcoal, font=\scriptsize, below right] at (3,1){$(3,1)$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.60\linewidth}
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item $H(0)=$ \blank{1.0cm} \quad $H(3)=$ \blank{1.0cm} \quad $H(6)=$ \blank{1.0cm}
+  \item The trail is lowest at $x=$ \blank{0.9cm} miles, where the height is \blank{0.9cm}
+        --- the bridge.
+  \item Why can the height never drop below $1$? \blank{4.0cm}
 \end{itemize}
-Plot those points and the shape is a \textbf{V}. A distance is never negative, so the graph bottoms
-out at one turning point --- the \emph{vertex} --- and is symmetric about the line through it. Every
-absolute value function is this same V, moved and stretched.
+\end{minipage}
+\end{center}
+Every absolute value function is this same \textbf{V} --- the parent $y=|x|$ after it has been
+moved, stretched, or flipped. Today we read those moves straight off the rule.
 \end{hookbox}
 
-\boxguard[18]
-\begin{notesbox}{1. The Parent Function $f(x)=|x|$}
-Complete the table, then read the graph.
+\boxguard[22]
+\begin{notesbox}{1. The Parent $f(x)=|x|$ --- a V That Turns Once}
 \begin{center}
+\begin{minipage}[c]{0.30\linewidth}\centering
 \renewcommand{\arraystretch}{1.15}
-\begin{minipage}{0.40\linewidth}
-\centering
 \begin{tabular}{|c|c|}
 \hline
 $x$ & $y=|x|$ \\ \hline
@@ -66,45 +84,49 @@ $0$ & \blank{0.9cm} \\ \hline
 $1$ & \blank{0.9cm} \\ \hline
 $2$ & \blank{0.9cm} \\ \hline
 \end{tabular}
-\end{minipage}%
-\begin{minipage}{0.55\linewidth}
-\centering
-\begin{tikzpicture}[scale=0.5]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.30\linewidth}\centering
+\begin{tikzpicture}[scale=0.42]
   \lgrid{-4}{4}{-1}{5}
   \draw[very thick, forest] (-4,4)--(0,0)--(4,4);
   \fill[charcoal] (0,0) circle (3.5pt);
 \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.34\linewidth}
+\small
+Because $|x|$ is a \emph{distance}, the outputs never go below \blank{0.7cm}, and $x$ and $-x$
+give the \emph{same} output --- so the graph is a mirror image across the $y$-axis.
 \end{minipage}
 \end{center}
-\textbf{Read the V:} vertex $(\blank{0.7cm},\,\blank{0.7cm})$; \; axis of symmetry
-$x=\blank{0.8cm}$; \; minimum value \blank{0.8cm}; \; domain \blank{2.0cm}; \; range \blank{1.6cm}.
-It \emph{decreases} on \blank{1.8cm} and \emph{increases} on \blank{1.8cm}. The V is really two lines
-pasted at the vertex: $y=\blank{0.8cm}$ when $x\ge 0$, and $y=\blank{0.8cm}$ when $x<0$.
+\textbf{Read the V:} vertex \blank{1.4cm}; \; axis of symmetry $x=$ \blank{0.8cm}; \; minimum
+value \blank{0.8cm}; \; domain \blank{2.0cm}; \; range \blank{1.6cm}. It \emph{decreases} on
+\blank{1.8cm} and \emph{increases} on \blank{1.8cm}. The V is really two lines pasted at the
+vertex: $y=$ \blank{0.9cm} when $x\ge0$, and $y=$ \blank{0.9cm} when $x<0$.
 \end{notesbox}
 
 \boxguard[26]
-\begin{notesbox}{2. Up / Down and Left / Right}
-\textbf{Outside} the bars acts \emph{vertically, as expected}; \textbf{inside} the bars acts
-\emph{horizontally and backwards}.
+\begin{notesbox}{2. Move It: Outside the Bars Is Vertical; Inside Is Horizontal --- and Backwards}
+Adding \emph{outside} the bars moves the V up or down, as you expect. Adding \emph{inside} the
+bars moves it left or right --- the \emph{opposite} way from the sign you see.
 \begin{center}
-\renewcommand{\arraystretch}{1.3}
+\renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}l l X@{}}
-$y=|x|+k$ & shifts the V \blank{2.2cm} & $y=|x|-3$: vertex $(\blank{0.6cm},\,\blank{0.6cm})$ \\
-$y=|x-h|$ & shifts the V \blank{2.2cm} & $y=|x-3|$: vertex $(\blank{0.6cm},\,\blank{0.6cm})$; \quad $y=|x+2|$: vertex $(\blank{0.6cm},\,\blank{0.6cm})$ \\
+\textbf{Rule} & \textbf{Moves the V} & \textbf{Examples} \\
+\hline
+$y=|x|+k$ & \blank{2.2cm} by $k$ & $y=|x|-3$ has vertex \blank{1.4cm} \\
+$y=|x-h|$ & \blank{2.2cm} by $h$ & $y=|x-3|$ has vertex \blank{1.4cm}; \; $y=|x+2|$ has vertex \blank{1.4cm} \\
 \end{tabularx}
 \end{center}
-Each solid V below is the parent (dashed) after \emph{one} shift. Name each vertex on the line.
+Each solid V is the parent (dashed) after \emph{one} move. Write each vertex on the line below.
 \begin{center}
-\begin{tikzpicture}[scale=0.44]
-  % left: y = |x - 3|  (right 3)
+\begin{tikzpicture}[scale=0.38]
   \begin{scope}
     \lgrid{-2}{6}{-1}{5}
     \draw[very thick, forest!40, dashed] (-1,1)--(0,0)--(4,4);
     \draw[very thick, forest] (-1,4)--(3,0)--(6,3);
     \fill[charcoal] (3,0) circle (3.5pt);
-    \node[charcoal, font=\scriptsize] at (2,-2.4){$y=|x-3|$};
+    \node[charcoal, font=\scriptsize] at (2,-2.2){$y=|x-3|$};
   \end{scope}
-  % right: y = |x| - 3  (down 3)
   \begin{scope}[xshift=11cm]
     \lgrid{-4}{4}{-4}{3}
     \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
@@ -114,81 +136,165 @@ Each solid V below is the parent (dashed) after \emph{one} shift. Name each vert
   \end{scope}
 \end{tikzpicture}
 \end{center}
-Left vertex: $(\blank{0.7cm},\,\blank{0.7cm})$. \qquad Right vertex: $(\blank{0.7cm},\,\blank{0.7cm})$.
+Left vertex: \blank{1.4cm} \qquad Right vertex: \blank{1.4cm}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.9pt, arc=2mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Find the vertex by setting the inside to zero.} $|x-3|$ is smallest when
+$x-3=0$, that is at $x=$ \blank{0.8cm} --- so $|x-3|$ moves the V \emph{right}, not left. For the
+trail $H(x)=2|x-3|+1$: inside $=0$ at $x=$ \blank{0.8cm}, and the $+1$ outside lifts it, so the
+vertex is \blank{1.4cm} --- the bridge from the hook.
+\end{tcolorbox}
+\end{notesbox}
+
+\boxguard[26]
+\begin{notesbox}{3. The Number $a$: Up or Down, Narrow or Wide}
+The trail is a \emph{valley}. Change the sign of $a$ and the same vertex becomes a \emph{ridge}.
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Valley: $H(x)=2|x-3|+1$} & \textbf{Ridge: $R(x)=-2|x-3|+7$} \\
+\hline
+\centering\arraybackslash
+\begin{tikzpicture}[scale=0.30, baseline=(current bounding box.center)]
+  \lgrid{-0.5}{6.5}{-0.5}{8}
+  \draw[very thick, forest] (0,7)--(3,1)--(6,7);
+  \fill[charcoal] (3,1) circle (4pt);
+\end{tikzpicture}
+&
+\centering\arraybackslash
+\begin{tikzpicture}[scale=0.30, baseline=(current bounding box.center)]
+  \lgrid{-0.5}{6.5}{-0.5}{8}
+  \draw[very thick, redacc] (0,1)--(3,7)--(6,1);
+  \fill[charcoal] (3,7) circle (4pt);
+\end{tikzpicture}
+\\
+$a=2>0$: opens \blank{1.2cm} & $a=-2<0$: opens \blank{1.2cm} --- a \emph{reflection} \\
+Vertex \blank{1.2cm}; the value $1$ is a \blank{1.6cm} & Vertex \blank{1.2cm}; the value $7$ is a \blank{1.6cm} \\
+Range: $y$ \blank{0.8cm} $1$ & Range: $y$ \blank{0.8cm} $7$ \\
+Decreasing on \blank{1.6cm}, increasing on \blank{1.6cm} & Increasing on \blank{1.6cm}, decreasing on \blank{1.6cm} \\
+\end{tabularx}
+\end{center}
+\vspace{2pt}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.9pt, arc=2mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Careful --- a negative $a$ does not just flip the picture; it flips the
+vertex's job.} A classmate says ``the ridge still has a \emph{minimum} at its vertex, $7$.''
+Test $x=5$: $R(5)=-2|5-3|+7=$ \blank{0.9cm}. Is that above or below $7$? \blank{1.2cm} \; So $7$
+is the \blank{1.4cm} (highest / lowest) output, a \textbf{maximum}, and every other output sits
+\emph{below} it. Same vertex, opposite range.
+\end{tcolorbox}
+\vspace{2pt}
+\textbf{The size of $a$ sets the width.} $a$ is the \emph{slope of the right-hand ray}: from the
+valley's vertex $(3,1)$, one step right rises to $(4,3)$ --- slope \blank{0.8cm}. So $|a|>1$ makes
+the V \blank{1.8cm} than the parent, and $0<|a|<1$ makes it \blank{1.8cm}: $y=2|x|$ is narrower;
+$y=\tfrac12|x|$ is wider.
+\end{notesbox}
+
+\boxguard[24]
+\begin{notesbox}{4. Vertex Form, All at Once --- and Back to Lesson 1.2}
+\[ g(x)=a|x-h|+k: \qquad \text{vertex } (h,k), \qquad \text{axis } x=h \]
+\vspace{-6pt}
+\begin{center}\small $a>0$: opens up, $k$ a \textbf{minimum} \qquad $a<0$: opens down, $k$ a \textbf{maximum}\end{center}
+\textbf{Worked: read every feature of $g(x)=-2|x-1|+3$ from the rule.}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\linewidth}{@{}X X X X X@{}}
+Vertex \blank{1.2cm} & Axis $x=$ \blank{0.7cm} & Opens \blank{1.0cm} & \blank{0.9cm} value $3$ & Range \blank{1.2cm} \\
+\end{tabularx}
+\end{center}
+Compared to $y=|x|$: shifted \blank{1.2cm} $1$ and \blank{1.2cm} $3$, reflected, and
+\blank{1.5cm} (narrower / wider). Evaluate $g(0)$ straight from the rule, one step per line:
+\begin{work}
+  g(0) &= -2\,|0-1| + 3 \\
+       &= -2(1) + 3 \\
+       &= 1
+\end{work}
+\textbf{Back to Lesson 1.2.} Where is the trail exactly $500$ ft up? That is $H(x)=5$:
+\begin{work}
+  2|x-3| + 1 &= 5 \\
+  |x-3| &= 2 \\
+  x - 3 &= 2 \quad\text{or}\quad x - 3 = -2 \\
+  x &= 5 \quad\text{or}\quad x = 1
+\end{work}
+The two solutions you solved for last lesson are the two places the V crosses the horizontal
+line $y=5$ --- one on each side of the axis $x=$ \blank{0.8cm}.
 \end{notesbox}
 
 \boxguard[20]
-\begin{notesbox}{3. Stretch, Compress, and Reflect: $y=a|x|$}
-The number $a$ multiplies the \emph{outputs}: it scales the V and, if negative, flips it.
-\begin{center}
-\begin{tikzpicture}[scale=0.42]
-  % y = 2|x|  (narrow)
-  \begin{scope}
-    \lgrid{-3}{3}{-1}{5}
-    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
-    \draw[very thick, forest] (-2.2,4.4)--(0,0)--(2.2,4.4);
-    \node[charcoal, font=\scriptsize] at (0,-2.4){$y=2|x|$};
-  \end{scope}
-  % y = 1/2 |x|  (wide)
-  \begin{scope}[xshift=9cm]
-    \lgrid{-4}{4}{-1}{5}
-    \draw[very thick, forest!40, dashed] (-3,3)--(0,0)--(3,3);
-    \draw[very thick, forest] (-4,2)--(0,0)--(4,2);
-    \node[charcoal, font=\scriptsize] at (0,-2.4){$y=\tfrac12|x|$};
-  \end{scope}
-  % y = -|x|  (down)
-  \begin{scope}[xshift=19cm]
-    \lgrid{-3}{3}{-4}{2}
-    \draw[very thick, forest!40, dashed] (-2,2)--(0,0)--(2,2);
-    \draw[very thick, forest] (-3,-3)--(0,0)--(3,-3);
-    \node[charcoal, font=\scriptsize] at (0,-5.4){$y=-|x|$};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=1pt]
-  \item $|a|>1$ makes the V \blank{2.4cm}; \quad $0<|a|<1$ makes it \blank{2.4cm}.
-  \item $a<0$ \blank{2.6cm} the V, so it opens \blank{1.6cm} instead of up.
-  \item The value of $a$ is the \emph{slope} of the \blank{2.6cm} ray of the V.
-\end{itemize}
-\end{notesbox}
-
-\boxguard[23]
-\begin{notesbox}{4. Vertex Form: $g(x)=a|x-h|+k$}
-All three moves at once. The vertex is $(h,k)$ and the axis of symmetry is $x=h$.
-\[ \text{opens \textbf{up} if } a>0 \ (k \text{ is a } \textbf{minimum}); \qquad
-   \text{opens \textbf{down} if } a<0 \ (k \text{ is a } \textbf{maximum}). \]
-\textbf{Worked:} $g(x)=-2|x-1|+3$.
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}X X X X@{}}
-Vertex $(\blank{0.6cm},\,\blank{0.6cm})$ & Axis $x=\blank{0.8cm}$ & Opens \blank{1.4cm} & \blank{1.2cm} value $=\blank{0.8cm}$ \\
-\end{tabularx}
-\end{center}
-Because $a=-2$, the V is \blank{1.6cm} (narrower / wider) than the parent and opens
-\blank{1.4cm}. Evaluate at $x=0$ straight from the rule:
-\begin{work}
-  g(0) &= -2\,|\,0-1\,| + 3 \\
-       &= -2\,|{-1}| + 3     \\
-       &= -2(1) + 3          \\
-       &= 1
-\end{work}
-\end{notesbox}
-
 \begin{practicebox}
-For $g(x) = \tfrac12\,|x+4| - 2$, fill in each feature.
+For $g(x)=\tfrac12\,|x+4|-2$, read every feature; then build a rule from a graph.
 \begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item Vertex $(\blank{0.8cm},\,\blank{0.8cm})$; \quad axis of symmetry $x=\blank{1.0cm}$.
-  \item Opens \blank{1.4cm} (up / down), so $k$ is a \blank{1.2cm} (max / min) value of \blank{0.8cm}.
-  \item Compared to $y=|x|$, this graph is shifted \blank{1.6cm} $4$ and \blank{1.6cm} $2$, and is
-        \blank{1.4cm} (narrower / wider).
+  \item Vertex \blank{1.4cm}; \; axis $x=$ \blank{0.9cm}; \; opens \blank{1.2cm}, so $-2$ is a
+        \blank{1.4cm}; \; range \blank{1.6cm}; \; \blank{1.4cm} than the parent.
   \item Evaluate $g(0)$, one step per line.
         \begin{work}
           g(0) &= \tfrac12\,|0+4| - 2 \\
-               &= \tfrac12(4) - 2      \\
-               &= 2 - 2                \\
+               &= \tfrac12(4) - 2 \\
                &= 0
         \end{work}
+  \item \textbf{Build the rule from the graph.} \\[2pt]
+        \begin{minipage}[c]{0.62\linewidth}
+        Vertex \blank{1.4cm}. From the vertex, the right-hand ray reaches $(1,0)$: it falls
+        \blank{0.7cm} over a run of \blank{0.7cm}, so $a=$ \blank{0.9cm}. \\[3pt]
+        Rule: $y=$ \blank{3.2cm}
+        \end{minipage}\hfill
+        \begin{minipage}[c]{0.34\linewidth}\centering
+        \begin{tikzpicture}[scale=0.36]
+          \lgrid{-4}{2}{-1}{5}
+          \draw[very thick, forest] (-3,0)--(-1,4)--(1,0);
+          \fill[charcoal] (-1,4) circle (4pt);
+          \fill[charcoal] (1,0) circle (3pt);
+        \end{tikzpicture}
+        \end{minipage}
 \end{enumerate}
 \end{practicebox}
+
+\boxguard[22]
+\begin{scenariobox}[Individual Practice --- On Your Own]{navy}
+Three problems, quietly and on your own. Find the vertex by setting the inside to zero, then let
+the sign of $a$ tell you up or down.
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item \textbf{From the rule.} $p(x)=-3|x-2|+5$. \\[2pt]
+    Vertex \blank{1.4cm}; \; axis $x=$ \blank{0.9cm}; \; opens \blank{1.2cm}; \; the value $5$ is a
+    \blank{1.5cm}; \; range \blank{1.6cm}; \; \blank{1.5cm} than the parent. \\[2pt]
+    Evaluate $p(4)$:
+    \begin{work}
+      p(4) &= -3\,|4-2| + 5 \\
+           &= -3(2) + 5 \\
+           &= -1
+    \end{work}
+
+  \item \textbf{From the graph.} \\[2pt]
+    \begin{minipage}[c]{0.62\linewidth}
+    Vertex \blank{1.4cm}; \; axis $x=$ \blank{0.9cm}. From the vertex to the point $(3,2)$ the
+    right-hand ray rises \blank{0.7cm} over a run of \blank{0.7cm}, so $a=$ \blank{0.9cm}. \\[3pt]
+    Rule: $y=$ \blank{3.0cm} \\[3pt]
+    The V crosses the dashed line $y=2$ at $x=$ \blank{0.8cm} and $x=$ \blank{0.8cm}.
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.34\linewidth}\centering
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-3}{5}{-3}{4}
+      \draw[dashed, redacc] (-3,2)--(5,2);
+      \draw[very thick, forest] (-2,4)--(1,-2)--(4,4);
+      \fill[charcoal] (1,-2) circle (4pt);
+      \fill[charcoal] (3,2) circle (3pt);
+    \end{tikzpicture}
+    \end{minipage} \\[2pt]
+    Check those two crossings by solving your rule $=2$:
+    \begin{work}
+      2|x-1| - 2 &= 2 \\
+      |x-1| &= 2 \\
+      x - 1 &= 2 \quad\text{or}\quad x - 1 = -2 \\
+      x &= 3 \quad\text{or}\quad x = -1
+    \end{work}
+
+  \item \textbf{Same vertex, opposite job.} Compare $y=|x+2|-3$ and $y=-|x+2|-3$. \\[2pt]
+    Both have vertex \blank{1.4cm} and axis $x=$ \blank{0.9cm}. The first opens \blank{1.0cm}
+    with a \blank{1.4cm} of $-3$ and range \blank{1.5cm}; the second opens \blank{1.0cm} with a
+    \blank{1.4cm} of $-3$ and range \blank{1.5cm}. \\[2pt]
+    A classmate says ``both have a minimum of $-3$.'' What did they miss?
+    \par\writelines{2}
+\end{enumerate}
+\end{scenariobox}
 
 \end{document}

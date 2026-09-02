@@ -1,16 +1,25 @@
-%! Piecewise \& Step Functions — Unit 1, Lesson 1.4 — Guided Notes
+%! Piecewise & Step Functions — Unit 1, Lesson 1.4 — Guided Notes
+% Gradual release (course-wide shape, 2026-09-01): the notes are the "I do / we do" block,
+% 20 minutes, and the Individual Practice block that closes them is the "you do alone", 15 more.
+% There is no group activity.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Endpoint dots
-\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
-\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
+% Months grid for the streaming service: x = months 0..7, one y-unit = $12.
+\newcommand{\mgrid}{%
+  \draw[step=1, linegray!40, very thin] (0,0) grid (7,4);
+  \draw[->, semithick, charcoal] (0,0)--(7.6,0) node[below right, font=\scriptsize]{$m$};
+  \draw[->, semithick, charcoal] (0,0)--(0,4.6) node[left, font=\scriptsize]{\$};
+  \foreach \x in {1,...,7}{\node[below, font=\tiny, charcoal] at (\x,0){$\x$};}
+  \foreach \y/\lab in {1/12,2/24,3/36,4/48}{\node[left, font=\tiny, charcoal] at (0,\y){$\lab$};}}
+% Endpoint dots: {color}{x}{y}
+\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (3.2pt);}
+\newcommand{\hdot}[3]{\draw[very thick, #1, fill=white] (#2,#3) circle (3.2pt);}
 
 \begin{document}
 
@@ -21,10 +30,13 @@
 \begin{objectivebox}
 \textbf{By the end of this lesson, I will be able to\dots}
 \begin{itemize}\setlength{\itemsep}{2pt}
-  \item read piecewise notation and \emph{evaluate} $f(x)$ by choosing the piece $x$ belongs to;
-  \item read a piecewise graph, using \emph{open} and \emph{closed} endpoints and spotting a \emph{jump};
-  \item write $|x|$ (and $|x-h|$) as a \emph{two-piece} linear function;
-  \item evaluate and read the \emph{greatest-integer (step) function} $\lfloor x\rfloor$.
+  \item read piecewise notation and \emph{evaluate} $f(x)$ by choosing the piece $x$ belongs to
+        --- and say which piece owns a \emph{boundary};
+  \item write $|x|$, and any V, as a \emph{two-piece} linear rule;
+  \item read a piecewise graph with \emph{open} and \emph{closed} endpoints, and decide whether
+        the pieces \emph{meet} or \emph{jump} at a boundary;
+  \item evaluate and read the \emph{greatest-integer (step) function} $\lfloor x\rfloor$, and
+        name constant intervals.
 \end{itemize}
 \end{objectivebox}
 
@@ -33,100 +45,238 @@
 \begin{vocabbox}
 \small
 Fill in each term as we build it together.
-\vspace{2pt}
+\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
 \termblanklong{Piecewise-defined function}
-\termblanklong{Boundary / breakpoint}
+\termblanklong{Boundary (breakpoint)}
 \termblanklong{Open vs.\ closed endpoint}
-\termblanklong{Discontinuity (jump)}
-\termblanklong{Greatest-integer (step) function $\lfloor x\rfloor$}
+\termblanklong{Continuous at a boundary / discontinuity (jump)}
+\termblanklong{Greatest-integer function $\lfloor x\rfloor$}
+\termblanklong{Step function}
 \end{vocabbox}
 
 \begin{hookbox}
-A streaming service is \emph{free for the first 3 months}, then costs \emph{\$10 per month} afterward.
-Its cost is $C(m)=\{\,0 \text{ if } 0\le m\le 3;\ 10(m-3) \text{ if } m>3\,\}$.
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Cost at $m=2$? \blank{1.4cm} \quad At $m=3$? \blank{1.4cm} \quad At $m=5$? \blank{1.4cm}
-  \item No single line works: the cost follows \blank{1.4cm} rule(s) on different parts of the domain.
+A streaming service is \emph{free for the first 3 months}, then costs \emph{\$12 a month} for
+every month after that. Let $C(m)$ be the \emph{total} you have paid after $m$ months.
+\begin{itemize}\setlength{\itemsep}{2pt}
+  \item Total paid after $2$ months: \blank{1.2cm} \quad after $3$ months: \blank{1.2cm} \quad
+        after $5$ months: \blank{1.2cm}
+  \item Could one straight line describe the total for \emph{every} month? \blank{1.0cm} \;
+        How many different rules does the cost follow? \blank{1.0cm}
 \end{itemize}
-A function like this --- one rule here, a different rule there --- is a \textbf{piecewise-defined
-function}. Today we evaluate them and read their graphs.
+One function, two rules --- one for the free months and another after them. That is a
+\textbf{piecewise-defined function}, and today we learn to evaluate them, read their graphs, and
+meet the step function that ``rounds.''
 \end{hookbox}
 
-\begin{notesbox}{1. What a Piecewise Function Is --- and How to Evaluate It}
-A \textbf{piecewise-defined function} uses different rules on different parts of its domain. To
-\textbf{evaluate}, first decide \emph{which piece} the input belongs to, then apply that rule.
-\[ f(x)=\begin{cases} 2x+1, & x<2 \\ 5-x, & x\ge 2 \end{cases} \]
+\boxguard[24]
+\begin{notesbox}{1. One Function, Several Rules --- Evaluate by Choosing the Piece}
+A \textbf{piecewise-defined function} uses different rules on different parts of its domain,
+written with a brace. Each rule comes with the inputs it is \emph{for}. For the service:
+\[ C(m)=\begin{cases} 0, & 0\le m\le 3 \\ 12(m-3), & m>3 \end{cases} \]
+\textbf{To evaluate: first pick the piece, then apply its rule.}
 \begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item $f(0)$: since $0\blank{0.7cm}2$, use the \blank{1.4cm} piece: $f(0)=\blank{1.2cm}$.
-  \item $f(2)$: since $2\ge 2$, use the \blank{1.4cm} piece: $f(2)=5-2=\blank{1.0cm}$.
-  \item $f(5)=\blank{1.2cm}$.
+  \item $C(2)$: is $2\le3$? \blank{0.8cm} \; so use the \blank{1.2cm} piece: $C(2)=$ \blank{0.9cm}
+  \item $C(3)$: the boundary. $3$ satisfies $0\le m\le3$ (the $\le$ includes it), so $C(3)=$
+        \blank{0.9cm} --- month $3$ is still free.
+  \item $C(5)$: is $5>3$? \blank{0.8cm} \; so use the second piece:
+        \begin{work}
+          C(5) &= 12(5-3) \\
+               &= 12(2) \\
+               &= 24
+        \end{work}
 \end{itemize}
-\textbf{Boundary rule:} the input $x=2$ belongs to the piece whose inequality \emph{includes} it (the
-$\blank{0.8cm}$ piece), \emph{not} the strict-$<$ piece.
+\textbf{Boundary rule:} an input on the boundary belongs to the piece whose inequality
+\emph{includes} it --- the one with $\le$ or $\ge$, never the strict one. \\[2pt]
+\textbf{Try one with no story.} $f(x)=\begin{cases} 2x+1, & x<2 \\ 5-x, & x\ge2 \end{cases}$
+\quad $f(0)=$ \blank{0.9cm} \quad $f(2)=$ \blank{0.9cm} (which piece? \blank{1.4cm}) \quad
+$f(5)=$ \blank{0.9cm}
 \end{notesbox}
 
-\begin{notesbox}{2. Absolute Value Is Piecewise}
-The V from Lesson 1.3 is really \emph{two lines} pasted at the vertex. When $x\ge 0$, $|x|=x$; when
-$x<0$, $|x|=-x$ (the opposite makes it positive).
-\[ |x|=\begin{cases} \rule{1.4cm}{0.4pt}, & x\ge 0 \\[2pt] \rule{1.4cm}{0.4pt}, & x<0 \end{cases}
-   \qquad\text{Check: } |-3|=-(-3)=\blank{0.9cm}. \]
-So every absolute value function is a two-piece linear function. This is why the graph is a V, and why
-its vertex is the boundary between the two rules.
-\end{notesbox}
-
-\begin{notesbox}{3. Reading a Piecewise Graph: Open, Closed, and Jumps}
-On a graph, a \textbf{closed} dot $\bullet$ \emph{includes} its endpoint ($\le$ or $\ge$); an
-\textbf{open} dot $\circ$ \emph{excludes} it ($<$ or $>$). The graph of
-$f(x)=\{\,x+3 \text{ if } x<1;\ -x+4 \text{ if } x\ge 1\,\}$ is shown.
+\boxguard[24]
+\begin{notesbox}{2. Absolute Value Is Piecewise --- the V Is Two Pieces}
+Lesson 1.3's V is two lines pasted at the vertex, and now we can \emph{write} it that way. When
+$x\ge0$, the bars change nothing: $|x|=x$. When $x<0$, the bars flip the sign: $|x|=-x$.
+\[ |x|=\begin{cases} \text{\blank{1.4cm}}, & x\ge0 \\[2pt] \text{\blank{1.4cm}}, & x<0 \end{cases} \]
+\vspace{-4pt}
+\begin{center}Check: $|-3| = -(-3) =$ \blank{0.8cm}\end{center}
+\textbf{Worked: the trail from Lesson 1.3,} $H(x)=2|x-3|+1$. The vertex $x=3$ is the boundary.
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{5}{-1}{5}
-  \draw[very thick, forest] (-3,0)--(1,4);
-  \opendot{1}{4}
-  \draw[very thick, forest] (1,3)--(4,0);
-  \closeddot{1}{3}
-\end{tikzpicture}
+\begin{minipage}[t]{0.47\linewidth}
+For $x\ge3$, $|x-3|=x-3$:
+\begin{work}
+  H(x) &= 2(x-3) + 1 \\
+       &= 2x - 6 + 1 \\
+       &= 2x - 5
+\end{work}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\linewidth}
+For $x<3$, $|x-3|=-(x-3)=3-x$:
+\begin{work}
+  H(x) &= 2(3-x) + 1 \\
+       &= 6 - 2x + 1 \\
+       &= 7 - 2x
+\end{work}
+\end{minipage}
 \end{center}
-\textbf{Read $f$ from the graph} (at the boundary, use the \emph{closed} dot):
-\[ f(-1)=\blank{0.9cm}, \quad f(0)=\blank{0.9cm}, \quad f(1)=\blank{0.9cm}, \quad f(3)=\blank{0.9cm}. \]
-Domain: \blank{2.4cm}. \; The graph \emph{increases} on \blank{1.8cm} and \emph{decreases} on
-\blank{1.8cm}. \; \textbf{Is $f$ continuous at $x=1$?} \blank{1.2cm} --- the pieces
-\blank{2.2cm} there (the graph \emph{jumps} from $4$ to $3$), so this is a \textbf{discontinuity}.
+So $H(x)=\begin{cases} 2x-5, & x\ge3 \\ 7-2x, & x<3 \end{cases}$ --- the right ray has slope
+\blank{0.8cm} and the left ray has slope \blank{0.8cm}, and at the boundary both rules give
+$H(3)=$ \blank{0.8cm}, so the two pieces \blank{1.2cm} (meet / jump) at the vertex.
 \end{notesbox}
 
+\boxguard[28]
+\begin{notesbox}{3. Reading a Graph: Open or Closed, Meets or Jumps}
+On a graph, a \textbf{closed} dot $\bullet$ \emph{includes} its endpoint ($\le,\ge$) and an
+\textbf{open} dot $\circ$ \emph{excludes} it ($<,>$). Same story, two different functions --- the
+\emph{total} paid so far, and the \emph{price this month}:
+\[ C(m)=\begin{cases} 0, & 0\le m\le3 \\ 12(m-3), & m>3 \end{cases} \qquad\qquad
+   P(m)=\begin{cases} 0, & 0\le m\le3 \\ 12, & m>3 \end{cases} \]
+\vspace{-6pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{@{}X|X@{}}
+\textbf{Total paid $C(m)$ --- meets} & \textbf{Price this month $P(m)$ --- jumps} \\
+\hline
+\centering\arraybackslash
+\begin{tikzpicture}[scale=0.36, baseline=(current bounding box.center)]
+  \mgrid
+  \draw[very thick, forest] (0,0)--(3,0);
+  \draw[very thick, forest] (3,0)--(7,4);
+  \fdot{forest}{3}{0}
+\end{tikzpicture}
+&
+\centering\arraybackslash
+\begin{tikzpicture}[scale=0.36, baseline=(current bounding box.center)]
+  \mgrid
+  \draw[very thick, redacc] (0,0)--(3,0);
+  \draw[very thick, redacc] (3,1)--(7,1);
+  \fdot{redacc}{3}{0}
+  \hdot{redacc}{3}{1}
+\end{tikzpicture}
+\\
+At $m=3$: first rule gives \blank{0.8cm}; second rule (just past $3$) gives \blank{0.8cm} &
+At $m=3$: first rule gives \blank{0.8cm}; second rule (just past $3$) gives \blank{0.8cm} \\
+Same value? \blank{0.8cm} \; So the pieces \blank{1.2cm} (meet / jump) & Same value? \blank{0.8cm} \; So the pieces \blank{1.2cm} (meet / jump) \\
+\emph{Continuous} at $m=3$; constant on \blank{1.2cm}, increasing on \blank{1.4cm} & A \emph{discontinuity} at $m=3$; the range is just \blank{1.4cm} \\
+\end{tabularx}
+\end{center}
+\vspace{2pt}
+\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.9pt, arc=2mm,
+    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
+\small \textbf{Careful --- at a boundary, exactly one piece owns the input.} A classmate reads
+$P(3)=12$ ``because the price is \$12 after the free months.'' But $3$ satisfies $0\le m\le3$, so
+$P(3)=$ \blank{0.8cm}: month $3$ is still free, and the \blank{1.2cm} (open / closed) dot at
+$(3,0)$ says so. The open dot at $(3,12)$ is \emph{not} a point of the graph --- it marks where
+the second piece \emph{starts without} its endpoint.
+\end{tcolorbox}
+\end{notesbox}
+
+\boxguard[26]
 \begin{notesbox}{4. Step Functions: the Greatest-Integer Function $\lfloor x\rfloor$}
-The \textbf{greatest-integer function} $\lfloor x\rfloor$ gives the greatest integer that is
-\emph{less than or equal to} $x$ --- it \textbf{rounds down}.
-\[ \lfloor 3.7\rfloor=\blank{0.8cm}, \quad \lfloor 5\rfloor=\blank{0.8cm}, \quad
-   \lfloor -0.4\rfloor=\blank{0.8cm}, \quad \lfloor -2.5\rfloor=\blank{0.8cm}. \]
-\emph{Careful:} rounding \emph{down} sends $-2.5$ to $\blank{0.8cm}$, not $-2$. The graph is a
-\textbf{staircase}: on each interval $[n,n+1)$ the output is the \emph{constant} $n$ (closed on the
-left, open on the right), then it jumps up by $1$.
+The monthly price $P(m)$ is \emph{constant} on each piece, then jumps --- a \textbf{step
+function}. The most famous one is the \textbf{greatest-integer function} $\lfloor x\rfloor$: the
+greatest integer that is \emph{less than or equal to} $x$. It \textbf{rounds down}.
 \begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-1}{4}{-1}{4}
-  \draw[very thick, forest] (-1,-1)--(0,-1); \closeddot{-1}{-1} \opendot{0}{-1}
-  \draw[very thick, forest] (0,0)--(1,0);    \closeddot{0}{0}   \opendot{1}{0}
-  \draw[very thick, forest] (1,1)--(2,1);    \closeddot{1}{1}   \opendot{2}{1}
-  \draw[very thick, forest] (2,2)--(3,2);    \closeddot{2}{2}   \opendot{3}{2}
-  \draw[very thick, forest] (3,3)--(4,3);    \closeddot{3}{3}   \opendot{4}{3}
+\begin{minipage}[c]{0.56\linewidth}
+$\lfloor 3.7\rfloor=$ \blank{0.8cm} \quad $\lfloor 5\rfloor=$ \blank{0.8cm} \quad
+$\lfloor -0.4\rfloor=$ \blank{0.8cm} \quad $\lfloor -2.5\rfloor=$ \blank{0.8cm} \\[4pt]
+\emph{Careful:} rounding \emph{down} sends $-2.5$ to \blank{0.8cm}, not $-2$ --- down means
+\emph{more negative}, not ``toward zero.'' \\[4pt]
+The graph is a \textbf{staircase}: on each interval $[n,n+1)$ the output is the constant $n$
+--- closed on the left, open on the right --- then it jumps up by $1$. \\[4pt]
+From the staircase: $\lfloor 1.5\rfloor=$ \blank{0.8cm}; \; $\lfloor x\rfloor=2$ for every $x$ in
+\blank{1.2cm}; \; the function is \blank{1.4cm} (increasing / constant) on that interval.
+\end{minipage}\hfill
+\begin{minipage}[c]{0.40\linewidth}\centering
+\begin{tikzpicture}[scale=0.40]
+  \lgrid{-1.5}{4.5}{-1.5}{4}
+  \draw[very thick, forest] (-1,-1)--(0,-1); \fdot{forest}{-1}{-1} \hdot{forest}{0}{-1}
+  \draw[very thick, forest] (0,0)--(1,0);    \fdot{forest}{0}{0}   \hdot{forest}{1}{0}
+  \draw[very thick, forest] (1,1)--(2,1);    \fdot{forest}{1}{1}   \hdot{forest}{2}{1}
+  \draw[very thick, forest] (2,2)--(3,2);    \fdot{forest}{2}{2}   \hdot{forest}{3}{2}
+  \draw[very thick, forest] (3,3)--(4,3);    \fdot{forest}{3}{3}   \hdot{forest}{4}{3}
 \end{tikzpicture}
+\end{minipage}
 \end{center}
-From the staircase: $\lfloor 1.5\rfloor=\blank{0.8cm}$, and $f$ is \blank{1.6cm} (increasing /
-constant) on the interval $[2,3)$. Real prices that ``round'' --- parking by the hour, shipping by the
-pound --- are step functions.
+Real quantities that ``round down'' are step functions: your age in whole years is
+$\lfloor\text{exact age}\rfloor$, and the number of full hours a car has been parked is
+$\lfloor t\rfloor$.
 \end{notesbox}
 
-\boxguard
+\boxguard[24]
 \begin{practicebox}
-For $p(x)=\begin{cases} -2x, & x\le -1 \\ x+3, & x>-1 \end{cases}$, complete each part.
+For $p(x)=\begin{cases} -2x, & x\le -1 \\ x+3, & x>-1 \end{cases}$, evaluate, decide, then read.
+\begin{center}
+\begin{minipage}[c]{0.60\linewidth}
 \begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item $p(-3)=\blank{1.2cm}$; \quad $p(-1)=\blank{1.2cm}$ (which piece? \blank{1.6cm}); \quad
-        $p(0)=\blank{1.2cm}$; \quad $p(2)=\blank{1.2cm}$.
-  \item \textbf{Is $p$ continuous at the boundary $x=-1$?} At $x=-1$ the top gives \blank{0.8cm} and the
-        bottom (just past $-1$) gives \blank{0.8cm}. Because the values \blank{2.2cm}, the graph
-        \blank{2.6cm} (does / does not) jump, so $p$ \blank{1.6cm} continuous at $x=-1$.
+  \item $p(-3)=$ \blank{1.0cm} \quad $p(-1)=$ \blank{1.0cm} (which piece? \blank{1.4cm}) \\[2pt]
+        $p(0)=$ \blank{1.0cm} \quad $p(2)=$ \blank{1.0cm}
+  \item \textbf{Meets or jumps at $x=-1$?} The first rule gives \blank{0.8cm} and the second, just
+        past $-1$, gives \blank{0.8cm}. Same value, so the graph \blank{1.2cm} (meets / jumps):
+        $p$ \emph{is} continuous at $x=-1$.
+  \item From the graph: decreasing on \blank{1.6cm}, increasing on \blank{1.6cm}; the minimum
+        value is \blank{0.8cm}, at the boundary.
 \end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.36\linewidth}\centering
+\begin{tikzpicture}[scale=0.30]
+  \lgrid{-4.5}{4.5}{-1}{8}
+  \draw[very thick, forest] (-4,8)--(-1,2);
+  \draw[very thick, forest] (-1,2)--(4,7);
+  \fdot{forest}{-1}{2}
+\end{tikzpicture}
+\end{minipage}
+\end{center}
 \end{practicebox}
+
+\boxguard[22]
+\begin{scenariobox}[Individual Practice --- On Your Own]{navy}
+Three problems, quietly and on your own. First find the piece, then apply the rule --- and at a
+boundary, ask which inequality \emph{includes} the input.
+\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
+  \item \textbf{Across the boundary.} $h(x)=\begin{cases} -x+1, & x\le2 \\ 2x-6, & x>2 \end{cases}$
+    \\[3pt]
+    $h(0)=$ \blank{1.0cm} \quad $h(2)=$ \blank{1.0cm} (which piece owns $x=2$? \blank{1.4cm})
+    \quad $h(5)=$ \blank{1.0cm} \\[3pt]
+    At $x=2$ the first rule gives \blank{0.8cm} and the second gives \blank{0.8cm}, so the graph
+    \blank{1.2cm} (meets / jumps) there: $h$ is \blank{1.2cm} continuous at $x=2$.
+
+  \item \textbf{From the graph.} The graph shows \emph{all} of $f$. \\[2pt]
+    \begin{minipage}[c]{0.60\linewidth}
+    Domain \blank{1.6cm}; \; $f(1)=$ \blank{0.8cm}; \; $f(2)=$ \blank{0.8cm} (read the
+    \blank{1.0cm} dot). \\[3pt]
+    Increasing on \blank{1.6cm}; \; constant on \blank{1.6cm}. \\[3pt]
+    Continuous at $x=2$? \blank{0.9cm} \; Now write its rule: \\[2pt]
+    $f(x)=\begin{cases} \text{\blank{1.0cm}}, & -2\le x<2 \\[2pt] \text{\blank{1.0cm}}, & 2\le x\le5 \end{cases}$
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.36\linewidth}\centering
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-2.5}{5.5}{-3}{3}
+      \draw[very thick, forest] (-2,-2)--(2,2);
+      \fdot{forest}{-2}{-2} \hdot{forest}{2}{2}
+      \draw[very thick, forest] (2,-2)--(5,-2);
+      \fdot{forest}{2}{-2} \fdot{forest}{5}{-2}
+    \end{tikzpicture}
+    \end{minipage}
+
+  \item \textbf{Two pieces and the staircase.} Write $|x-3|$ as two pieces, then round down.
+    \begin{center}
+    \begin{minipage}[t]{0.47\linewidth}
+    For $x\ge3$:
+    \begin{work}
+      |x-3| &= x - 3
+    \end{work}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.47\linewidth}
+    For $x<3$:
+    \begin{work}
+      |x-3| &= -(x-3) \\
+            &= 3 - x
+    \end{work}
+    \end{minipage}
+    \end{center}
+    $\lfloor 2.9\rfloor=$ \blank{0.9cm} \quad $\lfloor -1.2\rfloor=$ \blank{0.9cm} \quad
+    $\lfloor 4\rfloor=$ \blank{0.9cm} \quad $\lfloor x\rfloor=4$ for every $x$ in \blank{1.4cm}
+\end{enumerate}
+\end{scenariobox}
 
 \end{document}

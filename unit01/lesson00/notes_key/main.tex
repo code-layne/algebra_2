@@ -5,6 +5,13 @@
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Temperature graph for the Individual Practice: hours h on 0..7, temperature T on -8..8.
+\newcommand{\tempgrid}{%
+  \draw[step=1, linegray!40, very thin] (0,-8) grid (7,8);
+  \draw[->, semithick, charcoal] (0,0)--(7.6,0) node[right, font=\scriptsize]{$h$};
+  \draw[->, semithick, charcoal] (0,-8.6)--(0,8.8) node[above, font=\scriptsize]{$T$ ($^\circ$C)};
+  \foreach \x in {1,...,7} \node[charcoal, font=\tiny, below] at (\x,0){\x};
+  \foreach \y in {-8,-6,-4,-2,2,4,6,8} \node[charcoal, font=\tiny, left] at (0,\y){\y};}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
@@ -180,5 +187,60 @@ Everything at once, on a new line: $h(x) = -2x + 6$.
   \item Domain \ans{all reals}; \quad range \ans{all reals}.
 \end{enumerate}
 \end{practicebox}
+
+\boxguard[22]
+\begin{scenariobox}[Individual Practice --- On Your Own]{navy}
+Three problems, quietly and on your own. Keep the two questions apart --- \emph{which way it
+moves} and \emph{where it sits} --- and for every answer, be able to point to it on the graph.
+\begin{enumerate}[leftmargin=1.9em, itemsep=8pt]
+  \item \textbf{Sunday evening.} At 4:00 p.m.\ on Sunday it was $6\,^\circ$C, and the temperature
+        \emph{fell} a steady $2\,^\circ$C every hour; $h$ counts the hours after 4:00 p.m. \\[2pt]
+    \begin{minipage}[c]{0.60\linewidth}
+    Rule: $T(h)=$ \ans{$6-2h$} \quad slope \ans{$-2$}; \; \ans{decreasing} (increasing /
+    decreasing) \\[3pt]
+    $y$-intercept \ans{$(0,6)$}, meaning \ans{$6^\circ$ at 4:00 p.m.} \\[3pt]
+    Zero: solve $T(h)=0$, then circle it on the graph.
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.36\linewidth}\centering
+    \begin{tikzpicture}[x=0.40cm, y=0.18cm]
+      \tempgrid
+      \draw[very thick, navy] (0,6)--(7,-8);
+      \fill[charcoal] (0,6) circle (2.8pt);
+    \end{tikzpicture}
+    \end{minipage}
+    \begin{work}
+      6 - 2h &= 0 \\
+         -2h &= -6 \\
+           h &= 3
+    \end{work}
+    $T$ is positive when $h$ \ans{$<3$} and negative when $h$ \ans{$>3$}. \\[3pt]
+    \textbf{The crux.} At 5:00 p.m.\ ($h=1$) the temperature is \ans{$4$} $^\circ$C --- a
+    \ans{positive} number --- and it is \ans{falling} (rising / falling). A classmate says ``it
+    can't be positive, it's decreasing.'' What are they mixing up?
+    \par\ansline{\emph{Positive} says where the graph sits --- above the axis; \emph{decreasing} says which way it moves.}
+    \ansline{Both are true at $h=1$: $T=4>0$, and the line is heading down.}
+
+  \item \textbf{Side by side.} Saturday's line $T=2h-6$ and Sunday's $T=6-2h$ share the zero
+        $h=3$. Saturday is negative \ans{before} $h=3$ and positive \ans{after} it; Sunday is
+        the other way round. Their slopes are \ans{$2$} and \ans{$-2$}. Why can neither
+        line change sign anywhere \emph{except} at $h=3$?
+    \par\ansline{A line's sign can only switch where it crosses the $h$-axis --- at a zero.}
+    \ansline{Each line has exactly one zero, at $h=3$, so it changes sign exactly once, there.}
+
+  \item \textbf{Model it.} A car-wash gift card starts with \$40 and each wash costs \$8, so the
+        balance after $w$ washes is $B(w)=40-8w$. \\[2pt]
+    (a) The slope $-8$ means \ans{each wash takes \$8 off the balance}; the $y$-intercept $(0,40)$ means \ans{the card starts with \$40} \\[3pt]
+    (b) Find the zero.
+    \begin{work}
+      40 - 8w &= 0 \\
+          -8w &= -40 \\
+            w &= 5
+    \end{work}
+    In the story, the zero means: \ans{after $5$ washes the card is empty} \\[3pt]
+    (c) Which inputs $w$ make sense? \ans{$w=0,1,2,3,4,5$} \quad (d) If each wash cost \$10 instead, would
+        the card run out \emph{sooner} or \emph{later}? \ans{sooner} \; What changes on the graph
+        --- where the line \emph{starts}, how \emph{steep} it is, or both? \ans{only the steepness --- it still starts at \$40}
+\end{enumerate}
+\end{scenariobox}
 
 \end{document}
