@@ -42,6 +42,18 @@
 > section 2, and Guided Practice each own a page (section 2 is guarded `\boxguard[34]` because its
 > `tabularx` cannot split).
 >
+> **Two follow-ups the same day (user direction):** the homework's remind box now reads *``Your
+> packet with completed homework is due the first class after two study halls. I will announce the
+> due date in class and on TurtleNet''* (the cover row and plan still say ``due next class'' ---
+> not yet reconciled); and **tolerance** was added **to this lesson only** --- ``how far from a
+> desired value are we willing to be?'' --- as the fifth vocab row (replacing *No solution*, which
+> section 1's table and section 2's odd cases still teach), a named paragraph after the $\le$/$\ge$
+> table ($|x-\text{desired}|\le\text{tolerance}$, always the ``and'' case; the radio's desired value
+> $12$, tolerance $5$), Guided Practice part~c (read part~b as a tolerance), homework item~5
+> re-titled *Model a tolerance* with desired-value/tolerance blanks, a cover target and remind
+> sentence, a plan vocab row and teacher-note paragraph, and a deck block. Page counts unchanged
+> (notes 4/4, homework 2/2, packets 10/10, plan 5pp).
+>
 > **Open — user decides after seeing the print:** (a) make this the course-wide Algebra 2 shape
 > (then update `SKILL.md`, `references/*.md`, `new_lesson.py` skeletons, and the shape memory: two
 > sections, no Individual Practice box, 5/34/8/13, all-12pt, `\coverbanner`, `\termblank`/`\termans`)
