@@ -29,9 +29,25 @@
 \newcommand{\blank}[1]{\underline{\hspace{#1}}}
 \newcommand{\writeline}{\vspace{1pt}\noindent\textcolor{linegray}{\hrulefill}\vspace{3pt}}
 \newcommand{\writelines}[1]{\foreach \i in {1,...,#1}{\writeline\\}}
+% \termblank{Term} — one vocabulary row: the term, then a rule running to the
+% end of the line to write the definition on. The row is a FIXED-HEIGHT box, so
+% the key's \termans (algebra2-key) occupies exactly the same height whether its
+% definition sets on one line or two — the vocabulary box cannot drift blank vs.
+% keyed. Ported from the AP Statistics project (2026-09-03).
+\newcommand{\termrowheight}{1.30cm}
+% Leading inset ABOVE each vocabulary term, taken from INSIDE the fixed row
+% height — the row still costs exactly \termrowheight, so no page count moves.
+% It buys the gap the first term was missing under the box's intro line.
+\newlength{\termrowinset}
+\setlength{\termrowinset}{7pt}
+\newlength{\alg@termwd}
 \newcommand{\termblank}[1]{%
-  \noindent\textbf{\textcolor{forest}{#1:}}\quad\blank{6.5cm}\\[1pt]%
-  \writeline\\[2pt]}
+  \settowidth{\alg@termwd}{\textbf{#1:}}%
+  \noindent\begin{minipage}[t][\termrowheight][t]{\linewidth}%
+    \vspace*{\termrowinset}%
+    \textbf{\textcolor{forest}{#1:}}\quad%
+    \blank{\dimexpr\linewidth-\alg@termwd-1.6em\relax}%
+  \end{minipage}\par}
 \newcommand{\termblanklong}[1]{%
   \noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]%
   \writeline\\[1pt]\writeline\\[3pt]}
@@ -50,10 +66,44 @@
     }%
     \vspace{1.5em}\par\noindent}
 
+% ── Cover banner: \coverbanner{Unit 1 \quad Title}{Lesson 1.2 \quad Title} ──
+% The full-bleed forest band at the top of a packet cover. The band is MEASURED
+% from the title block it holds, so a long lesson title that wraps to a second
+% line grows the band instead of spilling out the bottom of it. Hard-coding the
+% fill height (the old \fill ... [yshift=-0.9in] pattern) clips the lesson line
+% on every long title once the covers moved to 12pt. Ported from the AP
+% Statistics project (2026-09-03).
+\newsavebox{\alg@bannerbox}
+\newlength{\alg@bannerht}
+\newlength{\coverbannerpad}
+\setlength{\coverbannerpad}{0.16in}       % breathing room above and below the text
+\newcommand{\coverbanner}[2]{%
+  \sbox{\alg@bannerbox}{%
+    \begin{minipage}{\dimexpr\paperwidth-1.4in\relax}%
+      \centering
+      {\color{white}\textbf{\LARGE Algebra 2}}\\[4pt]
+      {\color{forestmid}\large\textbf{#1}}\\[6pt]
+      {\color{white}\textbf{\large #2}}%
+    \end{minipage}}%
+  \setlength{\alg@bannerht}{\dimexpr\ht\alg@bannerbox+\dp\alg@bannerbox
+                            +2\coverbannerpad\relax}%
+  \noindent\begin{tikzpicture}[remember picture, overlay]
+    \fill[forest] (current page.north west)
+      rectangle ([yshift=-\alg@bannerht]current page.north east);
+    \node[anchor=north, inner sep=0pt]
+      at ([yshift=-\coverbannerpad]current page.north) {\usebox{\alg@bannerbox}};
+  \end{tikzpicture}\par
+  % The text body starts 0.6in below the page edge (geometry top=0.6in), so
+  % reserve only what the band overruns that, plus a gap under the band.
+  \vspace*{\dimexpr\alg@bannerht-0.6in+0.16in\relax}%
+}
+
 % ── Student name rows ─────────────────────────────────────────────────────────
+% Name 4.0cm / Date 2.6cm: at 12pt the old 4.8cm / 2.8cm overran their X
+% columns and the Name rule ran into "Date:".
 \newcommand{\namedateperiod}{%
     \begin{tabularx}{\linewidth}{X X X}
-    Name:\;\blank{4.8cm} & Date:\;\blank{2.8cm} & Period:\;\blank{1.5cm}
+    Name:\;\blank{4.0cm} & Date:\;\blank{2.6cm} & Period:\;\blank{1.5cm}
     \end{tabularx}}
 
 \newcommand{\namepartnerperiod}{%

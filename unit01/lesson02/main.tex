@@ -1,13 +1,15 @@
 %! Absolute Value Equations \& Inequalities — Unit 1, Lesson 1.2 — Lesson Plan
-% Gradual-release plan (user direction, 2026-08-31; extended course-wide 2026-09-01): warm-up →
-% guided notes (with guided practice) → individual practice → debrief → close. There is no group
-% activity; the "you do" is done alone. No tiers, no exit ticket; homework is in-packet.
+% GRADUAL-RELEASE plan (warm-up / guided notes & practice / debrief / close & start homework),
+% piloting the AP Statistics 1.4 spec in Algebra 2 (2026-09-03). THERE IS NO GROUP ACTIVITY — the
+% guided notes carry the release: I do (two sections) -> we do (guided practice). THERE IS NO
+% INDEPENDENT PRACTICE SET IN THE NOTES — the homework is the individual practice, and the period
+% ends with students starting it. No tiers, no exit ticket. Teacher-facing, 10pt; every student
+% component is 12pt.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 \usepackage{graphicx}   % -article does NOT load graphicx; needed for thumbnails/screenshots
 \graphicspath{{images/}}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 \newcommand{\CourseName}{Algebra 2}
 \newcommand{\MeetingLength}{60 minutes}
 \newcommand{\UnitNumberName}{Unit 1: Linear Functions \quad}
@@ -39,16 +41,16 @@
     notation, interval notation, and a number line), and \textbf{A2.EI.1e} (verify solutions, and
     explain and interpret solutions in context).
     \\[2pt]
-    \textbf{Lesson model:} \emph{Gradual release} --- I do, we do, you do alone. A warm-up
-    activates prior knowledge; \textbf{Guided Notes} build the distance meaning with the class on
-    one worked context (a radio tower on a parkway) and close with a \emph{Guided Practice} box (the
-    ``we do''); an \textbf{Individual Practice} block on the same page is the ``you do'' --- three
-    problems, worked silently and alone; a \textbf{debrief} consolidates and surfaces the errors;
-    \textbf{homework} extends the practice. \emph{There is no group activity in this lesson} ---
-    today's independent work is done individually.
+    \textbf{Lesson model:} \emph{Gradual release --- I do, we do, you do --- all of it inside the
+    guided notes.} There is no group activity. The notes name the vocabulary as they teach it and
+    deliver the instruction in \textbf{two} sections on one context (a radio tower on a parkway);
+    the Guided Practice is worked together with students holding the pen; \textbf{the homework is
+    the individual practice}, and students start it in class while you circulate. The whole-class
+    debrief is \emph{spoken} --- there is no practice set and no reflection box on the notes page.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
+\boxguard
 \begin{skillbox}[Priority Ideas \& Skills]{goldbox}
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
 \textbf{Priority Ideas \& Skills} & \textbf{Key Understandings (the ``why'')} \\[2pt]
@@ -60,7 +62,7 @@
   \item Solve $|X|=c$ for $c>0$, $c=0$, and $c<0$.
   \item Solve $|X|<c$ (\emph{and}) and $|X|>c$ (\emph{or}).
   \item Write a set three ways: set, interval, number line.
-  \item Model a ``within so much of'' context and interpret the answer.
+  \item Read a \textbf{tolerance} --- ``within so much of a desired value'' --- as $|x-\text{desired}|\le\text{tolerance}$, and interpret the answer.
 \end{itemize}
 &
 \vspace{-6pt}
@@ -70,181 +72,230 @@
   \item You cannot split until the bars stand alone, because the two-case rule is a statement
         about $|X|$, not about the equation around it.
   \item \textbf{Target misconception:} that $\le$ and $\ge$ produce ``nearly the same'' answer.
-        They produce \emph{opposite} sets --- one interval versus two rays.
+        They produce \emph{opposite} sets --- one interval versus two rays. The mile-3 hiker
+        (distance 9) is in exactly one of them.
   \item Set, interval, and number-line notation are three spellings of one set; the endpoint
         symbol ($[$ vs.\ $($, filled vs.\ open) is the only thing carrying inclusion.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
-\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\boxguard
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems --- taught directly in the guided notes}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
 \textbf{Absolute value as distance} & $|x-h|$ is how far $x$ is from $h$ on the number line; never negative. \\
-\textbf{Two-case rule} & $|X|=c$ with $c>0$ splits into $X=c$ or $X=-c$. $c=0$ gives one solution; $c<0$ gives none. \\
-\textbf{Compound ``and''} & $|X|<c$ becomes $-c<X<c$ --- one interval, \emph{between} the endpoints. \\
-\textbf{Compound ``or''} & $|X|>c$ becomes $X<-c$ or $X>c$ --- two rays, \emph{outside} the endpoints. \\
-\textbf{Set notation} & $\{x \mid 7 \le x \le 17\}$ --- ``all $x$ such that\dots'' \\
-\textbf{Interval notation} & $[7,17]$; brackets include an endpoint, parentheses exclude it. Next to $\pm\infty$, always a parenthesis. \\
+\textbf{Two-case rule} & $|X|=c$ with $c>0$ splits into $X=c$ or $X=-c$. $c=0$ gives one solution; $c<0$ gives none. Isolate first. \\
+\textbf{``And'' vs.\ ``or'' inequality} & $|X|<c$ becomes $-c<X<c$ (one interval, \emph{between}); $|X|>c$ becomes $X<-c$ or $X>c$ (two rays, \emph{outside}). \\
+\textbf{Interval notation} & $[7,17]$; brackets include an endpoint, parentheses exclude it. Next to $\pm\infty$, always a parenthesis; two rays need $\cup$. \\
+\textbf{Tolerance} & how far from a desired value we are willing to be. ``Within 5 miles of the tower'' is desired value $12$, tolerance $5$: $|x-12|\le5$. Always the ``and'' case. \\
 \textbf{No solution / all reals} & $|X|=c$ or $|X|<c$ with $c<0$ has none; $|X|\ge c$ with $c<0$ holds for every $x$. \\
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+% A tabularx never splits, so guard generously ahead of it.
+\boxguard[30]
+\begin{skillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
 \renewcommand{\arraystretch}{1.25}
 \begin{tabularx}{\linewidth}{@{}l c X X@{}}
 \textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
 \hline
-Warm-Up & 5 & Three prior skills, alone then check with a neighbour & Circulate; debrief item~3 aloud (``could a shaded picture ever come in two pieces?'') and leave it hanging \\
-Guided Notes & 20 & Fill the vocabulary and the four sections with the class, then \emph{Guided Practice} together & \emph{I do / we do}: run the whole block on \emph{one} context, the parkway; three \texttt{work} blocks at the board \\
-Individual Practice & 15 & \emph{Alone and quiet}: three problems --- an equation, an ``and'' inequality, an ``or'' inequality & Circulate; questions, cues, prompts --- \emph{not} answers. Note who to call on in the debrief \\
-Debrief & 10 & Correct their own pages in a second colour & Work all three individual-practice problems on the board; land ``one interval or two rays'' \\
-Close \& Homework & 10 & Start the homework page in class; preview 1.3 & Launch item~1 aloud, then circulate; name what changed today \\
+Warm-Up & 5 & Three prior skills, alone, then check with a neighbour & Circulate; debrief item~3
+  aloud (``could a shaded picture ever come in two pieces?'') and leave it hanging \\
+Guided Notes \& Practice & 34 & Fill the vocabulary box and notes 1--2 as each idea is named;
+  then the Guided Practice together, pen in their hand & \textbf{I do} notes 1--2 (20) $\to$
+  \textbf{we do} the Guided Practice box (14): $2|x-5|-3=7$, then flip the symbol twice \\
+Debrief & 8 & Pens down, papers up --- answer aloud, nothing to fill in & Put $\le$ and $\ge$
+  side by side on the board with their number lines; take the split-too-early error and the
+  bracket-on-$\infty$ error \\
+Close \& Start Homework & 13 & \textbf{Start the homework in class}, alone and silent & Launch
+  item~1 aloud, then circulate for your formative read; preview Lesson~1.3 \\
 \end{tabularx}
-\end{fixedskillbox}
-
-\begin{fixedskillbox}[Warm-Up --- Activate Prior Knowledge \& Spiral Review]{forestbg}
-The Warm-Up rehearses exactly what today leans on, without naming anything. \textbf{(1)} Evaluating
-$|-7|$, $|4|$, $|-3|+|5|$, $-|-6|$ re-establishes that the bars measure size, and the follow-up
-(\emph{how many numbers have absolute value 7?}) is the seed of the whole \emph{two-case rule}.
-\textbf{(2)} Reading distances off a number line and writing them with bars --- $|11-3|$,
-$|6-(-2)|$, and finally the open $|x-6|$ --- is the exact move notes section~1 formalises.
-\textbf{(3)} Shading $x\ge-1$ and ``between $-3$ and $2$'' rehearses filled vs.\ open dots, and the
-closing question --- \emph{could a shaded picture ever come in two separate pieces?} --- is
-deliberately left hanging until notes section~3 answers it. \textbf{Debrief item 3 aloud, briefly},
-and land only this: \emph{both of your pictures were one piece --- hold on to the question of
-whether that always happens.} \textbf{This page is set at 12pt} --- larger type than the rest of the
-packet, deliberately.
-\end{fixedskillbox}
-
-\begin{skillbox}[Hook]{forestbg}
-    ``A straight parkway is marked in miles, $0$ to $20$. A ranger's radio tower stands at
-    \textbf{mile 12}, and a handheld radio reaches it only from \textbf{within 5 miles}.'' Point at
-    the picture and ask: \textbf{``Two hikers are standing exactly 5 miles from the tower. Where
-    are they?''} (Miles $7$ and $17$.) Then the question that carries the lesson:
-    \textbf{``Why are there two of them, and not one?''} (One on each side.) Do not name anything
-    yet --- get the picture and the two answers on the board, then say: \emph{every question today
-    is this picture. How far is $x$ from the tower --- and is that close enough?}
 \end{skillbox}
 
-\begin{skillbox}[Guided Notes --- the Lesson (20 min)]{forestbg}
-\begin{multicols}{2}
-\textbf{1. Distance --- so it answers twice.} Name $|x-h|$ as the distance between $x$ and $h$; on
-the parkway a hiker at mile $x$ is $|x-12|$ from the tower. Work the first \texttt{work} block:
-$|x-12|=5$ splits to $x=17$ or $x=7$ --- the hook's own two markers, falling out of the algebra.
-Verify both by substituting back; that substitution \emph{is} what A2.EI.1b means by verifying.
-
-\textbf{2. Isolate before you split.} Fill the three-row table ($c>0$, $c=0$, $c<0$) reading each
-row off the distance meaning, not a rule. Then the \texttt{work} block on $3|x+1|-2=10$, and the
-sentence that matters: \emph{splitting at the first line gives $3x+1-2=10$ --- one answer, and a
-wrong one.}
-
-\columnbreak
-\textbf{3. ``Less th\emph{AND}'' vs.\ ``Great\emph{OR}.''} The two-column table, side by side, on
-the \emph{same} $|x-12|$ and the \emph{same} $5$: $\le$ shades $7\le x\le17$ as one piece; $\ge$
-shades two. Then the gold caution box --- test the hiker at \textbf{mile 3}, distance $9$: is
-$9\le5$? No. Is $9\ge5$? Yes. \emph{The wrong symbol does not shift the answer a little; it hands
-you the opposite set.} This is the target misconception, and this box is where it dies.
-
-\textbf{4. Three ways to write one set.} $7\le x\le17$ as $\{x \mid \dots\}$, as $[7,17]$, and
-shaded. Brackets/filled include, parentheses/open exclude, and $\infty$ always takes a parenthesis
-because it is not a number you can reach.
-
-\textbf{Guided Practice (the ``we do'').} $2|x-5|-3=7$ --- isolate, split ($x=10$ or $x=0$), then
-change one symbol twice and watch the answer change shape. Do this one \emph{with} the class ---
-it is the last thing they see before working alone.
-\end{multicols}
+\boxguard[20]
+\begin{skillbox}[Warm-Up --- Activate Prior Knowledge (5 min)]{forestbg}
+\begin{minipage}[t]{0.48\linewidth}
+    \textbf{The three items and what each seeds}
+    \begin{itemize}
+        \item \textbf{1.} $|-7|$, $|4|$, $|-3|+|5|$, $-|-6|$, then \emph{how many numbers have
+              absolute value 7?} \textbf{Seeds:} the bars measure size, and that question is the
+              two-case rule in one line.
+        \item \textbf{2.} Distances read off a number line and written with bars --- $|11-3|$,
+              $|6-(-2)|$, and finally the open $|x-6|$. \textbf{Seeds:} the exact move notes
+              section~1 formalises.
+        \item \textbf{3.} Shade $x\ge-1$ and ``between $-3$ and $2$.'' \textbf{Seeds:} filled vs.\
+              open dots, and the closing question --- \emph{could a shaded picture ever come in
+              two separate pieces?} --- which section~2 answers.
+    \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+    \textbf{Running it}
+    \begin{itemize}
+        \item \textbf{Debrief item~3 aloud, briefly}, and land only this: \emph{both of your
+              pictures were one piece --- hold on to whether that always happens.} Do not
+              resolve it; the surprise in section~2 is worth more than the five seconds.
+        \item If the room answers ``one'' to item~1's follow-up, you have found your hook ---
+              section~1 will land hard. Do not correct it here.
+        \item Item~2's last blank, $|x-6|$, is the first time they write a distance with a
+              \emph{variable} in it. It is exactly the expression section~1 needs; do not rush
+              past it.
+        \item The page is 12pt like the rest of the packet and fits one side. If you add to it,
+              check that it still does.
+    \end{itemize}
+\end{minipage}
 \end{skillbox}
 
-\begin{skillbox}[Individual Practice --- \emph{On Your Own} (15 min, silent)]{redbox}
-\textbf{Launch (1 min):} ``Same three moves you just watched --- now nobody helps you. Three
-problems. When you get stuck, look back at the notes above, not at your neighbour.'' The block sits
-on the last page of the Guided Notes, so nothing new is handed out.
+\boxguard
+\begin{skillbox}[Guided Notes \& Practice --- I do, then we do (34 min)]{forestbg}
+\textbf{This is the whole lesson.} There is no group activity, and there is no independent
+practice set on this page: \textbf{the homework is the individual practice}, started in class.
 \begin{multicols}{2}
-\textbf{What students do.} \textbf{Problem~1} is the equation with something in the way:
-$4|x+1|-5=15$, isolated to $|x+1|=5$, split to $x=4$ or $x=-6$, then \emph{verified}.
-\textbf{Problem~2} is the ``and'' inequality, $|2x-1|\le5 \Rightarrow -2\le x\le3$, written in all
-three notations including the shaded line. \textbf{Problem~3} is the deliberate partner,
-$|3x-6|\ge9 \Rightarrow x\le-1$ or $x\ge5$ --- same shape of expression, opposite shape of answer,
-and the first place they must write a union and two $\infty$ parentheses. Together the three cover
-the equation, the ``and'', and the ``or''.
+\textbf{Hook (2 min).} ``A parkway marked in miles, $0$ to $20$. A radio tower at \textbf{mile
+12}; a handheld radio reaches it from \textbf{within 5 miles}. Two hikers stand exactly 5 miles
+out --- where are they?'' (Miles $7$ and $17$.) Then the question that carries the lesson:
+\textbf{``Why are there two of them, and not one?''} Get the picture and both answers on the
+board, then say it: \emph{every question today is this picture --- how far is $x$ from the
+tower, and is that close enough?}
+
+\textbf{I do (about 18 min).} Two sections, each in two moves; students fill the blanks as each
+idea is named, and the vocabulary box is filled \emph{as you go}, never in advance.
+
+\emph{Section 1} names $|x-h|$ as a distance and works the first \texttt{work} block:
+$|x-12|=5$ splits to $x=17$ or $x=7$ --- the hook's own markers, falling out of the algebra.
+Verify both by substitution; that substitution \emph{is} what A2.EI.1b means by verifying. Name
+the \textbf{two-case rule} against it. Five minutes. Its second half, \emph{Isolate the Bars
+Before You Split}, fills the three-row table ($c>0$, $c=0$, $c<0$) off the distance meaning,
+then works $3|x+1|-2=10$ and lands the sentence that matters: \emph{splitting at the first line
+gives $3x+1-2=10$ --- one answer, and a wrong one.} Four minutes.
+
+\textbf{Section 2 is the lesson.} Its first half is the two-column table on the \emph{same}
+$|x-12|$ and the \emph{same} $5$: $\le$ shades $7\le x\le17$ as one piece, $\ge$ shades two rays
+--- and the three notations are read straight off the two pictures, set, interval, and shaded
+line, with the endpoint rule and the $\cup$. Then name the \textbf{tolerance} (this lesson
+only, user direction 2026-09-03): ``within 5 miles'' is a desired value of $12$ and a tolerance
+of $5$, and every ``within so much of'' sentence is $|x-\text{desired}|\le\text{tolerance}$ ---
+always the ``and'' case. Five minutes. Its second half is the crux: the
+gold box tests the hiker at \textbf{mile 3}, distance $9$. Is $9\le5$? No. Is $9\ge5$? Yes.
+\emph{The wrong symbol does not shift the answer a little; it hands you the opposite set.} Say
+it, write it, and point at the two number lines while you do. Close on the odd cases read off
+the same picture --- a distance less than $-2$ (none) and at least $-2$ (all of them). Four
+minutes.
 
 \columnbreak
-\textbf{What the teacher does.} Circulate the whole 15 minutes; keep it silent. Give a
-\emph{question, cue, or prompt}, never an answer:
+\textbf{We do (about 14 min).} The Guided Practice box: $2|x-5|-3=7$, isolated and split to
+$x=10$ or $x=0$, then the \emph{same} problem with $\le$ and with $\ge$, each written as a
+solution, an interval, and a shaded line. Students hold the pen; you hold the questions:
+\emph{``What is stuck to the bars? Undo that first.''} \quad \emph{``Closer than or farther
+than? So between, or outside?''} \quad \emph{``Does your picture have a gap in the middle? Then
+it needs two intervals and a $\cup$.''} Part (c) is the crux transferred and the part to protect
+when time is short.
+
+\textbf{The pen must actually change hands.} Guided Practice is the only place today where you
+can watch a student decide, so do not narrate it. Put part (a) on them cold, take a hand count
+on \emph{one piece or two} in part (b) before anyone speaks, and make the room defend both
+answers.
+
+Circulate during Guided Practice and demand the reason, not the word:
 \begin{itemize}[leftmargin=1.1em, nosep]
-  \item 1: ``What is stuck to the bars? Undo that first --- what is $|x+1|$ by itself?''
-  \item 1: ``You have one answer. The bars measure a distance --- where is the other side?''
-  \item 2: ``Is this \emph{closer than} or \emph{farther than}? So between, or outside?''
-  \item 3: ``Does your picture have a gap in the middle? Then it needs two intervals and a $\cup$.''
-  \item 3: ``What goes next to $\infty$ --- a bracket or a parenthesis? Why?''
-  \item Finished early: ``Change problem~3's $\ge$ to $\le$. Which numbers switch sides?''
+  \item \textbf{Part (a):} ``You have one answer. The bars measure a distance --- where is the
+        other side?''
+  \item \textbf{Part (b):} ``Why a bracket at $0$ and at $10$? Which symbol told you?''
+  \item \textbf{Part (c), the crux transferred:} ``Shade it. Is there a gap? Then why is your
+        answer written as one chain?''
 \end{itemize}
-Note names as you go: one student for each of the three problems, to put work on the board in the
-debrief.
+While circulating, pick two papers to put up in the debrief --- one part (c) written correctly
+as two rays with a $\cup$, and one written as a single chain like $10\le x\le0$.
+\textbf{Your formative read comes twice}: here, and again in the last thirteen minutes as
+students start the homework.
 \end{multicols}
 \end{skillbox}
 
 \boxguard
-\begin{skillbox}[Debrief (10 min --- what goes on the board, in a second color)]{forestbg}
-Students correct their own Individual Practice in a second colour as you go. Work all three, but
-protect the time for items~2 and~3.
-\begin{enumerate}[leftmargin=1.3em, nosep, itemsep=2pt]
-  \item \textbf{Problem~1 --- isolate, then split.} Put the four lines up in order:
-        $4|x+1|=20$, $|x+1|=5$, $x+1=5$ \emph{or} $x+1=-5$, $x=4$ or $x=-6$. Ask who split at line
-        one, and show what they got instead. Then verify $x=4$: $4|5|-5=15$.
-  \item \textbf{The must-land moment: one interval or two rays.} Put problems~2 and~3 side by side
-        on the board with their number lines. Say it out loud --- \emph{closer than gives one
-        connected piece; farther than gives two} --- and point back at the mile-3 hiker from the
-        notes' caution box. This is the parkway's $|x-12|\le5$ versus $|x-12|\ge5$ all over again.
-  \item \textbf{Problem~2 --- dividing a compound inequality.} $-5\le2x-1\le5$ becomes
-        $-4\le2x\le6$ becomes $-2\le x\le3$: whatever you do, you do to \emph{all three} parts.
-        Check by testing $x=0$: $|{-1}|\le5$, true.
-  \item \textbf{Problem~3 --- the union and the two parentheses.}
-        $(-\infty,-1]\cup[5,\infty)$. Ask why the brackets face the way they do, and why $\infty$
-        never gets one. Test $x=0$ (not a solution) and $x=6$ ($|12|\ge9$, true).
+\begin{skillbox}[Debrief --- whole class (8 min)]{forestbg}
+Pens down, papers up. \textbf{This debrief is spoken} --- there is no box at the end of the
+notes to fill in, so it lives entirely on the board and in the room.
+\begin{multicols}{2}
+\begin{enumerate}[leftmargin=1.3em, nosep, itemsep=3pt]
+  \item \textbf{Put parts (b) and (c) back up side by side} with their number lines, and make a
+        student say which is \emph{closer than} and which is \emph{farther than} --- and point at
+        the piece, or the gap, that earned it. Then state it plainly: \emph{closer than gives one
+        connected piece; farther than gives two.}
+  \item Put up the two part (c)s you picked. The single chain $10\le x\le0$ reads as
+        \emph{empty}; make the room shade it and see the contradiction. That is the moment the
+        union earns its place.
+  \item Take the split-too-early error: ask who solved $2|x-5|-3=7$ by writing $2x-5-3=7$, and
+        show what they got. One answer, and a wrong one --- section~1's sentence, back again.
+  \item Take the bracket-on-$\infty$ error last: \emph{``Can you reach $\infty$? Then it never
+        gets a bracket.''}
 \end{enumerate}
-If time is short, cut item~1's verification and protect items~2 and~4.
+\columnbreak
+\textbf{Two things to demand aloud.} First, \textbf{make a student say the mile-3 hiker's
+sentence without the notes} --- distance $9$, so not in range, so in exactly one of the two
+answers. Second, \textbf{make them say what $|x-h|$ means in words} --- how far $x$ is from $h$
+--- because tomorrow's V-shaped graph is that sentence drawn.
+
+\textbf{If the debrief runs short}, cut item~4 and item~3 --- item~1 is the only one that cannot
+be cut. \textbf{Do not let the debrief eat the last thirteen minutes} --- the homework start is
+not optional padding, it is the individual practice.
+\end{multicols}
 \end{skillbox}
 
 \boxguard
-\begin{skillbox}[Active Monitoring --- Watch For]{redbox}
+\begin{skillbox}[Homework --- scored, due the first class after two study halls]{goldbox}
+Six items spanning the whole of A2.EI.1: \textbf{1} two equations, the second needing isolation
+first; \textbf{2} the deliberate contrast pair ($|x+3|<4$ against $|x+3|>4$) with the ``why one
+piece, why two'' question; \textbf{3} \emph{reading an inequality off a shaded number line} ---
+the only item that runs backwards, and the best single predictor of whether the distance meaning
+stuck (find the centre $3$ and the reach $4$ first); \textbf{4} the special cases plus the
+$k\le0$ boundary; \textbf{5} a thermostat tolerance model with an interpret-the-answer follow-up;
+\textbf{6} an SOL-style multiple-choice item on $|x+2|>3$, the formative check.
+
+\textbf{Start it in the last thirteen minutes of the period, in class and alone.} Item~1(b) is the
+isolation check and item~2 is where the misconception shows; the Close box says how to sort what
+you see. \textbf{Item~6 carries the check when you score it:} (A) is the $<$ version (the target
+misconception), (C) keeps one ray, (D) confuses $>3$ with $\ge-3$.
+
+\textbf{Two pages is a ceiling at 12pt}, so the old extension items were cut for fit; use
+them as debrief cold-calls if time allows. \textbf{DeltaMath override:} well covered
+there --- swap in a DeltaMath set on absolute value equations and inequalities if you prefer
+auto-graded practice; that replaces this page and strikes its score cell on the cover. Never
+assign both. \textbf{Preview:} Lesson~1.3, \emph{Absolute Value Functions \& Transformations} ---
+today you \emph{solved} $|ax+b|=c$; next you \emph{graph} $y=|ax+b|$, and the two solutions you
+found become the two places a V crosses a horizontal line.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Watch For (while circulating)]{redbox}
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{splitting before the bars are alone} --- $3|x+1|-2=10$ becoming $3x+1-2=10$
-        (notes~2, Individual Practice~1, homework~1b) --- the single most common error today;
-  \item giving only the positive case and stopping at one answer (Warm-Up~1, notes~1);
-  \item \textbf{treating $\le$ and $\ge$ as nearly the same answer} (Individual Practice~2 vs.~3,
-        homework~2) --- the lesson's target misconception. Send them to the mile-3 hiker, not to
-        the rule;
-  \item writing an ``or'' answer as a single chain, $5\le x\le-1$, which reads as empty ---
-        make them shade it and see the gap (Individual Practice~3);
-  \item solving $|x-4|=-3$ by dropping the bars to get $x=1$, instead of reading it as an
-        impossible distance (homework~4a);
-  \item at the boundary $k=0$ in homework~4c: ``distance $<0$'' is still impossible, so $k=0$
-        belongs to the no-solution set;
-  \item bracketing $\infty$, or dividing only part of a compound inequality (homework~2, 3b).
+  \item \textbf{Splitting before the bars are alone} --- $3|x+1|-2=10$ becoming $3x+1-2=10$
+        (notes~1, GP~(a), HW~1b) --- the single most common error today. Probe: \emph{``What is
+        stuck to the bars? What is $|x+1|$ by itself?''}
+  \item \textbf{Treating $\le$ and $\ge$ as nearly the same answer} (notes~2, GP~(b)--(c), HW~2,
+        HW~6(A)) --- the target misconception. Send them to the mile-3 hiker, not to the rule.
+        Probe: \emph{``Closer than, or farther than? So between, or outside?''}
+  \item Giving only the positive case and stopping at one answer (Warm-Up~1, notes~1, HW~1a).
+        Probe: \emph{``Where is the other side of the tower?''}
+  \item \textbf{An ``or'' answer written as a single chain}, $10\le x\le0$ (GP~(c), HW~2b) ---
+        make them shade it and see the gap.
 \end{itemize}
-Cold-call prompts: ``How far is that from the centre?'' ``Closer than, or farther than?'' ``One
-piece or two --- convince me from the picture.'' ``Is that endpoint in or out? Which symbol says so?''
+Cold-call prompts: ``How far is that from the centre?'' ``One piece or two --- convince me from
+the picture.'' ``Is that endpoint in or out? Which symbol says so?''
 \end{skillbox}
 
 \boxguard
-\begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework} (in the packet, collected next class): two equations, the second needing isolation
-first; a deliberate contrast pair ($|x+3|<4$ against $|x+3|>4$) with the ``why one piece, why two''
-question; \emph{reading an inequality off a shaded number line} --- the third representation, and
-the only item that runs backwards; the special cases plus the $k\le0$ boundary; a thermostat
-tolerance model with an interpret-the-answer follow-up; and an SOL-style multiple-choice item on
-$|x+2|>3$. \textbf{Extension:} building $|x-10|\le6$ from the endpoints $4$ and $16$ (find the
-centre first), and why miles $7$ and $17$ belong to \emph{both} the in-range and out-of-range
-answers. \textbf{DeltaMath override:} well covered there --- swap in a DeltaMath set on absolute
-value equations and inequalities if you prefer auto-graded practice. \textbf{Preview:}
-Lesson~1.3, \emph{Absolute Value Functions \& Transformations} --- today you \emph{solved}
-$|ax+b|=c$; next you \emph{graph} $y=|ax+b|$, and the two solutions you found become the two places
-a V crosses a horizontal line.
+\begin{skillbox}[Close \& Start Homework (13 min)]{goldbox}
+\textbf{Students start the homework here, in class, alone and silent --- this is the individual
+practice, and the first minutes of it are your best formative read.} Hand the launch first ---
+six items on paper, scored, due the first class after two study halls (announce the date in class and on TurtleNet) --- and work item~1(a) aloud in thirty seconds so
+nobody stalls on the page. Then circulate on 1(b) and 2, sorting into the three piles above.
+Close on what changed: \emph{``You walked in able to write a line that crosses zero exactly once.
+You walk out able to handle a rule that reaches the same value twice --- because it measures a
+distance --- and to say whether an answer is one interval or two rays.''}
 \end{skillbox}
 
-% ── Teacher notes — one per component, in packet order ──
+% ── Teacher notes — one per component, in packet order (three: no activity, no AP practice) ──
 \begin{teachernote}[Warm-Up]
 Item~1's follow-up --- \emph{how many different numbers have an absolute value of 7?} --- is the
 whole lesson in one question; if the room says ``one,'' you have found your hook and section~1 will
@@ -252,53 +303,57 @@ land hard. Item~2's last blank, $|x-6|$, is the first time they write a distance
 \emph{variable} in it, and it is exactly the expression notes section~1 needs; do not rush past it.
 Item~3's closing question is deliberately left unresolved --- \emph{could a shaded picture ever come
 in two separate pieces?} Let them answer ``no'' or shrug, and do \emph{not} correct it. Notes
-section~3 pays it off, and the surprise is worth more than the five seconds you would save.
-\textbf{This page is set at 12pt} --- larger type than the rest of the packet, deliberately, so the
-five minutes go on the thinking rather than on decoding it. It is still one page; if you add to it,
-check that it stays one page.
+section~2 pays it off, and the surprise is worth more than the five seconds you would save. The
+page is 12pt like every other student component and fits one side, blank and keyed.
 \end{teachernote}
 
-\begin{teachernote}[Guided Notes]
-Twenty minutes, paced by section: 3 for the vocabulary and hook, 3 for section~1, 4 for section~2,
-5 for section~3, 3 for section~4, and 2 for the Guided Practice box worked \emph{with} the class.
-\textbf{Keep the whole notes block on one context} --- the parkway --- so ``distance from the
-tower'' is doing the work in every section rather than four unrelated procedures. Section~3 is the
-one to protect: the two-column table and its gold caution box are where the lesson's target
-misconception dies, and the mile-3 hiker ($|3-12|=9$, so $9\le5$ is false but $9\ge5$ is true) is
-the concrete case that makes ``opposite sets'' undeniable. Six \texttt{work} blocks are printed on
-these pages (the $|x-12|=5$ split, the $3|x+1|-2=10$ isolation, the Guided Practice box, and three
-more in Individual Practice); students write in the reserved space while the key prints the same
-steps there, so the two files paginate alike. If you fall behind, compress section~4's endpoint
-table to one sentence --- but do \emph{not} cut section~2's ``splitting at the first line'' warning;
-Individual Practice~1 and homework~1b both target it.
-\end{teachernote}
+\begin{teachernote}[Guided Notes \& Practice]
+\textbf{This one document is the lesson --- pace it 2 / 18 / 14, then 8 for the debrief, then 13
+for the homework start.} Section~1 must move: five minutes on the distance meaning and the
+$|x-12|=5$ split, four on isolating. \textbf{Do not cut the ``splitting at the first line''
+sentence} --- Guided Practice (a) and homework 1(b) both target it.
 
-\begin{teachernote}[Individual Practice]
-Fifteen minutes, and \textbf{keep it silent} --- this is the only block all period where a student
-finds out what they can do without help. Budget roughly 5 minutes each. The three problems are
-deliberately the three \emph{shapes} of answer: an equation (two points), an ``and'' (one interval),
-and an ``or'' (two rays). A student who can do 1 and 2 but not 3 has not accepted that an answer can
-come in two pieces --- send them back to their own Warm-Up~3 picture and to the notes' caution box,
-not to a rule. Watch for the ``or'' answer written as a single chain, $5\le x\le-1$: ask them to
-shade it and the contradiction shows itself. Fast finishers change problem~3's $\ge$ to $\le$ and
-report which numbers switch sides; that is the work you want on the board in the debrief. Common
-slips: splitting $4|x+1|-5=15$ before isolating; dividing only part of $-5\le2x-1\le5$; and putting
-a bracket next to $\infty$.
+\textbf{Spend the time in section~2}, which carries the misconception. Fill the two-column table
+with the room on the \emph{same} $|x-12|$ and the \emph{same} $5$, and read the three notations
+straight off the two pictures before naming anything --- the shaded line is the evidence the
+bracket and the $\cup$ are read off. Then the gold box: the hiker at mile~3, distance~9. Let
+someone say ``$9\le5$, sure'' and let the room catch it. Do not resolve it by repeating the rule.
+Point at the two number lines.
+
+\textbf{Name the tolerance out loud} after the $\le$/$\ge$ table --- desired value $12$,
+tolerance $5$ --- and have students say it back on Guided Practice part~c (desired value $5$,
+tolerance $5$) and homework item~5 ($68^\circ$F, $2^\circ$F). It is the sentence that turns a
+context into an inequality, and A2.EI.1c is graded on exactly that move.
+\textbf{Do not skip the odd cases} at the end of section~2 --- $|x-12|<-2$ and $|x-12|\ge-2$
+read off the picture, no algebra. Without them, homework 4 becomes a guessing game and the
+vocabulary box's last row stays empty.
+
+\textbf{Guided Practice is where the pen changes hands.} Part (a) is the isolation check, part
+(b) is the ``and,'' part (c) is the ``or'' --- the same expression three times so that the only
+thing changing is the symbol.
+
+\textbf{There is no independent practice set on this page, and that is deliberate --- the
+homework is the individual practice.} Guided Practice is the last thing on the page; the period
+ends with students starting the homework in front of you, which is where your second formative
+read comes from.
+
+\textbf{Debrief (8 min), spoken.} Parts (b) and (c) side by side, with a student pointing at the
+piece or the gap; it is the one move that cannot be cut. \textbf{Do not let the debrief eat the
+last thirteen minutes} --- the homework start is not optional padding.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-Item~1(b) is the isolation check --- expect $5x+2-1=14$ from anyone who did not internalise
-section~2. Item~3 is the only item that runs \emph{backwards}, from a picture to an inequality, and
-it is the best single predictor of whether the distance meaning stuck: they must find the centre
-($3$) and the reach ($4$) before they can write $|x-3|\le4$. Item~4(c) is the trap --- $k=0$ is
-\emph{included} in the no-solution answer, because ``distance $<0$'' is still impossible; students
-who write $k<0$ have the idea but not the boundary. Item~6 is the formative check: sort into ``chose
-B (got it) / chose A (solved the $<$ version --- the target misconception, still alive) / chose C
-(kept one ray, forgot the other side) / chose D (confused $>$ with $\ge-3$)'' to decide whether
-Lesson~1.3 opens with a one-minute re-look at ``less th\emph{AND}'' versus ``great\emph{OR}.'' Three
-\texttt{work} blocks (items 1b, 5b, and one in the extension). With the group activity cut, the last
-10 minutes are for \emph{starting} this page in class --- launch item~1 aloud, then circulate; the
-rest is due next class.
+\textbf{Scored; due the first class after two study halls --- announce the date in class and on TurtleNet.} The thirteen minutes at the end of the period are a \emph{start},
+not a completion: put students on 1 and 2 while you can still catch a wrong start, and let 3--6
+go home. Item~1(b) is the isolation check --- expect $5x+2-1=14$ from anyone who did not
+internalise section~1. Item~4(c) is the trap
+--- $k=0$ is \emph{included} in the no-solution answer, because ``distance $<0$'' is still
+impossible; students who write $k<0$ have the idea but not the boundary. \textbf{When you score
+the page, sort item~6 into three piles}: chose B (got it); chose A (solved the $<$ version --- the
+target misconception, still alive); chose C or D (kept one ray, or confused $>3$ with $\ge-3$).
+If more than a third land outside B, open Lesson~1.3 with a one-minute re-look at ``less
+th\emph{AND}'' versus ``great\emph{OR}'' rather than letting it ride. Two \texttt{work} blocks
+(items 1b and 5b).
 \end{teachernote}
 
 \end{document}

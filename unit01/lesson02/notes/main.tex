@@ -1,8 +1,25 @@
-%! Absolute Value Equations & Inequalities — Unit 1, Lesson 1.2 — Guided Notes
-% Gradual release (user direction, 2026-08-31, extended course-wide 2026-09-01): the notes are the
-% "I do / we do" block, 20 minutes, and the Individual Practice block that closes them is the
-% "you do alone", 15 more. There is no group activity.
-\documentclass[10pt]{article}
+%! Absolute Value Equations & Inequalities — Unit 1, Lesson 1.2 — Guided Notes & Practice
+% THE in-class document (stats-1.4 spec, piloted here 2026-09-03). There is no group activity —
+% the notes carry the whole gradual release, closed by a spoken debrief. It runs SHORT on purpose:
+% the period ends with students starting the homework, which is where the individual practice
+% lives.
+%   I DO   : the objective box, the vocabulary box, and notes sections 1-2.        (~20 min)
+%   WE DO  : the practicebox ("Guided Practice") — 2|x-5|-3=7, then flip the symbol. (~14 min)
+%   YOU DO : nothing on this page — ../homework/ IS the individual practice, started in the
+%            last minutes of the period.
+% Vocabulary is GIVEN here, not discovered. The second half of section 2 is the crux — the
+% mile-3 hiker, where "less thAND" and "greatOR" DISAGREE (the target misconception).
+%
+% ONE CONTEXT: a parkway marked in miles 0..20, a radio tower at mile 12, a radio that reaches it
+% from within 5 miles. Every blank on these pages is "how far is x from the tower, and is that
+% close enough?"
+%
+% PAGE LOCKSTEP with notes_key/: every \blank{} here becomes a short \ans{} there, every
+% \termblank{} becomes a \termans{}{} (same fixed row height), and every \begin{work} block is
+% authored BYTE-IDENTICALLY in both files.
+% VOCABPAR: \par brackets each \termblank inside the vocabbox.
+% NO SKETCH QUESTIONS: every number line is pre-drawn; students shade, they never construct.
+\documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 % Plain number line: {xmin}{xmax}, ticks labelled every unit.
@@ -19,61 +36,75 @@
 
 \begin{document}
 
-\pageheader{Unit 1, Lesson 1.2}{Guided Notes}
+\pageheader{Unit 1, Lesson 1.2}{Guided Notes \& Practice}
+% NAMESTRIP: no \namedateperiod here — the name row lives on the cover only.
 
-\vspace{0.10in}
+\vspace{6pt}
 
+\boxguard[14]
 \begin{objectivebox}
-\textbf{By the end of this lesson, I will be able to\dots}
-\begin{itemize}\setlength{\itemsep}{2pt}
-  \item read $|x-h|$ as the \emph{distance} between $x$ and $h$, and explain why an absolute value
+\small
+By the end of these notes I will be able to:
+\begin{enumerate}[leftmargin=1.6em, nosep, after=\vspace{2pt}]
+  \item read $|x-h|$ as the \textbf{distance} between $x$ and $h$, and say why an absolute value
         equation usually has \emph{two} solutions;
-  \item \emph{isolate} the bars, then split into two cases, and handle the $c=0$ and $c<0$
-        special cases;
-  \item solve $|X|<c$ and $|X|>c$ and say which gives \emph{one} interval and which gives
-        \emph{two} rays;
-  \item write a solution set three ways --- set notation, interval notation, and a number line.
-\end{itemize}
+  \item \textbf{isolate} the bars, then split into two cases --- and handle the cases with one
+        solution or none;
+  \item solve $|X|<c$ and $|X|>c$, say which gives \emph{one} interval and which gives
+        \emph{two} rays, and write the answer three ways.
+\end{enumerate}
 \end{objectivebox}
 
-\vspace{0.05in}
+\vspace{6pt}
 
+\boxguard[16]
 \begin{vocabbox}
 \small
-Fill in each term as we build it together.
-\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{Absolute value as distance}
-\termblanklong{Two-case rule}
-\termblanklong{Compound ``and'' / ``or''}
-\termblanklong{Set notation}
-\termblanklong{Interval notation}
-\termblanklong{Extraneous / no solution}
+Fill in each term \textbf{as we name it} in the notes below.
+\par
+\termblank{Absolute value as distance}
+\par
+\termblank{Two-case rule}
+\par
+\termblank{``And'' vs.\ ``or'' inequality}
+\par
+\termblank{Interval notation}
+\par
+\termblank{Tolerance}
+\par
 \end{vocabbox}
 
+\vspace{6pt}
+
+\boxguard[12]
 \begin{hookbox}
+\small
 A straight stretch of parkway is marked off in miles, $0$ through $20$. A ranger's radio tower
 stands at \textbf{mile 12}, and a handheld radio reaches it only from \textbf{within 5 miles}.
 \begin{center}
-\begin{tikzpicture}[x=0.52cm, y=0.5cm]
+\begin{tikzpicture}[x=0.56cm, y=0.5cm]
   \trail
 \end{tikzpicture}
 \end{center}
 \vspace{-2pt}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Two hikers stand \emph{exactly} $5$ miles from the tower. Their mile markers are
-        \blank{1.2cm} and \blank{1.2cm}.
-  \item Why are there \emph{two} of them, and not one? \blank{4.4cm}
-\end{itemize}
-Every question today is this picture: how far is $x$ from the tower --- and is that close enough?
+Two hikers stand \emph{exactly} $5$ miles from the tower. Their mile markers are \blank{1.2cm}
+and \blank{1.2cm}. Why are there \emph{two} of them, and not one? \blank{4.2cm}
+\par\vspace{3pt}
+Every question today is this picture: \textbf{how far is $x$ from the tower --- and is that
+close enough?}
 \end{hookbox}
 
-\boxguard[22]
+\vspace{6pt}
+
+% ── I DO: section 1 ──────────────────────────────────────────────────────────
+\boxguard[14]
 \begin{notesbox}{1. Absolute Value Is a Distance --- So It Answers Twice}
+\small
 \begin{center}
 \begin{minipage}[c]{0.50\linewidth}
 \[ |x-h| \;=\; \text{the distance between } x \text{ and } h \]
-On the parkway, a hiker at mile $x$ is \blank{2.0cm} miles from the tower. A distance is never
-\blank{1.8cm}, and \emph{two} different spots sit the same distance out --- one on each side.
+A hiker at mile $x$ is \blank{1.8cm} miles from the tower. A distance is never \blank{1.7cm},
+and \emph{two} different spots sit the same distance out --- one on each side.
 \end{minipage}\hfill
 \begin{minipage}[c]{0.46\linewidth}\centering
 \begin{tikzpicture}[x=0.30cm, y=0.42cm]
@@ -87,31 +118,34 @@ On the parkway, a hiker at mile $x$ is \blank{2.0cm} miles from the tower. A dis
 \end{tikzpicture}
 \end{minipage}
 \end{center}
-\textbf{Worked: exactly five miles out.} ``Distance from the tower is $5$'' is $|x-12|=5$.
+\textbf{Exactly five miles out.} ``Distance from the tower is $5$'' is $|x-12|=5$. The bars
+hide \emph{two} equations --- one for each side of the tower:
 \begin{work}
   |x - 12| &= 5 \\
   x - 12 &= 5 \quad\text{or}\quad x - 12 = -5 \\
   x &= 17 \quad\text{or}\quad x = 7
 \end{work}
-Both markers from the hook, straight out of the algebra. \textbf{Verify} by putting each back in:
-$|17-12|$ is \blank{0.9cm} and $|7-12|$ is \blank{0.9cm}.
-\end{notesbox}
+Both markers from the hook, straight out of the algebra. \textbf{Verify} by putting each back
+in: $|17-12| =$ \blank{0.9cm} and $|7-12| =$ \blank{0.9cm}. That is the \textbf{two-case rule}:
+$|X| = c$ splits into $X = c$ \emph{or} $X = -c$.
 
-\boxguard[24]
-\begin{notesbox}{2. Isolate the Bars \emph{Before} You Split}
-The two-case rule applies to $|X| = c$ only when the bars stand \emph{alone}. Everything outside
-them gets undone first --- exactly as if the bars were a variable.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
+\vspace{8pt}
+\textbf{\textcolor{forest}{Isolate the Bars \emph{Before} You Split.}}
+The two-case rule is a statement about $|X|$ \emph{alone}. Anything outside the bars gets undone
+first --- treat the bars exactly as you would a variable.
+
+\vspace{3pt}
+\renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}l l X@{}}
+\rowcolor{forestbg}
 \textbf{$|X| = c$ when\dots} & \textbf{Split into} & \textbf{How many solutions --- and why} \\
-\hline
-$c > 0$ & $X =$ \blank{1.0cm} \; or \; $X =$ \blank{1.0cm} & \blank{1.0cm} --- two spots sit that far out \\
-$c = 0$ & $X =$ \blank{1.0cm} & \blank{1.0cm} --- only one spot is \emph{zero} away \\
-$c < 0$ & --- & \blank{1.6cm} --- a distance is never negative \\
+$c > 0$ & $X =$ \blank{0.9cm} \; or \; $X =$ \blank{0.9cm} & \blank{1.0cm} --- two spots sit that far out \\
+$c = 0$ & $X =$ \blank{0.9cm} & \blank{1.0cm} --- only one spot is \emph{zero} away \\
+$c < 0$ & --- & \blank{1.4cm} --- a distance is never negative \\
 \end{tabularx}
-\end{center}
-\textbf{Worked: undo, then split.} Solve $3|x+1| - 2 = 10$.
+
+\vspace{4pt}
+\textbf{Undo, then split.} Solve $3|x+1| - 2 = 10$.
 \begin{work}
   3|x+1| - 2 &= 10 \\
   3|x+1| &= 12 \\
@@ -119,20 +153,31 @@ $c < 0$ & --- & \blank{1.6cm} --- a distance is never negative \\
   x + 1 &= 4 \quad\text{or}\quad x + 1 = -4 \\
   x &= 3 \quad\text{or}\quad x = -5
 \end{work}
-Splitting at the \emph{first} line would give $3x+1-2=10$ --- a single answer, and a wrong one.
+Splitting at the \emph{first} line would give $3x+1-2=10$ --- a single answer, and a
+\blank{1.4cm} one.
 \end{notesbox}
 
-\boxguard[26]
-\begin{notesbox}{3. ``Less th\emph{AND}'' vs.\ ``Great\emph{OR}'' --- One Piece or Two}
+\vspace{6pt}
+
+% ── I DO: section 2 — inequalities, and the crux ─────────────────────────────
+% Guarded generously: the two-column tabularx cannot split, so a small guard strands the
+% heading and its intro line as a sliver at the foot of the previous page.
+\boxguard[34]
+\begin{notesbox}{2. One Piece or Two --- and Three Ways to Write It}
+\small
 Same expression, same $5$, one symbol apart --- and the two answers look nothing alike.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
+
+\vspace{3pt}
+\renewcommand{\arraystretch}{1.35}
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
+\rowcolor{forestbg}
 \textbf{In range: $|x-12| \le 5$} & \textbf{Out of range: $|x-12| \ge 5$} \\
-\hline
-Closer to the tower than $5$: \emph{between}. & Farther from the tower than $5$: \emph{outside}. \\
-Becomes one compound \blank{1.2cm}: & Becomes two statements joined by \blank{1.2cm}: \\
-$-5 \le x-12 \le 5$, so \; \blank{1.4cm} $\le x \le$ \blank{1.4cm} & $x-12 \le -5$ \; or \; $x-12 \ge 5$, so \; $x \le$ \blank{1.2cm} \, or \, $x \ge$ \blank{1.2cm} \\
+\emph{Closer} to the tower than $5$: \textbf{between}. &
+\emph{Farther} from the tower than $5$: \textbf{outside}. \\
+One compound inequality, joined by \blank{1.0cm}: &
+Two separate statements, joined by \blank{1.0cm}: \\
+$-5 \le x-12 \le 5$, so \; \blank{1.1cm} $\le x \le$ \blank{1.1cm} &
+$x-12 \le -5$ \; or \; $x-12 \ge 5$, so \; $x \le$ \blank{1.0cm} \, or \, $x \ge$ \blank{1.0cm} \\
 \centering\arraybackslash
 \begin{tikzpicture}[x=0.20cm, y=0.40cm, baseline=-2pt]
   \trail
@@ -150,51 +195,53 @@ $-5 \le x-12 \le 5$, so \; \blank{1.4cm} $\le x \le$ \blank{1.4cm} & $x-12 \le -
   \fill[redacc] (17,0) circle (3.6pt);
 \end{tikzpicture}
 \\
-\blank{1.2cm} connected piece & \blank{1.2cm} separate pieces \\
+\blank{1.0cm} connected piece & \blank{1.0cm} separate pieces \\
+Set: $\{x \mid$ \blank{2.4cm} $\}$ & Set: $\{x \mid$ \blank{2.4cm} $\}$ \\
+Interval: \blank{2.0cm} & Interval: $(-\infty,$ \blank{0.8cm} $] \cup [$ \blank{0.8cm} $, \infty)$ \\
 \end{tabularx}
+
+\vspace{4pt}
+\textbf{The endpoint carries the symbol.} A bracket \textbf{[ ]} and a \blank{1.3cm} dot mean
+the endpoint is \emph{in} ($\le$, $\ge$); a parenthesis \textbf{( )} and an \blank{1.3cm} dot
+mean it is \emph{out} ($<$, $>$). Next to $\infty$ you always write a \blank{2.0cm}, because
+$\infty$ is not a number you can reach. Two rays need two intervals and a $\cup$.
+
+\vspace{5pt}
+\textbf{Tolerance --- how far from a desired value are we willing to be?} ``Within 5 miles of
+the tower'' names a \textbf{desired value}, \blank{1.2cm}, and a \textbf{tolerance}, \blank{1.2cm}.
+Every ``within so much of'' sentence is the same inequality:
+\[ |\,x - \text{desired value}\,| \;\le\; \text{tolerance}. \]
+A tolerance is never negative, and it is always the ``and'' case --- you stay \emph{between}.
+
+\vspace{8pt}
+\textbf{\textcolor{forest}{The Crux: Test One Hiker, and Watch the Two Disagree.}}
+Students who treat $\le$ and $\ge$ as ``nearly the same'' get the \emph{opposite} set. Prove it
+with one hiker.
+
+\vspace{3pt}
+\begin{center}
+\fcolorbox{goldacc}{goldbg}{\parbox{0.94\linewidth}{\small
+A hiker at \textbf{mile 3} is $|3-12| =$ \blank{0.9cm} miles from the tower. Is $9 \le 5$?
+\blank{0.9cm} \quad Is $9 \ge 5$? \blank{0.9cm} \quad So mile $3$ belongs to \emph{exactly one}
+of the two answers above --- \blank{2.4cm}. Picking the wrong symbol does not shift the answer a
+little; it hands you the opposite set.}}
 \end{center}
-\vspace{2pt}
-\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.9pt, arc=2mm,
-    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
-\small \textbf{Careful --- test one hiker and watch the two disagree.} A hiker at \textbf{mile 3}
-is $|3-12| =$ \blank{0.9cm} miles from the tower. Is $9 \le 5$? \blank{1.0cm} \; Is $9 \ge 5$?
-\blank{1.0cm} \; So mile $3$ belongs to \emph{exactly one} of the two answers above ---
-\blank{2.6cm}. Picking the wrong symbol does not shift the answer a little; it hands you the
-\emph{opposite} set.
-\end{tcolorbox}
+
+\vspace{4pt}
+\textbf{The odd cases, from the same picture.} $|x-12| < -2$ asks for a distance less than a
+negative number: \blank{2.2cm}. $|x-12| \ge -2$ asks for a distance at least $-2$, which every
+mile satisfies: \blank{2.6cm}. Neither needs algebra --- only the meaning of \emph{distance}.
 \end{notesbox}
 
-\boxguard[24]
-\begin{notesbox}{4. Three Ways to Write the Same Set}
-The in-range hikers are $7 \le x \le 17$. That one set has three accepted spellings.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Set notation} & $\{x \mid$ \blank{2.6cm} $\}$ --- read ``all $x$ such that\dots'' \\
-\textbf{Interval notation} & \blank{2.4cm} --- endpoints in order, left to right \\
-\textbf{Number line} &
-\begin{tikzpicture}[x=0.20cm, y=0.40cm, baseline=-2pt]
-  \trail
-\end{tikzpicture} \\
-\end{tabularx}
-\end{center}
-\vspace{-2pt}
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}X|X@{}}
-\textbf{Endpoint included} ($\le$, $\ge$) & \textbf{Endpoint excluded} ($<$, $>$) \\
-\hline
-bracket \blank{1.2cm} \, and a \blank{1.6cm} dot & parenthesis \blank{1.2cm} \, and an \blank{1.6cm} dot \\
-\end{tabularx}
-\end{center}
-Two rays need two intervals joined by $\cup$: the out-of-range hikers are
-$(-\infty,$ \blank{1.0cm} $] \cup [$ \blank{1.0cm} $, \infty)$. Next to $\infty$ you always write a
-\blank{2.2cm}, never a bracket --- because $\infty$ is not a \blank{2.0cm} you can reach.
-\end{notesbox}
+\vspace{6pt}
 
+% ── WE DO: guided practice ───────────────────────────────────────────────────
+\boxguard[26]
 \begin{practicebox}
-Solve $2|x-5| - 3 = 7$, then change one symbol and watch the answer change shape.
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+\small
+\textbf{We work this one together.} Solve $2|x-5| - 3 = 7$, then change one symbol and watch
+the answer change shape.
+\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=5pt]
   \item Isolate the bars, then split.
         \begin{work}
           2|x-5| - 3 &= 7 \\
@@ -203,51 +250,22 @@ Solve $2|x-5| - 3 = 7$, then change one symbol and watch the answer change shape
           x - 5 &= 5 \quad\text{or}\quad x - 5 = -5 \\
           x &= 10 \quad\text{or}\quad x = 0
         \end{work}
-  \item Now solve $2|x-5| - 3 \le 7$ instead. One piece or two? \blank{1.6cm} \;
-        Solution: \blank{3.0cm}
-  \item And $2|x-5| - 3 \ge 7$? \blank{1.6cm} \; Solution: \blank{4.0cm}
+        Verify one: \blank{4.0cm}
+  \item Now $2|x-5| - 3 \le 7$. Closer than or farther than? \blank{2.2cm} \quad One piece or
+        two? \blank{1.2cm} \\[3pt]
+        Solution: \blank{3.0cm} \quad Interval: \blank{2.4cm} \quad
+        \begin{tikzpicture}[x=0.36cm, y=0.42cm, baseline=-2pt]
+          \numline{-2}{12}
+        \end{tikzpicture}
+  \item Read part~b as a tolerance: the desired value is \blank{1.2cm} and the tolerance is
+        \blank{1.2cm}. \; In words: ``stay within \blank{1.0cm} of \blank{1.0cm}.''
+  \item And $2|x-5| - 3 \ge 7$? \blank{1.2cm} piece(s). \quad
+        Solution: \blank{3.4cm} \\[3pt]
+        Interval: \blank{3.4cm} \quad
+        \begin{tikzpicture}[x=0.36cm, y=0.42cm, baseline=-2pt]
+          \numline{-2}{12}
+        \end{tikzpicture}
 \end{enumerate}
 \end{practicebox}
-
-\boxguard[22]
-\begin{scenariobox}[Individual Practice --- On Your Own]{navy}
-Three problems, quietly and on your own. Isolate the bars \emph{before} you split, and decide each
-time whether the answer is one piece or two.
-\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
-  \item \textbf{An equation.} Solve $4|x+1| - 5 = 15$, then verify one of your two answers.
-    \begin{work}
-      4|x+1| - 5 &= 15 \\
-      4|x+1| &= 20 \\
-      |x+1| &= 5 \\
-      x + 1 &= 5 \quad\text{or}\quad x + 1 = -5 \\
-      x &= 4 \quad\text{or}\quad x = -6
-    \end{work}
-    Solutions: \blank{3.0cm} \quad Check one: \blank{3.4cm}
-
-  \item \textbf{``Less th\emph{AND}.''} Solve $|2x - 1| \le 5$, then write the set three ways.
-    \begin{work}
-      |2x - 1| &\le 5 \\
-      -5 \le 2x - 1 &\le 5 \\
-      -4 \le 2x &\le 6 \\
-      -2 \le x &\le 3
-    \end{work}
-    Set: \blank{3.2cm} \quad Interval: \blank{2.2cm} \quad
-    \begin{tikzpicture}[x=0.40cm, y=0.42cm, baseline=-2pt]
-      \numline{-4}{5}
-    \end{tikzpicture}
-
-  \item \textbf{``Great\emph{OR}.''} Solve $|3x - 6| \ge 9$, then write the set three ways.
-    \begin{work}
-      |3x - 6| &\ge 9 \\
-      3x - 6 &\le -9 \quad\text{or}\quad 3x - 6 \ge 9 \\
-      3x &\le -3 \quad\text{or}\quad 3x \ge 15 \\
-      x &\le -1 \quad\text{or}\quad x \ge 5
-    \end{work}
-    Set: \blank{3.8cm} \quad Interval: \blank{3.2cm} \quad
-    \begin{tikzpicture}[x=0.40cm, y=0.42cm, baseline=-2pt]
-      \numline{-3}{7}
-    \end{tikzpicture}
-\end{enumerate}
-\end{scenariobox}
 
 \end{document}
