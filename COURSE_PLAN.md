@@ -2,6 +2,52 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-03) — **LESSON 1.2 PILOTS THE AP-STATS 1.4 SPEC: 12pt STUDENT PACKET, TWO-SECTION NOTES, HOMEWORK IS THE INDIVIDUAL PRACTICE. PENDING USER REVIEW OF THE PRINTED RESULT.**
+>
+> **User direction, 2026-09-03:** regenerate 1.2 "according to the specs used to produce the stats
+> project's lesson 1.4" — larger font size, the new vocabulary-box spec, a lesson title that fits
+> the cover, shorter guided notes. Four clarifications were asked and answered: **(1)** adopt the
+> stats 1.4 notes shape (two long sections, notes end at Guided Practice, **no Individual Practice
+> block in the notes — the homework is the individual practice**, started in class); **(2)** every
+> student component moves to **12pt** (plan stays 10pt); **(3)** port the shared macros
+> **additively** into `shared/`; **(4)** 1.2 is a **pilot** — the skill, scaffolder, and skeletons
+> are NOT updated until the user has reviewed the printed result.
+>
+> **`shared/` (additive, ported from `~/Mathematics/stats`):** `\coverbanner{unit}{lesson}` in
+> `algebra2-article.sty` measures the title block and sizes the forest band to it (the old
+> hard-coded 0.9in band clips a wrapped title at 12pt); `\termblank{Term}` is now a **fixed-height
+> row** (`\termrowheight` 1.30cm, `\termrowinset` 7pt of leading taken from inside the row) and
+> `\termans{Term}{def}` in `algebra2-key.sty` fills it at the same height, so the vocab box cannot
+> drift blank vs.\ keyed (`\termblanklong` / key-local `\vocabans` remain for the other lessons);
+> `\namedateperiod` blanks narrowed 4.8/2.8 → 4.0/2.6cm so the row fits at 12pt (the one change
+> visible on every cover). The old two-line `\termblank` had no users anywhere in the course.
+>
+> **Lesson 1.2 now:** cover 12pt with `\coverbanner`, three scored rows, remind box carrying the
+> lesson rather than its structure; warm-up unchanged (already 12pt, one page); **notes 4pp at 12pt**
+> — objective, five `\termblank` rows, hook, **section 1** (distance and the two-case rule; run-in
+> second half *Isolate the Bars Before You Split* with the three-row table), **section 2** (the
+> $\le$/$\ge$ table with the three notations read off it; run-in second half *The Crux: Test One
+> Hiker* — the mile-3 gold box — then the odd cases), **Guided Practice** ($2|x-5|-3=7$, then $\le$,
+> then $\ge$, each three ways) and nothing after it; **homework 2pp at 12pt** — remind box, six items
+> unchanged in content, spiral box; **the extension box was cut for fit** (restoring it made the
+> homework 3pp). Plan repaced to **5 / 34 / 8 / 13** (60 min) with **three** teacher notes
+> (Warm-Up, Guided Notes \& Practice, Homework); deck reordered targets → warm-up → hook → notes 1a/1b
+> → notes 2a/2b → guided practice → debrief → close \& start homework (11 frames).
+>
+> **Build evidence (2026-09-03):** `make -C unit01/lesson02 all` **EXIT 0** from clean; warm-up
+> **1/1**, notes **4/4**, homework **2/2**, packets **10/10**, plan **5pp**, deck 11 frames; zero
+> overfull boxes beyond the pre-existing 6pt `\pageheader` hbox. `work` blocks byte-identical
+> blank↔key (notes 3, homework 2); `\writelines` totals equal `\ansline` counts; five `\termblank`
+> ↔ five `\termans`; namestrip clean; no `teachernote` in any key. Notes page breaks: section 1,
+> section 2, and Guided Practice each own a page (section 2 is guarded `\boxguard[34]` because its
+> `tabularx` cannot split).
+>
+> **Open — user decides after seeing the print:** (a) make this the course-wide Algebra 2 shape
+> (then update `SKILL.md`, `references/*.md`, `new_lesson.py` skeletons, and the shape memory: two
+> sections, no Individual Practice box, 5/34/8/13, all-12pt, `\coverbanner`, `\termblank`/`\termans`)
+> or keep 1.0/1.1/1.3–1.5 on the 2026-09-01 shape; (b) whether the homework extension box is worth a
+> third page or stays cut. Nothing else in the course changed.
+
 > ## ⚠ Status (2026-09-01, later) — **UNIT 1 COMPLETE IN THE COURSE-WIDE SHAPE: 1.3, 1.4, 1.5 REGENERATED, 1.0 CONVERTED; THE SKILL NOW MATCHES.**
 >
 > **Lessons 1.3–1.5 were regenerated whole** (plan, cover, warm-up+key, notes+key, homework+key,

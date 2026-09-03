@@ -1,6 +1,8 @@
 %! Absolute Value Equations & Inequalities — Unit 1, Lesson 1.2 — Slides (Beamer)
-% Deck follows the lesson's gradual-release flow: hook → warm-up → guided notes (I do / we do) →
-% individual practice (you do alone) → debrief → close & homework. There is no group activity.
+% Deck follows the lesson's gradual-release flow (stats-1.4 spec, 2026-09-03): targets → warm-up →
+% hook → I do (notes 1-2, four frames) → we do (guided practice) → debrief → close & start the
+% homework. There is no group activity and no individual-practice launch frame: the homework IS the
+% individual practice, started in class.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Plain number line: {xmin}{xmax}, ticks labelled every unit.
@@ -40,13 +42,12 @@
     \item \textbf{Isolate} the bars, then split into two cases; handle the odd cases where there
           is one answer, or none.
     \item Solve $|X|<c$ and $|X|>c$, and know which gives \emph{one interval} and which gives
-          \emph{two rays}.
-    \item Write a solution set three ways: \textbf{set}, \textbf{interval}, \textbf{number line}.
+          \emph{two rays} --- then write the answer three ways.
   \end{itemize}
   \vspace{4pt}
   \begin{block}{How today runs}
-    Warm-up (5) $\to$ notes together (20) $\to$ \textbf{practice on your own} (15) $\to$ debrief
-    (10) $\to$ close \& start the homework (10).
+    Warm-up (5) $\to$ notes and one problem together (34) $\to$ debrief (8) $\to$
+    \textbf{start the homework, on your own} (13).
   \end{block}
 \end{frame}
 
@@ -94,10 +95,10 @@
   \end{block}
 \end{frame}
 
-% NOTES 1 — DISTANCE
+% NOTES 1a — DISTANCE
 \begin{frame}[t, plain]
   \forestheader{Notes 1: absolute value is a distance --- so it answers twice}
-  \sectionlabel{One centre, two sides}
+  \sectionlabel{I do --- one centre, two sides}
   \begin{columns}[T]
     \begin{column}{0.52\textwidth}
       \[ |x-h| = \text{the distance between } x \text{ and } h \]
@@ -118,13 +119,13 @@
     \end{column}
   \end{columns}
   \vspace{4pt}
-  \textbf{Verify:} $|17-12|=5$ and $|7-12|=5$. \; A distance is never negative, and two spots sit
-  the same distance out --- one on each side.
+  \textbf{Verify:} $|17-12|=5$ and $|7-12|=5$. \; \textbf{The two-case rule:} $|X|=c$ splits into
+  $X=c$ or $X=-c$ --- a distance is never negative, and two spots sit the same distance out.
 \end{frame}
 
-% NOTES 2 — ISOLATE
+% NOTES 1b — ISOLATE
 \begin{frame}[t, plain]
-  \forestheader{Notes 2: isolate the bars \emph{before} you split}
+  \forestheader{Notes 1, continued: isolate the bars \emph{before} you split}
   \sectionlabel{Undo everything outside the bars first}
   \begin{columns}[T]
     \begin{column}{0.46\textwidth}
@@ -151,10 +152,10 @@
   \end{block}
 \end{frame}
 
-% NOTES 3 — AND vs OR  (the target misconception)
+% NOTES 2a — AND vs OR, three notations
 \begin{frame}[t, plain]
-  \forestheader{Notes 3: ``less th\emph{AND}'' vs.\ ``great\emph{OR}''}
-  \sectionlabel[redacc]{Same expression, same 5, one symbol apart}
+  \forestheader{Notes 2: one piece or two --- and three ways to write it}
+  \sectionlabel{Same expression, same 5, one symbol apart}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \textbf{In range: $|x-12| \le 5$} \\[2pt]
@@ -167,7 +168,7 @@
         \fill[greenacc] (7,0) circle (3pt);
         \fill[greenacc] (17,0) circle (3pt);
       \end{tikzpicture} \\[2pt]
-      \textbf{One} connected piece.
+      \textbf{One} piece: $\{x \mid 7\le x\le 17\}$, \; $[7,17]$.
     \end{column}
     \begin{column}{0.48\textwidth}
       \textbf{Out of range: $|x-12| \ge 5$} \\[2pt]
@@ -181,89 +182,90 @@
         \fill[redacc] (7,0) circle (3pt);
         \fill[redacc] (17,0) circle (3pt);
       \end{tikzpicture} \\[2pt]
-      \textbf{Two} separate pieces.
+      \textbf{Two} pieces: $(-\infty,7] \cup [17,\infty)$.
     \end{column}
   \end{columns}
   \vspace{3pt}
-  \begin{block}{Test one hiker --- mile 3}
-    $|3-12| = 9$. \; Is $9 \le 5$? \textbf{No.} \; Is $9 \ge 5$? \textbf{Yes.} \; The wrong symbol
-    does not shift the answer a little --- it hands you the \emph{opposite} set.
+  \begin{block}{The endpoint carries the symbol}
+    Bracket $[\;]$ + filled dot: \textbf{in} ($\le,\ge$). Parenthesis $(\;)$ + open dot:
+    \textbf{out} ($<,>$). $\infty$ \emph{always} takes a parenthesis --- you cannot reach it.
   \end{block}
 \end{frame}
 
-% NOTES 4 — THREE NOTATIONS
+% NOTES 2b — THE CRUX
 \begin{frame}[t, plain]
-  \forestheader{Notes 4: three ways to write the same set}
-  \sectionlabel{And your turn}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      The in-range hikers are $7 \le x \le 17$:
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item \textbf{Set:} $\{x \mid 7 \le x \le 17\}$
-        \item \textbf{Interval:} $[7,17]$
-        \item \textbf{Number line:} shaded, filled dots
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Bracket $[\;]$ + filled dot: endpoint \textbf{in}.
-        \item Parenthesis $(\;)$ + open dot: endpoint \textbf{out}.
-        \item Two rays need a union: $(-\infty,7] \cup [17,\infty)$.
-        \item $\infty$ \emph{always} takes a parenthesis --- it is not a number you can reach.
-      \end{itemize}
-    \end{column}
-  \end{columns}
-  \vspace{4pt}
-  \textbf{Guided Practice, together:} $2|x-5|-3=7$ --- isolate, split ($x=10$ or $x=0$), then change
-  the $=$ to $\le$ and to $\ge$ and watch the answer change shape.
+  \forestheader{Notes 2, continued: test one hiker and watch the two disagree}
+  \sectionlabel[redacc]{The crux --- the wrong symbol hands you the opposite set}
+  \begin{center}
+  \begin{tikzpicture}[x=0.44cm, y=0.5cm]
+    \trail
+    \fill[goldacc] (3,0) circle (4pt);
+    \node[goldacc, font=\small\bfseries, above] at (3,0.35){mile 3};
+    \draw[very thick, greenacc] (7,-0.9)--(17,-0.9);
+    \node[greenacc, font=\tiny, below] at (12,-1.0){$|x-12|\le5$};
+    \draw[very thick, redacc] (0,-1.7)--(7,-1.7);
+    \draw[very thick, redacc] (17,-1.7)--(20,-1.7);
+    \node[redacc, font=\tiny, below] at (12,-1.8){$|x-12|\ge5$};
+  \end{tikzpicture}
+  \end{center}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item The hiker at mile 3 is $|3-12| = 9$ miles from the tower.
+    \item Is $9 \le 5$? \textbf{No.} \quad Is $9 \ge 5$? \textbf{Yes.} \quad Mile 3 is in
+          \emph{exactly one} of the two answers --- out of range.
+    \item \textbf{The odd cases, same picture:} $|x-12|<-2$ has \textbf{no solution};
+          $|x-12|\ge-2$ is \textbf{every real number}. No algebra --- only what a distance is.
+  \end{itemize}
 \end{frame}
 
-% INDIVIDUAL PRACTICE LAUNCH
+% GUIDED PRACTICE — WE DO
 \begin{frame}[t, plain]
-  \forestheader{Individual Practice: on your own}
-  \sectionlabel[goldacc]{15 minutes $\cdot$ silent $\cdot$ last page of your notes}
+  \forestheader{Guided Practice: we do this one together}
+  \sectionlabel[goldacc]{You hold the pen --- one problem, three symbols}
   \begin{enumerate}\setlength{\itemsep}{6pt}
-    \item \textbf{An equation.} Solve $4|x+1| - 5 = 15$, then verify one of your two answers.
-    \item \textbf{``Less th\emph{AND}.''} Solve $|2x-1| \le 5$, then write the set three ways.
-    \item \textbf{``Great\emph{OR}.''} Solve $|3x-6| \ge 9$, then write the set three ways.
+    \item[\textbf{a.}] $2|x-5| - 3 = 7$. Isolate, then split. \; Verify one answer.
+    \item[\textbf{b.}] $2|x-5| - 3 \le 7$. Closer than or farther than? One piece or two? Write it
+          as a solution, an interval, and a shaded line.
+    \item[\textbf{c.}] $2|x-5| - 3 \ge 7$. Same three ways.
   \end{enumerate}
   \vspace{5pt}
-  \begin{block}{The rule}
-    Isolate the bars \emph{before} you split. Stuck? Look \emph{up the page} at the notes --- not at
-    your neighbour. Done early? Change problem~3's $\ge$ to $\le$ and say which numbers switch sides.
+  \begin{block}{The questions I will ask}
+    ``What is stuck to the bars? Undo that first.'' \quad ``Between, or outside?'' \quad
+    ``Does your picture have a gap? Then it needs two intervals and a $\cup$.''
   \end{block}
 \end{frame}
 
 % DEBRIEF
 \begin{frame}[t, plain]
-  \forestheader{Debrief: correct your own page in a second colour}
-  \sectionlabel[redacc]{10 minutes}
+  \forestheader{Debrief: pens down, papers up}
+  \sectionlabel[redacc]{8 minutes --- aloud, nothing to fill in}
   \begin{enumerate}\setlength{\itemsep}{5pt}
-    \item \textbf{1 --- isolate, then split.} $4|x+1|=20 \Rightarrow |x+1|=5 \Rightarrow x=4$ or
-          $x=-6$. Verify: $4|5|-5=15$. \checkmark
-    \item \textbf{The must-land moment.} $|2x-1|\le5$ gives $-2\le x\le3$ --- \emph{one} piece.
-          $|3x-6|\ge9$ gives $x\le-1$ or $x\ge5$ --- \emph{two}. Closer than $\Rightarrow$ between;
-          farther than $\Rightarrow$ outside. Same as the mile-3 hiker.
-    \item \textbf{2 --- all three parts.} $-5\le2x-1\le5 \Rightarrow -4\le2x\le6 \Rightarrow
-          -2\le x\le3$. Interval $[-2,3]$. Test $x=0$: $|{-1}|\le5$. \checkmark
-    \item \textbf{3 --- the union.} $(-\infty,-1] \cup [5,\infty)$. Why brackets inward, and why
-          $\infty$ never gets one. Test $x=6$: $|12|\ge9$. \checkmark
+    \item \textbf{(b) and (c) side by side.} $0\le x\le10$ is \emph{one} piece --- closer than.
+          $x\le0$ or $x\ge10$ is \emph{two} --- farther than. Point at the piece, or the gap.
+    \item \textbf{The single chain.} $10\le x\le0$ reads as \emph{empty}. Shade it and see why
+          (c) needs a $\cup$: $(-\infty,0]\cup[10,\infty)$.
+    \item \textbf{Split too early?} $2x-5-3=7$ gives one answer, and a wrong one. Isolate:
+          $|x-5|=5$, so $x=10$ or $x=0$.
+    \item \textbf{Why never $[\infty$?} You cannot reach it.
   \end{enumerate}
+  \vspace{4pt}
+  \begin{block}{Say it without the notes}
+    The mile-3 hiker: distance 9, not in range, in exactly one of the two answers.
+  \end{block}
 \end{frame}
 
-% CLOSE
+% CLOSE & START HOMEWORK
 \begin{frame}[t, plain]
-  \forestheader{Close}
-  \sectionlabel{What changed today}
+  \forestheader{Close --- and start the homework, on your own}
+  \sectionlabel{13 minutes $\cdot$ silent $\cdot$ the Homework page in your packet}
   You walked in able to write a line that crosses zero exactly \emph{once}. You walk out able to
   handle a rule that reaches the same value \emph{twice} --- because it measures a \textbf{distance}
   --- and to say whether an answer is one interval or two rays.
   \vspace{5pt}
-  \begin{block}{Homework --- start it now}
-    The \textbf{Homework} page in your packet. We start item~1 together and you keep going; whatever
-    is left is due next class. Six problems plus an extension: two equations, a contrast pair
-    ($<$ against $>$), reading an inequality \emph{off} a shaded number line, the odd cases and
-    their boundary, a thermostat model, and one multiple-choice item.
+  \begin{block}{Homework --- scored, due next class}
+    We work item~1(a) together right now; then you keep going, alone. Six items: two equations,
+    a contrast pair ($<$ against $>$), an inequality to read \emph{off} a shaded number line, the
+    odd cases and their boundary, a thermostat, and one multiple-choice item. Whatever is left is
+    due next class.
   \end{block}
   \vspace{4pt}
   \textbf{Next:} Lesson 1.3 --- you \emph{solved} $|ax+b|=c$; next you \emph{graph} $y=|ax+b|$, and

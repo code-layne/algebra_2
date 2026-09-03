@@ -1,7 +1,8 @@
-%! Absolute Value Equations & Inequalities — Unit 1, Lesson 1.2 — Guided Notes (Answer Key)
-% Mirrors notes/main.tex exactly; every \blank{} becomes an \ans{} and every work block is
-% authored byte-identically, so blank and key paginate alike.
-\documentclass[10pt]{article}
+%! Absolute Value Equations & Inequalities — Unit 1, Lesson 1.2 — Guided Notes & Practice (Answer Key)
+% Mirrors notes/main.tex exactly; every \blank{} becomes an \ans{}, every \termblank{} becomes a
+% \termans{}{} of the same fixed row height, and every work block is authored byte-identically,
+% so blank and key paginate alike.
+\documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
 % Plain number line: {xmin}{xmax}, ticks labelled every unit.
@@ -15,69 +16,78 @@
   \foreach \x in {0,4,...,20}{\node[below, font=\scriptsize, charcoal] at (\x,-0.24){$\x$};}
   \fill[forest] (12,0) circle (2.8pt);
   \node[forest, font=\scriptsize, above] at (12,0.28){tower};}
-% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
-% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
-% paragraph, so without them each term label gets pulled onto the previous answer's line.
-\newcommand{\vocabans}[2]{%
-  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
-\pageheader{Unit 1, Lesson 1.2}{Guided Notes --- Answer Key}
+\pageheader{Unit 1, Lesson 1.2}{Guided Notes \& Practice --- Answer Key}
+% NAMESTRIP: no \namedateperiod here — the name row lives on the cover only.
 
-\vspace{0.10in}
+\vspace{6pt}
 
+\boxguard[14]
 \begin{objectivebox}
-\textbf{By the end of this lesson, I will be able to\dots}
-\begin{itemize}\setlength{\itemsep}{2pt}
-  \item read $|x-h|$ as the \emph{distance} between $x$ and $h$, and explain why an absolute value
+\small
+By the end of these notes I will be able to:
+\begin{enumerate}[leftmargin=1.6em, nosep, after=\vspace{2pt}]
+  \item read $|x-h|$ as the \textbf{distance} between $x$ and $h$, and say why an absolute value
         equation usually has \emph{two} solutions;
-  \item \emph{isolate} the bars, then split into two cases, and handle the $c=0$ and $c<0$
-        special cases;
-  \item solve $|X|<c$ and $|X|>c$ and say which gives \emph{one} interval and which gives
-        \emph{two} rays;
-  \item write a solution set three ways --- set notation, interval notation, and a number line.
-\end{itemize}
+  \item \textbf{isolate} the bars, then split into two cases --- and handle the cases with one
+        solution or none;
+  \item solve $|X|<c$ and $|X|>c$, say which gives \emph{one} interval and which gives
+        \emph{two} rays, and write the answer three ways.
+\end{enumerate}
 \end{objectivebox}
 
-\vspace{0.05in}
+\vspace{6pt}
 
+\boxguard[16]
 \begin{vocabbox}
 \small
-Fill in each term as we build it together.
-\par\vspace{2pt}   % \par is required: \vocabans's \noindent is a no-op mid-paragraph
-\vocabans{Absolute value as distance}{$|x-h|$ is how far $x$ is from $h$; never negative}
-\vocabans{Two-case rule}{$|X|=c$ with $c>0$ splits into $X=c$ or $X=-c$ --- isolate the bars first}
-\vocabans{Compound ``and'' / ``or''}{$|X|<c$ gives one interval between; $|X|>c$ gives two rays outside}
-\vocabans{Set notation}{$\{x \mid 7 \le x \le 17\}$ --- ``all $x$ such that\dots''}
-\vocabans{Interval notation}{$[7,17]$; brackets include an endpoint, parentheses exclude it}
-\vocabans{Extraneous / no solution}{$|X|=c$ or $|X|<c$ with $c<0$ has no solution --- distance is never negative}
+Fill in each term \textbf{as we name it} in the notes below.
+\par
+\termans{Absolute value as distance}{$|x-h|$ is how far $x$ is from $h$ on the number line --- never negative.}
+\par
+\termans{Two-case rule}{$|X|=c$ with $c>0$ splits into $X=c$ or $X=-c$. Isolate the bars first.}
+\par
+\termans{``And'' vs.\ ``or'' inequality}{$|X|<c$: one interval \emph{between} ($-c<X<c$). $|X|>c$: two rays \emph{outside}.}
+\par
+\termans{Interval notation}{$[7,17]$ --- a bracket includes the endpoint, a parenthesis excludes it; $\infty$ always gets a parenthesis.}
+\par
+\termans{No solution}{$|X|=c$ or $|X|<c$ with $c<0$: a distance is never negative, so no $x$ works.}
+\par
 \end{vocabbox}
 
+\vspace{6pt}
+
+\boxguard[12]
 \begin{hookbox}
+\small
 A straight stretch of parkway is marked off in miles, $0$ through $20$. A ranger's radio tower
 stands at \textbf{mile 12}, and a handheld radio reaches it only from \textbf{within 5 miles}.
 \begin{center}
-\begin{tikzpicture}[x=0.52cm, y=0.5cm]
+\begin{tikzpicture}[x=0.56cm, y=0.5cm]
   \trail
 \end{tikzpicture}
 \end{center}
 \vspace{-2pt}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Two hikers stand \emph{exactly} $5$ miles from the tower. Their mile markers are
-        \ans{$7$} and \ans{$17$}.
-  \item Why are there \emph{two} of them, and not one? \ans{one on each side of the tower}
-\end{itemize}
-Every question today is this picture: how far is $x$ from the tower --- and is that close enough?
+Two hikers stand \emph{exactly} $5$ miles from the tower. Their mile markers are \ans{$7$}
+and \ans{$17$}. Why are there \emph{two} of them, and not one? \ans{one on each side of the tower}
+\par\vspace{3pt}
+Every question today is this picture: \textbf{how far is $x$ from the tower --- and is that
+close enough?}
 \end{hookbox}
 
-\boxguard[22]
+\vspace{6pt}
+
+% ── I DO: section 1 ──────────────────────────────────────────────────────────
+\boxguard[14]
 \begin{notesbox}{1. Absolute Value Is a Distance --- So It Answers Twice}
+\small
 \begin{center}
 \begin{minipage}[c]{0.50\linewidth}
 \[ |x-h| \;=\; \text{the distance between } x \text{ and } h \]
-On the parkway, a hiker at mile $x$ is \ans{$|x-12|$} miles from the tower. A distance is never
-\ans{negative}, and \emph{two} different spots sit the same distance out --- one on each side.
+A hiker at mile $x$ is \ans{$|x-12|$} miles from the tower. A distance is never \ans{negative},
+and \emph{two} different spots sit the same distance out --- one on each side.
 \end{minipage}\hfill
 \begin{minipage}[c]{0.46\linewidth}\centering
 \begin{tikzpicture}[x=0.30cm, y=0.42cm]
@@ -91,31 +101,34 @@ On the parkway, a hiker at mile $x$ is \ans{$|x-12|$} miles from the tower. A di
 \end{tikzpicture}
 \end{minipage}
 \end{center}
-\textbf{Worked: exactly five miles out.} ``Distance from the tower is $5$'' is $|x-12|=5$.
+\textbf{Exactly five miles out.} ``Distance from the tower is $5$'' is $|x-12|=5$. The bars
+hide \emph{two} equations --- one for each side of the tower:
 \begin{work}
   |x - 12| &= 5 \\
   x - 12 &= 5 \quad\text{or}\quad x - 12 = -5 \\
   x &= 17 \quad\text{or}\quad x = 7
 \end{work}
-Both markers from the hook, straight out of the algebra. \textbf{Verify} by putting each back in:
-$|17-12|$ is \ans{$5$} and $|7-12|$ is \ans{$5$}.
-\end{notesbox}
+Both markers from the hook, straight out of the algebra. \textbf{Verify} by putting each back
+in: $|17-12| =$ \ans{$5$} and $|7-12| =$ \ans{$5$}. That is the \textbf{two-case rule}:
+$|X| = c$ splits into $X = c$ \emph{or} $X = -c$.
 
-\boxguard[24]
-\begin{notesbox}{2. Isolate the Bars \emph{Before} You Split}
-The two-case rule applies to $|X| = c$ only when the bars stand \emph{alone}. Everything outside
-them gets undone first --- exactly as if the bars were a variable.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
+\vspace{8pt}
+\textbf{\textcolor{forest}{Isolate the Bars \emph{Before} You Split.}}
+The two-case rule is a statement about $|X|$ \emph{alone}. Anything outside the bars gets undone
+first --- treat the bars exactly as you would a variable.
+
+\vspace{3pt}
+\renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\linewidth}{@{}l l X@{}}
+\rowcolor{forestbg}
 \textbf{$|X| = c$ when\dots} & \textbf{Split into} & \textbf{How many solutions --- and why} \\
-\hline
 $c > 0$ & $X =$ \ans{$c$} \; or \; $X =$ \ans{$-c$} & \ans{two} --- two spots sit that far out \\
 $c = 0$ & $X =$ \ans{$0$} & \ans{one} --- only one spot is \emph{zero} away \\
 $c < 0$ & --- & \ans{none} --- a distance is never negative \\
 \end{tabularx}
-\end{center}
-\textbf{Worked: undo, then split.} Solve $3|x+1| - 2 = 10$.
+
+\vspace{4pt}
+\textbf{Undo, then split.} Solve $3|x+1| - 2 = 10$.
 \begin{work}
   3|x+1| - 2 &= 10 \\
   3|x+1| &= 12 \\
@@ -123,20 +136,31 @@ $c < 0$ & --- & \ans{none} --- a distance is never negative \\
   x + 1 &= 4 \quad\text{or}\quad x + 1 = -4 \\
   x &= 3 \quad\text{or}\quad x = -5
 \end{work}
-Splitting at the \emph{first} line would give $3x+1-2=10$ --- a single answer, and a wrong one.
+Splitting at the \emph{first} line would give $3x+1-2=10$ --- a single answer, and a
+\ans{wrong} one.
 \end{notesbox}
 
-\boxguard[26]
-\begin{notesbox}{3. ``Less th\emph{AND}'' vs.\ ``Great\emph{OR}'' --- One Piece or Two}
+\vspace{6pt}
+
+% ── I DO: section 2 — inequalities, and the crux ─────────────────────────────
+% Guarded generously: the two-column tabularx cannot split, so a small guard strands the
+% heading and its intro line as a sliver at the foot of the previous page.
+\boxguard[34]
+\begin{notesbox}{2. One Piece or Two --- and Three Ways to Write It}
+\small
 Same expression, same $5$, one symbol apart --- and the two answers look nothing alike.
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
+
+\vspace{3pt}
+\renewcommand{\arraystretch}{1.35}
 \begin{tabularx}{\linewidth}{@{}X|X@{}}
+\rowcolor{forestbg}
 \textbf{In range: $|x-12| \le 5$} & \textbf{Out of range: $|x-12| \ge 5$} \\
-\hline
-Closer to the tower than $5$: \emph{between}. & Farther from the tower than $5$: \emph{outside}. \\
-Becomes one compound \ans{and}: & Becomes two statements joined by \ans{or}: \\
-$-5 \le x-12 \le 5$, so \; \ans{$7$} $\le x \le$ \ans{$17$} & $x-12 \le -5$ \; or \; $x-12 \ge 5$, so \; $x \le$ \ans{$7$} \, or \, $x \ge$ \ans{$17$} \\
+\emph{Closer} to the tower than $5$: \textbf{between}. &
+\emph{Farther} from the tower than $5$: \textbf{outside}. \\
+One compound inequality, joined by \ans{and}: &
+Two separate statements, joined by \ans{or}: \\
+$-5 \le x-12 \le 5$, so \; \ans{$7$} $\le x \le$ \ans{$17$} &
+$x-12 \le -5$ \; or \; $x-12 \ge 5$, so \; $x \le$ \ans{$7$} \, or \, $x \ge$ \ans{$17$} \\
 \centering\arraybackslash
 \begin{tikzpicture}[x=0.20cm, y=0.40cm, baseline=-2pt]
   \trail
@@ -155,53 +179,45 @@ $-5 \le x-12 \le 5$, so \; \ans{$7$} $\le x \le$ \ans{$17$} & $x-12 \le -5$ \; o
 \end{tikzpicture}
 \\
 \ans{one} connected piece & \ans{two} separate pieces \\
+Set: $\{x \mid$ \ans{$7 \le x \le 17$} $\}$ & Set: $\{x \mid$ \ans{$x \le 7$ or $x \ge 17$} $\}$ \\
+Interval: \ans{$[7,17]$} & Interval: $(-\infty,$ \ans{$7$} $] \cup [$ \ans{$17$} $, \infty)$ \\
 \end{tabularx}
+
+\vspace{4pt}
+\textbf{The endpoint carries the symbol.} A bracket \textbf{[ ]} and a \ans{filled} dot mean
+the endpoint is \emph{in} ($\le$, $\ge$); a parenthesis \textbf{( )} and an \ans{open} dot
+mean it is \emph{out} ($<$, $>$). Next to $\infty$ you always write a \ans{parenthesis}, because
+$\infty$ is not a number you can reach. Two rays need two intervals and a $\cup$.
+
+\vspace{8pt}
+\textbf{\textcolor{forest}{The Crux: Test One Hiker, and Watch the Two Disagree.}}
+Students who treat $\le$ and $\ge$ as ``nearly the same'' get the \emph{opposite} set. Prove it
+with one hiker.
+
+\vspace{3pt}
+\begin{center}
+\fcolorbox{goldacc}{goldbg}{\parbox{0.94\linewidth}{\small
+A hiker at \textbf{mile 3} is $|3-12| =$ \ans{$9$} miles from the tower. Is $9 \le 5$?
+\ans{no} \quad Is $9 \ge 5$? \ans{yes} \quad So mile $3$ belongs to \emph{exactly one}
+of the two answers above --- \ans{out of range}. Picking the wrong symbol does not shift the answer a
+little; it hands you the opposite set.}}
 \end{center}
-\vspace{2pt}
-\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.9pt, arc=2mm,
-    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
-\small \textbf{Careful --- test one hiker and watch the two disagree.} A hiker at \textbf{mile 3}
-is $|3-12| =$ \ans{$9$} miles from the tower. Is $9 \le 5$? \ans{no} \; Is $9 \ge 5$?
-\ans{yes} \; So mile $3$ belongs to \emph{exactly one} of the two answers above ---
-\ans{out of range}. Picking the wrong symbol does not shift the answer a little; it hands you the
-\emph{opposite} set.
-\end{tcolorbox}
+
+\vspace{4pt}
+\textbf{The odd cases, from the same picture.} $|x-12| < -2$ asks for a distance less than a
+negative number: \ans{no solution}. $|x-12| \ge -2$ asks for a distance at least $-2$, which every
+mile satisfies: \ans{all real numbers}. Neither needs algebra --- only the meaning of \emph{distance}.
 \end{notesbox}
 
-\boxguard[24]
-\begin{notesbox}{4. Three Ways to Write the Same Set}
-The in-range hikers are $7 \le x \le 17$. That one set has three accepted spellings.
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Set notation} & $\{x \mid$ \ans{$7 \le x \le 17$} $\}$ --- read ``all $x$ such that\dots'' \\
-\textbf{Interval notation} & \ans{$[7,17]$} --- endpoints in order, left to right \\
-\textbf{Number line} &
-\begin{tikzpicture}[x=0.20cm, y=0.40cm, baseline=-2pt]
-  \trail
-  \draw[very thick, keyred] (7,0)--(17,0);
-  \fill[keyred] (7,0) circle (3.6pt);
-  \fill[keyred] (17,0) circle (3.6pt);
-\end{tikzpicture} \\
-\end{tabularx}
-\end{center}
-\vspace{-2pt}
-\begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\linewidth}{@{}X|X@{}}
-\textbf{Endpoint included} ($\le$, $\ge$) & \textbf{Endpoint excluded} ($<$, $>$) \\
-\hline
-bracket \ans{$[\;]$} \, and a \ans{filled} dot & parenthesis \ans{$(\;)$} \, and an \ans{open} dot \\
-\end{tabularx}
-\end{center}
-Two rays need two intervals joined by $\cup$: the out-of-range hikers are
-$(-\infty,$ \ans{$7$} $] \cup [$ \ans{$17$} $, \infty)$. Next to $\infty$ you always write a
-\ans{parenthesis}, never a bracket --- because $\infty$ is not a \ans{number} you can reach.
-\end{notesbox}
+\vspace{6pt}
 
+% ── WE DO: guided practice ───────────────────────────────────────────────────
+\boxguard[26]
 \begin{practicebox}
-Solve $2|x-5| - 3 = 7$, then change one symbol and watch the answer change shape.
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
+\small
+\textbf{We work this one together.} Solve $2|x-5| - 3 = 7$, then change one symbol and watch
+the answer change shape.
+\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=5pt]
   \item Isolate the bars, then split.
         \begin{work}
           2|x-5| - 3 &= 7 \\
@@ -210,58 +226,27 @@ Solve $2|x-5| - 3 = 7$, then change one symbol and watch the answer change shape
           x - 5 &= 5 \quad\text{or}\quad x - 5 = -5 \\
           x &= 10 \quad\text{or}\quad x = 0
         \end{work}
-  \item Now solve $2|x-5| - 3 \le 7$ instead. One piece or two? \ans{one} \;
-        Solution: \ans{$0 \le x \le 10$}
-  \item And $2|x-5| - 3 \ge 7$? \ans{two} \; Solution: \ans{$x \le 0$ or $x \ge 10$}
+        Verify one: \ans{$x=10$: $2|5|-3 = 7$ \checkmark}
+  \item Now $2|x-5| - 3 \le 7$. Closer than or farther than? \ans{closer than} \quad One piece or
+        two? \ans{one} \\[3pt]
+        Solution: \ans{$0 \le x \le 10$} \quad Interval: \ans{$[0,10]$} \quad
+        \begin{tikzpicture}[x=0.36cm, y=0.42cm, baseline=-2pt]
+          \numline{-2}{12}
+          \draw[very thick, keyred] (0,0)--(10,0);
+          \fill[keyred] (0,0) circle (2.8pt);
+          \fill[keyred] (10,0) circle (2.8pt);
+        \end{tikzpicture}
+  \item And $2|x-5| - 3 \ge 7$? \ans{two} piece(s). \quad
+        Solution: \ans{$x \le 0$ or $x \ge 10$} \\[3pt]
+        Interval: \ans{$(-\infty,0] \cup [10,\infty)$} \quad
+        \begin{tikzpicture}[x=0.36cm, y=0.42cm, baseline=-2pt]
+          \numline{-2}{12}
+          \draw[very thick, keyred] (-2.5,0)--(0,0);
+          \draw[very thick, keyred] (10,0)--(12.5,0);
+          \fill[keyred] (0,0) circle (2.8pt);
+          \fill[keyred] (10,0) circle (2.8pt);
+        \end{tikzpicture}
 \end{enumerate}
 \end{practicebox}
-
-\boxguard[22]
-\begin{scenariobox}[Individual Practice --- On Your Own]{navy}
-Three problems, quietly and on your own. Isolate the bars \emph{before} you split, and decide each
-time whether the answer is one piece or two.
-\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
-  \item \textbf{An equation.} Solve $4|x+1| - 5 = 15$, then verify one of your two answers.
-    \begin{work}
-      4|x+1| - 5 &= 15 \\
-      4|x+1| &= 20 \\
-      |x+1| &= 5 \\
-      x + 1 &= 5 \quad\text{or}\quad x + 1 = -5 \\
-      x &= 4 \quad\text{or}\quad x = -6
-    \end{work}
-    Solutions: \ans{$4$ and $-6$} \quad Check one: \ans{$x=4$: $4(5)-5=15$ \checkmark}
-
-  \item \textbf{``Less th\emph{AND}.''} Solve $|2x - 1| \le 5$, then write the set three ways.
-    \begin{work}
-      |2x - 1| &\le 5 \\
-      -5 \le 2x - 1 &\le 5 \\
-      -4 \le 2x &\le 6 \\
-      -2 \le x &\le 3
-    \end{work}
-    Set: \ans{$\{x \mid -2 \le x \le 3\}$} \quad Interval: \ans{$[-2,3]$} \quad
-    \begin{tikzpicture}[x=0.40cm, y=0.42cm, baseline=-2pt]
-      \numline{-4}{5}
-      \draw[very thick, keyred] (-2,0)--(3,0);
-      \fill[keyred] (-2,0) circle (2.8pt);
-      \fill[keyred] (3,0) circle (2.8pt);
-    \end{tikzpicture}
-
-  \item \textbf{``Great\emph{OR}.''} Solve $|3x - 6| \ge 9$, then write the set three ways.
-    \begin{work}
-      |3x - 6| &\ge 9 \\
-      3x - 6 &\le -9 \quad\text{or}\quad 3x - 6 \ge 9 \\
-      3x &\le -3 \quad\text{or}\quad 3x \ge 15 \\
-      x &\le -1 \quad\text{or}\quad x \ge 5
-    \end{work}
-    Set: \ans{$\{x \mid x \le -1$ or $x \ge 5\}$} \quad Interval: \ans{$(-\infty,-1] \cup [5,\infty)$} \quad
-    \begin{tikzpicture}[x=0.40cm, y=0.42cm, baseline=-2pt]
-      \numline{-3}{7}
-      \draw[very thick, keyred] (-3.5,0)--(-1,0);
-      \draw[very thick, keyred] (5,0)--(7.5,0);
-      \fill[keyred] (-1,0) circle (2.8pt);
-      \fill[keyred] (5,0) circle (2.8pt);
-    \end{tikzpicture}
-\end{enumerate}
-\end{scenariobox}
 
 \end{document}
