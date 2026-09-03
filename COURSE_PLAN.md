@@ -44,8 +44,12 @@
 >
 > **Two follow-ups the same day (user direction):** the homework's remind box now reads *``Your
 > packet with completed homework is due the first class after two study halls. I will announce the
-> due date in class and on TurtleNet''* (the cover row and plan still say ``due next class'' ---
-> not yet reconciled); and **tolerance** was added **to this lesson only** --- ``how far from a
+> due date in class and on TurtleNet''*. **Course policy (user, 2026-09-03): homework is *always*
+> due the first class after two study halls --- never ``due next class.''** Lesson 1.2's cover row,
+> plan (Homework box, Close box, Homework teacher note), and deck now say so; the other lessons
+> still print ``due next class'' and pick up the wording when they are regenerated (no bulk
+> sweep). The skill's cover/plan skeletons need the same change when the pilot is adopted. And
+> **tolerance** was added **to this lesson only** --- ``how far from a
 > desired value are we willing to be?'' --- as the fifth vocab row (replacing *No solution*, which
 > section 1's table and section 2's odd cases still teach), a named paragraph after the $\le$/$\ge$
 > table ($|x-\text{desired}|\le\text{tolerance}$, always the ``and'' case; the radio's desired value
