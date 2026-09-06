@@ -1,11 +1,11 @@
 # Components
 
-The spec for authoring each file after scaffolding. The scaffolder (`scripts/new_lesson.py`)
+The spec for authoring each file after scaffolding. The scaffolder (`~/.claude/skills/lesson-planning/scripts/new_lesson.py`)
 gives you a correctly-preambled skeleton with TODO markers; this file says what fills them.
 **Always also open a real built lesson (`unit01/lesson00` or `unit01/lesson01`) as the gold
 reference** — these specs summarize the pattern, but the live project is authoritative. For macros
-and boxes see `references/conventions.md`; for where content comes from,
-`references/course-workflow.md`.
+and boxes see the shared skill's `references/conventions.md` (`~/.claude/skills/lesson-planning/`); for where content comes from,
+`templates/lesson/course-workflow.md`.
 
 Contents: [Lesson plan](#lesson-plan) · [Cover](#cover) · [Warm-up](#warm-up) ·
 [Guided Notes](#guided-notes) · [Individual Practice](#individual-practice) · [Homework](#homework) ·
@@ -22,8 +22,8 @@ the board.
 
 There is **no group activity** (cut course-wide, 2026-09-01), **no exit ticket**, **no tiers**,
 and no `experience` component. (All of Unit 1 is on this shape; Units 2–7 have `experience`
-pairs or `exit_ticket` + tiered activities — legacy; regenerate rather than patch. See SKILL.md
-"Converting a lesson that is on an older shape.")
+pairs or `exit_ticket` + tiered activities — legacy; regenerate rather than patch. See
+`LESSON_SHAPE.md` §7, *Legacy shapes and regeneration*.)
 
 General rules:
 - **Every student component is 10pt except the warm-up, which is 12pt** (and still one page):
@@ -31,7 +31,7 @@ General rules:
 - Keep the **key structurally identical** to its blank — it is the blank with answers filled in.
   **A component must come out the same number of pages on both sides.** Every worked solution goes
   in a `work` block authored identically in the two files (see "The work rule" in
-  `references/conventions.md`); a `\writelines{n}` in the blank is answered with exactly `n`
+  the shared skill's `references/conventions.md` (`~/.claude/skills/lesson-planning/`)); a `\writelines{n}` in the blank is answered with exactly `n`
   `\ansline{}`s in the key. Build both and compare page counts before you call a component done.
 - Content is **standards-based and original**: source topic/sequencing from `COURSE_PLAN.md`
   and the standards the user supplies; never copy the `spec/` publisher reference (copyright).
@@ -90,7 +90,7 @@ order:
     `[Individual Practice]`, `[Homework]`. Pacing splits that actually fill each phase's minutes,
     must-land moments, common slips, the early-finisher move, and how to sort the formative
     check. **This is the only place teacher prose goes** — never append one to a `_key`, which
-    would make the key longer than its blank. See `references/conventions.md`.
+    would make the key longer than its blank. See the shared skill's `references/conventions.md` (`~/.claude/skills/lesson-planning/`).
 
 Record the lesson's **standards** (the codes the user supplied) in the plan for the audit trail.
 
@@ -207,7 +207,7 @@ New lessons come out of the scaffolder already correct. To apply it to a lesson 
 the convention:
 
 ```bash
-python3 .claude/skills/lesson-planning/scripts/namestrip.py --project . --unit 02 --lesson 03
+python3 ~/.claude/skills/lesson-planning/scripts/namestrip.py --project . --unit 02 --lesson 03
 ```
 
 Add `--check` to report without changing anything (exits 1 if it finds any). The script skips
@@ -241,7 +241,7 @@ covers and that the rest is due next class, and a one-line preview). Reference i
 ## Unit tests (summative assessments)
 
 Unit-level, not per-lesson — scaffolded once per unit under `unitXX/tests/` and
-`unitXX/test_keys/` (see SKILL "What a unit is" and `references/build.md`). Author **two blank
+`unitXX/test_keys/` (see `LESSON_SHAPE.md` §6 and the shared skill's `references/build.md`). Author **two blank
 tests and their two keys**, all with `\pageheader{Unit X: <Title>}{...}` + `\namedateperiod`
 (tests are **exempt from Namestrip** — they are taken in a testing setting, not stapled behind a
 lesson cover, so they keep their name row):
@@ -280,7 +280,7 @@ test keys too):
   with no counterpart in the blank, and it is what makes a key run a page long.
 - **Worked solutions are not `\ans{}` material.** An inline `$a=b \Rightarrow c=d \Rightarrow e=f$`
   crammed into one cell violates the work rule and gives the student no room; use a `work` block,
-  identical in both files. See `references/conventions.md`.
+  identical in both files. See the shared skill's `references/conventions.md` (`~/.claude/skills/lesson-planning/`).
 - Because the key matches the blank line-for-line, the two paginate identically — verify it:
   ```bash
   for c in warmup notes homework; do
