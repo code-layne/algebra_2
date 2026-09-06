@@ -25,6 +25,7 @@ structure_source: standards
 spec_dir: spec
 course_index: COURSE_PLAN.md
 check_target: false
+point_size: 10
 ---
 
 # Lesson Shape — Algebra 2
