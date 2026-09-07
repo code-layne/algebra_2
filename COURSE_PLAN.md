@@ -2,6 +2,44 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-07) — **LESSON 1.4 REGENERATED WHOLE IN THE COURSE-WIDE GRADUAL-RELEASE SHAPE; IT NOW CARRIES THE DUE-DATE POLICY.**
+>
+> **User direction, 2026-09-07:** ``regenerate lesson 1.4.'' The lesson was already in the
+> course-wide shape (§ 2026-09-01), so this was a whole-lesson rewrite on the **same** shape —
+> plan, cover, warm-up+key, notes+key, homework+key, deck — from the current `templates/lesson/`
+> skeletons, **not** the 1.2 pilot shape (still pending the user's print review; `LESSON_SHAPE.md`
+> §1 and §7 say the pilot is not the reference for anything). Content of record unchanged: one
+> context (the streaming service, free for three months, then \$12 a month), four notes sections
+> with the section-3 caution box ($P(3)=0$: exactly one piece owns the boundary), standards
+> **A2.F.2a/b/c/f**.
+>
+> **What changed.** (1) **Due-date policy applied everywhere it renders** — cover row 3
+> (*scored; due the first class after two study halls*), a new homework `remindbox` (*Your packet
+> with completed homework is due the first class after two study halls. I will announce the due
+> date in class and on TurtleNet*), the plan's Lesson-at-a-Glance close row, Reinforcement box, and
+> Homework teacher note, and the deck's close frame; nothing in 1.4 says ``next class'' any more.
+> (2) The cover uses the skeleton's 1.16in node-anchored banner and `ltablex`. (3) Individual
+> Practice~3 now ends on the **crux**: *a classmate says $\lfloor x\rfloor=4$ on $[4,5]$,
+> including $x=5$ — what did they miss?* (`\writelines{2}` ↔ two `\ansline`s: $5$ belongs to the
+> next step, closed dot at $(5,5)$ — the boundary rule in staircase clothing); the plan's
+> Individual Practice box, debrief item~4, Watch For, and teacher note carry it, and the deck's
+> launch and debrief frames name it. (4) The extension's tax item is now the ``a classmate claims
+> … explain why that cannot happen'' form. (5) The plan's Homework note drops the ``with the group
+> activity cut'' leftover and adds the never-assign-both DeltaMath sentence.
+>
+> **Build evidence (2026-09-07):** out-of-tree `xelatex` scan of all nine files clean; `make -C
+> unit01/lesson04 all` **EXIT 0** from clean (`.stamps` and `target` removed first); warm-up
+> **1/1**, notes **4/4**, homework **2/2**, packets **10/10**, plan 5pp, deck 11 frames; the only
+> overfull box is the pre-existing 6pt `\pageheader` hbox. Verified programmatically: `work`
+> blocks byte-identical blank↔key (notes 5, homework 1), `\writelines` totals = `\ansline` counts
+> (notes 2/2, homework 8/8), six
+> `\termblanklong` ↔ six `\vocabans`, **zero** `\ans` in math mode (brace slots stay wrapped in
+> `\text{}`), `namestrip.py --check` clean, no `teachernote` in any key, four teacher notes in the
+> plan.
+>
+> **Still open:** 1.0, 1.1, 1.3, 1.5 and the skeletons still print ``due next class'' (no bulk
+> sweep — each picks it up when regenerated); the 1.2 pilot decision; Units 2–7 legacy.
+
 > ## ⚠ Status (2026-09-03) — **LESSON 1.2 PILOTS THE AP-STATS 1.4 SPEC: 12pt STUDENT PACKET, TWO-SECTION NOTES, HOMEWORK IS THE INDIVIDUAL PRACTICE. PENDING USER REVIEW OF THE PRINTED RESULT.**
 >
 > **User direction, 2026-09-03:** regenerate 1.2 "according to the specs used to produce the stats
