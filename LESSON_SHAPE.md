@@ -163,8 +163,8 @@ see §7.
   class."** The wording, where it renders: the cover's homework row, the homework page's own
   remind box (*"Your packet with completed homework is due the first class after two study halls.
   I will announce the due date in class and on TurtleNet"*), the plan's Homework / Close boxes and
-  its Homework teacher note, and the deck's close frame. Lessons 1.2 and 1.3 (regenerated
-  2026-09-07) say so today; 1.0, 1.1, 1.4, 1.5 and the skeletons in `templates/lesson/`
+  its Homework teacher note, and the deck's close frame. Lessons 1.2, 1.3 and 1.4 say so today
+  (1.3 and 1.4 regenerated 2026-09-07); 1.0, 1.1, 1.5 and the skeletons in `templates/lesson/`
   (`cover.tex`, `lesson_plan.tex`, `slides.tex`) still print "due next class" and pick up the
   wording when they are regenerated — **no bulk sweep**. When you author from a skeleton, replace
   the phrase.
