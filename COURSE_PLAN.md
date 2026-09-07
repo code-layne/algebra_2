@@ -47,44 +47,53 @@
 > `templates/lesson/` skeletons still print ``due next class'' — no bulk sweep, fixed on
 > regeneration (1.4 was regenerated the same day; see the next block).
 
-> ## ⚠ Status (2026-09-07) — **LESSON 1.4 REGENERATED WHOLE IN THE COURSE-WIDE GRADUAL-RELEASE SHAPE; IT NOW CARRIES THE DUE-DATE POLICY.**
+> ## ⚠ Status (2026-09-07) — **THE TWO-SECTION 12pt SHAPE IS NOW THE COURSE SHAPE; LESSON 1.4 IS ITS REFERENCE.**
 >
-> **User direction, 2026-09-07:** ``regenerate lesson 1.4.'' The lesson was already in the
-> course-wide shape (§ 2026-09-01), so this was a whole-lesson rewrite on the **same** shape —
-> plan, cover, warm-up+key, notes+key, homework+key, deck — from the current `templates/lesson/`
-> skeletons, **not** the 1.2 pilot shape (still pending the user's print review; `LESSON_SHAPE.md`
-> §1 and §7 say the pilot is not the reference for anything). Content of record unchanged: one
-> context (the streaming service, free for three months, then \$12 a month), four notes sections
-> with the section-3 caution box ($P(3)=0$: exactly one piece owns the boundary), standards
-> **A2.F.2a/b/c/f**.
+> **User direction, 2026-09-07,** on seeing 1.4 regenerated on the 2026-09-01 four-section shape:
+> ``I'm seeing some regression here. Look at the stats and saar projects: larger font for the
+> cover, guided notes, and homework; shorten the notes to one page for vocab and hook (remove the
+> primary objectives box); no extension boxes on the homework; no individual practice section in
+> the notes — the homework is the individual practice.'' That adopts the 1.2 pilot (the stats 1.4
+> spec) course-wide, in the SAAR form. **`LESSON_SHAPE.md` §1/§2/§4/§5/§7 are rewritten to it**
+> (`point_size: 12`, `doc_titles.notes` = *Guided Notes \& Practice*).
 >
-> **What changed.** (1) **Due-date policy applied everywhere it renders** — cover row 3
-> (*scored; due the first class after two study halls*), a new homework `remindbox` (*Your packet
-> with completed homework is due the first class after two study halls. I will announce the due
-> date in class and on TurtleNet*), the plan's Lesson-at-a-Glance close row, Reinforcement box, and
-> Homework teacher note, and the deck's close frame; nothing in 1.4 says ``next class'' any more.
-> (2) The cover uses the skeleton's 1.16in node-anchored banner and `ltablex`. (3) Individual
-> Practice~3 now ends on the **crux**: *a classmate says $\lfloor x\rfloor=4$ on $[4,5]$,
-> including $x=5$ — what did they miss?* (`\writelines{2}` ↔ two `\ansline`s: $5$ belongs to the
-> next step, closed dot at $(5,5)$ — the boundary rule in staircase clothing); the plan's
-> Individual Practice box, debrief item~4, Watch For, and teacher note carry it, and the deck's
-> launch and debrief frames name it. (4) The extension's tax item is now the ``a classmate claims
-> … explain why that cannot happen'' form. (5) The plan's Homework note drops the ``with the group
-> activity cut'' leftover and adds the never-assign-both DeltaMath sentence.
+> **Lesson 1.4 now** (plan, cover, warm-up unchanged, notes+key, homework+key, deck — all
+> re-authored): **cover 12pt** with `\coverbanner`, three scored rows, remind box carrying the
+> lesson. **Notes 4pp at 12pt on the SAAR fixed page plan** — p1 vocab box (five fixed-height
+> `\vterm` rows, 2.0cm, no rule line — the SAAR user correction of 2026-09-06 — with the key's
+> `\vtermans` at the same height) + hook ending on the unresolved month-3 vote (*free / \$12*);
+> p2 **section 1** (the brace, $C(2)$, $C(5)$ in a `work` block, then $C(3)$ and the boundary
+> rule; run-in *The V Is Two Pieces* — $|x|$ with a brace, the trail $H(x)$ as $2x-5$ / $7-2x$,
+> meets at the vertex); p3 **section 2** (the $C$/$P$ two-column table with graphs; run-in *The
+> Crux: Exactly One Piece Owns the Boundary*, the gold box with $P(3)=0$; run-in *Step Functions:
+> Rounding Down* with the staircase); p4 **Guided Practice** alone — $p(x)$ evaluated with the
+> boundary, meets-or-jumps, intervals off the graph, **(d) the crux on new ground** (change the
+> second piece to $x+4$: the inequality still gives $-1$ to the first piece, the graph now jumps),
+> and rounding down with *does the step $[4,5)$ own $5$?* Nothing after it. **Homework 2pp at
+> 12pt** — remind box (due the first class after two study halls), `Practice` / `Practice,
+> continued` split at a `\newpage` (items 1–3 / 4–6), six items with item 3 now *read the graph,
+> then write its rule* (the old Individual Practice direction), spiral box; **the extension box is
+> gone.** Plan repaced to **5 / 35 / 10 / 10** (the SAAR allocation for the same 60-minute period;
+> 1.2's 5/34/8/13 is superseded) with **three** teacher notes; deck 11 frames (targets → warm-up
+> → hook left unresolved → notes 1a/1b/2a/2b → Guided Practice → debrief → close & start
+> homework).
 >
 > **Build evidence (2026-09-07):** out-of-tree `xelatex` scan of all nine files clean; `make -C
-> unit01/lesson04 all` **EXIT 0** from clean (`.stamps` and `target` removed first); warm-up
-> **1/1**, notes **4/4**, homework **2/2**, packets **10/10**, plan 5pp, deck 11 frames; the only
-> overfull box is the pre-existing 6pt `\pageheader` hbox. Verified programmatically: `work`
-> blocks byte-identical blank↔key (notes 5, homework 1), `\writelines` totals = `\ansline` counts
-> (notes 2/2, homework 8/8), six
-> `\termblanklong` ↔ six `\vocabans`, **zero** `\ans` in math mode (brace slots stay wrapped in
-> `\text{}`), `namestrip.py --check` clean, no `teachernote` in any key, four teacher notes in the
-> plan.
+> unit01/lesson04 all` **EXIT 0** from clean; warm-up **1/1**, notes **4/4**, homework **2/2**,
+> packets **10/10**, plan 6pp, deck 11 frames; the only overfull box is the pre-existing 6pt
+> `\pageheader` hbox. `work` blocks byte-identical blank↔key (notes 3, homework 1); `\writelines`
+> = `\ansline` (homework 4/4); five `\vterm` ↔ five `\vtermans`; three `\newpage`s in blank and
+> key alike; **zero** `\ans` in math mode; `namestrip.py --check` clean; no `teachernote`,
+> `extensionbox`, `objectivebox`, or ``next class'' anywhere in 1.4.
 >
-> **Still open:** 1.0, 1.1, 1.5 and the skeletons still print ``due next class'' (no bulk
-> sweep — each picks it up when regenerated; 1.3 was regenerated the same day, see the block
-> above); the 1.2 pilot decision; Units 2–7 legacy.
+> **Next actions.** (1) The skeletons in `templates/lesson/` (`notes.tex`, `notes_key.tex`,
+> `cover.tex`, `homework*.tex`, `lesson_plan.tex`, `slides.tex`) and `components.md` still
+> describe the 2026-09-01 four-section shape — update them to mirror 1.4 before the next scaffold
+> (`new_lesson.py` reads `point_size` from the profile, so it already emits 12pt, but the
+> skeleton bodies are the old shape). (2) Regenerate 1.0, 1.1, 1.3, 1.5 on this shape lesson by
+> lesson; bring 1.2 in line (5/35/10/10, `\vterm` rows, drop its `objectivebox`) when next
+> touched. (3) Units 2–7 legacy, from 2.0. **Open:** whether a word-bank strip (SAAR, user request
+> 2026-09-06) belongs in Algebra 2 too — not added.
 
 > ## ⚠ Status (2026-09-03) — **LESSON 1.2 PILOTS THE AP-STATS 1.4 SPEC: 12pt STUDENT PACKET, TWO-SECTION NOTES, HOMEWORK IS THE INDIVIDUAL PRACTICE. PENDING USER REVIEW OF THE PRINTED RESULT.**
 >

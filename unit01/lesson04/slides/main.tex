@@ -1,8 +1,8 @@
 %! Piecewise & Step Functions — Unit 1, Lesson 1.4 — Slides (Beamer)
-% Deck follows the lesson's gradual-release flow, 11 frames (regenerated 2026-09-07): title →
-% targets → warm-up → hook → notes 1–4 (I do / we do) → individual-practice launch (you do alone)
-% → debrief → close & start the homework. No group activity. Homework is due the first class after
-% two study halls (course policy, 2026-09-03).
+% Deck follows the lesson's gradual-release flow (stats/SAAR two-section shape, 2026-09-07):
+% targets → warm-up → hook (left unresolved) → I do (notes 1-2, four frames) → we do (guided
+% practice) → debrief → close & start the homework. There is no group activity and no
+% individual-practice launch frame: the homework IS the individual practice, started in class.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
@@ -51,8 +51,8 @@
   \end{itemize}
   \vspace{4pt}
   \begin{block}{How today runs}
-    Warm-up (5) $\to$ notes together (20) $\to$ \textbf{practice on your own} (15) $\to$ debrief
-    (10) $\to$ close \& start the homework (10).
+    Warm-up (5) $\to$ notes and one function together (35) $\to$ debrief (10) $\to$
+    \textbf{start the homework, on your own} (10).
   \end{block}
 \end{frame}
 
@@ -71,60 +71,53 @@
   \vspace{6pt}
   \begin{block}{Hold on to this}
     One rule is for $x<1$ and a different rule for $x\ge1$. The input $x=1$ fails $x<1$ and
-    satisfies $x\le1$ --- so it uses \emph{exactly one} rule, the second. Keep that.
+    satisfies $x\le1$ --- so which rule gets it? Keep that question.
   \end{block}
 \end{frame}
 
-% HOOK
+% HOOK — left unresolved
 \begin{frame}[t, plain]
   \forestheader{Hook: free for three months}
   \sectionlabel[goldacc]{A streaming service, then \$12 a month}
   \begin{itemize}\setlength{\itemsep}{5pt}
-    \item Total paid after 2 months? After 3? After 5? \; \textbf{\$0, \$0, \$24.}
+    \item Total paid after 2 months? After 5? \; \textbf{\$0, \$24.}
     \item Could one straight line describe the total for every month? \; \textbf{No} --- flat,
-          then rising.
-    \item So how many rules does the cost follow? \; \textbf{Two.}
+          then rising. One function, \emph{two} rules.
   \end{itemize}
   \[ C(m)=\begin{cases} 0, & 0\le m\le 3 \\ 12(m-3), & m>3 \end{cases} \]
-  \begin{block}{The question that carries today}
-    One function, two rules --- a \textbf{piecewise-defined function}. Which rule does an input
-    use? What does the graph do where the rule changes? And what happens when a rule ``rounds''?
+  \begin{block}{Vote --- and we do not settle it yet}
+    \textbf{Month 3: the last free month, or the first paid one?} \quad \emph{free} \; / \;
+    \emph{\$12} \quad --- Every question today is this picture: which rule does a month use, and
+    what does the graph do where the rule changes?
   \end{block}
 \end{frame}
 
-% NOTES 1 — EVALUATE BY PIECE
+% NOTES 1a — EVALUATE BY PIECE
 \begin{frame}[t, plain]
   \forestheader{Notes 1: one function, several rules --- pick the piece first}
-  \sectionlabel{Then apply its rule}
+  \sectionlabel{I do --- then apply its rule}
   \begin{columns}[T]
-    \begin{column}{0.50\textwidth}
+    \begin{column}{0.52\textwidth}
       $C(m)=\begin{cases} 0, & 0\le m\le 3 \\ 12(m-3), & m>3 \end{cases}$
       \begin{itemize}\setlength{\itemsep}{4pt}
         \item $C(2)$: $2\le3$, first piece: $0$.
-        \item $C(3)$: the boundary. $3$ satisfies $0\le m\le3$, so first piece: $0$ --- month 3 is
-              still free.
         \item $C(5)$: $5>3$, second piece: $12(2)=24$.
+        \item $C(3)$: the \textbf{boundary}. $3$ satisfies $0\le m\le3$ --- the $\le$ includes
+              it --- so $C(3)=0$. \textbf{Month 3 is still free.}
       \end{itemize}
     \end{column}
-    \begin{column}{0.46\textwidth}
-      $f(x)=\begin{cases} 2x+1, & x<2 \\ 5-x, & x\ge2 \end{cases}$
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $f(0)=1$ (first piece)
-        \item $f(2)=3$ --- the $\ge$ piece owns $2$
-        \item $f(5)=0$
-      \end{itemize}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Boundary rule}
+        An input on the boundary belongs to the piece whose inequality \emph{includes} it ---
+        $\le$ or $\ge$, never the strict one. The story does not decide it; the inequality does.
+      \end{block}
     \end{column}
   \end{columns}
-  \vspace{5pt}
-  \begin{block}{Boundary rule}
-    An input on the boundary belongs to the piece whose inequality \emph{includes} it --- the
-    one with $\le$ or $\ge$, never the strict one.
-  \end{block}
 \end{frame}
 
-% NOTES 2 — ABSOLUTE VALUE IS PIECEWISE
+% NOTES 1b — THE V IS TWO PIECES
 \begin{frame}[t, plain]
-  \forestheader{Notes 2: absolute value is piecewise --- the V is two pieces}
+  \forestheader{Notes 1, continued: the V is two pieces}
   \sectionlabel{Lesson 1.3's trail, written with a brace}
   \begin{columns}[T]
     \begin{column}{0.40\textwidth}
@@ -142,14 +135,14 @@
   \vspace{4pt}
   \begin{block}{Meets at the vertex}
     Right ray slope $2$, left ray slope $-2$ --- and both rules give $H(3)=1$, so the two pieces
-    \emph{meet}. That is the first ``meets'' example; the next slide shows a ``jumps.''
+    \emph{meet}: one connected V. That is the first ``meets''; the next slide shows a ``jumps.''
   \end{block}
 \end{frame}
 
-% NOTES 3 — MEETS OR JUMPS  (the target misconception)
+% NOTES 2a — MEETS OR JUMPS
 \begin{frame}[t, plain]
-  \forestheader{Notes 3: open or closed, meets or jumps}
-  \sectionlabel[redacc]{Same story, two functions}
+  \forestheader{Notes 2: open or closed, meets or jumps}
+  \sectionlabel{Same story, two functions}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \textbf{Total paid $C(m)$} \\[2pt]
@@ -175,97 +168,90 @@
       At $m=3$ the rules give $0$ and $12$: the graph \textbf{jumps}. Range $\{0,12\}$.
     \end{column}
   \end{columns}
-  \vspace{2pt}
-  \begin{block}{Careful --- exactly one piece owns the boundary}
-    ``$P(3)=12$, because the price is \$12 after the free months''? No: $3$ satisfies
-    $0\le m\le3$, so $P(3)=0$ --- the closed dot says so. The story cannot decide it; the
-    inequality does.
+  \vspace{3pt}
+  \begin{block}{One test}
+    Both rules agree at the boundary, or they do not. Same value: meet. Different: jump --- a
+    \textbf{discontinuity}. Closed dot: the endpoint is \emph{in}; open dot: it is \emph{out}.
   \end{block}
 \end{frame}
 
-% NOTES 4 — STEP FUNCTIONS, then the Guided Practice
+% NOTES 2b — THE CRUX, then rounding down
 \begin{frame}[t, plain]
-  \forestheader{Notes 4: step functions --- the greatest-integer function}
-  \sectionlabel{Then one together}
-  \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
-      $\lfloor x\rfloor$ = the greatest integer $\le x$: it \textbf{rounds down}.
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item $\lfloor3.7\rfloor=3$, \; $\lfloor5\rfloor=5$, \; $\lfloor-0.4\rfloor=-1$
-        \item $\lfloor-2.5\rfloor=-3$ --- down means \emph{more negative}
-        \item Constant $n$ on $[n,n+1)$: closed left, open right, then a jump
-        \item Age in whole years; full hours parked
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.40\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-1.5}{4.5}{-1.5}{4}
-        \draw[very thick, forest] (-1,-1)--(0,-1); \fdot{forest}{-1}{-1} \hdot{forest}{0}{-1}
-        \draw[very thick, forest] (0,0)--(1,0);    \fdot{forest}{0}{0}   \hdot{forest}{1}{0}
-        \draw[very thick, forest] (1,1)--(2,1);    \fdot{forest}{1}{1}   \hdot{forest}{2}{1}
-        \draw[very thick, forest] (2,2)--(3,2);    \fdot{forest}{2}{2}   \hdot{forest}{3}{2}
-        \draw[very thick, forest] (3,3)--(4,3);    \fdot{forest}{3}{3}   \hdot{forest}{4}{3}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
+  \forestheader{Notes 2, continued: exactly one piece owns the boundary}
+  \sectionlabel[redacc]{The crux --- the story cannot decide it; the inequality does}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item ``$P(3)=12$, because the price is \$12 after the free months''? \textbf{No.} $3$
+          satisfies $0\le m\le3$, so $P(3)=0$ --- the \emph{closed} dot at $(3,0)$ says so.
+    \item The open dot at $(3,12)$ is \emph{not} a point of the graph. It marks where the second
+          piece starts \emph{without} its endpoint. Read the wrong dot and you have given the
+          boundary to the wrong piece.
+  \end{itemize}
   \vspace{3pt}
-  \textbf{Guided Practice, together:} $p(x)=-2x$ for $x\le-1$, $x+3$ for $x>-1$ --- evaluate
-  at $-3,-1,0,2$; both rules give $2$ at $-1$, so it meets; read the intervals and the minimum
-  off the graph.
+  \begin{block}{Step functions: rounding down}
+    $P(m)$ is constant, then jumps --- a \textbf{step function}. $\lfloor x\rfloor$ = the greatest
+    integer $\le x$: $\lfloor3.7\rfloor=3$, $\lfloor5\rfloor=5$, $\lfloor-0.4\rfloor=-1$,
+    $\lfloor-2.5\rfloor=-3$ --- down means \emph{more negative}. The staircase is constant $n$ on
+    $[n,n+1)$: closed left, open right --- the boundary rule, one step at a time.
+  \end{block}
 \end{frame}
 
-% INDIVIDUAL PRACTICE LAUNCH
+% GUIDED PRACTICE — WE DO
 \begin{frame}[t, plain]
-  \forestheader{Individual Practice: on your own}
-  \sectionlabel[goldacc]{15 minutes $\cdot$ silent $\cdot$ last page of your notes}
-  \begin{enumerate}\setlength{\itemsep}{6pt}
-    \item \textbf{Across the boundary.} Evaluate $h$ at $0$, $2$, $5$ --- then does $h$ meet or
-          jump at $2$?
-    \item \textbf{From the graph.} Domain, $f(1)$, $f(2)$ off the closed dot, the intervals ---
-          then \emph{write} the rule.
-    \item \textbf{Two pieces and the staircase.} $|x-3|$ as two pieces; round down; then a
-          classmate says the step $[4,5)$ includes $x=5$ --- what did they miss?
+  \forestheader{Guided Practice: we do this one together}
+  \sectionlabel[goldacc]{You hold the pen --- one function, then change one piece}
+  $p(x)=-2x$ for $x\le-1$, \; $x+3$ for $x>-1$ --- the graph is on your page.
+  \begin{enumerate}\setlength{\itemsep}{4pt}
+    \item[\textbf{a.}] Evaluate at $-3$, $0$, $2$ --- then at $-1$: which piece owns it, and how
+          do you know?
+    \item[\textbf{b.}] Meets or jumps at $-1$? \quad \textbf{c.} Decreasing where, increasing
+          where, and the minimum?
+    \item[\textbf{d.}] A classmate says ``both rules give $2$, so it does not matter who owns
+          $-1$.'' Change the second piece to $x+4$ and test that.
+    \item[\textbf{e.}] Round down: $\lfloor2.9\rfloor$, $\lfloor-1.2\rfloor$, $\lfloor4\rfloor$
+          --- and does the step $[4,5)$ own $5$?
   \end{enumerate}
-  \vspace{5pt}
-  \begin{block}{The rule}
-    Find the piece first; at a boundary, ask which inequality \emph{includes} the input. Stuck?
-    Look \emph{up the page} at the notes --- not at your neighbour. Done early? Change problem~1's
-    second rule to $2x-5$: does $h$ meet at $2$ now?
+  \vspace{4pt}
+  \begin{block}{The questions I will ask}
+    ``Does $-1$ satisfy $x\le-1$? Does it satisfy $x>-1$?'' \quad ``You changed the rule --- did
+    you change the \emph{inequality}?'' \quad ``Which integer is just \emph{below} $-1.2$?''
   \end{block}
 \end{frame}
 
 % DEBRIEF
 \begin{frame}[t, plain]
-  \forestheader{Debrief: correct your own page in a second colour}
-  \sectionlabel[redacc]{10 minutes}
+  \forestheader{Debrief: pens down, papers up}
+  \sectionlabel[redacc]{10 minutes --- aloud, nothing to fill in}
   \begin{enumerate}\setlength{\itemsep}{5pt}
-    \item \textbf{1 --- the piece first.} $0\le2$: $h(0)=1$. \; $2\le2$: $h(2)=-1$. \; $5>2$:
-          $h(5)=4$. The other rule gives $-2$ at $2$, so $h$ \emph{jumps}. \checkmark
-    \item \textbf{The must-land moment.} Two dots at $x=2$ in problem~2. The \emph{filled} one is
-          $f(2)=-2$; the open one is where the slanted piece stops. The story cannot decide it ---
-          the inequality does. Same as $P(3)=0$.
-    \item \textbf{Meets or jumps --- one test.} Same value at the boundary means meet; different
-          means jump. Guided Practice met ($2$ and $2$); problems~1 and~2 jump.
-    \item \textbf{3 --- two pieces, rounding down, the crux.} $|x-3|$ is $x-3$ on the right,
-          $3-x$ on the left. $\lfloor-1.2\rfloor=-2$: down means more negative. And $5$ belongs to
-          the \emph{next} step: $\lfloor5\rfloor=5$, closed dot at $(5,5)$ --- one step owns it.
+    \item \textbf{$C$ and $P$ side by side.} Same value at $m=3$: meet. Different: jump. Point at
+          the two dots that earned it.
+    \item \textbf{Part (d).} The first piece still owns $-1$ --- $p(-1)=2$, closed dot at
+          $(-1,2)$, open dot at $(-1,3)$, and the graph jumps. Whoever moved $p(-1)$ to $3$ read
+          the open dot. Same as $P(3)=0$.
+    \item \textbf{Rounding down.} $\lfloor-1.2\rfloor=-2$, not $-1$. And $\lfloor5\rfloor=5$:
+          the step $[4,5)$ stops \emph{without} $5$; the next one starts \emph{with} it.
+    \item \textbf{Pieces can meet.} The trail $H(x)$ and $p(x)$ both do --- ``piecewise'' does not
+          mean ``discontinuous.''
   \end{enumerate}
+  \vspace{4pt}
+  \begin{block}{Say it without the notes}
+    Month 3: $3$ satisfies $0\le m\le3$, so the first piece owns it, so $P(3)=0$ --- closed dot at
+    $(3,0)$.
+  \end{block}
 \end{frame}
 
 % CLOSE & START HOMEWORK
 \begin{frame}[t, plain]
   \forestheader{Close --- and start the homework, on your own}
-  \sectionlabel{10 minutes $\cdot$ the Homework page in your packet}
+  \sectionlabel{10 minutes $\cdot$ silent $\cdot$ the Homework page in your packet}
   You walked in with functions that follow \emph{one} rule. You walk out able to read a function
   that follows \emph{several} --- pick the piece, mind the boundary, read the dots --- and to see
   Lesson 1.3's V as the first piecewise function you already knew.
   \vspace{5pt}
   \begin{block}{Homework --- scored, due the first class after two study halls}
-    We start item~1 together right now; then you keep going, alone. Six problems plus an
-    extension: evaluating with a boundary, a meets-or-jumps pair, reading a graph, the staircase,
-    a phone-plan model, and one multiple-choice item. Whatever is left is due the first class
-    after two study halls --- I will announce the date in class and on TurtleNet.
+    We work item~1's first blank together right now; then you keep going, alone. Six items:
+    evaluating with a boundary, a meets-or-jumps pair, a graph to read \emph{and} write as a rule,
+    the staircase, a phone plan, and one multiple-choice item. Whatever is left is due the first
+    class after two study halls --- I will announce the date in class and on TurtleNet.
   \end{block}
   \vspace{4pt}
   \textbf{Next:} Lesson 1.5 --- we leave exact rules behind and fit one \emph{line of best fit} to
