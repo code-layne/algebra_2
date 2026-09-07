@@ -2,7 +2,7 @@
 course: Algebra 2
 prefix: algebra2
 meeting_length: 60
-reference_lesson: unit01/lesson01
+reference_lesson: unit01/lesson04
 components: [cover, warmup, notes, homework, slides]
 keyed: [warmup, notes, homework]
 one_page: [warmup]
@@ -241,7 +241,7 @@ travels with the branch and the Step 0 sync brings the latest state forward.
   notes 4pp (the fixed page plan of §1) · homework 2pp (ceiling). 1.0, 1.1, 1.3, 1.5 are still
   10pt until regenerated.
 - **`\boxguard`** (`-boxes`, `\Needspace`) defaults to 16 lines; at 10pt counts run **16–26**
-  (`20–26` on a `notesbox`, `[22]` before the Individual Practice box, `[30]` when a box opens
+  (`20–26` on a `notesbox`, `[12]` before the first `notesbox` after the vocab box, `[30]` when a box opens
   with an unbreakable `tabularx`/`\fbox`, `[14]` to keep a lead-in with its table). It is **inert
   inside a breakable `tcolorbox`**, and a "guard costs a page" verdict is only valid for the box
   heights it was measured against — re-measure after anything that changes heights (vocabpar in
