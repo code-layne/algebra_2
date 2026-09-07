@@ -8,13 +8,13 @@ keyed: [warmup, notes, homework]
 one_page: [warmup]
 doc_titles:
   warmup: Warm-Up
-  notes: Guided Notes
+  notes: Guided Notes \& Practice
   homework: Homework
   activity: Group Activity
   exit_ticket: Exit Ticket
 note_labels:
   warmup: Warm-Up
-  notes: Guided Notes
+  notes: Guided Notes \& Practice
   homework: Homework
   activity: Group Activity
   exit_ticket: Exit Ticket
@@ -25,7 +25,7 @@ structure_source: standards
 spec_dir: spec
 course_index: COURSE_PLAN.md
 check_target: false
-point_size: 10
+point_size: 12
 ---
 
 # Lesson Shape — Algebra 2
@@ -54,97 +54,106 @@ component to build **graph-reading fluency**: study how each new function type *
 manipulating and solving it. The recurring move in every component is **read/interpret → justify**
 ("what does this feature mean here, and how do you know?").
 
-**Every lesson follows a traditional gradual-release model — I do, we do, you do alone.** A
-warm-up activates prior knowledge; **Guided Notes** build and name the vocabulary with the class on
-one worked context and end in a **Guided Practice** box (the "we do"); an **Individual Practice**
-block on the notes' last page is the "you do" — three problems, worked silently and alone; a
-**debrief** consolidates and surfaces errors; the **homework** page is started in class and
-finished at home. This replaced the Math Medic "experience first, formalize later" (EFFL) model on
-2026-08-31 (user direction — "the students have revolted"); the group activity was cut the same
-day ("just cut the group activity … add an 'individual practice'") and the shape confirmed
-course-wide on 2026-09-01.
+**Every lesson follows a traditional gradual-release model — I do → we do → you do — on the
+stats/SAAR two-section shape (piloted on 1.2 on 2026-09-03; adopted as the course shape when the
+user applied it to 1.4 on 2026-09-07: "larger font for the cover, guided notes, and homework;
+notes page 1 is vocab and hook, no primary-objective box; no extension boxes on the homework; no
+individual practice section in the notes — the homework is the individual practice").** A warm-up
+activates prior knowledge; **Guided Notes & Practice** name the vocabulary as each term is built,
+deliver the instruction in **exactly two long sections** on one worked context, and end in a
+**Guided Practice** box worked together with students holding the pen; a whole-class **debrief is
+spoken**; and **the period ends with students starting the homework in class, alone** — the
+homework *is* the individual practice. There is no practice set at the end of the notes.
 
 | Phase | Minutes | Component |
 | --- | --- | --- |
-| Warm-up | 5 | `warmup` (**12pt**) |
-| Guided notes, incl. Guided Practice (I do / we do) | 20 | `notes` |
-| Individual practice, silent (you do alone) | 15 | `notes` — its last page |
-| Debrief — the board, in a second colour | 10 | — (in the plan only) |
-| Close & start the homework in class | 10 | `homework` |
+| Warm-Up | 5 | `warmup` |
+| Guided Notes & Practice — I do (hook + two sections, ~20) + we do (Guided Practice, ~15) | 35 | `notes` |
+| Debrief — whole class, spoken | 10 | — (in the plan and the deck only) |
+| Close & start the homework, alone, teacher circulating | 10 | `homework` |
 
-**`warmup`** — 5 min, **one page at 12pt** (user direction, 2026-08-31 — larger type than the rest
-of the packet, deliberately; still one page blank and keyed). Three quick spiral-review items
+**The phases total 60 minutes — `\MeetingLength`.** 5 / 35 / 10 / 10 is the SAAR allocation for
+the same 60-minute period (user decision there, 2026-09-06); the 1.2 pilot's 5 / 34 / 8 / 13 is
+superseded. Author the table exactly so; if a phase does not fit, cut content — do not let the
+table lie, and do not edit `shared/`.
+
+**`warmup`** — 5 min, **one page at 12pt**, blank and key. Three quick spiral-review items
 rehearsing exactly the prior skills the lesson leans on; the last item ends on the question notes
 section 1 answers, deliberately left hanging. May be a prefab PDF.
 
-**`notes` — *Guided Notes* — is the in-class centrepiece: 4 pages at 10pt.** `objectivebox` →
-`vocabbox` (5–7 `\termblanklong` entries filled as each term is built) → `hookbox` (the 60-second
-context whose numbers every worked example reuses) → **four numbered `notesbox` sections** on
-**one worked context** — section 1 the defining idea and general form; section 2 the second
-procedure (often a feature / how to find it / what it means `tabularx`); **section 3 normally the
-target misconception**, the two things students conflate side by side in a two-column `tabularx`
-closed by a gold caution `tcolorbox` (`colback=goldbg, colframe=goldacc`) giving a case where the
-two answers *disagree*; section 4 the edge cases — → `practicebox` (the "we do": one new example,
-all features at once, in a `work` block) → **Individual Practice**: `\boxguard[22]` then
-`scenariobox[Individual Practice --- On Your Own]{navy}` on its own clean page, **three problems**
-that are the three *shapes* (or directions) of the skill, **crux last** (usually ending in a "a
-classmate says … what did they miss?" `\writelines{2}`), every solve in a `work` block, ~5 minutes
-each. There is no separate component for it and no new environment in `shared/`.
+**`notes` — *Guided Notes & Practice* — is the in-class centrepiece, and it has a fixed
+four-page plan at 12pt** (`\small` inside the boxes, as the stats model does): **page 1** =
+`\pageheader{…}{Guided Notes \& Practice}` → `vocabbox` (5–6 fixed-height rows, filled *as each
+term is named*) → `hookbox` (the 60-second context whose numbers every worked example reuses,
+ending on a circle-one vote that is **left unresolved**); **there is no `objectivebox`** — the
+cover carries the targets. **Page 2** = `notesbox{1. Title}`; **page 3** = `notesbox{2. Title}`
+(a `\newpage` before each, so the layout is deterministic); each section is long, its second half
+introduced by a bold run-in heading `\textbf{\textcolor{forest}{Its Title.}}` rather than a third
+box. **Page 4** = one `practicebox` (fixed title "Guided Practice") worked together, four or five
+lettered parts, one of which tests the misconception on new ground, **alone on its page**. **The
+notes end there.** A section that does not fit its page is cut or its closing item moves into the
+Guided Practice — never carried over. **The crux — the item that surfaces the target
+misconception — lives in the second half of section 2**, as a gold `\fcolorbox{goldacc}{goldbg}`
+callout giving a case where the two answers *disagree*; the hook plants it, section 1 earns it,
+section 2 settles it, and the Guided Practice tests it again on new ground.
 
-**`homework`** — the "you do alone" that continues at home. **2 pages, and 2pp is a ceiling** — a
-seventh item gets cut, never spilled onto a third page. A `Practice` `notesbox` of **~6 items
-spanning the whole standard**, in the canonical spread: the core procedure off a *rule*; a
-deliberate *contrast pair* (the target misconception) closing with a "why?"; the same procedure
-off a *table or graph* (so all three representations appear); the *special case* and its
-boundary; a *model* in a fresh context with a `work` block and an interpret-the-answer follow-up;
-and an **SOL-style multiple-choice item as the formative check**. Then an `extensionbox` (the
-procedure run backwards plus a "a classmate claims … explain why that cannot happen" item) and a
-closing `spiralbox` previewing the next lesson.
+**`homework`** — **12pt, 2 pages, and 2pp is a ceiling** — a seventh item gets cut, never
+spilled onto a third page. It **is the individual practice**: opens with a `remindbox` (*"This is
+your graded homework. Your packet with completed homework is due the first class after two study
+halls. I will announce the due date in class and on TurtleNet."* plus the lesson's one-sentence
+rule, identical in blank and key), then a `Practice` `notesbox` of **~6 items spanning the whole
+standard** (`\small`), in the canonical spread: the core procedure off a *rule*; a deliberate
+*contrast pair* (the target misconception) closing with a "why?"; the same procedure off a *table
+or graph* (so all three representations appear — and where the skill runs backwards, "write its
+rule"); the *special case* and its boundary; a *model* in a fresh context with a `work` block and
+an interpret-the-answer follow-up; and an **SOL-style multiple-choice item as the formative
+check**. Split it `notesbox{Practice}` / `notesbox{Practice, continued}` with a `\newpage` so no
+item breaks across a page, and close with a `spiralbox` previewing the next lesson. **No
+`extensionbox`** (retired with this shape; the environment still exists in `algebra2-boxes.sty` —
+never author one).
 
-**`cover`** — full-bleed forest banner (course name, unit, `Lesson <id>  <title>`),
-`\namedateperiod` (the only place it appears), `learningtargetbox` of "I can…" targets **using the
-formal vocabulary in bold** (there is nothing to withhold — the notes name every term before the
-practice uses it), a `tocbox` with **three scored rows in packet order** (Warm-Up · Guided Notes
-"ending in *Guided Practice* and *Individual Practice*" · Homework) plus a Total row, and a
-`remindbox` (*Keep in Mind*) that is a **content** summary — the lesson's definitions and the
-distinction it turns on, never the process.
+**`cover`** — 12pt, `\coverbanner{Unit N \quad Title}{Lesson N.M \quad Title}` (measures the
+title block and sizes the forest band to it), `\namedateperiod` (the only place it appears), a
+`learningtargetbox` of "I can…" targets **using the formal vocabulary in bold**, a `tocbox` with
+**three scored rows in packet order** (Warm-Up · Guided Notes & Practice · Homework) plus a Total
+row, and a `remindbox` (*Keep in Mind*) that is a **content** summary — the lesson's definitions
+and the distinction it turns on, never the process. `\small` inside the boxes.
 
-**`slides`** — the Beamer deck, **11 frames** in the gradual-release flow: title → learning
-targets (naming the vocabulary, plus a "how today runs" block with the 5/20/15/10/10 split) →
-warm-up (ending in a "hold on to this" block) → hook → **four notes frames**, one per numbered
-section, matching the packet exactly (the misconception frame gets a `block` with the case where
-the two answers disagree; the last ends with the Guided Practice) → individual-practice launch
-(the three problems, the one-sentence rule, "look up the page, not at your neighbour", the
-early-finisher move) → debrief (the plan's four numbered takeaways) → close (what changed today, a
-**Homework — start it now** block, a one-line preview). Reference decks: `unit01/lesson03/slides`
-and `unit01/lesson04/slides`.
+**`slides`** — the Beamer deck, **11 frames**: title → learning targets (naming the vocabulary,
+plus a "how today runs" block with the 5/35/10/10 split) → warm-up (ending in a "hold on to this"
+block) → hook (the vote, **left unresolved**) → **four notes frames**, two per section (1a/1b,
+2a/2b — the crux frame flagged `\sectionlabel[redacc]{}` with a `block` giving the case where the
+two answers disagree) → Guided Practice (the lettered parts and "the questions I will ask") →
+debrief (the plan's four numbered takeaways plus a "say it without the notes" block) → close &
+start the homework (what changed today, a **Homework — scored, due the first class after two study
+halls** block, a one-line preview). Reference decks: `unit01/lesson02/slides` and
+`unit01/lesson04/slides`.
 
 **What this course does not have — do not re-add any of it:**
 
-- **No group activity.** Never scaffold, author, or restore `activity/`; the "you do" is the
-  Individual Practice block inside the notes.
-- **No exit ticket.** The debrief closes the lesson; the formative check is the homework's last
-  item (the SOL-style multiple-choice problem) and the plan says how to sort responses.
-- **No tiers.** The old Tier R / Approaching / Extension structure does not come back — one
-  document, one version, for the whole class.
+- **No group activity.** Never scaffold, author, or restore `activity/`.
+- **No exit ticket.** The formative read comes twice — circulating during Guided Practice, and
+  again during the supervised homework start — and the plan says what to do with each of three
+  piles of what the teacher sees.
+- **No independent practice set in the notes, no *Individual Practice* `scenariobox`, no
+  `objectivebox` in the notes, no `extensionbox` anywhere, no `reflectionbox`.** The debrief is
+  spoken; the individual practice is the homework. (The 2026-09-01 shape had a 15-minute
+  Individual Practice block on the notes' last page and four short sections; this shape retired
+  it on 2026-09-07.)
+- **No tiers.** One document, one version, for the whole class.
 - **No `experience` component, no *QuickNotes*, no *Check Your Understanding*, no spoiler rule.**
-  Anything still saying *Experience & Formalize* is a lesson not yet converted, not a pattern to
-  copy.
-- **No debrief component.** The debrief is a 10-minute phase of the plan in which the class
-  corrects its own Individual Practice in a second colour while the teacher works all three
-  problems on the board.
+- **No debrief component.** The debrief is a 10-minute spoken phase of the plan.
 - **No `\answerspace`.** Open responses use `\writelines{n}` (see §4).
 
 **Out of scope for the course** (no lessons): conic sections, sequences & series, probability &
 statistics, trigonometry, and linear systems / linear programming.
 
-**`unit01/lesson01` is the reference implementation** of this shape; 1.0 and 1.3–1.5 follow it.
-Mirror its preamble, box usage, pacing, and tone; the live lesson overrides every document, this
-one included. **`unit01/lesson02` is a pilot of a different shape** (2026-09-03 — the AP Statistics
-1.4 spec: every student component 12pt, two-section notes ending at Guided Practice, the homework
-*is* the individual practice, 5/34/8/13, three teacher notes) and is **pending the user's review of
-the printed result**. Until the user adopts it course-wide, it is not the reference for anything;
-see §7.
+**`unit01/lesson04` is the reference implementation** of this shape (regenerated 2026-09-07);
+`unit01/lesson02` is the pilot it grew from (still 5/34/8/13, `\termblank` rows, and an
+`objectivebox` — bring it in line when it is next touched). Mirror 1.4's preamble, box usage,
+pacing, and tone; the live lesson overrides every document, this one included. **1.0, 1.1, 1.3,
+and 1.5 are on the 2026-09-01 four-section shape** (10pt, Individual Practice block, extension
+box) and are regenerated lesson by lesson — see §7.
 
 ## 2. Grading and homework policy
 
@@ -163,7 +172,7 @@ see §7.
   class."** The wording, where it renders: the cover's homework row, the homework page's own
   remind box (*"Your packet with completed homework is due the first class after two study halls.
   I will announce the due date in class and on TurtleNet"*), the plan's Homework / Close boxes and
-  its Homework teacher note, and the deck's close frame. Lessons 1.2 and 1.4 say so today (1.4 regenerated 2026-09-07); 1.0, 1.1, 1.3, 1.5
+  its Homework teacher note, and the deck's close frame. Lessons 1.2 and 1.4 say so today; 1.0, 1.1, 1.3, 1.5
   and the skeletons in `templates/lesson/` (`cover.tex`, `lesson_plan.tex`, `slides.tex`) still
   print "due next class" and pick up the wording when they are regenerated — **no bulk sweep**. When
   you author from a skeleton, replace the phrase.
@@ -224,10 +233,12 @@ travels with the branch and the Step 0 sync brings the latest state forward.
   **The printed title is just `Algebra 2`** — no teacher name, no school year, anywhere a title
   renders (plan title block, cover banner, deck title slide, unit cover). Beamer has no
   `\CourseName`: the deck writes the course name literally.
-- **Sizes.** Every student component is `\documentclass[10pt]{article}` + `algebra2-article` +
-  `algebra2-boxes` **except the warm-up, which is `[12pt]`**; the plan is 10pt. (The shared skill's
-  "every student component is 12pt" invariant does **not** hold here — the 1.2 pilot is all-12pt,
-  but that is the pilot, not the course.) Budgets: warm-up 1p · notes 4pp · homework 2pp (ceiling).
+- **Sizes.** **Every student component is `\documentclass[12pt]{article}`** + `algebra2-article` +
+  `algebra2-boxes` (user direction 2026-09-07, matching the stats and SAAR courses), with
+  `\small` inside the cover's and the notes' boxes and in the homework's practice boxes; the
+  plan is 10pt and the deck 11pt. That is the frontmatter's `point_size: 12`. Budgets: warm-up 1p ·
+  notes 4pp (the fixed page plan of §1) · homework 2pp (ceiling). 1.0, 1.1, 1.3, 1.5 are still
+  10pt until regenerated.
 - **`\boxguard`** (`-boxes`, `\Needspace`) defaults to 16 lines; at 10pt counts run **16–26**
   (`20–26` on a `notesbox`, `[22]` before the Individual Practice box, `[30]` when a box opens
   with an unbreakable `tabularx`/`\fbox`, `[14]` to keep a lead-in with its table). It is **inert
@@ -271,7 +282,15 @@ travels with the branch and the Step 0 sync brings the latest state forward.
   / `\steprel`** is the *printed*-solution counterpart (only column 3 differs blank vs. key); it is
   a chain rule, not for a list of independent statements, and has **no in-tree example** since the
   review unit was deleted 2026-08-20 — follow the spec in the shared `references/conventions.md`.
-- **Vocab keys — the vocabpar fix.** `\termblanklong` opens with `\noindent` (a no-op
+- **Vocab rows in the current shape — `\vterm{Term}` ↔ `\vtermans{Term}{def}`,** a fixed-height
+  (2.0cm) row carrying the term label and **open writing space — no inline blank and no rule
+  line** (the SAAR user correction of 2026-09-06: the rule line crowded the row), defined in the
+  notes' own preamble (copy the block from `unit01/lesson04/notes/main.tex`; the key's
+  `\vtermans` fills exactly the same height, definitions two lines at most). `\termrowheight` /
+  `\termrowinset` are taken by the package, hence the local `\vrowheight`. `\termblank` /
+  `\termans` (rule line, 1.30cm) remain in `shared/` for 1.2; `\termblanklong` / `\vocabans`
+  for the 2026-09-01 lessons.
+- **Vocab keys — the vocabpar fix (2026-09-01 lessons only).** `\termblanklong` opens with `\noindent` (a no-op
   mid-paragraph) and `\ansline` ends with `\dotfill` without ending the paragraph, so every notes
   key that mirrors a `vocabbox` defines, in its own preamble,
   `\newcommand{\vocabans}[2]{\par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}`
@@ -297,38 +316,32 @@ travels with the branch and the Step 0 sync brings the latest state forward.
 
 Title block (`\CourseName` over `\UnitNumberName \LessonNumberName`) → **Primary Objective /
 Standards (2023 VA SOL) / Lesson model** (a `tcolorbox`, `forestbg`/`forest`; the one-paragraph
-gradual-release statement) → **Priority Ideas & Skills** (`skillbox{goldbox}`, two `tabularx`
-cells: skills as things the student does | the *why*, **with the target misconception stated
-explicitly**) → **Vocabulary, Concepts & Theorems** (`skillbox{sky}`, term/definition `tabularx`,
-`\TallMath` for tall formulas — the terms the notes' `vocabbox` builds) → **Lesson at a Glance**
-(`fixedskillbox{forestbg}`, Phase / Min / Students / Teacher for **5 / 20 / 15 / 10 / 10**) →
-**Warm-Up — Activate Prior Knowledge & Spiral Review** (`fixedskillbox{forestbg}`: the ~3 items,
-what each rehearses, what to debrief aloud, how it hands off into notes section 1, and the sentence
-"this page is set at 12pt") → **Hook** (`skillbox{forestbg}`: the 60-second context, the questions
-with answers in parentheses, the idea to land; its numbers are the notes' numbers) → **Guided Notes
-— the Lesson (20 min)** (`skillbox{forestbg}` in `multicols{2}`: one bold paragraph per numbered
-section saying what to build and where the `work` blocks are, ending with the Guided Practice
-paragraph) → **Individual Practice — On Your Own (15 min, silent)** (`skillbox{redbox}`: the
-1-minute launch script; *What students do* — the three problems, why they are the three shapes,
-which is the crux | *What the teacher does* — questions, cues, prompts keyed to problem numbers,
-**never answers**; the early-finisher move; note names for the debrief) → **Debrief (10 min — what
-goes on the board, in a second colour)** (`skillbox{forestbg}`: **exactly four things to land** —
-problem 1 worked, the must-land moment pointed back to the notes' caution box, problem 2, problem
-3 / the crux and what a wrong answer reveals; which item to cut if short and which two to protect)
-→ **Active Monitoring — Watch For** (`skillbox{redbox}`, keyed to notes / Individual Practice /
-homework item numbers, plus cold-call prompts) → **Reinforcement & Extension** (`skillbox{goldbox}`:
-the homework's ~6 items and extension itemized, the **DeltaMath override** sentence, the
-**Preview** of the next lesson) → **Teacher Notes — four, in packet order:** `[Warm-Up]`,
-`[Guided Notes]`, `[Individual Practice]`, `[Homework]` — pacing splits that actually fill each
-phase's minutes, must-land moments, common slips, the early-finisher move, how to sort the
-formative check. **This is the only place teacher prose goes.**
+gradual-release statement: two sections, Guided Practice with the pen in students' hands, spoken
+debrief, the homework is the individual practice) → **Priority Ideas & Skills** (`skillbox{goldbox}`,
+two `tabularx` cells: skills | the *why*, **with the target misconception stated explicitly**) →
+**Vocabulary, Concepts & Theorems — taught directly in the guided notes** (`skillbox{sky}`,
+term/definition `tabularx`) → **Lesson at a Glance** (`fixedskillbox{forestbg}`, Phase / Min /
+Students / Teacher for **5 / 35 / 10 / 10**) → **Warm-Up — Activate Prior Knowledge (5 min)**
+(`fixedskillbox{forestbg}`, two minipages: *the three items and what each seeds* · *running it*,
+ending with the 12pt sentence) → **Guided Notes & Practice — I do, then we do (35 min)**
+(`skillbox{forestbg}`, `multicols{2}`: the hook and the vote, *I do* one paragraph per section
+with minutes and where the `work` blocks are, *we do* the Guided Practice part by part, "the pen
+must actually change hands", the circulating prompts, which two papers to pick for the debrief)
+→ **Debrief — whole class, spoken (10 min)** (`skillbox{forestbg}`, `multicols{2}`: exactly four
+things to land, the two things to demand aloud, what to cut if short) → **Homework — scored,
+started in class, due the first class after two study halls** (`skillbox{goldbox}`: the six items,
+the formative check's sort, the **DeltaMath override** sentence, the **Preview**) → **Watch For
+(while circulating)** (`skillbox{redbox}`, keyed to notes / GP part / homework item numbers, plus
+cold-call prompts) → **Close & Start Homework (10 min)** (`skillbox{goldbox}`: the launch, the
+three piles, the "what changed today" sentence) → **Teacher Notes — three, in packet order:**
+`[Warm-Up]`, `[Guided Notes \& Practice]`, `[Homework]`. **This is the only place teacher prose
+goes.**
 
-`[Individual Practice]` belongs to no component, so `movenotes.py` never produces it — author it by
-hand when converting a lesson. Legacy plans carry `[Group Activity]`, `[Exit Ticket]`, or
-`[Experience \& Formalize]`; all go when the lesson is regenerated. Plans from 2026-08-19 →
-2026-08-31 use the EFFL order (Experience & Formalize / Debrief: Formalize / Application / Check Your
-Understanding); earlier plans use Hook / Explicit Instruction / Tiers. Both are legacy: regenerate,
-never patch.
+Legacy plans carry `[Individual Practice]`, `[Group Activity]`, `[Exit Ticket]`, or
+`[Experience \& Formalize]`; all go when the lesson is regenerated. Plans from 2026-09-01 →
+2026-09-06 use the four-section order (Individual Practice box, Debrief with four takeaways,
+Reinforcement & Extension); earlier plans use EFFL or Hook / Explicit Instruction / Tiers. All are
+legacy: regenerate, never patch.
 
 ## 6. Unit-level and course-level assessments
 
@@ -370,8 +383,8 @@ Recognize the shape by the component directories and the plan's section titles:
 
 | Shape | Has | Lessons |
 | --- | --- | --- |
-| **current** (gradual release, 2026-09-01) | `notes/` + `homework/` only; 12pt warm-up; plan has an *Individual Practice* box and four teacher notes | `unit01/lesson00`, `01`, `03`, `04`, `05` — the target |
-| **12pt pilot** (2026-09-03) | every student component 12pt; `\coverbanner`; `\termblank`/`\termans`; two-section notes ending at Guided Practice; plan 5/34/8/13 with three notes | `unit01/lesson02` — **pending user review; not the course shape** |
+| **current** (two-section, 12pt, 2026-09-07) | every student component 12pt; `\coverbanner`; notes = vocab + hook / section 1 / section 2 / Guided Practice, one page each, no `objectivebox`; homework 2pp with a due-date `remindbox` and no `extensionbox`; plan 5/35/10/10 with three teacher notes | `unit01/lesson04` — the target; `unit01/lesson02` is the near-identical pilot (5/34/8/13, `\termblank`, `objectivebox`) |
+| **four-section interim** (2026-09-01) | 10pt `notes/` with an `objectivebox`, four numbered sections, and an *Individual Practice* `scenariobox`; 10pt homework with an `extensionbox`; plan 5/20/15/10/10 with four teacher notes | `unit01/lesson00`, `01`, `03`, `05` |
 | **group-activity interim** (2026-08-31) | `activity/` without `exit_ticket/`; plan has a Group Activity box | none left (1.0 was converted 2026-09-01) |
 | **EFFL** (2026-08-19 → 08-31) | `experience/` + `experience_key/`; *Experience & Formalize* / *QuickNotes* / *Check Your Understanding* / the spoiler rule | none left |
 | **pre-EFFL legacy** | `activity/` + `exit_ticket/` (+ keys), tiered activity (Tier R / Approaching / Extension), plan order Hook / Explicit Instruction / Tiers, 10pt warm-up; in Units 3–7 also teacher notes in the keys and `\namedateperiod` on every component (Unit 2 had both retrofitted 2026-07-30) | **units 02–07, all 38 lessons** |
@@ -382,22 +395,23 @@ than patching** — ask first. The content mapping:
 
 | From the group-activity shape | From EFFL | From the pre-EFFL legacy shape | Becomes |
 | --- | --- | --- | --- |
-| `notes` sections 1–4 | QuickNotes box | `notes` (drop the tiers language) | the four numbered sections of **Guided Notes** |
-| the activity's crux items, chosen three | Activity + Application, condensed to three | Tier A/E items, three of them | **Individual Practice** — three problems inside the notes |
-| `homework` | Check Your Understanding | `homework` + `exit_ticket` | the **Homework** page + `extensionbox` + `spiralbox` |
+| `notes` sections 1–4, folded two into one | QuickNotes box | `notes` (drop the tiers language) | the **two** long sections of **Guided Notes & Practice**, each in two moves |
+| the activity's / Individual Practice's crux items | Activity + Application | Tier A/E items | the **Guided Practice** part that tests the misconception on new ground, and the homework |
+| `homework` (+ its extension, cut) | Check Your Understanding | `homework` + `exit_ticket` | the **Homework** page — the individual practice — + `spiralbox`, no extension |
 
 Mechanically:
 
 1. `git rm -r` the `activity{,_key}`, `experience{,_key}`, or `exit_ticket{,_key}` dirs.
-2. Write `notes` / `notes_key` and `homework` / `homework_key` fresh from the skeletons, on one
-   worked context, with the Individual Practice block on the notes' last page and the SOL-style
-   formative check last on the homework; fold the exit ticket's item into the homework.
-3. Set the warm-up to 12pt (still one page, blank and key).
-4. Rewrite the cover's packet table to the **three** scored rows and re-voice its learning targets
-   with the formal vocabulary; the *Keep in Mind* box becomes a content summary.
-5. Rebuild the plan around the 5/20/15/10/10 table in the §5 order, with **four** teacher notes
-   (`movenotes.py` lifts the component-keyed ones out of the keys; write `[Individual Practice]`
-   by hand); apply the due-date wording of §2.
+2. Write `notes` / `notes_key` and `homework` / `homework_key` fresh, mirroring `unit01/lesson04`,
+   on one worked context, on the four-page plan of §1 (no `objectivebox`, two sections, Guided
+   Practice alone on page 4) and the two-page homework with the due-date `remindbox` and no
+   `extensionbox`; fold any exit-ticket / Individual Practice crux into the Guided Practice or the
+   homework.
+3. Every student component at 12pt (the warm-up still one page, blank and key).
+4. Rewrite the cover at 12pt with `\coverbanner`, the **three** scored rows, learning targets in
+   the formal vocabulary, and a *Keep in Mind* content summary.
+5. Rebuild the plan around the 5/35/10/10 table in the §5 order, with **three** teacher notes
+   (`movenotes.py` lifts component-keyed ones out of legacy keys); apply the due-date wording of §2.
 6. Rewrite the deck to the 11-frame order of §1.
 7. Namestrip the components (`namestrip.py`), then vocabpar, then boxguard (§8).
 8. Delete stale stamps — `rm -rf .stamps/unitXX/lessonYY target/unitXX/lessonYY` — or `make` skips
@@ -407,8 +421,9 @@ Finish with the evidence per lesson: `make -C unitXX/lessonYY all` exits 0, warm
 component's page count equals its `_key`'s, compared on the compiled components, not the padded
 packets. Then update `COURSE_PLAN.md`.
 
-**Scoreboard (2026-09-06):** 44 lessons. **5 in the current shape** (`unit01/lesson00`, `01`,
-`03`, `04`, `05`); **1 in the 12pt pilot** (`unit01/lesson02`); **38 pre-EFFL legacy** (every lesson
+**Scoreboard (2026-09-07):** 44 lessons. **1 in the current shape** (`unit01/lesson04`) plus
+**the pilot** (`unit01/lesson02`); **4 in the four-section interim** (`unit01/lesson00`, `01`,
+`03`, `05`); **38 pre-EFFL legacy** (every lesson
 of Units 2–7), none with a 12pt warm-up. Of those, **Unit 2's 8 lessons** were already
 teachernote-migrated, namestripped, and boxguarded in the 2026-07-30 sweep (they keep their
 `activity` / `exit_ticket` pairs and tiered plans); **Units 3–7's 30 lessons** are untouched —
