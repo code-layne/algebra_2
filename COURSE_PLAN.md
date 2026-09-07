@@ -2,6 +2,50 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-07) — **LESSON 1.3 REGENERATED WHOLE IN THE COURSE-WIDE SHAPE; IT NOW CARRIES THE DUE-DATE POLICY.**
+>
+> **User direction, 2026-09-07:** ``regenerate lesson 1.3.'' Regenerated whole (plan, cover,
+> warm-up+key, notes+key, homework+key, deck) in the **2026-09-01 gradual-release shape** — the
+> shape of record per `LESSON_SHAPE.md` §1/§7 (the 1.2 all-12pt pilot is still pending the user's
+> print review and was **not** adopted here). Content design unchanged from the 2026-09-01
+> regeneration (the trail $H(x)=2|x-3|+1$, valley-vs-ridge misconception, the same three
+> Individual Practice shapes and six homework items; standards **A2.F.1b/c, A2.F.2a/c/d/f**).
+>
+> **What changed.** (1) **Due-date policy applied everywhere it renders** — cover row 3
+> (``scored; due the first class after two study halls''), a new homework `remindbox` (``Your
+> packet with completed homework is due the first class after two study halls. I will announce
+> the due date in class and on TurtleNet''), the plan's Glance table, Reinforcement box and
+> Homework teacher note, and the deck's close frame; **no ``due next class'' remains in 1.3.**
+> (2) Cover rebuilt from the current skeleton (tikz-node banner, 1.16in band, `ltablex`).
+> (3) Warm-up item 3 now ends on the hanging question notes section 1 answers (``why does the V
+> turn at exactly one point and never dip below it?''); section 1, the plan and the deck pick it
+> up. (4) Homework extension (b) is now the ``a classmate claims … explain why that cannot happen''
+> item (claims $-2|x-3|+7$ reaches $9$); the MC key wraps the correct option in `\ans{}` and its
+> options sit in two columns. (5) Plan debrief item 4 works problem 3 in full and names what
+> ``minimum'' reveals; Watch For keys the misconception to extension (b) as well.
+>
+> **Fit.** Adding the remind box pushed the homework to 3pp. Brought back to **2/2** by: the
+> remind box carrying only the due-date sentences (the vertex-form reminder is a one-line
+> Practice lead-in); itemsep 9→3pt; MC options in a two-column `tabular` wrapped in
+> `\par\noindent` (an inline `tabular` stretches the stem line); figure scale 0.34→0.30;
+> `arraystretch` 1.4→1.3; a four-line extension `work` block; a three-line spiral box. **Two
+> `\ansline` gotchas found here:** (1) `\ansline` never ends its paragraph, so a *short* first
+> answer lets the next `\ansline` run on after the dot leader — separate consecutive answer lines
+> with `\par` (done in both 1.3 keys); (2) an inline `\writelines{2}` starts on the prompt's own
+> line, so a key that answers it with `\par\ansline…\par\ansline…` runs one line longer per item —
+> put `\par` before `\writelines` in the blank too (as the notes already did), so the two sides
+> reserve the same lines. Every key answer line is under one line (two had wrapped).
+>
+> **Build evidence (2026-09-07):** `make -C unit01/lesson03 all` **EXIT 0** from clean
+> (`.stamps` and `target` removed first); warm-up **1/1**, notes **4/4**, homework **2/2**,
+> packets **10/10**, plan 5pp, deck 11 frames; zero overfull boxes beyond the pre-existing 6pt
+> `\pageheader` hbox. `work` blocks byte-identical blank↔key (notes 5, homework 2); zero `\ans` in
+> math mode; six `\termblanklong` ↔ six `\vocabans`; namestrip clean; no `teachernote` in any key.
+> Individual Practice still lands on its own page (notes p.~4).
+>
+> **Still open (unchanged):** the 1.2 pilot decision (§ below); 1.0, 1.1, 1.4, 1.5 and the
+> `templates/lesson/` skeletons still print ``due next class'' — no bulk sweep, fixed on regeneration.
+
 > ## ⚠ Status (2026-09-03) — **LESSON 1.2 PILOTS THE AP-STATS 1.4 SPEC: 12pt STUDENT PACKET, TWO-SECTION NOTES, HOMEWORK IS THE INDIVIDUAL PRACTICE. PENDING USER REVIEW OF THE PRINTED RESULT.**
 >
 > **User direction, 2026-09-03:** regenerate 1.2 "according to the specs used to produce the stats

@@ -1,6 +1,7 @@
 %! Absolute Value Functions & Transformations — Unit 1, Lesson 1.3 — Guided Notes (Answer Key)
-% Mirrors notes/main.tex exactly; every \blank{} becomes an \ans{} and every work block is
-% authored byte-identically, so blank and key paginate alike.
+% Mirrors notes/main.tex exactly; every \blank{} becomes an \ans{}, every \writelines{n} is
+% answered with exactly n \ansline{}s, and every work block is authored byte-identically, so
+% blank and key paginate alike. No teacher notes here — they live in the lesson plan.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -10,14 +11,15 @@
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
 % Vocab answer for the key: bold forest term, then the filled definition on a write-line.
-% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
-% paragraph, so without them each term label gets pulled onto the previous answer's line.
+% The leading and trailing \par are required (the vocabpar fix): \ansline ends with \dotfill but
+% does NOT end the paragraph, so without them each term label gets pulled onto the previous line.
 \newcommand{\vocabans}[2]{%
   \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
 \pageheader{Unit 1, Lesson 1.3}{Guided Notes --- Answer Key}
+% NAMESTRIP: no \namedateperiod here — mirrors the blank.
 
 \vspace{0.10in}
 
@@ -74,6 +76,7 @@ Every absolute value function is this same \textbf{V} --- the parent $y=|x|$ aft
 moved, stretched, or flipped. Today we read those moves straight off the rule.
 \end{hookbox}
 
+% FOUR numbered sections on ONE context (the trail). Section 3 carries the target misconception.
 \boxguard[22]
 \begin{notesbox}{1. The Parent $f(x)=|x|$ --- a V That Turns Once}
 \begin{center}
@@ -98,8 +101,9 @@ $2$ & \ans{$2$} \\ \hline
 \end{minipage}\hfill
 \begin{minipage}[c]{0.34\linewidth}
 \small
-Because $|x|$ is a \emph{distance}, the outputs never go below \ans{$0$}, and $x$ and $-x$
-give the \emph{same} output --- so the graph is a mirror image across the $y$-axis.
+The warm-up's hanging question: because $|x|$ is a \emph{distance}, the outputs never go below
+\ans{$0$}, and $x$ and $-x$ give the \emph{same} output --- so the graph is a mirror image
+across the $y$-axis.
 \end{minipage}
 \end{center}
 \textbf{Read the V:} vertex \ans{$(0,0)$}; \; axis of symmetry $x=$ \ans{$0$}; \; minimum
@@ -224,6 +228,7 @@ The two solutions you solved for last lesson are the two places the V crosses th
 line $y=5$ --- one on each side of the axis $x=$ \ans{$3$}.
 \end{notesbox}
 
+% GUIDED PRACTICE — the "we do", worked WITH the class: the last thing they see before working alone.
 \boxguard[20]
 \begin{practicebox}
 For $g(x)=\tfrac12\,|x+4|-2$, read every feature; then build a rule from a graph.
@@ -253,6 +258,9 @@ For $g(x)=\tfrac12\,|x+4|-2$, read every feature; then build a rule from a graph
 \end{enumerate}
 \end{practicebox}
 
+% INDIVIDUAL PRACTICE — the "you do alone" (15 min, silent). Three problems = the three
+% directions of the skill: rule → features (a<0), graph → rule (checked by solving), and the
+% same-vertex pair — the crux — last. \boxguard[22] so it lands on its own clean page.
 \boxguard[22]
 \begin{scenariobox}[Individual Practice --- On Your Own]{navy}
 Three problems, quietly and on your own. Find the vertex by setting the inside to zero, then let
@@ -298,7 +306,7 @@ the sign of $a$ tell you up or down.
     \ans{maximum} of $-3$ and range \ans{$y\le-3$}. \\[2pt]
     A classmate says ``both have a minimum of $-3$.'' What did they miss?
     \par\ansline{The negative $a$ flips the second V to open down, so $-3$ is its highest output --- a maximum.}
-    \ansline{Same vertex, opposite range: $y\ge-3$ for the first, $y\le-3$ for the second.}
+    \par\ansline{Same vertex, opposite range: $y\ge-3$ for the first, $y\le-3$ for the second.}
 \end{enumerate}
 \end{scenariobox}
 
