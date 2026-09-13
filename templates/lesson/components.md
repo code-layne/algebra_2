@@ -122,50 +122,49 @@ mirrors with `\ans`.
 
 ## Guided Notes
 
-`notes/` (+ `notes_key/`) — the **"I do / we do"** block (**20 minutes** including the Guided
-Practice box) **plus the "you do alone"** (the Individual Practice block, **15 minutes**) —
-**4 pages at 10pt**, with Individual Practice landing on its own clean page. This is where the
-vocabulary is built and named, *before* the practice uses it. Structure, in order:
+`notes/` (+ `notes_key/`) — **the direct-instruction centrepiece, 34 minutes**, in the **Main
+Ideas / Notes** shape (modelled on the Algebra 2 guided-notes worksheets; density rules of
+2026-09-12). `\pageheader{...}` (no name row — Namestrip), the `vocabbox`, the `hookbox` (it stays), then **one
+`guidednotes` table** set in `\small`. Ported from AP Statistics 2026-09-12. **3–4 pages** at
+12pt, **12–19 numbered problems**. The page belongs to the student's pen.
 
-1. **`objectivebox`** — "By the end of this lesson, I will be able to…", 3–4 bullets in formal
-   terms.
-2. **`vocabbox`** — 5–7 `\termblanklong{Term}` entries the class fills in as each is built. The
-   `\par\vspace{2pt}` before the first one is **required** (`\termblanklong`'s `\noindent` is a
-   no-op mid-paragraph). The key defines a `\vocabans{Term}{definition}` macro in its preamble and
-   uses it in place of each `\termblanklong`.
-3. **`hookbox`** — the 60-second motivating context with 3–4 quick fill-in questions. **Its
-   numbers are the ones the worked examples below reuse.**
-4. **Four numbered `notesbox` sections** — the lesson broken into four ideas, each with fill-in
-   blanks and, where there is algebra, a `work` block. Keep **one worked context running through
-   all four**; that is what makes the block read as one lesson rather than four procedures.
-   - Section 1 establishes the defining idea and the general form.
-   - Section 2 is usually the second procedure (a fill-in `tabularx` of feature / how to find it /
-     what it means works well).
-   - **Section 3 normally carries the target misconception**: put the two things students conflate
-     side by side in a two-column `tabularx`, then close with a gold caution `tcolorbox`
-     (`colback=goldbg, colframe=goldacc`) giving a case where the two answers *disagree*.
-   - Section 4 is the edge cases — the special case, the value where the rule fails, and the
-     story-vs-math distinction.
-5. **`practicebox`** — the **"we do"**: one new example, all features at once, with a `work`
-   block, worked *with* the class — the last thing students see before working alone.
-6. **Individual Practice** — see the next section.
-
-`\boxguard` on each `notesbox`: 20–26 at 10pt; `\boxguard[22]` before the Individual Practice box.
+- `vocabbox` — one `\vterm{Term}` per key term (4–6): the fixed-height row pair `\vterm` /
+  `\vtermans` defined in the notes preamble (copy from the reference lesson). The box says **"Fill in
+  each term as we name it in the notes below"** — filled during instruction, never front-loaded.
+  Then the `hookbox`, ending on a circle-one vote left unresolved.
+- **No `objectivebox`** — the targets are on the cover. No `notesbox`, no `practicebox`.
+- `guidednotes` — the two-column table, *Main Ideas / Questions* | *Notes*, **four to five
+  rows**, each `\mainidea[small lead]{Label} & ... \\ \hline`. The label is one short word or
+  two (uppercased by the macro; a single word over ten letters overflows). The Notes cell holds,
+  in order:
+  1. **One or two complete printed sentences** — the definition, read. Never a sentence with
+     words punched out. A `\stepnum{n}` list for a procedure.
+  2. **One large pre-drawn display** (TikZ, `scale` 0.8–1.0) the student reads — or annotates
+     with `\labelbox{W}{}` ("This is a ___", an arrow's label). Where the idea deserves it, an
+     *In your own words* line with a `\writespace{1.6cm}{}`.
+  3. `\notesprompt{…}` and a **two-across `probgrid`** (`|Y|Y|`, never three across) of
+     `\pcell{n}{statement}{H}{}` cells, **H = 1.8–2.6 cm** of answer space each, 2–4 problems
+     per row.
+- **Blanks:** a `\blank{}` only where a single word or number *is* the answer — a table to fill,
+  a display to name. Budget a handful per lesson. Mid-sentence blanks are banned.
+- **The I do / we do split is row by row**: the teacher reads the definition, marks up the
+  display, and works the first problem of each grid; the class works the rest with the pen in
+  their hand. **The trap and the crux are problems in a grid**, in the last instruction row.
+  **The last row is Guided Practice**: `\mainidea[Guided practice]{Its Title}`, one new example
+  in a second context, four problems worked *with* the class, prompt `We work these together.`
+- **Packing** (a table row cannot break across pages): the figure gets its own sub-row (`\\`
+  then `& …`), and **each grid row is its own sub-row** — close the `probgrid`, `\\ &`, reopen
+  as `probgrid*` (no top rule). `\\` inside a cell ends the row: break lines with `\par`.
+- **Every display is pre-drawn** and read; students construct only by filling a table.
+- **The key mirrors the blank byte for byte** except `-key` for `-boxes`, the header's
+  `--- Answer Key`, `\vterm`→`\vtermans`, `\blank`→`\ans`, and the answer argument of each
+  `\pcell`, `\writespace`, `\labelbox`. Keep every answer shorter than its space. Prove the
+  page counts match.
 
 ## Individual Practice
 
-The **"you do alone"** block, **15 minutes, silent**, living on the **last page of the Guided
-Notes** — not a component of its own. It is a `scenariobox[Individual Practice --- On Your
-Own]{navy}` (no new environment in `shared/`), preceded by `\boxguard[22]` so it lands on a clean
-working page. **Three problems**, deliberately the three *shapes* (or directions) of the skill —
-for 1.2 an equation / an "and" / an "or"; for 1.3 rule → features / graph → rule / the same-vertex
-pair; for 1.4 evaluate across a boundary / read a graph and write its rule / two pieces and the
-staircase — with the **crux last**: the problem that isolates the lesson's target misconception,
-usually ending in a "a classmate says … what did they miss?" `\writelines{2}`. Every solve goes in
-a `work` block. Open the box with a one-sentence rule to apply; keep it to ~5 minutes a problem.
-
-The lesson plan's *Individual Practice* box carries the launch script and the teacher's cues; the
-debrief works all three problems on the board. There is **no group work** anywhere in the lesson.
+**Retired 2026-09-07** — the notes end at the Guided Practice row; the homework is the
+individual practice. Never author the `scenariobox[Individual Practice ...]` page.
 
 ## Homework
 
