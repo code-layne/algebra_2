@@ -1,8 +1,7 @@
 %! Piecewise & Step Functions — Unit 1, Lesson 1.4 — Guided Notes & Practice (Answer Key)
-% Mirrors notes/main.tex EXACTLY: every \blank{} becomes a short \ans{}, every \vterm{} becomes a
-% \vtermans{}{} of the same fixed row height, and every work block is authored byte-identically,
-% so the two files paginate alike (the \newpage plan makes the layout deterministic). No teacher
-% notes here — they live in the lesson plan.
+% MIRROR of ../notes/main.tex: -key in place of -boxes, \vterm -> \vtermans, \blank -> \ans, and the
+% answer argument of every \pcell and \labelbox filled. Nothing else differs — every height,
+% width, work block and sub-row is byte-identical, so the two files paginate alike.
 \documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
@@ -59,42 +58,72 @@ Total paid after $2$ months: \ans{$0$} \quad after $5$ months: \ans{$24$} \quad
 Could \emph{one} straight line describe the total for every month? \ans{no}
 \par\vspace{5pt}
 \textbf{Month 3 --- the last free month, or the first paid one?} Circle one: \quad
-\textbf{free} \qquad \textbf{\$12} \qquad Why? \ans{free --- $3$ satisfies $0\le m\le3$ (take the vote; section 1 settles it)}
+\textbf{free} \qquad \textbf{\$12} \qquad Why? \ans{free --- $3$ satisfies $0\le m\le3$ (take the vote; row 1 settles it)}
 \par\vspace{4pt}
 One function, two rules. Every question today is this picture: \textbf{which rule does this
 month use --- and what does the graph do where the rule changes?}
 \end{hookbox}
 
-% ── PAGE 2 — I DO: section 1 ─────────────────────────────────────────────────
-\newpage
-\begin{notesbox}{1. One Function, Several Rules --- Evaluate by Choosing the Piece}
 \small
+% Displays inside table cells: tight skips, or every brace costs a centimetre. (\small resets
+% the display skips, so this must follow it.) The work blocks use the same skips. Figures are
+% centred with \centering inside the cell, not a center environment (its \topsep is ~1cm a figure).
+\setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}%
+\setlength{\abovedisplayshortskip}{2pt}\setlength{\belowdisplayshortskip}{2pt}%
+\begin{guidednotes}
+% ── ROW 1: one function, several rules — evaluate by choosing the piece ──────
+\mainidea[One function,]{Several Rules} &
 A \textbf{piecewise-defined function} uses different rules on different parts of its domain,
-written with a brace. Each rule comes with the inputs it is \emph{for}:
-\[ C(m)=\begin{cases} 0, & 0\le m\le 3 \\ 12(m-3), & m>3 \end{cases} \]
+written with a brace. Each rule comes with the inputs it is \emph{for}.
 \textbf{To evaluate: first pick the piece, then apply its rule.}
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item $C(2)$: is $2\le3$? \ans{yes} \; so use the \ans{first} piece: $C(2)=$ \ans{$0$}
-  \item $C(5)$: is $5>3$? \ans{yes} \; so use the second piece:
-        \begin{work}
-          C(5) &= 12(5-3) \\
-               &= 24
-        \end{work}
-  \item $C(3)$: the \textbf{boundary}, where the rule changes. $3$ satisfies $0\le m\le3$ --- the
-        $\le$ \emph{includes} it --- so $C(3)=$ \ans{$0$}: month $3$ is still free.
-\end{itemize}
+\\
+& \[ C(m)=\begin{cases} 0, & 0\le m\le 3 \\ 12(m-3), & m>3 \end{cases} \]
+{\centering
+\begin{tikzpicture}[scale=0.52]
+  \mgrid
+  \draw[very thick, forest] (0,0)--(3,0);
+  \draw[very thick, forest] (3,0)--(7,4);
+  \fdot{forest}{3}{0}
+  \node[above, font=\scriptsize\bfseries, forest] at (1.5,0.1) {$C(m)=0$};
+  \node[above left, font=\scriptsize\bfseries, forest] at (5.6,2.6) {$C(m)=12(m-3)$};
+\end{tikzpicture}\par\vspace{2pt}
+The rule changes at $m=3$. That $m$-value is called the \labelbox{2.4cm}{boundary}\par}
+\\
+& \textbf{Worked:} $C(5)$ --- is $5>3$? Yes, so use the second piece: $C(5)=12(5-3)=24$.
+\par\vspace{2pt}
 \textbf{Boundary rule:} an input on the boundary belongs to the piece whose inequality
 \emph{includes} it --- the one with $\le$ or $\ge$, never the strict one. The story does not
-decide it; the \ans{inequality} does.
-
-\vspace{8pt}
-\textbf{\textcolor{forest}{The V Is Two Pieces.}}
-Lesson 1.3's V is two lines pasted together at the vertex, and now we can \emph{write} it that
-way. When $x\ge0$ the bars change nothing; when $x<0$ they flip the sign:
-\[ |x|=\begin{cases} \text{\ans{$x$}}, & x\ge0 \\[2pt] \text{\ans{$-x$}}, & x<0 \end{cases}
-   \qquad\text{Check: } |-3|=-(-3)= \text{\ans{$3$}} \]
-\textbf{The trail from Lesson 1.3,} $H(x)=2|x-3|+1$. The vertex $x=3$ is the boundary.
-\begin{center}
+decide it; the inequality does.
+\\
+& \notesprompt{Pick the piece, then apply its rule.}
+\begin{probgrid}{|Y|Y|}
+\pcell{1}{$C(2)$ --- is $2\le3$? Which piece, and what does it give?}{1.8cm}{Yes --- the first piece: $C(2)=0$.} &
+\pcell{2}{$C(3)$ --- the boundary. Which piece owns month~3, and how do you know?}{1.8cm}{The first: $3$ satisfies $0\le m\le3$, and $3>3$ is false. $C(3)=0$ --- free.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 2: the V is two pieces ───────────────────────────────────────────────
+\mainidea[The V is]{Two Pieces} &
+\begin{minipage}[c]{0.58\linewidth}
+Lesson~1.3's V is two lines pasted together at the vertex, and now we can \emph{write} it
+that way. When $x\ge0$ the bars change nothing; when $x<0$ they flip the sign --- and the
+check $|-3|=-(-3)=3$ shows the ``$-x$'' piece is not negative.
+\[ |x|=\begin{cases} x, & x\ge0 \\ -x, & x<0 \end{cases} \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.38\linewidth}\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-0.5}{6.5}{-0.5}{7.5}
+  \draw[very thick, redacc] (0,7)--(3,1);
+  \draw[very thick, forest] (3,1)--(6,7);
+  \fdot{forest}{3}{1}
+  \node[below, font=\tiny, charcoal] at (3,-0.05) {$3$};
+  \node[left, font=\tiny, charcoal] at (-0.05,1) {$1$};
+  \node[font=\scriptsize\bfseries] at (3,8.3) {$H(x)=2|x-3|+1$};
+\end{tikzpicture}\par\vspace{2pt}
+The vertex is at \labelbox{1.4cm}{$(3,1)$}
+\end{minipage}
+\\
+& \textbf{The trail from Lesson~1.3,} $H(x)=2|x-3|+1$, splits at its vertex $x=3$:
+\par
 \begin{minipage}[t]{0.47\linewidth}
 For $x\ge3$, $|x-3|=x-3$:
 \begin{work}
@@ -109,136 +138,135 @@ For $x<3$, $|x-3|=-(x-3)=3-x$:
        &= 7 - 2x
 \end{work}
 \end{minipage}
-\end{center}
-The right ray has slope \ans{$2$} and the left ray has slope \ans{$-2$}. At the boundary
-\emph{both} rules give $H(3)=$ \ans{$1$}, so the two pieces \ans{meet} (meet / jump) at
-the vertex --- the graph is one connected V.
-\end{notesbox}
-
-% ── PAGE 3 — I DO: section 2 — the graph, and the crux ───────────────────────
-\newpage
-\begin{notesbox}{2. Reading the Graph: Open or Closed, Meets or Jumps}
-\small
+\\
+& \notesprompt{Use the two rules.}
+\begin{probgrid}{|Y|Y|}
+\pcell{3}{At the boundary, what does \emph{each} rule give for $H(3)$? So do the pieces
+meet or jump there?}{1.8cm}{$2(3)-5=1$ and $7-2(3)=1$: both give $1$, so they meet --- one connected V.} &
+\pcell{4}{Evaluate $H(1)$ two ways: pick the piece, then check against
+$2|1-3|+1$.}{1.8cm}{$1<3$, so $H(1)=7-2(1)=5$; check: $2|1-3|+1=2(2)+1=5$.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 3: open or closed, meets or jumps ────────────────────────────────────
+\mainidea[Open or closed,]{Meets or Jumps} &
 A \textbf{closed} dot $\bullet$ \emph{includes} its endpoint ($\le,\ge$); an \textbf{open} dot
 $\circ$ \emph{excludes} it ($<,>$). Same story, two different functions --- the \emph{total} paid
 so far, and the \emph{price this month}:
 \[ C(m)=\begin{cases} 0, & 0\le m\le3 \\ 12(m-3), & m>3 \end{cases} \qquad\qquad
    P(m)=\begin{cases} 0, & 0\le m\le3 \\ 12, & m>3 \end{cases} \]
-\vspace{-6pt}
-\begin{center}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}X|X@{}}
-\textbf{Total paid $C(m)$} & \textbf{Price this month $P(m)$} \\
-\hline
-\centering\arraybackslash
-\begin{tikzpicture}[scale=0.30, baseline=(current bounding box.center)]
+\\
+& {\centering
+\begin{tikzpicture}[scale=0.46]
+  \node[font=\small\bfseries] at (3.5,5.3) {Total paid $C(m)$};
   \mgrid
   \draw[very thick, forest] (0,0)--(3,0);
   \draw[very thick, forest] (3,0)--(7,4);
   \fdot{forest}{3}{0}
-\end{tikzpicture}
-&
-\centering\arraybackslash
-\begin{tikzpicture}[scale=0.30, baseline=(current bounding box.center)]
-  \mgrid
-  \draw[very thick, redacc] (0,0)--(3,0);
-  \draw[very thick, redacc] (3,1)--(7,1);
-  \fdot{redacc}{3}{0}
-  \hdot{redacc}{3}{1}
-\end{tikzpicture}
+  \begin{scope}[xshift=9.6cm]
+    \node[font=\small\bfseries] at (3.5,5.3) {Price this month $P(m)$};
+    \mgrid
+    \draw[very thick, redacc] (0,0)--(3,0);
+    \draw[very thick, redacc] (3,1)--(7,1);
+    \fdot{redacc}{3}{0}
+    \hdot{redacc}{3}{1}
+    \node[right, font=\tiny, charcoal] at (3.25,1.35) {$(3,12)$};
+    \node[below right, font=\tiny, charcoal] at (3.15,-0.05) {$(3,0)$};
+  \end{scope}
+\end{tikzpicture}\par}
+\vspace{2pt}
+\textbf{One test:} both rules agree at the boundary, or they do not.
 \\
-At $m=3$ the first rule gives \ans{$0$}; just past $3$ the second gives \ans{$0$} &
-At $m=3$ the first rule gives \ans{$0$}; just past $3$ the second gives \ans{$12$} \\
-Same value? \ans{yes} \; The pieces \ans{meet} (meet / jump) & Same value? \ans{no} \; The pieces \ans{jump} (meet / jump) \\
-\emph{Continuous} at $3$: constant on \ans{$[0,3]$}, increasing on \ans{$[3,\infty)$} & A \emph{discontinuity} at $3$; the range is only \ans{$\{0,12\}$} \\
-\end{tabularx}
-\end{center}
-\textbf{Meets or jumps --- one test:} both rules agree at the boundary, or they do not.
-
-\vspace{6pt}
-\textbf{\textcolor{forest}{The Crux: Exactly One Piece Owns the Boundary.}}
-\begin{center}
-\fcolorbox{goldacc}{goldbg}{\parbox{0.94\linewidth}{\small
-A classmate reads $P(3)=12$ ``because the price is \$12 after the free months.'' But $3$
-satisfies $0\le m\le3$, so $P(3)=$ \ans{$0$}, and the \ans{closed} (open / closed) dot at
-$(3,0)$ says so. The open dot at $(3,12)$ is \emph{not} a point of the graph --- it marks where
-the second piece starts \emph{without} its endpoint. Give a boundary to ``both'' pieces, or to
-the strict one, and you have read the wrong dot.}}
-\end{center}
-
-\vspace{6pt}
-\textbf{\textcolor{forest}{Step Functions: Rounding Down.}}
-$P(m)$ is \emph{constant} on each piece, then jumps --- a \textbf{step function}. The most famous
-one is the \textbf{greatest-integer function} $\lfloor x\rfloor$: the greatest integer
-\emph{less than or equal to} $x$. It \textbf{rounds down}.
-\begin{center}
-\begin{minipage}[c]{0.58\linewidth}
-$\lfloor 3.7\rfloor=$ \ans{$3$} \quad $\lfloor 5\rfloor=$ \ans{$5$} \quad
-$\lfloor -0.4\rfloor=$ \ans{$-1$} \quad $\lfloor -2.5\rfloor=$ \ans{$-3$} \\[4pt]
-\emph{Careful:} down means \emph{more negative}, not ``toward zero'' --- $-2.5$ goes to
-\ans{$-3$}, not $-2$. \\[4pt]
-The staircase: on $[n,n+1)$ the output is the constant $n$ --- closed on the left, open on the
-right --- then it jumps by $1$. So $\lfloor x\rfloor=2$ for every $x$ in \ans{$[2,3)$}, and on
-that interval the function is \ans{constant} (increasing / constant).
+& \notesprompt{Read the two graphs.}
+\begin{probgrid}{|Y|Y|}
+\pcell{5}{$C(m)$: at $m=3$ the first rule gives what, and just past $3$ the second? Meet or
+jump? Constant on what interval, increasing on what?}{2.0cm}{$0$, and just past $3$ barely above $0$: they meet. Constant on $[0,3]$, increasing on $[3,\infty)$.} &
+\pcell{6}{$P(m)$: the same questions --- and what is its range?}{2.0cm}{$0$ and $12$: different, so the graph jumps --- a discontinuity. Range $\{0,12\}$.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 4: who owns the boundary — THE CRUX, then rounding down ──────────────
+\mainidea[Who owns the]{Boundary} &
+\textbf{Exactly one piece owns a boundary input --- the piece whose inequality includes it.
+The story does not decide it; the inequality does, and the closed dot shows which piece won.}
+Above, the dot at $(3,0)$ is \labelbox{1.4cm}{closed} and the dot at $(3,12)$ is \labelbox{1.4cm}{open}.
+\\
+& \begin{minipage}[c]{0.63\linewidth}
+$P(m)$ is \emph{constant} on each piece, then jumps: a \textbf{step function}. The
+\textbf{greatest-integer function} $\lfloor x\rfloor$ is the greatest integer \emph{less than or
+equal to} $x$: it \textbf{rounds down}, and down means \emph{more negative}, not ``toward zero.''
+On $[n,n+1)$ the output is the constant $n$ --- closed on the left, open on the right: the
+boundary rule, one step at a time.
 \end{minipage}\hfill
-\begin{minipage}[c]{0.38\linewidth}\centering
-\begin{tikzpicture}[scale=0.36]
-  \lgrid{-1.5}{4.5}{-1.5}{4}
+\begin{minipage}[c]{0.34\linewidth}\centering
+\begin{tikzpicture}[scale=0.4]
+  \node[font=\small\bfseries] at (1.5,4.1) {$y=\lfloor x\rfloor$};
+  \lgrid{-1.5}{4.5}{-1.5}{3.6}
   \draw[very thick, forest] (-1,-1)--(0,-1); \fdot{forest}{-1}{-1} \hdot{forest}{0}{-1}
   \draw[very thick, forest] (0,0)--(1,0);    \fdot{forest}{0}{0}   \hdot{forest}{1}{0}
   \draw[very thick, forest] (1,1)--(2,1);    \fdot{forest}{1}{1}   \hdot{forest}{2}{1}
   \draw[very thick, forest] (2,2)--(3,2);    \fdot{forest}{2}{2}   \hdot{forest}{3}{2}
   \draw[very thick, forest] (3,3)--(4,3);    \fdot{forest}{3}{3}   \hdot{forest}{4}{3}
-\end{tikzpicture}
+\end{tikzpicture}\par\vspace{2pt}
+This graph is a \labelbox{2.4cm}{step function}
 \end{minipage}
-\end{center}
-\end{notesbox}
-
-% ── PAGE 4 — WE DO: guided practice, alone on its page ───────────────────────
-\newpage
-\begin{practicebox}
-\small
-\textbf{We work this one together.} No story this time --- just the rule and its graph.
+\\
+& \notesprompt{Settle the vote.}
+\begin{probgrid}{|Y|Y|}
+\pcell{7}{A classmate reads $P(3)=12$ ``because the price is \$12 after the free months.''
+What is $P(3)$, and which dot says so? What does the other dot mark?}{2.2cm}{$P(3)=0$: $3$ satisfies $0\le m\le3$ --- the closed dot at $(3,0)$. The open dot only marks where the second piece starts.} &
+\pcell{8}{\textbf{In your own words:} what does a closed dot tell you, and what does an open dot
+tell you?}{2.2cm}{Closed: this endpoint is \emph{in} --- the piece owns it. Open: it is \emph{out} --- the piece starts here without it.} \\ \hline
+\end{probgrid}
+\\
+& \textbf{9.} Round down --- fill the table. Then: does the step $[2,3)$ own $x=3$? \ans{no --- $[3,4)$ does}
+\par\vspace{2pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{} l Y Y Y Y @{}}
+\rowcolor{sky}
+\textbf{$x$} & $3.7$ & $5$ & $-0.4$ & $-2.5$ \\
+\hline
+\textbf{$\lfloor x\rfloor$} & \ans{$3$} & \ans{$5$} & \ans{$-1$} & \ans{$-3$} \\
+\end{tabularx}
+\\ \hline
+% ── ROW 5: guided practice — WE DO, together, no story ───────────────────────
+\mainidea[Guided practice]{Just the Rule} &
+\begin{minipage}[c]{0.52\linewidth}
+No story this time --- just the rule and its graph, pre-drawn.
 \[ p(x)=\begin{cases} -2x, & x\le -1 \\ x+3, & x>-1 \end{cases} \]
-\vspace{-6pt}
-\begin{center}
-\begin{minipage}[c]{0.60\linewidth}
-\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=6pt]
-  \item Pick the piece, then apply it. \\[3pt]
-        $p(-3)=$ \ans{$6$} \quad $p(0)=$ \ans{$3$} \quad $p(2)=$ \ans{$5$} \\[3pt]
-        $p(-1)=$ \ans{$2$} --- which piece owns $x=-1$? \ans{the first} \\[2pt]
-        How do you know? \ans{$-1\le-1$: the $\le$ includes it; $-1>-1$ is false}
-  \item \textbf{Meets or jumps at $x=-1$?} The first rule gives \ans{$2$}; just past
-        $-1$ the second gives \ans{$2$}. So the graph \ans{meets} (meets / jumps):
-        $p$ \emph{is} continuous there.
-  \item From the graph: decreasing on \ans{$(-\infty,-1]$}, increasing on \ans{$[-1,\infty)$}; the minimum
-        value is \ans{$2$}, at the boundary.
-\end{enumerate}
 \end{minipage}\hfill
-\begin{minipage}[c]{0.36\linewidth}\centering
-\begin{tikzpicture}[scale=0.34]
-  \lgrid{-4.5}{4.5}{-1}{8}
-  \draw[very thick, forest] (-4,8)--(-1,2);
+\begin{minipage}[c]{0.44\linewidth}\centering
+\begin{tikzpicture}[scale=0.3]
+  \lgrid{-4.5}{4.5}{-1}{8.5}
+  \draw[very thick, redacc] (-4,8)--(-1,2);
   \draw[very thick, forest] (-1,2)--(4,7);
   \fdot{forest}{-1}{2}
+  \node[below, font=\tiny, charcoal] at (-1,-0.05) {$-1$};
+  \node[left, font=\tiny, charcoal] at (-0.05,2) {$2$};
+  \node[above left, font=\scriptsize\bfseries, redacc] at (-2.5,5) {$-2x$};
+  \node[above left, font=\scriptsize\bfseries, forest] at (2.5,5.5) {$x+3$};
 \end{tikzpicture}
 \end{minipage}
-\end{center}
-\begin{enumerate}[label=\textbf{\alph*.}, leftmargin=1.8em, itemsep=6pt, start=4]
-  \item \textbf{The crux, on new ground.} A classmate says: ``Both rules give $2$ at $x=-1$, so it
-        does not matter which piece owns it.'' Change the second piece to $x+4$ and test that.
-        \\[3pt]
-        Now which piece owns $x=-1$? \ans{still the first} \quad $p(-1)=$ \ans{$2$} \quad Just past
-        $-1$ the second rule gives \ans{$3$} \\[3pt]
-        So the graph now \ans{jumps} (meets / jumps) at $-1$ --- and the dot at $(-1,2)$ is
-        \ans{closed} (open / closed) while the dot at $(-1,3)$ is \ans{open}. \\[3pt]
-        What did the classmate miss? \ans{ownership is decided by the inequality, not by the rules happening to agree}
-  \item \textbf{Round down.} $\lfloor 2.9\rfloor=$ \ans{$2$} \quad
-        $\lfloor -1.2\rfloor=$ \ans{$-2$} \quad $\lfloor 4\rfloor=$ \ans{$4$} \quad
-        $\lfloor x\rfloor=4$ for every $x$ in \ans{$[4,5)$} \\[3pt]
-        Does the step $[4,5)$ own $x=5$? \ans{no} \; Which step does? \ans{$[5,6)$} \; So
-        $\lfloor5\rfloor=$ \ans{$5$}
-\end{enumerate}
-\end{practicebox}
+\\
+& \notesprompt{We work these together.}
+\begin{probgrid}{|Y|Y|}
+\pcell{10}{Pick the piece, then apply it: $p(-3)$, $p(0)$, $p(2)$ --- then $p(-1)$. Which piece
+owns $x=-1$, and how do you know?}{1.8cm}{$6$, $3$, $5$; $p(-1)=2$ by the first piece: $-1\le-1$ is true, $-1>-1$ is false.} &
+\pcell{11}{Meets or jumps at $x=-1$? From the graph: decreasing where, increasing where, and
+the minimum value?}{1.8cm}{Both give $2$: meets. Decreasing on $(-\infty,-1]$, increasing on $[-1,\infty)$; minimum $2$.} \\ \hline
+\end{probgrid}
+\\
+& \begin{probgrid}*{|Y|Y|}
+\pcell{12}{\textbf{The crux, on new ground.} Change the second piece to $x+4$. Now who owns
+$x=-1$, what is $p(-1)$, meet or jump --- and which dot is closed? A classmate said ``both rules
+gave $2$, so it does not matter who owns it'': what did they miss?}{2.6cm}{Still the first --- the inequality did not change. $p(-1)=2$, then $3$ just past: a jump; closed at $(-1,2)$, open at $(-1,3)$. The inequality decides.} &
+\pcell{13}{\textbf{Round down:} $\lfloor 2.9\rfloor$, $\lfloor -1.2\rfloor$, $\lfloor 4\rfloor$.
+Then $\lfloor x\rfloor=4$ for every $x$ in which interval --- and does that step own
+$x=5$?}{2.6cm}{$2$, $-2$, $4$. $[4,5)$; no --- $[5,6)$ owns $5$, so $\lfloor5\rfloor=5$.} \\ \hline
+\end{probgrid}
+\\ \hline
+\end{guidednotes}
+
+% ── THE NOTES END AT GUIDED PRACTICE ─────────────────────────────────────────
+% There is deliberately no "you do" here: ../homework/ is the individual practice,
+% started in class in the last ten minutes while the teacher circulates.
 
 \end{document}

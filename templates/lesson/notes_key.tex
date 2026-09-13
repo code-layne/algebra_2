@@ -1,40 +1,27 @@
-%! @@TITLE@@ — Unit @@UNITINT@@, Lesson @@LESSONID@@ — Guided Notes (Answer Key)
-% Mirrors notes/main.tex EXACTLY: every \blank{} becomes an \ans{}, every \termblanklong becomes
-% a \vocabans, and every work block is authored byte-identically so the two files paginate alike.
-\documentclass[10pt]{article}
+%! @@TITLE@@ — Unit @@UNITINT@@, Lesson @@LESSONID@@ — Guided Notes & Practice (Answer Key)
+% MIRROR of ../notes/main.tex. Copy the blank VERBATIM, then change exactly these:
+%   \usepackage{@@PREFIX@@-boxes}      ->  \usepackage{@@PREFIX@@-key}   (pulls in -boxes; never load both)
+%   the \pageheader second argument    ->  Guided Notes \& Practice --- Answer Key
+%   \vterm{Term}                       ->  \vtermans{Term}{definition}  (both defined in the preamble)
+%   \blank{W}                          ->  \ans{short answer}           (no wider than the blank)
+%   \pcell{n}{statement}{H}{}          ->  \pcell{n}{statement}{H}{answer}  (answer shorter than H)
+%   \writespace{H}{} / \labelbox{W}{}  ->  the same with the answer / label as the second argument
+% Every \begin{work} block, every height, every width, every sub-row stays BYTE-IDENTICAL.
+% \ans{} and the \pcell answer are TEXT MODE: wrap \sqrt/\dfrac/\hat/\bar in $...$.
+% NO teachernote here — teacher prose goes in the lesson plan.
+% Prove it: diff the two files and only the lines above may differ; then the page counts match.
+\documentclass[12pt]{article}
 \usepackage{@@PREFIX@@-article}
 \usepackage{@@PREFIX@@-key}   % pulls in -boxes; do NOT also load -boxes
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
-% The leading and trailing \par are required: \ansline ends with \dotfill but does NOT end the
-% paragraph, so without them each term label gets pulled onto the previous answer's line.
-\newcommand{\vocabans}[2]{%
-  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
 
 \begin{document}
 
-\pageheader{Unit @@UNITINT@@, Lesson @@LESSONID@@}{Guided Notes --- Answer Key}
+\pageheader{Unit @@UNITINT@@, Lesson @@LESSONID@@}{Guided Notes \& Practice --- Answer Key}
 % NAMESTRIP: no \namedateperiod here — mirrors the blank.
 
-\vspace{0.10in}
-
-% TODO: copy notes/main.tex verbatim from here down, then fill every blank.
-%   \blank{2.0cm}          ->  \ans{answer}          (keep it short — a wide \ans can wrap and
-%                                                     shift a page break away from the blank)
-%   \termblanklong{Term}   ->  \vocabans{Term}{definition}
-%   \begin{work} ... \end{work}  ->  UNCHANGED, byte for byte (loading -key is what prints it)
-%   \writelines{n}         ->  exactly n \ansline{...}s, each under ~95 characters
-% The Individual Practice scenariobox is mirrored the same way; nothing is added to a key.
-\begin{objectivebox}
-\textbf{By the end of this lesson, I will be able to\dots}
-\begin{itemize}\setlength{\itemsep}{2pt}
-  \item TODO --- identical to the blank.
-\end{itemize}
-\end{objectivebox}
+% TODO: paste the blank here and apply the substitutions above. Examples:
+%   \termblank{Variable}          ->  \termans{Variable}{a characteristic recorded for every individual.}
+%   \blank{2.0cm}                 ->  \ans{countable}
+%   \pcell{4}{Rainfall}{0.9cm}{}  ->  \pcell{4}{Rainfall}{0.9cm}{C --- the gauge rounded a real amount}
 
 \end{document}

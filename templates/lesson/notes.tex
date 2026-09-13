@@ -1,118 +1,185 @@
-%! @@TITLE@@ — Unit @@UNITINT@@, Lesson @@LESSONID@@ — Guided Notes
-% GRADUAL RELEASE (course-wide shape, 2026-09-01): this is the "I do / we do" block — 20 minutes
-% including the Guided Practice box — and the Individual Practice block that closes it is the
-% "you do alone", 15 more. There is no group activity. The vocabulary is BUILT HERE, before the
-% practice uses it. Budget: 4pp, with Individual Practice landing on its own clean page.
-% Reference implementations: unit01/lesson01/notes and unit01/lesson02/notes.
-\documentclass[10pt]{article}
+%! @@TITLE@@ — Unit @@UNITINT@@, Lesson @@LESSONID@@ — Guided Notes & Practice
+% THE in-class document, in the MAIN IDEAS / NOTES shape (LESSON_SHAPE.md §1): the vocabulary
+% box, then ONE two-column guidednotes table. Each row is one idea — a label on the left; on the
+% right one or two COMPLETE printed sentences, ONE large pre-drawn display, then a two-across
+% grid of a few numbered problems with 2–3cm of writing room. Problems run 1..N (aim 12–19).
+% DENSITY: the page belongs to the student's pen. A \blank{} only where a word or number IS the
+% answer (a table to fill, a display to name) — never mid-sentence. Short printed text, big
+% pictures, big answer spaces. 3–4 pages.
+%   I DO   : the teacher reads the definition, marks up the display, works the first problem.
+%   WE DO  : the class works the rest of each grid, students holding the pen; the last row,
+%            Guided Practice, is worked entirely together in a fresh context.
+%   YOU DO : nothing on this page — ../homework/ IS the individual practice. No independent
+%            set, no reflection box, no objectives box (targets are on the cover).
+% The crux — the problem that surfaces the target misconception — is in the grid of the LAST
+% INSTRUCTION ROW, before Guided Practice.
+%
+% PAGE LOCKSTEP with notes_key/: \termblank -> \termans, \blank -> \ans, and the answer argument
+% of every \pcell, \writespace and \labelbox filled. Nothing else differs. Answer spaces are
+% fixed heights, so the two files cannot drift.
+% TABLE MECHANICS: inside a cell, `\\` ENDS THE ROW — break lines with \par. A row cannot break
+% across pages: the figure gets its own sub-row (`\\` then `& ...`) and EACH GRID ROW is its own
+% sub-row — close the probgrid, `\\ &`, reopen as probgrid* (no top rule).
+% NO SKETCH QUESTIONS: every display is pre-drawn in TikZ and read.
+\documentclass[12pt]{article}
 \usepackage{@@PREFIX@@-article}
 \usepackage{@@PREFIX@@-boxes}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Vocabulary rows: copy the \vterm / \vtermans block from unit01/lesson04/notes/main.tex
+% (fixed-height rows filled as each term is named).
 
 \begin{document}
 
-\pageheader{Unit @@UNITINT@@, Lesson @@LESSONID@@}{Guided Notes}
-% NAMESTRIP: no \namedateperiod here. The student writes their name once, on the cover.
+\pageheader{Unit @@UNITINT@@, Lesson @@LESSONID@@}{Guided Notes \& Practice}
+% NAMESTRIP: no \namedateperiod here — the name row lives on the cover only.
 
-\vspace{0.10in}
+\vspace{2pt}
 
-\begin{objectivebox}
-\textbf{By the end of this lesson, I will be able to\dots}
-\begin{itemize}\setlength{\itemsep}{2pt}
-  \item TODO: objective 1 --- use the formal vocabulary freely; there is no spoiler rule.
-  \item TODO: objective 2.
-\end{itemize}
-\end{objectivebox}
-
-\vspace{0.05in}
-
+% ── VOCABULARY (I do — students fill each term AS IT IS NAMED, never in advance) ──
+\boxguard[16]
 \begin{vocabbox}
 \small
-Fill in each term as we build it together.
-\par\vspace{2pt}   % \par is required: \termblanklong's \noindent is a no-op mid-paragraph
-\termblanklong{TODO term 1}
-\termblanklong{TODO term 2}
-% 5–7 terms. The key defines a matching \vocabans macro — see notes_key.tex.
+Fill in each term \textbf{as we name it} in the notes below.
+\par
+\vterm{TODO Term 1}
+\par
+\vterm{TODO Term 2}
+\par
+\vterm{TODO Term 3}
+\par
 \end{vocabbox}
 
+% ── HOOK (stays — the 60-second context whose numbers the rows below reuse; ends on a
+%    circle-one vote left unresolved) ──
+\boxguard[14]
 \begin{hookbox}
-TODO: a 60-second context that motivates the lesson and supplies the numbers every worked example
-below will reuse. Ask 3--4 quick questions with fill-in answers, then land the idea in one
-sentence \emph{before} naming anything.
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item TODO: \blank{1.0cm} \quad \blank{1.0cm} \quad \blank{1.0cm}
-\end{itemize}
+\small
+TODO: the hook, two or three sentences, and the vote left hanging.
+\par\writelines{2}
 \end{hookbox}
 
-% FOUR numbered sections. Keep ONE worked context running through all of them where you can —
-% it is what makes the block read as one lesson rather than four procedures.
-\boxguard[24]
-\begin{notesbox}{1. TODO: the defining idea}
-TODO. Build the definition from the hook's own numbers, then state the general form.
-\begin{work}
-  % TODO: the first worked example, one statement per line, & before the relation.
-  m &= \frac{y_2 - y_1}{x_2 - x_1} \\
-    &= 2
-\end{work}
-\end{notesbox}
+\small
+\begin{guidednotes}
+% ── ROW 1: TODO idea ─────────────────────────────────────────────────────────
+\mainidea[TODO lead]{TODO Label} &
+TODO: one or two complete sentences. A \textbf{TODO term} is TODO. \textbf{The test:} TODO.
 
-\boxguard[22]
-\begin{notesbox}{2. TODO: the second idea}
-TODO --- a fill-in \texttt{tabularx} works well here (feature / how to find it / what it means).
-\end{notesbox}
+\vspace{4pt}
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+  % TODO: a large pre-drawn display that SHOWS the idea
+  \draw[->, thick] (-0.2,0) -- (7.2,0);
+\end{tikzpicture}
+\end{center}
+\\
+& \notesprompt{TODO Classify each \dots\ Say how you know.}
+\begin{probgrid}{|Y|Y|}
+\pcell{1}{TODO}{2.0cm}{} & \pcell{2}{TODO}{2.0cm}{} \\ \hline
+\end{probgrid}
+\\
+& \begin{probgrid}*{|Y|Y|}
+\pcell{3}{TODO --- the trap}{2.0cm}{} & \pcell{4}{TODO}{2.0cm}{} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 2: TODO idea with a display to annotate ──────────────────────────────
+\mainidea[TODO lead]{TODO Label} &
+TODO: the context in one sentence. \textbf{TODO: the one thing to notice.}
 
-\boxguard[26]
-\begin{notesbox}{3. TODO: the section that carries the target misconception}
-TODO. Put the two things students conflate side by side in a two-column \texttt{tabularx}, then
-close with a gold caution box giving a case where the two answers \emph{disagree}:
-\begin{tcolorbox}[colback=goldbg, colframe=goldacc, boxrule=0.8pt, arc=1.5mm,
-    left=2.5mm, right=2.5mm, top=1.5mm, bottom=1.5mm]
-\textbf{\textcolor{goldacc}{Careful: TODO.}} \; TODO --- the counterexample, with fill-in blanks.
-\end{tcolorbox}
-\end{notesbox}
+\vspace{4pt}
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % TODO: pre-drawn display
+  \draw[->, thick] (-0.2,0) -- (7.2,0);
+\end{tikzpicture}\\[6pt]
+This is a \labelbox{2.4cm}{}
+\end{center}
+\\
+& \notesprompt{Read it.}
+\begin{probgrid}{|Y|Y|}
+\pcell{5}{TODO}{1.8cm}{} & \pcell{6}{TODO}{1.8cm}{} \\ \hline
+\end{probgrid}
+\\
+& \begin{probgrid}*{|Y|Y|}
+\pcell{7}{TODO}{1.8cm}{} & \pcell{8}{\textbf{In your own words:} TODO}{1.8cm}{} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 3: TODO procedure ────────────────────────────────────────────────────
+\mainidea{TODO Label} &
+TODO: the setup sentence.
 
-\boxguard[20]
-\begin{notesbox}{4. TODO: the edge cases and the boundary}
-TODO --- the special case, the value where the rule fails, and the story-vs-math distinction.
-\end{notesbox}
+\vspace{3pt}
+\stepnum{1}\ TODO step.\par
+\stepnum{2}\ TODO step.\par
+\stepnum{3}\ TODO step.
 
-% GUIDED PRACTICE — the "we do". Everything at once on ONE new example, worked WITH the class —
-% it is the last thing students see before working alone.
-\begin{practicebox}
-TODO: one new example, all features at once.
-\begin{enumerate}[leftmargin=1.7em, itemsep=3pt]
-  \item TODO \blank{1.2cm}
-  \item TODO --- solve it here.
-        \begin{work}
-          % TODO
-          2x - 4 &= 0 \\
-               x &= 2
-        \end{work}
-\end{enumerate}
-\end{practicebox}
+\vspace{5pt}
+\textbf{9.} TODO: a table the student fills (its cells are the only \blank{}s on the page).
+\\
+& \begin{center}
+\begin{tikzpicture}[scale=0.9]
+  % TODO: the display the procedure produces, pre-drawn
+  \draw[->, thick] (0,0) -- (6,0);
+\end{tikzpicture}
+\end{center}
+\\
+& \textbf{TODO: the sentence to land.}
+\notesprompt{Use it.}
+\begin{probgrid}{|Y|Y|}
+\pcell{10}{TODO}{2.2cm}{} & \pcell{11}{TODO}{2.2cm}{} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 4: THE CRUX — the target misconception as problems in a grid ─────────
+\mainidea[TODO lead]{TODO Label} &
+TODO: the contrast, in one sentence.
 
-% INDIVIDUAL PRACTICE — the "you do alone" (15 min, silent). A scenariobox[...]{navy} — no new
-% environment. THREE problems, deliberately the three shapes/directions of the skill, each with a
-% work block where there is algebra. \boxguard[22] so it lands on its own clean page.
-\boxguard[22]
-\begin{scenariobox}[Individual Practice --- On Your Own]{navy}
-Three problems, quietly and on your own. TODO: the one-sentence rule to apply.
-\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
-  \item \textbf{TODO shape 1.} TODO \blank{1.2cm}
-        \begin{work}
-          % TODO
-          2x - 4 &= 0 \\
-               x &= 2
-        \end{work}
-  \item \textbf{TODO shape 2.} TODO \blank{1.2cm}
-  \item \textbf{TODO shape 3 --- the crux.} TODO. A classmate claims TODO --- what did they miss?
-        \par\writelines{2}
-\end{enumerate}
-\end{scenariobox}
+\vspace{2pt}
+\begin{center}
+\begin{tikzpicture}[scale=0.72]
+  % TODO: the two pictures side by side
+  \draw[->, thick] (0,0) -- (6,0);
+\end{tikzpicture}
+\end{center}
+\\
+& \fcolorbox{forest}{forestbg}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\centering
+\textbf{TODO: the sentence to land, printed whole.}}}
+
+\vspace{3pt}
+\textbf{In your own words:} TODO the question that makes them restate it.
+\writespace{1.6cm}{}
+\\
+& \notesprompt{TODO Compare.}
+\begin{probgrid}{|Y|Y|}
+\pcell{12}{TODO}{2.4cm}{} & \pcell{13}{TODO}{2.4cm}{} \\ \hline
+\end{probgrid}
+\\
+& \begin{probgrid}*{|Y|Y|}
+\pcell{14}{TODO --- the crux}{2.4cm}{} & \pcell{15}{TODO --- the counterweight}{2.4cm}{} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── LAST ROW: GUIDED PRACTICE — we do, together, a fresh context ─────────────
+\mainidea[Guided practice]{TODO Title} &
+TODO: the fresh context in one sentence.
+
+\vspace{2pt}
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+  % TODO: its pre-drawn display
+  \draw[->, thick] (-0.2,0) -- (7.4,0);
+\end{tikzpicture}
+\end{center}
+\\
+& \notesprompt{We work these together.}
+\begin{probgrid}{|Y|Y|}
+\pcell{16}{TODO}{2.2cm}{} & \pcell{17}{TODO}{2.2cm}{} \\ \hline
+\end{probgrid}
+\\
+& \begin{probgrid}*{|Y|Y|}
+\pcell{18}{TODO --- the crux transferred}{2.6cm}{} & \pcell{19}{TODO}{2.6cm}{} \\ \hline
+\end{probgrid}
+\\ \hline
+\end{guidednotes}
+
+% ── THE NOTES END AT GUIDED PRACTICE ─────────────────────────────────────────
+% There is deliberately no "you do" here: ../homework/ is the individual practice,
+% started in class in the last 8 minutes while the teacher circulates.
 
 \end{document}

@@ -68,7 +68,7 @@ homework *is* the individual practice. There is no practice set at the end of th
 | Phase | Minutes | Component |
 | --- | --- | --- |
 | Warm-Up | 5 | `warmup` |
-| Guided Notes & Practice — I do (hook + two sections, ~20) + we do (Guided Practice, ~15) | 35 | `notes` |
+| Guided Notes & Practice — I do / we do row by row (~20) + Guided Practice together (~15) | 35 | `notes` |
 | Debrief — whole class, spoken | 10 | — (in the plan and the deck only) |
 | Close & start the homework, alone, teacher circulating | 10 | `homework` |
 
@@ -81,21 +81,21 @@ table lie, and do not edit `shared/`.
 rehearsing exactly the prior skills the lesson leans on; the last item ends on the question notes
 section 1 answers, deliberately left hanging. May be a prefab PDF.
 
-**`notes` — *Guided Notes & Practice* — is the in-class centrepiece, and it has a fixed
-four-page plan at 12pt** (`\small` inside the boxes, as the stats model does): **page 1** =
-`\pageheader{…}{Guided Notes \& Practice}` → `vocabbox` (5–6 fixed-height rows, filled *as each
-term is named*) → `hookbox` (the 60-second context whose numbers every worked example reuses,
-ending on a circle-one vote that is **left unresolved**); **there is no `objectivebox`** — the
-cover carries the targets. **Page 2** = `notesbox{1. Title}`; **page 3** = `notesbox{2. Title}`
-(a `\newpage` before each, so the layout is deterministic); each section is long, its second half
-introduced by a bold run-in heading `\textbf{\textcolor{forest}{Its Title.}}` rather than a third
-box. **Page 4** = one `practicebox` (fixed title "Guided Practice") worked together, four or five
-lettered parts, one of which tests the misconception on new ground, **alone on its page**. **The
-notes end there.** A section that does not fit its page is cut or its closing item moves into the
-Guided Practice — never carried over. **The crux — the item that surfaces the target
-misconception — lives in the second half of section 2**, as a gold `\fcolorbox{goldacc}{goldbg}`
-callout giving a case where the two answers *disagree*; the hook plants it, section 1 earns it,
-section 2 settles it, and the Guided Practice tests it again on new ground.
+**`notes` — *Guided Notes \& Practice* — is the in-class centrepiece (2026-09-12 shape, ported
+from AP Statistics).** `\pageheader{…}` → `vocabbox` (5–6 fixed-height `\vterm` rows, filled *as each term is
+named*) → `hookbox` (the 60-second context whose numbers every row reuses, ending on a circle-one vote **left unresolved**) → **one two-column *Main Ideas / Questions* | *Notes* table**
+(`guidednotes` in `algebra2-boxes.sty`), 3–4 pages at 12pt. **There is no `objectivebox`** — the
+cover carries the targets. Each **row** is one idea on the one worked context: a short label on
+the left (`\mainidea[lead]{Label}`); on the right one or two **complete printed sentences** (the
+definition or the general form, read — never a sentence with words punched out), **one large
+pre-drawn display** (a graph, a table, the two things students conflate side by side) the
+student reads or annotates with `\labelbox`, then a bold prompt and a **two-across grid of a few
+numbered problems** (`probgrid` + `\pcell`, **2–3 cm of work room each**, algebra in `work`
+blocks); a procedure uses `\stepnum{n}`, the sentence to land an *In your own words*
+`\writespace`. Three or four instruction rows — the last carries the **target misconception as
+problems**, the case where the two answers *disagree* — then the **Guided Practice row** (`\mainidea[Guided practice]{Title}`, one new example, all features at once, worked *with* the class, four problems). **The notes end there.** **Density rules:** a `\blank{}` only where a single word or number *is* the answer (a table to fill, a display to name), never mid-sentence, a handful per lesson; 12–19 problems, two across, never three; every row a picture; the plan names, by problem number, which problems the teacher works, which is the trap, which is the crux. The hook plants the crux, the first rows earn it, the last instruction row settles it, and the Guided Practice tests it again on new ground.
+Lessons authored before 2026-09-12 use the boxed notes (`notesbox` sections + `practicebox`);
+convert them by the recipe in `templates/lesson/components.md` when you touch them.
 
 **`homework`** — **12pt, 2 pages, and 2pp is a ceiling** — a seventh item gets cut, never
 spilled onto a third page. It **is the individual practice**: opens with a `remindbox` (*"This is
@@ -312,6 +312,17 @@ travels with the branch and the Step 0 sync brings the latest state forward.
 - **Keys** load `algebra2-key` in place of `-boxes`; `\ans{}`, `\ansline{}`, the `work` blocks,
   and (where needed) a local `\vocabans`. Correct multiple-choice options may also be tagged
   `\textcolor{keyred}{\textbf{$\leftarrow$ correct}}`.
+
+- **The Main Ideas / Notes table** — `guidednotes`, `\mainidea`, `\notesprompt`, `probgrid` /
+  `probgrid*`, `\pcell`, `\writespace`, `\labelbox`, `\stepnum` — is defined in
+  `algebra2-boxes.sty` (ported from AP Statistics 2026-09-12; the commentary there is the
+  reference; labels and step discs are set in `forest`). Traps: **inside a table cell `\\` ends
+  the row** and spills the rest into the label column — break lines with `\par`; **a row cannot
+  break across pages** — give the figure its own sub-row (a bare `\\`, then `& ...`) and put each
+  grid row in its own sub-row, reopening as `probgrid*` (no top rule); **`\pcell`'s height is the
+  answer space only**, below the statement, and an answer longer than it overflows silently. The
+  key differs from the blank only in `-key` for `-boxes`, the vocabulary rows, `\blank`→`\ans`,
+  and the answer argument of each `\pcell`, `\writespace`, `\labelbox`.
 
 ## 5. Lesson-plan section order
 
