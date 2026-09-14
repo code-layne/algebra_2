@@ -1,0 +1,242 @@
+%! Algebra 2 — Unit 1: Linear Functions — Study Guide (reference sheet, no problems, no key)
+%
+% A unit-level bookend component, built by shared/unit.mk the same way unit_cover is (no
+% Makefile of its own; `make -C unit01 study_guide`). It is a REFERENCE sheet: vocabulary,
+% forms, the graphs to know, and each lesson's target misconception stated as a caution.
+% There are no problems here and therefore no answer key — the practice test
+% (unit01/tests/practice_test) is the problem set students work.
+%
+% No \namedateperiod: the namestrip rule puts a name row on lesson covers and unit tests only,
+% and this is neither — it is a keep-it-in-the-binder handout.
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+
+% ── Local layout macros ───────────────────────────────────────────────────────
+% A compact lesson divider, the same device the practice test uses for its parts
+% (headlinebox takes one argument: the background colour).
+\newcommand{\sghead}[2]{%
+  \boxguard[10]%
+  \vspace{4pt}\par\noindent
+  \colorbox{forest}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
+    \small\color{white}\bfseries #1 \hfill \textmd{\itshape\scriptsize\color{forestmid} #2}}}%
+  \vspace{2pt}\par}
+
+% The target misconception for a lesson, stated as a caution.
+\newcommand{\sgwatch}[1]{%
+  \vspace{1pt}\par\noindent
+  \colorbox{redbg}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
+    \footnotesize\textbf{\textcolor{redacc}{Watch out:}} #1}}%
+  \vspace{1pt}\par}
+
+% Two-column reference table: idea/term on the left, the statement on the right.
+% NOT wrapped in a \newenvironment — tabularx scans its body for a literal
+% \end{tabularx}, and hiding that token inside an environment's end code fails with
+% "File ended while scanning use of \TX@get@body". The spec is a macro instead.
+% The left column is a \newcolumntype, not a macro: array does not expand an ordinary
+% macro inside a preamble ("Illegal pream-token").
+\newcolumntype{G}{>{\bfseries\color{forest}}p{0.245\linewidth}}
+\newcommand{\sgtabsetup}{\renewcommand{\arraystretch}{1.06}\footnotesize}
+
+\begin{document}
+
+\pageheader{Unit 1: Linear Functions}{Study Guide --- Reference Sheet}
+
+\vspace{-0.30in}
+\noindent\footnotesize Everything Unit 1 asks you to \emph{know} --- vocabulary, forms, graphs,
+and the six places students most often go wrong. No problems: work the \textbf{practice test}
+for those, then come back here for anything you could not explain.\par\normalsize
+
+% ======================================================================
+\sghead{1.0 \quad Characteristics of Linear Functions}{A2.F.2a, c, f}
+{\sgtabsetup
+\begin{tabularx}{\linewidth}{@{} G X @{}}
+Linear function & A function whose \emph{rate of change is constant} --- the same slope
+  everywhere. That is exactly why its graph is a straight line. \\
+Slope & $m=\dfrac{y_2-y_1}{x_2-x_1}=\dfrac{\Delta y}{\Delta x}$, the rise over the run.
+  \emph{Any} two points on the line give the same answer. In context it is a rate, with units. \\
+$y$-intercept & $(0,b)$ --- the output when $x=0$; the ``starting value.'' \\
+Zero ($x$-intercept) & $(a,0)$ --- the input that makes the output $0$. It is the only place a
+  non-horizontal line can change sign. Find it by solving $f(x)=0$. \\
+Increasing / decreasing & Which way the graph \textbf{moves}: $m>0$ increasing, $m<0$ decreasing,
+  $m=0$ constant. \\
+Positive / negative & Where the graph \textbf{sits} relative to the $x$-axis: above it (positive)
+  or below it (negative), given as intervals of $x$. \\
+Domain and range & All real numbers for any non-constant line; a constant function $y=c$ has
+  range $\{c\}$. A story can restrict both --- hours cannot be negative. \\
+\end{tabularx}}
+\sgwatch{\emph{Increasing} and \emph{positive} are two different questions. A line can be
+positive and falling at the same time --- $g(x)=-2x+6$ has $g(1)=4>0$ while decreasing.}
+
+% ======================================================================
+\sghead{1.1 \quad Linear Functions: Slope, Forms \& Graphing}{A.F.1a--e}
+{\sgtabsetup
+\begin{tabularx}{\linewidth}{@{} G X @{}}
+Slope-intercept & $y=mx+b$ --- hands you the rate $m$ and the starting value $b$. Best for
+  graphing and for reading a model. \\
+Point-slope & $y-y_1=m(x-x_1)$ --- built from a slope and \emph{any} point on the line. Use it
+  exactly when the $y$-intercept is the number nobody gave you. \\
+Standard form & $Ax+By=C$ with integer $A,B,C$ --- the tidy version. \\
+Converting & Expand point-slope to get slope-intercept; move the $x$-term across to get standard.
+  One line, three outfits. \\
+Parent function & $y=x$. Every non-vertical line is the parent after a slope change and a
+  vertical shift. \\
+Parallel & Equal slopes, $m_1=m_2$ (and different intercepts). \\
+Perpendicular & Opposite reciprocal slopes: $m_1m_2=-1$, so $m=\tfrac{2}{3}$ pairs with
+  $m=-\tfrac{3}{2}$. \\
+Special cases & Horizontal $y=c$ ($m=0$); vertical $x=c$ (slope undefined --- and not a
+  function). \\
+\end{tabularx}}
+\sgwatch{Two equations that \emph{look} different can be the same line. $y-52=3(x-4)$ and
+$y=3x+40$ are one line --- expand the first and see. Never decide from appearance.}
+
+% ======================================================================
+\sghead{1.2 \quad Absolute Value Equations \& Inequalities}{A2.EI.1a--e}
+{\sgtabsetup
+\begin{tabularx}{\linewidth}{@{} G X @{}}
+$|x-h|$ & The \emph{distance} between $x$ and $h$ on the number line. It is never negative, and
+  two different numbers sit the same distance out --- one on each side. \\
+$|X|=c$ & Split into $X=c$ \textbf{or} $X=-c$. Two solutions when $c>0$, one when $c=0$,
+  \textbf{none} when $c<0$. \\
+Isolate first & Get the bars alone before you split. $3|x+1|-2=10$ becomes $|x+1|=4$
+  \emph{first}. \\
+$|X|<c$ & ``Less th\textbf{AND}'' --- closer than $c$: one interval, $-c<X<c$. \\
+$|X|>c$ & ``Great\textbf{OR}'' --- farther than $c$: two rays, $X<-c$ \textbf{or} $X>c$. \\
+Three notations & Set notation $\{x \mid -4<x<4\}$; interval notation $(-4,4)$ or $[-4,4]$; a
+  shaded number line with open or closed endpoints. $\infty$ never takes a bracket. \\
+Tolerance & ``Within $2^\circ$ of $68^\circ$'' is $|T-68|\le 2$: desired value inside the bars,
+  allowance on the right. \\
+\end{tabularx}}
+\sgwatch{Two separate traps. Splitting \emph{before} isolating turns $3|x+1|-2=10$ into
+$3x+1-2=10$ --- one answer, and a wrong one. And choosing $<$ where you needed $>$ does not give
+a slightly different answer: it gives the \emph{opposite} set.}
+
+
+% ======================================================================
+\sghead{1.3 \quad Absolute Value Functions \& Transformations}{A2.F.1b--c; A2.F.2a, c, d, f}
+{\sgtabsetup
+\begin{tabularx}{\linewidth}{@{} G X @{}}
+Parent function & $f(x)=|x|$ --- a \textbf{V} with vertex $(0,0)$, axis of symmetry $x=0$, and a
+  minimum of $0$ (a distance cannot dip below zero). \\
+Vertex form & $g(x)=a|x-h|+k$. The \textbf{vertex} is $(h,k)$ and the \textbf{axis of symmetry}
+  is $x=h$. \\
+Finding $h$ & Set the inside of the bars to zero and solve. \emph{Inside is horizontal and
+  backwards}: $|x-3|$ shifts \emph{right} $3$. \\
+Sign of $a$ & $a>0$ opens up and $k$ is a \textbf{minimum}; $a<0$ opens down (a reflection) and
+  $k$ is a \textbf{maximum}. \\
+Size of $a$ & $|a|$ is the slope of the right-hand ray: $|a|>1$ narrower than the parent,
+  $0<|a|<1$ wider. \\
+Domain and range & Domain all reals. Range $y\ge k$ when it opens up, $y\le k$ when it opens
+  down. \\
+Back to 1.2 & The two solutions of $|ax+b|=c$ are the two places the V crosses the horizontal
+  line $y=c$. \\
+\end{tabularx}}
+\sgwatch{A negative $a$ flips the vertex's \emph{job}, not just the picture. For
+$R(x)=-2|x-3|+7$ the number $7$ is the \emph{maximum} --- check it: $R(5)=3$, which is less
+than $7$, not more.}
+
+% ======================================================================
+\sghead{1.4 \quad Piecewise \& Step Functions}{A2.F.2a--c, f}
+{\sgtabsetup
+\begin{tabularx}{\linewidth}{@{} G X @{}}
+Piecewise function & \emph{One} function that follows different rules on different pieces of its
+  domain. \\
+Evaluating & First find the piece whose condition the input satisfies, \emph{then} apply that
+  rule. Never apply both. \\
+At a boundary & Exactly one piece owns the input --- the one whose inequality \textbf{includes}
+  it ($\le$ or $\ge$). \\
+Open / closed dots & A \textbf{closed} dot includes its endpoint; an \textbf{open} dot excludes
+  it. Exactly one dot at a boundary is filled. \\
+Meets or jumps & The pieces \emph{meet} only when both rules give the same value at the boundary;
+  otherwise the graph \emph{jumps} --- a \textbf{discontinuity}. \\
+$|x|$ is piecewise & $|x|=x$ for $x\ge 0$ and $|x|=-x$ for $x<0$; the two pieces meet at the
+  vertex. Every V from 1.3 is a piecewise function you already know. \\
+Greatest integer & $\lfloor x\rfloor$ rounds \emph{down} to the nearest integer. Its graph is a
+  staircase, \textbf{constant} on each interval $[n,\,n+1)$. \\
+\end{tabularx}}
+\sgwatch{Rounding \emph{down} is not dropping the decimal. $\lfloor -2.5\rfloor=-3$, not $-2$ ---
+and $\lfloor -2.4\rfloor=-3$ as well. On the negative side, down means \emph{more} negative.}
+
+% ======================================================================
+\sghead{1.5 \quad Linear Regression}{A2.ST.2c--h}
+{\sgtabsetup
+\begin{tabularx}{\linewidth}{@{} G X @{}}
+Scatterplot & A plot of \textbf{bivariate} data. Describe its \textbf{association} by
+  \emph{direction} (positive or negative), \emph{form} (does a line fit?), and \emph{strength}
+  (how tightly?). \\
+Correlation coefficient & $r$, always between $-1$ and $1$. Its \textbf{sign} is the direction
+  and its \textbf{size} $|r|$ is the strength. $r=\pm 1$ is perfect; $r$ near $0$ is weak or
+  none; $|r|>1$ is impossible. \\
+Line of best fit & $\hat y = ax+b$, read from technology. The hat says \emph{predicted}. \\
+Interpreting it & The slope $a$ is a per-unit rate \emph{with units}; the intercept $b$ is the
+  baseline at $x=0$ \emph{with units}. Say both in the language of the data. \\
+Interpolation & Predicting \emph{inside} the range of the data --- reasonable. \\
+Extrapolation & Predicting \emph{outside} it --- the trend may break, and an impossible answer
+  (``20 of 15 shots'') is the sign that it did. \\
+Causation & A strong $r$ never proves one variable \emph{causes} the other; a lurking variable
+  can drive both. Only a controlled experiment settles cause. \\
+\end{tabularx}}
+\sgwatch{$r=-0.9$ is a \emph{stronger} fit than $r=0.4$. The sign tells you which way the cloud
+tilts, not how good the model is --- compare $|r|$, never $r$ itself.}
+
+% ======================================================================
+\sghead{The four graphs to know on sight}{read each one before the test}
+\vspace{2pt}
+\noindent
+\begin{minipage}[t]{0.245\linewidth}\centering
+\begin{tikzpicture}[scale=0.40]
+  \draw[step=1, linegray!40, very thin] (-2.6,-1.6) grid (4.6,2.6);
+  \draw[->, semithick, charcoal] (-2.6,0)--(4.6,0);
+  \draw[->, semithick, charcoal] (0,-1.6)--(0,2.6);
+  \draw[dashed, slate] (1,-1.6)--(1,2.6);
+  \draw[very thick, forest] (-2,2)--(1,-1)--(4,2);
+  \fill[forest] (1,-1) circle (4pt);
+  \node[font=\tiny, below right, charcoal] at (1,-1) {$(1,-1)$};
+\end{tikzpicture}\\[1pt]
+{\scriptsize\textbf{V --- vertex form.} $y=|x-1|-1$: vertex $(1,-1)$, axis $x=1$ (dashed),
+minimum $-1$.}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.245\linewidth}\centering
+\begin{tikzpicture}[scale=0.40]
+  \draw[step=1, linegray!40, very thin] (-1.6,-0.6) grid (4.6,3.6);
+  \draw[->, semithick, charcoal] (-1.6,0)--(4.6,0);
+  \draw[->, semithick, charcoal] (0,-0.6)--(0,3.6);
+  \draw[very thick, navy] (-1,0)--(2,3);
+  \draw[very thick, navy, fill=white] (2,3) circle (4pt);
+  \draw[very thick, forest] (2,1)--(4.4,1);
+  \fill[forest] (2,1) circle (4pt);
+\end{tikzpicture}\\[1pt]
+{\scriptsize\textbf{A jump.} The rules disagree at $x=2$, so the graph is
+\emph{discontinuous}. The closed dot owns the boundary.}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.245\linewidth}\centering
+\begin{tikzpicture}[scale=0.40]
+  \draw[step=1, linegray!40, very thin] (-1.6,-1.6) grid (3.6,2.6);
+  \draw[->, semithick, charcoal] (-1.6,0)--(3.6,0);
+  \draw[->, semithick, charcoal] (0,-1.6)--(0,2.6);
+  \foreach \n in {-1,0,1,2} {
+    \draw[very thick, forest] (\n,\n)--({\n+1},\n);
+    \fill[forest] (\n,\n) circle (3.4pt);
+    \draw[very thick, forest, fill=white] ({\n+1},\n) circle (3.4pt);
+  }
+\end{tikzpicture}\\[1pt]
+{\scriptsize\textbf{Staircase.} $y=\lfloor x\rfloor$: constant on each $[n,n+1)$, closed on the
+left, open on the right.}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.245\linewidth}\centering
+\begin{tikzpicture}[scale=0.40]
+  \draw[step=1, linegray!40, very thin] (-0.4,-0.4) grid (6.6,5.6);
+  \draw[->, semithick, charcoal] (-0.4,0)--(6.6,0);
+  \draw[->, semithick, charcoal] (0,-0.4)--(0,5.6);
+  \draw[very thick, navy] (0.3,1.2)--(6.2,5.1);
+  \foreach \p in {(1,1.4),(2,2.6),(3,2.9),(4,3.9),(5,4.4),(6,5.2),(2,2.0),(4,3.3)}
+    {\fill[forest] \p circle (3pt);}
+\end{tikzpicture}\\[1pt]
+{\scriptsize\textbf{Scatterplot + line of best fit.} Positive, linear, strong ($r$ close to
+$1$). Predicting past $x=6$ is \emph{extrapolation}.}
+\end{minipage}
+
+\end{document}

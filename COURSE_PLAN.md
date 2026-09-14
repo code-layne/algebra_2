@@ -2,6 +2,41 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-14) — **UNIT 1 HAS A STUDY GUIDE; `study_guide/` IS A NEW UNIT-LEVEL COMPONENT.**
+>
+> **User direction, 2026-09-14:** ``create a study guide for unit1,'' then, on being asked what
+> shape it should take and where it should live: a **reference sheet only** — ``a condensed 2-page
+> *everything you need to know* sheet: vocabulary, forms, graphs, and the six target
+> misconceptions stated as cautions. No key needed'' — placed as a **top-level unit component
+> beside `unit_cover`**, not under `tests/`.
+>
+> **What it is.** `unit01/study_guide/main.tex`, 10pt, **2 pages**, no problems and therefore
+> **no key**. For each of 1.0–1.5: a compact two-column table (term/idea | the statement) of the
+> vocabulary, the forms, and the facts, closed by that lesson's **target misconception as a
+> `Watch out:` caution** — increasing ≠ positive (1.0); two equations that look different can be
+> one line (1.1); split-before-isolate, and `<`-vs-`>` giving the *opposite* set (1.2); a negative
+> $a$ flips the vertex's *job* (1.3); $\lfloor-2.5\rfloor=-3$, not $-2$ (1.4); $r=-0.9$ beats
+> $r=0.4$ (1.5). It ends with **the four graphs to know on sight**, pre-drawn: a V in vertex form
+> with its axis, a piecewise jump with open/closed dots, the $\lfloor x\rfloor$ staircase, and a
+> scatterplot with its line of best fit. No `\namedateperiod` (namestrip: covers and tests only).
+> The practice test remains the problem set; the study guide is the thing students keep.
+>
+> **Build.** `shared/unit.mk` gained a `_study_guide` rule modelled exactly on `_unit_cover` — the
+> directory needs **no `Makefile` of its own**; `make -C unit01 study_guide` builds it, and the
+> same PDF is merged into **both** the student and the key packet, immediately before the sample
+> test, so the two packets stay page-for-page aligned. This is the only change to `shared/`.
+>
+> **Two LaTeX traps found here, worth carrying forward:** (1) a `tabularx` **cannot** be wrapped
+> in a `\newenvironment` — its body scanner needs to see a literal `\end{tabularx}`, or it dies
+> with ``File ended while scanning use of `\TX@get@body`''; (2) a column spec **cannot** be an
+> ordinary macro (``Illegal pream-token'') — use `\newcolumntype`.
+>
+> **Build evidence (2026-09-14):** out-of-tree `xelatex` scan **OK, 2pp**, the only overfull box
+> the pre-existing 6.0pt `\pageheader` hbox; `make -C unit01 study_guide` **EXIT 0**, compiled PDF
+> **2pp**; `make -C unit01 student` / `key` re-merged with the guide in place.
+>
+> **Open:** no other unit has a study guide yet. Units 2–7 pick one up when they are authored.
+
 > ## ⚠ Status (2026-09-07) — **LESSON 1.3 REGENERATED WHOLE IN THE COURSE-WIDE SHAPE; IT NOW CARRIES THE DUE-DATE POLICY.**
 >
 > **User direction, 2026-09-07:** ``regenerate lesson 1.3.'' Regenerated whole (plan, cover,
