@@ -13,18 +13,24 @@ LESSONS := $(patsubst %/Makefile,%,$(sort $(wildcard lesson*/Makefile)))
 # cover.py generator were removed on 2026-08-22; binder covers are designed
 # outside this repo now and printed on their own, not merged into the packet.
 HAS_UNIT_COVER  := $(wildcard unit_cover/main.tex)
+# study_guide/ is the unit's reference sheet — vocabulary, forms, the graphs to know, and each
+# lesson's target misconception as a caution. It carries no problems, so it has no key: the same
+# PDF sits in the student packet and the key packet, in the same place, and pagination stays
+# aligned. Built here exactly like unit_cover (no Makefile of its own).
+HAS_STUDY_GUIDE := $(wildcard study_guide/main.tex)
 HAS_SAMPLE_TEST     := $(wildcard sample_test/main.pdf)
 HAS_SAMPLE_TEST_KEY := $(wildcard sample_test_key/main.pdf)
 
 UNIT_COVER_PDF      := $(if $(HAS_UNIT_COVER),$(COMPILED_DIR)/$(UNIT)/unit_cover.pdf)
+STUDY_GUIDE_PDF     := $(if $(HAS_STUDY_GUIDE),$(COMPILED_DIR)/$(UNIT)/study_guide.pdf)
 SAMPLE_TEST_PDF     := $(if $(HAS_SAMPLE_TEST),$(COMPILED_DIR)/$(UNIT)/sample_test.pdf)
 SAMPLE_TEST_KEY_PDF := $(if $(HAS_SAMPLE_TEST_KEY),$(COMPILED_DIR)/$(UNIT)/sample_test_key.pdf)
 
 # A unit aggregates only the two packets that concatenate meaningfully. The
 # other three lesson products (plan, 3-up slides PDF, slides PPTX) stay per-lesson —
 # they are teacher artifacts, not something to hand out as one bound document.
-.PHONY: all student key clean $(LESSONS) \
-        _unit_cover _sample_test _sample_test_key
+.PHONY: all student key clean study_guide $(LESSONS) \
+        _unit_cover _study_guide _sample_test _sample_test_key
 
 all: $(LESSONS)
 
@@ -42,6 +48,19 @@ ifdef HAS_UNIT_COVER
 	cp $(PROJECT_ROOT)/target/$(UNIT)/unit_cover/main.pdf $(UNIT_COVER_PDF)
 	@echo "✓  Unit cover        → target/compiled/$(UNIT)/unit_cover.pdf"
 endif
+
+_study_guide:
+ifdef HAS_STUDY_GUIDE
+	@mkdir -p $(COMPILED_DIR)/$(UNIT)
+	cd study_guide && TEXINPUTS="$(PROJECT_ROOT)/shared//:" \
+	    latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error \
+	    -outdir="$(PROJECT_ROOT)/target/$(UNIT)/study_guide" main.tex
+	cp $(PROJECT_ROOT)/target/$(UNIT)/study_guide/main.pdf $(STUDY_GUIDE_PDF)
+	@echo "✓  Study guide       → target/compiled/$(UNIT)/study_guide.pdf"
+endif
+
+# Build the study guide on its own: `make -C unitNN study_guide`.
+study_guide: _study_guide
 
 _sample_test:
 ifdef HAS_SAMPLE_TEST
@@ -64,13 +83,14 @@ endif
 # equal-length and equal-paginated by lesson.mk), and the sample test key in
 # place of the sample test. Only that last pair can differ in length, and it
 # sits at the end, so page N of the unit key is page N of the unit student
-# packet up to the sample test.
+# packet up to the sample test. The study guide has no key and is merged into
+# both packets unchanged, so it costs nothing in alignment either.
 
-student: _unit_cover $(LESSONS) _sample_test
+student: _unit_cover $(LESSONS) _study_guide _sample_test
 	@for l in $(LESSONS); do $(MAKE) -C $$l student || exit 1; done
 	@mkdir -p $(COMPILED_DIR)/$(UNIT) $(COMPILED_DIR)
 	@lesson_pdfs=$$(ls $(COMPILED_DIR)/$(UNIT)/lesson*_student.pdf 2>/dev/null | sort); \
-	all_pdfs="$(UNIT_COVER_PDF) $$lesson_pdfs $(SAMPLE_TEST_PDF)"; \
+	all_pdfs="$(UNIT_COVER_PDF) $$lesson_pdfs $(STUDY_GUIDE_PDF) $(SAMPLE_TEST_PDF)"; \
 	all_pdfs=$$(echo $$all_pdfs | tr ' ' '\n' | grep -v '^$$'); \
 	if [ -n "$$all_pdfs" ]; then \
 	  pdfunite $$all_pdfs $(COMPILED_DIR)/$(UNIT)_student.pdf; \
@@ -79,11 +99,11 @@ student: _unit_cover $(LESSONS) _sample_test
 	  echo "  (no student PDFs found for $(UNIT))"; \
 	fi
 
-key: _unit_cover $(LESSONS) _sample_test _sample_test_key
+key: _unit_cover $(LESSONS) _study_guide _sample_test _sample_test_key
 	@for l in $(LESSONS); do $(MAKE) -C $$l key || exit 1; done
 	@mkdir -p $(COMPILED_DIR)/$(UNIT) $(COMPILED_DIR)
 	@lesson_pdfs=$$(ls $(COMPILED_DIR)/$(UNIT)/lesson*_key.pdf 2>/dev/null | sort); \
-	all_pdfs="$(UNIT_COVER_PDF) $$lesson_pdfs $(or $(SAMPLE_TEST_KEY_PDF),$(SAMPLE_TEST_PDF))"; \
+	all_pdfs="$(UNIT_COVER_PDF) $$lesson_pdfs $(STUDY_GUIDE_PDF) $(or $(SAMPLE_TEST_KEY_PDF),$(SAMPLE_TEST_PDF))"; \
 	all_pdfs=$$(echo $$all_pdfs | tr ' ' '\n' | grep -v '^$$'); \
 	if [ -n "$$all_pdfs" ]; then \
 	  pdfunite $$all_pdfs $(COMPILED_DIR)/$(UNIT)_key.pdf; \
@@ -95,6 +115,7 @@ key: _unit_cover $(LESSONS) _sample_test _sample_test_key
 clean:
 	@for l in $(LESSONS); do $(MAKE) -C $$l clean; done
 	rm -rf $(PROJECT_ROOT)/target/$(UNIT)/unit_cover
-	rm -f $(UNIT_COVER_PDF) $(SAMPLE_TEST_PDF) $(SAMPLE_TEST_KEY_PDF)
+	rm -rf $(PROJECT_ROOT)/target/$(UNIT)/study_guide
+	rm -f $(UNIT_COVER_PDF) $(STUDY_GUIDE_PDF) $(SAMPLE_TEST_PDF) $(SAMPLE_TEST_KEY_PDF)
 	rm -f $(COMPILED_DIR)/$(UNIT)_student.pdf $(COMPILED_DIR)/$(UNIT)_key.pdf \
 	      $(COMPILED_DIR)/$(UNIT)_full.pdf

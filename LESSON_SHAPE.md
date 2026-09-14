@@ -379,6 +379,19 @@ their blanks (swap `-boxes` for `-key`), tag correct options, and put extended-r
 practice test and its key should be the same number of pages (Unit 1's are 3pp vs. 4pp today — a
 known, pre-existing mismatch).
 
+**The unit study guide — `unitXX/study_guide/` (added 2026-09-14, user direction).** A
+**reference sheet, not a problem set**: at 10pt, two pages, it carries for each lesson in the unit
+a compact two-column table of vocabulary, forms, and the facts to know, closed by that lesson's
+**target misconception stated as a caution** (`Watch out:`), and ends with a row of small
+pre-drawn graphs the student must recognise on sight. It has **no problems and therefore no
+key** — the practice test is the problem set. `shared/unit.mk` builds it exactly the way it
+builds `unit_cover` (no `Makefile` of its own; `make -C unitXX study_guide`), and merges the same
+PDF into **both** the student and the key packet, immediately before the sample test, so packet
+alignment is unaffected. **No `\namedateperiod`** — it is neither a lesson cover nor a test.
+Layout traps found authoring Unit 1's: a `tabularx` cannot be hidden inside a `\newenvironment`
+(its body scanner needs a literal `\end{tabularx}`), and a column spec cannot be an ordinary
+macro (use `\newcolumntype`). `unit01/study_guide` is the reference.
+
 **Binder covers were removed (2026-08-22)** — `shared/cover.py`, every `binder_cover/` dir, and
 the `unit.mk` hooks are gone; unit covers are designed outside the build and printed separately.
 Never rebuild that feature; `unit_cover/` is unaffected and is not the same thing.
