@@ -2,6 +2,24 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-16) — **UNIT 1 TESTS REGENERATED: EASIER, NO CORRELATION OR SCATTERPLOTS.**
+>
+> **User direction, 2026-09-16:** an ``easy-ish'' Unit 1 test that leaves out the correlation
+> coefficient and scatterplots and assesses exactly: positive / negative / zero / undefined slope;
+> $y=mx+b$ from two points; $y=mx+b$ from a point and a slope; evaluating a piecewise function and
+> stating its domain (**no range yet**); recognising the absolute value function and reading its
+> transformations; and (added mid-request) solving an absolute value equation and inequality.
+>
+> **What changed.** `unit01/tests/{actual,practice}_test` and their keys, regenerated whole at
+> 12pt: Part A slope types (8, four pre-drawn lines + four from points/equations), Part B writing
+> lines (20, two from two points, two from point + slope), Part C piecewise (20, four evaluations
+> incl. both boundaries, three domains — two rules, one graph), Part D absolute value function (28,
+> pick the V graph, pick the equation, a vertex/shift/opens table, graph → equation, a stretch),
+> Part E absolute value equation, `<` inequality, `\ge` inequality (24). The practice test is the
+> same test with different numbers and reordered choices, plus the practice `remindbox`. Vocabulary
+> part, regression, correlation, and floor-function items are gone. **Build:** blank/key **4/4**
+> for both; `sample_test{,_key}/main.pdf` republished.
+
 > ## ⚠ Status (2026-09-14) — **UNIT 1 HAS A STUDY GUIDE; `study_guide/` IS A NEW UNIT-LEVEL COMPONENT.**
 >
 > **User direction, 2026-09-14:** ``create a study guide for unit1,'' then, on being asked what

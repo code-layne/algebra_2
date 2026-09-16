@@ -376,8 +376,12 @@ answer / computation, extended response, with `\vspace` work room. The practice 
 test has the same parts and difficulty, different numbers and contexts, and no such box. Keys mirror
 their blanks (swap `-boxes` for `-key`), tag correct options, and put extended-response scoring in a
 `teachernote`. Keep practice and actual parallel so the practice test is honest preparation; the
-practice test and its key should be the same number of pages (Unit 1's are 3pp vs. 4pp today — a
-known, pre-existing mismatch).
+practice test and its key must be the same number of pages. **Unit 1's tests (regenerated
+2026-09-16) are the reference:** 12pt, no vocabulary part, five skill parts (A–E, 100 pts), and a
+body **byte-identical** in blank and key — answers live only in a preamble-defined
+`\slot{width}{answer}` (a fixed-width underline, filled in the key), `\opt`/`\optok` (the key
+marks the correct choice with a red arrow of zero width), and `work` blocks, so neither file can
+drift. The key carries no `teachernote`. All four PDFs are 4pp.
 
 **The unit study guide — `unitXX/study_guide/` (added 2026-09-14, user direction).** A
 **reference sheet, not a problem set**: at 10pt, two pages, it carries for each lesson in the unit
