@@ -1,22 +1,28 @@
-%! Unit 1: Linear Functions — Summative Assessment — Unit Test (blank)
-\documentclass[10pt]{article}
+%! Unit 1: Linear Functions — Unit Test (blank)
+% GENERATED BODY: the blank and key bodies are byte-identical except the header title;
+% answers live in \slot / \optok / work, which the preamble shows or hides.
+\documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\dpt}[2]{\fill[navy] (#1,#2) circle (2.8pt);}
-\newcommand{\closeddot}[2]{\fill[forest] (#1,#2) circle (3.5pt);}
-\newcommand{\opendot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (3.5pt);}
-
+% Endpoint dots: {x}{y}. Closed = filled; open = white-filled ring.
+\newcommand{\fdot}[2]{\fill[forest] (#1,#2) circle (4.5pt);}
+\newcommand{\hdot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (4.5pt);}
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
-  \vspace{6pt}\noindent
+  \boxguard[10]\vspace{6pt}\noindent
   \begin{headlinebox}{forest}\color{white}\bfseries #1\end{headlinebox}%
   \vspace{4pt}}
+% THE WORK RULE for a test: \slot{width}{answer} and \opt / \optok are the ONLY
+% lines that differ between blank and key, and they differ in the preamble, not the body.
+% A slot is a fixed-width underline in both files, so no line rewraps in the key.
+\newcommand{\slot}[2]{\underline{\makebox[#1]{}}}
+\newcommand{\opt}[2]{(#1)~#2}
+\newcommand{\optok}[2]{(#1)~#2}
 
 \begin{document}
 
@@ -24,157 +30,229 @@
 \namedateperiod
 
 \vspace{0.06in}
-\noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so.
+\noindent\textbf{Instructions:} Show all work. Write every line in $y=mx+b$ form when asked.
+No notes or calculator unless your teacher says so. \hfill\textbf{Total: 100 pts}
 
 % ======================================================================
-\parthead{Part A --- Vocabulary (8 pts)}
-Write the letter of the best description next to each term.
+\parthead{Part A --- Types of Slope (8 pts)}
+For each line, write whether its slope is \textbf{positive}, \textbf{negative}, \textbf{zero}, or
+\textbf{undefined}.
 
-\vspace{4pt}
+\vspace{6pt}
 \noindent
-\begin{minipage}[t]{0.42\textwidth}
-\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
-  \item Correlation coefficient \blank{1.2cm}
-  \item Axis of symmetry \blank{1.2cm}
-  \item Rate of change \blank{1.2cm}
-  \item Extrapolation \blank{1.2cm}
-  \item Slope \blank{1.2cm}
-  \item Vertex \blank{1.2cm}
-  \item Zero of a function \blank{1.2cm}
-  \item Piecewise function \blank{1.2cm}
-\end{enumerate}
+\begin{minipage}[t]{0.24\textwidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-3}{3}
+  \draw[very thick, navy] (-3,-2)--(2.5,3);
+\end{tikzpicture}\\[2pt]
+1.\ \slot{2.4cm}{positive}
 \end{minipage}%
-\hfill
-\begin{minipage}[t]{0.55\textwidth}
-\small
-\begin{description}[leftmargin=1.4em, itemsep=3pt]
-  \item[(A)] The turning point of a V-shaped (absolute value) graph, where it changes direction.
-  \item[(B)] A number $r$ between $-1$ and $1$ measuring the direction and strength of a linear association.
-  \item[(C)] An $x$-value where $f(x)=0$; the graph's $x$-intercept.
-  \item[(D)] The constant ratio $\dfrac{\Delta y}{\Delta x}$ --- how fast $y$ changes per unit of $x$.
-  \item[(E)] Predicting \emph{outside} the range of the data used to build the model.
-  \item[(F)] A function defined by different rules on different intervals of its domain.
-  \item[(G)] The steepness of a line, $\dfrac{\text{rise}}{\text{run}}$.
-  \item[(H)] The vertical line $x=h$ that splits an absolute value graph into mirror halves.
-\end{description}
+\begin{minipage}[t]{0.24\textwidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-3}{3}
+  \draw[very thick, navy] (-3,2)--(3,2);
+\end{tikzpicture}\\[2pt]
+2.\ \slot{2.4cm}{zero}
+\end{minipage}%
+\begin{minipage}[t]{0.24\textwidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-3}{3}
+  \draw[very thick, navy] (-1.5,-3)--(-1.5,3);
+\end{tikzpicture}\\[2pt]
+3.\ \slot{2.4cm}{undefined}
+\end{minipage}%
+\begin{minipage}[t]{0.24\textwidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-3}{3}
+  \draw[very thick, navy] (-2,3)--(1,-3);
+\end{tikzpicture}\\[2pt]
+4.\ \slot{2.4cm}{negative}
 \end{minipage}
 
-% ======================================================================
-\parthead{Part B --- Multiple Choice (12 pts)}
-Circle the best answer.
-
-\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
-  \item The slope of the line through $(3,\,-1)$ and $(-1,\,7)$ is
-    \hfill (A) $2$ \quad (B) $-2$ \quad (C) $\tfrac12$ \quad (D) $-\tfrac12$
-  \item The graph of $y=|x+2|-3$ is the parent $y=|x|$ shifted
-    \hfill (A) right 2, up 3 \quad (B) left 2, up 3 \quad (C) left 2, down 3 \quad (D) right 2, down 3
-  \item $\lfloor 3.7 \rfloor =$
-    \hfill (A) $4$ \quad (B) $3$ \quad (C) $-3$ \quad (D) $-4$
-  \item A data set has correlation coefficient $r=-0.94$. The linear association is best described as
-    \hfill (A) weak/none \quad (B) strong positive \quad (C) strong negative \quad (D) perfect
-  \item Which equation is written in \textbf{point-slope form}?
-    \hfill (A) $y=3x-5$ \quad (B) $y-2=3(x-1)$ \quad (C) $3x-y=5$ \quad (D) $y=|x|+3$
-  \item The solution of $|x|>2$ is
-    \hfill (A) $x>2$ \quad (B) $-2<x<2$ \quad (C) $x<-2$ or $x>2$ \quad (D) $x<2$
+\vspace{10pt}
+\noindent No graph this time --- decide from the points or the equation.
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=5]
+  \item The line through $(1,\,4)$ and $(1,\,-3)$: \hfill \slot{2.4cm}{undefined}
+  \item The line $y=-2x+7$: \hfill \slot{2.4cm}{negative}
+  \item The line $y=6$: \hfill \slot{2.4cm}{zero}
+  \item The line through $(-2,\,1)$ and $(3,\,5)$: \hfill \slot{2.4cm}{positive}
 \end{enumerate}
 
 % ======================================================================
-\parthead{Part C --- Short Answer \& Computation (40 pts)}
-Show your work.
+\parthead{Part B --- Writing Equations of Lines (20 pts)}
+Write each line in slope-intercept form, $y=mx+b$. Show how you found $m$ and $b$; for 11 and 12, start in point-slope form, $y-y_1=m(x-x_1)$.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Read the graph.} The line $f$ is shown below.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \lgrid{-2}{6}{-5}{3}
-          \draw[very thick, forest] (-1,-4)--(5,2);
-          \fill[charcoal] (0,-3) circle (3pt);
-          \fill[charcoal] (3,0) circle (3pt);
-        \end{tikzpicture}
-        \end{center}
-        Give the $y$-intercept: \blank{1.6cm}; \quad the zero ($x$-intercept): \blank{1.6cm}; \quad
-        the slope: \blank{1.6cm}. \quad Is $f$ increasing or decreasing? \blank{2.4cm}
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=9]
+  \item The line through $(2,\,3)$ and $(4,\,11)$.
+    \begin{work}
+      m &= \frac{11-3}{4-2} = \frac{8}{2} = 4 \\
+      3 &= 4(2) + b \quad\Rightarrow\quad b = -5
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Equation: \slot{3.6cm}{$y=4x-5$}
 
-  \item \textbf{Write the equation.} Find the equation of the line through $(2,\,5)$ and $(4,\,1)$.
-        Write it in slope-intercept form $y=mx+b$.
-        \vspace{2.0cm}
+  \item The line through $(-2,\,7)$ and $(4,\,-2)$.
+    \begin{work}
+      m &= \frac{-2-7}{4-(-2)} = \frac{-9}{6} = -\frac{3}{2} \\
+      7 &= -\frac{3}{2}(-2) + b = 3 + b \quad\Rightarrow\quad b = 4
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Equation: \slot{3.6cm}{$y=-\tfrac{3}{2}x+4$}
 
-  \item \textbf{Absolute value transformations.} For $g(x)=|x+3|-4$, state the vertex, the axis of
-        symmetry, whether the graph opens up or down, and the maximum or minimum value.
-        \vspace{1.8cm}
+  \item The line with slope $3$ that passes through $(2,\,1)$.
+    \begin{work}
+      y-1 &= 3(x-2) \\
+      y-1 &= 3x-6 \\
+      y &= 3x-5
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Equation: \slot{3.6cm}{$y=3x-5$}
 
-  \item \textbf{Solve.} Solve the absolute value equation. Show both cases.
-        \[ |2x+3| = 11 \]
-        \vspace{2.0cm}
-
-  \item \textbf{Solve and express three ways.} Solve $|x-2|< 5$. Write the solution as an inequality
-        and in interval notation, then graph it on the number line.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \draw[->,semithick,charcoal] (-8,0)--(8,0);
-          \foreach \x in {-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7}
-            \draw[charcoal] (\x,0.15)--(\x,-0.15) node[below, font=\scriptsize]{$\x$};
-        \end{tikzpicture}
-        \end{center}
-        \vspace{0.4cm}
-
-  \item \textbf{Evaluate a piecewise function.} Let
-        $f(x)=\begin{cases} x-3, & x\le 0 \\ 2x, & x>0 \end{cases}$
-        \\[4pt]
-        $f(-2)=\blank{1.4cm}$ \qquad $f(0)=\blank{1.4cm}$ \qquad $f(3)=\blank{1.4cm}$
-        \\[4pt]
-        Which piece did you use for $f(0)$, and how do you know? \blank{5.0cm}
-
-  \item \textbf{Read a piecewise graph.} The function $h$ is shown below.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \lgrid{-3}{4}{-3}{4}
-          \draw[very thick, forest] (-3,-2)--(0,1);
-          \closeddot{0}{1}
-          \draw[very thick, forest] (0,3)--(3.5,3);
-          \opendot{0}{3}
-        \end{tikzpicture}
-        \end{center}
-        $h(2)=\blank{1.2cm}$; \quad $h(0)=\blank{1.2cm}$. \quad Is $h$ continuous at $x=0$? Explain.
-        \blank{4.5cm}
-
-  \item \textbf{Linear regression.} A study of $x=$ age of a used car (years, from $2$ to $12$) and
-        $y=$ price (in \$1000s) gives the line of best fit
-        \[ \hat y = -1.8x + 30. \]
-        \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
-          \item Interpret the slope $-1.8$ in context. \blank{6.0cm}
-          \item Predict the price of a $5$-year-old car: $\hat y=\blank{2.0cm}$ (that is \$\blank{1.8cm}).
-          \item Is predicting the price at $x=25$ years interpolation or extrapolation? Why might that
-                prediction be unreliable? \blank{5.0cm}
-        \end{enumerate}
+  \item The line with slope $-\tfrac{1}{2}$ that passes through $(4,\,6)$.
+    \begin{work}
+      y-6 &= -\frac{1}{2}(x-4) \\
+      y-6 &= -\frac{1}{2}x+2 \\
+      y &= -\frac{1}{2}x+8
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Equation: \slot{3.6cm}{$y=-\tfrac{1}{2}x+8$}
 \end{enumerate}
 
 % ======================================================================
-\parthead{Part D --- Extended Response (12 pts)}
-Explain your reasoning in full sentences.
+\parthead{Part C --- Piecewise Functions (20 pts)}
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
-  \item The absolute value function $g(x)=|x+2|-3$ is graphed below.
-        \begin{center}
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=13]
+  \item \textbf{Evaluate.} (8 pts) \quad
+    $f(x)=\begin{cases} -2x+1, & x<0 \\ 4, & 0\le x\le 2 \\ x+3, & x>2 \end{cases}$
+    \\[8pt]
+    $f(-3)=$ \slot{1.4cm}{$7$} \qquad $f(0)=$ \slot{1.4cm}{$4$} \qquad
+    $f(2)=$ \slot{1.4cm}{$4$} \qquad $f(5)=$ \slot{1.4cm}{$8$}
+
+  \item \textbf{Domain.} (12 pts) Give the domain of each function as an inequality or in interval
+    notation.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=12pt]
+      \item $g(x)=\begin{cases} x+1, & x<-2 \\ 3, & -2\le x<5 \end{cases}$
+        \hfill Domain: \slot{3.8cm}{$x<5$, \ $(-\infty,\,5)$}
+      \item $h(x)=\begin{cases} 2x, & 0\le x\le 3 \\ 9-x, & 3<x\le 7 \end{cases}$
+        \hfill Domain: \slot{3.8cm}{$0\le x\le 7$, \ $[0,\,7]$}
+      \boxguard[9]
+      \item The function $k$ graphed below.
+        \\[4pt]
+        \begin{minipage}[c]{0.45\linewidth}\centering
         \begin{tikzpicture}[scale=0.5]
-          \lgrid{-7}{3}{-4}{3}
-          \draw[very thick, forest] (-6,1)--(-2,-3)--(2,1);
-          \fill[charcoal] (-2,-3) circle (3.5pt);
-          \fill[charcoal] (-5,0) circle (3pt);
-          \fill[charcoal] (1,0) circle (3pt);
+          \lgrid{-5}{4}{-3}{4}
+          \draw[very thick, forest] (-4,-2)--(1,3);
+          \fdot{-4}{-2} \hdot{1}{3}
+          \draw[very thick, forest] (1,-1)--(3,-1);
+          \fdot{1}{-1} \hdot{3}{-1}
         \end{tikzpicture}
-        \end{center}
-        \textbf{(a)} State the two zeros of $g$.
-        \textbf{(b)} On what interval is $g(x)<0$ (the function negative)? On what set is $g(x)>0$?
-        \textbf{(c)} Using the zeros, explain \emph{why} the sign of $g$ switches where it does.
-        \vspace{2.6cm}
+        \end{minipage}%
+        \hfill Domain: \slot{3.8cm}{$-4\le x<3$, \ $[-4,\,3)$}
+    \end{enumerate}
+\end{enumerate}
 
-  \item A study finds that students who spend more time on social media tend to have lower GPAs, with
-        correlation coefficient $r=-0.78$.
-        \textbf{(a)} Describe the direction and strength of this association.
-        \textbf{(b)} Does this prove that social media \emph{causes} lower GPAs? Explain the difference
-        between correlation and causation, and give one lurking variable that could explain the pattern.
-        \vspace{2.6cm}
+% ======================================================================
+\parthead{Part D --- The Absolute Value Function (28 pts)}
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=15]
+  \item (3 pts) Circle the letter of the graph of an \textbf{absolute value} function.
+    \\[4pt]
+    \begin{minipage}[t]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-3}{3}{-3}{3}
+      \draw[very thick, navy, domain=-2.5:2.5, smooth] plot (\x, {0.5*\x*\x-2});
+    \end{tikzpicture}\\ \opt{A}{}
+    \end{minipage}%
+    \begin{minipage}[t]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-3}{3}{-3}{3}
+      \draw[very thick, navy] (-3,-2.5)--(3,1.5);
+    \end{tikzpicture}\\ \opt{B}{}
+    \end{minipage}%
+    \begin{minipage}[t]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-3}{3}{-3}{3}
+      \draw[very thick, navy] (-2,1)--(1,-2)--(3,0);
+    \end{tikzpicture}\\ \optok{C}{}
+    \end{minipage}%
+    \begin{minipage}[t]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-3}{3}{-3}{3}
+      \foreach \k in {-2,...,1} { \draw[very thick, navy] (\k,\k)--(\k+1,\k);
+        \fill[navy] (\k,\k) circle (4pt); \draw[thick, navy, fill=white] (\k+1,\k) circle (4pt); }
+    \end{tikzpicture}\\ \opt{D}{}
+    \end{minipage}
+
+  \item (3 pts) Which equation is an \textbf{absolute value} function?
+    \\[4pt]
+    \opt{A}{$y=3x-2$} \hfill \optok{B}{$y=|x-4|+1$} \hfill \opt{C}{$y=x^2+1$} \hfill
+    \opt{D}{$y=\lfloor x\rfloor$}
+
+  \item (15 pts) Each function is a transformation of the parent $y=|x|$. Fill in the table.
+    \\[6pt]
+    {\renewcommand{\arraystretch}{1.9}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      \textbf{Function} & \textbf{Vertex} & \textbf{Left/right shift} & \textbf{Up/down shift} &
+      \textbf{Opens} \\ \hline
+      $g(x)=|x-3|+2$ & \slot{1.9cm}{$(3,\,2)$} & \slot{2.1cm}{right 3} & \slot{2.1cm}{up 2} &
+        \slot{1.4cm}{up} \\ \hline
+      $h(x)=|x+4|-1$ & \slot{1.9cm}{$(-4,\,-1)$} & \slot{2.1cm}{left 4} & \slot{2.1cm}{down 1} &
+        \slot{1.4cm}{up} \\ \hline
+      $k(x)=-|x|+5$ & \slot{1.9cm}{$(0,\,5)$} & \slot{2.1cm}{none} & \slot{2.1cm}{up 5} &
+        \slot{1.4cm}{down} \\ \hline
+    \end{tabular}}
+
+  \item (4 pts) Which equation matches the graph?
+    \\[4pt]
+    \begin{minipage}[c]{0.36\linewidth}\centering
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-6}{2}{-2}{4}
+      \draw[very thick, navy] (-5.5,-0.5)--(-2,3)--(1.5,-0.5);
+      \fill[navy] (-2,3) circle (4pt);
+    \end{tikzpicture}
+    \end{minipage}%
+    \begin{minipage}[c]{0.6\linewidth}
+    \opt{A}{$y=-|x-2|+3$} \\[6pt]
+    \optok{B}{$y=-|x+2|+3$} \\[6pt]
+    \opt{C}{$y=|x+2|+3$} \\[6pt]
+    \opt{D}{$y=-|x+3|+2$}
+    \end{minipage}
+
+  \item (3 pts) Compared with the parent $y=|x|$, the graph of $y=3|x|$ is
+    \\[4pt]
+    \optok{A}{narrower} \hfill \opt{B}{wider} \hfill \opt{C}{shifted up 3} \hfill
+    \opt{D}{shifted right 3}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part E --- Absolute Value Equations \& Inequalities (24 pts)}
+Solve. Show both cases.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=20]
+  \item (8 pts) \quad $|2x-3|=7$
+    \begin{work}
+      2x-3 &= 7 \quad\text{or}\quad 2x-3 = -7 \\
+      2x &= 10 \quad\text{or}\quad 2x = -4
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Solution: \slot{4.2cm}{$x=5$ or $x=-2$}
+
+  \item (8 pts) \quad $|x+1|<4$
+    \begin{work}
+      -4 &< x+1 < 4 \\
+      -5 &< x < 3
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Solution: \slot{4.2cm}{$-5<x<3$}
+
+  \item (8 pts) \quad $|x-2|\ge 5$
+    \begin{work}
+      x-2 &\ge 5 \quad\text{or}\quad x-2 \le -5 \\
+      x &\ge 7 \quad\text{or}\quad x \le -3
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Solution: \slot{4.2cm}{$x\ge 7$ or $x\le -3$}
 \end{enumerate}
 
 \end{document}
