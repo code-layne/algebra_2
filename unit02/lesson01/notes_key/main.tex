@@ -1,194 +1,312 @@
-%! Graphing Quadratic Functions & Transformations — Unit 2, Lesson 2.1 — Guided Notes (Answer Key)
-\documentclass[10pt]{article}
+%! Graphing Quadratic Functions & Transformations — Unit 2, Lesson 2.1 — Guided Notes & Practice (Answer Key)
+% THE in-class document, in the MAIN IDEAS / NOTES shape (LESSON_SHAPE.md §1): the vocabulary
+% box, the hook, then ONE two-column guidednotes table. Each row is one idea — a label on the
+% left; on the right one or two COMPLETE printed sentences, ONE large pre-drawn display, then a
+% two-across grid of numbered problems with real writing room. Problems run 1..14 through the
+% component. No group activity: the notes carry the whole gradual release, closed by a SPOKEN
+% debrief; the homework is the individual practice.
+%   I DO   : the teacher reads each row's definition, marks up its display, and works the FIRST
+%            problem of each grid (1, 3, 6, 9).
+%   WE DO  : the class works the rest of each grid, students holding the pen; the last row,
+%            Guided Practice (11–14), is worked entirely together on a new curve with no story.
+%   YOU DO : nothing on this page — ../homework/ IS the individual practice, started in the
+%            last ten minutes of the period.
+% DENSITY: no mid-sentence blanks — the only \blank{}s are the two hook questions, the cells of
+% the value table in problem 3 with its one-word follow-up, and problem 8's rule-and-intercept.
+% Every display is pre-drawn and read or labelled (\labelbox); THERE ARE NO SKETCH QUESTIONS.
+% ONE CONTEXT: the unit anchor from 2.0 — x^2-2x-3 = (x-1)^2-4 = (x+1)(x-3), one curve in three
+% costumes. Vertex (1,-4), axis x=1, zeros -1 and 3, y-intercept (0,-3).
+% THE CRUX is the HORIZONTAL-SHIFT SIGN FLIP: (x-1)^2 moves the parent RIGHT, while in the
+% factored form (x+1)(x-3) the zeros are -1 and 3 — the same bracket does opposite things in the
+% two forms, and which form you are in decides. Row 4 settles it (problems 9–10); Guided
+% Practice problem 14 tests it again on new ground.
+% NOTHING IS FACTORED OR SOLVED HERE — 2.2 factors, 2.3–2.5 solve. A factored form is GIVEN.
+% PAGE LOCKSTEP with ../notes/main.tex: \vterm -> \vtermans, \blank -> \ans, and the answer argument of
+% every \pcell and \labelbox filled; every \begin{work} block is BYTE-IDENTICAL in both files.
+% Nothing else differs. TABLE MECHANICS: inside a cell `\\` ENDS THE ROW — break lines with
+% \par; the figure and EACH grid row sit in their own sub-row (`\\` then `& ...`, the grid
+% reopening as probgrid*) so the table can break between them.
+\documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-\newcommand{\lgrid}[4]{%
+% Vocabulary rows (SAAR style, user correction 2026-09-06): a FIXED-HEIGHT row carrying the term
+% label and OPEN writing space — no inline blank and no rule line. The key fills exactly the same
+% height (definitions two lines at most), so the box cannot drift blank vs. keyed. Six rows at
+% 1.5cm, so the box and the hook still share page 1.
+\newcommand{\vrowheight}{2.0cm}
+\newcommand{\vtermans}[2]{%
+  \par\noindent\begin{minipage}[t][\vrowheight][t]{\linewidth}%
+    \vspace*{5pt}\textbf{\textcolor{forest}{#1:}}\quad\ans{#2}%
+  \end{minipage}\par}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\qgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
-\newcommand{\vocabans}[2]{%
-  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+% Points: {color}{x}{y}
+\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (3.2pt);}
+\newcommand{\hdot}[3]{\draw[very thick, #1, fill=white] (#2,#3) circle (3.2pt);}
 
 \begin{document}
 
-\pageheader{Unit 2, Lesson 2.1}{Guided Notes --- Answer Key}
+\pageheader{Unit 2, Lesson 2.1}{Guided Notes \& Practice --- Answer Key}
+% NAMESTRIP: no \namedateperiod here — mirrors the blank.
 
-\vspace{0.10in}
+\vspace{6pt}
 
-\begin{objectivebox}
-\textbf{By the end of this lesson, I will be able to\dots}
-\begin{itemize}\setlength{\itemsep}{2pt}
-  \item read a parabola as \emph{transformations} of the parent $y=x^2$: $f(x)+k$, $f(x-h)$, and $a\,f(x)$;
-  \item find the \emph{vertex}, \emph{axis}, \emph{intercepts}, and \emph{max/min} from a quadratic in \emph{vertex}, \emph{standard}, or \emph{intercept} form;
-  \item use those features to \emph{graph} a quadratic or match it to its graph, and convert between forms.
-\end{itemize}
-\end{objectivebox}
-
-\vspace{0.06in}
-
+% ── PAGE 1: vocabulary, then the hook ────────────────────────────────────────
 \begin{vocabbox}
 \small
-Fill in each term as we build it together.
-\par\vspace{2pt}
-\vocabans{Vertex form}{$f(x)=a(x-h)^2+k$; the vertex is $(h,k)$ and the axis of symmetry is $x=h$}
-\vocabans{Standard form}{$f(x)=ax^2+bx+c$; the $y$-intercept is $(0,c)$ and the axis is $x=-\frac{b}{2a}$}
-\vocabans{Intercept (factored) form}{$f(x)=a(x-p)(x-q)$; the zeros are $x=p$ and $x=q$, and the axis is halfway between them}
-\vocabans{Horizontal shift $f(x-h)$}{slides the graph right if $h>0$, left if $h<0$ --- opposite the sign inside the parentheses}
-\vocabans{Vertical stretch / reflection $a\,f(x)$}{narrower if $|a|>1$, wider if $0<|a|<1$; reflects over the $x$-axis if $a<0$}
+Fill in each term \textbf{as we name it} in the notes below.
+\vtermans{Parent function $y=x^2$}{the simplest quadratic; every other parabola is a transformation of it}
+\vtermans{Transformation (shift, stretch, reflection)}{a change to the parent's rule that slides, widens or narrows, or flips its graph}
+\vtermans{Vertex form $a(x-h)^2+k$}{hands you the vertex $(h,k)$ and the axis $x=h$ with no work --- flip the sign inside}
+\vtermans{Standard form $ax^2+bx+c$}{hands you the $y$-intercept $(0,c)$; the axis is $x=-\frac{b}{2a}$, and that $x$ gives the vertex}
+\vtermans{Intercept (factored) form $a(x-p)(x-q)$}{hands you the zeros $p$ and $q$; the axis sits at their midpoint}
 \end{vocabbox}
 
+\vspace{8pt}
+
+\boxguard[18]
 \begin{hookbox}
-These three equations are all \textbf{the same parabola}:
-\[ f(x)=x^2-2x-3 \qquad f(x)=(x-1)^2-4 \qquad f(x)=(x+1)(x-3). \]
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Which one shows the \textbf{vertex} at a glance? \ansline{$(x-1)^2-4$ --- vertex form, vertex $(1,-4)$.}
-  \item Which one shows the \textbf{zeros} at a glance? \ansline{$(x+1)(x-3)$ --- intercept form, zeros $x=-1$ and $x=3$.}
-\end{itemize}
-Each form is cut to show off a different feature. Today we read all three --- and use them to graph.
-\end{hookbox}
-
-\boxguard[22]
-\begin{notesbox}{1. The Parent $y=x^2$ and Its Transformations}
-Every parabola is the parent $y=x^2$ after some \textbf{shifts}, \textbf{stretches}, and
-\textbf{reflections}. Track the parent's anchor point $(2,4)$ and its vertex $(0,0)$ through each move.
-\begin{center}
-\begin{tikzpicture}[scale=0.42]
-  % Parent
+\small
+\begin{minipage}[c]{0.52\linewidth}
+\textbf{One curve in three costumes.} In Lesson~2.0 you \emph{read} this parabola. Here are
+three expressions --- and \emph{one} graph.
+\[ x^2-2x-3 \;=\; (x-1)^2-4 \;=\; (x+1)(x-3) \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.44\linewidth}\centering
+\begin{tikzpicture}[scale=0.32]
+  \qgrid{-3.5}{5.5}{-5.5}{5.5}
   \begin{scope}
-    \lgrid{-3}{3}{-1}{5}
-    \begin{scope}\clip (-3,-1) rectangle (3,5);
-      \draw[very thick, forest, domain=-2.2:2.2, samples=60, smooth] plot (\x,{(\x)*(\x)});
-    \end{scope}
-    \fill[charcoal] (0,0) circle (3pt) node[above left, font=\scriptsize]{$(0,0)$};
-    \node[charcoal, font=\scriptsize] at (0,-2){parent $y=x^2$};
+    \clip (-3.5,-5.5) rectangle (5.5,5.5);
+    \draw[very thick, forest, domain=-2.4:4.4, samples=80, smooth, variable=\x]
+      plot (\x,{(\x-1)^2-4});
   \end{scope}
-  % Shifted g(x) = (x-1)^2 - 4
-  \begin{scope}[xshift=10cm]
-    \lgrid{-3}{5}{-5}{3}
-    \draw[navy, dashed, semithick] (1,-5)--(1,3);
-    \begin{scope}\clip (-3,-5) rectangle (5,3);
-      \draw[very thick, forest, domain=-1.2:3.2, samples=70, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
-    \end{scope}
-    \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{$(1,-4)$};
-    \node[charcoal, font=\scriptsize] at (1,-6.4){$g(x)=(x-1)^2-4$};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-Fill in the effect of each change and where the vertex $(0,0)$ lands:
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\linewidth}{@{}l X l@{}}
-\textbf{Change to $y=x^2$} & \textbf{Effect on the graph} & \textbf{Vertex $\to$} \\
-\hline
-$f(x)+k$ & shifts \ans{up} ($k>0$) or down ($k<0$) & $(0,\ \textcolor{keyred}{\mathbf{k}})$ \\
-$f(x-h)$ & shifts \ans{right} $h$ units (careful: sign flips!) & $(\textcolor{keyred}{\mathbf{h}},\ 0)$ \\
-$a\,f(x)$, $a>0$ & \ans{narrower} if $a>1$, wider if $0<a<1$ & $(0,0)$ \\
-$-f(x)$ & reflects over the \ans{$x$}-axis (opens down) & $(0,0)$ \\
-\end{tabularx}
-\end{center}
-Put them together: the graph of $\;a(x-h)^2+k\;$ is the parent moved so its vertex is at
-$(\textcolor{keyred}{\mathbf{h}},\ \textcolor{keyred}{\mathbf{k}})$.
-\end{notesbox}
-
-\begin{notesbox}{2. Vertex Form: $f(x)=a(x-h)^2+k$}
-Vertex form \emph{is} the transformations written down. Read the vertex right off it. For
-$f(x) = (x-1)^2 - 4$:
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{5}{-5}{3}
-  \draw[navy, dashed, semithick] (1,-5)--(1,3);
-  \node[navy, font=\scriptsize, right] at (1.05,2.4){axis $x=1$};
-  \begin{scope}\clip (-3,-5) rectangle (5,3);
-    \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x-1)*(\x-1) - 4});
-  \end{scope}
-  \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{vertex $(1,-4)$};
-  \fill[charcoal] (0,-3) circle (3pt) node[left, font=\scriptsize]{$(0,-3)$};
-  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$(-1,0)$};
-  \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$(3,0)$};
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
-  \item Match to $a(x-h)^2+k$: $a=\textcolor{keyred}{\mathbf{1}}$, $h=\textcolor{keyred}{\mathbf{1}}$, $k=\textcolor{keyred}{\mathbf{-4}}$.
-  \item \textbf{Vertex} $(h,k) = (\textcolor{keyred}{\mathbf{1}},\ \textcolor{keyred}{\mathbf{-4}})$; \textbf{axis of symmetry} $x=\textcolor{keyred}{\mathbf{1}}$.
-  \item Since $a=1>0$, it opens \ans{up}, so the vertex is a \textbf{minimum} with min value $\textcolor{keyred}{\mathbf{-4}}$.
-  \item \textbf{Check it is the same curve.} Expand: $(x-1)^2-4 = \ans{$x^2-2x-3$}$ --- standard form!
-\end{enumerate}
-\end{notesbox}
-
-\boxguard[22]
-\begin{notesbox}{3. Standard Form: $f(x)=ax^2+bx+c$}
-Here the vertex is hidden. Two facts unlock it: the $y$-intercept is $(0,c)$, and the axis of symmetry
-is $x=-\dfrac{b}{2a}$. For $f(x)=x^2-6x+5$ ($a=1,\ b=-6,\ c=5$):
-\begin{center}
-\begin{minipage}{0.52\linewidth}
-\begin{enumerate}[leftmargin=1.6em, itemsep=4pt]
-  \item \textbf{Axis:} $x=-\dfrac{b}{2a}=-\dfrac{-6}{2(1)}=\textcolor{keyred}{\mathbf{3}}$.
-  \item \textbf{Vertex:} substitute that $x$: $f(3)=(3)^2-6(3)+5=\textcolor{keyred}{\mathbf{-4}}$, so the vertex is $(\textcolor{keyred}{\mathbf{3}},\ \textcolor{keyred}{\mathbf{-4}})$.
-  \item \textbf{$y$-intercept:} $(0,\ \textcolor{keyred}{\mathbf{5}})$.
-  \item Opens \ans{up} ($a>0$); range \ans{$y\ge -4$}.
-\end{enumerate}
-\end{minipage}%
-\begin{minipage}{0.46\linewidth}\centering
-\begin{tikzpicture}[scale=0.45]
-  \lgrid{-1}{7}{-5}{6}
-  \draw[navy, dashed, semithick] (3,-5)--(3,6);
-  \begin{scope}\clip (-1,-5) rectangle (7,6);
-    \draw[very thick, forest, domain=-0.2:6.2, samples=80, smooth] plot (\x,{(\x)*(\x) - 6*(\x) + 5});
-  \end{scope}
-  \fill[charcoal] (3,-4) circle (3pt);
-  \fill[charcoal] (0,5) circle (3pt);
-  \fill[charcoal] (1,0) circle (3pt);
-  \fill[charcoal] (5,0) circle (3pt);
+  \fdot{forest}{1}{-4}
 \end{tikzpicture}
 \end{minipage}
-\end{center}
-\emph{Why $-\tfrac{b}{2a}$?} The axis sits \emph{halfway} between any two symmetric points --- including
-the two zeros --- so it is their average. That midpoint is exactly $-\tfrac{b}{2a}$.
-\end{notesbox}
+\par\vspace{5pt}
+\textbf{Three equations. Circle one:} \quad \textbf{three different parabolas} \qquad
+\textbf{one parabola wearing three costumes}
+\par\vspace{4pt}
+Which costume tells you the \textbf{vertex} fastest? \ans{vertex form $(x-1)^2-4$} \quad Which one tells you the
+\textbf{zeros}? \ans{intercept form $(x+1)(x-3)$}
+\par\vspace{4pt}
+Every question today is this picture: \textbf{whichever form is in front of you, what does it
+hand you for free --- and how has the parent $y=x^2$ been moved to get here?}
+\end{hookbox}
 
-\begin{practicebox}
-\textbf{A. Match each vertex-form equation to its graph} by reading the vertex $(h,k)$ and the opening
-direction. Write A, B, or C.
-\begin{center}
-\begin{tikzpicture}[scale=0.38]
-  % A: (x-2)^2 - 1  vertex (2,-1) up
+\small
+% Displays inside table cells: tight skips, or every brace costs a centimetre. (\small resets
+% the display skips, so this must follow it.) The work blocks use the same skips. Figures are
+% centred with \centering inside the cell, not a center environment (its \topsep is ~1cm a figure).
+\setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}%
+\setlength{\abovedisplayshortskip}{2pt}\setlength{\belowdisplayshortskip}{2pt}%
+\begin{guidednotes}
+% ── ROW 1: the parent and its shifts — the sign flip is planted here ─────────
+\mainidea[The parent and]{Its Shifts} &
+The \textbf{parent function} of every parabola is $y=x^2$. A \textbf{transformation} changes the
+parent's rule and so moves its graph. Adding $k$ \emph{outside}, $f(x)+k$, slides it \textbf{up
+or down}; changing $x$ to $x-h$ \emph{inside}, $f(x-h)$, slides it \textbf{left or right} ---
+and \textbf{subtracting inside moves it \emph{right}}, the opposite of what the sign looks like.
+\\
+& {\centering
+\begin{tikzpicture}[scale=0.22]
+  \qgrid{-3.5}{5.5}{-1.5}{8.5}
   \begin{scope}
-    \lgrid{-1}{5}{-2}{4}
-    \begin{scope}\clip (-1,-2) rectangle (5,4);
-      \draw[very thick, forest, domain=0.3:3.7, samples=60, smooth] plot (\x,{(\x-2)*(\x-2) - 1});
-    \end{scope}
-    \fill[charcoal] (2,-1) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (2,-3.2){\textbf{A}};
+    \clip (-3.5,-1.5) rectangle (5.5,8.5);
+    \draw[very thick, charcoal, domain=-3.2:3.2, samples=80, smooth, variable=\x]
+      plot (\x,{(\x)^2});
+    \draw[very thick, forest, domain=-2.6:2.6, samples=80, smooth, variable=\x]
+      plot (\x,{(\x)^2+3});
+    \draw[very thick, redacc, domain=-1.2:5.2, samples=80, smooth, variable=\x]
+      plot (\x,{(\x-2)^2});
   \end{scope}
-  % B: -(x-1)^2 + 3  vertex (1,3) down
-  \begin{scope}[xshift=8cm]
-    \lgrid{-2}{4}{-2}{4}
-    \begin{scope}\clip (-2,-2) rectangle (4,4);
-      \draw[very thick, forest, domain=-1.2:3.2, samples=60, smooth] plot (\x,{-1*(\x-1)*(\x-1) + 3});
-    \end{scope}
-    \fill[charcoal] (1,3) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (1,-3.2){\textbf{B}};
+  \fdot{charcoal}{0}{0} \fdot{forest}{0}{3} \fdot{redacc}{2}{0}
+  \node[left, font=\scriptsize\bfseries, charcoal] at (-2.6,7.0) {$y=x^2$};
+  \node[above, font=\scriptsize\bfseries, forest] at (0,3.4) {$y=x^2+3$};
+  \node[below right, font=\scriptsize\bfseries, redacc] at (2.2,-0.2) {$y=(x-2)^2$};
+\end{tikzpicture}\par\vspace{2pt}
+$(x-2)^2$ moves the parent \labelbox{2.6cm}{right 2}\par}
+\\
+& \notesprompt{Outside moves it up and down; inside moves it left and right.}
+\begin{probgrid}{|Y|Y|}
+\pcell{1}{$y=x^2+3$ --- what does the $+3$ do to the parent, and where is the vertex
+now?}{1.8cm}{Slides the parent \emph{up} $3$. Vertex $(0,3)$, axis $x=0$.} &
+\pcell{2}{$y=(x-2)^2$ --- which way does it move, and how far? Why does the sign look
+wrong?}{1.9cm}{Right $2$. The bracket asks what to subtract to get back to $0$, so it moves the \emph{opposite} way.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 2: a — stretch, squash, flip ─────────────────────────────────────────
+\mainidea[Stretch and]{Flip} &
+The number $a$ in $a\,f(x)$ multiplies every output. If $|a|>1$ the parabola is
+\textbf{narrower} than the parent; if $0<|a|<1$ it is \textbf{wider}; and if $a<0$ it is
+\textbf{reflected} --- it opens \emph{down}, so its vertex is a \textbf{maximum} instead of a
+minimum (Lesson~2.0's language, now read straight off the equation).
+\\
+& {\centering
+\begin{tikzpicture}[scale=0.22]
+  \qgrid{-4.5}{4.5}{-4.5}{8.5}
+  \begin{scope}
+    \clip (-4.5,-4.5) rectangle (4.5,8.5);
+    \draw[very thick, charcoal, domain=-3.2:3.2, samples=80, smooth, variable=\x]
+      plot (\x,{(\x)^2});
+    \draw[very thick, forest, domain=-1.9:1.9, samples=80, smooth, variable=\x]
+      plot (\x,{3*(\x)^2});
+    \draw[very thick, redacc, domain=-3.2:3.2, samples=80, smooth, variable=\x]
+      plot (\x,{-0.5*(\x)^2});
   \end{scope}
-  % C: (x+2)^2 + 1  vertex (-2,1) up
-  \begin{scope}[xshift=16cm]
-    \lgrid{-5}{1}{-1}{6}
-    \begin{scope}\clip (-5,-1) rectangle (1,6);
-      \draw[very thick, forest, domain=-4.2:-0.2, samples=60, smooth] plot (\x,{(\x+2)*(\x+2) + 1});
-    \end{scope}
-    \fill[charcoal] (-2,1) circle (2.5pt);
-    \node[charcoal, font=\scriptsize] at (-2,-2.2){\textbf{C}};
+  \fdot{charcoal}{0}{0}
+  \node[right, font=\scriptsize\bfseries, charcoal] at (2.9,8.0) {$y=x^2$};
+  \node[right, font=\scriptsize\bfseries, forest] at (1.7,7.4) {$y=3x^2$};
+  \node[right, font=\scriptsize\bfseries, redacc] at (3.1,-4.0) {$y=-\tfrac12 x^2$};
+\end{tikzpicture}\par\vspace{2pt}
+All three share the same vertex; only $a$ is different.\par}
+\\
+& \textbf{3.} Check the word ``narrower'' with numbers, not with your eyes --- fill the table.
+Then: at $x=2$, which graph is \emph{higher}? \ans{$y=3x^2$}
+\par\vspace{2pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{} l Y Y Y Y @{}}
+\rowcolor{sky}
+\textbf{$x$} & $0$ & $1$ & $2$ & $3$ \\
+\hline
+\textbf{$y=x^2$} & \ans{$0$} & \ans{$1$} & \ans{$4$} & \ans{$9$} \\
+\textbf{$y=3x^2$} & \ans{$0$} & \ans{$3$} & \ans{$12$} & \ans{$27$} \\
+\end{tabularx}
+\\
+& \notesprompt{Read $a$, then say direction and width.}
+\begin{probgrid}{|Y|Y|}
+\pcell{4}{$y=-\tfrac12 x^2$ --- opens which way, narrower or wider than the parent, and is its
+vertex a maximum or a minimum?}{1.9cm}{Opens down ($a<0$); \emph{wider} ($|a|<1$); the vertex $(0,0)$ is a \emph{maximum}.} &
+\pcell{5}{$y=4x^2$ and $y=\tfrac14 x^2$ share a vertex. Which is narrower, and what in $a$ told
+you?}{1.9cm}{$y=4x^2$ is narrower: $|4|>1$. $|\tfrac14|<1$, so that one is wider.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 3: vertex form reads itself ─────────────────────────────────────────
+\mainidea[Vertex form]{Reads Itself} &
+\textbf{Vertex form} is $y=a(x-h)^2+k$. It hands you the \textbf{vertex} $(h,k)$ and the
+\textbf{axis of symmetry} $x=h$ with no work at all, and $a$ still gives direction and width.
+\\
+& {\centering
+\begin{tikzpicture}[scale=0.22]
+  \qgrid{-3.5}{5.5}{-5.5}{5.5}
+  \draw[dashed, very thick, redacc] (1,-5.3)--(1,5.3);
+  \begin{scope}
+    \clip (-3.5,-5.5) rectangle (5.5,5.5);
+    \draw[very thick, forest, domain=-2.4:4.4, samples=80, smooth, variable=\x]
+      plot (\x,{(\x-1)^2-4});
   \end{scope}
+  \fdot{forest}{1}{-4}
+  \node[right, font=\scriptsize\bfseries, forest] at (1.3,-4.2) {vertex $(1,-4)$};
+  \node[above right, font=\scriptsize\bfseries, redacc] at (1.1,3.4) {$x=1$};
+\end{tikzpicture}\par\vspace{2pt}
+The dashed line is the \labelbox{3.4cm}{axis of symmetry}\par}
+\\
+& \textbf{Reading $y=a(x-h)^2+k$:} \quad
+\stepnum{1}\ Read $a$ --- direction and width. \quad
+\stepnum{2}\ Read $h$ --- \textbf{flip the sign inside}. \quad
+\stepnum{3}\ Read $k$ --- no flip. \quad
+\stepnum{4}\ Plot $(h,k)$, draw the axis $x=h$. \quad
+\stepnum{5}\ Use symmetry for a point either side.
+\\
+& \notesprompt{Read the vertex straight off the form.}
+\begin{probgrid}{|Y|Y|}
+\pcell{6}{$y=(x-1)^2-4$ --- name $a$, $h$, and $k$. Vertex? Axis? Opens which way?}{1.8cm}{$a=1$, $h=1$, $k=-4$. Vertex $(1,-4)$, axis $x=1$, opens up.} &
+\pcell{7}{$y=-2(x+3)^2+5$ --- vertex, axis, direction, and narrower or wider than the
+parent.}{1.9cm}{$h=-3$, $k=5$: vertex $(-3,5)$, axis $x=-3$. Opens down, narrower ($|-2|>1$).} \\ \hline
+\end{probgrid}
+\\
+& \textbf{8.} Run it backwards: a parabola has vertex $(4,-1)$, opens up, and is the same width
+as the parent. Its rule in vertex form is $y=$ \ans{$(x-4)^2-1$}, and its $y$-intercept is
+\ans{$(0,15)$}.
+\\ \hline
+% ── ROW 4: THE CRUX — three costumes, one curve, and the bracket that lies ───
+\mainidea[Three costumes,]{One Curve} &
+\textbf{Standard form} $y=ax^2+bx+c$ gives the $y$-intercept $(0,c)$ free; its axis is
+$x=-\frac{b}{2a}$, and that $x$ substituted back gives the vertex. \textbf{Intercept (factored)
+form} $y=a(x-p)(x-q)$ gives the \textbf{zeros} $p$ and $q$, with the axis at their
+\emph{midpoint} $x=\frac{p+q}{2}$. \textbf{All three forms of our anchor agree --- it is one
+curve.}
+\\
+& {\centering
+\begin{tikzpicture}[scale=0.22]
+  \qgrid{-3.5}{5.5}{-5.5}{5.5}
+  \draw[dashed, very thick, redacc] (1,-5.3)--(1,5.3);
+  \begin{scope}
+    \clip (-3.5,-5.5) rectangle (5.5,5.5);
+    \draw[very thick, forest, domain=-2.4:4.4, samples=80, smooth, variable=\x]
+      plot (\x,{(\x-1)^2-4});
+  \end{scope}
+  \fdot{forest}{1}{-4} \fdot{navy}{-1}{0} \fdot{navy}{3}{0} \fdot{goldacc}{0}{-3}
+  \node[above left, font=\tiny, navy] at (-1,0.1) {$(-1,0)$};
+  \node[above right, font=\tiny, navy] at (3,0.1) {$(3,0)$};
+  \node[left, font=\tiny, goldacc] at (-0.15,-3) {$(0,-3)$};
+\end{tikzpicture}\par\vspace{2pt}
+$x^2-2x-3\to(0,-3)$; \; $(x+1)(x-3)\to-1$ and $3$; \; $(x-1)^2-4\to(1,-4)$.\par}
+\\
+& \textbf{The axis, three ways.} From standard form; then check it against the midpoint of the
+zeros, $\frac{-1+3}{2}=1$, and against $h=1$ in vertex form:
+\begin{work}
+  x &= -\frac{b}{2a} = -\frac{-2}{2(1)} = 1 \\
+  y &= (1)^2 - 2(1) - 3 = -4
+\end{work}
+\textbf{Same vertex $(1,-4)$, same axis $x=1$, every time. But watch the bracket:} in
+\emph{vertex} form $(x+4)^2$ shifts \emph{left}~$4$, while as a \emph{factor} $(x+4)$ gives the
+zero $x=-4$ --- opposite-looking jobs, and \textbf{which form you are in decides.}
+\\
+& \notesprompt{Settle the sign flip.}
+\begin{probgrid}{|Y|Y|}
+\pcell{9}{A classmate says ``$y=(x+4)^2$ shifts the parent \emph{right}~$4$.'' Which way does
+it really go, and why?}{1.9cm}{Left $4$: $x+4=x-(-4)$, so $h=-4$. Subtract inside, go right; add, go left.} &
+\pcell{10}{Same bracket, two forms. In $y=(x+4)^2$ the shift is which way? In $y=(x+4)(x-2)$
+the zeros are what? Why is that not the same question?}{1.9cm}{Shift: left $4$. Zeros: $-4$ and $2$. Same bracket, opposite jobs --- the \emph{form} decides.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 5: guided practice — WE DO, together, a new curve in three costumes ──
+\mainidea[Guided practice]{One More Curve} &
+\begin{minipage}[c]{0.56\linewidth}
+A new curve, no story --- and again in three costumes.
+\par\vspace{2pt}
+$y=-(x-2)^2+9=-x^2+4x+5=-(x+1)(x-5)$
+\end{minipage}\hfill
+\begin{minipage}[c]{0.40\linewidth}\centering
+\begin{tikzpicture}[scale=0.19]
+  \qgrid{-2.5}{6.5}{-2.5}{10.5}
+  \begin{scope}
+    \clip (-2.5,-2.5) rectangle (6.5,10.5);
+    \draw[very thick, forest, domain=-1.5:5.5, samples=80, smooth, variable=\x]
+      plot (\x,{-((\x-2)^2)+9});
+  \end{scope}
+  \fdot{forest}{2}{9} \fdot{navy}{-1}{0} \fdot{navy}{5}{0} \fdot{goldacc}{0}{5}
 \end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.9em, itemsep=3pt]
-  \item $y=(x-2)^2-1 \Rightarrow$ vertex \ans{$(2,-1)$}, opens \ans{up}, graph \ans{A}
-  \item $y=-(x-1)^2+3 \Rightarrow$ vertex \ans{$(1,3)$}, opens \ans{down}, graph \ans{B}
-  \item $y=(x+2)^2+1 \Rightarrow$ vertex \ans{$(-2,1)$}, opens \ans{up}, graph \ans{C}
-\end{enumerate}
-\textbf{B. Intercept form.} For $q(x)=(x+1)(x-3)$: zeros $x=\ans{$-1$}$ and $x=\ans{$3$}$; axis
-$x=\ans{$1$}$; vertex $\ans{$(1,-4)$}$.
-\end{practicebox}
+\end{minipage}
+\\
+& \notesprompt{We work these together.}
+\begin{probgrid}{|Y|Y|}
+\pcell{11}{\textbf{Vertex form.} $y=-(x-2)^2+9$: vertex, axis, direction --- and is $9$ a
+maximum or a minimum?}{1.8cm}{Vertex $(2,9)$, axis $x=2$. $a=-1$ opens it down, so $9$ is a \emph{maximum}.} &
+\pcell{12}{\textbf{Standard form.} $y=-x^2+4x+5$: the $y$-intercept straight off, then the axis
+from $x=-\frac{b}{2a}$ (work below).}{1.8cm}{$c=5$, so $(0,5)$. Then $x=-\frac{4}{2(-1)}=2$: the axis is $x=2$.} \\ \hline
+\end{probgrid}
+\\
+& \begin{work}
+  x &= -\frac{b}{2a} = -\frac{4}{2(-1)} = 2 \\
+  y &= -(2)^2 + 4(2) + 5 = 9
+\end{work}
+\\
+& \begin{probgrid}*{|Y|Y|}
+\pcell{13}{\textbf{Intercept form.} $y=-(x+1)(x-5)$: the zeros, and the axis at their
+midpoint.}{1.8cm}{Zeros $-1$ and $5$ (flip each factor's sign). Midpoint $\frac{-1+5}{2}=2$, so $x=2$.} &
+\pcell{14}{\textbf{The crux.} Do your three axes agree, and why must they? A classmate read
+the zeros as $1$ and $-5$: what went wrong?}{1.8cm}{All three give $x=2$: one curve, three costumes. $(x+1)$ is zero at $-1$, not $1$.} \\ \hline
+\end{probgrid}
+\\ \hline
+\end{guidednotes}
+
+% ── THE NOTES END AT GUIDED PRACTICE ─────────────────────────────────────────
+% There is deliberately no "you do" here: ../homework/ is the individual practice,
+% started in class in the last ten minutes while the teacher circulates.
 
 \end{document}
