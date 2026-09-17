@@ -2,6 +2,19 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-17) — **ALGEBRA 1 PRIORITY STANDARDS QUIZ ADDED UNDER UNIT 1 TESTS.**
+>
+> **User request, 2026-09-17:** a 20–25 question quiz on priority Algebra 1 standards (2023 VA SOL).
+> `unit01/tests/algebra1_quiz` + `unit01/test_keys/algebra1_quiz_key`, built in the Unit 1 test
+> format (12pt, body byte-identical blank/key via `\slot`/`\optok`/`work`), **25 items × 4 pts**,
+> no calculator: Part A A.EO.1/3/4 (evaluate, translate, exponent laws, radicals), Part B A.EO.2
+> (add/subtract, multiply, factor), Part C A.EI.1/2 (multistep equation, inequality flip, literal
+> equation, no-solution, system, inequality in two variables), Part D A.F.1 (standard → slope
+> form, parallel line, graph → equation, $f(x)$ and zero), Part E A.F.2/A.EI.3 (function test,
+> parabola key features, factoring, quadratic formula). A.ST.1 left out. Never merged into a
+> packet (not the `drop` source). **Build:** blank/key **4/4**. Open: use as a readiness
+> diagnostic or a graded quiz? — the user's call.
+
 > ## ⚠ Status (2026-09-16) — **UNIT 1 TESTS REGENERATED: EASIER, NO CORRELATION OR SCATTERPLOTS.**
 >
 > **User direction, 2026-09-16:** an ``easy-ish'' Unit 1 test that leaves out the correlation
