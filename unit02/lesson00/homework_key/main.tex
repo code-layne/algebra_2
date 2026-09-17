@@ -1,106 +1,167 @@
 %! Characteristics of Quadratic Functions — Unit 2, Lesson 2.0 — Homework (Answer Key)
-\documentclass[10pt]{article}
+% Mirrors homework/main.tex EXACTLY: -key in place of -boxes, every \blank{} becomes an \ans{},
+% every \writelines{n} is answered with exactly n \ansline{}s, and the one work block (item 5a)
+% is authored byte-identically, so the two files come out the same number of pages. No teacher
+% notes here — they live in the plan. Trimmed in lockstep with the blank on 2026-09-17.
+\documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (2.6pt);}
 
 \begin{document}
 
 \pageheader{Unit 2, Lesson 2.0}{Homework --- Answer Key}
+% NAMESTRIP: no \namedateperiod here — mirrors the blank.
 
-\vspace{0.10in}
+\boxguard[8]
+\begin{remindbox}
+\small
+\textbf{This is your graded homework.} Your packet with completed homework is due the first class
+after two study halls. I will announce the due date in class and on TurtleNet. Remember: the
+\textbf{maximum} or \textbf{minimum value} is an \emph{output} --- a $y$-value, with units --- and
+\emph{where} it happens is an \emph{input}, the $x$-coordinate of the vertex.
+\end{remindbox}
 
+\vspace{0.08in}
+
+\boxguard[14]
 \begin{notesbox}{Practice}
-Show how you read each feature. For every graph, give the \emph{full} feature list.
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=7pt]
+  \item \textbf{Read the whole graph.} Below is $f(x)=x^2+2x-3$.
+    \begin{minipage}[c]{0.68\linewidth}
+    Opens \ans{up} \; Vertex \ans{$(-1,-4)$} \; Axis \ans{$x=-1$} \\[2pt]
+    Zeros \ans{$-3$, $1$} \; $y$-intercept \ans{$(0,-3)$} \\[2pt]
+    Increasing on \ans{$[-1,\infty)$} \; Decreasing on \ans{$(-\infty,-1]$} \\[2pt]
+    Domain \ans{all real numbers} \; Range \ans{$y\ge-4$} \\[2pt]
+    The vertex is a \ans{minimum} point; that \textbf{value} is \ans{$-4$}, at $x=$
+    \ans{$-1$}.
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.28\linewidth}\centering
+    \begin{tikzpicture}[scale=0.28]
+      \lgrid{-4.5}{2.5}{-5}{5.5}
+      \draw[very thick, forest, domain=-3.9:1.9, samples=70, smooth] plot (\x,{\x*\x+2*\x-3});
+      \fdot{forest}{-1}{-4} \fdot{redacc}{-3}{0} \fdot{redacc}{1}{0} \fdot{navy}{0}{-3}
+    \end{tikzpicture}
+    \end{minipage}
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=12pt]
-  \item \textbf{From a table.} A quadratic function is given by the table below.
-    \begin{center}
-    \renewcommand{\arraystretch}{1.25}
+  \item \textbf{Contrast pair.} $p(x)=(x-2)^2-1$ and $q(x)=-(x+1)^2+4$.
+    \begin{minipage}[c]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.26]
+      \lgrid{-1.5}{5.5}{-2.5}{5.5}
+      \draw[very thick, forest, domain=0.2:3.8, samples=60, smooth] plot (\x,{(\x-2)*(\x-2)-1});
+      \fdot{forest}{2}{-1}
+    \end{tikzpicture}\par$p$
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.26]
+      \lgrid{-4.5}{2.5}{-2.5}{5.5}
+      \draw[very thick, redacc, domain=-3.5:1.5, samples=60, smooth] plot (\x,{-(\x+1)*(\x+1)+4});
+      \fdot{redacc}{-1}{4}
+    \end{tikzpicture}\par$q$
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.48\linewidth}
+    $p$ has a \ans{minimum}: value \ans{$-1$}, at $x=$ \ans{$2$}. \\[5pt]
+    $q$ has a \ans{maximum}: value \ans{$4$}, at $x=$ \ans{$-1$}.
+    \end{minipage}
+    \\[2pt]
+    (c) \textbf{Why?} What about each graph decides which kind of value it has?
+    \ansline{The direction it opens: $p$ opens up, so its vertex is the lowest point --- a minimum.}
+    \ansline{$q$ opens down, so its vertex is the highest point --- a maximum. The sign of $a$ decides.}
+
+  \item \textbf{Off a table.} A function is given only by this table.
+    \begin{minipage}[c]{0.44\linewidth}\centering
+    \renewcommand{\arraystretch}{1.2}
     \begin{tabular}{|c|c|c|c|c|c|}
     \hline
     $x$ & $0$ & $1$ & $2$ & $3$ & $4$ \\ \hline
-    $f(x)$ & $5$ & $0$ & $-3$ & $-4$ & $-3$ \\ \hline
+    $y$ & $-3$ & $3$ & $5$ & $3$ & $-3$ \\ \hline
     \end{tabular}
-    \end{center}
-    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=4pt]
-      \item The \emph{second differences} of the outputs are constant. Compute them: they equal
-            \ans{$+2$}. Because that value is \emph{positive}, the parabola opens \ans{up}.
-      \item Using the symmetry of the outputs, the vertex is \ans{$(3,-4)$} and the axis of symmetry is
-            $x=\textcolor{keyred}{\mathbf{3}}$.
-      \item The zeros are $x=\textcolor{keyred}{\mathbf{1}}$ and $x=\textcolor{keyred}{\mathbf{5}}$; the $y$-intercept is \ans{$(0,5)$}.
-      \item Is the vertex a max or a min, and what is the range? \ans{minimum; range $y\ge -4$}
-    \end{enumerate}
-
-  \item \textbf{An upward parabola.} The graph is $m(x) = x^2 + 4x + 3$.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-5}{1}{-2}{5}
-      \draw[navy, dashed, semithick] (-2,-2)--(-2,5);
-      \begin{scope}
-        \clip (-5,-2) rectangle (1,5);
-        \draw[very thick, forest, domain=-4.4:0.4, samples=70, smooth]
-          plot (\x,{(\x)*(\x) + 4*(\x) + 3});
-      \end{scope}
-      \fill[charcoal] (-2,-1) circle (3pt);
-      \fill[charcoal] (0,3) circle (3pt);
-      \fill[charcoal] (-3,0) circle (3pt);
-      \fill[charcoal] (-1,0) circle (3pt);
-    \end{tikzpicture}
-    \end{center}
-    Vertex: \ans{$(-2,-1)$} \quad Min/max value: \ans{min, $-1$} \quad Axis: $x=$ \ans{$-2$} \quad
-    Zeros: \ans{$x=-3,\,-1$} \\[3pt]
-    Domain: \ans{all reals} \quad Range: \ans{$y\ge -1$} \quad Increasing on: \ans{$(-2,\infty)$} \quad
-    Negative on: \ans{$-3<x<-1$}.
-
-  \item \textbf{A downward parabola.} The graph is $n(x) = -x^2 + 4$.
-    \begin{center}
-    \begin{tikzpicture}[scale=0.5]
-      \lgrid{-3}{3}{-3}{5}
-      \draw[navy, dashed, semithick] (0,-3)--(0,5);
-      \begin{scope}
-        \clip (-3,-3) rectangle (3,5);
-        \draw[very thick, forest, domain=-2.6:2.6, samples=70, smooth]
-          plot (\x,{-1*(\x)*(\x) + 4});
-      \end{scope}
-      \fill[charcoal] (0,4) circle (3pt);
-      \fill[charcoal] (-2,0) circle (3pt);
-      \fill[charcoal] (2,0) circle (3pt);
-    \end{tikzpicture}
-    \end{center}
-    Vertex: \ans{$(0,4)$} \quad Min/max value: \ans{max, $4$} \quad Axis: $x=$ \ans{$0$} \quad
-    Zeros: \ans{$x=-2,\,2$} \\[3pt]
-    Domain: \ans{all reals} \quad Range: \ans{$y\le 4$} \quad Decreasing on: \ans{$(0,\infty)$} \quad
-    End behavior: \ans{both arms $\to-\infty$}.
-
-  \item \textbf{Explain.} A parabola has exactly \emph{one} turning point (its vertex). Explain why
-        its \emph{end behavior} sends \emph{both} arms the same direction, and how the sign of $a$
-        decides which direction.
-        \ansline{Past the single turning point the curve heads one way forever, and by symmetry the other arm mirrors it, so both arms go the same direction. The leading term $ax^2$ dominates for large $|x|$: if $a>0$ the outputs grow large positive (both arms up); if $a<0$ they grow large negative (both arms down).}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.52\linewidth}
+    First differences: \ans{$6$} \ans{$2$} \ans{$-2$} \ans{$-6$} \\[4pt]
+    Second differences: \ans{$-4$} \ans{$-4$} \ans{$-4$} --- constant? \ans{yes}
+    \\[4pt]
+    So the function is \ans{quadratic}. By the table's symmetry the axis is $x=$ \ans{$2$} and
+    the vertex is \ans{$(2,5)$}
+    \end{minipage}
 \end{enumerate}
 \end{notesbox}
 
-\begin{extensionbox}
-\textbf{Reading a model in context.} A dolphin leaps so its height is $h(t) = -16t^2 + 16t + 32$ feet
-after $t$ seconds (measuring from the water's surface).
-\begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=5pt]
-  \item The vertex of this parabola is $(0.5,\ 36)$. Interpret it \emph{in context}. What does the
-        $y$-intercept $(0,32)$ mean?
-  \item The positive zero is $t=2$. What is the \emph{meaningful domain} of $h$, and what does the
-        zero tell you happens then?
-\end{enumerate}
-\ansline{(a) The dolphin reaches a maximum height of $36$ ft at $t=0.5$ s; the $y$-intercept means it left the platform at $32$ ft above the water. \;\; (b) Meaningful domain $0\le t\le 2$; the zero $t=2$ is when it reaches the water ($h=0$). After that the model no longer applies.}
-\end{extensionbox}
+\newpage
+\begin{notesbox}{Practice, continued}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=7pt, start=4]
+  \item \textbf{Special case and boundary.} How many $x$-intercepts can a parabola have?
+    \ans{two, one, or none}
+    \begin{minipage}[c]{0.24\linewidth}\centering
+    \textbf{(a)} $y=(x-2)^2$\par
+    \begin{tikzpicture}[scale=0.24]
+      \lgrid{-0.5}{4.5}{-1.5}{5.5}
+      \draw[very thick, forest, domain=-0.1:4.1, samples=60, smooth] plot (\x,{(\x-2)*(\x-2)});
+      \fdot{forest}{2}{0}
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.24\linewidth}\centering
+    \textbf{(b)} $y=x^2+2$\par
+    \begin{tikzpicture}[scale=0.24]
+      \lgrid{-2.5}{2.5}{-1.5}{5.5}
+      \draw[very thick, redacc, domain=-1.8:1.8, samples=60, smooth] plot (\x,{\x*\x+2});
+      \fdot{redacc}{0}{2}
+    \end{tikzpicture}
+    \end{minipage}\hfill
+    \begin{minipage}[c]{0.48\linewidth}
+    (a) zeros \ans{$1$}; the vertex sits \ans{on} the $x$-axis. \\[4pt]
+    (b) zeros \ans{$0$}; the lowest output is \ans{$2$}. \\[4pt]
+    (c) Opens \emph{up}, vertex \emph{above} the axis: zeros \ans{none}. Why can the answer
+    never be three? \ans{it turns only once}
+    \end{minipage}
 
+  \item \textbf{Model it.} A punt sends a football up from a tee $4$ feet off the ground:
+        $h(t)=-16t^2+48t+4$, with $t$ in seconds and $h$ in feet. Its graph turns at $t=1.5$.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=3pt]
+      \item Find $h(1.5)$.
+        \begin{work}
+          h(1.5) &= -16(1.5)^2 + 48(1.5) + 4 \\
+                 &= -36 + 72 + 4 \\
+                 &= 40
+        \end{work}
+      \item The maximum height is \ans{$40$} ft --- an \ans{output} --- reached at $t=$
+            \ans{$1.5$} s --- an \ans{input}.
+      \item $h(1.5)=40$ means \ans{the ball is $40$ ft up, its highest point, $1.5$ s after the punt}
+      \item The ball lands near $t=3.1$ s, but the function keeps going: as $t$ grows its outputs
+            \ans{fall}. Why does the model stop making sense after it lands? \ans{height cannot be negative}
+    \end{enumerate}
+
+  \item \textbf{Multiple choice (SOL-style).} A ball's height in feet after $t$ seconds is
+        $h(t)=-16t^2+96t$; its graph has vertex $(3,144)$ and zeros $t=0$ and $t=6$. What is the
+        ball's \emph{maximum height}?
+    \begin{enumerate}[label=\Alph*., leftmargin=2.2em, itemsep=0pt, topsep=2pt]
+      \item $3$ feet
+      \item \ans{$144$ feet} \hfill \textcolor{keyred}{\textbf{$\leftarrow$ correct}}
+      \item $6$ feet
+      \item $96$ feet
+    \end{enumerate}
+    Say in one sentence how you ruled out one of the others.
+    \ansline{The vertex $(3,144)$ gives height $144$ ft at time $t=3$ s, so the maximum is $144$.}
+    \ansline{A is $3$ --- the \emph{input}, in seconds, not a height; C is the landing time, D a coefficient.}
+\end{enumerate}
+\end{notesbox}
+
+\vspace{0.08in}
+
+\boxguard[8]
 \begin{spiralbox}
-\textbf{Coming next --- Lesson 2.1: Graphing Quadratic Functions.} Today you \emph{read} a parabola's
-characteristics from its graph. Next you will use the \textbf{vertex form} $f(x)=a(x-h)^2+k$,
-\textbf{standard form}, and \textbf{intercept form} to \emph{find} the vertex, axis, and intercepts
-from the equation, and to graph a parabola by transforming the parent $y=x^2$.
+\small
+\textbf{Coming next --- Lesson 2.1: Graphing Quadratic Functions.} Today you read a parabola that
+was already drawn; next you build one \emph{from} its equation. You will meet the same curve in
+three costumes --- \textbf{standard form} $y=ax^2+bx+c$, \textbf{vertex form} $y=a(x-h)^2+k$, and
+\textbf{factored form} $y=a(x-r_1)(x-r_2)$ --- each handing you a different feature for free.
 \end{spiralbox}
 
 \end{document}

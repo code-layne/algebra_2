@@ -1,15 +1,30 @@
 %! Characteristics of Quadratic Functions — Unit 2, Lesson 2.0 — Slides (Beamer)
+% ELEVEN FRAMES, in the profile's order (LESSON_SHAPE.md §1): title → learning targets (+ how
+% today runs, 5/35/10/10) → warm-up (ending in "hold on to this") → hook (the vote, LEFT
+% UNRESOLVED) → four notes frames, two per section (rows 1–2 = section 1, rows 3–4 = section 2;
+% the crux frame flagged \sectionlabel[redacc]{}) → Guided Practice → debrief → close & start the
+% homework. There is no group activity and no individual-practice launch frame: the homework IS
+% the individual practice, started in class. \CourseName does not exist in beamer — the course
+% name is written literally. Header macro is \forestheader{Title}.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% Projectile grid: ONE GRID UNIT UP = 16 FEET, so the plotted curve is h/16 = -t^2 + 2t + 3.
+\newcommand{\pgrid}{%
+  \draw[step=0.5, linegray!40, very thin] (0,0) grid (3.5,4.5);
+  \draw[->, thick, charcoal] (0,0)--(3.9,0) node[below right, font=\tiny]{$t$ (s)};
+  \draw[->, thick, charcoal] (0,0)--(0,5.0) node[left, font=\tiny]{$h$ (ft)};
+  \foreach \x in {1,2,3}{\node[below, font=\tiny, charcoal] at (\x,0){$\x$};}
+  \foreach \y/\lab in {1/16,2/32,3/48,4/64}{\node[left, font=\tiny, charcoal] at (0,\y){$\lab$};}}
+\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (3.0pt);}
 
 \begin{document}
 
-% TITLE SLIDE (CourseName is not defined in beamer, so the name is literal)
+% 1. TITLE SLIDE (CourseName is not defined in beamer, so the name is literal)
 {
 \setbeamercolor{background canvas}{bg=forest}
 \begin{frame}[plain]
@@ -22,163 +37,253 @@
 \end{frame}
 }
 
-% HOOK
+% 2. LEARNING TARGETS
 \begin{frame}[t, plain]
-  \forestheader{Every question is a feature of the graph}
-  \sectionlabel{Hook}
-  \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
-      A ball is thrown upward: \[ h(t) = -16t^2 + 32t + 48 \text{ ft.} \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Released how high? $\to$ \textbf{$y$-intercept}
-        \item Highest point? $\to$ \textbf{vertex (max)}
-        \item Lands when? $\to$ \textbf{zero}
-        \item Same height twice? $\to$ \textbf{symmetry}
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.42\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.32]
-        \draw[xstep=1, ystep=8, linegray!45, thin] (0,0) grid (3,72);
-        \draw[->, thick, charcoal] (0,0)--(3.3,0) node[below right, font=\tiny]{$t$};
-        \draw[->, thick, charcoal] (0,0)--(0,74) node[left, font=\tiny]{$h$};
-        \draw[navy, dashed, thick] (1,0)--(1,64);
-        \draw[very thick, forest, domain=0:3, samples=80, smooth]
-          plot (\x,{-16*(\x)*(\x) + 32*(\x) + 48});
-        \fill[charcoal] (1,64) circle (4pt);
-        \fill[charcoal] (0,48) circle (4pt);
-        \fill[charcoal] (3,0) circle (4pt);
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-  \vspace{2pt}
-  \begin{block}{Today}
-    Read \emph{every} characteristic of a quadratic function straight off its parabola.
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item Find the \textbf{vertex} of a \textbf{parabola} and say whether it is a
+          \textbf{maximum} or a \textbf{minimum} point.
+    \item State that \textbf{maximum or minimum value} --- an \emph{output}, with units --- and
+          separately say \emph{where} it occurs.
+    \item Write the \textbf{axis of symmetry} $x=h$, and use symmetry to pair equal outputs and
+          to find the vertex from a table or from the two zeros.
+    \item Read the \textbf{zeros}, the \textbf{$y$-intercept}, the \textbf{increasing} and
+          \textbf{decreasing} intervals, the \textbf{domain} and \textbf{range}.
+    \item Describe \textbf{end behavior}: $a>0$ both ends rise, $a<0$ both ends fall.
+  \end{itemize}
+  \vspace{4pt}
+  \begin{block}{How today runs}
+    Warm-up (5) $\to$ guided notes and one graph read together (35) $\to$ debrief (10) $\to$
+    \textbf{start the homework, on your own} (10). Everything today is \emph{reading} a graph ---
+    no solving, no factoring.
   \end{block}
 \end{frame}
 
-% QUADRATIC = CONSTANT SECOND DIFFERENCE
+% 3. WARM-UP
 \begin{frame}[t, plain]
-  \forestheader{Quadratic means a constant second difference}
-  \sectionlabel{Definition}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      For $f(x)=x^2-2x-3$, the outputs fall, bottom out, then rise --- \emph{not} a line.
-      \\[6pt]
-      The \emph{second} differences are constant ($+2$): the fingerprint of a quadratic
-      $f(x)=ax^2+bx+c$. Its graph is a \textbf{parabola}.
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \centering
-      \renewcommand{\arraystretch}{1.2}
-      \begin{tabular}{|c|c|c|c|c|}
-        \hline
-        $x$ & $0$ & $1$ & $2$ & $3$ \\ \hline
-        $f(x)$ & $-3$ & $-4$ & $-3$ & $0$ \\ \hline
-      \end{tabular}\\[6pt]
-      {\footnotesize 1st diffs: $-1,+1,+3$ \quad 2nd diffs: \textbf{\color{forest}$+2$}}
-    \end{column}
-  \end{columns}
+  \forestheader{Warm-Up: three things you already know}
+  \sectionlabel{5 minutes --- alone, then check with a neighbour}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item \textbf{Evaluate the rule.} $f(x)=x^2-2x-3$ at $-1$, $0$, $1$, $3$. Watch the
+          negatives. \; (You get $0,\,-3,\,-4,\,0$ --- hold on to those.)
+    \item \textbf{Read the line.} For $y=-2x+4$: the $x$-intercept, the $y$-intercept,
+          increasing or decreasing, and the domain.
+    \item \textbf{A graph that turns around.} Increasing until? Decreasing after? Highest point?
+  \end{enumerate}
+  \vspace{6pt}
+  \begin{block}{Hold on to this}
+    The highest point of that graph is $(2,4)$. \textbf{Is the ``highest'' answer the $x$-value,
+    the $y$-value, or both?} Keep that question --- it is the whole lesson.
+  \end{block}
 \end{frame}
 
-% THE CHARACTERISTICS
+% 4. HOOK — left unresolved
 \begin{frame}[t, plain]
-  \forestheader{Reading a parabola: the characteristics}
-  \sectionlabel[goldacc]{$f(x) = x^2 - 2x - 3$}
+  \forestheader{Hook: a ball off a 48-foot ledge}
+  \sectionlabel[goldacc]{$h(t)=-16t^2+32t+48$ \quad ($t$ in seconds, $h$ in feet)}
   \begin{columns}[T]
-    \begin{column}{0.42\textwidth}
+    \begin{column}{0.46\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.4]
-        \lgrid{-3}{5}{-5}{6}
-        \draw[navy, dashed, thick] (1,-5)--(1,6);
-        \begin{scope}
-          \clip (-3,-5) rectangle (5,6);
-          \draw[very thick, forest, domain=-2.2:4.2, samples=80, smooth]
-            plot (\x,{(\x)*(\x) - 2*(\x) - 3});
-        \end{scope}
-        \fill[charcoal] (1,-4) circle (3.5pt) node[below right, font=\tiny]{$(1,-4)$};
-        \fill[charcoal] (-1,0) circle (3.5pt);
-        \fill[charcoal] (3,0) circle (3.5pt);
-        \fill[charcoal] (0,-3) circle (3.5pt);
+      \begin{tikzpicture}[scale=0.62]
+        \pgrid
+        \draw[very thick, forest, domain=0:3, samples=80, smooth] plot (\x, {-\x*\x+2*\x+3});
+        \fdot{forest}{0}{3}
+        \fdot{forest}{3}{0}
+        \fdot{redacc}{1}{4}
       \end{tikzpicture}
     \end{column}
-    \begin{column}{0.58\textwidth}
-      \footnotesize
+    \begin{column}{0.50\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item It starts at $h(0)=48$ ft --- the top of the ledge.
+        \item It turns \emph{once}, at the point $(1,64)$.
+        \item It hits the ground at $t=3$ s.
+        \item \textbf{One grid unit up is $16$ feet} --- on a plain unit grid this curve would be
+              a page-tall spike.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{2pt}
+  \begin{block}{Vote --- and we do not settle it yet}
+    \textbf{The ball's maximum is: circle one --- $1$ or $64$.} \quad And \emph{what are the units
+    of your answer?} Hands up for each. Keep your vote; we come back to it.
+  \end{block}
+\end{frame}
+
+% 5. NOTES ROW 1 — THE TURNING POINT (section 1a)
+\begin{frame}[t, plain]
+  \forestheader{Notes: a parabola turns exactly once}
+  \sectionlabel{notes, The turning Point $\cdot$ I do problem 1, you do problem 2}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item A \textbf{parabola} is the graph of $f(x)=ax^2+bx+c$, $a\ne0$. The \emph{sign of $a$}
+          says which way it opens: $a>0$ up, $a<0$ down.
+    \item The \textbf{vertex} is the point where it turns: the \textbf{minimum} point when it
+          opens up, the \textbf{maximum} point when it opens down.
+    \item Our ball: $a=-16<0$, so it opens down --- and the turning point $(1,64)$ is the
+          \emph{highest} point on the curve.
+  \end{itemize}
+  \vspace{3pt}
+  \begin{block}{One point does most of the work}
+    Because it turns only once, the vertex plus the direction it opens already tell you the
+    maximum or minimum, the mirror line, the rising and falling parts, the range, and both ends.
+  \end{block}
+\end{frame}
+
+% 6. NOTES ROW 2 — THE MIRROR LINE (section 1b)
+\begin{frame}[t, plain]
+  \forestheader{Notes: the mirror line}
+  \sectionlabel{notes, The mirror Line $\cdot$ the unit anchor curve (problems 3--4)}
+  \begin{columns}[T]
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \lgrid{-2.5}{4.5}{-5}{5.5}
+        \draw[dashed, very thick, redacc] (1,-5)--(1,5.2);
+        \draw[very thick, forest, domain=-1.9:3.9, samples=80, smooth] plot (\x, {\x*\x-2*\x-3});
+        \fdot{forest}{1}{-4}
+      \end{tikzpicture} \\[2pt]
+      $f(x)=x^2-2x-3=(x-1)^2-4$
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Axis of symmetry}: the vertical line $x=h$ through the vertex --- here
+              $x=1$.
+        \item Inputs the same distance either side give \textbf{equal outputs}:
+              $f(0)=f(2)=-3$, \; $f(-1)=f(3)=0$.
+        \item The parent $y=x^2$ is the plain case: $f(-2)=f(2)=4$ --- \emph{even symmetry}.
+        \item So the axis is midway between the zeros: $\frac{-1+3}{2}=1$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{3pt}
+  \begin{block}{Remember this curve}
+    $f(x)=x^2-2x-3$ is the Unit 2 anchor --- vertex $(1,-4)$, axis $x=1$, zeros $-1$ and $3$,
+    $y$-intercept $(0,-3)$. It comes back in 2.1 through 2.5 wearing different costumes.
+  \end{block}
+\end{frame}
+
+% 7. NOTES ROW 3 — READING THE WHOLE GRAPH (section 2a)
+\begin{frame}[t, plain]
+  \forestheader{Notes: reading the whole graph}
+  \sectionlabel{notes, Reading the Whole Graph $\cdot$ problems 5--7, the feature card}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Zeros} ($x$-intercepts): $-1$ and $3$. A parabola has \emph{two, one, or
+              none} --- never three.
+        \item \textbf{$y$-intercept}: the point $(0,-3)$.
+        \item \textbf{Decreasing} on $(-\infty,1]$, \textbf{increasing} on $[1,\infty)$ --- the
+              axis is where it turns, so the axis is the split.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item \textbf{Domain}: all real numbers --- always, for every quadratic.
+        \item \textbf{Range}: $y\ge k$ if it opens up, $y\le k$ if it opens down, where $k$ is the
+              vertex's output. Here $y\ge-4$.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{3pt}
+  \begin{block}{Two answers that look alike but are not}
+    A \textbf{zero} is an $x$-value: $-1$. A \textbf{$y$-intercept} is a \emph{point}: $(0,-3)$.
+    Say which kind of thing each answer is before you write it down.
+  \end{block}
+\end{frame}
+
+% 8. NOTES ROW 4 — HOW HIGH vs. WHERE — THE CRUX (section 2b)
+\begin{frame}[t, plain]
+  \forestheader{Notes: how high, versus where}
+  \sectionlabel[redacc]{notes, How high vs.\ Where $\cdot$ the crux, problem 8 --- the value is an OUTPUT}
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item ``The ball's maximum is $1$''? \textbf{No.} $1$ answers \emph{when} --- it is the
+          \emph{input}, measured in seconds.
+    \item The maximum \textbf{value} is $64$, measured in \emph{feet}: an \emph{output}. The
+          vertex $(1,64)$ answers both questions at once, in that order --- \emph{where}, then
+          \emph{how high}.
+    \item \textbf{End behavior}: $a>0$, both ends rise; $a<0$, both ends fall. A parabola's two
+          ends always go the \emph{same} way --- a line's go opposite ways.
+  \end{itemize}
+  \vspace{3pt}
+  \begin{block}{Where the two answers disagree --- and they almost always do}
+    They agree only by accident. Here $1\ne64$: one is a time, the other a height, and no amount
+    of arithmetic turns seconds into feet. So the question decides the answer: \emph{``what is the
+    maximum?''} wants $64$ ft; \emph{``when does it happen?''} wants $t=1$ s. \textbf{Always name
+    the units.}
+  \end{block}
+\end{frame}
+
+% 9. GUIDED PRACTICE — WE DO
+\begin{frame}[t, plain]
+  \forestheader{Guided Practice: we read this one together}
+  \sectionlabel[goldacc]{You hold the pen --- problems 10--13 on $g(x)=-(x+2)^2+9$}
+  \begin{columns}[T]
+    \begin{column}{0.36\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-6.5}{2.5}{-4}{10.5}
+        \draw[dashed, semithick, redacc] (-2,-4)--(-2,10.2);
+        \draw[very thick, forest, domain=-5.6:1.6, samples=80, smooth]
+          plot (\x,{-(\x+2)*(\x+2)+9});
+        \fdot{forest}{-2}{9} \fdot{redacc}{-5}{0} \fdot{redacc}{1}{0} \fdot{navy}{0}{5}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.60\textwidth}
       \begin{enumerate}\setlength{\itemsep}{3pt}
-        \item \textbf{Vertex:} $(1,-4)$ --- a \textbf{minimum}; min \emph{value} $-4$
-        \item \textbf{Axis of symmetry:} $x=1$
-        \item \textbf{$y$-intercept:} $(0,-3)$; \textbf{zeros:} $x=-1,\,3$
-        \item \textbf{Domain:} all reals \quad \textbf{Range:} $y\ge-4$
-        \item \textbf{Decreasing} on $(-\infty,1)$, \textbf{increasing} on $(1,\infty)$
-        \item \textbf{Negative} on $-1<x<3$; \textbf{end behavior:} both arms $\to+\infty$
+        \item[\textbf{10.}] Which way does it open? Vertex as a \emph{point}, axis as an
+              \emph{equation}.
+        \item[\textbf{11.}] Zeros and $y$-intercept --- then check both zeros against the axis.
+        \item[\textbf{12.}] Increasing where, decreasing where, domain, range, end behavior.
+        \item[\textbf{13.}] The \emph{maximum value}, and \emph{where} it occurs. A classmate
+              answers ``$-2$'': what have they confused?
       \end{enumerate}
     \end{column}
   \end{columns}
-\end{frame}
-
-% OPENING DIRECTION / MAX vs MIN
-\begin{frame}[t, plain]
-  \forestheader{The sign of $a$ decides everything}
-  \sectionlabel{Opens up or down}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.38]
-        \lgrid{-3}{3}{-1}{6}
-        \begin{scope}
-          \clip (-3,-1) rectangle (3,6);
-          \draw[very thick, forest, domain=-2.4:2.4, samples=60, smooth] plot (\x,{(\x)*(\x)});
-        \end{scope}
-        \fill[charcoal] (0,0) circle (3pt);
-      \end{tikzpicture}\\
-      {\footnotesize $y=x^2$: $a>0$ $\Rightarrow$ opens \textbf{up}, vertex is a \textbf{min}, arms rise}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.38]
-        \lgrid{-3}{5}{-4}{6}
-        \begin{scope}
-          \clip (-3,-4) rectangle (5,6);
-          \draw[very thick, forest, domain=-2.2:4.2, samples=80, smooth]
-            plot (\x,{-1*(\x)*(\x) + 2*(\x) + 3});
-        \end{scope}
-        \fill[charcoal] (1,4) circle (3pt);
-      \end{tikzpicture}\\
-      {\footnotesize $g(x)=-x^2+2x+3$: $a<0$ $\Rightarrow$ opens \textbf{down}, vertex is a \textbf{max}, arms fall}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% SYMMETRY as reasoning + decreasing vs negative
-\begin{frame}[t, plain]
-  \forestheader{Two ideas students fuse --- keep them apart}
-  \sectionlabel[goldacc]{Key distinctions}
-  \begin{itemize}\setlength{\itemsep}{7pt}
-    \item \textbf{Max/min \emph{value}} is a $y$-value (the output at the vertex), \emph{not} a point.
-    \item \textbf{Decreasing} (direction of travel) is \emph{not} \textbf{negative} (output sign):
-          $f(x)=x^2-2x-3$ is decreasing on all of $(-\infty,1)$ but negative only on $(-1,3)$.
-  \end{itemize}
   \vspace{2pt}
-  \begin{block}{Symmetry is the reasoning tool}
-    A parabola mirrors across its axis, so inputs the same distance from the axis share an output ---
-    that is \emph{why} there are two matching zeros and two matching heights.
+  \begin{block}{The questions I will ask}
+    ``How far is $-5$ from the axis? How far is $1$?'' \quad ``Where does it turn --- so where
+    does increasing stop?'' \quad ``Is $9$ an input or an output?''
   \end{block}
 \end{frame}
 
-% ROADMAP
+% 10. DEBRIEF
 \begin{frame}[t, plain]
-  \forestheader{Where Unit 2 goes next}
-  \sectionlabel{Connections}
-  \textbf{Today:} read the vertex, axis, intercepts/zeros, domain/range, increasing/decreasing,
-  positive/negative, and end behavior from a parabola.\\[8pt]
-  \begin{itemize}\setlength{\itemsep}{3pt}
-    \item \textbf{2.1} Graphing quadratics (vertex, standard, intercept forms) \& transformations.
-    \item \textbf{2.2} Solving by factoring.
-    \item \textbf{2.3} Square roots \& completing the square.
-    \item \textbf{2.4} Complex numbers.
-    \item \textbf{2.5} The quadratic formula \& the discriminant.
-    \item \textbf{2.6--2.7} Systems with quadratics; modeling.
-  \end{itemize}
+  \forestheader{Debrief: pens down, papers up}
+  \sectionlabel[redacc]{10 minutes --- aloud, nothing to fill in}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item \textbf{The vertex $(1,64)$, out loud, twice.} The maximum value is $64$ \emph{feet};
+          it happens at $t=1$ \emph{second}. That settles the vote --- by naming the units.
+    \item \textbf{Problem 13.} The maximum value of $g$ is $9$; $-2$ is \emph{where}. Whoever
+          wrote $-2$ gave an input where an output was asked for --- same mistake, new curve.
+    \item \textbf{Symmetry did the work.} $-5$ and $1$ are each $3$ from $x=-2$; averaging the
+          zeros finds the axis; $f(0)=f(2)=-3$ on the anchor. One idea, three uses.
+    \item \textbf{Domain and end behavior.} The \emph{function} runs over all real numbers and
+          both ends go the same way; only the \emph{ball} stops when it lands.
+  \end{enumerate}
+  \vspace{3pt}
+  \begin{block}{Say it without the notes}
+    ``The vertex $(1,64)$ means the greatest height is $64$ feet, and it happens one second after
+    launch.''
+  \end{block}
+\end{frame}
+
+% 11. CLOSE & START HOMEWORK
+\begin{frame}[t, plain]
+  \forestheader{Close --- and start the homework, on your own}
+  \sectionlabel{10 minutes $\cdot$ silent $\cdot$ the Homework page in your packet}
+  You walked in able to read a \emph{line}. You walk out able to read a \emph{parabola} --- where
+  it turns, how high that is, where it crosses, where it rises and falls, and what both ends do
+  --- and to say which of those answers is an input and which is an output.
+  \vspace{5pt}
+  \begin{block}{Homework --- scored, due the first class after two study halls}
+    We read item~1's vertex together right now; then you keep going, alone. Six items: one graph
+    read whole, a contrast pair, a table and its second differences, the special cases, a punt,
+    and one multiple-choice item. Whatever is left is due the first class after two study halls
+    --- I will announce the date in class and on TurtleNet.
+  \end{block}
+  \vspace{4pt}
+  \textbf{Next:} Lesson 2.1 --- the same curve in three different costumes, and the graph built
+  \emph{from} the equation instead of read off a picture.
 \end{frame}
 
 \end{document}
