@@ -412,11 +412,11 @@ Recognize the shape by the component directories and the plan's section titles:
 
 | Shape | Has | Lessons |
 | --- | --- | --- |
-| **current** (two-section, 12pt, 2026-09-07) | every student component 12pt; `\coverbanner`; notes = vocab + hook / section 1 / section 2 / Guided Practice, one page each, no `objectivebox`; homework 2pp with a due-date `remindbox` and no `extensionbox`; plan 5/35/10/10 with three teacher notes | `unit01/lesson04` — the target; `unit01/lesson02` is the near-identical pilot (5/34/8/13, `\termblank`, `objectivebox`) |
+| **current** (two-section, 12pt, 2026-09-07; `guidednotes` notes from 2026-09-12) | every student component 12pt; `\coverbanner`; notes = vocab + hook, then ONE `guidednotes` table of four instruction rows + Guided Practice, no `objectivebox`; homework 2pp with a due-date `remindbox` and no `extensionbox`; plan 5/35/10/10 with three teacher notes | `unit01/lesson04` — the target; `unit02/lesson00` and `unit02/lesson01` (regenerated 2026-09-17); `unit01/lesson02` is the near-identical pilot (5/34/8/13, `\termblank`, `objectivebox`) |
 | **four-section interim** (2026-09-01) | 10pt `notes/` with an `objectivebox`, four numbered sections, and an *Individual Practice* `scenariobox`; 10pt homework with an `extensionbox`; plan 5/20/15/10/10 with four teacher notes | `unit01/lesson00`, `01`, `03`, `05` |
 | **group-activity interim** (2026-08-31) | `activity/` without `exit_ticket/`; plan has a Group Activity box | none left (1.0 was converted 2026-09-01) |
 | **EFFL** (2026-08-19 → 08-31) | `experience/` + `experience_key/`; *Experience & Formalize* / *QuickNotes* / *Check Your Understanding* / the spoiler rule | none left |
-| **pre-EFFL legacy** | `activity/` + `exit_ticket/` (+ keys), tiered activity (Tier R / Approaching / Extension), plan order Hook / Explicit Instruction / Tiers, 10pt warm-up; in Units 3–7 also teacher notes in the keys and `\namedateperiod` on every component (Unit 2 had both retrofitted 2026-07-30) | **units 02–07, all 38 lessons** |
+| **pre-EFFL legacy** | `activity/` + `exit_ticket/` (+ keys), tiered activity (Tier R / Approaching / Extension), plan order Hook / Explicit Instruction / Tiers, 10pt warm-up; in Units 3–7 also teacher notes in the keys and `\namedateperiod` on every component (Unit 2 had both retrofitted 2026-07-30) | **36 lessons: `unit02/lesson02`–`lesson07`, and all of units 03–07** |
 
 The build accepts all of them (`STUDENT_ORDER` still lists `experience`, `activity`,
 `exit_ticket`). When asked to touch a legacy lesson, **regenerate it in the current shape rather
@@ -450,10 +450,11 @@ Finish with the evidence per lesson: `make -C unitXX/lessonYY all` exits 0, warm
 component's page count equals its `_key`'s, compared on the compiled components, not the padded
 packets. Then update `COURSE_PLAN.md`.
 
-**Scoreboard (2026-09-07):** 44 lessons. **1 in the current shape** (`unit01/lesson04`) plus
-**the pilot** (`unit01/lesson02`); **4 in the four-section interim** (`unit01/lesson00`, `01`,
-`03`, `05`); **38 pre-EFFL legacy** (every lesson
-of Units 2–7), none with a 12pt warm-up. Of those, **Unit 2's 8 lessons** were already
+**Scoreboard (2026-09-17):** 44 lessons. **3 in the current shape** (`unit01/lesson04`,
+`unit02/lesson00`, `unit02/lesson01`) plus **the pilot** (`unit01/lesson02`); **4 in the
+four-section interim** (`unit01/lesson00`, `01`, `03`, `05`); **36 pre-EFFL legacy**
+(`unit02/lesson02`–`lesson07` and every lesson of Units 3–7), none with a 12pt warm-up. Of those,
+**Unit 2's remaining 6 lessons** were already
 teachernote-migrated, namestripped, and boxguarded in the 2026-07-30 sweep (they keep their
 `activity` / `exit_ticket` pairs and tiered plans); **Units 3–7's 30 lessons** are untouched —
 144 `_key` files still hold teacher notes and 300 non-cover components still carry a name row.

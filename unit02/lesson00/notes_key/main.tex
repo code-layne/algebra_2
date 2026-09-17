@@ -1,175 +1,274 @@
-%! Characteristics of Quadratic Functions — Unit 2, Lesson 2.0 — Guided Notes (Answer Key)
-\documentclass[10pt]{article}
+%! Characteristics of Quadratic Functions — Unit 2, Lesson 2.0 — Guided Notes & Practice (Answer Key)
+% MIRROR of ../notes/main.tex: -key in place of -boxes, \vterm -> \vtermans, \blank -> \ans, and
+% the answer argument of every \pcell and \labelbox filled. Nothing else differs — every height,
+% width, figure and sub-row is byte-identical, so the two files paginate alike. There are no work
+% blocks in this component; every answer space is a fixed-height grid cell.
+% Retrimmed in lockstep with the blank on 2026-09-17 (figure scales down, \pcell heights
+% 1.6–2.2cm, row 1's definition and worked line merged, row 3's graph paired with the feature
+% card in one sub-row).
+\documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
+% Vocabulary rows: the key's counterpart of the blank's \vterm — same fixed height, the
+% definition filled beside the term (two lines at most).
+\newcommand{\vrowheight}{2.0cm}
+\newcommand{\vtermans}[2]{%
+  \par\noindent\begin{minipage}[t][\vrowheight][t]{\linewidth}%
+    \vspace*{6pt}\textbf{\textcolor{forest}{#1:}}\quad\ans{#2}%
+  \end{minipage}\par}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-% Vocab answer for the key: bold forest term, then the filled definition on a write-line.
-\newcommand{\vocabans}[2]{%
-  \par\noindent\textbf{\textcolor{forest}{#1:}}\\[1pt]\ansline{#2}\par}
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+% Projectile grid: t = 0..3.5 seconds across, and ONE GRID UNIT UP = 16 FEET, so the plotted
+% curve is h/16 = -t^2 + 2t + 3. A plain unit grid would make a 64-ft spike a page tall.
+\newcommand{\pgrid}{%
+  \draw[step=0.5, linegray!40, very thin] (0,0) grid (3.5,4.5);
+  \draw[->, semithick, charcoal] (0,0)--(3.9,0) node[below right, font=\tiny]{$t$ (s)};
+  \draw[->, semithick, charcoal] (0,0)--(0,5.0) node[left, font=\tiny]{$h$ (ft)};
+  \foreach \x in {1,2,3}{\node[below, font=\tiny, charcoal] at (\x,0){$\x$};}
+  \foreach \y/\lab in {1/16,2/32,3/48,4/64}{\node[left, font=\tiny, charcoal] at (0,\y){$\lab$};}}
+% Plotted points: {color}{x}{y}.
+\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (3.0pt);}
 
 \begin{document}
 
-\pageheader{Unit 2, Lesson 2.0}{Guided Notes --- Answer Key}
+\pageheader{Unit 2, Lesson 2.0}{Guided Notes \& Practice --- Answer Key}
+% NAMESTRIP: no \namedateperiod here — mirrors the blank.
 
-\vspace{0.10in}
+\vspace{4pt}
 
-\begin{objectivebox}
-\textbf{By the end of this lesson, I will be able to\dots}
-\begin{itemize}\setlength{\itemsep}{2pt}
-  \item name a parabola's \emph{vertex} (its \emph{turning point}) and \emph{axis of symmetry}, and say whether the vertex is a \emph{maximum} or a \emph{minimum};
-  \item read the \emph{domain}, \emph{range}, \emph{intercepts}, and \emph{zeros} of a quadratic from its graph, and the intervals where it is increasing, decreasing, positive, or negative;
-  \item describe a parabola's \emph{end behavior} and use its \emph{symmetry} to justify what I read.
-\end{itemize}
-\end{objectivebox}
-
-\vspace{0.06in}
-
+% ── PAGE 1: vocabulary, then the hook ────────────────────────────────────────
+\boxguard[12]
 \begin{vocabbox}
 \small
-Fill in each term as we build it together.
-\par\vspace{2pt}
-\vocabans{Parabola}{the U-shaped graph of a quadratic function $f(x)=ax^2+bx+c$; opens up if $a>0$, down if $a<0$}
-\vocabans{Vertex (turning point)}{the point where the parabola turns; the lowest point (if it opens up) or highest point (if it opens down)}
-\vocabans{Axis of symmetry}{the vertical line through the vertex that the parabola is a mirror image across}
-\vocabans{Maximum / minimum value}{the $y$-value at the vertex --- the greatest output (max, opens down) or least output (min, opens up)}
-\vocabans{End behavior}{what the outputs do as $x\to+\infty$ and $x\to-\infty$; both arms rise if $a>0$, both fall if $a<0$}
+Fill in each term \textbf{as we name it} in the notes below.
+\vtermans{Parabola}{the U-shaped graph of a quadratic $f(x)=ax^2+bx+c$, $a\ne0$; opens up if $a>0$, down if $a<0$}
+\vtermans{Vertex (turning point)}{the point where the parabola turns --- lowest point if it opens up, highest if it opens down}
+\vtermans{Maximum / minimum value}{the \emph{output} at the vertex (a $y$-value, with units in context); the $x$-coordinate is only \emph{where} it occurs}
+\vtermans{Axis of symmetry}{the vertical line $x=h$ through the vertex; inputs equally far either side have equal outputs}
+\vtermans{End behavior}{what the outputs do far left and far right: $a>0$ both ends rise, $a<0$ both ends fall}
 \end{vocabbox}
 
+\vspace{6pt}
+
+\boxguard[12]
 \begin{hookbox}
-A ball is thrown upward. Its height after $t$ seconds is $h(t) = -16t^2 + 32t + 48$ feet.
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item How high was the ball when it was released (at $t=0$)? \ansline{$48$ feet --- the $y$-intercept $(0,48)$.}
-  \item The graph rises, turns, and falls. What is happening to the ball at the \emph{turning point}? \ansline{It is at its highest point --- the vertex $(1,64)$, a maximum height of $64$ ft at $t=1$ s.}
-\end{itemize}
-The ball's whole flight --- its start, its highest point, and where it lands --- is written in the
-\emph{shape} of one curve. That U-shaped (here, upside-down-U) curve is a \textbf{parabola}, and today
-we learn to read it.
+\small
+A ball is launched straight up from the top of a $48$-foot ledge. Its height in feet, $t$ seconds
+after launch, is $h(t)=-16t^2+32t+48$. Its graph is on the next page --- read the $h$-axis
+carefully, because \textbf{one grid unit up is $16$ feet}.
+\par\vspace{4pt}
+Height at launch, $h(0)$: \ans{$48$} ft \quad It hits the ground at $t=$ \ans{$3$} s \quad
+The curve turns once, at $(1,64)$.
+\par\vspace{5pt}
+\textbf{The ball's maximum is:} circle one: \quad \textbf{1} \qquad \textbf{64} \qquad
+And what are the \emph{units} of your answer? \ans{feet --- $64$ ft, at $t=1$ s}
+\par\vspace{4pt}
+One curve, every question today: \textbf{where does it turn, how high is that, where does it
+cross, where does it rise and fall --- and what do the two ends do?}
 \end{hookbox}
 
-\boxguard[20]
-\begin{notesbox}{1. What Makes a Function Quadratic}
-A \textbf{quadratic function} has the form $f(x) = ax^2 + bx + c$ with $a \ne 0$ --- its highest power
-is $x^{\textcolor{keyred}{\mathbf{2}}}$. Build a table for $f(x) = x^2 - 2x - 3$:
-\begin{center}
-\renewcommand{\arraystretch}{1.25}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\small
+% Displays inside table cells: tight skips, or every brace costs a centimetre. (\small resets
+% the display skips, so this must follow it.) Figures are centred with \centering inside the
+% cell, not a center environment (its \topsep is ~1cm a figure).
+\setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}%
+\setlength{\abovedisplayshortskip}{2pt}\setlength{\belowdisplayshortskip}{2pt}%
+\begin{guidednotes}
+% ── ROW 1: the parabola, which way it opens, and the vertex ──────────────────
+\mainidea[The turning]{Point} &
+A \textbf{parabola} is the graph of a quadratic function $f(x)=ax^2+bx+c$, $a\ne0$. The sign of
+$a$ says which way it opens: \textbf{up} when $a>0$, \textbf{down} when $a<0$. The \textbf{vertex}
+is the point where the curve \emph{turns} --- the \textbf{minimum} point when it opens up, the
+\textbf{maximum} point when it opens down. A parabola turns exactly \emph{once}; that is why one
+point describes so much of it.
+\par\vspace{3pt}
+\textbf{Worked:} at launch $t=0$ and the graph is at $h=48$, the top of the ledge. It rises, turns
+at $(1,64)$, and reaches the ground at $t=3$.
+\\
+& {\centering
+\textbf{$h(t)=-16t^2+32t+48$}\quad{\footnotesize (one grid unit up is $16$ ft)}\par\vspace{2pt}
+\begin{tikzpicture}[scale=0.72]
+  \pgrid
+  \draw[very thick, forest, domain=0:3, samples=80, smooth] plot (\x, {-\x*\x+2*\x+3});
+  \fdot{forest}{0}{3}
+  \fdot{forest}{3}{0}
+  \fdot{redacc}{1}{4}
+  \node[above right, font=\tiny\bfseries, redacc] at (1.05,4.02) {$(1,64)$};
+\end{tikzpicture}\par\vspace{2pt}
+The point where the curve turns is called the \labelbox{2.4cm}{vertex}\par}
+\\
+& \notesprompt{Read the picture, then check it against the rule.}
+\begin{probgrid}{|Y|Y|}
+\pcell{1}{Does this parabola open up or down? What is $a$ in $h(t)=-16t^2+32t+48$, and how does
+the picture agree with its sign?}{1.6cm}{Down. $a=-16$, which is negative --- and the picture does open downward.} &
+\pcell{2}{Write the vertex as an ordered pair. Is it a \emph{maximum} or a \emph{minimum} point
+--- and which way it opens is your reason, so say it.}{1.6cm}{$(1,64)$ --- a maximum point: it opens down, so the turn is its highest point.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 2: the axis of symmetry — equal outputs either side ──────────────────
+\mainidea[The mirror]{Line} &
+The \textbf{axis of symmetry} is the vertical line $x=h$ through the vertex. A parabola is its own
+mirror image across it, so two inputs the \emph{same distance either side} have \textbf{equal
+outputs}. The parent $y=x^2$ is the plain case: axis $x=0$, and $f(-2)=f(2)=4$ --- \emph{even
+symmetry}. Here is the curve this whole unit is built on: $f(x)=x^2-2x-3=(x-1)^2-4$, vertex
+$(1,-4)$, so its axis is $x=1$.
+\\
+& \begin{minipage}[c]{0.38\linewidth}\centering
+\begin{tikzpicture}[scale=0.38]
+  \lgrid{-2.5}{4.5}{-5}{5.5}
+  \draw[dashed, very thick, redacc] (1,-5)--(1,5.2);
+  \node[right, font=\tiny, redacc] at (1.05,4.9) {$x=1$};
+  \draw[very thick, forest, domain=-1.9:3.9, samples=80, smooth] plot (\x, {\x*\x-2*\x-3});
+  \fdot{forest}{1}{-4}
+  \node[right, font=\tiny, charcoal] at (1.2,-4.2) {$(1,-4)$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.58\linewidth}
+\textbf{Mirror pairs.} Fill the missing outputs by reading \emph{across} the axis, not left to
+right.
+\par\vspace{3pt}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\linewidth}{@{} l Y Y Y Y Y @{}}
+\rowcolor{sky}
+$x$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\
 \hline
-$x$ & $-2$ & $-1$ & $0$ & $1$ & $2$ & $3$ \\ \hline
-$f(x)$ & $5$ & $0$ & $-3$ & \ans{$-4$} & \ans{$-3$} & \ans{$0$} \\ \hline
-\end{tabular}
-\end{center}
-The outputs fall, reach a lowest value, then rise again --- they do \emph{not} change by a constant
-amount, so the graph is \textbf{not} a line. Its graph is a symmetric U-shaped curve called a
-\ans{parabola}. Because $a = 1 > 0$, this parabola opens \ans{up} (a bowl); if $a<0$ it opens
-\ans{down} (a dome).
-\end{notesbox}
-
-\begin{notesbox}{2. Reading a Parabola: The Characteristics}
-Here is the graph of $f(x) = x^2 - 2x - 3$. Read each feature straight off the picture.
-\begin{center}
-\begin{tikzpicture}[scale=0.52]
-  \lgrid{-3}{5}{-5}{6}
-  \draw[navy, dashed, semithick] (1,-5)--(1,6);
-  \node[navy, font=\scriptsize, right] at (1.05,5.4){axis $x=1$};
-  \begin{scope}
-    \clip (-3,-5) rectangle (5,6);
-    \draw[very thick, forest, domain=-2.2:4.2, samples=80, smooth]
-      plot (\x,{(\x)*(\x) - 2*(\x) - 3});
+$f(x)$ & \ans{$0$} & $-3$ & $-4$ & \ans{$-3$} & \ans{$0$} \\
+\end{tabularx}
+\par\vspace{5pt}
+The mirror line of a parabola is its \labelbox{3.4cm}{axis of symmetry}
+\end{minipage}
+\\
+& \notesprompt{Let symmetry do the arithmetic.}
+\begin{probgrid}{|Y|Y|}
+\pcell{3}{$f(0)=-3$. Which \emph{other} input gives $-3$? Say how the axis $x=1$ tells you that
+without substituting anything.}{1.8cm}{$x=2$. Both $0$ and $2$ are one unit from the axis $x=1$, and mirror inputs give equal outputs.} &
+\pcell{4}{The zeros are $-1$ and $3$. How far is each from the axis? Now average the two zeros:
+what do you get, and why did that have to happen?}{1.8cm}{Each is $2$ units away. $(-1+3)/2=1$ --- the axis is always midway between the two zeros.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 3: every remaining feature, read off one annotated graph ─────────────
+\mainidea[Reading the]{Whole Graph} &
+The \textbf{zeros} ($x$-intercepts) are the inputs where the graph meets the $x$-axis; a parabola
+has \textbf{two, one, or none}. The \textbf{$y$-intercept} is where it crosses the $y$-axis. A
+parabola \textbf{increases} on one side of the axis and \textbf{decreases} on the other, because
+the axis is exactly where it turns. Its \textbf{domain} is always all real numbers, and its
+\textbf{range} is $y\ge k$ (opens up) or $y\le k$ (opens down), where $k$ is the vertex's output.
+\\
+& \begin{minipage}[c]{0.38\linewidth}\centering
+\begin{tikzpicture}[scale=0.36]
+  \lgrid{-2.5}{4.5}{-5}{5.5}
+  \draw[dashed, semithick, redacc] (1,-5)--(1,5.2);
+  \draw[very thick, forest, domain=-1.9:3.9, samples=80, smooth] plot (\x, {\x*\x-2*\x-3});
+  \fdot{redacc}{-1}{0}
+  \fdot{redacc}{3}{0}
+  \node[above left, font=\tiny, redacc] at (-0.95,0.1) {$-1$};
+  \node[above right, font=\tiny, redacc] at (2.95,0.1) {$3$};
+  \fdot{navy}{0}{-3}
+  \node[below left, font=\tiny, navy] at (0.05,-3.15) {$(0,-3)$};
+  \fdot{forest}{1}{-4}
+  \node[font=\tiny, charcoal] at (-1.85,3.4) {falls};
+  \node[font=\tiny, charcoal] at (3.85,3.4) {rises};
+\end{tikzpicture}\par\vspace{2pt}
+Domain: \labelbox{3.0cm}{all real numbers}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.58\linewidth}
+\textbf{7.} Complete the feature card for $f(x)=x^2-2x-3$ --- every answer comes off this graph.
+\par\vspace{3pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{} >{\bfseries}l Y >{\bfseries}l Y @{}}
+Opens & \ans{up} & Vertex & \ans{$(1,-4)$} \\
+Axis & \ans{$x=1$} & Zeros & \ans{$-1$, $3$} \\
+$y$-int. & \ans{$(0,-3)$} & Range & \ans{$y\ge-4$} \\
+\end{tabularx}
+\end{minipage}
+\\
+& \notesprompt{Read every feature off the picture.}
+\begin{probgrid}{|Y|Y|}
+\pcell{5}{Name the zeros of $f$ and its $y$-intercept. Which of those answers is an $x$-value, and
+which one is a point?}{1.8cm}{Zeros $-1$ and $3$ --- those are $x$-values. The $y$-intercept is the point $(0,-3)$.} &
+\pcell{6}{On what interval is $f$ decreasing? On what interval increasing? What single $x$-value
+separates them, and why is it the axis?}{1.8cm}{Decreasing on $(-\infty,1]$, increasing on $[1,\infty)$. $x=1$ --- the curve turns there.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 4: THE CRUX — value vs. where — then end behavior ────────────────────
+\mainidea[How high vs.]{Where} &
+\textbf{The maximum or minimum \emph{value} of a quadratic is an output --- a $y$-value, and in a
+context it carries units. \emph{Where} that value happens is an input --- the $x$-coordinate of
+the vertex.} The vertex $(1,64)$ answers both at once: the ball's greatest height is $64$
+\emph{feet}, reached at $t=1$ \emph{second}.
+\par\vspace{3pt}
+\textbf{End behavior} describes what the outputs do as $x$ runs far left and far right. If $a>0$
+both ends \emph{rise}; if $a<0$ both ends \emph{fall}. A parabola's two ends always go the
+\emph{same} way --- unlike a line, whose ends go opposite ways.
+\\
+& {\centering
+\begin{tikzpicture}[scale=0.30]
+  \node[font=\scriptsize\bfseries, forest] at (0,4.3) {$a>0$: opens up};
+  \lgrid{-2.6}{2.6}{-2.6}{3.4}
+  \draw[very thick, <->, forest, domain=-1.85:1.85, samples=60, smooth] plot (\x,{\x*\x-1});
+  \fdot{forest}{0}{-1}
+  \begin{scope}[xshift=9.0cm]
+    \node[font=\scriptsize\bfseries, redacc] at (0,4.3) {$a<0$: opens down};
+    \lgrid{-2.6}{2.6}{-3.4}{2.6}
+    \draw[very thick, <->, redacc, domain=-1.85:1.85, samples=60, smooth] plot (\x,{-\x*\x+1});
+    \fdot{redacc}{0}{1}
   \end{scope}
-  \fill[charcoal] (1,-4) circle (3pt) node[below right, font=\scriptsize]{vertex $(1,-4)$};
-  \fill[charcoal] (0,-3) circle (3pt) node[right, font=\scriptsize]{$(0,-3)$};
-  \fill[charcoal] (-1,0) circle (3pt) node[above left, font=\scriptsize]{$(-1,0)$};
-  \fill[charcoal] (3,0) circle (3pt) node[above right, font=\scriptsize]{$(3,0)$};
+\end{tikzpicture}\par\vspace{2pt}
+A parabola's two ends always go the \labelbox{1.8cm}{same} way.\par}
+\\
+& \notesprompt{Settle the vote from the hook.}
+\begin{probgrid}{|Y|Y|}
+\pcell{8}{A classmate says ``the ball's maximum is $1$.'' What question does $1$ actually answer?
+What is the maximum \emph{value}, and what are its units?}{2.0cm}{$1$ answers \emph{when} --- it is the input, in seconds. The maximum \emph{value} is $64$, in feet.} &
+\pcell{9}{For the ball, give the maximum value and the input at which it occurs, and say which
+number is the input. Then give the end behavior of \emph{each} graph above.}{2.0cm}{Value $64$ ft, at $t=1$ s; $1$ is the input. Left graph: both ends rise. Right: both fall.} \\ \hline
+\end{probgrid}
+\\ \hline
+% ── ROW 5: guided practice — WE DO, together, no story ───────────────────────
+\mainidea[Guided practice]{Just the Graph} &
+\begin{minipage}[c]{0.56\linewidth}
+No story this time --- just a rule and its graph, pre-drawn. Read every feature off the picture.
+\[ g(x)=-(x+2)^2+9 \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.40\linewidth}\centering
+\begin{tikzpicture}[scale=0.24]
+  \lgrid{-6.5}{2.5}{-4}{10.5}
+  \draw[dashed, semithick, redacc] (-2,-4)--(-2,10.2);
+  \draw[very thick, forest, domain=-5.6:1.6, samples=80, smooth] plot (\x,{-(\x+2)*(\x+2)+9});
+  \fdot{forest}{-2}{9}
+  \fdot{redacc}{-5}{0}
+  \fdot{redacc}{1}{0}
+  \fdot{navy}{0}{5}
+  \node[below, font=\tiny, charcoal] at (-5,-0.15) {$-5$};
+  \node[below, font=\tiny, charcoal] at (1,-0.15) {$1$};
+  \node[right, font=\tiny, charcoal] at (0.2,9) {$9$};
+  \node[right, font=\tiny, navy] at (0.2,5.3) {$5$};
 \end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
-  \item \textbf{Vertex (turning point):} the point where the curve turns, $(\textcolor{keyred}{\mathbf{1}},\,\textcolor{keyred}{\mathbf{-4}})$.
-        Here the curve turns from falling to rising, so the vertex is a \textbf{minimum}.
-  \item \textbf{Axis of symmetry:} the vertical mirror line through the vertex, $x = \textcolor{keyred}{\mathbf{1}}$. The
-        two halves of the parabola are reflections across it.
-  \item \textbf{Minimum value:} the \emph{output} at the vertex, $f = \textcolor{keyred}{\mathbf{-4}}$. (A minimum is a
-        $y$-value, not a point.)
-  \item \textbf{$y$-intercept:} set $x=0$: the point $(0,\,\textcolor{keyred}{\mathbf{-3}})$.
-  \item \textbf{$x$-intercepts / zeros:} where $f(x)=0$: $x = \textcolor{keyred}{\mathbf{-1}}$ and $x = \textcolor{keyred}{\mathbf{3}}$. A
-        parabola can have \emph{two}, one, or no zeros.
-  \item \textbf{Domain / range:} domain is \ans{all reals, $(-\infty,\infty)$}; because the lowest output is $-4$ and the
-        curve rises forever, the range is \ans{$y\ge -4$, i.e.\ $[-4,\infty)$}.
-  \item \textbf{Increasing / decreasing:} the graph \emph{falls} then \emph{rises}, turning at the
-        vertex. Decreasing on \ans{$(-\infty,1)$}; increasing on \ans{$(1,\infty)$}.
-  \item \textbf{Positive / negative:} above the $x$-axis (so $f(x)>0$) when $x<-1$ \emph{or} $x>3$;
-        below it (so $f(x)<0$) on the interval \ans{$-1<x<3$} (between the zeros).
-  \item \textbf{End behavior:} follow both arms. As $x \to +\infty$, $f(x) \to \ans{$+\infty$}$; and as
-        $x \to -\infty$, $f(x) \to \ans{$+\infty$}$. Both arms go \emph{up} because $a>0$.
-\end{enumerate}
-\end{notesbox}
+\end{minipage}
+\\
+& \notesprompt{We work these together.}
+\begin{probgrid}{|Y|Y|}
+\pcell{10}{Which way does this parabola open, and how do you know from the picture? Give the
+vertex as a point and the axis as an equation.}{1.4cm}{Down --- both arms point downward. Vertex $(-2,9)$; axis $x=-2$.} &
+\pcell{11}{Name the zeros and the $y$-intercept. Then check: how far is each zero from the axis,
+and why must those distances match?}{1.4cm}{Zeros $-5$ and $1$; $y$-intercept $(0,5)$. Each is $3$ from $x=-2$ --- mirror images.} \\ \hline
+\end{probgrid}
+\\
+& \begin{probgrid}*{|Y|Y|}
+\pcell{12}{Increasing on what interval, decreasing on what? Give the domain and the range. Then
+the end behavior: what do the two ends do, and why the same way?}{1.8cm}{Increasing on $(-\infty,-2]$, decreasing on $[-2,\infty)$. Domain all reals; range $y\le9$. Both ends fall ($a<0$).} &
+\pcell{13}{\textbf{The crux, on new ground.} What is the \emph{maximum value} of $g$, and
+\emph{where} does it occur? A classmate answers ``the maximum is $-2$.'' Which question have they
+answered, and what have they confused?}{1.8cm}{Value $9$, at $x=-2$. They answered \emph{where}, not \emph{how high} --- an input where an output was asked for.} \\ \hline
+\end{probgrid}
+\\ \hline
+\end{guidednotes}
 
-\boxguard[20]
-\begin{notesbox}{3. Opening Direction \& Symmetry}
-The sign of $a$ decides which way a parabola opens --- and therefore whether the vertex is a
-\textbf{minimum} or a \textbf{maximum}.
-\begin{center}
-\begin{tikzpicture}[scale=0.44]
-  % Parent y = x^2 : even symmetry about the y-axis
-  \begin{scope}
-    \lgrid{-3}{3}{-1}{6}
-    \draw[navy, dashed, semithick] (0,-1)--(0,6);
-    \begin{scope}
-      \clip (-3,-1) rectangle (3,6);
-      \draw[very thick, forest, domain=-2.4:2.4, samples=60, smooth] plot (\x,{(\x)*(\x)});
-    \end{scope}
-    \fill[charcoal] (0,0) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (0,-2.2){$y=x^2$ \; (opens up, min)};
-  \end{scope}
-  % g(x) = -x^2 + 2x + 3 : opens down, max
-  \begin{scope}[xshift=10cm]
-    \lgrid{-3}{5}{-4}{6}
-    \draw[navy, dashed, semithick] (1,-4)--(1,6);
-    \begin{scope}
-      \clip (-3,-4) rectangle (5,6);
-      \draw[very thick, forest, domain=-2.2:4.2, samples=80, smooth]
-        plot (\x,{-1*(\x)*(\x) + 2*(\x) + 3});
-    \end{scope}
-    \fill[charcoal] (1,4) circle (3pt);
-    \node[charcoal, font=\scriptsize] at (1,-5.2){$g(x)=-x^2+2x+3$ \; (opens down, max)};
-  \end{scope}
-\end{tikzpicture}
-\end{center}
-\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
-  \item \textbf{Even symmetry.} The parent $y=x^2$ is a mirror image across the \ans{$y$}-axis:
-        inputs $x$ and $-x$ give the \emph{same} output, e.g.\ $(-2)^2 = (2)^2 = \textcolor{keyred}{\mathbf{4}}$.
-  \item \textbf{Every parabola} is symmetric across its \textbf{axis of symmetry}. For $g$ above, the
-        axis is $x=\textcolor{keyred}{\mathbf{1}}$, so points the same distance left and right of it share an output.
-  \item \textbf{$g$ opens down} ($a=-1<0$), so its vertex $(1,4)$ is a \textbf{maximum}; its maximum
-        value is \ans{$4$}, its range is \ans{$y\le 4$}, and \emph{both} end-behavior arms go
-        \ans{down ($-\infty$)}.
-\end{itemize}
-\end{notesbox}
-
-\begin{practicebox}
-The graph below is $p(x) = x^2 - 4$. Read each characteristic and write it on the line.
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-4}{4}{-5}{5}
-  \draw[navy, dashed, semithick] (0,-5)--(0,5);
-  \begin{scope}
-    \clip (-4,-5) rectangle (4,5);
-    \draw[very thick, forest, domain=-3:3, samples=70, smooth] plot (\x,{(\x)*(\x) - 4});
-  \end{scope}
-  \fill[charcoal] (0,-4) circle (3pt) node[below right, font=\scriptsize]{$(0,-4)$};
-  \fill[charcoal] (-2,0) circle (3pt) node[above left, font=\scriptsize]{$(-2,0)$};
-  \fill[charcoal] (2,0) circle (3pt) node[above right, font=\scriptsize]{$(2,0)$};
-\end{tikzpicture}
-\end{center}
-\begin{enumerate}[leftmargin=1.6em, itemsep=3pt]
-  \item Vertex: \ans{$(0,-4)$} \quad Min or max? \ans{minimum} \quad Axis of symmetry: $x=$ \ans{$0$}
-  \item Zeros: \ans{$x=-2$ and $x=2$} \qquad $y$-intercept: \ans{$(0,-4)$}
-  \item Domain: \ans{all reals} \qquad Range: \ans{$y\ge -4$}
-  \item Decreasing on \ans{$(-\infty,0)$}; \; increasing on \ans{$(0,\infty)$}; \; negative on \ans{$-2<x<2$}.
-\end{enumerate}
-\end{practicebox}
+% ── THE NOTES END AT GUIDED PRACTICE ─────────────────────────────────────────
+% There is deliberately no "you do" here: ../homework/ is the individual practice,
+% started in class in the last ten minutes while the teacher circulates.
 
 \end{document}
