@@ -2,7 +2,7 @@
 
 The spec for authoring each file after scaffolding. The scaffolder (`~/.claude/skills/lesson-planning/scripts/new_lesson.py`)
 gives you a correctly-preambled skeleton with TODO markers; this file says what fills them.
-**Always also open a real built lesson (`unit01/lesson00` or `unit01/lesson01`) as the gold
+**Always also open the course's reference lesson, `unit01/lesson04`, as the gold
 reference** — these specs summarize the pattern, but the live project is authoritative. For macros
 and boxes see the shared skill's `references/conventions.md` (`~/.claude/skills/lesson-planning/`); for where content comes from,
 `templates/lesson/course-workflow.md`.
@@ -13,21 +13,23 @@ Contents: [Lesson plan](#lesson-plan) · [Cover](#cover) · [Warm-up](#warm-up) 
 [Answer-key discipline](#answer-key-discipline)
 
 **The lesson model is gradual release** — I do, we do, you do alone. The student packet is
-**cover → warm-up → guided notes (ending in Guided Practice and Individual Practice) → homework**,
-run as **5 / 20 / 15 / 10 / 10** across the 60-minute period (warm-up / guided notes incl. guided
-practice / individual practice / debrief / close & start the homework in class). The **debrief is
-the 10-minute phase between the individual practice and the close; it has no component** — the
-class corrects its own practice in a second colour while the teacher works all three problems on
-the board.
+**cover → warm-up → Guided Notes & Practice (ending in Guided Practice) → homework**, run as
+**5 / 35 / 10 / 10** across the 60-minute period (warm-up / guided notes incl. Guided Practice /
+debrief / close & start the homework in class). The **debrief is spoken and has no component**,
+and **the homework IS the individual practice** — started in class in the last ten minutes,
+alone, with the teacher circulating, and finished at home. There is no practice set at the end
+of the notes.
 
-There is **no group activity** (cut course-wide, 2026-09-01), **no exit ticket**, **no tiers**,
-and no `experience` component. (All of Unit 1 is on this shape; Units 2–7 have `experience`
-pairs or `exit_ticket` + tiered activities — legacy; regenerate rather than patch. See
-`LESSON_SHAPE.md` §7, *Legacy shapes and regeneration*.)
+There is **no group activity**, **no exit ticket**, **no tiers**, no `experience` component, no
+`objectivebox` in the notes, no `extensionbox` on the homework, and no *Individual Practice*
+page. Do not re-add any of them. Lessons still carrying them are legacy — **regenerate rather
+than patch**, and ask first. See `LESSON_SHAPE.md` §7, *Legacy shapes and regeneration*, for the
+shape-by-shape recognition table and the content mapping.
 
 General rules:
-- **Every student component is 10pt except the warm-up, which is 12pt** (and still one page):
-  `algebra2-article` + `algebra2-boxes`; keys with `algebra2-article` + `algebra2-key`.
+- **Every student component is 12pt** (user direction, 2026-09-07 — cover, warm-up, notes and
+  homework alike): `algebra2-article` + `algebra2-boxes`; keys with `algebra2-article` +
+  `algebra2-key`. The lesson plan is 10pt and the deck 11pt.
 - Keep the **key structurally identical** to its blank — it is the blank with answers filled in.
   **A component must come out the same number of pages on both sides.** Every worked solution goes
   in a `work` block authored identically in the two files (see "The work rule" in
@@ -58,55 +60,57 @@ order:
 4. **Vocabulary, Concepts & Theorems** — `skillbox{sky}`, a `tabularx` term/definition table
    (use `\TallMath{...}` for tall formulas). These are the terms the notes' `vocabbox` builds.
 5. **Lesson at a Glance** — `fixedskillbox{forestbg}`: a Phase/Min/Students/Teacher table for
-   the 60-minute period — Warm-Up 5 / Guided Notes 20 / Individual Practice 15 / Debrief 10 /
-   Close & Homework 10.
-6. **Warm-Up — Activate Prior Knowledge & Spiral Review** — `fixedskillbox{forestbg}`: the ~3
-   items, which prior skill each rehearses, and what to debrief aloud. Say explicitly how the
-   debriefed observation hands off into notes section 1.
-7. **Hook** — `skillbox{forestbg}`: the 60-second context, the questions to ask with their
-   answers in parentheses, and the idea to land in one sentence. **The hook's numbers should be
-   the ones every worked example in the notes reuses.**
-8. **Guided Notes — the Lesson (20 min)** — `skillbox{forestbg}` in `multicols{2}`: one bold
-   paragraph per numbered notes section saying what to build and where the `work` blocks are,
-   ending with the Guided Practice paragraph ("do this one *with* the class — it is the last
-   thing they see before working alone").
-9. **Individual Practice — On Your Own (15 min, silent)** — `skillbox{redbox}`: the 1-minute
-   launch script, then `multicols{2}`: **What students do** (the three problems and why they are
-   the three shapes of the skill; which is the crux) | **What the teacher does** (circulate,
-   silent; a bullet list of *questions, cues, and prompts — not answers* keyed to problem
-   numbers; the early-finisher move; note names for the debrief).
-10. **Debrief (10 min — what goes on the board, in a second color)** — `skillbox{forestbg}`: a
-    numbered list of **exactly four things to land** — problem 1 worked, the must-land moment
-    (the target misconception, pointed back to the notes' caution box), problem 2, and problem 3
-    / the crux with what a wrong answer reveals. End by naming which item to cut if time is short
-    and which two to protect.
-11. **Active Monitoring — Watch For** — `skillbox{redbox}`: misconceptions to catch while
-    circulating, keyed to notes, Individual Practice, and homework item numbers, plus cold-call
-    prompts.
-12. **Reinforcement & Extension** — `skillbox{goldbox}`: itemize the homework's ~6 problems and
-    its extension; a **DeltaMath override** sentence saying whether this content is well covered
-    there and what set to swap in if so; and a **Preview** of the next lesson.
-13. **Teacher Notes** — **four** `teachernote`s, in packet order: `[Warm-Up]`, `[Guided Notes]`,
-    `[Individual Practice]`, `[Homework]`. Pacing splits that actually fill each phase's minutes,
-    must-land moments, common slips, the early-finisher move, and how to sort the formative
-    check. **This is the only place teacher prose goes** — never append one to a `_key`, which
-    would make the key longer than its blank. See the shared skill's `references/conventions.md` (`~/.claude/skills/lesson-planning/`).
+   the 60-minute period — Warm-Up **5** / Guided Notes & Practice **35** / Debrief **10** /
+   Close & Start Homework **10**. Add the minutes up before you write them.
+6. **Warm-Up — Activate Prior Knowledge (5 min)** — `fixedskillbox{forestbg}`, two minipages:
+   *the three items and what each seeds* · *running it*. Say explicitly how the debriefed
+   observation hands off into the first notes row, and end with the 12pt hand-off sentence.
+7. **Guided Notes & Practice — I do, then we do (35 min)** — `skillbox{forestbg}` in
+   `multicols{2}`: the hook and its unresolved vote; *I do* — one paragraph per section, with
+   minutes, naming **by number** which problem of each grid the teacher works and where the
+   `work` blocks are; *we do* — the Guided Practice part by part, "the pen must actually change
+   hands", the circulating prompts, and which two papers to pick for the debrief.
+8. **Debrief — whole class, spoken (10 min)** — `skillbox{forestbg}` in `multicols{2}`: exactly
+   **four** things to land (the crux among them, pointed back at the notes row that settles it),
+   the two things to demand aloud, and what to cut if short. **The debrief has no component** —
+   it is a spoken phase.
+9. **Homework — scored, started in class, due the first class after two study halls** —
+   `skillbox{goldbox}`: the six items and what each is for, how to sort the formative check, the
+   **DeltaMath override** sentence (is this content well covered there, and which set swaps in),
+   and a **Preview** of the next lesson.
+10. **Watch For (while circulating)** — `skillbox{redbox}`: misconceptions to catch, keyed to
+    notes row / Guided Practice part / homework item numbers, plus cold-call prompts.
+11. **Close & Start Homework (10 min)** — `skillbox{goldbox}`: the launch of item 1 aloud, the
+    three piles of what the teacher sees while circulating, and the "what changed today"
+    sentence.
+12. **Teacher Notes** — **three** `teachernote`s, in packet order: `[Warm-Up]`,
+    `[Guided Notes \& Practice]`, `[Homework]`. Pacing splits that actually fill each phase's
+    minutes, must-land moments, common slips, the early-finisher move, and how to sort the
+    formative check. **This is the only place teacher prose goes** — never append one to a `_key`,
+    which would make the key longer than its blank. See the shared skill's `references/conventions.md` (`~/.claude/skills/lesson-planning/`).
+
+There is **no Hook section** (the hook lives inside the Guided Notes box), **no Individual
+Practice section**, and **no Reinforcement & Extension section** — the homework box absorbed it.
+The full section order is `LESSON_SHAPE.md` §5, which wins over this summary.
 
 Record the lesson's **standards** (the codes the user supplied) in the plan for the audit trail.
 
 ## Cover
 
 `cover/main.tex` — student-facing front page of the packet. No key. Structure:
-- Full-bleed forest banner (tikz) with `\LARGE` course name, unit, and `Lesson <id>  <title>`.
+- `\coverbanner{Unit N \quad Unit Title}{Lesson N.M \quad Lesson Title}` — it measures the title
+  block and sizes the forest band to it. (The skeleton still draws the old fixed TikZ band.)
 - `\namedateperiod` — **the only place in the lesson it appears.** See "Namestrip" below.
 - `learningtargetbox` — an "I can…" list **using the lesson's formal vocabulary in bold**. There
-  is nothing to withhold: the notes name the terms before the activity uses them.
-- `tocbox` — a `tabularx` with **three rows in packet order** (Warm-Up, Guided Notes — "ending
-  in *Guided Practice* and *Individual Practice*", Homework) + a Total row. **Every row is scored** — a `\blank{1.2cm}`, homework
-  included; nothing prints `NA` any more. The homework row's description ends
-  *"--- \emph{due next class}"*. The table is four columns (`c l X r`); **every row needs four
-  cells** or the column widths collapse. There is no debrief row (it is a phase, not a
-  component) and no activity row (there is no activity).
+  is nothing to withhold: the notes name each term as they build it.
+- `tocbox` — a `tabularx` with **three rows in packet order** (Warm-Up, Guided Notes \& Practice —
+  "ending in *Guided Practice*", Homework) + a Total row. **Every row is scored** — a
+  `\blank{1.2cm}`, homework included; nothing prints `NA` any more. The homework row's description
+  ends **"--- scored; due the first class after two study halls"** (course policy of record,
+  2026-09-03 — never "due next class"). The table is four columns (`c l X r`); **every row needs
+  four cells** or the column widths collapse. There is no debrief row (it is a phase, not a
+  component), no individual-practice row (the homework is the individual practice), and no
+  activity row (there is no activity).
 - `remindbox` (Keep in Mind) — a **content** summary: the lesson's key definitions and the
   distinction it turns on, in three or four sentences, in a form the student can revise from.
 
@@ -122,7 +126,7 @@ mirrors with `\ans`.
 
 ## Guided Notes
 
-`notes/` (+ `notes_key/`) — **the direct-instruction centrepiece, 34 minutes**, in the **Main
+`notes/` (+ `notes_key/`) — **the direct-instruction centrepiece, 35 minutes**, in the **Main
 Ideas / Notes** shape (modelled on the Algebra 2 guided-notes worksheets; density rules of
 2026-09-12). `\pageheader{...}` (no name row — Namestrip), the `vocabbox`, the `hookbox` (it stays), then **one
 `guidednotes` table** set in `\small`. Ported from AP Statistics 2026-09-12. **3–4 pages** at
@@ -170,13 +174,17 @@ individual practice. Never author the `scenariobox[Individual Practice ...]` pag
 
 `homework/` (+ `homework_key/`) — the **"you do alone"** block. **Every lesson generates one**
 (user direction, 2026-08-31): DeltaMath does not cover all of this course's content, and where it
-does the teacher **overrides** and assigns a DeltaMath set instead — so the plan's *Reinforcement
-& Extension* box always names what could be swapped in. **This page IS scored**: the cover's score
-cell is a `\blank{1.2cm}`, never `NA`.
+does the teacher **overrides** and assigns a DeltaMath set instead — so the plan's *Homework* box
+always names what could be swapped in. **This page IS scored**: the cover's score cell is a
+`\blank{1.2cm}`, never `NA`. It **is the lesson's individual practice** — started in class in the
+last ten minutes, alone, and finished at home.
 
 **2 pages, and 2pp is a ceiling** — a seventh item gets cut, never spilled onto a third page.
 Structure:
 
+- **An opening `remindbox`** — *"This is your graded homework. Your packet with completed homework
+  is due the first class after two study halls. I will announce the due date in class and on
+  TurtleNet."* plus the lesson's one-sentence rule, **identical in blank and key**.
 - **A `Practice` `notesbox`** with **~6 items spanning the lesson's whole standard**, not sampling
   it. The canonical spread:
   1. the **core procedure** read off a *rule*;
@@ -187,9 +195,11 @@ Structure:
   5. a **model** in a fresh context, with a `work` block and an interpret-the-answer follow-up;
   6. an **SOL-style multiple-choice item** — the **formative check**. The plan says how to sort
      responses into named categories to decide how the next lesson opens.
-- **An `extensionbox`** — a construction that runs the lesson's procedure backwards, plus a
-  reasoning item ("a classmate claims … explain why that cannot happen").
 - **A closing `spiralbox`** — two sentences previewing the next lesson.
+
+Split the items `notesbox{Practice}` / `notesbox{Practice, continued}` with a `\newpage` between
+them so **no item breaks across a page**. There is **no `extensionbox`** — it was retired with this
+shape (the environment still exists in `algebra2-boxes.sty`; never author one).
 
 In the key, the multiple-choice item keeps all four options with the **correct one wrapped in
 `\ans{...}`**, and the answer lines below say which is right and why one distractor is wrong.
@@ -227,15 +237,15 @@ The title slide is hand-built (forest background canvas + minipage); content sli
 in beamer — write the course name literally.
 
 **The deck follows the gradual-release flow, 11 frames:** title → learning targets (naming the
-vocabulary, plus a "how today runs" block with the 5/20/15/10/10 split) → warm-up (ending in a
-"hold on to this" block) → hook → **four notes frames**, one per numbered notes section, matching
-the packet exactly (the misconception section gets a `\begin{block}` with the case where the two
-answers disagree; the last notes frame ends with the Guided Practice) → **individual-practice
-launch** (the three problems, the one-sentence rule, "look up the page, not at your neighbour",
-the early-finisher move) → **debrief** (the same four numbered takeaways as the plan's debrief
-box) → close (what changed today, a **Homework — start it now** block naming what the packet page
-covers and that the rest is due next class, and a one-line preview). Reference implementations:
-`unit01/lesson02/slides` and `unit01/lesson03/slides`.
+vocabulary, plus a "how today runs" block with the **5 / 35 / 10 / 10** split) → warm-up (ending in
+a "hold on to this" block) → hook (the vote, **left unresolved**) → **four notes frames**, two per
+section (1a/1b, 2a/2b), matching the packet exactly (the crux frame is flagged
+`\sectionlabel[redacc]{}` and carries a `\begin{block}` giving the case where the two answers
+disagree) → **Guided Practice** (the lettered parts and "the questions I will ask") → **debrief**
+(the same four numbered takeaways as the plan's debrief box, plus a "say it without the notes"
+block) → **close & start the homework** (what changed today, a **Homework — scored, due the first
+class after two study halls** block, and a one-line preview). Reference implementations:
+`unit01/lesson02/slides` and `unit01/lesson04/slides`.
 
 ## Unit tests (summative assessments)
 
@@ -259,8 +269,16 @@ lesson cover, so they keep their name row):
   practice key is published as `sample_test_key` (unit key packet only).
 
 Content is summative — draw across the whole unit's lessons and standards. Keep the practice and
-actual versions parallel so the practice test is honest preparation. Build/publish with
-`make -C unitXX/tests all` and `make -C unitXX/test_keys all`.
+actual versions parallel so the practice test is honest preparation, and make them the same number
+of pages. Build/publish with `make -C unitXX/tests all` and `make -C unitXX/test_keys all`.
+
+**`unit01/tests` and `unit01/test_keys` are the reference** (regenerated 2026-09-16): 12pt, **no
+vocabulary part**, five skill parts (A–E) totalling 100 points, and a body that is
+**byte-identical in blank and key** — the answers live only in a preamble-defined
+`\slot{width}{answer}` (a fixed-width underline, filled in the key), in `\opt` / `\optok` (the key
+marks the correct choice with a red arrow of zero width), and in `work` blocks, so the two files
+cannot drift. The key carries **no `teachernote`**. Prefer that construction to hand-mirroring two
+files.
 
 ## Answer-key discipline
 
@@ -275,7 +293,7 @@ test keys too):
 - `\ans` is text-mode: never put it inside `$...$` — wrap math fragments instead
   (`\ans{$\sqrt{n}$}`) — and never let it span a blank line.
 - **No `teachernote` in a key.** Teacher-only guidance goes in the lesson plan, one note per
-  component, titled `\begin{teachernote}[Guided Notes]` and so on. A note in a key is the one block
+  component, titled `\begin{teachernote}[Guided Notes \& Practice]` and so on. A note in a key is the one block
   with no counterpart in the blank, and it is what makes a key run a page long.
 - **Worked solutions are not `\ans{}` material.** An inline `$a=b \Rightarrow c=d \Rightarrow e=f$`
   crammed into one cell violates the work rule and gives the student no room; use a `work` block,
