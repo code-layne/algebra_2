@@ -2,6 +2,54 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-17) — **LESSONS 2.0 AND 2.1 REGENERATED IN THE CURRENT SHAPE; UNIT 2 IS NOW MIXED.**
+>
+> **User request, 2026-09-17:** ``regenerate lessons 2.0 and 2.1 in the new lesson shape.'' Both were
+> pre-EFFL legacy (10pt components, `activity` + `exit_ticket`, tiered plans). Regenerated **whole**
+> per `LESSON_SHAPE.md` §7 — never patched: the four legacy component dirs `git rm`-ed per lesson,
+> every student component rewritten at 12pt, `notes` moved to the 2026-09-12 `guidednotes`
+> Main Ideas / Notes table, plans rebuilt on **5/35/10/10** with **three** teacher notes, decks on
+> the 11-frame order, covers on `\coverbanner` with three scored rows and the due-the-first-class-
+> after-two-study-halls wording.
+>
+> **2.0 Characteristics of Quadratic Functions** — A2.F.2a/c/d/f/g. One context: a ledge launch
+> $h(t)=-16t^2+32t+48$, vertex $(1,64)$, **with the $y$-axis scaled 16 ft to the grid unit** (this is
+> the fix for the known defect logged below — the legacy 2.0 activity drew it unscaled and rendered
+> as a page-tall spike; that activity is now gone). Anchor $x^2-2x-3=(x-1)^2-4$ carries rows 2–4.
+> **Target misconception: the maximum/minimum *value* is an output; *where* it happens is an input.**
+> Both $1$ and $64$ answer the hook's vote — different questions. Notes rows 1–5, problems 1–13;
+> crux at 8, transferred at 13.
+>
+> **2.1 Graphing Quadratic Functions \& Transformations** — A.F.2b/c/d + A2.F.1 + A2.F.2a/d. One
+> context: the anchor in three costumes, $x^2-2x-3=(x-1)^2-4=(x+1)(x-3)$, against one pre-drawn
+> curve. **Target misconception: the horizontal-shift sign flip** — $(x-1)^2$ moves the parent
+> *right*, while in $(x+1)(x-3)$ the zeros are $-1$ and $3$; the same bracket does opposite things in
+> the two forms. Notes rows 1–5, problems 1–14; crux at 9–10, transferred at 14. No factoring and no
+> solving — a factored form is given and read (2.2 produces it).
+>
+> **Build.** `make -C unit02/lesson00 all` and `make -C unit02/lesson01 all` both exit 0. Per-lesson,
+> on the **compiled components** (not the padded packets): warm-up **1/1**, notes **4/4**, homework
+> **2/2**, cover **1pp**; student and key packets **10pp** each. `make -C unit02 student key` →
+> `unit02_student.pdf` / `unit02_key.pdf` **115pp each**.
+>
+> **Two fixes found on review of 2.1:** `\vrowheight` had been cut to 1.5cm — restored to the
+> course's fixed **2.0cm**, paid for by dropping the sixth vocab row (*axis of symmetry* is revision
+> from 2.0, not new vocabulary here); and the homework key printed ``$y=$ $y=(x+2)^2+1$'' because the
+> blank already sets the $y=$. A latent TikZ trap was also caught in 2.0: **node text is not scaled
+> by `scale=`**, so shrinking a figure does not shrink its labels — the row-4 two-parabola labels
+> needed `xshift` widened, not just a rescale. Worth carrying into every figure trim.
+>
+> **`templates/lesson/components.md` brought up to the current shape** in the same run — it still
+> described 5/20/15/10/10, 10pt components, four teacher notes, an `extensionbox`, the legacy plan
+> section order, and ``due next class''. The skeleton `.tex` files are **untouched** (§2: no bulk
+> sweep; they pick up the wording when regenerated).
+>
+> **Next action: 2.2–2.7 are still pre-EFFL legacy** — six lessons, each still carrying
+> `activity{,_key}` + `exit_ticket{,_key}` and a tiered plan. Regenerate lesson by lesson, rebuilding
+> the unit packet each time. **Open question for the user:** Unit 2 is now mixed (2.0–2.1 current,
+> 2.2–2.7 legacy), so the unit packet's lessons no longer read alike — finish Unit 2 before printing,
+> or is a mixed packet acceptable in the interim?
+
 > ## ⚠ Status (2026-09-17) — **ALGEBRA 1 PRIORITY STANDARDS QUIZ ADDED UNDER UNIT 1 TESTS.**
 >
 > **User request, 2026-09-17:** a 20–25 question quiz on priority Algebra 1 standards (2023 VA SOL).
