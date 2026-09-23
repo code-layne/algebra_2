@@ -1,0 +1,258 @@
+%! Unit 1: Linear Functions — Unit Test --- Version C (blank)
+% GENERATED BODY: the blank and key bodies are byte-identical except the header title;
+% answers live in \slot / \optok / work, which the preamble shows or hides.
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\newcommand{\lgrid}[4]{%
+  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+% Endpoint dots: {x}{y}. Closed = filled; open = white-filled ring.
+\newcommand{\fdot}[2]{\fill[forest] (#1,#2) circle (4.5pt);}
+\newcommand{\hdot}[2]{\draw[very thick, forest, fill=white] (#1,#2) circle (4.5pt);}
+% Part-divider strip (headlinebox takes one arg: the background color)
+\newcommand{\parthead}[1]{%
+  \boxguard[10]\vspace{6pt}\noindent
+  \begin{headlinebox}{forest}\color{white}\bfseries #1\end{headlinebox}%
+  \vspace{4pt}}
+% THE WORK RULE for a test: \slot{width}{answer} and \opt / \optok are the ONLY
+% lines that differ between blank and key, and they differ in the preamble, not the body.
+% A slot is a fixed-width underline in both files, so no line rewraps in the key.
+\newcommand{\slot}[2]{\underline{\makebox[#1]{}}}
+\newcommand{\opt}[2]{(#1)~#2}
+\newcommand{\optok}[2]{(#1)~#2}
+
+\begin{document}
+
+\pageheader{Unit 1: Linear Functions}{Unit Test --- Version C}
+\namedateperiod
+
+\vspace{0.06in}
+\noindent\textbf{Instructions:} Show all work. Write every line in $y=mx+b$ form when asked.
+No notes or calculator unless your teacher says so. \hfill\textbf{Total: 100 pts}
+
+% ======================================================================
+\parthead{Part A --- Types of Slope (8 pts)}
+For each line, write whether its slope is \textbf{positive}, \textbf{negative}, \textbf{zero}, or
+\textbf{undefined}.
+
+\vspace{6pt}
+\noindent
+\begin{minipage}[t]{0.24\textwidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-3}{3}
+  \draw[very thick, navy] (-3,-1)--(3,-1);
+\end{tikzpicture}\\[2pt]
+1.\ \slot{2.4cm}{zero}
+\end{minipage}%
+\begin{minipage}[t]{0.24\textwidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-3}{3}
+  \draw[very thick, navy] (-2,-3)--(1,3);
+\end{tikzpicture}\\[2pt]
+2.\ \slot{2.4cm}{positive}
+\end{minipage}%
+\begin{minipage}[t]{0.24\textwidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-3}{3}
+  \draw[very thick, navy] (-3,2.5)--(3,-0.5);
+\end{tikzpicture}\\[2pt]
+3.\ \slot{2.4cm}{negative}
+\end{minipage}%
+\begin{minipage}[t]{0.24\textwidth}\centering
+\begin{tikzpicture}[scale=0.34]
+  \lgrid{-3}{3}{-3}{3}
+  \draw[very thick, navy] (2,-3)--(2,3);
+\end{tikzpicture}\\[2pt]
+4.\ \slot{2.4cm}{undefined}
+\end{minipage}
+
+\vspace{10pt}
+\noindent No graph this time --- decide from the points or the equation.
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=5]
+  \item The line through $(-4,\,2)$ and $(3,\,2)$: \hfill \slot{2.4cm}{zero}
+  \item The line through $(0,\,5)$ and $(4,\,-3)$: \hfill \slot{2.4cm}{negative}
+  \item The line $y=5x-1$: \hfill \slot{2.4cm}{positive}
+  \item The line through $(-1,\,6)$ and $(-1,\,-2)$: \hfill \slot{2.4cm}{undefined}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part B --- Writing Equations of Lines (20 pts)}
+Write each line in slope-intercept form, $y=mx+b$. Show how you found $m$ and $b$; for 11 and 12, start in point-slope form, $y-y_1=m(x-x_1)$.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=9]
+  \item The line through $(1,\,5)$ and $(3,\,9)$.
+    \begin{work}
+      m &= \frac{9-5}{3-1} = \frac{4}{2} = 2 \\
+      5 &= 2(1) + b \quad\Rightarrow\quad b = 3
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Equation: \slot{3.6cm}{$y=2x+3$}
+
+  \item The line through $(-5,\,4)$ and $(5,\,-2)$.
+    \begin{work}
+      m &= \frac{-2-4}{5-(-5)} = \frac{-6}{10} = -\frac{3}{5} \\
+      4 &= -\frac{3}{5}(-5) + b = 3 + b \quad\Rightarrow\quad b = 1
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Equation: \slot{3.6cm}{$y=-\tfrac{3}{5}x+1$}
+
+  \item The line with slope $-2$ that passes through $(3,\,1)$.
+    \begin{work}
+      y-1 &= -2(x-3) \\
+      y-1 &= -2x+6 \\
+      y &= -2x+7
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Equation: \slot{3.6cm}{$y=-2x+7$}
+
+  \item The line with slope $\tfrac{2}{3}$ that passes through $(6,\,1)$.
+    \begin{work}
+      y-1 &= \frac{2}{3}(x-6) \\
+      y-1 &= \frac{2}{3}x-4 \\
+      y &= \frac{2}{3}x-3
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Equation: \slot{3.6cm}{$y=\tfrac{2}{3}x-3$}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part C --- Piecewise Functions (20 pts)}
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=13]
+  \item \textbf{Evaluate.} (8 pts) \quad
+    $f(x)=\begin{cases} 3x+2, & x<1 \\ -1, & 1\le x\le 4 \\ 10-x, & x>4 \end{cases}$
+    \\[8pt]
+    $f(-2)=$ \slot{1.4cm}{$-4$} \qquad $f(1)=$ \slot{1.4cm}{$-1$} \qquad
+    $f(4)=$ \slot{1.4cm}{$-1$} \qquad $f(6)=$ \slot{1.4cm}{$4$}
+
+  \item \textbf{Domain.} (12 pts) Give the domain of each function as an inequality or in interval
+    notation.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=12pt]
+      \item $g(x)=\begin{cases} x+4, & x<-1 \\ 2, & -1\le x\le 6 \end{cases}$
+        \hfill Domain: \slot{3.8cm}{$x\le 6$, \ $(-\infty,\,6]$}
+      \item $h(x)=\begin{cases} -x, & -3<x\le 2 \\ x+1, & 2<x<5 \end{cases}$
+        \hfill Domain: \slot{3.8cm}{$-3<x<5$, \ $(-3,\,5)$}
+      \boxguard[9]
+      \item The function $k$ graphed below.
+        \\[4pt]
+        \begin{minipage}[c]{0.45\linewidth}\centering
+        \begin{tikzpicture}[scale=0.5]
+          \lgrid{-5}{4}{-3}{4}
+          \draw[very thick, forest] (-4,2)--(0,-2);
+          \hdot{-4}{2} \hdot{0}{-2}
+          \draw[very thick, forest] (0,1)--(2,1);
+          \fdot{0}{1} \fdot{2}{1}
+        \end{tikzpicture}
+        \end{minipage}%
+        \hfill Domain: \slot{3.8cm}{$-4<x\le 2$, \ $(-4,\,2]$}
+    \end{enumerate}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part D --- The Absolute Value Function (28 pts)}
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=15]
+  \item (3 pts) Circle the letter of the graph of an \textbf{absolute value} function.
+    \\[4pt]
+    \begin{minipage}[t]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-3}{3}{-3}{3}
+      \draw[very thick, navy] (-3,-2)--(3,2);
+    \end{tikzpicture}\\ \opt{A}{}
+    \end{minipage}%
+    \begin{minipage}[t]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-3}{3}{-3}{3}
+      \draw[very thick, navy] (-2,2)--(1,-1)--(3,1);
+    \end{tikzpicture}\\ \optok{B}{}
+    \end{minipage}%
+    \begin{minipage}[t]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-3}{3}{-3}{3}
+      \draw[very thick, navy, domain=-2.4:2.4, smooth] plot (\x, {-0.5*\x*\x+2});
+    \end{tikzpicture}\\ \opt{C}{}
+    \end{minipage}%
+    \begin{minipage}[t]{0.24\linewidth}\centering
+    \begin{tikzpicture}[scale=0.32]
+      \lgrid{-3}{3}{-3}{3}
+      \foreach \k in {-2,...,1} { \draw[very thick, navy] (\k,\k)--(\k+1,\k);
+        \fill[navy] (\k,\k) circle (4pt); \draw[thick, navy, fill=white] (\k+1,\k) circle (4pt); }
+    \end{tikzpicture}\\ \opt{D}{}
+    \end{minipage}
+
+  \item (3 pts) Which equation is an \textbf{absolute value} function?
+    \\[4pt]
+    \opt{A}{$y=x^2-3$} \hfill \opt{B}{$y=2x+5$} \hfill \optok{C}{$y=|x+1|-4$} \hfill
+    \opt{D}{$y=\lfloor x\rfloor+3$}
+
+  \item (15 pts) Each function is a transformation of the parent $y=|x|$. Fill in the table.
+    \\[6pt]
+    {\renewcommand{\arraystretch}{1.9}
+    \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      \textbf{Function} & \textbf{Vertex} & \textbf{Left/right shift} & \textbf{Up/down shift} &
+      \textbf{Opens} \\ \hline
+      $g(x)=|x-5|-2$ & \slot{1.9cm}{$(5,\,-2)$} & \slot{2.1cm}{right 5} & \slot{2.1cm}{down 2} &
+        \slot{1.4cm}{up} \\ \hline
+      $h(x)=|x+2|+3$ & \slot{1.9cm}{$(-2,\,3)$} & \slot{2.1cm}{left 2} & \slot{2.1cm}{up 3} &
+        \slot{1.4cm}{up} \\ \hline
+      $k(x)=-|x+1|-4$ & \slot{1.9cm}{$(-1,\,-4)$} & \slot{2.1cm}{left 1} & \slot{2.1cm}{down 4} &
+        \slot{1.4cm}{down} \\ \hline
+    \end{tabular}}
+
+  \item (4 pts) Which equation matches the graph?
+    \\[4pt]
+    \begin{minipage}[c]{0.36\linewidth}\centering
+    \begin{tikzpicture}[scale=0.36]
+      \lgrid{-7}{1}{-2}{4}
+      \draw[very thick, navy] (-6.5,2.5)--(-3,-1)--(0.5,2.5);
+      \fill[navy] (-3,-1) circle (4pt);
+    \end{tikzpicture}
+    \end{minipage}%
+    \begin{minipage}[c]{0.6\linewidth}
+    \opt{A}{$y=|x-3|-1$} \\[6pt]
+    \opt{B}{$y=-|x+3|-1$} \\[6pt]
+    \opt{C}{$y=|x+1|-3$} \\[6pt]
+    \optok{D}{$y=|x+3|-1$}
+    \end{minipage}
+
+  \item (3 pts) Compared with the parent $y=|x|$, the graph of $y=\tfrac{1}{2}|x|$ is
+    \\[4pt]
+    \opt{A}{shifted down $\tfrac{1}{2}$} \hfill \opt{B}{narrower} \hfill
+    \opt{C}{shifted right $\tfrac{1}{2}$} \hfill \optok{D}{wider}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part E --- Absolute Value Equations \& Inequalities (24 pts)}
+Solve. Show both cases.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=20]
+  \item (8 pts) \quad $|4x+2|=10$
+    \begin{work}
+      4x+2 &= 10 \quad\text{or}\quad 4x+2 = -10 \\
+      4x &= 8 \quad\text{or}\quad 4x = -12
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Solution: \slot{4.2cm}{$x=2$ or $x=-3$}
+
+  \item (8 pts) \quad $|x+2|\le 6$
+    \begin{work}
+      -6 &\le x+2 \le 6 \\
+      -8 &\le x \le 4
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Solution: \slot{4.2cm}{$-8\le x\le 4$}
+
+  \item (8 pts) \quad $|x-1|>4$
+    \begin{work}
+      x-1 &> 4 \quad\text{or}\quad x-1 < -4 \\
+      x &> 5 \quad\text{or}\quad x < -3
+    \end{work}
+    \vspace{0.5cm}
+    \hfill Solution: \slot{4.2cm}{$x>5$ or $x<-3$}
+\end{enumerate}
+
+\end{document}
