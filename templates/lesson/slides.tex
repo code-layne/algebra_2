@@ -1,6 +1,13 @@
 %! @@TITLE@@ — Unit @@UNITINT@@, Lesson @@LESSONID@@ — Slides (Beamer)
+% SLIDES-FIRST shape (course shape 2026-09-25): the deck IS the lesson. Its printed handout
+% (lessonYY_slides.pdf, 3-up with a notes column) is the student's notes — definitions printed in
+% full, examples worked, and every "Now you try" left open with the notes column as work space.
+%   title → targets → warm-up → { definition → example → now you try } × 3–4 → wrap-up → homework
+% Answers are revealed on a click with \reveal{...} (algebra2-beamer): the projector shows them,
+% the printed handout (a Beamer handout-mode compile) never does. \pause inside a worked example
+% is fine — the handout collapses it and prints the full worked example.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{@@PREFIX@@-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+\usepackage{@@PREFIX@@-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
 
 \begin{document}
 
@@ -17,81 +24,93 @@
 \end{frame}
 }
 
-% The deck follows the GRADUAL-RELEASE flow (~11 frames, course-wide shape 2026-09-01):
-%   learning targets → warm-up → hook → notes 1–4 → individual-practice launch → debrief → close.
-% The vocabulary is on the slides from the notes frames onward; there is no spoiler rule.
-
 % LEARNING TARGETS
 \begin{frame}[t, plain]
   \forestheader{Today's targets}
   \sectionlabel{What you will be able to do}
   \begin{itemize}\setlength{\itemsep}{6pt}
-    \item TODO: target, naming the vocabulary.
+    \item TODO: target, naming the vocabulary in \textbf{bold}.
   \end{itemize}
   \vspace{4pt}
   \begin{block}{How today runs}
-    Warm-up (5) $\to$ notes together (20) $\to$ \textbf{practice on your own} (15) $\to$ debrief
-    (10) $\to$ close \& start the homework (10).
+    Warm-up (5) $\to$ definitions, examples, and \textbf{now you try} (40) $\to$ wrap-up (5)
+    $\to$ \textbf{start the homework} (10).
   \end{block}
 \end{frame}
 
-% WARM-UP
+% WARM-UP — two or three spiral-review items; answers on a click. The last one leaves the question
+% the first definition answers.
 \begin{frame}[t, plain]
-  \forestheader{Warm-Up: three things you already know}
-  \sectionlabel{5 minutes --- alone, then check with a neighbour}
-  % TODO: the warm-up items.
-\end{frame}
-
-% HOOK
-\begin{frame}[t, plain]
-  \forestheader{Hook: TODO}
-  \sectionlabel[goldacc]{TODO the one-line idea}
-  % TODO: the context, the quick questions WITH their answers, and a \begin{block} landing the idea.
-\end{frame}
-
-% NOTES 1–4 (repeat this frame four times, one per numbered notes section)
-\begin{frame}[t, plain]
-  \forestheader{Notes N: TODO}
-  \sectionlabel{TODO}
-  % TODO: the definition/procedure and the worked example, matching the packet's section exactly.
-  % Section 3 is usually the target-misconception one — give it a \begin{block} with the case
-  % where the two answers disagree.
-\end{frame}
-
-% INDIVIDUAL PRACTICE LAUNCH
-\begin{frame}[t, plain]
-  \forestheader{Individual Practice: on your own}
-  \sectionlabel[goldacc]{15 minutes $\cdot$ silent $\cdot$ last page of your notes}
-  % TODO: the three problems as a numbered list, one line each.
-  \vspace{5pt}
-  \begin{block}{The rule}
-    TODO the one-sentence rule. Stuck? Look \emph{up the page} at the notes --- not at your
-    neighbour. Done early? TODO the early-finisher move.
-  \end{block}
-\end{frame}
-
-% DEBRIEF
-\begin{frame}[t, plain]
-  \forestheader{Debrief: the four things to take away}
-  \sectionlabel[redacc]{10 minutes --- correct your own page in a second colour}
-  \begin{enumerate}\setlength{\itemsep}{5pt}
-    \item TODO: Individual Practice problem 1, worked.
-    \item TODO: the must-land moment (the target misconception, pointed back to the notes' caution box).
-    \item TODO: problem 2, worked.
-    \item TODO: problem 3 / the crux, worked.
+  \forestheader{Warm-Up}
+  \sectionlabel{5 minutes --- in the notes column, alone}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item TODO item. \reveal{\; \textbf{TODO answer}}
   \end{enumerate}
 \end{frame}
 
-% CLOSE
+% ── ONE CYCLE PER IDEA — repeat these three frames 3–4 times ──────────────────
+% DEFINITION — complete printed sentences, term in bold. Nothing to fill in: students annotate in
+% the notes column. A pre-drawn display where one helps.
 \begin{frame}[t, plain]
-  \forestheader{Close}
-  \sectionlabel{What changed today}
-  TODO: one or two sentences --- what they could do walking in, what they can do walking out.
-  \vspace{5pt}
-  \begin{block}{Homework --- start it now}
-    The \textbf{Homework} page in your packet. We start item~1 together and you keep going; whatever
-    is left is due next class. TODO: name what it covers.
+  \forestheader{Definition: TODO term}
+  \sectionlabel{TODO idea N}
+  \begin{block}{TODO term}
+    TODO: the definition or general form, as a complete sentence.
   \end{block}
+  % TODO: a pre-drawn display (graph, table), or the two things students conflate side by side.
+\end{frame}
+
+% EXAMPLE — the "I do": worked in full, every step with its reason. \pause between steps if wanted.
+\begin{frame}[t, plain]
+  \forestheader{Example N: TODO}
+  \sectionlabel{Watch --- I do this one}
+  TODO: the problem.
+  % TODO: the worked solution, step by step.
+\end{frame}
+
+% NOW YOU TRY — the "you do": one or two problems of the SAME shape as the example, fresh numbers.
+% Answer (and the key step) inside \reveal{}. The last cycle's now-you-try is the CRUX — the case
+% where the two answers disagree: flag it \sectionlabel[redacc]{...}.
+\begin{frame}[t, plain]
+  \forestheader{Now you try}
+  \sectionlabel[goldacc]{In the notes column --- then check}
+  TODO: the problem(s).
+  \vspace{6pt}
+  \reveal{%
+    \begin{block}{Check}
+      TODO: the answer, with the one step that decides it.
+    \end{block}}
+\end{frame}
+% ── end of cycle ──────────────────────────────────────────────────────────────
+
+% WRAP-UP — the definitions in one frame (what the cover's Keep in Mind says) plus the target
+% misconception as a caution.
+\begin{frame}[t, plain]
+  \forestheader{Wrap-up: what to keep}
+  \sectionlabel{5 minutes}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item TODO: definition 1, one line.
+  \end{itemize}
+  \vspace{4pt}
+  \begin{block}{Watch out}
+    TODO: the target misconception, stated as a caution.
+  \end{block}
+\end{frame}
+
+% HOMEWORK — author ONE of the three blocks, per the lesson's homework source (LESSON_SHAPE.md §2).
+\begin{frame}[t, plain]
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  % (a) Generated (the packet page):
+  \begin{block}{Homework --- scored, due the first class after two study halls}
+    The \textbf{Homework} pages in your packet. Start item~1 now; the rest is due the first class
+    after two study halls. TODO: what it covers.
+  \end{block}
+  % (b) DeltaMath, online:
+  % \begin{block}{DeltaMath --- scored, due the first class after two study halls}
+  %   Assignment: \textbf{TODO set name}. Start it now on your device.
+  % \end{block}
+  % (c) DeltaMath, printed: as (a), naming the DeltaMath pages in your packet.
   \vspace{4pt}
   \textbf{Next:} TODO one-line preview.
 \end{frame}

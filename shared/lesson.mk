@@ -9,9 +9,11 @@
 #                         per slide) — the projected form
 #
 # The two slide products are the deck's two forms: the PDF is what you print and
-# hand out, the PPTX is what you project. Both come from the one Beamer deck
-# compiled at target/$(UNIT)/$(LESSON)/slides/main.pdf, which is the source of
-# truth — never edit either product, edit slides/main.tex and rebuild.
+# hand out, the PPTX is what you project. Both come from the one Beamer source,
+# slides/main.tex — never edit either product, edit the source and rebuild. The
+# PPTX is framed from the projected compile (target/.../slides/main.pdf, one page
+# per overlay step, so answer reveals advance on a click); the printed PDF from a
+# handout-mode compile (target/.../slides_handout/main.pdf) that drops them.
 #   lessonYY_student.pdf  cover + blank components, paginated packet-wide
 #   lessonYY_key.pdf      the same packet answered, page for page with the student one
 #
@@ -102,6 +104,16 @@ PPTX_DPI     ?= 300
 # Deck → printed handout: 3 slides per page, notes column beside each.
 HANDOUT_TEX  := $(PROJECT_ROOT)/shared/handout.tex
 HANDOUT_DIR  := $(PDF_DIR)/.handout
+
+# The handout is framed from a SECOND compile of the deck in Beamer's handout
+# mode, not from the projected deck: overlays collapse to one page per frame and
+# anything marked `handout:0` — the Now-you-try answer reveals — is dropped, so
+# the printed handout never shows an answer the projector reveals on a click. A
+# deck with no overlays compiles identically in both modes. A prefab deck
+# (slides/main.pdf) has no source to recompile and is framed as-is.
+HANDOUT_DECK_DIR := $(PDF_DIR)/slides_handout
+HANDOUT_DECK_PDF := $(if $(wildcard slides/main.tex),$(HANDOUT_DECK_DIR)/main.pdf,$(SLIDES_PDF))
+HANDOUT_DECK_DEP := $(if $(wildcard slides/main.tex),$(STAMP_DIR)/slides_handout.stamp,$(SLIDES_DEP))
 
 # Both packets are laid out against each other, so either target needs every
 # component of both compiled before it can be paginated.
@@ -208,9 +220,9 @@ $(COMPILED_DIR)/$(LESSON)_plan.pdf: $(ROOT_DEP)
 	@cp $(ROOT_PDF) $@
 	@echo "✓  Lesson plan    → target/compiled/$(UNIT)/$(LESSON)_plan.pdf"
 
-$(COMPILED_DIR)/$(LESSON)_slides.pdf: $(SLIDES_DEP) $(HANDOUT_TEX)
+$(COMPILED_DIR)/$(LESSON)_slides.pdf: $(HANDOUT_DECK_DEP) $(HANDOUT_TEX)
 	@mkdir -p $(COMPILED_DIR)
-	$(call handout,$(abspath $(SLIDES_PDF)),$@)
+	$(call handout,$(abspath $(HANDOUT_DECK_PDF)),$@)
 	@echo "✓  Slides (PDF)   → target/compiled/$(UNIT)/$(LESSON)_slides.pdf (3 per page, notes column)"
 
 # Built from the raw deck, not from the handout above.
@@ -246,6 +258,14 @@ $(STAMP_DIR)/%/main.stamp: %/main.tex $(SHARED_STYS)
 	@mkdir -p $(dir $@) $(PDF_DIR)/$*
 	cd $* && TEXINPUTS="$(TEXINPUTS)" $(LATEXMK) $(LATEXFLAGS) \
 		-outdir="$(PDF_DIR)/$*" main.tex
+	@touch $@
+
+# ── Rule: the deck again, in Beamer handout mode (the printed handout's source) ─
+$(STAMP_DIR)/slides_handout.stamp: slides/main.tex $(SHARED_STYS)
+	@mkdir -p $(dir $@) $(HANDOUT_DECK_DIR)
+	cd slides && TEXINPUTS="$(TEXINPUTS)" $(LATEXMK) $(LATEXFLAGS) \
+		-usepretex='\PassOptionsToClass{handout}{beamer}' \
+		-outdir="$(HANDOUT_DECK_DIR)" main.tex
 	@touch $@
 
 # ── Rule: compile root-level main.tex ────────────────────────────────────────

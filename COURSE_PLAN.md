@@ -2,6 +2,35 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-25) — **COURSE SHAPE CHANGED: SLIDES FIRST. NO LESSON IS IN IT YET.**
+>
+> **User request, 2026-09-25:** "the primary work to be done in the slides — definitions, examples
+> with now you try, and a homework assignment. I want to be prompted each lesson for how the
+> homework assignment should be constructed — either generated via claude or a drop-in from
+> DeltaMath." User choices: the **printed slide handout is the student's notes** (Guided Notes
+> retired); the **warm-up moves onto the slides** (paper warm-up retired); **Now-you-try answers
+> reveal on a click**; for DeltaMath, **ask each lesson whether it is online or a printed PDF**.
+>
+> **The shape (`LESSON_SHAPE.md` §1–§2, §5, §7 rewritten):** deck = title → targets → warm-up →
+> 3–4 × (definition → worked example → Now you try) → wrap-up → homework; **5 / 40 / 5 / 10**.
+> Components `[cover, homework, slides]`, keyed `[homework]`, no one-page component. Cover has
+> two scored rows (Slide Notes, Homework). Plan has two teacher notes (`[Slides]`, `[Homework]`).
+> **Homework source is asked every lesson** — generated / DeltaMath online
+> (`--components cover,slides`) / DeltaMath printed (`--prefab homework,homework_key`).
+>
+> **Build:** `shared/lesson.mk` now compiles the deck twice — projected (PPTX; each reveal a slide)
+> and Beamer handout mode (the printed `lessonYY_slides.pdf`, reveals dropped). New
+> `\reveal[n]{…}` in `algebra2-beamer.sty`. Existing decks have no overlays, so their handouts are
+> unchanged (1.4: 11 = 11). Skeletons `slides`, `cover`, `lesson_plan`, `homework{,_key}` and
+> `components.md` rewritten; a throwaway scaffold of all three homework variants built clean and
+> was deleted.
+>
+> **Next action:** author the first slides-first lesson — it becomes `reference_lesson`.
+> **Open questions for the user:** (1) the handout prints separately from the packet
+> (cover + homework); merge it into the student packet? (2) which lesson to pilot on — the next
+> one to be taught (2.2?) is the natural choice. All 44 existing lessons are now legacy and are
+> regenerated one at a time when taught — no bulk sweep.
+
 > ## ⚠ Status (2026-09-17) — **LESSONS 2.0 AND 2.1 REGENERATED IN THE CURRENT SHAPE; UNIT 2 IS NOW MIXED.**
 >
 > **User request, 2026-09-17:** ``regenerate lessons 2.0 and 2.1 in the new lesson shape.'' Both were
