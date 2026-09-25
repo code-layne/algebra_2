@@ -149,7 +149,7 @@ packet (the shared skill's rule); merging them is an open question for the user,
 **Out of scope for the course** (no lessons): conic sections, sequences & series, probability &
 statistics, trigonometry, and linear systems / linear programming.
 
-**There is no reference lesson in this shape yet.** The first lesson authored in it becomes the
+**The pilot is `unit02/lesson02` (2026-09-25), awaiting user review.** Once approved it becomes the
 reference — set `reference_lesson` to it in the frontmatter and name it here. Until then, mirror
 `unit01/lesson04` for the preamble, the homework, the cover, and the plan's box vocabulary, and
 `templates/lesson/slides.tex` for the deck. Every lesson authored before 2026-09-25 is in an older
@@ -424,7 +424,7 @@ Recognize the shape by the component directories and the plan's section titles:
 
 | Shape | Has | Lessons |
 | --- | --- | --- |
-| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / Now-you-try cycles and `\reveal`; `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | none yet — the first one authored becomes `reference_lesson` |
+| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / Now-you-try cycles and `\reveal`; `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson02` — the **pilot** (2026-09-25, homework = DeltaMath printed), pending user review; once approved it becomes `reference_lesson` |
 | **gradual-release** (two-section, 12pt, 2026-09-07; `guidednotes` notes from 2026-09-12) | 12pt `warmup` + `notes` (vocab + hook, ONE `guidednotes` table + Guided Practice) + homework 2pp with the due-date `remindbox`; cover with three rows; 11-frame deck; plan 5/35/10/10, three teacher notes | `unit01/lesson04`, `unit02/lesson00`, `unit02/lesson01`; `unit01/lesson02` is its pilot (5/34/8/13) |
 | **four-section interim** (2026-09-01) | 10pt `notes/` with an `objectivebox`, four numbered sections, and an *Individual Practice* `scenariobox`; 10pt homework with an `extensionbox`; plan 5/20/15/10/10 with four teacher notes | `unit01/lesson00`, `01`, `03`, `05` |
 | **EFFL / group-activity** (2026-08-19 → 08-31) | `experience/` or `activity/` without `exit_ticket/` | none left |
@@ -464,10 +464,10 @@ same page count as its key (2/2) when generated; **the handout deck has no answe
 block title appears only inside `\reveal`); and the projected deck has more pages than the
 handout deck by exactly the number of reveals. Then update `COURSE_PLAN.md`.
 
-**Scoreboard (2026-09-25):** 44 lessons, **none yet in the slides-first shape.** 4 gradual-release
+**Scoreboard (2026-09-25):** 44 lessons. **1 slides-first — the pilot `unit02/lesson02`**, awaiting user review. 4 gradual-release
 (`unit01/lesson04`, `unit02/lesson00`, `unit02/lesson01`, pilot `unit01/lesson02`); 4
 four-section interim (`unit01/lesson00`, `01`, `03`, `05`); 36 pre-EFFL legacy
-(`unit02/lesson02`–`lesson07` and every lesson of Units 3–7; Units 3–7 still hold teacher notes
+(`unit02/lesson03`–`lesson07` and every lesson of Units 3–7; Units 3–7 still hold teacher notes
 in 144 `_key` files and name rows on 300 non-cover components). Every lesson has a deck. Unit 6's
 lesson 6.5 and Units 6–7's tests are skeletons; 7.1–7.6 are not scaffolded. Convert lesson by
 lesson as they are taught, rebuilding the unit packet each time — never the whole course in one

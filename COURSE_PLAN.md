@@ -2,7 +2,19 @@
 
 **Course:** Algebra 2
 
-> ## ⚠ Status (2026-09-25) — **COURSE SHAPE CHANGED: SLIDES FIRST. NO LESSON IS IN IT YET.**
+> ## ⚠ Status (2026-09-25) — **LESSON 2.2 REGENERATED AS THE SLIDES-FIRST PILOT — AWAITING USER REVIEW.**
+>
+> **2.2 Solving Quadratics by Factoring** — A2.EO.3b/d, A2.EI.2b/d. Legacy `warmup`, `notes`,
+> `activity`, `exit_ticket`, `homework` (+ keys) `git rm`-ed. Deck of 17 frames: warm-up → four
+> cycles (x²+bx+c with GCF first · grouping · special patterns · **Zero Product Property — the
+> crux**: x² = 5x loses x = 0 when divided; (x−1)(x+2) = 4 is not "each factor = 4") → wrap-up →
+> homework. Anchor x²−2x−3 = (x+1)(x−3) from 2.0–2.1. **Homework: DeltaMath, printed** (user
+> choice) — `homework/` and `homework_key/` are empty prefab slots; **the user drops the exported
+> PDFs in, set name still TODO in the plan.** Build: `make -C unit02/lesson02 all` exits 0; plan
+> 3pp, cover 1p, deck 35 projected pages / 17 handout frames, handout 6pp; no Now-you-try answer in
+> the handout text. **Next:** user reviews 2.2; on approval set `reference_lesson: unit02/lesson02`.
+
+> ## ⚠ Status (2026-09-25) — **COURSE SHAPE CHANGED: SLIDES FIRST.**
 >
 > **User request, 2026-09-25:** "the primary work to be done in the slides — definitions, examples
 > with now you try, and a homework assignment. I want to be prompted each lesson for how the

@@ -1,11 +1,19 @@
 %! Solving Quadratics by Factoring — Unit 2, Lesson 2.2 — Slides (Beamer)
+% SLIDES-FIRST shape (course shape 2026-09-25; this lesson is its pilot). The deck IS the lesson;
+% its printed handout (lesson02_slides.pdf, 3-up with a notes column) is the student's notes.
+%   title → targets → warm-up → 4 × { definition → example → now you try } → wrap-up → homework
+% One anchor runs through it: x^2-2x-3 = (x+1)(x-3), the quadratic of 2.0 and 2.1, now factored by
+% hand. Cycle 4's Now you try is the crux (dividing by x loses x = 0; the product must be ZERO).
+% Answers only inside \reveal{} — the handout is a Beamer handout-mode compile and drops them.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+% Coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
 
 \begin{document}
 
@@ -22,179 +30,316 @@
 \end{frame}
 }
 
-% HOOK — where did the factored form come from?
+% LEARNING TARGETS
 \begin{frame}[t, plain]
-  \forestheader{Where did the factored form come from?}
-  \sectionlabel{Hook}
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item \textbf{Factor} $x^2+bx+c$ by the \textbf{product--sum} search, taking out the
+          \textbf{GCF} first.
+    \item Factor $ax^2+bx+c$ by \textbf{grouping}.
+    \item Recognize a \textbf{difference of squares} and a \textbf{perfect-square trinomial}.
+    \item Solve a quadratic equation with the \textbf{Zero Product Property}, and read its
+          \textbf{roots} as the graph's $x$-intercepts.
+  \end{itemize}
+  \vspace{3pt}
+  \begin{block}{How today runs}
+    Warm-up (5) $\to$ four rounds of definition, example, and \textbf{now you try} (40) $\to$
+    wrap-up (5) $\to$ \textbf{start the homework} (10).
+  \end{block}
+\end{frame}
+
+% WARM-UP — multiply (the move factoring undoes), a product-sum search, and the zeros read from
+% 2.1's factored form. The hold-on block leaves the question cycle 1 answers.
+\begin{frame}[t, plain]
+  \forestheader{Warm-Up}
+  \sectionlabel{5 minutes --- in the notes column, alone}
+  \begin{enumerate}\setlength{\itemsep}{6pt}
+    \item Multiply: $(x+1)(x-3)$. \quad \reveal{\textbf{$x^2-2x-3$}}
+    \item Find two integers whose product is $-12$ and whose sum is $1$.
+          \quad \reveal{\textbf{$4$ and $-3$}}
+    \item Where does $y=(x+1)(x-3)$ cross the $x$-axis? \quad
+          \reveal{\textbf{$x=-1$ and $x=3$} --- each factor is $0$ there.}
+  \end{enumerate}
+  \vspace{4pt}
+  \begin{block}{Hold on to this}
+    Item 1 turned a product into $x^2-2x-3$. If all you are given is $x^2-2x-3$, how do you
+    get the product back?
+  \end{block}
+\end{frame}
+
+% ── CYCLE 1 — FACTORING x^2+bx+c, GCF FIRST ──────────────────────────────────
+\begin{frame}[t, plain]
+  \forestheader{Definition: factoring $x^2+bx+c$}
+  \sectionlabel{Idea 1 --- un-multiplying}
+  \begin{block}{Factoring}
+    To \textbf{factor} a polynomial is to write it as a \emph{product}. Always take out the
+    \textbf{greatest common factor (GCF)} first.
+  \end{block}
+  \vspace{4pt}
+  \begin{block}{The product--sum search}
+    Because $(x+p)(x+q)=x^2+(p+q)x+pq$, factor $x^2+bx+c$ by finding two integers $p$ and $q$
+    with \[ p\cdot q=c \qquad\text{and}\qquad p+q=b. \] Then $x^2+bx+c=(x+p)(x+q)$.
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 1: factor $x^2-2x-3$, then $2x^2-4x-6$}
+  \sectionlabel{Watch --- I do this one}
   \begin{columns}[T]
-    \begin{column}{0.56\textwidth}
-      In 2.1 you were \emph{handed}
-      \[ x^2-2x-3 = (x+1)(x-3) \]
-      and read the zeros $-1,\ 3$ for free.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Today: \textbf{produce} that factored form yourself.
-        \item Then $(x+1)(x-3)=0$ splits into two easy equations.
-        \item The roots are the graph's $x$-intercepts.
-      \end{itemize}
+    \begin{column}{0.48\textwidth}
+      \textbf{(a)} $x^2-2x-3$: product $-3$, sum $-2$.
+      \pause
+      \begin{center}
+      \renewcommand{\arraystretch}{1.15}
+      \begin{tabular}{c|c}
+        pair & sum \\ \hline
+        $1,\,-3$ & $\mathbf{-2}$ \checkmark \\
+        $-1,\,3$ & $2$
+      \end{tabular}
+      \end{center}
+      \pause
+      $x^2-2x-3=(x+1)(x-3)$. \\[3pt]
+      \emph{Check by multiplying:} the warm-up's item 1.
     \end{column}
-    \begin{column}{0.42\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-3}{5}{-5}{3}
-        \begin{scope}\clip (-3,-5) rectangle (5,3);
-          \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x+1)*(\x-3)});
-        \end{scope}
-        \fill[charcoal] (-1,0) circle (3.5pt) node[above left, font=\tiny]{$-1$};
-        \fill[charcoal] (3,0) circle (3.5pt) node[above right, font=\tiny]{$3$};
-        \fill[charcoal] (1,-4) circle (3.5pt);
-      \end{tikzpicture}
+    \pause
+    \begin{column}{0.48\textwidth}
+      \textbf{(b)} $2x^2-4x-6$: every term has a $2$.
+      \[ 2x^2-4x-6=2\,(x^2-2x-3) \]
+      \pause
+      \[ =2\,(x+1)(x-3). \]
+      \emph{GCF first} --- then the trinomial left inside is the one we just factored.
     \end{column}
   \end{columns}
 \end{frame}
 
-% ZERO PRODUCT PROPERTY
 \begin{frame}[t, plain]
-  \forestheader{The Zero Product Property}
-  \sectionlabel[goldacc]{The engine}
-  \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      \begin{block}{Key idea}
-        If $A\cdot B = 0$, then $A=0$ \textbf{or} $B=0$.
-      \end{block}
-      Solve $(x+1)(x-3)=0$:
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $x+1=0 \Rightarrow x=-1$
-        \item $x-3=0 \Rightarrow x=3$
-      \end{itemize}
-      \vspace{4pt}
-      \textbf{Precondition:} one side must be $0$. \\
-      $(x+1)(x-3)=5$ does \emph{not} give $x+1=5$.
-    \end{column}
-    \begin{column}{0.45\textwidth}
-      \centering
-      One hard quadratic equation \\[2pt] $\Downarrow$ \\[2pt]
-      \textbf{two easy linear equations.}
-      \vspace{0.6cm}
-      \begin{block}{Move to one side first}
-        Always rewrite as $\;ax^2+bx+c=0\;$ before factoring.
-      \end{block}
-    \end{column}
-  \end{columns}
+  \forestheader{Now you try}
+  \sectionlabel[goldacc]{In the notes column --- then check}
+  Factor completely.
+  \begin{enumerate}\setlength{\itemsep}{4pt}
+    \item $x^2+5x-14$
+    \item $3x^2+3x-18$
+  \end{enumerate}
+  \vspace{6pt}
+  \reveal{%
+    \begin{block}{Check}
+      1.\ Product $-14$, sum $5$: $7$ and $-2$. \quad $(x+7)(x-2)$ \\[2pt]
+      2.\ GCF $3$ first: $3(x^2+x-6)$; product $-6$, sum $1$: $3$ and $-2$. \quad
+      $3(x+3)(x-2)$
+    \end{block}}
 \end{frame}
 
-% FACTOR x^2 + bx + c
+% ── CYCLE 2 — ax^2+bx+c BY GROUPING ──────────────────────────────────────────
 \begin{frame}[t, plain]
-  \forestheader{Factor $x^2+bx+c$: un-FOIL}
-  \sectionlabel{Product \& sum}
+  \forestheader{Definition: factoring $ax^2+bx+c$ by grouping}
+  \sectionlabel{Idea 2 --- when $a\ne1$}
+  \begin{block}{Grouping (the $a\cdot c$ method)}
+    To factor $ax^2+bx+c$ with $a\ne1$ (after any GCF):
+    \begin{enumerate}\setlength{\itemsep}{2pt}
+      \item Find two integers whose product is $\mathbf{a\cdot c}$ and whose sum is $\mathbf{b}$.
+      \item Use them to \textbf{split} the middle term $bx$ into two terms.
+      \item \textbf{Group} the four terms in pairs, take the GCF out of each pair, and take out
+            the common binomial.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 2: factor $2x^2+5x-3$}
+  \sectionlabel{Watch --- I do this one}
+  $a\cdot c=2(-3)=-6$, \; $b=5$: \; the pair is $6$ and $-1$ \;($6\cdot(-1)=-6$, $6+(-1)=5$).
+  \pause
+  \[
+  \begin{aligned}
+    2x^2+5x-3 &= 2x^2+6x-x-3 && \text{split } 5x \text{ as } 6x-x \\
+              &= 2x(x+3)-1(x+3) && \text{GCF of each pair} \\
+              &= (2x-1)(x+3)    && \text{take out } (x+3)
+  \end{aligned}
+  \]
+  \pause
+  \emph{Check:} $(2x-1)(x+3)=2x^2+6x-x-3=2x^2+5x-3$ \checkmark
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Now you try}
+  \sectionlabel[goldacc]{In the notes column --- then check}
+  Factor by grouping: \quad $3x^2-10x+8$
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Check}
+      $a\cdot c=24$, sum $-10$: $-6$ and $-4$. \\[2pt]
+      $3x^2-6x-4x+8=3x(x-2)-4(x-2)=(3x-4)(x-2)$ \\[2pt]
+      \emph{Watch the sign:} the second pair is $-4x+8$, so its GCF is $-4$, not $4$ ---
+      that is what makes both brackets $(x-2)$.
+    \end{block}}
+\end{frame}
+
+% ── CYCLE 3 — SPECIAL PATTERNS ──────────────────────────────────────────────
+\begin{frame}[t, plain]
+  \forestheader{Definition: two special patterns}
+  \sectionlabel{Idea 3 --- factor on sight}
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      $(x+p)(x+q)=x^2+(p+q)x+pq$, so find two integers with
-      \[ \text{product}=c, \qquad \text{sum}=b. \]
-      \textbf{Factor $x^2-2x-3$:} product $-3$, sum $-2 \Rightarrow +1,\,-3$
-      \[ x^2-2x-3=(x+1)(x-3). \]
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Sign rules}
-        \begin{itemize}\setlength{\itemsep}{3pt}
-          \item $c>0$: same sign (match $b$)
-          \item $c<0$: opposite signs
-        \end{itemize}
+    \begin{column}{0.58\textwidth}
+      \begin{block}{Difference of squares}
+        \[ a^2-b^2=(a+b)(a-b) \]
       \end{block}
       \vspace{2pt}
-      Your turn: $x^2+7x+12=(x+3)(x+4)$.
+      \begin{block}{Perfect-square trinomial}
+        \[ a^2+2ab+b^2=(a+b)^2 \qquad a^2-2ab+b^2=(a-b)^2 \]
+      \end{block}
+      \vspace{2pt}
+      {\small A \emph{sum} of squares, $a^2+b^2$, does \textbf{not} factor over the integers.}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-1}{7}{-2}{6}
+        \begin{scope}\clip (-1,-2) rectangle (7,6);
+          \draw[very thick, forest, domain=0.4:5.6, samples=60, smooth]
+            plot (\x,{(\x-3)*(\x-3)});
+        \end{scope}
+        \fill[redacc] (3,0) circle (4pt) node[below, font=\tiny, charcoal]{$3$};
+      \end{tikzpicture}\\[-2pt]
+      {\scriptsize $y=x^2-6x+9=(x-3)^2$ \emph{touches} the axis once: \\ a \textbf{double root}.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% GCF + the trap
 \begin{frame}[t, plain]
-  \forestheader{GCF first --- and the \#1 trap}
-  \sectionlabel[redacc]{Don't divide by $x$}
+  \forestheader{Example 3: three on sight}
+  \sectionlabel{Watch --- I do this one}
+  \begin{itemize}\setlength{\itemsep}{8pt}
+    \item $x^2-25$: \; $x^2-5^2$, a difference of squares. \pause \; $=(x+5)(x-5)$
+    \pause
+    \item $4x^2-9$: \; $(2x)^2-3^2$. \pause \; $=(2x+3)(2x-3)$
+    \pause
+    \item $x^2-6x+9$: \; first and last are squares ($x^2$, $3^2$), and the middle is
+          $-2\cdot x\cdot3$. \pause \; $=(x-3)^2$
+  \end{itemize}
+  \pause
+  \vspace{4pt}
+  \emph{Always test:} are the first and last terms perfect squares? Then look at the middle.
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Now you try}
+  \sectionlabel[goldacc]{In the notes column --- then check}
+  Factor completely, or say it does not factor.
+  \begin{enumerate}\setlength{\itemsep}{4pt}
+    \item $9x^2-16$ \qquad 2.\ $x^2+10x+25$ \qquad 3.\ $x^2+16$
+  \end{enumerate}
+  \vspace{6pt}
+  \reveal{%
+    \begin{block}{Check}
+      1.\ $(3x)^2-4^2=(3x+4)(3x-4)$ \\[2pt]
+      2.\ $x^2+2\cdot5\cdot x+5^2=(x+5)^2$ \\[2pt]
+      3.\ A \emph{sum} of squares --- \textbf{does not factor}. (No two integers have product
+      $16$ and sum $0$.)
+    \end{block}}
+\end{frame}
+
+% ── CYCLE 4 — ZERO PRODUCT PROPERTY (the crux) ──────────────────────────────
+\begin{frame}[t, plain]
+  \forestheader{Definition: the Zero Product Property}
+  \sectionlabel{Idea 4 --- from factoring to solving}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      Always pull the GCF before anything else:
-      \[ 2x^2-8x = 2x(x-4). \]
-      Solve $2x^2-8x=0$: $\ 2x(x-4)=0 \Rightarrow x=0,\ 4$.
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \begin{block}{The trap}
-        To solve $3x^2=12x$, do \textbf{not} divide by $x$ --- you lose $x=0$.
-        \[ 3x^2-12x=0 \Rightarrow 3x(x-4)=0 \]
-        \[ x=0 \ \text{ or } \ x=4. \]
+    \begin{column}{0.58\textwidth}
+      \begin{block}{Zero Product Property}
+        If $A\cdot B=0$, then $A=0$ or $B=0$.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Solving by factoring}
+        \begin{enumerate}\setlength{\itemsep}{1pt}
+          \item Move every term to one side: $\;\ldots=0$.
+          \item Factor completely.
+          \item Set each factor equal to $0$ and solve.
+        \end{enumerate}
+        The solutions are the \textbf{roots}; on the graph of $y=ax^2+bx+c$ they are the
+        $x$-intercepts (the \textbf{zeros}).
       \end{block}
     \end{column}
-  \end{columns}
-\end{frame}
-
-% Special patterns + a != 1
-\begin{frame}[t, plain]
-  \forestheader{Special patterns \& $a\ne1$}
-  \sectionlabel{Recognize \& group}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \textbf{Difference of squares}
-      \[ x^2-16=(x-4)(x+4),\quad x=\pm4. \]
-      \textbf{Perfect-square trinomial}
-      \[ x^2-6x+9=(x-3)^2,\quad x=3 \ \text{(double)}. \]
-      \footnotesize A double root means the vertex sits \emph{on} the $x$-axis --- the graph touches, not crosses.
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \textbf{Grouping ($a\ne1$): $2x^2+7x+3$}
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item $a\!\cdot\!c=6$; two ints: $6,\,1$
-        \item split: $2x^2+6x+x+3$
-        \item group: $2x(x+3)+1(x+3)$
-        \item $(2x+1)(x+3)$, \ $x=-\tfrac12,\,-3$
-      \end{itemize}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% Solve + graph connection
-\begin{frame}[t, plain]
-  \forestheader{Roots are the $x$-intercepts}
-  \sectionlabel[goldacc]{Solve \& verify}
-  \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      Solve $x^2-x-6=0$:
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item product $-6$, sum $-1 \Rightarrow -3,\,+2$
-        \item $(x-3)(x+2)=0$
-        \item $x=3$ or $x=-2$
-      \end{itemize}
-      \vspace{3pt}
-      Check: both satisfy the equation --- and they are exactly where the parabola crosses the axis.
-    \end{column}
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.38\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-4}{5}{-7}{3}
-        \begin{scope}\clip (-4,-7) rectangle (5,3);
-          \draw[very thick, forest, domain=-2.3:3.3, samples=80, smooth] plot (\x,{(\x)*(\x) - (\x) - 6});
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-3}{5}{-5}{3}
+        \begin{scope}\clip (-3,-5) rectangle (5,3);
+          \draw[very thick, forest, domain=-1.5:3.5, samples=70, smooth]
+            plot (\x,{(\x+1)*(\x-3)});
         \end{scope}
-        \fill[charcoal] (-2,0) circle (3.5pt) node[above left, font=\tiny]{$-2$};
-        \fill[charcoal] (3,0) circle (3.5pt) node[above right, font=\tiny]{$3$};
-        \fill[charcoal] (0.5,-6.25) circle (3.5pt);
-      \end{tikzpicture}
+        \fill[redacc] (-1,0) circle (4pt) node[above left, font=\tiny, charcoal]{$-1$};
+        \fill[redacc] (3,0) circle (4pt) node[above right, font=\tiny, charcoal]{$3$};
+      \end{tikzpicture}\\[-2pt]
+      {\scriptsize $y=x^2-2x-3$: zeros $-1$ and $3$.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% ROADMAP
 \begin{frame}[t, plain]
-  \forestheader{The factor-and-solve routine}
-  \sectionlabel{Summary}
+  \forestheader{Example 4: solve $x^2=2x+3$}
+  \sectionlabel{Watch --- I do this one}
+  \[
+  \begin{aligned}
+    x^2 &= 2x+3 \\
+    x^2-2x-3 &= 0            && \text{everything on one side} \\
+    (x+1)(x-3) &= 0          && \text{factor (cycle 1)} \\
+    x+1=0 \quad\text{or}\quad x-3 &= 0 && \text{Zero Product Property} \\
+    x=-1 \quad\text{or}\quad x &= 3
+  \end{aligned}
+  \]
+  \pause
+  \emph{Check:} $(-1)^2=1=2(-1)+3$ \checkmark \quad $3^2=9=2(3)+3$ \checkmark \quad --- and these
+  are the graph's $x$-intercepts.
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Now you try}
+  \sectionlabel[redacc]{The one that matters --- in the notes column, then check}
+  Solve.
   \begin{enumerate}\setlength{\itemsep}{4pt}
-    \item Set the equation $=0$.
-    \item Factor out the GCF.
-    \item Factor completely (product/sum, grouping, or special pattern).
-    \item Set each factor $=0$ and solve.
-    \item Verify: the roots are the parabola's $x$-intercepts.
+    \item $x^2=5x$ \qquad\qquad 2.\ $(x-1)(x+2)=4$
   \end{enumerate}
-  \vspace{2pt}
-  \begin{block}{Next}
-    \textbf{2.3 Square roots \& completing the square} --- for quadratics that \emph{don't} factor over the integers.
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      1.\ $x^2-5x=0 \Rightarrow x(x-5)=0 \Rightarrow x=0$ or $x=5$. \;
+      \emph{Dividing both sides by $x$ gives only $x=5$ --- it throws away $x=0$.} \\[3pt]
+      2.\ The product is $4$, not $0$ --- so ``$x-1=4$ or $x+2=4$'' is wrong. Multiply out:
+      $x^2+x-2=4 \Rightarrow x^2+x-6=0 \Rightarrow (x+3)(x-2)=0 \Rightarrow x=-3$ or $x=2$.
+    \end{block}}
+\end{frame}
+
+% WRAP-UP — the same content as the cover's Keep in Mind.
+\begin{frame}[t, plain]
+  \forestheader{Wrap-up: what to keep}
+  \sectionlabel{5 minutes}
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item \textbf{Factor} = write as a product. \textbf{GCF first}, always.
+    \item $x^2+bx+c$: two integers with product $c$, sum $b$. \quad $ax^2+bx+c$: product
+          $a\cdot c$, sum $b$, then \textbf{group}.
+    \item $a^2-b^2=(a+b)(a-b)$; \; $a^2\pm2ab+b^2=(a\pm b)^2$; \; $a^2+b^2$ does not factor.
+    \item \textbf{Zero Product Property:} $AB=0 \Rightarrow A=0$ or $B=0$. The roots are the
+          $x$-intercepts.
+  \end{itemize}
+  \vspace{3pt}
+  \begin{block}{Watch out}
+    The property is about \textbf{zero}. Get everything on one side $=0$ \emph{before} you factor
+    --- and never divide both sides by $x$: that loses the root $x=0$.
   \end{block}
+\end{frame}
+
+% HOMEWORK — source: DeltaMath, printed (user choice for 2.2, 2026-09-25).
+\begin{frame}[t, plain]
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  \begin{block}{Homework --- scored, due the first class after two study halls}
+    The \textbf{DeltaMath} pages in your packet: factoring and solving by factoring. Start the
+    first problem now; the rest is due the first class after two study halls. I will announce
+    the date in class and on TurtleNet.
+  \end{block}
+  \vspace{6pt}
+  \textbf{Next:} Lesson 2.3 --- when a quadratic will not factor, solve it with square roots
+  and by completing the square.
 \end{frame}
 
 \end{document}
