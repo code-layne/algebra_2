@@ -1,4 +1,8 @@
 %! Solving Quadratics by Factoring — Unit 2, Lesson 2.2 — Lesson Plan
+% SLIDES-FIRST plan (course shape 2026-09-25; 2.2 is the pilot): the deck carries the lesson —
+% warm-up, four cycles of definition → worked example → Now you try, a wrap-up, and the homework
+% (a printed DeltaMath set) started in class. Students take notes on the printed slide handout.
+% Teacher-facing; never handed out.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -18,22 +22,23 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can \emph{produce} the factored form of a quadratic and use it to
-    solve. They factor a quadratic completely --- pulling out a \emph{GCF}, factoring $x^2+bx+c$ by finding
-    two integers with the right product and sum, factoring $ax^2+bx+c$ by grouping, and recognizing the
-    \emph{difference of squares} and \emph{perfect-square trinomial} patterns --- then apply the
-    \emph{Zero Product Property} to solve $ax^2+bx+c=0$. They connect the solutions (the \emph{roots}) to
-    the parabola's \emph{$x$-intercepts / zeros}: where Lesson~2.1 \emph{read} the zeros off a given
-    factored form, Lesson~2.2 lets them \emph{find} that form by hand and read the zeros from any
-    factorable standard-form quadratic.
+    \textbf{Primary Objective:} Students \emph{produce} the factored form of a quadratic --- GCF
+    first, $x^2+bx+c$ by the product--sum search, $ax^2+bx+c$ by grouping, and the
+    difference-of-squares and perfect-square patterns --- and use the Zero Product Property to
+    solve $ax^2+bx+c=0$, reading the roots as the graph's $x$-intercepts. Lesson~2.1
+    \emph{read} zeros off a given factored form; 2.2 \emph{finds} that form.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3b} (factor polynomials completely in one and two
-    variables over the integers) and \textbf{A2.EO.3d} (recognize and use the difference-of-squares and
-    perfect-square-trinomial identities); \textbf{A2.EI.2b} (solve a quadratic equation in one variable
-    algebraically --- here, the factoring method, restricted to real, factor-over-integers cases;
-    square-root/completing-the-square follow in 2.3 and complex roots in 2.4--2.5), \textbf{A2.EI.2a}
-    (create a quadratic equation to model a context), and \textbf{A2.EI.2d} (verify solutions graphically
-    and interpret them --- the roots are the parabola's $x$-intercepts).
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3b} (factor completely over the integers),
+    \textbf{A2.EO.3d} (difference of squares, perfect-square trinomials), \textbf{A2.EI.2b}
+    (solve a quadratic equation algebraically --- here by factoring; real, factorable cases
+    only), \textbf{A2.EI.2d} (verify solutions graphically: the roots are the $x$-intercepts).
+    \\[2pt]
+    \textbf{Lesson model:} \emph{Slides first.} The deck is the lesson and its printed handout is
+    the student's notes. A warm-up on the slides; then, for each of four ideas, a
+    \textbf{definition}, a \textbf{worked example} (I do), and a \textbf{Now you try} worked
+    alone in the handout's notes column before the answer is revealed on a click; a short
+    wrap-up; and the homework started in class. \textbf{Homework source:} DeltaMath, printed ---
+    the exported set is dropped into the packet as \texttt{homework/main.pdf}.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -43,203 +48,145 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Always factor out the \textbf{GCF} first, then factor what remains completely.
-  \item Factor $x^2+bx+c$: find two integers whose \textbf{product is $c$} and \textbf{sum is $b$}.
-  \item Factor $ax^2+bx+c$ ($a\ne1$) by \textbf{grouping} (the $a\!\cdot\!c$ method).
-  \item Recognize \textbf{difference of squares} $x^2-k^2$ and \textbf{perfect-square trinomials}.
-  \item Solve by the \textbf{Zero Product Property}: set $=0$, factor, set each factor to $0$.
-  \item Connect the \textbf{roots} to the parabola's \textbf{$x$-intercepts / zeros}.
+  \item Take out the \textbf{GCF} first, then factor what remains completely.
+  \item Factor $x^2+bx+c$: two integers with \textbf{product $c$} and \textbf{sum $b$}.
+  \item Factor $ax^2+bx+c$ by \textbf{grouping} (product $a\cdot c$, sum $b$).
+  \item Factor $a^2-b^2$ and $a^2\pm2ab+b^2$ on sight; know $a^2+b^2$ does not factor.
+  \item Solve by the \textbf{Zero Product Property}: $=0$, factor, each factor $=0$.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Factoring is \emph{un-multiplying}: it reverses the FOIL that built the trinomial.
-  \item The product/sum search works because $(x+p)(x+q)=x^2+(p+q)x+pq$.
-  \item A product equals zero \emph{only} when a factor is zero --- that is what turns a factored equation into simple linear ones.
-  \item You must move everything to one side (\,$=0$) \emph{before} the Zero Product Property applies --- it is a fact about zero, not any number.
-  \item The roots are exactly where the graph crosses the $x$-axis, tying algebra back to the picture from 2.0--2.1.
+  \item Factoring \emph{un-multiplies}: $(x+p)(x+q)=x^2+(p+q)x+pq$ is why the search works.
+  \item A product is zero \emph{only} when a factor is zero --- the step that turns one
+        quadratic into two linear equations.
+  \item \textbf{Target misconception: the property is about zero.} Students divide both sides
+        of $x^2=5x$ by $x$ (losing $x=0$), or set each factor of $(x-1)(x+2)=4$ equal to $4$.
+        Both skip ``get it equal to zero first.''
+  \item The roots are the $x$-intercepts --- the algebra lands on the 2.0--2.1 picture.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
-\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems --- one definition frame each}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Factoring} & Writing a polynomial as a product of factors --- the reverse of multiplying/expanding. \\
-\textbf{GCF} & Greatest common factor; the largest monomial dividing every term, factored out first. \\
-\textbf{Zero Product Property} & If $AB=0$, then $A=0$ or $B=0$ (or both). The engine of solving by factoring. \\
-\textbf{Roots / zeros / solutions} & Three names for the $x$-values that make $f(x)=0$ --- the parabola's $x$-intercepts. \\
-\textbf{Difference of squares} & $x^2-k^2=(x-k)(x+k)$. \\
-\textbf{Perfect-square trinomial} & $x^2\pm2kx+k^2=(x\pm k)^2$; factoring it gives one repeated (double) root. \\
-\textbf{Double root} & A root that occurs twice; the parabola \emph{touches} the $x$-axis there (vertex on the axis). \\
+\textbf{Factor} & Write a polynomial as a product. Take out the \textbf{greatest common factor
+                  (GCF)} first. \\
+\textbf{Product--sum search} & $x^2+bx+c=(x+p)(x+q)$ where $pq=c$ and $p+q=b$. \\
+\textbf{Grouping} & For $ax^2+bx+c$: two integers with product $ac$ and sum $b$ split $bx$; group
+                    in pairs; take out the common binomial. \\
+\textbf{Difference of squares} & $a^2-b^2=(a+b)(a-b)$. (A \emph{sum} of squares does not
+                                 factor over the integers.) \\
+\textbf{Perfect-square trinomial} & $a^2+2ab+b^2=(a+b)^2$, \; $a^2-2ab+b^2=(a-b)^2$; its graph
+                                    touches the axis once --- a \textbf{double root}. \\
+\textbf{Zero Product Property} & If $AB=0$, then $A=0$ or $B=0$. \\
+\textbf{Roots / zeros} & The solutions of $ax^2+bx+c=0$; the $x$-intercepts of
+                         $y=ax^2+bx+c$. \\
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses exactly what factoring needs: \textbf{(1)} \emph{multiplying} binomials with FOIL
-    (the operation factoring will reverse); \textbf{(2)} the number game at the heart of it --- finding two
-    integers with a given \emph{product} and \emph{sum}, including the sign cases; and \textbf{(3)} reading
-    a parabola's \emph{$x$-intercepts} off a pre-drawn graph and solving the trivial linear equations
-    $x+p=0$, so the Zero Product Property lands as ``two easy equations.'' Debrief item~1 next to item~2:
-    factoring is item~1 run backward.
+\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
+\hline
+Warm-Up & 5 & Multiply $(x+1)(x-3)$; a product--sum pair; read two zeros --- in the notes column & Reveal the answers; land ``how do we get the product back?'' \\
+Lesson & 40 & Four rounds: read the definition, watch the example, then \emph{Now you try} alone before the reveal & Four cycles of $\sim$10 min: factoring $x^2+bx+c$, grouping, special patterns, Zero Product Property; circulate during each try \\
+Wrap-up & 5 & Read back the four ideas; the caution & The wrap-up frame; say the ``about zero'' caution aloud \\
+Homework & 10 & Start the DeltaMath pages alone & Launch problem~1, then circulate \\
+\end{tabularx}
 \end{fixedskillbox}
 
-\begin{skillbox}[Hook]{forestbg}
-    Put the unit's anchor parabola back on the board:
-    \[ f(x)=x^2-2x-3. \]
-    In Lesson~2.1 you were \emph{handed} its factored form $f(x)=(x+1)(x-3)$ and read the zeros $-1$ and
-    $3$ for free. Ask: \textbf{where did that factored form come from?} Today we manufacture it. Once we
-    have $(x+1)(x-3)$, finding where the graph crosses the $x$-axis is a two-line problem: a product is
-    zero only when one of its pieces is zero, so $x+1=0$ or $x-3=0$. Land the theme: \emph{factoring turns
-    one hard quadratic equation into two easy linear ones --- and hands us the $x$-intercepts by hand.}
+\begin{skillbox}[Warm-Up (5 min, on the slides)]{forestbg}
+Three items, answers revealed one click each. \textbf{(1)} Multiply $(x+1)(x-3)=x^2-2x-3$ ---
+the move today undoes. \textbf{(2)} Product $-12$, sum $1$: $4$ and $-3$ --- a dry run of the
+search. \textbf{(3)} $y=(x+1)(x-3)$ crosses at $-1$ and $3$ (2.1). Close on the \emph{Hold on to
+this} block: given only $x^2-2x-3$, how do you get the product back? That is cycle~1.
 \end{skillbox}
 
-\begin{skillbox}[Lesson]{forestbg}
+\begin{skillbox}[The Lesson --- definition, example, now you try (40 min)]{forestbg}
 \begin{multicols}{2}
-\textbf{1. The Zero Product Property.} Start with the idea, not the algebra: if two numbers multiply to
-$0$, at least one \emph{is} $0$ --- nothing else works. So $(x+1)(x-3)=0$ splits into $x+1=0$ or
-$x-3=0$, giving $x=-1$ or $x=3$. Show those are the $x$-intercepts of the anchor parabola. Stress the
-precondition: the product must equal \emph{zero}, so everything moves to one side first.
+\textbf{Cycle 1 --- factoring $x^2+bx+c$, GCF first (10 min).} Definition: factoring is
+un-multiplying; the identity $(x+p)(x+q)=x^2+(p+q)x+pq$ is \emph{why} product $c$ / sum $b$ works
+--- point at it. Example: $x^2-2x-3$ with the pair table (the warm-up's product comes back), then
+$2x^2-4x-6=2(x+1)(x-3)$. Now you try: \textbf{(1)} $x^2+5x-14=(x+7)(x-2)$; \textbf{(2)}
+$3x^2+3x-18=3(x+3)(x-2)$. Give 3 minutes. Look for students who skip the GCF in (2) and stall on
+a product of $-18$ --- it factors that way too, $(3x+9)(x-2)$, but not \emph{completely}.
 
-\textbf{2. Factor $x^2+bx+c$.} Un-FOIL: since $(x+p)(x+q)=x^2+(p+q)x+pq$, we need two integers whose
-\emph{product} is $c$ and \emph{sum} is $b$. Work $x^2-2x-3$: product $-3$, sum $-2$ $\Rightarrow$ $+1$
-and $-3$, so $(x+1)(x-3)$ --- the anchor, produced by hand. Drill the sign logic: product negative
-$\Rightarrow$ opposite signs; product positive $\Rightarrow$ same sign as $b$.
-
-\textbf{3. GCF first.} Before anything, pull out the greatest common factor: $2x^2-8x=2x(x-4)$, and
-solving $2x^2-8x=0$ gives $x=0$ or $x=4$. Use this to flag the \#1 error --- \emph{never divide both
-sides by $x$}; that silently deletes the root $x=0$.
+\textbf{Cycle 2 --- grouping (10 min).} Definition: the three steps. Example: $2x^2+5x-3$,
+$ac=-6$, pair $6,-1$, $2x(x+3)-1(x+3)=(2x-1)(x+3)$, checked by multiplying. Now you try:
+$3x^2-10x+8$, pair $-6,-4$, $3x(x-2)-4(x-2)=(3x-4)(x-2)$. The slip is the second group's sign:
+students take out $+4$ and get $(x-2)$ and $(-x+2)$ --- ``the brackets must match; if they are
+opposites, change the sign of the GCF.''
 
 \columnbreak
+\textbf{Cycle 3 --- special patterns (8 min).} Definition: $a^2-b^2$ and $a^2\pm2ab+b^2$, with the
+tangent parabola $(x-3)^2$ --- a double root, the graph touches rather than crosses. Example:
+$x^2-25$, $4x^2-9$, $x^2-6x+9$. Now you try: $9x^2-16=(3x+4)(3x-4)$; $x^2+10x+25=(x+5)^2$;
+$x^2+16$ \emph{does not factor}. Expect $(x+4)(x-4)$ or $(x+4)^2$ for the third --- multiply either
+out to kill it.
 
-\textbf{4. Factor $ax^2+bx+c$ ($a\ne1$) by grouping.} The $a\!\cdot\!c$ method: for $2x^2+7x+3$,
-$a\!\cdot\!c=6$; find two numbers with product $6$, sum $7$ ($6$ and $1$); split the middle term
-$2x^2+6x+x+3$; group $2x(x+3)+1(x+3)=(2x+1)(x+3)$. Roots $x=-\tfrac12,\,-3$.
-
-\textbf{5. Special patterns.} \emph{Difference of squares} $x^2-16=(x-4)(x+4)$ (roots $\pm4$);
-\emph{perfect-square trinomial} $x^2-6x+9=(x-3)^2$ (one \textbf{double root} $x=3$). Tie the double root
-to the graph: the parabola's vertex sits \emph{on} the $x$-axis, so it touches rather than crosses.
-
-\textbf{6. Solve and verify.} The full routine: (i) set $=0$, (ii) factor completely, (iii) apply the
-Zero Product Property, (iv) solve each linear piece, (v) check the roots are the graph's $x$-intercepts.
-Preview: Lesson~2.3 handles the quadratics that \emph{won't} factor over the integers --- square roots
-and completing the square.
+\textbf{Cycle 4 --- the Zero Product Property: the crux (12 min).} Definition: $AB=0\Rightarrow
+A=0$ or $B=0$; the three-step solve; the graph of $x^2-2x-3$ with its zeros. Example:
+$x^2=2x+3\to x^2-2x-3=0\to x=-1,\,3$, checked, and matched to the graph. Now you try:
+\textbf{(1)} $x^2=5x$ --- \emph{watch for division by $x$}; the answer is $x=0$ or $x=5$.
+\textbf{(2)} $(x-1)(x+2)=4$ --- \emph{watch for ``$x=5$ or $x=2$''}; the answer is $x=-3$ or
+$x=2$. Give 4 minutes; before revealing, ask a student with $x=5$ only and one with $x=0,5$ to
+say how they got there. This is the one frame not to rush.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Explicit Instruction: The Factor-and-Solve Routine]{forestbg}
-\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
-\textbf{Steps (post and refer back):}
-\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
-  \item Write the equation with $0$ on one side.
-  \item Factor out the GCF.
-  \item Factor what remains completely (product/sum, grouping, or a special pattern).
-  \item Set \emph{each} factor equal to $0$.
-  \item Solve the linear equations; list all roots.
-  \item Verify: substitute back, or check the roots are the $x$-intercepts.
-\end{enumerate}
-&
-\textbf{Worked example.} Solve $x^2-x-6=0$.
-\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
-  \item Already $=0$; no GCF.
-  \item Product $-6$, sum $-1$ $\Rightarrow$ $-3,\,+2$: $(x-3)(x+2)=0$.
-  \item $x-3=0$ or $x+2=0$.
-  \item $x=3$ or $x=-2$.
-  \item Check: $3^2-3-6=0$ \checkmark; $(-2)^2-(-2)-6=0$ \checkmark. These are the $x$-intercepts.
-\end{itemize}
-\end{tabularx}
+\boxguard
+\begin{skillbox}[Wrap-up (5 min)]{forestbg}
+Read the four bullets of the wrap-up frame back with the class, then say the caution aloud:
+\emph{the property is about zero --- get everything on one side equal to $0$ before you factor,
+and never divide by $x$.} Ask for a quick thumbs: ``$(x-2)(x+5)=6$ --- can I set $x-2=6$?''
+(No.)
 \end{skillbox}
 
-\begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
+\boxguard
+\begin{skillbox}[Homework --- scored, started in class, due the first class after two study halls]{goldbox}
+\textbf{Source: DeltaMath, printed.} Export the set as a PDF into
+\texttt{unit02/lesson02/homework/main.pdf} (and its key into \texttt{homework\_key/main.pdf}),
+then rebuild the packet. Build the set to cover, in order: GCF + $x^2+bx+c$; $ax^2+bx+c$;
+difference of squares and perfect squares; solving by factoring, including at least one
+$x^2=kx$ and one equation not already set to zero. \textbf{Set name:} TODO. \textbf{Formative
+check:} use the $x^2=kx$ problem --- sort into \emph{both roots} / \emph{lost $x=0$ (divided by
+$x$)} / \emph{other}; if the middle pile is large, open 2.3 by re-solving it. \textbf{Preview:}
+2.3 --- when a quadratic will not factor, square roots and completing the square.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Active Monitoring --- Watch For]{redbox}
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{dividing by $x$}: solving $3x^2=12x$ by cancelling an $x$ and losing the root $x=0$ --- always move to one side and factor;
-  \item applying the Zero Product Property when the equation is \emph{not} set to zero (e.g.\ $(x-2)(x-5)=4$ does \emph{not} give $x-2=4$);
-  \item \textbf{sign errors} in the product/sum search --- forgetting that a negative $c$ forces opposite signs;
-  \item skipping the \textbf{GCF}, then being unable to factor what remains;
-  \item forgetting the \textbf{double root} counts once as a value but touches the axis (perfect-square case).
+  \item \textbf{NYT 1.2:} factoring $3x^2+3x-18$ without the GCF --- not \emph{completely}
+        factored.
+  \item \textbf{NYT 2:} the second group's sign in grouping; brackets that do not match.
+  \item \textbf{NYT 3.3:} $x^2+16=(x+4)(x-4)$ --- multiply it out.
+  \item \textbf{NYT 4.1:} dividing by $x$ and reporting only $x=5$ (\emph{the target
+        misconception}).
+  \item \textbf{NYT 4.2:} setting each factor equal to $4$.
 \end{itemize}
-Cold-call prompts: ``Why can we split $(x+1)(x-3)=0$ into two equations --- but not $(x+1)(x-3)=5$?''
-``Two integers multiply to $-12$ and add to $1$; what are they?'' ``Where are the roots on the graph?''
+Cold-call prompts: ``How do you know that is factored \emph{completely}?'' \; ``What number does
+the Zero Product Property need on the right?'' \; ``Where is that root on the graph?''
 \end{skillbox}
 
-\begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Zeros Factory} activity (tiered; mirrors the notes).
-\begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Solve \emph{already-factored} equations with the Zero Product Property,
-factor simple $x^2+bx+c$, and match each to the pre-drawn parabola whose $x$-intercepts it names.
-
-\columnbreak
-\textbf{Tier A --- Approaching.} Factor and solve a mix ($x^2+bx+c$ and GCF cases), complete a
-\emph{equation $\to$ factored $\to$ roots} table, and confirm the roots against a labeled graph.
-
-\columnbreak
-\textbf{Tier E --- Extension.} Factor $ax^2+bx+c$ by grouping, use the difference-of-squares and
-perfect-square patterns (spotting a double root), and \emph{model}: write and solve a quadratic for a
-projectile/area context.
-\end{multicols}
-\end{skillbox}
-
-\begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): solve $x^2+2x-8=0$ by factoring and state the two zeros;
-solve $3x^2-12x=0$ (GCF --- watch the $x=0$ root) and say which points are the graph's $x$-intercepts;
-and an \textbf{SOL-style multiple-choice} item that turns on the sign flip between roots and factors
-(zeros $-3,4 \Rightarrow (x+3)(x-4)$). Collect and sort into ``got it / GCF slip (lost $x=0$) /
-sign-flip slip / Zero-Product-without-zero slip'' to decide whether Lesson~2.3 opens with a re-teach.
-\end{skillbox}
-
-\begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} multiply then factor (see the reverse), factor across all cases (GCF, $x^2+bx+c$,
-$a\ne1$, difference of squares, perfect square), solve by factoring, and match roots to a pre-drawn
-graph. \textbf{Extension:} a garden-border \emph{area} model --- write a quadratic, solve by factoring,
-and reject the impossible (negative) root in context. \textbf{Preview:} Lesson~2.3, \emph{Solving by
-Square Roots \& Completing the Square} --- what to do when a quadratic will not factor over the integers.
-\end{skillbox}
-% ── Teacher notes (migrated from the component keys) ──
-% One per component, titled for it. They live here rather than in the _key
-% files so that every component is the same length blank and keyed.
-
-\begin{teachernote}[Warm-Up]
-Item~1 is FOIL --- the operation today's factoring reverses; keep $(2x-1)(x+3)=2x^2+5x-3$ visible for the
-$a\ne1$ grouping section. Item~2 is the product/sum search that drives factoring $x^2+bx+c$; the third
-column ($-4,3$) is the sign-trap case (negative product $\Rightarrow$ opposite signs, and the larger
-magnitude carries the sum's sign). Item~3 is the whole lesson in miniature: the $x$-intercepts of
-$(x+3)(x-1)$ are exactly the solutions of $x+3=0$ and $x-1=0$ --- the Zero Product Property, previewed
-graphically.
-\end{teachernote}
-
-\begin{teachernote}[Guided Notes]
-The spine is the anchor $x^2-2x-3=(x+1)(x-3)$, now \emph{produced} rather than given, with its roots
-$-1,3$ shown as the graph's $x$-intercepts (\S1). Three recurring errors to pre-empt: (1) dividing by $x$
-and losing $x=0$ (\S3 trap); (2) applying the Zero Product Property to a non-zero right side (the ``$=5$''
-warning in \S1); (3) sign slips in the product/sum search --- reinforce the $c<0\Rightarrow$ opposite
-signs table. In \S4 make the \emph{double root} concrete: $(x-3)^2=0$ has the single value $x=3$, and the
-vertex sits \emph{on} the axis. Grouping (\S4) is the bridge to next unit's polynomial factoring.
-\end{teachernote}
-
-\begin{teachernote}[Group Activity]
-Tier~R isolates the two halves of the method --- the Zero Product Property on pre-factored equations
-(item~1) and the factor-then-read-the-graph link (item~2). Tier~A item~2 rewards \emph{using} the graph:
-the roots $-4,2$ come from $(x+4)(x-2)=x^2+2x-8$; the distractor $x^2-2x-8$ flips both signs. In Tier~E,
-watch grouping sign work; the double-root item ($ (x+5)^2$) is the conceptual target --- one value, graph
-tangent to the axis. In the patio model, insist students \emph{reject} the negative root with a reason,
-not just cross it out.
-\end{teachernote}
-
-\begin{teachernote}[Exit Ticket]
-Sort responses into ``got it / GCF slip / sign-flip slip / Zero-Product-without-zero slip.'' The telltale
-errors: item~2 answered $x=4$ only (divided by $x$, lost $x=0$), and item~3 choosing \textbf{B}'s mirror
-image. If the sign flip is widespread, reopen Lesson~2.3 by re-reading zeros off $(x+3)(x-4)$ before the
-square-root method.
+% ── Teacher notes — one per component, in the order they are used ──
+\begin{teachernote}[Slides]
+Pacing: warm-up 5, cycles 10 / 10 / 8 / 12, wrap-up 5, homework 10. Each cycle is definition
+(1 min, read aloud), example (3--4 min, click through the steps), Now you try (3--4 min, alone,
+in the notes column), reveal (1 min). Cycle 4's Now you try is the one that matters; if you are
+behind, cut the third item of cycle 3 ($x^2+16$) and the check line of Example~2, never cycle 4.
+Students write in the handout's notes column, which prints without the answers.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-Item~1 makes the multiply/factor inverse explicit --- the conceptual anchor. In item~2 the traps are the
-GCF ($5x^2-20x=5x(x-4)$), the difference of squares ($x^2-36$), the perfect square ($x^2+8x+16=(x+4)^2$),
-and the $a\ne1$ grouping case ($2x^2+5x-3$). Item~3c must be set to $0$ first ($x^2-9x+20=0$). Item~4 is
-the graph$\leftrightarrow$algebra check that returns on the test. Item~5 is the year's most common slip
-(dividing by $x$). In the Extension, the negative root is rejected \emph{with a reason}; verify the
-$(7)(10)=70$ check.
+The homework is a printed DeltaMath set --- the lesson builds without it, but the packet is
+cover-only until \texttt{homework/main.pdf} is in place. Launch problem~1 aloud in the last 10
+minutes, then circulate with the four Watch For items in mind. The $x^2=kx$ problem is the
+formative check (sort above). Due the first class after two study halls; announce the date in
+class and on TurtleNet.
 \end{teachernote}
 
 \end{document}

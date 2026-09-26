@@ -37,3 +37,11 @@
 % Small-caps section label above slide content.
 \newcommand{\sectionlabel}[2][forest]{%
   {\color{#1}\bfseries\footnotesize\MakeUppercase{#2}}\par\smallskip}
+
+% ── \reveal[n]{answer} ────────────────────────────────────────────────────────
+% A "Now you try" answer (or a warm-up answer): hidden on the projector until
+% overlay n (default 2, i.e. the first click) and dropped entirely from the
+% printed handout, which shared/lesson.mk compiles in Beamer's handout mode —
+% the student's copy shows the problem and the notes column to work it in,
+% never the answer. \uncover keeps the space reserved, so nothing jumps.
+\newcommand{\reveal}[2][2]{\uncover<#1-| handout:0>{#2}}
