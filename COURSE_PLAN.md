@@ -2,6 +2,26 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-27) — **ENGAGEMENT RULES ADDED; 2.2 REGENERATED ON THEM — AWAITING USER REVIEW.**
+>
+> **User request, 2026-09-27:** "I am dealing with engagement and student attitude issues in this
+> class. Regenerate toward that eye. We need to keep the students engaged and solving throughout
+> the hour." Then: "give some problems/contexts particular to teenagers / teenage girls / girls'
+> boarding schools." Recorded as `LESSON_SHAPE.md` §1 *engagement rules*: teacher talk ≤3 min a
+> round; every practice frame a ★/★★/★★★ **ladder** (nobody waits); every round ends in a
+> **Show me** (1–4 fingers on three, all at once) or **Find the mistake** (anonymous Student A);
+> warm-up on screen as they walk in; the close is a self-scored **Final Round** (/4 + a bonus),
+> not a recap; ladders, bonus and generated-homework models use **student-life contexts**
+> (dorm, study hall, athletics, school events), never stereotyped. Skeletons, plan order and
+> `components.md` updated; a throwaway scaffold built clean.
+>
+> **2.2 regenerated on the rules:** 21 frames — warm-up → targets → four rounds (ladders; Show me
+> $x^2-x-12$; Find the mistake on grouping; Show me "which does not factor"; **crux Show me
+> $x^2=5x$**) → Final Round (crux twin $(x-1)(x+2)=4$; egg-drop bonus) → homework. Dorm-rug area
+> problem on Round 4's ★★★. Plan gains an *Engagement* box and an *Attitude* Watch-For item.
+> Build: exit 0; deck 42 projected pages / 21 handout frames, handout 7pp, plan 3pp, cover 1p;
+> no answers in the handout text. Homework still DeltaMath printed (PDF + set name TODO).
+
 > ## ⚠ Status (2026-09-25) — **LESSON 2.2 REGENERATED AS THE SLIDES-FIRST PILOT — AWAITING USER REVIEW.**
 >
 > **2.2 Solving Quadratics by Factoring** — A2.EO.3b/d, A2.EI.2b/d. Legacy `warmup`, `notes`,

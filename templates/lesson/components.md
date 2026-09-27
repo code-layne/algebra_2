@@ -13,9 +13,11 @@ Contents: [Lesson plan](#lesson-plan) · [Cover](#cover) · [Slides](#slides) ·
 
 **The lesson model is slides first** (user direction, 2026-09-25). The deck *is* the lesson and
 its printed handout (`lessonYY_slides.pdf`, three slides a page with a ruled notes column) is the
-student's notes: a warm-up frame, then three or four cycles of **definition → worked example →
-Now you try**, a wrap-up, and the homework started in class — **5 / 40 / 5 / 10** across the
-60-minute period. The student packet is **cover → homework** (the homework only when it is
+student's notes: a warm-up on screen as students walk in, then three or four rounds of
+**definition → example → ladder (★/★★/★★★) → Show me or Find the mistake**, a self-scored **Final
+Round**, and the homework started in class — **5 / 40 / 5 / 10** across the 60-minute period.
+**Students solve in every phase; teacher talk is ≤3 minutes a round**, and ladders and bonuses
+use contexts from the students' own lives (a girls' boarding school) — `LESSON_SHAPE.md` §1. The student packet is **cover → homework** (the homework only when it is
 generated or a printed DeltaMath drop-in); the handout prints beside it. **Ask the user for each
 lesson's homework source before scaffolding** — `LESSON_SHAPE.md` §2.
 
@@ -37,7 +39,7 @@ General rules:
   here, and how do you know?"). Never ask students to *sketch/draw/construct* a graph from
   scratch — give a pre-drawn figure to read, a table to complete, or a computation task.
 - **The vocabulary is named openly everywhere** — cover, deck, homework. Each term gets its own
-  definition frame before any Now you try uses it.
+  definition frame before any ladder uses it.
 - Use the project's boxes and fill-in macros rather than hand-rolling layout.
 
 ## Lesson plan
@@ -56,22 +58,25 @@ order (`LESSON_SHAPE.md` §5 wins over this summary):
 4. **Vocabulary, Concepts & Theorems** — `skillbox{sky}`, a term/definition table worded exactly
    as the deck's definition frames print them (`\TallMath{...}` for tall formulas).
 5. **Lesson at a Glance** — `fixedskillbox{forestbg}`: Phase/Min/Students/Teacher — Warm-Up
-   **5** / Lesson **40** / Wrap-up **5** / Homework **10**. Add the minutes up before you write
+   **5** / Lesson **40** / Final Round **5** / Homework **10**. Add the minutes up before you write
    them.
-6. **Warm-Up (5 min, on the slides)** — the items, what each rehearses, and how the last one
-   hands off into the first definition.
-7. **The Lesson — definition, example, now you try (40 min)** — `skillbox{forestbg}` in
-   `multicols{2}`, one paragraph per cycle in deck order: what to point at on the definition's
-   display; the worked example and where students go wrong; the Now-you-try problem **with its
-   answer**, and how long to let them work before the reveal. Name the crux cycle.
-8. **Wrap-up (5 min)** — the definitions read back and the caution said aloud.
+6. **Engagement** — `skillbox{goldbox}`: how this hour keeps everyone solving (the ladder, Show
+   me, Find the mistake, the lesson's student-life contexts, the short clock).
+7. **Warm-Up (5 min, on the slides as they walk in)** — the three quick wins, what each rehearses,
+   and how the reveal hands off into Round 1.
+8. **The Lesson — rounds of definition, example, ladder, check (40 min)** — `skillbox{forestbg}`
+   in `multicols{2}`, one paragraph per round in deck order: minutes; what to point at (≤3 min of
+   talk); the ladder's answers and the slip to watch; the Show me answer and what each wrong
+   finger count means (or the Find-the-mistake error and fix). Name the crux round.
+8a. **Final Round (5 min)** — the four problems with answers, the bonus, the Watch-out line.
 9. **Homework — scored, started in class, due the first class after two study halls** —
    `skillbox{goldbox}`: the source; the items and what each is for (or the DeltaMath set and what
    it covers); how to sort the formative check; a **Preview** of the next lesson.
-10. **Watch For** — `skillbox{redbox}`: misconceptions to catch, keyed to Now-you-try and homework
-    item numbers, plus cold-call prompts.
+10. **Watch For** — `skillbox{redbox}`: misconceptions to catch, keyed to round / ladder rung / check,
+    Final Round and homework item numbers, plus an *Attitude* item and cold-call prompts (after
+    the fingers, never before).
 11. **Teacher Notes** — **two** `teachernote`s: `[Slides]`, `[Homework]`. Pacing that fills each
-    phase's minutes, the must-land Now you try, what to cut if behind, how to sort the formative
+    phase's minutes, the must-land check, what to cut if behind, how to sort the formative
     check. **This is the only place teacher prose goes** — never in a `_key`.
 
 Record the lesson's **standards** (the codes the user supplied) in the plan for the audit trail.
@@ -90,7 +95,7 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
   `\blank{1.2cm}`, never `NA`; the homework row ends **"--- scored; due the first class after two
   study halls"**. Four columns (`c l X r`); **every row needs four cells** or the widths collapse.
 - `remindbox` (Keep in Mind) — a **content** summary: the lesson's key definitions and the
-  distinction it turns on, in three or four sentences — the same content as the deck's wrap-up.
+  distinction it turns on, in three or four sentences — the same content as the Final Round's Watch-out line.
 
 ## Retired components
 
@@ -108,7 +113,7 @@ in the last ten minutes, alone, and finished at home. **Its source is asked for 
 `homework/` directory at all (`--components cover,slides`); **DeltaMath printed** — prefab
 `homework/main.pdf` (+ `homework_key/main.pdf`) supplied by the user
 (`--prefab homework,homework_key`). The rest of this section is the generated spec. Its contexts
-differ from the deck's examples and Now you trys.
+differ from the deck's examples and ladders.
 
 **2 pages, and 2pp is a ceiling** — a seventh item gets cut, never spilled onto a third page.
 Structure:
@@ -170,26 +175,34 @@ title slide is hand-built (forest background canvas + minipage); content frames 
 `\forestheader{Title}` and `\sectionlabel[color]{LABEL}`. `\CourseName` is **not** defined in
 beamer — write the course name literally.
 
-**Frame order:** title → **targets** (vocabulary in bold, "how today runs" 5/40/5/10) →
-**warm-up** (2–3 items, answers in `\reveal`) → **three or four cycles**, each:
+**Frame order:** title → **warm-up** (on screen as they walk in; three quick wins, answers in one
+`\reveal`) → **targets** (vocabulary in bold, "how today runs — you are solving the whole hour")
+→ **three or four rounds**, each (the preamble's `\rung` and `\opt` come from the skeleton):
 
 - **Definition** — `\forestheader{Definition: term}`; a `block` with the term in bold and the
   definition or general form as a complete sentence; a pre-drawn display where one helps. Nothing
   to fill in.
-- **Example** — `\sectionlabel{Watch --- I do this one}`; one problem worked in full, each step
-  with its reason (`\pause` between steps is fine).
-- **Now you try** — `\sectionlabel[goldacc]{In the notes column --- then check}`; one or two
-  problems of the example's shape on fresh numbers, problem in the top half of the frame, and
-  `\reveal{\begin{block}{Check} answer + the deciding step \end{block}}`. The **last cycle's
-  Now you try is the crux** (the case where the two answers disagree), flagged
-  `\sectionlabel[redacc]{…}`.
+- **Example** — `\sectionlabel{Watch --- 2 minutes}`; one problem worked in full, plain algebra,
+  each step with its reason (`\pause` between steps is fine, but not inside `aligned`).
+- **Your turn (ladder)** — `\sectionlabel[goldacc]{N minutes --- start at one star and climb}`;
+  `\item[\rung1]` everyone, a quick win · `\item[\rung2]` everyone · `\item[\rung3]` early
+  finishers; fresh numbers; at least one rung per lesson in a student-life context; all three
+  answers in one `\reveal{\begin{block}{Check}…}`.
+- **Show me** — four options `\opt{1..4}{…}` in a 2×2 grid, "1 to 4 fingers on the count of
+  three"; the wrong options are real misconceptions; `\reveal{\begin{block}{Answer: n}…}` says
+  why each is tempting. **Or Find the mistake** — an anonymous *Student A* solution with one
+  wrong step; the step and its fix in `\reveal`. The **last round's check is the crux**, flagged
+  `\sectionlabel[redacc]{The one that matters --- …}`.
 
-→ **wrap-up** (definitions one line each + a *Watch out* block with the target misconception) →
-**homework** (the block for the lesson's source, and a one-line preview).
+→ **Final Round** (four mixed problems, one per round, + a student-life bonus; 5 minutes;
+self-scored /4; the *Watch out* line inside the reveal) → **homework** (the block for the
+lesson's source, and a one-line preview).
 
 **Answers only in `\reveal`.** Never hide an answer with `\pause` or `\only<2>` — handout mode
 prints the last state. After building, prove the handout is answer-free:
-`pdftotext target/unitXX/lessonYY/slides_handout/main.pdf - | grep -c Check` → 0.
+`pdftotext target/unitXX/lessonYY/slides_handout/main.pdf - | grep -E 'Answer:|The mistake|one point'`
+prints nothing, and a grep for one ladder answer prints nothing (examples keep their own
+*Check:* lines, so do not grep for "Check").
 
 ## Unit tests (summative assessments)
 

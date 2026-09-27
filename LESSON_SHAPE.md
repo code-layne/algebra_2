@@ -60,51 +60,91 @@ feature mean here, and how do you know?").
 2026-09-25: "the primary work to be done in the slides — definitions, examples with now you try,
 and a homework assignment").** The deck *is* the lesson, and its printed handout
 (`lessonYY_slides.pdf`, three slides a page with a ruled notes column) *is* the student's notes:
-definitions printed in full, examples worked, and every **Now you try** left open with the notes
+definitions printed in full, examples worked, and every practice ladder left open with the notes
 column as the work space. There is no guided-notes packet and no paper warm-up. The only
 generated student paper besides the handout is the **cover** and, when the lesson's homework
 is generated, the **homework**.
 
-| Phase | Minutes | Where |
+**Engagement is the design constraint (user direction, 2026-09-27: "I am dealing with engagement
+and student attitude issues in this class … we need to keep the students engaged and solving
+throughout the hour").** Every phase has students *producing answers*, not listening:
+
+- **Teacher talk is capped at 3 minutes a cycle** — the definition is read in one breath, the
+  example clicked through fast. If a cycle needs more explaining, it is two cycles.
+- **Nobody waits.** Every practice frame is a **ladder** of three problems — ★ (everyone,
+  a quick win), ★★ (everyone), ★★★ (for whoever finishes early). Students start at ★ and climb;
+  the teacher reveals when most have ★★, so fast students are never idle and slow ones still finish
+  two.
+- **Everyone commits, publicly and safely.** Each cycle ends in a **Show me** frame: a
+  four-option multiple-choice question, students hold up 1–4 fingers *on the count of three*,
+  all at once — no hand-raising, no one singled out. The wrong options are the real
+  misconceptions, so the spread of fingers is the formative read.
+- **Critique a stranger, not a classmate.** At least one cycle replaces its Show me with **Find
+  the mistake**: an anonymous student's worked solution with one error to find and fix. It is
+  the safest way to surface the target misconception with students who resist being wrong.
+- **Quick wins first, then stretch.** The warm-up and every ★ are reachable by everyone within a
+  minute — attitude improves when the first thing on the screen is something they can do.
+- **A timer on every practice frame** (`\sectionlabel[goldacc]{3 minutes …}`) — a visible,
+  short clock keeps the pace up.
+- **Contexts from the students' own lives (user direction, 2026-09-27).** The students are
+  teenage girls at a girls' boarding school (Chatham Hall). Every lesson puts at least one ladder
+  rung, the Final Round bonus, and the homework's model item (when generated) in a context they
+  live in: the dorm room and common room, study hall and the dining hall, the school store,
+  athletics (riding, soccer, volleyball, tennis, cross-country), club fundraisers and school
+  events (egg drop, a formal, weekend trips), phone plans and streaming, social-media follower
+  counts, a campus garden. Write them as ordinary life, never as a gag — no stereotyped "girl"
+  topics (shopping sprees, makeup as a punchline), and no real student names; an anonymous
+  "Student A" stays anonymous. Contexts never replace the plain algebra that teaches the move —
+  the examples stay clean; the context is where the move gets used.
+- **The close is a round, not a recap.** The last five minutes are a **Final Round**: four mixed
+  problems, one per idea, plus a **bonus (+1)** in a student-life context, answers revealed
+  together, students score themselves out of 4.
+
+| Phase | Minutes | Students are … |
 | --- | --- | --- |
-| Warm-Up — 2–3 spiral-review items, answers revealed | 5 | deck |
-| Lesson — 3–4 cycles of **definition → worked example → Now you try** | 40 | deck |
-| Wrap-up — the definitions read back, the target misconception as a caution | 5 | deck |
-| Start the homework, alone, teacher circulating | 10 | `homework` / DeltaMath |
+| Warm-Up — 3 quick items on screen as they walk in, answers revealed | 5 | solving |
+| Lesson — 3–4 cycles of **definition → example → ladder → Show me / Find the mistake** (~10 min each: ≤3 teacher, ~6 ladder, ~1 check) | 40 | solving ~70% of the time |
+| Final Round — 4 mixed problems, self-scored /4 | 5 | solving |
+| Start the homework, alone, teacher circulating | 10 | solving |
 
 **The phases total 60 minutes — `\MeetingLength`.** If a cycle does not fit, cut a cycle — do not
 let the table lie, and do not edit `shared/` to make a lesson fit.
 
 **`slides`** — the centrepiece, 11pt Beamer, `\forestheader` / `\sectionlabel`. Frame order:
-title → **targets** (vocabulary in bold, plus a "how today runs" block, 5/40/5/10) → **warm-up**
-(one frame; the last item leaves the question the first definition answers) → **one cycle per
-idea, three or four cycles**:
+title → **warm-up** (on screen as students walk in; one frame, three items, ★-easy, answers in
+one reveal ending on the question the first definition answers) → **targets** (vocabulary in
+bold, plus a "how today runs — you are solving the whole hour" block) →
+**one cycle per idea, three or four cycles**, each four frames:
 
 1. **Definition** — the term in bold in a `block`, the definition or general form as a *complete
-   printed sentence* (nothing to fill in — students annotate in the notes column), and a
-   pre-drawn display (graph, table, the two things students conflate side by side) where one
-   helps.
+   printed sentence* (nothing to fill in), and a pre-drawn display where one helps.
 2. **Example** — the *I do*: one problem worked in full, every step with its reason. `\pause`
-   between steps is fine; the handout collapses it and prints the whole worked example.
-3. **Now you try** — the *you do*: one or two problems of the **same shape** as the example, on
-   fresh numbers, worked alone in the notes column; the answer and the step that decides it sit
-   in `\reveal{…}` (a `block` titled *Check*). **The last cycle's Now you try is the crux** —
-   the case where the two answers disagree — flagged `\sectionlabel[redacc]{}`.
+   between steps is fine; the handout prints the whole worked example.
+3. **Your turn** — the ladder ★ / ★★ / ★★★ on the example's shape, fresh numbers, a timer in the
+   section label; all three answers in one `\reveal{…}` *Check* block.
+4. **Show me** (four options A–D, "1–4 fingers on three", answer + why each distractor is tempting
+   in `\reveal`) **or Find the mistake** (an anonymous *Student A* solution with one wrong step;
+   the step and its fix in `\reveal`). **The last cycle's check frame is the crux** — the case
+   where the two answers disagree — flagged `\sectionlabel[redacc]{}`.
 
-→ **wrap-up** (the definitions one line each, and a *Watch out* block with the target
-misconception — the same content as the cover's *Keep in Mind*) → **homework** (the block for
-this lesson's homework source — §2 — and a one-line preview). Typically 14–18 frames. Every
-cycle uses **one context** where it can, so the lesson reads as one story; the Now you try is on
+→ **Final Round** (four mixed problems, one per idea, a 5-minute timer, answers in one `\reveal`,
+"score yourself out of 4" — plus a one-line *Watch out* with the target misconception inside the
+reveal) → **homework** (the block for this lesson's homework source — §2 — and a one-line
+preview). Typically 20–21 frames. Every cycle uses **one context** where it can; the ladder is on
 new numbers, never a repeat of the example.
+
+The deck preamble defines `\rung{1–3}` (gold stars) and `\opt{n}{…}` (a numbered disc for a
+Show-me option) and colours `block`s forest/forestbg — copy them from `templates/lesson/slides.tex`;
+the plan defines `\rung` too.
 
 **Answers are revealed, never printed.** `\reveal[n]{…}` (`algebra2-beamer.sty`, 2026-09-25) is
 `\uncover<n-| handout:0>` — hidden on the projector until click *n* (default 2) and dropped from
 the printed handout, because `shared/lesson.mk` frames the handout from a second compile of the
 deck in Beamer's `handout` mode. The PPTX is framed from the projected compile, so each reveal is
-its own slide (click to advance). Never put an answer outside `\reveal` on a Now-you-try or
-warm-up frame; worked examples are the only frames that show their solutions in print. Size a
-Now-you-try frame so the problem sits in the top half — the notes column beside it (six ruled
-lines) is all the work space the student gets; a problem that needs more is two frames.
+its own slide (click to advance). Never put an answer outside `\reveal` on a ladder, Show me,
+Find-the-mistake, Final Round, or warm-up frame; worked examples are the only frames that show their solutions in print. Keep a
+ladder's three problems short — the notes column beside it (six ruled lines) is all the work
+space the student gets; a ladder whose problems need more is split across two frames.
 
 **`homework`** — see §2 for where it comes from. When it is **generated**: **12pt, 2 pages, and
 2pp is a ceiling** — a seventh item gets cut, never spilled onto a third page. It opens with a
@@ -141,7 +181,7 @@ packet (the shared skill's rule); merging them is an open question for the user,
 - **No group activity, no exit ticket.** The formative read is circulating during each Now you
   try, and again during the supervised homework start.
 - **No debrief component, no hook frame with an unresolved vote, no Guided Practice frame.**
-  Those belonged to the gradual-release shape (§7). The wrap-up is five minutes on the deck.
+  Those belonged to the gradual-release shape (§7). The close is the Final Round (§1) — students solving, not a recap.
 - **No `extensionbox`, no `objectivebox`, no `reflectionbox`, no tiers**, no `experience`
   component, no *QuickNotes*, no *Check Your Understanding*, no spoiler rule.
 - **No `\answerspace`.** Open responses use `\writelines{n}` (see §4).
@@ -349,15 +389,16 @@ slides-first statement, ending with the lesson's **Homework source**) → **Prio
 Skills** (`skillbox{goldbox}`, two `tabularx` cells: skills | the *why*, **with the target
 misconception stated explicitly**) → **Vocabulary, Concepts & Theorems — one definition frame
 each** (`skillbox{sky}`, worded exactly as the deck prints them) → **Lesson at a Glance**
-(`fixedskillbox{forestbg}`, Phase / Min / Students / Teacher for **5 / 40 / 5 / 10**) →
+(`fixedskillbox{forestbg}`, Phase / Min / Students / Teacher for **5 / 40 / 5 / 10**) → **Engagement** (`skillbox{goldbox}`: the ladder, Show me, Find the mistake, this
+lesson's student-life contexts, the short clock) →
 **Warm-Up (5 min, on the slides)** (`skillbox{forestbg}`: the items, what each rehearses, the
-handoff into the first definition) → **The Lesson — definition, example, now you try (40 min)**
+handoff into the first definition) → **The Lesson — definition, example, ladder, check (40 min)**
 (`skillbox{forestbg}`, `multicols{2}`, one paragraph per cycle in deck order: what to point at on
-the definition's display, the example and where students go wrong, the Now-you-try **with its
-answer**, how long to let them work before the reveal; the crux cycle named) → **Wrap-up (5
-min)** → **Homework — scored, started in class, due the first class after two study halls**
+the definition's display, the example and where students go wrong, the ladder **with its
+answers**, the Show me / Find the mistake with what each wrong answer means; the crux cycle named)
+→ **Final Round (5 min)** → **Homework — scored, started in class, due the first class after two study halls**
 (`skillbox{goldbox}`: the source, the items or the DeltaMath set, the formative check's sort, the
-**Preview**) → **Watch For** (`skillbox{redbox}`, keyed to Now-you-try and homework item numbers,
+**Preview**) → **Watch For** (`skillbox{redbox}`, keyed to ladder, check-frame, and homework item numbers,
 plus cold-call prompts) → **Teacher Notes — two:** `[Slides]`, `[Homework]` (a DeltaMath lesson
 keeps the Homework note: what the set covers and its formative item). **This is the only place
 teacher prose goes.**
@@ -424,7 +465,7 @@ Recognize the shape by the component directories and the plan's section titles:
 
 | Shape | Has | Lessons |
 | --- | --- | --- |
-| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / Now-you-try cycles and `\reveal`; `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson02` — the **pilot** (2026-09-25, homework = DeltaMath printed), pending user review; once approved it becomes `reference_lesson` |
+| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / ladder / Show-me cycles, a Final Round, and `\reveal` (engagement rules 2026-09-27); `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson02` — the **pilot** (2026-09-25, homework = DeltaMath printed), pending user review; once approved it becomes `reference_lesson` |
 | **gradual-release** (two-section, 12pt, 2026-09-07; `guidednotes` notes from 2026-09-12) | 12pt `warmup` + `notes` (vocab + hook, ONE `guidednotes` table + Guided Practice) + homework 2pp with the due-date `remindbox`; cover with three rows; 11-frame deck; plan 5/35/10/10, three teacher notes | `unit01/lesson04`, `unit02/lesson00`, `unit02/lesson01`; `unit01/lesson02` is its pilot (5/34/8/13) |
 | **four-section interim** (2026-09-01) | 10pt `notes/` with an `objectivebox`, four numbered sections, and an *Individual Practice* `scenariobox`; 10pt homework with an `extensionbox`; plan 5/20/15/10/10 with four teacher notes | `unit01/lesson00`, `01`, `03`, `05` |
 | **EFFL / group-activity** (2026-08-19 → 08-31) | `experience/` or `activity/` without `exit_ticket/` | none left |
@@ -439,8 +480,8 @@ content mapping, from any older shape:
 | --- | --- |
 | the warm-up page | the warm-up frame (2–3 items, answers in `\reveal`) |
 | the vocab box and each notes section / row / QuickNotes box | a **definition** frame per term, then that section's worked example as the **Example** frame |
-| the notes' own problems, Guided Practice parts, Individual Practice, activity tiers, exit ticket | the **Now you try** problems — one cycle per idea, the crux last |
-| hook, debrief, close | the targets frame, the wrap-up frame, and the homework frame |
+| the notes' own problems, Guided Practice parts, Individual Practice, activity tiers, exit ticket | the **ladder** and **Show me / Find the mistake** frames — one cycle per idea, the crux last |
+| hook, debrief, close | the targets frame, the Final Round, and the homework frame |
 | `homework` (+ its extension, cut) | the **generated** homework, the §1 spec — or dropped for DeltaMath |
 
 Mechanically:
@@ -449,9 +490,9 @@ Mechanically:
    `activity{,_key}`, `experience{,_key}`, `exit_ticket{,_key}` — and `homework{,_key}` too
    unless the source is *generated* (rewrite it) or *DeltaMath printed* (replace with the prefab).
 2. Write the deck fresh from `templates/lesson/slides.tex`, cycles on one context, every
-   Now-you-try answer in `\reveal`.
+   practice answer in `\reveal`.
 3. Rewrite the cover from `templates/lesson/cover.tex`: two rows, targets in the formal
-   vocabulary, *Keep in Mind* matching the wrap-up frame.
+   vocabulary, *Keep in Mind* matching the Final Round's *Watch out*.
 4. Rebuild the plan from `templates/lesson/lesson_plan.tex` (5/40/5/10, §5 order, two teacher
    notes); apply the due-date wording of §2.
 5. Namestrip (`namestrip.py`), then boxguard (§8).
@@ -460,9 +501,9 @@ Mechanically:
 
 Finish with the evidence per lesson: `make -C unitXX/lessonYY all` exits 0; the homework is the
 same page count as its key (2/2) when generated; **the handout deck has no answer in it** —
-`pdftotext target/unitXX/lessonYY/slides_handout/main.pdf - | grep -c Check` is 0 (the *Check*
-block title appears only inside `\reveal`); and the projected deck has more pages than the
-handout deck by exactly the number of reveals. Then update `COURSE_PLAN.md`.
+`pdftotext target/unitXX/lessonYY/slides_handout/main.pdf - | grep -E 'Answer:|The mistake|one point'`
+prints nothing, and neither does a grep for one ladder answer (worked examples keep their own
+*Check:* lines, so never grep for "Check"). Then update `COURSE_PLAN.md`.
 
 **Scoreboard (2026-09-25):** 44 lessons. **1 slides-first — the pilot `unit02/lesson02`**, awaiting user review. 4 gradual-release
 (`unit01/lesson04`, `unit02/lesson00`, `unit02/lesson01`, pilot `unit01/lesson02`); 4
