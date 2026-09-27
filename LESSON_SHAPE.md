@@ -465,8 +465,8 @@ Recognize the shape by the component directories and the plan's section titles:
 
 | Shape | Has | Lessons |
 | --- | --- | --- |
-| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / ladder / Show-me cycles, a Final Round, and `\reveal` (engagement rules 2026-09-27); `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson02` — the **pilot** (2026-09-25, homework = DeltaMath printed), pending user review; once approved it becomes `reference_lesson` |
-| **gradual-release** (two-section, 12pt, 2026-09-07; `guidednotes` notes from 2026-09-12) | 12pt `warmup` + `notes` (vocab + hook, ONE `guidednotes` table + Guided Practice) + homework 2pp with the due-date `remindbox`; cover with three rows; 11-frame deck; plan 5/35/10/10, three teacher notes | `unit01/lesson04`, `unit02/lesson00`, `unit02/lesson01`; `unit01/lesson02` is its pilot (5/34/8/13) |
+| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / ladder / Show-me cycles, a Final Round, and `\reveal` (engagement rules 2026-09-27); `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson02` — the **pilot** (2026-09-25, regenerated on the engagement rules 2026-09-27) and `unit02/lesson01` (2026-09-27); both homework = DeltaMath printed, pending user review; once approved 2.2 becomes `reference_lesson` |
+| **gradual-release** (two-section, 12pt, 2026-09-07; `guidednotes` notes from 2026-09-12) | 12pt `warmup` + `notes` (vocab + hook, ONE `guidednotes` table + Guided Practice) + homework 2pp with the due-date `remindbox`; cover with three rows; 11-frame deck; plan 5/35/10/10, three teacher notes | `unit01/lesson04`, `unit02/lesson00`; `unit01/lesson02` is its pilot (5/34/8/13) |
 | **four-section interim** (2026-09-01) | 10pt `notes/` with an `objectivebox`, four numbered sections, and an *Individual Practice* `scenariobox`; 10pt homework with an `extensionbox`; plan 5/20/15/10/10 with four teacher notes | `unit01/lesson00`, `01`, `03`, `05` |
 | **EFFL / group-activity** (2026-08-19 → 08-31) | `experience/` or `activity/` without `exit_ticket/` | none left |
 | **pre-EFFL legacy** | `activity/` + `exit_ticket/` (+ keys), tiered activity, plan order Hook / Explicit Instruction / Tiers, 10pt warm-up; in Units 3–7 also teacher notes in the keys and `\namedateperiod` on every component (Unit 2 had both retrofitted 2026-07-30) | **36 lessons: `unit02/lesson02`–`lesson07`, and all of units 03–07** |
@@ -505,8 +505,8 @@ same page count as its key (2/2) when generated; **the handout deck has no answe
 prints nothing, and neither does a grep for one ladder answer (worked examples keep their own
 *Check:* lines, so never grep for "Check"). Then update `COURSE_PLAN.md`.
 
-**Scoreboard (2026-09-25):** 44 lessons. **1 slides-first — the pilot `unit02/lesson02`**, awaiting user review. 4 gradual-release
-(`unit01/lesson04`, `unit02/lesson00`, `unit02/lesson01`, pilot `unit01/lesson02`); 4
+**Scoreboard (2026-09-25):** 44 lessons. **2 slides-first — `unit02/lesson02` (the pilot) and `unit02/lesson01`**, awaiting user review. 3 gradual-release
+(`unit01/lesson04`, `unit02/lesson00`, pilot `unit01/lesson02`); 4
 four-section interim (`unit01/lesson00`, `01`, `03`, `05`); 36 pre-EFFL legacy
 (`unit02/lesson03`–`lesson07` and every lesson of Units 3–7; Units 3–7 still hold teacher notes
 in 144 `_key` files and name rows on 300 non-cover components). Every lesson has a deck. Unit 6's

@@ -2,6 +2,19 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-27) — **LESSON 2.1 REGENERATED SLIDES-FIRST ON THE ENGAGEMENT RULES.**
+>
+> **2.1 Graphing Quadratic Functions & Transformations** — A.F.2b/c/d, A2.F.1, A2.F.2a/d. Legacy
+> gradual-release `warmup`, `notes`, `homework` (+ keys) `git rm`-ed. 21 frames: warm-up (two
+> forms of $x^2-2x-3$) → four rounds — shifts (Show me $x^2-3$), stretch/compress/flip (Find the
+> mistake: max vs min), standard form $x=-b/2a$ (Show me), **intercept form — crux Show me: axis
+> of $(x-4)(x+2)$, the bracket sign flip** — → Final Round (crux twin: zeros of $2(x+6)(x-1)$;
+> Service Club hoodie-profit bonus) → homework. Student-life ★★★: a horse's jump at the riding
+> ring. Still no factoring or solving (2.2). **Homework: DeltaMath printed** (user choice) — PDFs
+> and set name TODO. Build exit 0: plan 3pp, cover 1p, deck 46 projected / 21 handout frames,
+> handout 7pp; no answers in the handout text. Unit 2 now: 2.0 gradual-release, 2.1–2.2
+> slides-first, 2.3–2.7 legacy.
+
 > ## ⚠ Status (2026-09-27) — **ENGAGEMENT RULES ADDED; 2.2 REGENERATED ON THEM — AWAITING USER REVIEW.**
 >
 > **User request, 2026-09-27:** "I am dealing with engagement and student attitude issues in this

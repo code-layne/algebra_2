@@ -1,20 +1,31 @@
 %! Graphing Quadratic Functions & Transformations — Unit 2, Lesson 2.1 — Slides (Beamer)
-% ELEVEN frames, in the profile's order (LESSON_SHAPE.md §1): title -> learning targets (+ how
-% today runs, 5/35/10/10) -> warm-up (ending in "hold on to this") -> hook (the vote, LEFT
-% UNRESOLVED) -> four notes frames (rows 1-2 = section 1, rows 3-4 = section 2; the crux frame
-% flagged \sectionlabel[redacc]{} with a block giving the case where the two answers disagree)
-% -> Guided Practice -> debrief -> close & start the homework.
-% There is no group activity and no individual-practice launch frame: the homework IS the
-% individual practice, started in class. Beamer has no \CourseName — "Algebra 2" is literal.
-% The header macro is \forestheader{Title}; \navyheader does not exist in this course.
+% SLIDES-FIRST shape with the ENGAGEMENT rules (LESSON_SHAPE.md §1, 2026-09-27): students solve in
+% every phase. The deck IS the lesson; its printed handout is the student's notes.
+%   warm-up → targets → 4 × { definition → example → ladder ★/★★/★★★ → Show me | Find the
+%   mistake } → Final Round (4 mixed + a bonus, self-scored /4) → homework
+% One curve in three forms: (x-1)^2-4 = x^2-2x-3 = (x+1)(x-3), the unit anchor from 2.0.
+% 2.1 does NO factoring and NO solving — a factored form is given and read (2.2 produces it).
+% Target misconception: the bracket sign flips — (x-1)^2 moves RIGHT, and (x+1)(x-3) has zeros -1
+% and 3. Round 4's Show me is the crux; the Final Round's item 4 is its twin.
+% Student-life contexts: a jump at the riding ring (Round 4 ★★★), a hoodie fundraiser (bonus).
+% Answers only inside \reveal{} — the handout is a Beamer handout-mode compile and drops them.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
-% Coordinate grid: {xmin}{xmax}{ymin}{ymax}
+\usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
+% Ladder rungs and Show-me options.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+\newcommand{\opt}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle, fill=forest, text=white, font=\bfseries\small, inner sep=1.6pt,
+          minimum size=1.35em]{#1};
+  \end{tikzpicture}\;#2}
+% Coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\qgrid}[4]{%
-  \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
+  \draw[step=1, linegray!45, very thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
-\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (3.2pt);}
+\newcommand{\fdot}[3]{\fill[#1] (#2,#3) circle (5.5pt);}
 
 \begin{document}
 
@@ -25,256 +36,426 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.1}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Graphing Quadratic Functions \& Transformations}\\[1.2cm]
+    {\color{white}\bfseries\LARGE Graphing Quadratic Functions\\[4pt] \& Transformations}\\[1.2cm]
     {\color{forestmid}\small Algebra 2~$\cdot$~Unit 2: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% LEARNING TARGETS
+% WARM-UP — on screen as they walk in. Three quick wins; items 2 and 3 are the SAME quadratic,
+% which is the lesson's hook.
+\begin{frame}[t, plain]
+  \forestheader{Warm-Up --- start now}
+  \sectionlabel[goldacc]{3 minutes --- in the notes column, alone}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item $f(x)=x^2$. Find $f(-3)$, $f(0)$, and $f(2)$.
+    \item Multiply out: $(x-1)^2-4$.
+    \item Multiply out: $(x+1)(x-3)$.
+  \end{enumerate}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check --- give yourself a point for each}
+      1.\ $9$, $0$, $4$ \qquad 2.\ $x^2-2x-3$ \qquad 3.\ $x^2-2x-3$ \\[3pt]
+      \textbf{Hold on to this:} items 2 and 3 are the \emph{same} quadratic in different
+      clothes. Today: what each form tells you about the graph --- without any work.
+    \end{block}}
+\end{frame}
+
+% LEARNING TARGETS + HOW TODAY RUNS
 \begin{frame}[t, plain]
   \forestheader{Today's targets}
   \sectionlabel{What you will be able to do}
-  \begin{itemize}\setlength{\itemsep}{6pt}
-    \item Describe any parabola as a \textbf{transformation} of the \textbf{parent function}
-          $y=x^2$: \textbf{shift}, \textbf{stretch}, \textbf{reflection}.
-    \item Read the \textbf{vertex} $(h,k)$ and the \textbf{axis of symmetry} $x=h$ straight out
-          of \textbf{vertex form} $a(x-h)^2+k$.
-    \item Read the $y$-intercept out of \textbf{standard form} $ax^2+bx+c$ and its axis from
-          $x=-\frac{b}{2a}$.
-    \item Read the \textbf{zeros} out of \textbf{intercept (factored) form} $a(x-p)(x-q)$ and
-          put the axis at their midpoint.
-  \end{itemize}
-  \vspace{4pt}
-  \begin{block}{How today runs}
-    Warm-up (5) $\to$ notes and one curve together (35) $\to$ debrief (10) $\to$
-    \textbf{start the homework, on your own} (10).
-  \end{block}
-\end{frame}
-
-% WARM-UP
-\begin{frame}[t, plain]
-  \forestheader{Warm-Up: three things you already know}
-  \sectionlabel{5 minutes --- alone, then check with a neighbour}
-  \begin{enumerate}\setlength{\itemsep}{7pt}
-    \item \textbf{Multiply it out.} Expand $(x-1)^2-4$, then expand $(x+1)(x-3)$. Did they give
-          the same answer?
-    \item \textbf{Moving a parent graph (Lesson 1.3).} $y=|x|+2$ moves the V which way?
-          $y=|x-4|$? $y=-|x|$?
-    \item \textbf{Two parabolas.} The parent $y=x^2$, and $y=(x-3)^2$ beside it.
-  \end{enumerate}
-  \vspace{6pt}
-  \begin{block}{Hold on to this}
-    $y=(x-3)^2$ moved the parent \emph{right} $3$ --- even though the sign inside says
-    ``minus.'' Keep that question: why does subtracting inside move it the \emph{other} way?
-  \end{block}
-\end{frame}
-
-% HOOK — left unresolved
-\begin{frame}[t, plain]
-  \forestheader{Hook: one curve in three costumes}
-  \sectionlabel[goldacc]{The same parabola you read in Lesson 2.0}
-  \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      \[ x^2-2x-3 \]
-      \[ (x-1)^2-4 \]
-      \[ (x+1)(x-3) \]
-      Three expressions --- and \emph{one} graph on the right.
-    \end{column}
-    \begin{column}{0.42\textwidth}\centering
-      \begin{tikzpicture}[scale=0.34]
-        \qgrid{-3.5}{5.5}{-5.5}{5.5}
-        \begin{scope}
-          \clip (-3.5,-5.5) rectangle (5.5,5.5);
-          \draw[very thick, forest, domain=-2.4:4.4, samples=80, smooth, variable=\x]
-            plot (\x,{(\x-1)^2-4});
-        \end{scope}
-        \fdot{forest}{1}{-4}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-  \begin{block}{Vote --- and we do not settle it yet}
-    \textbf{Circle one: three different parabolas \; / \; one parabola wearing three costumes.}
-    \quad And: which costume tells you the \textbf{vertex} fastest? Which one the \textbf{zeros}?
-  \end{block}
-\end{frame}
-
-% NOTES ROW 1 — THE PARENT AND ITS SHIFTS  (section 1a)
-\begin{frame}[t, plain]
-  \forestheader{Notes: the parent $y=x^2$ and its shifts}
-  \sectionlabel{notes, Its Shifts $\cdot$ I do problem 1, you do problem 2}
-  \begin{columns}[T]
-    \begin{column}{0.50\textwidth}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $f(x)+k$: a number \emph{outside} slides it \textbf{up or down}. $y=x^2+3$ ---
-              vertex $(0,3)$.
-        \item $f(x-h)$: a change \emph{inside} slides it \textbf{left or right}. $y=(x-2)^2$ ---
-              vertex $(2,0)$.
-        \item So $(x-2)^2$ moves the parent \textbf{right} $2$.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.46\textwidth}\centering
-      \begin{tikzpicture}[scale=0.32]
-        \qgrid{-3.5}{5.5}{-1.5}{8.5}
-        \begin{scope}
-          \clip (-3.5,-1.5) rectangle (5.5,8.5);
-          \draw[very thick, charcoal, domain=-3.2:3.2, samples=80, smooth, variable=\x]
-            plot (\x,{(\x)^2});
-          \draw[very thick, forest, domain=-2.6:2.6, samples=80, smooth, variable=\x]
-            plot (\x,{(\x)^2+3});
-          \draw[very thick, redacc, domain=-1.2:5.2, samples=80, smooth, variable=\x]
-            plot (\x,{(\x-2)^2});
-        \end{scope}
-        \fdot{charcoal}{0}{0} \fdot{forest}{0}{3} \fdot{redacc}{2}{0}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-  \begin{block}{Subtracting inside moves it the other way}
-    $(x-2)^2$ is zero when $x=2$, not when $x=-2$. The bracket asks what you must subtract to
-    get back to the parent's input --- so the graph slides the \emph{opposite} way to the sign.
-  \end{block}
-\end{frame}
-
-% NOTES ROW 2 — STRETCH AND FLIP  (section 1b)
-\begin{frame}[t, plain]
-  \forestheader{Notes: stretch, squash, flip --- that is $a$}
-  \sectionlabel{notes, Stretch and Flip $\cdot$ I do problem 3, you do 4--5}
-  \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item $|a|>1$: \textbf{narrower} than the parent.
-        \item $0<|a|<1$: \textbf{wider}.
-        \item $a<0$: \textbf{reflected} --- opens down, so the vertex is a \textbf{maximum}.
-      \end{itemize}
-      \vspace{3pt}
-      Check it with numbers, not with your eyes: at $x=2$, $y=x^2$ gives $4$ and $y=3x^2$ gives
-      $12$.
-    \end{column}
-    \begin{column}{0.48\textwidth}\centering
-      \begin{tikzpicture}[scale=0.32]
-        \qgrid{-4.5}{4.5}{-4.5}{8.5}
-        \begin{scope}
-          \clip (-4.5,-4.5) rectangle (4.5,8.5);
-          \draw[very thick, charcoal, domain=-3.2:3.2, samples=80, smooth, variable=\x]
-            plot (\x,{(\x)^2});
-          \draw[very thick, forest, domain=-1.9:1.9, samples=80, smooth, variable=\x]
-            plot (\x,{3*(\x)^2});
-          \draw[very thick, redacc, domain=-3.2:3.2, samples=80, smooth, variable=\x]
-            plot (\x,{-0.5*(\x)^2});
-        \end{scope}
-        \fdot{charcoal}{0}{0}
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-  \begin{block}{Same vertex, three widths}
-    $y=x^2$, $y=3x^2$, $y=-\tfrac12 x^2$ all have vertex $(0,0)$. Only $a$ changed --- and the
-    red one opens \emph{down}, so $(0,0)$ went from a minimum to a maximum.
-  \end{block}
-\end{frame}
-
-% NOTES ROW 3 — VERTEX FORM READS ITSELF  (section 2a)
-\begin{frame}[t, plain]
-  \forestheader{Notes: vertex form reads itself}
-  \sectionlabel{notes, Vertex Form $\cdot$ I do problem 6, you do 7--8}
-  \[ y=a(x-h)^2+k \quad\Longrightarrow\quad \text{vertex } (h,k), \quad \text{axis } x=h \]
   \begin{itemize}\setlength{\itemsep}{4pt}
-    \item Read $a$ (direction and width) $\to$ read $h$, \textbf{flipping the sign inside} $\to$
-          read $k$, no flip.
-    \item Our anchor: $y=(x-1)^2-4$. So $a=1$, $h=1$, $k=-4$: vertex $(1,-4)$, axis $x=1$,
-          opens up.
-    \item Plot the vertex, then use \textbf{symmetry} --- a point one step left has a twin the
-          same height one step right.
+    \item Describe a quadratic as a \textbf{transformation} of the \textbf{parent function}
+          $y=x^2$: shifts, \textbf{stretch}, \textbf{compression}, \textbf{reflection}.
+    \item Read the \textbf{vertex} and \textbf{axis of symmetry} from \textbf{vertex form}.
+    \item Find the axis and the \textbf{$y$-intercept} from \textbf{standard form}.
+    \item Read the \textbf{zeros} from \textbf{intercept form} --- and watch the signs.
   \end{itemize}
-  \begin{block}{No work required}
-    Vertex form is the only one of the three that hands you the vertex with no arithmetic at all.
-    That is what makes it worth recognising on sight.
+  \vspace{3pt}
+  \begin{block}{How today runs --- you are solving the whole hour}
+    Four rounds: a short definition, one example, then \textbf{your turn} --- start at
+    \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me}: hold up
+    1--4 fingers on the count of three. We finish with a \textbf{Final Round} out of 4, then
+    start the homework.
   \end{block}
 \end{frame}
 
-% NOTES ROW 4 — THE CRUX  (section 2b)
+% ═══ ROUND 1 — SHIFTS: VERTEX FORM y=(x-h)^2+k ═══════════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{Notes: three costumes, one curve --- and the bracket that lies}
-  \sectionlabel[redacc]{notes, One Curve $\cdot$ the crux, problems 9--10 --- which form you are in decides}
+  \forestheader{Definition: shifting the parent $y=x^2$}
+  \sectionlabel{Round 1 --- slide it}
   \begin{columns}[T]
-    \begin{column}{0.48\textwidth}
-      \textbf{Standard} $x^2-2x-3$: $y$-intercept $(0,-3)$ free; axis
-      $x=-\frac{-2}{2(1)}=1$; then $y=-4$. \\[4pt]
-      \textbf{Intercept} $(x+1)(x-3)$: zeros $-1$ and $3$; axis $\frac{-1+3}{2}=1$. \\[4pt]
-      \textbf{Vertex} $(x-1)^2-4$: vertex $(1,-4)$, axis $x=1$. \\[4pt]
-      \textbf{All three agree --- it is one curve.}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Where the two answers disagree}
-        In \emph{vertex} form, $(x+4)^2$ shifts the parent \textbf{left} $4$. \\[3pt]
-        As a \emph{factor}, $(x+4)$ gives the zero $x=\mathbf{-4}$ --- and in $(x+1)(x-3)$ the
-        zeros are $-1$ and $3$, not $1$ and $-3$. \\[3pt]
-        \textbf{Same bracket, opposite-looking jobs. Which form you are in decides.}
+    \begin{column}{0.56\textwidth}
+      \begin{block}{Parent function}
+        $y=x^2$ is the \textbf{parent function}: a parabola with its \textbf{vertex} at
+        $(0,0)$.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Vertex form (shifts)}
+        $y=(x-h)^2+k$ is the parent shifted $h$ units \textbf{right} and $k$ units
+        \textbf{up}. Its vertex is $(h,k)$ and its \textbf{axis of symmetry} is the line
+        $x=h$. A negative $h$ or $k$ means left or down.
       \end{block}
     \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \qgrid{-4}{5}{-5}{5}
+        \begin{scope}\clip (-4,-5) rectangle (5,5);
+          \draw[thick, slate, dashed, domain=-2.3:2.3, samples=50, smooth] plot (\x,{\x*\x});
+          \draw[very thick, forest, domain=-2.1:4.1, samples=60, smooth]
+            plot (\x,{(\x-1)*(\x-1)-4});
+        \end{scope}
+        \fdot{slate}{0}{0}
+        \fdot{redacc}{1}{-4}
+        \draw[->, thick, redacc] (0.2,-0.3) -- (0.9,-3.6);
+      \end{tikzpicture}\\[-2pt]
+      {\scriptsize dashed: $y=x^2$ \quad solid: $y=(x-1)^2-4$ \\ right 1, down 4: vertex
+      $(1,-4)$}
+    \end{column}
   \end{columns}
 \end{frame}
 
-% GUIDED PRACTICE — WE DO
 \begin{frame}[t, plain]
-  \forestheader{Guided Practice: we do this one together}
-  \sectionlabel[goldacc]{You hold the pen --- problems 11--14: one new curve, three costumes}
-  $y=-(x-2)^2+9 \;=\; -x^2+4x+5 \;=\; -(x+1)(x-5)$ --- the graph is on your page.
+  \forestheader{Example 1: describe the shift, name the vertex}
+  \sectionlabel{Watch --- 2 minutes}
+  \begin{itemize}\setlength{\itemsep}{8pt}
+    \item $y=(x-1)^2-4$: \; $h=1$, $k=-4$. \pause \; Right $1$, down $4$. Vertex $(1,-4)$, axis
+          $x=1$.
+    \pause
+    \item $y=(x+2)^2+3$: \; rewrite $x+2$ as $x-(-2)$, so $h=-2$, $k=3$. \pause \; Left $2$,
+          up $3$. Vertex $(-2,3)$, axis $x=-2$.
+  \end{itemize}
+  \pause
+  \vspace{6pt}
+  \begin{block}{The sign rule}
+    Inside the bracket the sign is \emph{opposite} to the move: $x-1$ goes right, $x+2$ goes
+    left. Outside the bracket it is not: $+3$ goes up.
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{4 minutes --- start at one star and climb}
+  Describe the shift from $y=x^2$ and name the vertex.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $y=x^2+5$
+    \item[\rung2] $y=(x-4)^2-1$
+    \item[\rung3] $y=(x+3)^2+2$ \quad --- and its axis of symmetry
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ up $5$; $(0,5)$ \qquad \rung2\ right $4$, down $1$; $(4,-1)$ \qquad
+      \rung3\ left $3$, up $2$; $(-3,2)$; axis $x=-3$
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: how does $y=x^2-3$ move the parent?}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \opt1{right 3} \\[12pt]
+      \opt3{down 3}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \opt2{left 3} \\[12pt]
+      \opt4{up 3}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{3}}
+      The $-3$ is \emph{outside} the square, so it is $k$: down $3$, vertex $(0,-3)$. Chose
+      \textbf{1} or \textbf{2}? Those need a number \emph{inside} the bracket, like $(x-3)^2$.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 2 — STRETCH, COMPRESS, FLIP: a ════════════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: stretch, compress, flip --- that is $a$}
+  \sectionlabel{Round 2 --- shape it}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{block}{$y=a(x-h)^2+k$}
+        \begin{itemize}\setlength{\itemsep}{2pt}
+          \item $|a|>1$: a \textbf{vertical stretch} --- narrower.
+          \item $0<|a|<1$: a \textbf{vertical compression} --- wider.
+          \item $a<0$: a \textbf{reflection} over the $x$-axis --- it opens \emph{down}, and the
+                vertex is a \textbf{maximum}.
+          \item $a>0$: it opens up, and the vertex is a \textbf{minimum}.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \qgrid{-4}{4}{-5}{5}
+        \begin{scope}\clip (-4,-5) rectangle (4,5);
+          \draw[very thick, forest, domain=-2.3:2.3, samples=50, smooth] plot (\x,{\x*\x});
+          \draw[very thick, navy, domain=-1.6:1.6, samples=50, smooth] plot (\x,{2*\x*\x});
+          \draw[very thick, goldacc, domain=-3.2:3.2, samples=50, smooth]
+            plot (\x,{0.5*\x*\x});
+          \draw[very thick, redacc, domain=-2.3:2.3, samples=50, smooth] plot (\x,{-\x*\x});
+        \end{scope}
+      \end{tikzpicture}\\[-2pt]
+      {\scriptsize {\color{forest}$x^2$} \; {\color{navy}$2x^2$ narrower} \;
+      {\color{goldacc}$\tfrac12x^2$ wider} \; {\color{redacc}$-x^2$ flipped}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 2: describe $y=-2(x+1)^2+3$}
+  \sectionlabel{Watch --- 2 minutes}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item $a=-2$: \; negative, so \textbf{reflected} --- opens down. \pause $|a|=2>1$, so
+          \textbf{stretched} --- narrower.
+    \pause
+    \item $h=-1$, $k=3$: \; left $1$, up $3$. Vertex $(-1,3)$, axis $x=-1$.
+    \pause
+    \item Opens down, so $(-1,3)$ is a \textbf{maximum}: the highest point. Range $y\le3$.
+  \end{itemize}
+  \pause
+  \vspace{6pt}
+  \emph{Order to read it in:} the sign of $a$ (up or down), the size of $a$ (narrow or wide),
+  then $h$ and $k$ (where).
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{4 minutes --- start at one star and climb}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $y=3x^2$: opens up or down? Narrower or wider than $y=x^2$?
+    \item[\rung2] $y=-\tfrac12(x-2)^2+4$: up or down, narrower or wider, the vertex --- max or
+          min?
+    \item[\rung3] Write the equation: the parent reflected, compressed by $\tfrac13$, then moved
+          left $1$ and down $5$.
+  \end{itemize}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ up, narrower \qquad \rung2\ down, wider; $(2,4)$ is a maximum \qquad
+      \rung3\ $y=-\tfrac13(x+1)^2-5$
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Find the mistake}
+  \sectionlabel[goldacc]{2 minutes --- Student A made one mistake. Find it and fix it}
+  \textbf{Student A} described $y=-(x-3)^2+2$:
   \begin{enumerate}\setlength{\itemsep}{4pt}
-    \item[\textbf{11.}] Vertex form: vertex, axis, up or down --- and is $9$ a maximum or a
-          minimum?
-    \item[\textbf{12.}] Standard form: the $y$-intercept straight off, then the axis from
-          $x=-\frac{b}{2a}$.
-    \item[\textbf{13.}] Intercept form: the zeros, and the axis at their midpoint.
-    \item[\textbf{14.}] You found the axis three ways. Do they agree, and why must they? A
-          classmate read the zeros as $1$ and $-5$ --- what did they do wrong?
+    \item ``Right $3$ and up $2$, so the vertex is $(3,2)$.''
+    \item ``The axis of symmetry is $x=3$.''
+    \item ``The vertex $(3,2)$ is the \emph{lowest} point, so the range is $y\ge2$.''
   \end{enumerate}
-  \vspace{3pt}
-  \begin{block}{The questions I will ask}
-    ``Which form is this, and what does it hand you for free?'' \quad ``What is $h$ --- and did
-    you flip the sign?'' \quad ``$(x+1)$ is zero at which $x$?''
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{The mistake: step 3}
+      $a=-1<0$, so the parabola opens \emph{down}: $(3,2)$ is the \textbf{maximum} and the range
+      is $y\le2$. Steps 1 and 2 are right --- check the sign of $a$ first.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 3 — STANDARD FORM: AXIS x = -b/(2a) ═══════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: reading standard form}
+  \sectionlabel{Round 3 --- $ax^2+bx+c$}
+  \begin{block}{Standard form $y=ax^2+bx+c$}
+    \begin{itemize}\setlength{\itemsep}{3pt}
+      \item The \textbf{$y$-intercept} is $c$ (put $x=0$).
+      \item The \textbf{axis of symmetry} is \[ x=-\frac{b}{2a}. \]
+      \item The vertex sits on the axis: put that $x$ back into the equation to get its
+            $y$-value.
+      \item $a$ means what it meant in Round 2: its sign says up or down.
+    \end{itemize}
   \end{block}
 \end{frame}
 
-% DEBRIEF
 \begin{frame}[t, plain]
-  \forestheader{Debrief: pens down, papers up}
-  \sectionlabel[redacc]{10 minutes --- aloud, nothing to fill in}
-  \begin{enumerate}\setlength{\itemsep}{5pt}
-    \item \textbf{One curve, three costumes.} The vote from the hook is settled: $x^2-2x-3$,
-          $(x-1)^2-4$ and $(x+1)(x-3)$ are the \emph{same} parabola. Each form just hands you a
-          different feature first.
-    \item \textbf{The sign flip.} $(x-1)^2$ moves the parent \emph{right} $1$; $x^2-1$ moves it
-          \emph{down} $1$. Inside versus outside, every time.
-    \item \textbf{The same bracket, two forms.} $(x+4)^2$ shifts \emph{left} $4$; the factor
-          $(x+4)$ gives the zero $-4$. Which form you are in decides what the bracket means.
-    \item \textbf{$a$ does two jobs.} Direction (sign) and width (size) --- and when $a<0$ the
-          vertex is a \emph{maximum}, which is Lesson~2.0's language read off the equation.
-  \end{enumerate}
-  \vspace{3pt}
-  \begin{block}{Say it without the notes}
-    ``$y=(x-1)^2-4$: vertex $(1,-4)$, axis $x=1$, opens up --- and I flipped the sign inside to
-    get $h=1$.''
+  \forestheader{Example 3: read $y=x^2-2x-3$}
+  \sectionlabel{Watch --- 2 minutes}
+  $a=1$, $b=-2$, $c=-3$.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item $y$-intercept: $c=-3$, the point $(0,-3)$.
+    \pause
+    \item Axis: $x=-\dfrac{-2}{2(1)}=1$.
+    \pause
+    \item Vertex: $y=1^2-2(1)-3=-4$, so $(1,-4)$.
+  \end{itemize}
+  \pause
+  \vspace{4pt}
+  \begin{block}{Same curve}
+    $(1,-4)$ is the vertex we read straight off $y=(x-1)^2-4$ in Round 1 --- the warm-up said
+    they are the same quadratic.
   \end{block}
 \end{frame}
 
-% CLOSE & START HOMEWORK
 \begin{frame}[t, plain]
-  \forestheader{Close --- and start the homework, on your own}
-  \sectionlabel{10 minutes $\cdot$ silent $\cdot$ the Homework page in your packet}
-  You walked in able to \emph{read} a parabola someone drew for you. You walk out able to take an
-  equation, name which of the three forms it is in, and say where its vertex, axis, zeros and
-  $y$-intercept are --- and how the parent $y=x^2$ was moved to get there.
-  \vspace{5pt}
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{4 minutes --- start at one star and climb}
+  Find what is asked.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $y=x^2+4x+1$: the $y$-intercept and the axis of symmetry
+    \item[\rung2] $y=x^2+6x+5$: the axis and the vertex
+    \item[\rung3] $y=-2x^2+8x-3$: the vertex --- is it a max or a min?
+  \end{itemize}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $(0,1)$; $x=-\tfrac{4}{2}=-2$ \qquad \rung2\ $x=-3$; $y=9-18+5=-4$, so
+      $(-3,-4)$ \\[1pt]
+      \rung3\ $x=-\tfrac{8}{2(-2)}=2$; $y=-8+16-3=5$: $(2,5)$, a \textbf{maximum} ($a<0$)
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: the axis of symmetry of $y=2x^2-12x+7$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \opt1{$x=-3$} \\[12pt]
+      \opt3{$x=6$}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \opt2{$x=3$} \\[12pt]
+      \opt4{$x=7$}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      $x=-\dfrac{-12}{2(2)}=3$. \; \textbf{1} dropped the minus in $-b$; \textbf{3} divided by
+      $a$ instead of $2a$; \textbf{4} is $c$, the $y$-intercept.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 4 — INTERCEPT FORM AND THE BRACKET THAT LIES (the crux) ════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: intercept form}
+  \sectionlabel{Round 4 --- one curve, three forms}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{block}{Intercept form $y=a(x-p)(x-q)$}
+        The \textbf{zeros} ($x$-intercepts) are $x=p$ and $x=q$. The axis of symmetry is
+        halfway between them: $x=\dfrac{p+q}{2}$.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{The bracket that lies}
+        In \emph{both} $(x-h)^2$ and $(x-p)(x-q)$, the number you read has the
+        \emph{opposite} sign to the one printed: $(x+1)$ means $-1$.
+      \end{block}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.34]
+        \qgrid{-3}{5}{-5}{4}
+        \begin{scope}\clip (-3,-5) rectangle (5,4);
+          \draw[very thick, forest, domain=-1.8:3.8, samples=60, smooth]
+            plot (\x,{(\x+1)*(\x-3)});
+        \end{scope}
+        \fdot{redacc}{-1}{0} \fdot{redacc}{3}{0} \fdot{navy}{1}{-4} \fdot{goldacc}{0}{-3}
+        \draw[dashed, navy] (1,-5) -- (1,4);
+      \end{tikzpicture}\\[-2pt]
+      {\scriptsize $(x-1)^2-4$: {\color{navy}vertex $(1,-4)$} \\ $x^2-2x-3$:
+      {\color{goldacc}$y$-int $-3$} \\ $(x+1)(x-3)$: {\color{redacc}zeros $-1$, $3$}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 4: read $y=(x+1)(x-3)$}
+  \sectionlabel{Watch --- 2 minutes}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item Zeros: $x+1=x-(-1)$, so $p=-1$; and $q=3$. \pause \; The graph crosses at $-1$ and
+          $3$.
+    \pause
+    \item Axis: halfway, $x=\dfrac{-1+3}{2}=1$.
+    \pause
+    \item Vertex: $y=(1+1)(1-3)=-4$, so $(1,-4)$ --- the same vertex, the same curve.
+  \end{itemize}
+  \pause
+  \vspace{4pt}
+  \emph{Each form hands you something free:} vertex form the vertex, standard form the
+  $y$-intercept, intercept form the zeros.
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item[\rung1] $y=(x-2)(x-6)$: the zeros and the axis of symmetry
+    \item[\rung2] $y=(x+5)(x-1)$: the zeros, the axis, and the vertex
+    \item[\rung3] A horse's jump at the riding ring follows $h=-0.125\,x(x-12)$, with $x$ and
+          $h$ in feet. Where does it land? How high is the top of the jump?
+  \end{itemize}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $2$ and $6$; $x=4$ \qquad \rung2\ $-5$ and $1$; $x=-2$; $y=(3)(-3)=-9$, so
+      $(-2,-9)$ \\[1pt]
+      \rung3\ zeros $0$ and $12$: takes off at $0$, lands $12$ ft away. Top at $x=6$:
+      $h=-0.125(6)(-6)=4.5$ ft.
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: the axis of symmetry of $y=(x-4)(x+2)$}
+  \sectionlabel[redacc]{The one that matters --- 1 to 4 fingers on the count of three}
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \opt1{$x=-1$} \\[12pt]
+      \opt3{$x=3$}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \opt2{$x=1$} \\[12pt]
+      \opt4{$x=-3$}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      The zeros are $4$ and $-2$ --- the brackets flip the signs --- so the axis is
+      $x=\tfrac{4+(-2)}{2}=1$. Chose \textbf{1}? You read the zeros as $-4$ and $2$ straight off
+      the brackets. That is the bracket that lies.
+    \end{block}}
+\end{frame}
+
+% FINAL ROUND — one problem per round, self-scored /4, plus a student-life bonus.
+% Item 4 is the crux's twin.
+\begin{frame}[t, plain]
+  \forestheader{Final Round}
+  \sectionlabel[goldacc]{5 minutes --- on your own --- score yourself out of 4}
+  \begin{enumerate}\setlength{\itemsep}{3pt}
+    \item Describe the shift: $y=(x+4)^2-1$.
+    \item $y=-\tfrac14x^2$: up or down? Narrower or wider?
+    \item The axis of symmetry of $y=x^2-8x+10$.
+    \item The zeros of $y=2(x+6)(x-1)$.
+  \end{enumerate}
+  {\small\textbf{Bonus (+1):} The Service Club sells hoodies at the school store. Its profit at
+  price $x$ dollars is $P=-5(x-20)^2+2000$. What price gives the most profit, and how much?}
+  \reveal{%
+    \begin{block}{Check --- one point each}
+      1.\ left $4$, down $1$ \quad 2.\ down, wider \quad 3.\ $x=4$ \quad 4.\ $-6$ and $1$ \\[1pt]
+      \textbf{Bonus:} vertex $(20,2000)$, a maximum: \$20 a hoodie, \$2000 profit. \\[2pt]
+      \textbf{Watch out:} inside a bracket the sign flips --- $(x+6)$ means $-6$.
+    \end{block}}
+\end{frame}
+
+% HOMEWORK — source: DeltaMath, printed (user choice for 2.1, 2026-09-27).
+\begin{frame}[t, plain]
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
   \begin{block}{Homework --- scored, due the first class after two study halls}
-    We do item~1(a) together right now; then you keep going, alone. Six items: reading vertex
-    form, the inside-versus-outside pair, a graph to read \emph{and} write as a rule, intercept
-    form and its special case, a stone arch, and one multiple-choice item. Whatever is left is
-    due the first class after two study halls --- I will announce the date in class and on
-    TurtleNet.
+    The \textbf{DeltaMath} pages in your packet: transformations and the three forms of a
+    quadratic. Start the first problem now; the rest is due the first class after two study
+    halls. I will announce the date in class and on TurtleNet.
   \end{block}
-  \vspace{3pt}
-  \textbf{Next:} Lesson 2.2 --- where the factored form \emph{comes from}, and how to build it
-  yourself.
+  \vspace{6pt}
+  \textbf{Next:} Lesson 2.2 --- we \emph{make} the intercept form ourselves by factoring, and
+  use it to solve.
 \end{frame}
 
 \end{document}
