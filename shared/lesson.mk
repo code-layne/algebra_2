@@ -9,9 +9,11 @@
 #                         per slide) — the projected form
 #
 # The two slide products are the deck's two forms: the PDF is what you print and
-# hand out, the PPTX is what you project. Both come from the one Beamer deck
-# compiled at target/$(UNIT)/$(LESSON)/slides/main.pdf, which is the source of
-# truth — never edit either product, edit slides/main.tex and rebuild.
+# hand out, the PPTX is what you project. Both come from the one Beamer source,
+# slides/main.tex — never edit either product, edit the source and rebuild. The
+# PPTX is framed from the projected compile (target/.../slides/main.pdf, one page
+# per overlay step, so answer reveals advance on a click); the printed PDF from a
+# handout-mode compile (target/.../slides_handout/main.pdf) that drops them.
 #   lessonYY_student.pdf  cover + blank components, paginated packet-wide
 #   lessonYY_key.pdf      the same packet answered, page for page with the student one
 #
@@ -85,6 +87,28 @@ STUDENT_PDFS   := $(foreach c,$(STUDENT_COMPS),$(call comp-pdf,$(c)))
 KEY_STAMPS     := $(foreach c,$(KEY_COMPS),$(call comp-stamp,$(c)))
 KEY_PDFS       := $(foreach c,$(KEY_COMPS),$(call comp-pdf,$(c)))
 
+# ── The slide handout as a packet component (slides-first lessons) ────────────
+# In the slides-first shape the printed handout IS the student's notes, so it
+# rides in the packet right after the cover: the answer-free handout in the
+# student packet, and an ANSWERED handout in the key packet — the deck compiled
+# in handout mode with \ShowAnswers defined, so every \reveal prints (in keyred).
+# Same frames, same framing, so the two are page for page. A lesson that still
+# carries `warmup` or `notes` (an older shape) keeps its handout out of the
+# packet, exactly as before.
+HANDOUT_IN_PACKET := $(if $(wildcard slides/main.tex),$(if $(wildcard warmup/main.tex warmup/main.pdf notes/main.tex notes/main.pdf),,yes))
+PACKET_HANDOUT_DIR := $(PDF_DIR)/packet_handout
+HANDOUT_STU_PDF := $(PACKET_HANDOUT_DIR)/handout.pdf
+HANDOUT_KEY_PDF := $(PACKET_HANDOUT_DIR)/handout_key.pdf
+ifeq ($(HANDOUT_IN_PACKET),yes)
+HEAD_COMPS      := $(filter cover,$(STUDENT_COMPS))
+TAIL_COMPS      := $(filter-out cover,$(STUDENT_COMPS))
+STUDENT_PDFS    := $(foreach c,$(HEAD_COMPS),$(call comp-pdf,$(c))) $(HANDOUT_STU_PDF) \
+                   $(foreach c,$(TAIL_COMPS),$(call comp-pdf,$(c)))
+KEY_PDFS        := $(foreach c,$(HEAD_COMPS),$(call comp-pdf,$(call key-of,$(c)))) $(HANDOUT_KEY_PDF) \
+                   $(foreach c,$(TAIL_COMPS),$(call comp-pdf,$(call key-of,$(c))))
+PACKET_HANDOUTS := $(HANDOUT_STU_PDF) $(HANDOUT_KEY_PDF)
+endif
+
 # ── The five work products ────────────────────────────────────────────────────
 PLAN_OUT     := $(if $(HAS_ROOT),$(COMPILED_DIR)/$(LESSON)_plan.pdf)
 SLIDES_OUT   := $(if $(HAS_SLIDES),$(COMPILED_DIR)/$(LESSON)_slides.pdf)
@@ -102,6 +126,16 @@ PPTX_DPI     ?= 300
 # Deck → printed handout: 3 slides per page, notes column beside each.
 HANDOUT_TEX  := $(PROJECT_ROOT)/shared/handout.tex
 HANDOUT_DIR  := $(PDF_DIR)/.handout
+
+# The handout is framed from a SECOND compile of the deck in Beamer's handout
+# mode, not from the projected deck: overlays collapse to one page per frame and
+# anything marked `handout:0` — the Now-you-try answer reveals — is dropped, so
+# the printed handout never shows an answer the projector reveals on a click. A
+# deck with no overlays compiles identically in both modes. A prefab deck
+# (slides/main.pdf) has no source to recompile and is framed as-is.
+HANDOUT_DECK_DIR := $(PDF_DIR)/slides_handout
+HANDOUT_DECK_PDF := $(if $(wildcard slides/main.tex),$(HANDOUT_DECK_DIR)/main.pdf,$(SLIDES_PDF))
+HANDOUT_DECK_DEP := $(if $(wildcard slides/main.tex),$(STAMP_DIR)/slides_handout.stamp,$(SLIDES_DEP))
 
 # Both packets are laid out against each other, so either target needs every
 # component of both compiled before it can be paginated.
@@ -122,12 +156,12 @@ define handout
 	@set -e; \
 	n=$$(pdfinfo "$1" | awk '/^Pages/{print $$2}'); \
 	TEXINPUTS="$(TEXINPUTS)" xelatex -interaction=nonstopmode -halt-on-error \
-	    -output-directory="$(HANDOUT_DIR)" -jobname=handout \
+	    -output-directory="$(HANDOUT_DIR)" -jobname=$(basename $(notdir $2)) \
 	    '\def\DeckSource{'"$1"'}\def\DeckPages{'"$$n"'}\input{handout}' \
-	    > $(HANDOUT_DIR)/handout.log 2>&1 \
-	  && mv $(HANDOUT_DIR)/handout.pdf $2 \
-	  || { echo "!  handout pass failed — see $(HANDOUT_DIR)/handout.log"; \
-	       grep -E "^(!|l\.)" $(HANDOUT_DIR)/handout.log | head -10; exit 1; }
+	    > $(HANDOUT_DIR)/$(basename $(notdir $2)).log 2>&1 \
+	  && mv $(HANDOUT_DIR)/$(basename $(notdir $2)).pdf $2 \
+	  || { echo "!  handout pass failed — see $(HANDOUT_DIR)/$(basename $(notdir $2)).log"; \
+	       grep -E "^(!|l\.)" $(HANDOUT_DIR)/$(basename $(notdir $2)).log | head -10; exit 1; }
 endef
 
 # ── Packet-wide pagination + recto starts + student/key alignment ─────────────
@@ -208,9 +242,9 @@ $(COMPILED_DIR)/$(LESSON)_plan.pdf: $(ROOT_DEP)
 	@cp $(ROOT_PDF) $@
 	@echo "✓  Lesson plan    → target/compiled/$(UNIT)/$(LESSON)_plan.pdf"
 
-$(COMPILED_DIR)/$(LESSON)_slides.pdf: $(SLIDES_DEP) $(HANDOUT_TEX)
+$(COMPILED_DIR)/$(LESSON)_slides.pdf: $(HANDOUT_DECK_DEP) $(HANDOUT_TEX)
 	@mkdir -p $(COMPILED_DIR)
-	$(call handout,$(abspath $(SLIDES_PDF)),$@)
+	$(call handout,$(abspath $(HANDOUT_DECK_PDF)),$@)
 	@echo "✓  Slides (PDF)   → target/compiled/$(UNIT)/$(LESSON)_slides.pdf (3 per page, notes column)"
 
 # Built from the raw deck, not from the handout above.
@@ -221,7 +255,7 @@ $(COMPILED_DIR)/$(LESSON)_slides.pptx: $(SLIDES_DEP) $(PPTX_SCRIPT)
 
 # ── student / key packets ─────────────────────────────────────────────────────
 
-student: $(ALIGN_STAMPS)
+student: $(ALIGN_STAMPS) $(PACKET_HANDOUTS)
 ifneq ($(strip $(STUDENT_PDFS)),)
 	@mkdir -p $(COMPILED_DIR)
 	pdfunite $(STUDENT_PDFS) $(COMPILED_DIR)/$(LESSON)_student.pdf
@@ -231,7 +265,7 @@ else
 	@echo "  (no student components in $(UNIT)/$(LESSON))"
 endif
 
-key: $(ALIGN_STAMPS)
+key: $(ALIGN_STAMPS) $(PACKET_HANDOUTS)
 ifneq ($(strip $(KEY_PDFS)),)
 	@mkdir -p $(COMPILED_DIR)
 	pdfunite $(KEY_PDFS) $(COMPILED_DIR)/$(LESSON)_key.pdf
@@ -247,6 +281,29 @@ $(STAMP_DIR)/%/main.stamp: %/main.tex $(SHARED_STYS)
 	cd $* && TEXINPUTS="$(TEXINPUTS)" $(LATEXMK) $(LATEXFLAGS) \
 		-outdir="$(PDF_DIR)/$*" main.tex
 	@touch $@
+
+# ── Rule: the deck again, in Beamer handout mode (the printed handout's source) ─
+$(STAMP_DIR)/slides_handout.stamp: slides/main.tex $(SHARED_STYS)
+	@mkdir -p $(dir $@) $(HANDOUT_DECK_DIR)
+	cd slides && TEXINPUTS="$(TEXINPUTS)" $(LATEXMK) $(LATEXFLAGS) \
+		-usepretex='\PassOptionsToClass{handout}{beamer}' \
+		-outdir="$(HANDOUT_DECK_DIR)" main.tex
+	@touch $@
+
+# ── Rule: the deck in handout mode WITH answers (the key packet's handout) ─────
+$(STAMP_DIR)/slides_handout_key.stamp: slides/main.tex $(SHARED_STYS)
+	@mkdir -p $(dir $@) $(PDF_DIR)/slides_handout_key
+	cd slides && TEXINPUTS="$(TEXINPUTS)" $(LATEXMK) $(LATEXFLAGS) \
+		-usepretex='\PassOptionsToClass{handout}{beamer}\def\ShowAnswers{}' \
+		-outdir="$(PDF_DIR)/slides_handout_key" main.tex
+	@touch $@
+
+# ── Rules: the two packet handouts ───────────────────────────────────────────
+$(HANDOUT_STU_PDF): $(STAMP_DIR)/slides_handout.stamp $(HANDOUT_TEX)
+	$(call handout,$(abspath $(HANDOUT_DECK_DIR)/main.pdf),$@)
+
+$(HANDOUT_KEY_PDF): $(STAMP_DIR)/slides_handout_key.stamp $(HANDOUT_TEX)
+	$(call handout,$(abspath $(PDF_DIR)/slides_handout_key/main.pdf),$@)
 
 # ── Rule: compile root-level main.tex ────────────────────────────────────────
 $(STAMP_DIR)/main.stamp: main.tex $(SHARED_STYS)

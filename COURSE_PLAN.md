@@ -2,6 +2,92 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-28) — **SLIDE HANDOUT NOW RIDES IN THE PACKET (cover → handout → homework).**
+>
+> **User request, 2026-09-28:** "incorporate the student version of the slides into the student
+> packet between the cover and the homework." `shared/lesson.mk` now inserts the answer-free
+> handout after the cover in the student packet and an **answered** handout (deck compiled with
+> `\ShowAnswers`; `\reveal` prints in keyred) in the key packet — page for page. Gated on
+> `slides/main.tex` present and no `warmup`/`notes`, so only slides-first lessons change (1.4
+> checked: 10pp before and after). 2.1: student/key 16pp each (cover 1+1, handout 7+1, DeltaMath
+> 6). 2.2: 10pp each until its DeltaMath PDF arrives. The skill's "never put slides in the student
+> packet" rule is narrowed to "never hand-merge" (skill repo commit).
+
+> ## ⚠ Status (2026-09-27) — **LESSON 2.1 REGENERATED SLIDES-FIRST ON THE ENGAGEMENT RULES.**
+>
+> **2.1 Graphing Quadratic Functions & Transformations** — A.F.2b/c/d, A2.F.1, A2.F.2a/d. Legacy
+> gradual-release `warmup`, `notes`, `homework` (+ keys) `git rm`-ed. 21 frames: warm-up (two
+> forms of $x^2-2x-3$) → four rounds — shifts (Show me $x^2-3$), stretch/compress/flip (Find the
+> mistake: max vs min), standard form $x=-b/2a$ (Show me), **intercept form — crux Show me: axis
+> of $(x-4)(x+2)$, the bracket sign flip** — → Final Round (crux twin: zeros of $2(x+6)(x-1)$;
+> Service Club hoodie-profit bonus) → homework. Student-life ★★★: a horse's jump at the riding
+> ring. Still no factoring or solving (2.2). **Homework: DeltaMath printed** — installed 2026-09-28:
+> 25 problems, 6pp + 6pp key (header corrected to "Lesson 2.1"); formative check = 21 and 25.
+> Student and key packets 8pp each. Build exit 0: plan 3pp, cover 1p, deck 46 projected / 21 handout frames,
+> handout 7pp; no answers in the handout text. Unit 2 now: 2.0 gradual-release, 2.1–2.2
+> slides-first, 2.3–2.7 legacy.
+
+> ## ⚠ Status (2026-09-27) — **ENGAGEMENT RULES ADDED; 2.2 REGENERATED ON THEM — AWAITING USER REVIEW.**
+>
+> **User request, 2026-09-27:** "I am dealing with engagement and student attitude issues in this
+> class. Regenerate toward that eye. We need to keep the students engaged and solving throughout
+> the hour." Then: "give some problems/contexts particular to teenagers / teenage girls / girls'
+> boarding schools." Recorded as `LESSON_SHAPE.md` §1 *engagement rules*: teacher talk ≤3 min a
+> round; every practice frame a ★/★★/★★★ **ladder** (nobody waits); every round ends in a
+> **Show me** (1–4 fingers on three, all at once) or **Find the mistake** (anonymous Student A);
+> warm-up on screen as they walk in; the close is a self-scored **Final Round** (/4 + a bonus),
+> not a recap; ladders, bonus and generated-homework models use **student-life contexts**
+> (dorm, study hall, athletics, school events), never stereotyped. Skeletons, plan order and
+> `components.md` updated; a throwaway scaffold built clean.
+>
+> **2.2 regenerated on the rules:** 21 frames — warm-up → targets → four rounds (ladders; Show me
+> $x^2-x-12$; Find the mistake on grouping; Show me "which does not factor"; **crux Show me
+> $x^2=5x$**) → Final Round (crux twin $(x-1)(x+2)=4$; egg-drop bonus) → homework. Dorm-rug area
+> problem on Round 4's ★★★. Plan gains an *Engagement* box and an *Attitude* Watch-For item.
+> Build: exit 0; deck 42 projected pages / 21 handout frames, handout 7pp, plan 3pp, cover 1p;
+> no answers in the handout text. Homework still DeltaMath printed (PDF + set name TODO).
+
+> ## ⚠ Status (2026-09-25) — **LESSON 2.2 REGENERATED AS THE SLIDES-FIRST PILOT — AWAITING USER REVIEW.**
+>
+> **2.2 Solving Quadratics by Factoring** — A2.EO.3b/d, A2.EI.2b/d. Legacy `warmup`, `notes`,
+> `activity`, `exit_ticket`, `homework` (+ keys) `git rm`-ed. Deck of 17 frames: warm-up → four
+> cycles (x²+bx+c with GCF first · grouping · special patterns · **Zero Product Property — the
+> crux**: x² = 5x loses x = 0 when divided; (x−1)(x+2) = 4 is not "each factor = 4") → wrap-up →
+> homework. Anchor x²−2x−3 = (x+1)(x−3) from 2.0–2.1. **Homework: DeltaMath, printed** (user
+> choice) — `homework/` and `homework_key/` are empty prefab slots; **the user drops the exported
+> PDFs in, set name still TODO in the plan.** Build: `make -C unit02/lesson02 all` exits 0; plan
+> 3pp, cover 1p, deck 35 projected pages / 17 handout frames, handout 6pp; no Now-you-try answer in
+> the handout text. **Next:** user reviews 2.2; on approval set `reference_lesson: unit02/lesson02`.
+
+> ## ⚠ Status (2026-09-25) — **COURSE SHAPE CHANGED: SLIDES FIRST.**
+>
+> **User request, 2026-09-25:** "the primary work to be done in the slides — definitions, examples
+> with now you try, and a homework assignment. I want to be prompted each lesson for how the
+> homework assignment should be constructed — either generated via claude or a drop-in from
+> DeltaMath." User choices: the **printed slide handout is the student's notes** (Guided Notes
+> retired); the **warm-up moves onto the slides** (paper warm-up retired); **Now-you-try answers
+> reveal on a click**; for DeltaMath, **ask each lesson whether it is online or a printed PDF**.
+>
+> **The shape (`LESSON_SHAPE.md` §1–§2, §5, §7 rewritten):** deck = title → targets → warm-up →
+> 3–4 × (definition → worked example → Now you try) → wrap-up → homework; **5 / 40 / 5 / 10**.
+> Components `[cover, homework, slides]`, keyed `[homework]`, no one-page component. Cover has
+> two scored rows (Slide Notes, Homework). Plan has two teacher notes (`[Slides]`, `[Homework]`).
+> **Homework source is asked every lesson** — generated / DeltaMath online
+> (`--components cover,slides`) / DeltaMath printed (`--prefab homework,homework_key`).
+>
+> **Build:** `shared/lesson.mk` now compiles the deck twice — projected (PPTX; each reveal a slide)
+> and Beamer handout mode (the printed `lessonYY_slides.pdf`, reveals dropped). New
+> `\reveal[n]{…}` in `algebra2-beamer.sty`. Existing decks have no overlays, so their handouts are
+> unchanged (1.4: 11 = 11). Skeletons `slides`, `cover`, `lesson_plan`, `homework{,_key}` and
+> `components.md` rewritten; a throwaway scaffold of all three homework variants built clean and
+> was deleted.
+>
+> **Next action:** author the first slides-first lesson — it becomes `reference_lesson`.
+> **Open questions for the user:** (1) the handout prints separately from the packet
+> (cover + homework); merge it into the student packet? (2) which lesson to pilot on — the next
+> one to be taught (2.2?) is the natural choice. All 44 existing lessons are now legacy and are
+> regenerated one at a time when taught — no bulk sweep.
+
 > ## ⚠ Status (2026-09-17) — **LESSONS 2.0 AND 2.1 REGENERATED IN THE CURRENT SHAPE; UNIT 2 IS NOW MIXED.**
 >
 > **User request, 2026-09-17:** ``regenerate lessons 2.0 and 2.1 in the new lesson shape.'' Both were

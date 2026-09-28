@@ -1,6 +1,25 @@
 %! @@TITLE@@ — Unit @@UNITINT@@, Lesson @@LESSONID@@ — Slides (Beamer)
+% SLIDES-FIRST shape (course shape 2026-09-25): the deck IS the lesson. Its printed handout
+% (lessonYY_slides.pdf, 3-up with a notes column) is the student's notes — definitions printed in
+% full, examples worked, and every practice ladder left open with the notes column as work space.
+%   title → warm-up → targets → { definition → example → ladder ★/★★/★★★ → Show me | Find the
+%   mistake } × 3–4 → Final Round → homework
+% ENGAGEMENT RULES (LESSON_SHAPE.md §1, 2026-09-27): students solve in every phase; teacher talk
+% ≤ 3 min a cycle; student-life contexts (a girls' boarding school) on the ladders and the bonus.
+% Answers are revealed on a click with \reveal{...} (algebra2-beamer): the projector shows them,
+% the printed handout (a Beamer handout-mode compile) never does. \pause inside a worked example
+% is fine — the handout collapses it and prints the full worked example.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{@@PREFIX@@-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+\usepackage{@@PREFIX@@-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
+% Ladder rungs and Show-me options.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+\newcommand{\opt}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle, fill=forest, text=white, font=\bfseries\small, inner sep=1.6pt,
+          minimum size=1.35em]{#1};
+  \end{tikzpicture}\;#2}
 
 \begin{document}
 
@@ -17,81 +36,126 @@
 \end{frame}
 }
 
-% The deck follows the GRADUAL-RELEASE flow (~11 frames, course-wide shape 2026-09-01):
-%   learning targets → warm-up → hook → notes 1–4 → individual-practice launch → debrief → close.
-% The vocabulary is on the slides from the notes frames onward; there is no spoiler rule.
+% WARM-UP — on screen as they walk in. Three quick wins (spiral review); answers in one \reveal,
+% ending on the question the first definition answers.
+\begin{frame}[t, plain]
+  \forestheader{Warm-Up --- start now}
+  \sectionlabel[goldacc]{3 minutes --- in the notes column, alone}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item TODO item. \reveal{\; \textbf{TODO answer}}
+  \end{enumerate}
+\end{frame}
 
 % LEARNING TARGETS
 \begin{frame}[t, plain]
   \forestheader{Today's targets}
   \sectionlabel{What you will be able to do}
   \begin{itemize}\setlength{\itemsep}{6pt}
-    \item TODO: target, naming the vocabulary.
+    \item TODO: target, naming the vocabulary in \textbf{bold}.
   \end{itemize}
   \vspace{4pt}
-  \begin{block}{How today runs}
-    Warm-up (5) $\to$ notes together (20) $\to$ \textbf{practice on your own} (15) $\to$ debrief
-    (10) $\to$ close \& start the homework (10).
+  \begin{block}{How today runs --- you are solving the whole hour}
+    Rounds of a short definition, one example, then \textbf{your turn} --- start at \rung1,
+    climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me}: 1--4 fingers on
+    the count of three. We finish with a \textbf{Final Round} out of 4, then start the homework.
   \end{block}
 \end{frame}
 
-% WARM-UP
+% ── ONE CYCLE PER IDEA — repeat these four frames 3–4 times ─────────────────
+% TEACHER TALK ≤ 3 MIN A CYCLE (definition + example together). Students solve the rest.
+% DEFINITION — complete printed sentences, term in bold. Nothing to fill in.
 \begin{frame}[t, plain]
-  \forestheader{Warm-Up: three things you already know}
-  \sectionlabel{5 minutes --- alone, then check with a neighbour}
-  % TODO: the warm-up items.
-\end{frame}
-
-% HOOK
-\begin{frame}[t, plain]
-  \forestheader{Hook: TODO}
-  \sectionlabel[goldacc]{TODO the one-line idea}
-  % TODO: the context, the quick questions WITH their answers, and a \begin{block} landing the idea.
-\end{frame}
-
-% NOTES 1–4 (repeat this frame four times, one per numbered notes section)
-\begin{frame}[t, plain]
-  \forestheader{Notes N: TODO}
-  \sectionlabel{TODO}
-  % TODO: the definition/procedure and the worked example, matching the packet's section exactly.
-  % Section 3 is usually the target-misconception one — give it a \begin{block} with the case
-  % where the two answers disagree.
-\end{frame}
-
-% INDIVIDUAL PRACTICE LAUNCH
-\begin{frame}[t, plain]
-  \forestheader{Individual Practice: on your own}
-  \sectionlabel[goldacc]{15 minutes $\cdot$ silent $\cdot$ last page of your notes}
-  % TODO: the three problems as a numbered list, one line each.
-  \vspace{5pt}
-  \begin{block}{The rule}
-    TODO the one-sentence rule. Stuck? Look \emph{up the page} at the notes --- not at your
-    neighbour. Done early? TODO the early-finisher move.
+  \forestheader{Definition: TODO term}
+  \sectionlabel{Round N --- TODO idea}
+  \begin{block}{TODO term}
+    TODO: the definition or general form, as a complete sentence.
   \end{block}
+  % TODO: a pre-drawn display (graph, table), or the two things students conflate side by side.
 \end{frame}
 
-% DEBRIEF
+% EXAMPLE — the "I do": worked in full, fast. Plain algebra; contexts belong on the ladder.
 \begin{frame}[t, plain]
-  \forestheader{Debrief: the four things to take away}
-  \sectionlabel[redacc]{10 minutes --- correct your own page in a second colour}
-  \begin{enumerate}\setlength{\itemsep}{5pt}
-    \item TODO: Individual Practice problem 1, worked.
-    \item TODO: the must-land moment (the target misconception, pointed back to the notes' caution box).
-    \item TODO: problem 2, worked.
-    \item TODO: problem 3 / the crux, worked.
+  \forestheader{Example N: TODO}
+  \sectionlabel{Watch --- 2 minutes}
+  TODO: the problem and its worked solution, step by step.
+\end{frame}
+
+% LADDER — ★ everyone (a quick win), ★★ everyone, ★★★ early finishers, so nobody waits. Fresh
+% numbers. At least one rung per lesson is a student-life context (LESSON_SHAPE.md §1). The
+% timer lives in the section label. All answers in ONE \reveal.
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{TODO 4 minutes --- start at one star and climb}
+  TODO: the instruction.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] TODO
+    \item[\rung2] TODO
+    \item[\rung3] TODO
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ TODO \qquad \rung2\ TODO \qquad \rung3\ TODO
+    \end{block}}
+\end{frame}
+
+% CHECK — SHOW ME (below) or FIND THE MISTAKE (an anonymous "Student A" solution with one wrong
+% step; the step and its fix in \reveal). The wrong options are real misconceptions. The LAST
+% cycle's check is the crux: \sectionlabel[redacc]{The one that matters --- ...}.
+\begin{frame}[t, plain]
+  \forestheader{Show me: TODO question}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \opt1{TODO} \\[12pt]
+      \opt3{TODO}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \opt2{TODO} \\[12pt]
+      \opt4{TODO}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{TODO}}
+      TODO: why it is right, and the misconception behind each tempting wrong option.
+    \end{block}}
+\end{frame}
+% ── end of cycle ──────────────────────────────────────────────────────────────
+
+% FINAL ROUND — one problem per idea, alone, self-scored /4, plus a bonus in a student-life
+% context. The Watch-out line (the target misconception) goes inside the reveal.
+\begin{frame}[t, plain]
+  \forestheader{Final Round}
+  \sectionlabel[goldacc]{5 minutes --- on your own --- score yourself out of 4}
+  \begin{enumerate}\setlength{\itemsep}{3pt}
+    \item TODO \qquad\qquad 2.\ TODO
+    \setcounter{enumi}{2}
+    \item TODO \qquad\qquad 4.\ TODO
   \end{enumerate}
+  {\small\textbf{Bonus (+1):} TODO a student-life context.}
+  \reveal{%
+    \begin{block}{Check --- one point each}
+      1.\ TODO \quad 2.\ TODO \quad 3.\ TODO \quad 4.\ TODO \\[1pt]
+      \textbf{Bonus:} TODO \\[2pt]
+      \textbf{Watch out:} TODO the target misconception, as a caution.
+    \end{block}}
 \end{frame}
 
-% CLOSE
+% HOMEWORK — author ONE of the three blocks, per the lesson's homework source (LESSON_SHAPE.md §2).
 \begin{frame}[t, plain]
-  \forestheader{Close}
-  \sectionlabel{What changed today}
-  TODO: one or two sentences --- what they could do walking in, what they can do walking out.
-  \vspace{5pt}
-  \begin{block}{Homework --- start it now}
-    The \textbf{Homework} page in your packet. We start item~1 together and you keep going; whatever
-    is left is due next class. TODO: name what it covers.
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  % (a) Generated (the packet page):
+  \begin{block}{Homework --- scored, due the first class after two study halls}
+    The \textbf{Homework} pages in your packet. Start item~1 now; the rest is due the first class
+    after two study halls. TODO: what it covers.
   \end{block}
+  % (b) DeltaMath, online:
+  % \begin{block}{DeltaMath --- scored, due the first class after two study halls}
+  %   Assignment: \textbf{TODO set name}. Start it now on your device.
+  % \end{block}
+  % (c) DeltaMath, printed: as (a), naming the DeltaMath pages in your packet.
   \vspace{4pt}
   \textbf{Next:} TODO one-line preview.
 \end{frame}
