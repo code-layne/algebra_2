@@ -87,6 +87,28 @@ STUDENT_PDFS   := $(foreach c,$(STUDENT_COMPS),$(call comp-pdf,$(c)))
 KEY_STAMPS     := $(foreach c,$(KEY_COMPS),$(call comp-stamp,$(c)))
 KEY_PDFS       := $(foreach c,$(KEY_COMPS),$(call comp-pdf,$(c)))
 
+# ── The slide handout as a packet component (slides-first lessons) ────────────
+# In the slides-first shape the printed handout IS the student's notes, so it
+# rides in the packet right after the cover: the answer-free handout in the
+# student packet, and an ANSWERED handout in the key packet — the deck compiled
+# in handout mode with \ShowAnswers defined, so every \reveal prints (in keyred).
+# Same frames, same framing, so the two are page for page. A lesson that still
+# carries `warmup` or `notes` (an older shape) keeps its handout out of the
+# packet, exactly as before.
+HANDOUT_IN_PACKET := $(if $(wildcard slides/main.tex),$(if $(wildcard warmup/main.tex warmup/main.pdf notes/main.tex notes/main.pdf),,yes))
+PACKET_HANDOUT_DIR := $(PDF_DIR)/packet_handout
+HANDOUT_STU_PDF := $(PACKET_HANDOUT_DIR)/handout.pdf
+HANDOUT_KEY_PDF := $(PACKET_HANDOUT_DIR)/handout_key.pdf
+ifeq ($(HANDOUT_IN_PACKET),yes)
+HEAD_COMPS      := $(filter cover,$(STUDENT_COMPS))
+TAIL_COMPS      := $(filter-out cover,$(STUDENT_COMPS))
+STUDENT_PDFS    := $(foreach c,$(HEAD_COMPS),$(call comp-pdf,$(c))) $(HANDOUT_STU_PDF) \
+                   $(foreach c,$(TAIL_COMPS),$(call comp-pdf,$(c)))
+KEY_PDFS        := $(foreach c,$(HEAD_COMPS),$(call comp-pdf,$(call key-of,$(c)))) $(HANDOUT_KEY_PDF) \
+                   $(foreach c,$(TAIL_COMPS),$(call comp-pdf,$(call key-of,$(c))))
+PACKET_HANDOUTS := $(HANDOUT_STU_PDF) $(HANDOUT_KEY_PDF)
+endif
+
 # ── The five work products ────────────────────────────────────────────────────
 PLAN_OUT     := $(if $(HAS_ROOT),$(COMPILED_DIR)/$(LESSON)_plan.pdf)
 SLIDES_OUT   := $(if $(HAS_SLIDES),$(COMPILED_DIR)/$(LESSON)_slides.pdf)
@@ -134,12 +156,12 @@ define handout
 	@set -e; \
 	n=$$(pdfinfo "$1" | awk '/^Pages/{print $$2}'); \
 	TEXINPUTS="$(TEXINPUTS)" xelatex -interaction=nonstopmode -halt-on-error \
-	    -output-directory="$(HANDOUT_DIR)" -jobname=handout \
+	    -output-directory="$(HANDOUT_DIR)" -jobname=$(basename $(notdir $2)) \
 	    '\def\DeckSource{'"$1"'}\def\DeckPages{'"$$n"'}\input{handout}' \
-	    > $(HANDOUT_DIR)/handout.log 2>&1 \
-	  && mv $(HANDOUT_DIR)/handout.pdf $2 \
-	  || { echo "!  handout pass failed — see $(HANDOUT_DIR)/handout.log"; \
-	       grep -E "^(!|l\.)" $(HANDOUT_DIR)/handout.log | head -10; exit 1; }
+	    > $(HANDOUT_DIR)/$(basename $(notdir $2)).log 2>&1 \
+	  && mv $(HANDOUT_DIR)/$(basename $(notdir $2)).pdf $2 \
+	  || { echo "!  handout pass failed — see $(HANDOUT_DIR)/$(basename $(notdir $2)).log"; \
+	       grep -E "^(!|l\.)" $(HANDOUT_DIR)/$(basename $(notdir $2)).log | head -10; exit 1; }
 endef
 
 # ── Packet-wide pagination + recto starts + student/key alignment ─────────────
@@ -233,7 +255,7 @@ $(COMPILED_DIR)/$(LESSON)_slides.pptx: $(SLIDES_DEP) $(PPTX_SCRIPT)
 
 # ── student / key packets ─────────────────────────────────────────────────────
 
-student: $(ALIGN_STAMPS)
+student: $(ALIGN_STAMPS) $(PACKET_HANDOUTS)
 ifneq ($(strip $(STUDENT_PDFS)),)
 	@mkdir -p $(COMPILED_DIR)
 	pdfunite $(STUDENT_PDFS) $(COMPILED_DIR)/$(LESSON)_student.pdf
@@ -243,7 +265,7 @@ else
 	@echo "  (no student components in $(UNIT)/$(LESSON))"
 endif
 
-key: $(ALIGN_STAMPS)
+key: $(ALIGN_STAMPS) $(PACKET_HANDOUTS)
 ifneq ($(strip $(KEY_PDFS)),)
 	@mkdir -p $(COMPILED_DIR)
 	pdfunite $(KEY_PDFS) $(COMPILED_DIR)/$(LESSON)_key.pdf
@@ -267,6 +289,21 @@ $(STAMP_DIR)/slides_handout.stamp: slides/main.tex $(SHARED_STYS)
 		-usepretex='\PassOptionsToClass{handout}{beamer}' \
 		-outdir="$(HANDOUT_DECK_DIR)" main.tex
 	@touch $@
+
+# ── Rule: the deck in handout mode WITH answers (the key packet's handout) ─────
+$(STAMP_DIR)/slides_handout_key.stamp: slides/main.tex $(SHARED_STYS)
+	@mkdir -p $(dir $@) $(PDF_DIR)/slides_handout_key
+	cd slides && TEXINPUTS="$(TEXINPUTS)" $(LATEXMK) $(LATEXFLAGS) \
+		-usepretex='\PassOptionsToClass{handout}{beamer}\def\ShowAnswers{}' \
+		-outdir="$(PDF_DIR)/slides_handout_key" main.tex
+	@touch $@
+
+# ── Rules: the two packet handouts ───────────────────────────────────────────
+$(HANDOUT_STU_PDF): $(STAMP_DIR)/slides_handout.stamp $(HANDOUT_TEX)
+	$(call handout,$(abspath $(HANDOUT_DECK_DIR)/main.pdf),$@)
+
+$(HANDOUT_KEY_PDF): $(STAMP_DIR)/slides_handout_key.stamp $(HANDOUT_TEX)
+	$(call handout,$(abspath $(PDF_DIR)/slides_handout_key/main.pdf),$@)
 
 # ── Rule: compile root-level main.tex ────────────────────────────────────────
 $(STAMP_DIR)/main.stamp: main.tex $(SHARED_STYS)

@@ -61,9 +61,8 @@ feature mean here, and how do you know?").
 and a homework assignment").** The deck *is* the lesson, and its printed handout
 (`lessonYY_slides.pdf`, three slides a page with a ruled notes column) *is* the student's notes:
 definitions printed in full, examples worked, and every practice ladder left open with the notes
-column as the work space. There is no guided-notes packet and no paper warm-up. The only
-generated student paper besides the handout is the **cover** and, when the lesson's homework
-is generated, the **homework**.
+column as the work space. There is no guided-notes packet and no paper warm-up. The student
+packet is the cover, the handout, and the homework (see *The printed products* below).
 
 **Engagement is the design constraint (user direction, 2026-09-27: "I am dealing with engagement
 and student attitude issues in this class … we need to keep the students engaged and solving
@@ -168,10 +167,14 @@ handout, worked in the notes column) and *Homework* (worded for the lesson's sou
 Total row, and a `remindbox` (*Keep in Mind*) that is a **content** summary — the lesson's
 definitions and the distinction it turns on, never the process. `\small` inside the boxes.
 
-**The printed products.** Per lesson the teacher prints **two** things for students: the slide
-handout (`lessonYY_slides.pdf`) and the packet (`lessonYY_student.pdf` — cover, plus the homework
-when it is generated or a printed DeltaMath drop-in). The build keeps the handout out of the
-packet (the shared skill's rule); merging them is an open question for the user, not a default.
+**The printed products (user direction, 2026-09-28: "incorporate the student version of the
+slides into the student packet between the cover and the homework").** The student packet is
+**cover → slide handout → homework**, and the key packet is **cover → answered slide handout →
+homework key**. `shared/lesson.mk` does it for any lesson with `slides/main.tex` and no
+`warmup`/`notes` (so older-shape lessons are unaffected): the student slot is the answer-free
+handout-mode deck, framed 3-up; the key slot is the same deck compiled with `\ShowAnswers`
+defined, so every `\reveal` prints in keyred — same frames, so the two are page for page.
+`lessonYY_slides.pdf` is still built standalone too.
 
 **What this course does not have — do not re-add any of it:**
 

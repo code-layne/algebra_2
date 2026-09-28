@@ -44,4 +44,9 @@
 % printed handout, which shared/lesson.mk compiles in Beamer's handout mode —
 % the student's copy shows the problem and the notes column to work it in,
 % never the answer. \uncover keeps the space reserved, so nothing jumps.
-\newcommand{\reveal}[2][2]{\uncover<#1-| handout:0>{#2}}
+% With \ShowAnswers defined (the build's key-packet compile), the answer prints
+% in every mode, in keyred — the answered handout in the key packet.
+\newcommand{\reveal}[2][2]{%
+  \ifdefined\ShowAnswers{\setbeamercolor{block title}{bg=keyred, fg=white}%
+    \setbeamercolor{block body}{fg=keyred}\color{keyred}#2}%
+  \else\uncover<#1-| handout:0>{#2}\fi}

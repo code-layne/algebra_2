@@ -2,6 +2,17 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-28) — **SLIDE HANDOUT NOW RIDES IN THE PACKET (cover → handout → homework).**
+>
+> **User request, 2026-09-28:** "incorporate the student version of the slides into the student
+> packet between the cover and the homework." `shared/lesson.mk` now inserts the answer-free
+> handout after the cover in the student packet and an **answered** handout (deck compiled with
+> `\ShowAnswers`; `\reveal` prints in keyred) in the key packet — page for page. Gated on
+> `slides/main.tex` present and no `warmup`/`notes`, so only slides-first lessons change (1.4
+> checked: 10pp before and after). 2.1: student/key 16pp each (cover 1+1, handout 7+1, DeltaMath
+> 6). 2.2: 10pp each until its DeltaMath PDF arrives. The skill's "never put slides in the student
+> packet" rule is narrowed to "never hand-merge" (skill repo commit).
+
 > ## ⚠ Status (2026-09-27) — **LESSON 2.1 REGENERATED SLIDES-FIRST ON THE ENGAGEMENT RULES.**
 >
 > **2.1 Graphing Quadratic Functions & Transformations** — A.F.2b/c/d, A2.F.1, A2.F.2a/d. Legacy

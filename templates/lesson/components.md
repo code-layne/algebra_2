@@ -17,8 +17,9 @@ student's notes: a warm-up on screen as students walk in, then three or four rou
 **definition → example → ladder (★/★★/★★★) → Show me or Find the mistake**, a self-scored **Final
 Round**, and the homework started in class — **5 / 40 / 5 / 10** across the 60-minute period.
 **Students solve in every phase; teacher talk is ≤3 minutes a round**, and ladders and bonuses
-use contexts from the students' own lives (a girls' boarding school) — `LESSON_SHAPE.md` §1. The student packet is **cover → homework** (the homework only when it is
-generated or a printed DeltaMath drop-in); the handout prints beside it. **Ask the user for each
+use contexts from the students' own lives (a girls' boarding school) — `LESSON_SHAPE.md` §1. The student packet is **cover → slide handout → homework** (the homework only
+when it is generated or a printed DeltaMath drop-in); the key packet carries the answered handout
+in the same slot (2026-09-28). **Ask the user for each
 lesson's homework source before scaffolding** — `LESSON_SHAPE.md` §2.
 
 There is **no warm-up page, no Guided Notes, no group activity, no exit ticket, no tiers**, no
