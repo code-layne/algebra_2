@@ -11,7 +11,7 @@
 > of $(x-4)(x+2)$, the bracket sign flip** — → Final Round (crux twin: zeros of $2(x+6)(x-1)$;
 > Service Club hoodie-profit bonus) → homework. Student-life ★★★: a horse's jump at the riding
 > ring. Still no factoring or solving (2.2). **Homework: DeltaMath printed** — installed 2026-09-28:
-> 25 problems, 6pp + 6pp key (DeltaMath header reads "Lesson 2.2"); formative check = 21 and 25.
+> 25 problems, 6pp + 6pp key (header corrected to "Lesson 2.1"); formative check = 21 and 25.
 > Student and key packets 8pp each. Build exit 0: plan 3pp, cover 1p, deck 46 projected / 21 handout frames,
 > handout 7pp; no answers in the handout text. Unit 2 now: 2.0 gradual-release, 2.1–2.2
 > slides-first, 2.3–2.7 legacy.
