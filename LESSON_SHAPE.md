@@ -102,7 +102,7 @@ throughout the hour").** Every phase has students *producing answers*, not liste
 | Phase | Minutes | Students are … |
 | --- | --- | --- |
 | Warm-Up — 3 quick items on screen as they walk in, answers revealed | 5 | solving |
-| Lesson — 3–4 cycles of **definition → example → ladder → Show me / Find the mistake** (~10 min each: ≤3 teacher, ~6 ladder, ~1 check) | 40 | solving ~70% of the time |
+| Lesson — **3 cycles** of **definition → example → ladder → Show me / Find the mistake** (~13 min each: ≤3 teacher, ~8 ladder, ~2 check) | 40 | solving ~70% of the time |
 | Final Round — 4 mixed problems, self-scored /4 | 5 | solving |
 | Start the homework, alone, teacher circulating | 10 | solving |
 
@@ -113,7 +113,7 @@ let the table lie, and do not edit `shared/` to make a lesson fit.
 title → **warm-up** (on screen as students walk in; one frame, three items, ★-easy, answers in
 one reveal ending on the question the first definition answers) → **targets** (vocabulary in
 bold, plus a "how today runs — you are solving the whole hour" block) →
-**one cycle per idea, three or four cycles**, each four frames:
+**one cycle per idea, three cycles**, each four frames:
 
 1. **Definition** — the term in bold in a `block`, the definition or general form as a *complete
    printed sentence* (nothing to fill in), and a pre-drawn display where one helps.
@@ -129,7 +129,12 @@ bold, plus a "how today runs — you are solving the whole hour" block) →
 → **Final Round** (four mixed problems, one per idea, a 5-minute timer, answers in one `\reveal`,
 "score yourself out of 4" — plus a one-line *Watch out* with the target misconception inside the
 reveal) → **homework** (the block for this lesson's homework source — §2 — and a one-line
-preview). Typically 20–21 frames. Every cycle uses **one context** where it can; the ladder is on
+preview). **17 frames, and 20 is a hard ceiling** (user direction, 2026-09-29: "make the slides
+shorter so we can get through it in one class — no more than 20 slides total per lesson"; a
+*slide* is a frame — reveals do not count). A fourth idea is a fourth cycle only if the deck stays
+at or under 20 frames *and* the minutes still add up; otherwise fold it into a definition as a
+case of another idea, or move it to the homework. 2.1 (21 frames, four cycles) predates the cap
+and is kept as is by user direction. Every cycle uses **one context** where it can; the ladder is on
 new numbers, never a repeat of the example.
 
 The deck preamble defines `\rung{1–3}` (gold stars) and `\opt{n}{…}` (a numbered disc for a
@@ -192,7 +197,7 @@ defined, so every `\reveal` prints in keyred — same frames, so the two are pag
 **Out of scope for the course** (no lessons): conic sections, sequences & series, probability &
 statistics, trigonometry, and linear systems / linear programming.
 
-**The pilot is `unit02/lesson02` (2026-09-25), awaiting user review.** Once approved it becomes the
+**The pilot is `unit02/lesson02` (2026-09-25; condensed to three cycles 2026-09-29), awaiting user review.** Once approved it becomes the
 reference — set `reference_lesson` to it in the frontmatter and name it here. Until then, mirror
 `unit01/lesson04` for the preamble, the homework, the cover, and the plan's box vocabulary, and
 `templates/lesson/slides.tex` for the deck. Every lesson authored before 2026-09-25 is in an older
@@ -468,11 +473,11 @@ Recognize the shape by the component directories and the plan's section titles:
 
 | Shape | Has | Lessons |
 | --- | --- | --- |
-| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / ladder / Show-me cycles, a Final Round, and `\reveal` (engagement rules 2026-09-27); `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson02` — the **pilot** (2026-09-25, regenerated on the engagement rules 2026-09-27) and `unit02/lesson01` (2026-09-27); both homework = DeltaMath printed, pending user review; once approved 2.2 becomes `reference_lesson` |
+| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / ladder / Show-me cycles, a Final Round, and `\reveal` (engagement rules 2026-09-27); `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson01` (2026-09-27, four cycles, DeltaMath printed); `unit02/lesson02`–`lesson05` (condensed 2026-09-29: three cycles, 17 frames, DeltaMath online) — pending user review; once approved 2.2 becomes `reference_lesson` |
 | **gradual-release** (two-section, 12pt, 2026-09-07; `guidednotes` notes from 2026-09-12) | 12pt `warmup` + `notes` (vocab + hook, ONE `guidednotes` table + Guided Practice) + homework 2pp with the due-date `remindbox`; cover with three rows; 11-frame deck; plan 5/35/10/10, three teacher notes | `unit01/lesson04`, `unit02/lesson00`; `unit01/lesson02` is its pilot (5/34/8/13) |
 | **four-section interim** (2026-09-01) | 10pt `notes/` with an `objectivebox`, four numbered sections, and an *Individual Practice* `scenariobox`; 10pt homework with an `extensionbox`; plan 5/20/15/10/10 with four teacher notes | `unit01/lesson00`, `01`, `03`, `05` |
 | **EFFL / group-activity** (2026-08-19 → 08-31) | `experience/` or `activity/` without `exit_ticket/` | none left |
-| **pre-EFFL legacy** | `activity/` + `exit_ticket/` (+ keys), tiered activity, plan order Hook / Explicit Instruction / Tiers, 10pt warm-up; in Units 3–7 also teacher notes in the keys and `\namedateperiod` on every component (Unit 2 had both retrofitted 2026-07-30) | **36 lessons: `unit02/lesson02`–`lesson07`, and all of units 03–07** |
+| **pre-EFFL legacy** | `activity/` + `exit_ticket/` (+ keys), tiered activity, plan order Hook / Explicit Instruction / Tiers, 10pt warm-up; in Units 3–7 also teacher notes in the keys and `\namedateperiod` on every component (Unit 2 had both retrofitted 2026-07-30) | **all of units 03–07** |
 
 The build accepts all of them (`STUDENT_ORDER` still lists `warmup`, `notes`, `experience`,
 `activity`, `exit_ticket`). When asked to touch an older lesson, **regenerate it whole in the
@@ -508,10 +513,11 @@ same page count as its key (2/2) when generated; **the handout deck has no answe
 prints nothing, and neither does a grep for one ladder answer (worked examples keep their own
 *Check:* lines, so never grep for "Check"). Then update `COURSE_PLAN.md`.
 
-**Scoreboard (2026-09-25):** 44 lessons. **2 slides-first — `unit02/lesson02` (the pilot) and `unit02/lesson01`**, awaiting user review. 3 gradual-release
+**Scoreboard (2026-09-29):** 42 lessons (Unit 2 condensed from 8 to 6). **5 slides-first —
+`unit02/lesson01`–`lesson05`**, awaiting user review. 3 gradual-release
 (`unit01/lesson04`, `unit02/lesson00`, pilot `unit01/lesson02`); 4
-four-section interim (`unit01/lesson00`, `01`, `03`, `05`); 36 pre-EFFL legacy
-(`unit02/lesson03`–`lesson07` and every lesson of Units 3–7; Units 3–7 still hold teacher notes
+four-section interim (`unit01/lesson00`, `01`, `03`, `05`); 30 pre-EFFL legacy
+(every lesson of Units 3–7; Units 3–7 still hold teacher notes
 in 144 `_key` files and name rows on 300 non-cover components). Every lesson has a deck. Unit 6's
 lesson 6.5 and Units 6–7's tests are skeletons; 7.1–7.6 are not scaffolded. Convert lesson by
 lesson as they are taught, rebuilding the unit packet each time — never the whole course in one

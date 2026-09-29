@@ -1,10 +1,12 @@
 %! Solving Quadratics by Factoring — Unit 2, Lesson 2.2 — Slides (Beamer)
-% SLIDES-FIRST shape with the ENGAGEMENT rules (LESSON_SHAPE.md §1, 2026-09-27): students solve in
-% every phase. The deck IS the lesson; its printed handout is the student's notes.
-%   title → targets → warm-up → 4 × { definition → example → ladder ★/★★/★★★ → Show me | Find the
-%   mistake } → Final Round (4 mixed, self-scored /4) → homework
-% Teacher talk ≤ 3 min a cycle. One anchor: x^2-2x-3 = (x+1)(x-3), the quadratic of 2.0 and 2.1.
-% Cycle 4's Show me is the crux (x^2 = 5x: dividing by x loses x = 0); the Final Round's item 4 is
+% SLIDES-FIRST shape with the ENGAGEMENT rules (LESSON_SHAPE.md §1, 2026-09-27), condensed
+% 2026-09-29 to 17 frames: students solve in every phase. The deck IS the lesson; its printed
+% handout is the student's notes.
+%   title → warm-up → targets → 3 × { definition → example → ladder ★/★★/★★★ → Show me | Find the
+%   mistake } → Final Round (4 mixed, self-scored /4) → homework (DeltaMath online)
+% Teacher talk ≤ 3 min a round. One anchor: x^2-2x-3 = (x+1)(x-3), the quadratic of 2.0 and 2.1.
+% Round 1 folds the special patterns in as cases of the product–sum search.
+% Round 3's Show me is the crux (x^2 = 5x: dividing by x loses x = 0); the Final Round's item 4 is
 % its twin ((x-1)(x+2) = 4 is not "each factor = 4").
 % Answers only inside \reveal{} — the handout is a Beamer handout-mode compile and drops them.
 \documentclass[aspectratio=169, 11pt]{beamer}
@@ -64,33 +66,53 @@
   \forestheader{Today's targets}
   \sectionlabel{What you will be able to do}
   \begin{itemize}\setlength{\itemsep}{4pt}
-    \item \textbf{Factor} $x^2+bx+c$ by the \textbf{product--sum} search, \textbf{GCF} first.
+    \item \textbf{Factor} $x^2+bx+c$ by the \textbf{product--sum} search, \textbf{GCF} first ---
+          including a \textbf{difference of squares} and a \textbf{perfect square}.
     \item Factor $ax^2+bx+c$ by \textbf{grouping}.
-    \item Spot a \textbf{difference of squares} and a \textbf{perfect-square trinomial}.
     \item Solve with the \textbf{Zero Product Property}; the \textbf{roots} are the $x$-intercepts.
   \end{itemize}
   \vspace{3pt}
   \begin{block}{How today runs --- you are solving the whole hour}
-    Four rounds: a short definition, one example, then \textbf{your turn} --- start at
+    Three rounds: a short definition, one example, then \textbf{your turn} --- start at
     \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me}: hold up
     1--4 fingers on the count of three. We finish with a \textbf{Final Round} out of 4, then
     start the homework.
   \end{block}
 \end{frame}
 
-% ═══ CYCLE 1 — FACTORING x^2+bx+c, GCF FIRST ═══════════════════════════════
+% ═══ ROUND 1 — FACTORING x^2+bx+c, GCF FIRST; THE SPECIAL PATTERNS AS CASES ════
 \begin{frame}[t, plain]
   \forestheader{Definition: factoring $x^2+bx+c$}
   \sectionlabel{Round 1 --- un-multiplying}
-  \begin{block}{Factoring}
-    To \textbf{factor} a polynomial is to write it as a \emph{product}. Always take out the
-    \textbf{greatest common factor (GCF)} first.
-  \end{block}
-  \vspace{4pt}
-  \begin{block}{The product--sum search}
-    Because $(x+p)(x+q)=x^2+(p+q)x+pq$, factor $x^2+bx+c$ by finding two integers $p$ and $q$
-    with \[ p\cdot q=c \qquad\text{and}\qquad p+q=b. \] Then $x^2+bx+c=(x+p)(x+q)$.
-  \end{block}
+  \begin{columns}[T]
+    \begin{column}{0.62\textwidth}
+      \begin{block}{Factoring and the product--sum search}
+        To \textbf{factor} is to write a polynomial as a \emph{product}. Take out the
+        \textbf{greatest common factor (GCF)} first. Then, for $x^2+bx+c$, find integers $p$ and
+        $q$ with $p\cdot q=c$ and $p+q=b$: \; $x^2+bx+c=(x+p)(x+q)$.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Three cases of the search}
+        \small
+        \textbf{Difference of squares} ($b=0$): $x^2-k^2=(x+k)(x-k)$ --- the pair is $k,\,-k$.\\[2pt]
+        \textbf{Perfect square} ($p=q$): $x^2+2kx+k^2=(x+k)^2$ --- a \textbf{double root}.\\[2pt]
+        \textbf{Sum of squares} $x^2+k^2$: no pair has product $k^2$ and sum $0$ --- it does
+        \textbf{not} factor.
+      \end{block}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.36]
+        \lgrid{-1}{7}{-2}{6}
+        \begin{scope}\clip (-1,-2) rectangle (7,6);
+          \draw[very thick, forest, domain=0.4:5.6, samples=60, smooth]
+            plot (\x,{(\x-3)*(\x-3)});
+        \end{scope}
+        \fill[redacc] (3,0) circle (4pt) node[below, font=\tiny, charcoal]{$3$};
+      \end{tikzpicture}\\[-2pt]
+      {\scriptsize $y=x^2-6x+9=(x-3)^2$ \emph{touches} the axis once: a \textbf{double root}.}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[t, plain]
@@ -116,50 +138,53 @@
       \textbf{(b)} $2x^2-4x-6$: every term has a $2$.
       \[ \begin{aligned} 2x^2-4x-6 &= 2\,(x^2-2x-3) \\ &= 2\,(x+1)(x-3) \end{aligned} \]
       \emph{GCF first} --- then the trinomial left inside is the one we just factored.
+      \pause
+      \par\vspace{6pt}
+      \textbf{(c)} $x^2-25$: $b=0$, so the pair is $5,\,-5$: \; $(x+5)(x-5)$.
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}[t, plain]
   \forestheader{Your turn}
-  \sectionlabel[goldacc]{4 minutes --- start at one star and climb}
+  \sectionlabel[goldacc]{6 minutes --- start at one star and climb}
   Factor completely.
   \begin{itemize}\setlength{\itemsep}{6pt}
     \item[\rung1] $x^2+7x+12$
-    \item[\rung2] $x^2+5x-14$
+    \item[\rung2] $x^2-49$
     \item[\rung3] $3x^2+3x-18$
   \end{itemize}
   \vspace{4pt}
   \reveal{%
     \begin{block}{Check}
-      \rung1\ $(x+3)(x+4)$ \qquad \rung2\ $(x+7)(x-2)$ \qquad
+      \rung1\ $(x+3)(x+4)$ \qquad \rung2\ $(x+7)(x-7)$ --- pair $7,\,-7$ \qquad
       \rung3\ $3(x^2+x-6)=3(x+3)(x-2)$ --- GCF first
     \end{block}}
 \end{frame}
 
 \begin{frame}[t, plain]
-  \forestheader{Show me: which one is $x^2-x-12$, factored?}
+  \forestheader{Show me: which one does \emph{not} factor?}
   \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
     \begin{column}{0.45\textwidth}
-      \opt1{$(x-4)(x+3)$} \\[12pt]
-      \opt3{$(x-6)(x+2)$}
+      \opt1{$x^2-16$} \\[12pt]
+      \opt3{$x^2+16$}
     \end{column}
     \begin{column}{0.45\textwidth}
-      \opt2{$(x+4)(x-3)$} \\[12pt]
-      \opt4{$(x-12)(x+1)$}
+      \opt2{$x^2+8x+16$} \\[12pt]
+      \opt4{$x^2+6x-16$}
     \end{column}
   \end{columns}
   \vspace{10pt}
   \reveal{%
-    \begin{block}{Answer: \textbf{1}}
-      Product $-12$, sum $-1$: $-4$ and $3$. \quad \textbf{2} has the signs swapped (sum $+1$);
-      \textbf{3} and \textbf{4} get the product right but the sum wrong ($-4$, $-11$). Always
-      check the \emph{sum}.
+    \begin{block}{Answer: \textbf{3}}
+      $x^2+16$ is a \emph{sum} of squares --- no two integers have product $16$ and sum $0$.
+      The others: \textbf{1} $(x+4)(x-4)$, \textbf{2} $(x+4)^2$, \textbf{4} $(x+8)(x-2)$.
+      Tempted by $(x+4)(x-4)$? Multiply it out: $x^2-16$.
     \end{block}}
 \end{frame}
 
-% ═══ CYCLE 2 — ax^2+bx+c BY GROUPING ═══════════════════════════════════════
+% ═══ ROUND 2 — ax^2+bx+c BY GROUPING ═══════════════════════════════════════
 \begin{frame}[t, plain]
   \forestheader{Definition: factoring $ax^2+bx+c$ by grouping}
   \sectionlabel{Round 2 --- when $a\ne1$}
@@ -192,7 +217,7 @@
 
 \begin{frame}[t, plain]
   \forestheader{Your turn}
-  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
+  \sectionlabel[goldacc]{6 minutes --- start at one star and climb}
   Factor by grouping.
   \begin{itemize}\setlength{\itemsep}{6pt}
     \item[\rung1] $2x^2+7x+3$
@@ -210,7 +235,7 @@
 
 \begin{frame}[t, plain]
   \forestheader{Find the mistake}
-  \sectionlabel[goldacc]{2 minutes --- Student A gave up. Find the wrong step and finish it}
+  \sectionlabel[goldacc]{3 minutes --- Student A gave up. Find the wrong step and finish it}
   \textbf{Student A} factored $3x^2+x-10$:
   \[
   \begin{aligned}
@@ -226,95 +251,10 @@
     \end{block}}
 \end{frame}
 
-% ═══ CYCLE 3 — SPECIAL PATTERNS ════════════════════════════════════════════
-\begin{frame}[t, plain]
-  \forestheader{Definition: two special patterns}
-  \sectionlabel{Round 3 --- factor on sight}
-  \begin{columns}[T]
-    \begin{column}{0.58\textwidth}
-      \begin{block}{Difference of squares}
-        \[ a^2-b^2=(a+b)(a-b) \]
-      \end{block}
-      \vspace{2pt}
-      \begin{block}{Perfect-square trinomial}
-        \[ a^2+2ab+b^2=(a+b)^2 \qquad a^2-2ab+b^2=(a-b)^2 \]
-      \end{block}
-      \vspace{2pt}
-      {\small A \emph{sum} of squares, $a^2+b^2$, does \textbf{not} factor over the integers.}
-    \end{column}
-    \begin{column}{0.38\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.36]
-        \lgrid{-1}{7}{-2}{6}
-        \begin{scope}\clip (-1,-2) rectangle (7,6);
-          \draw[very thick, forest, domain=0.4:5.6, samples=60, smooth]
-            plot (\x,{(\x-3)*(\x-3)});
-        \end{scope}
-        \fill[redacc] (3,0) circle (4pt) node[below, font=\tiny, charcoal]{$3$};
-      \end{tikzpicture}\\[-2pt]
-      {\scriptsize $y=x^2-6x+9=(x-3)^2$ \emph{touches} the axis once: \\ a \textbf{double root}.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[t, plain]
-  \forestheader{Example 3: three on sight}
-  \sectionlabel{Watch --- 2 minutes}
-  \begin{itemize}\setlength{\itemsep}{8pt}
-    \item $x^2-25=x^2-5^2$ \pause $=(x+5)(x-5)$
-    \pause
-    \item $4x^2-9=(2x)^2-3^2$ \pause $=(2x+3)(2x-3)$
-    \pause
-    \item $x^2-6x+9$: first and last are squares, middle is $-2\cdot x\cdot 3$ \pause
-          $=(x-3)^2$
-  \end{itemize}
-  \pause
-  \vspace{4pt}
-  \emph{Always test:} are the first and last terms perfect squares? Then look at the middle.
-\end{frame}
-
-\begin{frame}[t, plain]
-  \forestheader{Your turn}
-  \sectionlabel[goldacc]{3 minutes --- start at one star and climb}
-  Factor completely.
-  \begin{itemize}\setlength{\itemsep}{6pt}
-    \item[\rung1] $x^2-49$
-    \item[\rung2] $x^2+10x+25$
-    \item[\rung3] $9x^2-16$
-  \end{itemize}
-  \vspace{4pt}
-  \reveal{%
-    \begin{block}{Check}
-      \rung1\ $(x+7)(x-7)$ \qquad \rung2\ $(x+5)^2$ \qquad \rung3\ $(3x)^2-4^2=(3x+4)(3x-4)$
-    \end{block}}
-\end{frame}
-
-\begin{frame}[t, plain]
-  \forestheader{Show me: which one does \emph{not} factor?}
-  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
-  \begin{columns}[T]
-    \begin{column}{0.45\textwidth}
-      \opt1{$x^2-16$} \\[12pt]
-      \opt3{$x^2+16$}
-    \end{column}
-    \begin{column}{0.45\textwidth}
-      \opt2{$x^2+8x+16$} \\[12pt]
-      \opt4{$16x^2-1$}
-    \end{column}
-  \end{columns}
-  \vspace{10pt}
-  \reveal{%
-    \begin{block}{Answer: \textbf{3}}
-      $x^2+16$ is a \emph{sum} of squares --- no two integers have product $16$ and sum $0$.
-      The others: \textbf{1} $(x+4)(x-4)$, \textbf{2} $(x+4)^2$, \textbf{4} $(4x+1)(4x-1)$.
-      Tempted by $(x+4)(x-4)$? Multiply it out: $x^2-16$.
-    \end{block}}
-\end{frame}
-
-% ═══ CYCLE 4 — ZERO PRODUCT PROPERTY (the crux) ════════════════════════════
+% ═══ ROUND 3 — ZERO PRODUCT PROPERTY (the crux) ════════════════════════════
 \begin{frame}[t, plain]
   \forestheader{Definition: the Zero Product Property}
-  \sectionlabel{Round 4 --- from factoring to solving}
+  \sectionlabel{Round 3 --- from factoring to solving}
   \begin{columns}[T]
     \begin{column}{0.58\textwidth}
       \begin{block}{Zero Product Property}
@@ -348,7 +288,7 @@
 \end{frame}
 
 \begin{frame}[t, plain]
-  \forestheader{Example 4: solve $x^2=2x+3$}
+  \forestheader{Example 3: solve $x^2=2x+3$}
   \sectionlabel{Watch --- 2 minutes}
   \[
   \begin{aligned}
@@ -366,7 +306,7 @@
 
 \begin{frame}[t, plain]
   \forestheader{Your turn}
-  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
+  \sectionlabel[goldacc]{6 minutes --- start at one star and climb}
   Solve.
   \begin{itemize}\setlength{\itemsep}{6pt}
     \item[\rung1] $(x-4)(x+6)=0$
@@ -406,21 +346,21 @@
     \end{block}}
 \end{frame}
 
-% FINAL ROUND — one problem per idea, self-scored /4. Item 4 is the crux's twin.
+% FINAL ROUND — all three rounds, self-scored /4. Item 4 is the crux's twin.
 \begin{frame}[t, plain]
   \forestheader{Final Round}
   \sectionlabel[goldacc]{5 minutes --- on your own --- score yourself out of 4}
   \begin{enumerate}\setlength{\itemsep}{3pt}
-    \item Factor $x^2-8x+15$. \qquad\qquad 2.\ Factor $2x^2-x-6$.
+    \item Factor $x^2-8x+15$. \qquad\qquad\;\; 2.\ Factor $3x^2-12$.
     \setcounter{enumi}{2}
-    \item Factor $25x^2-4$. \qquad\qquad\;\;\, 4.\ Solve $(x-1)(x+2)=4$.
+    \item Factor $2x^2-x-6$. \qquad\qquad\;\;\, 4.\ Solve $(x-1)(x+2)=4$.
   \end{enumerate}
   {\small\textbf{Bonus (+1):} In the egg-drop contest, a capsule is launched up from a $32$-ft
   roof; its height is $h=-16t^2+16t+32$. When does it hit the ground?}
   \vspace{2pt}
   \reveal{%
     \begin{block}{Check --- one point each}
-      1.\ $(x-3)(x-5)$ \quad 2.\ $(2x+3)(x-2)$ \quad 3.\ $(5x+2)(5x-2)$ \quad
+      1.\ $(x-3)(x-5)$ \quad 2.\ $3(x+2)(x-2)$ \quad 3.\ $(2x+3)(x-2)$ \quad
       4.\ $x^2+x-6=0$: $x=-3$ or $x=2$ \\[1pt]
       \textbf{Bonus:} $-16(t^2-t-2)=0$, $(t-2)(t+1)=0$: $t=2$ seconds ($t=-1$ is before the
       launch). \\[2pt]
@@ -429,18 +369,18 @@
     \end{block}}
 \end{frame}
 
-% HOMEWORK — source: DeltaMath, printed (user choice for 2.2, 2026-09-25).
+% HOMEWORK — source: DeltaMath, online (user choice for 2.2, 2026-09-29).
 \begin{frame}[t, plain]
   \forestheader{Homework --- start it now}
   \sectionlabel[goldacc]{10 minutes in class, alone}
-  \begin{block}{Homework --- scored, due the first class after two study halls}
-    The \textbf{DeltaMath} pages in your packet: factoring and solving by factoring. Start the
-    first problem now; the rest is due the first class after two study halls. I will announce
-    the date in class and on TurtleNet.
+  \begin{block}{DeltaMath --- scored, due the first class after two study halls}
+    Assignment: \textbf{2.2 Solving by Factoring} --- factoring and solving by factoring. Start
+    it now on your device; finish it after class. I will announce the date in class and on
+    TurtleNet.
   \end{block}
   \vspace{6pt}
-  \textbf{Next:} Lesson 2.3 --- when a quadratic will not factor, solve it with square roots
-  and by completing the square.
+  \textbf{Next:} Lesson 2.3 --- when a quadratic will not factor: square roots, and the numbers
+  that let $x^2=-4$ have a solution (complex numbers).
 \end{frame}
 
 \end{document}

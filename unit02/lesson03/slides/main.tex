@@ -1,11 +1,28 @@
-%! Solving by Square Roots & Completing the Square — Unit 2, Lesson 2.3 — Slides (Beamer)
+%! Solving by Square Roots \& Complex Numbers — Unit 2, Lesson 2.3 — Slides (Beamer)
+% SLIDES-FIRST shape with the ENGAGEMENT rules (LESSON_SHAPE.md §1, 2026-09-27), CONDENSED
+% (user direction 2026-09-29): exactly 3 rounds, 17 frames, one class meeting.
+%   title → warm-up → targets → 3 × { definition → example → ladder ★/★★/★★★ → Show me | Find the
+%   mistake } → Final Round (4 mixed, self-scored /4) → homework (DeltaMath online)
+% Folds in legacy 2.3 (square-root half) and legacy 2.4 (complex numbers).
+% Round 3's Find the mistake is the crux (sqrt(-4)*sqrt(-9) = sqrt(36) = 6 is wrong: pull i out
+% first, 2i*3i = 6i^2 = -6); the Final Round's item 4 is its twin (sqrt(-2)*sqrt(-18) = -6).
+% Answers only inside \reveal{} — the handout is a Beamer handout-mode compile and drops them.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+% Coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
+% Ladder rungs and Show-me options.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+\newcommand{\opt}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle, fill=forest, text=white, font=\bfseries\small, inner sep=1.6pt,
+          minimum size=1.35em]{#1};
+  \end{tikzpicture}\;#2}
 
 \begin{document}
 
@@ -16,169 +33,360 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.3}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Solving by Square Roots \& Completing the Square}\\[1.2cm]
+    {\color{white}\bfseries\LARGE Solving by Square Roots \& Complex Numbers}\\[1.2cm]
     {\color{forestmid}\small Algebra 2~$\cdot$~Unit 2: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% HOOK — quadratics that don't factor
+% WARM-UP — on screen as they walk in. Three quick wins: both square roots, simplest radical
+% form, and squaring a binomial (the multiplying of Round 3). Ends on the question Round 2 answers.
 \begin{frame}[t, plain]
-  \forestheader{What if it won't factor?}
-  \sectionlabel{Hook}
+  \forestheader{Warm-Up --- start now}
+  \sectionlabel[goldacc]{3 minutes --- in the notes column, alone}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item Which numbers square to $25$?
+    \item Write $\sqrt{72}$ in simplest radical form.
+    \item Multiply: $(x+3)^2$.
+  \end{enumerate}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check --- give yourself a point for each}
+      1.\ $5$ \emph{and} $-5$ \qquad 2.\ $\sqrt{36}\cdot\sqrt2=6\sqrt2$ \qquad
+      3.\ $x^2+6x+9$ (not $x^2+9$)
+      \\[3pt]
+      \textbf{Hold on to this:} what number squares to $-4$?
+    \end{block}}
+\end{frame}
+
+% LEARNING TARGETS + HOW TODAY RUNS
+\begin{frame}[t, plain]
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item Solve $x^2=k$ and $(x-h)^2=k$ with the \textbf{Square Root Property} --- both roots, in
+          \textbf{simplest radical form}.
+    \item Use the \textbf{imaginary unit} $i$ to write $\sqrt{-k}$ and to write a
+          \textbf{complex number} in \textbf{standard form} $a+bi$.
+    \item Add, subtract, and multiply complex numbers, using $i^2=-1$ and
+          \textbf{complex conjugates}.
+  \end{itemize}
+  \vspace{3pt}
+  \begin{block}{How today runs --- you are solving the whole hour}
+    Three rounds: a short definition, one example, then \textbf{your turn} --- start at
+    \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me} (1--4
+    fingers on the count of three) or a \textbf{Find the mistake}. We finish with a
+    \textbf{Final Round} out of 4, then start the homework.
+  \end{block}
+\end{frame}
+
+% ═══ ROUND 1 — THE SQUARE ROOT PROPERTY ═════════════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: the Square Root Property}
+  \sectionlabel{Round 1 --- undo the square}
   \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      Neither of these factors over the integers:
-      \[ x^2-6=0 \qquad x^2+6x+1=0. \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item No integers with product $-6$, sum $0$.
-        \item But the parabolas \emph{do} cross the axis --- the roots are real, just irrational.
-      \end{itemize}
-      \textbf{Two new tools:} undo a square, or \emph{build} one.
+    \begin{column}{0.6\textwidth}
+      \begin{block}{Square Root Property}
+        If $x^2=k$ and $k\ge0$, then $x=\pm\sqrt{k}$ --- a positive number has \emph{two}
+        square roots. The same holds for a squared binomial: $(x-h)^2=k$ gives
+        $x=h\pm\sqrt{k}$.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Isolate first; simplest radical form}
+        Get the square alone \emph{before} you take the root. Write each answer in
+        \textbf{simplest radical form} --- no perfect-square factor left under the root, as in
+        $\sqrt{12}=\sqrt4\cdot\sqrt3=2\sqrt3$.
+      \end{block}
     \end{column}
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.36\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-4}{4}{-4}{4}
-        \begin{scope}\clip (-4,-4) rectangle (4,4);
-          \draw[very thick, forest, domain=-3:3, samples=70, smooth] plot (\x,{\x*\x-6});
+      \begin{tikzpicture}[scale=0.3]
+        \lgrid{-4}{4}{-7}{4}
+        \begin{scope}\clip (-4,-7) rectangle (4,4);
+          \draw[very thick, forest, domain=-3.4:3.4, samples=60, smooth]
+            plot (\x,{\x*\x-6});
         \end{scope}
-        \fill[charcoal] (-2.449,0) circle (3pt);
-        \fill[charcoal] (2.449,0) circle (3pt);
-        \node[charcoal, font=\tiny, above right] at (2.449,0){$\sqrt6$};
-      \end{tikzpicture}
+        \fill[redacc] (-2.449,0) circle (4pt);
+        \fill[redacc] (2.449,0) circle (4pt);
+      \end{tikzpicture}\\[-2pt]
+      {\scriptsize $y=x^2-6$ crosses at $x=\pm\sqrt6\approx\pm2.45$: \\ two roots, one on each
+      side.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% SQUARE ROOT PROPERTY
 \begin{frame}[t, plain]
-  \forestheader{The Square Root Property}
-  \sectionlabel[goldacc]{Undo the square}
-  \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      \begin{block}{Key idea}
-        If $x^2=k$ (with $k\ge0$), then $x=\pm\sqrt{k}$.
-      \end{block}
-      ``What squares to $9$?'' Both $3$ \textbf{and} $-3$.
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Keep the $\pm$ --- two solutions.
-        \item $x^2=49 \Rightarrow x=\pm7$.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.45\textwidth}
-      \centering
-      \textbf{Dropping the $\pm$}\\[2pt] loses a root.
-      \vspace{0.5cm}
-      \begin{block}{$x^2=-4$?}
-        No \emph{real} solution --- nothing real squares to a negative. (Fixed in 2.4.)
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% ISOLATE, SIMPLIFY, BINOMIAL SQUARES
-\begin{frame}[t, plain]
-  \forestheader{Isolate first, then root \& simplify}
-  \sectionlabel{Technique}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      The square must be \textbf{alone} before you root:
-      \[ 2x^2-50=0 \Rightarrow x^2=25 \Rightarrow x=\pm5. \]
-      \[ 3x^2=36 \Rightarrow x^2=12 \Rightarrow x=\pm2\sqrt3. \]
-      Simplest radical form: $\sqrt{12}=2\sqrt3$.
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \textbf{When a binomial is squared}
-      \[ (x-3)^2=16 \Rightarrow x-3=\pm4 \]
-      \[ x=7 \ \text{ or } \ x=-1. \]
-      \[ (x+2)^2=12 \Rightarrow x=-2\pm2\sqrt3. \]
-      \footnotesize This $(x-h)^2=k$ shape is what we build next.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% COMPLETING THE SQUARE — recipe
-\begin{frame}[t, plain]
-  \forestheader{Completing the square ($a=1$)}
-  \sectionlabel[goldacc]{Build a square}
+  \forestheader{Example 1: solve $3x^2-5=31$, then $(x-3)^2=16$}
+  \sectionlabel{Watch --- 2 minutes}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
-      Add $\left(\tfrac{b}{2}\right)^2$ to make a perfect square:
-      \[ x^2+bx+\left(\tfrac{b}{2}\right)^2=\left(x+\tfrac{b}{2}\right)^2. \]
-      \begin{block}{Steps}
-        \begin{enumerate}\setlength{\itemsep}{1pt}
-          \item Move the constant over.
-          \item Add $\left(\tfrac{b}{2}\right)^2$ to \emph{both} sides.
-          \item Factor; take $\pm\sqrt{\ }$.
-        \end{enumerate}
-      \end{block}
+      \textbf{(a)} Isolate the square, then root.
+      \[
+      \begin{aligned}
+        3x^2-5 &= 31 \\
+        3x^2 &= 36 && \text{add } 5 \\
+        x^2 &= 12  && \text{divide by } 3 \\
+        x &= \pm\sqrt{12}=\pm2\sqrt3
+      \end{aligned}
+      \]
     \end{column}
-    \begin{column}{0.5\textwidth}
-      \textbf{Solve $x^2+6x+1=0$}
-      \begin{itemize}\setlength{\itemsep}{2pt}
-        \item $x^2+6x=-1$
-        \item half of $6$ is $3$, $3^2=9$: $\ x^2+6x+9=8$
-        \item $(x+3)^2=8$
-        \item $x+3=\pm2\sqrt2$
-        \item $x=-3\pm2\sqrt2$
-      \end{itemize}
+    \pause
+    \begin{column}{0.48\textwidth}
+      \textbf{(b)} The square is already alone.
+      \[
+      \begin{aligned}
+        (x-3)^2 &= 16 \\
+        x-3 &= \pm4 && \text{both roots} \\
+        x &= 3\pm4
+      \end{aligned}
+      \]
+      $x=7$ or $x=-1$.
     \end{column}
   \end{columns}
+  \pause
+  \vspace{4pt}
+  \emph{Check (b):} $(7-3)^2=16$ \checkmark \quad $(-1-3)^2=16$ \checkmark \quad --- drop the
+  $\pm$ and you lose a root.
 \end{frame}
 
-% COMPLETING THE SQUARE = VERTEX FORM
 \begin{frame}[t, plain]
-  \forestheader{Same move $=$ vertex form}
-  \sectionlabel{Connection}
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{7 minutes --- start at one star and climb}
+  Solve. Simplest radical form.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $x^2=49$
+    \item[\rung2] $5x^2-3=97$
+    \item[\rung3] The campus garden's square bed has a $1$-ft path all the way around it; bed
+          and path together cover $50$ ft$^2$, so $(s+2)^2=50$. Find the bed's side $s$. Which
+          root do you throw out?
+  \end{itemize}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $x=\pm7$ \qquad \rung2\ $5x^2=100$, $x^2=20$, $x=\pm2\sqrt5$ \\[1pt]
+      \rung3\ $s+2=\pm5\sqrt2$, so $s=-2\pm5\sqrt2$. Keep $s=-2+5\sqrt2\approx5.1$ ft; the
+      other root is negative --- no side is.
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: solve $2x^2-8=42$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      Completing the square also rewrites the anchor in vertex form:
-      \[ x^2-2x-3=(x-1)^2-4. \]
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item Vertex $(1,-4)$ --- exactly 2.0--2.1.
-        \item Solve: $(x-1)^2=4 \Rightarrow x=3$ or $-1$.
-      \end{itemize}
-      So the method \textbf{solves} and \textbf{finds the vertex} at once.
+    \begin{column}{0.45\textwidth}
+      \opt1{$x=5$} \\[12pt]
+      \opt3{$x=\pm5$}
     \end{column}
     \begin{column}{0.45\textwidth}
+      \opt2{$x=\pm5\sqrt2$} \\[12pt]
+      \opt4{$x=\pm\sqrt{17}$}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{3}}
+      $2x^2=50$, $x^2=25$, $x=\pm5$. \; \textbf{1} dropped the $\pm$ --- $(-5)^2$ is $25$ too.
+      \textbf{2} took the root of $50$ before dividing by $2$ --- isolate first. \textbf{4}
+      subtracted the $8$ instead of adding it.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 2 — THE IMAGINARY UNIT ═══════════════════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: the imaginary unit $i$}
+  \sectionlabel{Round 2 --- a square that is negative}
+  \begin{columns}[T]
+    \begin{column}{0.6\textwidth}
+      \begin{block}{The imaginary unit}
+        The \textbf{imaginary unit} is $i=\sqrt{-1}$, so $i^2=-1$. For $k>0$,
+        $\sqrt{-k}=i\sqrt{k}$ --- pull the $i$ out \emph{first}, then simplify.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Complex numbers}
+        A \textbf{complex number} in \textbf{standard form} is $a+bi$, with $a$ and $b$ real:
+        $a$ is the \textbf{real part} and $b$ the \textbf{imaginary part}. If $b=0$ it is real;
+        if $a=0$ and $b\ne0$ it is \textbf{pure imaginary}.
+      \end{block}
+    \end{column}
+    \begin{column}{0.36\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.42]
-        \lgrid{-3}{5}{-5}{3}
-        \begin{scope}\clip (-3,-5) rectangle (5,3);
-          \draw[very thick, forest, domain=-1.4:3.4, samples=75, smooth] plot (\x,{(\x-1)*(\x-1)-4});
+      \begin{tikzpicture}[scale=0.3]
+        \lgrid{-4}{4}{-2}{9}
+        \begin{scope}\clip (-4,-2) rectangle (4,9);
+          \draw[very thick, forest, domain=-2.4:2.4, samples=60, smooth]
+            plot (\x,{\x*\x+4});
         \end{scope}
-        \fill[charcoal] (-1,0) circle (3.5pt) node[above left, font=\tiny]{$-1$};
-        \fill[charcoal] (3,0) circle (3.5pt) node[above right, font=\tiny]{$3$};
-        \fill[charcoal] (1,-4) circle (3.5pt) node[below, font=\tiny]{$(1,-4)$};
-      \end{tikzpicture}
+      \end{tikzpicture}\\[-2pt]
+      {\scriptsize $y=x^2+4$ never touches the $x$-axis: \\ \textbf{no real roots}. But
+      $x^2=-4$ has two \\ imaginary roots, $x=\pm2i$.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% CHOOSE A METHOD + NEXT
 \begin{frame}[t, plain]
-  \forestheader{Which method? \& what's next}
-  \sectionlabel{Summary}
+  \forestheader{Example 2: three moves with $i$}
+  \sectionlabel{Watch --- 2 minutes}
+  \begin{itemize}\setlength{\itemsep}{8pt}
+    \item \textbf{(a)} $\sqrt{-50}=i\sqrt{50}$ \pause $=i\cdot5\sqrt2=5i\sqrt2$ \quad
+          \emph{($i$ out first, then simplify)}
+    \pause
+    \item \textbf{(b)} $5+\sqrt{-18}=5+i\sqrt{18}$ \pause $=5+3i\sqrt2$: \; real part $5$,
+          imaginary part $3\sqrt2$
+    \pause
+    \item \textbf{(c)} $x^2+9=0$ \pause $\;\Rightarrow\; x^2=-9 \;\Rightarrow\;
+          x=\pm\sqrt{-9}=\pm3i$
+  \end{itemize}
+  \pause
+  \vspace{4pt}
+  \emph{Check (c):} $(3i)^2=9i^2=9(-1)=-9$ \checkmark \quad $(-3i)^2=-9$ \checkmark \quad ---
+  still two roots, still the $\pm$.
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{7 minutes --- start at one star and climb}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] Simplify $\sqrt{-49}$ and $\sqrt{-20}$.
+    \item[\rung2] Write $2-\sqrt{-25}$ in standard form. Name its real and imaginary parts.
+    \item[\rung3] Solve $(x-2)^2=-9$.
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $7i$ and $i\sqrt{20}=2i\sqrt5$ \qquad \rung2\ $2-5i$: real part $2$, imaginary
+      part $-5$ \\[1pt]
+      \rung3\ $x-2=\pm\sqrt{-9}=\pm3i$, so $x=2\pm3i$ --- Round 1's move, now with $i$
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: solve $x^2+25=0$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      \begin{block}{Choose the smartest tool}
-        \begin{itemize}\setlength{\itemsep}{3pt}
-          \item Factors nicely $\Rightarrow$ \textbf{factor} (2.2).
-          \item No $bx$ term $\Rightarrow$ \textbf{square roots}.
-          \item Won't factor $\Rightarrow$ \textbf{complete the square} (divide by $a$ first if $a\ne1$).
-        \end{itemize}
-      \end{block}
-      Always: keep the $\pm$, simplest radical form.
+    \begin{column}{0.45\textwidth}
+      \opt1{$x=\pm5$} \\[12pt]
+      \opt3{$x=\pm5i$}
     \end{column}
     \begin{column}{0.45\textwidth}
-      \begin{block}{Next}
-        \textbf{2.4 Complex Numbers} --- for when the square root hits a \emph{negative}:
-        \[ x^2=-9, \quad \sqrt{-9}=? \]
-        Meet $i=\sqrt{-1}$.
-      \end{block}
+      \opt2{$x=5i$} \\[12pt]
+      \opt4{no solution}
     \end{column}
   \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{3}}
+      $x^2=-25$, $x=\pm\sqrt{-25}=\pm5i$. \; \textbf{1}: $(\pm5)^2=+25$, not $-25$.
+      \textbf{2} dropped the $\pm$ --- $(-5i)^2=-25$ too. \textbf{4}: no \emph{real} solution
+      (the graph misses the axis), but two imaginary ones.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 3 — ADD, SUBTRACT, MULTIPLY (the crux) ═══════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: operations with complex numbers}
+  \sectionlabel{Round 3 --- arithmetic with $i$}
+  \begin{block}{Add, subtract, multiply}
+    To \textbf{add or subtract}, combine the real parts and combine the imaginary parts:
+    $(a+bi)+(c+di)=(a+c)+(b+d)i$. To \textbf{multiply}, distribute as with binomials, then
+    replace every $i^2$ with $-1$ and combine.
+  \end{block}
+  \vspace{4pt}
+  \begin{block}{Complex conjugates}
+    $a+bi$ and $a-bi$ are \textbf{complex conjugates}. Their product is always real:
+    \[ (a+bi)(a-bi)=a^2-b^2i^2=a^2+b^2. \]
+  \end{block}
+  \vspace{4pt}
+  {\small \textbf{Careful:} $\sqrt a\cdot\sqrt b=\sqrt{ab}$ only when $a,b\ge0$. With a negative
+  under a root, pull the $i$ out first --- because $i^2=-1$.}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 3: subtract, multiply, conjugates}
+  \sectionlabel{Watch --- 2 minutes}
+  \textbf{(a)} $(4+3i)-(1-5i)=4+3i-1+5i=3+8i$ \quad \emph{(the minus hits both parts)}
+  \pause
+  \[
+  \begin{aligned}
+    \textbf{(b)}\quad (2+3i)(4-i) &= 8-2i+12i-3i^2 && \text{distribute} \\
+                                  &= 8+10i-3(-1)   && i^2=-1 \\
+                                  &= 11+10i        && \text{combine}
+  \end{aligned}
+  \]
+  \pause
+  \textbf{(c)} $(5+2i)(5-2i)=25-10i+10i-4i^2=25+4=29$ \quad \emph{(conjugates: a real answer)}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  Write each answer in standard form $a+bi$.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $(6-2i)-(1-7i)$
+    \item[\rung2] $(3+2i)(1-i)$
+    \item[\rung3] $(1+2i)^2$ \; and \; $(4+i)(4-i)$
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $5+5i$ \qquad \rung2\ $3-3i+2i-2i^2=3-i+2=5-i$ \\[1pt]
+      \rung3\ $1+4i+4i^2=-3+4i$ \; and \; $16-i^2=17$ --- conjugates give a real number
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Find the mistake}
+  \sectionlabel[redacc]{The one that matters --- 3 minutes --- find Student A's wrong step and fix it}
+  \textbf{Student A} simplified $\sqrt{-4}\cdot\sqrt{-9}$:
+  \[
+  \begin{aligned}
+    \sqrt{-4}\cdot\sqrt{-9} &= \sqrt{(-4)(-9)} \\
+                            &= \sqrt{36} \\
+                            &= 6 \qquad \text{``A negative times a negative is positive.''}
+  \end{aligned}
+  \]
+  \reveal{%
+    \begin{block}{The mistake}
+      Line 1: $\sqrt a\cdot\sqrt b=\sqrt{ab}$ only works when $a,b\ge0$. Pull the $i$ out
+      first: $\sqrt{-4}\cdot\sqrt{-9}=2i\cdot3i=6i^2=-6$. \quad The answer is $-6$, not $6$ ---
+      because $i^2=-1$.
+    \end{block}}
+\end{frame}
+
+% FINAL ROUND — one problem per round, self-scored /4. Item 4 is the crux's twin.
+\begin{frame}[t, plain]
+  \forestheader{Final Round}
+  \sectionlabel[goldacc]{5 minutes --- on your own --- score yourself out of 4}
+  \begin{enumerate}\setlength{\itemsep}{3pt}
+    \item Solve $4x^2-1=79$. \qquad\qquad\quad\; 2.\ Solve $x^2+64=0$.
+    \setcounter{enumi}{2}
+    \item Multiply $(2-3i)(2+3i)$. \qquad\quad 4.\ Simplify $\sqrt{-2}\cdot\sqrt{-18}$.
+  \end{enumerate}
+  {\small\textbf{Bonus (+1):} At the egg drop, a capsule is let go $48$ ft above the ground; its
+  height after $t$ seconds is $h=-16t^2+48$. When does it land? (Simplest radical form.)}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check --- one point each}
+      1.\ $x^2=20$, $x=\pm2\sqrt5$ \quad 2.\ $x=\pm8i$ \quad 3.\ $4-9i^2=13$ \quad
+      4.\ $i\sqrt2\cdot i\sqrt{18}=6i^2=-6$ \\[1pt]
+      \textbf{Bonus:} $16t^2=48$, $t^2=3$, $t=\sqrt3\approx1.7$ seconds ($-\sqrt3$ is before the
+      drop). \\[2pt]
+      \textbf{Watch out:} $i^2=-1$, so $\sqrt{-a}\cdot\sqrt{-b}$ is \emph{not} $\sqrt{ab}$ ---
+      pull the $i$ out of every negative root \emph{before} you multiply.
+    \end{block}}
+\end{frame}
+
+% HOMEWORK — source: DeltaMath, online (user choice for 2.3, 2026-09-29).
+\begin{frame}[t, plain]
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  \begin{block}{DeltaMath --- scored, due the first class after two study halls}
+    Assignment: \textbf{2.3 Square Roots \& Complex Numbers}. Start it now on your device; the
+    rest is due the first class after two study halls. I will announce the date in class and on
+    TurtleNet.
+  \end{block}
+  \vspace{6pt}
+  \textbf{Next:} Lesson 2.4 --- completing the square and the quadratic formula solve
+  \emph{every} quadratic, with real or complex answers.
 \end{frame}
 
 \end{document}

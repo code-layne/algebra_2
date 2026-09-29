@@ -1,11 +1,30 @@
-%! Complex Numbers — Unit 2, Lesson 2.4 — Slides (Beamer)
+%! Completing the Square, the Quadratic Formula \& the Discriminant — Unit 2, Lesson 2.4 — Slides (Beamer)
+% SLIDES-FIRST shape with the ENGAGEMENT rules (LESSON_SHAPE.md §1, 2026-09-27), CONDENSED unit
+% (2026-09-29): exactly 3 rounds, 17 frames. The deck IS the lesson; its printed handout is the
+% student's notes.
+%   title → warm-up → targets → 3 × { definition → example → ladder ★/★★/★★★ → Show me | Find the
+%   mistake } → Final Round (4 mixed, self-scored /4) → homework (DeltaMath online)
+% One anchor: x^2-2x-3 = 0 again — (x-1)^2 = 4 by completing the square (2.1's vertex form), then
+% x = (2 ± 4)/2 by the formula, and y = x^2-2x+c for c = -3, 1, 5 on the discriminant frame.
+% Round 1's ★★★ (x^2+2x+5 = 0, -1 ± 2i) returns as Round 3's crux: D = -16 means no REAL solutions
+% and no x-intercepts, not "no solution". The Final Round's item 4 is its twin.
+% Answers only inside \reveal{} — the handout is a Beamer handout-mode compile and drops them.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
-% Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
+\usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+% Coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
   \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
   \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
+% Ladder rungs and Show-me options.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+\newcommand{\opt}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle, fill=forest, text=white, font=\bfseries\small, inner sep=1.6pt,
+          minimum size=1.35em]{#1};
+  \end{tikzpicture}\;#2}
 
 \begin{document}
 
@@ -16,143 +35,363 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.4}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Complex Numbers}\\[1.2cm]
+    {\color{white}\bfseries\LARGE Completing the Square, the Quadratic Formula \& the
+    Discriminant}\\[1.2cm]
     {\color{forestmid}\small Algebra 2~$\cdot$~Unit 2: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% HOOK — the wall
+% WARM-UP — on screen as they walk in. Three quick wins: a perfect square expanded (the move
+% Round 1 runs backwards), sqrt(-16) = 4i (2.3), and reading a, b, c with signs (Round 2).
 \begin{frame}[t, plain]
-  \forestheader{The wall: $x^2=-4$}
-  \sectionlabel{Hook}
+  \forestheader{Warm-Up --- start now}
+  \sectionlabel[goldacc]{3 minutes --- in the notes column, alone}
+  \begin{enumerate}\setlength{\itemsep}{7pt}
+    \item Multiply: $(x+3)^2$.
+    \item Simplify: $\sqrt{-16}$.
+    \item In $3x^2-x-4=0$, what are $a$, $b$, and $c$?
+  \end{enumerate}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check --- give yourself a point for each}
+      1.\ $x^2+6x+9$ \qquad 2.\ $4i$ \qquad 3.\ $a=3$, $b=-1$, $c=-4$ --- the signs come along
+      \\[3pt]
+      \textbf{Hold on to this:} if you are given $x^2+6x=7$, what number would you add to make
+      the left side $(x+3)^2$?
+    \end{block}}
+\end{frame}
+
+% LEARNING TARGETS + HOW TODAY RUNS
+\begin{frame}[t, plain]
+  \forestheader{Today's targets}
+  \sectionlabel{What you will be able to do}
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item Solve a quadratic by \textbf{completing the square}.
+    \item Solve \emph{any} quadratic with the \textbf{quadratic formula} --- \textbf{standard
+          form} first, then $a$, $b$, $c$ with their signs.
+    \item Use the \textbf{discriminant} $b^2-4ac$ to predict \textbf{two real}, \textbf{one
+          repeated real}, or \textbf{two complex} solutions --- and the number of $x$-intercepts.
+  \end{itemize}
+  \vspace{3pt}
+  \begin{block}{How today runs --- you are solving the whole hour}
+    Three rounds: a short definition, one example, then \textbf{your turn} --- start at
+    \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me}: hold up
+    1--4 fingers on the count of three. We finish with a \textbf{Final Round} out of 4, then
+    start the homework.
+  \end{block}
+\end{frame}
+
+% ═══ ROUND 1 — COMPLETING THE SQUARE (a = 1) ═══════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: completing the square}
+  \sectionlabel{Round 1 --- make a perfect square}
+  \begin{block}{Completing the square}
+    Adding $\left(\frac b2\right)^2$ to $x^2+bx$ makes a perfect-square trinomial:
+    \[ x^2+bx+\left(\tfrac b2\right)^2=\left(x+\tfrac b2\right)^2. \]
+    \textbf{Completing the square} is adding that number to \emph{both sides} of an equation so
+    one side becomes a perfect square.
+  \end{block}
+  \vspace{2pt}
+  \begin{block}{To solve $x^2+bx+c=0$ by completing the square}
+    \begin{enumerate}\setlength{\itemsep}{1pt}
+      \item Move the constant to the right: $\;x^2+bx=-c$.
+      \item Add $\left(\frac b2\right)^2$ to \textbf{both} sides; write the left side as $\left(x+\frac b2\right)^2$.
+      \item Take the square root of both sides --- remember $\pm$ --- and solve.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 1: solve $x^2-2x-3=0$ by completing the square}
+  \sectionlabel{Watch --- 2 minutes}
+  \[
+  \begin{aligned}
+    x^2-2x &= 3 && \text{move the constant} \\
+    x^2-2x+1 &= 3+1 && \left(\tfrac{-2}{2}\right)^2=1 \text{ on both sides} \\
+    (x-1)^2 &= 4 && \text{a perfect square} \\
+    x-1 &= \pm2 && \text{square root, } \pm \\
+    x=3 \quad\text{or}\quad x &= -1
+  \end{aligned}
+  \]
+  \pause
+  \emph{Same roots as factoring in 2.2.} And $(x-1)^2-4=0$ is 2.1's vertex form: vertex
+  $(1,-4)$.
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
+  Solve by completing the square.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $x^2+6x=7$
+    \item[\rung2] $x^2-4x-1=0$
+    \item[\rung3] $x^2+2x+5=0$
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $(x+3)^2=16$: $x=1$ or $x=-7$ \\[1pt]
+      \rung2\ $x^2-4x+4=1+4$, $(x-2)^2=5$: $x=2\pm\sqrt5$ \\[1pt]
+      \rung3\ $x^2+2x+1=-5+1$, $(x+1)^2=-4$: $x+1=\pm2i$, $x=-1\pm2i$ --- keep this one
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: $x^2+10x=3$ --- which is the next line?}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      In 2.3 we solved everything \emph{except} equations like
-      \[ x^2=-4. \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item No \emph{real} number squares to a negative.
-        \item $y=x^2+4$ never crosses the $x$-axis --- no real zeros.
-      \end{itemize}
-      \textbf{Don't stop at ``no solution.'' Build a number that has one.}
+    \begin{column}{0.45\textwidth}
+      \opt1{$x^2+10x+25=3$} \\[12pt]
+      \opt3{$x^2+10x+100=103$}
     \end{column}
     \begin{column}{0.45\textwidth}
+      \opt2{$x^2+10x+25=28$} \\[12pt]
+      \opt4{$x^2+10x+5=8$}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      $\left(\frac{10}{2}\right)^2=25$, added to \emph{both} sides, then $(x+5)^2=28$. \quad
+      \textbf{1} added to one side only --- the equation is no longer balanced; \textbf{3}
+      squared $b$, not half of it; \textbf{4} halved $b$ but forgot to square.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 2 — THE QUADRATIC FORMULA ═══════════════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: the quadratic formula}
+  \sectionlabel{Round 2 --- one formula for every quadratic}
+  \begin{block}{The quadratic formula}
+    The solutions of $ax^2+bx+c=0$ ($a\ne0$) are
+    \[ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}. \]
+    It is completing the square done once, on the letters --- so it solves \emph{every}
+    quadratic, with real or complex answers.
+  \end{block}
+  \vspace{2pt}
+  \begin{block}{Using it}
+    \begin{enumerate}\setlength{\itemsep}{1pt}
+      \item Write the equation in \textbf{standard form} $ax^2+bx+c=0$ --- everything on one side.
+      \item Read $a$, $b$, and $c$ \textbf{with their signs}.
+      \item Substitute in parentheses --- $(-3)^2=9$, not $-9$ --- and simplify.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 2: the formula, twice}
+  \sectionlabel{Watch --- 2 minutes}
+  \begin{columns}[T]
+    \begin{column}{0.47\textwidth}
+      \textbf{(a)} $x^2-2x-3=0$: \; $a=1$, $b=-2$, $c=-3$.
+      \[
+      \begin{aligned}
+        x &= \frac{-(-2)\pm\sqrt{(-2)^2-4(1)(-3)}}{2(1)} \\
+          &= \frac{2\pm\sqrt{16}}{2}=\frac{2\pm4}{2}
+      \end{aligned}
+      \]
+      $x=3$ or $x=-1$ --- Round 1's answer.
+    \end{column}
+    \pause
+    \begin{column}{0.49\textwidth}
+      \textbf{(b)} $2x^2+3x=1$. \; Standard form first:
+      \[ 2x^2+3x-1=0 \qquad a=2,\; b=3,\; c=-1 \]
+      \[
+      \begin{aligned}
+        x &= \frac{-3\pm\sqrt{3^2-4(2)(-1)}}{2(2)} \\
+          &= \frac{-3\pm\sqrt{17}}{4}
+      \end{aligned}
+      \]
+      It does not factor --- the formula does not care.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
+  Solve with the quadratic formula. Simplify.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $x^2+5x+3=0$
+    \item[\rung2] $3x^2=2x+4$
+    \item[\rung3] $x^2-4x+13=0$
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $x=\dfrac{-5\pm\sqrt{13}}{2}$ \qquad
+      \rung2\ $3x^2-2x-4=0$: $x=\dfrac{2\pm\sqrt{52}}{6}=\dfrac{1\pm\sqrt{13}}{3}$ \\[2pt]
+      \rung3\ $x=\dfrac{4\pm\sqrt{-36}}{2}=\dfrac{4\pm6i}{2}=2\pm3i$
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Find the mistake}
+  \sectionlabel[goldacc]{2 minutes --- Student A's answer is wrong. Find the step and fix it}
+  \textbf{Student A} solved $2x^2=3x+5$:
+  \[
+  \begin{aligned}
+    a=2,\quad b=3,\quad c&=5 \\
+    x &= \frac{-3\pm\sqrt{3^2-4(2)(5)}}{2(2)}=\frac{-3\pm\sqrt{-31}}{4} \\
+    &\text{``Two complex solutions.''}
+  \end{aligned}
+  \]
+  \reveal{%
+    \begin{block}{The mistake}
+      Student A read $a$, $b$, $c$ \emph{before} writing standard form. First
+      $2x^2-3x-5=0$, so $b=-3$, $c=-5$: \;
+      $x=\dfrac{3\pm\sqrt{9+40}}{4}=\dfrac{3\pm7}{4}$, so $x=\dfrac52$ or $x=-1$ --- two
+      \emph{real} solutions.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 3 — THE DISCRIMINANT (the crux) ═════════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: the discriminant}
+  \sectionlabel{Round 3 --- predict before you solve}
+  \begin{block}{The discriminant}
+    In $ax^2+bx+c=0$, the number under the radical, $D=b^2-4ac$, is the
+    \textbf{discriminant}. Its sign tells you the solutions \emph{before} you solve.
+  \end{block}
+  \vspace{2pt}
+  \begin{columns}[T]
+    \begin{column}{0.32\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.5]
-        \lgrid{-3}{3}{-1}{7}
-        \begin{scope}\clip (-3,-1) rectangle (3,7);
-          \draw[very thick, forest, domain=-1.7:1.7, samples=70, smooth] plot (\x,{\x*\x+4});
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-2}{4}{-4}{5}
+        \begin{scope}\clip (-2,-4) rectangle (4,5);
+          \draw[very thick, forest, domain=-2:4, samples=60, smooth]
+            plot (\x,{(\x-1)*(\x-1)-4});
         \end{scope}
-        \fill[charcoal] (0,4) circle (3pt) node[right, font=\tiny]{$(0,4)$};
-      \end{tikzpicture}
+        \fill[redacc] (-1,0) circle (5pt);
+        \fill[redacc] (3,0) circle (5pt);
+      \end{tikzpicture}\\[-1pt]
+      {\scriptsize $y=x^2-2x-3$, \; $D=16$ \\ $D>0$: \textbf{two real} solutions ---
+      \textbf{two} $x$-intercepts}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-2}{4}{-4}{5}
+        \begin{scope}\clip (-2,-4) rectangle (4,5);
+          \draw[very thick, forest, domain=-1.3:3.3, samples=60, smooth]
+            plot (\x,{(\x-1)*(\x-1)});
+        \end{scope}
+        \fill[redacc] (1,0) circle (5pt);
+      \end{tikzpicture}\\[-1pt]
+      {\scriptsize $y=x^2-2x+1$, \; $D=0$ \\ $D=0$: \textbf{one repeated real} solution ---
+      touches \textbf{once}}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.26]
+        \lgrid{-2}{4}{-4}{5}
+        \begin{scope}\clip (-2,-4) rectangle (4,5);
+          \draw[very thick, forest, domain=-0.1:2.1, samples=40, smooth]
+            plot (\x,{(\x-1)*(\x-1)+4});
+        \end{scope}
+      \end{tikzpicture}\\[-1pt]
+      {\scriptsize $y=x^2-2x+5$, \; $D=-16$ \\ $D<0$: \textbf{no real} solutions ---
+      \textbf{two complex} ones, $p\pm qi$ --- \textbf{no} $x$-intercepts}
     \end{column}
   \end{columns}
 \end{frame}
 
-% THE IMAGINARY UNIT
 \begin{frame}[t, plain]
-  \forestheader{The imaginary unit $i$}
-  \sectionlabel[goldacc]{Definition}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{Definition}
-        $i=\sqrt{-1}, \qquad\text{so}\qquad i^2=-1.$
-      \end{block}
-      One rule, $i^2=-1$, powers everything.
-      \[ \sqrt{-4}=\sqrt4\cdot\sqrt{-1}=2i. \]
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \textbf{The wall opens:}
-      \[ x^2=-4 \ \Rightarrow\ x=\pm\sqrt{-4}=\pm2i. \]
-      \vspace{0.3cm}
-      \begin{block}{Check}
-        $(2i)^2=4i^2=4(-1)=-4.$ \checkmark
-      \end{block}
-    \end{column}
-  \end{columns}
+  \forestheader{Example 3: predict, don't solve}
+  \sectionlabel{Watch --- 2 minutes}
+  \begin{itemize}\setlength{\itemsep}{8pt}
+    \item $2x^2-5x+1=0$: \; $D=(-5)^2-4(2)(1)=25-8=17$ \pause
+          $>0$: two real solutions, two $x$-intercepts.
+    \pause
+    \item $4x^2+4x+1=0$: \; $D=4^2-4(4)(1)=16-16=0$ \pause
+          $=0$: one repeated real solution; the graph touches once.
+    \pause
+    \item $x^2-3x+4=0$: \; $D=(-3)^2-4(1)(4)=9-16=-7$ \pause
+          $<0$: \textbf{no real} solutions --- but \textbf{two complex} solutions; no
+          $x$-intercepts.
+  \end{itemize}
+  \pause
+  \vspace{4pt}
+  \emph{Always:} $b^2$ is never negative --- $(-5)^2=25$. Only $-4ac$ can pull $D$ below zero.
 \end{frame}
 
-% NEGATIVE RADICALS + a+bi
 \begin{frame}[t, plain]
-  \forestheader{Negative radicals \& standard form $a+bi$}
-  \sectionlabel{Rewrite}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      For $k>0$: \ $\sqrt{-k}=i\sqrt{k}$ \ (pull $i$ out \emph{first}).
-      \[ \sqrt{-9}=3i, \qquad \sqrt{-50}=5i\sqrt2. \]
-      \begin{block}{Trap}
-        $\sqrt{-2}\cdot\sqrt{-2}=2i^2=-2$, \ \textbf{not} $\sqrt4=2$.
-      \end{block}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \textbf{Standard form} $a+bi$:
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item $a=$ real part, $b=$ imaginary part.
-        \item $b=0\Rightarrow$ real; $a=0\Rightarrow$ pure imaginary.
-        \item $7-\sqrt{-16}=7-4i$ \ ($a=7,\ b=-4$).
-      \end{itemize}
-    \end{column}
-  \end{columns}
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
+  Find $D$. Then say how many solutions, what kind, and how many $x$-intercepts.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $x^2-6x+9=0$
+    \item[\rung2] $3x^2-x+2=0$
+    \item[\rung3] The garden club sells flower bunches at $x$ dollars each; its profit is
+          $P=-x^2+12x-20$ dollars. Can the profit reach \$16? Use $D$.
+  \end{itemize}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $D=36-36=0$: one repeated real solution; touches once \\[1pt]
+      \rung2\ $D=1-24=-23$: no real --- two complex solutions; no $x$-intercepts \\[1pt]
+      \rung3\ $-x^2+12x-36=0$: $D=144-4(-1)(-36)=0$ --- exactly one price, $x=6$: \$6 a bunch.
+    \end{block}}
 \end{frame}
 
-% OPERATIONS
 \begin{frame}[t, plain]
-  \forestheader{Add, subtract, multiply}
-  \sectionlabel[goldacc]{Operate}
+  \forestheader{Show me: $x^2+2x+5=0$ has $D=-16$. Which is true?}
+  \sectionlabel[redacc]{The one that matters --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \textbf{Add / subtract} --- combine like terms:
-      \[ (3+2i)+(5-8i)=8-6i. \]
-      \[ (4-i)-(6-3i)=-2+2i. \]
+    \begin{column}{0.47\textwidth}
+      \opt1{No solution --- $D$ is negative.} \\[12pt]
+      \opt3{Two complex solutions; the graph crosses the $x$-axis twice.}
     \end{column}
-    \begin{column}{0.5\textwidth}
-      \textbf{Multiply} --- FOIL, then $i^2=-1$:
-      \[ (2+3i)(4-i)=8+10i-3i^2=11+10i. \]
-      \begin{block}{Conjugates are real}
-        $(a+bi)(a-bi)=a^2+b^2$; \ $(5+2i)(5-2i)=29.$
-      \end{block}
+    \begin{column}{0.47\textwidth}
+      \opt2{Two complex solutions, $-1\pm2i$; the graph has no $x$-intercepts.} \\[12pt]
+      \opt4{$D=-16$, so the solutions are $x=\pm4i$.}
     \end{column}
   \end{columns}
+  \vspace{8pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      You solved it in Round 1: $x=-1\pm2i$. A negative $D$ means no \emph{real} solutions ---
+      not \emph{no} solutions. \textbf{1} forgets the complex ones; \textbf{3} forgets that
+      complex solutions are \emph{not} on the $x$-axis; \textbf{4} took $D$ for the answer ---
+      $\sqrt D$ is only one piece of the formula.
+    \end{block}}
 \end{frame}
 
-% POWERS OF i
+% FINAL ROUND — one problem per round, self-scored /4. Item 4 is the crux's twin.
 \begin{frame}[t, plain]
-  \forestheader{Powers of $i$ cycle}
-  \sectionlabel{Pattern}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \begin{block}{Period 4}
-        \[ i^1=i,\ \ i^2=-1,\ \ i^3=-i,\ \ i^4=1,\ \ i^5=i,\dots \]
-      \end{block}
-      \textbf{Shortcut:} reduce the exponent \emph{mod} $4$.
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \[ i^{23}:\ 23\bmod4=3 \ \Rightarrow\ i^3=-i. \]
-      \[ i^{40}:\ 40\bmod4=0 \ \Rightarrow\ i^4=1. \]
-      \footnotesize A multiple of $4$ always lands back on $1$.
-    \end{column}
-  \end{columns}
+  \forestheader{Final Round}
+  \sectionlabel[goldacc]{5 minutes --- on your own --- score yourself out of 4}
+  \begin{enumerate}\setlength{\itemsep}{3pt}
+    \item Complete the square: $x^2+8x=9$. \qquad 2.\ Use the formula: $2x^2=6x-3$.
+    \setcounter{enumi}{2}
+    \item Find $D$ for $9x^2-12x+4=0$ and say what it means.
+    \item How many \emph{real} solutions does $x^2-6x+10=0$ have? How many solutions? Find them.
+  \end{enumerate}
+  {\small\textbf{Bonus (+1):} A volleyball serve's height is $h=-16t^2+24t+6$ feet after $t$
+  seconds. Does it ever reach $16$ ft? Use the discriminant.}
+  \reveal{%
+    \begin{block}{Check --- one point each}
+      1.\ $(x+4)^2=25$: $x=1$ or $-9$ \quad 2.\ $2x^2-6x+3=0$: $x=\frac{3\pm\sqrt3}{2}$ \quad
+      3.\ $D=0$: one repeated real \\[1pt]
+      4.\ $D=-4$: \textbf{no real} solutions, but \textbf{two} solutions: $x=3\pm i$ \quad
+      \textbf{Bonus:} $-16t^2+24t-10=0$, $D=576-640=-64$: never --- it peaks at $15$ ft. \\[2pt]
+      \textbf{Watch out:} a negative discriminant means no \emph{real} solutions and no
+      $x$-intercepts --- there are still \textbf{two complex} solutions. And $(-3)^2=+9$.
+    \end{block}}
 \end{frame}
 
-% CAPSTONE + NEXT
+% HOMEWORK — source: DeltaMath, online (user choice for 2.4, 2026-09-29).
 \begin{frame}[t, plain]
-  \forestheader{Where complex numbers come from \& what's next}
-  \sectionlabel{Summary}
-  \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      \begin{block}{Complete the square on $x^2+2x+5=0$}
-        \[ (x+1)^2=-4 \ \Rightarrow\ x=-1\pm2i. \]
-      \end{block}
-      The first quadratic with \emph{complex} solutions --- and they're conjugates.
-    \end{column}
-    \begin{column}{0.45\textwidth}
-      \begin{block}{Next}
-        \textbf{2.5 Quadratic Formula \& Discriminant}
-        \[ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}. \]
-        The sign of $b^2-4ac$ predicts real vs.\ complex roots.
-      \end{block}
-    \end{column}
-  \end{columns}
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  \begin{block}{DeltaMath --- scored, due the first class after two study halls}
+    Assignment: \textbf{2.4 The Quadratic Formula}. Start it now on your device; the rest is due
+    the first class after two study halls. I will announce the date in class and on TurtleNet.
+  \end{block}
+  \vspace{6pt}
+  \textbf{Next:} Lesson 2.5 --- when a parabola meets a line (systems), and quadratics as models.
 \end{frame}
 
 \end{document}
