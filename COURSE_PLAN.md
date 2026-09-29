@@ -2,6 +2,33 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-29) — **UNIT 2 CONDENSED: 2.2–2.7 → 2.2–2.5, THREE-ROUND DECKS, ≤20 FRAMES.**
+>
+> **User request, 2026-09-29:** "using the current 2.0 and 2.1 lessons as is, shorten the remaining
+> lessons to 4 and make the slides shorter so we can get through it in one class. no more than 20
+> slides total per lesson." Clarified: a slide = a frame (reveals don't count); **homework for all
+> four = DeltaMath online**. 2.0 (gradual-release) and 2.1 (21 frames) untouched. Recorded in
+> `LESSON_SHAPE.md` §1: **3 cycles, 17 frames, 20 a hard ceiling**; skeleton comments follow.
+>
+> **The map (user-confirmed "Map A"):** **2.2** Solving by Factoring (special patterns folded into
+> round 1 as cases of the product–sum search; grouping with Find the mistake; crux $x^2=5x$) ·
+> **2.3** Square Roots & Complex Numbers (square-root property; $i$ and $a+bi$; operations — crux
+> Find the mistake $\sqrt{-4}\sqrt{-9}\ne6$) · **2.4** Completing the Square, the Quadratic Formula
+> & the Discriminant (crux Show me: $D<0$ is two complex solutions, not "no solution") · **2.5**
+> Quadratic Systems & Modeling (substitution; 0/1/2 by the discriminant; crux Show me: the max is
+> the vertex's *output*). Old `lesson06`/`lesson07` `git rm`-ed, as were 2.2's empty DeltaMath
+> printed slots and all legacy components of 2.3–2.5. Powers of $i$ dropped.
+>
+> **Build:** each of 2.2–2.5 — `make all` exit 0; **17 frames**; handout 6pp; cover 1p; plan 3pp;
+> student and key packets 8pp each; no overfull frames; no answers in the handout text.
+> `make -C unit02 student key` → **61pp each**.
+>
+> **Follow-up, same day:** sets renamed `A2: Lesson 2.N: …` and each plan's Homework box now
+> lists real DeltaMath skills by catalog name (from DeltaMath's public Algebra 1/2 course pages),
+> with the formative-check skill named. Syllabus rebuilt for 6 Unit 2 lessons (48 in the course):
+> Unit 2's 11-meeting block keeps every date (test still Week 8) and carries 3 flex meetings;
+> `~/Downloads/Algebra 2 Syllabus 26-27 (Unit 2 condensed).docx`. Unit 2 tests unchanged.
+
 > ## ⚠ Status (2026-09-28) — **SLIDE HANDOUT NOW RIDES IN THE PACKET (cover → handout → homework).**
 >
 > **User request, 2026-09-28:** "incorporate the student version of the slides into the student
@@ -1325,6 +1352,8 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 - **1.5** Linear regression (scatter plots, correlation, lines of best fit)
 
 ### Unit 2 — Quadratic Functions
+> **Condensed 2026-09-29 to 6 lessons (2.0–2.5)** — see the top Status block; the 2026-07-25 notes
+> below describe the retired eight-lesson map.
 > **Status (scaffolded 2026-07-25):** lesson map locked at **8 lessons (2.0–2.7)** — full
 > breakdown (Systems 2.6 and Modeling 2.7 kept separate). All 8 lesson dirs
 > `unit02/lesson00`–`lesson07` scaffolded with skeleton `main.tex` for lesson plan + cover,

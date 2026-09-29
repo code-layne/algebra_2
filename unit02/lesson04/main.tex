@@ -1,4 +1,9 @@
-%! Complex Numbers — Unit 2, Lesson 2.4 — Lesson Plan
+%! Completing the Square, the Quadratic Formula \& the Discriminant — Unit 2, Lesson 2.4 — Lesson Plan
+% SLIDES-FIRST plan (course shape 2026-09-25, engagement rules 2026-09-27), condensed unit
+% (2026-09-29: three rounds, 17 frames): the deck carries the lesson — warm-up, three rounds of
+% definition → example → ladder → Show me / Find the mistake, a Final Round, and the homework (a
+% DeltaMath set, online) started in class. Students take notes on the printed slide handout.
+% Teacher-facing; never handed out.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,7 +13,8 @@
 \newcommand{\CourseName}{Algebra 2}
 \newcommand{\MeetingLength}{60 minutes}
 \newcommand{\UnitNumberName}{Unit 2: Quadratic Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 2.4: Complex Numbers}
+\newcommand{\LessonNumberName}{Lesson 2.4: Completing the Square, the Quadratic Formula \& the Discriminant}
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
 
 \begin{document}
 \begin{center}
@@ -18,22 +24,27 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students break the ``no real solution'' wall from Lesson~2.3 by
-    \emph{inventing a new number}. They explain the meaning of the \emph{imaginary unit} $i=\sqrt{-1}$
-    (so $i^2=-1$), and use it to rewrite a negative square root: $\sqrt{-k}=i\sqrt{k}$ (pull the $i$ out
-    \emph{first}, then simplify). They write complex numbers in \emph{standard form} $a+bi$, name the real
-    and imaginary parts, and classify a number as real, imaginary, or pure imaginary. They \emph{add,
-    subtract, and multiply} complex numbers --- add/subtract by combining like terms, multiply by FOIL
-    followed by the substitution $i^2=-1$ --- recognize that the product of \emph{conjugates} $a\pm bi$ is
-    the real number $a^2+b^2$, and simplify \emph{powers of $i$} by using the length-$4$ cycle. The lesson
-    closes by reconnecting to completing the square: $x^2+2x+5=0$ now has the complex solutions
-    $-1\pm2i$, previewing Lesson~2.5.
+    \textbf{Primary Objective:} Students solve quadratics that do not factor --- by
+    \emph{completing the square} ($a=1$), then by the \emph{quadratic formula}, which is
+    completing the square done once on $ax^2+bx+c=0$ --- simplifying to real or complex answers.
+    They then use the \emph{discriminant} $b^2-4ac$ to predict, \emph{before} solving, two real /
+    one repeated real / two complex solutions and the matching two / one / zero $x$-intercepts.
+    Lesson~2.3 supplied $i$; 2.4 is where a negative radicand becomes an answer, not a dead end.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.4a} (explain the meaning of $i$), \textbf{A2.EO.4b}
-    (identify equivalent radical expressions containing negative rationals and expressions in $a+bi$ form),
-    and \textbf{A2.EO.4c} (apply properties to add, subtract, and multiply complex numbers). Builds on
-    \textbf{A2.EO.2} (simplifying radical expressions) and connects forward to \textbf{A2.EI.2b} (solving
-    quadratics over the complex numbers, Lesson~2.5).
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.2b} (solve a quadratic equation in one
+    variable over the set of complex numbers algebraically --- completing the square and the
+    quadratic formula), \textbf{A2.EI.2d} (verify solutions and interpret them --- the real
+    roots are the $x$-intercepts), \textbf{A2.F.2d} (the discriminant's link to the number of
+    $x$-intercepts), and \textbf{A2.EI.2a} (a quadratic equation from a context --- the profit
+    rung and the volleyball bonus).
+    \\[2pt]
+    \textbf{Lesson model:} \emph{Slides first.} The deck is the lesson and its printed handout is
+    the student's notes, and students are \emph{solving the whole hour}: a warm-up on screen as
+    they walk in; three rounds of a short \textbf{definition} and \textbf{example} ($\le$3 min),
+    a \textbf{ladder} of three problems (\rung1\ \rung2\ \rung3), and a \textbf{Show me} or
+    \textbf{Find the mistake}; a self-scored \textbf{Final Round}; and the homework started in
+    class. \textbf{Homework source:} DeltaMath, online --- set \textbf{A2: Lesson 2.4: The Quadratic
+    Formula}; nothing in the packet.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -43,203 +54,164 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Define $i=\sqrt{-1}$; the working rule is $i^2=-1$.
-  \item Rewrite $\sqrt{-k}=i\sqrt{k}$ --- pull the $i$ out \emph{first}, then simplify the radical.
-  \item Write numbers in standard form $a+bi$; name real/imaginary parts; classify the number.
-  \item \textbf{Add/subtract} by combining like terms; \textbf{multiply} by FOIL then $i^2=-1$.
-  \item The product of conjugates $(a+bi)(a-bi)=a^2+b^2$ is \emph{real}.
-  \item Simplify powers of $i$ using the cycle $i,\,-1,\,-i,\,1$ (reduce the exponent mod $4$).
+  \item Complete the square on $x^2+bx+c=0$: move $c$, add $\left(\frac b2\right)^2$ to
+        \textbf{both} sides, square-root with $\pm$.
+  \item Write \textbf{standard form} first; read $a$, $b$, $c$ \textbf{with signs}.
+  \item Apply the \textbf{quadratic formula}; simplify to radical or $p\pm qi$ form.
+  \item Compute the \textbf{discriminant} and classify the solutions and $x$-intercepts
+        without solving.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Extending the number system fixes what real numbers could not do: give $x^2=-4$ a solution.
-  \item $\sqrt a\sqrt b=\sqrt{ab}$ is \emph{only} valid for nonnegative $a,b$, so convert to $i$ before combining.
-  \item ``$a+bi$'' names two independent pieces --- a real part and an imaginary part --- like $x$-terms and constants.
-  \item Complex arithmetic is just polynomial arithmetic with the single extra fact $i^2=-1$.
-  \item Conjugates clear the imaginary part --- the same trick that will rationalize complex denominators.
-  \item $i^4=1$, so the powers of $i$ repeat every four steps.
+  \item Adding $\left(\frac b2\right)^2$ \emph{makes} a perfect square --- 2.2's pattern run
+        backwards, and 2.1's vertex form.
+  \item The formula is completing the square in general, so it works on \emph{every} quadratic.
+  \item \textbf{Target misconception: a negative discriminant means ``no solution.''} It
+        means no \emph{real} solutions and no $x$-intercepts; there are still two complex
+        (conjugate) solutions. Close cousins: $-3^2$ for $(-3)^2$, and reading $b$ before the
+        equation equals zero.
+  \item Real roots are $x$-intercepts; complex roots are not on the $x$-axis.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
-\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems --- one definition frame each}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Imaginary unit $i$} & The number defined by $i=\sqrt{-1}$, so $i^2=-1$. The engine of every complex computation. \\
-\textbf{$\sqrt{-k}=i\sqrt{k}$} & For $k>0$; pull out $i$ \emph{before} simplifying, since the product rule fails for negatives. \\
-\textbf{Complex number} & Any number $a+bi$ with $a,b$ real; $a$ is the \emph{real part}, $b$ the \emph{imaginary part}. \\
-\textbf{Pure imaginary} & A complex number $bi$ with $a=0$, $b\ne0$ (e.g. $3i$); reals are the $b=0$ case. \\
-\textbf{Complex conjugate} & The pair $a+bi$ and $a-bi$; their product $a^2+b^2$ is a real number. \\
-\textbf{Powers of $i$} & Cycle $i^1=i,\ i^2=-1,\ i^3=-i,\ i^4=1$, then repeat; reduce the exponent mod $4$. \\
+\textbf{Completing the square} & Adding $\left(\frac b2\right)^2$ to $x^2+bx$ makes a
+        perfect-square trinomial, $x^2+bx+\left(\frac b2\right)^2=\left(x+\frac b2\right)^2$;
+        completing the square is adding that number to \emph{both sides} of an equation so one
+        side becomes a perfect square. \\
+\textbf{Quadratic formula} & The solutions of $ax^2+bx+c=0$ ($a\ne0$) are
+        $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ --- completing the square done once, on the
+        letters; it solves every quadratic, with real or complex answers. \\
+\textbf{Standard form} & $ax^2+bx+c=0$ --- everything on one side; read $a$, $b$, $c$ with
+        their signs. \\
+\textbf{Discriminant} & In $ax^2+bx+c=0$, the number under the radical, $D=b^2-4ac$. Its sign
+        tells you the solutions before you solve: $D>0$ two real (two $x$-intercepts); $D=0$
+        one repeated real (touches once); $D<0$ no real solutions --- two complex ones,
+        $p\pm qi$ --- no $x$-intercepts. \\
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses exactly what today needs: \textbf{(1)} \emph{simplifying radicals}
-    ($\sqrt{50}=5\sqrt2$) so answers like $\sqrt{-50}=5i\sqrt2$ land in simplest form; \textbf{(2)}
-    \emph{multiplying binomials} by FOIL ($(x+3)(x-3)=x^2-9$) --- the mechanics of multiplying complex
-    numbers, with the conjugate pattern hiding in plain sight; \textbf{(3)} \emph{combining like terms}
-    ($(3x+5)+(2x-8)$), which is all that adding/subtracting complex numbers requires; and \textbf{(4)} the
-    \emph{Lesson-2.3 wall} --- $x^2=-4$ has no real solution --- reopened to motivate inventing $i$.
-    Debrief item~4 last and leave it on the board; it \emph{is} the hook.
+\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
+\hline
+Warm-Up & 5 & Three quick wins, on screen as they walk in; score themselves & Stand at the door; reveal at 3 min; land ``what would you add to make $(x+3)^2$?'' \\
+Lesson & 40 & Three rounds (13 / 13 / 14): watch (2 min), \emph{climb the ladder} \rung1$\to$\rung2$\to$\rung3, then \emph{Show me} fingers or \emph{Find the mistake} & $\le$3 min talk a round; circulate the whole ladder; reveal when most have \rung2; read the fingers \\
+Final Round & 5 & Four mixed problems + bonus, alone; score out of 4 & Timer on; collect the scores on fingers \\
+Homework & 10 & Start the DeltaMath set on a device, alone & Launch problem~1, then circulate \\
+\end{tabularx}
 \end{fixedskillbox}
 
-\begin{skillbox}[Hook]{forestbg}
-    Put the wall on the board: \[ x^2=-4. \] Ask: ``In Lesson~2.3 we solved everything --- except this.
-    \emph{Why} is there no real answer?'' (Nothing real squares to a negative; the parabola $y=x^2+4$
-    never touches the $x$-axis.) Then reframe the impasse as an \emph{opportunity}: negative numbers,
-    fractions, and irrationals were each once ``impossible'' until the number system was extended to
-    include them. So we do it again --- \emph{define} a number whose square is $-1$, call it $i$, and see
-    what it lets us do. Land the theme: \emph{mathematicians don't stop at ``no solution''; they build the
-    numbers that make one.}
+\begin{skillbox}[Engagement --- how this hour keeps everyone solving]{goldbox}
+\textbf{Nobody waits:} every practice frame is a ladder --- \rung1\ everyone (a quick win),
+\rung2\ everyone, \rung3\ early finishers. \textbf{Everyone commits, safely:} \emph{Show me} is
+1--4 fingers on the count of three, all at once. \textbf{Critique a stranger:} \emph{Find the
+mistake} puts the error on an anonymous Student A. \textbf{Their world:} the garden-club
+flower-bunch profit (Round~3 \rung3) and the volleyball-serve bonus. \textbf{Short clock:} every
+practice frame carries its minutes. Praise the climb more than the answer --- and make a point of
+Round~1's \rung3: whoever reached $-1\pm2i$ owns the crux later.
 \end{skillbox}
 
-\begin{skillbox}[Lesson]{forestbg}
+\begin{skillbox}[Warm-Up (5 min, on the slides as they walk in)]{forestbg}
+Three quick wins; the answers are one click. \textbf{(1)} $(x+3)^2=x^2+6x+9$ --- the perfect
+square Round~1 builds on purpose. \textbf{(2)} $\sqrt{-16}=4i$ --- 2.3, needed whenever the
+radicand goes negative. \textbf{(3)} $3x^2-x-4=0$: $a=3$, $b=-1$, $c=-4$ --- signs travel with
+the numbers (Round~2). The reveal ends on \emph{Hold on to this}: given $x^2+6x=7$, what would
+you add to get $(x+3)^2$? (Nine --- that is Round~1, and its \rung1.) Then the targets frame in
+30 seconds.
+\end{skillbox}
+
+\begin{skillbox}[The Lesson --- three rounds of definition, example, ladder, check (40 min)]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Define $i$.} Introduce the imaginary unit: $i=\sqrt{-1}$, so $i^2=-1$. This one fact is the
-entire lesson's engine. Immediately cash it in: $\sqrt{-4}=\sqrt4\cdot\sqrt{-1}=2i$, and the wall opens ---
-$x^2=-4\Rightarrow x=\pm2i$.
+\textbf{Round 1 --- completing the square (13 min).} Definition and Example 1 in 3 minutes:
+$x^2-2x-3=0\Rightarrow(x-1)^2=4\Rightarrow x=3,-1$ --- the 2.2 roots, and 2.1's vertex form
+$(x-1)^2-4$. Ladder (5 min): \rung1\ $(x+3)^2=16$: $1$, $-7$; \rung2\ $(x-2)^2=5$:
+$2\pm\sqrt5$; \rung3\ $(x+1)^2=-4$: $-1\pm2i$ --- tell them to keep it. Watch for the forgotten
+$\pm$. Show me $x^2+10x=3$: answer \textbf{2} ($+25$ both sides, $=28$); \textbf{1} = one side
+only; \textbf{3} = squared $b$; \textbf{4} = halved, never squared.
 
-\textbf{2. Negative radicals.} Generalize: for $k>0$, $\sqrt{-k}=i\sqrt{k}$. \emph{Pull the $i$ out first},
-then simplify: $\sqrt{-50}=i\sqrt{50}=5i\sqrt2$. Flag the trap: $\sqrt{-2}\cdot\sqrt{-2}\ne\sqrt4$; convert
-to $i$ first, giving $2i^2=-2$. The product rule for radicals fails for negatives.
-
-\textbf{3. Standard form $a+bi$.} Every complex number has a real part $a$ and an imaginary part $b$.
-$b=0$ gives the reals; $a=0$ (with $b\ne0$) gives the pure imaginaries. Practice naming parts and
-classifying, and (optionally) plotting on the complex plane (real $\to$ horizontal, imaginary $\to$
-vertical) to reinforce the two-component structure.
+\textbf{Round 2 --- the quadratic formula (13 min).} Definition (``completing the square on the
+letters'') and Example 2 in 3 minutes: the anchor again, $\frac{2\pm4}{2}$, then
+$2x^2+3x=1\to\frac{-3\pm\sqrt{17}}{4}$ --- point at \emph{standard form first}. Ladder (5 min):
+\rung1\ $\frac{-5\pm\sqrt{13}}{2}$; \rung2\ $3x^2-2x-4=0$: $\frac{1\pm\sqrt{13}}{3}$ (watch
+$\sqrt{52}=2\sqrt{13}$ and dividing \emph{every} term by 2); \rung3\ $2\pm3i$. Find the mistake:
+Student A read $b=3$, $c=5$ straight off $2x^2=3x+5$ and got complex roots; standard form gives
+$b=-3$, $c=-5$, $D=49$, $x=\frac52$ or $-1$. Ask ``what should Student A have done first?''
 
 \columnbreak
-
-\textbf{4. Add \& subtract.} Combine like terms: $(3+2i)+(5-8i)=8-6i$. Subtraction distributes the minus
-over \emph{both} parts.
-
-\textbf{5. Multiply.} FOIL as usual, then replace $i^2=-1$ and re-collect: $(2+3i)(4-i)=8+10i-3i^2=11+10i$.
-Then the \emph{conjugate} product $(a+bi)(a-bi)=a^2+b^2$ is real --- demonstrate with $(5+2i)(5-2i)=29$.
-
-\textbf{6. Powers of $i$.} Build the cycle $i,-1,-i,1$ and reduce the exponent mod $4$:
-$i^{23}\to23\bmod4=3\to i^3=-i$.
-
-\textbf{7. Why we needed them (capstone).} Completing the square on $x^2+2x+5=0$ gives $(x+1)^2=-4$, so
-$x=-1\pm2i$ --- the first quadratic whose solutions are complex. This reconnects 2.3 and previews the
-discriminant in 2.5.
+\textbf{Round 3 --- the discriminant: the crux (14 min).} Definition in 90 seconds --- point
+across the three parabolas $y=x^2-2x+c$ for $c=-3,1,5$: same $b$, and $D=16,0,-16$ walks the
+curve up off the axis. Example 3: $D=17$, $0$, $-7$; say ``no \emph{real} solutions --- two
+complex'' aloud every time. Ladder (5 min): \rung1\ $D=0$, one repeated real, touches;
+\rung2\ $D=-23$, two complex, no $x$-intercepts; \rung3\ the garden club, $-x^2+12x-36=0$,
+$D=0$: exactly one price, \$6. \textbf{The frame not to rush --- the crux Show me:} $x^2+2x+5$,
+$D=-16$. Answer \textbf{2}, $-1\pm2i$, no $x$-intercepts. \textbf{1} = ``negative means no
+solution'' (\emph{the target misconception}); \textbf{3} = complex roots placed on the
+$x$-axis; \textbf{4} = $D$ mistaken for the answer. Before revealing, ask a \textbf{1} and a
+\textbf{2} to argue --- then point back at Round~1's \rung3: they already found the solutions.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Explicit Instruction: Multiplying Complex Numbers]{forestbg}
-\begin{tabularx}{\linewidth}{@{}p{0.46\linewidth} X@{}}
-\textbf{Steps (post and refer back):}
-\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
-  \item Write each factor in $a+bi$ form (convert any $\sqrt{-k}$ to $i\sqrt k$ \emph{first}).
-  \item FOIL / distribute exactly as with binomials.
-  \item Replace every $i^2$ with $-1$.
-  \item Combine like terms into a single $a+bi$.
-\end{enumerate}
-&
-\textbf{Worked example.} Multiply $(4-3i)(2+i)$.
-\begin{itemize}[leftmargin=1.2em, nosep, itemsep=1pt]
-  \item FOIL: $8+4i-6i-3i^2$.
-  \item Combine $i$-terms: $8-2i-3i^2$.
-  \item $i^2=-1$: $8-2i-3(-1)=8-2i+3$.
-  \item Collect: $11-2i$.
-\end{itemize}
-\end{tabularx}
+\boxguard
+\begin{skillbox}[Final Round (5 min)]{forestbg}
+Four mixed problems, one per round, alone, 5-minute timer: \textbf{(1)} $(x+4)^2=25$: $1$,
+$-9$; \textbf{(2)} $2x^2-6x+3=0$: $\frac{3\pm\sqrt3}{2}$; \textbf{(3)} $D=0$ for $9x^2-12x+4$:
+one repeated real; \textbf{(4)} $x^2-6x+10=0$: $D=-4$, no real solutions but two, $3\pm i$ ---
+the crux's twin (``zero solutions'' is the wrong answer to ``how many solutions?'').
+\textbf{Bonus:} the volleyball serve, $-16t^2+24t-10=0$, $D=-64$: it never reaches 16 ft (it
+peaks at 15). Students score themselves out of 4; collect the scores on fingers --- that is
+your exit read. Say the \emph{Watch out} aloud as you reveal.
 \end{skillbox}
 
-\begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
+\boxguard
+\begin{skillbox}[Homework --- scored, started in class, due the first class after two study halls]{goldbox}
+\textbf{Source: DeltaMath, online} --- set \textbf{A2: Lesson 2.4: The Quadratic Formula}; nothing goes in
+the packet. \textbf{DeltaMath skills, in order:} \emph{Find Complete the Square Constant};
+\emph{Complete the Square (Part 1 of Method)}; \emph{Complete the Square}; \emph{Quadratic
+Formula with Complex Roots (Level 1)}; \emph{Quadratic Formula with Complex Roots (Level 2)};
+\emph{Finding the Discriminant}; \emph{Nature of the Roots}.
+\textbf{Formative check:} \emph{Nature of the Roots}, a $D<0$ item ---
+sort into \emph{two complex} / \emph{``no solution''} / \emph{other}; if the middle pile is
+large, open 2.5 by re-solving $x^2+2x+5=0$. \textbf{Preview:} 2.5 --- when a parabola meets a
+line (quadratic systems), and quadratics as models.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Active Monitoring --- Watch For]{redbox}
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item leaving a negative radical unsimplified ($\sqrt{-50}$ as $\sqrt{50}\,i$) or dropping/mis-placing the sign ($-\sqrt{-49}$);
-  \item the $\sqrt{-a}\cdot\sqrt{-b}=\sqrt{ab}$ \textbf{trap} --- not converting to $i$ before multiplying;
-  \item forgetting to substitute $i^2=-1$, so a product stops at $\dots-3i^2$;
-  \item sign slips on subtraction (not distributing the minus over the imaginary part);
-  \item confusing the real and imaginary parts, or writing a pure imaginary as ``real'';
-  \item powers of $i$: forgetting the remainder (e.g.\ calling $i^{40}$ anything but $1$).
+  \item \textbf{Round 1 ladder:} the missing $\pm$; $\left(\frac b2\right)^2$ added to one side only.
+  \item \textbf{Round 2 ladder \rung2 and Find the mistake:} reading $a$, $b$, $c$ before
+        standard form; $-b^2$ for $(-b)^2$; dividing only part of the numerator by $2a$.
+  \item \textbf{Round 3 crux Show me and Final Round 4:} ``negative $D$ = no solution''
+        (\emph{the target misconception}).
+  \item \textbf{Attitude:} a student parked at \rung1\ with nothing written --- crouch, point at
+        the example on the handout, ask for just the first step.
 \end{itemize}
-Cold-call prompts: ``What is $i$ squared, and why does that matter?'' ``How do you rewrite $\sqrt{-18}$?''
-``After you FOIL, what's the \emph{next} move?'' ``$i^{27}$ --- what's the shortcut?''
+Cold-call prompts (after the fingers, never before): ``What does a negative discriminant rule
+out --- and what does it not?'' \; ``Why must the equation equal zero before you read $b$?''
 \end{skillbox}
 
-\begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{The Number $i$} activity (tiered; mirrors the notes).
-\begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Rewrite negative radicals with $i$, evaluate small powers of $i$, name real
-and imaginary parts and classify, and add/subtract complex numbers.
-
-\columnbreak
-\textbf{Tier A --- Approaching.} Multiply (FOIL $+\ i^2=-1$), compute conjugate products and notice they are
-real, reduce larger powers of $i$ mod $4$, and \emph{read} complex numbers off the complex plane.
-
-\columnbreak
-\textbf{Tier E --- Extension.} Solve quadratics with complex solutions (including completing the square),
-divide by a conjugate (rationalize), and analyze the $\sqrt{-a}\cdot\sqrt{-b}$ error.
-\end{multicols}
-\end{skillbox}
-
-\begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): rewrite $\sqrt{-72}$ and write $3-\sqrt{-16}$ in $a+bi$ form;
-multiply $(3+2i)(4-i)$ (FOIL then $i^2=-1$); and an \textbf{SOL-style multiple-choice} item asking for
-$i^{38}$ (answer $-1$). Collect and sort into ``got it / lost the $i$ / dropped $i^2=-1$ /
-power-of-$i$ slip'' to decide whether Lesson~2.5 opens with a re-teach.
-\end{skillbox}
-
-\begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} rewrite negative radicals, write numbers in $a+bi$ form, add/subtract, multiply (FOIL
-$+\ i^2=-1$), compute conjugate products, simplify powers of $i$, solve $x^2=-k$, and explain why
-$i^2\ne1$. \textbf{Extension:} find complex roots by completing the square and verify a root by
-substitution. \textbf{Preview:} Lesson~2.5, \emph{The Quadratic Formula \& the Discriminant} --- one
-formula for every quadratic, and using $b^2-4ac$ to predict two real, one real, or two complex-conjugate
-roots \emph{before} solving.
-\end{skillbox}
-% ── Teacher notes (migrated from the component keys) ──
-% One per component, titled for it. They live here rather than in the _key
-% files so that every component is the same length blank and keyed.
-
-\begin{teachernote}[Warm-Up]
-Every item is a direct prerequisite. Item~1 keeps radicals in simplest form --- exactly what
-$\sqrt{-50}=5i\sqrt2$ will need once the negative comes out as $i$. Item~2 is FOIL, the engine for
-multiplying complex numbers (and $(x+3)(x-3)=x^2-9$ previews the conjugate product). Item~3 is
-combining like terms --- adding/subtracting complex numbers is nothing more than this with a real
-part and an ``$i$ part.'' Item~4 reopens the Lesson~2.3 wall ($x^2=-4$) that today's imaginary unit
-$i$ finally breaks. Keep item~4 on the board to launch the hook.
-\end{teachernote}
-
-\begin{teachernote}[Guided Notes]
-Pace: box~1 (define $i$, $i^2=-1$) is the crux --- linger until every student can say ``$i$ squared is
-negative one.'' Common errors to pre-empt: (i) $\sqrt{-50}=5i\sqrt2$, not $\sqrt{-50}=\sqrt{50}\,i$ left
-unsimplified or $-\sqrt{50}$; (ii) the $\sqrt{-2}\cdot\sqrt{-2}=-2$ trap --- the rule
-$\sqrt a\sqrt b=\sqrt{ab}$ fails for negatives, so convert to $i$ \emph{first}; (iii) dropping $i^2=-1$
-during FOIL (so $(2+3i)(4-i)$ stops at $8+10i-3i^2$); (iv) sign slips subtracting, forgetting to
-distribute the minus over both terms. For powers of $i$, teach ``divide the exponent by $4$, keep the
-remainder'': $i^{23}\to 23\bmod4=3\to i^3=-i$. The completing-the-square capstone reconnects to 2.3 and
-sets up 2.5 --- if time is short, assign it as the first homework item instead.
-\end{teachernote}
-
-\begin{teachernote}[Group Activity]
-Tier R secures the definition and vocabulary (parts + type); watch for $\sqrt{-20}=2i\sqrt5$ left as
-$\sqrt{-20}=\sqrt{20}\,i$ or as $-\sqrt{20}$. Tier A is the multiplication core --- insist on the $i^2=-1$
-substitution step written explicitly, and let the conjugate products (both real: $29$, $10$) motivate the
-$a^2+b^2$ pattern used for division in Tier E. Tier~E~\#3 (division) is beyond the add/subtract/multiply
-standard --- assign it only to groups ready for a challenge; it previews rationalizing denominators.
-Tier~E~\#4 is the single most valuable discussion: the $\sqrt a\sqrt b$ rule is \emph{not} valid for
-negative radicands, which is exactly why we convert to $i$ before doing anything else.
-\end{teachernote}
-
-\begin{teachernote}[Exit Ticket]
-Sort into ``got it / lost the $i$ / dropped $i^2=-1$ / power-of-$i$ slip.'' Telltales: item~1 leaving
-$\sqrt{-72}=\sqrt{72}\,i$ unsimplified or writing $-6i\sqrt2$; item~2 stopping at $12+5i-2i^2$ (didn't
-substitute $i^2=-1$) or a sign slip giving $12+5i-2$; item~3 choosing \textbf{D} (forgot the remainder).
-If the $i^2=-1$ substitution is widely missed, reopen Lesson~2.5 with a 60-second multiply-and-substitute
-recap before the quadratic formula.
+% ── Teacher notes — one per component, in the order they are used ──
+\begin{teachernote}[Slides]
+Pacing: warm-up 5, rounds 13 / 13 / 14, Final Round 5, homework 10 --- 60 minutes. In each round
+the definition and example together take \textbf{at most 3 minutes}; each ladder 5; each check
+2--3. Reveal a ladder when most of the room has \rung2; the \rung3\ students keep going. If
+behind, trim Round~1's Show me to a 30-second finger read, or reveal Round~2's Find the mistake
+after one minute --- never cut Round~3's crux Show me. Students write in the handout's notes
+column, which prints without the answers.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-Answer traps to flag while grading: \#1 not simplifying ($\sqrt{-72}=6i\sqrt2$, not $\sqrt{72}\,i$) or
-mishandling the leading minus in $-\sqrt{-49}=-7i$; \#4c forgetting $i^2=-1$ so $(1+6i)^2$ stops at
-$1+12i+36i^2$; \#6 forgetting the remainder ($i^{12}=1$ because $12$ is a multiple of $4$); \#7 dropping
-the $\pm$. The extension is the bridge to 2.5 --- if a student asks \emph{why} the roots are conjugates,
-that ``why'' (the discriminant $b^2-4ac<0$) is exactly next lesson.
+The homework is the DeltaMath set \textbf{A2: Lesson 2.4: The Quadratic Formula}, online --- nothing is in
+the packet. In the last 10 minutes students open it on a device; launch problem~1 aloud, then
+circulate with the Watch For list in mind. The formative check is the $D<0$ ``how many
+solutions'' problem (sort above). Due the first class after two study halls; announce the date
+in class and on TurtleNet.
 \end{teachernote}
 
 \end{document}

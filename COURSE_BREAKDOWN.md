@@ -27,7 +27,7 @@ trigonometry, linear systems / linear programming.
 | Unit | Title | Family | Lessons | Standards clusters | Status |
 |:--:|---|---|:--:|---|---|
 | 1 | Linear Functions | Linear, abs. value, piecewise | 6 · 1.0–1.5 | A.F.1, A2.EI.1, A2.F.1/2, A2.ST.2 | ✅ Complete + tests |
-| 2 | Quadratic Functions | Quadratic (incl. complex) | 8 · 2.0–2.7 | A2.EO.3/4, A2.EI.2/3, A2.F.2 | ✅ Complete + tests |
+| 2 | Quadratic Functions | Quadratic (incl. complex) | 6 · 2.0–2.5 | A2.EO.3/4, A2.EI.2/3, A2.F.2 | ✅ Complete + tests |
 | 3 | Polynomial Functions | Polynomial | 7 · 3.0–3.6 | A2.EO.3, A2.EI.6, A2.F.2 | ✅ Complete + tests |
 | 4 | Rational Functions | Rational | 8 · 4.0–4.7 | A2.EO.1, A2.EI.4, A2.F.1/2 | ✅ Complete + tests |
 | 5 | Radical Functions | Radical / power | 8 · 5.0–5.7 | A2.EO.2, A2.EI.5, A2.F.1/2 | ✅ Complete + tests |
@@ -88,18 +88,16 @@ in U1 with the rest of the linear toolkit.)*
 
 ---
 
-## Unit 2 — Quadratic Functions · 8 lessons
+## Unit 2 — Quadratic Functions · 6 lessons (condensed 2026-09-29)
 
 | # | Lesson | Standards |
 |:--:|---|---|
 | 2.0 | **Characteristics of quadratic functions** — introduces vertex/max-min, axis of symmetry, even symmetry, end behavior, turning point; second differences | A2.F.2a/c/d/f/g |
 | 2.1 | Graphing quadratics (vertex, standard, intercept forms) & transformations | A.F.2b/c/d + A2.F.1, A2.F.2a/d |
-| 2.2 | Solving by factoring | A2.EO.3b/d, A2.EI.2a/d |
-| 2.3 | Solving by square roots & completing the square | A2.EI.2b, A2.EI.2a/d |
-| 2.4 | Complex numbers — *i* as the answer to 2.3's "no real solution" wall; add/subtract/multiply | A2.EO.4a/b/c |
-| 2.5 | The quadratic formula & the discriminant (incl. complex solutions) | A2.EI.2b, A2.EI.2a/d, A2.F.2d |
-| 2.6 | Systems involving quadratics — linear–quadratic & quadratic–quadratic, counting solutions | A2.EI.3c |
-| 2.7 | Modeling with quadratics — projectile, area, optimization (unit capstone) | A2.EI.2a/d, A2.F.2d |
+| 2.2 | Solving by factoring — GCF, $x^2+bx+c$ (special patterns as its cases), grouping, Zero Product Property | A2.EO.3b/d, A2.EI.2b/d |
+| 2.3 | Solving by square roots & complex numbers — $x^2=k$, then $x^2=-4$ → *i*, $a+bi$, add/subtract/multiply | A2.EI.2b/d, A2.EO.4a/b/c |
+| 2.4 | Completing the square, the quadratic formula & the discriminant (incl. complex solutions) | A2.EI.2a/b/d, A2.F.2d |
+| 2.5 | Quadratic systems & modeling — linear–quadratic by substitution, counting solutions, reading a model's features (unit capstone) | A2.EI.3a/b/c/d, A2.EI.2a/d, A2.F.2d |
 
 ---
 
@@ -139,7 +137,7 @@ in U1 with the rest of the linear toolkit.)*
 | 5.0 | **Characteristics of radical functions** — introduces restricted domain from the radicand, endpoint behavior, inverse relationship of families; √x and ∛x side by side | A2.F.2a–g, A2.F.1a/e |
 | 5.1 | *n*th roots & rational exponents — even vs. odd index (why √−16 fails but ∛−8 does not), principal root, *a^(m/n)* | A2.EO.2c |
 | 5.2 | Simplifying radicals; adding & subtracting — product/quotient properties, algebraic radicands, higher indices | A2.EO.2a/b |
-| 5.3 | Multiplying & dividing; rationalizing — **conjugates** for binomial denominators (callback to 2.4) | A2.EO.2b |
+| 5.3 | Multiplying & dividing; rationalizing — **conjugates** for binomial denominators (callback to 2.3) | A2.EO.2b |
 | 5.4 | Graphing radical functions & transformations — the endpoint is the transformation anchor | A2.F.1b/c/e, A2.F.2a |
 | 5.5 | Solving radical equations & extraneous solutions — squaring destroys sign information (echo of 4.6) | A2.EI.5a/b/c |
 | 5.6 | Composition of functions — numerically, graphically, algebraically; order matters; domain of a composition | A2.F.2k |

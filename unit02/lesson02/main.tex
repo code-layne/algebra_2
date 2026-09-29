@@ -1,8 +1,8 @@
 %! Solving Quadratics by Factoring — Unit 2, Lesson 2.2 — Lesson Plan
-% SLIDES-FIRST plan (course shape 2026-09-25; 2.2 is the pilot): the deck carries the lesson —
-% warm-up, four rounds of definition → example → ladder → Show me, a Final Round, and the homework
-% (a printed DeltaMath set) started in class. Students take notes on the printed slide handout.
-% Teacher-facing; never handed out.
+% SLIDES-FIRST plan (course shape 2026-09-25; condensed to three rounds / 17 frames 2026-09-29):
+% the deck carries the lesson — warm-up, three rounds of definition → example → ladder → Show me /
+% Find the mistake, a Final Round, and the homework (a DeltaMath set, online) started in class.
+% Students take notes on the printed slide handout. Teacher-facing; never handed out.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -24,9 +24,9 @@
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
     \textbf{Primary Objective:} Students \emph{produce} the factored form of a quadratic --- GCF
-    first, $x^2+bx+c$ by the product--sum search, $ax^2+bx+c$ by grouping, and the
-    difference-of-squares and perfect-square patterns --- and use the Zero Product Property to
-    solve $ax^2+bx+c=0$, reading the roots as the graph's $x$-intercepts. Lesson~2.1
+    first, $x^2+bx+c$ by the product--sum search (with the difference of squares and the perfect
+    square as its special cases), $ax^2+bx+c$ by grouping --- and use the Zero Product Property
+    to solve $ax^2+bx+c=0$, reading the roots as the graph's $x$-intercepts. Lesson~2.1
     \emph{read} zeros off a given factored form; 2.2 \emph{finds} that form.
     \\[2pt]
     \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3b} (factor completely over the integers),
@@ -36,11 +36,11 @@
     \\[2pt]
     \textbf{Lesson model:} \emph{Slides first.} The deck is the lesson and its printed handout is
     the student's notes, and students are \emph{solving the whole hour}: a warm-up on screen as
-    they walk in; four rounds of a short \textbf{definition} and \textbf{example} ($\le$3 min),
+    they walk in; three rounds of a short \textbf{definition} and \textbf{example} ($\le$3 min),
     a \textbf{ladder} of three problems (\rung1\ \rung2\ \rung3), and a \textbf{Show me} or
     \textbf{Find the mistake}; a self-scored \textbf{Final Round}; and the homework started in
-    class. \textbf{Homework source:} DeltaMath, printed ---
-    the exported set is dropped into the packet as \texttt{homework/main.pdf}.
+    class. \textbf{Homework source:} DeltaMath, online --- set \textbf{A2: Lesson 2.2: Solving by Factoring};
+    nothing in the packet.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -51,15 +51,16 @@
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
   \item Take out the \textbf{GCF} first, then factor what remains completely.
-  \item Factor $x^2+bx+c$: two integers with \textbf{product $c$} and \textbf{sum $b$}.
+  \item Factor $x^2+bx+c$: two integers with \textbf{product $c$} and \textbf{sum $b$};
+        $x^2-k^2$ and $x^2+2kx+k^2$ are its special cases; $x^2+k^2$ does not factor.
   \item Factor $ax^2+bx+c$ by \textbf{grouping} (product $a\cdot c$, sum $b$).
-  \item Factor $a^2-b^2$ and $a^2\pm2ab+b^2$ on sight; know $a^2+b^2$ does not factor.
   \item Solve by the \textbf{Zero Product Property}: $=0$, factor, each factor $=0$.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Factoring \emph{un-multiplies}: $(x+p)(x+q)=x^2+(p+q)x+pq$ is why the search works.
+  \item Factoring \emph{un-multiplies}: $(x+p)(x+q)=x^2+(p+q)x+pq$ is why the search works ---
+        and why $b=0$ forces the pair $k,-k$.
   \item A product is zero \emph{only} when a factor is zero --- the step that turns one
         quadratic into two linear equations.
   \item \textbf{Target misconception: the property is about zero.} Students divide both sides
@@ -73,16 +74,18 @@
 \begin{skillbox}[{Vocabulary, Concepts, \& Theorems --- one definition frame each}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Factor} & Write a polynomial as a product. Take out the \textbf{greatest common factor
-                  (GCF)} first. \\
-\textbf{Product--sum search} & $x^2+bx+c=(x+p)(x+q)$ where $pq=c$ and $p+q=b$. \\
-\textbf{Grouping} & For $ax^2+bx+c$: two integers with product $ac$ and sum $b$ split $bx$; group
-                    in pairs; take out the common binomial. \\
-\textbf{Difference of squares} & $a^2-b^2=(a+b)(a-b)$. (A \emph{sum} of squares does not
-                                 factor over the integers.) \\
-\textbf{Perfect-square trinomial} & $a^2+2ab+b^2=(a+b)^2$, \; $a^2-2ab+b^2=(a-b)^2$; its graph
-                                    touches the axis once --- a \textbf{double root}. \\
-\textbf{Zero Product Property} & If $AB=0$, then $A=0$ or $B=0$. \\
+\textbf{Factor / product--sum search} & To factor is to write a polynomial as a product. Take
+                  out the \textbf{greatest common factor (GCF)} first. Then, for $x^2+bx+c$, find
+                  integers $p$ and $q$ with $p\cdot q=c$ and $p+q=b$: $x^2+bx+c=(x+p)(x+q)$. \\
+\textbf{Difference of squares} & ($b=0$) $x^2-k^2=(x+k)(x-k)$ --- the pair is $k,-k$. \\
+\textbf{Perfect square} & ($p=q$) $x^2+2kx+k^2=(x+k)^2$ --- a \textbf{double root}: the graph
+                          touches the axis once. \\
+\textbf{Sum of squares} & $x^2+k^2$: no pair has product $k^2$ and sum $0$ --- it does not
+                          factor. \\
+\textbf{Grouping} & To factor $ax^2+bx+c$ with $a\ne1$: two integers with product $a\cdot c$ and
+                    sum $b$ split $bx$; group in pairs; take the GCF out of each pair, then the
+                    common binomial. \\
+\textbf{Zero Product Property} & If $A\cdot B=0$, then $A=0$ or $B=0$. \\
 \textbf{Roots / zeros} & The solutions of $ax^2+bx+c=0$; the $x$-intercepts of
                          $y=ax^2+bx+c$. \\
 \end{tabularx}
@@ -94,9 +97,9 @@
 \textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
 \hline
 Warm-Up & 5 & Three quick wins, on screen as they walk in; score themselves & Stand at the door; reveal at 3 min; land ``how do we get the product back?'' \\
-Lesson & 40 & Four rounds: watch (2 min), \emph{climb the ladder} \rung1$\to$\rung2$\to$\rung3, then \emph{Show me} fingers or \emph{Find the mistake} & $\le$3 min talk a round; circulate the whole ladder; reveal when most have \rung2; read the fingers \\
+Lesson & 40 & Three rounds (13 / 13 / 14): watch (2 min), \emph{climb the ladder} \rung1$\to$\rung2$\to$\rung3, then \emph{Show me} fingers or \emph{Find the mistake} & $\le$3 min talk a round; circulate the whole ladder; reveal when most have \rung2; read the fingers \\
 Final Round & 5 & Four mixed problems + bonus, alone; score out of 4 & Timer on; collect the scores by show of fingers \\
-Homework & 10 & Start the DeltaMath pages alone & Launch problem~1, then circulate \\
+Homework & 10 & Start the DeltaMath set online, alone & Launch problem~1, then circulate \\
 \end{tabularx}
 \end{fixedskillbox}
 
@@ -119,64 +122,68 @@ $x^2-2x-3$, how do you get the product back? That is Round~1. Then the targets f
 seconds --- point at ``you are solving the whole hour'').
 \end{skillbox}
 
-\begin{skillbox}[The Lesson --- four rounds of definition, example, ladder, check (40 min)]{forestbg}
+\begin{skillbox}[The Lesson --- three rounds of definition, example, ladder, check (40 min)]{forestbg}
 \begin{multicols}{2}
-\textbf{Round 1 --- $x^2+bx+c$, GCF first (10 min).} Definition and Example 1 in 3 minutes:
-the pair table for $x^2-2x-3$, then $2x^2-4x-6=2(x+1)(x-3)$. Ladder (4 min):
-\rung1\ $(x+3)(x+4)$, \rung2\ $(x+7)(x-2)$, \rung3\ $3(x+3)(x-2)$ --- watch for $(3x+9)(x-2)$,
-not \emph{completely} factored. Show me $x^2-x-12$: answer \textbf{1}, $(x-4)(x+3)$; \textbf{2}
-= signs swapped; \textbf{3}/\textbf{4} = product right, sum wrong.
+\textbf{Round 1 --- $x^2+bx+c$, GCF first, and its special cases (13 min).} Definition and
+Example 1 in 3 minutes: point at the three cases --- $b=0$ gives the pair $k,-k$; $p=q$ is the
+tangent parabola, a double root; $x^2+k^2$ has no pair. Example: the pair table for
+$x^2-2x-3$, then $2x^2-4x-6=2(x+1)(x-3)$, then $x^2-25=(x+5)(x-5)$ in one line. Ladder (6 min):
+\rung1\ $(x+3)(x+4)$, \rung2\ $(x+7)(x-7)$, \rung3\ $3(x+3)(x-2)$ --- watch for $(3x+9)(x-2)$,
+not \emph{completely} factored. Show me ``which does \emph{not} factor'': answer \textbf{3},
+$x^2+16$. A \textbf{1} thinks $x^2+16=(x+4)(x-4)$ --- multiply it out together; a \textbf{2} or
+\textbf{4} did not test the pair ($(x+4)^2$, $(x+8)(x-2)$).
 
-\textbf{Round 2 --- grouping (10 min).} Definition and Example 2 ($2x^2+5x-3=(2x-1)(x+3)$) in 3
-minutes, landing ``the brackets must match.'' Ladder (5 min): \rung1\ $(2x+1)(x+3)$,
-\rung2\ $(3x-4)(x-2)$, \rung3\ $(2x-1)(3x+2)$. Find the mistake: Student A wrote
+\textbf{Round 2 --- grouping (13 min).} Definition and Example 2 ($2x^2+5x-3=(2x-1)(x+3)$) in 3
+minutes, landing ``the brackets must match.'' Ladder (6 min): \rung1\ $(2x+1)(x+3)$,
+\rung2\ $(3x-4)(x-2)$, \rung3\ $(2x-1)(3x+2)$. Find the mistake (3 min): Student A wrote
 $-5x-10=-5(x-2)$ and quit; the fix is $-5(x+2)$, giving $(3x-5)(x+2)$. Ask ``what would you
 tell Student A?'' --- not ``who got it wrong?''
 
 \columnbreak
-\textbf{Round 3 --- special patterns (9 min).} Definition (the tangent parabola: a double root)
-and Example 3 in 3 minutes. Ladder (3 min): \rung1\ $(x+7)(x-7)$, \rung2\ $(x+5)^2$,
-\rung3\ $(3x+4)(3x-4)$. Show me ``which does \emph{not} factor'': answer \textbf{3},
-$x^2+16$. Anyone on \textbf{1}: multiply $(x+4)(x-4)$ out together.
-
-\textbf{Round 4 --- Zero Product Property: the crux (11 min).} Definition with the graph and
-Example 4 ($x^2=2x+3$, roots $-1$, $3$, checked) in 3 minutes. Ladder (5 min):
+\textbf{Round 3 --- Zero Product Property: the crux (14 min).} Definition with the graph and
+Example 3 ($x^2=2x+3$, roots $-1$, $3$, checked) in 3 minutes. Ladder (6 min):
 \rung1\ $4$, $-6$ (the sign flip); \rung2\ $x^2-3x-10=0$: $5$, $-2$; \rung3\ the dorm rug,
-$(x+8)(x-5)=0$: $5$ ft by $8$ ft, reject $-8$. Show me $x^2=5x$: answer \textbf{2}, $x=0$ or
-$5$. \textbf{The frame not to rush:} before revealing, ask a \textbf{1} and a \textbf{2} to
-explain --- the \textbf{1}s divided by $x$.
+$(x+8)(x-5)=0$: $5$ ft by $8$ ft, reject $-8$. Show me $x^2=5x$ (\textbf{the crux}): answer
+\textbf{2}, $x=0$ or $5$. A \textbf{1} divided by $x$ and lost $x=0$ (the target misconception);
+a \textbf{3} factored right but flipped a sign solving $x-5=0$; a \textbf{4} took a square root
+of something. \textbf{The frame not to rush:} before revealing, ask a \textbf{1} and a
+\textbf{2} to explain.
 \end{multicols}
 \end{skillbox}
 
 \boxguard
 \begin{skillbox}[Final Round (5 min)]{forestbg}
-Four mixed problems, one per round, alone, 5-minute timer: $(x-3)(x-5)$; $(2x+3)(x-2)$;
-$(5x+2)(5x-2)$; $(x-1)(x+2)=4\Rightarrow x=-3$ or $2$ (the crux's twin --- ``each factor $=4$''
-gives $5$ and $2$). \textbf{Bonus:} the egg-drop capsule, $-16(t-2)(t+1)=0$, lands at
+Four mixed problems covering all three rounds, alone, 5-minute timer: \textbf{1} $(x-3)(x-5)$;
+\textbf{2} $3(x+2)(x-2)$ (GCF, then a difference of squares); \textbf{3} $(2x+3)(x-2)$;
+\textbf{4} $(x-1)(x+2)=4\Rightarrow x^2+x-6=0$, $x=-3$ or $2$ (the crux's twin --- ``each factor
+$=4$'' gives $5$ and $2$). \textbf{Bonus:} the egg-drop capsule, $-16(t-2)(t+1)=0$, lands at
 $t=2$\,s. Students score themselves out of 4; ask for scores on fingers --- that is your exit
 read. Say the \emph{Watch out} aloud as you reveal.
 \end{skillbox}
 
 \boxguard
 \begin{skillbox}[Homework --- scored, started in class, due the first class after two study halls]{goldbox}
-\textbf{Source: DeltaMath, printed.} Export the set as a PDF into
-\texttt{unit02/lesson02/homework/main.pdf} (and its key into \texttt{homework\_key/main.pdf}),
-then rebuild the packet. Build the set to cover, in order: GCF + $x^2+bx+c$; $ax^2+bx+c$;
-difference of squares and perfect squares; solving by factoring, including at least one
-$x^2=kx$ and one equation not already set to zero. \textbf{Set name:} TODO. \textbf{Formative
-check:} the $x^2=kx$ problem --- sort into \emph{both roots} / \emph{lost $x=0$} /
-\emph{other}; if the middle pile is large, open 2.3 by re-solving it. \textbf{Preview:} 2.3 ---
-square roots and completing the square.
+\textbf{Source: DeltaMath, online} --- set \textbf{A2: Lesson 2.2: Solving by Factoring}; nothing in the
+packet. \textbf{DeltaMath skills, in order:} \emph{Greatest Common Factor (Level 2)}; \emph{Factor
+Trinomials (a=1)}; \emph{Difference of Perfect Squares}; \emph{Factor Trinomials (a>1) Level 1};
+\emph{Multi-step Factoring}; \emph{Quadratic Equation to Standard Form}; \emph{Solve Quadratic by
+Factoring (Level 1)}; \emph{Solve Quadratic by Factoring (Level 2)}; \emph{Solving Quadratic
+Binomials (Level 1)}; \emph{Quadratic Word Problems}.
+\textbf{Formative check:} \emph{Solving Quadratic Binomials (Level 1)} --- the $x^2=kx$ problems --- sort into \emph{both roots} / \emph{lost
+$x=0$} / \emph{other}; if the middle pile is large, open 2.3 by re-solving it.
+\textbf{Preview:} 2.3 --- when a quadratic will not factor: square roots, and the complex
+numbers that let $x^2=-4$ have a solution.
 \end{skillbox}
 
 \boxguard
 \begin{skillbox}[Active Monitoring --- Watch For]{redbox}
 \begin{itemize}[leftmargin=1.2em, nosep]
   \item \textbf{Round 1 \rung3:} no GCF --- not factored \emph{completely}.
-  \item \textbf{Round 2:} the second group's sign; brackets that do not match.
-  \item \textbf{Round 3 Show me:} $x^2+16=(x+4)(x-4)$.
-  \item \textbf{Round 4 Show me:} dividing by $x$ (\emph{the target misconception}).
+  \item \textbf{Round 1 Show me:} $x^2+16=(x+4)(x-4)$.
+  \item \textbf{Round 2:} the second group's sign; brackets that do not match (Find the mistake).
+  \item \textbf{Round 3 Show me:} dividing by $x$ (\emph{the target misconception}).
   \item \textbf{Final Round 4:} setting each factor equal to $4$.
+  \item \textbf{DeltaMath:} the $x^2=kx$ problem --- one root instead of two.
   \item \textbf{Attitude:} a student parked at \rung1\ with nothing written --- crouch, point at
         the example on the handout, ask for just the pair.
 \end{itemize}
@@ -186,17 +193,18 @@ Cold-call prompts (after the fingers, never before): ``How do you know it is fac
 
 % ── Teacher notes — one per component, in the order they are used ──
 \begin{teachernote}[Slides]
-Pacing: warm-up 5, rounds 10 / 10 / 9 / 11, Final Round 5, homework 10. In each round the
-definition and example together take \textbf{at most 3 minutes} --- if you catch yourself
-explaining past that, move to the ladder and explain at desks. Reveal a ladder when most of
-the room has \rung2; the \rung3\ students keep going. If behind, cut Round 3's Show me, never
-Round 4's. Students write in the handout's notes column, which prints without the answers.
+Pacing: warm-up 5, rounds 13 / 13 / 14, Final Round 5, homework 10 --- 60 minutes. In each
+round the definition and example together take \textbf{at most 3 minutes} --- if you catch
+yourself explaining past that, move to the ladder and explain at desks. Reveal a ladder when
+most of the room has \rung2; the \rung3\ students keep going. If behind, cut Example 1(c) and
+shorten Round 1's Show me discussion --- never Round 3's crux. Students write in the handout's
+notes column, which prints without the answers.
 \end{teachernote}
 
 \begin{teachernote}[Homework]
-The homework is a printed DeltaMath set --- the lesson builds without it, but the packet is
-cover-only until \texttt{homework/main.pdf} is in place. Launch problem~1 aloud in the last 10
-minutes, then circulate with the Watch For list in mind. The $x^2=kx$ problem is the formative
+The homework is the DeltaMath set \textbf{A2: Lesson 2.2: Solving by Factoring}, done online --- nothing is
+printed in the packet. Launch problem~1 aloud in the last 10 minutes (students on their
+devices), then circulate with the Watch For list in mind. The $x^2=kx$ problem is the formative
 check. Due the first class after two study halls; announce the date in class and on TurtleNet.
 \end{teachernote}
 

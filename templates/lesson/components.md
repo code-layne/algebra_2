@@ -13,7 +13,7 @@ Contents: [Lesson plan](#lesson-plan) · [Cover](#cover) · [Slides](#slides) ·
 
 **The lesson model is slides first** (user direction, 2026-09-25). The deck *is* the lesson and
 its printed handout (`lessonYY_slides.pdf`, three slides a page with a ruled notes column) is the
-student's notes: a warm-up on screen as students walk in, then three or four rounds of
+student's notes: a warm-up on screen as students walk in, then three rounds of
 **definition → example → ladder (★/★★/★★★) → Show me or Find the mistake**, a self-scored **Final
 Round**, and the homework started in class — **5 / 40 / 5 / 10** across the 60-minute period.
 **Students solve in every phase; teacher talk is ≤3 minutes a round**, and ladders and bonuses
@@ -178,7 +178,7 @@ beamer — write the course name literally.
 
 **Frame order:** title → **warm-up** (on screen as they walk in; three quick wins, answers in one
 `\reveal`) → **targets** (vocabulary in bold, "how today runs — you are solving the whole hour")
-→ **three or four rounds**, each (the preamble's `\rung` and `\opt` come from the skeleton):
+→ **three rounds** (17 frames; 20 is a hard ceiling), each (the preamble's `\rung` and `\opt` come from the skeleton):
 
 - **Definition** — `\forestheader{Definition: term}`; a `block` with the term in bold and the
   definition or general form as a complete sentence; a pre-drawn display where one helps. Nothing
