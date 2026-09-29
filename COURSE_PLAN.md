@@ -23,11 +23,11 @@
 > student and key packets 8pp each; no overfull frames; no answers in the handout text.
 > `make -C unit02 student key` → **61pp each**.
 >
-> **Open for the user:** (1) the DeltaMath set names are placeholders — `2.2 Solving by Factoring`,
-> `2.3 Square Roots & Complex Numbers`, `2.4 The Quadratic Formula`, `2.5 Systems & Modeling`;
-> rename in cover/deck/plan if the real sets differ. (2) Unit 2 is now 6 meetings, not 8 — the
-> syllabus week-by-week table (`~/Mathematics/.syllabus`) still paces 8. (3) The Unit 2 tests were
-> not changed; they still cover the same content.
+> **Follow-up, same day:** sets renamed `A2: Lesson 2.N: …` and each plan's Homework box now
+> lists real DeltaMath skills by catalog name (from DeltaMath's public Algebra 1/2 course pages),
+> with the formative-check skill named. Syllabus rebuilt for 6 Unit 2 lessons (48 in the course):
+> Unit 2's 11-meeting block keeps every date (test still Week 8) and carries 3 flex meetings;
+> `~/Downloads/Algebra 2 Syllabus 26-27 (Unit 2 condensed).docx`. Unit 2 tests unchanged.
 
 > ## ⚠ Status (2026-09-28) — **SLIDE HANDOUT NOW RIDES IN THE PACKET (cover → handout → homework).**
 >

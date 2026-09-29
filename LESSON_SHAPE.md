@@ -213,7 +213,12 @@ lesson:
 1. **Generated** — Claude authors `homework/` + `homework_key/` in the repo, to the §1 spec.
    Scaffold with the default components.
 2. **DeltaMath** — then ask a second question: **online or printed?** and the **set name**.
-   - **Online** — no homework in the packet. Scaffold with `--components cover,slides`. The
+   - **Online** — no homework in the packet. Scaffold with `--components cover,slides`.
+     Name the set `A2: Lesson N.M: <short title>` (the user's DeltaMath convention), and in the
+     plan's Homework box list its skills **by their exact DeltaMath catalog names** (user direction
+     2026-09-29) — taken from DeltaMath's public course pages
+     (`deltamath.com/home/syllabi/algebra-2`, `…/algebra-1`), never invented — plus which skill
+     holds the formative check. The
      cover's row 2 reads *DeltaMath: **set name** — online, not in this packet*; the deck's
      homework frame names the set; the plan's Homework box names it and what it covers.
    - **Printed** — the user exports the set as a PDF. Scaffold with
