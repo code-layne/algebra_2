@@ -1,5 +1,7 @@
-%! Unit 2: Quadratic Functions — Summative Assessment — Unit Test (blank)
-\documentclass[10pt]{article}
+%! Unit 2: Quadratic Functions — Unit Test (blank)
+% GENERATED BODY: the blank and key bodies are byte-identical except the header title;
+% answers live in \slot / \optok / work, which the preamble shows or hides.
+\documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
@@ -7,14 +9,23 @@
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
   \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
   \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
-\newcommand{\dpt}[2]{\fill[charcoal] (#1,#2) circle (3pt);}
-\newcommand{\vpt}[2]{\fill[navy] (#1,#2) circle (3.5pt);}
-
+% Vertex dot: {x}{y}
+\newcommand{\vtx}[2]{\fill[navy] (#1,#2) circle (4.5pt);}
 % Part-divider strip (headlinebox takes one arg: the background color)
 \newcommand{\parthead}[1]{%
-  \vspace{6pt}\noindent
+  \boxguard[10]\vspace{6pt}\noindent
   \begin{headlinebox}{forest}\color{white}\bfseries #1\end{headlinebox}%
   \vspace{4pt}}
+% THE WORK RULE for a test: \slot{width}{answer} and \opt / \optok are the ONLY
+% lines that differ between blank and key, and they differ in the preamble, not the body.
+% A slot is a fixed-width underline in both files, so no line rewraps in the key; the
+% blank's slot carries a \vphantom of its answer, so a tall answer (a fraction, a root)
+% raises the line in both files alike and the page breaks cannot drift.
+\newcommand{\slot}[2]{\underline{\makebox[#1]{\vphantom{\textbf{#2}}}}}
+\newcommand{\opt}[2]{(#1)~#2}
+% Tighter lead-in above each work block (same in blank and key, so parity holds).
+\AtBeginDocument{\setlength{\abovedisplayskip}{4pt}}
+\newcommand{\optok}[2]{(#1)~#2}
 
 \begin{document}
 
@@ -22,135 +33,297 @@
 \namedateperiod
 
 \vspace{0.06in}
-\noindent\textbf{Instructions:} Show all work. No notes unless your teacher says so.
+\noindent\textbf{Instructions:} Show all work. Give exact answers --- simplest radical form, and
+$a+bi$ form for non-real numbers. No notes or calculator unless your teacher says so.
+\hfill\textbf{Total: 100 pts}
 
 % ======================================================================
-\parthead{Part A --- Vocabulary (8 pts)}
-Write the letter of the best description next to each term.
+\parthead{Part A --- Reading \& Graphing Parabolas (20 pts)}
 
-\vspace{4pt}
-\noindent
-\begin{minipage}[t]{0.42\textwidth}
-\begin{enumerate}[leftmargin=2.2em, itemsep=7pt, label=\arabic*.]
-  \item Discriminant \blank{1.2cm}
-  \item Axis of symmetry \blank{1.2cm}
-  \item Parabola \blank{1.2cm}
-  \item Imaginary unit \blank{1.2cm}
-  \item Vertex \blank{1.2cm}
-  \item Zero (root) \blank{1.2cm}
-  \item Standard form \blank{1.2cm}
-  \item Completing the square \blank{1.2cm}
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*.]
+  \item (7 pts) The graph of a quadratic function $f$ is shown. Read each feature from the graph.
+    \\[4pt]
+    \begin{minipage}[c]{0.40\linewidth}\centering
+    \begin{tikzpicture}[scale=0.46]
+      \lgrid{-1}{7}{-3}{4}
+      \begin{scope}
+        \clip (-1,-3) rectangle (7,4);
+        \draw[very thick, navy, domain=-0.5:6.5, smooth, samples=80]
+          plot (\x, {2-0.5*(\x-3)*(\x-3)});
+      \end{scope}
+      \vtx{3}{2}
+    \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{0.57\linewidth}
+    {\renewcommand{\arraystretch}{1.35}
+    \begin{tabular}{@{}r l@{}}
+      Vertex: & \slot{2.6cm}{$(3,\,2)$} \\
+      Axis of symmetry: & \slot{2.6cm}{$x=3$} \\
+      Maximum or minimum? & \slot{2.6cm}{maximum} \\
+      Its value: & \slot{2.6cm}{$2$} \\
+      Zeros: & \slot{3.8cm}{$1$ and $5$} \\
+      Increasing on: & \slot{4.2cm}{$x<3$, \ $(-\infty,\,3)$} \\
+      Range: & \slot{4.2cm}{$y\le 2$, \ $(-\infty,\,2]$} \\
+    \end{tabular}}
+    \end{minipage}
+
+  \item (3 pts) Which describes the graph of $y=-3(x+4)^2-1$?
+    \\[4pt]
+    \optok{A}{opens down; vertex $(-4,\,-1)$} \hfill \opt{B}{opens up; vertex $(-4,\,-1)$}
+    \\[4pt]
+    \opt{C}{opens down; vertex $(4,\,-1)$} \hfill \opt{D}{opens up; vertex $(4,\,-1)$}
 \end{enumerate}
+
+\vspace{8pt}
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+3.\ (5 pts) For $f(x)=3x^2-12x+5$, use $x=-\dfrac{b}{2a}$ to find the axis of symmetry and the
+vertex.
+\begin{work}
+  x &= -\frac{b}{2a} = -\frac{-12}{2(3)} = 2 \\
+  f(2) &= 12-24+5 = -7
+\end{work}
+\vspace{0.12cm}
+\hfill Axis: \slot{2.6cm}{$x=2$}
+\\[6pt]
+\hspace*{\fill} Vertex: \slot{2.6cm}{$(2,\,-7)$}
 \end{minipage}%
 \hfill
-\begin{minipage}[t]{0.55\textwidth}
-\small
-\begin{description}[leftmargin=1.4em, itemsep=3pt]
-  \item[(A)] The U-shaped graph of a quadratic function.
-  \item[(B)] The expression $b^2-4ac$; its sign tells the number and type of solutions.
-  \item[(C)] The turning point of a parabola, where it reaches its maximum or minimum.
-  \item[(D)] The number $i=\sqrt{-1}$, which satisfies $i^2=-1$.
-  \item[(E)] An $x$-value where $f(x)=0$; an $x$-intercept of the parabola.
-  \item[(F)] The vertical line $x=h$ that splits a parabola into mirror halves.
-  \item[(G)] A quadratic written as $ax^2+bx+c$.
-  \item[(H)] Rewriting $x^2+bx$ as a perfect-square trinomial by adding $\left(\tfrac{b}{2}\right)^2$.
-\end{description}
+\begin{minipage}[t]{0.48\linewidth}
+4.\ (5 pts) For $y=(x-6)(x+2)$, find the zeros, the axis of symmetry, and the vertex.
+\begin{work}
+  x-6 &= 0 \quad\text{or}\quad x+2=0 \\
+  x &= \frac{6+(-2)}{2} = 2 \\
+  y &= (2-6)(2+2) = -16
+\end{work}
+\vspace{0.12cm}
+\hfill Zeros: \slot{2.6cm}{$6$ and $-2$}
+\\[6pt]
+\hspace*{\fill} Axis: \slot{2.6cm}{$x=2$}
+\\[6pt]
+\hspace*{\fill} Vertex: \slot{2.6cm}{$(2,\,-16)$}
 \end{minipage}
 
 % ======================================================================
-\parthead{Part B --- Multiple Choice (12 pts)}
-Circle the best answer.
+\parthead{Part B --- Solving by Factoring (20 pts)}
+Factor completely: take out the GCF first. To solve, get the equation equal to zero, factor, and
+set each factor equal to zero.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=9pt]
-  \item The vertex of $y=(x+2)^2-5$ is
-    \hfill (A) $(2,-5)$ \quad (B) $(-2,-5)$ \quad (C) $(2,5)$ \quad (D) $(-2,5)$
-  \item $\sqrt{-9}=$
-    \hfill (A) $3i$ \quad (B) $-3$ \quad (C) $9i$ \quad (D) $3$
-  \item The discriminant of $x^2-6x+9=0$ is $0$, so the equation has
-    \hfill (A) two real solutions \quad (B) one real solution \quad (C) two complex (non-real) solutions \quad (D) no solutions of any kind
-  \item Factored completely, $x^2-36$ is
-    \hfill (A) $(x-6)(x+6)$ \quad (B) $(x-6)^2$ \quad (C) $(x+6)^2$ \quad (D) prime
-  \item The axis of symmetry of $y=x^2-8x+3$ is
-    \hfill (A) $x=4$ \quad (B) $x=-4$ \quad (C) $x=8$ \quad (D) $x=3$
-  \item A quadratic equation whose discriminant is \emph{negative} has how many real solutions?
-    \hfill (A) $2$ \quad (B) $1$ \quad (C) $0$ \quad (D) infinitely many
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=5]
+  \item (8 pts) Factor completely.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=8pt]
+      \item $4x^2+8x-32$
+        \begin{work}
+          4x^2+8x-32 &= 4(x^2+2x-8)
+        \end{work}
+        \hfill \slot{4.2cm}{$4(x+4)(x-2)$}
+      \item $x^2-64$ \hfill \slot{4.2cm}{$(x+8)(x-8)$}
+      \item $x^2+12x+36$ \hfill \slot{4.2cm}{$(x+6)^2$}
+      \item $2x^2-3x-5$ \quad (by grouping)
+        \begin{work}
+          2x^2-3x-5 &= 2x^2+2x-5x-5 \\
+                    &= 2x(x+1)-5(x+1)
+        \end{work}
+        \hfill \slot{4.2cm}{$(2x-5)(x+1)$}
+    \end{enumerate}
+\end{enumerate}
+
+\vspace{8pt}
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+6.\ (4 pts) Solve $x^2-2x-35=0$.
+\begin{work}
+  (x-7)(x+5) &= 0 \\
+  x-7 &= 0 \quad\text{or}\quad x+5=0
+\end{work}
+\vspace{0.12cm}
+\hfill Solution: \slot{3.8cm}{$x=7$ or $x=-5$}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+7.\ (4 pts) Solve $3x^2=12x$.
+\begin{work}
+  3x^2-12x &= 0 \\
+  3x(x-4) &= 0
+\end{work}
+\vspace{0.12cm}
+\hfill Solution: \slot{3.8cm}{$x=0$ or $x=4$}
+\end{minipage}
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=8]
+  \item (4 pts) Solve $(x-1)(x+4)=6$.
+    \begin{work}
+      x^2+3x-4 &= 6 \\
+      x^2+3x-10 &= 0 \\
+      (x+5)(x-2) &= 0
+    \end{work}
+    \vspace{0.12cm}
+    \hfill Solution: \slot{3.8cm}{$x=-5$ or $x=2$}
 \end{enumerate}
 
 % ======================================================================
-\parthead{Part C --- Short Answer \& Computation (40 pts)}
-Show your work.
+\parthead{Part C --- Square Roots \& Complex Numbers (20 pts)}
+Get the square alone before you take the root, and keep the $\pm$. Write non-real numbers in
+$a+bi$ form.
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
-  \item \textbf{Read the graph.} The parabola $f$ is shown below.
-        \begin{center}
-        \begin{tikzpicture}[scale=0.5]
-          \lgrid{-3}{5}{-3}{5}
-          \draw[very thick, forest, smooth, samples=100, domain=-1.6:3.6] plot (\x, {-(\x-1)*(\x-1)+4});
-          \vpt{1}{4}
-          \dpt{-1}{0}
-          \dpt{3}{0}
-          \dpt{0}{3}
-        \end{tikzpicture}
-        \end{center}
-        Vertex: \blank{1.8cm}; \quad axis of symmetry: \blank{1.6cm}; \quad $y$-intercept: \blank{1.6cm};
-        \\[4pt]
-        zeros: \blank{2.6cm}; \quad minimum \emph{or} maximum value: \blank{2.0cm}; \quad range: \blank{2.4cm}
+\vspace{6pt}
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+9.\ (3 pts) Solve $2x^2-1=35$.
+\begin{work}
+  2x^2 &= 36 \\
+  x^2 &= 18 \\
+  x &= \pm\sqrt{18}
+\end{work}
+\vspace{0.12cm}
+\hfill Solution: \slot{3.4cm}{$x=\pm3\sqrt{2}$}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+10.\ (4 pts) Solve $(x+1)^2=27$.
+\begin{work}
+  x+1 &= \pm\sqrt{27} \\
+  x+1 &= \pm3\sqrt{3}
+\end{work}
+\vspace{0.12cm}
+\hfill Solution: \slot{3.4cm}{$x=-1\pm3\sqrt{3}$}
+\end{minipage}
 
-  \item \textbf{From standard form.} For $f(x)=x^2+4x-1$, use $x=-\dfrac{b}{2a}$ to find the vertex,
-        give the axis of symmetry, and state whether the parabola opens up or down.
-        \vspace{2.2cm}
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=11]
+  \item (4 pts) \quad (a) Simplify $\sqrt{-48}$: \slot{2.8cm}{$4i\sqrt{3}$}
+    \hfill (b) Solve $x^2+36=0$: \slot{2.8cm}{$x=\pm6i$}
 
-  \item \textbf{Solve by factoring.}
-        \[ x^2-3x-10=0 \]
-        \vspace{1.8cm}
+  \item (6 pts) Let $z_1=5-2i$ and $z_2=1+4i$. Write each answer in $a+bi$ form.
+    \\[8pt]
+    (a) $z_1+z_2=$ \slot{2.8cm}{$6+2i$} \hfill (b) $z_1-z_2=$ \slot{2.8cm}{$4-6i$}
+    \\[8pt]
+    (c) $z_1\cdot z_2$
+    \begin{work}
+      (5-2i)(1+4i) &= 5+20i-2i-8i^2 \\
+                   &= 5+18i+8
+    \end{work}
+    \hfill $z_1\cdot z_2=$ \slot{2.8cm}{$13+18i$}
 
-  \item \textbf{Solve using square roots.}
-        \[ (x+3)^2=25 \]
-        \vspace{1.8cm}
-
-  \item \textbf{Solve by completing the square.}
-        \[ x^2-8x+5=0 \]
-        \vspace{2.2cm}
-
-  \item \textbf{Complex numbers.} Let $z_1=4+i$ and $z_2=5-2i$. Write each answer in $a+bi$ form.
-        \\[4pt]
-        (a) $z_1+z_2=\blank{3.0cm}$ \qquad (b) $z_1-z_2=\blank{3.0cm}$
-        \\[8pt]
-        (c) $z_1\cdot z_2=\blank{4.5cm}$
-
-  \item \textbf{Quadratic formula \& discriminant.} Solve $3x^2-2x-1=0$. First compute the
-        discriminant and state how many real solutions to expect, then solve.
-        \vspace{2.6cm}
-
-  \item \textbf{System.} Solve the linear--quadratic system algebraically. Give every solution as an
-        ordered pair.
-        \[ y=x^2+2x-1 \qquad y=x+1 \]
-        \vspace{2.6cm}
+  \item (3 pts) $\sqrt{-9}\cdot\sqrt{-16}=$ \hfill \opt{A}{$12i$} \hfill \opt{B}{$12$} \hfill \optok{C}{$-12$} \hfill \opt{D}{$-12i$}
 \end{enumerate}
 
 % ======================================================================
-\parthead{Part D --- Extended Response (12 pts)}
-Explain your reasoning in full sentences.
+\parthead{Part D --- Completing the Square, Formula \& Discriminant (20 pts)}
 
-\begin{enumerate}[leftmargin=1.9em, itemsep=16pt]
-  \item \textbf{Projectile.} A ball is thrown upward from a rooftop. Its height (in feet) after
-        $t$ seconds is
-        \[ h(t)=-16t^2+48t+64. \]
-        \textbf{(a)} From which feature of the model do you read the ball's \emph{starting height}?
-        Give that height.
-        \textbf{(b)} Find the \emph{maximum} height and the time it occurs. Which feature of the graph
-        is this?
-        \textbf{(c)} When does the ball hit the ground? Which feature answers this, and why do you
-        reject the other solution?
-        \vspace{3.0cm}
-
-  \item \textbf{Discriminant reasoning.} Consider the equation $x^2-6x+k=0$, where $k$ is a constant.
-        \textbf{(a)} Write the discriminant in terms of $k$.
-        \textbf{(b)} For what values of $k$ does the equation have two real solutions? one? two complex
-        solutions?
-        \textbf{(c)} Explain how the discriminant is connected to the number of $x$-intercepts of the
-        parabola $y=x^2-6x+k$.
-        \vspace{3.0cm}
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=14]
+  \item (4 pts) Solve by completing the square: \quad $x^2-6x-2=0$
+    \begin{work}
+      x^2-6x &= 2 \\
+      x^2-6x+9 &= 2+9 \\
+      (x-3)^2 &= 11 \\
+      x-3 &= \pm\sqrt{11}
+    \end{work}
+    \vspace{0.12cm}
+    \hfill Solution: \slot{3.8cm}{$x=3\pm\sqrt{11}$}
 \end{enumerate}
+
+\vspace{4pt}
+\noindent For 15 and 16, use the quadratic formula. Write the equation in standard form first.
+
+\vspace{6pt}
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+15.\ (5 pts) Solve $3x^2=2x+2$.
+\begin{work}
+  3x^2-2x-2 &= 0 \\
+  x &= \frac{2\pm\sqrt{4+24}}{6} \\
+    &= \frac{2\pm\sqrt{28}}{6}
+\end{work}
+\vspace{0.12cm}
+\hfill Solution: \slot{3.4cm}{$x=\tfrac{1\pm\sqrt{7}}{3}$}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+16.\ (5 pts) Solve $x^2-2x+10=0$.
+\begin{work}
+  x &= \frac{2\pm\sqrt{(-2)^2-4(1)(10)}}{2(1)} \\
+    &= \frac{2\pm\sqrt{-36}}{2} = \frac{2\pm6i}{2}
+\end{work}
+\vspace{0.12cm}
+\hfill Solution: \slot{3.4cm}{$x=1\pm3i$}
+\end{minipage}
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=17]
+  \item (6 pts) For each equation, find the discriminant $b^2-4ac$. Then give the number and type
+    of solutions (\emph{two real}, \emph{one repeated real}, or \emph{two complex}) and the number
+    of $x$-intercepts of its graph.
+    \\[6pt]
+    {\renewcommand{\arraystretch}{1.9}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      \textbf{Equation} & \textbf{Discriminant} & \textbf{Solutions} & \textbf{$x$-intercepts} \\ \hline
+      $3x^2-x-2=0$ & \slot{1.6cm}{$25$} & \slot{4.4cm}{two real} & \slot{1.2cm}{$2$} \\ \hline
+      $4x^2+4x+1=0$ & \slot{1.6cm}{$0$} & \slot{4.4cm}{one repeated real} & \slot{1.2cm}{$1$} \\ \hline
+      $x^2-3x+5=0$ & \slot{1.6cm}{$-11$} & \slot{4.4cm}{two complex} & \slot{1.2cm}{$0$} \\ \hline
+    \end{tabular}}
+\end{enumerate}
+
+% ======================================================================
+\parthead{Part E --- Systems \& Modeling (20 pts)}
+Give each solution of a system as an ordered pair. Answer each model question with units.
+
+\vspace{6pt}
+\noindent
+\begin{minipage}[t]{0.56\linewidth}
+18.\ (7 pts) Solve the system by substitution.
+\[ y=x^2+2x-5 \qquad y=3x+1 \]
+\begin{work}
+  x^2+2x-5 &= 3x+1 \\
+  x^2-x-6 &= 0 \\
+  (x-3)(x+2) &= 0 \\
+  x=3:\quad y &= 3(3)+1 = 10 \\
+  x=-2:\quad y &= 3(-2)+1 = -5
+\end{work}
+\vspace{0.12cm}
+\hfill Solutions: \slot{4.6cm}{$(3,\,10)$ and $(-2,\,-5)$}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.40\linewidth}
+19.\ (3 pts) How many points do the graphs of $y=x^2-2x+3$ and $y=2x-1$ have in common?
+\\[6pt]
+\opt{A}{exactly two} \\[4pt]
+\opt{B}{none} \\[4pt]
+\optok{C}{exactly one} \\[4pt]
+\opt{D}{infinitely many}
+\end{minipage}
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=20]
+  \item (10 pts) On field day, a water balloon is launched straight up from a third-floor
+    balcony. Its height, in feet, $t$ seconds after launch is
+    \[ h(t)=-16t^2+16t+32. \]
+    \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=8pt]
+      \item (2 pts) How high is the balcony? \hfill \slot{2.6cm}{$32$ ft}
+    \end{enumerate}
+\end{enumerate}
+
+\vspace{2pt}
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+(b)\ (4 pts) When does the balloon reach its greatest height, and what is that height?
+        \begin{work}
+          t &= -\frac{16}{2(-16)} = 0.5 \\
+          h(0.5) &= -4+8+32 = 36
+        \end{work}
+\vspace{0.2cm}
+When: \slot{2.6cm}{$0.5$ s} \quad Height: \slot{2.6cm}{$36$ ft}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+(c)\ (4 pts) When does the balloon hit the ground? Which solution do you reject, and why?
+        \begin{work}
+          -16t^2+16t+32 &= 0 \\
+          t^2-t-2 &= 0 \\
+          (t-2)(t+1) &= 0
+        \end{work}
+\vspace{0.2cm}
+Lands at: \slot{2.6cm}{$t=2$ s}\\[6pt]
+Rejected: \slot{4.6cm}{$t=-1$: negative time}
+\end{minipage}
 
 \end{document}

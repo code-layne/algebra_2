@@ -2,6 +2,17 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-09-29) — **UNIT 2 STUDY GUIDE + TESTS REBUILT ON THE CONDENSED MAP.**
+>
+> **User request:** "rebuild the study guide and tests" for the six-lesson Unit 2. **Study guide**
+> `unit02/study_guide/` (new; no key): 10pt, 2pp, one table + *Watch out* per lesson 2.0–2.5, six
+> graphs to know on sight. **Practice and actual tests + keys** regenerated on the Unit 1 model:
+> 12pt, no vocabulary part, Parts A–E (2.0–2.1 reading & graphing · 2.2 factoring · 2.3 square
+> roots & complex · 2.4 completing the square, formula, discriminant · 2.5 systems & modeling),
+> 20 pts each, 20 items, three MC items with the target misconceptions as distractors; bodies
+> byte-identical blank/key; **4pp each, blank = key**. Practice published to `sample_test{,_key}/`.
+> No powers of *i*, no quadratic–quadratic systems.
+
 > ## ⚠ Status (2026-09-29) — **UNIT 2 CONDENSED: 2.2–2.7 → 2.2–2.5, THREE-ROUND DECKS, ≤20 FRAMES.**
 >
 > **User request, 2026-09-29:** "using the current 2.0 and 2.1 lessons as is, shorten the remaining
@@ -27,7 +38,7 @@
 > lists real DeltaMath skills by catalog name (from DeltaMath's public Algebra 1/2 course pages),
 > with the formative-check skill named. Syllabus rebuilt for 6 Unit 2 lessons (48 in the course):
 > Unit 2's 11-meeting block keeps every date (test still Week 8) and carries 3 flex meetings;
-> `~/Downloads/Algebra 2 Syllabus 26-27 (Unit 2 condensed).docx`. Unit 2 tests unchanged.
+> `~/Downloads/Algebra 2 Syllabus 26-27 (Unit 2 condensed).docx`. (Study guide and tests: see above.)
 
 > ## ⚠ Status (2026-09-28) — **SLIDE HANDOUT NOW RIDES IN THE PACKET (cover → handout → homework).**
 >

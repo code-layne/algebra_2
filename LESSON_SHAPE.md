@@ -447,7 +447,12 @@ practice test and its key must be the same number of pages. **Unit 1's tests (re
 body **byte-identical** in blank and key — answers live only in a preamble-defined
 `\slot{width}{answer}` (a fixed-width underline, filled in the key), `\opt`/`\optok` (the key
 marks the correct choice with a red arrow of zero width), and `work` blocks, so neither file can
-drift. The key carries no `teachernote`. All four PDFs are 4pp.
+drift. The key carries no `teachernote`. All four PDFs are 4pp. **Unit 2's tests were rebuilt on this model 2026-09-29** (parts A–E =
+2.0–2.1 / 2.2 / 2.3 / 2.4 / 2.5, 20 pts each, 4pp each blank and key), with one refinement worth
+copying forward: the blank's `\slot` is `\underline{\makebox[#1]{\vphantom{\textbf{#2}}}}`, so a
+tall answer (a fraction, a root) raises its line in both files alike — with Unit 1's empty
+`\makebox` the Unit 2 keys ran a page longer than their blanks. The keys are generated from the
+blanks by swapping exactly those preamble lines and the header title.
 
 **The unit study guide — `unitXX/study_guide/` (added 2026-09-14, user direction).** A
 **reference sheet, not a problem set**: at 10pt, two pages, it carries for each lesson in the unit
@@ -460,7 +465,7 @@ PDF into **both** the student and the key packet, immediately before the sample 
 alignment is unaffected. **No `\namedateperiod`** — it is neither a lesson cover nor a test.
 Layout traps found authoring Unit 1's: a `tabularx` cannot be hidden inside a `\newenvironment`
 (its body scanner needs a literal `\end{tabularx}`), and a column spec cannot be an ordinary
-macro (use `\newcolumntype`). `unit01/study_guide` is the reference.
+macro (use `\newcolumntype`). `unit01/study_guide` is the reference; `unit02/study_guide` (2026-09-29) follows it.
 
 **Binder covers were removed (2026-08-22)** — `shared/cover.py`, every `binder_cover/` dir, and
 the `unit.mk` hooks are gone; unit covers are designed outside the build and printed separately.
