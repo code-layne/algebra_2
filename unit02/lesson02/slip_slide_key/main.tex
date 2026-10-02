@@ -1,0 +1,112 @@
+%! Slip-and-Slide Factoring — Unit 2, Lesson 2.2 — Supplemental Handout (Answer Key)
+% STANDALONE handout (user direction, 2026-10-02): NOT a packet component. `slip_slide` is not in
+% shared/lesson.mk's STUDENT_ORDER, so the lesson build ignores it; compile it on its own (see the
+% plan's Slides teacher note). An alternative to the deck's Round 2 (grouping) for ax^2+bx+c, a != 1.
+% Page 1: the method, one worked example, a notes area. Page 2: three problems, one-star to
+% three-star. Mirrors slip_slide_key/main.tex page for page: the work blocks are byte-identical.
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+% ★ / ★★ / ★★★ in gold, as on the deck and in the plan.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+
+\begin{document}
+
+\pageheader{Unit 2, Lesson 2.2}{Slip-and-Slide Factoring --- Answer Key}
+% NAMESTRIP: no \namedateperiod — a handout, not a cover or a test.
+
+\vspace{0.10in}
+
+\boxguard[10]
+\begin{remindbox}
+\small
+\textbf{When to use it:} factoring $ax^2+bx+c$ when $a\ne1$. \textbf{Always pull out a GCF first}
+--- slip-and-slide only works on what is left.
+\end{remindbox}
+
+\vspace{0.08in}
+
+\boxguard[20]
+\begin{notesbox}{The method}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=2pt]
+  \item \textbf{Slip.} Slip $a$ off the front and multiply it onto $c$: \;
+        $ax^2+bx+c \;\to\; x^2+bx+(a\cdot c)$.
+  \item \textbf{Factor.} Find two numbers that \emph{multiply} to $a\cdot c$ and \emph{add} to $b$:
+        \; $(x+m)(x+n)$.
+  \item \textbf{Slide.} Slide $a$ back in by dividing \emph{each} number by $a$: \;
+        $\left(x+\frac{m}{a}\right)\left(x+\frac{n}{a}\right)$.
+  \item \textbf{Simplify.} Reduce each fraction to lowest terms.
+  \item \textbf{Slide up.} A denominator left over slides up to become the coefficient of $x$: \;
+        $\left(x+\frac{p}{q}\right) \;\to\; (qx+p)$.
+  \item \textbf{Check.} Multiply back out --- you should get the trinomial you started with.
+\end{enumerate}
+\end{notesbox}
+
+\vspace{0.08in}
+
+\boxguard[22]
+\begin{notesbox}{Example: factor $3x^2-10x+8$}
+\small
+\renewcommand{\arraystretch}{1.55}
+\begin{tabularx}{\linewidth}{@{}l l X@{}}
+\textbf{Slip}     & $x^2-10x+24$ & $a\cdot c = 3\cdot 8 = 24$ \\
+\textbf{Factor}   & $(x-4)(x-6)$ & $(-4)(-6)=24$ \; and \; $-4+(-6)=-10$ \\
+\textbf{Slide}    & $\left(x-\frac{4}{3}\right)\left(x-\frac{6}{3}\right)$ & divide each number by $a=3$ \\
+\textbf{Simplify} & $\left(x-\frac{4}{3}\right)(x-2)$ & $\frac{6}{3}=2$ --- no denominator left, so that factor is done \\
+\textbf{Slide up} & $(3x-4)(x-2)$ & the 3 under the 4 slides up to sit in front of $x$ \\
+\textbf{Check}    & $3x^2-6x-4x+8$ & $=3x^2-10x+8$ \; \checkmark \\
+\end{tabularx}
+\end{notesbox}
+
+\vspace{0.08in}
+
+\boxguard[14]
+\begin{notesbox}{My notes}
+\small
+\vspace{2pt}
+\writelines{7}
+\end{notesbox}
+
+\newpage
+
+\setlength{\workrowsep}{9pt}   % spread the reserved work space over page 2
+\begin{notesbox}{Try it --- factor each trinomial}
+\small
+Use slip-and-slide. Show every step, then check by multiplying back out.
+
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \rung1 \; $2x^2+7x+3$
+\begin{work}
+\text{Slip: } & x^2+7x+6 \\
+\text{Factor: } & (x+1)(x+6) \\
+\text{Slide: } & \left(x+\tfrac{1}{2}\right)\left(x+\tfrac{6}{2}\right) \\
+\text{Simplify: } & \left(x+\tfrac{1}{2}\right)(x+3) \\
+\text{Slide up: } & (2x+1)(x+3)
+\end{work}
+    Factored form: \ans{$(2x+1)(x+3)$}
+
+  \item \rung2 \; $5x^2-13x-6$
+\begin{work}
+\text{Slip: } & x^2-13x-30 \\
+\text{Factor: } & (x-15)(x+2) \\
+\text{Slide: } & \left(x-\tfrac{15}{5}\right)\left(x+\tfrac{2}{5}\right) \\
+\text{Simplify: } & (x-3)\left(x+\tfrac{2}{5}\right) \\
+\text{Slide up: } & (x-3)(5x+2)
+\end{work}
+    Factored form: \ans{$(x-3)(5x+2)$}
+
+  \item \rung3 \; A rectangular bed in the campus garden has area
+        $6x^2+x-2$ square feet. Factor to find expressions for its length and width.
+\begin{work}
+\text{Slip: } & x^2+x-12 \\
+\text{Factor: } & (x+4)(x-3) \\
+\text{Slide: } & \left(x+\tfrac{4}{6}\right)\left(x-\tfrac{3}{6}\right) \\
+\text{Simplify: } & \left(x+\tfrac{2}{3}\right)\left(x-\tfrac{1}{2}\right) \\
+\text{Slide up: } & (3x+2)(2x-1)
+\end{work}
+    Length and width: \ans{$3x+2$} \; and \; \ans{$2x-1$} feet
+\end{enumerate}
+\end{notesbox}
+
+\end{document}
