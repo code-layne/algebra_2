@@ -42,7 +42,7 @@ $(LESSONS):
 _unit_cover:
 ifdef HAS_UNIT_COVER
 	@mkdir -p $(COMPILED_DIR)/$(UNIT)
-	cd unit_cover && TEXINPUTS="$(PROJECT_ROOT)/shared//:" \
+	cd unit_cover && TEXINPUTS=".:$(PROJECT_ROOT)/shared/common:$(PROJECT_ROOT)/shared//:" \
 	    latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error \
 	    -outdir="$(PROJECT_ROOT)/target/$(UNIT)/unit_cover" main.tex
 	cp $(PROJECT_ROOT)/target/$(UNIT)/unit_cover/main.pdf $(UNIT_COVER_PDF)
@@ -52,7 +52,7 @@ endif
 _study_guide:
 ifdef HAS_STUDY_GUIDE
 	@mkdir -p $(COMPILED_DIR)/$(UNIT)
-	cd study_guide && TEXINPUTS="$(PROJECT_ROOT)/shared//:" \
+	cd study_guide && TEXINPUTS=".:$(PROJECT_ROOT)/shared/common:$(PROJECT_ROOT)/shared//:" \
 	    latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error \
 	    -outdir="$(PROJECT_ROOT)/target/$(UNIT)/study_guide" main.tex
 	cp $(PROJECT_ROOT)/target/$(UNIT)/study_guide/main.pdf $(STUDY_GUIDE_PDF)

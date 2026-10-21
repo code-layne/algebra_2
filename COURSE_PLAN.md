@@ -9,7 +9,7 @@
 > — 12pt, 2pp each (page 1: method, worked example $3x^2-10x+8$, notes lines; page 2: ★ $2x^2+7x+3$,
 > ★★ $5x^2-13x-6$, ★★★ garden bed $6x^2+x-2$, byte-identical `work` blocks). Not in `STUDENT_ORDER`,
 > so `make` ignores it; build by hand (from the repo root):
-> `for c in slip_slide slip_slide_key; do o=$PWD/target/unit02/lesson02/$c; mkdir -p $o; (cd unit02/lesson02/$c && TEXINPUTS="$OLDPWD/shared//:" xelatex -output-directory=$o main.tex); done`.
+> `for c in slip_slide slip_slide_key; do o=$PWD/target/unit02/lesson02/$c; mkdir -p $o; (cd unit02/lesson02/$c && TEXINPUTS=".:$OLDPWD/shared//:" xelatex -output-directory=$o main.tex); done`.
 > The plan's Slides teacher note points to it. Deck, cover, packet unchanged.
 
 > ## ⚠ Status (2026-09-29) — **UNIT 2 STUDY GUIDE + TESTS REBUILT ON THE CONDENSED MAP.**

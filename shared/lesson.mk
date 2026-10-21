@@ -27,7 +27,13 @@ UNIT         := $(notdir $(abspath ..))
 LESSON       := $(notdir $(CURDIR))
 
 SHARED_STYS  := $(wildcard $(PROJECT_ROOT)/shared/*.sty)
-TEXINPUTS    := $(PROJECT_ROOT)/shared//:
+# TeX search path. `.` comes FIRST: kpathsea resolves even the main file through
+# TEXINPUTS, and shared/common (the math-shared submodule: grading.sty and its
+# examples) holds main.tex files of its own — with `shared//` searched ahead of
+# `.`, a component build would compile shared/common/examples/…/main.tex instead
+# of its own. shared/common is listed explicitly for grading.sty; `shared//`
+# still finds the course's own packages.
+TEXINPUTS    := .:$(PROJECT_ROOT)/shared/common:$(PROJECT_ROOT)/shared//:
 LATEXMK      = latexmk
 LATEXFLAGS   = -xelatex \
                -interaction=nonstopmode \
