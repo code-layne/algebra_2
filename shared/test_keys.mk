@@ -4,7 +4,8 @@
 
 PROJECT_ROOT := $(abspath ../..)
 UNIT         := $(notdir $(abspath ..))
-TEXINPUTS    := $(PROJECT_ROOT)/shared//:
+# `.` first, ahead of shared// (which reaches shared/common): see shared/lesson.mk.
+TEXINPUTS    := .:$(PROJECT_ROOT)/shared/common:$(PROJECT_ROOT)/shared//:
 PDF_DIR      := $(PROJECT_ROOT)/target/$(UNIT)/test_keys
 LATEXFLAGS   := -xelatex -interaction=nonstopmode -halt-on-error -file-line-error
 
