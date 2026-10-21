@@ -1,0 +1,83 @@
+%! Operations with Polynomials — Unit 3, Lesson 3.1 — Graded Sample Quiz
+% A one-page sample for the grading pipeline (shared/common/grading.sty). It is
+% not part of the lesson packets: build it with `make graded_sample`. Every
+% \gradedblank is authored identically in graded_sample_key/main.tex.
+\documentclass[10pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\usepackage{grading}
+\gradingassignment{alg2-u3-l1-gs}
+\gradingcourse{algebra_2}
+
+\begin{document}
+
+\pageheader{Unit 3, Lesson 3.1}{Graded Sample Quiz}
+
+No notes. Write each final answer \textbf{inside its box}; show your work in the space around it.
+Only what is inside a box is graded.
+
+\vspace{6pt}
+\textbf{Part A --- Matching} \hfill \emph{1 point each}
+
+Match each expression with its simplified form. Write the letter in the box. Not every letter is used.
+
+\vspace{4pt}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|*{7}{c|}}
+\hline
+\textbf{A.} $x^2 + 6x + 9$ & \textbf{B.} $x^2 + 9$ & \textbf{C.} $x^6$ & \textbf{D.} $x^8$
+  & \textbf{E.} $x + 3$ & \textbf{F.} $x - 5$ & \textbf{G.} $x^2 - 9$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{2pt}
+\renewcommand{\arraystretch}{2.1}
+\begin{tabular}{@{}p{0.3in}p{1.55in}l@{\hspace{0.55in}}p{0.3in}p{1.55in}l@{}}
+\textbf{1.} & $(x + 3)^2$ & \gradedblank[id=gs1, type=choice, points=1, answer=A]{0.45in}{0.35in}
+  & \textbf{2.} & $x^2 \cdot x^4$ & \gradedblank[id=gs2, type=choice, points=1, answer=C]{0.45in}{0.35in} \\
+\textbf{3.} & $(2x - 1) - (x - 4)$ & \gradedblank[id=gs3, type=choice, points=1, answer=E]{0.45in}{0.35in}
+  & \textbf{4.} & $(x - 3)(x + 3)$ & \gradedblank[id=gs4, type=choice, points=1, answer=G]{0.45in}{0.35in} \\
+\end{tabular}
+
+\vspace{6pt}
+\textbf{Part B --- Short answer}
+
+\begin{enumerate}[leftmargin=1.8em, itemsep=12pt, start=5]
+  \item \textbf{Subtract,} and write the result in standard form. \emph{(2 points)}
+
+    $(5x^3 + x^2 - 4x + 2) - (2x^3 - 3x^2 + x + 6)$
+
+    \vspace{14pt}
+    \hfill \gradedblank[id=gs5, type=short, points=2, answer={3x^3 + 4x^2 - 5x - 4}, check=expression]{2.8in}{0.45in}
+
+  \item \textbf{Evaluate} $P(x) = 8x^3 + 2x^2$ at $x = \tfrac{1}{2}$. \emph{(1 point)}
+    \hfill \gradedblank[id=gs6, type=short, points=1, answer={3/2}, check=numeric, tolerance=0.01]{1.3in}{0.45in}
+
+  \item \textbf{Expand} $x^2(x^3 + x)$. List \emph{every} exponent of $x$ in your answer,
+    separated by commas. \emph{(2 points)}
+
+    \vspace{2pt}
+    \hfill \gradedblank[id=gs7, type=short, points=2, answer={5, 3}, check=set]{1.6in}{0.45in}
+\end{enumerate}
+
+\vspace{4pt}
+\textbf{Part C --- Explain a step} \hfill \emph{4 points}
+
+\begin{enumerate}[leftmargin=1.8em, start=8]
+  \item Maya simplified $(3x^2 + 2x - 5) - (x^2 - 4x + 1)$ like this:
+    \[
+      3x^2 + 2x - 5 - x^2 - 4x + 1 \;=\; 2x^2 - 2x - 4
+    \]
+    Her answer is wrong. Name the step where she went wrong, explain what she should have done
+    there, and give the correct answer.
+
+    \vspace{4pt}
+    \gradedblank[id=gs8, type=rubric, points=4,
+      display={She went wrong removing the parentheses: subtracting a polynomial subtracts
+        \emph{every} term, so each sign in $x^2 - 4x + 1$ flips, not just the first. The step
+        should read $3x^2 + 2x - 5 - x^2 + 4x - 1$, so the answer is $2x^2 + 6x - 6$.}]{\linewidth}{1.3in}
+\end{enumerate}
+
+\end{document}
