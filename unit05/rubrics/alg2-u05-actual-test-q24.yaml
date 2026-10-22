@@ -1,0 +1,47 @@
+# Rubric for unit test Part D item 2, the ramp model s(r) = 4sqrt(r) (Unit 5).
+# Criteria from the key's scoring note (6 pts).
+id: q24
+points: 6
+task: >-
+  The greatest safe speed on a flat curved ramp of radius r feet is
+  s(r) = 4sqrt(r) miles per hour. (a) State the sensible domain and connect it
+  to the even-index rule. (b) Find s(25) and s(100) with units; what does
+  quadrupling the radius do to the safe speed, and why? (c) A ramp is posted
+  at 36 mph; find its radius algebraically and check it. (d) Write the inverse
+  r(s) and say what it tells an engineer. (e) Explain why squaring in (c)
+  carries no danger of an extraneous solution.
+criteria:
+  - id: a
+    points: 1
+    full: r >= 0, tied to the even index (the radicand may not be negative).
+  - id: b
+    points: 1
+    full: >-
+      s(25) = 20 mph and s(100) = 40 mph with units, and quadrupling the radius
+      doubles the speed because sqrt(4r) = 2sqrt(r) (half credit for "it
+      doubles" with no reason).
+  - id: c
+    points: 1
+    full: r = 81 feet.
+  - id: check
+    points: 1
+    full: The check, s(81) = 4 * 9 = 36.
+  - id: d
+    points: 1
+    full: >-
+      r = s^2/16 (s >= 0), and what it tells an engineer: how large a radius
+      to build for a target speed.
+  - id: e
+    points: 1
+    full: >-
+      The sign argument: both sides are non-negative (sqrt(r) >= 0 and 36 > 0),
+      so squaring hides no sign disagreement. "Because I checked it" earns
+      nothing.
+examples:
+  - response: >-
+      (a) r >= 0, even index. (b) 20 and 40 mph, quadrupling doubles it since
+      sqrt(4r) = 2sqrt(r). (c) sqrt(r) = 9 so r = 81; 4*9 = 36. (d) r = s^2/16,
+      tells how big to make the curve for a speed. (e) both sides are positive.
+    scores: {a: 1, b: 1, c: 1, check: 1, d: 1, e: 1}
+  - response: "(c) r = 81. (e) because I checked it."
+    scores: {a: 0, b: 0, c: 1, check: 0, d: 0, e: 0}

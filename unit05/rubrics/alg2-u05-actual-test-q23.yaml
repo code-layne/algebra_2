@@ -1,0 +1,52 @@
+# Rubric for unit test Part D item 1, the full analysis of f(x) = sqrt(x - 4) + 1 (Unit 5).
+# Criteria from the key's scoring note (6 pts).
+id: q23
+points: 6
+task: >-
+  Consider f(x) = sqrt(x - 4) + 1. (a) Give the anchor point, the domain and
+  the range in interval notation. (b) Find the x- and y-intercepts, or explain
+  why one does not exist. (c) List the transformations from y = sqrt(x). (d)
+  Find f^-1(x) and state its domain, saying where the restriction comes from.
+  (e) Justify with composition, both orders, that f and f^-1 are inverses.
+  (f) A classmate writes y = (x - 1)^2 + 4 with no restriction and calls it
+  the inverse. Explain why that is not the inverse of f.
+criteria:
+  - id: a
+    points: 1
+    full: Anchor (4, 1) with both domain [4, infinity) and range [1, infinity) in interval notation.
+  - id: b
+    points: 1
+    full: >-
+      Both intercepts do not exist, with reasons: sqrt(x - 4) = -1 is
+      impossible (an even root is never negative), and 0 is not in the domain.
+      "No x-intercept" with no reason earns half.
+  - id: c
+    points: 1
+    full: Right 4 and up 1 (no stretch, no reflection).
+  - id: d
+    points: 1
+    full: >-
+      f^-1(x) = (x - 1)^2 + 4 for x >= 1, and says the restriction is the range
+      of f. No credit for the restriction if it is guessed as x >= 0.
+  - id: e
+    points: 1
+    full: >-
+      Both compositions return x: f(f^-1(x)) = |x - 1| + 1 = x for x >= 1, and
+      f^-1(f(x)) = (sqrt(x - 4))^2 + 4 = x. One order is not a verification.
+  - id: f
+    points: 1
+    full: >-
+      Without the restriction it is the whole parabola, which fails the
+      horizontal line test (two arms), so it is not the inverse; only the
+      right arm x >= 1 is.
+examples:
+  - response: >-
+      (a) (4,1), [4,inf), [1,inf). (b) no x-int since sqrt can't be -1, no
+      y-int since 0 isn't in the domain. (c) right 4 up 1. (d) (x-1)^2+4,
+      x >= 1 because that's the range of f. (e) both give x. (f) the whole
+      parabola fails the horizontal line test.
+    scores: {a: 1, b: 1, c: 1, d: 1, e: 1, f: 1}
+  - response: >-
+      (a) (4,1), x>=4, y>=1. (b) none. (c) right 4 up 1. (d) (x-1)^2+4.
+      (e) f(f^-1(x)) = x. (f) it is not restricted.
+    scores: {a: 0, b: 0, c: 1, d: 0, e: 0, f: 0}

@@ -1,0 +1,20 @@
+# Rubric for unit test Part C item 8(b), verifying an inverse by composition (Unit 5).
+id: q22b
+points: 2
+task: >-
+  f(x) = 5x + 3 and f^-1(x) = (x - 3)/5. Verify by composition, both orders,
+  that f^-1 really is the inverse.
+criteria:
+  - id: first
+    points: 1
+    full: f(f^-1(x)) = 5(x - 3)/5 + 3 = x - 3 + 3 = x.
+  - id: second
+    points: 1
+    full: >-
+      f^-1(f(x)) = ((5x + 3) - 3)/5 = x. One order alone is not a
+      verification.
+examples:
+  - response: "5((x-3)/5) + 3 = x and (5x+3-3)/5 = x so yes"
+    scores: {first: 1, second: 1}
+  - response: "f(f^-1(x)) = x - 3 + 3 = x"
+    scores: {first: 1, second: 0}

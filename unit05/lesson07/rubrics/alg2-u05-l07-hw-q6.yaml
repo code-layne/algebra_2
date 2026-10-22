@@ -1,0 +1,46 @@
+# Rubric for homework item 6, inverses, restrictions and domains (Unit 5, Lesson 5.7).
+id: q6
+points: 6
+task: >-
+  (a) y = x^2 must have its domain restricted before it can have an inverse
+  function, but y = x^3 does not. Explain the difference using the horizontal
+  line test, and say what this has to do with sqrt(x) accepting only half the
+  number line while cbrt(x) accepts all of it. (b) Let f(x) = sqrt(x + 3).
+  State the domain and range of f, then of f^-1, and explain how you got the
+  second pair from the first without finding f^-1.
+criteria:
+  - id: square
+    points: 1
+    full: >-
+      y = x^2 fails the horizontal line test (e.g. y = 4 meets it at x = -2 and
+      x = 2), so its inverse would not be a function.
+  - id: cube
+    points: 1
+    full: >-
+      y = x^3 passes: it never repeats an output, so every horizontal line
+      meets it once.
+  - id: roots
+    points: 1
+    full: >-
+      Connects to the roots: the inverse's domain is the original's range;
+      restricted x^2 has range y >= 0, so sqrt(x) takes x >= 0, while x^3 has
+      range all reals, so cbrt(x) takes all reals.
+  - id: f
+    points: 1
+    full: f has domain x >= -3 and range y >= 0.
+  - id: finv
+    points: 1
+    full: f^-1 has domain x >= 0 and range y >= -3.
+  - id: swap
+    points: 1
+    full: >-
+      Explains that an inverse swaps inputs and outputs, so the domain and
+      range trade places.
+examples:
+  - response: >-
+      x^2 fails the horizontal line test because y=4 hits twice; x^3 passes.
+      f: domain x >= -3, range y >= 0. f^-1: domain x >= 0, range y >= -3,
+      because inverses swap domain and range.
+    scores: {square: 1, cube: 1, roots: 0, f: 1, finv: 1, swap: 1}
+  - response: "x^2 has two answers. f domain x >= 3."
+    scores: {square: 0, cube: 0, roots: 0, f: 0, finv: 0, swap: 0}

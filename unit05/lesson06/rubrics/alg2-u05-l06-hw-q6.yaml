@@ -1,0 +1,36 @@
+# Rubric for homework item 6, the domain of (sqrt(x))^2 (Unit 5, Lesson 5.6).
+id: q6
+points: 4
+task: >-
+  Let f(x) = x^2 and g(x) = sqrt(x). (f o g)(x) = (sqrt(x))^2 simplifies to x,
+  yet its domain is not all real numbers. Explain why, using the words stage
+  (or gate) and domain. Then say what (g o f)(x) simplifies to instead, and
+  why that one does accept every real number.
+criteria:
+  - id: gate
+    points: 1
+    full: >-
+      Stage 1 is g(x) = sqrt(x), whose domain is x >= 0, so a negative input is
+      turned away before stage 2 runs.
+  - id: simplify
+    points: 1
+    full: >-
+      Simplifying to x changes the formula but cannot re-open the closed gate;
+      the domain of f o g is x >= 0.
+  - id: other
+    points: 1
+    full: (g o f)(x) = sqrt(x^2) = |x|.
+  - id: allreals
+    points: 1
+    full: >-
+      Its stage 1 is squaring, which accepts every real number and always
+      gives a non-negative result, so the square root's gate is never tested;
+      the domain is all reals.
+examples:
+  - response: >-
+      The first stage is sqrt(x) which won't take negatives, so even though it
+      ends up as x the domain is x >= 0. g(f(x)) = sqrt(x^2) = |x| and works for
+      everything because squaring makes it positive first.
+    scores: {gate: 1, simplify: 1, other: 1, allreals: 1}
+  - response: "Because you can't square root a negative. g(f(x)) = x."
+    scores: {gate: 1, simplify: 0, other: 0, allreals: 0}
