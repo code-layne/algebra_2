@@ -1,0 +1,43 @@
+# Rubric for unit test Part D item 2, average cost per part A(n) = (5n+240)/n (Unit 4).
+id: qd2
+points: 6
+task: >-
+  A robotics team pays a $240 mold fee plus $5 of material per part; the
+  average cost per part for n parts is A(n) = (5n + 240)/n. (a) Explain why A
+  is rational and state the sensible domain; (b) find A(24) and A(80) with
+  units and say what is happening to the average cost; (c) rewrite A(n) as
+  5 + 240/n, state the horizontal asymptote and what it means; (d) find the run
+  size with an average cost of exactly $6; (e) can the average cost ever be
+  exactly $5?
+criteria:
+  - id: a-rational
+    points: 1
+    full: >-
+      A quotient of two polynomials (rational) and a context domain of positive
+      whole numbers n = 1, 2, 3, ...
+  - id: b-values
+    points: 1
+    full: >-
+      A(24) = $15 per part and A(80) = $8 per part, with dollar units, and the
+      observation that the average cost is falling.
+  - id: c-asymptote
+    points: 2
+    full: >-
+      The rewrite 5 + 240/n and y = 5 interpreted as the true per-part material
+      cost (1 point for y = 5 alone).
+  - id: d-run
+    points: 1
+    full: n = 240 parts (from 5n + 240 = 6n).
+  - id: e-never
+    points: 1
+    full: >-
+      No, justified by 240/n > 0 for every positive n (or by the asymptote
+      never being reached); "because it's an asymptote" with no reason earns 0.
+examples:
+  - response: >-
+      Polynomial over polynomial, n = 1, 2, 3... A(24)=15, A(80)=8 dollars per
+      part, going down. 5 + 240/n so HA y=5, the material cost of one part.
+      n=240. No, 240/n is always positive so A is always more than 5.
+    scores: {a-rational: 1, b-values: 1, c-asymptote: 2, d-run: 1, e-never: 1}
+  - response: "A(24)=15, A(80)=8. HA is 5. n=240. No because it is an asymptote."
+    scores: {a-rational: 0, b-values: 0, c-asymptote: 1, d-run: 1, e-never: 0}

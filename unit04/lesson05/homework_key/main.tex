@@ -2,6 +2,10 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\usepackage{grading}
+\gradingassignment{alg2-u04-l05-hw}
+\gradingcourse{algebra_2}
+\usepackage{algebra2-graded}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % Standard coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
@@ -23,61 +27,61 @@ denominator, and the cancel test sorts each one into a hole or a wall.
 \begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
   \item \textbf{Hole or wall?} Give the restrictions, then sort them.
     \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $\dfrac{x+3}{(x+3)(x-5)}$ \hfill restrictions \ans{$-3,5$} \; hole \ans{$x=-3$} \;
-            VA \ans{$x=5$}
-      \item $\dfrac{x-6}{(x-2)(x+1)}$ \hfill restrictions \ans{$2,-1$} \; hole \ans{none} \;
-            VA \ans{$x=2$, $x=-1$}
-      \item $\dfrac{x^2-25}{x^2-5x}$ \hfill restrictions \ans{$0,5$} \; hole \ans{$x=5$} \;
-            VA \ans{$x=0$}
-      \item $\dfrac{x^2+x-6}{x^2-4}$ \hfill restrictions \ans{$2,-2$} \; hole \ans{$x=2$} \;
-            VA \ans{$x=-2$}
-      \item $\dfrac{7}{x^2-16}$ \hfill restrictions \ans{$4,-4$} \; hole \ans{none} \;
-            VA \ans{$x=4$, $x=-4$}
-      \item $\dfrac{x^2-9}{x^2-6x+9}$ \hfill restrictions \ans{$3$} \; hole \ans{none} \;
-            VA \ans{$x=3$}
+      \item $\dfrac{x+3}{(x+3)(x-5)}$ \hfill restrictions \inblank{\blank{1.8cm}}{\gradedblank[id=q1a, type=short, points=1, answer={-3, 5}, check=set, display={$-3,5$}]{1.8cm-2pt}{18pt}} \; hole \inblank{\blank{1.2cm}}{\gradedblank[id=q1b, type=short, points=1, answer={x=-3}]{1.2cm-2pt}{18pt}} \;
+            VA \inblank{\blank{2.0cm}}{\gradedblank[id=q1c, type=short, points=1, answer={x=5}]{2.0cm-2pt}{10pt}}
+      \item $\dfrac{x-6}{(x-2)(x+1)}$ \hfill restrictions \inblank{\blank{1.8cm}}{\gradedblank[id=q1d, type=short, points=1, answer={2, -1}, check=set, display={$2,-1$}]{1.8cm-2pt}{18pt}} \; hole \inblank{\blank{1.2cm}}{\gradedblank[id=q1e, type=short, points=1, answer={none}, check=text]{1.2cm-2pt}{18pt}} \;
+            VA \inblank{\blank{2.0cm}}{\gradedblank[id=q1f, type=short, points=1, answer={x=2, x=-1}, check=set, display={$x=2$, $x=-1$}]{2.0cm-2pt}{10pt}}
+      \item $\dfrac{x^2-25}{x^2-5x}$ \hfill restrictions \inblank{\blank{1.8cm}}{\gradedblank[id=q1g, type=short, points=1, answer={0, 5}, check=set, display={$0,5$}]{1.8cm-2pt}{18pt}} \; hole \inblank{\blank{1.2cm}}{\gradedblank[id=q1h, type=short, points=1, answer={x=5}]{1.2cm-2pt}{18pt}} \;
+            VA \inblank{\blank{2.0cm}}{\gradedblank[id=q1i, type=short, points=1, answer={x=0}]{2.0cm-2pt}{10pt}}
+      \item $\dfrac{x^2+x-6}{x^2-4}$ \hfill restrictions \inblank{\blank{1.8cm}}{\gradedblank[id=q1j, type=short, points=1, answer={2, -2}, check=set, display={$2,-2$}]{1.8cm-2pt}{18pt}} \; hole \inblank{\blank{1.2cm}}{\gradedblank[id=q1k, type=short, points=1, answer={x=2}]{1.2cm-2pt}{18pt}} \;
+            VA \inblank{\blank{2.0cm}}{\gradedblank[id=q1l, type=short, points=1, answer={x=-2}]{2.0cm-2pt}{10pt}}
+      \item $\dfrac{7}{x^2-16}$ \hfill restrictions \inblank{\blank{1.8cm}}{\gradedblank[id=q1m, type=short, points=1, answer={4, -4}, check=set, display={$4,-4$}]{1.8cm-2pt}{18pt}} \; hole \inblank{\blank{1.2cm}}{\gradedblank[id=q1n, type=short, points=1, answer={none}, check=text]{1.2cm-2pt}{18pt}} \;
+            VA \inblank{\blank{2.0cm}}{\gradedblank[id=q1o, type=short, points=1, answer={x=4, x=-4}, check=set, display={$x=4$, $x=-4$}]{2.0cm-2pt}{10pt}}
+      \item $\dfrac{x^2-9}{x^2-6x+9}$ \hfill restrictions \inblank{\blank{1.8cm}}{\gradedblank[id=q1p, type=short, points=1, answer={3}, check=set]{1.8cm-2pt}{18pt}} \; hole \inblank{\blank{1.2cm}}{\gradedblank[id=q1q, type=short, points=1, answer={none}, check=text]{1.2cm-2pt}{18pt}} \;
+            VA \inblank{\blank{2.0cm}}{\gradedblank[id=q1r, type=short, points=1, answer={x=3}]{2.0cm-2pt}{10pt}}
     \end{enumerate}
     \vspace{2pt}
     Part (f) is the odd one. The factor $x-3$ appears on top \emph{and} on the bottom, and there is
-    still no hole. Why not? \ans{the denominator has \emph{two} copies of $x-3$ and the top has one, so one copy survives the cancelling --- leaving $\frac{x+3}{x-3}$, a wall}
+    still no hole. Why not? \inblank{\blank{6.4cm}}{\gradedblank[id=q1s, type=rubric, points=2, display={the denominator has \emph{two} copies of $x-3$ and the top has one, so one copy survives the cancelling --- leaving $\frac{x+3}{x-3}$, a wall}]{6.4cm-2pt}{10pt}}
 
   \item \textbf{Horizontal asymptotes.} Degrees only --- do not factor.
     \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=4pt]
-      \item $y=\dfrac{5x-1}{x^2+3}$: \; HA \ans{$y=0$}
-      \item $y=\dfrac{2x^2+x}{3x^2-5}$: \; HA \ans{$y=\frac23$}
-      \item $y=\dfrac{x^3+1}{x^2-4}$: \; HA \ans{none}
-      \item $y=\dfrac{-4x}{x-9}$: \; HA \ans{$y=-4$}
+      \item $y=\dfrac{5x-1}{x^2+3}$: \; HA \inblank{\blank{1.6cm}}{\gradedblank[id=q2a, type=short, points=1, answer={y=0}]{1.6cm-2pt}{18pt}}
+      \item $y=\dfrac{2x^2+x}{3x^2-5}$: \; HA \inblank{\blank{1.6cm}}{\gradedblank[id=q2b, type=short, points=1, answer={y=2/3}, display={$y=\frac23$}]{1.6cm-2pt}{18pt}}
+      \item $y=\dfrac{x^3+1}{x^2-4}$: \; HA \inblank{\blank{1.6cm}}{\gradedblank[id=q2c, type=short, points=1, answer={none}, check=text]{1.6cm-2pt}{18pt}}
+      \item $y=\dfrac{-4x}{x-9}$: \; HA \inblank{\blank{1.6cm}}{\gradedblank[id=q2d, type=short, points=1, answer={y=-4}]{1.6cm-2pt}{18pt}}
     \end{enumerate}
 
   \item \textbf{Two full builds.}
     \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=8pt]
       \item $f(x)=\dfrac{x+2}{x^2-2x-8}$ \\[3pt]
-            Factored \ans{$\frac{x+2}{(x-4)(x+2)}$} \; Restrictions \ans{$4,-2$} \; Simplified \ans{$\frac{1}{x-4}$}
+            Factored \inblank{\blank{3.0cm}}{\gradedblank[id=q3a, type=short, points=1, answer={(x+2)/((x-4)(x+2))}, display={$(x+2)/\bigl((x-4)(x+2)\bigr)$}]{3.0cm-2pt}{10pt}} \; Restrictions \inblank{\blank{2.0cm}}{\gradedblank[id=q3b, type=short, points=1, answer={4, -2}, check=set, display={$4,-2$}]{2.0cm-2pt}{10pt}} \; Simplified \inblank{\blank{1.8cm}}{\gradedblank[id=q3c, type=short, points=2, answer={1/(x-4)}, display={$1/(x-4)$}]{1.8cm-2pt}{10pt}}
             \\[3pt]
-            Hole \ans{$(-2,-\frac16)$} \; VA \ans{$x=4$} \; HA \ans{$y=0$} \;
-            $x$-int \ans{none} \; $y$-int \ans{$(0,-\frac14)$} \\[3pt]
-            Sign chart --- boundary points \ans{$4$}. \; Test $x=0$: \ans{$-$} \;
-            test $x=5$: \ans{$+$} \\[3pt]
-            Domain \ans{$(-\infty,-2)\cup(-2,4)\cup(4,\infty)$}
+            Hole \inblank{\blank{1.8cm}}{\gradedblank[id=q3d, type=short, points=2, answer={(-2,-1/6)}, check=text, display={$(-2,-1/6)$}]{1.8cm-2pt}{10pt}} \; VA \inblank{\blank{1.2cm}}{\gradedblank[id=q3e, type=short, points=1, answer={x=4}]{1.2cm-2pt}{10pt}} \; HA \inblank{\blank{1.2cm}}{\gradedblank[id=q3f, type=short, points=1, answer={y=0}]{1.2cm-2pt}{10pt}} \;
+            $x$-int \inblank{\blank{1.6cm}}{\gradedblank[id=q3g, type=short, points=1, answer={none}, check=text]{1.6cm-2pt}{10pt}} \; $y$-int \inblank{\blank{1.6cm}}{\gradedblank[id=q3h, type=short, points=1, answer={(0,-1/4)}, check=text, display={$(0,-1/4)$}]{1.6cm-2pt}{10pt}} \\[3pt]
+            Sign chart --- boundary points \inblank{\blank{1.6cm}}{\gradedblank[id=q3i, type=short, points=1, answer={4}, check=set]{1.6cm-2pt}{10pt}}. \; Test $x=0$: \inblank{\blank{1.0cm}}{\gradedblank[id=q3j, type=short, points=1, answer={-}, check=text]{1.0cm-2pt}{10pt}} \;
+            test $x=5$: \inblank{\blank{1.0cm}}{\gradedblank[id=q3k, type=short, points=1, answer={+}, check=text]{1.0cm-2pt}{10pt}} \\[3pt]
+            Domain \inblank{\blank{5.0cm}}{\gradedblank[id=q3l, type=short, points=1, answer={(-inf,-2)U(-2,4)U(4,inf)}, check=text, display={$(-\infty,-2)\cup(-2,4)\cup(4,\infty)$}]{5.0cm-2pt}{10pt}}
       \item $g(x)=\dfrac{x-3}{x^2-4}$ \\[3pt]
-            Factored \ans{$\frac{x-3}{(x-2)(x+2)}$} \; Restrictions \ans{$2,-2$} \; Holes \ans{none}
+            Factored \inblank{\blank{3.0cm}}{\gradedblank[id=q3m, type=short, points=1, answer={(x-3)/((x-2)(x+2))}, display={$(x-3)/\bigl((x-2)(x+2)\bigr)$}]{3.0cm-2pt}{10pt}} \; Restrictions \inblank{\blank{2.0cm}}{\gradedblank[id=q3n, type=short, points=1, answer={2, -2}, check=set, display={$2,-2$}]{2.0cm-2pt}{10pt}} \; Holes \inblank{\blank{1.4cm}}{\gradedblank[id=q3o, type=short, points=1, answer={none}, check=text]{1.4cm-2pt}{10pt}}
             \\[3pt]
-            VA \ans{$x=2$, $x=-2$} \; HA \ans{$y=0$} \; $x$-int \ans{$(3,0)$} \;
-            $y$-int \ans{$(0,\frac34)$} \\[3pt]
-            Sign chart --- boundary points \ans{$-2$, $2$, $3$}.
+            VA \inblank{\blank{2.4cm}}{\gradedblank[id=q3p, type=short, points=1, answer={x=2, x=-2}, check=set, display={$x=2$, $x=-2$}]{2.4cm-2pt}{10pt}} \; HA \inblank{\blank{1.2cm}}{\gradedblank[id=q3q, type=short, points=1, answer={y=0}]{1.2cm-2pt}{10pt}} \; $x$-int \inblank{\blank{1.6cm}}{\gradedblank[id=q3r, type=short, points=1, answer={(3,0)}, check=text]{1.6cm-2pt}{10pt}} \;
+            $y$-int \inblank{\blank{1.6cm}}{\gradedblank[id=q3s, type=short, points=1, answer={(0,3/4)}, check=text, display={$(0,3/4)$}]{1.6cm-2pt}{10pt}} \\[3pt]
+            Sign chart --- boundary points \inblank{\blank{2.4cm}}{\gradedblank[id=q3t, type=short, points=1, answer={-2, 2, 3}, check=set, display={$-2$, $2$, $3$}]{2.4cm-2pt}{10pt}}.
             \begin{center}
             \renewcommand{\arraystretch}{1.4}
             \begin{tabularx}{0.86\linewidth}{|C{2.4cm}|C{1.5cm}|C{1.6cm}|X|}
             \hline
             \rowcolor{forestbg}
             \textbf{Interval} & \textbf{Test $x$} & \textbf{Sign} & \textbf{Above / below} \\ \hline
-            $x<-2$   & $-3$  & \ans{$-$} & \ans{below} \\ \hline
-            $-2<x<2$ & $0$   & \ans{$+$} & \ans{above} \\ \hline
-            $2<x<3$  & $2.5$ & \ans{$-$} & \ans{below} \\ \hline
-            $x>3$    & $4$   & \ans{$+$} & \ans{above} \\ \hline
+            $x<-2$   & $-3$  & \inblank{\hspace{1.2cm}}{\gradedblank[id=q3u, type=short, points=1, answer={-}, check=text]{1.2cm-2pt}{10pt}} & \inblank{\hspace{2.6cm}}{\gradedblank[id=q3v, type=short, points=1, answer={below}, check=text]{2.6cm-2pt}{10pt}} \\ \hline
+            $-2<x<2$ & $0$   & \inblank{\hspace{1.2cm}}{\gradedblank[id=q3w, type=short, points=1, answer={+}, check=text]{1.2cm-2pt}{10pt}} & \inblank{\hspace{2.6cm}}{\gradedblank[id=q3x, type=short, points=1, answer={above}, check=text]{2.6cm-2pt}{10pt}} \\ \hline
+            $2<x<3$  & $2.5$ & \inblank{\hspace{1.2cm}}{\gradedblank[id=q3y, type=short, points=1, answer={-}, check=text]{1.2cm-2pt}{10pt}} & \inblank{\hspace{2.6cm}}{\gradedblank[id=q3z, type=short, points=1, answer={below}, check=text]{2.6cm-2pt}{10pt}} \\ \hline
+            $x>3$    & $4$   & \inblank{\hspace{1.2cm}}{\gradedblank[id=q3aa, type=short, points=1, answer={+}, check=text]{1.2cm-2pt}{10pt}} & \inblank{\hspace{2.6cm}}{\gradedblank[id=q3ab, type=short, points=1, answer={above}, check=text]{2.6cm-2pt}{10pt}} \\ \hline
             \end{tabularx}
             \end{center}
             \vspace{-4pt}
-            Domain \ans{$(-\infty,-2)\cup(-2,2)\cup(2,\infty)$} \; This graph crosses its horizontal asymptote at \ans{$(3,0)$}.
+            Domain \inblank{\blank{5.0cm}}{\gradedblank[id=q3ac, type=short, points=1, answer={(-inf,-2)U(-2,2)U(2,inf)}, check=text, display={$(-\infty,-2)\cup(-2,2)\cup(2,\infty)$}]{5.0cm-2pt}{10pt}} \; This graph crosses its horizontal asymptote at \inblank{\blank{1.6cm}}{\gradedblank[id=q3ad, type=short, points=1, answer={(3,0)}, check=text]{1.6cm-2pt}{10pt}}.
     \end{enumerate}
 
   \item \textbf{Which equation is this?} The dashed lines are the asymptotes, the solid dot is an
@@ -107,10 +111,10 @@ denominator, and the cancel test sorts each one into a hole or a wall.
     \textbf{D.} $\dfrac{x+3}{(x-1)(x+3)}$
     \end{center}
     \vspace{3pt}
-    Answer \ans{B}. \; The hole is at \ans{$(-3,\frac12)$}, so the domain is \ans{$(-\infty,-3)\cup(-3,1)\cup(1,\infty)$}.
+    Answer \inblank{\blank{1.0cm}}{\gradedblank[id=q4a, type=short, points=1, answer={B}, check=text]{1.0cm-2pt}{10pt}}. \; The hole is at \inblank{\blank{1.6cm}}{\gradedblank[id=q4b, type=short, points=1, answer={(-3,1/2)}, check=text, display={$(-3,1/2)$}]{1.6cm-2pt}{10pt}}, so the domain is \inblank{\blank{4.2cm}}{\gradedblank[id=q4c, type=short, points=1, answer={(-inf,-3)U(-3,1)U(1,inf)}, check=text, display={$(-\infty,-3)\cup(-3,1)\cup(1,\infty)$}]{4.2cm-2pt}{10pt}}.
     \\[3pt]
     Finally, rewrite the simplified form as a transformed parent (Lesson 4.4):
-    $\dfrac{x+1}{x-1}=\dfrac{(x-1)+{\color{keyred}\mathbf{2}}}{x-1}={\color{keyred}1+\frac{2}{x-1}}$
+    $\dfrac{x+1}{x-1}=\dfrac{(x-1)+\inblank{\rule{0.8cm}{0.4pt}}{\gradedblank[id=q4d, type=short, points=1, answer={2}, check=numeric]{0.8cm-2pt}{8pt}}}{x-1}=\inblank{\rule{2.4cm}{0.4pt}}{\gradedblank[id=q4e, type=short, points=1, answer={1+2/(x-1)}, display={$1+\frac{2}{x-1}$}]{2.4cm-2pt}{18pt}}$
     \\[3pt]
     {\small \textbf{A} has no hole; \textbf{C} puts it at $+3$; \textbf{D} gives HA $y=0$.}
 
@@ -121,27 +125,27 @@ denominator, and the cancel test sorts each one into a hole or a wall.
     and the graph is exactly the graph of $\dfrac{x+2}{x+3}$.''\vspace{2pt}}}
     \end{center}
     \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item The simplification is \ans{correct} (correct / incorrect).
-      \item What did the student leave out of the domain, and why? \ans{$x=3$ --- the \emph{original} denominator $x^2-9$ is zero there, so $3$ was never an allowed input}
-      \item The hole is at \ans{$(3,\frac56)$}, so the correct domain is \ans{$(-\infty,-3)\cup(-3,3)\cup(3,\infty)$}.
+      \item The simplification is \inblank{\blank{1.4cm}}{\gradedblank[id=q5a, type=short, points=1, answer={correct}, check=text]{1.4cm-2pt}{10pt}} (correct / incorrect).
+      \item What did the student leave out of the domain, and why? \inblank{\blank{5.6cm}}{\gradedblank[id=q5b, type=rubric, points=2, display={$x=3$ --- the \emph{original} denominator $x^2-9$ is zero there, so $3$ was never an allowed input}]{5.6cm-2pt}{10pt}}
+      \item The hole is at \inblank{\blank{1.8cm}}{\gradedblank[id=q5c, type=short, points=1, answer={(3,5/6)}, check=text, display={$(3,5/6)$}]{1.8cm-2pt}{10pt}}, so the correct domain is \inblank{\blank{4.4cm}}{\gradedblank[id=q5d, type=short, points=1, answer={(-inf,-3)U(-3,3)U(3,inf)}, check=text, display={$(-\infty,-3)\cup(-3,3)\cup(3,\infty)$}]{4.4cm-2pt}{10pt}}.
       \item State the rule from Lesson 4.1 that the student broke, in one sentence.
-            \ansline{cancelling never restores an input --- restrictions are read off the original denominator, and the cancelled one leaves a hole behind}
+            \vspace{1pt}\noindent\hfill\llap{\raisebox{0pt}[0pt][0pt]{\gradedblank[id=q5e, type=rubric, points=2, display={cancelling never restores an input --- restrictions are read off the original denominator, and the cancelled one leaves a hole behind}]{4.2cm}{10pt}}}\vspace{3pt}
     \end{enumerate}
 
   \item \textbf{Cleaning the smokestack.} A factory must remove pollution from its exhaust. Removing
         $p$ percent of the pollutant costs
         \[ C(p)=\frac{25p}{100-p} \quad \text{thousand dollars,} \qquad 0\le p<100. \]
     \begin{enumerate}[label=(\alph*), leftmargin=2.1em, itemsep=5pt]
-      \item $C(50)=$ \ans{$25$}, \; $C(80)=$ \ans{$100$}, \; $C(90)=$ \ans{$225$}, \;
-            $C(95)=$ \ans{$475$}, \; $C(99)=$ \ans{$2475$} (thousand dollars).
-      \item Run the build. Restriction \ans{$p\neq100$}; vertical asymptote \ans{$p=100$};
-            degrees \ans{$1$} and \ans{$1$}, so the horizontal asymptote is \ans{$y=-25$}.
+      \item $C(50)=\inblank{\blank{1.4cm}}{\gradedblank[id=q6a, type=short, points=1, answer={25}, check=numeric]{1.4cm-2pt}{10pt}}$, \; $C(80)=\inblank{\blank{1.4cm}}{\gradedblank[id=q6b, type=short, points=1, answer={100}, check=numeric]{1.4cm-2pt}{10pt}}$, \; $C(90)=\inblank{\blank{1.4cm}}{\gradedblank[id=q6c, type=short, points=1, answer={225}, check=numeric]{1.4cm-2pt}{10pt}}$, \;
+            $C(95)=\inblank{\blank{1.4cm}}{\gradedblank[id=q6d, type=short, points=1, answer={475}, check=numeric]{1.4cm-2pt}{10pt}}$, \; $C(99)=\inblank{\blank{1.4cm}}{\gradedblank[id=q6e, type=short, points=1, answer={2475}, check=numeric]{1.4cm-2pt}{10pt}}$ (thousand dollars).
+      \item Run the build. Restriction \inblank{\blank{1.6cm}}{\gradedblank[id=q6f, type=short, points=1, answer={p!=100}, display={$p\neq100$}]{1.6cm-2pt}{10pt}}; vertical asymptote \inblank{\blank{1.6cm}}{\gradedblank[id=q6g, type=short, points=1, answer={p=100}]{1.6cm-2pt}{10pt}};
+            degrees \inblank{\blank{0.6cm}}{\gradedblank[id=q6h, type=short, points=1, answer={1}, check=numeric]{0.6cm-2pt}{10pt}} and \inblank{\blank{0.6cm}}{\gradedblank[id=q6i, type=short, points=1, answer={1}, check=numeric]{0.6cm-2pt}{10pt}}, so the horizontal asymptote is \inblank{\blank{1.6cm}}{\gradedblank[id=q6j, type=short, points=1, answer={y=-25}]{1.6cm-2pt}{10pt}}.
       \item Which of those two asymptotes means something about this factory, and what does it say?
-            And why is the other one meaningless here? \ansline{the wall at $p=100$: as the target approaches $100\%$ the cost grows without bound, so total removal cannot be bought at any price. $y=-25$ describes $p$ running far past $100$, at a negative cost --- but $p$ only lives between $0$ and $100$}
-      \item The $x$-intercept is \ans{$(0,0)$}. In plain words, that says \ans{removing none of it costs nothing}.
-      \item Going from $90\%$ to $95\%$ costs an extra \ans{$250$} thousand dollars. Going from
-            $95\%$ to $99\%$ costs an extra \ans{$2000$} thousand. What is the graph doing near
-            $p=100$, and what does that mean for a law requiring $100\%$ removal? \ansline{it climbs steeply along the vertical asymptote --- each additional percent costs more than the one before, and a $100\%$ requirement is a requirement no finite budget can meet}
+            And why is the other one meaningless here? \gradedlines{2}{\gradedblank[id=q6k, type=rubric, points=3, display={the wall at $p=100$: as the target approaches $100\%$ the cost grows without bound, so total removal cannot be bought at any price. $y=-25$ describes $p$ running far past $100$, at a negative cost --- but $p$ only lives between $0$ and $100$}]{\linewidth}{\gradedlinesheight}}
+      \item The $x$-intercept is \inblank{\blank{1.4cm}}{\gradedblank[id=q6l, type=short, points=1, answer={(0,0)}, check=text]{1.4cm-2pt}{10pt}}. In plain words, that says \inblank{\blank{4.4cm}}{\gradedblank[id=q6m, type=rubric, points=1, display={removing none of it costs nothing}]{4.4cm-2pt}{10pt}}.
+      \item Going from $90\%$ to $95\%$ costs an extra \inblank{\blank{1.8cm}}{\gradedblank[id=q6n, type=short, points=1, answer={250}, check=numeric]{1.8cm-2pt}{10pt}} thousand dollars. Going from
+            $95\%$ to $99\%$ costs an extra \inblank{\blank{1.8cm}}{\gradedblank[id=q6o, type=short, points=1, answer={2000}, check=numeric]{1.8cm-2pt}{10pt}} thousand. What is the graph doing near
+            $p=100$, and what does that mean for a law requiring $100\%$ removal? \gradedlines{2}{\gradedblank[id=q6p, type=rubric, points=2, display={it climbs steeply along the vertical asymptote --- each additional percent costs more than the one before, and a $100\%$ requirement is a requirement no finite budget can meet}]{\linewidth}{\gradedlinesheight}}
     \end{enumerate}
 \end{enumerate}
 \end{notesbox}
