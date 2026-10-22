@@ -34,6 +34,10 @@ SHARED_STYS  := $(wildcard $(PROJECT_ROOT)/shared/*.sty)
 # recursive path reaching them would make a component build compile an
 # example's main.tex instead of its own.
 TEXINPUTS    := $(PROJECT_ROOT)/shared//:$(PROJECT_ROOT)/math-shared:
+# A clone updated from before math-shared moved to the project root keeps the
+# old submodule checkout in shared/common (git leaves it behind). shared//
+# would then find its example main.tex files ahead of a component's own.
+$(if $(wildcard $(PROJECT_ROOT)/shared/common/*),$(error shared/common is the old math-shared checkout; remove it: rm -rf "$(PROJECT_ROOT)/shared/common" && git submodule update --init))
 LATEXMK      = latexmk
 LATEXFLAGS   = -xelatex \
                -interaction=nonstopmode \

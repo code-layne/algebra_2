@@ -3,6 +3,10 @@
 PROJECT_ROOT := $(abspath ..)
 UNIT         := $(notdir $(CURDIR))
 COMPILED_DIR := $(PROJECT_ROOT)/target/compiled
+# A clone updated from before math-shared moved to the project root keeps the
+# old submodule checkout in shared/common (git leaves it behind). shared//
+# would then find its example main.tex files ahead of a component's own.
+$(if $(wildcard $(PROJECT_ROOT)/shared/common/*),$(error shared/common is the old math-shared checkout; remove it: rm -rf "$(PROJECT_ROOT)/shared/common" && git submodule update --init))
 
 # Auto-discover lessons that have a Makefile, in sorted order.
 LESSONS := $(patsubst %/Makefile,%,$(sort $(wildcard lesson*/Makefile)))
