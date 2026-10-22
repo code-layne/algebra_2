@@ -543,3 +543,45 @@ exits 0 either way — so check the rendered pages (`pdftoppm -r 60 -png`). Per 
 is **no bulk sweep** for any of these: fix them lesson by lesson as review finds them.
 Retrofittable names: **boxguard**, **namestrip**, **vocabpar**, **work rule**, **teachernotes**,
 plus the shared skill's **deck** and **shape**.
+
+## 9. Graded components
+
+**Which components carry `\gradedblank`** (math-shared's `grading.sty`, converted 2026-10-22):
+every **homework** that is problems on the page (not a DeltaMath set, online or printed), and
+every **unit quiz and test** — `practice_test` (and so the `sample_test` drop-in), `actual_test`
+and its versions, `algebra1_quiz*`, `factoring_quiz` — blank and key alike. Nothing else: covers,
+slides and handouts, warm-ups, notes, activities, exit tickets, study guides and unit covers stay
+ungraded, and the optional homework `extensionbox` is not graded. `unit03/lesson01/graded_sample`
+is the original stand-alone sample and keeps its own ids. A new generated homework or test is
+written with its graded boxes from the start.
+
+**Assignment ids** (`\gradingassignment{…}`, the first field of every page's QR code):
+`alg2-u<NN>-l<NN>-hw` for a lesson's homework (`alg2-u03-l02-hw`), and `alg2-u<NN>-<test name>`
+for a unit quiz or test, with the folder name's `_` as `-` (`alg2-u01-practice-test`,
+`alg2-u01-actual-test-b`, `alg2-u02-factoring-quiz`). Every id is unique in the course. Item ids
+are `q<item><letter>` in order within an item (`q1a`, `q1b`, …; `q7` for a single-answer item);
+in a test whose numbering restarts in each part, the part letter leads (`qa3`, `qc4b`, `qd1`).
+`\gradingcourse{algebra_2}`.
+
+**How a graded component is written.** Each final answer is a `\gradedblank` box, written
+identically in the blank and the key; the key prints the answer in it. An already-authored page was
+converted with the helpers in `shared/algebra2-graded.sty`, which lay a box over the old answer
+space without moving a line or a page break: `\inblank{\blank{w}}{\gradedblank[…]{w-2pt}{h}}` for
+a blank (or a test's `\slot`), `\letterbox{\gradedblank[…, type=choice]{0.4in}{h}}` for a
+multiple-choice letter (`\answerbox[label]{…}` for another label),
+`\gradedlines{n}{\gradedblank[…, type=rubric]{\linewidth}{\gradedlinesheight}}` for an
+explain/justify answer on `n` write lines, and, for a test item whose only space is a `\vspace`
+work area, `\workanswer{…}` (an "Answer:" box at the bottom right of the space) or
+`\workarea{…}` (a rubric box over a free-response space). All of them cost no space. Box heights are one line pitch less about 1pt
+(12.5pt in a 12pt `\small` homework, 13.5pt in a 12pt test, 10pt in a 10pt document). Work blocks
+and work space stay outside the boxes. Types: `choice` (1 pt), `short` with `check=numeric`,
+`expression`, `set` or `text` (1 pt; 2 for a multi-step result), `rubric` with a YAML file —
+`<lesson>/rubrics/<assignment>-<id>.yaml` for homework, `unitNN/rubrics/<assignment>-<id>.yaml`
+for tests (the box names it as `rubric={../rubrics/…}`). Stated point values (a test's parts and
+items) are matched exactly.
+
+**Checks.** `make -C unitNN/lessonMM manifest COMP=homework` builds the blank and key manifests and
+checks that they agree; for a test, `make -f math-shared/grading.mk grading-manifest
+COMPONENT=unitNN/tests/<name> KEY_COMPONENT=unitNN/test_keys/<name>_key TEXINPUTS="$PWD/shared//:$PWD/math-shared:"`.
+After changing a practice test, rebuild `make -C unitNN/tests all && make -C unitNN/test_keys all`
+so the committed `sample_test*/main.pdf` drop-ins carry the boxes too.

@@ -1,0 +1,24 @@
+# Rubric for homework item 5(b), Marisol's error (Unit 6, Lesson 6.4).
+id: q5b
+points: 3
+task: >-
+  Marisol models a 90 mg dose with a 6-hour half-life as A(t) = 90(1/2)^t and
+  reports that 0.00034 mg is left after 18 hours. Name the error, then give the
+  correct model and value.
+criteria:
+  - id: error
+    points: 1
+    full: >-
+      Her exponent counts hours, not half-lives - the model halves the dose every
+      hour (18 times instead of 3).
+  - id: model
+    points: 1
+    full: Writes A(t) = 90(1/2)^(t/6).
+  - id: value
+    points: 1
+    full: Gets A(18) = 90(1/2)^3 = 11.25 mg.
+examples:
+  - response: "She forgot to divide t by 6. A(t) = 90(1/2)^(t/6), A(18) = 11.25 mg"
+    scores: {error: 1, model: 1, value: 1}
+  - response: "A(18) = 45"
+    scores: {error: 0, model: 0, value: 0}

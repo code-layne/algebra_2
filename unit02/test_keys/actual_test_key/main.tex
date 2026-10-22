@@ -4,6 +4,10 @@
 \documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\usepackage{grading}
+\gradingassignment{alg2-u02-actual-test}
+\gradingcourse{algebra_2}
+\usepackage{algebra2-graded}
 % Coordinate grid: {xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
@@ -58,17 +62,17 @@ $a+bi$ form for non-real numbers. No notes or calculator unless your teacher say
     \begin{minipage}[c]{0.57\linewidth}
     {\renewcommand{\arraystretch}{1.35}
     \begin{tabular}{@{}r l@{}}
-      Vertex: & \slot{2.6cm}{$(3,\,2)$} \\
-      Axis of symmetry: & \slot{2.6cm}{$x=3$} \\
-      Maximum or minimum? & \slot{2.6cm}{maximum} \\
-      Its value: & \slot{2.6cm}{$2$} \\
-      Zeros: & \slot{3.8cm}{$1$ and $5$} \\
-      Increasing on: & \slot{4.2cm}{$x<3$, \ $(-\infty,\,3)$} \\
-      Range: & \slot{4.2cm}{$y\le 2$, \ $(-\infty,\,2]$} \\
+      Vertex: & \inblank{\slot{2.6cm}{$(3,\,2)$}}{\gradedblank[id=q1a, type=short, points=1, answer={(3,2)}, check=text, display={$(3,\,2)$}]{2.6cm-2pt}{13.5pt}} \\
+      Axis of symmetry: & \inblank{\slot{2.6cm}{$x=3$}}{\gradedblank[id=q1b, type=short, points=1, answer={x=3}, check=expression]{2.6cm-2pt}{13.5pt}} \\
+      Maximum or minimum? & \inblank{\slot{2.6cm}{maximum}}{\gradedblank[id=q1c, type=short, points=1, answer={maximum}, check=text]{2.6cm-2pt}{13.5pt}} \\
+      Its value: & \inblank{\slot{2.6cm}{$2$}}{\gradedblank[id=q1d, type=short, points=1, answer={2}, check=numeric]{2.6cm-2pt}{13.5pt}} \\
+      Zeros: & \inblank{\slot{3.8cm}{$1$ and $5$}}{\gradedblank[id=q1e, type=short, points=1, answer={1, 5}, check=set, display={$1$ and $5$}]{3.8cm-2pt}{13.5pt}} \\
+      Increasing on: & \inblank{\slot{4.2cm}{$x<3$, \ $(-\infty,\,3)$}}{\gradedblank[id=q1f, type=short, points=1, answer={x<3}, check=expression, display={$x<3$, \ $(-\infty,\,3)$}]{4.2cm-2pt}{13.5pt}} \\
+      Range: & \inblank{\slot{4.2cm}{$y\le 2$, \ $(-\infty,\,2]$}}{\gradedblank[id=q1g, type=short, points=1, answer={y<=2}, check=expression, display={$y\le 2$, \ $(-\infty,\,2]$}]{4.2cm-2pt}{13.5pt}} \\
     \end{tabular}}
     \end{minipage}
 
-  \item (3 pts) Which describes the graph of $y=-3(x+4)^2-1$?
+  \item \letterbox{\gradedblank[id=q2, type=choice, points=3, answer={A}]{0.4in}{13.5pt}}(3 pts) Which describes the graph of $y=-3(x+4)^2-1$?
     \\[4pt]
     \optok{A}{opens down; vertex $(-4,\,-1)$} \hfill \opt{B}{opens up; vertex $(-4,\,-1)$}
     \\[4pt]
@@ -85,9 +89,9 @@ vertex.
   f(2) &= 12-24+5 = -7
 \end{work}
 \vspace{0.12cm}
-\hfill Axis: \slot{2.6cm}{$x=2$}
+\hfill Axis: \inblank{\slot{2.6cm}{$x=2$}}{\gradedblank[id=q3a, type=short, points=2, answer={x=2}, check=expression]{2.6cm-2pt}{13.5pt}}
 \\[6pt]
-\hspace*{\fill} Vertex: \slot{2.6cm}{$(2,\,-7)$}
+\hspace*{\fill} Vertex: \inblank{\slot{2.6cm}{$(2,\,-7)$}}{\gradedblank[id=q3b, type=short, points=3, answer={(2,-7)}, check=text, display={$(2,\,-7)$}]{2.6cm-2pt}{13.5pt}}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.48\linewidth}
@@ -98,11 +102,11 @@ vertex.
   y &= (2-6)(2+2) = -16
 \end{work}
 \vspace{0.12cm}
-\hfill Zeros: \slot{2.6cm}{$6$ and $-2$}
+\hfill Zeros: \inblank{\slot{2.6cm}{$6$ and $-2$}}{\gradedblank[id=q4a, type=short, points=2, answer={6, -2}, check=set, display={$6$ and $-2$}]{2.6cm-2pt}{13.5pt}}
 \\[6pt]
-\hspace*{\fill} Axis: \slot{2.6cm}{$x=2$}
+\hspace*{\fill} Axis: \inblank{\slot{2.6cm}{$x=2$}}{\gradedblank[id=q4b, type=short, points=1, answer={x=2}, check=expression]{2.6cm-2pt}{13.5pt}}
 \\[6pt]
-\hspace*{\fill} Vertex: \slot{2.6cm}{$(2,\,-16)$}
+\hspace*{\fill} Vertex: \inblank{\slot{2.6cm}{$(2,\,-16)$}}{\gradedblank[id=q4c, type=short, points=2, answer={(2,-16)}, check=text, display={$(2,\,-16)$}]{2.6cm-2pt}{13.5pt}}
 \end{minipage}
 
 % ======================================================================
@@ -117,15 +121,15 @@ set each factor equal to zero.
         \begin{work}
           4x^2+8x-32 &= 4(x^2+2x-8)
         \end{work}
-        \hfill \slot{4.2cm}{$4(x+4)(x-2)$}
-      \item $x^2-64$ \hfill \slot{4.2cm}{$(x+8)(x-8)$}
-      \item $x^2+12x+36$ \hfill \slot{4.2cm}{$(x+6)^2$}
+        \hfill \inblank{\slot{4.2cm}{$4(x+4)(x-2)$}}{\gradedblank[id=q5a, type=short, points=2, answer={4(x+4)(x-2)}, check=expression]{4.2cm-2pt}{13.5pt}}
+      \item $x^2-64$ \hfill \inblank{\slot{4.2cm}{$(x+8)(x-8)$}}{\gradedblank[id=q5b, type=short, points=2, answer={(x+8)(x-8)}, check=expression]{4.2cm-2pt}{13.5pt}}
+      \item $x^2+12x+36$ \hfill \inblank{\slot{4.2cm}{$(x+6)^2$}}{\gradedblank[id=q5c, type=short, points=2, answer={(x+6)^2}, check=expression]{4.2cm-2pt}{13.5pt}}
       \item $2x^2-3x-5$ \quad (by grouping)
         \begin{work}
           2x^2-3x-5 &= 2x^2+2x-5x-5 \\
                     &= 2x(x+1)-5(x+1)
         \end{work}
-        \hfill \slot{4.2cm}{$(2x-5)(x+1)$}
+        \hfill \inblank{\slot{4.2cm}{$(2x-5)(x+1)$}}{\gradedblank[id=q5d, type=short, points=2, answer={(2x-5)(x+1)}, check=expression]{4.2cm-2pt}{13.5pt}}
     \end{enumerate}
 \end{enumerate}
 
@@ -138,7 +142,7 @@ set each factor equal to zero.
   x-7 &= 0 \quad\text{or}\quad x+5=0
 \end{work}
 \vspace{0.12cm}
-\hfill Solution: \slot{3.8cm}{$x=7$ or $x=-5$}
+\hfill Solution: \inblank{\slot{3.8cm}{$x=7$ or $x=-5$}}{\gradedblank[id=q6, type=short, points=4, answer={7, -5}, check=set, display={$x=7$ or $x=-5$}]{3.8cm-2pt}{13.5pt}}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.48\linewidth}
@@ -148,7 +152,7 @@ set each factor equal to zero.
   3x(x-4) &= 0
 \end{work}
 \vspace{0.12cm}
-\hfill Solution: \slot{3.8cm}{$x=0$ or $x=4$}
+\hfill Solution: \inblank{\slot{3.8cm}{$x=0$ or $x=4$}}{\gradedblank[id=q7, type=short, points=4, answer={0, 4}, check=set, display={$x=0$ or $x=4$}]{3.8cm-2pt}{13.5pt}}
 \end{minipage}
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=8]
@@ -159,7 +163,7 @@ set each factor equal to zero.
       (x+5)(x-2) &= 0
     \end{work}
     \vspace{0.12cm}
-    \hfill Solution: \slot{3.8cm}{$x=-5$ or $x=2$}
+    \hfill Solution: \inblank{\slot{3.8cm}{$x=-5$ or $x=2$}}{\gradedblank[id=q8, type=short, points=4, answer={-5, 2}, check=set, display={$x=-5$ or $x=2$}]{3.8cm-2pt}{13.5pt}}
 \end{enumerate}
 
 % ======================================================================
@@ -177,7 +181,7 @@ $a+bi$ form.
   x &= \pm\sqrt{18}
 \end{work}
 \vspace{0.12cm}
-\hfill Solution: \slot{3.4cm}{$x=\pm3\sqrt{2}$}
+\hfill Solution: \inblank{\slot{3.4cm}{$x=\pm3\sqrt{2}$}}{\gradedblank[id=q9, type=short, points=3, answer={3sqrt(2), -3sqrt(2)}, check=set, display={$x=\pm3\sqrt{2}$}]{3.4cm-2pt}{17pt}}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.48\linewidth}
@@ -187,25 +191,25 @@ $a+bi$ form.
   x+1 &= \pm3\sqrt{3}
 \end{work}
 \vspace{0.12cm}
-\hfill Solution: \slot{3.4cm}{$x=-1\pm3\sqrt{3}$}
+\hfill Solution: \inblank{\slot{3.4cm}{$x=-1\pm3\sqrt{3}$}}{\gradedblank[id=q10, type=short, points=4, answer={-1+3sqrt(3), -1-3sqrt(3)}, check=set, display={$x=-1\pm3\sqrt{3}$}]{3.4cm-2pt}{17pt}}
 \end{minipage}
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=11]
-  \item (4 pts) \quad (a) Simplify $\sqrt{-48}$: \slot{2.8cm}{$4i\sqrt{3}$}
-    \hfill (b) Solve $x^2+36=0$: \slot{2.8cm}{$x=\pm6i$}
+  \item (4 pts) \quad (a) Simplify $\sqrt{-48}$: \inblank{\slot{2.8cm}{$4i\sqrt{3}$}}{\gradedblank[id=q11a, type=short, points=2, answer={4sqrt(3)i}, check=expression, display={$4i\sqrt{3}$}]{2.8cm-2pt}{17pt}}
+    \hfill (b) Solve $x^2+36=0$: \inblank{\slot{2.8cm}{$x=\pm6i$}}{\gradedblank[id=q11b, type=short, points=2, answer={6i, -6i}, check=set, display={$x=\pm6i$}]{2.8cm-2pt}{13.5pt}}
 
   \item (6 pts) Let $z_1=5-2i$ and $z_2=1+4i$. Write each answer in $a+bi$ form.
     \\[8pt]
-    (a) $z_1+z_2=$ \slot{2.8cm}{$6+2i$} \hfill (b) $z_1-z_2=$ \slot{2.8cm}{$4-6i$}
+    (a) $z_1+z_2=$ \inblank{\slot{2.8cm}{$6+2i$}}{\gradedblank[id=q12a, type=short, points=2, answer={6+2i}, check=expression]{2.8cm-2pt}{13.5pt}} \hfill (b) $z_1-z_2=$ \inblank{\slot{2.8cm}{$4-6i$}}{\gradedblank[id=q12b, type=short, points=2, answer={4-6i}, check=expression]{2.8cm-2pt}{13.5pt}}
     \\[8pt]
     (c) $z_1\cdot z_2$
     \begin{work}
       (5-2i)(1+4i) &= 5+20i-2i-8i^2 \\
                    &= 5+18i+8
     \end{work}
-    \hfill $z_1\cdot z_2=$ \slot{2.8cm}{$13+18i$}
+    \hfill $z_1\cdot z_2=$ \inblank{\slot{2.8cm}{$13+18i$}}{\gradedblank[id=q12c, type=short, points=2, answer={13+18i}, check=expression]{2.8cm-2pt}{13.5pt}}
 
-  \item (3 pts) $\sqrt{-9}\cdot\sqrt{-16}=$ \hfill \opt{A}{$12i$} \hfill \opt{B}{$12$} \hfill \optok{C}{$-12$} \hfill \opt{D}{$-12i$}
+  \item (3 pts) $\sqrt{-9}\cdot\sqrt{-16}=$ \rlap{\hspace{7pt}\raisebox{0pt}[0pt][0pt]{\gradedblank[id=q13, type=short, points=3, answer={-12}, check=numeric]{0.4in}{13.5pt}}}\hfill \opt{A}{$12i$} \hfill \opt{B}{$12$} \hfill \optok{C}{$-12$} \hfill \opt{D}{$-12i$}
 \end{enumerate}
 
 % ======================================================================
@@ -220,7 +224,7 @@ $a+bi$ form.
       x-3 &= \pm\sqrt{11}
     \end{work}
     \vspace{0.12cm}
-    \hfill Solution: \slot{3.8cm}{$x=3\pm\sqrt{11}$}
+    \hfill Solution: \inblank{\slot{3.8cm}{$x=3\pm\sqrt{11}$}}{\gradedblank[id=q14, type=short, points=4, answer={3+sqrt(11), 3-sqrt(11)}, check=set, display={$x=3\pm\sqrt{11}$}]{3.8cm-2pt}{17pt}}
 \end{enumerate}
 
 \vspace{4pt}
@@ -236,7 +240,7 @@ $a+bi$ form.
     &= \frac{2\pm\sqrt{28}}{6}
 \end{work}
 \vspace{0.12cm}
-\hfill Solution: \slot{3.4cm}{$x=\tfrac{1\pm\sqrt{7}}{3}$}
+\hfill Solution: \inblank{\slot{3.4cm}{$x=\tfrac{1\pm\sqrt{7}}{3}$}}{\gradedblank[id=q15, type=short, points=5, answer={(1+sqrt(7))/3, (1-sqrt(7))/3}, check=set, display={$x=(1\pm\sqrt{7})/3$}]{3.4cm-2pt}{17pt}}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.48\linewidth}
@@ -246,7 +250,7 @@ $a+bi$ form.
     &= \frac{2\pm\sqrt{-36}}{2} = \frac{2\pm6i}{2}
 \end{work}
 \vspace{0.12cm}
-\hfill Solution: \slot{3.4cm}{$x=1\pm3i$}
+\hfill Solution: \inblank{\slot{3.4cm}{$x=1\pm3i$}}{\gradedblank[id=q16, type=short, points=5, answer={1+3i, 1-3i}, check=set, display={$x=1\pm3i$}]{3.4cm-2pt}{13.5pt}}
 \end{minipage}
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=6pt, label=\arabic*., start=17]
@@ -258,9 +262,9 @@ $a+bi$ form.
     \begin{tabular}{|c|c|c|c|}
       \hline
       \textbf{Equation} & \textbf{Discriminant} & \textbf{Solutions} & \textbf{$x$-intercepts} \\ \hline
-      $3x^2-x-2=0$ & \slot{1.6cm}{$25$} & \slot{4.4cm}{two real} & \slot{1.2cm}{$2$} \\ \hline
-      $4x^2+4x+1=0$ & \slot{1.6cm}{$0$} & \slot{4.4cm}{one repeated real} & \slot{1.2cm}{$1$} \\ \hline
-      $x^2-3x+5=0$ & \slot{1.6cm}{$-11$} & \slot{4.4cm}{two complex} & \slot{1.2cm}{$0$} \\ \hline
+      $3x^2-x-2=0$ & \inblank{\slot{1.6cm}{$25$}}{\gradedblank[id=q17a, type=short, points=1, answer={25}, check=numeric]{1.6cm-2pt}{13.5pt}} & \inblank{\slot{4.4cm}{two real}}{\gradedblank[id=q17b, type=short, points=0.5, answer={two real}, check=text]{4.4cm-2pt}{13.5pt}} & \inblank{\slot{1.2cm}{$2$}}{\gradedblank[id=q17c, type=short, points=0.5, answer={2}, check=numeric]{1.2cm-2pt}{13.5pt}} \\ \hline
+      $4x^2+4x+1=0$ & \inblank{\slot{1.6cm}{$0$}}{\gradedblank[id=q17d, type=short, points=1, answer={0}, check=numeric]{1.6cm-2pt}{13.5pt}} & \inblank{\slot{4.4cm}{one repeated real}}{\gradedblank[id=q17e, type=short, points=0.5, answer={one repeated real}, check=text]{4.4cm-2pt}{13.5pt}} & \inblank{\slot{1.2cm}{$1$}}{\gradedblank[id=q17f, type=short, points=0.5, answer={1}, check=numeric]{1.2cm-2pt}{13.5pt}} \\ \hline
+      $x^2-3x+5=0$ & \inblank{\slot{1.6cm}{$-11$}}{\gradedblank[id=q17g, type=short, points=1, answer={-11}, check=numeric]{1.6cm-2pt}{13.5pt}} & \inblank{\slot{4.4cm}{two complex}}{\gradedblank[id=q17h, type=short, points=0.5, answer={two complex}, check=text]{4.4cm-2pt}{13.5pt}} & \inblank{\slot{1.2cm}{$0$}}{\gradedblank[id=q17i, type=short, points=0.5, answer={0}, check=numeric]{1.2cm-2pt}{13.5pt}} \\ \hline
     \end{tabular}}
 \end{enumerate}
 
@@ -281,13 +285,13 @@ Give each solution of a system as an ordered pair. Answer each model question wi
   x=-2:\quad y &= 3(-2)+1 = -5
 \end{work}
 \vspace{0.12cm}
-\hfill Solutions: \slot{4.6cm}{$(3,\,10)$ and $(-2,\,-5)$}
+\hfill Solutions: \inblank{\slot{4.6cm}{$(3,\,10)$ and $(-2,\,-5)$}}{\gradedblank[id=q18, type=short, points=7, answer={(3,10), (-2,-5)}, check=set, display={$(3,\,10)$ and $(-2,\,-5)$}]{4.6cm-2pt}{13.5pt}}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.40\linewidth}
 19.\ (3 pts) How many points do the graphs of $y=x^2-2x+3$ and $y=2x-1$ have in common?
 \\[6pt]
-\opt{A}{exactly two} \\[4pt]
+\letterbox{\gradedblank[id=q19, type=choice, points=3, answer={C}]{0.4in}{13.5pt}}\opt{A}{exactly two} \\[4pt]
 \opt{B}{none} \\[4pt]
 \optok{C}{exactly one} \\[4pt]
 \opt{D}{infinitely many}
@@ -298,7 +302,7 @@ Give each solution of a system as an ordered pair. Answer each model question wi
     balcony. Its height, in feet, $t$ seconds after launch is
     \[ h(t)=-16t^2+16t+32. \]
     \begin{enumerate}[label=(\alph*), leftmargin=1.9em, itemsep=8pt]
-      \item (2 pts) How high is the balcony? \hfill \slot{2.6cm}{$32$ ft}
+      \item (2 pts) How high is the balcony? \hfill \inblank{\slot{2.6cm}{$32$ ft}}{\gradedblank[id=q20a, type=short, points=2, answer={32}, check=numeric, display={$32$ ft}]{2.6cm-2pt}{13.5pt}}
     \end{enumerate}
 \end{enumerate}
 
@@ -311,7 +315,7 @@ Give each solution of a system as an ordered pair. Answer each model question wi
           h(0.5) &= -4+8+32 = 36
         \end{work}
 \vspace{0.2cm}
-When: \slot{2.6cm}{$0.5$ s} \quad Height: \slot{2.6cm}{$36$ ft}
+When: \inblank{\slot{2.6cm}{$0.5$ s}}{\gradedblank[id=q20b, type=short, points=2, answer={0.5}, check=numeric, display={$0.5$ s}]{2.6cm-2pt}{13.5pt}} \quad Height: \inblank{\slot{2.6cm}{$36$ ft}}{\gradedblank[id=q20c, type=short, points=2, answer={36}, check=numeric, display={$36$ ft}]{2.6cm-2pt}{13.5pt}}
 \end{minipage}%
 \hfill
 \begin{minipage}[t]{0.48\linewidth}
@@ -322,8 +326,8 @@ When: \slot{2.6cm}{$0.5$ s} \quad Height: \slot{2.6cm}{$36$ ft}
           (t-2)(t+1) &= 0
         \end{work}
 \vspace{0.2cm}
-Lands at: \slot{2.6cm}{$t=2$ s}\\[6pt]
-Rejected: \slot{4.6cm}{$t=-1$: negative time}
+Lands at: \inblank{\slot{2.6cm}{$t=2$ s}}{\gradedblank[id=q20d, type=short, points=2, answer={2}, check=numeric, display={$t=2$ s}]{2.6cm-2pt}{13.5pt}}\\[6pt]
+Rejected: \inblank{\slot{4.6cm}{$t=-1$: negative time}}{\gradedblank[id=q20e, type=rubric, points=2, rubric={../rubrics/alg2-u02-actual-test-q20e.yaml}, display={$t=-1$: negative time}]{4.6cm-2pt}{13.5pt}}
 \end{minipage}
 
 \end{document}

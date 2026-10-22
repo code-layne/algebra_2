@@ -2,6 +2,10 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\usepackage{grading}
+\gradingassignment{alg2-u06-l04-hw}
+\gradingcourse{algebra_2}
+\usepackage{algebra2-graded}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % ln(1.06) = 0.0582689
 
@@ -25,10 +29,10 @@ decimal places.
     \hline
     & \textbf{Deposit, rate, compounding, time} & \textbf{base} & \textbf{exponent} & \textbf{$A$} \\
     \hline
-    \textbf{(a)} & \$1200 at $4.5\%$, quarterly, $6$ years & \ans{$1.01125$} & \ans{$24$} & \ans{\$1569.59} \\
-    \textbf{(b)} & \$7500 at $2.4\%$, monthly, $3$ years & \ans{$1.002$} & \ans{$36$} & \ans{\$8059.34} \\
-    \textbf{(c)} & \$2500 at $5\%$, annually, $12$ years & \ans{$1.05$} & \ans{$12$} & \ans{\$4489.64} \\
-    \textbf{(d)} & \$900 at $6\%$, daily ($n=365$), $4$ years & \ans{$1+\frac{0.06}{365}$} & \ans{$1460$} & \ans{\$1144.10} \\
+    \textbf{(a)} & \$1200 at $4.5\%$, quarterly, $6$ years & \inblank{\blank{1.9cm}}{\gradedblank[id=q1a, type=short, points=1, answer={1.01125}, check=numeric]{1.9cm-2pt}{10pt}} & \inblank{\blank{1.3cm}}{\gradedblank[id=q1b, type=short, points=1, answer={24}, check=numeric]{1.3cm-2pt}{10pt}} & \inblank{\blank{2.2cm}}{\gradedblank[id=q1c, type=short, points=1, answer={1569.59}, check=numeric, tolerance={0.01}, display={\$1569.59}]{2.2cm-2pt}{10pt}} \\
+    \textbf{(b)} & \$7500 at $2.4\%$, monthly, $3$ years & \inblank{\blank{1.9cm}}{\gradedblank[id=q1d, type=short, points=1, answer={1.002}, check=numeric]{1.9cm-2pt}{10pt}} & \inblank{\blank{1.3cm}}{\gradedblank[id=q1e, type=short, points=1, answer={36}, check=numeric]{1.3cm-2pt}{10pt}} & \inblank{\blank{2.2cm}}{\gradedblank[id=q1f, type=short, points=1, answer={8059.34}, check=numeric, tolerance={0.01}, display={\$8059.34}]{2.2cm-2pt}{10pt}} \\
+    \textbf{(c)} & \$2500 at $5\%$, annually, $12$ years & \inblank{\blank{1.9cm}}{\gradedblank[id=q1g, type=short, points=1, answer={1.05}, check=numeric]{1.9cm-2pt}{10pt}} & \inblank{\blank{1.3cm}}{\gradedblank[id=q1h, type=short, points=1, answer={12}, check=numeric]{1.3cm-2pt}{10pt}} & \inblank{\blank{2.2cm}}{\gradedblank[id=q1i, type=short, points=1, answer={4489.64}, check=numeric, tolerance={0.01}, display={\$4489.64}]{2.2cm-2pt}{10pt}} \\
+    \textbf{(d)} & \$900 at $6\%$, daily ($n=365$), $4$ years & \inblank{\blank{1.9cm}}{\gradedblank[id=q1j, type=short, points=1, answer={1+0.06/365}, check=expression, display={$1+\frac{0.06}{365}$}]{1.9cm-2pt}{10pt}} & \inblank{\blank{1.3cm}}{\gradedblank[id=q1k, type=short, points=1, answer={1460}, check=numeric]{1.3cm-2pt}{10pt}} & \inblank{\blank{2.2cm}}{\gradedblank[id=q1l, type=short, points=1, answer={1144.10}, check=numeric, tolerance={0.01}, display={\$1144.10}]{2.2cm-2pt}{10pt}} \\
     \hline
     \end{tabularx}
     \end{center}
@@ -38,19 +42,19 @@ decimal places.
   \item \textbf{Quarterly against continuous.} \$6000 is invested at $4\%$ for $10$ years.
 
     \vspace{3pt}
-    \hspace*{1.0em} Compounded quarterly: $A=$ \ans{$6000(1.01)^{40}$} $=$ \ans{\$8933.18}
+    \hspace*{1.0em} Compounded quarterly: $A=$ \inblank{\blank{3.6cm}}{\gradedblank[id=q2a, type=short, points=1, answer={6000(1.01)^40}, check=expression, display={$6000(1.01)^{40}$}]{3.6cm-2pt}{10pt}} $=$ \inblank{\blank{2.2cm}}{\gradedblank[id=q2b, type=short, points=1, answer={8933.18}, check=numeric, tolerance={0.01}, display={\$8933.18}]{2.2cm-2pt}{10pt}}
 
     \vspace{3pt}
-    \hspace*{1.0em} Compounded continuously: $A=$ \ans{$6000e^{\,0.4}$} $=$ \ans{\$8950.95}
+    \hspace*{1.0em} Compounded continuously: $A=$ \inblank{\blank{3.0cm}}{\gradedblank[id=q2c, type=short, points=1, answer={6000e^(0.4)}, check=expression, display={$6000e^{\,0.4}$}]{3.0cm-2pt}{10pt}} $=$ \inblank{\blank{2.2cm}}{\gradedblank[id=q2d, type=short, points=1, answer={8950.95}, check=numeric, tolerance={0.01}, display={\$8950.95}]{2.2cm-2pt}{10pt}}
 
     \vspace{3pt}
-    Over ten years, continuous compounding is worth \ans{\$17.77} more. Explain why that is so small
-    when the compounding went from $40$ times to infinitely many. \ansline{Each extra chop of the year adds less than the one before, and the balances close in on the ceiling $Pe^{rt}$ --- ``infinitely often'' is barely better than quarterly.}
+    Over ten years, continuous compounding is worth \inblank{\blank{2.0cm}}{\gradedblank[id=q2e, type=short, points=1, answer={17.77}, check=numeric, tolerance={0.01}, display={\$17.77}]{2.0cm-2pt}{10pt}} more. Explain why that is so small
+    when the compounding went from $40$ times to infinitely many. \leavevmode\rlap{\raisebox{0pt}[0pt][0pt]{\gradedblank[id=q2f, type=rubric, points=2, display={Each extra chop of the year adds less than the one before, and the balances close in on the ceiling $Pe^{rt}$ --- ``infinitely often'' is barely better than quarterly.}]{7cm}{10pt}}}\writeline
 
   \item \textbf{Caffeine.} A $200$ mg coffee has a half-life of about $5$ hours in the body.
 
     \vspace{3pt}
-    \hspace*{1.0em} $A(t)=$ \ans{$200\left(\frac12\right)^{t/5}$} \; where $t$ is in \ans{hours}.
+    \hspace*{1.0em} $A(t)=$ \inblank{\blank{4.0cm}}{\gradedblank[id=q3a, type=short, points=1, answer={200(1/2)^(t/5)}, check=expression, display={$200\left(\frac12\right)^{t/5}$}]{4.0cm-2pt}{10pt}} \; where $t$ is in \inblank{\blank{1.6cm}}{\gradedblank[id=q3b, type=short, points=1, answer={hours}, check=text]{1.6cm-2pt}{10pt}}.
 
     \vspace{3pt}
     \begin{center}
@@ -59,17 +63,17 @@ decimal places.
     \begin{tabular}{|l|c|c|c|c|c|}
     \hline
     $t$ (hours) & $0$ & $5$ & $10$ & $15$ & $20$ \\ \hline
-    $A(t)$ (mg) & $200$ & \ans{100} & \ans{50} & \ans{25} & \ans{12.5} \\ \hline
+    $A(t)$ (mg) & $200$ & \inblank{\blank{1.3cm}}{\gradedblank[id=q3c, type=short, points=1, answer={100}, check=numeric]{1.3cm-2pt}{10pt}} & \inblank{\blank{1.3cm}}{\gradedblank[id=q3d, type=short, points=1, answer={50}, check=numeric]{1.3cm-2pt}{10pt}} & \inblank{\blank{1.3cm}}{\gradedblank[id=q3e, type=short, points=1, answer={25}, check=numeric]{1.3cm-2pt}{10pt}} & \inblank{\blank{1.3cm}}{\gradedblank[id=q3f, type=short, points=1, answer={12.5}, check=numeric]{1.3cm-2pt}{10pt}} \\ \hline
     \end{tabular}
     \end{center}
 
     \vspace{2pt}
-    \textbf{(a)} How much is left $8$ hours after the coffee? \ans{65.98 mg} \; Check it against the
-    table: it must land between \ans{100 mg} and \ans{50 mg}.
+    \textbf{(a)} How much is left $8$ hours after the coffee? \inblank{\blank{2.2cm}}{\gradedblank[id=q3g, type=short, points=1, answer={65.98}, check=numeric, tolerance={0.01}, display={65.98 mg}]{2.2cm-2pt}{10pt}} \; Check it against the
+    table: it must land between \inblank{\blank{1.4cm}}{\gradedblank[id=q3h, type=short, points=1, answer={100}, check=numeric, display={100 mg}]{1.4cm-2pt}{10pt}} and \inblank{\blank{1.4cm}}{\gradedblank[id=q3i, type=short, points=1, answer={50}, check=numeric, display={50 mg}]{1.4cm-2pt}{10pt}}.
 
     \vspace{3pt}
-    \textbf{(b)} According to this model, is the caffeine ever completely gone? \ans{No} \;
-    Name the graph feature that decides it. \ans{the horizontal asymptote $A=0$; the range is $(0,200]$}
+    \textbf{(b)} According to this model, is the caffeine ever completely gone? \inblank{\blank{1.4cm}}{\gradedblank[id=q3j, type=short, points=1, answer={no}, check=text, display={No}]{1.4cm-2pt}{10pt}} \;
+    Name the graph feature that decides it. \inblank{\blank{4.6cm}}{\gradedblank[id=q3k, type=short, points=1, answer={horizontal asymptote A=0}, check=text, display={the horizontal asymptote $A=0$; the range is $(0,200]$}]{4.6cm-2pt}{10pt}}
 
   \item \textbf{Read the doubling off the graph.} \$800 is invested at $6\%$ compounded annually, so
     $A(t)=800(1.06)^{t}$.
@@ -90,17 +94,17 @@ decimal places.
     \end{minipage}
     \begin{minipage}[c]{0.52\linewidth}
     \small
-    \textbf{(a)} $A(11)=$ \ans{\$1518.64} \quad $A(12)=$ \ans{\$1609.76}
+    \textbf{(a)} $A(11)=$ \inblank{\blank{2.0cm}}{\gradedblank[id=q4a, type=short, points=1, answer={1518.64}, check=numeric, tolerance={0.01}, display={\$1518.64}]{2.0cm-2pt}{10pt}} \quad $A(12)=$ \inblank{\blank{2.0cm}}{\gradedblank[id=q4b, type=short, points=1, answer={1609.76}, check=numeric, tolerance={0.01}, display={\$1609.76}]{2.0cm-2pt}{10pt}}
 
     \vspace{3pt}
-    \textbf{(b)} The money doubles between year \ans{11} and year \ans{12}.
+    \textbf{(b)} The money doubles between year \inblank{\blank{1.0cm}}{\gradedblank[id=q4c, type=short, points=1, answer={11}, check=numeric]{1.0cm-2pt}{10pt}} and year \inblank{\blank{1.0cm}}{\gradedblank[id=q4d, type=short, points=1, answer={12}, check=numeric]{1.0cm-2pt}{10pt}}.
 
     \vspace{3pt}
     \textbf{(c)} Write the equation you would have to solve to find the exact doubling time, then
-    divide to simplify it. \ans{$800(1.06)^{t}=1600$, so $(1.06)^{t}=2$}
+    divide to simplify it. \inblank{\blank{4.0cm}}{\gradedblank[id=q4e, type=short, points=2, answer={(1.06)^t=2}, check=expression, display={$800(1.06)^{t}=1600$, so $(1.06)^{t}=2$}]{4.0cm-2pt}{10pt}}
 
     \vspace{3pt}
-    \textbf{(d)} Try Step 1 of Lesson 6.3 on it. What stops you? \ans{$2$ is not a power of $1.06$ --- there is no common base}
+    \textbf{(d)} Try Step 1 of Lesson 6.3 on it. What stops you? \inblank{\blank{4.0cm}}{\gradedblank[id=q4f, type=rubric, points=1, display={$2$ is not a power of $1.06$ --- there is no common base}]{4.0cm-2pt}{10pt}}
     \end{minipage}
     \end{center}
 
@@ -109,14 +113,12 @@ decimal places.
     \vspace{2pt}
     \textbf{(a)} Tobias models \$5000 at $6\%$ compounded monthly for $4$ years as
     $A=5000(1.06)^{48}$, and reports \$81{,}969.36.
-    \ansline{He counted the periods right ($48$ months) but never split the rate: his base pays a full year's interest every month.}
-    \ansline{Correct: $A=5000(1.005)^{48}=\$6352.45$. The size of his answer is the tell --- \$5000 does not become \$82{,}000 in four years.}
+    \gradedlines{2}{\gradedblank[id=q5a, type=rubric, points=3, display={He counted the periods right ($48$ months) but never split the rate: his base pays a full year's interest every month. Correct: $A=5000(1.005)^{48}=\$6352.45$. The size of his answer is the tell --- \$5000 does not become \$82{,}000 in four years.}]{\linewidth}{\gradedlinesheight}}
 
     \vspace{2pt}
     \textbf{(b)} Marisol models a $90$ mg dose with a $6$-hour half-life as
     $A(t)=90\left(\frac12\right)^{t}$, and reports that $0.00034$ mg is left after $18$ hours.
-    \ansline{Her exponent counts \emph{hours}, not half-lives, so her model halves the dose $18$ times instead of $3$.}
-    \ansline{Correct: $A(t)=90\left(\frac12\right)^{t/6}$, so $A(18)=90\left(\frac12\right)^{3}=11.25$ mg.}
+    \gradedlines{2}{\gradedblank[id=q5b, type=rubric, points=3, display={Her exponent counts \emph{hours}, not half-lives, so her model halves the dose $18$ times instead of $3$. Correct: $A(t)=90\left(\frac12\right)^{t/6}$, so $A(18)=90\left(\frac12\right)^{3}=11.25$ mg.}]{\linewidth}{\gradedlinesheight}}
 \end{enumerate}
 \end{notesbox}
 

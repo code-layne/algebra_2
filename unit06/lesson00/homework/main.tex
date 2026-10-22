@@ -2,6 +2,10 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
+\usepackage{grading}
+\gradingassignment{alg2-u06-l00-hw}
+\gradingcourse{algebra_2}
+\usepackage{algebra2-graded}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
@@ -29,15 +33,15 @@ Show how you read each feature. Write every domain and range in \textbf{interval
     \hline
     \textbf{Function} & \textbf{Base $b$} & \textbf{Growth or decay?} & \textbf{$y$-intercept} & \textbf{Asymptote approached on the left or right?} \\
     \hline
-    $y=6\cdot 2^{x}$ & \blank{1.4cm} & \blank{1.8cm} & \blank{1.7cm} & \blank{1.7cm} \\
-    $y=6\left(\frac12\right)^{x}$ & \blank{1.4cm} & \blank{1.8cm} & \blank{1.7cm} & \blank{1.7cm} \\
-    $y=\left(\frac45\right)^{x}$ & \blank{1.4cm} & \blank{1.8cm} & \blank{1.7cm} & \blank{1.7cm} \\
-    $y=0.4(3)^{x}$ & \blank{1.4cm} & \blank{1.8cm} & \blank{1.7cm} & \blank{1.7cm} \\
+    $y=6\cdot 2^{x}$ & \inblank{\blank{1.4cm}}{\gradedblank[id=q1a, type=short, points=1, answer={2}, check=numeric]{1.4cm-2pt}{10pt}} & \inblank{\blank{1.8cm}}{\gradedblank[id=q1b, type=short, points=1, answer={growth}, check=text]{1.8cm-2pt}{10pt}} & \inblank{\blank{1.7cm}}{\gradedblank[id=q1c, type=short, points=1, answer={(0,6)}, check=text]{1.7cm-2pt}{10pt}} & \inblank{\blank{1.7cm}}{\gradedblank[id=q1d, type=short, points=1, answer={left}, check=text]{1.7cm-2pt}{10pt}} \\
+    $y=6\left(\frac12\right)^{x}$ & \inblank{\blank{1.4cm}}{\gradedblank[id=q1e, type=short, points=1, answer={1/2}, check=numeric, display={$1/2$}]{1.4cm-2pt}{10pt}} & \inblank{\blank{1.8cm}}{\gradedblank[id=q1f, type=short, points=1, answer={decay}, check=text]{1.8cm-2pt}{10pt}} & \inblank{\blank{1.7cm}}{\gradedblank[id=q1g, type=short, points=1, answer={(0,6)}, check=text]{1.7cm-2pt}{10pt}} & \inblank{\blank{1.7cm}}{\gradedblank[id=q1h, type=short, points=1, answer={right}, check=text]{1.7cm-2pt}{10pt}} \\
+    $y=\left(\frac45\right)^{x}$ & \inblank{\blank{1.4cm}}{\gradedblank[id=q1i, type=short, points=1, answer={4/5}, check=numeric, display={$4/5$}]{1.4cm-2pt}{10pt}} & \inblank{\blank{1.8cm}}{\gradedblank[id=q1j, type=short, points=1, answer={decay}, check=text]{1.8cm-2pt}{10pt}} & \inblank{\blank{1.7cm}}{\gradedblank[id=q1k, type=short, points=1, answer={(0,1)}, check=text]{1.7cm-2pt}{10pt}} & \inblank{\blank{1.7cm}}{\gradedblank[id=q1l, type=short, points=1, answer={right}, check=text]{1.7cm-2pt}{10pt}} \\
+    $y=0.4(3)^{x}$ & \inblank{\blank{1.4cm}}{\gradedblank[id=q1m, type=short, points=1, answer={3}, check=numeric]{1.4cm-2pt}{10pt}} & \inblank{\blank{1.8cm}}{\gradedblank[id=q1n, type=short, points=1, answer={growth}, check=text]{1.8cm-2pt}{10pt}} & \inblank{\blank{1.7cm}}{\gradedblank[id=q1o, type=short, points=1, answer={(0,0.4)}, check=text]{1.7cm-2pt}{10pt}} & \inblank{\blank{1.7cm}}{\gradedblank[id=q1p, type=short, points=1, answer={left}, check=text]{1.7cm-2pt}{10pt}} \\
     \hline
     \end{tabularx}
     \end{center}
     All four have the same domain, the same range, and the same horizontal asymptote. Write them
-    once: domain \blank{2.6cm}, range \blank{2.6cm}, asymptote \blank{2.0cm}.
+    once: domain \inblank{\blank{2.6cm}}{\gradedblank[id=q1q, type=short, points=1, answer={(-inf,inf)}, check=text, display={$(-\infty,\infty)$}]{2.6cm-2pt}{10pt}}, range \inblank{\blank{2.6cm}}{\gradedblank[id=q1r, type=short, points=1, answer={(0,inf)}, check=text, display={$(0,\infty)$}]{2.6cm-2pt}{10pt}}, asymptote \inblank{\blank{2.0cm}}{\gradedblank[id=q1s, type=short, points=1, answer={y=0}, check=expression]{2.0cm-2pt}{10pt}}.
 
   \item \textbf{A growth graph.} The graph is $m(x) = 4\cdot 2^{x}$.
     \begin{center}
@@ -53,13 +57,13 @@ Show how you read each feature. Write every domain and range in \textbf{interval
       \fill[charcoal] (1,8) circle (3pt) node[left, font=\scriptsize]{$(1,8)$};
     \end{tikzpicture}
     \end{center}
-    $a=$ \blank{1.2cm} \quad $b=$ \blank{1.2cm} \quad Growth or decay? \blank{2.0cm} \\[3pt]
-    Domain: \blank{2.8cm} \quad Range: \blank{2.8cm} \quad Horizontal asymptote: \blank{1.8cm} \\[3pt]
-    $y$-intercept: \blank{1.8cm} \quad $x$-intercept: \blank{1.8cm} \quad
-    Increasing or decreasing? \blank{2.2cm} \\[3pt]
-    Absolute extrema: \blank{2.4cm} \\[3pt]
-    End behavior: as $x\to+\infty$, $m(x)\to$ \blank{1.4cm}; \; as $x\to-\infty$,
-    $m(x)\to$ \blank{1.4cm}
+    $a=$ \inblank{\blank{1.2cm}}{\gradedblank[id=q2a, type=short, points=1, answer={4}, check=numeric]{1.2cm-2pt}{10pt}} \quad $b=$ \inblank{\blank{1.2cm}}{\gradedblank[id=q2b, type=short, points=1, answer={2}, check=numeric]{1.2cm-2pt}{10pt}} \quad Growth or decay? \inblank{\blank{2.0cm}}{\gradedblank[id=q2c, type=short, points=1, answer={growth}, check=text]{2.0cm-2pt}{10pt}} \\[3pt]
+    Domain: \inblank{\blank{2.8cm}}{\gradedblank[id=q2d, type=short, points=1, answer={(-inf,inf)}, check=text, display={$(-\infty,\infty)$}]{2.8cm-2pt}{10pt}} \quad Range: \inblank{\blank{2.8cm}}{\gradedblank[id=q2e, type=short, points=1, answer={(0,inf)}, check=text, display={$(0,\infty)$}]{2.8cm-2pt}{10pt}} \quad Horizontal asymptote: \inblank{\blank{1.8cm}}{\gradedblank[id=q2f, type=short, points=1, answer={y=0}, check=expression]{1.8cm-2pt}{10pt}} \\[3pt]
+    $y$-intercept: \inblank{\blank{1.8cm}}{\gradedblank[id=q2g, type=short, points=1, answer={(0,4)}, check=text]{1.8cm-2pt}{10pt}} \quad $x$-intercept: \inblank{\blank{1.8cm}}{\gradedblank[id=q2h, type=short, points=1, answer={none}, check=text]{1.8cm-2pt}{10pt}} \quad
+    Increasing or decreasing? \inblank{\blank{2.2cm}}{\gradedblank[id=q2i, type=short, points=1, answer={increasing}, check=text]{2.2cm-2pt}{10pt}} \\[3pt]
+    Absolute extrema: \inblank{\blank{2.4cm}}{\gradedblank[id=q2j, type=short, points=1, answer={none}, check=text]{2.4cm-2pt}{10pt}} \\[3pt]
+    End behavior: as $x\to+\infty$, $m(x)\to$ \inblank{\blank{1.4cm}}{\gradedblank[id=q2k, type=short, points=1, answer={+inf}, check=text, display={$+\infty$}]{1.4cm-2pt}{10pt}}; \; as $x\to-\infty$,
+    $m(x)\to$ \inblank{\blank{1.4cm}}{\gradedblank[id=q2l, type=short, points=1, answer={0}, check=numeric]{1.4cm-2pt}{10pt}}
 
   \item \textbf{A decay graph.} The graph is $n(x) = 9\left(\frac13\right)^{x}$.
     \begin{center}
@@ -75,15 +79,17 @@ Show how you read each feature. Write every domain and range in \textbf{interval
       \fill[charcoal] (2,1) circle (3pt) node[above right, font=\scriptsize]{$(2,1)$};
     \end{tikzpicture}
     \end{center}
-    $a=$ \blank{1.2cm} \quad $b=$ \blank{1.2cm} \quad Growth or decay? \blank{2.0cm} \\[3pt]
-    Domain: \blank{2.8cm} \quad Range: \blank{2.8cm} \quad Horizontal asymptote: \blank{1.8cm} \\[3pt]
-    $y$-intercept: \blank{1.8cm} \quad $x$-intercept: \blank{1.8cm} \quad
-    Increasing or decreasing? \blank{2.2cm} \\[3pt]
-    End behavior: as $x\to+\infty$, $n(x)\to$ \blank{1.4cm}; \; as $x\to-\infty$,
-    $n(x)\to$ \blank{1.4cm} \\[3pt]
-    Confirm $b$ from the labeled points: $\frac{n(1)}{n(0)}=\frac{3}{9}=$ \blank{1.2cm} \\[3pt]
+    $a=$ \inblank{\blank{1.2cm}}{\gradedblank[id=q3a, type=short, points=1, answer={9}, check=numeric]{1.2cm-2pt}{10pt}} \quad $b=$ \inblank{\blank{1.2cm}}{\gradedblank[id=q3b, type=short, points=1, answer={1/3}, check=numeric, display={$1/3$}]{1.2cm-2pt}{10pt}} \quad Growth or decay? \inblank{\blank{2.0cm}}{\gradedblank[id=q3c, type=short, points=1, answer={decay}, check=text]{2.0cm-2pt}{10pt}} \\[3pt]
+    Domain: \inblank{\blank{2.8cm}}{\gradedblank[id=q3d, type=short, points=1, answer={(-inf,inf)}, check=text, display={$(-\infty,\infty)$}]{2.8cm-2pt}{10pt}} \quad Range: \inblank{\blank{2.8cm}}{\gradedblank[id=q3e, type=short, points=1, answer={(0,inf)}, check=text, display={$(0,\infty)$}]{2.8cm-2pt}{10pt}} \quad Horizontal asymptote: \inblank{\blank{1.8cm}}{\gradedblank[id=q3f, type=short, points=1, answer={y=0}, check=expression]{1.8cm-2pt}{10pt}} \\[3pt]
+    $y$-intercept: \inblank{\blank{1.8cm}}{\gradedblank[id=q3g, type=short, points=1, answer={(0,9)}, check=text]{1.8cm-2pt}{10pt}} \quad $x$-intercept: \inblank{\blank{1.8cm}}{\gradedblank[id=q3h, type=short, points=1, answer={none}, check=text]{1.8cm-2pt}{10pt}} \quad
+    Increasing or decreasing? \inblank{\blank{2.2cm}}{\gradedblank[id=q3i, type=short, points=1, answer={decreasing}, check=text]{2.2cm-2pt}{10pt}} \\[3pt]
+    End behavior: as $x\to+\infty$, $n(x)\to$ \inblank{\blank{1.4cm}}{\gradedblank[id=q3j, type=short, points=1, answer={0}, check=numeric]{1.4cm-2pt}{10pt}}; \; as $x\to-\infty$,
+    $n(x)\to$ \inblank{\blank{1.4cm}}{\gradedblank[id=q3k, type=short, points=1, answer={+inf}, check=text, display={$+\infty$}]{1.4cm-2pt}{10pt}} \\[3pt]
+    Confirm $b$ from the labeled points: $\frac{n(1)}{n(0)}=\frac{3}{9}=$ \inblank{\blank{1.2cm}}{\gradedblank[id=q3l, type=short, points=1, answer={1/3}, check=numeric, display={$1/3$}]{1.2cm-2pt}{10pt}} \\[3pt]
     Problems 2 and 3 have the \emph{same} horizontal asymptote. Which side does each graph approach
-    it on, and what in the equation decides that? \blank{6.0cm}
+    it on, and what in the equation decides that? \inblank{\blank{6.0cm}}{\gradedblank[id=q3m, type=rubric, points=2, display={$m$ approaches $y=0$ on the \emph{left}
+    and $n$ approaches it on the \emph{right}; the base decides --- $b>1$ shrinks toward the
+    asymptote as $x$ goes to $-\infty$, while $0<b<1$ shrinks toward it as $x$ goes to $+\infty$.}]{6.0cm-2pt}{10pt}}
 
   \item \textbf{Name the family from the table.} Each table has evenly spaced $x$-values. Label each
     one \emph{linear}, \emph{quadratic}, or \emph{exponential}, and give the constant that proves it.
@@ -97,15 +103,21 @@ Show how you read each feature. Write every domain and range in \textbf{interval
     C: $y$ & $3$ & $4$ & $7$ & $12$ & $19$ \\ \hline
     \end{tabular}
     \end{center}
-    A is \blank{2.6cm} because \blank{5.0cm} \\[3pt]
-    B is \blank{2.6cm} because \blank{5.0cm} \\[3pt]
-    C is \blank{2.6cm} because \blank{5.0cm}
+    A is \inblank{\blank{2.6cm}}{\gradedblank[id=q4a, type=short, points=1, answer={linear}, check=text]{2.6cm-2pt}{10pt}} because \inblank{\blank{5.0cm}}{\gradedblank[id=q4b, type=rubric, points=1, display={the difference is a constant $+3$}]{5.0cm-2pt}{10pt}} \\[3pt]
+    B is \inblank{\blank{2.6cm}}{\gradedblank[id=q4c, type=short, points=1, answer={exponential}, check=text]{2.6cm-2pt}{10pt}} because \inblank{\blank{5.0cm}}{\gradedblank[id=q4d, type=rubric, points=1, display={the ratio is a constant $2$}]{5.0cm-2pt}{10pt}} \\[3pt]
+    C is \inblank{\blank{2.6cm}}{\gradedblank[id=q4e, type=short, points=1, answer={quadratic}, check=text]{2.6cm-2pt}{10pt}} because \inblank{\blank{5.0cm}}{\gradedblank[id=q4f, type=rubric, points=1, display={the differences $1,3,5,7$ are not constant, but the second differences are a constant $+2$}]{5.0cm-2pt}{10pt}}
 
   \item \textbf{Explain.} In Unit 5, the endpoint of $y=\sqrt{x}$ gave the function an absolute
         minimum of $0$. An exponential graph like $y=2^{x}$ also has a lowest edge at $y=0$ --- but
         it has \emph{no} absolute minimum. Explain the difference, using the words
         \textbf{endpoint}, \textbf{asymptote}, and \textbf{reaches}.
-        \writelines{3}
+        \gradedlines{3}{\gradedblank[id=q5, type=rubric, points=3, display={An \textbf{endpoint} is a point \emph{on} the graph: $\sqrt{0}=0$, so $y=\sqrt{x}$
+        actually \textbf{reaches} the value $0$ at $x=0$, and a value the function reaches and never
+        goes below is an absolute minimum.\\[3pt]
+        An \textbf{asymptote} is a line the graph only approaches. There is no input that makes
+        $2^{x}$ equal $0$ --- the outputs get smaller and smaller but stay positive --- so $0$ is
+        never \textbf{reached}. It is the boundary of the range, not a value of the function, which
+        is why the range is $(0,\infty)$ and there is no minimum.}]{\linewidth}{\gradedlinesheight}}
 \end{enumerate}
 \end{notesbox}
 

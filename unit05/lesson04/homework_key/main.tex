@@ -2,6 +2,10 @@
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\usepackage{grading}
+\gradingassignment{alg2-u05-l04-hw}
+\gradingcourse{algebra_2}
+\usepackage{algebra2-graded}
 \newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
 % In-formula answer slot (\ans is text-mode and must never appear inside $...$).
 \newcommand{\mans}[1]{{\color{keyred}\mathbf{#1}}}
@@ -35,10 +39,10 @@ Write every domain and range in \textbf{interval notation}. Show how you found e
     \hline
     \textbf{Function} & \textbf{Parent} & \textbf{Transformations, in order} & \textbf{Anchor point} & \textbf{Domain \& range} \\
     \hline
-    $\sqrt{x-5}+2$ & \ans{$\sqrt{x}$} & \ans{right 5, up 2} & \ans{$(5,2)$} & \ans{$[5,\infty)$; $[2,\infty)$} \\
-    $\sqrt[3]{x+3}-1$ & \ans{$\sqrt[3]{x}$} & \ans{left 3, down 1} & \ans{$(-3,-1)$} & \ans{all reals; all reals} \\
-    $-4\sqrt{x}+2$ & \ans{$\sqrt{x}$} & \ans{stretch by 4, reflect over the $x$-axis, up 2} & \ans{$(0,2)$} & \ans{$[0,\infty)$; $(-\infty,2]$} \\
-    $\tfrac12\sqrt{x+6}-3$ & \ans{$\sqrt{x}$} & \ans{left 6, compress by $\tfrac12$, down 3} & \ans{$(-6,-3)$} & \ans{$[-6,\infty)$; $[-3,\infty)$} \\
+    $\sqrt{x-5}+2$ & \inblank{\blank{1.4cm}}{\gradedblank[id=q1a, type=short, points=1, answer={sqrt(x)}, display={$\sqrt{x}$}]{1.4cm-2pt}{14pt}} & \inblank{\blank{2.4cm}}{\gradedblank[id=q1b, type=short, points=1, answer={right 5, up 2}, check=text]{2.4cm-2pt}{14pt}} & \inblank{\blank{1.6cm}}{\gradedblank[id=q1c, type=short, points=1, answer={(5,2)}, check=text]{1.6cm-2pt}{14pt}} & \inblank{\blank{2.0cm}}{\gradedblank[id=q1d, type=short, points=2, answer={[5,inf); [2,inf)}, check=text, display={$[5,\infty)$; $[2,\infty)$}]{2.0cm-2pt}{14pt}} \\
+    $\sqrt[3]{x+3}-1$ & \inblank{\blank{1.4cm}}{\gradedblank[id=q1e, type=short, points=1, answer={x^(1/3)}, display={$\sqrt[3]{x}$}]{1.4cm-2pt}{14pt}} & \inblank{\blank{2.4cm}}{\gradedblank[id=q1f, type=short, points=1, answer={left 3, down 1}, check=text]{2.4cm-2pt}{14pt}} & \inblank{\blank{1.6cm}}{\gradedblank[id=q1g, type=short, points=1, answer={(-3,-1)}, check=text]{1.6cm-2pt}{14pt}} & \inblank{\blank{2.0cm}}{\gradedblank[id=q1h, type=short, points=2, answer={(-inf,inf); (-inf,inf)}, check=text, display={all reals; all reals}]{2.0cm-2pt}{14pt}} \\
+    $-4\sqrt{x}+2$ & \inblank{\blank{1.4cm}}{\gradedblank[id=q1i, type=short, points=1, answer={sqrt(x)}, display={$\sqrt{x}$}]{1.4cm-2pt}{14pt}} & \inblank{\blank{2.4cm}}{\gradedblank[id=q1j, type=short, points=2, answer={stretch by 4, reflect over the x-axis, up 2}, check=text, display={$\times4$, reflect, up 2}]{2.4cm-2pt}{14pt}} & \inblank{\blank{1.6cm}}{\gradedblank[id=q1k, type=short, points=1, answer={(0,2)}, check=text]{1.6cm-2pt}{14pt}} & \inblank{\blank{2.0cm}}{\gradedblank[id=q1l, type=short, points=2, answer={[0,inf); (-inf,2]}, check=text, display={$[0,\infty)$; $(-\infty,2]$}]{2.0cm-2pt}{14pt}} \\
+    $\tfrac12\sqrt{x+6}-3$ & \inblank{\blank{1.4cm}}{\gradedblank[id=q1m, type=short, points=1, answer={sqrt(x)}, display={$\sqrt{x}$}]{1.4cm-2pt}{14pt}} & \inblank{\blank{2.4cm}}{\gradedblank[id=q1n, type=short, points=2, answer={left 6, compress by 1/2, down 3}, check=text, display={left 6, $\times\frac12$, down 3}]{2.4cm-2pt}{14pt}} & \inblank{\blank{1.6cm}}{\gradedblank[id=q1o, type=short, points=1, answer={(-6,-3)}, check=text]{1.6cm-2pt}{14pt}} & \inblank{\blank{2.0cm}}{\gradedblank[id=q1p, type=short, points=2, answer={[-6,inf); [-3,inf)}, check=text, display={$[-6,\infty)$; $[-3,\infty)$}]{2.0cm-2pt}{14pt}} \\
     \hline
     \end{tabularx}
     \end{center}
@@ -57,13 +61,13 @@ Write every domain and range in \textbf{interval notation}. Show how you found e
       \fill[charcoal] (12,-1) circle (2.6pt);
     \end{tikzpicture}
     \end{center}
-    $a=\mans{-1}$, \; $h=\mans{-4}$, \; $k=\mans{3}$ \quad Anchor: \ans{$(-4,3)$} \\[3pt]
-    Domain: \ans{$[-4,\infty)$} \quad Range: \ans{$(-\infty,3]$} \\[3pt]
-    $x$-intercept: \ans{$(5,0)$} \quad $y$-intercept: \ans{$(0,1)$} \\[3pt]
-    Increasing or decreasing on its domain? \ans{decreasing} \\[3pt]
-    Absolute \ans{maximum} of \ans{$3$} at $x=\mans{-4}$; \; no absolute \ans{minimum} \\[3pt]
-    End behavior: as $x\to+\infty$, $m(x)\to\mans{-\infty}$. \; As $x\to-\infty$: \ans{the graph
-    stops at $x=-4$}
+    $a=\inblank{\blank{1.0cm}}{\gradedblank[id=q2a, type=short, points=1, answer={-1}, check=numeric]{1.0cm-2pt}{12pt}}$, \; $h=\inblank{\blank{1.0cm}}{\gradedblank[id=q2b, type=short, points=1, answer={-4}, check=numeric]{1.0cm-2pt}{12pt}}$, \; $k=\inblank{\blank{1.0cm}}{\gradedblank[id=q2c, type=short, points=1, answer={3}, check=numeric]{1.0cm-2pt}{12pt}}$ \quad Anchor: \inblank{\blank{1.8cm}}{\gradedblank[id=q2d, type=short, points=1, answer={(-4,3)}, check=text]{1.8cm-2pt}{12pt}} \\[3pt]
+    Domain: \inblank{\blank{2.6cm}}{\gradedblank[id=q2e, type=short, points=1, answer={[-4,inf)}, check=text, display={$[-4,\infty)$}]{2.6cm-2pt}{12pt}} \quad Range: \inblank{\blank{2.6cm}}{\gradedblank[id=q2f, type=short, points=1, answer={(-inf,3]}, check=text, display={$(-\infty,3]$}]{2.6cm-2pt}{12pt}} \\[3pt]
+    $x$-intercept: \inblank{\blank{1.8cm}}{\gradedblank[id=q2g, type=short, points=1, answer={(5,0)}, check=text]{1.8cm-2pt}{12pt}} \quad $y$-intercept: \inblank{\blank{1.8cm}}{\gradedblank[id=q2h, type=short, points=1, answer={(0,1)}, check=text]{1.8cm-2pt}{12pt}} \\[3pt]
+    Increasing or decreasing on its domain? \inblank{\blank{2.4cm}}{\gradedblank[id=q2i, type=short, points=1, answer={decreasing}, check=text]{2.4cm-2pt}{12pt}} \\[3pt]
+    Absolute \inblank{\blank{1.6cm}}{\gradedblank[id=q2j, type=short, points=1, answer={maximum}, check=text]{1.6cm-2pt}{12pt}} of \inblank{\blank{1.0cm}}{\gradedblank[id=q2k, type=short, points=1, answer={3}, check=numeric]{1.0cm-2pt}{12pt}} at $x=\inblank{\blank{1.0cm}}{\gradedblank[id=q2l, type=short, points=1, answer={-4}, check=numeric]{1.0cm-2pt}{12pt}}$; \; no absolute \inblank{\blank{1.6cm}}{\gradedblank[id=q2m, type=short, points=1, answer={minimum}, check=text]{1.6cm-2pt}{12pt}} \\[3pt]
+    End behavior: as $x\to+\infty$, $m(x)\to\inblank{\blank{1.4cm}}{\gradedblank[id=q2n, type=short, points=1, answer={-inf}, check=text, display={$-\infty$}]{1.4cm-2pt}{12pt}}$. \; As $x\to-\infty$: \inblank{\blank{4.0cm}}{\gradedblank[id=q2o, type=rubric, points=1, display={the graph
+    stops at $x=-4$}]{4.0cm-2pt}{12pt}}
 
   \item \textbf{Write the equation --- square root.} The graph below has the form
         $y=a\sqrt{x-h}+k$.
@@ -81,8 +85,8 @@ Write every domain and range in \textbf{interval notation}. Show how you found e
     \end{center}
     Anchor \ans{$(-3,4)$} $\Rightarrow$ $h=\mans{-3}$, $k=\mans{4}$. \; Substitute $(1,2)$:
     $a=\mans{-1}$. \\[3pt]
-    \textbf{Equation:} $y=$ \ans{$-\sqrt{x+3}+4$} \quad Check it against $(6,1)$:
-    \ans{$-\sqrt{9}+4=1$ \checkmark}
+    \textbf{Equation:} $y=\inblank{\blank{4.4cm}}{\gradedblank[id=q3a, type=short, points=2, answer={-sqrt(x+3)+4}, display={$-\sqrt{x+3}+4$}]{4.4cm-2pt}{12pt}}$ \quad Check it against $(6,1)$:
+    \inblank{\blank{4.0cm}}{\gradedblank[id=q3b, type=rubric, points=1, display={$-\sqrt{9}+4=1$ \checkmark}]{4.0cm-2pt}{12pt}}
 
     \vspace{2pt}
     {\small\emph{Work for $a$:} $2=a\sqrt{1+3}+4 \Rightarrow 2=2a+4 \Rightarrow -2=2a \Rightarrow
@@ -104,9 +108,9 @@ Write every domain and range in \textbf{interval notation}. Show how you found e
     \end{center}
     Inflection point \ans{$(1,-1)$} $\Rightarrow$ $h=\mans{1}$, $k=\mans{-1}$. \;
     Substitute $(9,3)$: $a=\mans{2}$. \\[3pt]
-    \textbf{Equation:} $y=$ \ans{$2\sqrt[3]{x-1}-1$} \\[3pt]
+    \textbf{Equation:} $y=\inblank{\blank{4.4cm}}{\gradedblank[id=q4a, type=short, points=2, answer={2(x-1)^(1/3)-1}, display={$2\sqrt[3]{x-1}-1$}]{4.4cm-2pt}{12pt}}$ \\[3pt]
     Why does this function have \emph{no} endpoint, even though it has an $h$ and a $k$?
-    \ans{Because the index is odd, so no input is forbidden --- nothing stops the graph.}
+    \inblank{\blank{5.4cm}}{\gradedblank[id=q4b, type=rubric, points=2, display={Because the index is odd, so no input is forbidden --- nothing stops the graph.}]{5.4cm-2pt}{12pt}}
 
   \item \textbf{Factor first.} Rewrite each in the form $a\sqrt[n]{x-h}+k$, then give the anchor
         point and the domain.
@@ -116,9 +120,9 @@ Write every domain and range in \textbf{interval notation}. Show how you found e
     \hline
     \textbf{Function} & \textbf{Rewritten} & \textbf{Anchor} & \textbf{Domain} \\
     \hline
-    $y=\sqrt{25x}$ & \ans{$5\sqrt{x}$} & \ans{$(0,0)$} & \ans{$[0,\infty)$} \\
-    $y=\sqrt{16x-32}$ & \ans{$4\sqrt{x-2}$} & \ans{$(2,0)$} & \ans{$[2,\infty)$} \\
-    $y=\sqrt[3]{27x-27}$ & \ans{$3\sqrt[3]{x-1}$} & \ans{$(1,0)$} & \ans{all reals} \\
+    $y=\sqrt{25x}$ & \inblank{\blank{2.2cm}}{\gradedblank[id=q5a, type=short, points=2, answer={5sqrt(x)}, display={$5\sqrt{x}$}]{2.2cm-2pt}{14pt}} & \inblank{\blank{1.8cm}}{\gradedblank[id=q5b, type=short, points=1, answer={(0,0)}, check=text]{1.8cm-2pt}{14pt}} & \inblank{\blank{2.2cm}}{\gradedblank[id=q5c, type=short, points=1, answer={[0,inf)}, check=text, display={$[0,\infty)$}]{2.2cm-2pt}{14pt}} \\
+    $y=\sqrt{16x-32}$ & \inblank{\blank{2.2cm}}{\gradedblank[id=q5d, type=short, points=2, answer={4sqrt(x-2)}, display={$4\sqrt{x-2}$}]{2.2cm-2pt}{14pt}} & \inblank{\blank{1.8cm}}{\gradedblank[id=q5e, type=short, points=1, answer={(2,0)}, check=text]{1.8cm-2pt}{14pt}} & \inblank{\blank{2.2cm}}{\gradedblank[id=q5f, type=short, points=1, answer={[2,inf)}, check=text, display={$[2,\infty)$}]{2.2cm-2pt}{14pt}} \\
+    $y=\sqrt[3]{27x-27}$ & \inblank{\blank{2.2cm}}{\gradedblank[id=q5g, type=short, points=2, answer={3(x-1)^(1/3)}, display={$3\sqrt[3]{x-1}$}]{2.2cm-2pt}{14pt}} & \inblank{\blank{1.8cm}}{\gradedblank[id=q5h, type=short, points=1, answer={(1,0)}, check=text]{1.8cm-2pt}{14pt}} & \inblank{\blank{2.2cm}}{\gradedblank[id=q5i, type=short, points=1, answer={(-inf,inf)}, check=text, display={all reals}]{2.2cm-2pt}{14pt}} \\
     \hline
     \end{tabularx}
     \end{center}
@@ -126,7 +130,7 @@ Write every domain and range in \textbf{interval notation}. Show how you found e
   \item \textbf{Explain.} The graphs of $y=-\sqrt{x}$ and $y=\sqrt{-x}$ are \emph{different}. The
         graphs of $y=-\sqrt[3]{x}$ and $y=\sqrt[3]{-x}$ are \emph{the same}. Explain both facts at
         once, using the words \textbf{index} and \textbf{symmetry}.
-        \ansline{Both pairs ask the same question --- flip the outputs, or flip the inputs? --- and
+        \gradedlines{4}{\gradedblank[id=q6, type=rubric, points=4, display={Both pairs ask the same question --- flip the outputs, or flip the inputs? --- and
         the \textbf{index} decides whether the two flips agree. A square root has an \emph{even}
         index, so it accepts only $x\ge0$: $-\sqrt{x}$ lives to the right of the $y$-axis and hangs
         below the $x$-axis, while $\sqrt{-x}$ accepts only $x\le0$ and so lives to the \emph{left}
@@ -134,7 +138,7 @@ Write every domain and range in \textbf{interval notation}. Show how you found e
         \emph{odd} index, which is exactly the statement that $\sqrt[3]{-x}=-\sqrt[3]{x}$ --- the
         origin \textbf{symmetry} of Lesson 5.0, $f(-x)=-f(x)$. Moving the minus sign from the inside
         to the outside changes nothing, so the vertical flip and the horizontal flip produce one
-        curve. The square root has no symmetry to trade on, so its two flips stay apart.}
+        curve. The square root has no symmetry to trade on, so its two flips stay apart.}]{\linewidth}{\gradedlinesheight}}
 \end{enumerate}
 \end{notesbox}
 
