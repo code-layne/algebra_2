@@ -1,7 +1,7 @@
 # graded_sample eval set (synthetic)
 
 The stand-in eval set for the grading pipeline (build-order step 2 in
-`shared/common/grading-system-design.md`), until a hand-graded real class set
+`math-shared/grading-system-design.md`), until a hand-graded real class set
 replaces it. Everything here is invented. No real student's name or work is in it.
 
 | File | What it is |
