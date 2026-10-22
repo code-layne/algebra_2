@@ -27,13 +27,17 @@ UNIT         := $(notdir $(abspath ..))
 LESSON       := $(notdir $(CURDIR))
 
 SHARED_STYS  := $(wildcard $(PROJECT_ROOT)/shared/*.sty)
-# TeX search path. `.` comes FIRST: kpathsea resolves even the main file through
-# TEXINPUTS, and shared/common (the math-shared submodule: grading.sty and its
-# examples) holds main.tex files of its own — with `shared//` searched ahead of
-# `.`, a component build would compile shared/common/examples/…/main.tex instead
-# of its own. shared/common is listed explicitly for grading.sty; `shared//`
-# still finds the course's own packages.
-TEXINPUTS    := .:$(PROJECT_ROOT)/shared/common:$(PROJECT_ROOT)/shared//:
+# TeX search path: the course packages (recursive), then math-shared (the
+# submodule at the project root, for grading.sty). math-shared is listed
+# NON-recursively and lives outside shared/ because math-shared/examples holds
+# main.tex files: kpathsea resolves even the main file through TEXINPUTS, so a
+# recursive path reaching them would make a component build compile an
+# example's main.tex instead of its own.
+TEXINPUTS    := $(PROJECT_ROOT)/shared//:$(PROJECT_ROOT)/math-shared:
+# A clone updated from before math-shared moved to the project root keeps the
+# old submodule checkout in shared/common (git leaves it behind). shared//
+# would then find its example main.tex files ahead of a component's own.
+$(if $(wildcard $(PROJECT_ROOT)/shared/common/*),$(error shared/common is the old math-shared checkout; remove it: rm -rf "$(PROJECT_ROOT)/shared/common" && git submodule update --init))
 LATEXMK      = latexmk
 LATEXFLAGS   = -xelatex \
                -interaction=nonstopmode \
@@ -324,7 +328,7 @@ clean:
 	      $(COMPILED_DIR)/$(LESSON)_slides.pdf $(COMPILED_DIR)/$(LESSON)_slides.pptx \
 	      $(COMPILED_DIR)/$(LESSON)_student.pdf $(COMPILED_DIR)/$(LESSON)_key.pdf \
 	      $(COMPILED_DIR)/$(LESSON)_full.pdf
-# ── Grading (shared/common = the math-shared submodule) ───────────────────────
+# ── Grading (math-shared, the submodule at the project root) ──────────────────
 # Per-lesson entry points to math-shared's grading.mk, for ONE component that
 # uses grading.sty (\gradedblank items):
 #
@@ -346,7 +350,7 @@ clean:
 #
 # The roster packets and the per-student builds carry student names: they stay
 # under target/, which is never committed.
-GRADING_MK  := $(PROJECT_ROOT)/shared/common/grading.mk
+GRADING_MK  := $(PROJECT_ROOT)/math-shared/grading.mk
 COMP        ?=
 COMPONENT   := $(COMP)
 GRADING_OUT := $(PDF_DIR)/grading/$(COMP)
@@ -406,5 +410,5 @@ $(ROSTER_PKT_DIR)/%.pdf: grading-personalized $(if $(COMP_IN_PACKET),$(ALIGN_STA
 	$(call paginate,$@,$(ROSTER_PKT_PDFS),$(ROSTER_PKT_PEER))
 else
 manifest graded roster-packets grading-need-comp:
-	@echo "!  shared/common is empty — run: git submodule update --init"; exit 1
+	@echo "!  math-shared is empty — run: git submodule update --init"; exit 1
 endif

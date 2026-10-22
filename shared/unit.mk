@@ -3,6 +3,10 @@
 PROJECT_ROOT := $(abspath ..)
 UNIT         := $(notdir $(CURDIR))
 COMPILED_DIR := $(PROJECT_ROOT)/target/compiled
+# A clone updated from before math-shared moved to the project root keeps the
+# old submodule checkout in shared/common (git leaves it behind). shared//
+# would then find its example main.tex files ahead of a component's own.
+$(if $(wildcard $(PROJECT_ROOT)/shared/common/*),$(error shared/common is the old math-shared checkout; remove it: rm -rf "$(PROJECT_ROOT)/shared/common" && git submodule update --init))
 
 # Auto-discover lessons that have a Makefile, in sorted order.
 LESSONS := $(patsubst %/Makefile,%,$(sort $(wildcard lesson*/Makefile)))
@@ -42,7 +46,7 @@ $(LESSONS):
 _unit_cover:
 ifdef HAS_UNIT_COVER
 	@mkdir -p $(COMPILED_DIR)/$(UNIT)
-	cd unit_cover && TEXINPUTS=".:$(PROJECT_ROOT)/shared/common:$(PROJECT_ROOT)/shared//:" \
+	cd unit_cover && TEXINPUTS="$(PROJECT_ROOT)/shared//:$(PROJECT_ROOT)/math-shared:" \
 	    latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error \
 	    -outdir="$(PROJECT_ROOT)/target/$(UNIT)/unit_cover" main.tex
 	cp $(PROJECT_ROOT)/target/$(UNIT)/unit_cover/main.pdf $(UNIT_COVER_PDF)
@@ -52,7 +56,7 @@ endif
 _study_guide:
 ifdef HAS_STUDY_GUIDE
 	@mkdir -p $(COMPILED_DIR)/$(UNIT)
-	cd study_guide && TEXINPUTS=".:$(PROJECT_ROOT)/shared/common:$(PROJECT_ROOT)/shared//:" \
+	cd study_guide && TEXINPUTS="$(PROJECT_ROOT)/shared//:$(PROJECT_ROOT)/math-shared:" \
 	    latexmk -xelatex -interaction=nonstopmode -halt-on-error -file-line-error \
 	    -outdir="$(PROJECT_ROOT)/target/$(UNIT)/study_guide" main.tex
 	cp $(PROJECT_ROOT)/target/$(UNIT)/study_guide/main.pdf $(STUDY_GUIDE_PDF)

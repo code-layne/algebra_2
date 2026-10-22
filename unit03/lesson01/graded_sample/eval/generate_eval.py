@@ -77,7 +77,7 @@ ITEMS = {
             "wrong": [("14", "error:power-read-as-product"),
                       ("2", "error:squared-coefficient")]},
     "gs7": {"correct": ["5, 3", "3, 5"],
-            "wrong": [("6, 2", EXPONENT), ("6, 4", EXPONENT)]},
+            "wrong": [("6, 2", EXPONENT), ("6, 3", EXPONENT)]},
 }
 
 # Work some students show beside item 5's box (outside it, so never graded).

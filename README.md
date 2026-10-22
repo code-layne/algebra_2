@@ -38,8 +38,10 @@ A unit may also carry bookend components of its own, merged around the lessons:
 
 ## Getting the source
 
-`shared/common` is a git submodule, [code-layne/math-shared](https://github.com/code-layne/math-shared),
-which holds the grading package shared across the courses. Clone with it:
+`math-shared/` is a git submodule, [code-layne/math-shared](https://github.com/code-layne/math-shared),
+which holds the grading package shared across the courses. It sits at the project root, not under
+`shared/`: the build searches `shared/` recursively, and `math-shared/examples` holds `main.tex`
+files a component build would pick up. Clone with it:
 
 ```bash
 git clone --recurse-submodules https://github.com/code-layne/algebra_2
@@ -65,11 +67,11 @@ lands in `target/`.
 
 ### Graded components
 
-A component that loads `grading` (from `shared/common/grading.sty`) marks its graded answers with
+A component that loads `grading` (from `math-shared/grading.sty`) marks its graded answers with
 `\gradedblank`. Each page then carries corner registration marks, a QR code, and a name strip.
 Write each `\gradedblank` line identically in the blank and the key. The key prints the
 answer inside the box (`algebra2-key` turns this on whenever a document loads `grading`). See
-`shared/common/README.md` for the macros and `shared/common/grading-system-design.md` for the
+`math-shared/README.md` for the macros and `math-shared/grading-system-design.md` for the
 plan.
 
 ```bash
