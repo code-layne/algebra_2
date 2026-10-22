@@ -1,0 +1,23 @@
+# Rubric for homework item 5(a), Tobias's error (Unit 6, Lesson 6.4).
+id: q5a
+points: 3
+task: >-
+  Tobias models $5000 at 6% compounded monthly for 4 years as A = 5000(1.06)^48
+  and reports $81,969.36. Name the error, then give the correct model and value.
+criteria:
+  - id: error
+    points: 1
+    full: >-
+      He used 48 monthly periods but never divided the rate by 12 - his base pays a
+      full year's interest every month.
+  - id: model
+    points: 1
+    full: Writes A = 5000(1 + 0.06/12)^48 = 5000(1.005)^48.
+  - id: value
+    points: 1
+    full: Gets A = $6352.45 (to the cent, or within rounding).
+examples:
+  - response: "He didn't divide 6% by 12. A = 5000(1.005)^48 = 6352.45"
+    scores: {error: 1, model: 1, value: 1}
+  - response: "the answer is too big"
+    scores: {error: 0, model: 0, value: 0}
