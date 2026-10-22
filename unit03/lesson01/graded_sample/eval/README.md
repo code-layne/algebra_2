@@ -31,10 +31,10 @@ for the expression, numeric and set checks), and one 4-point rubric item
   | --- | --- |
   | Dropping the sign change when subtracting (item 3 `F`, item 5 `3x^3 - 2x^2 - 3x + 8`) | `misconception:subtraction-sign-change` |
   | Squaring a binomial as a^2 + b^2 (item 1 `B`) | `misconception:binomial-square` |
-  | Multiplying exponents instead of adding them (item 2 `D`, item 7 `6, 2`) | `misconception:multiplied-exponents` |
+  | Multiplying exponents instead of adding them (item 2 `D`, item 7 `6, 2`, or `6, 3` when only the first term is multiplied) | `misconception:multiplied-exponents` |
   | Sign slip in (x-3)(x+3) (item 4 `B`) | `error:product-sign` |
   | Reading x^3 as 3x (item 6 `14`) | `error:power-read-as-product` |
-| Squaring the coefficient, (2x)^2 for 2x^2 (item 6 `2`) | `error:squared-coefficient` |
+  | Squaring the coefficient, (2x)^2 for 2x^2 (item 6 `2`) | `error:squared-coefficient` |
 
 - **Rubric:** the rubric responses are worth 0, 1, 2, 3 and 4 points, at least two
   of each, scored criterion by criterion (step, reason, corrected, answer).
