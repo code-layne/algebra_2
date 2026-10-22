@@ -1,0 +1,116 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{algebra2-graded}[2026/10/22 Algebra 2 graded boxes in an existing layout]
+
+% Placement helpers for converting an already-authored component to
+% math-shared's \gradedblank (grading.sty) without moving a single line or page
+% break. Load it after grading, in the blank and the key alike:
+%
+%   \usepackage{grading}
+%   \gradingassignment{alg2-u01-l04-hw}
+%   \gradingcourse{algebra_2}
+%   \usepackage{algebra2-graded}
+%
+% Each helper typesets the material the component used to print in invisible
+% form (or, for write lines, unchanged), so the line costs exactly what it did,
+% and lays the \gradedblank over it with zero width, height and depth. The box
+% is still recorded where it is actually drawn (zref-savepos), so the manifest
+% positions are the printed ones. Every helper is written identically in the
+% blank and the key; the key prints its answer inside the box.
+
+\RequirePackage{pgf}
+
+% ── Positions inside tcolorbox (XeTeX) ───────────────────────────────────────
+% tcolorbox draws its content with \pgftext, which the xdvipdfmx driver of pgf
+% places with a "pdf:btrans" translation special. TeX never sees that
+% translation, so a \zsavepos inside a tcolorbox -- every \gradedblank in a
+% notesbox -- is recorded at the wrong place (off by the box's padding and title
+% height). When the transformation is a pure translation, as it is for every
+% tcolorbox in this course, make the same move with TeX's own \hskip and
+% \raise instead: the page renders identically and the recorded positions are
+% the printed ones. Anything rotated or scaled keeps pgf's original code.
+\def\alg@pgf@translated#1{%
+  \pgfsys@begin@idscope
+  \pgfsys@beginscope
+    \setbox#1=\hbox{\box#1}%
+    \wd#1=0pt\ht#1=0pt\dp#1=0pt
+    \pgfsys@dvipdfmx@suspendcontent
+    \pgfsys@invoke{0 J [] 0 d}%
+    \pgfsys@dvipdfmx@start@force@reset@color
+    \hskip\pgf@pt@x\raise\pgf@pt@y\box#1\hskip-\pgf@pt@x
+    \pgfsys@dvipdfmx@stop@force@reset@color
+    \pgfsys@dvipdfmx@unsuspendcontent
+  \pgfsys@endscope
+  \pgfsys@end@idscope}
+\newif\ifalg@pgfshift
+\@ifundefined{pgfsys@dvipdfmx@suspendcontent}{}{%
+  \let\alg@pgf@hboxsynced@orig\pgfsys@hboxsynced
+  \def\pgfsys@hboxsynced#1{%
+    \alg@pgfshiftfalse
+    \ifdim\pgf@pt@aa pt=1pt \ifdim\pgf@pt@bb pt=1pt
+      \ifdim\pgf@pt@ab pt=0pt \ifdim\pgf@pt@ba pt=0pt
+        \alg@pgfshifttrue
+      \fi\fi
+    \fi\fi
+    \ifalg@pgfshift\alg@pgf@translated{#1}\else\alg@pgf@hboxsynced@orig{#1}\fi}}
+
+% \inblank{<old blank>}{<\gradedblank ...>}
+%   The box replaces an answer blank on a text line: \blank{1.1cm}, a test's
+%   \slot{2.4cm}{answer}, or anything else the student wrote on. The old blank
+%   is set as a \phantom (its width, height and depth, so the line keeps its
+%   metrics in both files) and the box is laid over it, centred. Give the box
+%   the blank's width less 2pt, {1.1cm-2pt}, so it never touches punctuation
+%   set right against the blank.
+\newsavebox{\alg@gradedbox}
+\newcommand{\inblank}[2]{%
+  \leavevmode\sbox{\alg@gradedbox}{#1}%
+  \rlap{\makebox[\wd\alg@gradedbox]{\raisebox{0pt}[0pt][0pt]{#2}}}\phantom{#1}}
+
+% \letterbox{<\gradedblank ...>}
+%   A multiple-choice answer: "Letter:" and a small box, set flush with the
+%   right edge of the current line (\linewidth), with zero footprint. Put it at
+%   the start of an answer-option line whose right end is empty.
+\newcommand{\letterbox}[1]{%
+  \sbox{\alg@gradedbox}{\raisebox{0pt}[0pt][0pt]{\small\textbf{Letter:}\ #1}}%
+  \leavevmode\rlap{\hskip\dimexpr\linewidth-\wd\alg@gradedbox\relax\usebox{\alg@gradedbox}}}
+
+% \gradedlines{<n>}{<\gradedblank[...]{\linewidth}{\gradedlinesheight}>}
+%   Replaces \writelines{n} for an explain / justify / interpret answer, laying
+%   the box over the write lines. The lines are set exactly as \writelines{n}
+%   sets them (same rules, same spacing). Pass \gradedlinesheight as the box
+%   height: the helper sets it from n and the current \baselineskip before the
+%   box is drawn. Two cases:
+%   * after the prompt, on the prompt's own line (the usual case): the first
+%     write line is the rest of the prompt's line. It is left without its rule
+%     and the box starts below the prompt, so it holds lines 2..n;
+%   * as a paragraph of its own: the box holds all n lines.
+%   The box runs the full line width, from just under the line above to just
+%   under the last rule.
+\newlength{\gradedlinesheight}
+\newlength{\alg@gradedlinestep}
+\newlength{\alg@gradedraise}
+\newcommand{\alg@gradedtopgap}{3.5pt}    % below the baseline of the line above
+\newcommand{\alg@gradedbottomgap}{2.5pt} % below the last rule
+% #1 = number of write lines inside the box, #2 = the \gradedblank. Call at
+% the start of the box's first line (that line's baseline is 0).
+\newcommand{\alg@gradedlinesbox}[2]{%
+  % One write line costs \baselineskip + 4pt (\writeline's 1pt + 3pt).
+  \setlength{\alg@gradedlinestep}{\dimexpr\baselineskip+4pt\relax}%
+  \setlength{\gradedlinesheight}{\dimexpr\alg@gradedlinestep*\numexpr#1\relax-\alg@gradedtopgap+\alg@gradedbottomgap\relax}%
+  % The box's top sits one line step above this line's baseline, less the top
+  % gap; it is centred \gradingboxcenter above its own baseline, hence the raise.
+  \setlength{\alg@gradedraise}{\dimexpr\alg@gradedlinestep-\alg@gradedtopgap-\gradedlinesheight/2-\gradingboxcenter\relax}%
+  \rlap{\raisebox{\alg@gradedraise}[0pt][0pt]{#2}}}
+\newcommand{\gradedlines}[2]{%
+  \ifvmode
+    % \writeline's own first steps: 1pt, then a new line holding a rule.
+    \vspace{1pt}\noindent
+    \alg@gradedlinesbox{#1}{#2}%
+    \textcolor{linegray}{\hrulefill}\vspace{3pt}\\%
+  \else
+    % The prompt's line, run out with no rule.
+    \vspace{1pt}\noindent\hfill\vspace{3pt}\\%
+    \alg@gradedlinesbox{#1-1}{#2}%
+  \fi
+  \foreach \alg@i in {2,...,#1}{\writeline\\}}
+
+\endinput
