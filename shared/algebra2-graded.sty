@@ -68,10 +68,45 @@
 % \letterbox{<\gradedblank ...>}
 %   A multiple-choice answer: "Letter:" and a small box, set flush with the
 %   right edge of the current line (\linewidth), with zero footprint. Put it at
-%   the start of an answer-option line whose right end is empty.
-\newcommand{\letterbox}[1]{%
-  \sbox{\alg@gradedbox}{\raisebox{0pt}[0pt][0pt]{\small\textbf{Letter:}\ #1}}%
-  \leavevmode\rlap{\hskip\dimexpr\linewidth-\wd\alg@gradedbox\relax\usebox{\alg@gradedbox}}}
+%   the start of a line whose right end is empty (an answer-option line, or the
+%   stem's line).
+% \answerbox[<label>]{<\gradedblank ...>}
+%   The same for any final answer, labelled "Answer:" unless a label is given.
+\newcommand{\answerbox}[2][Answer:]{%
+  \leavevmode
+  \sbox{\alg@gradedbox}{\raisebox{0pt}[0pt][0pt]{\small\textbf{#1}\ #2}}%
+  \rlap{\hskip\dimexpr\linewidth-\wd\alg@gradedbox\relax\usebox{\alg@gradedbox}}}
+\newcommand{\letterbox}[1]{\answerbox[Letter:]{#1}}
+
+% Work areas that are only vertical space (\vspace{2.5cm} after a prompt).
+% Both helpers go between paragraphs and cost no vertical space at all: the
+% material hangs in a box of zero height, and the following line is spaced as
+% if the box were not there.
+%
+% \workanswer[<label>]{<\gradedblank ...>}
+%   Right AFTER the work area's \vspace: "Answer:" and the box, flush right,
+%   their bottom edge \gradedworkgap above the end of the space.
+% \workarea{<\gradedblank[...]{<w>}{<h>}>}
+%   Right BEFORE the work area's \vspace: the box hangs down from there, flush
+%   with the list's left edge -- a rubric box over the whole of a free-response
+%   space (make h the space less a few points).
+\newlength{\gradedworkgap}
+\setlength{\gradedworkgap}{3pt}
+\newcommand{\alg@zeroheight}[1]{%
+  \par
+  \edef\alg@prevdepth{\the\prevdepth}%
+  \nointerlineskip
+  \moveright\@totalleftmargin\vbox to\z@{#1}%
+  \prevdepth=\alg@prevdepth\relax}
+\newcommand{\workanswer}[2][Answer:]{%
+  \sbox{\alg@gradedbox}{\raisebox{0pt}[0pt][0pt]{\small\textbf{#1}\ #2}}%
+  \alg@zeroheight{\vss
+    \hbox to\linewidth{\hfill\usebox{\alg@gradedbox}}%
+    \kern\dimexpr\gradedworkgap+0.6em\relax}}
+\newcommand{\workarea}[1]{%
+  \alg@zeroheight{\kern 2pt
+    \hbox to\linewidth{\raisebox{0pt}[0pt][0pt]{\raisebox{-\height}{#1}}\hfill}%
+    \vss}}
 
 % \gradedlines{<n>}{<\gradedblank[...]{\linewidth}{\gradedlinesheight}>}
 %   Replaces \writelines{n} for an explain / justify / interpret answer, laying
