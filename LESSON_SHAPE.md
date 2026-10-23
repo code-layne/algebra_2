@@ -46,6 +46,31 @@ the deck). `experience` is deliberately absent from `doc_titles` and has no skel
 the scaffolder refuses it: it was the EFFL centrepiece and is never scaffolded again (its
 `note_labels` entry exists only so `movenotes.py` can title a note lifted from a legacy key).
 
+## 0. Course direction — 2026-10-23 (read this first; it overrides §1 where they disagree)
+
+User direction, 2026-10-23, after class on simplifying negative radicands (2.3):
+
+- **One lesson = one meeting = one skill.** "Literally 1 skill per lesson." A lesson that names
+  two moves is two lessons. The three cycles of §1 become **three cases of the same skill**,
+  climbing in difficulty (e.g. 2.4: add/subtract → multiply → multiply a conjugate pair), never
+  three different skills. The Final Round's four items are four problems on that one skill.
+- **Unit length does not matter.** "We are building skills and confidence, not trying to rush
+  through material." Units grow to as many lessons as their skills need; pacing is no longer
+  fitted to the 93-meeting calendar (`COURSE_PLAN.md` §6 is stale until the syllabus is rebuilt).
+- **Units 6 (Exponential) and 7 (Logarithmic) are optional.** "If we do not cover exponential or
+  logarithmic functions, then we don't. They can get those from precalculus." Teach them only if
+  the year has room after Unit 5; never compress Units 2–5 to reach them.
+- **From Unit 3 onward the focus moves to printed packets, like the other courses**, with the
+  graded homework (or extra credit) **detachable** from the packet. Slides are still authored and
+  published, but they serve the packet rather than replace it. **The Unit 3+ packet shape is not
+  yet specified** — components, the extra-credit piece, and how "detachable" is enforced are
+  awaiting the user's answers. Until this section names them, do not author a Unit 3+ lesson;
+  the slides-first shape of §1 governs the rest of Unit 2 (2.4–2.9).
+
+The lesson map these rules produce is in `COURSE_BREAKDOWN.md` (Units 2–5 remapped 2026-10-23).
+The lessons already on disk for 2.4–2.5 and Units 3–5 are in the old map's numbering and scope;
+each is regenerated whole when its new lesson is authored, never patched.
+
 ## 1. The lesson shape
 
 **Algebra 2 is a function-family course** for a secondary-school audience: after a foundations

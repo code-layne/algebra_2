@@ -1,6 +1,10 @@
 # Algebra 2 — Unit & Lesson Breakdown
 
-**Course:** Algebra 2 · **7 units · 50 lessons**
+**Course:** Algebra 2 · **5 core units · 49 lessons** (+ Units 6–7 optional)
+
+> **Remapped 2026-10-23 — one lesson, one meeting, one skill.** Units are as long as their skills
+> need; Units 6–7 are optional (Precalculus covers them); from Unit 3 the focus is printed
+> packets with detachable graded homework. Policy: `LESSON_SHAPE.md` §0.
 
 Derived from [COURSE_PLAN.md](COURSE_PLAN.md) §2–§4; authoring status verified against the
 files on disk (2026-08-06), not the plan's prose.
@@ -27,12 +31,12 @@ trigonometry, linear systems / linear programming.
 | Unit | Title | Family | Lessons | Standards clusters | Status |
 |:--:|---|---|:--:|---|---|
 | 1 | Linear Functions | Linear, abs. value, piecewise | 6 · 1.0–1.5 | A.F.1, A2.EI.1, A2.F.1/2, A2.ST.2 | ✅ Complete + tests |
-| 2 | Quadratic Functions | Quadratic (incl. complex) | 6 · 2.0–2.5 | A2.EO.3/4, A2.EI.2/3, A2.F.2 | ✅ Complete + tests |
-| 3 | Polynomial Functions | Polynomial | 7 · 3.0–3.6 | A2.EO.3, A2.EI.6, A2.F.2 | ✅ Complete + tests |
-| 4 | Rational Functions | Rational | 8 · 4.0–4.7 | A2.EO.1, A2.EI.4, A2.F.1/2 | ✅ Complete + tests |
-| 5 | Radical Functions | Radical / power | 8 · 5.0–5.7 | A2.EO.2, A2.EI.5, A2.F.1/2 | ✅ Complete + tests |
-| 6 | Exponential Functions | Exponential | 6 · 6.0–6.5 | A2.F.1/2, A2.ST.2 | 🔧 6.0–6.4 authored; 6.5 + tests are skeletons |
-| 7 | Logarithmic Functions | Logarithmic | 7 · 7.0–7.6 | A2.F.1/2 (+ 2 no-standard lessons) | 🔧 7.0 authored; 7.1–7.6 not yet scaffolded; tests are skeletons |
+| 2 | Quadratic Functions | Quadratic (incl. complex) | 10 · 2.0–2.9 | A2.EO.3/4, A2.EI.2/3, A2.F.2 | 🔧 2.0–2.3 taught; remapped 2026-10-23 |
+| 3 | Polynomial Functions | Polynomial | 12 · 3.0–3.11 | A2.EO.3, A2.EI.6, A2.F.2 | 🔁 remapped; old lessons regenerate when taught |
+| 4 | Rational Functions | Rational | 10 · 4.0–4.9 | A2.EO.1, A2.EI.4, A2.F.1/2 | 🔁 remapped; old lessons regenerate when taught |
+| 5 | Radical Functions | Radical / power | 11 · 5.0–5.10 | A2.EO.2, A2.EI.5, A2.F.1/2 | 🔁 remapped; old lessons regenerate when taught |
+| 6 | Exponential Functions *(optional)* | Exponential | 6 · 6.0–6.5 | A2.F.1/2, A2.ST.2 | 🔧 6.0–6.4 authored; 6.5 + tests are skeletons |
+| 7 | Logarithmic Functions *(optional)* | Logarithmic | 7 · 7.0–7.6 | A2.F.1/2 (+ 2 no-standard lessons) | 🔧 7.0 authored; 7.1–7.6 not yet scaffolded; tests are skeletons |
 
 Unit 6 is short because exponentials have **no A2.EO and no A2.EI standard** — a
 regression capstone (6.5) was added to cover A2.ST.2's exponential branch. Units 6 and 7
@@ -88,62 +92,89 @@ in U1 with the rest of the linear toolkit.)*
 
 ---
 
-## Unit 2 — Quadratic Functions · 6 lessons (condensed 2026-09-29)
+## Unit 2 — Quadratic Functions · 10 lessons (remapped 2026-10-23: one skill per lesson)
 
-| # | Lesson | Standards |
-|:--:|---|---|
-| 2.0 | **Characteristics of quadratic functions** — introduces vertex/max-min, axis of symmetry, even symmetry, end behavior, turning point; second differences | A2.F.2a/c/d/f/g |
-| 2.1 | Graphing quadratics (vertex, standard, intercept forms) & transformations | A.F.2b/c/d + A2.F.1, A2.F.2a/d |
-| 2.2 | Solving by factoring — GCF, $x^2+bx+c$ (special patterns as its cases), grouping, Zero Product Property | A2.EO.3b/d, A2.EI.2b/d |
-| 2.3 | Solving by square roots & complex numbers — $x^2=k$, then $x^2=-4$ → *i*, $a+bi$, add/subtract/multiply | A2.EI.2b/d, A2.EO.4a/b/c |
-| 2.4 | Completing the square, the quadratic formula & the discriminant (incl. complex solutions) | A2.EI.2a/b/d, A2.F.2d |
-| 2.5 | Quadratic systems & modeling — linear–quadratic by substitution, counting solutions, reading a model's features (unit capstone) | A2.EI.3a/b/c/d, A2.EI.2a/d, A2.F.2d |
+2.0–2.3 are taught. 2.3 as taught covered square roots and simplifying negative radicands
+($\sqrt{-a}=i\sqrt a$); its complex-arithmetic round is now 2.4. 2.4 on are new lessons — the
+old 2.4 and 2.5 directories are regenerated whole when the new lesson is authored.
 
----
-
-## Unit 3 — Polynomial Functions · 7 lessons
-
-| # | Lesson | Standards |
-|:--:|---|---|
-| 3.0 | **Characteristics of polynomial functions** — introduces degree/leading coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema, turning points, zero multiplicity | A2.F.2a–e/g |
-| 3.1 | Operations with polynomials (add, subtract, multiply) | A2.EO.3a |
-| 3.2 | Advanced factoring — GCF, grouping, sum & difference of cubes, two-variable | A2.EO.3b/d |
-| 3.3 | Dividing polynomials (long & synthetic); Remainder & Factor Theorems | A2.EO.3c |
-| 3.4 | Zeros: the Rational Root Theorem — *forward-solve* (list candidates, test, depress, factor completely) | A2.EI.6c/d |
-| 3.5 | Fundamental Theorem of Algebra & complex zeros — *count & build* (conjugate pairs, multiplicity, write a polynomial from its zeros) | A2.EI.6a/b (+c/d) |
-| 3.6 | Graphing polynomial functions & modeling | A2.F.2a–e/g |
+| # | Lesson — the one skill | Standards | Status |
+|:--:|---|---|---|
+| 2.0 | **Characteristics of quadratic functions** — vertex/max-min, axis of symmetry, even symmetry, end behavior, turning point | A2.F.2a/c/d/f/g | taught |
+| 2.1 | Graphing quadratics (vertex, standard, intercept forms) & transformations | A.F.2b/c/d, A2.F.1, A2.F.2a/d | taught |
+| 2.2 | Solving by factoring | A2.EO.3b/d, A2.EI.2b/d | taught |
+| 2.3 | Square roots & simplifying negative radicands — $x^2=k$; $\sqrt{-a}=i\sqrt a$ | A2.EI.2b/d, A2.EO.4a/b | taught 2026-10-23 |
+| 2.4 | **Operations with complex numbers** — add, subtract, multiply in $a+bi$ ($i^2=-1$) | A2.EO.4c | ✅ authored 2026-10-23 |
+| 2.5 | Solving by completing the square | A2.EI.2b/d | |
+| 2.6 | Solving with the quadratic formula (real and complex solutions) | A2.EI.2b/d | |
+| 2.7 | The discriminant — number and type of solutions | A2.EI.2b, A2.F.2d | |
+| 2.8 | Solving linear–quadratic systems | A2.EI.3a/b/c/d | |
+| 2.9 | Modeling with quadratics — max/min from the vertex | A2.EI.2a/d, A2.F.2d | |
 
 ---
 
-## Unit 4 — Rational Functions · 8 lessons
+## Unit 3 — Polynomial Functions · 12 lessons (remapped 2026-10-23)
 
-| # | Lesson | Standards |
+From Unit 3 on, lessons are packet-first (`LESSON_SHAPE.md` §0); the packet shape is still to be
+specified. The authored 3.0–3.6 lessons are in the old map and are regenerated when taught.
+
+| # | Lesson — the one skill | Standards |
 |:--:|---|---|
-| 4.0 | **Characteristics of rational functions** — introduces vertical & horizontal asymptotes, holes/removable discontinuity, domain restrictions | A2.F.2a/b/c/g/**h** |
-| 4.1 | Simplifying rational expressions & domain restrictions — restrictions read off the **original** denominator | A2.EO.1b/d |
-| 4.2 | Multiplying & dividing — factor first; keep-change-flip; restrictions from every denominator incl. the divisor | A2.EO.1a |
-| 4.3 | Adding & subtracting + complex fractions — LCD from factored denominators | A2.EO.1a/**c** |
-| 4.4 | The rational parent *y = 1/x* & transformations — the four transformations move the asymptotes | A2.F.1a/b/c/e |
-| 4.5 | Graphing from the equation — holes vs. VAs → HA by degree comparison → intercepts → sign chart → end behavior (slant asymptote = Tier E only) | A2.F.2a/g/h, A2.F.1c |
-| 4.6 | Solving rational equations & extraneous solutions — extraneous roots *are* 4.1's excluded values | A2.EI.4a–d |
-| 4.7 | Direct, inverse & joint variation (modeling capstone; joint variation carried as enrichment) | A2.F.1d (+A2.F.2f) |
+| 3.0 | **Characteristics of polynomial functions** — degree/leading coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema, turning points, multiplicity | A2.F.2a–e/g |
+| 3.1 | Adding & subtracting polynomials | A2.EO.3a |
+| 3.2 | Multiplying polynomials | A2.EO.3a |
+| 3.3 | Factoring by grouping (four terms; GCF first) | A2.EO.3b |
+| 3.4 | Factoring sum & difference of cubes | A2.EO.3b/d |
+| 3.5 | Dividing polynomials — long division | A2.EO.3c |
+| 3.6 | Dividing polynomials — synthetic division | A2.EO.3c |
+| 3.7 | The Remainder & Factor Theorems | A2.EO.3c |
+| 3.8 | Finding zeros with the Rational Root Theorem | A2.EI.6c/d |
+| 3.9 | Fundamental Theorem of Algebra — counting zeros, conjugate pairs | A2.EI.6a/b |
+| 3.10 | Writing a polynomial from its zeros | A2.EI.6a/b |
+| 3.11 | Graphing polynomial functions from zeros & end behavior | A2.F.2a–e/g |
 
 ---
 
-## Unit 5 — Radical Functions · 8 lessons
+## Unit 4 — Rational Functions · 10 lessons (remapped 2026-10-23)
 
-| # | Lesson | Standards |
+| # | Lesson — the one skill | Standards |
 |:--:|---|---|
-| 5.0 | **Characteristics of radical functions** — introduces restricted domain from the radicand, endpoint behavior, inverse relationship of families; √x and ∛x side by side | A2.F.2a–g, A2.F.1a/e |
-| 5.1 | *n*th roots & rational exponents — even vs. odd index (why √−16 fails but ∛−8 does not), principal root, *a^(m/n)* | A2.EO.2c |
-| 5.2 | Simplifying radicals; adding & subtracting — product/quotient properties, algebraic radicands, higher indices | A2.EO.2a/b |
-| 5.3 | Multiplying & dividing; rationalizing — **conjugates** for binomial denominators (callback to 2.3) | A2.EO.2b |
-| 5.4 | Graphing radical functions & transformations — the endpoint is the transformation anchor | A2.F.1b/c/e, A2.F.2a |
-| 5.5 | Solving radical equations & extraneous solutions — squaring destroys sign information (echo of 4.6) | A2.EI.5a/b/c |
-| 5.6 | Composition of functions — numerically, graphically, algebraically; order matters; domain of a composition | A2.F.2k |
-| 5.7 | Inverse functions (unit capstone) — swap-and-solve, reflection over *y = x*, why *y = x²* needs a restricted domain; verified with 5.6's composition | A2.F.2i/j |
+| 4.0 | **Characteristics of rational functions** — vertical & horizontal asymptotes, holes, domain restrictions | A2.F.2a/b/c/g/h |
+| 4.1 | Simplifying rational expressions — restrictions from the **original** denominator | A2.EO.1b/d |
+| 4.2 | Multiplying & dividing rational expressions | A2.EO.1a |
+| 4.3 | Adding & subtracting rational expressions (LCD from factored denominators) | A2.EO.1a |
+| 4.4 | Simplifying complex fractions | A2.EO.1c |
+| 4.5 | Transformations of $y=1/x$ — the asymptotes move with the graph | A2.F.1a/b/c/e |
+| 4.6 | Finding asymptotes & holes from the equation | A2.F.2g/h |
+| 4.7 | Graphing a rational function from its equation | A2.F.2a/g/h, A2.F.1c |
+| 4.8 | Solving rational equations & extraneous solutions | A2.EI.4a–d |
+| 4.9 | Direct & inverse variation (joint as enrichment) | A2.F.1d (+A2.F.2f) |
 
 ---
+
+## Unit 5 — Radical Functions · 11 lessons (remapped 2026-10-23)
+
+| # | Lesson — the one skill | Standards |
+|:--:|---|---|
+| 5.0 | **Characteristics of radical functions** — restricted domain from the radicand, endpoint behavior; √x and ∛x side by side | A2.F.2a–g, A2.F.1a/e |
+| 5.1 | Evaluating *n*th roots — even vs. odd index, principal root | A2.EO.2c |
+| 5.2 | Rational exponents ⇄ radicals | A2.EO.2c |
+| 5.3 | Simplifying radicals (numeric and algebraic radicands, higher indices) | A2.EO.2a/b |
+| 5.4 | Adding & subtracting radicals | A2.EO.2b |
+| 5.5 | Multiplying radicals | A2.EO.2b |
+| 5.6 | Rationalizing denominators (monomial, then conjugate — callback to 2.4) | A2.EO.2b |
+| 5.7 | Graphing radical functions & transformations — the endpoint as anchor | A2.F.1b/c/e, A2.F.2a |
+| 5.8 | Solving radical equations & extraneous solutions (one radical) | A2.EI.5a/b/c |
+| 5.9 | Composition of functions | A2.F.2k |
+| 5.10 | Inverse functions — swap-and-solve, reflection over *y = x*, verified by composition | A2.F.2i/j |
+
+---
+
+## Units 6–7 — optional (2026-10-23)
+
+"If we do not cover exponential or logarithmic functions, then we don't. They can get those from
+precalculus." Taught only if the year has room after Unit 5; if taught, they are remapped one
+skill per lesson first. The tables below are the old map, kept for reference.
 
 ## Unit 6 — Exponential Functions · 6 lessons
 
@@ -198,6 +229,9 @@ test lands on the last day before December break. Full 31-week pacing map in COU
 
 ## Remaining work
 
+0. **2026-10-23 remap** — 2.4 authored; 2.5 (completing the square) is next, slides-first; specify the
+   Unit 3+ packet shape in `LESSON_SHAPE.md` §0 before any Unit 3 lesson; rebuild the Unit 2 study
+   guide and tests (still on the six-lesson map) and the syllabus pacing.
 1. **Unit 6, Lesson 6.5** (exponential regression capstone) — the last unauthored Unit 6 lesson.
 2. **Unit 7, Lessons 7.1–7.6** — scaffold the directories, then author. 7.4 and 7.5 both
    depend on 6.4's *e* and its unsolved equations, which are now in place.
