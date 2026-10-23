@@ -2,6 +2,24 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-10-23) — **COURSE REMAPPED: ONE LESSON = ONE MEETING = ONE SKILL.**
+>
+> User request, after teaching simplifying negative radicands (2.3): "each lesson is 1 day and 1
+> skill … the next lesson should be operations with complex numbers … the unit length does not
+> matter currently, we are building skills and confidence." Then: "if we do not cover exponential
+> or logarithmic functions, then we don't. They can get those from precalculus." Then: "transition
+> this group to packets like the other classes … the focus from unit 3 onward should be the packets
+> and detachable graded homework or extra credit."
+>
+> **The map is now in `COURSE_BREAKDOWN.md`:** Unit 2 → 10 lessons (2.4 operations with complex
+> numbers · 2.5 completing the square · 2.6 quadratic formula · 2.7 discriminant · 2.8
+> linear–quadratic systems · 2.9 modeling), Unit 3 → 12, Unit 4 → 10, Unit 5 → 11; **Units 6–7
+> optional.** Policy recorded in `LESSON_SHAPE.md` §0. The per-unit lesson lists in §4 below are
+> the *old* map (each now marked superseded); §6 pacing and the syllabus are stale.
+> **Not yet done:** the Unit 3+ packet shape (awaiting user answers); Unit 2 study guide/tests
+> (still on the six-lesson map); old 2.4/2.5 directories (regenerated when the new lessons are
+> authored). No lesson files touched.
+
 > ## ⚠ Status (2026-10-02) — **2.2: STANDALONE SLIP-AND-SLIDE HANDOUT ADDED.**
 >
 > User request: a 2.2 handout for slip-and-slide factoring (example, notes area, 3 problems);
@@ -889,12 +907,12 @@
 | Unit | Title | Function family | Lessons (incl. L0) | Status |
 |:---:|---|---|:---:|---|
 | 1 | Linear Functions | Linear, absolute value, piecewise | 6 | **Complete** |
-| 2 | Quadratic Functions | Quadratic (incl. complex numbers) | 8 | **Complete** |
-| 3 | Polynomial Functions | Polynomial | 7 | **Complete** |
-| 4 | Rational Functions | Rational | 8 | **Complete** |
-| 5 | Radical Functions | Radical / power | 8 | **Complete** |
-| 6 | Exponential Functions | Exponential | 6 | **In progress** (6.0–6.3 done) |
-| 7 | Logarithmic Functions | Logarithmic | 7 | **In progress** (7.0 done) |
+| 2 | Quadratic Functions | Quadratic (incl. complex numbers) | 10 | **2.0–2.3 taught; remapped 2026-10-23** |
+| 3 | Polynomial Functions | Polynomial | 12 | **Remapped 2026-10-23** |
+| 4 | Rational Functions | Rational | 10 | **Remapped 2026-10-23** |
+| 5 | Radical Functions | Radical / power | 11 | **Remapped 2026-10-23** |
+| 6 | Exponential Functions *(optional)* | Exponential | 6 | **In progress** (6.0–6.3 done) |
+| 7 | Logarithmic Functions *(optional)* | Logarithmic | 7 | **In progress** (7.0 done) |
 
 Every unit opens with **Lesson X.0: Characteristics of ____ Functions**.
 **Out of scope for this course:** conic sections, sequences & series, probability
@@ -1556,6 +1574,9 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > filling the page, because its $y$-values reach 64 with no axis scaling. It is why that activity is 4pp with a nearly
 > empty p4. Needs a content fix (scale the $y$-axis as 2.7's projectile figure does), not a guard.
 > **Next action: begin Unit 3 (Polynomial Functions)** — or fix the 2.0 activity graph first if Unit 2 is going to print.
+> **Superseded 2026-10-23** — the current Unit 2 map (one skill per lesson) is in
+> `COURSE_BREAKDOWN.md`; the list below is the old map.
+
 - **2.0** Characteristics of quadratic functions *(introduces: vertex/max-min,
   axis of symmetry, even symmetry, end behavior, turning point)*
 - **2.1** Graphing quadratics (vertex, standard, intercept forms) & transformations
@@ -1800,6 +1821,9 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > lessons --- the tests need their own two `make` calls.
 > **Unit 3 is complete (all lessons + assessments).** Unit 4's map is confirmed and scaffolded; see
 > its section below.
+> **Superseded 2026-10-23** — the current Unit 3 map (one skill per lesson) is in
+> `COURSE_BREAKDOWN.md`; the list below is the old map.
+
 - **3.0** Characteristics of polynomial functions *(introduces: degree/leading
   coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema,
   turning points, zero multiplicity)* — A2.F.2a/b/c/d/e/g
@@ -2227,6 +2251,9 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > cost ever equal the per-unit cost?" Keys carry per-part `teachernote` scoring rubrics and
 > error-by-error item analysis. **Slant asymptotes deliberately absent** (4.5 Tier E only, never
 > assessed), and every expression stays inside the A2.EO.1b / A2.EI.4b linear-and-quadratic bound.
+
+> **Superseded 2026-10-23** — the current Unit 4 map (one skill per lesson) is in
+> `COURSE_BREAKDOWN.md`; the list below is the old map.
 
 - **4.0** Characteristics of rational functions *(introduces: vertical & horizontal
   asymptotes, holes/removable discontinuity, domain restrictions)* — A2.F.2a/b/c/g/**h**
@@ -2692,6 +2719,9 @@ marked ●. Legend: **● introduced here** · **○ revisited / deepened** ·
 > unit-level `all` target builds only the lessons --- the merged unit packets come from
 > `student`/`full`, and they land in `target/compiled/`, not `target/unit05/`.
 
+> **Superseded 2026-10-23** — the current Unit 5 map (one skill per lesson) is in
+> `COURSE_BREAKDOWN.md`; the list below is the old map.
+
 - **5.0** Characteristics of radical functions *(introduces: restricted domain from the radicand,
   endpoint behavior, inverse relationship of families; both parents side by side — $y=\sqrt{x}$
   with domain $x\ge0$, an endpoint at the origin, an absolute min, one arm, vs. $y=\sqrt[3]{x}$
@@ -3112,6 +3142,9 @@ halfway point. See the pacing ruling in §6.)*
 ## 6. Decisions & remaining open questions
 
 **Resolved:**
+- **One lesson = one meeting = one skill (2026-10-23)**; unit length is free; Units 6–7 optional
+  (Precalculus covers them); Unit 3+ is packet-first. Map: `COURSE_BREAKDOWN.md`; policy:
+  `LESSON_SHAPE.md` §0. Supersedes the 93-meeting pacing below until the syllabus is rebuilt.
 - **The Algebra 1 review unit is dropped (2026-08-20, EFFL redesign)** — it had been built as a
   4-lesson review citing **A.\*** codes from `spec/algebra1-vdoe-sol.pdf`, but the redesign
   removed it outright and renumbered old Units 2–8 to 1–7. Its earlier rulings (no ATA drop-ins,
