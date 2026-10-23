@@ -104,7 +104,7 @@ old 2.4 and 2.5 directories are regenerated whole when the new lesson is authore
 | 2.1 | Graphing quadratics (vertex, standard, intercept forms) & transformations | A.F.2b/c/d, A2.F.1, A2.F.2a/d | taught |
 | 2.2 | Solving by factoring | A2.EO.3b/d, A2.EI.2b/d | taught |
 | 2.3 | Square roots & simplifying negative radicands — $x^2=k$; $\sqrt{-a}=i\sqrt a$ | A2.EI.2b/d, A2.EO.4a/b | taught 2026-10-23 |
-| 2.4 | **Operations with complex numbers** — add, subtract, multiply in $a+bi$ ($i^2=-1$) | A2.EO.4c | next |
+| 2.4 | **Operations with complex numbers** — add, subtract, multiply in $a+bi$ ($i^2=-1$) | A2.EO.4c | ✅ authored 2026-10-23 |
 | 2.5 | Solving by completing the square | A2.EI.2b/d | |
 | 2.6 | Solving with the quadratic formula (real and complex solutions) | A2.EI.2b/d | |
 | 2.7 | The discriminant — number and type of solutions | A2.EI.2b, A2.F.2d | |
@@ -229,7 +229,7 @@ test lands on the last day before December break. Full 31-week pacing map in COU
 
 ## Remaining work
 
-0. **2026-10-23 remap** — author 2.4 (operations with complex numbers) next, slides-first; specify the
+0. **2026-10-23 remap** — 2.4 authored; 2.5 (completing the square) is next, slides-first; specify the
    Unit 3+ packet shape in `LESSON_SHAPE.md` §0 before any Unit 3 lesson; rebuild the Unit 2 study
    guide and tests (still on the six-lesson map) and the syllabus pacing.
 1. **Unit 6, Lesson 6.5** (exponential regression capstone) — the last unauthored Unit 6 lesson.

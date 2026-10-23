@@ -2,6 +2,21 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-10-23) — **LESSON 2.4 OPERATIONS WITH COMPLEX NUMBERS AUTHORED (FIRST ONE-SKILL LESSON).**
+>
+> Regenerated whole over the old 2.4 (completing the square/formula/discriminant). Slides-first,
+> 17 frames, three rounds that climb through one skill: add/subtract (Show me $(5-2i)-(3-6i)$) →
+> multiply (Show me $(4+i)(2-3i)$) → conjugates and negative radicals — **crux Find the mistake
+> $(6+3i)(6-3i)=36-9=27$ (it is $45$)**, Final Round item 4 its twin $(7-2i)(7+2i)=53$.
+> Contexts: dorm escape-room lock code (Round 1 ★★★), school-store puzzle bonus. **Homework:
+> DeltaMath online**, set `A2: Lesson 2.4: Operations with Complex Numbers` — *Add Imaginary
+> Numbers*, *Add/Subtract Complex Numbers*, *Multiply Imaginary Numbers*, *Multiply Complex
+> Numbers* (catalog names read 2026-10-23); formative check = a conjugate product. Build exit 0:
+> plan 3pp, cover 1p, handout 17 frames, student = key 8pp, no overfull frames, no answers in
+> the handout. **Next: 2.5 Solving by completing the square** (old `lesson05` is the old
+> systems lesson and is regenerated whole). Note: 2.3's DeltaMath set already lists the two
+> complex-arithmetic skills; trim it if not yet assigned.
+
 > ## ⚠ Status (2026-10-23) — **COURSE REMAPPED: ONE LESSON = ONE MEETING = ONE SKILL.**
 >
 > User request, after teaching simplifying negative radicands (2.3): "each lesson is 1 day and 1

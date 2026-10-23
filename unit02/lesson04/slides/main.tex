@@ -1,21 +1,15 @@
-%! Completing the Square, the Quadratic Formula \& the Discriminant — Unit 2, Lesson 2.4 — Slides (Beamer)
-% SLIDES-FIRST shape with the ENGAGEMENT rules (LESSON_SHAPE.md §1, 2026-09-27), CONDENSED unit
-% (2026-09-29): exactly 3 rounds, 17 frames. The deck IS the lesson; its printed handout is the
-% student's notes.
+%! Operations with Complex Numbers — Unit 2, Lesson 2.4 — Slides (Beamer)
+% SLIDES-FIRST shape with the ENGAGEMENT rules (LESSON_SHAPE.md §1), ONE SKILL PER LESSON
+% (LESSON_SHAPE.md §0, user direction 2026-10-23): the three rounds are three cases of one skill —
+% add/subtract → multiply → conjugates and negative radicals. 17 frames, one class meeting.
 %   title → warm-up → targets → 3 × { definition → example → ladder ★/★★/★★★ → Show me | Find the
-%   mistake } → Final Round (4 mixed, self-scored /4) → homework (DeltaMath online)
-% One anchor: x^2-2x-3 = 0 again — (x-1)^2 = 4 by completing the square (2.1's vertex form), then
-% x = (2 ± 4)/2 by the formula, and y = x^2-2x+c for c = -3, 1, 5 on the discriminant frame.
-% Round 1's ★★★ (x^2+2x+5 = 0, -1 ± 2i) returns as Round 3's crux: D = -16 means no REAL solutions
-% and no x-intercepts, not "no solution". The Final Round's item 4 is its twin.
+%   mistake } → Final Round (4 problems, self-scored /4) → homework (DeltaMath online)
+% Target misconception: i^2 is -1, not +1 — so -9i^2 is +9 and a conjugate product is a^2 + b^2.
+% Round 3's Find the mistake is the crux ((6+3i)(6-3i) = 36 - 9 = 27; it is 36 + 9 = 45); the
+% Final Round's item 4 is its twin ((7-2i)(7+2i) = 53).
 % Answers only inside \reveal{} — the handout is a Beamer handout-mode compile and drops them.
 \documentclass[aspectratio=169, 11pt]{beamer}
 \usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
-% Coordinate grid + axes: {xmin}{xmax}{ymin}{ymax}
-\newcommand{\lgrid}[4]{%
-  \draw[step=1, linegray!45, thin] (#1,#3) grid (#2,#4);
-  \draw[->, thick, charcoal] (#1,0)--(#2,0) node[below right, font=\tiny]{$x$};
-  \draw[->, thick, charcoal] (0,#3)--(0,#4) node[left, font=\tiny]{$y$};}
 \setbeamercolor{block title}{bg=forest, fg=white}
 \setbeamercolor{block body}{bg=forestbg, fg=charcoal}
 % Ladder rungs and Show-me options.
@@ -35,363 +29,324 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 2.4}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Completing the Square, the Quadratic Formula \& the
-    Discriminant}\\[1.2cm]
+    {\color{white}\bfseries\LARGE Operations with Complex Numbers}\\[1.2cm]
     {\color{forestmid}\small Algebra 2~$\cdot$~Unit 2: Quadratic Functions}
   \end{minipage}
 \end{frame}
 }
 
-% WARM-UP — on screen as they walk in. Three quick wins: a perfect square expanded (the move
-% Round 1 runs backwards), sqrt(-16) = 4i (2.3), and reading a, b, c with signs (Round 2).
+% WARM-UP — on screen as they walk in. Three quick wins: last class's negative radical, combining
+% like terms (Round 1), multiplying binomials (Round 2). Ends on the question Round 2 answers.
 \begin{frame}[t, plain]
   \forestheader{Warm-Up --- start now}
   \sectionlabel[goldacc]{3 minutes --- in the notes column, alone}
   \begin{enumerate}\setlength{\itemsep}{7pt}
-    \item Multiply: $(x+3)^2$.
-    \item Simplify: $\sqrt{-16}$.
-    \item In $3x^2-x-4=0$, what are $a$, $b$, and $c$?
+    \item Simplify $\sqrt{-36}$.
+    \item Simplify $(3x+5)-(x-4)$.
+    \item Multiply $(x+2)(x-5)$.
   \end{enumerate}
   \vspace{4pt}
   \reveal{%
     \begin{block}{Check --- give yourself a point for each}
-      1.\ $x^2+6x+9$ \qquad 2.\ $4i$ \qquad 3.\ $a=3$, $b=-1$, $c=-4$ --- the signs come along
+      1.\ $6i$ \qquad 2.\ $2x+9$ (the minus hits the $-4$ too) \qquad 3.\ $x^2-3x-10$
       \\[3pt]
-      \textbf{Hold on to this:} if you are given $x^2+6x=7$, what number would you add to make
-      the left side $(x+3)^2$?
+      \textbf{Hold on to this:} what if the $x$ were an $i$ --- what happens to the $x^2$?
     \end{block}}
 \end{frame}
 
 % LEARNING TARGETS + HOW TODAY RUNS
 \begin{frame}[t, plain]
   \forestheader{Today's targets}
-  \sectionlabel{What you will be able to do}
+  \sectionlabel{One skill today: arithmetic with complex numbers}
   \begin{itemize}\setlength{\itemsep}{4pt}
-    \item Solve a quadratic by \textbf{completing the square}.
-    \item Solve \emph{any} quadratic with the \textbf{quadratic formula} --- \textbf{standard
-          form} first, then $a$, $b$, $c$ with their signs.
-    \item Use the \textbf{discriminant} $b^2-4ac$ to predict \textbf{two real}, \textbf{one
-          repeated real}, or \textbf{two complex} solutions --- and the number of $x$-intercepts.
+    \item Add and subtract \textbf{complex numbers} by combining the \textbf{real parts} and the
+          \textbf{imaginary parts}, answering in \textbf{standard form} $a+bi$.
+    \item Multiply complex numbers by distributing, then replacing $i^2$ with $-1$.
+    \item Multiply \textbf{complex conjugates} and products of negative radicals --- and get the
+          sign right.
   \end{itemize}
   \vspace{3pt}
   \begin{block}{How today runs --- you are solving the whole hour}
-    Three rounds: a short definition, one example, then \textbf{your turn} --- start at
-    \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me}: hold up
-    1--4 fingers on the count of three. We finish with a \textbf{Final Round} out of 4, then
-    start the homework.
+    Three rounds, each a little harder: a short definition, one example, then \textbf{your turn}
+    --- start at \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show
+    me} (1--4 fingers on the count of three) or a \textbf{Find the mistake}. We finish with a
+    \textbf{Final Round} out of 4, then start the homework.
   \end{block}
 \end{frame}
 
-% ═══ ROUND 1 — COMPLETING THE SQUARE (a = 1) ═══════════════════════════════
+% ═══ ROUND 1 — ADD AND SUBTRACT ═════════════════════════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{Definition: completing the square}
-  \sectionlabel{Round 1 --- make a perfect square}
-  \begin{block}{Completing the square}
-    Adding $\left(\frac b2\right)^2$ to $x^2+bx$ makes a perfect-square trinomial:
-    \[ x^2+bx+\left(\tfrac b2\right)^2=\left(x+\tfrac b2\right)^2. \]
-    \textbf{Completing the square} is adding that number to \emph{both sides} of an equation so
-    one side becomes a perfect square.
-  \end{block}
-  \vspace{2pt}
-  \begin{block}{To solve $x^2+bx+c=0$ by completing the square}
-    \begin{enumerate}\setlength{\itemsep}{1pt}
-      \item Move the constant to the right: $\;x^2+bx=-c$.
-      \item Add $\left(\frac b2\right)^2$ to \textbf{both} sides; write the left side as $\left(x+\frac b2\right)^2$.
-      \item Take the square root of both sides --- remember $\pm$ --- and solve.
-    \end{enumerate}
-  \end{block}
+  \forestheader{Definition: adding and subtracting complex numbers}
+  \sectionlabel{Round 1 --- combine like parts}
+  \begin{columns}[T]
+    \begin{column}{0.58\textwidth}
+      \begin{block}{Add or subtract}
+        To add or subtract complex numbers, combine the \textbf{real parts} with each other and
+        the \textbf{imaginary parts} with each other:
+        \[ (a+bi)+(c+di)=(a+c)+(b+d)i. \]
+        When you subtract, the minus sign reaches \emph{both} parts of the second number.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Standard form}
+        Answer as $a+bi$, real part first. Rewrite $\sqrt{-16}$ as $4i$ first.
+      \end{block}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \textbf{It is combining like terms.}\\[8pt]
+      \renewcommand{\arraystretch}{1.6}
+      \begin{tabular}{r@{\;}l}
+        $(5+3x)+(2-7x)$ & $=7-4x$ \\
+        $(5+3i)+(2-7i)$ & $=7-4i$ \\
+      \end{tabular}\\[8pt]
+      {\scriptsize $i$ behaves like a variable here: \\ numbers with numbers, $i$'s with $i$'s.}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[t, plain]
-  \forestheader{Example 1: solve $x^2-2x-3=0$ by completing the square}
+  \forestheader{Example 1: add, subtract, and simplify first}
   \sectionlabel{Watch --- 2 minutes}
-  \[
-  \begin{aligned}
-    x^2-2x &= 3 && \text{move the constant} \\
-    x^2-2x+1 &= 3+1 && \left(\tfrac{-2}{2}\right)^2=1 \text{ on both sides} \\
-    (x-1)^2 &= 4 && \text{a perfect square} \\
-    x-1 &= \pm2 && \text{square root, } \pm \\
-    x=3 \quad\text{or}\quad x &= -1
-  \end{aligned}
-  \]
-  \pause
-  \emph{Same roots as factoring in 2.2.} And $(x-1)^2-4=0$ is 2.1's vertex form: vertex
-  $(1,-4)$.
+  \begin{itemize}\setlength{\itemsep}{10pt}
+    \item \textbf{(a)} $(7+2i)+(-3+5i)$ \pause $=(7-3)+(2+5)i=4+7i$
+    \pause
+    \item \textbf{(b)} $(6-4i)-(2-9i)$ \pause $=6-4i-2+9i$ \pause $=4+5i$ \quad
+          \emph{(the minus turns $-9i$ into $+9i$)}
+    \pause
+    \item \textbf{(c)} $(3+\sqrt{-16})+(1-\sqrt{-4})$ \pause $=(3+4i)+(1-2i)$ \pause $=4+2i$
+          \quad \emph{($i$ out first, then combine)}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[t, plain]
   \forestheader{Your turn}
-  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
-  Solve by completing the square.
+  \sectionlabel[goldacc]{7 minutes --- start at one star and climb}
+  Write each answer in standard form $a+bi$.
   \begin{itemize}\setlength{\itemsep}{6pt}
-    \item[\rung1] $x^2+6x=7$
-    \item[\rung2] $x^2-4x-1=0$
-    \item[\rung3] $x^2+2x+5=0$
+    \item[\rung1] $(4+6i)+(3-2i)$
+    \item[\rung2] $(9-3i)-(4-8i)$
+    \item[\rung3] At the dorm's escape-room night, the lock code is the real part, then the
+          imaginary part, of $(12+\sqrt{-49})-(5-\sqrt{-9})$. What is the code?
   \end{itemize}
-  \vspace{4pt}
+  \vspace{2pt}
   \reveal{%
     \begin{block}{Check}
-      \rung1\ $(x+3)^2=16$: $x=1$ or $x=-7$ \\[1pt]
-      \rung2\ $x^2-4x+4=1+4$, $(x-2)^2=5$: $x=2\pm\sqrt5$ \\[1pt]
-      \rung3\ $x^2+2x+1=-5+1$, $(x+1)^2=-4$: $x+1=\pm2i$, $x=-1\pm2i$ --- keep this one
+      \rung1\ $7+4i$ \qquad \rung2\ $9-3i-4+8i=5+5i$ \\[1pt]
+      \rung3\ $(12+7i)-(5-3i)=12+7i-5+3i=7+10i$, so the code is $7$--$10$.
     \end{block}}
 \end{frame}
 
 \begin{frame}[t, plain]
-  \forestheader{Show me: $x^2+10x=3$ --- which is the next line?}
+  \forestheader{Show me: $(5-2i)-(3-6i)$}
   \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
     \begin{column}{0.45\textwidth}
-      \opt1{$x^2+10x+25=3$} \\[12pt]
-      \opt3{$x^2+10x+100=103$}
+      \opt1{$2-8i$} \\[12pt]
+      \opt3{$8-8i$}
     \end{column}
     \begin{column}{0.45\textwidth}
-      \opt2{$x^2+10x+25=28$} \\[12pt]
-      \opt4{$x^2+10x+5=8$}
+      \opt2{$2+4i$} \\[12pt]
+      \opt4{$2-4i$}
     \end{column}
   \end{columns}
   \vspace{10pt}
   \reveal{%
     \begin{block}{Answer: \textbf{2}}
-      $\left(\frac{10}{2}\right)^2=25$, added to \emph{both} sides, then $(x+5)^2=28$. \quad
-      \textbf{1} added to one side only --- the equation is no longer balanced; \textbf{3}
-      squared $b$, not half of it; \textbf{4} halved $b$ but forgot to square.
+      $5-2i-3+6i=2+4i$. \; \textbf{1} subtracted the $3$ but not the $-6i$ --- the minus reaches
+      both parts. \textbf{3} added the two numbers. \textbf{4} worked $2i-6i$, the order flipped:
+      it is $-2i+6i=+4i$.
     \end{block}}
 \end{frame}
 
-% ═══ ROUND 2 — THE QUADRATIC FORMULA ═══════════════════════════════════════
+% ═══ ROUND 2 — MULTIPLY ═════════════════════════════════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{Definition: the quadratic formula}
-  \sectionlabel{Round 2 --- one formula for every quadratic}
-  \begin{block}{The quadratic formula}
-    The solutions of $ax^2+bx+c=0$ ($a\ne0$) are
-    \[ x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}. \]
-    It is completing the square done once, on the letters --- so it solves \emph{every}
-    quadratic, with real or complex answers.
-  \end{block}
-  \vspace{2pt}
-  \begin{block}{Using it}
-    \begin{enumerate}\setlength{\itemsep}{1pt}
-      \item Write the equation in \textbf{standard form} $ax^2+bx+c=0$ --- everything on one side.
-      \item Read $a$, $b$, and $c$ \textbf{with their signs}.
-      \item Substitute in parentheses --- $(-3)^2=9$, not $-9$ --- and simplify.
-    \end{enumerate}
-  \end{block}
-\end{frame}
-
-\begin{frame}[t, plain]
-  \forestheader{Example 2: the formula, twice}
-  \sectionlabel{Watch --- 2 minutes}
+  \forestheader{Definition: multiplying complex numbers}
+  \sectionlabel{Round 2 --- distribute, then $i^2=-1$}
   \begin{columns}[T]
-    \begin{column}{0.47\textwidth}
-      \textbf{(a)} $x^2-2x-3=0$: \; $a=1$, $b=-2$, $c=-3$.
-      \[
-      \begin{aligned}
-        x &= \frac{-(-2)\pm\sqrt{(-2)^2-4(1)(-3)}}{2(1)} \\
-          &= \frac{2\pm\sqrt{16}}{2}=\frac{2\pm4}{2}
-      \end{aligned}
-      \]
-      $x=3$ or $x=-1$ --- Round 1's answer.
+    \begin{column}{0.56\textwidth}
+      \begin{block}{Multiply}
+        To multiply complex numbers, distribute every term of one to every term of the other,
+        exactly as with binomials. Then replace every $i^2$ with $-1$ and combine into
+        $a+bi$.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{The one new fact}
+        $i^2=-1$. So $-3i^2=-3(-1)=+3$ and $4i^2=-4$: an $i^2$ term is a \emph{real} number,
+        and it changes sign.
+      \end{block}
     \end{column}
-    \pause
-    \begin{column}{0.49\textwidth}
-      \textbf{(b)} $2x^2+3x=1$. \; Standard form first:
-      \[ 2x^2+3x-1=0 \qquad a=2,\; b=3,\; c=-1 \]
-      \[
-      \begin{aligned}
-        x &= \frac{-3\pm\sqrt{3^2-4(2)(-1)}}{2(2)} \\
-          &= \frac{-3\pm\sqrt{17}}{4}
-      \end{aligned}
-      \]
-      It does not factor --- the formula does not care.
+    \begin{column}{0.4\textwidth}
+      \centering
+      \textbf{The box for $(2+3i)(4-i)$}\\[6pt]
+      \renewcommand{\arraystretch}{1.7}
+      \begin{tabular}{c|c|c|}
+        \multicolumn{1}{c}{} & \multicolumn{1}{c}{$4$} & \multicolumn{1}{c}{$-i$} \\
+        \cline{2-3}
+        $2$  & $8$   & $-2i$ \\ \cline{2-3}
+        $3i$ & $12i$ & $-3i^2$ \\ \cline{2-3}
+      \end{tabular}\\[6pt]
+      {\scriptsize Four products, then $-3i^2=+3$: \\ $8+10i+3=11+10i$.}
     \end{column}
   \end{columns}
 \end{frame}
 
 \begin{frame}[t, plain]
+  \forestheader{Example 2: multiply}
+  \sectionlabel{Watch --- 2 minutes}
+  \textbf{(a)} $3i(4-5i)=12i-15i^2$ \pause $=12i+15=15+12i$ \quad \emph{(real part first)}
+  \pause
+  \[
+  \begin{aligned}
+    \textbf{(b)}\quad (2+3i)(4-i) &= 8-2i+12i-3i^2 && \text{distribute} \\
+                                  &= 8+10i-3(-1)   && i^2=-1 \\
+                                  &= 11+10i        && \text{combine}
+  \end{aligned}
+  \]
+  \pause
+  \textbf{(c)} $(1-3i)^2=(1-3i)(1-3i)=1-3i-3i+9i^2$ \pause $=1-6i-9=-8-6i$ \quad
+  \emph{(write the square out twice --- keep the middle terms)}
+\end{frame}
+
+\begin{frame}[t, plain]
   \forestheader{Your turn}
-  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
-  Solve with the quadratic formula. Simplify.
+  \sectionlabel[goldacc]{7 minutes --- start at one star and climb}
+  Write each answer in standard form $a+bi$.
   \begin{itemize}\setlength{\itemsep}{6pt}
-    \item[\rung1] $x^2+5x+3=0$
-    \item[\rung2] $3x^2=2x+4$
-    \item[\rung3] $x^2-4x+13=0$
+    \item[\rung1] $2i(5+i)$
+    \item[\rung2] $(3+i)(2-4i)$
+    \item[\rung3] $(2+5i)^2$
   \end{itemize}
   \vspace{4pt}
   \reveal{%
     \begin{block}{Check}
-      \rung1\ $x=\dfrac{-5\pm\sqrt{13}}{2}$ \qquad
-      \rung2\ $3x^2-2x-4=0$: $x=\dfrac{2\pm\sqrt{52}}{6}=\dfrac{1\pm\sqrt{13}}{3}$ \\[2pt]
-      \rung3\ $x=\dfrac{4\pm\sqrt{-36}}{2}=\dfrac{4\pm6i}{2}=2\pm3i$
+      \rung1\ $10i+2i^2=-2+10i$ \qquad \rung2\ $6-12i+2i-4i^2=6-10i+4=10-10i$ \\[1pt]
+      \rung3\ $(2+5i)(2+5i)=4+10i+10i+25i^2=4+20i-25=-21+20i$ (not $4+25i^2$)
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: $(4+i)(2-3i)$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \opt1{$5-10i$} \\[12pt]
+      \opt3{$11$}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \opt2{$11-10i$} \\[12pt]
+      \opt4{$8-10i-3i^2$}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      $8-12i+2i-3i^2=8-10i+3=11-10i$. \; \textbf{1} used $i^2=+1$, so $-3i^2$ became $-3$.
+      \textbf{3} multiplied first-by-first and last-by-last and lost the middle terms.
+      \textbf{4} is right but unfinished --- not standard form until $i^2$ is gone.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 3 — CONJUGATES AND NEGATIVE RADICALS (the crux) ══════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: complex conjugates}
+  \sectionlabel{Round 3 --- products that come out real}
+  \begin{block}{Complex conjugates}
+    $a+bi$ and $a-bi$ are \textbf{complex conjugates} --- same real part, opposite imaginary
+    part. Their product is always a real number, because the middle terms cancel and
+    $-b^2i^2=+b^2$:
+    \[ (a+bi)(a-bi)=a^2-abi+abi-b^2i^2=a^2+b^2. \]
+  \end{block}
+  \vspace{4pt}
+  \begin{block}{Negative radicals: $i$ out first}
+    $\sqrt a\cdot\sqrt b=\sqrt{ab}$ only when $a,b\ge0$. With a negative under a root, write it
+    with $i$ \emph{before} you multiply: $\sqrt{-a}\cdot\sqrt{-b}=i\sqrt a\cdot i\sqrt b=-\sqrt{ab}$.
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 3: conjugates and negative radicals}
+  \sectionlabel{Watch --- 2 minutes}
+  \begin{itemize}\setlength{\itemsep}{10pt}
+    \item \textbf{(a)} $(5+2i)(5-2i)=25-10i+10i-4i^2$ \pause $=25+4=29$ \quad
+          \emph{(real --- the $i$ terms cancel)}
+    \pause
+    \item \textbf{(b)} The conjugate of $-3+7i$ is $-3-7i$; \pause their product is
+          $(-3)^2+7^2=9+49=58$.
+    \pause
+    \item \textbf{(c)} $\sqrt{-4}\cdot\sqrt{-25}=2i\cdot5i$ \pause $=10i^2=-10$ \quad
+          \emph{(not $\sqrt{100}=10$)}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] Multiply $(3+i)(3-i)$.
+    \item[\rung2] Write the conjugate of $6-5i$, then multiply the two.
+    \item[\rung3] Simplify $\sqrt{-3}\cdot\sqrt{-12}$ \; and \; $(2+\sqrt{-9})(2-\sqrt{-9})$.
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $9-i^2=9+1=10$ \qquad \rung2\ $6+5i$; \; $36+25=61$ \\[1pt]
+      \rung3\ $i\sqrt3\cdot i\sqrt{12}=i^2\sqrt{36}=-6$ \; and \; $(2+3i)(2-3i)=4+9=13$
     \end{block}}
 \end{frame}
 
 \begin{frame}[t, plain]
   \forestheader{Find the mistake}
-  \sectionlabel[goldacc]{2 minutes --- Student A's answer is wrong. Find the step and fix it}
-  \textbf{Student A} solved $2x^2=3x+5$:
+  \sectionlabel[redacc]{The one that matters --- 3 minutes --- find Student A's wrong step and fix it}
+  \textbf{Student A} multiplied the conjugates $(6+3i)(6-3i)$:
   \[
   \begin{aligned}
-    a=2,\quad b=3,\quad c&=5 \\
-    x &= \frac{-3\pm\sqrt{3^2-4(2)(5)}}{2(2)}=\frac{-3\pm\sqrt{-31}}{4} \\
-    &\text{``Two complex solutions.''}
+    (6+3i)(6-3i) &= 36-18i+18i-9i^2 \\
+                 &= 36-9 \\
+                 &= 27 \qquad \text{``The $i$ terms cancel, so it's $36-9$.''}
   \end{aligned}
   \]
   \reveal{%
     \begin{block}{The mistake}
-      Student A read $a$, $b$, $c$ \emph{before} writing standard form. First
-      $2x^2-3x-5=0$, so $b=-3$, $c=-5$: \;
-      $x=\dfrac{3\pm\sqrt{9+40}}{4}=\dfrac{3\pm7}{4}$, so $x=\dfrac52$ or $x=-1$ --- two
-      \emph{real} solutions.
+      Line 2: $-9i^2$ is \emph{not} $-9$. Because $i^2=-1$, $-9i^2=-9(-1)=+9$, so the product
+      is $36+9=45$. \quad Conjugates always give $a^2+b^2$ --- a sum, never $a^2-b^2$.
     \end{block}}
 \end{frame}
 
-% ═══ ROUND 3 — THE DISCRIMINANT (the crux) ═════════════════════════════════
-\begin{frame}[t, plain]
-  \forestheader{Definition: the discriminant}
-  \sectionlabel{Round 3 --- predict before you solve}
-  \begin{block}{The discriminant}
-    In $ax^2+bx+c=0$, the number under the radical, $D=b^2-4ac$, is the
-    \textbf{discriminant}. Its sign tells you the solutions \emph{before} you solve.
-  \end{block}
-  \vspace{2pt}
-  \begin{columns}[T]
-    \begin{column}{0.32\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.26]
-        \lgrid{-2}{4}{-4}{5}
-        \begin{scope}\clip (-2,-4) rectangle (4,5);
-          \draw[very thick, forest, domain=-2:4, samples=60, smooth]
-            plot (\x,{(\x-1)*(\x-1)-4});
-        \end{scope}
-        \fill[redacc] (-1,0) circle (5pt);
-        \fill[redacc] (3,0) circle (5pt);
-      \end{tikzpicture}\\[-1pt]
-      {\scriptsize $y=x^2-2x-3$, \; $D=16$ \\ $D>0$: \textbf{two real} solutions ---
-      \textbf{two} $x$-intercepts}
-    \end{column}
-    \begin{column}{0.32\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.26]
-        \lgrid{-2}{4}{-4}{5}
-        \begin{scope}\clip (-2,-4) rectangle (4,5);
-          \draw[very thick, forest, domain=-1.3:3.3, samples=60, smooth]
-            plot (\x,{(\x-1)*(\x-1)});
-        \end{scope}
-        \fill[redacc] (1,0) circle (5pt);
-      \end{tikzpicture}\\[-1pt]
-      {\scriptsize $y=x^2-2x+1$, \; $D=0$ \\ $D=0$: \textbf{one repeated real} solution ---
-      touches \textbf{once}}
-    \end{column}
-    \begin{column}{0.32\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.26]
-        \lgrid{-2}{4}{-4}{5}
-        \begin{scope}\clip (-2,-4) rectangle (4,5);
-          \draw[very thick, forest, domain=-0.1:2.1, samples=40, smooth]
-            plot (\x,{(\x-1)*(\x-1)+4});
-        \end{scope}
-      \end{tikzpicture}\\[-1pt]
-      {\scriptsize $y=x^2-2x+5$, \; $D=-16$ \\ $D<0$: \textbf{no real} solutions ---
-      \textbf{two complex} ones, $p\pm qi$ --- \textbf{no} $x$-intercepts}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[t, plain]
-  \forestheader{Example 3: predict, don't solve}
-  \sectionlabel{Watch --- 2 minutes}
-  \begin{itemize}\setlength{\itemsep}{8pt}
-    \item $2x^2-5x+1=0$: \; $D=(-5)^2-4(2)(1)=25-8=17$ \pause
-          $>0$: two real solutions, two $x$-intercepts.
-    \pause
-    \item $4x^2+4x+1=0$: \; $D=4^2-4(4)(1)=16-16=0$ \pause
-          $=0$: one repeated real solution; the graph touches once.
-    \pause
-    \item $x^2-3x+4=0$: \; $D=(-3)^2-4(1)(4)=9-16=-7$ \pause
-          $<0$: \textbf{no real} solutions --- but \textbf{two complex} solutions; no
-          $x$-intercepts.
-  \end{itemize}
-  \pause
-  \vspace{4pt}
-  \emph{Always:} $b^2$ is never negative --- $(-5)^2=25$. Only $-4ac$ can pull $D$ below zero.
-\end{frame}
-
-\begin{frame}[t, plain]
-  \forestheader{Your turn}
-  \sectionlabel[goldacc]{5 minutes --- start at one star and climb}
-  Find $D$. Then say how many solutions, what kind, and how many $x$-intercepts.
-  \begin{itemize}\setlength{\itemsep}{6pt}
-    \item[\rung1] $x^2-6x+9=0$
-    \item[\rung2] $3x^2-x+2=0$
-    \item[\rung3] The garden club sells flower bunches at $x$ dollars each; its profit is
-          $P=-x^2+12x-20$ dollars. Can the profit reach \$16? Use $D$.
-  \end{itemize}
-  \vspace{2pt}
-  \reveal{%
-    \begin{block}{Check}
-      \rung1\ $D=36-36=0$: one repeated real solution; touches once \\[1pt]
-      \rung2\ $D=1-24=-23$: no real --- two complex solutions; no $x$-intercepts \\[1pt]
-      \rung3\ $-x^2+12x-36=0$: $D=144-4(-1)(-36)=0$ --- exactly one price, $x=6$: \$6 a bunch.
-    \end{block}}
-\end{frame}
-
-\begin{frame}[t, plain]
-  \forestheader{Show me: $x^2+2x+5=0$ has $D=-16$. Which is true?}
-  \sectionlabel[redacc]{The one that matters --- 1 to 4 fingers on the count of three}
-  \begin{columns}[T]
-    \begin{column}{0.47\textwidth}
-      \opt1{No solution --- $D$ is negative.} \\[12pt]
-      \opt3{Two complex solutions; the graph crosses the $x$-axis twice.}
-    \end{column}
-    \begin{column}{0.47\textwidth}
-      \opt2{Two complex solutions, $-1\pm2i$; the graph has no $x$-intercepts.} \\[12pt]
-      \opt4{$D=-16$, so the solutions are $x=\pm4i$.}
-    \end{column}
-  \end{columns}
-  \vspace{8pt}
-  \reveal{%
-    \begin{block}{Answer: \textbf{2}}
-      You solved it in Round 1: $x=-1\pm2i$. A negative $D$ means no \emph{real} solutions ---
-      not \emph{no} solutions. \textbf{1} forgets the complex ones; \textbf{3} forgets that
-      complex solutions are \emph{not} on the $x$-axis; \textbf{4} took $D$ for the answer ---
-      $\sqrt D$ is only one piece of the formula.
-    \end{block}}
-\end{frame}
-
-% FINAL ROUND — one problem per round, self-scored /4. Item 4 is the crux's twin.
+% FINAL ROUND — four problems on the one skill, self-scored /4. Item 4 is the crux's twin.
 \begin{frame}[t, plain]
   \forestheader{Final Round}
   \sectionlabel[goldacc]{5 minutes --- on your own --- score yourself out of 4}
+  Write each answer in standard form $a+bi$.
   \begin{enumerate}\setlength{\itemsep}{3pt}
-    \item Complete the square: $x^2+8x=9$. \qquad 2.\ Use the formula: $2x^2=6x-3$.
+    \item $(8-3i)-(2+5i)$ \qquad\qquad\qquad\quad\; 2.\ $4i(3-2i)$
     \setcounter{enumi}{2}
-    \item Find $D$ for $9x^2-12x+4=0$ and say what it means.
-    \item How many \emph{real} solutions does $x^2-6x+10=0$ have? How many solutions? Find them.
+    \item $(2-i)(5+3i)$ \qquad\qquad\qquad\qquad\;\; 4.\ $(7-2i)(7+2i)$
   \end{enumerate}
-  {\small\textbf{Bonus (+1):} A volleyball serve's height is $h=-16t^2+24t+6$ feet after $t$
-  seconds. Does it ever reach $16$ ft? Use the discriminant.}
+  {\small\textbf{Bonus (+1):} The school store's puzzle of the week wins a free hot chocolate:
+  simplify $\sqrt{-8}\cdot\sqrt{-2}+(3+i)(3-i)$.}
+  \vspace{2pt}
   \reveal{%
     \begin{block}{Check --- one point each}
-      1.\ $(x+4)^2=25$: $x=1$ or $-9$ \quad 2.\ $2x^2-6x+3=0$: $x=\frac{3\pm\sqrt3}{2}$ \quad
-      3.\ $D=0$: one repeated real \\[1pt]
-      4.\ $D=-4$: \textbf{no real} solutions, but \textbf{two} solutions: $x=3\pm i$ \quad
-      \textbf{Bonus:} $-16t^2+24t-10=0$, $D=576-640=-64$: never --- it peaks at $15$ ft. \\[2pt]
-      \textbf{Watch out:} a negative discriminant means no \emph{real} solutions and no
-      $x$-intercepts --- there are still \textbf{two complex} solutions. And $(-3)^2=+9$.
+      1.\ $6-8i$ \quad 2.\ $12i-8i^2=8+12i$ \quad 3.\ $10+6i-5i-3i^2=13+i$ \quad
+      4.\ $49+4=53$ \\[1pt]
+      \textbf{Bonus:} $i\sqrt8\cdot i\sqrt2=i^2\sqrt{16}=-4$, and $(3+i)(3-i)=10$, so $6$.
+      \\[2pt]
+      \textbf{Watch out:} $i^2=-1$, so an $i^2$ term flips sign --- $-9i^2$ is $+9$, and
+      conjugates give $a^2+b^2$.
     \end{block}}
 \end{frame}
 
-% HOMEWORK — source: DeltaMath, online (user choice for 2.4, 2026-09-29).
+% HOMEWORK — source: DeltaMath, online (user choice for 2.4, 2026-10-23).
 \begin{frame}[t, plain]
   \forestheader{Homework --- start it now}
   \sectionlabel[goldacc]{10 minutes in class, alone}
   \begin{block}{DeltaMath --- scored, due the first class after two study halls}
-    Assignment: \textbf{A2: Lesson 2.4: The Quadratic Formula}. Start it now on your device; the rest is due
-    the first class after two study halls. I will announce the date in class and on TurtleNet.
+    Assignment: \textbf{A2: Lesson 2.4: Operations with Complex Numbers}. Start it now on your
+    device; the rest is due the first class after two study halls. I will announce the date in
+    class and on TurtleNet.
   \end{block}
   \vspace{6pt}
-  \textbf{Next:} Lesson 2.5 --- when a parabola meets a line (systems), and quadratics as models.
+  \textbf{Next:} Lesson 2.5 --- solving a quadratic by completing the square.
 \end{frame}
 
 \end{document}
