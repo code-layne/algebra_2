@@ -606,7 +606,14 @@ for tests (the box names it as `rubric={../rubrics/…}`). Stated point values (
 items) are matched exactly.
 
 **Checks.** `make -C unitNN/lessonMM manifest COMP=homework` builds the blank and key manifests and
-checks that they agree; for a test, `make -f math-shared/grading.mk grading-manifest
-COMPONENT=unitNN/tests/<name> KEY_COMPONENT=unitNN/test_keys/<name>_key TEXINPUTS="$PWD/shared//:$PWD/math-shared:"`.
+checks that they agree; for a test, `make -C unitNN/tests manifest COMP=<name>`.
 After changing a practice test, rebuild `make -C unitNN/tests all && make -C unitNN/test_keys all`
 so the committed `sample_test*/main.pdf` drop-ins carry the boxes too.
+
+**Names and printing.** A graded page carries only the tracking id (QR codes, and the strip
+"ID: <id>"), never a student name: scans go to an outside API. The name is printed only on
+math-shared's cover sheet. `make roster-packets COMP=… ROSTER=… [SECTION=…]` — in a lesson, or in
+`unitNN/tests` for a quiz or test — joins, per student in roster order, the cover sheet, its blank
+back, then her packet (a lesson) or personalized copy (a test) padded to an even page count, and
+fails if any roster name reaches a graded page. Never define `\GradingStudentName` in a
+graded component (grading.sty ignores it with a warning).

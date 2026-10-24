@@ -37,3 +37,49 @@ drop: $(DROP_SRC)
 
 clean:
 	rm -rf $(PDF_DIR)
+
+# ── Grading (math-shared, the submodule at the project root) ──────────────────
+# Every quiz and test here is graded (\gradedblank), and its key is
+# ../test_keys/<name>_key.
+#
+#   make manifest COMP=factoring_quiz
+#       blank + key builds, target/<unit>/tests/grading/<COMP>/manifest.json,
+#       and the check that the blank and key agree on every graded item.
+#   make roster-packets COMP=factoring_quiz ROSTER=~/Rosters/algebra2/roster-map.csv [SECTION=…]
+#       one run per student, in roster order, joined into
+#       target/compiled/<unit>/<COMP>_roster.pdf to print as one collated job:
+#       math-shared's cover sheet (the only page with her name), its blank back,
+#       then her personalized copy (tracking id in the QR codes and the "ID:"
+#       strip) padded to an even page count — math-shared's grading-personalized
+#       output as it stands. It fails if any roster name reaches a graded page.
+#
+# The cover sheets and the roster PDF carry student names: they stay under
+# target/, which is never committed. Included last, so `all` stays the default.
+GRADING_MK    := $(PROJECT_ROOT)/math-shared/grading.mk
+COMP          ?=
+COMPONENT     := $(COMP)
+KEY_COMPONENT := ../test_keys/$(COMP)_key
+GRADING_OUT   := $(PDF_DIR)/grading/$(COMP)
+ROSTER_OUT    := $(PROJECT_ROOT)/target/compiled/$(UNIT)/$(COMP)_roster.pdf
+
+.PHONY: manifest roster-packets grading-need-comp
+
+ifneq ($(wildcard $(GRADING_MK)),)
+include $(GRADING_MK)
+
+grading-need-comp:
+	@test -n "$(COMP)" || { echo "!  set COMP=<test directory>, e.g. COMP=$(firstword $(TESTS))"; exit 1; }
+
+manifest: grading-need-comp
+	@$(MAKE) --no-print-directory grading-manifest
+	@echo "OK  Manifest -> target/$(UNIT)/tests/grading/$(COMP)/manifest.json"
+
+roster-packets: grading-need-comp grading-need-roster
+	@$(MAKE) --no-print-directory grading-personalized
+	@mkdir -p $(dir $(ROSTER_OUT))
+	@cp $(GR_OUT)/personalized.pdf $(ROSTER_OUT)
+	@echo "OK  Roster packets -> target/compiled/$(UNIT)/$(COMP)_roster.pdf (roster order, cover sheet first)"
+else
+manifest roster-packets grading-need-comp:
+	@echo "!  math-shared is empty — run: git submodule update --init"; exit 1
+endif

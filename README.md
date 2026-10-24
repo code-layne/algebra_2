@@ -68,7 +68,10 @@ lands in `target/`.
 ### Graded components
 
 A component that loads `grading` (from `math-shared/grading.sty`) marks its graded answers with
-`\gradedblank`. Each page then carries corner registration marks, a QR code, and a name strip.
+`\gradedblank`. Each page then carries corner registration marks, a QR code, and an id strip
+("ID: <tracking id>" on a personalized copy, empty on the master). A graded page never carries a
+student name: scans go to an outside API, so the name is printed only on math-shared's cover
+sheet, which is never scanned.
 Write each `\gradedblank` line identically in the blank and the key. The key prints the
 answer inside the box (`algebra2-key` turns this on whenever a document loads `grading`). See
 `math-shared/README.md` for the macros and `math-shared/grading-system-design.md` for the
@@ -77,22 +80,27 @@ plan.
 ```bash
 make -C unit03/lesson01 manifest COMP=exit_ticket
 make -C unit03/lesson01 roster-packets COMP=exit_ticket ROSTER=~/Rosters/algebra2/roster-map.csv
+make -C unit02/tests roster-packets COMP=factoring_quiz ROSTER=~/Rosters/algebra2/roster-map.csv
 ```
 
 - **`manifest`** builds the component and its key, writes
   `target/unitXX/lessonYY/grading/<COMP>/manifest.json`, and checks that the blank and key
-  agree on every graded item.
-- **`roster-packets`** builds one copy of the lesson's student packet per student, in roster
-  order. Each copy has that student's personalized component (her tracking id in the QR codes,
-  her name in the strip) in place of the master. It is paginated exactly like `make student` and
-  joined into `target/compiled/unitXX/lessonYY_<COMP>_roster.pdf`, to print as one collated
-  job. Add `SECTION=…` to build one section.
+  agree on every graded item. In `unitXX/tests`, `COMP` is a quiz or test and its key is
+  `../test_keys/<COMP>_key`.
+- **`roster-packets`** builds one run per student, in roster order, joined into
+  `target/compiled/unitXX/lessonYY_<COMP>_roster.pdf` (`unitXX/<COMP>_roster.pdf` for a test) to
+  print as one collated job. Each run is math-shared's cover sheet with her name, its blank back,
+  then her copy padded to an even page count, so every run starts on an odd page. In a lesson her
+  copy is the student packet with her personalized component (her tracking id in the QR codes and
+  the strip) in place of the master, paginated exactly like `make student`; a test, or a lesson
+  component kept out of the packet, is the personalized component alone. Add `SECTION=…` to build
+  one section. The build fails if any roster name reaches a graded page.
 - **`graded`** (`COMP=…`) is `manifest`, then copies the blank and key PDFs to
   `target/compiled/`. It is for a graded component kept out of the packets.
 
 `roster-map.csv` pairs names with tracking ids. Keep it outside every repository, for example
-in `~/Rosters/algebra2/`. Roster packets carry names, but they live under `target/`, which is
-never committed.
+in `~/Rosters/algebra2/`. The cover sheets and roster PDFs carry names, but they live under
+`target/`, which is never committed.
 
 `unit03/lesson01/graded_sample/` is a one-page graded quiz kept out of the packets
 (`make -C unit03/lesson01 graded_sample`). Its `eval/` directory holds a synthetic scanned class
