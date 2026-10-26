@@ -22,7 +22,7 @@
   \vspace{4pt}}
 % THE WORK RULE for a test: \slot{width}{answer} and \opt / \optok are the ONLY
 % lines that differ between blank and key, and they differ in the preamble, not the body.
-\newcommand{\slot}[2]{\underline{\makebox[#1]{}}}
+\newcommand{\slot}[2]{\underline{\makebox[#1]{\vphantom{\textbf{#2}}}}}% the key's answer height, so blank and key keep the same lines
 \newcommand{\opt}[2]{(#1)~#2}
 \newcommand{\optok}[2]{(#1)~#2}
 
@@ -47,7 +47,7 @@ letter for multiple choice. Leave radicals in simplest form.
     \hfill Value: \inblank{\slot{2.4cm}{$46$}}{\gradedblank[id=q1, type=short, points=4, answer={46}, check=numeric]{2.4cm-2pt}{13.5pt}}
 
   \item \letterbox{\gradedblank[id=q2, type=choice, points=4, answer={C}]{0.4in}{13.5pt}}Which expression represents ``seven more than twice a number $n$''?
-    \\[4pt]
+    \\*[4pt]
     \opt{A}{$2+7n$} \hfill \opt{B}{$2(n+7)$} \hfill \optok{C}{$2n+7$} \hfill \opt{D}{$7-2n$}
 
   \item Simplify $(3x^2y^3)^2\cdot y^{-5}$. Use only positive exponents.
@@ -69,7 +69,7 @@ letter for multiple choice. Leave radicals in simplest form.
     \hfill Answer: \inblank{\slot{3.0cm}{$5\sqrt{3}$}}{\gradedblank[id=q5, type=short, points=4, answer={5sqrt(3)}, check=expression, display={$5\sqrt{3}$}]{3.0cm-2pt}{13.5pt}}
 
   \item \letterbox{\gradedblank[id=q6, type=choice, points=4, answer={D}]{0.4in}{13.5pt}}Which is equivalent to $3\sqrt{2}+4\sqrt{8}$?
-    \\[4pt]
+    \\*[4pt]
     \opt{A}{$7\sqrt{10}$} \hfill \opt{B}{$7\sqrt{2}$} \hfill \opt{C}{$19\sqrt{2}$} \hfill
     \optok{D}{$11\sqrt{2}$}
 \end{enumerate}
@@ -99,7 +99,7 @@ letter for multiple choice. Leave radicals in simplest form.
     \hspace*{\fill}Answer: \inblank{\slot{3.6cm}{$(3x+4)(x+2)$}}{\gradedblank[id=q10, type=short, points=4, answer={(3x+4)(x+2)}, check=expression]{3.6cm-2pt}{13.5pt}}
 
   \item \letterbox{\gradedblank[id=q11, type=choice, points=4, answer={B}]{0.4in}{13.5pt}}Which is the \textbf{complete} factorization of $2x^2-32$?
-    \\[4pt]
+    \\*[4pt]
     \opt{A}{$2(x^2-16)$} \hfill \optok{B}{$2(x-4)(x+4)$} \hfill \opt{C}{$2(x-4)^2$} \hfill
     \opt{D}{$(2x-8)(x+4)$}
 \end{enumerate}
@@ -116,7 +116,7 @@ letter for multiple choice. Leave radicals in simplest form.
     \hfill Solution: \inblank{\slot{2.4cm}{$x=6$}}{\gradedblank[id=q12, type=short, points=4, answer={x=6}, check=expression]{2.4cm-2pt}{13.5pt}}
 
   \item \letterbox{\gradedblank[id=q13, type=choice, points=4, answer={A}]{0.4in}{13.5pt}}Which is the solution of $-2x+7>15$?
-    \\[4pt]
+    \\*[4pt]
     \optok{A}{$x<-4$} \hfill \opt{B}{$x>-4$} \hfill \opt{C}{$x<4$} \hfill
     \opt{D}{$x>4$}
 
@@ -127,7 +127,7 @@ letter for multiple choice. Leave radicals in simplest form.
     \hfill $w=$ \inblank{\slot{2.4cm}{$\dfrac{P-2l}{2}$}}{\gradedblank[id=q14, type=short, points=4, answer={(P-2l)/2}, check=expression, display={$\dfrac{P-2l}{2}$}]{2.4cm-2pt}{13.5pt}}
 
   \item \letterbox{\gradedblank[id=q15, type=choice, points=4, answer={D}]{0.4in}{13.5pt}}How many solutions does $3(x-2)=3x-6$ have?
-    \\[4pt]
+    \\*[4pt]
     \opt{A}{exactly one} \hfill \opt{B}{no solution} \hfill \opt{C}{exactly two} \hfill
     \optok{D}{infinitely many}
 
@@ -141,7 +141,7 @@ letter for multiple choice. Leave radicals in simplest form.
     \hfill Solution: \inblank{\slot{2.8cm}{$(3,\,6)$}}{\gradedblank[id=q16, type=short, points=4, answer={(3,6)}, check=text, display={$(3,\,6)$}]{2.8cm-2pt}{13.5pt}}
 
   \item \letterbox{\gradedblank[id=q17, type=choice, points=4, answer={B}]{0.4in}{13.5pt}}Which ordered pair is a solution of $y<2x-1$?
-    \\[4pt]
+    \\*[4pt]
     \opt{A}{$(0,\,0)$} \hfill \optok{B}{$(2,\,1)$} \hfill \opt{C}{$(1,\,3)$} \hfill
     \opt{D}{$(-1,\,-2)$}
 \end{enumerate}
@@ -167,7 +167,7 @@ letter for multiple choice. Leave radicals in simplest form.
 
   \boxguard[9]
   \item \letterbox{\gradedblank[id=q20, type=choice, points=4, answer={A}]{0.4in}{13.5pt}}Which equation matches the graph?
-    \\[4pt]
+    \\*[4pt]
     \begin{minipage}[c]{0.36\linewidth}\centering
     \begin{tikzpicture}[scale=0.36]
       \lgrid{-4}{4}{-4}{4}
@@ -195,7 +195,7 @@ letter for multiple choice. Leave radicals in simplest form.
 
 \begin{enumerate}[leftmargin=1.9em, itemsep=10pt, label=\arabic*., start=22]
   \item \letterbox{\gradedblank[id=q22, type=choice, points=4, answer={C}]{0.4in}{13.5pt}}Which relation is \textbf{not} a function?
-    \\[4pt]
+    \\*[4pt]
     \opt{A}{$\{(1,3),\,(2,4),\,(3,5)\}$} \hfill \opt{B}{$\{(4,1),\,(5,1),\,(6,1)\}$}
     \\[6pt]
     \optok{C}{$\{(3,1),\,(3,2),\,(4,5)\}$} \hfill \opt{D}{$\{(0,0),\,(1,-1),\,(2,-2)\}$}

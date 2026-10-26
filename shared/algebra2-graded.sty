@@ -53,6 +53,28 @@
     \fi\fi
     \ifalg@pgfshift\alg@pgf@translated{#1}\else\alg@pgf@hboxsynced@orig{#1}\fi}}
 
+% ── Work blocks stay with their prompt and their answer ──────────────────────
+% In a graded component a \begin{work} block (algebra2-boxes) is glued to the
+% line before it and the line after it: no page break between a prompt and its
+% work space, or between the work space and the answer box under it.
+\RequirePackage{etoolbox}
+\AtBeginDocument{%
+  \@ifundefined{work}{}{%
+    \patchcmd{\work}{\par\addvspace{\abovedisplayskip}}
+      {\par\nobreak\addvspace{\abovedisplayskip}}{}
+      {\PackageWarning{algebra2-graded}{could not patch work (start)}}%
+    \patchcmd{\endwork}{\par\addvspace{\belowdisplayskip}}
+      {\par\nobreak\addvspace{\belowdisplayskip}}{}
+      {\PackageWarning{algebra2-graded}{could not patch work (end)}}}}
+
+% \begin{keepwithprompt} ... \end{keepwithprompt}
+%   Around the figure, table or list that follows an item's lead-in: no page
+%   break between the lead-in and its start, or right after its end. (\boxguard
+%   cannot do this inside a breakable notesbox, and a center or list
+%   environment otherwise invites a break just before and after itself.)
+%   Breaks inside a list, between its items, stay.
+\newenvironment{keepwithprompt}{\par\nobreak\@beginparpenalty\@M\@endparpenalty\@M}{\par}
+
 % \inblank{<old blank>}{<\gradedblank ...>}
 %   The box replaces an answer blank on a text line: \blank{1.1cm}, a test's
 %   \slot{2.4cm}{answer}, or anything else the student wrote on. The old blank
@@ -64,9 +86,27 @@
 %   choice box) opens the line up instead of running into its neighbours.
 %   A rubric box never goes in a blank: use \rubricbox.
 \newsavebox{\alg@gradedbox}
+\newsavebox{\alg@answerbox}
+% \alg@clearance{<box register>}: a box taller than a text line (a square
+% choice box) gets \gradedboxclearance of extra room above and below, so the
+% lines around it never touch its border. A box that fits in the line adds
+% nothing.
+\newlength{\gradedboxclearance}\setlength{\gradedboxclearance}{2.5pt}
+% Its paragraph also keeps its first two and last three lines together
+% (\clubpenalties, \widowpenalties; set globally, since the box may sit in an
+% \llap), so a choice item's stem and options do not split at a page.
+\newcommand{\alg@clearance}[1]{%
+  \ifdim\dimexpr\ht#1+\dp#1\relax>\baselineskip
+    \ifhmode\global\widowpenalties 4 \@M \@M \@M 150\relax
+      \global\clubpenalties 3 \@M \@M 150\relax\fi
+    \vrule width\z@ height\dimexpr\ht#1+\gradedboxclearance\relax
+      depth\dimexpr\dp#1+\gradedboxclearance\relax
+  \fi}
 \newcommand{\inblank}[2]{%
   \leavevmode\sbox{\alg@gradedbox}{#1}%
-  \rlap{\makebox[\wd\alg@gradedbox]{#2}}\phantom{#1}}
+  \sbox{\alg@answerbox}{#2}%
+  \alg@clearance{\alg@answerbox}%
+  \rlap{\makebox[\wd\alg@gradedbox]{\usebox{\alg@answerbox}}}\phantom{#1}}
 
 % \letterbox{<\gradedblank ...>}
 %   A multiple-choice answer: "Letter:" and a box, set flush with the right
@@ -79,8 +119,14 @@
 \newcommand{\answerbox}[2][Answer:]{%
   \leavevmode
   \sbox{\alg@gradedbox}{\small\textbf{#1}\ #2}%
+  \alg@clearance{\alg@gradedbox}%
   \rlap{\hskip\dimexpr\linewidth-\wd\alg@gradedbox\relax\usebox{\alg@gradedbox}}}
 \newcommand{\letterbox}[1]{\answerbox[Letter:]{#1}}
+% \choicebox{<\gradedblank ...>}
+%   A box set by hand (in the margin, after a stem), at its full size: the box
+%   and \alg@clearance, nothing else. Wrap it in \llap or \rlap as before.
+\newcommand{\choicebox}[1]{%
+  \sbox{\alg@answerbox}{#1}\alg@clearance{\alg@answerbox}\usebox{\alg@answerbox}}
 
 % Work areas that are only vertical space (\vspace{2.5cm} after a prompt).
 % \workanswer goes between paragraphs and costs no vertical space at all: the
@@ -133,8 +179,14 @@
     \kern\gradedrubrictop
     \hbox to\linewidth{\raisebox{-\height}{\usebox{\alg@gradedbox}}\hss}%
     \kern\gradedrubricbottom}}
+% In a paragraph, its first two and last three lines are kept together as well
+% (\clubpenalties, \widowpenalties, read when the paragraph ends), so the end
+% of the prompt never stays behind on the page before its box. The setting
+% outlasts the paragraph only as that keep-together rule, which is harmless.
 \newcommand{\rubricbox}[1]{%
   \ifhmode
+    \widowpenalties 4 \@M \@M \@M 150\relax
+    \clubpenalties 3 \@M \@M 150\relax
     \vadjust{\alg@rubricblock{#1}}%
   \else
     \nobreak\alg@rubricblock{#1}%
