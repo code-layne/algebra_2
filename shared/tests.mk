@@ -70,7 +70,13 @@ include $(GRADING_MK)
 grading-need-comp:
 	@test -n "$(COMP)" || { echo "!  set COMP=<test directory>, e.g. COMP=$(firstword $(TESTS))"; exit 1; }
 
+# A graded page carries only the tracking id, so `manifest` first fails on any
+# name line (\namedateperiod, \namepartnerperiod, a hand-written "Name:") in
+# the test or its key.
+NAMELINE_CHECK := python3 $(PROJECT_ROOT)/shared/check_namelines.py
+
 manifest: grading-need-comp
+	@$(NAMELINE_CHECK) $(COMP)/main.tex $(wildcard $(KEY_COMPONENT)/main.tex)
 	@$(MAKE) --no-print-directory grading-manifest
 	@echo "OK  Manifest -> target/$(UNIT)/tests/grading/$(COMP)/manifest.json"
 

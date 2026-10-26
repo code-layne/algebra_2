@@ -53,43 +53,89 @@
     \fi\fi
     \ifalg@pgfshift\alg@pgf@translated{#1}\else\alg@pgf@hboxsynced@orig{#1}\fi}}
 
+% ── Work blocks stay with their prompt and their answer ──────────────────────
+% In a graded component a \begin{work} block (algebra2-boxes) is glued to the
+% line before it and the line after it: no page break between a prompt and its
+% work space, or between the work space and the answer box under it.
+\RequirePackage{etoolbox}
+\AtBeginDocument{%
+  \@ifundefined{work}{}{%
+    \patchcmd{\work}{\par\addvspace{\abovedisplayskip}}
+      {\par\nobreak\addvspace{\abovedisplayskip}}{}
+      {\PackageWarning{algebra2-graded}{could not patch work (start)}}%
+    \patchcmd{\endwork}{\par\addvspace{\belowdisplayskip}}
+      {\par\nobreak\addvspace{\belowdisplayskip}}{}
+      {\PackageWarning{algebra2-graded}{could not patch work (end)}}}}
+
+% \begin{keepwithprompt} ... \end{keepwithprompt}
+%   Around the figure, table or list that follows an item's lead-in: no page
+%   break between the lead-in and its start, or right after its end. (\boxguard
+%   cannot do this inside a breakable notesbox, and a center or list
+%   environment otherwise invites a break just before and after itself.)
+%   Breaks inside a list, between its items, stay.
+\newenvironment{keepwithprompt}{\par\nobreak\@beginparpenalty\@M\@endparpenalty\@M}{\par}
+
 % \inblank{<old blank>}{<\gradedblank ...>}
 %   The box replaces an answer blank on a text line: \blank{1.1cm}, a test's
 %   \slot{2.4cm}{answer}, or anything else the student wrote on. The old blank
 %   is set as a \phantom (its width, height and depth, so the line keeps its
 %   metrics in both files) and the box is laid over it, centred. Give the box
 %   the blank's width less 2pt, {1.1cm-2pt}, so it never touches punctuation
-%   set right against the blank.
+%   set right against the blank. The box keeps its height and depth: a short
+%   box fits inside the line anyway, and a box taller than the line (a square
+%   choice box) opens the line up instead of running into its neighbours.
+%   A rubric box never goes in a blank: use \rubricbox.
 \newsavebox{\alg@gradedbox}
+\newsavebox{\alg@answerbox}
+% \alg@clearance{<box register>}: a box taller than a text line (a square
+% choice box) gets \gradedboxclearance of extra room above and below, so the
+% lines around it never touch its border. A box that fits in the line adds
+% nothing.
+\newlength{\gradedboxclearance}\setlength{\gradedboxclearance}{2.5pt}
+% Its paragraph also keeps its first two and last three lines together
+% (\clubpenalties, \widowpenalties; set globally, since the box may sit in an
+% \llap), so a choice item's stem and options do not split at a page.
+\newcommand{\alg@clearance}[1]{%
+  \ifdim\dimexpr\ht#1+\dp#1\relax>\baselineskip
+    \ifhmode\global\widowpenalties 4 \@M \@M \@M 150\relax
+      \global\clubpenalties 3 \@M \@M 150\relax\fi
+    \vrule width\z@ height\dimexpr\ht#1+\gradedboxclearance\relax
+      depth\dimexpr\dp#1+\gradedboxclearance\relax
+  \fi}
 \newcommand{\inblank}[2]{%
   \leavevmode\sbox{\alg@gradedbox}{#1}%
-  \rlap{\makebox[\wd\alg@gradedbox]{\raisebox{0pt}[0pt][0pt]{#2}}}\phantom{#1}}
+  \sbox{\alg@answerbox}{#2}%
+  \alg@clearance{\alg@answerbox}%
+  \rlap{\makebox[\wd\alg@gradedbox]{\usebox{\alg@answerbox}}}\phantom{#1}}
 
 % \letterbox{<\gradedblank ...>}
-%   A multiple-choice answer: "Letter:" and a small box, set flush with the
-%   right edge of the current line (\linewidth), with zero footprint. Put it at
-%   the start of a line whose right end is empty (an answer-option line, or the
-%   stem's line).
+%   A multiple-choice answer: "Letter:" and a box, set flush with the right
+%   edge of the current line (\linewidth), with zero width. Put it at the start
+%   of a line whose right end is empty (an answer-option line, or the stem's
+%   line). math-shared draws every choice box square, taller than a text line,
+%   so the box keeps its height and depth and the line opens up around it.
 % \answerbox[<label>]{<\gradedblank ...>}
 %   The same for any final answer, labelled "Answer:" unless a label is given.
 \newcommand{\answerbox}[2][Answer:]{%
   \leavevmode
-  \sbox{\alg@gradedbox}{\raisebox{0pt}[0pt][0pt]{\small\textbf{#1}\ #2}}%
+  \sbox{\alg@gradedbox}{\small\textbf{#1}\ #2}%
+  \alg@clearance{\alg@gradedbox}%
   \rlap{\hskip\dimexpr\linewidth-\wd\alg@gradedbox\relax\usebox{\alg@gradedbox}}}
 \newcommand{\letterbox}[1]{\answerbox[Letter:]{#1}}
+% \choicebox{<\gradedblank ...>}
+%   A box set by hand (in the margin, after a stem), at its full size: the box
+%   and \alg@clearance, nothing else. Wrap it in \llap or \rlap as before.
+\newcommand{\choicebox}[1]{%
+  \sbox{\alg@answerbox}{#1}\alg@clearance{\alg@answerbox}\usebox{\alg@answerbox}}
 
 % Work areas that are only vertical space (\vspace{2.5cm} after a prompt).
-% Both helpers go between paragraphs and cost no vertical space at all: the
+% \workanswer goes between paragraphs and costs no vertical space at all: the
 % material hangs in a box of zero height, and the following line is spaced as
 % if the box were not there.
 %
 % \workanswer[<label>]{<\gradedblank ...>}
 %   Right AFTER the work area's \vspace: "Answer:" and the box, flush right,
 %   their bottom edge \gradedworkgap above the end of the space.
-% \workarea{<\gradedblank[...]{<w>}{<h>}>}
-%   Right BEFORE the work area's \vspace: the box hangs down from there, flush
-%   with the list's left edge -- a rubric box over the whole of a free-response
-%   space (make h the space less a few points).
 \newlength{\gradedworkgap}
 \setlength{\gradedworkgap}{3pt}
 \newcommand{\alg@zeroheight}[1]{%
@@ -103,49 +149,52 @@
   \alg@zeroheight{\vss
     \hbox to\linewidth{\hfill\usebox{\alg@gradedbox}}%
     \kern\dimexpr\gradedworkgap+0.6em\relax}}
-\newcommand{\workarea}[1]{%
-  \alg@zeroheight{\kern 2pt
-    \hbox to\linewidth{\raisebox{0pt}[0pt][0pt]{\raisebox{-\height}{#1}}\hfill}%
-    \vss}}
 
+% ── Rubric boxes ─────────────────────────────────────────────────────────────
+% math-shared draws every rubric box at least \gradingrubricminheight (2in)
+% tall, so a written response never shares a text line or sits over write
+% lines: it gets its own full-width box under its prompt, and the box takes
+% real space on the page.
+%
+% \rubricbox{<\gradedblank[..., type=rubric]{\linewidth}{<h>}>}
+%   Right after the prompt. In a paragraph, the box goes directly under the
+%   line the command ends up on (a \vadjust: no page break can come between
+%   that line and the box), and the paragraph goes on after it, so a following
+%   \\[3pt] or (b) works as before. Between paragraphs, it is a block of its
+%   own, kept with the paragraph above. Either way the block is the box's drawn
+%   height plus \gradedrubrictop above and \gradedrubricbottom below.
+% \workarea{<\gradedblank ...>}
+%   The same block, for a test's free-response space. It replaces the old
+%   pair \vadjust{\workarea{...}}\vspace{<space>}: the box is the space now.
 % \gradedlines{<n>}{<\gradedblank[...]{\linewidth}{\gradedlinesheight}>}
-%   Replaces \writelines{n} for an explain / justify / interpret answer, laying
-%   the box over the write lines. The lines are set exactly as \writelines{n}
-%   sets them (same rules, same spacing). Pass \gradedlinesheight as the box
-%   height: the helper sets it from n and the current \baselineskip before the
-%   box is drawn. Two cases:
-%   * after the prompt, on the prompt's own line (the usual case): the first
-%     write line is the rest of the prompt's line. It is left without its rule
-%     and the box starts below the prompt, so it holds lines 2..n;
-%   * as a paragraph of its own: the box holds all n lines.
-%   The box runs the full line width, from just under the line above to just
-%   under the last rule.
-\newlength{\gradedlinesheight}
-\newlength{\alg@gradedlinestep}
-\newlength{\alg@gradedraise}
-\newcommand{\alg@gradedtopgap}{3.5pt}    % below the baseline of the line above
-\newcommand{\alg@gradedbottomgap}{2.5pt} % below the last rule
-% #1 = number of write lines inside the box, #2 = the \gradedblank. Call at
-% the start of the box's first line (that line's baseline is 0).
-\newcommand{\alg@gradedlinesbox}[2]{%
-  % One write line costs \baselineskip + 4pt (\writeline's 1pt + 3pt).
-  \setlength{\alg@gradedlinestep}{\dimexpr\baselineskip+4pt\relax}%
-  \setlength{\gradedlinesheight}{\dimexpr\alg@gradedlinestep*\numexpr#1\relax-\alg@gradedtopgap+\alg@gradedbottomgap\relax}%
-  % The box's top sits one line step above this line's baseline, less the top
-  % gap; it is centred \gradingboxcenter above its own baseline, hence the raise.
-  \setlength{\alg@gradedraise}{\dimexpr\alg@gradedlinestep-\alg@gradedtopgap-\gradedlinesheight/2-\gradingboxcenter\relax}%
-  \rlap{\raisebox{\alg@gradedraise}[0pt][0pt]{#2}}}
-\newcommand{\gradedlines}[2]{%
-  \ifvmode
-    % \writeline's own first steps: 1pt, then a new line holding a rule.
-    \vspace{1pt}\noindent
-    \alg@gradedlinesbox{#1}{#2}%
-    \textcolor{linegray}{\hrulefill}\vspace{3pt}\\%
+%   The old explain / justify helper, kept so a call written for it still
+%   works: \gradedlinesheight is set to the height of n write lines, and the
+%   box (at least 2in tall) follows the prompt as a \rubricbox, with the
+%   paragraph ended after it.
+\newlength{\gradedrubrictop}\setlength{\gradedrubrictop}{4pt}
+\newlength{\gradedrubricbottom}\setlength{\gradedrubricbottom}{6pt}
+\newcommand{\alg@rubricblock}[1]{%
+  \sbox{\alg@gradedbox}{#1}%
+  \moveright\@totalleftmargin\vbox{%
+    \kern\gradedrubrictop
+    \hbox to\linewidth{\raisebox{-\height}{\usebox{\alg@gradedbox}}\hss}%
+    \kern\gradedrubricbottom}}
+% In a paragraph, its first two and last three lines are kept together as well
+% (\clubpenalties, \widowpenalties, read when the paragraph ends), so the end
+% of the prompt never stays behind on the page before its box. The setting
+% outlasts the paragraph only as that keep-together rule, which is harmless.
+\newcommand{\rubricbox}[1]{%
+  \ifhmode
+    \widowpenalties 4 \@M \@M \@M 150\relax
+    \clubpenalties 3 \@M \@M 150\relax
+    \vadjust{\alg@rubricblock{#1}}%
   \else
-    % The prompt's line, run out with no rule.
-    \vspace{1pt}\noindent\hfill\vspace{3pt}\\%
-    \alg@gradedlinesbox{#1-1}{#2}%
-  \fi
-  \foreach \alg@i in {2,...,#1}{\writeline\\}}
+    \nobreak\alg@rubricblock{#1}%
+  \fi}
+\newcommand{\workarea}[1]{\rubricbox{#1}}
+\newlength{\gradedlinesheight}
+\newcommand{\gradedlines}[2]{%
+  \setlength{\gradedlinesheight}{\dimexpr(\baselineskip+4pt)*\numexpr#1\relax-1pt\relax}%
+  \rubricbox{#2}\ifhmode\par\fi}
 
 \endinput
