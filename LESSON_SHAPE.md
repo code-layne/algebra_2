@@ -590,15 +590,20 @@ in a test whose numbering restarts in each part, the part letter leads (`qa3`, `
 
 **How a graded component is written.** Each final answer is a `\gradedblank` box, written
 identically in the blank and the key; the key prints the answer in it. An already-authored page was
-converted with the helpers in `shared/algebra2-graded.sty`, which lay a box over the old answer
-space without moving a line or a page break: `\inblank{\blank{w}}{\gradedblank[…]{w-2pt}{h}}` for
-a blank (or a test's `\slot`), `\letterbox{\gradedblank[…, type=choice]{0.4in}{h}}` for a
-multiple-choice letter (`\answerbox[label]{…}` for another label),
-`\gradedlines{n}{\gradedblank[…, type=rubric]{\linewidth}{\gradedlinesheight}}` for an
-explain/justify answer on `n` write lines, and, for a test item whose only space is a `\vspace`
-work area, `\workanswer{…}` (an "Answer:" box at the bottom right of the space) or
-`\workarea{…}` (a rubric box over a free-response space). All of them cost no space. Box heights are one line pitch less about 1pt
-(12.5pt in a 12pt `\small` homework, 13.5pt in a 12pt test, 10pt in a 10pt document). Work blocks
+converted with the helpers in `shared/algebra2-graded.sty`: `\inblank{\blank{w}}{\gradedblank[…]{w-2pt}{h}}`
+for a short answer in a blank (or a test's `\slot`), `\letterbox{\gradedblank[…, type=choice]{0.4in}{h}}`
+for a multiple-choice letter (`\answerbox[label]{…}` for another label), `\workanswer{…}` for an
+"Answer:" box at the bottom right of a test's `\vspace` work area, and
+`\rubricbox{\gradedblank[…, type=rubric]{\linewidth}{h}}` for every written response.
+**Box sizes (math-shared, 2026-10-26):** every `choice` box is drawn square (as tall as it is wide,
+whatever height is written) and every `rubric` box at least 2in tall; `short` boxes are drawn as
+written. So a choice box keeps its height in the line and opens the line up around it, and a rubric
+box is never inline: `\rubricbox` sets it full width directly under its prompt (under the line it
+ends up on when it sits in a paragraph, kept on the same page; a block of its own between
+paragraphs), and the box *is* the answer space, so no `\writelines` or `\vspace` follows it. The
+older `\gradedlines{n}{…}` and `\workarea{…}` still work and now do the same as `\rubricbox`. Short
+box heights are one line pitch less about 1pt (12.5pt in a 12pt `\small` homework, 13.5pt in a 12pt
+test, 10pt in a 10pt document); never write a size into a choice or rubric box to dodge the rules. Work blocks
 and work space stay outside the boxes. Types: `choice` (1 pt), `short` with `check=numeric`,
 `expression`, `set` or `text` (1 pt; 2 for a multi-step result), `rubric` with a YAML file —
 `<lesson>/rubrics/<assignment>-<id>.yaml` for homework, `unitNN/rubrics/<assignment>-<id>.yaml`
