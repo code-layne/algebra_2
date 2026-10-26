@@ -8,7 +8,7 @@
 COMPILED_DIR := target/compiled
 UNITS := $(patsubst %/Makefile,%,$(sort $(wildcard unit*/Makefile)))
 
-.PHONY: all student key clean distclean $(UNITS)
+.PHONY: all student key clean distclean check-names $(UNITS)
 
 all: $(UNITS)
 
@@ -32,6 +32,11 @@ key:
 	  pdfunite $$pdfs $(COMPILED_DIR)/curriculum_key.pdf; \
 	  echo "✓  Curriculum key     → target/compiled/curriculum_key.pdf"; \
 	fi
+
+# Every graded document in the course (lessons and tests, blank and key): fails
+# on any name line. `make manifest` runs the same check for one component.
+check-names:
+	@python3 shared/check_namelines.py $(UNITS)
 
 clean:
 	@for u in $(UNITS); do $(MAKE) -C $$u clean; done

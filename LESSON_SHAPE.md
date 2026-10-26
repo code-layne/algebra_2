@@ -364,7 +364,7 @@ travels with the branch and the Step 0 sync brings the latest state forward.
   write-lines — the vocab style in use), `\termblank{Term}` (a **fixed-height row**, `\termrowheight`
   1.30cm, ported 2026-09-03; its key counterpart `\termans{Term}{def}` in `-key` fills the same
   height — used by the 1.2 pilot only), `\pageheader{Unit X, Lesson Y.Z}{Doc Type}`,
-  `\namedateperiod` (cover and unit tests only), `\namepartnerperiod` (unused), and
+  `\namedateperiod` (the lesson cover only; never on a graded component, unit tests included), `\namepartnerperiod` (unused), and
   `\coverbanner{unit}{lesson}` (measures the title block and sizes the band — the 1.2 pilot; the
   skeleton cover still draws the fixed 1.16in TikZ band).
 - **There is no `\answerspace`.** The shared skill's page-parity mechanisms list it; here a prose
@@ -459,8 +459,8 @@ all of this down the first time a unit is created (`--tests` re-runs it idempote
 skips it). Build: `make -C unitXX/tests all && make -C unitXX/test_keys all` **before** the unit
 packet, so the prefab exists when `unit.mk` merges it.
 
-Test structure: `\pageheader{Unit X: <Title>}{...}` + `\namedateperiod` (**tests are exempt from
-namestrip** — taken in a testing setting, not stapled behind a cover); a local `\parthead{Part …}`
+Test structure: `\pageheader{Unit X: <Title>}{...}` and **no name row** (every quiz and test loads
+`grading`, so it carries no name line: the name goes only on math-shared's cover sheet, §9); a local `\parthead{Part …}`
 macro drawing a `headlinebox{forest}` divider; parts for vocabulary, multiple choice, short
 answer / computation, extended response, with `\vspace` work room. The practice test opens with a
 `remindbox` saying it mirrors the real test in format and ideas with different numbers; the actual

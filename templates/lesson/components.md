@@ -209,9 +209,9 @@ prints nothing, and a grep for one ladder answer prints nothing (examples keep t
 
 Unit-level, not per-lesson — scaffolded once per unit under `unitXX/tests/` and
 `unitXX/test_keys/` (see `LESSON_SHAPE.md` §6 and the shared skill's `references/build.md`). Author **two blank
-tests and their two keys**, all with `\pageheader{Unit X: <Title>}{...}` + `\namedateperiod`
-(tests are **exempt from Namestrip** — they are taken in a testing setting, not stapled behind a
-lesson cover, so they keep their name row):
+tests and their two keys**, all with `\pageheader{Unit X: <Title>}{...}` and **no name row**
+(tests are graded components: they load `grading`, the page carries only the tracking id, and the
+student's name goes only on math-shared's cover sheet, so a test never has a name line):
 
 - **`tests/practice_test/main.tex`** — the study copy students keep. Opens with a `remindbox`
   telling students it mirrors the real test in format and ideas but uses different numbers.
