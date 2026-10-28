@@ -45,8 +45,9 @@ clean:
 #   make manifest COMP=factoring_quiz
 #       blank + key builds, target/<unit>/tests/grading/<COMP>/manifest.json,
 #       and the check that the blank and key agree on every graded item.
-#   make roster-packets COMP=factoring_quiz ROSTER=~/Rosters/algebra2/roster-map.csv [SECTION=…]
-#       one run per student, in roster order, joined into
+#   make roster-packets COMP=factoring_quiz ROSTER=~/Mathematics/rosters/roster-map.csv [SECTION=…]
+#       the manifest first (as `make manifest` does, which `grading ingest`
+#       reads), then one run per student, in roster order, joined into
 #       target/compiled/<unit>/<COMP>_roster.pdf to print as one collated job:
 #       math-shared's cover sheet (the only page with her name), its blank back,
 #       then her personalized copy (tracking id in the QR codes and the "ID:"
@@ -61,6 +62,11 @@ COMPONENT     := $(COMP)
 KEY_COMPONENT := ../test_keys/$(COMP)_key
 GRADING_OUT   := $(PDF_DIR)/grading/$(COMP)
 ROSTER_OUT    := $(PROJECT_ROOT)/target/compiled/$(UNIT)/$(COMP)_roster.pdf
+
+# ROSTER may start with ~/ (make does not expand it) and may be relative.
+ifneq ($(ROSTER),)
+override ROSTER := $(abspath $(patsubst ~/%,$(HOME)/%,$(ROSTER)))
+endif
 
 .PHONY: manifest roster-packets grading-need-comp
 
@@ -80,7 +86,7 @@ manifest: grading-need-comp
 	@$(MAKE) --no-print-directory grading-manifest
 	@echo "OK  Manifest -> target/$(UNIT)/tests/grading/$(COMP)/manifest.json"
 
-roster-packets: grading-need-comp grading-need-roster
+roster-packets: grading-need-comp grading-need-roster manifest
 	@$(MAKE) --no-print-directory grading-personalized
 	@mkdir -p $(dir $(ROSTER_OUT))
 	@cp $(GR_OUT)/personalized.pdf $(ROSTER_OUT)

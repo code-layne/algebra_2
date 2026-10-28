@@ -192,9 +192,9 @@ you trys — teach, then transfer.
 
 **`cover`** — 12pt, `\coverbanner{Unit N \quad Title}{Lesson N.M \quad Title}`,
 `\namedateperiod` (the only place it appears), a `learningtargetbox` of "I can…" targets **using
-the formal vocabulary in bold**, a `tocbox` with **two scored rows** — *Slide Notes* (the printed
-handout, worked in the notes column) and *Homework* (worded for the lesson's source, §2) — plus a
-Total row, and a `remindbox` (*Keep in Mind*) that is a **content** summary — the lesson's
+the formal vocabulary in bold**, a `tocbox` that is a **contents list only** (no Score column, no Total row, 2026-10-28) with two rows,
+*Slide Notes* (the printed handout, worked in the notes column) and *Homework* (worded for the
+lesson's source, §2; a graded homework page says **scored 1 to 5**), and a `remindbox` (*Keep in Mind*) that is a **content** summary — the lesson's
 definitions and the distinction it turns on, never the process. `\small` inside the boxes.
 
 **The printed products (user direction, 2026-09-28: "incorporate the student version of the
@@ -254,8 +254,9 @@ lesson:
 For a multi-lesson request, ask for every lesson's source in one `AskUserQuestion` call before
 dispatching the subagents. Record the answer in the plan's *Lesson model* line and Homework box.
 
-- **Both cover rows are scored** — a `\blank{1.2cm}`, never `NA`. For DeltaMath online the score
-  comes from DeltaMath; the row still carries the blank for the teacher to transcribe.
+- **Homework is scored 1 to 5** (2026-10-28): 5 x earned / possible, rounded half up, never below 1
+  for work turned in. The cover row says so in its description; the cover has no Score column. For
+  DeltaMath the score comes from DeltaMath.
 - **The homework is started in class** in the last 10 minutes — launch item 1 aloud, then
   circulate — and finished at home, whatever its source.
 - **Due date — course policy of record (user direction, 2026-09-03, recorded in the `COURSE_PLAN.md`
@@ -434,7 +435,7 @@ handoff into the first definition) → **The Lesson — definition, example, lad
 (`skillbox{forestbg}`, `multicols{2}`, one paragraph per cycle in deck order: what to point at on
 the definition's display, the example and where students go wrong, the ladder **with its
 answers**, the Show me / Find the mistake with what each wrong answer means; the crux cycle named)
-→ **Final Round (5 min)** → **Homework — scored, started in class, due the first class after two study halls**
+→ **Final Round (5 min)** → **Homework — scored 1 to 5, started in class, due the first class after two study halls**
 (`skillbox{goldbox}`: the source, the items or the DeltaMath set, the formative check's sort, the
 **Preview**) → **Watch For** (`skillbox{redbox}`, keyed to ladder, check-frame, and homework item numbers,
 plus cold-call prompts) → **Teacher Notes — two:** `[Slides]`, `[Homework]` (a DeltaMath lesson
@@ -460,7 +461,7 @@ skips it). Build: `make -C unitXX/tests all && make -C unitXX/test_keys all` **b
 packet, so the prefab exists when `unit.mk` merges it.
 
 Test structure: `\pageheader{Unit X: <Title>}{...}` and **no name row** (every quiz and test loads
-`grading`, so it carries no name line: the name goes only on math-shared's cover sheet, §9); a local `\parthead{Part …}`
+`grading`, so it carries no name line: the name goes only on math-shared's name sheet, §9); a local `\parthead{Part …}`
 macro drawing a `headlinebox{forest}` divider; parts for vocabulary, multiple choice, short
 answer / computation, extended response, with `\vspace` work room. The practice test opens with a
 `remindbox` saying it mirrors the real test in format and ideas with different numbers; the actual
@@ -616,9 +617,12 @@ After changing a practice test, rebuild `make -C unitNN/tests all && make -C uni
 so the committed `sample_test*/main.pdf` drop-ins carry the boxes too.
 
 **Names and printing.** A graded page carries only the tracking id (QR codes, and the strip
-"ID: <id>"), never a student name: scans go to an outside API. The name is printed only on
-math-shared's cover sheet. `make roster-packets COMP=… ROSTER=… [SECTION=…]` — in a lesson, or in
-`unitNN/tests` for a quiz or test — joins, per student in roster order, the cover sheet, its blank
-back, then her packet (a lesson) or personalized copy (a test) padded to an even page count, and
-fails if any roster name reaches a graded page. Never define `\GradingStudentName` in a
+"ID: <id>"), never a student name: scans go to an outside API. For a lesson packet
+the name is printed on the Name line of the lesson cover, which `make roster-packets ROSTER=…
+[SECTION=…]` preprints; there is no separate name sheet (2026-10-28). Every graded component in the
+packet is her personalized copy and starts on a fresh sheet, so she tears the graded sheets out and
+turns them in without her name. For a quiz or test, `make -C unitNN/tests roster-packets COMP=…`
+puts math-shared's tear-off name sheet and its blank back in front of her copy. Both build each
+graded component's manifest first, and fail if any roster name reaches a graded page. From the
+root: `make roster-packets LESSON=unitNN/lessonMM ROSTER=…` or `COMP=unitNN/tests/<name>`. Never define `\GradingStudentName` in a
 graded component (grading.sty ignores it with a warning).
