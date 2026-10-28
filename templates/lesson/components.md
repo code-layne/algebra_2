@@ -70,7 +70,7 @@ order (`LESSON_SHAPE.md` §5 wins over this summary):
    talk); the ladder's answers and the slip to watch; the Show me answer and what each wrong
    finger count means (or the Find-the-mistake error and fix). Name the crux round.
 8a. **Final Round (5 min)** — the four problems with answers, the bonus, the Watch-out line.
-9. **Homework — scored, started in class, due the first class after two study halls** —
+9. **Homework — scored 1 to 5, started in class, due the first class after two study halls** —
    `skillbox{goldbox}`: the source; the items and what each is for (or the DeltaMath set and what
    it covers); how to sort the formative check; a **Preview** of the next lesson.
 10. **Watch For** — `skillbox{redbox}`: misconceptions to catch, keyed to round / ladder rung / check,
@@ -89,12 +89,13 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
   block and sizes the forest band to it.
 - `\namedateperiod` — **the only place in the lesson it appears.** See "Namestrip" below.
 - `learningtargetbox` — an "I can…" list **using the lesson's formal vocabulary in bold**.
-- `tocbox` — a `tabularx` with **two scored rows** + a Total row: **1 Slide Notes** (the printed
+- `tocbox` — a `tabularx` that is a **contents list only** (no Score column, no Total row) with
+  two rows: **1 Slide Notes** (the printed
   handout, worked in the notes column) and **2 Homework**, worded for the lesson's source —
   generated: what it covers; DeltaMath online: *DeltaMath: **set name** — online, not in this
-  packet*; DeltaMath printed: *Homework (DeltaMath)* and what it covers. Every row ends in a
-  `\blank{1.2cm}`, never `NA`; the homework row ends **"--- scored; due the first class after two
-  study halls"**. Four columns (`c l X r`); **every row needs four cells** or the widths collapse.
+  packet*; DeltaMath printed: *Homework (DeltaMath)* and what it covers. A generated homework row
+  ends with the sentence **"Scored 1 to 5, due the first class after two study halls."**
+  (DeltaMath: "scored, due …"). Three columns (`c l X`); **every row needs three cells** or the widths collapse.
 - `remindbox` (Keep in Mind) — a **content** summary: the lesson's key definitions and the
   distinction it turns on, in three or four sentences — the same content as the Final Round's Watch-out line.
 
@@ -108,7 +109,7 @@ skeletons `warmup.tex`, `notes.tex`, `activity.tex` remain only so a legacy less
 
 ## Homework
 
-`homework/` (+ `homework_key/`) — the lesson's individual practice, **scored**, started in class
+`homework/` (+ `homework_key/`) — the lesson's individual practice, **scored 1 to 5**, started in class
 in the last ten minutes, alone, and finished at home. **Its source is asked for every lesson**
 (`LESSON_SHAPE.md` §2): **generated** — author it to this spec; **DeltaMath online** — no
 `homework/` directory at all (`--components cover,slides`); **DeltaMath printed** — prefab
@@ -211,7 +212,7 @@ Unit-level, not per-lesson — scaffolded once per unit under `unitXX/tests/` an
 `unitXX/test_keys/` (see `LESSON_SHAPE.md` §6 and the shared skill's `references/build.md`). Author **two blank
 tests and their two keys**, all with `\pageheader{Unit X: <Title>}{...}` and **no name row**
 (tests are graded components: they load `grading`, the page carries only the tracking id, and the
-student's name goes only on math-shared's cover sheet, so a test never has a name line):
+student's name goes only on math-shared's tear-off name sheet, so a test never has a name line):
 
 - **`tests/practice_test/main.tex`** — the study copy students keep. Opens with a `remindbox`
   telling students it mirrors the real test in format and ideas but uses different numbers.

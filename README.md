@@ -70,36 +70,49 @@ lands in `target/`.
 A component that loads `grading` (from `math-shared/grading.sty`) marks its graded answers with
 `\gradedblank`. Each page then carries corner registration marks, a QR code, and an id strip
 ("ID: <tracking id>" on a personalized copy, empty on the master). A graded page never carries a
-student name: scans go to an outside API, so the name is printed only on math-shared's cover
-sheet, which is never scanned.
+student name: scans go to an outside API, so the name is printed only on the lesson cover (a
+lesson packet) or math-shared's name sheet (a test or quiz), neither of which is scanned.
 Write each `\gradedblank` line identically in the blank and the key. The key prints the
 answer inside the box (`algebra2-key` turns this on whenever a document loads `grading`). See
 `math-shared/README.md` for the macros and `math-shared/grading-system-design.md` for the
 plan.
 
+`manifest` works on one graded component at a time; a lesson's `roster-packets` covers every
+graded component in its packet. Both run from the root, a unit, or the component's own
+directory, and `ROSTER` may start with `~/`:
+
 ```bash
-make -C unit03/lesson01 manifest COMP=exit_ticket
-make -C unit03/lesson01 roster-packets COMP=exit_ticket ROSTER=~/Rosters/algebra2/roster-map.csv
-make -C unit02/tests roster-packets COMP=factoring_quiz ROSTER=~/Rosters/algebra2/roster-map.csv
+make -C unit03/lesson01 manifest COMP=homework           # blank + key, manifest.json, blank/key check
+make manifest COMP=unit03/lesson01/homework              # the same, from the root
+make roster-packets LESSON=unit03/lesson01 ROSTER=~/Mathematics/rosters/roster-map.csv SECTION="Algebra 2"
+make roster-packets COMP=unit02/tests/factoring_quiz ROSTER=~/Mathematics/rosters/roster-map.csv SECTION="Algebra 2"
+make -C unit02/tests roster-packets COMP=factoring_quiz ROSTER=~/Mathematics/rosters/roster-map.csv
+make -C unit03 roster-packets LESSON=lesson01 ROSTER=~/Mathematics/rosters/roster-map.csv
 ```
 
 - **`manifest`** builds the component and its key, writes
   `target/unitXX/lessonYY/grading/<COMP>/manifest.json`, and checks that the blank and key
   agree on every graded item. In `unitXX/tests`, `COMP` is a quiz or test and its key is
   `../test_keys/<COMP>_key`.
-- **`roster-packets`** builds one run per student, in roster order, joined into
-  `target/compiled/unitXX/lessonYY_<COMP>_roster.pdf` (`unitXX/<COMP>_roster.pdf` for a test) to
-  print as one collated job. Each run is math-shared's cover sheet with her name, its blank back,
-  then her copy padded to an even page count, so every run starts on an odd page. In a lesson her
-  copy is the student packet with her personalized component (her tracking id in the QR codes and
-  the strip) in place of the master, paginated exactly like `make student`; a test, or a lesson
-  component kept out of the packet, is the personalized component alone. Add `SECTION=…` to build
-  one section. The build fails if any roster name reaches a graded page.
+- **`roster-packets`** for a lesson builds one student packet per student, in roster order,
+  joined into `target/compiled/unitXX/lessonYY_roster.pdf` to print duplex as one collated job.
+  Her name is printed on the Name line of the lesson cover, and every graded component in the
+  packet is her personalized copy, whose QR codes and id strip carry only her tracking id. Each
+  component starts on a fresh sheet, so she tears the graded sheets out and turns them in without
+  her name; the cover stays in her packet. Lesson packets have no separate name sheet. Tests and
+  quizzes do: `make -C unitXX/tests roster-packets COMP=…` writes `unitXX/<COMP>_roster.pdf`, where
+  each run is math-shared's name sheet, its blank back, then her copy padded to an even page
+  count. The name sheet is torn off and never scanned. A lesson component kept out of the packet
+  (`COMP=graded_sample`) gets the same run as a test. Every form also builds each graded
+  component's `manifest.json`, the answer key `grading ingest` reads, so after `make distclean`
+  the packet build is the only grading step needed. Add `SECTION=…` to build one section. The
+  build fails if any roster name reaches a graded page.
 - **`graded`** (`COMP=…`) is `manifest`, then copies the blank and key PDFs to
   `target/compiled/`. It is for a graded component kept out of the packets.
 
-`roster-map.csv` pairs names with tracking ids. Keep it outside every repository, for example
-in `~/Rosters/algebra2/`. The cover sheets and roster PDFs carry names, but they live under
+`roster-map.csv` pairs names with tracking ids. Keep it outside every repository, in
+`~/Mathematics/rosters/` (one file for every course, one section per class). The named covers and
+roster PDFs carry names, but they live under
 `target/`, which is never committed.
 
 `unit03/lesson01/graded_sample/` is a one-page graded quiz kept out of the packets

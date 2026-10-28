@@ -101,9 +101,23 @@
 % ── Student name rows ─────────────────────────────────────────────────────────
 % Name 4.0cm / Date 2.6cm: at 12pt the old 4.8cm / 2.8cm overran their X
 % columns and the Name rule ran into "Date:".
+%
+% A per-student packet (`make roster-packets`) compiles the lesson cover with
+% \def\StudentName{…} ahead of it, and the name prints on the Name line, which
+% grows to fit it. Without \StudentName the line is the usual blank. Only the
+% cover carries \namedateperiod, so a name never reaches a graded page.
+\newlength{\alg@namewd}
+\newcommand{\alg@nameline}{%
+  \ifdefined\StudentName
+    \settowidth{\alg@namewd}{\StudentName}%
+    \ifdim\alg@namewd<4.0cm \setlength{\alg@namewd}{4.0cm}\fi
+    \underline{\makebox[\alg@namewd][l]{\StudentName}}%
+  \else
+    \blank{4.0cm}%
+  \fi}
 \newcommand{\namedateperiod}{%
     \begin{tabularx}{\linewidth}{X X X}
-    Name:\;\blank{4.0cm} & Date:\;\blank{2.6cm} & Period:\;\blank{1.5cm}
+    Name:\;\alg@nameline & Date:\;\blank{2.6cm} & Period:\;\blank{1.5cm}
     \end{tabularx}}
 
 \newcommand{\namepartnerperiod}{%

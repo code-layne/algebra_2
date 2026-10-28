@@ -3,8 +3,9 @@
 
 A graded component (any main.tex that loads math-shared's grading package) is
 scanned and sent to an outside API, so its pages carry only the tracking id.
-The student's name goes on math-shared's cover sheet and nowhere else. This
-check fails on any graded main.tex that uses a name-line macro
+`make roster-packets` prints the student's name on the lesson cover (lesson
+packets) or on math-shared's tear-off name sheet (tests and quizzes), never on a
+graded page. This check fails on any graded main.tex that uses a name-line macro
 (\\namedateperiod, \\namepartnerperiod) or writes a name line by hand
 ("Name:", "Name \\underline", "Partner: \\blank", ...).
 
@@ -13,6 +14,12 @@ check fails on any graded main.tex that uses a name-line macro
 Each PATH is a main.tex or a directory searched for main.tex files. Documents
 that do not load grading are skipped: they keep their name line. Exit status 1
 on any hit, with file:line for each.
+
+    python3 shared/check_namelines.py --graded cover warmup notes homework
+
+With --graded, each argument is a component directory, and the script prints,
+in the order given, the ones whose main.tex loads grading. lesson.mk uses it to
+find every graded component of a lesson packet.
 """
 
 import os
@@ -54,7 +61,18 @@ def tex_files(paths):
             yield p
 
 
+def loads_grading(path):
+    with open(path, encoding="utf-8") as fh:
+        return any(LOADS_GRADING.search(strip_comment(l)) for l in fh)
+
+
 def main(argv):
+    if argv[:1] == ["--graded"]:
+        graded = [d for d in argv[1:]
+                  if os.path.isfile(os.path.join(d, "main.tex"))
+                  and loads_grading(os.path.join(d, "main.tex"))]
+        print(" ".join(graded))
+        return 0
     if not argv:
         print(__doc__.strip())
         return 2
