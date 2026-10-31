@@ -1,6 +1,6 @@
 # Algebra 2 — Unit & Lesson Breakdown
 
-**Course:** Algebra 2 · **5 core units · 49 lessons** (+ Units 6–7 optional)
+**Course:** Algebra 2 · **5 core units · 42 lessons** (+ Units 6–7 optional)
 
 > **Remapped 2026-10-23 — one lesson, one meeting, one skill.** Units are as long as their skills
 > need; Units 6–7 are optional (Precalculus covers them); from Unit 3 the focus is printed
@@ -32,7 +32,7 @@ trigonometry, linear systems / linear programming.
 |:--:|---|---|:--:|---|---|
 | 1 | Linear Functions | Linear, abs. value, piecewise | 6 · 1.0–1.5 | A.F.1, A2.EI.1, A2.F.1/2, A2.ST.2 | ✅ Complete + tests |
 | 2 | Quadratic Functions | Quadratic (incl. complex) | 10 · 2.0–2.9 | A2.EO.3/4, A2.EI.2/3, A2.F.2 | 🔧 2.0–2.3 taught; remapped 2026-10-23 |
-| 3 | Polynomial Functions | Polynomial | 12 · 3.0–3.11 | A2.EO.3, A2.EI.6, A2.F.2 | 🔁 remapped; old lessons regenerate when taught |
+| 3 | Polynomial Functions | Polynomial | 5 · 3.0–3.4 | A2.EO.3, A2.EI.6, A2.F.2 | 🔁 condensed 2026-10-31 (merged rounds); old lessons regenerate when taught |
 | 4 | Rational Functions | Rational | 10 · 4.0–4.9 | A2.EO.1, A2.EI.4, A2.F.1/2 | 🔁 remapped; old lessons regenerate when taught |
 | 5 | Radical Functions | Radical / power | 11 · 5.0–5.10 | A2.EO.2, A2.EI.5, A2.F.1/2 | 🔁 remapped; old lessons regenerate when taught |
 | 6 | Exponential Functions *(optional)* | Exponential | 6 · 6.0–6.5 | A2.F.1/2, A2.ST.2 | 🔧 6.0–6.4 authored; 6.5 + tests are skeletons |
@@ -113,25 +113,22 @@ old 2.4 and 2.5 directories are regenerated whole when the new lesson is authore
 
 ---
 
-## Unit 3 — Polynomial Functions · 12 lessons (remapped 2026-10-23)
+## Unit 3 — Polynomial Functions · 5 lessons (condensed 2026-10-31)
 
-From Unit 3 on, lessons are packet-first (`LESSON_SHAPE.md` §0); the packet shape is still to be
-specified. The authored 3.0–3.6 lessons are in the old map and are regenerated when taught.
+Condensed from the 12-lesson map of 2026-10-23 by merging, with two skills **cut**
+(2026-10-31): the Remainder & Factor Theorems and the Rational Root Theorem, so A2.EI.6c/d is
+not taught in Unit 3. Each lesson's three rounds are three merged skills, in order (the Unit 3
+exception in `LESSON_SHAPE.md` §0). From Unit 3 on, lessons are packet-first; the packet shape
+is still to be specified. The authored `lesson00`–`lesson06` dirs are in the old map and are
+regenerated whole when taught; `lesson05`–`lesson06` have no place in the new map.
 
-| # | Lesson — the one skill | Standards |
-|:--:|---|---|
-| 3.0 | **Characteristics of polynomial functions** — degree/leading coefficient → end behavior, odd/origin symmetry, relative vs. absolute extrema, turning points, multiplicity | A2.F.2a–e/g |
-| 3.1 | Adding & subtracting polynomials | A2.EO.3a |
-| 3.2 | Multiplying polynomials | A2.EO.3a |
-| 3.3 | Factoring by grouping (four terms; GCF first) | A2.EO.3b |
-| 3.4 | Factoring sum & difference of cubes | A2.EO.3b/d |
-| 3.5 | Dividing polynomials — long division | A2.EO.3c |
-| 3.6 | Dividing polynomials — synthetic division | A2.EO.3c |
-| 3.7 | The Remainder & Factor Theorems | A2.EO.3c |
-| 3.8 | Finding zeros with the Rational Root Theorem | A2.EI.6c/d |
-| 3.9 | Fundamental Theorem of Algebra — counting zeros, conjugate pairs | A2.EI.6a/b |
-| 3.10 | Writing a polynomial from its zeros | A2.EI.6a/b |
-| 3.11 | Graphing polynomial functions from zeros & end behavior | A2.F.2a–e/g |
+| # | Lesson | Round 1 → Round 2 → Round 3 | Standards |
+|:--:|---|---|---|
+| 3.0 | **Characteristics of polynomial functions** | degree & leading coefficient → end behavior · odd/origin symmetry · relative vs. absolute extrema, turning points, multiplicity | A2.F.2a–e/g |
+| 3.1 | Polynomial operations | adding & subtracting → multiplying → multiplying three or more factors | A2.EO.3a |
+| 3.2 | Factoring polynomials | GCF & grouping (four terms) → sum of cubes → difference of cubes | A2.EO.3b/d |
+| 3.3 | Dividing polynomials | long division → synthetic division → synthetic division with missing terms (zero placeholders) | A2.EO.3c |
+| 3.4 | Zeros & graphs of polynomials | Fundamental Theorem of Algebra & conjugate pairs → writing a polynomial from its zeros → graphing from zeros & end behavior | A2.EI.6a/b, A2.F.2a–e/g |
 
 ---
 
