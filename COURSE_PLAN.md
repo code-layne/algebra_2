@@ -2,6 +2,14 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-10-31) — **UNIT 3 CONDENSED: 12 LESSONS → 5 (3.0–3.4), MERGED ROUNDS.**
+>
+> User request: "condense to 5 lessons"; chose **merge** over cut, so all twelve skills stay and
+> each lesson's three rounds are three merged skills (exception recorded in `LESSON_SHAPE.md` §0;
+> map in `COURSE_BREAKDOWN.md`): 3.0 characteristics · 3.1 operations · 3.2 factoring · 3.3
+> division + Remainder/Factor Theorems · 3.4 zeros & graphs. Course total 49 → 42. Old
+> `unit03/lesson05`–`lesson06` have no slot in the new map. The Unit 3 packet shape is still open.
+
 > ## ⚠ Status (2026-10-23) — **LESSON 2.4 OPERATIONS WITH COMPLEX NUMBERS AUTHORED (FIRST ONE-SKILL LESSON).**
 >
 > Regenerated whole over the old 2.4 (completing the square/formula/discriminant). Slides-first,
