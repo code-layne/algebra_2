@@ -68,9 +68,9 @@ User direction, 2026-10-23, after class on simplifying negative radicands (2.3):
   the slides-first shape of §1 governs the rest of Unit 2 (2.4–2.9).
 
 **Exception: Unit 3 condensed to five lessons (user direction, 2026-10-31: "condense to 5
-lessons").** The user chose to *merge* rather than cut: all twelve skills of the 10-23 map stay,
-folded into 3.0–3.4, and **each round of a Unit 3 lesson is one of the merged skills**, climbing
-in order (e.g. 3.3: long division → synthetic division → Remainder/Factor Theorems). This is the
+lessons").** The user chose to *merge*: the skills of the 10-23 map are folded into 3.0–3.4
+(two of them, the Remainder & Factor Theorems and the Rational Root Theorem, were then cut), and
+**each round of a Unit 3 lesson is one of the merged skills**, climbing in order (e.g. 3.3: long division → synthetic division → synthetic division with missing terms). This is the
 one place the three rounds are three different skills; the Final Round still covers all three.
 Every other unit keeps one skill per lesson.
 

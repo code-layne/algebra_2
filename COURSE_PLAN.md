@@ -4,10 +4,11 @@
 
 > ## ⚠ Status (2026-10-31) — **UNIT 3 CONDENSED: 12 LESSONS → 5 (3.0–3.4), MERGED ROUNDS.**
 >
-> User request: "condense to 5 lessons"; chose **merge** over cut, so all twelve skills stay and
-> each lesson's three rounds are three merged skills (exception recorded in `LESSON_SHAPE.md` §0;
+> User request: "condense to 5 lessons"; chose **merge** over cut, then "cut 8 and 9": the
+> Remainder & Factor Theorems and the Rational Root Theorem are gone (A2.EI.6c/d untaught in
+> Unit 3). Each lesson's three rounds are three merged skills (exception recorded in `LESSON_SHAPE.md` §0;
 > map in `COURSE_BREAKDOWN.md`): 3.0 characteristics · 3.1 operations · 3.2 factoring · 3.3
-> division + Remainder/Factor Theorems · 3.4 zeros & graphs. Course total 49 → 42. Old
+> division · 3.4 zeros & graphs. Course total 49 → 42. Old
 > `unit03/lesson05`–`lesson06` have no slot in the new map. The Unit 3 packet shape is still open.
 
 > ## ⚠ Status (2026-10-23) — **LESSON 2.4 OPERATIONS WITH COMPLEX NUMBERS AUTHORED (FIRST ONE-SKILL LESSON).**

@@ -115,8 +115,9 @@ old 2.4 and 2.5 directories are regenerated whole when the new lesson is authore
 
 ## Unit 3 — Polynomial Functions · 5 lessons (condensed 2026-10-31)
 
-Condensed from the 12-lesson map of 2026-10-23 by **merging**, not cutting: every skill is
-still taught, and each lesson's three rounds are three merged skills, in order (the Unit 3
+Condensed from the 12-lesson map of 2026-10-23 by merging, with two skills **cut**
+(2026-10-31): the Remainder & Factor Theorems and the Rational Root Theorem, so A2.EI.6c/d is
+not taught in Unit 3. Each lesson's three rounds are three merged skills, in order (the Unit 3
 exception in `LESSON_SHAPE.md` §0). From Unit 3 on, lessons are packet-first; the packet shape
 is still to be specified. The authored `lesson00`–`lesson06` dirs are in the old map and are
 regenerated whole when taught; `lesson05`–`lesson06` have no place in the new map.
@@ -125,9 +126,9 @@ regenerated whole when taught; `lesson05`–`lesson06` have no place in the new 
 |:--:|---|---|---|
 | 3.0 | **Characteristics of polynomial functions** | degree & leading coefficient → end behavior · odd/origin symmetry · relative vs. absolute extrema, turning points, multiplicity | A2.F.2a–e/g |
 | 3.1 | Polynomial operations | adding & subtracting → multiplying → multiplying three or more factors | A2.EO.3a |
-| 3.2 | Factoring polynomials | GCF & grouping (four terms) → sum & difference of cubes → quadratic form | A2.EO.3b/d |
-| 3.3 | Dividing polynomials | long division → synthetic division → the Remainder & Factor Theorems | A2.EO.3c |
-| 3.4 | Zeros & graphs of polynomials | Rational Root Theorem → Fundamental Theorem of Algebra, conjugate pairs & writing a polynomial from its zeros → graphing from zeros & end behavior | A2.EI.6a–d, A2.F.2a–e/g |
+| 3.2 | Factoring polynomials | GCF & grouping (four terms) → sum of cubes → difference of cubes | A2.EO.3b/d |
+| 3.3 | Dividing polynomials | long division → synthetic division → synthetic division with missing terms (zero placeholders) | A2.EO.3c |
+| 3.4 | Zeros & graphs of polynomials | Fundamental Theorem of Algebra & conjugate pairs → writing a polynomial from its zeros → graphing from zeros & end behavior | A2.EI.6a/b, A2.F.2a–e/g |
 
 ---
 
