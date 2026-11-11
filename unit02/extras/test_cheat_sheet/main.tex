@@ -1,0 +1,106 @@
+%! Unit 2 — Unit Test cheat sheet — half page, two per page
+% STANDALONE handout. Merged into no packet — see ../Makefile.
+% One box per idea the Unit 2 test grades (../../tests/actual_test, Parts A–E). Every example's
+% numbers are distinct from the practice test, the unit test, and the factoring example sheet.
+%   A  three forms of a parabola, max/min, range, increasing/decreasing
+%   B  factoring (GCF, a^2-b^2, perfect square, a=1, a>1 slip & slide) and the zero-product steps
+%   C  x^2 = k, i, sqrt(-a) = i sqrt(a) before multiplying, a+bi arithmetic
+%   D  completing the square, quadratic formula, discriminant
+%   E  linear–quadratic systems, projectile model h(t) = -16t^2 + v0 t + h0
+% The page prints the same half sheet twice; cut on the dashed line.
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\pagestyle{empty}
+\newgeometry{margin=0.4in, top=0.3in, bottom=0.3in}
+
+% One idea box: \cs{title}{body}
+\newcommand{\cs}[2]{%
+  \begin{fixedskillbox}[{\footnotesize #1}]{white}
+  \scriptsize\raggedright #2
+  \end{fixedskillbox}\vspace{-4pt}}
+\newcommand{\hl}[1]{\colorbox{forestbg}{\boldmath\bfseries #1}}
+
+\newcommand{\sheet}{%
+  \noindent\colorbox{forest}{\parbox{\dimexpr\linewidth-2\fboxsep}{%
+    \vspace{1pt}\color{white}\textbf{Algebra 2 \hfill Unit 2 Test --- Quadratics Cheat Sheet}\\[0pt]
+    {\color{forestmid}\scriptsize\textbf{Exact answers: simplest radical form, $a+bi$ form.
+    \quad Get $0$ on one side before you factor or use the formula.}}\vspace{1pt}}}
+  \par\vspace{3pt}\noindent
+  % ---------------------------------------------------------------- column 1
+  \begin{minipage}[t]{0.335\linewidth}\vspace{0pt}
+  \cs{A.\ Three Forms of a Parabola}{%
+    \textbf{Vertex form} $y=a(x-h)^2+k$\\
+    vertex $(h,k)$, axis $x=h$. \ \emph{Sign flips:} $(x+3)^2\Rightarrow h=-3$.\par\vspace{2pt}
+    \textbf{Standard form} $y=ax^2+bx+c$\\
+    axis $x=-\frac{b}{2a}$; plug in for vertex $y$.\par\vspace{2pt}
+    \textbf{Intercept form} $y=a(x-p)(x-q)$\\
+    zeros $p,q$; axis $x=\frac{p+q}{2}$.\par\vspace{2pt}
+    $a>0$: opens up, \textbf{minimum} $k$, range $y\ge k$.\\
+    $a<0$: opens down, \textbf{maximum} $k$, range $y\le k$.\\
+    $|a|>1$ narrower; $|a|<1$ wider.\\
+    Increasing/decreasing switch at $x=h$.}
+  \cs{B.\ Factoring (GCF first!)}{%
+    $a^2-b^2=(a+b)(a-b)$\\
+    $a^2+2ab+b^2=(a+b)^2$\\
+    $a=1$: two numbers that \emph{multiply} to $c$, \emph{add} to $b$.\\
+    $x^2-3x-28=(x-7)(x+4)$\par\vspace{2pt}
+    \textbf{$a>1$, slip \& slide:} \ $3x^2+10x+8$\\
+    Slip $x^2+10x+24=(x+4)(x+6)$\\
+    Slide $\big(x+\frac43\big)\big(x+\frac63\big)$ $\to$ up \hl{$(3x+4)(x+2)$}\par\vspace{2pt}
+    \textbf{Solve:} $=0$ $\to$ factor $\to$ each factor $=0$.}
+  \end{minipage}\hfill
+  % ---------------------------------------------------------------- column 2
+  \begin{minipage}[t]{0.32\linewidth}\vspace{0pt}
+  \cs{C.\ Square Roots \& $i$}{%
+    Isolate the square, then $\pm$:\\
+    $(x+2)^2=20 \Rightarrow x+2=\pm\sqrt{20}$\\
+    \hl{$x=-2\pm2\sqrt5$}\par\vspace{2pt}
+    $i=\sqrt{-1}$, \quad $i^2=-1$\\
+    $\sqrt{-a}=i\sqrt{a}$: \ $\sqrt{-50}=5i\sqrt2$\\
+    \textbf{Pull out $i$ BEFORE multiplying:}\\
+    $\sqrt{-4}\cdot\sqrt{-25}=2i\cdot5i=10i^2=\mathbf{-10}$}
+  \cs{C.\ Complex Arithmetic ($a+bi$)}{%
+    Add/subtract: real with real, $i$ with $i$.\\
+    $(3+2i)-(1-5i)=2+7i$\par\vspace{2pt}
+    Multiply: FOIL, then $i^2\to -1$.\\
+    $(2+i)(3-4i)=6-8i+3i-4i^2$\\
+    \phantom{$(2+i)(3-4i)$}$=6-5i+4=$ \hl{$10-5i$}}
+  \cs{D.\ Completing the Square}{%
+    $x^2+8x-3=0$\\
+    1.\ Move $c$: \ $x^2+8x=3$\\
+    2.\ Add $\big(\frac b2\big)^2=16$ to \textbf{both} sides\\
+    3.\ $(x+4)^2=19$\\
+    4.\ $\pm\sqrt{\ }$: \ \hl{$x=-4\pm\sqrt{19}$}}
+  \end{minipage}\hfill
+  % ---------------------------------------------------------------- column 3
+  \begin{minipage}[t]{0.32\linewidth}\vspace{0pt}
+  \cs{D.\ Quadratic Formula}{%
+    Standard form first: $ax^2+bx+c=0$\\[2pt]
+    {\normalsize $x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$}\\[2pt]
+    Simplify the root, then divide \emph{every} term.\\
+    $\sqrt{-16}=4i$ $\to$ complex answers.}
+  \cs{D.\ Discriminant $b^2-4ac$}{%
+    \renewcommand{\arraystretch}{1.1}\setlength{\tabcolsep}{2pt}%
+    \begin{tabular}{@{}lll@{}}
+      $>0$ & two real & 2 $x$-int.\\
+      $=0$ & one repeated real & 1 $x$-int.\\
+      $<0$ & two complex & 0 $x$-int.
+    \end{tabular}}
+  \cs{E.\ Linear--Quadratic Systems}{%
+    1.\ Set the $y$'s equal; get $0$ on one side.\\
+    2.\ Solve for $x$; plug each $x$ into the \textbf{line}.\\
+    Ordered pairs $(x,y)$ --- 0, 1, or 2 of them.}
+  \cs{E.\ Modeling \ $h=-16t^2+v_0t+h_0$}{%
+    $h(0)=h_0$: starting height.\\
+    Max: $t=-\frac{b}{2a}$, then $h(t)$ = max height.\\
+    Lands: $h(t)=0$. \textbf{Reject negative $t$.} Units!}
+  \end{minipage}}
+
+\begin{document}
+\sheet
+\vspace{2pt}
+\noindent\tikz\draw[dashed, linegray, thick] (0,0)--(\linewidth,0) node[midway, fill=white, font=\scriptsize, text=slate]{cut here};\par
+\vspace{2pt}
+\sheet
+\end{document}
