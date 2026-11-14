@@ -118,8 +118,8 @@ old 2.4 and 2.5 directories are regenerated whole when the new lesson is authore
 Condensed from the 12-lesson map of 2026-10-23 by merging, with two skills **cut**
 (2026-10-31): the Remainder & Factor Theorems and the Rational Root Theorem, so A2.EI.6c/d is
 not taught in Unit 3. Each lesson's three rounds are three merged skills, in order (the Unit 3
-exception in `LESSON_SHAPE.md` §0). From Unit 3 on, lessons are packet-first; the packet shape
-is still to be specified. The authored `lesson00`–`lesson06` dirs are in the old map and are
+exception in `LESSON_SHAPE.md` §0). From Unit 3 on, lessons are packet-first, in the shape of
+`LESSON_SHAPE.md` §0a (specified 2026-11-14). The authored `lesson00`–`lesson06` dirs are in the old map and are
 regenerated whole when taught; `lesson05`–`lesson06` have no place in the new map.
 
 | # | Lesson | Round 1 → Round 2 → Round 3 | Standards |
@@ -226,8 +226,8 @@ test lands on the last day before December break. Full 31-week pacing map in COU
 
 ## Remaining work
 
-0. **2026-10-23 remap** — 2.4 authored; 2.5 (completing the square) is next, slides-first; specify the
-   Unit 3+ packet shape in `LESSON_SHAPE.md` §0 before any Unit 3 lesson; rebuild the Unit 2 study
+0. **2026-10-23 remap** — 2.4 authored; 2.5 (completing the square) is next, slides-first; Unit 3+ packet shape
+   specified 2026-11-14 (`LESSON_SHAPE.md` §0a) — regenerate 3.0 as its pilot next; rebuild the Unit 2 study
    guide and tests (still on the six-lesson map) and the syllabus pacing.
 1. **Unit 6, Lesson 6.5** (exponential regression capstone) — the last unauthored Unit 6 lesson.
 2. **Unit 7, Lessons 7.1–7.6** — scaffold the directories, then author. 7.4 and 7.5 both
