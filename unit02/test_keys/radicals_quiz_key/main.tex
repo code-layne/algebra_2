@@ -1,0 +1,138 @@
+%! Unit 2: Quadratic Functions — Simplifying Radicals Quiz (KEY)
+% GENERATED BODY: the blank and key bodies are byte-identical except the header title;
+% answers live in \slot / work, which the preamble shows or hides.
+% A cheat sheet leads the front: simplifying with a prime factor tree, and pulling out i
+% from a negative radicand (as taught in 2.3). Then two real radicands (one with a
+% coefficient) and three negative radicands (perfect square, non-perfect, a + sqrt(-b)).
+% Front/back: cheat sheet + 1--2 on the front, 3--5 on the back. Numbers are distinct from
+% the cheat-sheet examples, the 2.3 deck, and the unit tests.
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; do NOT also load -boxes
+\usepackage{grading}
+\gradingassignment{alg2-u02-radicals-quiz}
+\gradingcourse{algebra_2}
+\usepackage{algebra2-graded}
+% Question line: forest label, then the prompt on the same line, over a thin rule
+\newcommand{\qhead}[2]{%
+  \boxguard[8]\vspace{10pt}\noindent
+  {\color{forest}\bfseries #1}\hfill #2\par
+  \vspace{-2pt}\noindent{\color{forest}\rule{\linewidth}{0.6pt}}\par}
+% THE WORK RULE for a test: \slot{width}{answer} is the ONLY line that differs between
+% blank and key, and it differs in the preamble, not the body.
+\newcommand{\slot}[2]{\underline{\makebox[#1]{\ans{#2}}}}
+% Cheat-sheet factor tree node styles
+\tikzset{ftree/.style={font=\small, inner sep=1.5pt},
+         fprime/.style={ftree, circle, draw=forest, thick, minimum size=13pt}}
+
+\begin{document}
+
+\pageheader{Unit 2: Quadratic Functions}{Simplifying Radicals Quiz --- Answer Key}
+
+\vspace{0.04in}
+\noindent\begin{minipage}[t]{0.55\linewidth}
+\vspace{0pt}
+\begin{fixedskillbox}[Cheat Sheet: Prime Factor Tree]{forestbg}
+\small
+\begin{minipage}[t]{0.40\linewidth}
+\vspace{2pt}
+\begin{tikzpicture}[level distance=8.5mm,
+    level 1/.style={sibling distance=13mm},
+    level 2/.style={sibling distance=13mm},
+    level 3/.style={sibling distance=6.5mm}]
+  \node[ftree] {$72$}
+    child {node[fprime] {$2$}}
+    child {node[ftree] {$36$}
+      child {node[ftree] {$6$}
+        child {node[fprime] {$2$}}
+        child {node[fprime] {$3$}}}
+      child {node[ftree] {$6$}
+        child {node[fprime] {$2$}}
+        child {node[fprime] {$3$}}}};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.57\linewidth}
+\vspace{2pt}
+\textbf{1.} Break the radicand down until every branch ends in a \textbf{prime} (the circled numbers).\\[2pt]
+\textbf{2.} Group matching primes into \textbf{pairs}.\\[2pt]
+\textbf{3.} Each pair leaves the root as \textbf{one} number. Leftovers stay inside.\\[2pt]
+\textbf{4.} Multiply what came out by any number already in front.
+\end{minipage}
+
+\vspace{4pt}
+$\sqrt{72}=\sqrt{(2\cdot2)(3\cdot3)\cdot2}=2\cdot3\sqrt{2}=6\sqrt{2}$
+\end{fixedskillbox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.43\linewidth}
+\vspace{0pt}
+\begin{fixedskillbox}[Cheat Sheet: Negative Radicand]{goldbg}
+\small
+\[ \sqrt{-1}=i \qquad\text{so}\qquad \sqrt{-k}=i\sqrt{k} \]
+\textbf{1.} Pull the $i$ out \textbf{first}.\\[2pt]
+\textbf{2.} Simplify $\sqrt{k}$ with a factor tree.\\[2pt]
+\textbf{3.} Write the $i$ \textbf{before} the radical: $2i\sqrt{3}$, not $2\sqrt{3}\,i$.
+
+\vspace{4pt}
+$\sqrt{-12}=i\sqrt{12}=i\sqrt{2\cdot2\cdot3}=2i\sqrt{3}$
+
+\vspace{3pt}
+\textbf{Watch out:} $\sqrt{-12}\neq-\sqrt{12}$. A negative \emph{inside} the root makes $i$, not a minus sign.
+\end{fixedskillbox}
+\end{minipage}
+
+\vspace{0.08in}
+\noindent\textbf{Instructions:} No calculator. Show your factor tree or your work. Simplify
+\textbf{completely}. Write each final answer in its box. Only what is inside a box is graded.
+\hfill\textbf{20 pts each}
+
+% ======================================================================
+\qhead{1.\ Simplify the Radical}{Simplify: \quad $\sqrt{98}$}
+\begin{work}
+  98 &= 2\cdot49 = 2\cdot\underbrace{7\cdot7}_{\text{pair}} \\
+  \sqrt{98} &= 7\sqrt{2}
+\end{work}
+\vfill
+\noindent\hfill Answer: \inblank{\slot{4.2cm}{$7\sqrt{2}$}}{\gradedblank[id=q1, type=short, points=20, answer={7sqrt(2)}, check=expression, display={$7\sqrt{2}$}]{4.2cm-2pt}{18pt}}
+
+% ======================================================================
+\qhead{2.\ Simplify the Radical}{Simplify: \quad $3\sqrt{80}$}
+\begin{work}
+  80 &= 8\cdot10 = \underbrace{2\cdot2}_{\text{pair}}\cdot\underbrace{2\cdot2}_{\text{pair}}\cdot5 \\
+  \sqrt{80} &= 2\cdot2\sqrt{5} = 4\sqrt{5} \\
+  3\sqrt{80} &= 3\cdot4\sqrt{5} = 12\sqrt{5}
+\end{work}
+\vfill
+\noindent\hfill Answer: \inblank{\slot{4.2cm}{$12\sqrt{5}$}}{\gradedblank[id=q2, type=short, points=20, answer={12sqrt(5)}, check=expression, display={$12\sqrt{5}$}]{4.2cm-2pt}{18pt}}
+
+% ======================================================================
+\newpage
+\qhead{3.\ Negative Radicand}{Simplify: \quad $\sqrt{-81}$}
+\begin{work}
+  \sqrt{-81} &= i\sqrt{81} \\
+  &= 9i
+\end{work}
+\vfill
+\noindent\hfill Answer: \inblank{\slot{4.2cm}{$9i$}}{\gradedblank[id=q3, type=short, points=20, answer={9i}, check=expression]{4.2cm-2pt}{18pt}}
+
+% ======================================================================
+\qhead{4.\ Negative Radicand}{Simplify: \quad $\sqrt{-45}$}
+\begin{work}
+  \sqrt{-45} &= i\sqrt{45} \\
+  45 &= 5\cdot9 = 5\cdot\underbrace{3\cdot3}_{\text{pair}} \\
+  i\sqrt{45} &= 3i\sqrt{5}
+\end{work}
+\vfill
+\noindent\hfill Answer: \inblank{\slot{4.2cm}{$3i\sqrt{5}$}}{\gradedblank[id=q4, type=short, points=20, answer={3sqrt(5)i}, check=expression, display={$3i\sqrt{5}$}]{4.2cm-2pt}{18pt}}
+
+% ======================================================================
+\qhead{5.\ Negative Radicand in $a+bi$ Form}{Simplify: \quad $6+\sqrt{-28}$}
+\begin{work}
+  \sqrt{-28} &= i\sqrt{28} \\
+  28 &= 7\cdot4 = 7\cdot\underbrace{2\cdot2}_{\text{pair}} \\
+  i\sqrt{28} &= 2i\sqrt{7} \\
+  6+\sqrt{-28} &= 6+2i\sqrt{7}
+\end{work}
+\vfill
+\noindent\hfill Answer: \inblank{\slot{4.2cm}{$6+2i\sqrt{7}$}}{\gradedblank[id=q5, type=short, points=20, answer={6+2sqrt(7)i}, check=expression, display={$6+2i\sqrt{7}$}]{4.2cm-2pt}{18pt}}
+
+\end{document}
