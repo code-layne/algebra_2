@@ -3,13 +3,14 @@ course: Algebra 2
 prefix: algebra2
 meeting_length: 60
 reference_lesson: unit01/lesson04
-components: [cover, homework, slides]
-keyed: [homework]
-one_page: []
+components: [cover, warmup, notes, homework, extra_credit, slides]
+keyed: [warmup, notes, homework, extra_credit]
+one_page: [warmup]
 doc_titles:
   warmup: Warm-Up
   notes: Guided Notes \& Practice
   homework: Homework
+  extra_credit: Extra Credit
   activity: Group Activity
   exit_ticket: Exit Ticket
 note_labels:
@@ -17,6 +18,7 @@ note_labels:
   warmup: Warm-Up
   notes: Guided Notes \& Practice
   homework: Homework
+  extra_credit: Extra Credit
   activity: Group Activity
   exit_ticket: Exit Ticket
   experience: Experience \& Formalize
@@ -39,10 +41,11 @@ The frontmatter is machine-read by the scaffolder; the sections below are read b
 Step 0. The skeletons, the per-component spec (`components.md`), and the content workflow
 (`course-workflow.md`) live in `templates/lesson/`.
 
-Two frontmatter notes. `warmup`, `notes`, `activity` and `exit_ticket` appear in `doc_titles`
-**only so an older lesson can be rebuilt by name** — none is a default and none belongs in a new
-or regenerated lesson (the slides-first shape of 2026-09-25 moved the warm-up and the notes onto
-the deck). `experience` is deliberately absent from `doc_titles` and has no skeleton, so
+Two frontmatter notes. **The frontmatter is the Unit 3+ packet-first shape (§0a, 2026-11-14)**:
+`warmup` and `notes` are defaults again, and `extra_credit` is new. A remaining Unit 2 lesson is
+still slides-first and is scaffolded with `--components cover,slides` (DeltaMath online) or
+`cover,homework,slides`. `activity` and `exit_ticket` appear in `doc_titles` **only so an older
+lesson can be rebuilt by name** — neither belongs in a new or regenerated lesson. `experience` is deliberately absent from `doc_titles` and has no skeleton, so
 the scaffolder refuses it: it was the EFFL centrepiece and is never scaffolded again (its
 `note_labels` entry exists only so `movenotes.py` can title a note lifted from a legacy key).
 
@@ -62,10 +65,8 @@ User direction, 2026-10-23, after class on simplifying negative radicands (2.3):
   the year has room after Unit 5; never compress Units 2–5 to reach them.
 - **From Unit 3 onward the focus moves to printed packets, like the other courses**, with the
   graded homework (or extra credit) **detachable** from the packet. Slides are still authored and
-  published, but they serve the packet rather than replace it. **The Unit 3+ packet shape is not
-  yet specified** — components, the extra-credit piece, and how "detachable" is enforced are
-  awaiting the user's answers. Until this section names them, do not author a Unit 3+ lesson;
-  the slides-first shape of §1 governs the rest of Unit 2 (2.4–2.9).
+  published, but they serve the packet rather than replace it. **The shape is specified in §0a
+  (2026-11-14)**; the slides-first shape of §1 governs the rest of Unit 2 (2.5–2.9).
 
 **Exception: Unit 3 condensed to five lessons (user direction, 2026-10-31: "condense to 5
 lessons").** The user chose to *merge*: the skills of the 10-23 map are folded into 3.0–3.4
@@ -78,6 +79,120 @@ The lesson map these rules produce is in `COURSE_BREAKDOWN.md` (Units 2–5 rema
 Unit 3 condensed 2026-10-31).
 The lessons already on disk for 2.4–2.5 and Units 3–5 are in the old map's numbering and scope;
 each is regenerated whole when its new lesson is authored, never patched.
+
+## 0a. The Unit 3+ packet-first shape — 2026-11-14
+
+User direction, 2026-11-14: *"warm-up and notes. deck projects same notes, still want 3-up slide
+handout but not in the packet, just as a work product. graded homework will be deltamath
+assignments which we will build later … per lesson"*; extra credit **two pages, generated,
+graded**; graded pages **last, on fresh sheets**; the hour **5 / 45 / 10**; the notes **three
+rounds with ladders**. This section governs every lesson from Unit 3 on. **§1's engagement rules
+still hold** (≤3 minutes of teacher talk a round, ★/★★/★★★ ladders, Show me / Find the mistake,
+timers, student-life contexts, quick wins first); §1's slides-first *packet*, its 5/40/5/10
+table, and its Final Round frame do not. Where §1–§5 and this section disagree, this section
+wins for Units 3+.
+
+**The packets.** Student: **cover → warm-up → guided notes & practice → homework (printed
+DeltaMath only) → extra credit**. Key: the same with every blank swapped for its key — the cover
+unchanged, the warm-up and notes answered, the DeltaMath answer key if the user supplies one,
+the extra-credit key. `shared/lesson.mk` builds them (`extra_credit` is last in `STUDENT_ORDER`,
+added 2026-11-14). **The slides are not in the packet**: because the lesson has `warmup/` and
+`notes/`, the build leaves the handout out, and `lessonYY_slides.pdf` (3-up, notes column) and
+`lessonYY_slides.pptx` are built as standalone work products, as always.
+
+**Detachable.** The pagination pass starts every component on a recto and fills whole sheets, so
+the graded pages — the extra credit, and a printed DeltaMath homework — sit at the back of the
+packet on sheets of their own and tear off. They carry no name (Hard constraint 8):
+`make roster-packets` prints each student's name on her cover and her tracking id on the graded
+pages. Never add a `\newpage`/blank page by hand to force this; the build owns it.
+
+| Phase | Minutes | Component | Students are … |
+| --- | --- | --- | --- |
+| Warm-Up — 3 quick items on paper as they walk in; answers revealed on the deck | 5 | `warmup` | solving |
+| Guided Notes & Practice — **3 rounds** of *definition → example → ★/★★/★★★ ladder → Show me / Find the mistake* (~13 min each: ≤3 teacher, ~8 ladder, ~2 check), then **Closing Practice** (~6 min) | 45 | `notes` | solving ~70% of the time |
+| Start the homework (DeltaMath), alone, teacher circulating | 10 | `homework` | solving |
+
+**The phases total 60 — `\MeetingLength`.** A round that does not fit is cut, never squeezed.
+In Unit 3 the three rounds are the lesson's three merged skills (the §0 exception); from Unit 4
+on they are three climbing cases of the one skill.
+
+**`warmup`** — 12pt, **exactly one page, blank and key** (`one_page`). `\pageheader` + three
+★-easy items (prerequisites for Round 1, or spiral review from the last lesson), each with a
+`work` block or a sized `\blank`; reachable by everyone in a minute. The last item sets up the
+question Round 1's definition answers. The deck's warm-up frame shows the same three items and
+reveals the answers.
+
+**`notes`** — 12pt, **4 pages, a ceiling**, `\small` inside the boxes, blank and key page for
+page. No `vocabbox`, no `objectivebox` (targets are on the cover), no `guidednotes` table. One
+`notesbox{Round N --- <skill>}` per round, each in this order:
+
+1. **Definition** — the term in **bold**, the definition, general form or rule as a *complete
+   printed sentence* (nothing to fill in), and a pre-drawn display where one helps.
+2. **Example** — the *I do*: the problem printed, with a `work` block the student fills as the
+   teacher works it on the deck (the key prints every step, its reason in `\text{}`).
+3. **Your turn** — the ladder: `\rung{1}` / `\rung{2}` / `\rung{3}` (copy the `\rung` line from
+   `templates/lesson/slides.tex` into the notes preamble, blank and key) problems on the example's
+   shape with fresh numbers, each with its own `work` block; ★★★ is for whoever finishes early.
+4. **Check** — the Show me or Find the mistake lives on the deck; the notes print only a
+   one-line `My answer: \blank{…}` (Show me) or the anonymous *Student A* solution with
+   `\writelines{2}` (Find the mistake). **The last round's check is the crux.**
+
+Then `notesbox{Closing Practice}`: four mixed problems (at least one per round) plus a
+**bonus (+1)** in a student-life context, `work` blocks, *score yourself out of 4* — the old
+Final Round, now on paper. `\boxguard` before every `notesbox` and the closing box.
+
+**`slides`** — the projected deck **mirrors the notes frame for frame**, so the class and the
+page never disagree: title → warm-up (items, answers in one `\reveal`) → targets → per round a
+definition, example, ladder (answers in `\reveal`), and Show me / Find the mistake frame
+(`\sectionlabel[redacc]{}` on the crux) → Closing Practice (answers in one `\reveal`, plus the
+*Watch out*) → homework (the DeltaMath set name, due-date wording of §2). **17 frames, 20 a hard
+ceiling**; timers in the section labels; every practice answer in `\reveal` (§1 and §4 rules
+unchanged).
+
+**`homework`** — **always a DeltaMath set** for Units 3+ (no generated homework). Ask, per lesson
+(§2), **online or printed** and the set name `A2: Lesson N.M: <short title>`, with its skills by
+exact DeltaMath catalog names; the sets are built with the user per lesson. Online: scaffold
+without `homework`; printed: `--prefab homework,homework_key` and wait for the PDF. Scored 1 to 5
+from DeltaMath; due the first class after two study halls.
+
+**`extra_credit`** — generated by Claude, **graded** (§9; id `alg2-u<NN>-l<NN>-ec`), **optional**
+for students, 12pt, **2 pages — exactly, blank and key; 2pp is a ceiling**. It opens with a
+`remindbox`: *"Extra credit — optional. Tear off these pages and turn them in with your
+homework, the first class after two study halls. I will announce the due date in class and on
+TurtleNet."* plus the box rule (*Write each final answer in its box. Only what is inside a box is
+graded.*). Then ~5 **stretch** items, harder than every ★★★, drawn across the three rounds:
+a problem that **combines** two rounds' skills; a **reverse** item (given the result, find the
+input — e.g. write the polynomial); a **model** in a fresh student-life context with an
+interpret-the-answer part; a **Find the mistake** written response; and one SOL-style
+**multiple-choice** item. Every final answer is a `\gradedblank` (`choice` in a square Letter
+box, `short` with the right `check=`, `rubric` full width under its part with a YAML in
+`rubrics/`); work blocks sit outside the boxes. Contexts differ from the notes' — teach, then
+transfer. No name line, no circle/underline/bubble direction.
+
+**`cover`** — as §1, but its `tocbox` lists **four rows**: *Warm-Up*, *Guided Notes & Practice*,
+*Homework* (*DeltaMath: **set name** — online, not in this packet*, or *— printed, scored 1 to
+5*), and *Extra Credit* (*optional, graded — tear off and turn in*). *Keep in Mind* matches the
+Closing Practice's *Watch out*.
+
+**The plan** follows §5 with these changes: **Lesson at a Glance** is 5 / 45 / 10; the boxes are
+Warm-Up (5 min, on paper) → **The Lesson — three rounds and Closing Practice (45 min)** →
+Homework (DeltaMath) → **Extra Credit** (`skillbox{goldbox}`: the items, their answers, what each
+stretches) → Watch For; and **five teacher notes**, packet order: `[Warm-Up]`,
+`[Guided Notes \& Practice]`, `[Homework]`, `[Extra Credit]`, then `[Slides]`.
+
+**Scaffold:**
+
+```bash
+python3 ~/.claude/skills/lesson-planning/scripts/new_lesson.py --project . --unit 03 --lesson 01 \
+  --title "Polynomial Operations" --unit-title "Polynomial Functions" \
+  --components cover,warmup,notes,extra_credit,slides          # DeltaMath online
+#  or the default components with --prefab homework,homework_key  # DeltaMath printed
+```
+
+**No reference lesson in this shape yet.** The first one authored (3.0) is the pilot; once the
+user approves it, name it here and in `reference_lesson`. Until then mirror `unit01/lesson04` for
+the warm-up, notes and cover preambles and the plan's boxes, `templates/lesson/slides.tex` for
+the deck, and `unit02/lesson04` for engagement frames.
 
 ## 1. The lesson shape
 
@@ -216,10 +331,10 @@ defined, so every `\reveal` prints in keyred — same frames, so the two are pag
 
 **What this course does not have — do not re-add any of it:**
 
-- **No guided-notes component and no paper warm-up.** Never scaffold `notes/` or `warmup/` in a
-  new lesson; the deck carries both. (`doc_titles` keeps their entries only so a legacy lesson
+- **No guided-notes component and no paper warm-up — in Unit 2.** Never scaffold `notes/` or
+  `warmup/` in a Unit 2 lesson; the deck carries both. (Units 3+ have both again — §0a.) (`doc_titles` keeps their entries only so a legacy lesson
   still rebuilds by name.)
-- **No group activity, no exit ticket.** The formative read is circulating during each Now you
+- **No group activity, no exit ticket** (any unit). The formative read is circulating during each Now you
   try, and again during the supervised homework start.
 - **No debrief component, no hook frame with an unresolved vote, no Guided Practice frame.**
   Those belonged to the gradual-release shape (§7). The close is the Final Round (§1) — students solving, not a recap.
@@ -237,6 +352,9 @@ reference — set `reference_lesson` to it in the frontmatter and name it here. 
 shape (§7) and is regenerated lesson by lesson when touched — **no bulk sweep**.
 
 ## 2. Homework — ask for its source, every lesson
+
+**Units 3+: always DeltaMath (§0a)** — skip option 1 below and ask only *online or printed* and
+the set name. The rest of this section (scoring, due date, formative check) applies unchanged.
 
 **Before scaffolding a lesson, ask the user how its homework is built** (user direction,
 2026-09-25: "I want to be prompted each lesson for how the homework assignment should be
@@ -517,7 +635,8 @@ Recognize the shape by the component directories and the plan's section titles:
 
 | Shape | Has | Lessons |
 | --- | --- | --- |
-| **current — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / ladder / Show-me cycles, a Final Round, and `\reveal` (engagement rules 2026-09-27); `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson01` (2026-09-27, four cycles, DeltaMath printed); `unit02/lesson02`–`lesson05` (condensed 2026-09-29: three cycles, 17 frames, DeltaMath online) — pending user review; once approved 2.2 becomes `reference_lesson` |
+| **current, Units 3+ — packet-first** (2026-11-14, §0a) | `warmup` (1p) + `notes` (3 rounds + Closing Practice, ≤4pp) + DeltaMath homework (online, or prefab) + graded `extra_credit` (2pp) + a deck mirroring the notes; cover with four rows; plan 5/45/10, five teacher notes | none yet — 3.0 is the pilot |
+| **current, Unit 2 — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / ladder / Show-me cycles, a Final Round, and `\reveal` (engagement rules 2026-09-27); `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson01` (2026-09-27, four cycles, DeltaMath printed); `unit02/lesson02`–`lesson05` (condensed 2026-09-29: three cycles, 17 frames, DeltaMath online) — pending user review; once approved 2.2 becomes `reference_lesson` |
 | **gradual-release** (two-section, 12pt, 2026-09-07; `guidednotes` notes from 2026-09-12) | 12pt `warmup` + `notes` (vocab + hook, ONE `guidednotes` table + Guided Practice) + homework 2pp with the due-date `remindbox`; cover with three rows; 11-frame deck; plan 5/35/10/10, three teacher notes | `unit01/lesson04`, `unit02/lesson00`; `unit01/lesson02` is its pilot (5/34/8/13) |
 | **four-section interim** (2026-09-01) | 10pt `notes/` with an `objectivebox`, four numbered sections, and an *Individual Practice* `scenariobox`; 10pt homework with an `extensionbox`; plan 5/20/15/10/10 with four teacher notes | `unit01/lesson00`, `01`, `03`, `05` |
 | **EFFL / group-activity** (2026-08-19 → 08-31) | `experience/` or `activity/` without `exit_ticket/` | none left |
@@ -581,7 +700,8 @@ plus the shared skill's **deck** and **shape**.
 ## 9. Graded components
 
 **Which components carry `\gradedblank`** (math-shared's `grading.sty`, converted 2026-10-22):
-every **homework** that is problems on the page (not a DeltaMath set, online or printed), and
+every **homework** that is problems on the page (not a DeltaMath set, online or printed), every
+**extra credit** (`extra_credit`, Units 3+, §0a), and
 every **unit quiz and test** — `practice_test` (and so the `sample_test` drop-in), `actual_test`
 and its versions, `algebra1_quiz*`, `factoring_quiz` — blank and key alike. Nothing else: covers,
 slides and handouts, warm-ups, notes, activities, exit tickets, study guides and unit covers stay
@@ -590,7 +710,8 @@ is the original stand-alone sample and keeps its own ids. A new generated homewo
 written with its graded boxes from the start.
 
 **Assignment ids** (`\gradingassignment{…}`, the first field of every page's QR code):
-`alg2-u<NN>-l<NN>-hw` for a lesson's homework (`alg2-u03-l02-hw`), and `alg2-u<NN>-<test name>`
+`alg2-u<NN>-l<NN>-hw` for a lesson's homework (`alg2-u03-l02-hw`), `alg2-u<NN>-l<NN>-ec` for its
+extra credit (`alg2-u03-l02-ec`), and `alg2-u<NN>-<test name>`
 for a unit quiz or test, with the folder name's `_` as `-` (`alg2-u01-practice-test`,
 `alg2-u01-actual-test-b`, `alg2-u02-factoring-quiz`). Every id is unique in the course. Item ids
 are `q<item><letter>` in order within an item (`q1a`, `q1b`, …; `q7` for a single-answer item);

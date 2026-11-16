@@ -1,27 +1,71 @@
 %! @@TITLE@@ — Unit @@UNITINT@@, Lesson @@LESSONID@@ — Guided Notes & Practice (Answer Key)
-% MIRROR of ../notes/main.tex. Copy the blank VERBATIM, then change exactly these:
+% MIRROR of ../notes/main.tex (Units 3+ packet-first, LESSON_SHAPE.md §0a). Copy the blank
+% VERBATIM, then change exactly these:
 %   \usepackage{@@PREFIX@@-boxes}      ->  \usepackage{@@PREFIX@@-key}   (pulls in -boxes; never load both)
 %   the \pageheader second argument    ->  Guided Notes \& Practice --- Answer Key
-%   \vterm{Term}                       ->  \vtermans{Term}{definition}  (both defined in the preamble)
 %   \blank{W}                          ->  \ans{short answer}           (no wider than the blank)
-%   \pcell{n}{statement}{H}{}          ->  \pcell{n}{statement}{H}{answer}  (answer shorter than H)
-%   \writespace{H}{} / \labelbox{W}{}  ->  the same with the answer / label as the second argument
-% Every \begin{work} block, every height, every width, every sub-row stays BYTE-IDENTICAL.
-% \ans{} and the \pcell answer are TEXT MODE: wrap \sqrt/\dfrac/\hat/\bar in $...$.
+%   \writelines{n}                     ->  exactly n \ansline{...}      (each under ~95 characters)
+% Every \begin{work} block stays BYTE-IDENTICAL — the blank and key print the same solution
+% lines (the work environment shows them only in key mode), so heights cannot drift.
+% \ans{} is TEXT MODE: never inside $...$; wrap \sqrt/\dfrac/^/_ in $...$ inside it.
 % NO teachernote here — teacher prose goes in the lesson plan.
 % Prove it: diff the two files and only the lines above may differ; then the page counts match.
 \documentclass[12pt]{article}
 \usepackage{@@PREFIX@@-article}
-\usepackage{@@PREFIX@@-key}   % pulls in -boxes; do NOT also load -boxes
+\usepackage{@@PREFIX@@-key}
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
 
 \begin{document}
 
 \pageheader{Unit @@UNITINT@@, Lesson @@LESSONID@@}{Guided Notes \& Practice --- Answer Key}
-% NAMESTRIP: no \namedateperiod here — mirrors the blank.
 
-% TODO: paste the blank here and apply the substitutions above. Examples:
-%   \termblank{Variable}          ->  \termans{Variable}{a characteristic recorded for every individual.}
-%   \blank{2.0cm}                 ->  \ans{countable}
-%   \pcell{4}{Rainfall}{0.9cm}{}  ->  \pcell{4}{Rainfall}{0.9cm}{C --- the gauge rounded a real amount}
+\vspace{0.10in}
+
+\boxguard[20]
+\begin{notesbox}{Round 1 --- TODO: the first skill}
+\small
+\textbf{TODO term.} TODO: the definition as one complete printed sentence.
+
+\vspace{6pt}
+\textbf{Example.} TODO: the problem.
+\begin{work}
+  % TODO — identical in the blank.
+  x &= x
+\end{work}
+
+\vspace{6pt}
+\textbf{Your turn.} \textit{Start at \rung{1} and climb.}
+
+\rung{1}\; TODO
+\begin{work}
+  x &= x
+\end{work}
+
+\rung{2}\; TODO
+\begin{work}
+  x &= x
+\end{work}
+
+\rung{3}\; TODO
+\begin{work}
+  x &= x
+\end{work}
+
+\textbf{Show me.} My answer: \ans{TODO}
+\end{notesbox}
+
+% TODO: Rounds 2 and 3, mirrored.
+
+\boxguard[20]
+\begin{notesbox}{Closing Practice --- score yourself out of 4}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=8pt]
+  \item TODO (Round 1) \ans{TODO}
+  \item TODO (Round 2) \ans{TODO}
+  \item TODO (Round 3) \ans{TODO}
+  \item TODO (mixed) \ans{TODO}
+\end{enumerate}
+\textbf{Bonus (+1).} TODO: a student-life context. \ans{TODO}
+\end{notesbox}
 
 \end{document}

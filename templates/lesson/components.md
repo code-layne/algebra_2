@@ -99,13 +99,29 @@ Record the lesson's **standards** (the codes the user supplied) in the plan for 
 - `remindbox` (Keep in Mind) — a **content** summary: the lesson's key definitions and the
   distinction it turns on, in three or four sentences — the same content as the Final Round's Watch-out line.
 
+## Units 3+ packet-first components (2026-11-14)
+
+The full spec is `LESSON_SHAPE.md` §0a; the skeletons carry it in their header comments.
+
+- **Warm-Up** (`warmup.tex`) — 12pt, exactly one page, three ★-easy items; answers revealed on
+  the deck. Back in the packet from Unit 3 (retired for Unit 2 by the slides-first shape).
+- **Guided Notes & Practice** (`notes.tex`, rewritten 2026-11-14) — 12pt, ≤4pp: three
+  `notesbox` rounds of definition (printed in full) → example (`work` block the student fills)
+  → ★/★★/★★★ ladder (`\rung`, a `work` block each) → Show me / Find the mistake slot (the crux
+  in the last round), then a *Closing Practice* box of four mixed problems + a bonus. The
+  gradual-release `guidednotes` table shape survives only in legacy lessons (git history).
+- **Extra Credit** (`extra_credit.tex`, new) — generated, graded (`alg2-u<NN>-l<NN>-ec`),
+  optional, 12pt, exactly 2pp, ~5 stretch items (combine, reverse, model, Find the mistake,
+  SOL multiple choice), last in the packet on its own sheets so it tears off. No name line.
+- **Homework** — a DeltaMath set (online, or a printed prefab); nothing authored.
+- **Slides** — mirror the notes frame for frame; the 3-up handout is a standalone product,
+  not in the packet.
+
 ## Retired components
 
-**Warm-up page, Guided Notes & Practice, Individual Practice** — retired 2026-09-25 by the
-slides-first shape (the warm-up and the notes moved onto the deck; Individual Practice was
-already retired 2026-09-07). Their specs are in git history
-(`git log -- templates/lesson/components.md`) for reading a legacy lesson; never author one. The
-skeletons `warmup.tex`, `notes.tex`, `activity.tex` remain only so a legacy lesson can be rebuilt.
+**Individual Practice** (retired 2026-09-07), **group activity**, **exit ticket**. In Unit 2
+the warm-up page and the notes are retired too (slides-first, 2026-09-25). `activity.tex`
+remains only so a legacy lesson can be rebuilt; never author one.
 
 ## Homework
 

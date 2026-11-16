@@ -2,6 +2,21 @@
 
 **Course:** Algebra 2
 
+> ## ⚠ Status (2026-11-14) — **UNITS 3+ PACKET SHAPE SPECIFIED (`LESSON_SHAPE.md` §0a).**
+>
+> User answers: packet = **cover → warm-up (1p) → guided notes & practice (3 rounds + ladders +
+> Closing Practice, ≤4pp) → DeltaMath homework (online, or printed prefab) → extra credit (2pp,
+> generated, graded `alg2-uNN-lMM-ec`)**; graded pages last, each on fresh sheets, so they tear
+> off; the hour **5 / 45 / 10**; the deck mirrors the notes and its 3-up handout is a standalone
+> product, not in the packet. Build: `extra_credit` added to `shared/lesson.mk` (last), and to
+> the skill's graded kinds. Skeletons: `notes{,_key}.tex` rewritten, `extra_credit{,_key}.tex`
+> new; smoke-tested (scaffold → build → page parity → grading gate).
+> **Unit 3 on disk is still the old 7-lesson pre-EFFL map — nothing regenerated yet.**
+> **Next:** regenerate 3.0 as the pilot (ask its DeltaMath set: online/printed + name), get it
+> approved as the reference, then 3.1–3.4; `git rm` old `lesson05`–`lesson06`; rebuild the
+> Unit 3 tests on the 5-lesson map (they still test the cut Rational Root / Remainder–Factor
+> Theorems). Open: how extra-credit points count toward the grade (not printed anywhere).
+
 > ## ⚠ Status (2026-10-31) — **UNIT 3 CONDENSED: 12 LESSONS → 5 (3.0–3.4), MERGED ROUNDS.**
 >
 > User request: "condense to 5 lessons"; chose **merge** over cut, then "cut 8 and 9": the
@@ -9,7 +24,7 @@
 > Unit 3). Each lesson's three rounds are three merged skills (exception recorded in `LESSON_SHAPE.md` §0;
 > map in `COURSE_BREAKDOWN.md`): 3.0 characteristics · 3.1 operations · 3.2 factoring · 3.3
 > division · 3.4 zeros & graphs. Course total 49 → 42. Old
-> `unit03/lesson05`–`lesson06` have no slot in the new map. The Unit 3 packet shape is still open.
+> `unit03/lesson05`–`lesson06` have no slot in the new map. (Packet shape: specified 2026-11-14.)
 
 > ## ⚠ Status (2026-10-23) — **LESSON 2.4 OPERATIONS WITH COMPLEX NUMBERS AUTHORED (FIRST ONE-SKILL LESSON).**
 >
