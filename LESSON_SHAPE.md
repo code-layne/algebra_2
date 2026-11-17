@@ -3,8 +3,8 @@ course: Algebra 2
 prefix: algebra2
 meeting_length: 60
 reference_lesson: unit01/lesson04
-components: [cover, warmup, notes, homework, extra_credit, slides]
-keyed: [warmup, notes, homework, extra_credit]
+components: [cover, warmup, notes, homework, slides]
+keyed: [warmup, notes, homework]
 one_page: [warmup]
 doc_titles:
   warmup: Warm-Up
@@ -88,6 +88,15 @@ The lessons already on disk for 2.4–2.5 and Units 3–5 are in the old map's n
 each is regenerated whole when its new lesson is authored, never patched.
 
 ## 0a. The Unit 3+ packet-first shape — 2026-11-14
+
+> **Change 2026-11-17 (user direction): no extra credit.** *"There should only be the cover, the
+> warmup, guided notes in the packet and the cover references the assigned DeltaMath homework."*
+> The packet is **cover → warm-up → guided notes & practice** (plus a printed DeltaMath homework
+> only if the user supplies one). `extra_credit` is no longer scaffolded or authored; the cover's
+> `tocbox` has **three rows** (Warm-Up, Guided Notes & Practice, Homework — *DeltaMath:
+> **set name**, assigned online*); the plan has no Extra Credit box and **four** teacher notes
+> (`[Warm-Up]`, `[Guided Notes \& Practice]`, `[Homework]`, `[Slides]`); the deck's homework
+> frame names the set and nothing else. Everything below about extra credit is superseded.
 
 User direction, 2026-11-14: *"warm-up and notes. deck projects same notes, still want 3-up slide
 handout but not in the packet, just as a work product. graded homework will be deltamath
@@ -192,7 +201,7 @@ stretches) → Watch For; and **five teacher notes**, packet order: `[Warm-Up]`,
 ```bash
 python3 ~/.claude/skills/lesson-planning/scripts/new_lesson.py --project . --unit 03 --lesson 01 \
   --title "Polynomial Operations" --unit-title "Polynomial Functions" \
-  --components cover,warmup,notes,extra_credit,slides          # DeltaMath online
+  --components cover,warmup,notes,slides          # DeltaMath online
 #  or the default components with --prefab homework,homework_key  # DeltaMath printed
 ```
 
