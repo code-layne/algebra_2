@@ -1,6 +1,24 @@
-%! Dividing Polynomials; Remainder and Factor Theorems — Unit 3, Lesson 3.3 — Slides (Beamer)
+%! Dividing Polynomials — Unit 3, Lesson 3.3 — Slides (Beamer)
+% UNITS 3+ PACKET-FIRST shape (LESSON_SHAPE.md §0a, 2026-11-14): the deck MIRRORS the guided
+% notes frame for frame, so the class and the page never disagree. The 3-up handout is a
+% stand-alone work product, not in the packet.
+%   title → warm-up → targets → { definition → example → ladder → Show me | Find the mistake }
+%   × 3 → Closing Practice → homework   (17 frames; 20 is the ceiling)
+% Rounds (Unit 3 merged-skills exception): 1 long division · 2 synthetic division ·
+% 3 missing terms — zero placeholders (the crux, Find the mistake, \sectionlabel[redacc]).
+% Answers are revealed with \reveal{...}: the projector shows them on a click, the printed handout
+% never does. \pause only inside worked examples. Never \only/\pause to hide an answer.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+\usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
+% Ladder rungs and Show-me options.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+\newcommand{\opt}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle, fill=forest, text=white, font=\bfseries\small, inner sep=1.6pt,
+          minimum size=1.35em]{#1};
+  \end{tikzpicture}\;#2}
 
 \begin{document}
 
@@ -11,208 +29,386 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 3.3}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Dividing Polynomials}\\[0.25cm]
-    {\color{white}\bfseries\large Remainder \& Factor Theorems}\\[1.0cm]
+    {\color{white}\bfseries\LARGE Dividing Polynomials}\\[1.2cm]
     {\color{forestmid}\small Algebra 2~$\cdot$~Unit 3: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% HOOK
+% WARM-UP — the same three items as the paper warm-up; answers in one \reveal, ending on the
+% question Round 1 answers.
 \begin{frame}[t, plain]
-  \forestheader{The wall we hit yesterday}
-  \sectionlabel{Hook}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \[ p(x) = x^3 - 3x + 2 \]
-      \vspace{2pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item GCF? No. \; Two-term pattern? No.
-        \item Quadratic form? No. \; Four terms? No.
-        \item And yet Lesson 3.0's graph \emph{touches} at $x=1$ and \emph{crosses} at $x=-2$.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{From the Warm-Up}
-        $p(1) = 0$ \quad and \quad $(x-1)(x^2+x-2) = x^3-3x+2$. \\[4pt]
-        So $(x-1)$ \textbf{is} a factor.
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize But nobody handed you $x^2+x-2$. If you know one factor, how do you find the
-       other? \textbf{You divide.}}
-    \end{column}
-  \end{columns}
+  \forestheader{Warm-Up --- start now}
+  \sectionlabel[goldacc]{3 minutes --- on your warm-up page, alone}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item $247 \div 5$: the quotient and remainder, and the check $247 = 5\cdot\underline{\quad}
+          + \underline{\quad}$.
+    \item $\dfrac{6x^3}{2x}$, \; $\dfrac{-8x^2}{x}$, \; $\dfrac{x^4}{x}$; \quad then
+          $(x^3 + 5x^2) - (x^3 - 2x^2)$ and $(4x^2 - 3x) - (4x^2 + 8x)$.
+    \item Multiply $(x - 2)(x^2 + 3x + 1)$. So what is $(x^3 + x^2 - 5x - 2) \div (x - 2)$?
+  \end{enumerate}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check --- give yourself a point for each}
+      1.\ $49$ R $2$: \; $247 = 5\cdot49 + 2$, so $\frac{247}{5} = 49 + \frac25$ \qquad
+      2.\ $3x^2$, $-8x$, $x^3$; \; $7x^2$, $-11x$ \\[2pt]
+      3.\ $x^3 + x^2 - 5x - 2$, so the quotient is $x^2 + 3x + 1$, remainder $0$. \\[2pt]
+      \textbf{Hold on to this:} nobody will hand you the multiplication. How do you
+      \emph{find} that quotient? \textbf{Divide.}
+    \end{block}}
 \end{frame}
 
-% THE DIVISION STATEMENT
+% LEARNING TARGETS + HOW TODAY RUNS
 \begin{frame}[t, plain]
-  \forestheader{One statement runs the whole lesson}
-  \sectionlabel[goldacc]{Foundation}
-  \[ 247 = 5\cdot 49 + 2 \qquad\longrightarrow\qquad P(x) = D(x)\,Q(x) + R(x) \]
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item Equivalently: \; $\dfrac{P(x)}{D(x)} = Q(x) + \dfrac{R(x)}{D(x)}$
-    \item Stop dividing when $\deg R < \deg D$.
-    \item Check \emph{any} division: multiply $D\cdot Q$, add $R$, compare.
+  \forestheader{Today's targets}
+  \sectionlabel{Three skills, each a little harder}
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item Divide polynomials with \textbf{long division}, answer as \textbf{quotient} $+$
+          \textbf{remainder} over \textbf{divisor}, and check with $P = D\cdot Q + R$.
+    \item Use \textbf{synthetic division} for a divisor $x - r$ --- using $r$, the opposite sign
+          of the constant.
+    \item Write a \textbf{zero placeholder} for every missing power before you divide.
   \end{itemize}
-  \begin{block}{The line the rest of the unit hangs on}
-    If $R = 0$, then $P(x) = D(x)\,Q(x)$ --- so $D(x)$ is a \textbf{factor} of $P(x)$.
+  \vspace{3pt}
+  \begin{block}{How today runs --- you are solving the whole hour}
+    Three rounds: a short definition, one example, then \textbf{your turn} --- start at \rung1,
+    climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me} (1--4 fingers on
+    the count of three) or a \textbf{Find the mistake}. We finish with the \textbf{Closing
+    Practice} out of 4, then start the DeltaMath homework.
   \end{block}
 \end{frame}
 
-% MONOMIAL DIVISORS
+% ═══ ROUND 1 — LONG DIVISION ═══════════════════════════════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{Monomial divisors: split the fraction}
-  \sectionlabel{Method}
+  \forestheader{Definition: polynomial long division}
+  \sectionlabel{Round 1 --- divide, multiply, subtract, bring down}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \footnotesize
-      \[ \frac{a+b}{c} = \frac{a}{c} + \frac{b}{c} \]
-      \[ \frac{12x^4-8x^3+6x^2}{2x^2} = 6x^2-4x+3 \]
-      \[ \frac{15x^3y^2-10x^2y^3+5x^2y^2}{5x^2y^2} = 3x-2y+1 \]
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{The trap}
-        The last term cancels completely --- and leaves $\mathbf{1}$, not $0$. \\[4pt]
-        A quantity divided by itself is $1$.
+    \begin{column}{0.58\textwidth}
+      \begin{block}{Polynomial long division}
+        \textbf{Polynomial long division} divides $P(x)$ by a divisor $D(x)$ with the four steps
+        of long division of numbers --- \emph{divide} the leading terms, \emph{multiply},
+        \emph{subtract}, \emph{bring down} --- repeated until the remainder's degree is less
+        than the divisor's. The answer is
+        \[ \frac{P(x)}{D(x)} = Q(x) + \frac{R}{D(x)}, \]
+        and it always checks: $P(x) = D(x)\cdot Q(x) + R$.
       \end{block}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \centering
+      \textbf{Same statement as numbers}\\[6pt]
+      \renewcommand{\arraystretch}{1.5}
+      \begin{tabular}{r@{\;}l}
+        $247 \div 5$ & $= 49$ R $2$ \\
+        $\frac{247}{5}$ & $= 49 + \frac{2}{5}$ \\
+        $247$ & $= 5\cdot 49 + 2$ \\
+      \end{tabular}\\[6pt]
+      {\scriptsize dividend $=$ divisor $\cdot$ quotient $+$ remainder}
     \end{column}
   \end{columns}
 \end{frame}
 
-% LONG DIVISION
 \begin{frame}[t, plain]
-  \forestheader{Long division: two setup rules, then the wall falls}
-  \sectionlabel{Method}
+  \forestheader{Example 1: $(x^3 + 4x^2 - 3x - 5) \div (x + 2)$}
+  \sectionlabel{Watch --- 2 minutes}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{1.} Standard form. \quad \textbf{2.} A placeholder $0$ for every missing power.
+    \begin{column}{0.48\textwidth}
+      \small
       \[
-      \begin{array}{r}
-        x^2 + x - 2 \phantom{{}+2} \\[2pt]
-        x-1\,\overline{\smash{\big)}\,x^3+0x^2-3x+2} \\[2pt]
-        \underline{-(x^3-\phantom{1}x^2)}\phantom{{}-3x+2} \\[2pt]
-        x^2-3x\phantom{{}+2} \\[2pt]
-        \underline{-(x^2-\phantom{1}x)}\phantom{{}+2} \\[2pt]
-        -2x+2 \\[2pt]
-        \underline{-(-2x+2)} \\[2pt]
-        0
+      \renewcommand{\arraystretch}{1.15}
+      \begin{array}{r@{\;}r@{\;}r@{\;}r@{\;}r}
+        & & x^2 & +\,2x & -\,7 \\ \cline{2-5}
+        x+2\,\big) & x^3 & +\,4x^2 & -\,3x & -\,5 \\
+        & -(x^3 & +\,2x^2) & & \\ \cline{2-3}
+        & & 2x^2 & -\,3x & \\
+        & & -(2x^2 & +\,4x) & \\ \cline{3-4}
+        & & & -7x & -\,5 \\
+        & & & -(-7x & -\,14) \\ \cline{4-5}
+        & & & & 9
       \end{array}
       \]
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{Remainder $0$ --- so cash it in}
-        \[ x^3-3x+2 = (x-1)(x^2+x-2) \]
-        \[ = (x-1)^2(x+2) \]
-      \end{block}
-      \vspace{2pt}
-      {\footnotesize Multiplicity $2$ at $x=1$ $\Rightarrow$ the graph \emph{touches}; multiplicity
-       $1$ at $x=-2$ $\Rightarrow$ it \emph{crosses}. Exactly the Lesson 3.0 graph.
-       \textbf{The wall is down.}}
+      \small
+      $x^3 \div x = x^2$; multiply $x^2(x+2)$; \emph{subtract} (the minus hits both terms);
+      bring down $-3x$. Repeat. \pause
+      \\[6pt]
+      Stop at $9$: its degree, $0$, is less than the divisor's. \pause
+      \[ \frac{x^3+4x^2-3x-5}{x+2} = x^2+2x-7+\frac{9}{x+2} \]
+      \pause
+      \textbf{Check:} $(x+2)(x^2+2x-7)+9 = x^3+4x^2-3x-14+9 = x^3+4x^2-3x-5$ \checkmark
     \end{column}
   \end{columns}
 \end{frame}
 
-% SYNTHETIC DIVISION
 \begin{frame}[t, plain]
-  \forestheader{Synthetic division: the same work, variables erased}
-  \sectionlabel[goldacc]{Shortcut}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \footnotesize
-      $x^3-3x+2 \;\div\; (x-1)$, coefficients $1,\,0,\,-3,\,2$:
-      \begin{center}
-      \renewcommand{\arraystretch}{1.4}
-      \begin{tabular}{r|rrrr}
-      $1$ & $1$ & $0$  & $-3$ & $2$ \\
-          &     & $1$  & $1$  & $-2$ \\ \cline{2-5}
-          & $1$ & $1$  & $-2$ & $0$ \\
-      \end{tabular}
-      \end{center}
-      \vspace{3pt}
-      Bring down, multiply by $r$, add. The last entry is the \textbf{remainder}; the rest are the
-      quotient's coefficients, one degree lower.
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{One restriction, one trap}
-        Divisors of the form $x-r$ \textbf{only} --- that is why long division never retires. \\[4pt]
-        $x+2$ means $r = \mathbf{-2}$. Rewrite it as $x-(-2)$ every single time.
-      \end{block}
-      \vspace{2pt}
-      {\footnotesize And the placeholder $0$ is still required in the coefficient row.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% REMAINDER THEOREM
-\begin{frame}[t, plain]
-  \forestheader{The remainder was never leftovers}
-  \sectionlabel[goldacc]{Remainder Theorem}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      $2x^3+3x^2-5 \;\div\; (x+2)$ gives
-      \[ 2x^2-x+2 \;-\; \frac{9}{x+2} \]
-      Now just \emph{evaluate}:
-      \[ f(-2) = 2(-8)+3(4)-5 = -9 \]
-      \textbf{The same number.}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Remainder Theorem}
-        Dividing $f(x)$ by $x-r$ leaves the remainder $f(r)$.
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize \textbf{Why:} $f(x) = (x-r)q(x) + R$. Put $x=r$: \\[3pt]
-       $f(r) = 0\cdot q(r) + R = R$. \\[5pt]
-       It runs both ways --- a remainder without dividing, \emph{and} a fast way to evaluate $f$.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% FACTOR THEOREM
-\begin{frame}[t, plain]
-  \forestheader{Four names for one fact}
-  \sectionlabel[goldacc]{Factor Theorem}
-  \begin{center}
-  \renewcommand{\arraystretch}{1.5}
-  \begin{tabular}{|c|l|}
-  \hline
-  1 & $f(r) = 0$ \\ \hline
-  2 & The remainder on dividing $f(x)$ by $x-r$ is $0$ \\ \hline
-  3 & $(x-r)$ is a \textbf{factor} of $f(x)$ \\ \hline
-  4 & $r$ is a \textbf{zero} of $f$, and $(r,0)$ is an $x$-intercept of its graph \\ \hline
-  \end{tabular}
-  \end{center}
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  Use long division. Answer as quotient $+$ remainder over divisor.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $(x^2 + 7x + 12) \div (x + 3)$
+    \item[\rung2] $(x^3 - 2x^2 - 5x + 9) \div (x - 3)$
+    \item[\rung3] $(6x^3 + 5x^2 - 8x + 5) \div (2x + 3)$ \quad {\small (divide $6x^3$ by $2x$)}
+  \end{itemize}
   \vspace{4pt}
-  \begin{block}{The workflow for the rest of Unit 3}
-    \textbf{Test} a candidate $r$ $\;\rightarrow\;$ \textbf{divide} it out $\;\rightarrow\;$ factor
-    the \textbf{depressed polynomial} completely.
-  \end{block}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $x + 4$ \qquad
+      \rung2\ $x^2 + x - 2 + \dfrac{3}{x - 3}$ \qquad
+      \rung3\ $3x^2 - 2x - 1 + \dfrac{8}{2x + 3}$
+    \end{block}}
 \end{frame}
 
-% THE NEXT WALL
 \begin{frame}[t, plain]
-  \forestheader{Where does the candidate list come from?}
-  \sectionlabel{Connections}
+  \forestheader{Show me: $(x^2 + 5x + 9) \div (x + 2)$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      We only tried $r=1$ because the Warm-Up pointed us there. \\[6pt]
-      Try it cold: \; $h(x) = 2x^3-3x^2-11x+6$. \\[4pt]
-      Integer divisors of $6$: $\pm1,\pm2,\pm3,\pm6$ --- and $r=-2$, $r=3$ both work. \\[4pt]
-      \[ h(x) = (x+2)(2x-1)(x-3) \]
-      The third zero is $\tfrac12$. \textbf{It was never on the list.}
+    \begin{column}{0.45\textwidth}
+      \opt1{$x + 3$} \\[12pt]
+      \opt3{$x + 7 - \dfrac{5}{x + 2}$}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \textbf{Today:} divide by monomials, binomials, and trinomials; synthetic division for $x-r$;
-      the Remainder \& Factor Theorems.\\[8pt]
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item \textbf{3.4} The Rational Root Theorem --- the candidate list, fractions included.
-        \item \textbf{3.5} Fundamental Theorem of Algebra \& complex zeros.
-        \item \textbf{3.6} Graphing polynomial functions \& modeling.
-      \end{itemize}
+    \begin{column}{0.45\textwidth}
+      \opt2{$x + 3 + \dfrac{3}{x + 2}$} \\[12pt]
+      \opt4{$x + 3 + \dfrac{3}{x}$}
     \end{column}
   \end{columns}
+  \vspace{8pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      $(x+2)(x+3) = x^2 + 5x + 6$, so the remainder is $9 - 6 = 3$, over the divisor.
+      \textbf{1} dropped the remainder. \textbf{3} subtracted only the $x^2$: the minus must hit
+      $+2x$ too. \textbf{4} put the remainder over $x$, not over the divisor $x + 2$.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 2 — SYNTHETIC DIVISION ══════════════════════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: synthetic division}
+  \sectionlabel{Round 2 --- the shortcut for $x - r$}
+  \begin{columns}[T]
+    \begin{column}{0.6\textwidth}
+      \begin{block}{Synthetic division}
+        \textbf{Synthetic division} divides by $x - r$ using only the coefficients. Write $r$
+        --- the number that makes the divisor zero --- beside the dividend's coefficients,
+        bring the first one down, then \emph{multiply by $r$ and add}, column by column. The
+        last number is the \textbf{remainder}; the others are the \textbf{quotient}'s
+        coefficients, one degree lower than the dividend.
+      \end{block}
+    \end{column}
+    \begin{column}{0.36\textwidth}
+      \centering
+      \textbf{Which $r$? Flip the sign.}\\[6pt]
+      \renewcommand{\arraystretch}{1.5}
+      \begin{tabular}{c|c}
+        divisor & $r$ \\ \hline
+        $x - 2$ & $2$ \\
+        $x + 2 = x - (-2)$ & $-2$ \\
+        $x + 1$ & $-1$ \\
+      \end{tabular}\\[6pt]
+      {\scriptsize Only for $x - r$. For $2x + 3$ or $x^2 + 1$, use long division.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 2: the same division, faster}
+  \sectionlabel{Watch --- 2 minutes}
+  $(x^3 + 4x^2 - 3x - 5) \div (x + 2)$: \; $x + 2 = x - (-2)$, so $r = -2$.
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.5}
+      \begin{tabular}{r|rrrr}
+        $-2$ & $1$ & $4$ & $-3$ & $-5$ \\
+             &     & $-2$ & $-4$ & $14$ \\ \cline{2-5}
+             & $1$ & $2$ & $-7$ & $9$
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \small
+      Bring down $1$. \; $1\cdot(-2) = -2$; \; $4 + (-2) = 2$. \pause \\[3pt]
+      $2\cdot(-2) = -4$; \; $-3 + (-4) = -7$. \; $-7\cdot(-2) = 14$; \; $-5 + 14 = 9$. \pause
+      \\[6pt]
+      Bottom row $1,\ 2,\ -7 \mid 9$: degree $3 \to 2$, and the last number is $R$.
+      \[ x^2 + 2x - 7 + \frac{9}{x + 2} \]
+      \emph{Same answer as Example 1.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  Use synthetic division. Check the sign of $r$ first.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $(x^2 + 2x - 15) \div (x - 3)$
+    \item[\rung2] $(2x^3 - 5x^2 + x + 4) \div (x - 2)$
+    \item[\rung3] Study hall: $x^3 + 2x^2 - 5x - 6$ desks stand in $x + 1$ equal rows. How many
+          desks are in each row?
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $r = 3$: $x + 5$ \qquad
+      \rung2\ $r = 2$: $2x^2 - x - 1 + \dfrac{2}{x - 2}$ \qquad
+      \rung3\ $r = -1$: $x^2 + x - 6$ desks (remainder $0$)
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: $(x^3 - 4x^2 + x + 6) \div (x - 2)$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \opt1{$x^2 - 6x + 13 - \dfrac{20}{x - 2}$} \\[12pt]
+      \opt3{$x^2 - 2x - 3$}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \opt2{$x^3 - 2x^2 - 3x$} \\[12pt]
+      \opt4{$x^2 - 6x + 13$}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{3}}
+      $r = 2$: bottom row $1,\ -2,\ -3 \mid 0$, so $x^2 - 2x - 3$, remainder $0$.
+      \textbf{1} used $-2$ for $x - 2$ --- the sign flips, so $x - 2$ uses $+2$.
+      \textbf{4} used $-2$ and dropped the remainder. \textbf{2} forgot the quotient is one
+      degree lower.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 3 — MISSING TERMS (the crux) ════════════════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: zero placeholders}
+  \sectionlabel{Round 3 --- every power gets a column}
+  \begin{block}{Zero placeholder}
+    A \textbf{zero placeholder} is a $0$ written for every power of $x$ that is missing. Before
+    you divide --- synthetic or long --- write the dividend (and a long-division divisor) in
+    standard form with every power from the highest down to the constant, so every coefficient
+    stays in its own column.
+  \end{block}
+  \vspace{6pt}
+  \centering
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{l|l}
+    polynomial & coefficients \\ \hline
+    $x^3 - 8 = x^3 + 0x^2 + 0x - 8$ & $1,\ 0,\ 0,\ -8$ \\
+    $2x^4 - 3x^2 + 5 = 2x^4 + 0x^3 - 3x^2 + 0x + 5$ & $2,\ 0,\ -3,\ 0,\ 5$ \\
+  \end{tabular}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 3: $(2x^4 - 3x^2 + 5) \div (x + 1)$}
+  \sectionlabel{Watch --- 2 minutes}
+  Zeros first: $2x^4 + 0x^3 - 3x^2 + 0x + 5$. \; $x + 1 = x - (-1)$, so $r = -1$.
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.5}
+      \begin{tabular}{r|rrrrr}
+        $-1$ & $2$ & $0$ & $-3$ & $0$ & $5$ \\
+             &     & $-2$ & $2$ & $1$ & $-1$ \\ \cline{2-6}
+             & $2$ & $-2$ & $-1$ & $1$ & $4$
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \small
+      Five coefficients, so five columns. \pause \\[4pt]
+      Bottom row $2,\ -2,\ -1,\ 1 \mid 4$: degree $4 \to 3$. \pause
+      \[ 2x^3 - 2x^2 - x + 1 + \frac{4}{x + 1} \]
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  Write in every zero first.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $(x^3 - 8) \div (x - 2)$
+    \item[\rung2] $(x^3 - 7x + 9) \div (x + 3)$
+    \item[\rung3] Long division, zeros in \emph{both}: $(2x^3 + 5x - 4) \div (x^2 + 1)$
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $1,0,0,-8$: \; $x^2 + 2x + 4$ \qquad
+      \rung2\ $1,0,-7,9$: \; $x^2 - 3x + 2 + \dfrac{3}{x + 3}$ \\[2pt]
+      \rung3\ divisor $x^2 + 0x + 1$: \; $2x + \dfrac{3x - 4}{x^2 + 1}$ (stop when the degree is
+      below $2$)
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Find the mistake}
+  \sectionlabel[redacc]{The one that matters --- 3 minutes --- find Student A's wrong step and fix it}
+  \textbf{Student A} divided $(x^3 - 3x^2 + 4) \div (x - 2)$:
+  \vspace{4pt}
+  \begin{columns}[T]
+    \begin{column}{0.4\textwidth}
+      \centering
+      \renewcommand{\arraystretch}{1.5}
+      \begin{tabular}{r|rrr}
+        $2$ & $1$ & $-3$ & $4$ \\
+            &     & $2$ & $-2$ \\ \cline{2-4}
+            & $1$ & $-1$ & $2$
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      ``So the answer is $x - 1 + \dfrac{2}{x - 2}$.''
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \reveal{%
+    \begin{block}{The mistake}
+      She skipped the $0$ for the missing $x$-term, so every number after the gap is in the
+      wrong column. The coefficients are $1,\ -3,\ 0,\ 4$: \; $2 \mid 1,\ -3,\ 0,\ 4$ gives
+      $1,\ -1,\ -2 \mid 0$, so the answer is $x^2 - x - 2$ --- it divides evenly.
+    \end{block}}
+\end{frame}
+
+% CLOSING PRACTICE — the notes' last box; one per round plus a mixed check, self-scored /4.
+\begin{frame}[t, plain]
+  \forestheader{Closing Practice}
+  \sectionlabel[goldacc]{6 minutes --- on your own --- score yourself out of 4}
+  \small
+  \begin{enumerate}\setlength{\itemsep}{2pt}
+    \item Long division: $(6x^2 + x - 10) \div (2x - 3)$ \qquad\quad
+          2.\ Synthetic: $(x^3 + 2x^2 - 9x + 4) \div (x - 2)$
+    \setcounter{enumi}{2}
+    \item $(x^4 - 16) \div (x + 2)$ \qquad\quad
+          4.\ Is $(2x^2 + x - 4) \div (x + 2) = 2x - 3 + \frac{2}{x + 2}$? Check with
+          $P = D\cdot Q + R$.
+  \end{enumerate}
+  \textbf{Bonus (+1):} The spring formal's dance floor has area $2x^3 + x^2 - 13x + 6$
+  ft$^2$, and one side is $x - 2$ ft. How long is the other side?
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check --- one point each}
+      1.\ $3x + 5 + \frac{5}{2x - 3}$ \quad 2.\ $x^2 + 4x - 1 + \frac{2}{x - 2}$ \quad
+      3.\ $1,0,0,0,-16$: \; $x^3 - 2x^2 + 4x - 8$ \quad 4.\ Yes: $2x^2 + x - 6 + 2$
+      \checkmark \\[1pt]
+      \textbf{Bonus:} $2x^2 + 5x - 3$ ft (remainder $0$) \\[2pt]
+      \textbf{Watch out:} write a $0$ for every missing power before you divide ---
+      $x^3 - 8$ is $1,\ 0,\ 0,\ -8$ --- and for $x - 2$, use $r = 2$, not $-2$.
+    \end{block}}
+\end{frame}
+
+% HOMEWORK — DeltaMath, online (Units 3+, §0a).
+\begin{frame}[t, plain]
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  \begin{block}{DeltaMath --- scored 1 to 5, due the first class after two study halls}
+    Assignment: \textbf{A2: Lesson 3.3: Dividing Polynomials}. Start it now on your device; the
+    rest is due the first class after two study halls. I will announce the date in class and on
+    TurtleNet. The \textbf{Extra Credit} pages at the back of your packet are optional --- tear
+    them off and turn them in with it.
+  \end{block}
+  \vspace{6pt}
+  \textbf{Next:} Lesson 3.4 --- characteristics of polynomial functions: degree, leading
+  coefficient, end behavior, and symmetry.
 \end{frame}
 
 \end{document}

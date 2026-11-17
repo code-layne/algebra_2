@@ -1,4 +1,8 @@
-%! Operations with Polynomials — Unit 3, Lesson 3.1 — Lesson Plan
+%! Polynomial Operations — Unit 3, Lesson 3.1 — Lesson Plan
+% UNITS 3+ PACKET-FIRST plan (LESSON_SHAPE.md §0a, 2026-11-14; engagement rules §1): a paper
+% warm-up, guided notes of three rounds (definition → example → ladder → Show me / Find the
+% mistake) and a Closing Practice, the deck mirroring the notes, a DeltaMath homework started in
+% class, and a graded, optional extra credit. 5 / 45 / 10. Teacher-facing; never handed out.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,7 +12,8 @@
 \newcommand{\CourseName}{Algebra 2}
 \newcommand{\MeetingLength}{60 minutes}
 \newcommand{\UnitNumberName}{Unit 3: Polynomial Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.1: Operations with Polynomials}
+\newcommand{\LessonNumberName}{Lesson 3.1: Polynomial Operations}
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
 
 \begin{document}
 \begin{center}
@@ -18,22 +23,22 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can \emph{add}, \emph{subtract}, and \emph{multiply}
-    polynomial expressions in one and two variables and write the result in \emph{standard form} ---
-    combining like terms, distributing a subtraction sign to \emph{every} term, multiplying term by
-    term (monomial $\times$ polynomial, binomial $\times$ binomial, binomial $\times$ trinomial), and
-    applying the \emph{special-product} identities $(a\pm b)^2$ and $(a+b)(a-b)$. They can then read
-    the \emph{degree} and \emph{leading coefficient} of the answer --- degrees \emph{add} under
-    multiplication, leading coefficients \emph{multiply} --- and use them to state the end behavior of
-    the polynomial they just built. This turns Lesson~3.0's factored forms into standard forms and
-    back.
+    \textbf{Primary Objective:} Students add, subtract, and multiply polynomials in one and two
+    variables, writing every result in standard form: they subtract by changing the sign of every
+    term subtracted, multiply every term by every term (distribution or the box method), and
+    multiply three or more factors two at a time --- and they can explain why $(x+2)^3\ne x^3+8$.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3a} --- determine sums, differences, and products
-    of polynomials in one \emph{and two} variables. \textbf{A2.EO.3d} appears in its \emph{forward}
-    direction (demonstrating equality of polynomial expressions written in different forms, and the
-    difference-of-squares and perfect-square-trinomial identities); the reverse direction ---
-    factoring --- is Lesson~3.2. \textbf{A2.F.2g} is revisited whenever an expanded product's degree
-    and leading coefficient are used to state end behavior.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EO.3a} --- add, subtract, and multiply
+    polynomials, including in two variables (all three rounds).
+    \\[2pt]
+    \textbf{Lesson model:} \emph{Packet first} (Units 3+). Students work on paper the whole hour:
+    a \textbf{warm-up} page as they walk in; \textbf{guided notes} of three rounds --- a short
+    \textbf{definition} and \textbf{example} ($\le$3 min), a \textbf{ladder} (\rung1\ \rung2\
+    \rung3), and a \textbf{Show me} or \textbf{Find the mistake} --- then a self-scored
+    \textbf{Closing Practice}; the deck projects the same pages and reveals the answers. Unit 3
+    exception: the three rounds are three merged skills, climbing. \textbf{Homework source:}
+    DeltaMath online, set \emph{A2: Lesson 3.1: Polynomial Operations}. \textbf{Extra credit:}
+    two graded, optional pages at the back of the packet (\texttt{alg2-u03-l01-ec}).
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -43,161 +48,182 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Write a polynomial in \textbf{standard form} and name its \textbf{degree}, \textbf{leading coefficient}, and \textbf{number of terms}.
-  \item \textbf{Add} and \textbf{subtract} polynomials by combining like terms --- distributing the subtraction to \emph{every} term.
-  \item \textbf{Multiply} monomial $\times$ polynomial, binomial $\times$ binomial, and binomial $\times$ trinomial, in one and two variables.
-  \item Apply the \textbf{special products} $(a+b)^2$, $(a-b)^2$, and $(a+b)(a-b)$.
-  \item Predict a product's \textbf{degree} and \textbf{leading coefficient}, and state the resulting \textbf{end behavior}.
+  \item Write a polynomial in standard form; name its degree (two variables: add a term's
+        exponents) and leading coefficient.
+  \item Add and subtract polynomials by combining like terms, distributing the $-1$ to every
+        term subtracted.
+  \item Multiply a monomial, binomial, or trinomial by a polynomial --- distribution or the box
+        method --- in one and two variables.
+  \item Multiply three or more factors two at a time, using the special products as tools.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Adding and subtracting only ever \emph{collects} terms; multiplying \emph{creates} new, higher-degree terms.
-  \item A minus sign in front of a parenthesis is a factor of $-1$: it flips \emph{every} sign inside, not just the first.
-  \item Multiplying is one rule --- \emph{every term times every term} --- whether it is called distributing, FOIL, or the box.
-  \item Under multiplication degrees \textbf{add} and leading coefficients \textbf{multiply}, so the end behavior of a product is known before it is expanded.
-  \item Factored form and standard form are the \emph{same function} in two costumes: one shows the zeros, the other shows the end behavior.
+  \item Every operation is the distributive property plus combining like terms --- nothing new,
+        just bookkeeping.
+  \item A minus sign before parentheses is a factor of $-1$; it reaches \emph{every} term
+        (Round 1's sign error: flipping only the first).
+  \item \textbf{Target misconception (the crux, Round 3):} \emph{``distributing the
+        exponent''} --- $(x+2)^3=x^3+8$. A power of a sum is repeated multiplication; the
+        middle terms come from the cross products. One substitution ($x=1$: $27\ne9$) kills it.
+  \item This is the road from factored form (zeros) to standard form (degree, leading
+        coefficient) used all unit.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
-\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems --- printed in the notes' definitions}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Standard form} & Terms written from the highest power down to the constant: $a_nx^n+\dots+a_1x+a_0$. \\
-\textbf{Degree of a term} & The sum of the exponents on its variables --- so $-7x^2y^3$ has degree $5$. \\
-\textbf{Degree / leading coefficient} & The largest term degree, and the coefficient of that term once in standard form. \\
-\textbf{Monomial / binomial / trinomial} & A polynomial with one, two, or three terms. \\
-\textbf{Like terms} & Terms with \emph{identical} variable parts (same variables, same exponents); only like terms combine. \\
-\textbf{Distributive property} & $a(b+c)=ab+ac$ --- the single rule behind every polynomial product. \\
-\textbf{Special products} & \TallMath{(a+b)^2=a^2+2ab+b^2,\quad (a-b)^2=a^2-2ab+b^2,\quad (a+b)(a-b)=a^2-b^2} \\
-\textbf{Degree of a product} & $\deg(fg)=\deg f+\deg g$, and the leading coefficients multiply. \\
-\textbf{Closure} & A sum, difference, or product of polynomials is always another polynomial. \\
+\textbf{Polynomial} & A monomial or a sum of monomials, each a real number times variables raised to whole-number powers. \\
+\textbf{Standard form} & Terms written from the highest power down. \\
+\textbf{Degree / leading coefficient} & The highest power (with two variables, the largest sum of a term's exponents) / the number on that term. \\
+\textbf{Like terms} & The same variables raised to the same powers; only like terms combine. \\
+\textbf{Subtracting a polynomial} & Change the sign of \emph{every} term being subtracted, then add. \\
+\textbf{Distributive property / box method} & Multiply every term of one factor by every term of the other, then combine like terms; the box lays out one cell per product. \\
+\textbf{Special products} & $(a+b)^2=a^2+2ab+b^2$, \; $(a-b)^2=a^2-2ab+b^2$, \; $(a+b)(a-b)=a^2-b^2$. \\
+\textbf{Three or more factors} & Multiply two at a time; $(x+2)^3=(x+2)(x+2)(x+2)$; the degree of a product is the sum of the degrees. \\
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rehearses exactly the four moves this lesson is built from: \textbf{(1)} the
-    \emph{product of powers} rule $x^m\!\cdot\!x^n=x^{m+n}$ (multiply the coefficients, \emph{add} the
-    exponents) --- the engine of every polynomial product; \textbf{(2)} \emph{combining like terms},
-    which is all that addition and subtraction ever do; \textbf{(3)} \emph{distributing}, including
-    the bare negative $-(4x^2-7x+3)$ that is this lesson's most common error; and \textbf{(4)} FOIL
-    from Algebra~1, plus a one-line recall of \emph{degree} and \emph{leading coefficient} from
-    Lesson~3.0. Debrief item~3 aloud --- ask what happened to the sign of \emph{each} of the three
-    terms, not just the first.
+\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
+\hline
+Warm-Up & 5 & Three quick wins on the warm-up page as they walk in; score themselves & Stand at the door; reveal at 4 min; land ``the minus changed \emph{all three} signs'' \\
+Guided Notes \& Practice & 45 & Three rounds ($\approx$13 min each): watch the example (2 min), \emph{climb the ladder} \rung1$\to$\rung2$\to$\rung3, then \emph{Show me} fingers or \emph{Find the mistake}; then the Closing Practice (6 min), scored out of 4 & $\le$3 min talk a round; circulate the whole ladder; reveal when most have \rung2; read the fingers; collect Closing Practice scores on fingers \\
+Homework & 10 & Start the DeltaMath set alone & Launch the first problem aloud, then circulate \\
+\hline
+\textbf{Total} & \textbf{60} & & \\
+\end{tabularx}
 \end{fixedskillbox}
 
-\begin{skillbox}[Hook]{forestbg}
-    Put both of Lesson~3.0's names for the anchor curve on the board:
-    \[
-      g(x) = (x-1)^2(x+2) \qquad\text{and}\qquad g(x)=x^3-3x+2 .
-    \]
-    \textbf{``We used both of these labels for the same graph yesterday. Are they really the same
-    function --- or did we just take that on faith?''} Test it cheaply first: at $x=0$ both give $2$;
-    at $x=2$ both give $4$; at $x=-2$ both give $0$. \textbf{``Agreeing at three points is good
-    evidence --- but is it proof?''} (No: many different curves pass through three shared points.)
-    Land the day's purpose: \emph{the only way to know two forms are the same function is to multiply
-    the factored one out and see the standard one appear.} Note what each costume is good for --- the
-    factored form hands you the \textbf{zeros and their multiplicities}, the standard form hands you
-    the \textbf{degree and leading coefficient}, hence the \textbf{end behavior}. Today we learn to
-    move from the first to the second.
+\begin{skillbox}[Engagement --- how this hour keeps everyone solving]{goldbox}
+\textbf{Nobody waits:} every round's practice is a ladder --- \rung1\ everyone (a quick win),
+\rung2\ everyone, \rung3\ early finishers. \textbf{Everyone commits, safely:} the Round 1 and
+Round 2 \emph{Show me} are 1--4 fingers on the count of three, all at once. \textbf{Critique a
+stranger:} Round 3's \emph{Find the mistake} puts $(x+2)^3=x^3+8$ on an anonymous Student A.
+\textbf{Their world:} a storage ottoman for the dorm common room (Round 3 \rung3) and the
+spring-formal dance floor (Closing Practice bonus); the extra credit transfers to the student
+council's canned-food-drive boxes. \textbf{Short clock:} every practice frame carries its
+minutes. Praise the climb more than the answer.
 \end{skillbox}
 
-\begin{skillbox}[Lesson]{forestbg}
+\begin{skillbox}[Warm-Up (5 min, on paper)]{forestbg}
+\textbf{1. Exponent rules} --- $x^7$, $-10x^5$, $12x^2y$: the ``coefficients multiply, exponents
+add'' move inside every product in Rounds 2--3. \textbf{2. Distribute} --- $4x^2+8x$,
+$-6x+15$: Round 2 is this, done to every term. \textbf{3. Combine like terms} ---
+$6x^2+2x+2$, then $-(x^2-4x+6)=-x^2+4x-6$: \textbf{all three} signs changed. \textbf{Handoff:}
+``So what happens when you subtract a \emph{whole} polynomial?'' --- that is Round 1's
+definition.
+\end{skillbox}
+
+\begin{skillbox}[The Lesson --- three rounds and Closing Practice (45 min)]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Naming a polynomial.} Put it in \textbf{standard form} (powers high to low) first ---
-every other name depends on it. Then read the \textbf{degree}, the \textbf{leading coefficient}, and
-the \textbf{number of terms} (monomial / binomial / trinomial), and classify by degree (linear,
-quadratic, cubic, quartic). For two-variable terms, the degree of a term is the \emph{sum} of its
-exponents: $-7x^2y^3$ has degree $5$. Model on $-5x^2+7x^4-3+x \Rightarrow 7x^4-5x^2+x-3$.
+\textbf{Round 1 --- Adding \& subtracting (13 min).} Read the definition in one breath; point at
+``\textbf{every} term.'' Example: $(4x^3-2x^2+5)-(x^3+3x^2-6x+1)=3x^3-5x^2+6x+4$, degree 3 ---
+write the $-1$ step out in full. Ladder: \rung1\ $3x^2-2x+5$; \rung2\ $3x^3-4x^2+x-2$, degree 3;
+\rung3\ $2a^2b-6ab+6b^2$, degree 3 (add a term's exponents). \textbf{Show me}
+$(6x^2-2x+1)-(2x^2-5x+4)$: answer \textbf{2} ($4x^2+3x-3$). \textbf{1} = flipped only the first
+sign (the subtraction-sign error --- re-teach on the spot); \textbf{3} = added; \textbf{4} =
+missed the last term.
 
-\textbf{2. Adding \& subtracting: collecting, not creating.} \textbf{Like terms} must match in
-\emph{both} variable and exponent; $3x^2$ and $3x^3$ never combine. Addition is pure collection. For
-subtraction, rewrite the minus sign as a factor of $-1$ \emph{before} anything else --- \textbf{``the
-minus sign belongs to every term in the parentheses.''} Show the same problem worked both ways
-(distribute-then-collect vs.\ stacked in columns) and let students choose.
-
-\textbf{Ask:} \textbf{``Can a sum of two degree-4 polynomials have degree less than 4?''} Yes ---
-$(x^4+2x)-(x^4-5)$ leaves $2x+5$. The leading terms can cancel, so a sum or difference has degree
-\emph{at most} the larger degree.
+\textbf{Round 2 --- Multiplying (13 min).} Point at the box for $(x+4)(x-3)$: one cell per
+product. Example: (a) $-6x^5+3x^3-12x^2$; (b) $(2x-1)(x^2+3x-4)=2x^3+5x^2-11x+4$ --- six
+products, like terms on the box's diagonals. Ladder: \rung1\ $4x^3-12x^2+20x$; \rung2\
+$3x^2-13x-10$; \rung3\ $2x^3+5x^2+2x+15$. \textbf{Show me} $(2x+y)(x-3y)$: answer \textbf{3}
+($2x^2-5xy-3y^2$). \textbf{1} = first-and-last only (lost the middle); \textbf{2} = sign slip
+on $y\cdot x$; \textbf{4} = skipped a product.
 
 \columnbreak
+\textbf{Round 3 --- Three or more factors (13 min) --- the crux.} Definition: two at a time;
+``the exponent does \textbf{not} distribute over a sum.'' Example: (a)
+$x(x+2)(x-3)=x^3-x^2-6x$; (b) $(x+1)^3=(x^2+2x+1)(x+1)=x^3+3x^2+3x+1$. Ladder: \rung1\
+$2x^3-6x^2-8x$; \rung2\ $(2x-1)(x^2+x-6)=2x^3+x^2-13x+6$; \rung3\ the ottoman,
+$(x-3)^3=x^3-9x^2+27x-27$ cubic inches. \textbf{Find the mistake:} Student A wrote
+$(x+2)^3=x^3+2^3=x^3+8$. Wrong at line 1 --- a power of a sum is repeated multiplication;
+correct $x^3+6x^2+12x+8$; test $x=1$: $27\ne9$. Do not rush this frame.
 
-\textbf{3. Multiplying: every term times every term.} One rule, three costumes. Monomial $\times$
-polynomial is straight distribution ($-2x^2(3x^3-4x+6)$). Binomial $\times$ binomial is the same rule
-with four products (FOIL is just a bookkeeping name). Binomial $\times$ trinomial has six products
---- draw the \textbf{box/area model} so nothing is dropped, then collect like terms down the
-diagonals. Do at least one two-variable product, $(3x+2y)(x-4y)$, so the middle term $-10xy$ is seen
-as a like-term collection.
-
-\textbf{4. Degree \& leading coefficient of a product.} Before expanding $(2x^3-1)(-3x^4+x)$, ask
-\textbf{``what will the highest-power term be?''} Only the two leading terms can produce it:
-$2x^3\cdot(-3x^4)=-6x^7$. So \emph{degrees add, leading coefficients multiply} --- and the end
-behavior from Lesson~3.0 (odd degree, negative lead $\Rightarrow$ left up, right down) is known
-without doing the rest of the work.
-
-\textbf{5. Special products.} Derive, don't memorize: $(a+b)^2=(a+b)(a+b)=a^2+2ab+b^2$. Flag the
-year's most persistent error --- $(x+4)^2\ne x^2+16$ --- and kill it numerically at $x=1$
-($25\ne17$). Then $(a-b)^2$ and the difference of squares $(a+b)(a-b)=a^2-b^2$, whose middle terms
-cancel. Close by expanding the Hook's $(x-1)^2(x+2)$ to $x^3-3x+2$, and preview Lesson~3.2, where
-these identities run \emph{backward}.
+\textbf{Closing Practice (6 min).} 1.\ $3x^2-6x+7$ (Round 1); 2.\ $2x^3-7x^2-7x+12$ (Round 2);
+3.\ $(x^2-1)(x+4)=x^3+4x^2-x-4$ (Round 3, special product); 4.\ $(x+3)^3=x^3+9x^2+27x+27$ (the
+crux's twin). Bonus: $(x+6)^2-x(x-2)=14x+36$ square feet. Say the \emph{Watch out} aloud:
+``$(x+3)^3$ is not $x^3+27$ --- and the minus reaches every term.''
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
+\boxguard
+\begin{skillbox}[Homework (DeltaMath) --- scored 1 to 5, started in class, due the first class after two study halls]{goldbox}
+\textbf{Source:} DeltaMath, online --- set \textbf{A2: Lesson 3.1: Polynomial Operations}. \textbf{DeltaMath skills, in order:} \emph{Adding and Subtracting Polynomials}; \emph{Distribute and Subtract Algebraic Expressions}; \emph{Multiply Binomials}; \emph{Multiply Polynomials (Level 1)}; \emph{Multiply Polynomials (Level 2)}. \textbf{Formative check:} \emph{Multiply Polynomials (Level 2)}. Watch its cube-of-a-binomial problems for $x^3+8$. It is started in the last 10 minutes and \textbf{due the first
+class after two study halls} --- announce the date in class and on TurtleNet.
+\textbf{Preview:} Lesson 3.2 --- factoring polynomials, today's products run backward.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Extra Credit --- optional, graded (\texttt{alg2-u03-l01-ec}, 13 points)]{goldbox}
+\begin{enumerate}[leftmargin=1.4em, nosep, itemsep=2pt]
+  \item $(x+2)^3-(x-2)^3=12x^2+16$ (2 pts) --- \emph{combines} Round 3's cubes with Round 1's
+        subtraction; the $x^3$ and $12x$ terms cancel only if the minus reaches every term.
+  \item $(x+3)(x^2+bx+c)=x^3+5x^2+x-15$: $b=2$, $c=-5$ (1 + 1) --- \emph{reverse}: match
+        coefficients after multiplying in general.
+  \item SOL-style: $(2x-3)^2-(x^2-4x)=3x^2-8x+9$, \textbf{C} (1). A = squared as $4x^2+9$;
+        B = flipped only the first sign; D = added.
+  \item \emph{Model}: canned-food-drive box $V(x)=x(30-2x)(20-2x)$. (a) $4x^3-100x^2+600x$ (2);
+        (b) $V(5)=1000$ (1); (c) rubric (2): 1000 cubic inches for 5-inch squares; $x=12$ gives a
+        width of $-4$ in.
+  \item \emph{Find the mistake} (rubric, 3): Student A took $(x-5)^2$ as $x^2+25$; correct
+        $(x^2-10x+25)(x+1)=x^3-9x^2+15x+25$ --- the crux in a new form.
+\end{enumerate}
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Active Monitoring --- Watch For]{redbox}
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item distributing a subtraction to only the \emph{first} term --- $(7x^2-4x+1)-(3x^2+6x-5)$ ending in $-5$ instead of $+6$;
-  \item combining unlike terms ($3x^2+3x^3=6x^5$) --- the single most common ``simplification'' error;
-  \item adding exponents when \emph{adding} terms, or multiplying them when \emph{multiplying} terms (the rule is: coefficients multiply, exponents add);
-  \item $(a+b)^2$ written as $a^2+b^2$ --- send students to the $x=1$ numeric check rather than restating the rule;
-  \item dropping a product in a binomial $\times$ trinomial --- require the box until all six cells appear;
-  \item leaving the answer unordered --- standard form is part of the answer.
+  \item \textbf{Round 1 \rung2 and Show me:} only the first sign flipped ---
+        $-(2x^3+3x^2-x+6)$ written as $-2x^3+3x^2-x+6$. Point at the warm-up's item 3.
+  \item \textbf{Round 1 \rung3:} degree of $2a^2b$ given as 2 --- add the exponents.
+  \item \textbf{Round 2 \rung2--\rung3:} four products where there should be six; draw the box.
+        Show-me finger \textbf{1} = FOIL with the middle lost.
+  \item \textbf{Round 3:} $(x-3)^3$ or $(x+3)^3$ ``cubed term by term'' --- ask for the
+        $x=1$ test. Closing Practice item 4 is the exit read on the crux.
+  \item \textbf{Attitude:} a student parked at \rung1\ with nothing written --- crouch, point at
+        the example in her notes, ask for just the first product.
 \end{itemize}
-Cold-call prompts: ``What is the very first thing you do to a subtraction problem?'' ``What degree
-will this product have --- before you expand it?'' ``Which two terms in the box are like terms, and
-why?''
+Cold-call prompts (after the fingers, never before): ``How many products should
+$(x+3)(2x^2-x+5)$ make before you combine?'' \; ``Why is $(x+2)^3$ not $x^3+8$ --- prove it
+with a number.''
 \end{skillbox}
 
-\begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Building Polynomials} activity (tiered; mirrors the notes).
-\begin{multicols}{3}
-\textbf{Tier R --- Remediate.} One add, one subtract (with a ``rewrite with the signs changed'' line
-built in), one monomial distribution, and one binomial product with the $2\times2$ box already
-drawn. All answers in standard form.
+% ── Teacher notes — one per component, in packet order ──
+% This is the ONLY place teacher prose goes — never append one to a _key.
+\begin{teachernote}[Warm-Up]
+On paper as they walk in, deck frame 2 on the screen. Reveal at about 4 minutes. Item 3's last
+question is the hinge: get ``all three'' said aloud before Round 1 opens.
+\end{teachernote}
 
-\columnbreak
-\textbf{Tier A --- Approaching.} A difference whose leading terms cancel (\emph{why} did the degree
-drop?), a binomial $\times$ trinomial by box, two special products in \emph{two} variables, a
-degree/leading-coefficient prediction with the end behavior it forces, and an error-analysis item on
-$(x+4)^2=x^2+16$ requiring a numeric counterexample.
+\begin{teachernote}[Guided Notes \& Practice]
+Three rounds of about 13 minutes: definition + example \textbf{at most 3 minutes}, ladder about
+8, check about 2; then 6 minutes of Closing Practice. Students fill the example's work block as
+you click through it. Reveal a ladder when most have \rung2. If behind, cut Round 2's \rung3
+reveal discussion and Round 1's two-variable \rung3 --- never Round 3's Find the mistake, and
+never the Closing Practice.
+\end{teachernote}
 
-\columnbreak
-\textbf{Tier E --- Extension.} Expand Lesson~3.0's open-box model $V(x)=x(10-2x)(8-2x)$ to
-$4x^3-36x^2+80x$ and check it against that lesson's table; build a profit polynomial $P=R-C$ and
-evaluate it in context; then justify why a \emph{product} of degree-3 and degree-4 polynomials always
-has degree~7 while a \emph{sum} of two degree-4 polynomials need not have degree~4.
-\end{multicols}
-\end{skillbox}
+\begin{teachernote}[Homework]
+DeltaMath online, \emph{A2: Lesson 3.1: Polynomial Operations}. Its skills, in order: \emph{Adding and Subtracting Polynomials}; \emph{Distribute and Subtract Algebraic Expressions}; \emph{Multiply Binomials}; \emph{Multiply Polynomials (Level 1)}; \emph{Multiply Polynomials (Level 2)}. The last 10 minutes are for \emph{starting} it --- launch the first problem aloud,
+then circulate; it is due the first class after two study halls.
+\end{teachernote}
 
-\begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} a subtraction whose constant terms cancel
---- it is only correct if every sign was distributed; \textbf{(2)} a binomial $\times$ trinomial
-product, followed by naming the result's degree and leading coefficient and \emph{stating the end
-behavior} they force (the 3.0 link); and \textbf{(3)} an \textbf{SOL-style multiple-choice} item on
-$(3x-4)^2$ whose distractors are exactly the three classic errors (dropped middle term, difference of
-squares, and $2ab$ computed as $ab$). Collect and sort into ``got it / sign-distribution slip /
-missing-middle-term slip / like-terms slip'' to decide whether Lesson~3.2 opens with a re-teach.
-\end{skillbox}
+\begin{teachernote}[Extra Credit]
+Optional and graded: the last two pages, torn off and turned in with the homework. No name goes
+on them --- the tracking id does that. Item 5's rubric rewards naming the wrong step, saying why
+the square does not distribute, and the correct product.
+\end{teachernote}
 
-\begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} name a polynomial from standard form; add and subtract; multiply at all three
-sizes (monomial, binomial $\times$ binomial, binomial $\times$ trinomial); apply the three special
-products including a two-variable difference of squares; expand Lesson~3.0's exit-ticket function
-$(x+1)^2(x-2)$ and confirm the end behavior matches the graph students already read; and one
-justification item on why subtraction changes every sign. \textbf{Extension:} an area model --- a
-$(2x+3)$ by $(x+5)$ garden with an $x$-by-$x$ pond removed --- requiring a product \emph{and} a
-difference, then a numeric check. \textbf{Preview:} Lesson~3.2, \emph{Advanced Factoring} --- running
-today's products backward, including the sum and difference of cubes.
-\end{skillbox}
+\begin{teachernote}[Slides]
+17 frames mirroring the notes: warm-up, targets, then definition / example / ladder / check per
+round, Closing Practice, homework. Every answer sits in a \texttt{\textbackslash reveal}; the 3-up
+handout prints without them and is not in the packet.
+\end{teachernote}
+
 \end{document}

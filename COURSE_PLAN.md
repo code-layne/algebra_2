@@ -17,6 +17,18 @@
 > Unit 3 tests on the 5-lesson map (they still test the cut Rational Root / Remainder–Factor
 > Theorems). Open: how extra-credit points count toward the grade (not printed anywhere).
 
+> ## ⚠ Status (2026-11-17) — **UNIT 3 RESEQUENCED TO 3.1–3.6 AND REGENERATED PACKET-FIRST.**
+>
+> User direction: number from 1, not 0; split characteristics in two and move it after the
+> algebra — 3.1 operations · 3.2 factoring · 3.3 division · 3.4–3.5 characteristics I/II · 3.6
+> zeros & graphs (map: `COURSE_BREAKDOWN.md`). All six regenerated in the §0a shape (warm-up,
+> notes, graded extra credit, deck); old `lesson00`–`lesson06` removed (3.1's `graded_sample`
+> kept). DeltaMath sets `A2: Lesson 3.1`–`3.6` built 2026-11-17 (hidden, Algebra 2 - E, folder
+> Algebra 2; skills listed in each plan). **Unit 3 test is in DeltaMath, not the repo** (user
+> direction 2026-11-17): `A2: Unit 3 Test: Polynomial Functions`, hidden, 31 questions (one per
+> homework skill, in lesson order), 10 pts each = 310, Unit 2 test's settings. The old map's repo tests (`unit03/tests`, `test_keys`,
+> `sample_test*`, `rubrics`) were deleted 2026-11-17; the unit packets carry no sample test.
+
 > ## ⚠ Status (2026-10-31) — **UNIT 3 CONDENSED: 12 LESSONS → 5 (3.0–3.4), MERGED ROUNDS.**
 >
 > User request: "condense to 5 lessons"; chose **merge** over cut, then "cut 8 and 9": the

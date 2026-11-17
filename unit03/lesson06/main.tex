@@ -1,4 +1,9 @@
-%! Graphing Polynomial Functions and Modeling — Unit 3, Lesson 3.6 — Lesson Plan
+%! Zeros \& Graphs of Polynomials — Unit 3, Lesson 3.6 — Lesson Plan
+% UNITS 3+ PACKET-FIRST plan (LESSON_SHAPE.md §0a, 2026-11-14; engagement rules §1): warm-up on
+% paper (5) → three rounds of definition → example → ladder → Show me / Find the mistake, then the
+% Closing Practice, all in the guided notes (45) → start the DeltaMath homework (10). The deck
+% mirrors the notes. Unit 3 exception: the three rounds are three merged skills, climbing.
+% Teacher-facing; never handed out.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,7 +13,8 @@
 \newcommand{\CourseName}{Algebra 2}
 \newcommand{\MeetingLength}{60 minutes}
 \newcommand{\UnitNumberName}{Unit 3: Polynomial Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.6: Graphing Polynomial Functions and Modeling}
+\newcommand{\LessonNumberName}{Lesson 3.6: Zeros \& Graphs of Polynomials}
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
 
 \begin{document}
 \begin{center}
@@ -18,26 +24,27 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students assemble every tool of Unit 3 into one procedure that runs
-    in both directions. From an equation they predict the whole picture --- \textbf{end behavior}
-    from the degree and leading coefficient, \textbf{$x$-intercepts} from the factors,
-    \textbf{cross/touch/flatten} from each zero's multiplicity, the \textbf{$y$-intercept} from
-    $f(0)$, the \textbf{turning-point limit} $n-1$, and \textbf{above or below} from a sign chart ---
-    and then match that prediction to the correct graph. From a graph they run the same road backward
-    to a factored equation, and they read a finished graph for domain, range, increasing/decreasing
-    intervals, and relative vs.\ absolute extrema. Finally they build a polynomial \emph{model},
-    restrict it to its \textbf{feasible domain}, and answer a real question with the feature that
-    matches it.
+    \textbf{Primary Objective:} Students count a polynomial's zeros with the Fundamental Theorem
+    of Algebra and split them into real and imaginary from the degree and a pre-drawn graph;
+    write a polynomial from its zeros (supplying the conjugate, expanding, solving for $a$); and
+    match a factored polynomial to its graph --- or write one from a graph --- defending each
+    match with end behavior, cross/touch at each zero, and the $y$-intercept.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2a} (domain, range, zeros, intercepts),
-    \textbf{A2.F.2b} (contrasting characteristics across function families --- here, even vs.\ odd
-    degree), \textbf{A2.F.2c} (increasing/decreasing intervals), \textbf{A2.F.2d} (absolute maxima
-    and minima), \textbf{A2.F.2e} (relative maxima and minima), \textbf{A2.F.2f} (determine $f(x)$
-    from a graph or equation and explain its meaning in context --- the modeling strand), and
-    \textbf{A2.F.2g} (end behavior). \textbf{A2.EI.6a} (a factored form from the $x$-intercepts of a
-    graph) drives the ``run it backward'' section. Builds on \textbf{A2.EO.3b} (factor completely,
-    Lesson 3.2), \textbf{A2.EO.3c} and \textbf{A2.EI.6c} (division and the Rational Root Theorem,
-    Lessons 3.3--3.4), and \textbf{A2.EI.6b} (what a graph can and cannot show, Lesson 3.5).
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.6a} --- determine a factored form of a
+    polynomial equation from its zeros or the $x$-intercepts of its graph (Rounds 2--3);
+    \textbf{A2.EI.6b} --- determine the number and type of solutions, real or imaginary, of a
+    polynomial equation of degree three or higher (Round 1); \textbf{A2.F.2} --- graph
+    characteristics: zeros and intercepts, end behavior, and the behavior at each zero (Round 3).
+    The Remainder/Factor and Rational Root Theorems are cut from Unit 3 and are not taught.
+    \\[2pt]
+    \textbf{Lesson model:} \emph{Packet first} (course shape of 2026-11-14). The student works in the
+    packet --- \textbf{warm-up} on paper, then the \textbf{guided notes}: three rounds of a short
+    \textbf{definition} and \textbf{example} ($\le$3 min), a \textbf{ladder} (\rung1\ \rung2\
+    \rung3), and a \textbf{Show me} or \textbf{Find the mistake}, then the self-scored
+    \textbf{Closing Practice}. The deck projects the same notes frame for frame; its 3-up
+    handout is a work product, not in the packet. The graded, optional \textbf{Extra Credit}
+    tears off the back. \textbf{Homework source:} DeltaMath online, set \emph{A2: Lesson 3.6:
+    Zeros \& Graphs of Polynomials}.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -47,190 +54,199 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Run the \textbf{five-step graph plan}: degree/lead $\rightarrow$ arms; factors $\rightarrow$ intercepts; multiplicity $\rightarrow$ cross/touch/flatten; $f(0)$ $\rightarrow$ one exact point; sign chart $\rightarrow$ above/below.
-  \item Build a \textbf{sign chart} from the \emph{factored} form and read positive/negative intervals off it.
-  \item Use the \textbf{turning-point limit}: at most $n-1$ turns; run backward, $k$ turns forces degree $\ge k+1$.
-  \item \textbf{Match} an equation to the correct graph, and defend the match with a feature, not a feeling.
-  \item \textbf{Write a possible equation} in factored form from a graph, solving for $a$ with the $y$-intercept (A2.EI.6a).
-  \item Read \textbf{domain, range, increasing/decreasing, relative vs.\ absolute extrema} off a polynomial graph (A2.F.2a/c/d/e).
-  \item Build a \textbf{model}, state its \textbf{feasible domain}, and interpret $V(x)$ and its maximum in context (A2.F.2f).
+  \item State how many complex zeros a polynomial has from its degree, and split them into
+        real (the $x$-intercepts, a touch counted twice) and imaginary (the rest).
+  \item Name the conjugate of an imaginary zero and include it whenever the coefficients are
+        real.
+  \item Write $a(x-r_1)(x-r_2)\cdots$ from a list of zeros, multiply a conjugate pair to a real
+        quadratic, expand to standard form, and solve for $a$ from a point.
+  \item Match a factored polynomial to one of several pre-drawn graphs and defend it with a
+        feature; write a least-degree equation from a graph.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Nothing here is new. Every step is a Unit 3 tool; today they run in order and produce a picture.
-  \item Zeros alone do not determine a graph. \textbf{Multiplicity} is what separates two graphs with identical intercepts.
-  \item The sign chart is fast only in factored form --- you never need the value, only the sign.
-  \item Sign changes at odd multiplicities and does \emph{not} change at even ones; the chart makes that automatic instead of memorized.
-  \item The $y$-intercept is the only labeled point that is not a zero, which is exactly why it can pin down $a$.
-  \item A graph proves a \emph{minimum} degree, never the exact degree: imaginary zeros (3.5) and even factors are invisible.
-  \item An odd degree has no absolute extrema. A model's answer lives inside its feasible domain --- the algebra does not know about cardboard.
+  \item The Fundamental Theorem \emph{counts} before anything is solved --- the warm-up's
+        ``three solutions for degree three'' was a rule, not luck.
+  \item A graph is an honest but incomplete witness: imaginary zeros never show, so the count
+        is degree minus real.
+  \item \textbf{Target misconception (the crux):} a zero at $x=3$ written as the factor
+        $(x+3)$ --- the sign inside the factor is the \emph{opposite} of the zero. Its partner:
+        treating a \emph{touch} as multiplicity $1$. Rounds 1--2 also flag \emph{forgetting
+        the conjugate zero}.
+  \item The $y$-intercept alone cannot catch a sign error inside a squared factor
+        ($3^2=(-3)^2$); check every intercept.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
-\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems --- one definition frame each}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{End behavior rule} & Even degree $\Rightarrow$ arms agree; odd degree $\Rightarrow$ arms oppose. The sign of the leading coefficient sets the right arm (Lesson 3.0). \\
-\textbf{Multiplicity behavior} & Odd $\Rightarrow$ crosses (sign changes); even $\Rightarrow$ touches and turns back (no sign change); $\ge 3$ $\Rightarrow$ flattens, then crosses. \\
-\textbf{Sign chart} & Test one $x$-value in each interval between consecutive zeros; record only the sign --- it says above or below the $x$-axis. \\
-\textbf{Turning point} & Where the graph changes from increasing to decreasing or back. A degree-$n$ polynomial has at most $n-1$. \\
-\textbf{Relative (local) extremum} & Highest or lowest \emph{nearby} --- a peak or valley (A2.F.2e). \\
-\textbf{Absolute (global) extremum} & Highest or lowest on the \emph{whole} graph (A2.F.2d). Odd degree $\Rightarrow$ none at all. \\
-\textbf{Feasible domain} & The inputs a model actually allows (positive lengths, no negative sides) --- usually far smaller than ``all reals.'' \\
-\textbf{Possible equation} & What a graph earns you: the factored form of \emph{least} degree consistent with the picture. \\
+\textbf{Fundamental Theorem of Algebra} & A polynomial of degree $n\ge1$ has exactly $n$
+  complex zeros, counted with multiplicity --- the real zeros and the imaginary zeros together. \\
+\textbf{Conjugate pairs} & If a polynomial has real coefficients and $a+bi$ is a zero, then its
+  conjugate $a-bi$ is also a zero, so imaginary zeros always come in pairs. \\
+\textbf{Reading a graph (number and type)} & Each real zero is an $x$-intercept (a touch counts
+  twice); imaginary zeros never show on the graph, so the number of imaginary zeros is the
+  degree minus the number of real zeros. \\
+\textbf{Factored form} & \TallMath{f(x)=a(x-r_1)(x-r_2)\cdots(x-r_n)}; each zero $r$ gives the
+  factor $(x-r)$, $a$ is the leading coefficient, found by substituting one more point. \\
+\textbf{Cross / touch} & An odd power crosses the $x$-axis; an even power touches it and turns
+  back. \\
+\textbf{End behavior; $y$-intercept} & From the degree and the sign of $a$; the $y$-intercept
+  is $f(0)$. \\
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up hands students the three pieces this lesson assembles, and each piece is already
-    theirs. \textbf{(1)} \emph{End behavior from factored form} (Lessons 3.0 and 3.1): degree and
-    leading coefficient for $(x-1)^2(x+2)$, $-2x(x+3)^3$, and $-x^2(x-3)^3$ --- degrees add, leads
-    multiply, no expanding. \textbf{(2)} \emph{Zeros and multiplicity} (Lesson 3.0) for the unit
-    anchor $g(x)=x^3-3x+2=(x-1)^2(x+2)$, plus the $y$-intercept $g(0)=2$. \textbf{(3)} \emph{A first
-    sign chart}, though it is not named yet: test $x=-3, 0, 2$ and record only the sign. The page
-    closes on the hinge question --- with the arms, the intercepts, the behavior at each, and the
-    sign in every interval, \emph{could you pick this graph out of a lineup?} Yes, except for how
-    high the humps go. Debrief by assembling the three results into one description on the board;
-    do not confirm the hinge, because the notes will.
+\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
+\hline
+Warm-Up & 5 & Three quick wins on the warm-up page as they walk in; score themselves & At the door; reveal on the deck at 3 min; land ``three solutions, degree three --- a rule?'' \\
+Guided Notes \& Practice & 45 & Three rounds (~13 min each): watch, \emph{climb the ladder} \rung1$\to$\rung2$\to$\rung3, then \emph{Show me} fingers or \emph{Find the mistake}; then the Closing Practice (~6 min), self-scored out of 4 & $\le$3 min talk a round; circulate the whole ladder; reveal when most have \rung2; read the fingers \\
+Homework & 10 & Start DeltaMath \emph{A2: Lesson 3.6} alone & Launch problem~1 aloud, then circulate \\
+\hline
+Total & 60 & & \\
+\end{tabularx}
 \end{fixedskillbox}
 
-\begin{skillbox}[Hook]{forestbg}
-    Put two cubics on the board: $\;(x-1)^2(x+2)\;$ and $\;(x-1)(x+2)^2$. Ask for the zeros of each.
-    They are the \emph{same two numbers} --- and both are cubics with a positive leading coefficient,
-    so even the arms match. Now show the two graphs (pre-drawn in the notes, side by side) and ask
-    the question the lesson answers: \textbf{``The zeros are identical and the arms are identical.
-    Why do these graphs look nothing alike?''} Take answers until someone says the double zero is in
-    a different place. Name it: \textbf{multiplicity is the feature that separates look-alikes}, and
-    it is invisible until you look at the exponents. Then make the promise: by the end of the period
-    they will be able to describe a polynomial's entire graph from its equation without plotting a
-    point, read an equation off a graph they have never seen, and use both to answer a question about
-    a real object --- a box built from a sheet of cardboard.
+\begin{skillbox}[Engagement --- how this hour keeps everyone solving]{goldbox}
+\textbf{Nobody waits:} every round's practice is a ladder --- \rung1\ everyone (a quick win),
+\rung2\ everyone, \rung3\ early finishers. \textbf{Everyone commits, safely:} \emph{Show me} is
+1--4 fingers on the count of three, all at once (Rounds 1 and 2). \textbf{Critique a stranger:}
+Round 3's \emph{Find the mistake} puts the crux error on an anonymous Student A.
+\textbf{Their world:} the dorm common-room puzzle board (Round 2 \rung3), the Math Night
+scavenger-hunt clue (Closing Practice bonus), and --- in the extra credit --- the cross-country
+team's course profile. \textbf{Short clock:} every practice frame carries its minutes. Praise the
+climb more than the answer.
 \end{skillbox}
 
-\begin{skillbox}[Lesson]{forestbg}
+\begin{skillbox}[Warm-Up (5 min, on paper)]{forestbg}
+\textbf{1.} $(x+4)(x-1)=x^2+3x-4$ and $(x-3i)(x+3i)=x^2-9i^2=x^2+9$ --- 3.1 multiplication and
+the Unit 2 fact $i^2=-1$; the second product is Round 2's conjugate-pair quadratic.
+\textbf{2.} $f(x)=(x-4)(x+1)^2$: zeros $4$ and $-1$; touches at $-1$ (multiplicity $2$); degree
+$3$, $f(x)\to\infty$ --- 3.4--3.5 spiral, and Round 3's reading moves. \textbf{3.} $(x-2)(x^2+9)=0$
+gives $2,\ 3i,\ -3i$: three solutions for degree $3$. \textbf{Hand-off:} ``Coincidence, or a
+rule?'' --- Round 1's definition answers it.
+\end{skillbox}
+
+\begin{skillbox}[The Lesson --- three rounds and Closing Practice (45 min)]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Assemble the plan, do not teach it.} Build the five-step table \emph{from the students}:
-what did Lesson 3.0 give us? (arms, and cross/touch). Lessons 3.2--3.4? (the zeros). What have we
-never done? (decided above/below \emph{between} the zeros). That last gap is the only new content of
-the day, and it takes one minute to fill: test a single $x$-value in each interval and keep the sign.
-Insist the test be done in \emph{factored} form --- $g(-3) = (-4)^2(-1)$ is a ten-second calculation
-and $(-3)^3-3(-3)+2$ is not.
+\textbf{Round 1 --- Counting zeros: FTA \& conjugate pairs (13 min).} Read the three definition
+blocks in one breath; point at ``counted with multiplicity'' and ``never show on the graph.''
+Example: $x^4-x^3+2x^2-4x-8$ --- $4$ zeros, $2$ real (crosses at $-1$, $2$), $2$ imaginary,
+$\pm2i$. Ladder: \rung1\ $6$ zeros; $4+5i$. \rung2\ $1$ real, $4$ imaginary. \rung3\ $3$ real
+(touch at $-2$ counts twice), $2$ imaginary --- the slip is counting the touch once and getting
+$3$ imaginary, an odd number, which is itself the alarm. \emph{Show me} (cubic, zeros $4$ and
+$2+i$): answer \textbf{2} ($2-i$). Fingers on 1 paired a real zero; 3 flipped both signs;
+4 forgot the conjugate.
 
-\textbf{2. Worked Example A --- the anchor, one last time.} Run all five steps on
-$g(x)=x^3-3x+2=(x-1)^2(x+2)$, the polynomial students have met in every lesson of this unit, and then
-hold the prediction against the pre-drawn graph. The payoff line: \emph{the equation told us the
-picture}. Emphasize the row of the sign chart where the sign fails to flip at $x=1$; that is the
-even-multiplicity fingerprint the chart catches automatically.
-
-\textbf{3. Worked Example B --- what a triple zero looks like.} $q(x)=-(x+2)(x-1)^3$ adds two new
-features at once: an even degree with a negative lead (both arms down) and a multiplicity-3 zero
-(flattens, then crosses). Have students predict all five steps \emph{before} the graph is revealed;
-the flattening at $x=1$ is the moment worth waiting for.
+\textbf{Round 2 --- Writing a polynomial from its zeros (14 min).} Point at ``a zero at $x=3$
+gives $(x-3)$'' --- the crux, planted early. Example: zeros $3$, $2i$, through $(0,24)$ $\Rightarrow$
+$-2x^3+6x^2-8x+24$; say aloud why $-2i$ joins. Ladder: \rung1\ $x^2+3x-10$. \rung2\
+$x^3-x^2+9x-9$. \rung3\ (dorm puzzle) $a=-2$, $-2x^3+4x^2+14x+8$. \emph{Show me} (zeros $2$,
+$1+i$): answer \textbf{3} $(x-2)(x^2-2x+2)$. 1 = forgot the conjugate; 2 = $(x+2)$, the crux
+sign error; 4 = middle-term sign.
 
 \columnbreak
+\textbf{Round 3 --- Graphs from zeros \& end behavior: the crux (12 min).} Graphs A--D differ
+only in the sign of $a$ and the signs inside the factors --- they force students to read every
+feature. Example: $-(x+2)(x-1)^2$ is \textbf{A} (crosses $-2$, touches $1$, rises left, $f(0)=-2$).
+Ladder: \rung1\ $-4$ crosses, $3$ touches, falls left/rises right, $k(0)=72$. \rung2\ \textbf{D}.
+\rung3\ $\tfrac12(x+3)(x-2)^2$. \textbf{Find the mistake (the crux --- do not rush it):} Student A
+wrote $(x+1)(x+3)^2$ for a graph touching at $3$; fix is $(x+1)(x-3)^2$. Make the class notice that
+her $y$-intercept check \emph{passed} --- $3^2=(-3)^2$ --- so ``check the intercepts, not just
+$f(0)$.''
 
-\textbf{4. Backward: graph $\rightarrow$ equation (A2.EI.6a).} Same road, other direction. Read the
-intercepts, decide which factor is squared from cross vs.\ touch, write $f(x)=a(\cdots)$, and solve
-for $a$ with the $y$-intercept. Ask why an $x$-intercept cannot be used ($0=0$, true for every $a$),
-and close with the honesty clause from Lesson 3.5: a graph cannot show an imaginary zero, so the
-answer is always a \emph{possible} equation of \emph{least} degree.
-
-\textbf{5. Characteristics off the finished graph (A2.F.2a/c/d/e).} Use $p(x)=x^4-5x^2+4$ --- the
-quartic factored in Lesson 3.2 --- for domain, range, increasing/decreasing, and the distinction that
-matters most: the relative maximum at $(0,4)$ is \emph{not} an absolute maximum, because the arms
-climb past it. State the general rule out loud: odd degree $\Rightarrow$ no absolute extrema; even
-degree $\Rightarrow$ one or the other, never both. Unit 2 taught ``the vertex is the max''; this is
-where that gets corrected.
-
-\textbf{6. Modeling (A2.F.2f).} Build $V(x)=x(10-2x)(8-2x)$ from a $10\times 8$ sheet, expand it to
-the cubic from Lesson 3.1, and then do the step students skip: find the \textbf{feasible domain}
-$0<x<4$ and say why $x=5$ --- a genuine zero of $V$ --- is nonsense. Read the maximum from the table
-($52.5$ in$^3$ near $x=1.5$), and name it: on the feasible domain, that relative maximum \emph{is}
-the absolute maximum, which is why it answers the question. Finish by interpreting a single value:
-$V(2.5)=37.5$ means a $2.5$-inch cut yields a $37.5$-cubic-inch box.
+\textbf{Closing Practice (6 min).} 1.\ $5i,-5i,1-2i,1+2i$ (Round 1). 2.\ $x^3+2x^2+16x+32$
+(Round 2). 3.\ $5$ crosses, $-2$ touches, $g(0)=20$ (Round 3). 4.\ $-(x+4)(x-1)^2$ --- the
+crux's twin. Bonus (Math Night): $-2x^3+8x^2-12x+8$. Say the \emph{Watch out} aloud: a zero at
+$3$ is $(x-3)$; a touch is squared; an imaginary zero brings its conjugate. Scores on fingers.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
+\boxguard
+\begin{skillbox}[Homework --- DeltaMath, scored 1 to 5, started in class, due the first class after two study halls]{goldbox}
+\textbf{Source:} DeltaMath online, set \textbf{A2: Lesson 3.6: Zeros \& Graphs of Polynomials}. \textbf{DeltaMath skills, in order:} \emph{Fundamental Theorem of Algebra}; \emph{Complex Conjugate Theorem}; \emph{Select Equation from Graph Roots (L1)}; \emph{Select Equation from Graph Roots (L2)}; \emph{Write Polynomial Function From Graph}. \textbf{Formative check:} \emph{Write Polynomial Function From Graph}.
+Not in the packet. Started in the last 10 minutes; due the first class after two study halls,
+announced in class and on TurtleNet. \textbf{Preview:} the Unit 3 test, 3.1--3.6.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Extra Credit --- optional, graded (alg2-u03-l06-ec, 14 points)]{goldbox}
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{degree counted as the number of factors} --- $-2(x+2)^3(x-1)$ called a cubic; make them add the exponents;
-  \item \textbf{end behavior taken from the constant term} or from the sign of the $y$-intercept rather than the leading term;
-  \item \textbf{``crosses'' written at every zero} --- the single most common error of the lesson, and the one the hook exists to prevent;
-  \item \textbf{sign charts computed in expanded form} --- slow, arithmetic-heavy, and unnecessary;
-  \item \textbf{signs forced to alternate} at every zero, so a double zero gets an invented sign change;
-  \item \textbf{$a$ never solved for} when reading an equation off a graph (or solved for with an $x$-intercept, giving $0=0$);
-  \item \textbf{relative called absolute} --- a peak on a quartic reported as the maximum of the function;
-  \item \textbf{model answers outside the feasible domain} --- $x=5$ offered as a corner cut because it is a zero of $V$.
+  \item \textbf{1 (combine, Rounds 1+2; 2 pt).} Leading coefficient $1$, degree $4$, double zero
+        $3$ and $1-2i$: $(x^2-6x+9)(x^2-2x+5)=x^4-8x^3+26x^2-48x+45$. Stretches: a double zero
+        \emph{and} a conjugate in one build.
+  \item \textbf{2 (reverse, Rounds 3+1).} A pre-drawn quartic touching at $-1$, crossing at $2$
+        and $4$, $y$-intercept $-4$: (a) $-\tfrac12(x+1)^2(x-2)(x-4)$ (2 pt) --- a fractional
+        $a$; (b) $0$ imaginary zeros (1 pt).
+  \item \textbf{3 (SOL multiple choice; 1 pt).} Degree-4, real coefficients --- what must be
+        true? \textbf{B} (conjugate pairs). A = all real; C = odd-degree reasoning on an even
+        degree; D = an odd count of imaginary zeros.
+  \item \textbf{4 (model; 5 pt).} Cross-country course, zeros $0,2,6$, $h(1)=5$: (a)
+        $x(x-2)(x-6)$, (b) $h(4)=-16$, (c) rubric (2): $16$ m below the start at $400$ m; below
+        the start from $200$ m to $600$ m. Stretches: interpreting a zero-built model.
+  \item \textbf{5 (Find the mistake; rubric, 3 pt).} Student A gave a touch multiplicity $1$:
+        $2(x+2)(x-3)$; correct $(x+2)^2(x-3)$ ($a=1$). The crux's partner misconception.
 \end{itemize}
-Cold-call prompts: ``Degree and leading coefficient --- which way do the arms point?'' ``Multiplicity
-$2$: cross or touch? Show me the sign chart row that proves it.'' ``You tested $x=0$ and got a
-negative. What does that tell me about the picture?'' ``How many turning points does the degree
-allow? How many does this graph have?'' ``Which labeled point on that graph is \emph{not} a zero, and
-why does that make it the useful one?'' ``Your box has a $5$-inch cut. Draw me that box.''
 \end{skillbox}
 
-\begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Predict, Then Look} activity (tiered; mirrors the notes).
-\begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Three cousins built from the same two numbers ---
-$(x+1)(x-2)^2$, $-(x+1)(x-2)^2$, and $(x+1)^2(x-2)$ --- analyzed in a feature table (degree, lead,
-arms, behavior at each zero, $y$-intercept), then \emph{matched} to three pre-drawn graphs. Students
-must name the one feature that separates the first from the third. A guided sign chart follows, with
-an explicit ``why did the sign not change at $x=2$?'' prompt, and the tier closes on the
-turning-point limit for a quintic and why an odd degree must cross.
-
-\columnbreak
-\textbf{Tier A --- Approaching.} Two things Tier R does not require. First, \emph{factor before
-analyzing}: $f(x)=x^3-x^2-6x$ needs a GCF (Lesson 3.2) before its three zeros appear, then a
-four-interval sign chart, a check against the pre-drawn graph, and the A2.F.2a/c/d/e read --- domain,
-range, relative extrema, and \emph{no} absolute extrema because the degree is odd. Second, read an
-equation off a pre-drawn cubic with a touch at $x=1$, solving $a=-1$ from the $y$-intercept and
-checking the sign against the arms. Closes with error analysis on the two signature mistakes: a touch
-called a crossing, and turning points read as the degree.
-
-\columnbreak
-\textbf{Tier E --- Extension.} \emph{Part 1:} the notes' box, run backward --- a customer wants
-exactly $48$ in$^3$, which becomes $x^3-9x^2+20x-12=0$, solved with the Rational Root Theorem (3.4)
-to $x=1,2,6$; students reject $6$ and explain how \emph{two} cuts give the same volume (they straddle
-the maximum, and both appear in the notes table). \emph{Part 2:} build a graph to order --- touch at
-$-1$, crossings at $0$ and $3$, both arms down --- which forces degree $4$ and a negative lead, and
-asks why a cubic cannot do it. \emph{Part 3:} a graph with two crossings and three turning points ---
-minimum degree $4$, hence two imaginary zeros (3.5) --- and the closing insight that a degree-$6$
-polynomial could produce the same picture, so a graph proves only a \emph{minimum} degree.
-\end{multicols}
+\boxguard
+\begin{skillbox}[Active Monitoring --- Watch For]{redbox}
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{The crux:} a zero $r$ written as $(x+r)$ --- Round 2 Show me option 2, Round 3
+        Find the mistake, Closing Practice 4. Ask: ``what $x$ makes that factor zero?''
+  \item \textbf{A touch counted once:} Round 1 \rung3\ (``$3$ imaginary'' --- odd, impossible),
+        Round 3 \rung3\ and Closing Practice 4 written with $(x-2)$ or $(x-1)$ unsquared.
+  \item \textbf{Forgotten conjugate:} Round 1 Show me option 4, Round 2 \rung2\ stopping at
+        $(x-1)(x+3i)$ --- have her multiply it out and find the $i$ left in the coefficients.
+  \item \textbf{$a$ skipped:} Round 2 \rung3\ and Round 3 \rung3\ left with $a=1$; point at
+        the $y$-intercept on the graph.
+  \item \textbf{Attitude:} a student parked at \rung1\ with nothing written --- crouch, point at
+        the example in her notes, ask for just the first step.
+\end{itemize}
+Cold-call prompts (after the fingers, never before): ``How many zeros before you solve
+anything?'' \; ``Which number makes $(x+3)$ zero?'' \; ``How did Student A's check pass?''
 \end{skillbox}
 
-\begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} predict the graph of $f(x)=(x-3)(x+1)^2$
---- degree and leading coefficient, end behavior, both zeros with cross/touch, the $y$-intercept
-$(0,-3)$, the turning-point limit, and one sign question that requires explaining why the sign does
-\emph{not} change at the double zero $x=-1$; \textbf{(2)} read a pre-drawn cubic with intercepts
-$-3$ and $2$ (a touch at $2$) and $y$-intercept $-12$, write $f(x)=-(x+3)(x-2)^2$ by solving for $a$,
-and say whether the function has an absolute maximum (no --- odd degree); and \textbf{(3)} an
-\textbf{SOL-style multiple-choice} item asking which function's graph touches the $x$-axis at $x=2$
-and falls to $-\infty$ on both ends, with $-(x-2)^2(x+1)^2$ correct and three distractors that each
-break exactly one requirement (odd degree, positive lead, multiplicity $3$ at $x=2$). Sort into ``got
-it / end behavior wrong / multiplicity ignored / could not solve for $a$.'' The multiplicity pile is
-the one to reteach on the spot: it is the feature that distinguishes graphs with identical intercepts
-and it appears on the unit test in both directions.
-\end{skillbox}
+% ── Teacher notes — packet order. The ONLY place teacher prose goes. ──
+\begin{teachernote}[Warm-Up]
+Five minutes, on paper, as they walk in; the deck's warm-up frame reveals all three at 3
+minutes. Item 1's second product is the one to name aloud --- ``an $i$ pair multiplies to a real
+quadratic'' is Round 2's engine. Do not explain item 3; leave ``coincidence or a rule?'' hanging
+for Round 1.
+\end{teachernote}
 
-\begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} a prediction table for three factored polynomials (including a multiplicity-3
-flatten and a negative lead of $-2$); a two-graph discrimination between $x^2(x-3)$ and $x(x-3)^2$;
-a full five-step analysis with a four-interval sign chart; a factor-first problem ($x^3+2x^2-8x$);
-reading an equation off a graph where $a=2$, so the stretch factor cannot be assumed to be $\pm1$;
-a complete characteristics read of $p(x)=x^4-4x^2$ (including the subtlety that $p(x)<0$ on
-$(-2,0)\cup(0,2)$, with $x=0$ excluded); a $12\times12$ box model with a table, a feasible domain, a
-maximum of $128$ in$^3$ at $x=2$, and an interpretation item; and two written items --- fixing a
-false ``sign changes at the touch'' claim, and explaining why a graph gives only a minimum degree.
-\textbf{Extension:} build a quartic to order; decide whether $4$ intercepts with $2$ turning points is
-possible; find a least degree and then count imaginary zeros; and solve $4x^3-48x^2+144x=108$ with the
-Rational Root Theorem to find the \emph{second} feasible cut, $x\approx1.15$. \textbf{Preview:} the
-Unit 3 test, then Unit 4 --- rational functions, where a polynomial lands in a denominator and
-division by zero puts asymptotes on the graph.
-\end{skillbox}
+\begin{teachernote}[Guided Notes \& Practice]
+Rounds of about 13 / 14 / 12 minutes, then 6 for the Closing Practice. Definition + example
+\textbf{at most 3 minutes} a round (Round 2's example is the longest --- keep its six lines moving;
+the notes have every step). Reveal each ladder when most have \rung2. If behind, shorten Round 1's
+ladder to \rung1--\rung2\ and Round 2's to \rung1--\rung2; \textbf{never} cut Round 3's Find the
+mistake or the Closing Practice. Students write in their notes; the key packet has every work
+block filled.
+\end{teachernote}
+
+\begin{teachernote}[Homework]
+DeltaMath set \emph{A2: Lesson 3.6: Zeros \& Graphs of Polynomials}, online, scored 1 to 5;
+Its skills, in order: \emph{Fundamental Theorem of Algebra}; \emph{Complex Conjugate Theorem}; \emph{Select Equation from Graph Roots (L1)}; \emph{Select Equation from Graph Roots (L2)}; \emph{Write Polynomial Function From Graph}. The last 10 minutes are for
+\emph{starting} it --- launch problem~1 aloud, then circulate, checking factors' signs first. Due
+the first class after two study halls.
+\end{teachernote}
+
+\begin{teachernote}[Extra Credit]
+Optional and graded (\texttt{alg2-u03-l06-ec}); students tear off the last two pages and turn them
+in with the homework. Items 4(c) and 5 are rubric-scored (YAMLs in \texttt{rubrics/}). Item 5 is
+the touch-as-multiplicity-1 error the notes only flag --- a good read on who absorbed Round 3.
+\end{teachernote}
+
+\begin{teachernote}[Slides]
+The deck mirrors the notes frame for frame (17 frames): project it, click the reveals, and keep
+the timers in the section labels honest. Graphs A--D appear on the Round 3 definition and example
+frames so the ladder's \rung2\ can be done from the screen. The 3-up handout prints without
+answers and is not in the packet.
+\end{teachernote}
+
 \end{document}

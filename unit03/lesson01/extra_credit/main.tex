@@ -1,0 +1,106 @@
+%! Polynomial Operations — Unit 3, Lesson 3.1 — Extra Credit
+% UNITS 3+ PACKET-FIRST shape (LESSON_SHAPE.md §0a, 2026-11-14). GENERATED, GRADED, OPTIONAL.
+% Last in the packet; the build starts it on a fresh sheet so it tears off. TWO PAGES, exactly,
+% blank and key. Five stretch items, harder than every ★★★:
+%   1. COMBINE   Round 3 + Round 1: (x+2)^3 - (x-2)^3
+%   2. REVERSE   find b and c in (x+3)(x^2+bx+c) = x^3+5x^2+x-15
+%   3. SOL-style MULTIPLE CHOICE: (2x-3)^2 - (x^2-4x)
+%   4. MODEL     canned-food-drive box, V(x) = x(30-2x)(20-2x), with an interpret part (rubric)
+%   5. FIND THE MISTAKE  (x-5)^2 taken as x^2+25 (rubric)
+% Every final answer is a \gradedblank, the line copied VERBATIM into the key (§9); rubric YAMLs
+% in ../rubrics/alg2-u03-l01-ec-<id>.yaml. Work blocks sit OUTSIDE the boxes. NO NAME LINE.
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\usepackage{grading}          % math-shared: \gradedblank, QR codes, marks
+\gradingassignment{alg2-u03-l01-ec}
+\usepackage{algebra2-graded}
+\gradingcourse{algebra_2}
+
+\begin{document}
+
+\pageheader{Unit 3, Lesson 3.1}{Extra Credit}
+
+\vspace{0.10in}
+
+\boxguard[8]
+\begin{remindbox}
+\small
+\textbf{Extra credit --- optional.} Tear off these pages and turn them in with your homework,
+the first class after two study halls. I will announce the due date in class and on TurtleNet.
+{\small\itshape Write each final answer in its box. Only what is inside a box is graded.}\par
+\end{remindbox}
+
+\vspace{0.08in}
+
+\begin{notesbox}{Stretch}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Two rounds in one.} Simplify $(x+2)^3-(x-2)^3$ and write the result in standard
+    form. Expand each cube two factors at a time first.
+    \begin{work}
+      (x+2)^3 &= (x^2+4x+4)(x+2) = x^3+6x^2+12x+8 && \text{two at a time}\\
+      (x-2)^3 &= (x^2-4x+4)(x-2) = x^3-6x^2+12x-8 && \text{two at a time}\\
+      \text{difference} &= x^3+6x^2+12x+8-x^3+6x^2-12x+8 && \text{$-1$ times every term}\\
+      &= 12x^2+16 && \text{combine like terms}
+    \end{work}
+    Answer: \inblank{\blank{4.5cm}}{\gradedblank[id=q1, type=short, points=2, answer={12x^2+16}, check=expression]{4.5cm-2pt}{12.5pt}}
+
+  \item \textbf{Run it backward.} The product $(x+3)(x^2+bx+c)$ equals $x^3+5x^2+x-15$.
+    Find the numbers $b$ and $c$.
+    \begin{work}
+      (x+3)(x^2+bx+c) &= x^3+(b+3)x^2+(3b+c)x+3c && \text{multiply, group like terms}\\
+      3c=-15 &\;\Rightarrow\; c=-5 && \text{match the constants}\\
+      b+3=5 &\;\Rightarrow\; b=2 && \text{match the } x^2 \text{ terms}\\
+      3b+c &= 6-5=1 && \text{check the } x \text{ term}
+    \end{work}
+    $b=$ \inblank{\blank{1.6cm}}{\gradedblank[id=q2a, type=short, points=1, answer={2}, check=numeric]{1.6cm-2pt}{12.5pt}}
+    \qquad
+    $c=$ \inblank{\blank{1.6cm}}{\gradedblank[id=q2b, type=short, points=1, answer={-5}, check=numeric]{1.6cm-2pt}{12.5pt}}
+
+  \item \textbf{Multiple choice (SOL-style).} Which expression is equivalent to
+    $(2x-3)^2-(x^2-4x)$? Write the letter of the single best answer in its Letter box.
+    \begin{enumerate}[label=(\Alph*), leftmargin=2.0em, itemsep=1pt]
+      \item $3x^2+4x+9$
+      \item $3x^2-16x+9$
+      \item $3x^2-8x+9$
+      \item $5x^2-16x+9$
+    \end{enumerate}
+    \letterbox{\gradedblank[id=q3, type=choice, points=1, answer={C}]{0.4in}{0.4in}}
+\end{enumerate}
+\end{notesbox}
+
+\newpage
+\begin{notesbox}{Stretch, continued}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, start=4]
+  \item \textbf{Model it.} For the canned-food drive, the student council folds open-top
+    collection boxes from 20-inch by 30-inch sheets of cardboard: cut an $x$-inch square from
+    each corner, then fold up the sides. The volume is $V(x)=x(30-2x)(20-2x)$ cubic inches.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+      \item Write $V(x)$ in standard form.
+        \begin{work}
+          (30-2x)(20-2x) &= 600-100x+4x^2 && \text{binomials first}\\
+          V(x) &= x(4x^2-100x+600) && \text{then times } x
+        \end{work}
+        $V(x)=$ \inblank{\blank{5.0cm}}{\gradedblank[id=q4a, type=short, points=2, answer={4x^3-100x^2+600x}, check=expression]{5.0cm-2pt}{12.5pt}}
+      \item Use your standard form to find $V(5)$.
+        \begin{work}
+          V(5) &= 4(125)-100(25)+600(5) = 500-2500+3000
+        \end{work}
+        $V(5)=$ \inblank{\blank{2.0cm}}{\gradedblank[id=q4b, type=short, points=1, answer={1000}, check=numeric]{2.0cm-2pt}{12.5pt}}
+      \item \boxguard[16]
+        Say what your answer to (b) means for the box, with units. Then explain why $x=12$
+        cannot work for this box.
+        \rubricbox{\gradedblank[id=q4c, type=rubric, points=2, display={Cutting 5-inch squares makes a box that holds 1000 cubic inches. At $x=12$ the width is $20-2(12)=-4$ inches --- a side cannot have negative length (you cannot cut 24 inches from a 20-inch side).}]{\linewidth}{2in}}
+    \end{enumerate}
+
+  \boxguard[16]
+  \item \textbf{Find the mistake.} Student A multiplied $(x-5)^2(x+1)$ and wrote
+    \[ (x-5)^2(x+1)=(x^2+25)(x+1)=x^3+x^2+25x+25. \]
+    Which step is wrong? Explain the error, and give the correct product in standard form.
+    \rubricbox{\gradedblank[id=q5, type=rubric, points=3, display={The first step: $(x-5)^2$ is not $x^2+25$. The square means $(x-5)(x-5)=x^2-10x+25$ --- the exponent does not distribute, and the middle term $-10x$ is lost. Correct: $(x^2-10x+25)(x+1)=x^3-9x^2+15x+25$.}]{\linewidth}{2in}}
+\end{enumerate}
+\end{notesbox}
+
+\end{document}

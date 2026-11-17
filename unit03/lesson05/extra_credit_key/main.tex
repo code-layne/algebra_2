@@ -1,0 +1,159 @@
+%! Characteristics of Polynomial Functions II — Unit 3, Lesson 3.5 — Extra Credit (Answer Key)
+% MIRROR of ../extra_credit/main.tex: identical except -boxes -> -key and the page-header title.
+% Every \gradedblank line, work block and box size is copied VERBATIM; key mode prints the answers.
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-key}   % pulls in -boxes; never load both
+\usepackage{grading}          % math-shared: \gradedblank, QR codes, marks (key mode via -key)
+\gradingassignment{alg2-u03-l05-ec}
+\usepackage{algebra2-graded}
+\gradingcourse{algebra_2}
+% ── Pre-drawn polynomial graphs (never a sketch task). One grid style everywhere: unit squares,
+% axes through the origin, every zero and every turning point dotted and labelled.
+% \pgrid{xmin}{xmax}{ymin}{ymax}[x-name][y-name]-style axes; \pcurve clips to the window.
+\newcommand{\pgrid}[6]{%
+  \draw[step=1, linegray!55, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--({#2+0.5},0) node[right, font=\tiny]{$#5$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,{#4+0.5}) node[above, font=\tiny]{$#6$};}
+\newcommand{\pcurve}[6]{%
+  \begin{scope}\clip (#1,#3) rectangle (#2,#4);
+    \draw[very thick, forest, domain=#5, samples=140, smooth] plot (\x,{#6});
+  \end{scope}}
+% \zr[label position]{x}{label} — a zero on the x-axis;  \tp[label position]{x}{y}{label} — a
+% turning point (or other key point).
+\newcommand{\zr}[3][below]{\fill[charcoal] (#2,0) circle (2.4pt)
+  node[#1, font=\tiny, inner sep=1.2pt, fill=white, fill opacity=0.85, text opacity=1]{#3};}
+\newcommand{\tp}[4][above]{\fill[navy] (#2,#3) circle (2.4pt)
+  node[#1, font=\tiny, inner sep=1.2pt, fill=white, fill opacity=0.85, text opacity=1]{#4};}
+% P(w) = (w-1)(w-4)^2/4, 0 <= w <= 6 — item 2, the hot-chocolate cart's total profit.
+\newcommand{\gProfit}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{0}{6}{-4}{5}{w}{P}\pcurve{0}{6}{-4}{5}{0:6}{(\x-1)*(\x-4)*(\x-4)/4}
+  \tp[right]{0}{-4}{$(0,-4)$}\zr[below right]{1}{$1$}\tp[above]{2}{1}{$(2,1)$}
+  \tp[below]{4}{0}{$(4,0)$}\tp[left]{6}{5}{$(6,5)$}\end{tikzpicture}}
+% Q(x) = (x+1)^2(x-3)^2/4 — item 4, Student A's graph.
+\newcommand{\gQ}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-3}{5}{-1}{5}{x}{y}\pcurve{-3}{5}{-1}{5}{-2.05:4.05}{(\x+1)*(\x+1)*(\x-3)*(\x-3)/4}
+  \tp[below]{-1}{0}{$(-1,0)$}\tp[above]{1}{4}{$(1,4)$}\tp[below]{3}{0}{$(3,0)$}\end{tikzpicture}}
+
+\begin{document}
+
+\pageheader{Unit 3, Lesson 3.5}{Extra Credit --- Answer Key}
+
+\vspace{0.10in}
+
+\boxguard[8]
+\begin{remindbox}
+\small
+\textbf{Extra credit --- optional.} Tear off these pages and turn them in with your homework,
+the first class after two study halls. I will announce the due date in class and on TurtleNet.
+{\small\itshape Write each final answer in its box. Only what is inside a box is graded.
+Answer intervals in interval notation.}\par
+\end{remindbox}
+
+\vspace{0.08in}
+
+\begin{notesbox}{Stretch}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Zeros and signs together.} There is no graph --- use the factors of
+    $f(x)=(x+2)(x-1)^2(x-4)$.
+
+    \vspace{4pt}
+    (a) At which zero does the graph \emph{touch} the $x$-axis instead of crossing it?
+    \quad $x=$ \inblank{\blank{1.4cm}}{\gradedblank[id=q1a, type=short, points=1, answer={1}, check=numeric]{1.4cm-2pt}{12.5pt}}
+
+    \vspace{4pt}
+    (b) On what intervals is $f(x)<0$? Test one input between each pair of zeros.
+    \begin{work}
+      x<-2:\quad f(-3) &= (-1)(16)(-7)=112>0 \\
+      -2<x<1:\quad f(0) &= (2)(1)(-4)=-8<0 \\
+      1<x<4:\quad f(2) &= (4)(1)(-2)=-8<0 \\
+      x>4:\quad f(5) &= (7)(16)(1)=112>0
+    \end{work}
+    $f(x)<0$ on \inblank{\blank{5.0cm}}{\gradedblank[id=q1b, type=short, points=2, answer={(-2,1)U(1,4)}, check=text, display={$(-2,1)\cup(1,4)$}]{5.0cm-2pt}{12.5pt}}
+
+  \item \textbf{Run it backward.} A degree-3 polynomial $g$ is increasing on
+    $(-\infty,-2)\cup(3,\infty)$ and decreasing on $(-2,3)$. Also $g(-2)=5$ and $g(3)=-4$.
+
+    \vspace{4pt}
+    (a) the relative maximum, as a point
+    \quad \inblank{\blank{2.6cm}}{\gradedblank[id=q2a, type=short, points=1, answer={(-2,5)}, check=text, display={$(-2,5)$}]{2.6cm-2pt}{12.5pt}}
+
+    \vspace{4pt}
+    (b) the relative minimum, as a point
+    \quad \inblank{\blank{2.6cm}}{\gradedblank[id=q2b, type=short, points=1, answer={(3,-4)}, check=text, display={$(3,-4)$}]{2.6cm-2pt}{12.5pt}}
+
+    \vspace{4pt}
+    (c) the range of $g$
+    \quad \inblank{\blank{2.6cm}}{\gradedblank[id=q2c, type=short, points=1, answer={(-inf,inf)}, check=text, display={$(-\infty,\infty)$}]{2.6cm-2pt}{12.5pt}}
+
+
+  \item \textbf{Multiple choice (SOL-style).} Which statement about the graph of
+    $f(x)=-2(x-3)^2(x+1)^3$ is true? Write the letter of the single best answer in its Letter box.
+    \begin{enumerate}[label=(\Alph*), leftmargin=2.0em, itemsep=1pt]
+      \item It crosses the $x$-axis at $x=3$ and touches it at $x=-1$.
+      \item It touches the $x$-axis at $x=3$, crosses it at $x=-1$, and has at most $4$ turning points.
+      \item It touches the $x$-axis at $x=-3$ and crosses it at $x=1$.
+      \item It touches the $x$-axis at $x=3$, crosses it at $x=-1$, and has an absolute maximum.
+    \end{enumerate}
+    \letterbox{\gradedblank[id=q3, type=choice, points=1, answer={B}]{0.4in}{0.4in}}
+\end{enumerate}
+\end{notesbox}
+
+\newpage
+\begin{notesbox}{Stretch, continued}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, start=4]
+  \item \textbf{Model: the hot-chocolate cart.} The spirit club runs a hot-chocolate cart at
+    home volleyball games. $P(w)$ is the club's \emph{total} profit, in hundreds of dollars,
+    $w$ weeks after the cart opened, for $0\le w\le6$ (it started $\$400$ behind, paying for
+    the cart).
+
+    \vspace{4pt}
+    \begin{minipage}[t]{0.58\linewidth}
+    \vspace{0pt}
+    (a) On what interval was the total profit decreasing?
+
+    \vspace{4pt}
+    \inblank{\blank{3.4cm}}{\gradedblank[id=q4a, type=short, points=1, answer={(2,4)}, check=text, display={$(2,4)$}]{3.4cm-2pt}{12.5pt}}
+
+    \vspace{8pt}
+    (b) When was the club still behind, $P(w)<0$?
+
+    \vspace{4pt}
+    \inblank{\blank{3.4cm}}{\gradedblank[id=q4b, type=short, points=1, answer={[0,1)}, check=text, display={$[0,1)$}]{3.4cm-2pt}{12.5pt}}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.38\linewidth}
+    \vspace{0pt}\centering
+    \gProfit[0.40]
+    \end{minipage}
+
+    \vspace{6pt}
+    (c) The point $(4,0)$ is a turning point. Is $0$ a relative minimum, an absolute minimum,
+    or both, on $0\le w\le6$? Explain, and say what $(4,0)$ means for the club.
+    \rubricbox{\gradedblank[id=q4c, type=rubric, points=2, display={Only a relative minimum: it is the lowest point near week 4, but $P(0)=-4$ is lower, so the absolute minimum is $-4$ at $w=0$. At week 4 the club's total profit had slid back to exactly \$0 --- it broke even --- and then it started climbing again.}]{\linewidth}{2in}}
+
+  \boxguard[22]
+  \item \textbf{Find the mistake.} The graph of $Q(x)=\tfrac14(x+1)^2(x-3)^2$ is shown.
+
+    \begin{minipage}[t]{0.58\linewidth}
+    \vspace{0pt}
+    Student A wrote:
+
+    \vspace{3pt}
+    \hspace*{1em}``The absolute maximum of $Q$ is $4$, and $Q$ is increasing on $(0,4)$.''
+
+    \vspace{3pt}
+    Find \emph{both} mistakes, explain each one, and write the correct interval(s) where $Q$
+    is increasing.
+    \end{minipage}\hfill
+    \begin{minipage}[t]{0.36\linewidth}
+    \vspace{0pt}\centering
+    \gQ[0.36]
+    \end{minipage}
+    \rubricbox{\gradedblank[id=q5, type=rubric, points=3, display={(1) $4$ is only a relative maximum, at $x=1$: $Q$ has even degree with $a>0$, so both arms rise past $4$ and there is no absolute maximum. (2) $(0,4)$ uses the $y$-values $0$ and $4$ of the turning points; an interval is written with $x$-values. Correct: $Q$ is increasing on $(-1,1)\cup(3,\infty)$.}]{\linewidth}{2in}}
+
+\end{enumerate}
+\end{notesbox}
+
+\end{document}

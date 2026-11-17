@@ -1,6 +1,92 @@
-%! Fundamental Theorem of Algebra and Complex Zeros — Unit 3, Lesson 3.5 — Slides (Beamer)
+%! Characteristics of Polynomial Functions II — Unit 3, Lesson 3.5 — Slides (Beamer)
+% UNITS 3+ PACKET-FIRST shape (LESSON_SHAPE.md §0a, 2026-11-14): the projected deck MIRRORS the
+% guided notes frame for frame, so the class and the page never disagree. The 3-up handout
+% (lessonYY_slides.pdf) is a standalone work product, not in the packet.
+%   title → warm-up → targets → { definition → example → ladder ★/★★/★★★ → Show me | Find the
+%   mistake } × 3 → Closing Practice → homework   (17 frames; 20 is the ceiling)
+% Round 1 zeros & multiplicity · Round 2 turning points & extrema (Show me flags "every max is
+% the absolute max") · Round 3 intervals, domain & range — THE CRUX (Find the mistake): intervals
+% are written with x-values, never a turning point's y-value.
+% Answers only in \reveal (never \only/\pause): the handout-mode compile drops them. \pause is
+% used only inside worked examples. The graphs are the notes' graphs, drawn by the same macros.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+\usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
+% Ladder rungs and Show-me options.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+\newcommand{\opt}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle, fill=forest, text=white, font=\bfseries\small, inner sep=1.6pt,
+          minimum size=1.35em]{#1};
+  \end{tikzpicture}\;#2}
+% ── Pre-drawn polynomial graphs (never a sketch task). One grid style everywhere: unit squares,
+% axes through the origin, every zero and every turning point dotted and labelled.
+% \pgrid{xmin}{xmax}{ymin}{ymax}[x-name][y-name]-style axes; \pcurve clips to the window.
+\newcommand{\pgrid}[6]{%
+  \draw[step=1, linegray!55, very thin] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--({#2+0.5},0) node[right, font=\tiny]{$#5$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,{#4+0.5}) node[above, font=\tiny]{$#6$};}
+\newcommand{\pcurve}[6]{%
+  \begin{scope}\clip (#1,#3) rectangle (#2,#4);
+    \draw[very thick, forest, domain=#5, samples=140, smooth] plot (\x,{#6});
+  \end{scope}}
+% \zr[label position]{x}{label} — a zero on the x-axis;  \tp[label position]{x}{y}{label} — a
+% turning point (or other key point).
+\newcommand{\zr}[3][below]{\fill[charcoal] (#2,0) circle (2.4pt)
+  node[#1, font=\tiny, inner sep=1.2pt, fill=white, fill opacity=0.85, text opacity=1]{#3};}
+\newcommand{\tp}[4][above]{\fill[navy] (#2,#3) circle (2.4pt)
+  node[#1, font=\tiny, inner sep=1.2pt, fill=white, fill opacity=0.85, text opacity=1]{#4};}
+% The lesson's graphs, by name (the deck draws the same ones). Optional argument = scale.
+% A(x) = (x+2)(x-1)^2 — Round 1's display (zeros annotated) and Round 2's Show me (turning points).
+\newcommand{\gAdef}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-3}{3}{-2}{5}{x}{y}\pcurve{-3}{3}{-2}{5}{-2.6:2.3}{(\x+2)*(\x-1)*(\x-1)}
+  \zr[below right]{-2}{$-2$: crosses}\zr[above right]{1}{$1$: touches}\end{tikzpicture}}
+\newcommand{\gA}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-3}{3}{-2}{5}{x}{y}\pcurve{-3}{3}{-2}{5}{-2.6:2.3}{(\x+2)*(\x-1)*(\x-1)}
+  \zr[below left]{-2}{$-2$}\tp[right]{-1}{4}{$(-1,4)$}\tp[below right]{1}{0}{$(1,0)$}\end{tikzpicture}}
+% p(x) = -1/4 (x+3)(x+1)^2(x-2) — Round 1 rung 3 (zeros only).
+\newcommand{\gP}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-4}{3}{-2}{5}{x}{y}\pcurve{-4}{3}{-2}{5}{-3.6:2.6}{-0.25*(\x+3)*(\x+1)*(\x+1)*(\x-2)}
+  \zr[below left]{-3}{$-3$}\zr[below]{-1}{$-1$}\zr[below right]{2}{$2$}\end{tikzpicture}}
+% W(x) = 1/4 (x^2-4)^2 — Round 2 example.
+\newcommand{\gW}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-3}{3}{-1}{5}{x}{y}\pcurve{-3}{3}{-1}{5}{-3:3}{0.25*(\x*\x-4)*(\x*\x-4)}
+  \tp[below]{-2}{0}{$(-2,0)$}\tp[above right]{0}{4}{$(0,4)$}\tp[below]{2}{0}{$(2,0)$}\end{tikzpicture}}
+% C(x) = (x+1)(x-2)^2 — Round 2 rung 2.
+\newcommand{\gC}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-2}{4}{-2}{5}{x}{y}\pcurve{-2}{4}{-2}{5}{-1.6:3.4}{(\x+1)*(\x-2)*(\x-2)}
+  \zr[below left]{-1}{$-1$}\tp[above right]{0}{4}{$(0,4)$}\tp[below]{2}{0}{$(2,0)$}\end{tikzpicture}}
+% M(x) = 4 - 1/4 (x^2-4)^2 — Round 2 rung 3.
+\newcommand{\gM}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-4}{4}{-2}{5}{x}{y}\pcurve{-4}{4}{-2}{5}{-3.2:3.2}{4-0.25*(\x*\x-4)*(\x*\x-4)}
+  \tp[above left]{-2}{4}{$(-2,4)$}\tp[above right]{2}{4}{$(2,4)$}\tp[below]{0}{0}{$(0,0)$}
+  \zr[below left]{-2.828}{$-2\sqrt2$}\zr[below right]{2.828}{$2\sqrt2$}\end{tikzpicture}}
+% E(x) = (x+1)^2(x-2) — Round 3 example.
+\newcommand{\gE}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-3}{3}{-5}{2}{x}{y}\pcurve{-3}{3}{-5}{2}{-2.4:2.7}{(\x+1)*(\x+1)*(\x-2)}
+  \tp[above left]{-1}{0}{$(-1,0)$}\tp[below right]{1}{-4}{$(1,-4)$}\zr[above left]{2}{$2$}\end{tikzpicture}}
+% K(x) = -(x+2)^2(x-1) — Round 3 rung 1.
+\newcommand{\gK}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-4}{2}{-2}{5}{x}{y}\pcurve{-4}{2}{-2}{5}{-3.6:1.6}{-1*(\x+2)*(\x+2)*(\x-1)}
+  \tp[below]{-2}{0}{$(-2,0)$}\tp[above right]{0}{4}{$(0,4)$}\zr[below left]{1}{$1$}\end{tikzpicture}}
+% S(x) = x^3(x-4)/9 — Round 3 rung 2 (one turning point; flat crossing at 0).
+\newcommand{\gS}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-2}{5}{-4}{3}{x}{y}\pcurve{-2}{5}{-4}{3}{-1.9:4.6}{(\x*\x*\x*(\x-4))/9}
+  \zr[above left]{0}{$0$}\zr[above left]{4}{$4$}\tp[below]{3}{-3}{$(3,-3)$}\end{tikzpicture}}
+% T(h) = (h-2)^2(h-5)/4, 0 <= h <= 6 — Round 3 rung 3 (the riding barn).
+\newcommand{\gT}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{0}{6}{-5}{4}{h}{T}\pcurve{0}{6}{-5}{4}{0:6}{(\x-2)*(\x-2)*(\x-5)/4}
+  \tp[right]{0}{-5}{$(0,-5)$}\tp[above]{2}{0}{$(2,0)$}\tp[below]{4}{-1}{$(4,-1)$}
+  \zr[below right]{5}{$5$}\tp[left]{6}{4}{$(6,4)$}\end{tikzpicture}}
+% R(x) — Find the mistake (turning points only).
+\newcommand{\gR}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-5}{3}{-3}{5}{x}{y}\pcurve{-5}{3}{-3}{5}{-5.2:3.2}{(3*\x*\x*\x+9*\x*\x-27*\x-17)/16}
+  \tp[above]{-3}{4}{$(-3,4)$}\tp[below]{1}{-2}{$(1,-2)$}\end{tikzpicture}}
+% H(x) = -(x-1)^2(x+2) — Closing Practice.
+\newcommand{\gH}[1][0.42]{\begin{tikzpicture}[scale=#1]
+  \pgrid{-3}{3}{-5}{2}{x}{y}\pcurve{-3}{3}{-5}{2}{-2.6:2.4}{-1*(\x-1)*(\x-1)*(\x+2)}
+  \zr[above left]{-2}{$-2$}\tp[below left]{-1}{-4}{$(-1,-4)$}\tp[above right]{1}{0}{$(1,0)$}\end{tikzpicture}}
 
 \begin{document}
 
@@ -11,235 +97,381 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 3.5}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Fundamental Theorem of Algebra}\\[0.25cm]
-    {\color{white}\bfseries\large and Complex Zeros}\\[1.0cm]
+    {\color{white}\bfseries\LARGE Characteristics of Polynomial Functions II}\\[1.2cm]
     {\color{forestmid}\small Algebra 2~$\cdot$~Unit 3: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% HOOK
+% WARM-UP — the packet's warm-up page, on screen as they walk in. Answers in one \reveal, ending
+% on the question Round 1 answers.
 \begin{frame}[t, plain]
-  \forestheader{One graph, one intercept, three solutions}
-  \sectionlabel{Hook}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \[ f(x) = x^3 - x^2 + 4x - 4 \]
-      \vspace{2pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Yesterday it stalled: $x=1$ worked, and the depressed polynomial was $x^2+4$.
-        \item In the Warm-Up you finished it: $x = 1$, $2i$, $-2i$.
-        \item But its graph crosses the $x$-axis \textbf{exactly once}.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{The question}
-        A cubic is supposed to have three solutions. The graph shows one. \\[4pt]
-        \textbf{Where are the other two?}
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize All year, ``no solution'' has really meant \textbf{no \emph{real} solution.}
-       Today that sentence gets finished.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% THE THEOREM
-\begin{frame}[t, plain]
-  \forestheader{The Fundamental Theorem of Algebra}
-  \sectionlabel[goldacc]{Foundation}
-  \begin{block}{The theorem}
-    Every polynomial of degree $n \ge 1$ has \textbf{at least one} complex zero.
-  \end{block}
+  \forestheader{Warm-Up --- start now}
+  \sectionlabel[goldacc]{3 minutes --- on your warm-up page, alone}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item $f(x)=-2x^5+3x^2-1$: degree, leading coefficient, and end behavior.
+    \item Is $g(x)=x^4-3x^2+7$ even, odd, or neither? How do you know?
+    \item Solve $(x-1)^2(x+3)=0$. How many times does $(x-1)$ appear? Does the graph
+          \emph{cross} the $x$-axis at both zeros?
+  \end{enumerate}
   \vspace{2pt}
-  \begin{block}{The corollary we actually use}
-    A polynomial of degree $n$ has \textbf{exactly $n$} complex zeros, counted with
-    \textbf{multiplicity}, and factors completely as
-    \[ f(x) = a(x-r_1)(x-r_2)\cdots(x-r_n). \]
-  \end{block}
-  \vspace{2pt}
-  {\footnotesize \textbf{Why:} find a zero, divide it out (Factor Theorem, 3.3), and the quotient has
-   degree $n-1$. Repeat. The process runs exactly $n$ times.}
+  \reveal{%
+    \begin{block}{Check --- give yourself a point for each}
+      1.\ degree $5$, leading coefficient $-2$: as $x\to-\infty$, $f\to+\infty$; as
+      $x\to+\infty$, $f\to-\infty$ \\[1pt]
+      2.\ even --- only even powers, so $g(-x)=g(x)$ \qquad 3.\ $x=1$ and $x=-3$; $(x-1)$
+      appears twice \\[2pt]
+      \textbf{Hold on to this:} does a twice-repeated zero behave like the others? Round 1.
+    \end{block}}
 \end{frame}
 
-% COUNTING WITH MULTIPLICITY
+% LEARNING TARGETS + HOW TODAY RUNS
 \begin{frame}[t, plain]
-  \forestheader{``Counted with multiplicity'' is not fine print}
-  \sectionlabel{Counting}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      The unit anchor, from Lesson 3.0:
-      \[ g(x) = x^3 - 3x + 2 = (x-1)^2(x+2) \]
-      \vspace{-6pt}
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item \textbf{Distinct} zeros: $1$ and $-2$ --- only two.
-        \item \textbf{With multiplicity}: $1$, $1$, $-2$ --- exactly three. \checkmark
-        \item The graph \emph{touches} at $x=1$ (even multiplicity) and \emph{crosses} at $x=-2$.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{The sentence to remember}
-        Distinct zeros can be fewer than $n$. \\[4pt]
-        Zeros counted with multiplicity are never fewer and never more --- always exactly $n$.
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% CONJUGATE PAIRS
-\begin{frame}[t, plain]
-  \forestheader{Imaginary zeros travel in pairs}
-  \sectionlabel[goldacc]{Theorem}
-  \begin{block}{Complex Conjugate Root Theorem}
-    If a polynomial has \textbf{real} coefficients and $a+bi$ is a zero ($b \ne 0$), then $a-bi$ is a
-    zero too.
-  \end{block}
-  \vspace{3pt}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \footnotesize
-      \textbf{Why the pair is forced:}
-      \[ \big((x-a)-bi\big)\big((x-a)+bi\big) = (x-a)^2 + b^2 \]
-      \[ = x^2 - 2ax + (a^2+b^2) \]
-      Every $i$ cancels. A \emph{lone} imaginary zero would strand an $i$ in the coefficients.
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \footnotesize
-      \textbf{Warm-Up evidence:}\\[3pt]
-      $x^2-2x+5 \Rightarrow 1+2i$ and $1-2i$ \\[3pt]
-      $x^2+4 \Rightarrow 2i$ and $-2i$ \\[6pt]
-      Not a coincidence --- a requirement.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% CONSEQUENCES
-\begin{frame}[t, plain]
-  \forestheader{Two consequences worth more than the theorem}
-  \sectionlabel{Reasoning}
-  \begin{itemize}\setlength{\itemsep}{8pt}
-    \item The number of imaginary zeros is always \textbf{even} --- $0$, $2$, $4$, \dots --- because
-      they are counted in pairs.
-    \item Therefore a polynomial of \textbf{odd} degree with real coefficients has \textbf{at least
-      one real zero}. Odd degree minus an even number of imaginary zeros leaves an odd number of real
-      ones, and that is never $0$.
+  \forestheader{Today's targets}
+  \sectionlabel{Three skills: zeros, turning points, intervals}
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item Find each \textbf{zero} and its \textbf{multiplicity}: odd \textbf{crosses}, even
+          \textbf{touches}.
+    \item Count \textbf{turning points} (at most $n-1$) and name \textbf{relative} and
+          \textbf{absolute} maxima and minima.
+    \item Write where a graph is \textbf{increasing}, \textbf{decreasing}, \textbf{positive},
+          \textbf{negative} --- in \textbf{interval notation}, with $x$-values --- plus its
+          \textbf{domain} and \textbf{range}.
   \end{itemize}
-  \vspace{4pt}
-  \begin{block}{Lesson 3.0 said the same thing with a picture}
-    An odd-degree graph's two arms point in \emph{opposite} directions --- so the graph has no choice
-    but to cross the $x$-axis. Two arguments, one conclusion.
+  \vspace{2pt}
+  \begin{block}{How today runs --- you are solving the whole hour}
+    Three rounds, each a short definition, one example, then \textbf{your turn} --- start at
+    \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me} (1--4
+    fingers on the count of three) or a \textbf{Find the mistake}. We finish with the
+    \textbf{Closing Practice} out of 4, then start the homework.
   \end{block}
 \end{frame}
 
-% NUMBER AND TYPE
+% ═══ ROUND 1 — ZEROS AND MULTIPLICITY ═══════════════════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{Number and type --- without solving anything}
-  \sectionlabel[goldacc]{The Standard}
-  \[ \text{imaginary zeros} \;=\; \text{degree} \;-\; \text{real zeros (counted with multiplicity)} \]
-  \vspace{-2pt}
+  \forestheader{Definition: zeros and multiplicity}
+  \sectionlabel{Round 1 --- where the graph meets the $x$-axis}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \footnotesize
+    \begin{column}{0.60\textwidth}
+      \begin{block}{Zero}
+        A \textbf{zero} of $f$ is an input $x$ with $f(x)=0$. On the graph it is an
+        $x$-intercept; in factored form, each factor $(x-r)$ gives the zero $x=r$.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Multiplicity}
+        The \textbf{multiplicity} of a zero is the number of times its factor appears --- the
+        exponent on that factor. At a zero of \textbf{odd} multiplicity the graph
+        \textbf{crosses} the $x$-axis; at a zero of \textbf{even} multiplicity it
+        \textbf{touches} the axis and turns back.
+      \end{block}
+    \end{column}
+    \begin{column}{0.36\textwidth}
+      \centering
+      \gAdef[0.36]\\[2pt]
+      {\scriptsize $A(x)=(x+2)^{1}(x-1)^{2}$}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 1: zeros from factored form}
+  \sectionlabel{Watch --- 2 minutes}
+  List each zero of $f(x)=(x+3)^2(x-1)(x-4)^3$, its multiplicity, and whether the graph
+  crosses or touches there.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item $(x+3)^2$: \; $x=-3$, multiplicity $2$ (even) \pause $\Rightarrow$ \textbf{touches}
+    \pause
+    \item $(x-1)$: \; $x=1$, multiplicity $1$ (odd) \pause $\Rightarrow$ \textbf{crosses}
+    \pause
+    \item $(x-4)^3$: \; $x=4$, multiplicity $3$ (odd) \pause $\Rightarrow$ \textbf{crosses}
+    \pause
+    \item Degree $=2+1+3=6$ \quad \emph{(the multiplicities add up to the degree)}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{7 minutes --- start at one star and climb}
+  \begin{columns}[T]
+    \begin{column}{0.62\textwidth}
+      Each zero: multiplicity, crosses or touches.
       \begin{itemize}\setlength{\itemsep}{5pt}
-        \item An $x$-intercept \emph{is} a real zero.
-        \item An imaginary zero is \textbf{nowhere} on the graph.
-        \item A cubic crossing once: $3-1 = \mathbf{2}$ imaginary.
-        \item A quartic crossing twice: $4-2 = \mathbf{2}$ imaginary.
-        \item A quintic crossing once: $5-1 = \mathbf{4}$ imaginary.
+        \item[\rung1] $f(x)=(x-5)(x+1)^2$
+        \item[\rung2] $g(x)=-x^2(x-3)^3(x+6)$
+        \item[\rung3] The graph of $p$: read its zeros. Which has even multiplicity? Least
+              possible degree?
       \end{itemize}
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Check yourself}
-        Could a \emph{cubic} with real coefficients have \textbf{no} $x$-intercepts? \\[4pt]
-        No --- that needs three imaginary zeros, and three is odd.
-      \end{block}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \gP[0.32]
     \end{column}
   \end{columns}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $5$: mult.\ 1, crosses; \ $-1$: mult.\ 2, touches \\[1pt]
+      \rung2\ $0$: mult.\ 2, touches; \ $3$: mult.\ 3, crosses; \ $-6$: mult.\ 1, crosses
+      (the $-1$ only flips it) \\[1pt]
+      \rung3\ zeros $-3,\,-1,\,2$; \ $-1$ is even (it touches); \ least degree $1+2+1=4$
+    \end{block}}
 \end{frame}
 
-% SOLVING OVER C
 \begin{frame}[t, plain]
-  \forestheader{The same workflow --- with a different last step}
-  \sectionlabel{Method}
+  \forestheader{Show me: $f(x)=(x+2)^3(x-4)^2$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{Solve} $x^3-5x^2+9x-5=0$. \\[4pt]
-      \textbf{1--3. List, test, divide:} $r=1$ works.
-      \begin{center}
-      \renewcommand{\arraystretch}{1.3}
-      \begin{tabular}{r|rrrr}
-      $1$ & $1$ & $-5$ & $9$ & $-5$ \\
-          &     & $1$  & $-4$ & $5$ \\ \cline{2-5}
-          & $1$ & $-4$ & $5$  & $0$ \\
-      \end{tabular}
-      \end{center}
-      \textbf{4. Finish:} $x^2-4x+5$, $D = -4$, \\
-      so $x = \dfrac{4 \pm 2i}{2} = 2 \pm i$.
+    \begin{column}{0.47\textwidth}
+      \opt1{crosses at $x=-2$, touches at $x=4$} \\[12pt]
+      \opt3{crosses at $x=2$, touches at $x=-4$}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Answer}
-        $x = 1,\; 2+i,\; 2-i$ \\[4pt]
-        One real, two imaginary. $1+2 = 3 =$ the degree. \checkmark
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize The only thing that changed: a negative discriminant is no longer ``no
-       solution.'' It is a \textbf{conjugate pair}. \\[4pt]
-       And $x^4-5x^2-36 = (x^2-9)(x^2+4)$ needs no division at all: $\pm3, \pm2i$.}
+    \begin{column}{0.47\textwidth}
+      \opt2{touches at $x=-2$, crosses at $x=4$} \\[12pt]
+      \opt4{touches at both zeros}
     \end{column}
   \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{1}}
+      $(x+2)^3$: odd, crosses at $-2$; \; $(x-4)^2$: even, touches at $4$. \; \textbf{2} swapped
+      odd and even. \textbf{3} took the signs inside the factors as the zeros. \textbf{4}
+      thought any exponent above 1 bounces --- only an \emph{even} one does.
+    \end{block}}
 \end{frame}
 
-% BUILDING BACKWARD
+% ═══ ROUND 2 — TURNING POINTS AND EXTREMA ═══════════════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{Run it backward: zeros $\rightarrow$ factors $\rightarrow$ polynomial}
-  \sectionlabel[goldacc]{Building}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{(a)} Zeros $-1$ (multiplicity 2) and $4$:
-      \[ (x+1)^2(x-4) = x^3-2x^2-7x-4 \]
-      \vspace{-8pt}
-      \textbf{(b)} Real coefficients, zeros $2$ and $3i$: \\[3pt]
-      $-3i$ has to come too, and
-      \[ (x-2)(x^2+9) = x^3-2x^2+9x-18 \]
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Each zero $r$ gives the factor $(x-r)$}
-        A conjugate pair gives the \emph{real} quadratic $x^2-2ax+(a^2+b^2)$ --- multiply the pair
-        together first and the $i$'s never appear.
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize \textbf{Test question:} smallest degree of a real polynomial with zeros $5$ and
-       $1-i$? \; \textbf{3} --- because $1+i$ is not optional.}
-    \end{column}
-  \end{columns}
+  \forestheader{Definition: turning points and extrema}
+  \sectionlabel{Round 2 --- where the graph turns}
+  \begin{block}{Turning point}
+    A \textbf{turning point} is a point where the graph changes from increasing to decreasing,
+    or from decreasing to increasing. A polynomial of degree $n$ has \textbf{at most $n-1$}
+    turning points.
+  \end{block}
+  \vspace{2pt}
+  \begin{block}{Relative vs.\ absolute}
+    The $y$-value at a turning point is a \textbf{relative maximum} if it is the highest point
+    \emph{near there}, and a \textbf{relative minimum} if it is the lowest point near there. An
+    \textbf{absolute maximum} (or \textbf{minimum}) is the greatest (or least) $y$-value of the
+    \emph{whole} function. Odd degree: no absolute max or min. Even degree: one absolute
+    extreme value --- a minimum when $a>0$, a maximum when $a<0$.
+  \end{block}
 \end{frame}
 
-% WHERE THIS GOES
 \begin{frame}[t, plain]
-  \forestheader{Nothing was ever missing}
-  \sectionlabel{Connections}
+  \forestheader{Example 2: read the extrema}
+  \sectionlabel{Watch --- 2 minutes}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{Today:}
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item Degree $n$ $\Rightarrow$ exactly $n$ zeros, with multiplicity.
-        \item Real coefficients $\Rightarrow$ imaginary zeros in conjugate pairs.
-        \item Number and type, from a degree and a graph.
-        \item Solve over $\mathbb{C}$; build from a list of zeros.
+    \begin{column}{0.62\textwidth}
+      $f(x)=\tfrac14(x^2-4)^2$, degree $4$.
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item Degree $4$ $\Rightarrow$ at most $3$ turning points; \pause it has $3$.
+        \pause
+        \item Relative max: $4$ at $x=0$
+        \pause
+        \item Relative min: $0$ at $x=-2$ and $x=2$
+        \pause
+        \item Absolute min: $0$ \quad \emph{(even degree, $a>0$)}
+        \pause
+        \item Absolute max: \textbf{none} --- the arms rise past $4$
       \end{itemize}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Coming next}
-        \textbf{3.6} Graphing polynomial functions \& modeling --- end behavior (3.0), zeros
-        (3.2--3.4), multiplicity (3.0), and today's complete count become \emph{one} procedure for
-        producing and reading a polynomial's graph.
-      \end{block}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \gW[0.36]
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{7 minutes --- start at one star and climb}
+  \rung1\ Degree $5$: at most how many turning points? \; A graph with $3$ turning points: least
+  possible degree?
+  \vspace{2pt}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \rung2\ $C(x)=(x+1)(x-2)^2$: relative max and min? Any absolute extrema?\\[2pt]
+      \centering\gC[0.27]
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \rung3\ Degree-4 $M$: absolute max? relative min? Is $0$ the absolute min?\\[2pt]
+      \centering\gM[0.25]
+    \end{column}
+  \end{columns}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $4$; \ $4$ \qquad \rung2\ rel.\ max $4$ at $x=0$; rel.\ min $0$ at $x=2$; no
+      absolute extrema (odd degree) \\[1pt]
+      \rung3\ abs.\ max $4$ at $x=\pm2$; rel.\ min $0$ at $x=0$; not absolute --- the arms fall
+      forever
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: what is the point $(-1,4)$ on $A$?}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  \begin{columns}[T]
+    \begin{column}{0.30\textwidth}
+      \centering
+      \gA[0.30]
+    \end{column}
+    \begin{column}{0.66\textwidth}
+      \opt1{the absolute maximum, $4$} \\[9pt]
+      \opt2{a relative maximum, $4$; there is no absolute maximum} \\[9pt]
+      \opt3{a relative maximum, $-1$} \\[9pt]
+      \opt4{a relative minimum, $4$}
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      Highest point \emph{nearby}, but the right arm climbs past $4$ --- odd degree, no absolute
+      max. \textbf{1} calls every max ``the'' max. \textbf{3} named the $x$-value; the max is
+      the $y$-value. \textbf{4} mixed up hill and valley.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 3 — INTERVALS, DOMAIN AND RANGE (the crux) ════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: intervals, domain, and range}
+  \sectionlabel{Round 3 --- read along the $x$-axis}
+  \begin{block}{Increasing and decreasing}
+    A function is \textbf{increasing} on an interval if its $y$-values rise as $x$ moves left
+    to right, and \textbf{decreasing} if they fall. We name the interval by its
+    \textbf{$x$-values}, in interval notation, with parentheses at the turning points.
+  \end{block}
+  \vspace{1pt}
+  \begin{block}{Positive and negative}
+    $f$ is \textbf{positive} where its graph is above the $x$-axis ($f(x)>0$) and
+    \textbf{negative} where it is below ($f(x)<0$); these intervals start and stop at zeros.
+  \end{block}
+  \vspace{1pt}
+  \begin{block}{Domain and range}
+    The \textbf{domain} of every polynomial is $(-\infty,\infty)$. The \textbf{range} of an
+    odd-degree polynomial is $(-\infty,\infty)$; an even-degree polynomial's range stops at its
+    absolute extremum, such as $[-3,\infty)$.
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 3: intervals from a graph}
+  \sectionlabel{Watch --- 2 minutes}
+  \begin{columns}[T]
+    \begin{column}{0.62\textwidth}
+      $E(x)=(x+1)^2(x-2)$
+      \begin{itemize}\setlength{\itemsep}{4pt}
+        \item Increasing: $(-\infty,-1)\cup(1,\infty)$ \pause
+        \item Decreasing: $(-1,1)$ \quad \emph{($x$-values only)} \pause
+        \item Positive: $(2,\infty)$ \pause
+        \item Negative: $(-\infty,-1)\cup(-1,2)$ \quad \emph{($E(-1)=0$)} \pause
+        \item Domain $(-\infty,\infty)$; \ range $(-\infty,\infty)$
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \gE[0.36]
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb --- interval notation}
+  \begin{columns}[T]
+    \begin{column}{0.31\textwidth}
+      \rung1\ $K(x)=-(x+2)^2(x-1)$: increasing on? domain?\\[2pt]
+      \centering\gK[0.25]
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \rung2\ $S(x)=\tfrac19x^3(x-4)$: decreasing? negative? range?\\[2pt]
+      \centering\gS[0.25]
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \rung3\ Riding barn, $T$ in $^\circ$C, $h$ hours after midnight: when warming up? when
+      below freezing?\\[2pt]
+      \centering\gT[0.25]
+    \end{column}
+  \end{columns}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $(-2,0)$; \ $(-\infty,\infty)$ \qquad \rung2\ $(-\infty,3)$; \ $(0,4)$; \
+      $[-3,\infty)$ \\[1pt]
+      \rung3\ warming $(0,2)\cup(4,6)$; \ below freezing $[0,2)\cup(2,5)$
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Find the mistake}
+  \sectionlabel[redacc]{The one that matters --- 3 minutes --- find Student A's mistake and fix it}
+  \begin{columns}[T]
+    \begin{column}{0.60\textwidth}
+      \textbf{Student A} read the graph of $R$ and wrote:
+      \begin{quote}
+        ``$R$ is increasing on $(-\infty,4)\cup(-2,\infty)$ and decreasing on $(-2,4)$.''
+      \end{quote}
+      Which part is wrong? Explain, then fix it.
+    \end{column}
+    \begin{column}{0.36\textwidth}
+      \centering
+      \gR[0.30]
+    \end{column}
+  \end{columns}
+  \reveal{%
+    \begin{block}{The mistake}
+      Student A used the turning points' \emph{$y$-values}, $4$ and $-2$. An interval says
+      \emph{where along the $x$-axis}, so it uses $x$-values: increasing on
+      $(-\infty,-3)\cup(1,\infty)$, decreasing on $(-3,1)$.
+    \end{block}}
+\end{frame}
+
+% CLOSING PRACTICE — the notes' Closing Practice box: four mixed problems (one per round + one
+% mixed) and a bonus, answers in one \reveal, plus the Watch out.
+\begin{frame}[t, plain]
+  \forestheader{Closing Practice}
+  \sectionlabel[goldacc]{6 minutes --- on your own --- score yourself out of 4}
+  \begin{columns}[T]
+    \begin{column}{0.70\textwidth}
+      \begin{enumerate}\setlength{\itemsep}{1pt}\small
+        \item Zeros of $f(x)=(x-6)^2(x+5)^3$: multiplicity, crosses or touches.
+        \item Degree 6: at most how many turning points? An absolute extremum?
+        \item $H$ is increasing on what interval?
+        \item $H$'s relative minimum, and where $H$ is positive.
+      \end{enumerate}
+      {\scriptsize\textbf{Bonus (+1):} Library at study hall, $L(t)$, degree 3, $t$ hours after
+      7 p.m.: rel.\ max $40$ at $t=1$, rel.\ min $12$ at $t=2.5$. When is $L$ decreasing?}
+    \end{column}
+    \begin{column}{0.26\textwidth}
+      \centering
+      \gH[0.26]
+    \end{column}
+  \end{columns}
+  \reveal{%
+    \begin{block}{Check --- one point each}
+      \small 1.\ $6$: mult.\ 2, touches; $-5$: mult.\ 3, crosses \quad 2.\ $5$; yes \quad
+      3.\ $(-1,1)$ \quad 4.\ $-4$; $(-\infty,-2)$ \quad \textbf{Bonus:} $(1,\,2.5)$ \\[1pt]
+      \textbf{Watch out:} intervals are $x$-values, read along the $x$-axis from turning point
+      to turning point --- never a turning point's $y$-value.
+    \end{block}}
+\end{frame}
+
+% HOMEWORK — source: DeltaMath, online.
+\begin{frame}[t, plain]
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  \begin{block}{DeltaMath --- scored 1 to 5, due the first class after two study halls}
+    Assignment: \textbf{A2: Lesson 3.5: Zeros, Extrema \& Intervals}. Start it now on your
+    device; the rest is due the first class after two study halls. I will announce the date in
+    class and on TurtleNet.
+  \end{block}
+  \vspace{4pt}
+  \begin{block}{Extra credit --- optional}
+    The last two pages of your packet: five stretch problems, graded. Tear them off and turn
+    them in with your homework.
+  \end{block}
+  \vspace{6pt}
+  \textbf{Next:} Lesson 3.6 --- the Fundamental Theorem of Algebra, and writing and graphing a
+  polynomial from its zeros.
 \end{frame}
 
 \end{document}

@@ -113,7 +113,24 @@ old 2.4 and 2.5 directories are regenerated whole when the new lesson is authore
 
 ---
 
-## Unit 3 — Polynomial Functions · 5 lessons (condensed 2026-10-31)
+## Unit 3 — Polynomial Functions · 6 lessons (resequenced 2026-11-17)
+
+**Current map (2026-11-17, user direction):** numbered from 3.1, no 3.0; the characteristics
+lesson is split in two and placed after the algebra. Regenerated whole in the packet-first shape
+(`LESSON_SHAPE.md` §0a). Homework: DeltaMath sets `A2: Lesson 3.1`–`3.6`; unit test: the
+DeltaMath test `A2: Unit 3 Test: Polynomial Functions` (31 questions, one per homework skill) —
+not a repo test (2026-11-17).
+
+| # | Lesson | Round 1 → Round 2 → Round 3 | Standards |
+|:--:|---|---|---|
+| 3.1 | Polynomial operations | adding & subtracting → multiplying → multiplying three or more factors | A2.EO.3a |
+| 3.2 | Factoring polynomials | GCF & grouping (four terms) → sum & difference of cubes → factoring completely (quadratic form, more than one step) | A2.EO.3b/d |
+| 3.3 | Dividing polynomials | long division → synthetic division → synthetic division with missing terms (zero placeholders) | A2.EO.3c |
+| 3.4 | Characteristics of polynomial functions I | degree & leading coefficient → end behavior → symmetry (even / odd / neither) | A2.F.2a–e/g |
+| 3.5 | Characteristics of polynomial functions II | zeros & multiplicity (cross / touch) → turning points & relative vs. absolute extrema → increasing/decreasing & positive/negative intervals | A2.F.2a–e/g |
+| 3.6 | Zeros & graphs of polynomials | Fundamental Theorem of Algebra & conjugate pairs → writing a polynomial from its zeros → graphs from zeros & end behavior | A2.EI.6a/b, A2.F.2a–e/g |
+
+### Superseded — 5 lessons (condensed 2026-10-31)
 
 Condensed from the 12-lesson map of 2026-10-23 by merging, with two skills **cut**
 (2026-10-31): the Remainder & Factor Theorems and the Rational Root Theorem, so A2.EI.6c/d is
