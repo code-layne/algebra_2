@@ -23,8 +23,9 @@
 > algebra — 3.1 operations · 3.2 factoring · 3.3 division · 3.4–3.5 characteristics I/II · 3.6
 > zeros & graphs (map: `COURSE_BREAKDOWN.md`). All six regenerated in the §0a shape (warm-up,
 > notes, graded extra credit, deck); old `lesson00`–`lesson06` removed (3.1's `graded_sample`
-> kept). **Next:** build the six DeltaMath sets with the user; rebuild the Unit 3 tests on the
-> new map (they still test the cut Rational Root / Remainder–Factor Theorems).
+> kept). DeltaMath sets `A2: Lesson 3.1`–`3.6` built 2026-11-17 (hidden, Algebra 2 - E, folder
+> Algebra 2; skills listed in each plan). **Next:** rebuild the Unit 3 tests on the new map (they
+> still test the cut Rational Root / Remainder–Factor Theorems).
 
 > ## ⚠ Status (2026-10-31) — **UNIT 3 CONDENSED: 12 LESSONS → 5 (3.0–3.4), MERGED ROUNDS.**
 >
