@@ -1,4 +1,8 @@
-%! Zeros of Polynomials: the Rational Root Theorem — Unit 3, Lesson 3.4 — Lesson Plan
+%! Characteristics of Polynomial Functions I — Unit 3, Lesson 3.4 — Lesson Plan
+% UNITS 3+ PACKET-FIRST plan (LESSON_SHAPE.md §0a, 2026-11-14): warm-up on paper, three rounds of
+% definition → example → ladder → check in the Guided Notes (the deck mirrors them), Closing
+% Practice, then the DeltaMath homework started in class; graded extra credit at the back.
+% 5 / 45 / 10. Teacher-facing; never handed out. Five teacher notes, packet order.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,7 +12,8 @@
 \newcommand{\CourseName}{Algebra 2}
 \newcommand{\MeetingLength}{60 minutes}
 \newcommand{\UnitNumberName}{Unit 3: Polynomial Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.4: Zeros of Polynomials: the Rational Root Theorem}
+\newcommand{\LessonNumberName}{Lesson 3.4: Characteristics of Polynomial Functions I}
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
 
 \begin{document}
 \begin{center}
@@ -18,23 +23,26 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can generate the \emph{candidate list} for a polynomial
-    with integer coefficients --- $\pm\frac{p}{q}$ with $p$ a divisor of the constant term and $q$ a
-    divisor of the leading coefficient --- and then run the workflow the rest of this unit depends
-    on: \textbf{list $\rightarrow$ test $\rightarrow$ divide $\rightarrow$ finish}. They test
-    candidates efficiently (Remainder Theorem, synthetic division, and the $x$-intercepts of a
-    graph), divide out each zero they find, factor the depressed polynomial completely, solve the
-    equation, and \emph{verify} their solutions by substitution and against the graph. They also
-    learn what the theorem does not promise: the list holds \emph{possible} zeros, and it finds
-    \emph{rational} ones only.
+    \textbf{Primary Objective:} Students find a polynomial's \emph{degree} and \emph{leading
+    coefficient} from standard or factored form, use them to state its \emph{end behavior} in
+    arrow notation (and read end behavior off a pre-drawn graph), and classify a function as
+    \emph{even}, \emph{odd}, or \emph{neither} from its graph and with the $f(-x)$ test --- always
+    reading the \emph{leading term}, never the first term written.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.6c} --- solve a polynomial equation of degree
-    three or higher (today over the reals; the complex case is Lesson~3.5) --- and
-    \textbf{A2.EI.6d} --- verify possible solutions algebraically and graphically and explain the
-    solution method. \textbf{A2.EO.3c} (synthetic division) and \textbf{A2.EO.3b} (factor the
-    depressed polynomial completely) are used on every problem, and \textbf{A2.F.2c} whenever zeros
-    are read as $x$-intercepts. The lesson is the direct prerequisite for \textbf{A2.EI.6a/b} in
-    Lesson~3.5.
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2} --- characteristics of polynomial
+    functions: \textbf{A2.F.2g} (end behavior, from the degree and the sign of the leading
+    coefficient) and \textbf{A2.F.2b} (compare and contrast odd- and even-degree behavior);
+    symmetry (even/odd) is taught as part of the A2.F.2 characteristics toolkit, as in the old
+    Lesson~3.0. Zeros, multiplicity, turning points, extrema, and intervals
+    (\textbf{A2.F.2a, c, d, e}) are Lesson~3.5.
+    \\[2pt]
+    \textbf{Lesson model:} \emph{Packet first.} A warm-up on paper as they walk in; three rounds
+    in the Guided Notes, each a short \textbf{definition} and \textbf{example} ($\le$3 min), a
+    \textbf{ladder} (\rung1\ \rung2\ \rung3), and a \textbf{Show me} or \textbf{Find the
+    mistake}; the self-scored \textbf{Closing Practice}; the homework started in class. The deck
+    mirrors the notes frame for frame. \textbf{Homework source:} DeltaMath, online --- set
+    \textbf{A2: Lesson 3.4: End Behavior \& Symmetry} (not in the packet). Optional graded
+    \textbf{Extra Credit} (\texttt{alg2-u03-l04-ec}) at the back of the packet.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -44,182 +52,206 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item State the \textbf{Rational Root Theorem} and build the candidate list $\pm\frac{p}{q}$.
-  \item Keep the bookkeeping clean: constant on \emph{top}, leading coefficient on the \emph{bottom}, reduce, drop repeats, keep every $\pm$.
-  \item \textbf{Test} candidates with the Remainder Theorem or synthetic division; use a graph's $x$-intercepts to choose which to try.
-  \item \textbf{Divide} out a confirmed zero and factor the \textbf{depressed polynomial} completely.
-  \item Solve $f(x)=0$ for degree $3$ and $4$, including \emph{fractional} solutions from non-monic factors.
-  \item \textbf{Verify} solutions by substitution and against the graph (A2.EI.6d).
-  \item Recognize the limits: the list may contain \emph{no} zeros, and irrational zeros never appear on it.
+  \item Rewrite in standard form and read the \textbf{leading term}: its exponent is the
+        \textbf{degree}, its coefficient the \textbf{leading coefficient}.
+  \item In factored form, add the factors' degrees and multiply their leading coefficients.
+  \item State \textbf{end behavior} in arrow notation from the parity/sign rule; read it off a
+        graph and infer the parity and sign.
+  \item Classify \textbf{even} / \textbf{odd} / \textbf{neither} from a graph and by computing
+        $f(-x)$.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Testing candidates is useless unless the list is \emph{finite} --- the theorem's whole job is turning infinity into a dozen numbers.
-  \item A zero $\frac{p}{q}$ comes from a factor $(qx-p)$; the $q$'s multiply to the leading coefficient and the $p$'s to the constant term, so neither can hide.
-  \item A leading coefficient of $1$ forces $q=\pm1$ --- which is why almost every candidate list students have seen so far was made of integers.
-  \item Each zero found \emph{shrinks} the problem: lower degree, shorter list, and at a quadratic the guessing stops entirely.
-  \item ``Find the zeros,'' ``solve $f(x)=0$,'' and ``find the $x$-intercepts'' are one task in three vocabularies.
-  \item The list is \emph{suspects, not convictions}. An empty result is information, not an arithmetic error.
+  \item Far from the origin the highest power swamps every other term, so the leading term
+        alone decides the ends.
+  \item Two questions fix both ends: even or odd degree? positive or negative leading
+        coefficient?
+  \item $(-x)^n$ keeps the sign for odd $n$ and loses it for even $n$ --- the reason even powers
+        give $y$-axis symmetry and odd powers give origin symmetry.
+  \item \textbf{Target misconception: reading the degree and leading coefficient (and so the end
+        behavior) from the first-written term or factor instead of the leading term.}
+        $2x^2-x^5$ has degree $5$ and leading coefficient $-1$, not $2$;
+        $-(x-1)(x+2)^2$ leads with $-x^3$. A second, related slip: \emph{an odd degree is not
+        an odd function} --- $x^3+1$ is neither.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
-\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems --- one definition frame each}]{sky}
 \renewcommand{\arraystretch}{1.3}
 \begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Rational Root Theorem} & \TallMath{\text{If } \tfrac{p}{q} \text{ (lowest terms) is a zero of } a_nx^n+\cdots+a_0, \text{ then } p \mid a_0 \text{ and } q \mid a_n .} \\
-\textbf{Candidate} & One value on the list $\pm\frac{p}{q}$ --- a number worth testing, not a guaranteed zero. \\
-\textbf{Lowest terms} & Why $\tfrac{2}{2}$ and $\tfrac{6}{3}$ never get their own entries; reduce before listing. \\
-\textbf{Depressed polynomial} & The quotient after dividing out $(x-r)$: one degree lower, with a shorter list of its own. \\
-\textbf{Solution / root} & A value making $f(x)=0$ --- the same object as a zero of $f$ and an $x$-intercept of its graph. \\
-\textbf{Verifying a solution} & Substituting to get $0$, and confirming against the graph's $x$-intercepts (A2.EI.6d). \\
-\textbf{Rational vs.\ irrational zero} & The theorem reaches only the first kind; $\pm\sqrt{3}$ arrives from the depressed polynomial. \\
-\textbf{Monic polynomial} & Leading coefficient $1$ $\Rightarrow$ every $q=\pm 1$ $\Rightarrow$ the candidates are the divisors of the constant term. \\
+\textbf{Standard form} & Terms listed from the highest power of $x$ down to the constant. \\
+\textbf{Leading term / degree / leading coefficient} & The term with the highest power; its
+      exponent is the degree and its coefficient is the leading coefficient. In factored form:
+      degree = sum of the factors' degrees; leading coefficient = product of their leading
+      coefficients. \\
+\textbf{End behavior} & What $f(x)$ does as $x\to\infty$ and $x\to-\infty$. Even degree: ends
+      the same way; odd: opposite ways. Positive leading coefficient: right end rises
+      ($f(x)\to\infty$); negative: it falls. \\
+\textbf{Even / odd / neither} & Even: $f(-x)=f(x)$, symmetric about the $y$-axis (all even
+      powers). Odd: $f(-x)=-f(x)$, symmetric about the origin (all odd powers). A mix: neither. \\
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up assembles today's theorem out of parts students already own, without naming it.
-    \textbf{(1)} \emph{Divisors} of $6$ and of $2$, positives \emph{and} negatives --- the two lists
-    the theorem asks for. \textbf{(2)} \emph{Building fractions} $\frac{p}{q}$ from those lists,
-    reducing, and crossing out duplicates ($\tfrac22$, $\tfrac62$) --- twelve candidates, and the
-    bookkeeping that most students lose points on. \textbf{(3)} \emph{Finishing Lesson~3.3's Tier E
-    preview}: synthetic division of $h(x)=2x^3-3x^2-11x+6$ by $(x-3)$, then factoring
-    $2x^2+3x-2=(2x-1)(x+2)$ to get all three zeros $3$, $\tfrac12$, $-2$. \textbf{(4)} The question
-    the lesson answers: yesterday's candidate list was the divisors of $6$, and $\tfrac12$ was not on
-    it --- \textbf{``where did that denominator come from?''} Debrief items 2 and 4 together, take
-    answers about the leading coefficient $2$, and \emph{do not} state the theorem yet.
+\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
+\hline
+Warm-Up & 5 & Three quick wins on the warm-up page as they walk in; score themselves & Stand at the door; reveal at 3 min; land ``which term controls the ends?'' \\
+Guided Notes \& Practice & 45 & Three rounds (13 / 13 / 13): watch ($\le$3 min), \emph{climb the ladder} \rung1$\to$\rung2$\to$\rung3, then \emph{Show me} or \emph{Find the mistake}; then the Closing Practice (6 min), self-scored out of 4 & $\le$3 min talk a round; circulate the whole ladder; reveal when most have \rung2; read the fingers; collect Closing Practice scores on fingers \\
+Homework & 10 & Start the DeltaMath set on a device, alone & Launch problem~1, then circulate \\
+\end{tabularx}
 \end{fixedskillbox}
 
-\begin{skillbox}[Hook]{forestbg}
-    Put the graph of $h(x) = 2x^3-3x^2-11x+6$ on the board (it is in the notes, pre-drawn) with its
-    three $x$-intercepts at $-2$, $\tfrac12$, and $3$. Then say the honest thing about yesterday:
-    \textbf{``Lesson 3.3 could crack any polynomial --- as long as somebody told you which number to
-    test. Nobody is going to tell you on the test.''} Ask the class how many numbers there are to
-    try. (Infinitely many.) So testing is worthless unless the list of suspects is finite. Point at
-    the intercept at $\tfrac12$: \textbf{``And notice a whole-number list would have walked right
-    past this one.''} Frame the period as a single question --- \emph{which numbers are worth
-    testing?} --- and promise that by the end of class they will be able to write down, for any
-    polynomial with integer coefficients, a short list guaranteed to contain every rational zero it
-    has.
+\begin{skillbox}[Engagement --- how this hour keeps everyone solving]{goldbox}
+\textbf{Nobody waits:} every round's practice is a ladder --- \rung1\ everyone (a quick win),
+\rung2\ everyone, \rung3\ early finishers. \textbf{Everyone commits, safely:} Rounds 1 and 2 end
+in a \emph{Show me}, 1--4 fingers on the count of three, all at once. \textbf{Critique a
+stranger:} Round 3's \emph{Find the mistake} puts the crux error on an anonymous Student A.
+\textbf{Their world:} the egg-drop box (Round 1 \rung3) and the spring-formal ticket profit
+(Closing Practice bonus); the extra credit transfers to the garden club's tomato harvest.
+\textbf{Short clock:} every practice frame carries its minutes. Praise the climb more than the
+answer. \textbf{No sketching:} every graph is pre-drawn --- students read, never draw.
 \end{skillbox}
 
-\begin{skillbox}[Lesson]{forestbg}
+\begin{skillbox}[Warm-Up (5 min, on paper as they walk in)]{forestbg}
+Three quick wins; the deck reveals the answers in one click. \textbf{(1)} Synthetic division
+(spiral 3.3): $x^3-2x^2-5x+6$ by $x-1$ gives $x^2-x-6$, remainder $0$. \textbf{(2)} Powers of a
+negative: $(-x)^2=x^2$, $(-x)^3=-x^3$, $(-x)^4=x^4$, $(-x)^5=-x^5$; for $f(x)=x^2+3$,
+$f(-x)=x^2+3$ --- yes, the same: the seed of Round 2's parity rule and Round 3's test.
+\textbf{(3)} Standard form: $g(x)=-3x^4-x^2+5x+2$; highest power $4$, coefficient $-3$. The
+reveal ends on \emph{Hold on to this}: $5x$ was written first --- which term controls the ends?
+(Answer $-3x^4$; Round 1 names it the leading term.)
+\end{skillbox}
+
+\begin{skillbox}[The Lesson --- three rounds and Closing Practice (45 min)]{forestbg}
 \begin{multicols}{2}
-\textbf{1. Why guessing fails.} One minute, and it earns the rest. Infinitely many numbers, no way to
-test them all; the theorem's entire job is to produce a \emph{finite} list.
+\textbf{Round 1 --- degree \& leading coefficient (13 min).} Definition and Example 1 in 3
+minutes; point at the underbrace on $-7x^5$. Example: $4x^2-7x^5+x-9$ has degree $5$, l.c.\ $-7$;
+$-2(x-3)(x+1)^2$ has degree $1+2=3$, l.c.\ $-2$. Ladder (7 min): \rung1\ $3x^4-2x^6+5$: degree
+$6$, l.c.\ $-2$ (watch ``$4$, $3$''); \rung2\ $(2x-1)(x+4)^3$: degree $4$, l.c.\ $2$ (watch
+degree $3$ or $2$ --- the cube); \rung3\ egg-drop box $x(20-2x)(12-2x)$: degree $3$, l.c.\ $4$
+(watch $240$: multiplying the constants). Show me $-x(3x+2)(x-5)^2$: answer \textbf{2} (degree
+$4$, l.c.\ $-3$); \textbf{1} = counted factors; \textbf{3} = lost the minus; \textbf{4} =
+biggest exponent and constants multiplied.
 
-\textbf{2. State the theorem, then earn it.} For $f(x)=a_nx^n+\cdots+a_0$ with \emph{integer}
-coefficients, a rational zero $\frac{p}{q}$ in lowest terms has $p \mid a_0$ and $q \mid a_n$. Then
-do the ``why'' live on the Warm-Up's factorization $h(x)=(x-3)(2x-1)(x+2)$: the leading coefficients
-of the factors multiply to $2$, the constants multiply to $6$. A zero $\frac{p}{q}$ comes from a
-factor $(qx-p)$, and those numbers have nowhere to hide. Students accept the rule either way, but
-this makes it inevitable rather than arbitrary --- and it explains the $\tfrac12$ they just found.
-
-\textbf{3. Build two lists.} $f(x)=x^3-4x^2+x+6$ (monic --- candidates are just the divisors of $6$;
-say out loud that this is why every list they have seen so far was integers) and
-$g(x)=4x^3-4x^2-x+1$ (candidates $\pm1,\pm\tfrac12,\pm\tfrac14$). Name the error of the day
-\emph{before} it happens: flipping the fraction. Ask whether $4$ could plausibly be a zero of $g$.
+\textbf{Round 2 --- end behavior (13 min).} Point at the four thumbnails: \emph{same way} or
+\emph{opposite}, then which way the \emph{right} end goes. Example 2: read $f$ (both ends fall
+$\Rightarrow$ even, negative); predict $5x^2-2x^3+1$: leading term $-2x^3$, as $x\to-\infty$,
+$g(x)\to\infty$; as $x\to\infty$, $g(x)\to-\infty$ --- stop here and say ``highest power, not
+first written.'' Ladder (7 min): \rung1\ $x^5-4x^2+7$: $-\infty$ left, $\infty$ right;
+\rung2\ graph of $p$: $\infty$ left, $-\infty$ right, odd and negative; \rung3\
+$(x+2)(3-x)(x-1)^2$ leads with $-x^4$: both ends $\to-\infty$ (watch ``both up'' --- the
+$(3-x)$ minus). Show me $-3x^5+x^2$: answer \textbf{4} (up-left, down-right); \textbf{1}/\textbf{2}
+= treated as even; \textbf{3} = ignored the sign.
 
 \columnbreak
+\textbf{Round 3 --- symmetry: the crux (13 min).} Definition with the three graphs: mirror in
+the $y$-axis, half-turn about the origin, neither. Example 3: $2x^4-x^2+3$ is even;
+$x^3-4x$ is odd (every term flips). Ladder (7 min): \rung1\ A odd, B even; \rung2\
+$x^5-2x^3+x$ odd; \rung3\ $x^4+x^3$: $k(-x)=x^4-x^3$, neither (watch ``odd because $x^3$'').
+\textbf{Find the mistake --- the frame not to rush:} Student A on $f(x)=2x^2-x^5$: step~1
+(neither) is right; \textbf{step~2 is wrong} --- the leading term is $-x^5$, so degree $5$,
+l.c.\ $-1$, and the ends go up-left, down-right. Give 3 minutes; ask ``what would you tell
+Student A?'' before revealing. This is the target misconception.
 
-\textbf{4. Run the workflow end to end.} On $f(x)=x^3-4x^2+x+6$: list, test ($f(1)=4$, $f(-1)=0$),
-divide by $x+1$ synthetically, factor the depressed $x^2-5x+6$, answer $(x+1)(x-2)(x-3)$. Then
-\textbf{Step 5, verify} --- substitute, and count against the degree. Verification is in the
-standard (A2.EI.6d); treat it as part of the answer, not as a nicety.
-
-\textbf{5. Make the search shorter.} Three moves, in order of value: \emph{read the graph} (the
-pre-drawn graph in the notes has intercepts at $-1$, $2$, $3$ --- all on the list); \emph{shrink the
-problem} (each zero found lowers the degree and shortens the list; at a quadratic, stop hunting);
-\emph{test cheaply} with the Remainder Theorem. Then say the equivalence plainly: find the zeros
-$=$ solve $f(x)=0$ $=$ find the $x$-intercepts.
-
-\textbf{6. Solve one together.} $2x^3+3x^2-8x+3=0$ gives $(x-1)(2x-1)(x+3)$ and the solution set
-$\{-3,\tfrac12,1\}$ --- a second fractional solution, from a second non-monic factor. Watch the
-board for students reading $2x-1=0$ as $x=2$ or $x=-\tfrac12$.
-
-\textbf{7. Close on the limits.} The practice section supplies both: $k(x)=x^3-x^2-2x+2$ has one
-rational zero and two irrational ones ($\pm\sqrt2$, from the depressed polynomial), and a depressed
-$x^2+4$ has no real zeros at all. \textbf{Leave the second one unresolved} --- it is the door into
-Lesson~3.5.
+\textbf{Closing Practice (6 min), alone, score out of 4.} 1.\ $(3x+1)^2(2-x)$: degree $3$, l.c.\
+$-9$. 2.\ $6x^3-2x^4+x$: both ends $\to-\infty$ (\emph{the crux's twin} --- ``down-left,
+up-right'' means they read $6x^3$). 3.\ $x^3+2$: $r(-x)=-x^3+2$, neither (the odd-degree slip).
+4.\ graph of $s$: both ends $\to\infty$, even. \textbf{Bonus:} formal tickets
+$P(x)=40x^2-x^3$: as $x\to\infty$, $P(x)\to-\infty$ --- a very high price loses money. Say the
+\emph{Watch out} aloud: the leading term is the highest power, not the first written --- and an
+odd degree does not make an odd function.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
+\boxguard
+\begin{skillbox}[Homework (DeltaMath) --- scored 1 to 5, started in class, due the first class after two study halls]{goldbox}
+\textbf{Source: DeltaMath, online} --- set \textbf{A2: Lesson 3.4: End Behavior \& Symmetry},
+assigned to the class; nothing is printed in the packet. \textbf{Skills:} to be chosen when the
+set is built with the teacher, by exact DeltaMath catalog names (degree and leading coefficient,
+end behavior from an equation and from a graph, even/odd/neither). \textbf{Formative check:} an
+end-behavior item whose leading term is not written first (to be named when the set is built);
+sort into \emph{correct} / \emph{read the first term} / \emph{sign slip}, and open 3.5's warm-up
+with one such item if the middle pile is large. Due the first class after two study halls,
+announced in class and on TurtleNet. \textbf{Preview:} 3.5 --- zeros and multiplicity, turning
+points and extrema, increasing/decreasing and positive/negative intervals.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Extra Credit --- optional, graded (\texttt{alg2-u03-l04-ec}), 16 points]{goldbox}
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item the \textbf{flipped fraction} --- divisors of the leading coefficient on top; ask whether that number could plausibly be a zero;
-  \item a \textbf{missing $\pm$} --- half the list gone, and in more than one problem today the only zero found by testing is negative;
-  \item \textbf{unreduced duplicates} --- $\tfrac22$, $\tfrac63$, $\tfrac{2}{6}$ written as new candidates;
-  \item \textbf{reading zeros off non-monic factors} --- $(2x-1)$ gives $x=\tfrac12$, not $2$ and not $-\tfrac12$. This is the new error this lesson introduces;
-  \item \textbf{grinding the whole list} when a graph is on the page --- correct answer, missed point;
-  \item stopping at the \textbf{depressed polynomial} instead of factoring completely (still Lesson 3.2's standard);
-  \item treating an \textbf{empty list} as an arithmetic failure;
-  \item forgetting that the theorem needs \textbf{integer coefficients} to say anything at all.
+  \item \textbf{q1 (combine R1 + R2, 4 pts):} $f(x)=-x(2x-1)^2(x+3)$: degree $4$, l.c.\ $-4$,
+        left end down, right end down --- stretches the factored-form rule to a squared factor
+        whose leading coefficient is $2^2$.
+  \item \textbf{q2 (reverse, 4 pts):} (a) $(kx+1)(x-2)^2(3-x)$ with l.c.\ $12$: $-k=12$,
+        $k=-12$; (b) $x^4+(c-3)x^3+5$ even: $c=3$ --- runs Rounds 1 and 3 backwards.
+  \item \textbf{q3 (model, 4 pts):} garden club $T(x)=30x^2-2x^3$: degree $3$, l.c.\ $-2$;
+        (c, rubric 2) as $x\to\infty$, $T(x)\to-\infty$ --- negative tomatoes, impossible;
+        $T(15)=0$, so the model stops there.
+  \item \textbf{q4 (Find the mistake, rubric 3):} ``$x^3+1$ is odd because its degree is odd''
+        --- step~2; $g(-x)=-x^3+1$ is neither $g(x)$ nor $-g(x)$, so neither.
+  \item \textbf{q5 (SOL-style MC, 1 pt):} both ends down: \textbf{B} $x^2-3x^4$; \textbf{C}
+        $-2x+x^4$ is the crux distractor (reads the first term).
 \end{itemize}
-Cold-call prompts: ``What is the constant term, and what goes on top?'' ``How many candidates are on
-your list --- did you count the negatives?'' ``You found $2x-1$; what value of $x$ makes that zero?''
-``The graph crosses between $-1$ and $0$: which candidates live there?'' ``Your list came up empty
---- is that a mistake?''
 \end{skillbox}
 
-\begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Suspect List} activity (tiered; mirrors the notes).
-\begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Two \emph{monic} cubics so the candidate list is simply the divisors
-of the constant term and the workflow can be practiced without fraction bookkeeping ---
-$x^3-2x^2-5x+6$ walked through step by step with the synthetic grid pre-drawn, then
-$x^3+2x^2-x-2$ solved independently (and re-derived by grouping, a Lesson~3.2 callback). The third
-problem is list-building only, on the non-monic $2x^3+x^2-5x+2$.
-
-\columnbreak
-\textbf{Tier A --- Approaching.} A non-monic solve with a fractional zero, $2x^3-x^2-8x+4$ (checked
-a second way by grouping); a \textbf{graph-driven} problem on $2x^3+3x^2-11x-6$ where the pre-drawn
-graph names two integer zeros and locates the third between $-1$ and $0$, so students choose
-$-\tfrac12$ off the list instead of grinding through twelve candidates; the quartic
-$x^4-x^3-7x^2+x+6$, requiring the workflow \emph{twice}; and error analysis on the two signature
-mistakes --- a list with no negatives, and the belief that a candidate list must contain a zero.
-
-\columnbreak
-\textbf{Tier E --- Extension.} A guided \emph{proof} of the monic case ($d=-r(r^2+br+c)$, so
-$r \mid d$), plus why that argument breaks when $a_n \ne 1$; running the theorem \emph{backward} to
-build $6x^3+x^2-4x+1$ from the zeros $\tfrac12$, $\tfrac13$, $-1$ (the A2.EI.6a skill Lesson~3.5
-opens with); $k(x)=x^3-3x-1$, which has \emph{no} rational zeros yet three real ones, established
-from a table of values with three sign changes; and a preview task on $x^3-x^2+4x-4$, whose depressed
-polynomial $x^2+4$ has no real zeros --- groups conjecture where the missing two solutions went.
-\end{multicols}
+\boxguard
+\begin{skillbox}[Active Monitoring --- Watch For]{redbox}
+\begin{itemize}[leftmargin=1.2em, nosep]
+  \item \textbf{The crux --- Round 2 Example (b), Round 3 Find the mistake, Closing Practice 2,
+        EC q5:} degree and leading coefficient read from the \emph{first-written} term or factor
+        ($2x^2-x^5$ called degree $2$; $-(x-1)(x+2)^2$ read off the $-(x-1)$ alone).
+  \item \textbf{Odd degree $\ne$ odd function --- Round 3 \rung3, Closing Practice 3, EC q4:}
+        $x^3+1$ or $x^4+x^3$ called odd because of the $x^3$.
+  \item \textbf{Round 1 \rung2--\rung3:} the cube's degree counted as $1$; $(20-2x)$ read with
+        leading coefficient $20$.
+  \item \textbf{Round 2 \rung3:} the minus in $(3-x)$ lost, so ``both up.''
+  \item \textbf{Attitude:} a student parked at \rung1\ with nothing written --- crouch, point at
+        the example in her notes, ask for just the first step.
+\end{itemize}
+Cold-call prompts (after the fingers, never before): ``Which term is the leading term, and how
+do you know?'' \; ``Even or odd degree --- and what does that tell you about the two ends?'' \;
+``Is that odd \emph{degree} or odd \emph{function}?''
 \end{skillbox}
 
-\begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} the full workflow on
-$3x^3+2x^2-7x+2=0$ --- build the list ($\pm1,\pm2,\pm\tfrac13,\pm\tfrac23$), test, divide, factor to
-$(x-1)(3x-1)(x+2)$, give the solutions $-2$, $\tfrac13$, $1$, and \emph{verify} one by substitution;
-\textbf{(2)} error analysis on a flipped candidate list for $2x^3+5x^2-x-6$, which forces students to
-say \emph{which} coefficient goes where; and \textbf{(3)} an \textbf{SOL-style multiple-choice} item
-asking which value is \emph{not} a possible rational zero of $4x^3-x^2+6x-3$, with $\tfrac23$ as the
-answer (its numerator does not divide $3$ and its denominator does not divide $4$) and three valid
-candidates as distractors. Sort into ``got it / list built wrong / division or arithmetic / stopped
-before solving.'' A large ``list built wrong'' pile is the one to fix immediately, because
-Lesson~3.5 assumes students can produce a candidate list unaided. Watch specifically for zeros
-listed as $-\tfrac13$ from the factor $(3x-1)$ --- that is the non-monic sign error, and two minutes
-of ``set each factor equal to zero and \emph{solve}'' fixes it.
-\end{skillbox}
+% ── Teacher notes — one per component, in packet order ──
+\begin{teachernote}[Warm-Up]
+On paper as they walk in; reveal on the deck at 3 minutes. Item 1 is a one-minute 3.3 check ---
+if many miss it, note who and keep moving; it is not today's skill. Land item 3's question
+without answering it: Round 1's definition does.
+\end{teachernote}
 
-\begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} three list-only items of increasing nastiness (ending with $6x^3+x^2-5x-2$ and its
-twelve candidates); two monic solves; a non-monic solve, $2x^3-5x^2-4x+3$, whose fractional solution
-$\tfrac12$ an integers-only list would have missed; a quartic, $x^4-4x^3-x^2+16x-12$, needing the
-workflow twice; a ``no hints this time'' item on $x^3+2x^2-5x-6$ --- Lesson~3.3's exit ticket, where
-the divisor was handed over and now must be generated --- with an explicit A2.EI.6d verification
-step; a solve whose depressed polynomial is $x^2-3$, so two of the three solutions are irrational and
-were never on the list; and two written items, including the one most students miss: a candidate list
-with no winners is not an arithmetic error. \textbf{Extension:} a planter box of volume
-$2x^3+3x^2-3x-2$ whose dimensions come out $(x-1)(2x+1)(x+2)$ with the domain restriction $x>1$,
-checked numerically at $x=3$; building $3x^3-13x^2+2x+8$ from the zeros $-\tfrac23$, $1$, $4$; and
-the sharpest one-question check of the theorem --- if $\tfrac35$ is a zero, what is the smallest the
-leading coefficient could be? \textbf{Preview:} Lesson~3.5, the \emph{Fundamental Theorem of
-Algebra} --- today a cubic twice refused to give up three real solutions; tomorrow you find out that
-nothing was missing.
-\end{skillbox}
+\begin{teachernote}[Guided Notes \& Practice]
+Pacing: rounds 13 / 13 / 13, Closing Practice 6 (45). Definition and example together take
+\textbf{at most 3 minutes} a round --- students fill the example's work space as you work it on
+the deck. Reveal a ladder when most have \rung2. If behind, shorten Round 1's Show me, never
+Round 3's Find the mistake. All graphs are pre-drawn: students read and label, never sketch.
+Zeros, turning points and intervals are 3.5 --- if a student asks, park it there.
+\end{teachernote}
+
+\begin{teachernote}[Homework]
+The homework is the online DeltaMath set \textbf{A2: Lesson 3.4: End Behavior \& Symmetry}; the
+packet carries no homework pages. Its skills are chosen when the set is built with the teacher.
+Launch problem~1 aloud in the last 10 minutes with students on their devices, then circulate.
+It is scored 1 to 5 from DeltaMath and due the first class after two study halls --- announce
+the date in class and on TurtleNet.
+\end{teachernote}
+
+\begin{teachernote}[Extra Credit]
+Optional and graded: the last two pages of the packet tear off and are turned in with the
+homework, unnamed --- the tracking id carries the student. Every final answer goes in its box.
+q3(c) and q4 are rubric items (\texttt{rubrics/alg2-u03-l04-ec-q3c.yaml}, \texttt{-q4.yaml}).
+Do not preview the items in class; the contexts are new on purpose.
+\end{teachernote}
+
+\begin{teachernote}[Slides]
+The deck mirrors the notes frame for frame (17 frames). Answers are in \texttt{\textbackslash
+reveal}, so the 3-up handout prints without them; it is a work product, not part of the packet.
+The red section label marks the crux frame. Example 2's graph is on the left of the slide (on
+the right in the notes).
+\end{teachernote}
+
 \end{document}

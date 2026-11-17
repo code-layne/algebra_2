@@ -1,0 +1,112 @@
+%! Factoring Polynomials — Unit 3, Lesson 3.2 — Extra Credit
+% UNITS 3+ PACKET-FIRST shape (LESSON_SHAPE.md §0a, 2026-11-14). GENERATED, GRADED, OPTIONAL.
+% Last in the packet; the build starts it on a fresh sheet so it tears off. TWO PAGES, exactly,
+% blank and key. Six stretch items, harder than every ★★★:
+%   1. COMBINE grouping + squares twice        2. COMBINE quadratic form + both cube identities
+%   3. FIND THE MISTAKE — the 2ab cube error (rubric)
+%   4. REVERSE — from the factored form back to standard form, and find the missing cube
+%   5. MODEL — the riding program's hay bin, with an interpret-the-answer part (rubric)
+%   6. SOL-style MULTIPLE CHOICE — the crux, x^4-16 inside a GCF
+% Every \gradedblank line is copied VERBATIM into the key. Work blocks sit OUTSIDE the boxes.
+% Rubrics: ../rubrics/alg2-u03-l02-ec-q3.yaml, ../rubrics/alg2-u03-l02-ec-q5c.yaml. NO NAME LINE.
+% Assignment id: alg2-u03-l02-ec. Total 16 points.
+\documentclass[12pt]{article}
+\usepackage{algebra2-article}
+\usepackage{algebra2-boxes}
+\usepackage{grading}          % math-shared: \gradedblank, QR codes, marks
+\gradingassignment{alg2-u03-l02-ec}
+\usepackage{algebra2-graded}
+\gradingcourse{algebra_2}
+
+\begin{document}
+
+\pageheader{Unit 3, Lesson 3.2}{Extra Credit\vphantom{y}}   % depth of "Answer Key", so boxes sit identically
+
+\vspace{0.10in}
+
+\boxguard[8]
+\begin{remindbox}
+\small
+\textbf{Extra credit --- optional.} Tear off these pages and turn them in with your homework,
+the first class after two study halls. I will announce the due date in class and on TurtleNet.
+{\small\itshape Write each final answer in its box. Only what is inside a box is graded.}\par
+\end{remindbox}
+
+\vspace{0.08in}
+
+\begin{notesbox}{Stretch}
+\small
+Factor \textbf{completely} every time: GCF first, then a pattern, then check every factor again.
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt]
+  \item \textbf{Grouping, then keep going.} Factor completely: \; $x^5+2x^4-16x-32$
+    \begin{work}
+      x^5+2x^4-16x-32 &= x^4(x+2)-16(x+2) \\
+        &= (x+2)(x^4-16) \\
+        &= (x+2)(x^2+4)(x^2-4) \\
+        &= (x+2)^2(x-2)(x^2+4)
+    \end{work}
+    Answer: \inblank{\blank{6.0cm}}{\gradedblank[id=q1, type=short, points=2, answer={(x+2)^2(x-2)(x^2+4)}, check=expression, display={$(x+2)^2(x-2)(x^2+4)$}]{6.0cm-2pt}{12.5pt}}
+
+  \item \textbf{Quadratic form, then cubes.} Factor completely: \; $x^6-7x^3-8$
+    \begin{work}
+      x^6-7x^3-8 &= (x^3-8)(x^3+1) \\
+        &= (x-2)(x^2+2x+4)(x+1)(x^2-x+1)
+    \end{work}
+    Answer: \inblank{\blank{8.4cm}}{\gradedblank[id=q2, type=short, points=2, answer={(x-2)(x^2+2x+4)(x+1)(x^2-x+1)}, check=expression, display={$(x-2)(x^2+2x+4)(x+1)(x^2-x+1)$}]{8.4cm-2pt}{12.5pt}}
+
+  \boxguard[22]
+  \item \textbf{Find the mistake.} Student A factored a difference of cubes:
+    \[
+      8x^3-27=(2x)^3-3^3=(2x-3)(4x^2+12x+9)
+    \]
+    \textit{``$a=2x$ and $b=3$, so the middle term is $2ab=12x$.''}
+    Explain Student A's mistake, and give the correct factorization.
+    \rubricbox{\gradedblank[id=q3, type=rubric, points=3, display={The middle term of the trinomial is $ab$, not $2ab$: $ab=(2x)(3)=6x$, and SOAP makes its sign positive. So $8x^3-27=(2x-3)(4x^2+6x+9)$. Student A's trinomial $4x^2+12x+9$ is the perfect square $(2x+3)^2$, and multiplying back gives $8x^3+12x^2-18x-27$, not $8x^3-27$.}]{\linewidth}{2in}}
+\end{enumerate}
+\end{notesbox}
+
+\newpage
+\begin{notesbox}{Stretch, continued}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=10pt, start=4]
+  \item \textbf{Run it backward.}
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+      \item A polynomial factored completely is $-2x(x-3)(x^2+3x+9)$. Write it in standard form.
+        \begin{work}
+          -2x(x-3)(x^2+3x+9) &= -2x(x^3-27) \\
+            &= -2x^4+54x
+        \end{work}
+        Answer: \inblank{\blank{4.0cm}}{\gradedblank[id=q4a, type=short, points=2, answer={-2x^4+54x}, check=expression, display={$-2x^4+54x$}]{4.0cm-2pt}{12.5pt}}
+      \item Find the number $k$ that makes $8x^3+k=(2x+5)(4x^2-10x+25)$ true.
+        \quad $k=$ \inblank{\blank{2.0cm}}{\gradedblank[id=q4b, type=short, points=1, answer={125}, check=numeric]{2.0cm-2pt}{12.5pt}}
+    \end{enumerate}
+
+  \item \textbf{Model it.} The riding program is building a rectangular bin to store hay bales.
+        Its volume, in cubic feet, is $V(x)=x^3-2x^2-25x+50$, where $x$ is a length in feet.
+    \begin{enumerate}[label=(\alph*), leftmargin=1.8em, itemsep=6pt]
+      \item Factor $V(x)$ completely. Each factor is one dimension of the bin.
+        \begin{work}
+          x^3-2x^2-25x+50 &= x^2(x-2)-25(x-2) \\
+            &= (x-2)(x^2-25) \\
+            &= (x-2)(x-5)(x+5)
+        \end{work}
+        Answer: \inblank{\blank{5.0cm}}{\gradedblank[id=q5a, type=short, points=2, answer={(x-2)(x-5)(x+5)}, check=expression, display={$(x-2)(x-5)(x+5)$}]{5.0cm-2pt}{12.5pt}}
+      \item Find the three dimensions, in feet, when $x=8$.
+        \quad \inblank{\blank{3.6cm}}{\gradedblank[id=q5b, type=short, points=1, answer={6, 3, 13}, check=set, display={$6$, $3$, $13$}]{3.6cm-2pt}{12.5pt}}
+      \item Explain why the bin can only be built when $x>5$.
+        \rubricbox{\gradedblank[id=q5c, type=rubric, points=2, display={Every dimension of a real bin must be positive. The smallest factor is $x-5$, which is positive only when $x>5$ (then $x-2$ and $x+5$ are positive too). At $x=5$ one dimension is $0$ and the volume is $0$; for $x<5$ a length would be negative.}]{\linewidth}{2in}}
+    \end{enumerate}
+
+  \item \textbf{Multiple choice (SOL-style).} Which is the \emph{complete} factorization of
+        $3x^4-48$? Write the letter of the single best answer in its Letter box.
+    \begin{enumerate}[label=(\Alph*), leftmargin=2.0em, itemsep=1pt]
+      \item $3(x^4-16)$
+      \item $3(x^2+4)(x^2-4)$
+      \item $3(x^2+4)(x+2)(x-2)$
+      \item $3(x+2)^2(x-2)^2$
+    \end{enumerate}
+    \letterbox{\gradedblank[id=q6, type=choice, points=1, answer={C}]{0.4in}{0.4in}}
+\end{enumerate}
+\end{notesbox}
+
+\end{document}

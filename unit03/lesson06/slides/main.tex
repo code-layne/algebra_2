@@ -1,6 +1,67 @@
-%! Graphing Polynomial Functions and Modeling — Unit 3, Lesson 3.6 — Slides (Beamer)
+%! Zeros \& Graphs of Polynomials — Unit 3, Lesson 3.6 — Slides (Beamer)
+% UNITS 3+ PACKET-FIRST shape (LESSON_SHAPE.md §0a): the projected deck MIRRORS the guided notes
+% frame for frame; the 3-up handout is a standalone work product, not in the packet. 17 frames:
+%   title → warm-up → targets → 3 × { definition → example → ladder ★/★★/★★★ → Show me | Find the
+%   mistake } → Closing Practice → homework (DeltaMath online)
+% Unit 3 exception: three merged skills, climbing — FTA & conjugate pairs → writing a polynomial
+% from its zeros → graphs from zeros & end behavior.
+% Crux (Round 3's Find the mistake, redacc): a zero at x = 3 written as (x + 3) — and the
+% y-intercept check still passes, because (3)^2 = (-3)^2. Closing Practice item 4 is its twin.
+% Answers only inside \reveal{} — the handout is a Beamer handout-mode compile and drops them.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+\usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
+% Ladder rungs and Show-me options.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+\newcommand{\opt}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle, fill=forest, text=white, font=\bfseries\small, inner sep=1.6pt,
+          minimum size=1.35em]{#1};
+  \end{tikzpicture}\;#2}
+% Pre-drawn polynomial graphs — the same macros as the notes.
+\newcommand{\pgrid}[5]{%
+  \draw[linegray!45, very thin, xstep=1, ystep=#5] (#1,#3) grid (#2,#4);
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[right, font=\tiny, inner sep=1pt]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[above, font=\tiny, inner sep=1pt]{$y$};}
+\newcommand{\pcurve}[5]{%
+  \begin{scope}\clip (#1,#3) rectangle (#2,#4);
+    \draw[very thick, forest, domain=#1:#2, samples=160, smooth] plot (\x,{#5});
+  \end{scope}}
+\newcommand{\xtick}[1]{\foreach \t in {#1}{%
+  \draw[charcoal] (\t,0) +(0,-2pt) -- +(0,2pt);
+  \node[below, font=\tiny, inner sep=1.5pt, fill=white, fill opacity=0.8, text opacity=1]
+    at (\t,0) {$\t$};}}
+\newcommand{\ytick}[1]{\foreach \t in {#1}{%
+  \draw[charcoal] (0,\t) +(-2pt,0) -- +(2pt,0);
+  \node[left, font=\tiny, inner sep=1.5pt, fill=white, fill opacity=0.8, text opacity=1]
+    at (0,\t) {$\t$};}}
+% The four Round 3 graphs, A–D (used on the definition, example and ladder frames).
+\newcommand{\graphABCD}{%
+  \begin{tikzpicture}[x=0.42cm, y=0.11cm]
+    \pgrid{-3}{3}{-8}{8}{2}
+    \pcurve{-3}{3}{-8}{8}{-((\x)+2)*((\x)-1)*((\x)-1)}
+    \xtick{-2,1} \ytick{-2}
+    \node[font=\small\bfseries, text=forest] at (-2.5,7) {A};
+  \end{tikzpicture}\hfill
+  \begin{tikzpicture}[x=0.42cm, y=0.11cm]
+    \pgrid{-3}{3}{-8}{8}{2}
+    \pcurve{-3}{3}{-8}{8}{((\x)+2)*((\x)-1)*((\x)-1)}
+    \xtick{-2,1} \ytick{2}
+    \node[font=\small\bfseries, text=forest] at (-2.5,7) {B};
+  \end{tikzpicture}\hfill
+  \begin{tikzpicture}[x=0.42cm, y=0.11cm]
+    \pgrid{-3}{3}{-8}{8}{2}
+    \pcurve{-3}{3}{-8}{8}{-((\x)-2)*((\x)+1)*((\x)+1)}
+    \xtick{-1,2} \ytick{2}
+    \node[font=\small\bfseries, text=forest] at (-2.5,7) {C};
+  \end{tikzpicture}\hfill
+  \begin{tikzpicture}[x=0.42cm, y=0.11cm]
+    \pgrid{-3}{3}{-8}{8}{2}
+    \pcurve{-3}{3}{-8}{8}{((\x)-2)*((\x)+1)*((\x)+1)}
+    \xtick{-1,2} \ytick{-2}
+    \node[font=\small\bfseries, text=forest] at (-2.5,7) {D};
+  \end{tikzpicture}}
 
 \begin{document}
 
@@ -11,243 +72,379 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 3.6}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Graphing Polynomial Functions}\\[0.25cm]
-    {\color{white}\bfseries\large and Modeling}\\[1.0cm]
+    {\color{white}\bfseries\LARGE Zeros \& Graphs of Polynomials}\\[1.2cm]
     {\color{forestmid}\small Algebra 2~$\cdot$~Unit 3: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% HOOK
+% WARM-UP — the packet's warm-up page, on screen as they walk in. Ends on the question Round 1's
+% Fundamental Theorem answers.
 \begin{frame}[t, plain]
-  \forestheader{Same zeros. Different graphs.}
-  \sectionlabel{Hook}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \[ (x-1)^2(x+2) \qquad \text{vs.} \qquad (x-1)(x+2)^2 \]
-      \vspace{2pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Both have $x$-intercepts at $-2$ and $1$ --- and nowhere else.
-        \item Both are cubics with a positive lead, so both arms behave the same way.
-        \item Their graphs still look nothing alike.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{The question}
-        The zeros are identical. \\[4pt]
-        \textbf{What tells the two pictures apart --- and how much of a graph can you know before
-        plotting a single point?}
-      \end{block}
-    \end{column}
-  \end{columns}
+  \forestheader{Warm-Up --- start now}
+  \sectionlabel[goldacc]{3 minutes --- on your warm-up page, alone}
+  \begin{enumerate}\setlength{\itemsep}{5pt}
+    \item Multiply: \; $(x+4)(x-1)$ \quad and \quad $(x-3i)(x+3i)$.
+    \item $f(x)=(x-4)(x+1)^2$: the zeros? Cross or touch at $x=-1$? Degree, and where does
+          $f(x)$ go as $x\to\infty$?
+    \item Solve $(x-2)(x^2+9)=0$. How many solutions? What is the degree? Same number?
+  \end{enumerate}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check --- give yourself a point for each}
+      1.\ $x^2+3x-4$; \; $x^2-9i^2=x^2+9$ \qquad
+      2.\ $4$ and $-1$; touches (multiplicity $2$); degree $3$, $f(x)\to\infty$ \\[1pt]
+      3.\ $x=2,\ 3i,\ -3i$ --- three solutions, degree $3$. \\[2pt]
+      \textbf{Hold on to this:} three solutions for degree $3$. Coincidence --- or a rule?
+    \end{block}}
 \end{frame}
 
-% THE FIVE-STEP PLAN
+% LEARNING TARGETS + HOW TODAY RUNS
 \begin{frame}[t, plain]
-  \forestheader{The five-step graph plan --- all of it is review}
-  \sectionlabel[goldacc]{Method}
-  \footnotesize
-  \begin{enumerate}\setlength{\itemsep}{4pt}
-    \item \textbf{Degree \& leading coefficient} $\Rightarrow$ the arms. \hfill {\scriptsize(4.0, 4.1)}
-    \item \textbf{Factor completely} $\Rightarrow$ the $x$-intercepts. \hfill {\scriptsize(3.2--3.4)}
-    \item \textbf{Multiplicity of each zero} $\Rightarrow$ cross, touch, or flatten. \hfill {\scriptsize(3.0)}
-    \item \textbf{$f(0)$} $\Rightarrow$ the $y$-intercept: one exact point.
-    \item \textbf{One test value per interval} $\Rightarrow$ above or below the axis. \hfill {\scriptsize(new today)}
-  \end{enumerate}
-  \vspace{4pt}
-  \begin{block}{What the plan does not give you}
-    The exact coordinates of the turning points. You get \emph{how many} ($\le n-1$) and roughly
-    \emph{where} --- the peak heights need a table or technology.
+  \forestheader{Today's targets}
+  \sectionlabel{Three skills today, each a little harder}
+  \begin{itemize}\setlength{\itemsep}{3pt}
+    \item Count a polynomial's \textbf{complex zeros} with the \textbf{Fundamental Theorem of
+          Algebra}, and find how many are real and how many imaginary from its graph.
+    \item Write a polynomial from its zeros in \textbf{factored form}, adding the missing
+          \textbf{conjugate}, then expand to \textbf{standard form} and find $a$.
+    \item Match an equation to its graph using \textbf{end behavior}, \textbf{cross} or
+          \textbf{touch} at each zero, and the \textbf{$y$-intercept} --- and write an
+          equation from a graph.
+  \end{itemize}
+  \vspace{2pt}
+  \begin{block}{How today runs --- you are solving the whole hour}
+    Three rounds in your guided notes: a short definition, one example, then \textbf{your turn}
+    --- start at \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show
+    me} (1--4 fingers on the count of three) or a \textbf{Find the mistake}. We finish with the
+    \textbf{Closing Practice} out of 4, then start the DeltaMath homework.
   \end{block}
 \end{frame}
 
-% MULTIPLICITY
+% ═══ ROUND 1 — THE FUNDAMENTAL THEOREM OF ALGEBRA ═════════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{Multiplicity is the feature that separates look-alikes}
-  \sectionlabel{Key Idea}
+  \forestheader{Definition: the Fundamental Theorem of Algebra}
+  \sectionlabel{Round 1 --- counting zeros}
+  \begin{block}{Fundamental Theorem of Algebra}
+    A polynomial of degree $n\ge1$ has exactly $n$ \textbf{complex zeros}, counted with
+    multiplicity --- the real zeros and the imaginary zeros together.
+  \end{block}
+  \vspace{2pt}
+  \begin{block}{Conjugate pairs}
+    If a polynomial has real coefficients and $a+bi$ is a zero, then its \textbf{conjugate}
+    $a-bi$ is also a zero, so imaginary zeros always come in pairs.
+  \end{block}
+  \vspace{2pt}
+  \begin{block}{Reading a graph}
+    Each real zero is an $x$-intercept (a touch counts twice); imaginary zeros never show on
+    the graph, so the number of imaginary zeros is the degree minus the number of real zeros.
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 1: count the zeros}
+  \sectionlabel{Watch --- 2 minutes}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{6pt}
-        \item \textbf{Odd multiplicity} ($1, 3, 5, \dots$): the graph \textbf{crosses} --- the sign
-          of $f(x)$ changes.
-        \item \textbf{Even multiplicity} ($2, 4, \dots$): the graph \textbf{touches} and turns back
-          --- the sign does \emph{not} change.
-        \item \textbf{Multiplicity $3$ or more}: it still crosses, but it \textbf{flattens} on the
-          way through.
-      \end{itemize}
+    \begin{column}{0.62\textwidth}
+      The graph of $f(x)=x^4-x^3+2x^2-4x-8$ is shown, and $2i$ is a zero. How many zeros?
+      How many real, how many imaginary? Name the imaginary ones.
+      \[
+      \begin{aligned}
+        \text{zeros in all} &= 4 && \text{degree } 4\text{, so FTA gives } 4 \\
+        \text{real zeros} &= 2 && \text{crosses at } x=-1,\ x=2 \\
+        \text{imaginary} &= 4-2=2 && \text{degree minus real} \\
+        \text{they are} &\ 2i,\ -2i && \text{a conjugate pair}
+      \end{aligned}
+      \]
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.6cm, y=0.11cm]
+        \pgrid{-2.5}{3.5}{-14}{14}{4}
+        \pcurve{-2.5}{3.5}{-14}{14}{((\x)+1)*((\x)-2)*((\x)*(\x)+4)}
+        \xtick{-1,2}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{7 minutes --- start at one star and climb}
+  Every polynomial has real coefficients. \quad \rung1\ Degree $6$, and $4-5i$ is a zero. How
+  many zeros in all? Name one more zero you know for certain.
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \rung2\ Degree $5$. How many real zeros? How many imaginary?\\[2pt]
+      \centering
+      \begin{tikzpicture}[x=0.55cm, y=0.08cm]
+        \pgrid{-2}{2.5}{-14}{14}{4}
+        \pcurve{-2}{2.5}{-14}{14}{((\x)-1)*((\x)*(\x)+1)*((\x)*(\x)+4)}
+        \xtick{1}
+      \end{tikzpicture}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{block}{The unit anchor}
-        $g(x) = x^3-3x+2 = (x-1)^2(x+2)$ \\[4pt]
-        Touches at $1$ (double), crosses at $-2$. \\[4pt]
-        Swap the exponents and you get a completely different picture with the same two intercepts.
-      \end{block}
+      \rung3\ Degree $5$. How many real zeros (with multiplicity)? How many imaginary?\\[2pt]
+      \centering
+      \begin{tikzpicture}[x=0.55cm, y=0.11cm]
+        \pgrid{-3}{2}{-10}{10}{2}
+        \pcurve{-3}{2}{-10}{10}{((\x)+2)*((\x)+2)*((\x)-1)*((\x)*(\x)+1)}
+        \xtick{-2,1}
+      \end{tikzpicture}
     \end{column}
   \end{columns}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $6$ zeros; $4+5i$ \quad \rung2\ $1$ real, $5-1=4$ imaginary \quad
+      \rung3\ $3$ real (the touch at $-2$ counts twice), $2$ imaginary
+    \end{block}}
 \end{frame}
 
-% SIGN CHART
 \begin{frame}[t, plain]
-  \forestheader{The sign chart: above or below, interval by interval}
-  \sectionlabel[goldacc]{New Today}
+  \forestheader{Show me: the missing zero}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  A polynomial with real coefficients has degree $3$. Two of its zeros are $4$ and $2+i$.
+  What is the third zero?\\[8pt]
   \begin{columns}[T]
-    \begin{column}{0.54\textwidth}
-      \footnotesize
-      $g(x) = (x-1)^2(x+2)$; zeros at $-2$ and $1$.
-      \begin{center}
-      \renewcommand{\arraystretch}{1.25}
-      \begin{tabular}{l|c|c|c}
-      Interval & Test & $g$(test) & Sign \\ \hline
-      $x<-2$   & $-3$ & $(-4)^2(-1) = -16$ & $-$ \\
-      $-2<x<1$ & $0$  & $(-1)^2(2) = 2$    & $+$ \\
-      $x>1$    & $2$  & $(1)^2(4) = 4$     & $+$ \\
-      \end{tabular}
-      \end{center}
-      \vspace{2pt}
-      Use the \textbf{factored} form --- only signs matter, so this is ten seconds of work.
+    \begin{column}{0.45\textwidth}
+      \opt1{$-4$} \\[12pt]
+      \opt3{$-2-i$}
     \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Read the last two rows again}
-        The sign did \emph{not} flip at $x=1$. \\[4pt]
-        That is not an error --- it is what even multiplicity means, and the sign chart catches it
-        automatically.
-      \end{block}
+    \begin{column}{0.45\textwidth}
+      \opt2{$2-i$} \\[12pt]
+      \opt4{There isn't one --- I only see two.}
     \end{column}
   \end{columns}
+  \vspace{8pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      Real coefficients, so $2+i$ brings its conjugate $2-i$; that makes $3$ zeros for degree
+      $3$. \; \textbf{1} paired $4$ with its opposite --- real zeros don't pair. \textbf{3}
+      flipped both signs; a conjugate flips only the $i$ part. \textbf{4} forgot the
+      conjugate: degree $3$ means exactly three zeros.
+    \end{block}}
 \end{frame}
 
-% WORKED EXAMPLE
+% ═══ ROUND 2 — WRITING A POLYNOMIAL FROM ITS ZEROS ═══════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{One equation, the whole picture}
-  \sectionlabel{Worked Example}
-  \footnotesize
-  \[ q(x) = -(x+2)(x-1)^3 \]
+  \forestheader{Definition: factored form from the zeros}
+  \sectionlabel{Round 2 --- zeros in, polynomial out}
+  \begin{block}{Factored form}
+    If a polynomial of degree $n$ has zeros $r_1,r_2,\dots,r_n$ (counted with multiplicity),
+    then
+    \[ f(x)=a(x-r_1)(x-r_2)\cdots(x-r_n), \]
+    where $a$ is the leading coefficient. Each zero $r$ gives the factor $(x-r)$, so a zero at
+    $x=3$ gives $(x-3)$ and a zero at $x=-3$ gives $(x+3)$.
+  \end{block}
+  \vspace{2pt}
+  \begin{block}{The conjugate, and the last point}
+    With real coefficients, every imaginary zero brings its conjugate, and the pair multiplies
+    to a real quadratic: $(x-2i)(x+2i)=x^2+4$. To find $a$, substitute one more point the
+    polynomial passes through.
+  \end{block}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 2: build it, expand it, find $a$}
+  \sectionlabel{Watch --- 3 minutes}
+  Least degree, real coefficients, zeros include $3$ and $2i$, passes through $(0,24)$.
+  Standard form.
+  \[
+  \begin{aligned}
+    f(x) &= a(x-3)(x-2i)(x+2i) && \text{one factor per zero; add the conjugate } -2i \\
+         &= a(x-3)(x^2+4) && -4i^2=+4 \\
+         &= a(x^3-3x^2+4x-12) && \text{distribute} \\
+    24 &= a(0-0+0-12) && \text{substitute } (0,24) \\
+    a &= -2 && \text{divide by } -12 \\
+    f(x) &= -2x^3+6x^2-8x+24 && \text{distribute the } -2
+  \end{aligned}
+  \]
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  Standard form each time.
+  \begin{itemize}\setlength{\itemsep}{5pt}
+    \item[\rung1] Zeros $2$ and $-5$; leading coefficient $1$.
+    \item[\rung2] Least degree, real coefficients, leading coefficient $1$; zeros $1$ and $-3i$.
+    \item[\rung3] The puzzle board in the dorm common room: \emph{``I have real coefficients and
+          degree $3$. My zeros are $-1$ (twice) and $4$, and my graph crosses the $y$-axis at
+          $8$. Who am I?''}
+  \end{itemize}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $(x-2)(x+5)=x^2+3x-10$ \qquad \rung2\ $(x-1)(x^2+9)=x^3-x^2+9x-9$ \\[1pt]
+      \rung3\ $a(x+1)^2(x-4)$, $8=-4a$, $a=-2$: \; $-2x^3+4x^2+14x+8$
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: build it}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  Least degree, real coefficients, leading coefficient $1$, zeros include $2$ and $1+i$:\\[8pt]
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Degree $1+3 = 4$; lead $-1$ $\Rightarrow$ \textbf{both arms down}.
-        \item Zeros: $-2$ (crosses), $1$ (multiplicity $3$ --- \textbf{flattens}, then crosses).
-        \item $q(0) = -(2)(-1)^3 = 2$.
-        \item Signs: $-$ on $x<-2$, $+$ on $-2<x<1$, $-$ on $x>1$.
+    \begin{column}{0.45\textwidth}
+      \opt1{$(x-2)(x-1-i)$} \\[12pt]
+      \opt3{$(x-2)(x^2-2x+2)$}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \opt2{$(x+2)(x^2-2x+2)$} \\[12pt]
+      \opt4{$(x-2)(x^2+2x+2)$}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{3}}
+      $(x-1-i)(x-1+i)=(x-1)^2-i^2=x^2-2x+2$, times $(x-2)$. \; \textbf{1} forgot the
+      conjugate $1-i$ --- its coefficients are not real. \textbf{2} wrote the zero $2$ as
+      $(x+2)$. \textbf{4} lost the sign: the zeros are $1\pm i$, so the middle term is $-2x$.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 3 — GRAPHS FROM ZEROS AND END BEHAVIOR (the crux) ═════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: reading a factored polynomial}
+  \sectionlabel{Round 3 --- equation $\leftrightarrow$ graph}
+  \begin{block}{Reading a factored polynomial}
+    \small In $f(x)=a(x-r_1)^{m_1}(x-r_2)^{m_2}\cdots$, each factor $(x-r)$ puts an
+    $x$-intercept at $x=r$ --- the number that makes the factor zero, the \emph{opposite} of
+    the sign printed inside. An odd power \textbf{crosses} the $x$-axis; an even power
+    \textbf{touches} it and turns back. The \textbf{end behavior} comes from the degree and the
+    sign of $a$, and the \textbf{$y$-intercept} is $f(0)$. To \emph{match}, check the features
+    one at a time; to \emph{write}, turn each intercept into a factor, square it at every touch,
+    and use the $y$-intercept to find $a$.
+  \end{block}
+  \vspace{4pt}
+  \graphABCD
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 3: match and defend}
+  \sectionlabel{Watch --- 2 minutes}
+  Which graph, A--D, is $f(x)=-(x+2)(x-1)^2$?\\[2pt]
+  \graphABCD
+  \[
+  \begin{aligned}
+    x &= -2 && \text{from } (x+2)\text{; power } 1\text{, so it crosses} \\
+    x &= 1 && \text{from } (x-1)^2\text{; power } 2\text{, so it touches} \\
+    \text{degree } 3,\ a &= -1 && \text{rises on the left, falls on the right} \\
+    f(0) &= -(2)(-1)^2=-2 && \Rightarrow \text{Graph A, the only one with all four}
+  \end{aligned}
+  \]
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  \begin{columns}[T]
+    \begin{column}{0.6\textwidth}
+      \begin{itemize}\setlength{\itemsep}{5pt}
+        \item[\rung1] $k(x)=2(x+4)(x-3)^2$: each zero (cross or touch), the end behavior, and
+              the $y$-intercept.
+        \item[\rung2] Which graph, A--D (Example 3), is $h(x)=(x-2)(x+1)^2$? Name a feature
+              that proves it.
+        \item[\rung3] Write an equation of least degree, in factored form, for the graph at
+              the right.
       \end{itemize}
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{Assemble}
-        Up from $-\infty$ on the left, cross at $-2$, over the top through $(0,2)$, flatten through
-        $1$, and back down to $-\infty$. \\[4pt]
-        One turning point --- and degree $4$ permits three.
-      \end{block}
+    \begin{column}{0.36\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.42cm, y=0.12cm]
+        \pgrid{-4}{4}{-8}{10}{2}
+        \pcurve{-4}{4}{-8}{10}{0.5*((\x)+3)*((\x)-2)*((\x)-2)}
+        \xtick{-3,2} \ytick{6}
+      \end{tikzpicture}
     \end{column}
   \end{columns}
+  \vspace{2pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $-4$ crosses, $3$ touches; falls left, rises right; $k(0)=2(4)(9)=72$ \\[1pt]
+      \rung2\ Graph D: crosses at $2$, touches at $-1$, rises on the right \\[1pt]
+      \rung3\ $a(x+3)(x-2)^2$ and $6=12a$, so $f(x)=\tfrac12(x+3)(x-2)^2$
+    \end{block}}
 \end{frame}
 
-% BACKWARD
 \begin{frame}[t, plain]
-  \forestheader{Run it backward: graph $\rightarrow$ equation}
-  \sectionlabel[goldacc]{A2.EI.6a}
+  \forestheader{Find the mistake}
+  \sectionlabel[redacc]{The one that matters --- 3 minutes --- find Student A's wrong step and fix it}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      A graph touches at $x=-1$, crosses at $x=2$, and passes through $(0,2)$.
-      \begin{enumerate}\setlength{\itemsep}{3pt}
-        \item Skeleton: $f(x) = a(x+1)^2(x-2)$.
-        \item $f(0) = a(1)(-2) = 2 \Rightarrow a = -1$.
-        \item $f(x) = -(x+1)^2(x-2)$.
-        \item Check the arms: degree $3$, lead $-1$ --- up on the left, down on the right. \checkmark
+    \begin{column}{0.62\textwidth}
+      \textbf{Student A} wrote an equation for the graph at the right:\\[4pt]
+      \emph{``It crosses at $x=-1$ and touches at $x=3$, so I square that factor:
+      $y=(x+1)(x+3)^2$. \; Check: at $x=0$, $y=(1)(3)^2=9$, which matches the
+      $y$-intercept.''}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.42cm, y=0.12cm]
+        \pgrid{-2}{4.5}{-6}{12}{2}
+        \pcurve{-2}{4.5}{-6}{12}{((\x)+1)*((\x)-3)*((\x)-3)}
+        \xtick{-1,3} \ytick{9}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{The mistake}
+      The zero $x=3$ needs the factor $(x-3)$; $(x+3)$ is zero at $x=-3$, where this graph has
+      no intercept. Correct: $y=(x+1)(x-3)^2$. The $y$-intercept check could not catch it,
+      because $3^2=(-3)^2=9$ --- check every intercept, not just $f(0)$.
+    \end{block}}
+\end{frame}
+
+% CLOSING PRACTICE — four mixed problems (one per round, item 4 the crux's twin), self-scored /4.
+\begin{frame}[t, plain]
+  \forestheader{Closing Practice}
+  \sectionlabel[goldacc]{6 minutes --- on your own --- score yourself out of 4}
+  \begin{columns}[T]
+    \begin{column}{0.78\textwidth}
+      {\footnotesize
+      \begin{enumerate}\setlength{\itemsep}{0pt}
+        \item Degree $4$, real coefficients, zeros include $5i$ and $1-2i$. List all four.
+        \item Least degree, real coefficients, leading coeff.\ $1$, zeros $-2$ and $4i$: standard form.
+        \item $g(x)=-(x-5)(x+2)^2$: each zero (cross or touch) and the $y$-intercept.
+        \item Write an equation of least degree, in factored form, for the graph.
       \end{enumerate}
+      \textbf{Bonus (+1):} Math Night clue --- \emph{real coefficients, degree $3$, zeros $2$
+      and $1+i$, through $(0,8)$.} Standard form.}
     \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Two warnings}
-        The $y$-intercept is the \emph{only} labeled point that is not a zero --- which is exactly
-        why it can pin down $a$. An $x$-intercept gives $0=0$. \\[4pt]
-        And the answer is always ``\emph{a} possible equation'': a graph can hide imaginary zeros
-        (3.5) and extra even factors.
-      \end{block}
+    \begin{column}{0.2\textwidth}
+      \centering
+      \begin{tikzpicture}[x=0.26cm, y=0.042cm]
+        \pgrid{-5}{2.5}{-20}{8}{4}
+        \pcurve{-5}{2.5}{-20}{8}{-((\x)+4)*((\x)-1)*((\x)-1)}
+        \xtick{-4,1} \ytick{-4}
+      \end{tikzpicture}
     \end{column}
   \end{columns}
+  \reveal{%
+    \begin{block}{Check --- one point each}
+      \footnotesize 1.\ $5i,\ -5i,\ 1-2i,\ 1+2i$ \quad 2.\ $x^3+2x^2+16x+32$ \quad
+      3.\ $5$ crosses, $-2$ touches; $g(0)=20$ \\ 4.\ $-(x+4)(x-1)^2$ \quad
+      \textbf{Bonus:} $-2x^3+8x^2-12x+8$ \\
+      \textbf{Watch out:} a zero at $x=3$ is the factor $(x-3)$, not $(x+3)$; a touch is
+      squared; an imaginary zero brings its conjugate.
+    \end{block}}
 \end{frame}
 
-% CHARACTERISTICS
+% HOMEWORK — source: DeltaMath, online.
 \begin{frame}[t, plain]
-  \forestheader{Reading the finished graph}
-  \sectionlabel{A2.F.2a--e}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \footnotesize
-      $p(x) = x^4-5x^2+4$:
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item Domain: all reals --- always, for a polynomial.
-        \item Range: about $[-2.25,\infty)$.
-        \item Zeros $-2,-1,1,2$; $y$-intercept $(0,4)$.
-        \item Relative max at $(0,4)$; absolute min about $-2.25$; \textbf{no} absolute max.
-        \item $3$ turning points --- the most a quartic may have.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Say it out loud}
-        An \textbf{odd}-degree polynomial has \emph{no} absolute extrema at all. \\[4pt]
-        An \textbf{even}-degree one has an absolute minimum (positive lead) or an absolute maximum
-        (negative lead) --- never both.
-      \end{block}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% MODELING
-\begin{frame}[t, plain]
-  \forestheader{Modeling: the picture only counts where it makes sense}
-  \sectionlabel[goldacc]{Application}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \footnotesize
-      Cut $x$-inch squares from the corners of a $10 \times 8$ sheet and fold:
-      \[ V(x) = x(10-2x)(8-2x) = 4x^3-36x^2+80x \]
-      \begin{center}
-      \renewcommand{\arraystretch}{1.15}
-      \begin{tabular}{c|cccccc}
-      $x$    & $0.5$ & $1$ & $1.5$ & $2$ & $2.5$ & $3$ \\ \hline
-      $V(x)$ & $31.5$ & $48$ & $\mathbf{52.5}$ & $48$ & $37.5$ & $24$ \\
-      \end{tabular}
-      \end{center}
-      \vspace{2pt}
-      Zeros of $V$: $0$, $4$, $5$ --- none of them is a usable cut.
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \begin{block}{Feasible domain: $0 < x < 4$}
-        A cut is positive and cannot exceed half the $8$-inch side. Inside that window the relative
-        maximum \emph{is} the absolute maximum --- which is why it answers ``what is the biggest
-        box?''
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize $V(2.5)=37.5$ means a $2.5$-inch cut gives a $37.5$ in$^3$ box. The algebra does
-       not know about cardboard; you do.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% WHERE THIS GOES
-\begin{frame}[t, plain]
-  \forestheader{Every tool in the unit, in one picture}
-  \sectionlabel{Connections}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{Today:}
-      \begin{itemize}\setlength{\itemsep}{3pt}
-        \item Arms, intercepts, multiplicity, $f(0)$, sign chart --- one procedure.
-        \item Graph $\rightarrow$ equation, using the $y$-intercept to find $a$.
-        \item Domain, range, increasing/decreasing, relative vs.\ absolute extrema.
-        \item Models, feasible domains, and interpreting a maximum.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{block}{Coming next}
-        \textbf{The Unit 3 test}, and then \textbf{Unit 4: Rational Functions} --- a polynomial in a
-        denominator, where dividing by zero puts brand-new lines on the graph: \emph{asymptotes}.
-      \end{block}
-    \end{column}
-  \end{columns}
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  \begin{block}{DeltaMath --- scored 1 to 5, due the first class after two study halls}
+    Assignment: \textbf{A2: Lesson 3.6: Zeros \& Graphs of Polynomials}. Start it now on your
+    device; the rest is due the first class after two study halls. I will announce the date in
+    class and on TurtleNet.
+  \end{block}
+  \vspace{6pt}
+  \begin{block}{Extra credit --- optional}
+    The last two pages of your packet: tear them off and turn them in with your homework.
+  \end{block}
+  \vspace{6pt}
+  \textbf{Next:} the Unit 3 test --- every skill from 3.1 to 3.6.
 \end{frame}
 
 \end{document}

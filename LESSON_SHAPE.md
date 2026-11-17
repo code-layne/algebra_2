@@ -75,8 +75,15 @@ lessons").** The user chose to *merge*: the skills of the 10-23 map are folded i
 one place the three rounds are three different skills; the Final Round still covers all three.
 Every other unit keeps one skill per lesson.
 
+**Unit 3 resequenced 2026-11-17 (user direction): six lessons, numbered 3.1–3.6 — no 3.0.**
+"Renumbered from 1 … n instead of 0 … n"; the characteristics lesson is split in two and moved
+after the algebra: 3.1 operations · 3.2 factoring · 3.3 division · 3.4–3.5 characteristics of
+polynomial functions (part 1, part 2) · 3.6 zeros & graphs. The merged-rounds exception above
+still holds. Unit 3 has no `lesson00/`; Units 4+ keep the X.0 opener until the user says
+otherwise.
+
 The lesson map these rules produce is in `COURSE_BREAKDOWN.md` (Units 2–5 remapped 2026-10-23;
-Unit 3 condensed 2026-10-31).
+Unit 3 condensed 2026-10-31, resequenced 2026-11-17).
 The lessons already on disk for 2.4–2.5 and Units 3–5 are in the old map's numbering and scope;
 each is regenerated whole when its new lesson is authored, never patched.
 
@@ -189,7 +196,7 @@ python3 ~/.claude/skills/lesson-planning/scripts/new_lesson.py --project . --uni
 #  or the default components with --prefab homework,homework_key  # DeltaMath printed
 ```
 
-**No reference lesson in this shape yet.** The first one authored (3.0) is the pilot; once the
+**No reference lesson in this shape yet.** Unit 3 (3.1–3.6) is the first set authored (2026-11-17), all six at once; once the
 user approves it, name it here and in `reference_lesson`. Until then mirror `unit01/lesson04` for
 the warm-up, notes and cover preambles and the plan's boxes, `templates/lesson/slides.tex` for
 the deck, and `unit02/lesson04` for engagement frames.
@@ -635,7 +642,7 @@ Recognize the shape by the component directories and the plan's section titles:
 
 | Shape | Has | Lessons |
 | --- | --- | --- |
-| **current, Units 3+ — packet-first** (2026-11-14, §0a) | `warmup` (1p) + `notes` (3 rounds + Closing Practice, ≤4pp) + DeltaMath homework (online, or prefab) + graded `extra_credit` (2pp) + a deck mirroring the notes; cover with four rows; plan 5/45/10, five teacher notes | none yet — 3.0 is the pilot |
+| **current, Units 3+ — packet-first** (2026-11-14, §0a) | `warmup` (1p) + `notes` (3 rounds + Closing Practice, ≤4pp) + DeltaMath homework (online, or prefab) + graded `extra_credit` (2pp) + a deck mirroring the notes; cover with four rows; plan 5/45/10, five teacher notes | `unit03/lesson01`–`lesson06` (2026-11-17, DeltaMath sets pending) — pending user review |
 | **current, Unit 2 — slides-first** (2026-09-25) | no `warmup/`, no `notes/`; a deck with definition / example / ladder / Show-me cycles, a Final Round, and `\reveal` (engagement rules 2026-09-27); `homework{,_key}` generated, prefab, or absent (DeltaMath online); cover with **two** rows; plan 5/40/5/10 with two teacher notes | `unit02/lesson01` (2026-09-27, four cycles, DeltaMath printed); `unit02/lesson02`–`lesson05` (condensed 2026-09-29: three cycles, 17 frames, DeltaMath online) — pending user review; once approved 2.2 becomes `reference_lesson` |
 | **gradual-release** (two-section, 12pt, 2026-09-07; `guidednotes` notes from 2026-09-12) | 12pt `warmup` + `notes` (vocab + hook, ONE `guidednotes` table + Guided Practice) + homework 2pp with the due-date `remindbox`; cover with three rows; 11-frame deck; plan 5/35/10/10, three teacher notes | `unit01/lesson04`, `unit02/lesson00`; `unit01/lesson02` is its pilot (5/34/8/13) |
 | **four-section interim** (2026-09-01) | 10pt `notes/` with an `objectivebox`, four numbered sections, and an *Individual Practice* `scenariobox`; 10pt homework with an `extensionbox`; plan 5/20/15/10/10 with four teacher notes | `unit01/lesson00`, `01`, `03`, `05` |

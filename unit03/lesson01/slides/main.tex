@@ -1,6 +1,22 @@
-%! Operations with Polynomials — Unit 3, Lesson 3.1 — Slides (Beamer)
+%! Polynomial Operations — Unit 3, Lesson 3.1 — Slides (Beamer)
+% UNITS 3+ PACKET-FIRST shape (LESSON_SHAPE.md §0a, 2026-11-14): the deck MIRRORS the guided
+% notes frame for frame, so the class and the page never disagree. The 3-up handout is a
+% standalone work product, not in the packet.
+%   title → warm-up → targets → { definition → example → ladder ★/★★/★★★ → Show me | Find the
+%   mistake } × 3 → Closing Practice → homework   (17 frames; 20 is the ceiling)
+% Round 3's Find the mistake is the crux: (x+2)^3 is not x^3+8.
+% Answers only in \reveal (never \only/\pause): the handout-mode compile drops them.
 \documentclass[aspectratio=169, 11pt]{beamer}
-\usepackage{algebra2-beamer}   % provides \forestheader{} and \sectionlabel[color]{}
+\usepackage{algebra2-beamer}   % \forestheader{}, \sectionlabel[color]{}, \reveal[n]{}
+\setbeamercolor{block title}{bg=forest, fg=white}
+\setbeamercolor{block body}{bg=forestbg, fg=charcoal}
+% Ladder rungs and Show-me options.
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+\newcommand{\opt}[2]{%
+  \begin{tikzpicture}[baseline=-0.6ex]
+    \node[circle, fill=forest, text=white, font=\bfseries\small, inner sep=1.6pt,
+          minimum size=1.35em]{#1};
+  \end{tikzpicture}\;#2}
 
 \begin{document}
 
@@ -11,205 +27,368 @@
   \vspace{2.8cm}\hspace{0.55cm}%
   \begin{minipage}{0.9\textwidth}
     {\color{goldacc}\bfseries\small LESSON 3.1}\\[0.5cm]
-    {\color{white}\bfseries\LARGE Operations with Polynomials}\\[1.2cm]
+    {\color{white}\bfseries\LARGE Polynomial Operations}\\[1.2cm]
     {\color{forestmid}\small Algebra 2~$\cdot$~Unit 3: Polynomial Functions}
   \end{minipage}
 \end{frame}
 }
 
-% HOOK
+% WARM-UP — the same three items as the warm-up page; answers in one \reveal, ending on the
+% question Round 1 answers.
 \begin{frame}[t, plain]
-  \forestheader{Two names for yesterday's curve --- same function?}
-  \sectionlabel{Hook}
-  \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \[ g(x) = (x-1)^2(x+2) \]
-      \[ g(x) = x^3 - 3x + 2 \]
-      \vspace{2pt}
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item Both give $2$ at $x=0$, $4$ at $x=2$, $0$ at $x=-2$.
-        \item Three matching points is \emph{evidence}, not \emph{proof}.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{What each costume is good for}
-        \textbf{Factored} $\Rightarrow$ the \emph{zeros}. \\[3pt]
-        \textbf{Standard} $\Rightarrow$ the \emph{degree} and \emph{leading coefficient}, hence the
-        \emph{end behavior}.
-      \end{block}
-      \vspace{3pt}
-      {\footnotesize \textbf{Today:} travel from factored to standard by multiplying.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% NAMING
-\begin{frame}[t, plain]
-  \forestheader{Standard form comes first}
-  \sectionlabel{Definition}
-  \begin{columns}[T]
-    \begin{column}{0.55\textwidth}
-      Powers from highest to lowest:
-      \[ a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0 \]
-      \begin{itemize}\setlength{\itemsep}{4pt}
-        \item \textbf{Degree:} the highest power.
-        \item \textbf{Leading coefficient:} that term's coefficient.
-        \item \textbf{Terms:} 1 monomial, 2 binomial, 3 trinomial.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.42\textwidth}
-      \begin{block}{Two variables}
-        A \emph{term's} degree is the \textbf{sum} of its exponents: \\[3pt]
-        $-7x^2y^3$ has degree $5$.
-      \end{block}
-      \vspace{2pt}
-      {\footnotesize $-5x^2+7x^4-3+x \;\Rightarrow\; 7x^4-5x^2+x-3$: degree $4$, lead $7$.}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% ADD & SUBTRACT
-\begin{frame}[t, plain]
-  \forestheader{Adding \& subtracting: collecting, not creating}
-  \sectionlabel[goldacc]{The sign trap}
-  \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      \textbf{Like terms} = same variables, same exponents. \\
-      $3x^2$ and $3x^3$ never combine.
-      \vspace{6pt}
-      \[ (3x^3-5x+2)+(x^3+4x^2-7) \]
-      \[ = 4x^3+4x^2-5x-5 \]
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \footnotesize
-      A minus sign in front is a factor of $-1$ --- it flips \emph{every} sign inside.
-      \[ (3x^3-5x+2)-(x^3+4x^2-7) \]
-      \[ = 3x^3-5x+2-x^3-4x^2+7 \]
-      \[ = 2x^3-4x^2-5x+9 \]
-    \end{column}
-  \end{columns}
+  \forestheader{Warm-Up --- start now}
+  \sectionlabel[goldacc]{5 minutes --- on your warm-up page, alone}
+  \begin{enumerate}\setlength{\itemsep}{6pt}
+    \item \textbf{Exponent rules.} \; (a) $x^3\cdot x^4$ \quad (b) $(-2x^2)(5x^3)$ \quad (c) $(3x)(4xy)$
+    \item \textbf{Distribute.} \; (a) $4x(x+2)$ \quad (b) $-3(2x-5)$
+    \item \textbf{Combine like terms.} \; $7x^2-3x+2-x^2+5x$ \quad and \quad $-(x^2-4x+6)$. \\
+          How many of the three terms inside changed sign?
+  \end{enumerate}
   \vspace{2pt}
-  \begin{block}{A degree can drop}
-    $(x^4+2x)-(x^4-5)=2x+5$ --- the leading terms cancel, so a sum or difference has degree
-    \emph{at most} the larger degree.
+  \reveal{%
+    \begin{block}{Check --- give yourself a point for each}
+      1.\ $x^7$, \; $-10x^5$, \; $12x^2y$ \qquad 2.\ $4x^2+8x$, \; $-6x+15$ \\[1pt]
+      3.\ $6x^2+2x+2$, \; $-x^2+4x-6$ --- \textbf{all three} changed sign. \\[3pt]
+      \textbf{Hold on to this:} what happens when you subtract a \emph{whole} polynomial?
+    \end{block}}
+\end{frame}
+
+% LEARNING TARGETS + HOW TODAY RUNS
+\begin{frame}[t, plain]
+  \forestheader{Today's targets}
+  \sectionlabel{Three skills, each a little harder}
+  \begin{itemize}\setlength{\itemsep}{4pt}
+    \item Write a \textbf{polynomial} in \textbf{standard form}, name its \textbf{degree}, and add
+          or subtract by combining \textbf{like terms} --- the minus reaches \emph{every} term.
+    \item Multiply polynomials with the \textbf{distributive property} or the \textbf{box
+          method}: every term times every term.
+    \item Multiply three or more factors \textbf{two at a time}, using the \textbf{special
+          products} --- and know why $(x+2)^3\ne x^3+8$.
+  \end{itemize}
+  \vspace{3pt}
+  \begin{block}{How today runs --- you are solving the whole hour}
+    Three rounds in your notes: a short definition, one example, then \textbf{your turn} ---
+    start at \rung1, climb to \rung2, and \rung3\ if you finish early --- then a \textbf{Show me}
+    (1--4 fingers on the count of three) or a \textbf{Find the mistake}. We finish with the
+    \textbf{Closing Practice} out of 4, then start the DeltaMath homework.
   \end{block}
 \end{frame}
 
-% MULTIPLY
+% ═══ ROUND 1 — ADD AND SUBTRACT ═════════════════════════════════════════════
 \begin{frame}[t, plain]
-  \forestheader{Multiplying: every term times every term}
-  \sectionlabel{One rule, three sizes}
+  \forestheader{Definition: adding \& subtracting polynomials}
+  \sectionlabel{Round 1 --- collect like terms; the minus reaches every term}
   \begin{columns}[T]
-    \begin{column}{0.46\textwidth}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item \textbf{Monomial $\times$ polynomial:} \\ $-2x^2(3x^3-4x+6)=-6x^5+8x^3-12x^2$
-        \item \textbf{Binomial $\times$ binomial:} \\ $(2x-5)(3x+4)=6x^2-7x-20$
-        \item \textbf{Two variables:} \\ $(3x+2y)(x-4y)=3x^2-10xy-8y^2$
-      \end{itemize}
-      \vspace{3pt}
-      Coefficients \emph{multiply}; exponents \emph{add}.
+    \begin{column}{0.58\textwidth}
+      \begin{block}{Polynomial, standard form, degree}
+        \small A \textbf{polynomial} is a monomial or a sum of monomials. In \textbf{standard
+        form} its terms run from the highest power down; its \textbf{degree} is that highest
+        power (with two variables, add a term's exponents), and its \textbf{leading
+        coefficient} is the number on that term.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{Add and subtract}
+        \small \textbf{Like terms} have the same variables to the same powers. To
+        \textbf{add}, combine like terms. To \textbf{subtract}, change the sign of
+        \textbf{every} term being subtracted, then add.
+      \end{block}
     \end{column}
-    \begin{column}{0.52\textwidth}
+    \begin{column}{0.38\textwidth}
       \centering
-      {\footnotesize $(x+3)(x^2-2x+4)$ --- six products, no drops:}\\[4pt]
-      \renewcommand{\arraystretch}{1.5}
-      {\footnotesize
-      \begin{tabular}{|c|c|c|c|}
-      \hline
-      $\times$ & $x^2$ & $-2x$ & $+4$ \\ \hline
-      $x$  & $x^3$  & $-2x^2$ & $4x$ \\ \hline
-      $+3$ & $3x^2$ & $-6x$   & $12$ \\ \hline
-      \end{tabular}}\\[5pt]
-      {\footnotesize $= x^3 + x^2 - 2x + 12$}
+      \textbf{A minus is $-1$ times everything}\\[8pt]
+      $-(x^3+3x^2-6x+1)$\\[4pt]
+      $=-x^3-3x^2+6x-1$\\[10pt]
+      {\scriptsize Four terms inside, four signs changed. \\ Change only the first and the answer
+      is wrong.}\\[8pt]
+      {\scriptsize $3x^2$ and $3x^3$ are \emph{not} like terms.}
     \end{column}
   \end{columns}
 \end{frame}
 
-% DEGREE OF A PRODUCT
 \begin{frame}[t, plain]
-  \forestheader{Know the shape before you expand}
-  \sectionlabel[goldacc]{Degrees add, leads multiply}
-  \[ (2x^3 - 1)(-3x^4 + x) \]
-  \begin{itemize}\setlength{\itemsep}{5pt}
-    \item Only the two \emph{leading} terms can make the highest power: $2x^3\cdot(-3x^4) = -6x^7$.
-    \item \textbf{Degrees add:} $3+4=7$. \quad \textbf{Leading coefficients multiply:} $2\cdot(-3)=-6$.
-    \item Degree \emph{odd}, lead \emph{negative} $\Rightarrow$ (Lesson 3.0) left arm \textbf{up},
-          right arm \textbf{down}.
-  \end{itemize}
-  \begin{block}{Why it never fails}
-    Nothing can cancel the top term --- there is only one way to build it. So a \emph{product} never
-    loses degree, even though a \emph{sum} can.
-  \end{block}
+  \forestheader{Example 1: subtract, then name the degree}
+  \sectionlabel{Watch --- 2 minutes --- fill in the example in your notes}
+  \[ (4x^3-2x^2+5)-(x^3+3x^2-6x+1) \]
+  \[
+  \begin{aligned}
+    &= 4x^3-2x^2+5-x^3-3x^2+6x-1 && \text{$-1$ times \emph{every} term}\\
+    &= (4x^3-x^3)+(-2x^2-3x^2)+6x+(5-1) && \text{group like terms}\\
+    &= 3x^3-5x^2+6x+4 && \text{standard form; degree } 3
+  \end{aligned}
+  \]
 \end{frame}
 
-% SPECIAL PRODUCTS
 \begin{frame}[t, plain]
-  \forestheader{Special products --- and the year's worst error}
-  \sectionlabel{Identities}
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  Answer in standard form.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $(2x^2+5x-3)+(x^2-7x+8)$
+    \item[\rung2] $(5x^3-x^2+4)-(2x^3+3x^2-x+6)$, and give its degree.
+    \item[\rung3] $(3a^2b-4ab+b^2)-(a^2b+2ab-5b^2)$, and give its degree.
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $3x^2-2x+5$ \qquad \rung2\ $5x^3-x^2+4-2x^3-3x^2+x-6=3x^3-4x^2+x-2$; degree 3 \\[1pt]
+      \rung3\ $3a^2b-4ab+b^2-a^2b-2ab+5b^2=2a^2b-6ab+6b^2$; degree $2+1=3$
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: $(6x^2-2x+1)-(2x^2-5x+4)$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \[ (a+b)^2 = a^2 + 2ab + b^2 \]
-      \[ (a-b)^2 = a^2 - 2ab + b^2 \]
-      \[ (a+b)(a-b) = a^2 - b^2 \]
-      \vspace{2pt}
-      {\footnotesize $(3x-4)^2 = 9x^2-24x+16$ \\[3pt]
-       $(2x+7)(2x-7) = 4x^2-49$ \\[3pt]
-       $(5x-3y)^2 = 25x^2-30xy+9y^2$}
+    \begin{column}{0.45\textwidth}
+      \opt1{$4x^2-7x+5$} \\[12pt]
+      \opt3{$8x^2-7x+5$}
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \begin{block}{$(x+4)^2 \ne x^2+16$}
-        Test at $x=1$: \\[3pt]
-        $(1+4)^2 = 25$ \quad but \quad $1+16=17$. \\[4pt]
-        The missing piece is the middle term $8x$: \\[3pt]
-        $(x+4)^2 = x^2+8x+16$.
+    \begin{column}{0.45\textwidth}
+      \opt2{$4x^2+3x-3$} \\[12pt]
+      \opt4{$4x^2+3x+5$}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{2}}
+      $6x^2-2x+1-2x^2+5x-4=4x^2+3x-3$. \; \textbf{1} changed only the first sign --- the minus
+      reaches \emph{every} term. \textbf{3} added instead of subtracting. \textbf{4} flipped two
+      signs and missed the $+4$.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 2 — MULTIPLY ═════════════════════════════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: multiplying polynomials}
+  \sectionlabel{Round 2 --- every term times every term}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{block}{Multiply}
+        \small To \textbf{multiply polynomials}, use the \textbf{distributive property}:
+        multiply \textbf{every} term of the first by \textbf{every} term of the second, then
+        combine like terms. Each small product multiplies the coefficients and adds the
+        exponents on the same variable.
+      \end{block}
+      \vspace{2pt}
+      \begin{block}{The box method}
+        \small One factor's terms label the rows, the other's the columns; each cell holds one
+        product. A binomial times a trinomial makes $2\times3=6$ products before you combine.
+      \end{block}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \centering
+      \textbf{The box for $(x+4)(x-3)$}\\[6pt]
+      \renewcommand{\arraystretch}{1.6}
+      \begin{tabular}{c|c|c|}
+        \multicolumn{1}{c}{$\times$} & \multicolumn{1}{c}{$x$} & \multicolumn{1}{c}{$-3$} \\
+        \cline{2-3}
+        $x$  & $x^2$ & $-3x$ \\ \cline{2-3}
+        $+4$ & $4x$  & $-12$ \\ \cline{2-3}
+      \end{tabular}\\[6pt]
+      {\scriptsize Four products, then combine: \\ $x^2-3x+4x-12=x^2+x-12$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Example 2: multiply}
+  \sectionlabel{Watch --- 2 minutes --- fill in the example in your notes}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \textbf{(a)} $-3x^2(2x^3-x+4)$ \\[3pt]
+      $=-6x^5+3x^3-12x^2$ \quad {\small \emph{(coefficients multiply, exponents add)}}
+      \\[10pt]
+      \textbf{(b)} $(2x-1)(x^2+3x-4)$
+      \[
+      \begin{aligned}
+        &= 2x^3+6x^2-8x-x^2-3x+4 && \text{6 products}\\
+        &= 2x^3+5x^2-11x+4 && \text{combine}
+      \end{aligned}
+      \]
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \centering
+      \textbf{The box for (b)}\\[6pt]
+      \renewcommand{\arraystretch}{1.6}
+      \begin{tabular}{c|c|c|c|}
+        \multicolumn{1}{c}{$\times$} & \multicolumn{1}{c}{$x^2$} & \multicolumn{1}{c}{$3x$}
+          & \multicolumn{1}{c}{$-4$} \\ \cline{2-4}
+        $2x$ & $2x^3$ & $6x^2$ & $-8x$ \\ \cline{2-4}
+        $-1$ & $-x^2$ & $-3x$  & $+4$ \\ \cline{2-4}
+      \end{tabular}\\[6pt]
+      {\scriptsize Like terms sit on the diagonals: \\ $6x^2-x^2$ and $-8x-3x$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  Answer in standard form.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $4x(x^2-3x+5)$
+    \item[\rung2] $(3x+2)(x-5)$
+    \item[\rung3] $(x+3)(2x^2-x+5)$
+  \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $4x^3-12x^2+20x$ \qquad \rung2\ $3x^2-15x+2x-10=3x^2-13x-10$ \\[1pt]
+      \rung3\ $2x^3-x^2+5x+6x^2-3x+15=2x^3+5x^2+2x+15$ \; (six products)
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Show me: $(2x+y)(x-3y)$}
+  \sectionlabel[goldacc]{Pick one --- 1 to 4 fingers on the count of three}
+  \begin{columns}[T]
+    \begin{column}{0.45\textwidth}
+      \opt1{$2x^2-3y^2$} \\[12pt]
+      \opt3{$2x^2-5xy-3y^2$}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \opt2{$2x^2-7xy-3y^2$} \\[12pt]
+      \opt4{$2x^2-6xy-3y^2$}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \reveal{%
+    \begin{block}{Answer: \textbf{3}}
+      $2x^2-6xy+xy-3y^2=2x^2-5xy-3y^2$. \; \textbf{1} multiplied first-by-first and
+      last-by-last and lost the middle. \textbf{2} took $y\cdot x$ as $-xy$. \textbf{4} skipped
+      the product $y\cdot x$ --- four products, every time.
+    \end{block}}
+\end{frame}
+
+% ═══ ROUND 3 — THREE OR MORE FACTORS (the crux) ═════════════════════════════
+\begin{frame}[t, plain]
+  \forestheader{Definition: multiplying three or more factors}
+  \sectionlabel{Round 3 --- two at a time}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{block}{Two at a time}
+        \small To \textbf{multiply three or more factors}, multiply any two, write that product
+        in standard form, then multiply it by the next factor. A power of a binomial is
+        repeated multiplication: $(x+2)^3=(x+2)(x+2)(x+2)$ --- the exponent does \textbf{not}
+        distribute over a sum. The degree of a product is the sum of the factors' degrees.
+      \end{block}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{block}{Special products --- shortcuts for step 1}
+        \small
+        $(a+b)^2=a^2+2ab+b^2$ \\[3pt]
+        $(a-b)^2=a^2-2ab+b^2$ \\[3pt]
+        $(a+b)(a-b)=a^2-b^2$
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
-% CLOSING THE LOOP
 \begin{frame}[t, plain]
-  \forestheader{Closing the loop on the Hook}
-  \sectionlabel[goldacc]{$(x-1)^2(x+2)$}
+  \forestheader{Example 3: three factors}
+  \sectionlabel{Watch --- 2 minutes --- fill in the example in your notes}
   \begin{columns}[T]
-    \begin{column}{0.52\textwidth}
-      \centering
-      {\footnotesize Step 1: $(x-1)^2 = x^2-2x+1$}\\[5pt]
-      \renewcommand{\arraystretch}{1.5}
-      {\footnotesize
-      \begin{tabular}{|c|c|c|c|}
-      \hline
-      $\times$ & $x^2$ & $-2x$ & $+1$ \\ \hline
-      $x$  & $x^3$  & $-2x^2$ & $x$ \\ \hline
-      $+2$ & $2x^2$ & $-4x$   & $2$ \\ \hline
-      \end{tabular}}
+    \begin{column}{0.44\textwidth}
+      \textbf{(a)} $x(x+2)(x-3)$
+      \[
+      \begin{aligned}
+        &= x(x^2-3x+2x-6) && \text{binomials}\\
+        &= x(x^2-x-6) \\
+        &= x^3-x^2-6x && \text{times } x
+      \end{aligned}
+      \]
     \end{column}
-    \begin{column}{0.46\textwidth}
-      \footnotesize
-      \begin{itemize}\setlength{\itemsep}{5pt}
-        \item $-2x^2$ and $+2x^2$ \textbf{cancel} --- that is why there is no $x^2$ term.
-        \item $x - 4x = -3x$.
-        \item Result: $\;x^3 - 3x + 2$. \; \textbf{Proved.}
-        \item Degree $3$, lead $1$ $\Rightarrow$ left down, right up --- exactly yesterday's graph.
-      \end{itemize}
+    \begin{column}{0.54\textwidth}
+      \textbf{(b)} $(x+1)^3$
+      \[
+      \begin{aligned}
+        &= (x+1)^2(x+1) && \text{three factors}\\
+        &= (x^2+2x+1)(x+1) && (a+b)^2\\
+        &= x^3+x^2+2x^2+2x+x+1 && \text{6 products}\\
+        &= x^3+3x^2+3x+1 && \text{combine}
+      \end{aligned}
+      \]
     \end{column}
   \end{columns}
 \end{frame}
 
-% ROADMAP
 \begin{frame}[t, plain]
-  \forestheader{Where Unit 3 goes next}
-  \sectionlabel{Connections}
-  \textbf{Today:} add, subtract, and multiply polynomials in one and two variables; special products;
-  degree and leading coefficient of a result.\\[8pt]
-  \begin{itemize}\setlength{\itemsep}{3pt}
-    \item \textbf{3.2} Advanced factoring --- today's products run \emph{backward}, plus the sum and difference of cubes.
-    \item \textbf{3.3} Dividing polynomials; Remainder \& Factor Theorems.
-    \item \textbf{3.4--3.5} Zeros: Rational Root Theorem; complex zeros \& the FTA.
-    \item \textbf{3.6} Graphing polynomial functions \& modeling.
+  \forestheader{Your turn}
+  \sectionlabel[goldacc]{8 minutes --- start at one star and climb}
+  Answer in standard form.
+  \begin{itemize}\setlength{\itemsep}{6pt}
+    \item[\rung1] $2x(x-4)(x+1)$
+    \item[\rung2] $(2x-1)(x+3)(x-2)$
+    \item[\rung3] A cube-shaped storage ottoman for the dorm common room has edges $(x-3)$ inches
+          long. Write its volume, $(x-3)^3$, in standard form.
   \end{itemize}
+  \vspace{4pt}
+  \reveal{%
+    \begin{block}{Check}
+      \rung1\ $2x(x^2-3x-4)=2x^3-6x^2-8x$ \qquad
+      \rung2\ $(2x-1)(x^2+x-6)=2x^3+x^2-13x+6$ \\[1pt]
+      \rung3\ $(x^2-6x+9)(x-3)=x^3-9x^2+27x-27$ cubic inches
+    \end{block}}
+\end{frame}
+
+\begin{frame}[t, plain]
+  \forestheader{Find the mistake}
+  \sectionlabel[redacc]{The one that matters --- 3 minutes --- find Student A's wrong step and fix it}
+  \textbf{Student A} multiplied out $(x+2)^3$:
+  \[
+  \begin{aligned}
+    (x+2)^3 &= x^3+2^3 \\
+            &= x^3+8 \qquad \text{``Cube each term.''}
+  \end{aligned}
+  \]
+  \reveal{%
+    \begin{block}{The mistake}
+      Line 1: an exponent does not distribute over a sum --- $(x+2)^3$ means
+      $(x+2)(x+2)(x+2)$. Two at a time:
+      $(x^2+4x+4)(x+2)=x^3+6x^2+12x+8$. \\[2pt]
+      Test $x=1$: \; $(1+2)^3=27$, but $1+8=9$. The middle terms are not optional.
+    \end{block}}
+\end{frame}
+
+% CLOSING PRACTICE — the same four problems + bonus as the notes; answers in one \reveal.
+\begin{frame}[t, plain]
+  \forestheader{Closing Practice}
+  \sectionlabel[goldacc]{6 minutes --- on your own --- score yourself out of 4}
+  Answer in standard form.
+  \begin{enumerate}\setlength{\itemsep}{2pt}
+    \item $(7x^2-3x+2)-(4x^2+3x-5)$ \qquad\qquad 2.\ $(x-4)(2x^2+x-3)$
+    \setcounter{enumi}{2}
+    \item $(x-1)(x+1)(x+4)$ \qquad\qquad\qquad\quad\;\; 4.\ $(x+3)^3$
+  \end{enumerate}
+  {\small\textbf{Bonus (+1):} The spring-formal dance floor is a square, $(x+6)$ ft on a side; the
+  DJ's stage, $x$ ft by $(x-2)$ ft, sits on it. Floor area left for dancing?}
+  \vspace{1pt}
+  \reveal{%
+    \begin{block}{Check --- one point each}
+      \small
+      1.\ $3x^2-6x+7$ \quad 2.\ $2x^3-7x^2-7x+12$ \quad 3.\ $(x^2-1)(x+4)=x^3+4x^2-x-4$ \\[1pt]
+      4.\ $(x^2+6x+9)(x+3)=x^3+9x^2+27x+27$ \\[1pt]
+      \textbf{Bonus:} $(x+6)^2-x(x-2)=x^2+12x+36-x^2+2x=14x+36$ square feet \\[2pt]
+      \textbf{Watch out:} $(x+3)^3$ is not $x^3+27$ --- write the factor three times and multiply
+      two at a time. And a minus in front of parentheses changes \emph{every} sign inside.
+    \end{block}}
+\end{frame}
+
+% HOMEWORK — source: DeltaMath, online (Units 3+, §0a). Set built later with the teacher.
+\begin{frame}[t, plain]
+  \forestheader{Homework --- start it now}
+  \sectionlabel[goldacc]{10 minutes in class, alone}
+  \begin{block}{DeltaMath --- scored 1 to 5, due the first class after two study halls}
+    Assignment: \textbf{A2: Lesson 3.1: Polynomial Operations}. Start it now on your device; the
+    rest is due the first class after two study halls. I will announce the date in class and on
+    TurtleNet.
+  \end{block}
+  \vspace{4pt}
+  \begin{block}{Extra credit --- optional}
+    The last two pages of your packet. Tear them off and turn them in with your homework.
+  \end{block}
+  \vspace{6pt}
+  \textbf{Next:} Lesson 3.2 --- factoring, today's products run backward.
 \end{frame}
 
 \end{document}

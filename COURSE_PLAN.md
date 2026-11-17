@@ -17,6 +17,15 @@
 > Unit 3 tests on the 5-lesson map (they still test the cut Rational Root / Remainder–Factor
 > Theorems). Open: how extra-credit points count toward the grade (not printed anywhere).
 
+> ## ⚠ Status (2026-11-17) — **UNIT 3 RESEQUENCED TO 3.1–3.6 AND REGENERATED PACKET-FIRST.**
+>
+> User direction: number from 1, not 0; split characteristics in two and move it after the
+> algebra — 3.1 operations · 3.2 factoring · 3.3 division · 3.4–3.5 characteristics I/II · 3.6
+> zeros & graphs (map: `COURSE_BREAKDOWN.md`). All six regenerated in the §0a shape (warm-up,
+> notes, graded extra credit, deck); old `lesson00`–`lesson06` removed (3.1's `graded_sample`
+> kept). **Next:** build the six DeltaMath sets with the user; rebuild the Unit 3 tests on the
+> new map (they still test the cut Rational Root / Remainder–Factor Theorems).
+
 > ## ⚠ Status (2026-10-31) — **UNIT 3 CONDENSED: 12 LESSONS → 5 (3.0–3.4), MERGED ROUNDS.**
 >
 > User request: "condense to 5 lessons"; chose **merge** over cut, then "cut 8 and 9": the

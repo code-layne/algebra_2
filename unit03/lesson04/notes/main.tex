@@ -1,274 +1,323 @@
-%! Zeros of Polynomials: the Rational Root Theorem — Unit 3, Lesson 3.4 — Guided Notes
-\documentclass[10pt]{article}
+%! Characteristics of Polynomial Functions I — Unit 3, Lesson 3.4 — Guided Notes & Practice
+% UNITS 3+ PACKET-FIRST shape (LESSON_SHAPE.md §0a, 2026-11-14). THE in-class document, 45
+% minutes: THREE ROUNDS, then Closing Practice. The projected deck mirrors this page frame for
+% frame. Unit 3 exception: the rounds are three merged skills, climbing —
+%   Round 1 degree & leading coefficient → Round 2 end behavior → Round 3 symmetry.
+% Target misconception (the crux, Round 3's Find the mistake): reading the degree and leading
+% coefficient — and so the end behavior — off the FIRST-WRITTEN term or factor instead of the
+% leading term (2x^2 - x^5 has degree 5 and leading coefficient -1, not 2). Closing Practice 2 is
+% its twin. Zeros, multiplicity, turning points, extrema and intervals are Lesson 3.5 — not here.
+% Every graph is pre-drawn (TikZ); no sketch questions. FOUR PAGES IS A CEILING, blank and key.
+\documentclass[12pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
-\newcommand{\TallMath}[1]{$\displaystyle #1\rule[-1.4em]{0pt}{3.2em}$}
-
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+% Pre-drawn graph grid: \lgrid{xmin}{xmax}{ymin}{ymax}
 \newcommand{\lgrid}[4]{%
   \draw[step=1, linegray!40, very thin] (#1,#3) grid (#2,#4);
-  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below right, font=\scriptsize]{$x$};
-  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[left, font=\scriptsize]{$y$};}
+  \draw[->, semithick, charcoal] (#1,0)--(#2,0) node[below left, font=\tiny]{$x$};
+  \draw[->, semithick, charcoal] (0,#3)--(0,#4) node[below left, font=\tiny]{$y$};}
+% End-behavior thumbnail: \ebthumb{expression in \x}{caption}
+\newcommand{\ebthumb}[2]{%
+  \begin{tabular}[t]{@{}c@{}}\begin{tikzpicture}[scale=0.3]
+    \draw[->, charcoal] (-2,0)--(2,0); \draw[->, charcoal] (0,-3)--(0,3);
+    \begin{scope}\clip (-2,-3) rectangle (2,3);
+      \draw[very thick, forest, domain=-1.9:1.9, samples=50, smooth, <->] plot (\x,{#1});
+    \end{scope}
+  \end{tikzpicture}\\[-1pt]{\scriptsize #2}\end{tabular}}
 
 \begin{document}
 
-\pageheader{Unit 3, Lesson 3.4}{Guided Notes}
-\namedateperiod
+\pageheader{Unit 3, Lesson 3.4}{Guided Notes \& Practice}
+% NAMESTRIP: no \namedateperiod here — the student writes their name once, on the cover.
 
-\vspace{0.08in}
+\vspace{0.10in}
 
-\begin{objectivebox}
-\textbf{By the end of this lesson, I will be able to\dots}
-\begin{itemize}\setlength{\itemsep}{2pt}
-  \item use the \emph{Rational Root Theorem} to list every possible rational zero of a polynomial with integer coefficients;
-  \item test candidates efficiently with synthetic division, a graph, and the Remainder Theorem;
-  \item divide out each zero I find, factor the depressed polynomial, and write the polynomial \emph{completely} factored;
-  \item solve a polynomial equation of degree $3$ or higher and \emph{verify} my solutions algebraically and against a graph.
-\end{itemize}
-\end{objectivebox}
-
-\vspace{0.05in}
-
-\begin{vocabbox}
+% ═══ ROUND 1 — DEGREE & LEADING COEFFICIENT ═══════════════════════════════════
+\boxguard[20]
+\begin{notesbox}{Round 1 --- Degree \& leading coefficient}
 \small
-Fill in each term as we build it together.
-\vspace{2pt}
-\termblanklong{Rational Root Theorem}
-\termblanklong{Candidate (possible rational zero)}
-\termblanklong{Depressed polynomial}
-\termblanklong{Solution / root of an equation}
-\termblanklong{Verifying a solution}
-\end{vocabbox}
-
-\begin{hookbox}
-Yesterday you could finish any polynomial \emph{once somebody handed you a zero to test}. Here is
-the polynomial from the Warm-Up, $h(x) = 2x^3 - 3x^2 - 11x + 6$, with its graph. (The $y$-axis is
-compressed: each vertical gridline is $4$ units.)
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-3}{4}{-4}{4}
-  \begin{scope}
-    \clip (-3,-4) rectangle (4,4);
-    \draw[very thick, forest, domain=-2.85:3.6, samples=150, smooth]
-      plot (\x,{(2*(\x)*(\x)*(\x) - 3*(\x)*(\x) - 11*(\x) + 6)/4});
-  \end{scope}
-  \foreach \x in {-2,-1,1,2,3}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-  \fill[charcoal] (-2,0)  circle (2.5pt);
-  \fill[charcoal] (0.5,0) circle (2.5pt);
-  \fill[charcoal] (3,0)   circle (2.5pt);
-\end{tikzpicture}
-\end{center}
-\begin{itemize}\setlength{\itemsep}{1pt}
-  \item Read the three $x$-intercepts off the graph: \blank{4.0cm}
-  \item Your group's candidate list yesterday was the divisors of $6$. Which zero did it miss?
-        \blank{1.6cm}
-  \item That zero is a \emph{fraction}. So a candidate list made only of whole numbers is
-        \blank{3.0cm}.
-\end{itemize}
-\textbf{Today's question: which numbers are worth testing?}
-\end{hookbox}
-
-\begin{notesbox}{1. Why Guessing Cannot Work}
-Suppose nobody tells you anything about $f(x) = x^3 - 4x^2 + x + 6$ except that it has integer
-coefficients, and you want its zeros.
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item How many numbers are there to try? \blank{3.6cm}
-  \item So testing candidates one at a time is only useful if the list of candidates is
-        \blank{2.4cm}.
-\end{itemize}
-\textbf{The Rational Root Theorem does exactly that:} it turns two coefficients --- the constant term
-and the leading coefficient --- into a \emph{short, finite} list that is guaranteed to contain every
-rational zero the polynomial has.
-\end{notesbox}
-
-\begin{notesbox}{2. The Rational Root Theorem}
-\begin{tcolorbox}[colback=white, colframe=navy, boxrule=0.7pt, arc=1.5mm,
-    left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-\textbf{Rational Root (Zero) Theorem.} Let $f(x) = a_nx^n + \cdots + a_1x + a_0$ have
-\emph{integer} coefficients. If $\dfrac{p}{q}$ is a rational zero of $f$ written in lowest terms,
-then
-\begin{itemize}[leftmargin=1.5em, nosep]
-  \item $p$ (the numerator) is a divisor of the \blank{3.4cm} $a_0$, and
-  \item $q$ (the denominator) is a divisor of the \blank{3.4cm} $a_n$.
-\end{itemize}
-\end{tcolorbox}
-
-\vspace{4pt}
-\textbf{Why it is true --- look at the Warm-Up.} You factored $h(x) = 2x^3-3x^2-11x+6$ into
-$(x-3)(2x-1)(x+2)$. Multiply the pieces back:
-\begin{itemize}[leftmargin=1.5em, itemsep=3pt]
-  \item The \emph{leading} coefficients of the three factors are $1$, $2$, $1$. Their product is
-        \blank{1.0cm}, which is the leading coefficient of $h$. So the $2$ in the denominator of the
-        zero $\tfrac12$ had to divide \blank{1.4cm}.
-  \item The \emph{constant} terms of the three factors are $-3$, $-1$, $2$. Their product is
-        \blank{1.0cm}, which is the constant term of $h$. So every numerator had to divide
-        \blank{1.4cm}.
-\end{itemize}
-That is the whole theorem: a zero $\frac{p}{q}$ comes from a factor $(qx - p)$, and those $q$'s and
-$p$'s have nowhere to hide --- they multiply together to make the two coefficients on the ends.
-
-\vspace{5pt}
-\textbf{The warnings.} \; (1) It only finds \blank{2.4cm} zeros --- irrational and imaginary zeros
-never appear on the list. \; (2) The coefficients must be \blank{2.0cm}. \; (3) The list is a list of
-\emph{possibilities}; a polynomial might have \blank{2.4cm} of them as an actual zero.
-\end{notesbox}
-
-\begin{notesbox}{3. Building the List}
-Write $\pm\dfrac{\text{divisors of the constant term}}{\text{divisors of the leading coefficient}}$,
-reduce, and cross out repeats.
-
-\vspace{5pt}
-\textbf{(a)} $f(x) = x^3 - 4x^2 + x + 6$
-
-\vspace{2pt}
-$p$ (divisors of \blank{0.8cm}): \blank{4.0cm} \qquad
-$q$ (divisors of \blank{0.8cm}): \blank{2.0cm}
-
-\vspace{2pt}
-Candidates $\dfrac{p}{q}$: \blank{7.0cm}
-
-\vspace{2pt}
-\textbf{Notice:} when the leading coefficient is $1$, every $q$ is $\pm 1$, so the candidates are
-just the \blank{4.6cm}. That covers most problems you will see.
+\textbf{Degree and leading coefficient.} A polynomial in \textbf{standard form} lists its terms
+from the highest power of $x$ down to the constant. The term with the highest power is the
+\textbf{leading term}: its exponent is the \textbf{degree}, and its coefficient is the
+\textbf{leading coefficient}. In \textbf{factored form}, the degree is the sum of the factors'
+degrees, and the leading coefficient is the product of the factors' leading coefficients.
 
 \vspace{6pt}
-\textbf{(b)} $g(x) = 4x^3 - 4x^2 - x + 1$
+\textbf{Example.} Find the degree and the leading coefficient.\par
+\quad (a) $f(x)=4x^2-7x^5+x-9$ \qquad\qquad (b) $g(x)=-2(x-3)(x+1)^2$
+\begin{work}
+  \text{(a)}\quad f(x) &= -7x^5+4x^2+x-9 && \text{highest power first} \\
+                       &\Rightarrow \text{degree } 5,\ \text{leading coefficient } {-7} && \text{leading term } -7x^5 \\
+  \text{(b)}\quad \text{degree} &= 1+2=3 && \text{add the degrees} \\
+  \text{leading coefficient} &= -2(1)(1)=-2 && \text{multiply leading coefficients}
+\end{work}
 
-\vspace{2pt}
-$p$ (divisors of \blank{0.8cm}): \blank{2.0cm} \qquad
-$q$ (divisors of \blank{0.8cm}): \blank{3.0cm}
+\vspace{6pt}
+\textbf{Your turn.} \textit{Start at \rung{1} and climb.} Find the degree and the leading
+coefficient.
 
-\vspace{2pt}
-Candidates $\dfrac{p}{q}$: \blank{6.0cm} \qquad How many? \blank{1.2cm}
+\rung{1}\; $f(x)=3x^4-2x^6+5$
+\begin{work}
+  f(x) &= -2x^6+3x^4+5 && \text{standard form} \\
+       &\Rightarrow \text{degree } 6,\ \text{leading coefficient } {-2}
+\end{work}
 
-\vspace{2pt}
-\textbf{The error to avoid:} the constant term goes on \blank{2.4cm} and the leading coefficient
-goes on \blank{2.4cm}. Flipping them is the mistake of the day.
+\rung{2}\; $g(x)=(2x-1)(x+4)^3$
+\begin{work}
+  \text{degree} &= 1+3=4 \\
+  \text{leading coefficient} &= 2\cdot1^3=2
+\end{work}
+
+\rung{3}\; For the egg-drop challenge, a team folds an open-top box from a $20$\,cm by $12$\,cm
+card by cutting an $x$\,cm square from each corner. The box holds $V(x)=x(20-2x)(12-2x)$ cubic
+centimeters. Find the degree and the leading coefficient of $V$.
+\begin{work}
+  \text{degree} &= 1+1+1=3 \\
+  \text{leading coefficient} &= 1\cdot(-2)\cdot(-2)=4 && \text{use $-2x$, not $20$ or $12$}
+\end{work}
+
+\textbf{Show me.} The degree and leading coefficient of $h(x)=-x(3x+2)(x-5)^2$.
+\quad My answer: \blank{1.0cm}
 \end{notesbox}
 
-\begin{notesbox}{4. The Workflow: List $\rightarrow$ Test $\rightarrow$ Divide $\rightarrow$ Finish}
-\textbf{Model.} Find all the zeros of $f(x) = x^3 - 4x^2 + x + 6$.
-
-\vspace{4pt}
-\textbf{Step 1 --- List.} From part (a): \blank{5.4cm}
-
-\vspace{4pt}
-\textbf{Step 2 --- Test} (Remainder Theorem, or a synthetic division). \;
-$f(1) = $ \blank{1.2cm} \quad $f(-1) = $ \blank{1.2cm}
-
-\vspace{2pt}
-So the first zero is $r = $ \blank{1.2cm}, and $($\blank{1.6cm}$)$ is a factor.
-
-\vspace{4pt}
-\textbf{Step 3 --- Divide it out.}
+% ═══ ROUND 2 — END BEHAVIOR ═══════════════════════════════════════════════════
+\boxguard[20]
+\begin{notesbox}{Round 2 --- End behavior}
+\small
+\textbf{End behavior.} The \textbf{end behavior} of a function is what $f(x)$ does at the far
+ends of its graph: as $x\to\infty$ (the far right) and as $x\to-\infty$ (the far left). For a
+polynomial, the leading term alone decides it. If the degree is \textbf{even}, both ends go the
+\emph{same} way; if it is \textbf{odd}, they go \emph{opposite} ways. If the leading coefficient
+is \textbf{positive}, the right end rises ($f(x)\to\infty$); if it is \textbf{negative}, the right
+end falls ($f(x)\to-\infty$).
 \begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
-    & $1$ & $-4$ & $1$ & $6$ \\
-    &     &      &     &     \\ \cline{2-5}
-    &     &      &     &     \\
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{cccc}
+\ebthumb{1.6*(\x)^2-1.5}{even, $a>0$: both up} &
+\ebthumb{-1.6*(\x)^2+1.5}{even, $a<0$: both down} &
+\ebthumb{0.45*(\x)^3}{odd, $a>0$: down, then up} &
+\ebthumb{-0.45*(\x)^3}{odd, $a<0$: up, then down}
 \end{tabular}
 \end{center}
-Depressed polynomial: \blank{3.0cm} \quad Remainder: \blank{1.2cm}
 
-\vspace{4pt}
-\textbf{Step 4 --- Finish.} The depressed polynomial is a quadratic, so no more guessing is needed
---- factor it (or use the quadratic formula).
-
-\vspace{2pt}
-$f(x) = $ \blank{6.0cm} \qquad Zeros: \blank{3.6cm}
-
-\vspace{4pt}
-\textbf{Step 5 --- Verify} (this is part of the standard, not an extra). Check one zero by
-substituting: $f(3) = $ \blank{3.0cm}, and check all three against the degree --- a cubic has at most
-\blank{1.2cm} zeros, and you found \blank{1.2cm}.
-\end{notesbox}
-
-\begin{notesbox}{5. Three Ways to Make the Search Shorter}
-Twelve candidates is a lot of synthetic divisions. You almost never need them all.
-
-\vspace{4pt}
-\textbf{(i) Use the graph.} Here is $f(x) = x^3 - 4x^2 + x + 6$ from Section 4. (Each vertical
-gridline is $2$ units.)
-\begin{center}
-\begin{tikzpicture}[scale=0.5]
-  \lgrid{-2}{4}{-3}{4}
-  \begin{scope}
-    \clip (-2,-3) rectangle (4,4);
-    \draw[very thick, forest, domain=-1.7:3.9, samples=150, smooth]
-      plot (\x,{((\x)*(\x)*(\x) - 4*(\x)*(\x) + (\x) + 6)/2});
-  \end{scope}
-  \foreach \x in {-1,1,2,3}
-    \draw[charcoal] (\x,-0.15)--(\x,0.15) node[below=1pt, font=\tiny]{$\x$};
-\end{tikzpicture}
-\end{center}
-Which three candidates would you test \emph{first}, and why? \writeline
-
-\vspace{4pt}
-\textbf{(ii) Shrink the problem.} Once one zero is found, work with the \blank{3.4cm} polynomial ---
-its degree is one lower, and its own candidate list is \blank{2.6cm}. When it becomes a quadratic,
-stop hunting and \blank{4.0cm}.
-
-\vspace{4pt}
-\textbf{(iii) Test cheaply.} The Remainder Theorem evaluates a candidate in a few seconds. Rule out
-the losers by \blank{3.4cm} and save synthetic division for the winners.
-\end{notesbox}
-
-\begin{notesbox}{6. Solving a Polynomial Equation}
-``Find the zeros of $f$'' and ``solve $f(x) = 0$'' are the \emph{same task} in different words. The
-solutions of the equation are the \blank{2.0cm} of the function, which are the
-\blank{3.0cm} of its graph.
-
-\vspace{5pt}
-\textbf{Together:} Solve $2x^3 + 3x^2 - 8x + 3 = 0$.
-
-\vspace{2pt}
-Candidates: $p$ divides \blank{0.8cm}, $q$ divides \blank{0.8cm}, so
-$\dfrac{p}{q} = $ \blank{5.4cm}
+\begin{minipage}[t]{0.74\linewidth}
+\vspace{0pt}
+\textbf{Example.} (a) The graph of $f$ is shown at right. Write its end behavior in arrow notation. Is the degree
+even or odd? Is the leading coefficient positive or negative?
 
 \vspace{3pt}
-Test $x = 1$: \blank{3.0cm} \; so $(x-1)$ is a factor.
-\begin{center}
-\renewcommand{\arraystretch}{1.6}
-\begin{tabular}{r|C{1.4cm}C{1.4cm}C{1.4cm}C{1.4cm}}
-    & $2$ & $3$ & $-8$ & $3$ \\
-    &     &     &      &     \\ \cline{2-5}
-    &     &     &      &     \\
-\end{tabular}
-\end{center}
-Depressed polynomial: \blank{3.0cm} \; which factors as \blank{3.4cm}
+(b) Predict the end behavior of $g(x)=5x^2-2x^3+1$.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.20\linewidth}
+\vspace{0pt}\centering
+\begin{tikzpicture}[scale=0.32]
+  \lgrid{-3}{3}{-4}{4}
+  \begin{scope}\clip (-3,-4) rectangle (3,4);
+    \draw[very thick, forest, domain=-2.05:2.05, samples=80, smooth, <->]
+      plot (\x,{-(\x)^4+3*(\x)^2+1});
+  \end{scope}
+  \node[font=\scriptsize, forest] at (-2.4,3.4) {$f$};
+\end{tikzpicture}
+\end{minipage}
+\begin{work}
+  \text{(a)}\quad \text{as } x\to-\infty,\ f(x) &\to -\infty && \text{left end falls} \\
+  \text{as } x\to\infty,\ f(x) &\to -\infty && \text{right end falls} \\
+       &\Rightarrow \text{even degree, negative leading coefficient}
+\end{work}
+\begin{work}
+  \text{(b)}\quad \text{leading term} &= -2x^3 && \text{highest power, not first term} \\
+  \text{as } x\to-\infty,\ g(x) &\to \infty && \text{odd: ends opposite} \\
+  \text{as } x\to\infty,\ g(x) &\to -\infty && \text{negative: right end falls}
+\end{work}
 
-\vspace{2pt}
-Completely factored: $2x^3+3x^2-8x+3 = $ \blank{5.4cm}
+\vspace{6pt}
+\textbf{Your turn.} \textit{Start at \rung{1} and climb.} Write the end behavior in arrow
+notation.
 
-\vspace{2pt}
-Solution set: \blank{4.0cm} \; --- and notice one solution is a fraction, which the divisors of
-$3$ alone would never have produced.
+\rung{1}\; $f(x)=x^5-4x^2+7$
+\begin{work}
+  \text{as } x\to-\infty,\ f(x) &\to -\infty && \text{odd, positive} \\
+  \text{as } x\to\infty,\ f(x) &\to \infty
+\end{work}
+
+\begin{minipage}[t]{0.76\linewidth}
+\vspace{0pt}
+\rung{2}\; The graph of $p$ is shown at right. Write its end behavior. Then: is the degree even
+or odd, and is the leading coefficient positive or negative?
+\begin{work}
+  \text{as } x\to-\infty,\ p(x) &\to \infty \\
+  \text{as } x\to\infty,\ p(x) &\to -\infty \\
+       &\Rightarrow \text{odd degree, negative leading coefficient}
+\end{work}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.20\linewidth}
+\vspace{0pt}\centering
+\begin{tikzpicture}[scale=0.32]
+  \lgrid{-3}{3}{-4}{4}
+  \begin{scope}\clip (-3,-4) rectangle (3,4);
+    \draw[very thick, forest, domain=-2.75:2.75, samples=80, smooth, <->]
+      plot (\x,{-0.5*(\x)^3+2*(\x)+1});
+  \end{scope}
+  \node[font=\scriptsize, forest] at (-2.4,3.4) {$p$};
+\end{tikzpicture}
+\end{minipage}
+
+\rung{3}\; $h(x)=(x+2)(3-x)(x-1)^2$
+\begin{work}
+  \text{leading term} &= x\cdot(-x)\cdot x^2=-x^4 && \text{even degree, negative} \\
+  \text{as } x\to-\infty,\ h(x) &\to -\infty \\
+  \text{as } x\to\infty,\ h(x) &\to -\infty
+\end{work}
+
+\textbf{Show me.} The end behavior of $q(x)=-3x^5+x^2$. \quad My answer: \blank{1.0cm}
 \end{notesbox}
 
-\begin{practicebox}
-\textbf{A. Run the whole workflow.} Solve $2x^3 - 9x^2 + 7x + 6 = 0$.
-\begin{enumerate}[leftmargin=1.7em, itemsep=6pt]
-  \item Candidates: \blank{7.0cm}
-  \item A zero that works: $r = $ \blank{1.2cm} \quad (show your test: \blank{4.0cm})
-  \item Depressed polynomial after dividing: \blank{3.0cm}
-  \item Completely factored: \blank{5.6cm}
-  \item Solutions: \blank{4.0cm}
-\end{enumerate}
+% ═══ ROUND 3 — SYMMETRY (the crux) ════════════════════════════════════════════
+\boxguard[24]
+\begin{notesbox}{Round 3 --- Symmetry: even, odd, or neither}
+\small
+\textbf{Even and odd functions.} A function is \textbf{even} if $f(-x)=f(x)$ for every $x$; its
+graph is symmetric about the $y$-axis. A function is \textbf{odd} if $f(-x)=-f(x)$ for every $x$;
+its graph is symmetric about the origin (it looks the same after a half-turn). A polynomial whose
+terms all have even powers (a constant counts as $x^0$) is even, one whose terms all have odd
+powers is odd, and one with a mix is \textbf{neither}.
+\begin{center}
+\begin{tikzpicture}[scale=0.3]
+  \begin{scope}
+    \lgrid{-3}{3}{-3}{4}
+    \draw[navy, dashed, semithick] (0,-3)--(0,4);
+    \begin{scope}\clip (-3,-3) rectangle (3,4);
+      \draw[very thick, forest, domain=-2.5:2.5, samples=80, smooth] plot (\x,{0.5*(\x)^4-2*(\x)^2});
+    \end{scope}
+    \node[font=\scriptsize, charcoal, align=center] at (0,-4.4) {even: $y$-axis mirror};
+  \end{scope}
+  \begin{scope}[xshift=11cm]
+    \lgrid{-3}{3}{-3}{4}
+    \fill[navy] (0,0) circle (5pt);
+    \begin{scope}\clip (-3,-3) rectangle (3,4);
+      \draw[very thick, forest, domain=-2.7:2.7, samples=80, smooth] plot (\x,{0.4*(\x)^3-1.6*(\x)});
+    \end{scope}
+    \node[font=\scriptsize, charcoal] at (0,-4.4) {odd: origin half-turn};
+  \end{scope}
+  \begin{scope}[xshift=22cm]
+    \lgrid{-3}{3}{-3}{4}
+    \begin{scope}\clip (-3,-3) rectangle (3,4);
+      \draw[very thick, forest, domain=-2.6:2.6, samples=80, smooth] plot (\x,{0.3*(\x)^3+1.5});
+    \end{scope}
+    \node[font=\scriptsize, charcoal] at (0,-4.4) {neither};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
 
-\vspace{5pt}
-\textbf{B. The word ``rational'' is doing real work.} Let $k(x) = x^3 - x^2 - 2x + 2$.
-\begin{enumerate}[leftmargin=1.7em, itemsep=6pt, start=6]
-  \item Candidates: \blank{3.6cm} \quad Which one is a zero? \blank{1.2cm}
-  \item Divide it out. Depressed polynomial: \blank{2.6cm}
-  \item Solve that quadratic: $x = $ \blank{2.6cm} \quad Are those on your candidate list?
-        \blank{1.2cm}
-  \item How many real zeros does $k$ have in all? \blank{1.2cm} \; Explain why the Rational Root
-        Theorem could never have listed two of them. \writeline
-  \item \textbf{Looking ahead.} Suppose a different cubic's depressed polynomial had come out
-        $x^2 + 4$. How many \emph{real} zeros would that quadratic contribute? \blank{1.2cm} \;
-        What kind of numbers would its solutions be? \blank{3.0cm} \; That is Lesson 3.5.
+\textbf{Example.} Decide algebraically: even, odd, or neither?\par
+\quad (a) $f(x)=2x^4-x^2+3$ \qquad\qquad (b) $g(x)=x^3-4x$
+\begin{work}
+  \text{(a)}\quad f(-x) &= 2(-x)^4-(-x)^2+3 && \text{replace every $x$ with $-x$} \\
+                        &= 2x^4-x^2+3=f(x) && \text{even powers lose the sign, so even} \\
+  \text{(b)}\quad g(-x) &= (-x)^3-4(-x)=-x^3+4x && \text{odd powers keep the sign} \\
+                        &= -(x^3-4x)=-g(x) && \text{every term flipped, so odd}
+\end{work}
+
+\vspace{6pt}
+\textbf{Your turn.} \textit{Start at \rung{1} and climb.} Even, odd, or neither?
+
+\begin{minipage}[t]{0.42\linewidth}
+\vspace{0pt}
+\rung{1}\; Read each pre-drawn graph.
+\begin{work}
+  \text{A} &: \text{odd (origin)} \\
+  \text{B} &: \text{even ($y$-axis)}
+\end{work}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.55\linewidth}
+\vspace{0pt}\centering
+\begin{tikzpicture}[scale=0.3]
+  \begin{scope}
+    \lgrid{-3}{3}{-3}{3}
+    \begin{scope}\clip (-3,-3) rectangle (3,3);
+      \draw[very thick, forest, domain=-2.6:2.6, samples=80, smooth] plot (\x,{-0.3*(\x)^3+0.9*(\x)});
+    \end{scope}
+    \node[font=\scriptsize\bfseries, charcoal] at (-2.4,2.4) {A};
+  \end{scope}
+  \begin{scope}[xshift=9cm]
+    \lgrid{-3}{3}{-3}{3}
+    \begin{scope}\clip (-3,-3) rectangle (3,3);
+      \draw[very thick, forest, domain=-2.7:2.7, samples=80, smooth] plot (\x,{-0.25*(\x)^4+1.2*(\x)^2-1});
+    \end{scope}
+    \node[font=\scriptsize\bfseries, charcoal] at (-2.4,2.4) {B};
+  \end{scope}
+\end{tikzpicture}
+\end{minipage}
+
+\rung{2}\; $h(x)=x^5-2x^3+x$
+\begin{work}
+  h(-x) &= -x^5+2x^3-x && \text{odd powers keep the sign} \\
+        &= -(x^5-2x^3+x)=-h(x) \Rightarrow \text{odd}
+\end{work}
+
+\rung{3}\; $k(x)=x^4+x^3$
+\begin{work}
+  k(-x) &= x^4-x^3 && \text{not $k(x)=x^4+x^3$} \\
+        & \ne -k(x)=-x^4-x^3 \Rightarrow \text{neither} && \text{a mix of even and odd powers}
+\end{work}
+
+\textbf{Find the mistake.} Student A described $f(x)=2x^2-x^5$:
+\begin{center}
+\begin{tabular}{@{}r@{\;}l@{}}
+1. & $f(-x)=2(-x)^2-(-x)^5=2x^2+x^5$. That is not $f(x)$ or $-f(x)$, so $f$ is \emph{neither}. \\
+2. & The leading term is $2x^2$, so the degree is $2$ and the leading coefficient is $2$. \\
+3. & Even degree, positive: as $x\to-\infty,\ f(x)\to\infty$ and as $x\to\infty,\ f(x)\to\infty$. \\
+\end{tabular}
+\end{center}
+Which step is wrong? Fix it.\par
+\writelines{2}
+\end{notesbox}
+
+% ═══ CLOSING PRACTICE ═════════════════════════════════════════════════════════
+\boxguard[24]
+\begin{notesbox}{Closing Practice --- score yourself out of 4}
+\small
+\begin{enumerate}[leftmargin=1.9em, itemsep=4pt]
+  \item Find the degree and the leading coefficient of $p(x)=(3x+1)^2(2-x)$.
+  \begin{work}
+    \text{degree} &= 2+1=3; \quad \text{leading coefficient} = 3^2\cdot(-1)=-9
+  \end{work}
+  \item Write the end behavior of $q(x)=6x^3-2x^4+x$ in arrow notation.
+  \begin{work}
+    \text{leading term } -2x^4 &\Rightarrow \text{as } x\to-\infty,\ q(x)\to-\infty \\
+    &\phantom{{}\Rightarrow{}} \text{as } x\to\infty,\ q(x)\to-\infty
+  \end{work}
+  \item Even, odd, or neither: $r(x)=x^3+2$? Show the test.
+  \begin{work}
+    r(-x) &= -x^3+2, \ \text{not } r(x) \text{ and not } -r(x)=-x^3-2 \Rightarrow \text{neither}
+  \end{work}
+  \item \begin{minipage}[t]{0.74\linewidth}
+  The graph of $s$ is shown at right. Write its end behavior, and say whether $s$ is even, odd,
+  or neither.
+  \begin{work}
+    \text{as } x\to-\infty,\ s(x) &\to \infty; \quad \text{as } x\to\infty,\ s(x)\to\infty \\
+    &\text{$s$ is even: a mirror in the $y$-axis}
+  \end{work}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.20\linewidth}
+  \vspace{-8pt}\centering
+  \begin{tikzpicture}[scale=0.3]
+    \lgrid{-3}{3}{-3}{4}
+    \begin{scope}\clip (-3,-3) rectangle (3,4);
+      \draw[very thick, forest, domain=-2.4:2.4, samples=80, smooth, <->] plot (\x,{0.5*(\x)^4-2*(\x)^2+1});
+    \end{scope}
+    \node[font=\scriptsize, forest] at (-2.3,3.4) {$s$};
+  \end{tikzpicture}
+  \end{minipage}
 \end{enumerate}
-\end{practicebox}
+\textbf{Bonus (+1).} The student council models the profit, in dollars, from spring-formal
+tickets priced at $x$ dollars by $P(x)=40x^2-x^3$. What does the end behavior say happens to
+the profit if the price gets very high?
+\begin{work}
+  \text{leading term } -x^3 &\Rightarrow \text{as } x\to\infty,\ P(x)\to-\infty \\
+  &\phantom{{}\Rightarrow{}} \text{a very high price makes the profit negative: a loss}
+\end{work}
+\end{notesbox}
 
 \end{document}

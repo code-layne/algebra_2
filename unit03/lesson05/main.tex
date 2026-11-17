@@ -1,4 +1,9 @@
-%! Fundamental Theorem of Algebra and Complex Zeros — Unit 3, Lesson 3.5 — Lesson Plan
+%! Characteristics of Polynomial Functions II — Unit 3, Lesson 3.5 — Lesson Plan
+% UNITS 3+ PACKET-FIRST plan (LESSON_SHAPE.md §0a, 2026-11-14; engagement rules §1): warm-up on
+% paper (5) → guided notes, three rounds of definition → example → ladder → Show me / Find the
+% mistake, then the Closing Practice (45) → the DeltaMath homework started in class (10). Unit 3
+% exception: the three rounds are three different merged skills, climbing. Five teacher notes,
+% in packet order. Teacher-facing, 10pt; never handed out.
 \documentclass[10pt]{article}
 \usepackage{algebra2-article}
 \usepackage{algebra2-boxes}
@@ -8,7 +13,8 @@
 \newcommand{\CourseName}{Algebra 2}
 \newcommand{\MeetingLength}{60 minutes}
 \newcommand{\UnitNumberName}{Unit 3: Polynomial Functions \quad}
-\newcommand{\LessonNumberName}{Lesson 3.5: Fundamental Theorem of Algebra and Complex Zeros}
+\newcommand{\LessonNumberName}{Lesson 3.5: Characteristics of Polynomial Functions II}
+\newcommand{\rung}[1]{{\color{goldacc}\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
 
 \begin{document}
 \begin{center}
@@ -18,23 +24,30 @@
 
 \begin{tcolorbox}[colback=forestbg, colframe=forest, boxrule=0.9pt, arc=2mm,
     left=2mm, right=2mm, top=1.5mm, bottom=1.5mm]
-    \textbf{Primary Objective:} Students can say --- and use --- how many solutions a polynomial
-    equation has \emph{before} they solve it. A polynomial of degree $n$ has \textbf{exactly $n$
-    complex solutions} when they are counted with multiplicity (the Fundamental Theorem of Algebra),
-    and when the coefficients are real the imaginary ones arrive in \textbf{conjugate pairs}. Students
-    determine the \emph{number and type} of solutions from a degree and a graph, finish Lesson~3.4's
-    workflow \emph{over the complex numbers} instead of stopping at ``no real solutions,'' run the
-    process \textbf{backward} to build a polynomial in factored and standard form from a list of
-    zeros, and verify their answers by counting against the degree and checking against the graph.
+    \textbf{Primary Objective:} Students read a polynomial's graph \emph{between} its arms. From
+    factored form they list each \textbf{zero} with its \textbf{multiplicity} and predict whether
+    the graph \textbf{crosses} (odd) or \textbf{touches} (even) the $x$-axis, and they read zeros
+    off a pre-drawn graph. They count \textbf{turning points} against the $n-1$ ceiling and tell a
+    \textbf{relative} maximum or minimum from an \textbf{absolute} one. They write where a graph
+    is \textbf{increasing}, \textbf{decreasing}, \textbf{positive}, and \textbf{negative} in
+    interval notation --- with $x$-values --- and state the \textbf{domain} and \textbf{range}.
     \\[2pt]
-    \textbf{Standards (2023 VA SOL):} \textbf{A2.EI.6b} --- determine the number and type of solutions
-    (real or imaginary) of a polynomial equation of degree three or higher --- and \textbf{A2.EI.6a}
-    --- determine a factored form of such an equation given its zeros or the $x$-intercepts of its
-    graph. \textbf{A2.EI.6c} is now completed \emph{over the set of complex numbers}, and
-    \textbf{A2.EI.6d} (verify algebraically and graphically, explain the method) is the counting
-    check. Built on \textbf{A2.EO.4a/b/c} (the imaginary unit and $a+bi$ arithmetic, Lesson~2.4),
-    \textbf{A2.EI.2b} and the discriminant (Lesson~2.5), \textbf{A2.EO.3b/c} (factoring and division,
-    Lessons~3.2--3.3), and \textbf{A2.F.2c} (multiplicity and $x$-intercepts, Lesson~3.0).
+    \textbf{Standards (2023 VA SOL):} \textbf{A2.F.2} --- investigate and analyze the
+    characteristics of polynomial functions graphically: domain, range, zeros, and intercepts
+    (\textbf{A2.F.2a}); intervals in which the function is increasing or decreasing
+    (\textbf{A2.F.2c}); absolute maximum and minimum (\textbf{A2.F.2d}); relative maximum and
+    minimum (\textbf{A2.F.2e}). \textbf{A2.F.2b} (compare and contrast) frames the odd- vs.\
+    even-degree contrast for absolute extrema and range; end behavior (\textbf{A2.F.2g}) was
+    Lesson~3.4 and is spiralled in the warm-up.
+    \\[2pt]
+    \textbf{Lesson model:} \emph{Packet first.} Students work in the printed packet --- a paper
+    warm-up as they walk in, then the guided notes: three rounds of a short \textbf{definition}
+    and \textbf{example} ($\le$3 min), a \textbf{ladder} of three problems (\rung1\ \rung2\
+    \rung3), and a \textbf{Show me} or \textbf{Find the mistake}, closed by a self-scored
+    \textbf{Closing Practice}. The projected deck mirrors the notes frame for frame and reveals
+    every answer. The last ten minutes start the homework. \textbf{Homework source:} DeltaMath,
+    online --- set \emph{A2: Lesson 3.5: Zeros, Extrema \& Intervals}. Optional graded
+    \textbf{Extra Credit} (two pages) tears off the back of the packet.
 \end{tcolorbox}
 
 \renewcommand{\arraystretch}{1.4}
@@ -44,194 +57,212 @@
 \hline
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item State the \textbf{Fundamental Theorem of Algebra} and its counting corollary: degree $n$ $\Rightarrow$ \emph{exactly} $n$ complex zeros, counted with \textbf{multiplicity}.
-  \item Write a polynomial in \textbf{completely factored form over $\mathbb{C}$}: $a(x-r_1)(x-r_2)\cdots(x-r_n)$.
-  \item Apply the \textbf{Complex Conjugate Root Theorem}: real coefficients $\Rightarrow$ $a+bi$ is a zero exactly when $a-bi$ is.
-  \item Determine the \textbf{number and type} of solutions from the degree plus the $x$-intercepts of a pre-drawn graph (A2.EI.6b).
-  \item \textbf{Solve over $\mathbb{C}$}: run Lesson~3.4's workflow, then finish the depressed quadratic with square roots or the quadratic formula even when the discriminant is negative.
-  \item \textbf{Build} a polynomial in factored and standard form from a list of zeros, supplying missing conjugates (A2.EI.6a).
-  \item \textbf{Verify} by counting against the degree and by checking which zeros the graph can and cannot show.
+  \item List each zero of a factored polynomial with its multiplicity, and say crosses or touches.
+  \item Read zeros off a pre-drawn graph; infer even multiplicity from a touch and a least degree.
+  \item Count turning points; use ``at most $n-1$'' both ways (degree $\to$ turns, turns $\to$ degree).
+  \item Name relative maxima/minima and any absolute maximum/minimum from a graph.
+  \item Write increasing, decreasing, positive, and negative intervals in interval notation; state domain and range.
 \end{itemize}
 &
 \vspace{-6pt}
 \begin{itemize}[leftmargin=1.1em, nosep, after=\vspace{2pt}]
-  \item Nothing was ever missing. ``No real solutions'' was a statement about $\mathbb{R}$, not about the polynomial.
-  \item The degree is a \emph{promise}. It tells you how many answers to hunt for, so ``how do I know I'm done?'' has an arithmetic answer.
-  \item Imaginary zeros come in pairs because the conjugate of a real number is itself --- pairing is what keeps the coefficients real.
-  \item Therefore an \emph{odd}-degree polynomial with real coefficients must have at least one real zero --- exactly what Lesson~3.0's opposite end-behavior arms forced graphically.
-  \item An $x$-intercept is a \emph{real} zero. A graph is an honest but incomplete witness: it can never show you an imaginary zero.
-  \item Zeros $\rightarrow$ factors $\rightarrow$ polynomial is the same road as Lesson~3.4, driven in reverse.
+  \item A factor's exponent decides the sign change: an odd power changes sign at its zero
+        (cross), an even power does not (touch).
+  \item Every turn is a relative extremum, but only an even-degree graph has an absolute one ---
+        the arms of an odd-degree graph run to $+\infty$ and $-\infty$. Flag (Round 2): calling every
+        maximum ``the absolute maximum.''
+  \item \textbf{Target misconception (the crux, Round 3):} writing an increasing or decreasing
+        interval with $y$-values --- the turning point's $y$-coordinate --- instead of the
+        $x$-values where the rise or fall happens. An interval answers \emph{where along the
+        $x$-axis}.
 \end{itemize}
 \end{tabularx}
 \end{skillbox}
 
-\begin{skillbox}[{Vocabulary, Concepts, \& Theorems}]{sky}
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-\textbf{Fundamental Theorem of Algebra} & \TallMath{\text{Every polynomial of degree } n \ge 1 \text{ with complex coefficients has at least one complex zero.}} \\
-\textbf{Counting corollary} & Degree $n$ $\Rightarrow$ exactly $n$ complex zeros, counted with multiplicity; $f(x)=a(x-r_1)\cdots(x-r_n)$. \\
-\textbf{Multiplicity} & How many times a factor repeats; a double zero uses up \emph{two} of the $n$ slots (Lesson 3.0). \\
-\textbf{Complex Conjugate Root Theorem} & If the coefficients are \emph{real} and $a+bi$ is a zero, then $a-bi$ is a zero too. \\
-\textbf{Complex conjugate pair} & $a+bi$ and $a-bi$; their factors multiply to the \emph{real} quadratic $x^2-2ax+(a^2+b^2)$. \\
-\textbf{Number and type} & How many solutions are real and how many are imaginary --- answered before solving (A2.EI.6b). \\
-\textbf{Real zero vs.\ $x$-intercept} & The same object. Imaginary zeros are \emph{not} on the graph, which is why intercepts can be fewer than the degree. \\
-\textbf{Factored form over $\mathbb{C}$} & Every factor linear. Over $\mathbb{R}$ an irreducible quadratic like $x^2+4$ is as far as you can go. \\
+\begin{skillbox}[{Vocabulary, Concepts, \& Theorems --- one definition each, as the notes and deck print them}]{sky}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}l X@{}}
+Zero & An input $x$ with $f(x)=0$; on the graph an $x$-intercept; each factor $(x-r)$ gives the zero $x=r$. \\
+Multiplicity & The number of times a zero's factor appears (its exponent). Odd: the graph \textbf{crosses}; even: it \textbf{touches} and turns back. \\
+Turning point & A point where the graph changes from increasing to decreasing or back. Degree $n$ $\Rightarrow$ \textbf{at most $n-1$}. \\
+Relative max / min & The $y$-value at a turning point that is highest / lowest \emph{near there}. \\
+Absolute max / min & The greatest / least $y$-value of the \emph{whole} function. Odd degree: none. Even degree: one --- a min when $a>0$, a max when $a<0$. \\
+Increasing / decreasing & $y$-values rise / fall as $x$ moves left to right; named by \textbf{$x$-values} in interval notation, parentheses at turning points. \\
+Positive / negative & Graph above ($f(x)>0$) / below ($f(x)<0$) the $x$-axis; intervals start and stop at zeros. \\
+Domain / range & Domain of every polynomial $(-\infty,\infty)$. Range: odd degree $(-\infty,\infty)$; even degree stops at the absolute extremum, e.g.\ $[-3,\infty)$. \\
 \end{tabularx}
 \end{skillbox}
 
-\begin{fixedskillbox}[Activate Prior Knowledge \& Spiral Review]{forestbg}
-    The Warm-Up rebuilds the three tools this lesson needs and then hands students the answer to
-    yesterday's cliffhanger. \textbf{(1)} \emph{Complex arithmetic from Lesson~2.4}: $i^2=-1$ and the
-    conjugate product $(x-3i)(x+3i)=x^2+9$ --- with the observation that the $i$'s vanish and the
-    result is \emph{real}. \textbf{(2)} \emph{Solving from Lessons~2.3 and 2.5}: $x^2+4=0$ by square
-    roots ($x=\pm 2i$) and $x^2-2x+5=0$ by the quadratic formula ($D=-16$, $x=1\pm 2i$) --- both
-    answers written down as a \emph{pair}. \textbf{(3)} \emph{Finishing Lesson~3.4's Tier E problem}:
-    $x^3-x^2+4x-4=(x-1)(x^2+4)$, whose depressed polynomial stalled yesterday, now solved completely
-    to $1$, $2i$, $-2i$. \textbf{(4)} The count: a cubic that gave up one solution yesterday has
-    \emph{three} today. Debrief items 1 and 3 together --- the conjugates in item~1 are not a
-    coincidence --- and do \emph{not} name the two theorems yet.
+\begin{fixedskillbox}[Lesson at a Glance --- \MeetingLength]{forestbg}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}l c X X@{}}
+\textbf{Phase} & \textbf{Min} & \textbf{Students} & \textbf{Teacher} \\
+\hline
+Warm-Up & 5 & Three quick wins on the warm-up page as they walk in; score themselves & Stand at the door; reveal at 3 min; land the hanging question --- does a repeated zero cross? \\
+Guided Notes \& Practice & 45 & Three rounds (13 min each): watch ($\le$3 min), \emph{climb the ladder} \rung1$\to$\rung2$\to$\rung3\ in the notes (~8), then \emph{Show me} fingers or \emph{Find the mistake} (~2); then the Closing Practice, alone, scored out of 4 (6) & $\le$3 min talk a round; circulate the whole ladder; reveal when most have \rung2; read the fingers; collect Closing Practice scores on fingers \\
+Homework & 10 & Start the DeltaMath set alone & Launch problem~1 aloud, then circulate \\
+\hline
+\textbf{Total} & \textbf{60} & & \\
+\end{tabularx}
 \end{fixedskillbox}
 
-\begin{skillbox}[Hook]{forestbg}
-    Put $f(x) = x^3-x^2+4x-4$ on the board with its graph (pre-drawn in the notes). It crosses the
-    $x$-axis \textbf{exactly once}, at $x=1$. Ask what the degree is, then ask the question the whole
-    lesson answers: \textbf{``A cubic is supposed to have three solutions. This graph shows one. Where
-    are the other two?''} Let the class argue. Then point at the Warm-Up: they already found them ---
-    $2i$ and $-2i$. \textbf{``So they exist. They are just not on the graph, because a graph only
-    shows you \emph{real} zeros.''} Reframe every ``no solution'' moment of the year --- $x^2=-4$ in
-    Lesson~2.3, the negative discriminant in 2.5, yesterday's stalled depressed polynomial --- as the
-    same sentence: \emph{no real solutions}, which was never the same as \emph{no solutions}. Promise
-    the payoff: by the end of the period they will know how many answers a polynomial equation has
-    before they start solving it, and they will be able to build a polynomial to order from a list of
-    zeros.
+\begin{skillbox}[Engagement --- how this hour keeps everyone solving]{goldbox}
+\textbf{Nobody waits:} every round's practice is a ladder --- \rung1\ everyone (a quick win),
+\rung2\ everyone, \rung3\ early finishers. \textbf{Everyone commits, safely:} \emph{Show me} is
+1--4 fingers on the count of three, all at once (Rounds 1 and 2). \textbf{Critique a stranger:}
+Round 3's \emph{Find the mistake} puts the crux error on an anonymous Student A.
+\textbf{Their world:} the riding barn on a cold night (Round 3, \rung3 --- when was it below
+freezing?), evening study hall in the library (Closing Practice bonus); the extra credit
+transfers to the spirit club's hot-chocolate cart at home volleyball games. \textbf{Short
+clock:} every practice frame carries its minutes. Praise the climb more than the answer.
 \end{skillbox}
 
-\begin{skillbox}[Lesson]{forestbg}
+\begin{skillbox}[Warm-Up (5 min, on paper as they walk in)]{forestbg}
+Three spiral items from Lesson~3.4, each a minute. \textbf{1.}~$f(x)=-2x^5+3x^2-1$: degree~$5$,
+leading coefficient~$-2$, so as $x\to-\infty$, $f\to+\infty$ and as $x\to+\infty$,
+$f\to-\infty$ (end behavior). \textbf{2.}~$g(x)=x^4-3x^2+7$ is \emph{even} --- only even powers,
+so $g(-x)=g(x)$ (symmetry). \textbf{3.}~$(x-1)^2(x+3)=0$ gives $x=1$ and $x=-3$, and $(x-1)$
+appears \emph{twice}; the last question --- does the graph cross at both? --- is left hanging
+(answer: not at $x=1$). Reveal on the deck at 3 minutes and hand straight into Round~1: ``that
+repeated factor is today's first idea.''
+\end{skillbox}
+
+\begin{skillbox}[The Lesson --- three rounds and Closing Practice (45 min)]{forestbg}
 \begin{multicols}{2}
-\textbf{1. The theorem, and the corollary that does the work.} State the Fundamental Theorem of
-Algebra --- every polynomial of degree $n\ge1$ has at least one complex zero --- and then get quickly
-to the version students will actually use: apply it, divide out the zero, apply it again, and the
-process runs exactly $n$ times, so a degree-$n$ polynomial factors completely as
-$a(x-r_1)\cdots(x-r_n)$ and has \emph{exactly $n$} zeros counted with multiplicity. Emphasize the
-word \emph{exactly}: this is the first tool of the year that says how many answers there are
-\emph{before} any are found.
+\textbf{Round 1 --- Zeros and multiplicity (13 min).} Read the definition with the display:
+$A(x)=(x+2)(x-1)^2$ crosses at $-2$, touches at $1$ --- the warm-up's question, answered.
+Example: $f(x)=(x+3)^2(x-1)(x-4)^3$ gives $-3$ (mult.~2, touches), $1$ (1, crosses), $4$ (3,
+crosses), degree $6$. Ladder: \rung1\ $5$ (1, crosses), $-1$ (2, touches);
+\rung2\ $0$ (2, touches), $3$ (3, crosses), $-6$ (1, crosses) --- the leading $-1$ is not a
+zero; \rung3\ zeros $-3,-1,2$ read off the graph, $-1$ even (it touches), least degree
+$1+2+1=4$. Show me $f(x)=(x+2)^3(x-4)^2$: \textbf{1} (crosses at $-2$, touches at $4$).
+\textbf{2}~swapped odd/even; \textbf{3}~took the sign in the factor as the zero; \textbf{4}~thinks
+any exponent above~1 bounces.
 
-\textbf{2. Counting with multiplicity.} Return to the unit anchor $g(x)=x^3-3x+2=(x-1)^2(x+2)$, whose
-graph students read in Lesson~3.0. Two \emph{distinct} zeros, three zeros \emph{counted with
-multiplicity}: the double zero at $1$ (where the graph touches) fills two of the three slots. Say the
-sentence to memorize: \textbf{``Distinct zeros can be fewer than $n$. Zeros counted with multiplicity
-are never fewer, and never more.''}
-
-\textbf{3. Imaginary zeros travel in pairs.} Look back at Warm-Up item~2: $1+2i$ and $1-2i$; and at
-item~3: $2i$ and $-2i$. State the Complex Conjugate Root Theorem for \emph{real} coefficients, and
-give the one-line reason --- the conjugate factors multiply to $x^2-2ax+(a^2+b^2)$, which is real, so
-the pair is exactly what lets a real polynomial hide an imaginary zero. Then draw the two
-consequences: the number of imaginary zeros is always \textbf{even}, and therefore an \textbf{odd}
-degree forces at least one real zero. Tie that to Lesson~3.0: an odd-degree graph has arms pointing
-opposite directions, so it \emph{has} to cross.
+\textbf{Round 2 --- Turning points and extrema (13 min).} Point at ``at most $n-1$'' and at the
+two words \emph{relative} (nearby) and \emph{absolute} (whole function). Example $f(x)=\tfrac14(x^2-4)^2$:
+3 turns (the most degree 4 allows), rel.\ max $4$ at $x=0$ \emph{but not absolute} --- the arms
+rise past it --- rel.\ and abs.\ min $0$ at $x=\pm2$. Ladder: \rung1\ $4$; $4$.
+\rung2\ $C$: rel.\ max $4$ at $x=0$, rel.\ min $0$ at $x=2$, no absolute extrema (odd degree).
+\rung3\ $M$: abs.\ max $4$ at $x=\pm2$, rel.\ min $0$ at $x=0$, not absolute (arms fall).
+Show me on $A$: $(-1,4)$ is \textbf{2}, a relative max with no absolute max. \textbf{1}~is the
+flagged slip (every max is ``the'' max); \textbf{3}~gave the $x$-value; \textbf{4}~hill vs.\ valley.
 
 \columnbreak
+\textbf{Round 3 --- Intervals, domain, range (13 min) --- the crux.} Say it twice: an interval
+names \emph{$x$-values}, read along the axis. Example $E(x)=(x+1)^2(x-2)$: increasing
+$(-\infty,-1)\cup(1,\infty)$, decreasing $(-1,1)$, positive $(2,\infty)$, negative
+$(-\infty,-1)\cup(-1,2)$ (the touch point is $0$, not negative), domain and range
+$(-\infty,\infty)$. Ladder: \rung1\ $K$ increasing $(-2,0)$, domain $(-\infty,\infty)$;
+\rung2\ $S$ decreasing $(-\infty,3)$ (the flat spot at $0$ is not a turn), negative $(0,4)$,
+range $[-3,\infty)$; \rung3\ barn warming $(0,2)\cup(4,6)$, below freezing $[0,2)\cup(2,5)$ ---
+$h=0$ is in the domain and $T(0)=-5$, so the bracket. \textbf{Find the mistake (do not rush
+it):} Student A wrote increasing $(-\infty,4)\cup(-2,\infty)$ from the turning points
+$(-3,4)$ and $(1,-2)$ --- the $y$-values. Fix: increasing $(-\infty,-3)\cup(1,\infty)$,
+decreasing $(-3,1)$.
 
-\textbf{4. Number and type, from a graph (A2.EI.6b).} The section that most directly matches the
-standard, and it is pure graph reading. Degree gives the total; $x$-intercepts give the real ones (in
-multiplicity); subtract for the imaginary ones. Work the table in the notes aloud --- a quartic
-showing two intercepts has two imaginary zeros; a cubic showing one has two. Ask the killer question
-at least twice: \textbf{``Could a cubic with real coefficients show \emph{zero} $x$-intercepts?''}
-(No --- that would need three imaginary zeros, and they come in pairs.)
-
-\textbf{5. Solve over $\mathbb{C}$ --- the workflow, finished.} Nothing new procedurally: list, test,
-divide, finish (Lesson~3.4). The change is the last step. When the depressed quadratic has a negative
-discriminant you no longer write ``no solution'' --- you write the conjugate pair. Do
-$x^3-5x^2+9x-5=0$ ($x=1$, then $x^2-4x+5$, then $2\pm i$) so students see a pair whose real part is
-\emph{not} zero, and $x^4-5x^2-36=0$ by quadratic form (Lesson~3.2) for $\pm3, \pm2i$.
-
-\textbf{6. Run it backward (A2.EI.6a).} Zeros $\rightarrow$ factors $\rightarrow$ multiply. Build
-$(x-2)(x^2+9)=x^3-2x^2+9x-18$ from the zeros $2$ and $3i$, insisting on \emph{why} $-3i$ had to be
-invited. Then $(x+1)^2(x-4)$ from a repeated zero, and close with the question that tests whether the
-theorem is understood: \emph{what is the smallest possible degree of a real polynomial with zeros $5$
-and $1-i$?}
+\textbf{Closing Practice (6 min).} Alone, answers revealed together, score out of 4.
+\textbf{1.}~$6$: mult.~2, touches; $-5$: mult.~3, crosses. \textbf{2.}~at most $5$; yes (even
+degree). \textbf{3.}~$H$ increasing on $(-1,1)$ --- the crux's twin. \textbf{4.}~rel.\ min $-4$;
+positive on $(-\infty,-2)$. \textbf{Bonus:} the library's $L$ decreases on $(1,\,2.5)$ --- not
+$(12,40)$. Say the \emph{Watch out} aloud: intervals are $x$-values, never a turning point's
+$y$-value.
 \end{multicols}
 \end{skillbox}
 
-\begin{skillbox}[Active Monitoring]{redbox}
-Circulate during the notes practice and Tier work. Watch for and correct:
+\boxguard
+\begin{skillbox}[Homework (DeltaMath) --- scored 1 to 5, started in class, due the first class after two study halls]{goldbox}
+\textbf{Source:} DeltaMath, online --- set \textbf{A2: Lesson 3.5: Zeros, Extrema \& Intervals}.
+Skills to be chosen when the set is built with the teacher (exact DeltaMath catalog names, one
+skill per round: zeros and multiplicity, relative and absolute extrema from a graph, and
+increasing/decreasing and positive/negative intervals), with an interval-notation problem as the
+formative check. Scored 1 to 5 from DeltaMath. Students start it in the last ten minutes; it is
+due \textbf{the first class after two study halls} --- announced in class and on TurtleNet.
+\textbf{Sort the formative check:} intervals in $x$-values $\to$ ready for 3.6; intervals built
+from $y$-values $\to$ open 3.6's warm-up with one Find-the-mistake graph; open vs.\ closed
+endpoints only $\to$ a one-line reminder. \textbf{Preview:} Lesson~3.6 --- the Fundamental
+Theorem of Algebra, and writing and graphing a polynomial from its zeros, where multiplicity and
+end behavior come back together.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Extra Credit --- optional, graded (alg2-u03-l05-ec, 14 points)]{goldbox}
+Two pages at the back of the packet; students tear them off and turn them in with the homework.
+\begin{enumerate}[leftmargin=1.4em, nosep]
+  \item \textbf{Combine} (Rounds 1 + 3, 3 pts): for $f(x)=(x+2)(x-1)^2(x-4)$, the touch zero
+        $x=1$, and $f(x)<0$ on $(-2,1)\cup(1,4)$ by test points --- a sign analysis with no graph.
+  \item \textbf{Reverse} (Rounds 2 + 3, 3 pts): from increasing $(-\infty,-2)\cup(3,\infty)$,
+        decreasing $(-2,3)$, $g(-2)=5$, $g(3)=-4$: rel.\ max $(-2,5)$, rel.\ min $(3,-4)$, range
+        $(-\infty,\infty)$ (degree 3) --- intervals back to points.
+  \item \textbf{SOL-style multiple choice} (1 pt): $f(x)=-2(x-3)^2(x+1)^3$ --- \textbf{B}
+        (touches at 3, crosses at $-1$, at most 4 turning points); D tempts with an absolute max.
+  \item \textbf{Model} (4 pts): the spirit club's hot-chocolate cart, total profit $P(w)$:
+        decreasing $(2,4)$; behind on $[0,1)$; $(4,0)$ is a relative minimum only ($P(0)=-4$ is
+        lower), the week the club broke even again --- interpreting a turning point in context.
+  \item \textbf{Find the mistake} (3 pts): on $Q(x)=\tfrac14(x+1)^2(x-3)^2$, ``absolute maximum 4''
+        (only relative --- the arms rise) and ``increasing on $(0,4)$'' ($y$-values); correct
+        $(-1,1)\cup(3,\infty)$ --- both of today's flagged errors at once.
+\end{enumerate}
+Rubrics: \texttt{rubrics/alg2-u03-l05-ec-q4c.yaml}, \texttt{-q5.yaml}.
+\end{skillbox}
+
+\boxguard
+\begin{skillbox}[Active Monitoring --- Watch For]{redbox}
 \begin{itemize}[leftmargin=1.2em, nosep]
-  \item \textbf{a lone imaginary zero} --- a real polynomial written with $3i$ but not $-3i$. This is the signature error of the lesson; ask them to multiply out and find the $i$ left in the coefficients;
-  \item \textbf{counting distinct zeros instead of counting with multiplicity} --- ``$(x-1)^2(x+2)$ has two zeros, so the theorem is wrong'';
-  \item \textbf{looking for imaginary zeros on the graph} --- ``I can't find the other two intercepts.'' They are not there and never will be;
-  \item \textbf{stopping at ``no real solutions''} on a depressed quadratic --- the exact habit this lesson replaces;
-  \item \textbf{sign slips in the conjugate product} --- $(x-3i)(x+3i)$ becoming $x^2-9$; make them show the $-9i^2$ step;
-  \item \textbf{$\pm$ dropped when taking a square root} of a negative number ($x^2=-4 \Rightarrow x=2i$ only);
-  \item \textbf{forgetting the ``real coefficients'' hypothesis} when they quote the conjugate theorem;
-  \item building a polynomial and \textbf{never multiplying out} --- A2.EI.6a asks for a factored form, but the check that it is right lives in standard form.
+  \item \textbf{Sign of the zero} (Round 1 \rung1--\rung2, Show me option 3): $(x+1)^2$ read as
+        $x=1$. Ask: ``what makes this factor zero?''
+  \item \textbf{Any exponent bounces} (Show me option 4): only an \emph{even} exponent touches;
+        $(x-4)^3$ crosses, flattening as it goes.
+  \item \textbf{Every max is the absolute max} (Round 2 \rung3, Show me option 1, extra credit 5):
+        point at the arms --- if an arm climbs past it, it is only relative.
+  \item \textbf{$y$-values in an interval} (Round 3 ladder, Find the mistake, Closing Practice 3
+        and bonus): the crux. Trace the $x$-axis with a finger from turn to turn.
+  \item \textbf{Including a touch point in ``negative''} (Example 3, \rung3): $f=0$ there, so the
+        interval breaks with a $\cup$.
+  \item \textbf{Attitude:} a student parked at \rung1\ with nothing written --- crouch, point at
+        the example in her notes, ask for just the first factor or the first turning point.
 \end{itemize}
-Cold-call prompts: ``What is the degree, and how many solutions does that promise?'' ``You wrote $2i$
---- who has to come with it, and why?'' ``This quartic's graph crosses twice. How many imaginary
-zeros does it have?'' ``Can an odd-degree polynomial have \emph{no} real zeros? Convince me two ways
---- pairing, and end behavior.'' ``Your depressed polynomial is $x^2+9$. Is that the end of the
-problem or the middle?''
+Cold-call prompts (after the fingers, never before): ``Which arm tells you there is no absolute
+max?'' --- ``Read me the $x$-value where it stops rising.'' --- ``Why is $-1$ left out of the
+negative interval?''
 \end{skillbox}
 
-\begin{skillbox}[Group Work \& Differentiation]{redbox}
-\textbf{Nothing Is Missing} activity (tiered; mirrors the notes).
-\begin{multicols}{3}
-\textbf{Tier R --- Remediate.} Counting first, solving second. Students read four already-factored
-polynomials and report degree, distinct zeros, and zeros counted with multiplicity --- including one
-with an $x^2+4$ factor, so a conjugate pair gets counted without any solving. Then two quadratics over
-$\mathbb{C}$ ($x^2+25=0$ and $x^2-6x+13=0$) rebuild the two finishing moves, and a guided solve of
-$x^3-2x^2+9x-18=0$ (candidate given, synthetic grid pre-drawn) produces $2$, $\pm3i$ --- the same
-polynomial the notes \emph{built} from those zeros, met from the other direction. Closes with
-building $x(x+3)(x-2)$ from three real zeros.
+% ── Teacher notes — one per component, packet order ──
+% This is the ONLY place teacher prose goes — never append one to a _key.
+\begin{teachernote}[Warm-Up]
+Five minutes, on the warm-up page, alone. Items 1--2 are 3.4's end behavior and symmetry ---
+anyone stuck on 1 needs the two questions (even/odd degree? sign of $a$?) said once. Reveal on
+the deck at 3 minutes; do not answer item~3's last question --- Round~1's display answers it.
+\end{teachernote}
 
-\columnbreak
-\textbf{Tier A --- Approaching.} A full solve over $\mathbb{C}$ with no candidate handed over,
-$x^3-3x^2+4x-12=0$ (zeros $3$, $\pm2i$); a \textbf{graph-driven} number-and-type problem on a
-pre-drawn quartic with exactly two $x$-intercepts, where students must report two real and two
-imaginary zeros \emph{without solving anything}; building a cubic from the zeros $5$ and $1-i$
-(supplying the conjugate, then multiplying to $x^3-7x^2+12x-10$); and error analysis on the two
-signature mistakes --- an unpaired imaginary zero, and hunting for imaginary zeros among the
-$x$-intercepts.
+\begin{teachernote}[Guided Notes \& Practice]
+Three rounds of about 13 minutes: definition and example together \textbf{at most 3 minutes}
+(students fill the example's work block as you click through it), the ladder about 8 (reveal
+when most have \rung2), the check about 2. Then 6 minutes of Closing Practice, alone, scored out
+of 4. If behind, trim Round 1's ladder to \rung1--\rung2 and Round 2's example to the extrema
+lines --- never cut Round 3's Find the mistake: it is the crux. Every graph is pre-drawn; no one
+sketches. Collect Closing Practice scores on fingers --- below 3 on item 3 means the crux did
+not land; open 3.6 with it.
+\end{teachernote}
 
-\columnbreak
-\textbf{Tier E --- Extension.} A guided proof that the conjugate pair always produces the \emph{real}
-quadratic $x^2-2ax+(a^2+b^2)$, and the argument it powers: why an odd-degree real polynomial must have
-a real zero, cross-checked against Lesson~3.0's end behavior. Then $x^4+13x^2+36=0$, whose four zeros
-$\pm2i,\pm3i$ are \emph{all} imaginary, with a pre-drawn graph that never touches the $x$-axis;
-building a quartic from the zeros $2i$ and $1+i$ (both need partners, so the degree is forced); and a
-sharp counterexample --- $f(x)=x-i$ has the zero $i$ and not $-i$, which is exactly why the conjugate
-theorem says \emph{real} coefficients.
-\end{multicols}
-\end{skillbox}
+\begin{teachernote}[Homework]
+DeltaMath, online: \emph{A2: Lesson 3.5: Zeros, Extrema \& Intervals}, skills to be chosen when
+the set is built with the teacher (exact catalog names). Launch problem~1 aloud in the last ten
+minutes, then circulate to the students whose Closing Practice item~3 was wrong. Due the first
+class after two study halls --- announce it in class and on TurtleNet.
+\end{teachernote}
 
-\begin{skillbox}[Individual Work \& Assessment]{redbox}
-\textbf{Exit Ticket} (independent, no notes): \textbf{(1)} solve $x^3+x^2+4x+4=0$ over $\mathbb{C}$
---- factor by grouping (Lesson~3.2) to $(x+1)(x^2+4)$, report $-1$, $2i$, $-2i$, and then state the
-\emph{number and type} explicitly (one real, two imaginary) and how the degree confirms the list is
-complete; \textbf{(2)} write a polynomial of \emph{least} degree with real coefficients whose zeros
-include $-2$ and $4i$ --- the item that fails immediately if the conjugate is not invited, answer
-$(x+2)(x^2+16)=x^3+2x^2+16x+32$; and \textbf{(3)} an \textbf{SOL-style multiple-choice} item asking
-which list \emph{cannot} be the complete set of zeros of a degree-4 polynomial with real coefficients,
-with an unpaired $3i$ as the answer and three legitimate lists (including one using multiplicity) as
-distractors. Sort into ``got it / stopped at no-real-solutions / conjugate not supplied / counted
-wrong.'' The conjugate pile is the one to fix on the spot, because Lesson~3.6 asks students to move
-between a graph, a factored form, and a degree constantly, and a missing conjugate breaks that
-triangle.
-\end{skillbox}
+\begin{teachernote}[Extra Credit]
+Optional, graded (\texttt{alg2-u03-l05-ec}): the last two pages, torn off and turned in with the
+homework. Items 4(c) and 5 are rubric-scored; the rest are short boxes. Mention it once on the
+homework frame; do not work it in class.
+\end{teachernote}
 
-\begin{skillbox}[Reinforcement \& Extension]{goldbox}
-\textbf{Homework:} counting practice from factored forms (including a repeated \emph{imaginary} zero);
-number-and-type from a degree plus a described set of $x$-intercepts; three solves over $\mathbb{C}$
-of escalating difficulty --- $x^3+2x^2+4x+8=0$ (the polynomial Lesson~3.3's homework produced as a
-quotient of $x^4-16$, now finished to $-2,\pm2i$), $x^3-7x^2+17x-15=0$ (zeros $3$, $2\pm i$), and the
-quartic $x^4-16=0$ itself, whose four zeros $\pm2,\pm2i$ close a loop opened two lessons ago; two
-build-from-zeros items, one with a repeated zero and one requiring a supplied conjugate; a
-degree-5 item where three zeros and a multiplicity are given and the fifth must be deduced; and two
-written items --- why an odd-degree polynomial always has a real zero, and why a graph is an
-incomplete witness. \textbf{Extension:} prove the conjugate factors always give real coefficients;
-find the smallest degree of a real polynomial with prescribed zeros; and a design task --- write a
-quartic with exactly two $x$-intercepts, then one with none, and justify both with the counting rules.
-\textbf{Preview:} Lesson~3.6, graphing polynomial functions and modeling --- everything the unit has
-built (end behavior, multiplicity, zeros, and now the complete count) becomes one procedure for
-producing and reading a polynomial's graph.
-\end{skillbox}
+\begin{teachernote}[Slides]
+The deck mirrors the notes frame for frame (17 frames). Every ladder, Show me, Find the mistake,
+warm-up and Closing Practice answer is behind a click (\verb|\reveal|); the worked examples step
+with \verb|\pause|. The 3-up slide handout is a standalone work product, not in the packet. The
+Find-the-mistake frame is red-labelled: let the room argue before the click.
+\end{teachernote}
+
 \end{document}
