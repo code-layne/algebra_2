@@ -117,7 +117,9 @@ old 2.4 and 2.5 directories are regenerated whole when the new lesson is authore
 
 **Current map (2026-11-17, user direction):** numbered from 3.1, no 3.0; the characteristics
 lesson is split in two and placed after the algebra. Regenerated whole in the packet-first shape
-(`LESSON_SHAPE.md` §0a); DeltaMath sets to be built with the user last.
+(`LESSON_SHAPE.md` §0a). Homework: DeltaMath sets `A2: Lesson 3.1`–`3.6`; unit test: the
+DeltaMath test `A2: Unit 3 Test: Polynomial Functions` (31 questions, one per homework skill) —
+not a repo test (2026-11-17).
 
 | # | Lesson | Round 1 → Round 2 → Round 3 | Standards |
 |:--:|---|---|---|
