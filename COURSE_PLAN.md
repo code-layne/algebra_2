@@ -26,9 +26,8 @@
 > kept). DeltaMath sets `A2: Lesson 3.1`–`3.6` built 2026-11-17 (hidden, Algebra 2 - E, folder
 > Algebra 2; skills listed in each plan). **Unit 3 test is in DeltaMath, not the repo** (user
 > direction 2026-11-17): `A2: Unit 3 Test: Polynomial Functions`, hidden, 31 questions (one per
-> homework skill, in lesson order), 10 pts each = 310, Unit 2 test's settings. The repo's
-> `unit03/tests/` and `test_keys/` are the old map's tests (they test the cut Rational Root /
-> Remainder–Factor Theorems) and are not used.
+> homework skill, in lesson order), 10 pts each = 310, Unit 2 test's settings. The old map's repo tests (`unit03/tests`, `test_keys`,
+> `sample_test*`, `rubrics`) were deleted 2026-11-17; the unit packets carry no sample test.
 
 > ## ⚠ Status (2026-10-31) — **UNIT 3 CONDENSED: 12 LESSONS → 5 (3.0–3.4), MERGED ROUNDS.**
 >
