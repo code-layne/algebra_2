@@ -21,8 +21,8 @@
 >
 > User direction: number from 1, not 0; split characteristics in two and move it after the
 > algebra — 3.1 operations · 3.2 factoring · 3.3 division · 3.4–3.5 characteristics I/II · 3.6
-> zeros & graphs (map: `COURSE_BREAKDOWN.md`). All six regenerated in the §0a shape (packet =
-> cover, warm-up, guided notes; extra credit dropped 2026-11-17; plus the deck); old `lesson00`–`lesson06` removed (3.1's `graded_sample`
+> zeros & graphs (map: `COURSE_BREAKDOWN.md`). All six regenerated in the §0a shape (warm-up,
+> notes, graded extra credit — dropped 2026-11-17, restored 2026-11-18 —, deck); old `lesson00`–`lesson06` removed (3.1's `graded_sample`
 > kept). DeltaMath sets `A2: Lesson 3.1`–`3.6` built 2026-11-17 (hidden, Algebra 2 - E, folder
 > Algebra 2; skills listed in each plan). **Unit 3 test is in DeltaMath, not the repo** (user
 > direction 2026-11-17): `A2: Unit 3 Test: Polynomial Functions`, hidden, 31 questions (one per
