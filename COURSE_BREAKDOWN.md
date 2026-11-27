@@ -153,9 +153,9 @@ regenerated whole when taught; `lesson05`–`lesson06` have no place in the new 
 
 Cumulative over what was taught: Units 1–2 (1.0–1.5, 2.0–2.5 on the condensed map) plus
 3.1 polynomial operations and 3.2 factoring. **DeltaMath test `A2: Mid-Year Final Exam`**
-(Algebra 2 - E, folder *Algebra 2*, posted *Not Now* → hidden until published): **44
-questions, one per skill, 10 points each (440)**; **time limit 1 h 30 min**; DeltaMath's own
-estimate 86 min. Not a repo test, like the Unit 3 test. Skill names are the in-app catalog
+(Algebra 2 - E, folder *Algebra 2*, posted *Not Now* → hidden until published): **47
+questions, one per skill, 10 points each (470)**; **time limit 1 h 30 min**; DeltaMath's own
+estimate 92 min. Not a repo test, like the Unit 3 test. Skill names are the in-app catalog
 names, which differ from the public syllabus pages in places.
 
 | Lessons | Questions | DeltaMath skills, in test order |
@@ -169,14 +169,21 @@ names, which differ from the public syllabus pages in places.
 | 2.2 | 16–20 | Factor Trinomials (a>1) Level 1 · Factor Trinomials (a>1) Level 2 · Solve by Trinomial Factor (a>1) · Solving Quadratics by Factoring · Solve Binomial Equations |
 | 2.3 | 21–24 | Solving Quadratics with Square Roots (Level 2) · Simplifying Radicals with Negative Radicands · Add Imaginary Numbers · Multiply Imaginary Numbers |
 | 2.4 | 25–27 | Add/Subtract Complex Numbers · Multiply Complex Numbers · Complex Numbers to Powers |
-| 2.5 | 28–32 | Solve Quadratic / Linear Systems (L1) · Solve Quadratic / Linear Systems (L2) · Interpret Graphs of Quadratics in Context (Graph Given) · Quadratic Word Problems · Quadratic Word Problems (Level 2) |
-| 3.1 | 33–37 | Adding and Subtracting Polynomials · Squaring Binomials · Multiply Polynomials (Level 1) · Factored to Standard Form · Multiply Polynomials (Level 2) |
-| 3.2 | 38–44 | Factor out GCF (Multivariable) · Factor By Grouping · Factoring Diff / Sum of Cubes (Level 1) · Factoring Diff / Sum of Cubes (Level 2) · Factoring Quartic Trinomial (Level 1) · Multistep Factoring · Mixed Multistep Factoring |
+| QF & discriminant | 28–30 | Quadratic Formula (Irrational Level 1) · Complex Roots (Level 1) · Nature of the Roots |
+| 2.5 | 31–35 | Solve Quadratic / Linear Systems (L1) · Solve Quadratic / Linear Systems (L2) · Interpret Graphs of Quadratics in Context (Graph Given) · Quadratic Word Problems · Quadratic Word Problems (Level 2) |
+| 3.1 | 36–40 | Adding and Subtracting Polynomials · Squaring Binomials · Multiply Polynomials (Level 1) · Factored to Standard Form · Multiply Polynomials (Level 2) |
+| 3.2 | 41–47 | Factor out GCF (Multivariable) · Factor By Grouping · Factoring Diff / Sum of Cubes (Level 1) · Factoring Diff / Sum of Cubes (Level 2) · Factoring Quartic Trinomial (Level 1) · Multistep Factoring · Mixed Multistep Factoring |
 
-Weight: Unit 1 ≈ 23% (10), Unit 2 ≈ 50% (22), polynomials ≈ 27% (12). Not on it: completing the
-square, the quadratic formula, the discriminant (never taught on the condensed map), and
-3.3–3.6. Calculator allowed (no test-wide switch in DeltaMath; it is per skill). Still to set
+Weight: Unit 1 ≈ 21% (10), Unit 2 ≈ 53% (25), polynomials ≈ 26% (12). The quadratic formula and
+the discriminant were taught and are on it (added 2026-11-27); completing the square is not
+(user direction), nor 3.3–3.6. Calculator allowed (no test-wide switch in DeltaMath; it is per skill). Still to set
 before publishing: the real exam date (the due date is a placeholder).
+
+**Practice final:** a printed copy of the DeltaMath test (new numbers, same order), with its
+DeltaMath key — print it from a *copy* of the test so the real one is untouched. **Study
+guide:** `final/study_guide/` (`make -C final` → `target/compiled/final/midyear_final_study_guide.pdf`),
+a 3-page reference sheet in the unit study guides' shape, opening with an exam map of question
+numbers per lesson — keep that map in step with the table above.
 
 ---
 
