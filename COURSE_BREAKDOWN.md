@@ -149,6 +149,37 @@ regenerated whole when taught; `lesson05`–`lesson06` have no place in the new 
 
 ---
 
+## Mid-Year Final Exam — DeltaMath (built 2026-11-27)
+
+Cumulative over what was taught: Units 1–2 (1.0–1.5, 2.0–2.5 on the condensed map) plus
+3.1 polynomial operations and 3.2 factoring. **DeltaMath test `A2: Mid-Year Final Exam`**
+(Algebra 2 - E, folder *Algebra 2*, posted *Not Now* → hidden until published): **44
+questions, one per skill, 10 points each (440)**; **time limit 1 h 30 min**; DeltaMath's own
+estimate 86 min. Not a repo test, like the Unit 3 test. Skill names are the in-app catalog
+names, which differ from the public syllabus pages in places.
+
+| Lessons | Questions | DeltaMath skills, in test order |
+|---|:--:|---|
+| 1.1 | 1–2 | Line Equations from Point/Slope · Line Equation from Points (Graphically) |
+| 1.2 | 3–5 | Absolute Value Equations (Level 1) · Absolute Value Equations (Level 2) · Absolute Value Inequalities (Level 1) |
+| 1.3 | 6 | Absolute Value Functions (Level 1) |
+| 1.4 | 7–9 | Evaluate Piecewise Functions · Evaluate Piecewise Functions Graphically · Interpret Step Functions (MC) |
+| 1.5 | 10 | Linear Regressions |
+| 2.0–2.1 | 11–15 | Parabola Features · Parabolas: Vertex Form Coefficients · Parabolas: Intercept Form Coefficients · Vertex to Standard Form · Graphing Parabolas State Properties (L2) |
+| 2.2 | 16–20 | Factor Trinomials (a>1) Level 1 · Factor Trinomials (a>1) Level 2 · Solve by Trinomial Factor (a>1) · Solving Quadratics by Factoring · Solve Binomial Equations |
+| 2.3 | 21–24 | Solving Quadratics with Square Roots (Level 2) · Simplifying Radicals with Negative Radicands · Add Imaginary Numbers · Multiply Imaginary Numbers |
+| 2.4 | 25–27 | Add/Subtract Complex Numbers · Multiply Complex Numbers · Complex Numbers to Powers |
+| 2.5 | 28–32 | Solve Quadratic / Linear Systems (L1) · Solve Quadratic / Linear Systems (L2) · Interpret Graphs of Quadratics in Context (Graph Given) · Quadratic Word Problems · Quadratic Word Problems (Level 2) |
+| 3.1 | 33–37 | Adding and Subtracting Polynomials · Squaring Binomials · Multiply Polynomials (Level 1) · Factored to Standard Form · Multiply Polynomials (Level 2) |
+| 3.2 | 38–44 | Factor out GCF (Multivariable) · Factor By Grouping · Factoring Diff / Sum of Cubes (Level 1) · Factoring Diff / Sum of Cubes (Level 2) · Factoring Quartic Trinomial (Level 1) · Multistep Factoring · Mixed Multistep Factoring |
+
+Weight: Unit 1 ≈ 23% (10), Unit 2 ≈ 50% (22), polynomials ≈ 27% (12). Not on it: completing the
+square, the quadratic formula, the discriminant (never taught on the condensed map), and
+3.3–3.6. Calculator allowed (no test-wide switch in DeltaMath; it is per skill). Still to set
+before publishing: the real exam date (the due date is a placeholder).
+
+---
+
 ## Unit 4 — Rational Functions · 10 lessons (remapped 2026-10-23)
 
 | # | Lesson — the one skill | Standards |
